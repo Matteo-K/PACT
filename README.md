@@ -1,4 +1,4 @@
-# PACT
+# PACT - Mattéo Kervadec
 
 ## Sprint
 
