@@ -15,5 +15,3 @@ L’enjeu majeur de l’association TripEnArvor pour 2025 est le développement 
 #### [Dictionnaire de donnée](./Conception/A21_DictionnaireDesDonnées.xlsx)
 
 #### [UML](./Conception/A21_DiagrammeClasseUML.pdf)
-
-### Sprint 1 -
