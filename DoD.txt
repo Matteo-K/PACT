@@ -1,0 +1,15 @@
+Les tests U sont-ils passés ?
+
+Le code est-il commenté ?
+
+Le code est-il commité ?
+
+Le code est-il intégré?
+
+Les critères de confirmation sont-ils vérifiés ?
+
+Le PO a-t-il validé l'item ?
+
+L'item est-il conforme à la maquette ?
+
+
