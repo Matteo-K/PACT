@@ -1,4 +1,3 @@
-test tsetst fshgygeyuqeygqg-et
 Les tests U sont-ils passés ?
 
 Le code est-il commenté ?
