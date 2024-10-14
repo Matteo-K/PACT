@@ -6,6 +6,14 @@
 
 #### Objectifs
 
+- Création/Modification d'une offre
+- Saisit de la localisation
+- Saisit des contacts
+- Création des types d'offres
+  - Gratuit
+  - Standard
+  - Premium
+
 #### Travaux effectuer
 
 #### Problèmes
