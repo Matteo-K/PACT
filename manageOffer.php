@@ -20,7 +20,8 @@ $step = $isset($_GET["page"]) ? $_GET["page"] : 1 ;
       <!-- Par un foreach écrire les étapes et leur avancée -->
     </div>
     <div>
-      <!-- Bouton quitter et annuler -->
+      <a href="">Quitter</a> <!-- Sauvegarde et quitte -->
+      <a href="">Annuler</a> <!-- Ne sauvegarde pas la saisie et quitte -->
     </div>
   </aside>
   <?php
