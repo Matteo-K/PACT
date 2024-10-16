@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+$_SESSION
+?>
 <link rel="stylesheet" href="../style.css">
 <header theme="light">
     <div>
@@ -12,7 +17,7 @@
             <button type="submit"><img src="../img/icone/loupe.png" title="icone de recherche"></button>
         </form>
         <div id="auth">
-            <a href="login.php"><div id="btnConn">Connexion</div></a>
+            <a href="../login.php"><div id="btnConn">Connexion</div></a>
         </div>
     </div>
 </header>

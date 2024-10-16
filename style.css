@@ -116,63 +116,105 @@ footer div + div {
 footer div + div p {
   padding: 0 500px;
 }
+/* ##### Components ##### */
 
-/*HEADER*/
+/* ### HEADER ###*/
 
-header div{
+/* Conteneur principal dans le header */
+header {
+  position: fixed;
+  top: 3em;
+  left: 0;
+  width: 100%;
+}
+
+header div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 0.8em;
   align-items: center;
+  margin: 0.5em 0.8em;
+  height: 3em;
 }
 
 header div > a {
-  text-decoration: none;
   display: flex;
   flex-direction: row;
+  text-decoration: none;
+  align-items: center; /* Alignement vertical de l'image et du texte */
 }
 
-header h1{
+header h1 {
   font-size: 48px;
   color: var(--bloc);
 }
-header div >a > img{
-  width: 5em;
-  height: 5em;
+
+header div > a > img {
+  width: 6em;
+  height: 6em;
+  margin-right: 0.5em; /* Espace entre le logo et le texte */
 }
-#formHeader{
+
+#formHeader,
+#btnConn {
+  border-radius: 2em;
+  height: 3em; /* Assurez-vous que les deux aient la même hauteur */
+}
+
+/* Formulaire de recherche */
+#formHeader {
   display: flex;
   align-items: center;
   border: var(--text-dark) solid 2px;
-  border-radius: 2em;
-  height: 3em;
-  width: 35em;
-
+  width: 35em; /* Largeur du formulaire */
 }
-#formHeader input[type="text"], #formHeader button, #formHeader img{
-  margin:0;
+
+#formHeader input[type="text"],
+#formHeader button,
+#formHeader img {
+  margin: 0;
   padding: 0;
   border: none;
   outline: none;
 }
+
 #formHeader input[type="text"] {
   width: 85%;
   padding-left: 1em;
-  height: 100%; 
+  height: 100%;
   font-size: 16px;
-  border-radius:2em 0 0 2em;
+  border-radius: 2em 0 0 2em;
 }
 
 #formHeader button {
   flex: 1;
   padding: 0 1.7em;
   background-color: var(--primary);
-  border-radius: 0 2em 2em 0; /* Coins arrondis à droite */
-  height: 100%; /* Le bouton a la même hauteur que l'input */
+  border-radius: 0 2em 2em 0;
+  height: 100%;
   cursor: pointer;
 }
-#formHeader img{
+
+#formHeader img {
   width: 2em;
-  
+}
+
+/* Bouton de connexion */
+#btnConn {
+  display: flex;
+  align-items: center; /* Alignement vertical du texte dans le bouton */
+  justify-content: center;
+  opacity: 60%;
+  padding: 0.5em 3em; /* Ajustement du padding */
+  font-size: 25px;
+  font-weight: 600;
+  background-color: var(--accent);
+  margin-left: 1em;
+  height: 3em; /* Même hauteur que le formulaire */
+  color: var(--text-dark);
+  text-decoration: none; /* Supprimer la décoration du texte */
+}
+
+#btnConn:hover {
+  opacity: 100%;
 }
