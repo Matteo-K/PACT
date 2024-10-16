@@ -12,6 +12,7 @@ $step = isset($_GET["page"]) ? $_GET["page"] : 1 ;
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<script src="js/setColor.js"></script>
   <?php require_once "components/header.php" ?>
   <aside>
     <!-- Création ou modification -->

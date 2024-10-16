@@ -187,10 +187,43 @@ header div > a > img {
 
 /* # selection de l'offre # */
 
-.btnSwitch {
+/* Bloc de chaque type d'offre*/
+#selectOffer > div:first-child {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#selectOffer > div:first-child > div {
+  width: 25%;
+  margin-right: 2%;
+  /* offre gratuite */
+  background-color: var(--secondary20);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--secondary60);
+}
+
+#selectOffer > div:first-child > div:nth-child(2) {
+  /* offre premium */
+  background-color: var(--accent20);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--accent60);
+}
+
+#selectOffer > div:first-child > div:nth-child(3) {
+  /* offre standard */
+  background-color: var(--primary20);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--primary60);
+}
+
+#selectOffer input[type="radio"] {
+  display: none;
+}
+
+#selectOffer input[type="radio"] + label {
   width: 150px;
   height: 20px;
-  padding: 1px;
+  padding: 5px;
   text-align: center;
   border-radius: 10px;
   border: var(--text-dark) 1px solid;
@@ -198,6 +231,6 @@ header div > a > img {
   background-color: var(--secondary);
 }
 
-.selectBtnSwitch {
+#selectOffer input[type="radio"]:checked + label {
   background-color: var(--accent);
 }
