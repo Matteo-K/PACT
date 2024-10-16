@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
 
 :root {
+:root {
   --bloc: #034d7c;
   --background: #eaeaea;
   --primary: #1ca4ed;
@@ -11,6 +12,9 @@
   --text-dark: #000;
   --text-light: #fff;
 }
+  --text-light: #eaeaea;
+}
+
 * {
   font-family: "Lato", sans-serif;
   text-align: justify;
@@ -36,6 +40,86 @@ h1 {
 h1 {
   font-size: 1.5rem;
 }
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  margin: 0;
+}
+
+/* ##### Components ##### */
+
+/* ### Footer ### */
+
+footer {
+  color: var(--text-light);
+  background-color: var(--bloc);
+  padding: 1% 0.5%;
+  margin: 0;
+}
+
+footer > div:first-child {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+footer figure {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-left: -15px;
+  gap: 1%;
+}
+
+footer figure + p {
+  margin-left: 2%;
+}
+
+footer figcaption span {
+  font-family: "Mogra", system-ui;
+  font-size: 20px;
+}
+
+footer img {
+  height: 5%;
+  width: 5%;
+  border-radius: 50%;
+}
+
+address {
+  padding-left: 2%;
+  border-left: var(--text-light) solid 3px;
+}
+
+footer a,
+footer h4 {
+  color: var(--text-light);
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+footer div + div {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 10px;
+  width: max-content;
+}
+
+footer div + div p {
+  padding: 0 500px;
+}
+
+/*HEADER*/
 
 header div{
   display: flex;
