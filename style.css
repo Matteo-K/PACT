@@ -9,7 +9,7 @@
   --secondary: #d1ccdc;
   --accent: #edae14;
   --text-dark: #000;
-  --text-light: #fff;
+  --text-light: #eaeaea;
 }
 
 * {
@@ -39,6 +39,18 @@ h1 {
   font-size: 1.5rem;
 }
 
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  margin: 0;
+}
+
 /* ##### Components ##### */
 
 /* ### Footer ### */
@@ -46,4 +58,52 @@ h1 {
 footer {
   color: var(--text-light);
   background-color: var(--bloc);
+  padding: 1% 0.5%;
+  margin: 0;
+}
+
+footer > div:first-child {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+footer figure {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-left: -15px;
+  gap: 1%;
+}
+
+footer figure + p {
+  margin-left: 2%;
+}
+
+footer figcaption span {
+  font-family: "Mogra", system-ui;
+  font-size: 20px;
+}
+
+footer img {
+  height: 5%;
+  width: 5%;
+  border-radius: 50%;
+}
+
+address {
+  padding-left: 2%;
+  border-left: var(--text-light) solid 3px;
+}
+
+footer a,
+footer h4 {
+  color: var(--text-light);
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+footer div + div a {
+  font-weight: normal;
 }
