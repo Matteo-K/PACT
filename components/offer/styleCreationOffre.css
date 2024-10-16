@@ -3,6 +3,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap");
 
 
+:root[theme="light"] {
+    --bloc: #034d7c;
+    --background: #eaeaea;
+    --primary: #1ca4ed;
+    --secondary: #d1ccdc;
+    --accent: #edae14;
+    --text-dark: #000;
+    --text-light: #fff;
+  }
+
 * {
     font-family: "Lato", sans-serif;
 }
@@ -21,13 +31,13 @@ form{
     flex-direction:column;
     flex-wrap:wrap;
     height: 300px;
-    background-color: brown;
+    background-color:#d1ccdc;
 }
 
-div{
+form > div{
     width: 45%;
     margin: 1%;
-    background-color: blueviolet;
+    background-color: #1ca4ed;
 }
 
 
@@ -38,12 +48,35 @@ section{
 }
 
 
-form > div > input{
+form > div > input[type=text]{
     width: 90%;
     height: 30px;
     font-size: 15px;
 }
 
+
+form > div > input[type=textarea]{
+    width: 90%;
+    font-size: 15px;
+}
+form > div > input[id=resume]{
+    height: 100px;
+}
+
+form > div > input[id=description]{
+    height: 300px;
+}
+
 form > div > label{
     font-size: 25px;
+}
+
+
+form > div > div{
+    font-size: 25px;
+}
+
+form > div > div > button{
+    width: 150px;
+    height: 30px;
 }
