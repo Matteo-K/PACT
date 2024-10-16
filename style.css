@@ -330,7 +330,10 @@ header div > a > img {
 /* horaire offre */
 
 #hourlyOffer div {
-  background-color: lawngreen;
-  text-align: center;
+background-color: lightseagreen;
+  display: flex;
+  gap: 10px;
+  
 }
+
 
