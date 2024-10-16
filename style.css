@@ -327,75 +327,57 @@ header div > a > img {
   opacity: 100%;
 }
 
-<<<<<<< HEAD
-
-
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-
-#detailsOffer{
+#detailsOffer {
   display: flex;
-  flex-direction:column;
-  flex-wrap:wrap;
+  flex-direction: column;
+  flex-wrap: wrap;
   height: 300px;
-  background-color:#d1ccdc;
+  background-color: #d1ccdc;
 }
 
-#detailsOffer > div{
+#detailsOffer > div {
   width: 45%;
   margin: 1%;
   background-color: #1ca4ed;
 }
 
-
-#detailsOffer > div > section{
+#detailsOffer > div > section {
   width: 200px;
   height: 50px;
   border: 2px solid grey;
 }
 
-
-#detailsOffer > div > input[type=text]{
+#detailsOffer > div > input[type="text"] {
   width: 90%;
   height: 30px;
   font-size: 15px;
 }
 
-
-#detailsOffer > div > input[type=textarea]{
+#detailsOffer > div > input[type="textarea"] {
   width: 90%;
   font-size: 15px;
 }
-#detailsOffer > div > input[id=resume]{
+#detailsOffer > div > input[id="resume"] {
   height: 100px;
 }
 
-#detailsOffer > div > input[id=description]{
+#detailsOffer > div > input[id="description"] {
   height: 300px;
 }
 
-#detailsOffer > div > label{
+#detailsOffer > div > label {
   font-size: 25px;
 }
 
-
-#detailsOffer > div > div{
+#detailsOffer > div > div {
   font-size: 25px;
 }
 
-#detailsOffer > div > div > button{
+#detailsOffer > div > div > button {
   width: 150px;
   height: 30px;
 }
-=======
-/* horaire offre */
-
-#hourlyOffer div {
-  background-color: lawngreen;
-  text-align: center;
-}
-
->>>>>>> d2ede96a4a8f901a0612cf6094ff8c8a26dbc968
