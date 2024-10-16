@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
 
-:root[theme="light"] {
+:root {
   --bloc: #034d7c;
   --background: #eaeaea;
   --primary: #1ca4ed;
@@ -11,16 +11,6 @@
   --text-dark: #000;
   --text-light: #fff;
 }
-:root[theme="dark"] {
-  --bloc: #83cdfc;
-  --background: #141414;
-  --primary: #129ae2;
-  --secondary: #282334;
-  --accent: #edaf12;
-  --text-dark: #fff;
-  --text-light: #000;
-}
-
 * {
   font-family: "Lato", sans-serif;
   text-align: justify;
@@ -34,7 +24,6 @@ h4 {
 }
 
 h1 {
-  color: var(--bloc);
   font-family: "Mogra", system-ui;
   font-size: 3rem;
 }
@@ -46,4 +35,62 @@ h1 {
 }
 h1 {
   font-size: 1.5rem;
+}
+
+header div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0.8em;
+  align-items: center;
+}
+
+header div > a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+}
+
+header h1{
+  font-size: 48px;
+  color: var(--bloc);
+}
+header div >a > img{
+  width: 5em;
+  height: 5em;
+}
+#formHeader{
+  display: flex;
+  align-items: center;
+  border: var(--text-dark) solid 2px;
+  border-radius: 2em;
+  height: 3em;
+  width: 35em;
+
+}
+#formHeader input[type="text"], #formHeader button, #formHeader img{
+  margin:0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+#formHeader input[type="text"] {
+  width: 85%;
+  padding-left: 1em;
+  height: 100%; 
+  font-size: 16px;
+  border-radius:2em 0 0 2em;
+}
+
+#formHeader button {
+  flex: 1;
+  padding: 0 1.7em;
+  background-color: var(--primary);
+  border-radius: 0 2em 2em 0; /* Coins arrondis à droite */
+  height: 100%; /* Le bouton a la même hauteur que l'input */
+  cursor: pointer;
+}
+#formHeader img{
+  width: 2em;
+  
 }
