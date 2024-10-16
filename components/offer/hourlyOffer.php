@@ -14,8 +14,11 @@
         echo "Ouvert de : "
     ?>
     
-    <?php echo "à"?>
-    <textarea name="horairesAMLundi" id="horairesAMLundi "></textarea> <!-- pas textArea -->
+    <input type="time" name="horairesOMatLundi" id="horairesOMatLundi" >
+        <?php echo "à" ?>
+    <input type="time" name="horairesFMatLundi" id="horairesFMatLundi">
+
+    
     
 </body>
 </html>
