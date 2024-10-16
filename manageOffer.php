@@ -16,13 +16,22 @@ $step = isset($_GET["page"]) ? $_GET["page"] : 1 ;
   <aside>
     <!-- Création ou modification -->
     <h2>de votre offre</h2>
-    <div>
-      <!-- Par un foreach écrire les étapes et leur avancée -->
-    </div>
-    <div>
-      <a href="">Quitter</a> <!-- Sauvegarde et quitte -->
-      <a href="">Annuler</a> <!-- Ne sauvegarde pas la saisie et quitte -->
-    </div>
+    <ul>
+      <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
+      <li><a href="enregOffer.php?page=1">Sélection de l’offre</a></li>
+      <li><a href="enregOffer.php?page=2">Détails de l’offre</a></li>
+      <li><a href="enregOffer.php?page=3">Localisation</a></li>
+      <li><a href="enregOffer.php?page=4">Contact</a></li>
+      <li><a href="enregOffer.php?page=5">Horaires</a></li>
+      <li><a href="enregOffer.php?page=6">Prévisualiser l’offre</a></li>
+      <li><a href="enregOffer.php?page=7">Paiement</a></li>
+    </ul>
+    <ul>
+      <!-- Si 0 on enregistre et retourne au menu du professionnel -->
+      <li><a href="enregOffer.php?page=0">Quitter</a></li>
+      <!-- Si -1 on retourne au menu du professionnel sans enregistrer -->
+      <li><a href="enregOffer.php?page=-1">Annuler</a></li>
+    </ul>
   </aside>
   <?php
     // Affichage du formulaire suivant l'étape indiquer par un chiffre dans la barre de recherche avec un require
@@ -60,13 +69,14 @@ $step = isset($_GET["page"]) ? $_GET["page"] : 1 ;
      // Précédent
      if ($step > 1) {
       ?>
-      <a href="manageOffer.php?page=<?php echo $step-1?>">Précédent</a>
+      <a href="enregOffer.php?page=<?php echo $step-1?>">Précédent</a>
       <?php
      }
      ?>
      <!-- Suivant -->
-    <a href="manageOffer.php?page=<?php echo $step+1?>">Précédent</a>
+    <a href="enregOffer.php?page=<?php echo $step+1?>">Suivant</a>
   </div>
   <?php require_once "components/footer.php"; ?>
 </body>
+<script src="js/script.js"></script>
 </html>

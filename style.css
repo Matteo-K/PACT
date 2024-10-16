@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
 
-
 :root {
   --bloc: #034d7c;
   --background: #eaeaea;
@@ -22,7 +21,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Belanosima", serif;
+  font-family: "Belanosima", sans-serif;
 }
 
 h1 {
@@ -62,12 +61,14 @@ footer {
   margin: 0;
 }
 
+/* Bloc principale + mention légale*/
 footer > div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
 }
 
+/* logo Tripenarvor et son titre */
 footer figure {
   display: flex;
   flex-flow: row nowrap;
@@ -76,10 +77,12 @@ footer figure {
   gap: 1%;
 }
 
+/* paragraphe principale */
 footer figure + p {
   margin-left: 2%;
 }
 
+/* Nom PACT */
 footer figcaption span {
   font-family: "Mogra", system-ui;
   font-size: 20px;
@@ -91,6 +94,7 @@ footer img {
   border-radius: 50%;
 }
 
+/* Mention légales */
 address {
   padding-left: 2%;
   border-left: var(--text-light) solid 3px;
@@ -100,7 +104,9 @@ footer a,
 footer h4 {
   color: var(--text-light);
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: large;
+  margin-bottom: 1vh;
   text-decoration: underline;
 }
 
@@ -118,6 +124,7 @@ footer div + div p {
 }
 /* ##### Components ##### */
 
+/* ### Header ### */
 /* ### HEADER ###*/
 
 /* Conteneur principal dans le header */
@@ -128,6 +135,7 @@ header {
   width: 100%;
 }
 
+header div {
 header div {
   display: flex;
   flex-direction: row;
@@ -145,9 +153,15 @@ header div > a {
 }
 
 header h1 {
+header h1 {
   font-size: 48px;
   color: var(--bloc);
 }
+header div > a > img {
+  width: 5em;
+  height: 5em;
+}
+#formHeader {
 
 header div > a > img {
   width: 6em;
@@ -166,8 +180,15 @@ header div > a > img {
   display: flex;
   align-items: center;
   border: var(--text-dark) solid 2px;
+  border-radius: 2em;
+  height: 3em;
+  width: 35em;
   width: 35em; /* Largeur du formulaire */
 }
+#formHeader input[type="text"],
+#formHeader button,
+#formHeader img {
+  margin: 0;
 
 #formHeader input[type="text"],
 #formHeader button,
@@ -182,7 +203,9 @@ header div > a > img {
   width: 85%;
   padding-left: 1em;
   height: 100%;
+  height: 100%;
   font-size: 16px;
+  border-radius: 2em 0 0 2em;
   border-radius: 2em 0 0 2em;
 }
 
@@ -194,9 +217,29 @@ header div > a > img {
   height: 100%;
   cursor: pointer;
 }
+#formHeader img {
 
 #formHeader img {
   width: 2em;
+}
+
+/* ### Offer ### */
+
+/* # selection de l'offre # */
+
+.btnSwitch {
+  width: 150px;
+  height: 20px;
+  padding: 1px;
+  text-align: center;
+  border-radius: 10px;
+  border: var(--text-dark) 1px solid;
+  color: #000;
+  background-color: var(--secondary);
+}
+
+.selectBtnSwitch {
+  background-color: var(--accent);
 }
 
 /* Bouton de connexion */
