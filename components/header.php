@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-$_SESSION
 ?>
 <link rel="stylesheet" href="../style.css">
 <header theme="light">
