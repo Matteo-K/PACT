@@ -20,10 +20,10 @@ $step = isset($_GET["page"]) ? $_GET["page"] : 1;
     <h3>Création de votre offre</h3>
     <ul>
       <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
-      <li><a href="enregOffer.php?page=1">Sélection de l’offre</a></li>
-      <li><a href="enregOffer.php?page=2">Détails de l’offre</a></li>
+      <li><a href="enregOffer.php?page=1" class="guideComplete">Sélection de l’offre</a></li>
+      <li><a href="enregOffer.php?page=2" class="guideStartComplete">Détails de l’offre</a></li>
       <li><a href="enregOffer.php?page=3">Localisation</a></li>
-      <li><a href="enregOffer.php?page=4">Contact</a></li>
+      <li><a href="enregOffer.php?page=4" class="guideSelect">Contact</a></li>
       <li><a href="enregOffer.php?page=5">Horaires</a></li>
       <li><a href="enregOffer.php?page=6">Prévisualiser l’offre</a></li>
       <li><a href="enregOffer.php?page=7">Paiement</a></li>

@@ -14,7 +14,6 @@
 
 * {
   font-family: "Lato", sans-serif;
-  text-align: justify;
 }
 
 h1,
@@ -228,14 +227,38 @@ header div > a > img {
   top: 13vh;
   left: 0;
   width: 18.75em;
+  height: 70vh;
   background-color: var(--bloc);
 }
 
 #manageOffer aside > h3,
-#manageOffer aside li {
+#manageOffer aside li a {
   font-family: "Belanosima", sans-serif;
   color: var(--text-light);
   text-decoration: none;
+}
+
+/* Bouton de guidage */
+#manageOffer aside li a {
+  background-color: var(--secondary);
+}
+
+/* quand toute les données obligatoires sont compléter */
+.guideComplete {
+  color: var(--text-dark) !important;
+  background-color: rgb(21, 176, 21) !important;
+}
+
+/* quand l'utilisateur est à cette étape */
+.guideSelect {
+  color: var(--text-dark) !important;
+  background-color: var(--accent) !important;
+}
+
+/* quand l'utilisateur n'a pas compléter toute les informations obligatoires*/
+.guideStartComplete {
+  color: var(--text-light) !important;
+  background-color: red !important;
 }
 
 #manageOffer section {
