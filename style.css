@@ -48,6 +48,7 @@ li {
 
 body {
   margin: 0;
+  background-color: var(--background);
 }
 
 /* ##### Components ##### */
@@ -59,6 +60,7 @@ footer {
   background-color: var(--bloc);
   padding: 1% 0.5%;
   margin: 0;
+  height: 23vh;
 }
 
 /* Bloc principale + mention légale*/
@@ -125,14 +127,16 @@ footer div + div p {
 /* ##### Components ##### */
 
 /* ### Header ### */
-/* ### HEADER ###*/
 
 /* Conteneur principal dans le header */
 header {
   position: fixed;
-  top: 3em;
+  top: 0;
   left: 0;
   width: 100%;
+  height: 13vh;
+  z-index: 3;
+  background-color: var(--background);
 }
 
 header div {
@@ -217,6 +221,34 @@ header div > a > img {
 
 /* ### Offer ### */
 
+/* Gestion de l'offre */
+
+#manageOffer aside {
+  position: absolute;
+  top: 13vh;
+  left: 0;
+  width: 18.75em;
+  background-color: var(--bloc);
+}
+
+#manageOffer aside > h3,
+#manageOffer aside li {
+  font-family: "Belanosima", sans-serif;
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+#manageOffer section {
+  margin-left: 18.75em;
+  margin-top: 13vh;
+  min-height: 70vh;
+}
+
+/* Bloc bouton quitter */
+#manageOffer aside > :nth-child(3) {
+  background-color: red;
+}
+
 /* # selection de l'offre # */
 
 /* Bloc de chaque type d'offre*/
@@ -225,24 +257,32 @@ header div > a > img {
   flex-flow: row wrap;
 }
 
+/* Toute les type d'offre */
 #selectOffer > div:first-child > div {
-  width: 25%;
+  height: 50vh;
+  width: 20em;
   margin-right: 2%;
+  border-radius: 20px;
   /* offre gratuite */
+  color: var(--text-dark);
   background-color: var(--secondary20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--secondary60);
 }
 
+#selectOffer > div:first-child > div li {
+  list-style: circle;
+}
+
+/* offre premium */
 #selectOffer > div:first-child > div:nth-child(2) {
-  /* offre premium */
   background-color: var(--accent20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--accent60);
 }
 
+/* offre standard */
 #selectOffer > div:first-child > div:nth-child(3) {
-  /* offre standard */
   background-color: var(--primary20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--primary60);
