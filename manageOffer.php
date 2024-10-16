@@ -1,6 +1,6 @@
 <?php
 $nameOffer = "";
-$step = isset($_GET["page"]) ? $_GET["page"] : 1 ;
+$step = isset($_GET["page"]) ? $_GET["page"] : 1;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -12,12 +12,12 @@ $step = isset($_GET["page"]) ? $_GET["page"] : 1 ;
   <link rel="stylesheet" href="style.css">
 
 </head>
-<body>
+<body id="manageOffer">
 <script src="js/setColor.js"></script>
   <?php require_once "components/header.php" ?>
   <aside>
     <!-- Création ou modification -->
-    <h2>de votre offre</h2>
+    <h3>Création de votre offre</h3>
     <ul>
       <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
       <li><a href="enregOffer.php?page=1">Sélection de l’offre</a></li>
@@ -35,6 +35,7 @@ $step = isset($_GET["page"]) ? $_GET["page"] : 1 ;
       <li><a href="enregOffer.php?page=-1">Annuler</a></li>
     </ul>
   </aside>
+  <section>
   <?php
     // Affichage du formulaire suivant l'étape indiquer par un chiffre dans la barre de recherche avec un require
     switch ($step) {
@@ -65,6 +66,8 @@ $step = isset($_GET["page"]) ? $_GET["page"] : 1 ;
         break;
     }
   ?>
+      
+  </section>
   <div>
     <!-- Bouton précédent et suivant -->
      <?php
