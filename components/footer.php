@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="../style.css">
 <footer>
   <div>
     <div>

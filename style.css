@@ -104,6 +104,15 @@ footer h4 {
   text-decoration: underline;
 }
 
-footer div + div a {
-  font-weight: normal;
+footer div + div {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 10px;
+  width: max-content;
+}
+
+footer div + div p {
+  padding: 0 500px;
 }
