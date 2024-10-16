@@ -10,6 +10,7 @@ $step = isset($_GET["page"]) ? $_GET["page"] : 1 ;
   <!-- Change le titre par le nom de l'offre -->
   <title><?php echo isset($nameOffer)? $nameOffer : "Gestion de l'offre" ?></title>
   <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 <script src="js/setColor.js"></script>

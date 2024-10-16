@@ -286,3 +286,66 @@ header div > a > img {
 #btnConn:hover {
   opacity: 100%;
 }
+
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+#detailsOffer{
+  display: flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+  height: 300px;
+  background-color:#d1ccdc;
+}
+
+#detailsOffer > div{
+  width: 45%;
+  margin: 1%;
+  background-color: #1ca4ed;
+}
+
+
+#detailsOffer > div > section{
+  width: 200px;
+  height: 50px;
+  border: 2px solid grey;
+}
+
+
+#detailsOffer > div > input[type=text]{
+  width: 90%;
+  height: 30px;
+  font-size: 15px;
+}
+
+
+#detailsOffer > div > input[type=textarea]{
+  width: 90%;
+  font-size: 15px;
+}
+#detailsOffer > div > input[id=resume]{
+  height: 100px;
+}
+
+#detailsOffer > div > input[id=description]{
+  height: 300px;
+}
+
+#detailsOffer > div > label{
+  font-size: 25px;
+}
+
+
+#detailsOffer > div > div{
+  font-size: 25px;
+}
+
+#detailsOffer > div > div > button{
+  width: 150px;
+  height: 30px;
+}
