@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
 
-:root[theme="light"] {
+:root {
   --bloc: #034d7c;
   --background: #eaeaea;
   --primary: #1ca4ed;
@@ -10,15 +10,6 @@
   --accent: #edae14;
   --text-dark: #000;
   --text-light: #fff;
-}
-:root[theme="dark"] {
-  --bloc: #83cdfc;
-  --background: #141414;
-  --primary: #129ae2;
-  --secondary: #282334;
-  --accent: #edaf12;
-  --text-dark: #fff;
-  --text-light: #000;
 }
 
 * {
@@ -46,4 +37,13 @@ h1 {
 }
 h1 {
   font-size: 1.5rem;
+}
+
+/* ##### Components ##### */
+
+/* ### Footer ### */
+
+footer {
+  color: var(--text-light);
+  background-color: var(--bloc);
 }
