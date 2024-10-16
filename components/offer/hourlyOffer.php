@@ -1,38 +1,34 @@
 <form action="" id="hourlyOffer">
     <!-- Lundi -->
     <div>
-        <?php echo "Lundi"; ?>
+        <p>Lundi</p>
         <input type="checkbox" id="checkLundi" name="checkLundi" />
-        <?php
-        echo "Fermé";
 
-        echo "Ouvert de : "
-            ?>
+        <p> Ferme</p>
+        <p> Ouvert de</p>
 
         <input type="time" name="horairesOuv1Lundi" id="horairesOuv1Lundi">
-        <?php echo "à" ?>
+        <!-- <?php echo "à" ?> -->
+        <p>à</p>
         <input type="time" name="horairesF1Lundi" id="horairesF1Lundi">
 
-        <input type="button" value="Ajouter un horaire" name="AjoutLundi" id="AjoutLundi">
+        <input type="button" value="Ajouter un horaire" name="btnAjoutLundi" id="btnAjoutLundi">
     </div>
     <!-- Mardi -->
     <div>
-        <?php echo "Mardi"; ?>
+        <p>Mardi</p>
         <input type="checkbox" id="checkMardi" name="checkMardi" />
-        <?php
-        echo "Fermé";
-
-        echo "Ouvert de : "
-            ?>
+        <p> Ferme</p>
+        <p> Ouvert de</p>
         <input type="time" name="horairesOuv1Mardi" id="horairesOuv1Mardi">
-        <?php echo "à" ?>
+        <p>à</p>
         <input type="time" name="horairesF1Mardi" id="horairesF1Mardi">
 
         <?php echo "et de " ?>
         <input type="time" name="horairesOuv2Mardi" id="horairesOuv2Mardi">
-        <?php echo "à" ?>
+        <p>à</p>
         <input type="time" name="horairesF2Mardi" id="horairesFMardi">
-        <input type="button" value="Retirer" name="Retirer" id="Retirer">
+        <input type="button" value="Retirer" name="btnRetirer" id="btnRetirer">
 
     </div>
 
@@ -40,100 +36,86 @@
     <!-- Mercredi -->
 
     <div>
-        
-        <?php echo "Mercredi"; ?>
-        <input type="checkbox" id="checkMercredi" name="checkMercredi" />
-        <?php
-        echo "Fermé";
 
-        echo "Ouvert de : "
-            ?>
+        <p>Mercredi</p>
+        <input type="checkbox" id="checkMercredi" name="checkMercredi" />
+        <p> Ferme</p>
+        <p> Ouvert de</p>
 
         <input type="time" name="horairesOuv1Mercredi" id="horairesOuv1Mercredi">
-        <?php echo "à" ?>
+        <p>à</p>
         <input type="time" name="horairesF1Mercredi" id="horairesF1Mercredi">
 
-        <input type="button" value="Ajouter un horaire" name="AjoutMercredi" id="AjoutMercredi">
-        
+        <input type="button" value="Ajouter un horaire" name="btnAjoutMercredi" id="btnAjoutMercredi">
+
     </div>
 
     <!-- Jeudi -->
 
     <div>
-        
-        <?php echo "Jeudi"; ?>
-        <input type="checkbox" id="checkJeudi" name="checkJeudi" />
-        <?php
-        echo "Fermé";
 
-        echo "Ouvert de : "
-            ?>
+        <p>Jeudi</p>
+        <input type="checkbox" id="checkJeudi" name="checkJeudi" />
+        <p> Ferme</p>
+        <p> Ouvert de</p>
 
         <input type="time" name="horairesOuv1Jeudi" id="horairesOuv1Jeudi">
-        <?php echo "à" ?>
+        <p>à</p>
         <input type="time" name="horairesF1Jeudi" id="horairesF1Jeudi">
 
-        <input type="button" value="Ajouter un horaire" name="AjoutJeudi" id="AjoutJeudi">
-        
+        <input type="button" value="Ajouter un horaire" name="btnAjoutJeudi" id="btnAjoutJeudi">
+
     </div>
 
-        <!-- Vendredi -->
+    <!-- Vendredi -->
 
-        <div>
-        
-        <?php echo "Vendredi"; ?>
+    <div>
+
+        <p>Vendredi</p>
         <input type="checkbox" id="checkVendredi" name="checkVendredi" />
-        <?php
-        echo "Fermé";
-
-        echo "Ouvert de : "
-            ?>
+        <p> Ferme</p>
+        <p> Ouvert de</p>
 
         <input type="time" name="horairesOuv1Vendredi" id="horairesOuv1Vendredi">
-        <?php echo "à" ?>
+        <p>à</p>
         <input type="time" name="horairesF1Vendredi" id="horairesF1Vendredi">
 
-        <input type="button" value="Ajouter un horaire" name="AjoutVendredi" id="AjoutVendredi">
-        
+        <input type="button" value="Ajouter un horaire" name="btnAjoutVendredi" id="btnAjoutVendredi">
+
     </div>
-        <!-- Samedi -->
+    <!-- Samedi -->
 
-        <div>
-        
-        <?php echo "Samedi"; ?>
+    <div>
+
+        <p>Samedi</p>
         <input type="checkbox" id="checkSamedi" name="checkSamedi" />
-        <?php
-        echo "Fermé";
 
-        echo "Ouvert de : "
-            ?>
+        <p> Ferme</p>
+        <p> Ouvert de</p>
 
         <input type="time" name="horairesOuv1Samedi" id="horairesOuv1Samedi">
         <?php echo "à" ?>
         <input type="time" name="horairesF1Samedi" id="horairesF1Samedi">
 
-        <input type="button" value="Ajouter un horaire" name="AjoutSamedi" id="AjoutSamedi">
-        
+        <input type="button" value="Ajouter un horaire" name="btnAjoutSamedi" id="btnAjoutSamedi">
+
     </div>
 
-            <!-- Dimanche -->
+    <!-- Dimanche -->
 
-            <div>
-        
-        <?php echo "Dimanche"; ?>
+    <div>
+
+        <p>Dimanche</p>
         <input type="checkbox" id="checkDimanche" name="checkDimanche" />
-        <?php
-        echo "Fermé";
-
-        echo "Ouvert de : "
-            ?>
+        <p> Ferme</p>
+        <p> Ouvert de</p>
 
         <input type="time" name="horairesOuv1Dimanche" id="horairesOuv1Dimanche">
-        <?php echo "à" ?>
+        <p>à</p>
         <input type="time" name="horairesF1Dimanche" id="horairesF1Dimanche">
 
-        <input type="button" value="Ajouter un horaire" name="AjoutDimanche" id="AjoutDimanche">
-        
+        <input type="button" value="Ajouter un horaire" name="btnAjoutDimanche" id="btnAjoutDimanche">
+
     </div>
 </form>
 <!--
