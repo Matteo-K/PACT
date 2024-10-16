@@ -1,6 +1,6 @@
 <?php
 $nameOffer = "";
-$step = $isset($_GET["page"]) ? $_GET["page"] : 1 ;
+$step = isset($_GET["page"]) ? $_GET["page"] : 1 ;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -11,8 +11,8 @@ $step = $isset($_GET["page"]) ? $_GET["page"] : 1 ;
   <title><?php echo isset($nameOffer)? $nameOffer : "Gestion de l'offre" ?></title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body theme="light">
-  <?php require_once "header.php" ?>
+<body>
+  <?php require_once "components/header.php" ?>
   <aside>
     <!-- Création ou modification -->
     <h2>de votre offre</h2>
@@ -28,25 +28,25 @@ $step = $isset($_GET["page"]) ? $_GET["page"] : 1 ;
     // Affichage du formulaire suivant l'étape indiquer par un chiffre dans la barre de recherche avec un require
     switch ($step) {
       case 1:
-        require_once "selectOffer.php";
+        require_once "components/offer/selectOffer.php";
         break;
       case 2:
-        require_once "detailsOffer.php";
+        require_once "components/offer/detailsOffer.php";
         break;
       case 3:
-        require_once "localisationOffer.php";
+        require_once "components/offer/localisationOffer.php";
         break;
       case 4:
-        require_once "contactOffer.php";
+        require_once "components/offer/contactOffer.php";
         break;
       case 5:
-        require_once "hourlyOffer.php";
+        require_once "components/offer/hourlyOffer.php";
         break;
       case 6:
-        require_once "previewOffer.php";
+        require_once "components/offer/previewOffer.php";
         break;
       case 7:
-        require_once "paymentOffer.php";
+        require_once "components/offer/paymentOffer.php";
         break;
       
       default:
@@ -67,6 +67,6 @@ $step = $isset($_GET["page"]) ? $_GET["page"] : 1 ;
      <!-- Suivant -->
     <a href="manageOffer.php?page=<?php echo $step+1?>">Précédent</a>
   </div>
-  <?php require_once "footer.php"; ?>
+  <?php require_once "components/footer.php"; ?>
 </body>
 </html>
