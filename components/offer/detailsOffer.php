@@ -34,12 +34,12 @@
             <input type="file" id="photos" name="photos" required>
 
             <div>
-            <label for="nom">Catégorie</label>   
-            <button type="button" value = restaurant>Restaurant</button>
-            <button type="button" value = parc>Parc d'attraction</button>
-            <button type="button" value = activite>Activité</button>
-            <button type="button" value = spectacle>Spectacle</button>
-            <button type="button" value = visite>Visite</button>
+                <label for="nom">Catégorie</label>   
+                <button type="button" value = restaurant>Restaurant</button>
+                <button type="button" value = parc>Parc d'attraction</button>
+                <button type="button" value = activite>Activité</button>
+                <button type="button" value = spectacle>Spectacle</button>
+                <button type="button" value = visite>Visite</button>
             </div>
 
             <label for="tag">Tags : </label>
