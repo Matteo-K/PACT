@@ -286,3 +286,11 @@ header div > a > img {
 #btnConn:hover {
   opacity: 100%;
 }
+
+/* horaire offre */
+
+#hourlyOffer div {
+  background-color: lawngreen;
+  text-align: center;
+}
+
