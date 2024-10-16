@@ -1,6 +1,6 @@
 
 
-<form action="suivant.php">
+<form id="detailsOffer" action="suivant.php">
 
     <div>
 

@@ -17,3 +17,5 @@
 7. L'item est-il conforme à la charte graphique ?
 
 8. L'item est-il conforme à la maquette ?
+
+Ces critères sont obligatoires pour valider un User Story
