@@ -1,9 +1,5 @@
 # PACT
 
-## Description
-
-L’enjeu majeur de l’association TripEnArvor pour 2025 est le développement et la mise en service de sa Plateforme d’Avis et Conseils Touristiques (PACT), devant contribuer au renforcement du lien entre les professionnels du tourisme (établissements privés, associations, secteur public) et la population (locale et touristique).
-
 ## Astuces Git pour jeune développeur
 
 ### Clone du dépot
@@ -25,6 +21,7 @@ git clone https://github.com/Matteo-K/PACT.git
 ```bash
 git checkout <nom-de-la-branche>
 ```
+
 #### Vérifier dans quelle branche on se situe
 
 ```bash
@@ -131,10 +128,10 @@ git log
 
 ### Sprint 0 - Conception
 
-#### [Maquette](./Conception/A21_maquetteV2.pdf)
+#### Maquette
 
-#### [Charte Graphique](./Conception/A21_CharteGraphique.pdf)
+#### Charte Graphique
 
-#### [Dictionnaire de donnée](./Conception/A21_DictionnaireDesDonnées.xlsx)
+#### Dictionnaire de donnée
 
-#### [UML](./Conception/A21_DiagrammeClasseUML.pdf)
+#### UML
