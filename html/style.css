@@ -356,7 +356,7 @@ header div>a>img {
     inset 4px 4px 4px #b01111 !important;
 }
 
-#manageOffer section {
+#manageOffer aside + section {
   margin-left: 17em;
   margin-top: 13vh;
   min-height: 70vh;
@@ -401,34 +401,37 @@ header div>a>img {
     inset -4px -4px 4px var(--primary60);
 }
 
-#selectOffer input[type="radio"] {
+#selectOffer input[type="radio"], #detailsOffer input[type="radio"]{
   display: none;
 }
 
-#selectOffer input[type="radio"]+label {
-  width: 150px;
-  height: 20px;
-  padding: 5px;
-  text-align: center;
-  border-radius: 10px;
-  border: var(--text-dark) 1px solid;
+#selectOffer input[type="radio"] + label, #detailsOffer input[type="radio"] + label{
+  display: inline-block;
+  font-size: 20px;
+  height: 30px;
+  padding: 5px 30px;
+  border-radius: 20px;
   color: #000;
   background-color: var(--secondary);
+  margin: 5px;
+  box-shadow: inset -4px -4px 4px #aca8b5;
 }
 
-#selectOffer input[type="radio"]:checked+label {
+#selectOffer input[type="radio"]:checked + label, #detailsOffer input[type="radio"]:checked + label {
   background-color: var(--accent);
+  box-shadow: inset -4px -4px 4px #a57807;
 }
 
 /* ------------------------- HOURLY OFFER CSS --------------------------------*/
 /* Style de base */
 #hourlyOffer div {
-  display: flex;              /* Utilisation de Flexbox pour aligner les éléments en ligne */
-  gap: 10px;                  /* Espace entre chaque élément du div */
+  display: flex;              
+  gap: 10px;                  /* Espace entre chaque élément  */
   align-items: baseline;      
   justify-content: flex-start;
-  margin-bottom: 15px;        
+  margin-bottom: 15px;
 }
+
 
 /* Style pour le nom du jour */
 #hourlyOffer div > p:first-child {
@@ -498,22 +501,20 @@ header div>a>img {
     flex-direction:column;
     flex-wrap:wrap;
     height: 300px;
-    background-color:#d1ccdc;
   }
   
   #detailsOffer > div{
     width: 45%;
     margin: 1%;
-    background-color: #1ca4ed;
   }
-  
-  
-  #detailsOffer > div > section{
-    width: 200px;
-    height: 50px;
-    border: 2px solid grey;
+
+  #detailsOffer section{
+    width: 70%;
+    height: 100px;
+    padding: 5px;
+    background-color: #fff;
+    border: 2px solid var(--secondary);
   }
-  
   
   #detailsOffer > div > input[type=text]{
     width: 90%;
@@ -523,39 +524,81 @@ header div>a>img {
   }
   
   
-  #detailsOffer > div > input[type=textarea]{
+  #detailsOffer textarea{
     width: 90%;
-    font-size: 15px;
+    max-width: 90%;
+    min-width: 90%;
+    font-size: 16px;
     padding-left: 10px;
-    box-sizing: border-box;
-    vertical-align: top; /* Facultatif */
   }
-  #detailsOffer > div > input[id=resume]{
-    height: 100px;
-  }
-  
-  #detailsOffer > div > input[id=description]{
-    height: 300px;
+  #detailsOffer textarea[id="resume"]{
+    height: 80px;
+    min-height: 60px;
+    max-height: 100px;
   }
   
-  #detailsOffer > div > label{
+  #detailsOffer textarea[id="description"]{
+    height: 250px;
+    min-height: 100px;
+    max-height: 400px;
+  }
+  
+  #detailsOffer > div > label, #detailsOffer > div > div > label[for="categorie"]{
+    display: inline-block;
     font-size: 25px;
+    width: 90%;
+  }
+
+  #detailsOffer > div > input[id="tag"]{
+    width: 70%;
   }
   
-  
-  #detailsOffer > div > div{
-    font-size: 25px;
-    background-color: #edae14;
+  #detailsOffer button[value=ajoutTag]{
+    display: inline-block;
+    height: 40px;
+    font-size: 22px;
+    padding: 5px 30px;
+    border-radius: 50px;
+    color: #000;
+    background-color: var(--primary);
+    margin: 5px;
+    box-shadow: inset -4px -4px 4px var(--bloc);
+    border: none;
   }
-  
-  #detailsOffer > div > div > button{
-    width: 150px;
-    height: 30px;
-    background-color: var(--secondary);
-    border-radius: 20px;
+
+  #detailsOffer p{
     font-size: 20px;
+    margin: 5px 0;
   }
-  
+
+  #affichePhotos {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+#imagePreview {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.image-preview {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.image-preview img {
+  width: 100%;
+  height: auto;
+}
   
   
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

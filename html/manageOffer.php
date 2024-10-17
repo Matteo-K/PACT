@@ -15,6 +15,7 @@ require_once "components/offer/checkOffer.php"
 </head>
 <body id="manageOffer">
 <script src="js/setColor.js"></script>
+<script src="js/script.js"></script>
   <?php require_once "components/header.php" ?>
   <aside>
     <!-- Création ou modification -->
