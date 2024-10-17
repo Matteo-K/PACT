@@ -180,7 +180,7 @@ header div > a > img {
 #formHeader {
   display: flex;
   align-items: center;
-  border: var(--text-dark) solid 2px;
+  border: var(--bloc) solid 3px;
   border-radius: 2em;
   height: 3em;
   width: 35em;

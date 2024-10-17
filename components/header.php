@@ -6,7 +6,7 @@
             <h1>PACT</h1>
         </a>
     </div>
-    <form method="post" action="" id="formHeader">
+    <form method="post" action="search.php" id="formHeader">
         <input type="text" placeholder="Rechercher :">
         <button type="submit"><img src="../img/icone/loupe.png" title="icone de recherche"></button>
     </form>
