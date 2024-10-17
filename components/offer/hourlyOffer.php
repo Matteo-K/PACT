@@ -115,11 +115,11 @@
     <!-- Samedi -->
     <div>
 
-        <p>Samedi</p>
+        <div><p>Samedi</p> </div>
         <input type="checkbox" id="checkSamedi" name="checkSamedi" />
 
-        <p> Ferme</p>
-        <p> Ouvert de</p>
+        <p> Ferme</p> 
+        <p> Ouvert de</p> 
 
         <input type="time" name="horairesOuv1Samedi" id="horairesOuv1Samedi">
         <?php echo "à" ?>
@@ -138,7 +138,7 @@
     <!-- Dimanche -->
     <div>
 
-        <p>Dimanche</p>
+        <div><p>Dimanche</p> </div>
         <input type="checkbox" id="checkDimanche" name="checkDimanche" />
         <p> Ferme</p>
         <p> Ouvert de</p>

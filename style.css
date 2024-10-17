@@ -365,9 +365,12 @@ header div > a > img {
 }
 
 #hourlyOffer div {
-  
+
   display: flex;
-  gap: 10px;
+  gap: 10px;  
+  align-items: center; /* Alignement vertical du texte dans le bouton */
+  justify-content: center;
+  margin-bottom: 10px;
 }
 #hourlyOffer div > input[type=button]{
   background-color: #1ca4ed;
@@ -375,6 +378,12 @@ header div > a > img {
   height: 50px;
   width: 250px;  
   
+}
+
+#hourlyOffer div > div > p{
+  display: flex;
+  text-align: left;
+  background-color: yellow;
 }
 
 #hourlyOffer div > div > input[type=button]{ /*Pour les boutons retirer*/
