@@ -1,6 +1,7 @@
 <?php
 $nameOffer = "";
 $step = isset($_GET["page"]) ? $_GET["page"] : 1;
+require_once "components/offer/checkOffer.php"
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -20,13 +21,13 @@ $step = isset($_GET["page"]) ? $_GET["page"] : 1;
     <h3>Création de votre offre</h3>
     <ul>
       <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
-      <li><a href="enregOffer.php?page=1" class="guideComplete">Sélection de l’offre</a></li>
-      <li><a href="enregOffer.php?page=2" class="guideStartComplete">Détails de l’offre</a></li>
-      <li><a href="enregOffer.php?page=3">Localisation</a></li>
-      <li><a href="enregOffer.php?page=4" class="guideSelect">Contact</a></li>
-      <li><a href="enregOffer.php?page=5">Horaires</a></li>
-      <li><a href="enregOffer.php?page=6">Prévisualiser l’offre</a></li>
-      <li><a href="enregOffer.php?page=7">Paiement</a></li>
+      <li><a href="enregOffer.php?page=1" class="<?php echo $step == 1 ? "guideSelect" : checkSelectOffer() ?>">Sélection de l’offre</a></li>
+      <li><a href="enregOffer.php?page=2" class="<?php echo $step == 2 ? "guideSelect" : checkDetailsOffer() ?>">Détails de l’offre</a></li>
+      <li><a href="enregOffer.php?page=3" class="<?php echo $step == 3 ? "guideSelect" : checkLocalisationOffer() ?>">Localisation</a></li>
+      <li><a href="enregOffer.php?page=4" class="<?php echo $step == 4 ? "guideSelect" : checkContactOffer() ?>">Contact</a></li>
+      <li><a href="enregOffer.php?page=5" class="<?php echo $step == 5 ? "guideSelect" : checkHourlyOffer() ?>">Horaires</a></li>
+      <li><a href="enregOffer.php?page=6" class="<?php echo $step == 6 ? "guideSelect" : checkPreviewOffer() ?>">Prévisualiser l’offre</a></li>
+      <li><a href="enregOffer.php?page=7" class="<?php echo $step == 7 ? "guideSelect" : checkPayementOffer() ?>">Paiement</a></li>
     </ul>
     <ul>
       <!-- Si 0 on enregistre et retourne au menu du professionnel -->

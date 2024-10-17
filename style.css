@@ -27,12 +27,15 @@ h1 {
   font-family: "Mogra", system-ui;
   font-size: 3rem;
 }
+
 h2 {
   font-size: 2.5rem;
 }
+
 h1 {
   font-size: 2rem;
 }
+
 h1 {
   font-size: 1.5rem;
 }
@@ -63,7 +66,7 @@ footer {
 }
 
 /* Bloc principale + mention légale*/
-footer > div:first-child {
+footer>div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
@@ -79,7 +82,7 @@ footer figure {
 }
 
 /* paragraphe principale */
-footer figure + p {
+footer figure+p {
   margin-left: 2%;
 }
 
@@ -111,7 +114,7 @@ footer h4 {
   text-decoration: underline;
 }
 
-footer div + div {
+footer div+div {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -120,9 +123,10 @@ footer div + div {
   width: max-content;
 }
 
-footer div + div p {
+footer div+div p {
   padding: 0 500px;
 }
+
 /* ##### Components ##### */
 
 /* ### Header ### */
@@ -152,11 +156,12 @@ header div {
   height: 3em;
 }
 
-header div > a {
+header div>a {
   display: flex;
   flex-direction: row;
   text-decoration: none;
-  align-items: center; /* Alignement vertical de l'image et du texte */
+  align-items: center;
+  /* Alignement vertical de l'image et du texte */
 }
 
 header h1 {
@@ -164,27 +169,30 @@ header h1 {
   color: var(--bloc);
 }
 
-header div > a > img {
+header div>a>img {
   width: 5em;
   height: 5em;
-  margin-right: 0.5em; /* Espace entre le logo et le texte */
+  margin-right: 0.5em;
+  /* Espace entre le logo et le texte */
 }
 
 #formHeader,
 #btnConn {
   border-radius: 2em;
-  height: 3em; /* Assurez-vous que les deux aient la même hauteur */
+  height: 3em;
+  /* Assurez-vous que les deux aient la même hauteur */
 }
 
 /* Formulaire de recherche */
 #formHeader {
   display: flex;
   align-items: center;
-  border: var(--text-dark) solid 2px;
+  border: var(--bloc) solid 3px;
   border-radius: 2em;
   height: 3em;
   width: 35em;
-  width: 35em; /* Largeur du formulaire */
+  width: 35em;
+  /* Largeur du formulaire */
 }
 
 #formHeader input[type="text"],
@@ -222,15 +230,19 @@ header div > a > img {
 /* Bouton de connexion */
 #btnConn {
   display: flex;
-  align-items: center; /* Alignement vertical du texte dans le bouton */
+  align-items: center;
+  /* Alignement vertical du texte dans le bouton */
   justify-content: center;
-  padding-inline: 2em; /* Ajustement du padding */
+  padding-inline: 2em;
+  /* Ajustement du padding */
   font-size: 25px;
   font-weight: 600;
   background-color: var(--accent60);
-  height: 8vh; /* Même hauteur que le formulaire */
+  height: 8vh;
+  /* Même hauteur que le formulaire */
   color: var(--text-dark);
-  text-decoration: none; /* Supprimer la décoration du texte */
+  text-decoration: none;
+  /* Supprimer la décoration du texte */
 }
 
 #btnConn:hover {
@@ -251,7 +263,7 @@ header div > a > img {
   border-radius: 0 0 50px 0;
 }
 
-#manageOffer aside > h3,
+#manageOffer aside>h3,
 #manageOffer aside li a {
   font-family: "Belanosima", sans-serif;
   text-decoration: none;
@@ -281,13 +293,13 @@ header div > a > img {
   justify-content: space-evenly;
 }
 
-#manageOffer aside > :nth-child(2) {
+#manageOffer aside> :nth-child(2) {
   height: clamp(340px, 35vh, 400px);
   padding-bottom: 1vh;
   border-bottom: var(--text-light) 2px solid;
 }
 
-#manageOffer aside > :nth-child(3) {
+#manageOffer aside> :nth-child(3) {
   height: 10vh;
   gap: 10px;
 }
@@ -353,13 +365,13 @@ header div > a > img {
 /* # selection de l'offre # */
 
 /* Bloc de chaque type d'offre*/
-#selectOffer > div:first-child {
+#selectOffer>div:first-child {
   display: flex;
   flex-flow: row wrap;
 }
 
 /* Toute les type d'offre */
-#selectOffer > div:first-child > div {
+#selectOffer>div:first-child>div {
   height: 50vh;
   width: 20em;
   margin-right: 2%;
@@ -371,19 +383,19 @@ header div > a > img {
     inset -4px -4px 4px var(--secondary60);
 }
 
-#selectOffer > div:first-child > div li {
+#selectOffer>div:first-child>div li {
   list-style: circle;
 }
 
 /* offre premium */
-#selectOffer > div:first-child > div:nth-child(2) {
+#selectOffer>div:first-child>div:nth-child(2) {
   background-color: var(--accent20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--accent60);
 }
 
 /* offre standard */
-#selectOffer > div:first-child > div:nth-child(3) {
+#selectOffer>div:first-child>div:nth-child(3) {
   background-color: var(--primary20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--primary60);
@@ -393,10 +405,17 @@ header div > a > img {
   display: none;
 }
 
+<<<<<<< HEAD
 #selectOffer input[type="radio"] + label, #detailsOffer input[type="radio"] + label{
   display: inline-block;
   height: 30px;
   padding: 5px 25px;
+=======
+#selectOffer input[type="radio"]+label {
+  width: 150px;
+  height: 20px;
+  padding: 5px;
+>>>>>>> c80de1d24ef5eb70f170014426c1b13e909d30ef
   text-align: center;
   border-radius: 20px;
   color: #000;
@@ -405,42 +424,83 @@ header div > a > img {
   box-shadow: inset -4px -4px 4px #aca8b5;
 }
 
+<<<<<<< HEAD
 #selectOffer input[type="radio"]:checked + label, #detailsOffer input[type="radio"]:checked + label {
+=======
+#selectOffer input[type="radio"]:checked+label {
+>>>>>>> c80de1d24ef5eb70f170014426c1b13e909d30ef
   background-color: var(--accent);
   box-shadow: inset -4px -4px 4px #a57807;
 }
 
+/* ------------------------- HOURLY OFFER CSS --------------------------------*/
+/* Style de base */
 #hourlyOffer div {
-  display: flex;
-  gap: 10px;
-  align-items: center; /* Alignement vertical du texte dans le bouton */
-  justify-content: center;
-  margin-bottom: 10px;
+  display: flex;              
+  gap: 10px;                  /* Espace entre chaque élément  */
+  align-items: baseline;      
+  justify-content: flex-start;
+  margin-bottom: 15px;        
 }
+
+
+/* Style pour le nom du jour */
+#hourlyOffer div > p:first-child {
+  width: 100px;               /* Définit une largeur fixe pour les noms des jours*/
+  text-align: right;          
+  margin-right: 10px;         
+  
+}
+
+/* Pour les checkboxs */
+#hourlyOffer div > input[type="checkbox"] {
+  margin-right: 2px;         /* Ajoute un espace après la case a cocher  */
+}
+
+/* Style général pour les champs de temps et les textes qui suivent */
+#hourlyOffer input[type="time"], 
+#hourlyOffer p {
+  margin-right: 10px;         
+}
+
+/* Style pour les boutons "Ajouter un horaire" */
 #hourlyOffer div > input[type="button"] {
-  background-color: #1ca4ed;
-  border-radius: 15px;
-  height: 50px;
-  width: 250px;  
-  /* penser a over reactive */
-  
-
+  background-color: var(--primary);   
+  border-radius: 15px;                
+  height: 50px;      
+  width: 250px;                 
+  border: none;                         
+  box-shadow: inset -4px -4px 4px #1883BC; 
+  transition: box-shadow 0.2s ease-in-out; 
 }
 
-#hourlyOffer div > div > p {
-  display: flex;
-  text-align: left;
-  background-color: yellow;
-  
-}
-
+/* Style pour les boutons "Retirer" */
 #hourlyOffer div > div > input[type="button"] {
-  /*Pour les boutons retirer*/
-  height: 50px;
-  width: 100px;
-  text-align: center;
-
+  height: 50px;                       
+  width: 100px;                       
+  background-color: var(--primary);   
+  border-radius: 10px;                
+  text-align: center;                 
 }
+
+
+#hourlyOffer div > input[type="button"]:hover
+{
+  box-shadow: none;                   /* Retire l'effet d'ombre lors du survol */
+}
+
+/* Effet quand on clique sur les boutons*/
+#hourlyOffer div > input[type="button"]:active
+{
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4), inset 4px 4px 4px #1883BC; 
+  
+}
+
+/* Style pour les champs de temps (input type="time") */
+#hourlyOffer input[type="time"] {
+  width: 100px;                       
+}
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
