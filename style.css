@@ -391,12 +391,16 @@ background-color: lightseagreen;
     width: 90%;
     height: 30px;
     font-size: 15px;
+    padding-left: 10px;
   }
   
   
   #detailsOffer > div > input[type=textarea]{
     width: 90%;
     font-size: 15px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    vertical-align: top; /* Facultatif */
   }
   #detailsOffer > div > input[id=resume]{
     height: 100px;
@@ -413,6 +417,7 @@ background-color: lightseagreen;
   
   #detailsOffer > div > div{
     font-size: 25px;
+    background-color: #edae14;
   }
   
   #detailsOffer > div > div > button{
@@ -420,6 +425,7 @@ background-color: lightseagreen;
     height: 30px;
     background-color: var(--secondary);
     border-radius: 20px;
+    font-size: 20px;
   }
   
   
