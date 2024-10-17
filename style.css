@@ -66,7 +66,7 @@ footer {
 }
 
 /* Bloc principale + mention légale*/
-footer>div:first-child {
+footer > div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
@@ -82,7 +82,7 @@ footer figure {
 }
 
 /* paragraphe principale */
-footer figure+p {
+footer figure + p {
   margin-left: 2%;
 }
 
@@ -114,7 +114,7 @@ footer h4 {
   text-decoration: underline;
 }
 
-footer div+div {
+footer div + div {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -123,7 +123,7 @@ footer div+div {
   width: max-content;
 }
 
-footer div+div p {
+footer div + div p {
   padding: 0 500px;
 }
 
@@ -145,6 +145,7 @@ header {
   height: 13vh;
   z-index: 3;
   background-color: var(--background);
+  border-bottom: var(--bloc) 3px solid;
 }
 
 header div {
@@ -156,7 +157,7 @@ header div {
   height: 3em;
 }
 
-header div>a {
+header div > a {
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -169,7 +170,7 @@ header h1 {
   color: var(--bloc);
 }
 
-header div>a>img {
+header div > a > img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
@@ -263,7 +264,7 @@ header div>a>img {
   border-radius: 0 0 50px 0;
 }
 
-#manageOffer aside>h3,
+#manageOffer aside > h3,
 #manageOffer aside li a {
   font-family: "Belanosima", sans-serif;
   text-decoration: none;
@@ -293,13 +294,13 @@ header div>a>img {
   justify-content: space-evenly;
 }
 
-#manageOffer aside> :nth-child(2) {
+#manageOffer aside > :nth-child(2) {
   height: clamp(340px, 35vh, 400px);
   padding-bottom: 1vh;
   border-bottom: var(--text-light) 2px solid;
 }
 
-#manageOffer aside> :nth-child(3) {
+#manageOffer aside > :nth-child(3) {
   height: 10vh;
   gap: 10px;
 }
@@ -362,16 +363,57 @@ header div>a>img {
   min-height: 70vh;
 }
 
+/* Bouton de précédent suivant */
+
+#manageOffer section + div {
+  position: absolute;
+  bottom: 20vh;
+  right: 5%;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 7%;
+  text-align: center;
+}
+
+#manageOffer section + div a {
+  color: var(--text-dark);
+  padding: 8px 15px;
+  width: 125px;
+  border-radius: 10px;
+}
+
+.blueBtnOffer {
+  background-color: var(--primary);
+  box-shadow: inset -4px -4px 4px #1883bc;
+}
+
+/* # Gestion de l'erreur de page # */
+
+#errorManageOffer {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+#errorManageOffer a {
+  text-align: center;
+  width: 200px;
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+
 /* # selection de l'offre # */
 
 /* Bloc de chaque type d'offre*/
-#selectOffer>div:first-child {
+#selectOffer > div:first-child {
   display: flex;
   flex-flow: row wrap;
 }
 
 /* Toute les type d'offre */
-#selectOffer>div:first-child>div {
+#selectOffer > div:first-child > div {
   height: 50vh;
   width: 20em;
   margin-right: 2%;
@@ -383,19 +425,19 @@ header div>a>img {
     inset -4px -4px 4px var(--secondary60);
 }
 
-#selectOffer>div:first-child>div li {
+#selectOffer > div:first-child > div li {
   list-style: circle;
 }
 
 /* offre premium */
-#selectOffer>div:first-child>div:nth-child(2) {
+#selectOffer > div:first-child > div:nth-child(2) {
   background-color: var(--accent20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--accent60);
 }
 
 /* offre standard */
-#selectOffer>div:first-child>div:nth-child(3) {
+#selectOffer > div:first-child > div:nth-child(3) {
   background-color: var(--primary20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--primary60);
@@ -405,7 +447,7 @@ header div>a>img {
   display: none;
 }
 
-#selectOffer input[type="radio"]+label {
+#selectOffer input[type="radio"] + label {
   width: 150px;
   height: 20px;
   padding: 5px;
@@ -416,7 +458,7 @@ header div>a>img {
   background-color: var(--secondary);
 }
 
-#selectOffer input[type="radio"]:checked+label {
+#selectOffer input[type="radio"]:checked + label {
   background-color: var(--accent);
 }
 
@@ -431,110 +473,103 @@ header div>a>img {
   margin-bottom: 10px;
 }
 
-#hourlyOffer div>input[type="button"] {
+#hourlyOffer div > input[type="button"] {
   background-color: var(--primary);
   border-radius: 15px;
   height: 50px;
   width: 250px;
   border: none;
-  box-shadow: inset -4px -4px 4px #1883BC;
-
+  box-shadow: inset -4px -4px 4px #1883bc;
 }
 
-#hourlyOffer div>input[type="button"]:hover {
+#hourlyOffer div > input[type="button"]:hover,
+.blueBtnOffer:hover {
   /* en cas de survol des boutons */
   box-shadow: none;
 }
 
-#hourlyOffer div>input[type="button"]:active {
+#hourlyOffer div > input[type="button"]:active,
+.blueBtnOffer:active {
   /* en cas de clic sur les  boutons */
-  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4), inset 4px 4px 4px #1883BC;
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #1883bc;
 }
 
-#hourlyOffer div>div>p {
+#hourlyOffer div > div > p {
   display: flex;
   background-color: yellow;
-
 }
 
-#hourlyOffer div>div>input[type="button"] {
+#hourlyOffer div > div > input[type="button"] {
   /*Pour les boutons retirer*/
   height: 50px;
   width: 100px;
   text-align: center;
-
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+#detailsOffer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 300px;
+  background-color: #d1ccdc;
+}
 
-   #detailsOffer{
-    display: flex;
-    flex-direction:column;
-    flex-wrap:wrap;
-    height: 300px;
-    background-color:#d1ccdc;
-  }
-  
-  #detailsOffer > div{
-    width: 45%;
-    margin: 1%;
-    background-color: #1ca4ed;
-  }
-  
-  
-  #detailsOffer > div > section{
-    width: 200px;
-    height: 50px;
-    border: 2px solid grey;
-  }
-  
-  
-  #detailsOffer > div > input[type=text]{
-    width: 90%;
-    height: 30px;
-    font-size: 15px;
-    padding-left: 10px;
-  }
-  
-  
-  #detailsOffer > div > input[type=textarea]{
-    width: 90%;
-    font-size: 15px;
-    padding-left: 10px;
-    box-sizing: border-box;
-    vertical-align: top; /* Facultatif */
-  }
-  #detailsOffer > div > input[id=resume]{
-    height: 100px;
-  }
-  
-  #detailsOffer > div > input[id=description]{
-    height: 300px;
-  }
-  
-  #detailsOffer > div > label{
-    font-size: 25px;
-  }
-  
-  
-  #detailsOffer > div > div{
-    font-size: 25px;
-    background-color: #edae14;
-  }
-  
-  #detailsOffer > div > div > button{
-    width: 150px;
-    height: 30px;
-    background-color: var(--secondary);
-    border-radius: 20px;
-    font-size: 20px;
-  }
-  
-  
-  
-  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#detailsOffer > div {
+  width: 45%;
+  margin: 1%;
+  background-color: #1ca4ed;
+}
+
+#detailsOffer > div > section {
+  width: 200px;
+  height: 50px;
+  border: 2px solid grey;
+}
+
+#detailsOffer > div > input[type="text"] {
+  width: 90%;
+  height: 30px;
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+#detailsOffer > div > input[type="textarea"] {
+  width: 90%;
+  font-size: 15px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  vertical-align: top; /* Facultatif */
+}
+#detailsOffer > div > input[id="resume"] {
+  height: 100px;
+}
+
+#detailsOffer > div > input[id="description"] {
+  height: 300px;
+}
+
+#detailsOffer > div > label {
+  font-size: 25px;
+}
+
+#detailsOffer > div > div {
+  font-size: 25px;
+  background-color: #edae14;
+}
+
+#detailsOffer > div > div > button {
+  width: 150px;
+  height: 30px;
+  background-color: var(--secondary);
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
