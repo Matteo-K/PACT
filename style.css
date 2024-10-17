@@ -129,6 +129,11 @@ footer div + div p {
 
 /* Conteneur principal dans le header */
 header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 12em;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -158,14 +163,10 @@ header h1 {
   font-size: 48px;
   color: var(--bloc);
 }
+
 header div > a > img {
   width: 5em;
   height: 5em;
-}
-
-header div > a > img {
-  width: 6em;
-  height: 6em;
   margin-right: 0.5em; /* Espace entre le logo et le texte */
 }
 
@@ -218,6 +219,24 @@ header div > a > img {
   width: 2em;
 }
 
+/* Bouton de connexion */
+#btnConn {
+  display: flex;
+  align-items: center; /* Alignement vertical du texte dans le bouton */
+  justify-content: center;
+  padding-inline: 2em; /* Ajustement du padding */
+  font-size: 25px;
+  font-weight: 600;
+  background-color: var(--accent60);
+  height: 8vh; /* Même hauteur que le formulaire */
+  color: var(--text-dark);
+  text-decoration: none; /* Supprimer la décoration du texte */
+}
+
+#btnConn:hover {
+  background-color: var(--accent);
+}
+
 /* ### Offer ### */
 
 /* Gestion de l'offre */
@@ -226,50 +245,109 @@ header div > a > img {
   position: absolute;
   top: 13vh;
   left: 0;
-  width: 18.75em;
-  height: 70vh;
+  width: 17em;
+  height: fit-content;
   background-color: var(--bloc);
+  border-radius: 0 0 50px 0;
 }
 
 #manageOffer aside > h3,
 #manageOffer aside li a {
   font-family: "Belanosima", sans-serif;
-  color: var(--text-light);
   text-decoration: none;
+  text-align: center;
+}
+
+#manageOffer aside h3 {
+  color: var(--text-light);
 }
 
 /* Bouton de guidage */
-#manageOffer aside li a {
+#manageOffer aside li {
+  width: 90%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+#manageOffer aside ul {
+  width: 80%;
+  padding: 0;
+  margin-left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#manageOffer aside > :nth-child(2) {
+  height: clamp(340px, 35vh, 400px);
+  padding-bottom: 1vh;
+  border-bottom: var(--text-light) 2px solid;
+}
+
+#manageOffer aside > :nth-child(3) {
+  height: 10vh;
+  gap: 10px;
+}
+
+#manageOffer aside a {
+  flex: 5;
+  padding: 8px;
+  border-radius: 10px;
   background-color: var(--secondary);
+  color: var(--text-dark);
+  box-shadow: inset -4px -4px 4px #aca8b5;
+}
+
+#manageOffer aside a:hover {
+  box-shadow: none;
+}
+
+#manageOffer aside a:active {
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #aca8b5;
 }
 
 /* quand toute les données obligatoires sont compléter */
 .guideComplete {
-  color: var(--text-dark) !important;
   background-color: rgb(21, 176, 21) !important;
+  box-shadow: inset -4px -4px 4px #008000 !important;
+}
+
+.guideComplete:active {
+  box-shadow: inset 4px 4px 4px #008000,
+    inset -4px -4px 4px rgba(255, 255, 255, 0.4) !important;
 }
 
 /* quand l'utilisateur est à cette étape */
 .guideSelect {
-  color: var(--text-dark) !important;
   background-color: var(--accent) !important;
+  box-shadow: inset -4px -4px 4px #bb880e !important;
+}
+
+.guideSelect:active {
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #bb880e !important;
 }
 
 /* quand l'utilisateur n'a pas compléter toute les informations obligatoires*/
 .guideStartComplete {
   color: var(--text-light) !important;
   background-color: red !important;
+  box-shadow: inset -4px -4px 4px #b01111 !important;
+}
+
+.guideStartComplete:active {
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #b01111 !important;
 }
 
 #manageOffer section {
-  margin-left: 18.75em;
+  margin-left: 17em;
   margin-top: 13vh;
   min-height: 70vh;
-}
-
-/* Bloc bouton quitter */
-#manageOffer aside > :nth-child(3) {
-  background-color: red;
 }
 
 /* # selection de l'offre # */
@@ -330,34 +408,36 @@ header div > a > img {
   background-color: var(--accent);
 }
 
-/* Bouton de connexion */
-#btnConn {
-  display: flex;
-  align-items: center; /* Alignement vertical du texte dans le bouton */
-  justify-content: center;
-  opacity: 60%;
-  padding: 0.5em 3em; /* Ajustement du padding */
-  font-size: 25px;
-  font-weight: 600;
-  background-color: var(--accent);
-  margin-left: 1em;
-  height: 3em; /* Même hauteur que le formulaire */
-  color: var(--text-dark);
-  text-decoration: none; /* Supprimer la décoration du texte */
-}
-
-#btnConn:hover {
-  opacity: 100%;
-}
-
-
-
-
 #hourlyOffer div {
-background-color: lightseagreen;
   display: flex;
   gap: 10px;
+  align-items: center; /* Alignement vertical du texte dans le bouton */
+  justify-content: center;
+  margin-bottom: 10px;
+}
+#hourlyOffer div > input[type="button"] {
+  background-color: #1ca4ed;
+  border-radius: 15px;
+  height: 50px;
+  width: 250px;  
+  /* penser a over reactive */
   
+
+}
+
+#hourlyOffer div > div > p {
+  display: flex;
+  text-align: left;
+  background-color: yellow;
+  
+}
+
+#hourlyOffer div > div > input[type="button"] {
+  /*Pour les boutons retirer*/
+  height: 50px;
+  width: 100px;
+  text-align: center;
+
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

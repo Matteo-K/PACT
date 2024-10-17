@@ -30,9 +30,9 @@ $step = isset($_GET["page"]) ? $_GET["page"] : 1;
     </ul>
     <ul>
       <!-- Si 0 on enregistre et retourne au menu du professionnel -->
-      <li><a href="enregOffer.php?page=0">Quitter</a></li>
+      <li><a href="enregOffer.php?page=0" class="guideStartComplete">Quitter</a></li>
       <!-- Si -1 on retourne au menu du professionnel sans enregistrer -->
-      <li><a href="enregOffer.php?page=-1">Annuler</a></li>
+      <li><a href="enregOffer.php?page=-1" class="guideStartComplete">Annuler</a></li>
     </ul>
   </aside>
   <section>
