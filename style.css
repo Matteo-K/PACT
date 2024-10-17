@@ -435,4 +435,84 @@ header div > a > img {
   width: 150px;
   height: 30px;
 }
+
+/* ### Page DetailsOffer ### */
+
+/* ### Swiper page Detail Offre ### */
+.swiper {
+  width: 90%;
+  max-width: 1200px;
+  height: 35em;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px var(--text-dark10);
+
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.2s ease;
+}
+
+.swiper-slide:hover img {
+  transform: scale(1.05);
+}
+
+.myThumbSlider {
+  margin-top: 20px;
+  height: 100px;
+  width: 90%;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+.myThumbSlider .swiper-slide {
+  width: 20%;
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.6;
+  border-radius: 10px;
+}
+
+.myThumbSlider .swiper-slide-thumb-active {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.myThumbSlider .swiper-slide img {
+  border-radius: 10px;
+}
+
+.swiper-button-next, .swiper-button-prev {
   
+  color: var(--background);
+  background-color: var(--accent60);
+  padding: 3em 0.5em;
+  transition: background-color 0.3s ease;
+}
+
+.swiper-button-next{
+  border-radius: 1em 0 0 1em ;
+}
+.swiper-button-prev{
+  border-radius: 0 1em 1em 0  ;
+}
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  background-color: var(--accent);
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 20px;
+}
