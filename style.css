@@ -147,6 +147,10 @@ header div {
   height: 3em;
 }
 
+header > div:first-child {
+  justify-content: space-around;
+}
+
 header div > a {
   display: flex;
   flex-direction: row;
@@ -226,7 +230,7 @@ header div > a > img {
   position: absolute;
   top: 13vh;
   left: 0;
-  width: 18.75em;
+  width: 17em;
   height: fit-content;
   background-color: var(--bloc);
   border-radius: 0 0 50px 0;
@@ -235,20 +239,20 @@ header div > a > img {
 #manageOffer aside > h3,
 #manageOffer aside li a {
   font-family: "Belanosima", sans-serif;
-  color: var(--text-light);
   text-decoration: none;
   text-align: center;
 }
 
-/* Bouton de guidage */
-#manageOffer aside li {
-  width: 80%;
-  justify-content: center;
-  text-align: center;
+#manageOffer aside h3 {
+  color: var(--text-light);
 }
 
-#manageOffer aside a {
-  width: 100%;
+/* Bouton de guidage */
+#manageOffer aside li {
+  width: 90%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 #manageOffer aside ul {
@@ -263,35 +267,70 @@ header div > a > img {
 }
 
 #manageOffer aside > :nth-child(2) {
-  height: clamp(360px, 35vh, 400px);
+  height: clamp(340px, 35vh, 400px);
   padding-bottom: 1vh;
   border-bottom: var(--text-light) 2px solid;
 }
 
 #manageOffer aside > :nth-child(3) {
   height: 10vh;
+  gap: 10px;
+}
+
+#manageOffer aside a {
+  flex: 5;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: var(--secondary);
+  color: var(--text-dark);
+  box-shadow: inset -4px -4px 4px #aca8b5;
+}
+
+#manageOffer aside a:hover {
+  box-shadow: none;
+}
+
+#manageOffer aside a:active {
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #aca8b5;
 }
 
 /* quand toute les données obligatoires sont compléter */
 .guideComplete {
-  color: var(--text-dark) !important;
   background-color: rgb(21, 176, 21) !important;
+  box-shadow: inset -4px -4px 4px #008000 !important;
+}
+
+.guideComplete:active {
+  box-shadow: inset 4px 4px 4px #008000,
+    inset -4px -4px 4px rgba(255, 255, 255, 0.4) !important;
 }
 
 /* quand l'utilisateur est à cette étape */
 .guideSelect {
-  color: var(--text-dark) !important;
   background-color: var(--accent) !important;
+  box-shadow: inset -4px -4px 4px #bb880e !important;
+}
+
+.guideSelect:active {
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #bb880e !important;
 }
 
 /* quand l'utilisateur n'a pas compléter toute les informations obligatoires*/
 .guideStartComplete {
-  color: var(--text-dark) !important;
+  color: var(--text-light) !important;
   background-color: red !important;
+  box-shadow: inset -4px -4px 4px #b01111 !important;
+}
+
+.guideStartComplete:active {
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #b01111 !important;
 }
 
 #manageOffer section {
-  margin-left: 18.75em;
+  margin-left: 17em;
   margin-top: 13vh;
   min-height: 70vh;
 }
