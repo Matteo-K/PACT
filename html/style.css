@@ -145,7 +145,6 @@ header {
   height: 13vh;
   z-index: 3;
   background-color: var(--background);
-  border-bottom: var(--bloc) 3px solid;
 }
 
 header div {
@@ -363,47 +362,6 @@ header div > a > img {
   min-height: 70vh;
 }
 
-/* Bouton de précédent suivant */
-
-#manageOffer section + div {
-  position: absolute;
-  bottom: 20vh;
-  right: 5%;
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 7%;
-  text-align: center;
-}
-
-#manageOffer section + div a {
-  color: var(--text-dark);
-  padding: 8px 15px;
-  width: 125px;
-  border-radius: 10px;
-}
-
-.blueBtnOffer {
-  background-color: var(--primary);
-  box-shadow: inset -4px -4px 4px #1883bc;
-}
-
-/* # Gestion de l'erreur de page # */
-
-#errorManageOffer {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-  height: 400px;
-}
-
-#errorManageOffer a {
-  text-align: center;
-  width: 200px;
-  padding: 10px 15px;
-  border-radius: 20px;
-}
-
 /* # selection de l'offre # */
 
 /* Bloc de chaque type d'offre*/
@@ -482,14 +440,12 @@ header div > a > img {
   box-shadow: inset -4px -4px 4px #1883bc;
 }
 
-#hourlyOffer div > input[type="button"]:hover,
-.blueBtnOffer:hover {
+#hourlyOffer div > input[type="button"]:hover {
   /* en cas de survol des boutons */
   box-shadow: none;
 }
 
-#hourlyOffer div > input[type="button"]:active,
-.blueBtnOffer:active {
+#hourlyOffer div > input[type="button"]:active {
   /* en cas de clic sur les  boutons */
   box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
     inset 4px 4px 4px #1883bc;
