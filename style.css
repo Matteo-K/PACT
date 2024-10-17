@@ -379,6 +379,12 @@ header div > a > img {
   display: flex;
   gap: 10px;
 }
+#hourlyOffer div > input[type="button"] {
+  background-color: #1ca4ed;
+  border-radius: 15px;
+  height: 50px;
+  width: 250px;
+}
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
