@@ -129,6 +129,11 @@ footer div + div p {
 
 /* Conteneur principal dans le header */
 header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 12em;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -147,10 +152,6 @@ header div {
   height: 3em;
 }
 
-header > div:first-child {
-  justify-content: space-around;
-}
-
 header div > a {
   display: flex;
   flex-direction: row;
@@ -162,14 +163,10 @@ header h1 {
   font-size: 48px;
   color: var(--bloc);
 }
+
 header div > a > img {
   width: 5em;
   height: 5em;
-}
-
-header div > a > img {
-  width: 6em;
-  height: 6em;
   margin-right: 0.5em; /* Espace entre le logo et le texte */
 }
 
@@ -220,6 +217,24 @@ header div > a > img {
 
 #formHeader img {
   width: 2em;
+}
+
+/* Bouton de connexion */
+#btnConn {
+  display: flex;
+  align-items: center; /* Alignement vertical du texte dans le bouton */
+  justify-content: center;
+  padding-inline: 2em; /* Ajustement du padding */
+  font-size: 25px;
+  font-weight: 600;
+  background-color: var(--accent60);
+  height: 8vh; /* Même hauteur que le formulaire */
+  color: var(--text-dark);
+  text-decoration: none; /* Supprimer la décoration du texte */
+}
+
+#btnConn:hover {
+  background-color: var(--accent);
 }
 
 /* ### Offer ### */
@@ -393,36 +408,30 @@ header div > a > img {
   background-color: var(--accent);
 }
 
-/* Bouton de connexion */
-#btnConn {
-  display: flex;
-  align-items: center; /* Alignement vertical du texte dans le bouton */
-  justify-content: center;
-  opacity: 60%;
-  padding: 0.5em 3em; /* Ajustement du padding */
-  font-size: 25px;
-  font-weight: 600;
-  background-color: var(--accent);
-  margin-left: 1em;
-  height: 3em; /* Même hauteur que le formulaire */
-  color: var(--text-dark);
-  text-decoration: none; /* Supprimer la décoration du texte */
-}
-
-#btnConn:hover {
-  opacity: 100%;
-}
-
 #hourlyOffer div {
-  background-color: lightseagreen;
   display: flex;
   gap: 10px;
+  align-items: center; /* Alignement vertical du texte dans le bouton */
+  justify-content: center;
+  margin-bottom: 10px;
 }
 #hourlyOffer div > input[type="button"] {
   background-color: #1ca4ed;
   border-radius: 15px;
   height: 50px;
   width: 250px;
+}
+
+#hourlyOffer div > div > p {
+  display: flex;
+  text-align: left;
+  background-color: yellow;
+}
+
+#hourlyOffer div > div > input[type="button"] {
+  /*Pour les boutons retirer*/
+  height: 50px;
+  width: 100px;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
