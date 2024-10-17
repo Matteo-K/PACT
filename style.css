@@ -371,7 +371,7 @@ header div > a > img {
   align-items: center; /* Alignement vertical du texte dans le bouton */
   justify-content: center;
   margin-bottom: 10px;
-}
+} 
 #hourlyOffer div > input[type=button]{
   background-color: #1ca4ed;
   border-radius: 15px;
@@ -389,6 +389,7 @@ header div > a > img {
 #hourlyOffer div > div > input[type=button]{ /*Pour les boutons retirer*/
   height: 50px;
   width: 100px;
+
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
