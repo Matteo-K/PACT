@@ -129,6 +129,11 @@ footer div + div p {
 
 /* Conteneur principal dans le header */
 header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 12em;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -136,15 +141,6 @@ header {
   height: 13vh;
   z-index: 3;
   background-color: var(--background);
-}
-
-header div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0.5em 0.8em;
-  height: 3em;
 }
 
 header div > a {
@@ -158,14 +154,10 @@ header h1 {
   font-size: 48px;
   color: var(--bloc);
 }
+
 header div > a > img {
   width: 5em;
   height: 5em;
-}
-
-header div > a > img {
-  width: 6em;
-  height: 6em;
   margin-right: 0.5em; /* Espace entre le logo et le texte */
 }
 
@@ -216,6 +208,24 @@ header div > a > img {
 
 #formHeader img {
   width: 2em;
+}
+
+/* Bouton de connexion */
+#btnConn {
+  display: flex;
+  align-items: center; /* Alignement vertical du texte dans le bouton */
+  justify-content: center;
+  padding-inline: 2em; /* Ajustement du padding */
+  font-size: 25px;
+  font-weight: 600;
+  background-color: var(--accent60);
+  height: 8vh; /* Même hauteur que le formulaire */
+  color: var(--text-dark);
+  text-decoration: none; /* Supprimer la décoration du texte */
+}
+
+#btnConn:hover {
+  background-color: var(--accent);
 }
 
 /* ### Offer ### */
@@ -352,26 +362,6 @@ header div > a > img {
 
 #selectOffer input[type="radio"]:checked + label {
   background-color: var(--accent);
-}
-
-/* Bouton de connexion */
-#btnConn {
-  display: flex;
-  align-items: center; /* Alignement vertical du texte dans le bouton */
-  justify-content: center;
-  opacity: 60%;
-  padding: 0.5em 3em; /* Ajustement du padding */
-  font-size: 25px;
-  font-weight: 600;
-  background-color: var(--accent);
-  margin-left: 1em;
-  height: 3em; /* Même hauteur que le formulaire */
-  color: var(--text-dark);
-  text-decoration: none; /* Supprimer la décoration du texte */
-}
-
-#btnConn:hover {
-  opacity: 100%;
 }
 
 #hourlyOffer div {
