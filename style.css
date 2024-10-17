@@ -423,12 +423,13 @@ header div>a>img {
 /* ------------------------- HOURLY OFFER CSS --------------------------------*/
 /* Style de base */
 #hourlyOffer div {
-  display: flex;              /* Utilisation de Flexbox pour aligner les éléments en ligne */
-  gap: 10px;                  /* Espace entre chaque élément du div */
+  display: flex;              
+  gap: 10px;                  /* Espace entre chaque élément  */
   align-items: baseline;      
   justify-content: flex-start;
   margin-bottom: 15px;        
 }
+
 
 /* Style pour le nom du jour */
 #hourlyOffer div > p:first-child {
