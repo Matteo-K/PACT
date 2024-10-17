@@ -141,6 +141,9 @@ git log
 
 #### Travaux effectuer
 
+- J'ai fait le header
+- J'ai installer l'accès au serveur sur les PC perso.
+
 #### Problèmes
 
 ### Sprint 2 - Implémentation

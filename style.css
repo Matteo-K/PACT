@@ -1,0 +1,438 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
+
+:root {
+  --bloc: #034d7c;
+  --background: #eaeaea;
+  --primary: #1ca4ed;
+  --secondary: #d1ccdc;
+  --accent: #edae14;
+  --text-dark: #000;
+  --text-light: #eaeaea;
+}
+
+* {
+  font-family: "Lato", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Belanosima", sans-serif;
+}
+
+h1 {
+  font-family: "Mogra", system-ui;
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.5rem;
+}
+h1 {
+  font-size: 2rem;
+}
+h1 {
+  font-size: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+}
+
+/* ##### Components ##### */
+
+/* ### Footer ### */
+
+footer {
+  color: var(--text-light);
+  background-color: var(--bloc);
+  padding: 1% 0.5%;
+  margin: 0;
+  height: 23vh;
+}
+
+/* Bloc principale + mention légale*/
+footer > div:first-child {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+/* logo Tripenarvor et son titre */
+footer figure {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-left: -15px;
+  gap: 1%;
+}
+
+/* paragraphe principale */
+footer figure + p {
+  margin-left: 2%;
+}
+
+/* Nom PACT */
+footer figcaption span {
+  font-family: "Mogra", system-ui;
+  font-size: 20px;
+}
+
+footer img {
+  height: 5%;
+  width: 5%;
+  border-radius: 50%;
+}
+
+/* Mention légales */
+address {
+  padding-left: 2%;
+  border-left: var(--text-light) solid 3px;
+}
+
+footer a,
+footer h4 {
+  color: var(--text-light);
+  font-style: normal;
+  font-weight: 600;
+  font-size: large;
+  margin-bottom: 1vh;
+  text-decoration: underline;
+}
+
+footer div + div {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 10px;
+  width: max-content;
+}
+
+footer div + div p {
+  padding: 0 500px;
+}
+/* ##### Components ##### */
+
+/* ### Header ### */
+
+/* Conteneur principal dans le header */
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 12em;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 13vh;
+  z-index: 3;
+  background-color: var(--background);
+}
+
+header div > a {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  align-items: center; /* Alignement vertical de l'image et du texte */
+}
+
+header h1 {
+  font-size: 48px;
+  color: var(--bloc);
+}
+
+header div > a > img {
+  width: 5em;
+  height: 5em;
+  margin-right: 0.5em; /* Espace entre le logo et le texte */
+}
+
+#formHeader,
+#btnConn {
+  border-radius: 2em;
+  height: 3em; /* Assurez-vous que les deux aient la même hauteur */
+}
+
+/* Formulaire de recherche */
+#formHeader {
+  display: flex;
+  align-items: center;
+  border: var(--text-dark) solid 2px;
+  border-radius: 2em;
+  height: 3em;
+  width: 35em;
+  width: 35em; /* Largeur du formulaire */
+}
+
+#formHeader input[type="text"],
+#formHeader button,
+#formHeader img {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+#formHeader input[type="text"] {
+  width: 85%;
+  padding-left: 1em;
+  height: 100%;
+  height: 100%;
+  font-size: 16px;
+  border-radius: 2em 0 0 2em;
+  border-radius: 2em 0 0 2em;
+}
+
+#formHeader button {
+  flex: 1;
+  padding: 0 1.7em;
+  background-color: var(--primary);
+  border-radius: 0 2em 2em 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+#formHeader img {
+  width: 2em;
+}
+
+/* Bouton de connexion */
+#btnConn {
+  display: flex;
+  align-items: center; /* Alignement vertical du texte dans le bouton */
+  justify-content: center;
+  padding-inline: 2em; /* Ajustement du padding */
+  font-size: 25px;
+  font-weight: 600;
+  background-color: var(--accent60);
+  height: 8vh; /* Même hauteur que le formulaire */
+  color: var(--text-dark);
+  text-decoration: none; /* Supprimer la décoration du texte */
+}
+
+#btnConn:hover {
+  background-color: var(--accent);
+}
+
+/* ### Offer ### */
+
+/* Gestion de l'offre */
+
+#manageOffer aside {
+  position: absolute;
+  top: 13vh;
+  left: 0;
+  width: 18.75em;
+  height: fit-content;
+  background-color: var(--bloc);
+  border-radius: 0 0 50px 0;
+}
+
+#manageOffer aside > h3,
+#manageOffer aside li a {
+  font-family: "Belanosima", sans-serif;
+  color: var(--text-light);
+  text-decoration: none;
+  text-align: center;
+}
+
+/* Bouton de guidage */
+#manageOffer aside li {
+  width: 80%;
+  justify-content: center;
+  text-align: center;
+}
+
+#manageOffer aside a {
+  width: 100%;
+}
+
+#manageOffer aside ul {
+  width: 80%;
+  padding: 0;
+  margin-left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#manageOffer aside > :nth-child(2) {
+  height: clamp(360px, 35vh, 400px);
+  padding-bottom: 1vh;
+  border-bottom: var(--text-light) 2px solid;
+}
+
+#manageOffer aside > :nth-child(3) {
+  height: 10vh;
+}
+
+/* quand toute les données obligatoires sont compléter */
+.guideComplete {
+  color: var(--text-dark) !important;
+  background-color: rgb(21, 176, 21) !important;
+}
+
+/* quand l'utilisateur est à cette étape */
+.guideSelect {
+  color: var(--text-dark) !important;
+  background-color: var(--accent) !important;
+}
+
+/* quand l'utilisateur n'a pas compléter toute les informations obligatoires*/
+.guideStartComplete {
+  color: var(--text-dark) !important;
+  background-color: red !important;
+}
+
+#manageOffer section {
+  margin-left: 18.75em;
+  margin-top: 13vh;
+  min-height: 70vh;
+}
+
+/* # selection de l'offre # */
+
+/* Bloc de chaque type d'offre*/
+#selectOffer > div:first-child {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+/* Toute les type d'offre */
+#selectOffer > div:first-child > div {
+  height: 50vh;
+  width: 20em;
+  margin-right: 2%;
+  border-radius: 20px;
+  /* offre gratuite */
+  color: var(--text-dark);
+  background-color: var(--secondary20);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--secondary60);
+}
+
+#selectOffer > div:first-child > div li {
+  list-style: circle;
+}
+
+/* offre premium */
+#selectOffer > div:first-child > div:nth-child(2) {
+  background-color: var(--accent20);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--accent60);
+}
+
+/* offre standard */
+#selectOffer > div:first-child > div:nth-child(3) {
+  background-color: var(--primary20);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--primary60);
+}
+
+#selectOffer input[type="radio"] {
+  display: none;
+}
+
+#selectOffer input[type="radio"] + label {
+  width: 150px;
+  height: 20px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 10px;
+  border: var(--text-dark) 1px solid;
+  color: #000;
+  background-color: var(--secondary);
+}
+
+#selectOffer input[type="radio"]:checked + label {
+  background-color: var(--accent);
+}
+
+#hourlyOffer div {
+  
+  display: flex;
+  gap: 10px;
+}
+#hourlyOffer div > input[type=button]{
+  background-color: #1ca4ed;
+  border-radius: 15px;
+  height: 50px;
+  width: 250px;  
+  
+}
+
+#hourlyOffer div > div > input[type=button]{ /*Pour les boutons retirer*/
+  height: 50px;
+  width: 100px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#detailsOffer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 300px;
+  background-color: #d1ccdc;
+}
+
+#detailsOffer > div {
+  width: 45%;
+  margin: 1%;
+  background-color: #1ca4ed;
+}
+
+#detailsOffer > div > section {
+  width: 200px;
+  height: 50px;
+  border: 2px solid grey;
+}
+
+#detailsOffer > div > input[type="text"] {
+  width: 90%;
+  height: 30px;
+  font-size: 15px;
+}
+
+#detailsOffer > div > input[type="textarea"] {
+  width: 90%;
+  font-size: 15px;
+}
+#detailsOffer > div > input[id="resume"] {
+  height: 100px;
+}
+
+#detailsOffer > div > input[id="description"] {
+  height: 300px;
+}
+
+#detailsOffer > div > label {
+  font-size: 25px;
+}
+
+#detailsOffer > div > div {
+  font-size: 25px;
+}
+
+#detailsOffer > div > div > button {
+  width: 150px;
+  height: 30px;
+}
+  
