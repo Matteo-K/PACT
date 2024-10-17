@@ -157,7 +157,7 @@
         <div><input type="button" value="Retirer" name="btnRetirerDimanche" id="btnRetirerDimanche"> </div>              
     </div>
 
-
+    
 
 </form>
 <!--

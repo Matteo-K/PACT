@@ -375,7 +375,7 @@ header div > a > img {
 }
 
 #hourlyOffer div {
-background-color: lightseagreen;
+  
   display: flex;
   gap: 10px;
 }
