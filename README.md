@@ -21,6 +21,7 @@ git clone https://github.com/Matteo-K/PACT.git
 ```bash
 git checkout <nom-de-la-branche>
 ```
+
 #### Vérifier dans quelle branche on se situe
 
 ```bash
@@ -127,11 +128,11 @@ git log
 
 ### Sprint 0 - Conception
 
-#### [Maquette](./Conception/A21_maquetteV2.pdf)
+#### Maquette
 
-#### [Charte Graphique](./Conception/A21_CharteGraphique.pdf)
+#### Charte Graphique
 
-#### [Dictionnaire de donnée](./Conception/A21_DictionnaireDesDonnées.xlsx)
+#### Dictionnaire de donnée
 
 #### [UML](./Conception/A21_DiagrammeClasseUML.pdf)
 
