@@ -13,6 +13,13 @@
         <input type="time" name="horairesF1Lundi" id="horairesF1Lundi">
 
         <input type="button" value="Ajouter un horaire" name="btnAjoutLundi" id="btnAjoutLundi">
+
+        <!-- Partie avec les horaire de "l'après midi du Lundi-->
+        <p> et de </p>
+        <input type="time" name="horairesOuv2Lundi" id="horairesOuv2Lundi">
+        <p>à</p>
+        <input type="time" name="horairesF2Lundi" id="horairesF2Lundi">
+        <div><input type="button" value="Retirer" name="btnRetirerLundi" id="btnRetirerLundi"></div>-
     </div>
     <!-- Mardi -->
     <div>
@@ -23,12 +30,14 @@
         <input type="time" name="horairesOuv1Mardi" id="horairesOuv1Mardi">
         <p>à</p>
         <input type="time" name="horairesF1Mardi" id="horairesF1Mardi">
+        <input type="button" value="Ajouter un horaire" name="btnAjoutMardi" id="btnAjoutMardi" >
 
-        <?php echo "et de " ?>
+        <!-- Partie avec les horaires de l'après midi du mardi -->
+        <p>et de</p>
         <input type="time" name="horairesOuv2Mardi" id="horairesOuv2Mardi">
         <p>à</p>
         <input type="time" name="horairesF2Mardi" id="horairesFMardi">
-        <input type="button" value="Retirer" name="btnRetirer" id="btnRetirer">
+        <div><input type="button" value="Retirer" name="btnRetirer" id="btnRetirer"></div>
 
     </div>
 
@@ -48,6 +57,12 @@
 
         <input type="button" value="Ajouter un horaire" name="btnAjoutMercredi" id="btnAjoutMercredi">
 
+        <!-- Partie avec les horaire de "l'après midi du Mercredi-->
+        <p> et de </p>
+        <input type="time" name="horairesOuv2Mercredi" id="horairesOuv2Mercredi">
+        <p>à</p>
+        <input type="time" name="horairesF2Mercredi" id="horairesF2Mercredi">
+        <div><input type="button" value="Retirer" name="btnRetirerMercredi" id="btnRetirerMercredi"></div>-
     </div>
 
     <!-- Jeudi -->
@@ -64,6 +79,13 @@
         <input type="time" name="horairesF1Jeudi" id="horairesF1Jeudi">
 
         <input type="button" value="Ajouter un horaire" name="btnAjoutJeudi" id="btnAjoutJeudi">
+
+        <!-- Partie avec les horaire de "l'après midi du Jeudi-->
+        <p> et de </p>
+        <input type="time" name="horairesOuv2Jeudi" id="horairesOuv2Jeudi">
+        <p>à</p>
+        <input type="time" name="horairesF2Jeudi" id="horairesF2Jeudi">
+        <div><input type="button" value="Retirer" name="btnRetirerJeudi" id="btnRetirerJeudi"> </div> 
 
     </div>
 
@@ -82,9 +104,15 @@
 
         <input type="button" value="Ajouter un horaire" name="btnAjoutVendredi" id="btnAjoutVendredi">
 
+        <!-- Partie avec les horaire de "l'après midi du Vendredi-->
+        <p> et de </p>
+        <input type="time" name="horairesOuv2Vendredi" id="horairesOuv2Vendredi">
+        <p>à</p>
+        <input type="time" name="horairesF2Vendredi" id="horairesF2Vendredi">
+        <div><input type="button" value="Retirer" name="btnRetirerVendredi" id="btnRetirerVendredi"> </div>         
     </div>
-    <!-- Samedi -->
 
+    <!-- Samedi -->
     <div>
 
         <p>Samedi</p>
@@ -99,10 +127,15 @@
 
         <input type="button" value="Ajouter un horaire" name="btnAjoutSamedi" id="btnAjoutSamedi">
 
+        <!-- Partie avec les horaire de "l'après midi du Samedi-->
+        <p> et de </p>
+        <input type="time" name="horairesOuv2Samedi" id="horairesOuv2Samedi">
+        <p>à</p>
+        <input type="time" name="horairesF2Samedi" id="horairesF2Samedi">
+        <div><input type="button" value="Retirer" name="btnRetirerSamedi" id="btnRetirerSamedi"> </div>      
     </div>
 
     <!-- Dimanche -->
-
     <div>
 
         <p>Dimanche</p>
@@ -116,7 +149,16 @@
 
         <input type="button" value="Ajouter un horaire" name="btnAjoutDimanche" id="btnAjoutDimanche">
 
+        <!-- Partie avec les horaire de "l'après midi du Dimanche-->
+        <p> et de </p>
+        <input type="time" name="horairesOuv2Dimanche" id="horairesOuv2Dimanche">
+        <p>à</p>
+        <input type="time" name="horairesF2Dimanche" id="horairesF2Dimanche">
+        <div><input type="button" value="Retirer" name="btnRetirerDimanche" id="btnRetirerDimanche"> </div>              
     </div>
+
+    
+
 </form>
 <!--
 
