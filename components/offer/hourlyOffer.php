@@ -1,7 +1,8 @@
 <form action="" id="hourlyOffer">
     <!-- Lundi -->
     <div>
-        <p>Lundi</p>
+        <div><p>Lundi :</p></div>
+        <div>
         <input type="checkbox" id="checkLundi" name="checkLundi" />
 
         <p> Ferme</p>
@@ -19,11 +20,12 @@
         <input type="time" name="horairesOuv2Lundi" id="horairesOuv2Lundi">
         <p>à</p>
         <input type="time" name="horairesF2Lundi" id="horairesF2Lundi">
-        <div><input type="button" value="Retirer" name="btnRetirerLundi" id="btnRetirerLundi"></div>-
+        <div><input type="button" value="Retirer" name="btnRetirerLundi" id="btnRetirerLundi"></div>
+        </div>
     </div>
     <!-- Mardi -->
     <div>
-        <p>Mardi</p>
+        <p>Mardi :</p>
         <input type="checkbox" id="checkMardi" name="checkMardi" />
         <p> Ferme</p>
         <p> Ouvert de</p>
@@ -46,7 +48,7 @@
 
     <div>
 
-        <p>Mercredi</p>
+        <p>Mercredi :</p>
         <input type="checkbox" id="checkMercredi" name="checkMercredi" />
         <p> Ferme</p>
         <p> Ouvert de</p>
@@ -69,7 +71,7 @@
 
     <div>
 
-        <p>Jeudi</p>
+        <p>Jeudi :</p>
         <input type="checkbox" id="checkJeudi" name="checkJeudi" />
         <p> Ferme</p>
         <p> Ouvert de</p>
@@ -93,7 +95,7 @@
 
     <div>
 
-        <p>Vendredi</p>
+        <p>Vendredi :</p>
         <input type="checkbox" id="checkVendredi" name="checkVendredi" />
         <p> Ferme</p>
         <p> Ouvert de</p>
@@ -116,7 +118,7 @@
     <div>
 
         <div>
-            <p>Samedi</p>
+            <p>Samedi :</p>
         </div>
         <input type="checkbox" id="checkSamedi" name="checkSamedi" />
 
@@ -141,7 +143,7 @@
     <div>
 
         <div>
-            <p>Dimanche</p>
+            <p>Dimanche :</p>
         </div>
         <input type="checkbox" id="checkDimanche" name="checkDimanche" />
         <p> Ferme</p>

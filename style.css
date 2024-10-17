@@ -421,49 +421,72 @@ header div>a>img {
 }
 
 /* ------------------------- HOURLY OFFER CSS --------------------------------*/
+/* Style de base */
 #hourlyOffer div {
-  display: flex;
-
-  gap: 10px;
-  align-items: center;
-  /* Alignement vertical du texte dans le bouton */
-  justify-content: center;
-  margin-bottom: 10px;
+  display: flex;              /* Utilisation de Flexbox pour aligner les éléments en ligne */
+  gap: 10px;                  /* Espace entre chaque élément du div */
+  align-items: baseline;      
+  justify-content: flex-start;
+  margin-bottom: 15px;        
 }
 
-#hourlyOffer div>input[type="button"] {
-  background-color: var(--primary);
-  border-radius: 15px;
-  height: 50px;
-  width: 250px;
-  border: none;
-  box-shadow: inset -4px -4px 4px #1883BC;
-
+/* Style pour le nom du jour */
+#hourlyOffer div > p:first-child {
+  width: 100px;               /* Définit une largeur fixe pour les noms des jours*/
+  text-align: right;          
+  margin-right: 10px;         
+  
 }
 
-#hourlyOffer div>input[type="button"]:hover {
-  /* en cas de survol des boutons */
-  box-shadow: none;
+/* Pour les checkboxs */
+#hourlyOffer div > input[type="checkbox"] {
+  margin-right: 2px;         /* Ajoute un espace après la case a cocher  */
 }
 
-#hourlyOffer div>input[type="button"]:active {
-  /* en cas de clic sur les  boutons */
-  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4), inset 4px 4px 4px #1883BC;
+/* Style général pour les champs de temps et les textes qui suivent */
+#hourlyOffer input[type="time"], 
+#hourlyOffer p {
+  margin-right: 10px;         
 }
 
-#hourlyOffer div>div>p {
-  display: flex;
-  background-color: yellow;
-
+/* Style pour les boutons "Ajouter un horaire" */
+#hourlyOffer div > input[type="button"] {
+  background-color: var(--primary);   
+  border-radius: 15px;                
+  height: 50px;      
+  width: 250px;                 
+  border: none;                         
+  box-shadow: inset -4px -4px 4px #1883BC; 
+  transition: box-shadow 0.2s ease-in-out; 
 }
 
-#hourlyOffer div>div>input[type="button"] {
-  /*Pour les boutons retirer*/
-  height: 50px;
-  width: 100px;
-  text-align: center;
-
+/* Style pour les boutons "Retirer" */
+#hourlyOffer div > div > input[type="button"] {
+  height: 50px;                       
+  width: 100px;                       
+  background-color: var(--primary);   
+  border-radius: 10px;                
+  text-align: center;                 
 }
+
+
+#hourlyOffer div > input[type="button"]:hover
+{
+  box-shadow: none;                   /* Retire l'effet d'ombre lors du survol */
+}
+
+/* Effet quand on clique sur les boutons*/
+#hourlyOffer div > input[type="button"]:active
+{
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4), inset 4px 4px 4px #1883BC; 
+  
+}
+
+/* Style pour les champs de temps (input type="time") */
+#hourlyOffer input[type="time"] {
+  width: 100px;                       
+}
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
