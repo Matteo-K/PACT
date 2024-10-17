@@ -227,8 +227,9 @@ header div > a > img {
   top: 13vh;
   left: 0;
   width: 18.75em;
-  height: 70vh;
+  height: fit-content;
   background-color: var(--bloc);
+  border-radius: 0 0 50px 0;
 }
 
 #manageOffer aside > h3,
@@ -236,11 +237,39 @@ header div > a > img {
   font-family: "Belanosima", sans-serif;
   color: var(--text-light);
   text-decoration: none;
+  text-align: center;
 }
 
 /* Bouton de guidage */
-#manageOffer aside li a {
-  background-color: var(--secondary);
+#manageOffer aside li {
+  width: 80%;
+  justify-content: center;
+  text-align: center;
+}
+
+#manageOffer aside a {
+  width: 100%;
+}
+
+#manageOffer aside ul {
+  width: 80%;
+  padding: 0;
+  margin-left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#manageOffer aside > :nth-child(2) {
+  height: clamp(360px, 35vh, 400px);
+  padding-bottom: 1vh;
+  border-bottom: var(--text-light) 2px solid;
+}
+
+#manageOffer aside > :nth-child(3) {
+  height: 10vh;
 }
 
 /* quand toute les données obligatoires sont compléter */
@@ -257,7 +286,7 @@ header div > a > img {
 
 /* quand l'utilisateur n'a pas compléter toute les informations obligatoires*/
 .guideStartComplete {
-  color: var(--text-light) !important;
+  color: var(--text-dark) !important;
   background-color: red !important;
 }
 
@@ -265,11 +294,6 @@ header div > a > img {
   margin-left: 18.75em;
   margin-top: 13vh;
   min-height: 70vh;
-}
-
-/* Bloc bouton quitter */
-#manageOffer aside > :nth-child(3) {
-  background-color: red;
 }
 
 /* # selection de l'offre # */
@@ -350,16 +374,11 @@ header div > a > img {
   opacity: 100%;
 }
 
-
-
-
 #hourlyOffer div {
-background-color: lightseagreen;
+  background-color: lightseagreen;
   display: flex;
   gap: 10px;
-  
 }
-
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -414,4 +433,3 @@ background-color: lightseagreen;
   width: 150px;
   height: 30px;
 }
-
