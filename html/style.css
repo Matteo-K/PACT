@@ -556,7 +556,7 @@ header div > a > img {
   margin: 1%;
 }
 
-#artDetailOffer > div > label:not(#customFileUpload),
+#artDetailOffer > div > label:not(#labelAjoutPhoto),
 #artDetailOffer > div > div > label[for="categorie"] {
   display: inline-block;
   font-size: 25px;
@@ -601,7 +601,7 @@ header div > a > img {
 
 #labelAjoutPhoto{
   display: inline-block;
-  height: 40px;
+  height: 30px;
   font-size: 22px;
   padding: 5px 30px;
   border-radius: 50px;
@@ -612,6 +612,10 @@ header div > a > img {
   border: none;
   cursor: pointer;
   text-align: center;
+}
+
+#artDetailOffer input[type=file]{
+  display: none;
 }
 
 #afficheImages {
