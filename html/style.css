@@ -555,13 +555,19 @@ header div > a > img {
   margin: 1%;
 }
 
-#artDetailOffer section {
-  width: 70%;
-  height: 100px;
-  padding: 5px;
-  background-color: #fff;
-  border: 2px solid var(--secondary);
+#artDetailOffer > div > label:not(#customFileUpload),
+#artDetailOffer > div > div > label[for="categorie"] {
+  display: inline-block;
+  font-size: 25px;
+  width: 90%;
 }
+
+#artDetailOffer p {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+
 
 #artDetailOffer input[type="text"] {
   width: 90%;
@@ -577,6 +583,7 @@ header div > a > img {
   font-size: 16px;
   padding-left: 10px;
 }
+
 #artDetailOffer textarea[id="resume"] {
   height: 80px;
   min-height: 60px;
@@ -589,18 +596,9 @@ header div > a > img {
   max-height: 400px;
 }
 
-#artDetailOffer > div > label,
-#artDetailOffer > div > div > label[for="categorie"] {
-  display: inline-block;
-  font-size: 25px;
-  width: 90%;
-}
 
-#artDetailOffer > div > input[id="tag"] {
-  width: 70%;
-}
 
-#artDetailOffer button[value="ajoutTag"] {
+#labelAjoutPhoto{
   display: inline-block;
   height: 40px;
   font-size: 22px;
@@ -611,11 +609,8 @@ header div > a > img {
   margin: 5px;
   box-shadow: inset -4px -4px 4px var(--bloc);
   border: none;
-}
-
-#artDetailOffer p {
-  font-size: 20px;
-  margin: 5px 0;
+  cursor: pointer;
+  text-align: center;
 }
 
 #afficheImages {
@@ -642,6 +637,33 @@ header div > a > img {
 #afficheImages img {
   width: 100%;
   height: auto;
+}
+
+
+
+#artDetailOffer > div > input[id="tag"] {
+  width: 70%;
+}
+
+#artDetailOffer button[value="ajoutTag"] {
+  display: inline-block;
+  height: 40px;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 50px;
+  color: #000;
+  background-color: var(--primary);
+  margin: 5px;
+  box-shadow: inset -4px -4px 4px var(--bloc);
+  border: none;
+}
+
+#artDetailOffer section {
+  width: 70%;
+  height: 100px;
+  padding: 5px;
+  background-color: #fff;
+  border: 2px solid var(--secondary);
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

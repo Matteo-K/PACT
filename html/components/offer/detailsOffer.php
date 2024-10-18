@@ -16,9 +16,10 @@
 
         <div>
 
-        <label for="photos">Photos de votre offre*</label>
+        <label for="photosTitre">Photos de votre offre*</label>
         <p>Vous pouvez insérer jusqu'à 10 photos</p>
         
+        <label for="photos" id="labelAjoutPhoto">Ajouter</label>
         <input type="file" id="photos" name="photos" accept="image/*" multiple>
 
         <div id="afficheImages"></div>
