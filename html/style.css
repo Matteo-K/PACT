@@ -469,6 +469,7 @@ header div > a > img {
   color: var(--text-dark);
   box-shadow: inset -4px -4px 4px #aca8b5;
   border: none;
+  cursor: pointer;
 }
 
 #selectOffer input[type="radio"]:checked + label,
@@ -632,6 +633,7 @@ header div > a > img {
   margin: 5px;
   overflow: hidden;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 #afficheImages img {
@@ -656,6 +658,7 @@ header div > a > img {
   margin: 5px;
   box-shadow: inset -4px -4px 4px var(--bloc);
   border: none;
+  cursor: pointer;
 }
 
 #artDetailOffer section {
@@ -671,13 +674,13 @@ header div > a > img {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
 
-
+/*
 #detailsOffer section {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
   gap: 10px;
-/* background-color: yellow; */
+  background-color: yellow; 
  } 
 
  #detailsOffer  input[type="button"] {
@@ -689,3 +692,4 @@ header div > a > img {
   border: none;
   box-shadow: inset -4px -4px 4px #b01111;
 }
+  */
