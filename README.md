@@ -2,26 +2,12 @@
 
 ## Sprint
 
-### Sprint 1 - Implémentation
+### Sprint 0 - Conception 
 
-#### Objectifs
+#### Maquette
 
-#### Travaux effectuer
+#### Charte Graphique
 
-#### Problèmes
+#### Dictionnaire de donnée
 
-### Sprint 2 - Implémentation
-
-#### Objectifs
-
-#### Travaux effectuer
-
-#### Problèmes
-
-### Sprint 3 - Implémentation
-
-#### Objectifs
-
-#### Travaux effectuer
-
-#### Problèmes
+#### UML
