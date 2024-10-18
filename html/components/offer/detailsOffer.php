@@ -51,7 +51,7 @@
     </article>
     <article>
     <?php
-        require_once "details/detailsRestaurant.php";
+       // require_once "details/detailsRestaurant.php";
         require_once "details/detailsActivity.php";
         require_once "details/detailsVisit.php";
         require_once "details/detailsPark.php";
