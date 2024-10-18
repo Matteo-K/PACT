@@ -25,4 +25,5 @@
         <input type="text" id="texteLangueVisit" name="texteLangueVisit" placeholder="Langue proposée">
     </div>
 
+    <input type="button" value="Annuler" name="btnAnnulerVisit" id="btnAnnulerVisit">
 </section>
