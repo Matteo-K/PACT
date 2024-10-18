@@ -16,8 +16,8 @@ session_start();
 <body>
     <script src="js/setColor.js"></script>
     <?php require_once "components/header.php" ?>
-    <main>
-        <h1>Le Village Gaulois</h1>
+    <main class="mainOffer">
+        <h2 id="titleOffer">Le Village Gaulois</h2>
         <div>
             <!-- foreach ici !-->
             <a href="search.php?search=parc">Parc d'attraction</a>
@@ -32,29 +32,33 @@ session_start();
             <a href="mailto: paulblanc@gmail.com">paulblanc@gmail.com</a>
             <a href="https://www.levillagegaulois.org/">https://www.levillagegaulois.org/</a>
         </div>
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <!-- foreach !-->
-                <div class="swiper-slide">
-                    <img src="img/1.jpeg" />
+        <div class="swiper-container">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <!-- foreach !-->
+                    <div class="swiper-slide">
+                        <img src="img/1.jpeg" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/2.jpeg" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/3.jpeg" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/4.jpeg" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/5.jpeg" />
+                    </div>
                 </div>
-                <div class="swiper-slide">
-                    <img src="img/2.jpeg" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="img/3.jpeg" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="img/4.jpeg" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="img/5.jpeg" />
-                </div>
+                
             </div>
-        </div>
 
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
+        </div>
+        
 
         <div thumbsSlider="" class="swiper myThumbSlider">
             <div class="swiper-wrapper">

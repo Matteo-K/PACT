@@ -1,17 +1,17 @@
 <form id="localisationOffer" action="enregOffer.php" method="post">
-  <section>
+  <section class="sectionLoca">
     <div>
       <label for="Adresse">Adresse postale* :</label>
-      <input type="text">
+      <input type="text" placeholder="Adresse"/>
     </div>
-    <div>
-        <div>
-            <label for="codepostal">Code postal* :</label>
-            <input type="text">
-        </div>
-        <div>
-            <label for="ville">Ville* :</label>
-            <input type="text">
-        </div>
-    </div>
+    <section>
+      <div class="codeP">
+        <label for="codepostal">Code postal* :</label>
+        <input type="text" placeholder="Code postal"/>
+      </div>
+      <div class="villeL">
+        <label for="ville">Ville* :</label>
+        <input type="text" placeholder="Ville"/>
+      </div>
+    </section>
   </section>
