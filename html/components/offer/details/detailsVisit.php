@@ -1,7 +1,7 @@
 <!-- Visite -->
 
 <section id="visit"> <!-- donne un id a la section pour l'identifier dans le css -->
-    <article> <!-- separation en article pour l'alignement -->
+    <article id="ArtVisit"> <!-- separation en article pour l'alignement -->
         <div>
             <label>Durée :</label> <!-- Label durée -->
             <br>
@@ -16,11 +16,11 @@
             <label>Résumé</label> <!-- Label resume -->
             <br>
 
-            <textarea name="texteResumeVisit" id="texteResumeVisit" placeholder="Résumé de la visite"></textarea>
+            <textarea name="texteResumeVisit" id="Resume" placeholder="Résumé de la visite"></textarea>
             <!-- Zone de texte avec le resume de la visite -->
         </div>
     </article> <!-- fin du 1er article -->
-    <article> <!-- début du 2ème article (pour le positionnement)-->
+    <article id="ArtVisit"> <!-- début du 2ème article (pour le positionnement)-->
         <div>
             <label>Accessibilité</label> <!-- Label Accessibilité -->
             <br>

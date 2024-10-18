@@ -710,30 +710,36 @@ header div>a>img {
 }
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
 
-#specialOffer {
-  /* display: flex; */
-  /* flex-direction: column; */
-  margin-bottom: 10px;
-  gap: 10px;
+#specialOffer { /* toute la partie spécifique a une offre */
+
+  margin-bottom: 10px; /* marge de 10 px en bas */
+  gap: 10px; /* gap de 10 px */
   
 }
 
 
 #specialOffer section > article{
   display: inline-block;
-  width: 355px;
-  margin-right: 15px;
-  padding-bottom: 15px;
+  width: 355px; /* largeur de 355 px pour l'article */
+  margin-right: 15px; /* marge de 15 px a droite */
+  padding-bottom: 15px; /* padding de 15 px en bas*/
   
-  /* height: 350x; */
-  background-color: red;
+  
+
   
 }
-#specialOffer  textarea[id="texteLangueVisit"],textarea[id="texteResumeVisit"] {
-  width: 335px;
-  height: 165px;
-  resize: none;
+#specialOffer  textarea[id="texteLangueVisit"],textarea[id="Resume"] { /* tailler des zone de texte */
+  width: 335px; /* largeur de 335px*/
+  height: 165px; /* hauteur de 165px*/
+  resize: none; /* Non redimensinnable */
   
 
 }
+#visit{
+  background-color: orange; /* Juste pour moi voir les separations */
+}
 
+
+#show{
+  background-color: yellow; /* Juste pour moi voir les separations */
+}
