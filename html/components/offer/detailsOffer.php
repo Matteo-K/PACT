@@ -1,6 +1,6 @@
 
 
-<form id="detailsOffer" action="suivant.php">
+<form id="detailsOffer" action="enregOffer.php" method="post">
 
     <div>
 
@@ -85,6 +85,3 @@
 
 
     </div>
-
-    
-</form>

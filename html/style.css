@@ -522,7 +522,7 @@ header div > a > img {
   
 }
 #hourlyOffer div > div > p {
-  display: flex;
+  display: block;
   
   background-color: yellow;
   
