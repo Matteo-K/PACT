@@ -1,5 +1,5 @@
 <form id="detailsOffer" action="enregOffer.php" method="post">
-    <article>
+    <article id="artDetailOffer">
         <div>
 
             <label for="nom">Nom de votre offre*</label>
@@ -23,9 +23,6 @@
 
         <div id="afficheImages"></div>
 
-
-
-            
 
             <div>
                 <label for="categorie">Catégorie de l'offre*</label>   
