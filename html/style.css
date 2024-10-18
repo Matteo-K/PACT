@@ -1,0 +1,669 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
+
+:root {
+  --bloc: #034d7c;
+  --background: #eaeaea;
+  --primary: #1ca4ed;
+  --secondary: #d1ccdc;
+  --accent: #edae14;
+  --text-dark: #000;
+  --text-light: #eaeaea;
+  --header-size: clamp(100px, 13vh, 150px);
+}
+
+* {
+  font-family: "Lato", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Belanosima", sans-serif;
+}
+
+h1 {
+  font-family: "Mogra", system-ui;
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+}
+
+/* ##### Components ##### */
+
+/* ### Footer ### */
+
+footer {
+  color: var(--text-light);
+  background-color: var(--bloc);
+  padding: 1% 0.5%;
+  margin: 0;
+  height: 23vh;
+}
+
+/* Bloc principale + mention légale*/
+footer > div:first-child {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+/* logo Tripenarvor et son titre */
+footer figure {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-left: -15px;
+  gap: 1%;
+}
+
+/* paragraphe principale */
+footer figure + p {
+  margin-left: 2%;
+}
+
+/* Nom PACT */
+footer figcaption span {
+  font-family: "Mogra", system-ui;
+  font-size: 20px;
+}
+
+footer img {
+  height: 5%;
+  width: 5%;
+  border-radius: 50%;
+}
+
+/* Mention légales */
+address {
+  padding-left: 2%;
+  border-left: var(--text-light) solid 3px;
+}
+
+footer a,
+footer h4 {
+  color: var(--text-light);
+  font-style: normal;
+  font-weight: 600;
+  font-size: large;
+  margin-bottom: 1vh;
+  text-decoration: underline;
+}
+
+footer div + div {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 10px;
+  width: max-content;
+}
+
+footer div + div p {
+  padding: 0 500px;
+}
+
+/* ##### Components ##### */
+
+/* ### Header ### */
+
+/* Conteneur principal dans le header */
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 12em;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-size);
+  z-index: 3;
+  background-color: var(--background);
+}
+
+header div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5em 0.8em;
+  height: 3em;
+}
+
+header div > a {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  align-items: center;
+  /* Alignement vertical de l'image et du texte */
+}
+
+header h1 {
+  font-size: 48px;
+  color: var(--bloc);
+}
+
+header div > a > img {
+  width: 5em;
+  height: 5em;
+  margin-right: 0.5em;
+  /* Espace entre le logo et le texte */
+}
+
+#formHeader,
+#btnConn {
+  border-radius: 2em;
+  height: 3em;
+  /* Assurez-vous que les deux aient la même hauteur */
+}
+
+/* Formulaire de recherche */
+#formHeader {
+  display: flex;
+  align-items: center;
+  border: var(--bloc) solid 3px;
+  border-radius: 2em;
+  height: 3em;
+  width: 35em;
+  width: 35em;
+  /* Largeur du formulaire */
+}
+
+#formHeader input[type="text"],
+#formHeader button,
+#formHeader img {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+#formHeader input[type="text"] {
+  width: 85%;
+  padding-left: 1em;
+  height: 100%;
+  height: 100%;
+  font-size: 16px;
+  border-radius: 2em 0 0 2em;
+  border-radius: 2em 0 0 2em;
+}
+
+#formHeader button {
+  flex: 1;
+  padding: 0 1.7em;
+  background-color: var(--primary);
+  border-radius: 0 2em 2em 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+#formHeader img {
+  width: 2em;
+}
+
+/* Bouton de connexion */
+#btnConn {
+  display: flex;
+  align-items: center;
+  /* Alignement vertical du texte dans le bouton */
+  justify-content: center;
+  padding-inline: 2em;
+  /* Ajustement du padding */
+  font-size: 25px;
+  font-weight: 600;
+  background-color: var(--accent60);
+  height: 8vh;
+  /* Même hauteur que le formulaire */
+  color: var(--text-dark);
+  text-decoration: none;
+  /* Supprimer la décoration du texte */
+}
+
+#btnConn:hover {
+  background-color: var(--accent);
+}
+
+/* ### Offer ### */
+
+/* Gestion de l'offre */
+
+#manageOffer main {
+  position: relative;
+}
+
+#manageOffer aside {
+  position: absolute;
+  top: v0;
+  left: 0;
+  width: 17em;
+  height: fit-content;
+  background-color: var(--bloc);
+  border-radius: 0 0 50px 0;
+}
+
+#manageOffer aside > h3,
+#manageOffer aside li a {
+  font-family: "Belanosima", sans-serif;
+  text-decoration: none;
+  text-align: center;
+}
+
+#manageOffer aside h3 {
+  color: var(--text-light);
+}
+
+/* Bouton de guidage */
+#manageOffer aside li {
+  width: 90%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+#manageOffer aside ul {
+  width: 80%;
+  padding: 0;
+  margin-left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#manageOffer aside > :nth-child(2) {
+  height: clamp(340px, 35vh, 400px);
+  padding-bottom: 1vh;
+  border-bottom: var(--text-light) 2px solid;
+}
+
+#manageOffer aside > :nth-child(3) {
+  height: 10vh;
+  gap: 10px;
+}
+
+#manageOffer aside a {
+  flex: 5;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: var(--secondary);
+  color: var(--text-dark);
+  box-shadow: inset -4px -4px 4px #aca8b5;
+}
+
+#manageOffer aside a:hover {
+  box-shadow: none;
+}
+
+#manageOffer aside a:active {
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #aca8b5;
+}
+
+/* quand toute les données obligatoires sont compléter */
+.guideComplete {
+  background-color: rgb(21, 176, 21) !important;
+  box-shadow: inset -4px -4px 4px #008000 !important;
+}
+
+.guideComplete:active {
+  box-shadow: inset 4px 4px 4px #008000,
+    inset -4px -4px 4px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* quand l'utilisateur est à cette étape */
+.guideSelect {
+  background-color: var(--accent) !important;
+  box-shadow: inset -4px -4px 4px #bb880e !important;
+}
+
+.guideSelect:active {
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #bb880e !important;
+}
+
+/* quand l'utilisateur n'a pas compléter toute les informations obligatoires*/
+.guideStartComplete {
+  color: var(--text-light) !important;
+  background-color: red !important;
+  box-shadow: inset -4px -4px 4px #b01111 !important;
+}
+
+.guideStartComplete:active {
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #b01111 !important;
+}
+
+#manageOffer aside + section {
+  margin-left: 17em;
+  margin-top: var(--header-size);
+  min-height: 70vh;
+}
+
+/* Bouton suivant précédent */
+#manageOffer aside + section + div {
+  position: absolute;
+  bottom: 5px;
+  right: 3%;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 3%;
+}
+
+#manageOffer aside + section + div a {
+  text-align: center;
+  width: 150px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.blueBtnOffer {
+  background-color: var(--primary);
+}
+
+/* # selection de l'offre # */
+
+/* Bloc de chaque type d'offre*/
+#selectOffer > div:first-child {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+/* Toute les type d'offre */
+#selectOffer > div:first-child > div {
+  position: relative;
+  height: clamp(400px, 50vh, 450px);
+  width: 20em;
+  margin-right: 2%;
+  margin-top: 3vh;
+  border-radius: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  /* offre gratuite */
+  color: var(--text-dark);
+  background-color: var(--secondary20);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--secondary60);
+}
+
+/* Prix par mois */
+#selectOffer > div:first-child > div h3 {
+  margin-top: -20px;
+}
+
+/* Bouton séletionner */
+#selectOffer > div:first-child > div ul + div {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#selectOffer > div:first-child > div ul {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: clamp(10px, 2vh, 25px);
+}
+#selectOffer > div:first-child > div li {
+  list-style: disc;
+}
+
+/* offre premium */
+#selectOffer > div:first-child > div:nth-child(2) {
+  background-color: var(--accent20);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--accent60);
+}
+
+/* offre standard */
+#selectOffer > div:first-child > div:nth-child(3) {
+  background-color: var(--primary20);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--primary60);
+}
+
+#selectOffer input[type="radio"],
+#detailsOffer input[type="radio"] {
+  display: none;
+}
+
+#selectOffer input[type="radio"] + label,
+#detailsOffer input[type="radio"] + label {
+  display: inline-block;
+  padding: 5px 30px;
+  border-radius: 50px;
+  background-color: var(--secondary);
+  height: 30px;
+  font-size: 22px;
+  padding: 5px 30px;
+  margin: 5px;
+  color: var(--text-dark);
+  box-shadow: inset -4px -4px 4px #aca8b5;
+  border: none;
+}
+
+#selectOffer input[type="radio"]:checked + label,
+#detailsOffer input[type="radio"]:checked + label {
+  background-color: var(--accent);
+  box-shadow: inset -4px -4px 4px #bb880e;
+}
+
+#selectOffer input[disabled] + label {
+  color: rgba(20, 20, 20, 0.5);
+  border-color: rgba(20, 20, 20, 0.5);
+}
+
+#selectOffer > div:first-child + div {
+  margin-top: 4vh;
+  margin-left: 6%;
+}
+
+/* Message de prévention */
+#selectOffer > div:first-child + div p {
+  color: red;
+}
+
+/* ------------------------- HOURLY OFFER CSS --------------------------------*/
+#hourlyOffer div {
+  display: flex;
+
+  gap: 10px;
+  align-items: center;
+  /* Alignement vertical du texte dans le bouton */
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+#hourlyOffer div > div {
+  display: flex;
+}
+
+#hourlyOffer div > input[type="button"] {
+  background-color: var(--primary);
+  border-radius: 15px;
+  height: 50px;
+  width: 250px;
+  border: none;
+  box-shadow: inset -4px -4px 4px #1883bc;
+}
+
+#hourlyOffer div > input[type="button"]:hover,
+.blueBtnOffer {
+  /* en cas de survol des boutons */
+  box-shadow: none;
+}
+
+#hourlyOffer div > input[type="button"]:active,
+.blueBtnOffer {
+  /* en cas de clic sur les  boutons */
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #1883bc;
+}
+
+#hourlyOffer div > div > div > input[type="button"] {
+  /*Pour les boutons retirer*/
+  height: 50px;
+  width: 100px;
+  text-align: center;
+}
+#hourlyOffer div > div > p {
+  display: block;
+
+  background-color: yellow;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#artDetailOffer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+#artDetailOffer > div {
+  width: 48%;
+  margin: 1%;
+}
+
+#artDetailOffer section {
+  width: 70%;
+  height: 100px;
+  padding: 5px;
+  background-color: #fff;
+  border: 2px solid var(--secondary);
+}
+
+#artDetailOffer input[type="text"] {
+  width: 90%;
+  height: 30px;
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+#artDetailOffer textarea {
+  width: 90%;
+  max-width: 90%;
+  min-width: 90%;
+  font-size: 16px;
+  padding-left: 10px;
+}
+#artDetailOffer textarea[id="resume"] {
+  height: 80px;
+  min-height: 60px;
+  max-height: 100px;
+}
+
+#artDetailOffer textarea[id="description"] {
+  height: 250px;
+  min-height: 100px;
+  max-height: 400px;
+}
+
+#artDetailOffer > div > label,
+#artDetailOffer > div > div > label[for="categorie"] {
+  display: inline-block;
+  font-size: 25px;
+  width: 90%;
+}
+
+#artDetailOffer > div > input[id="tag"] {
+  width: 70%;
+}
+
+#artDetailOffer button[value="ajoutTag"] {
+  display: inline-block;
+  height: 40px;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 50px;
+  color: #000;
+  background-color: var(--primary);
+  margin: 5px;
+  box-shadow: inset -4px -4px 4px var(--bloc);
+  border: none;
+}
+
+#artDetailOffer p {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+#afficheImages {
+  width: 600px;
+  min-height: 60px;
+  margin: 15px 0;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+#afficheImages figure {
+  width: 90px;
+  height: 90px;
+  margin: 5px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+#afficheImages img {
+  width: 100%;
+  height: auto;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
+
+
+#detailsOffer section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  gap: 10px;
+/* background-color: yellow; */
+ } 
+
+ #detailsOffer  input[type="button"] {
+  background-color:#FF0E0E;
+  color: #FFFFFF;
+  border-radius: 15px;
+  height: 50px;
+  width: 200px;
+  border: none;
+  box-shadow: inset -4px -4px 4px #b01111;
+}
