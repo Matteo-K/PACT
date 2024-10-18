@@ -100,7 +100,7 @@ if (isset($_POST['submit'])) {
     </style>
 </head>
 <body>
-    <form action="connect.php" method="POST">
+    <form action="connexionKylian.php" method="POST">
         <h2>Connexion</h2>
         <?php if (isset($error)) { echo '<p class="error">' . $error . '</p>'; } ?>
         <input type="text" name="login" placeholder="Login" required>
