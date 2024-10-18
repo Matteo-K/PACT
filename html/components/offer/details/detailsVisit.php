@@ -2,28 +2,39 @@
 
 <section id="visit">
     <div>
-        <p>Durée :</p>
+        <label>Durée :</label>
+        <br>
 
-        
+
         <input type="number" id="numberHVisit" name="numberHVisit" placeholder="0" />
-        <p>H</p>
+        <label>H</label>
 
     </div>
     <div>
-        <p>Résumé</p>
+        <label>Résumé</label>
+        <br>
         <input type="text" id="texteResumeVisit" name="texteResumeVisit" placeholder="Résumé de la visite">
     </div>
 
     <div>
-        <p>Accessibilité</p>
-        <input type="checkbox" id="radioButtonAccesPmrRequis" name="radioButtonAccesPmrRequis" > <!-- il faut trouver le type du radio button -->
-        <input type="checkbox" id="radioButtonAccesPmrRequis" name="radioButtonAccesPmrRequis"> <!-- il faut trouver le type du radio button -->
+        <label>Accessibilité</label>
+        <br>
+
+
+        <input type="checkbox" id="radioButtonAccesPmrRequis" name="radioButtonAccesPmrRequis">
+        <!--il faut trouver le type du radio button -->
+        <br>
+        <input type="checkbox" id="radioButtonAccesPmrRequis" name="radioButtonAccesPmrRequis">
+        <!--il faut trouver le type du radio button -->
+        <br>    
     </div>
 
     <div>
-        <p>Langue proposée(s) :</p>
+        <label>Langue proposée(s) :</label>
+        <br>
         <input type="text" id="texteLangueVisit" name="texteLangueVisit" placeholder="Langue proposée">
     </div>
 
-    <input type="button" value="Annuler" name="btnAnnulerVisit" id="btnAnnulerVisit">
+    <input type="button" value="Annuler" name="btnAnnulerSpecialOffer" id="btnAnnulerSpecialOffer">
+    <input type="button" value="Valider" name="btnValiderSpecialOffer" id="btnValiderSpecialOffer">
 </section>

@@ -50,7 +50,7 @@
 
         </div>
     </article>
-    <article>
+    <article id="specialOffer">
     <?php
        // require_once "details/detailsRestaurant.php";
         require_once "details/detailsActivity.php";
