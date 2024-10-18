@@ -1,7 +1,7 @@
 <?php
-$is_prive = false;
+$is_prive = true;
 ?>
-<form id="selectOffer">
+<form id="selectOffer" action="enregOffer.php" method="post">
   <div>
     <div>
       <h2>Offre Gratuit</h2>
@@ -10,8 +10,8 @@ $is_prive = false;
         <li>Réservée au public</li>
       </ul>
       <div>
-        <input type="radio" name="selection" id="selectionOffer1">
-        <label for="selectionOffer1">Sélectionner</label>
+        <input type="radio" name="typeOffre" id="gratuit" value="gratuit" <?php echo $is_prive?"disabled":"checked" ?>>
+        <label for="gratuit">Sélectionner</label>
       </div>
     </div>
     <div>
@@ -23,8 +23,8 @@ $is_prive = false;
         <li>Blackliste sur 3 avis</li>
       </ul>
       <div>
-        <input type="radio" name="selection" id="selectionOffer2">
-        <label for="selectionOffer2">Sélectionner</label>
+        <input type="radio" name="typeOffre" id="premium" value="premium" <?php echo !$is_prive?"disabled":"checked" ?>>
+        <label for="premium">Sélectionner</label>
       </div>
     </div>
     <div>
@@ -35,8 +35,8 @@ $is_prive = false;
         <li>Saisie d’une grille tarifaire</li>
       </ul>
       <div>
-        <input type="radio" name="selection" id="selectionOffer3">
-        <label for="selectionOffer3">Sélectionner</label>
+        <input type="radio" name="typeOffre" id="standard" value="standard" <?php echo !$is_prive?"disabled":"" ?>>
+        <label for="standard">Sélectionner</label>
       </div>
     </div>
   </div>
@@ -52,5 +52,3 @@ $is_prive = false;
     </div>
     <p>Attention ! Vous ne pouvez pas changer d’offre une fois séléctionée.</p>
   </div>
-
-</form>
