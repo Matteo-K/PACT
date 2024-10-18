@@ -538,50 +538,6 @@ header div>a>img {
 .hourlyHide {
   display: none;
 }
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
-                                        BOOMER                                            
-   OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO */
-
-.sectionLoca {
-  margin: 50px 50px;
-  width: 700px;
-  font-size: 25px;
-}
-
-.sectionLoca div {
-  margin-bottom: 25px;
-}
-
-.sectionLoca input {
-  display: block;
-  width: 100%;
-  height: 40px;
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--secondary);
-  border: solid 2px;
-  border-color: var(--secondary);
-  padding-left: 10px;
-}
-
-.sectionLoca section {
-  display: flex;
-  gap: 50px;
-  width: 100%;
-}
-
-.codeP {
-  width: 25%;
-}
-
-.villeL {
-  width: 68%;
-}
-
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
-                                       FIN BOOMER                                            
-   OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO */
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -636,7 +592,9 @@ header div>a>img {
   max-height: 400px;
 }
 
-#labelAjoutPhoto {
+
+
+#labelAjoutPhoto{
   display: inline-block;
   height: 30px;
   font-size: 22px;
@@ -681,6 +639,8 @@ header div>a>img {
   width: 100%;
   height: auto;
 }
+
+
 
 #artDetailOffer > div > input[id="tag"] {
   width: 70%;
@@ -751,19 +711,29 @@ header div>a>img {
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
 
 #specialOffer {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  margin-bottom: 10px;
   gap: 10px;
-  /* background-color: yellow; */
+  
 }
 
-  #specialOffer  input[type="button"] {
-  background-color:#FF0E0E;
-  color: #FFFFFF;
-  border-radius: 15px;
-  height: 50px;
-  width: 200px;
-  border: none;
-  box-shadow: inset -4px -4px 4px #b01111;
+
+#specialOffer section > article{
+  display: inline-block;
+  width: 355px;
+  margin-right: 15px;
+  padding-bottom: 15px;
+  
+  /* height: 350x; */
+  background-color: red;
+  
 }
+#specialOffer  textarea[id="texteLangueVisit"],textarea[id="texteResumeVisit"] {
+  width: 335px;
+  height: 165px;
+  resize: none;
+  
+
+}
+
