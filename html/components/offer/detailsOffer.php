@@ -1,5 +1,5 @@
 <form id="detailsOffer" action="enregOffer.php" method="post">
-    <article>
+    <article id="artDetailOffer">
         <div>
 
             <label for="nom">Nom de votre offre*</label>
@@ -16,16 +16,14 @@
 
         <div>
 
-        <label for="photos">Photos de votre offre*</label>
+        <label for="photosTitre">Photos de votre offre*</label>
         <p>Vous pouvez insérer jusqu'à 10 photos</p>
         
+        <label for="photos" id="labelAjoutPhoto">Ajouter</label>
         <input type="file" id="photos" name="photos" accept="image/*" multiple>
 
         <div id="afficheImages"></div>
 
-
-
-            
 
             <div>
                 <label for="categorie">Catégorie de l'offre*</label>   
@@ -52,9 +50,9 @@
 
         </div>
     </article>
-    <article>
+    <article id="specialOffer">
     <?php
-        require_once "details/detailsRestaurant.php";
+       // require_once "details/detailsRestaurant.php";
         require_once "details/detailsActivity.php";
         require_once "details/detailsVisit.php";
         require_once "details/detailsPark.php";

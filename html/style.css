@@ -470,6 +470,7 @@ header div > a > img {
   color: var(--text-dark);
   box-shadow: inset -4px -4px 4px #aca8b5;
   border: none;
+  cursor: pointer;
 }
 
 #selectOffer input[type="radio"]:checked + label,
@@ -536,70 +537,63 @@ header div > a > img {
 .hourlyHide {
   display: none;
 }
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-#detailsOffer article:first-child {
+#artDetailOffer {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
 
-#detailsOffer article:first-child > div {
+#artDetailOffer > div {
   width: 48%;
   margin: 1%;
 }
 
-#detailsOffer article:first-child section {
-  width: 70%;
-  height: 100px;
-  padding: 5px;
-  background-color: #fff;
-  border: 2px solid var(--secondary);
+#artDetailOffer > div > label:not(#labelAjoutPhoto),
+#artDetailOffer > div > div > label[for="categorie"] {
+  display: inline-block;
+  font-size: 25px;
+  width: 90%;
 }
 
-#detailsOffer article:first-child input[type="text"] {
+#artDetailOffer p {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+#artDetailOffer input[type="text"] {
   width: 90%;
   height: 30px;
   font-size: 15px;
   padding-left: 10px;
 }
 
-#detailsOffer article:first-child textarea {
+#artDetailOffer textarea {
   width: 90%;
   max-width: 90%;
   min-width: 90%;
   font-size: 16px;
   padding-left: 10px;
 }
-#detailsOffer article:first-child textarea[id="resume"] {
+
+#artDetailOffer textarea[id="resume"] {
   height: 80px;
   min-height: 60px;
   max-height: 100px;
 }
 
-#detailsOffer article:first-child textarea[id="description"] {
+#artDetailOffer textarea[id="description"] {
   height: 250px;
   min-height: 100px;
   max-height: 400px;
 }
 
-#detailsOffer article:first-child > div > label,
-#detailsOffer article:first-child > div > div > label[for="categorie"] {
+#labelAjoutPhoto {
   display: inline-block;
-  font-size: 25px;
-  width: 90%;
-}
-
-#detailsOffer article:first-child > div > input[id="tag"] {
-  width: 70%;
-}
-
-#detailsOffer article:first-child button[value="ajoutTag"] {
-  display: inline-block;
-  height: 40px;
+  height: 30px;
   font-size: 22px;
   padding: 5px 30px;
   border-radius: 50px;
@@ -608,11 +602,12 @@ header div > a > img {
   margin: 5px;
   box-shadow: inset -4px -4px 4px var(--bloc);
   border: none;
+  cursor: pointer;
+  text-align: center;
 }
 
-#detailsOffer article:first-child p {
-  font-size: 20px;
-  margin: 5px 0;
+#artDetailOffer input[type="file"] {
+  display: none;
 }
 
 #afficheImages {
@@ -634,6 +629,7 @@ header div > a > img {
   margin: 5px;
   overflow: hidden;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 #afficheImages img {
@@ -641,10 +637,88 @@ header div > a > img {
   height: auto;
 }
 
+#artDetailOffer > div > input[id="tag"] {
+  width: 70%;
+}
+
+#artDetailOffer button[value="ajoutTag"] {
+  display: inline-block;
+  height: 40px;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 50px;
+  color: #000;
+  background-color: var(--primary);
+  margin: 5px;
+  box-shadow: inset -4px -4px 4px var(--bloc);
+  border: none;
+  cursor: pointer;
+}
+
+#artDetailOffer section {
+  width: 70%;
+  height: 100px;
+  padding: 5px;
+  background-color: #fff;
+  border: 2px solid var(--secondary);
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* Swiper */
+
+.swiper {
+  width: 90%;
+  max-width: 1200px;
+  height: 35em;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.2s ease;
+}
+
+.swiper-slide:hover img {
+  transform: scale(1.05);
+}
+
+.myThumbSlider {
+  margin-top: 20px;
+  height: 100px;
+  width: 90%;
+  max-width: 1200px;
+}
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
 
-/* #detailsOffer article { 
-}*/
+#specialOffer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  gap: 10px;
+  /* background-color: yellow; */
+}
+
+#specialOffer input[type="button"] {
+  background-color: #ff0e0e;
+  color: #ffffff;
+  border-radius: 15px;
+  height: 50px;
+  width: 200px;
+  border: none;
+  box-shadow: inset -4px -4px 4px #b01111;
+}
