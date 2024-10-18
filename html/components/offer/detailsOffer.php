@@ -43,7 +43,7 @@
             <section>
                 
             </section>
-            
+
             <p>
                 Cliquez sur un tag pour le supprimer <br>
                 Vous pouvez entrer jusqu'à 6 tags
