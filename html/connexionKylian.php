@@ -4,7 +4,7 @@ include 'db.php'; // Fichier de configuration pour la connexion à la BDD
 
 // On vérifie si le formulaire a été soumis
 if (isset($_POST['submit'])) {
-    $login = htmlspecialchars($_POST['login']);
+    $login = trim($_POST['login']);
     $password = htmlspecialchars($_POST['password']);
 
     if (!empty($login) && !empty($password)) {
