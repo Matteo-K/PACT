@@ -1,4 +1,4 @@
-<form action="" id="hourlyOffer">
+<form id="hourlyOffer" action="enregOffer.php" method="post">
     <!-- Lundi -->
     <div>
         <div>
@@ -12,7 +12,6 @@
 
             <input type="time" name="horairesOuv1Lundi" id="horairesOuv1Lundi">
             <!-- Zone de texte de type time pour saisir uniquement des heures -->
-            <!-- <?php echo "à" ?> -->
             <p>à</p>
             <input type="time" name="horairesF1Lundi" id="horairesF1Lundi">
             <!-- Zone de texte de type time pour saisir uniquement des heures -->
@@ -189,11 +188,3 @@
             <div><input type="button" value="Retirer" name="btnRetirerDimanche" id="btnRetirerDimanche"> </div>
         </div>
     </div>
-
-
-
-</form>
-<!--
-
-
--->

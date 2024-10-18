@@ -1,3 +1,1 @@
-<form id="localisationOffer">
-  
-</form>
+<form id="localisationOffer" action="enregOffer.php" method="post">
