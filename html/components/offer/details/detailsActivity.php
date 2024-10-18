@@ -1,4 +1,5 @@
 <!-- Activité -->
- <section id="activity">
+<section id="activity">
 
- </section>
+
+</section>
