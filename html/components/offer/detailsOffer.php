@@ -20,46 +20,12 @@
 
         <label for="photos">Photos de votre offre*</label>
         <p>Vous pouvez insérer jusqu'à 10 photos</p>
-        <input type="file" id="photos" name="photos" required>
+        
+        <input type="file" id="photos" name="photos" accept="image/*" multiple>
+
+        <div id="afficheImages"></div>
 
 
-        <div id="affichePhotos">
-            <input type="file" id="imageInput" accept="image/*" multiple>
-            <div id="imagePreview"></div>
-        </div>
-
-            <script>
-            document.getElementById('imageInput').addEventListener('change', function (event) {
-            const files = event.target.files;
-            const previewContainer = document.getElementById('imagePreview');
-            previewContainer.innerHTML = ''; // Clear previous previews
-
-            Array.from(files).forEach(file => {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const imgDiv = document.createElement('div');
-                    imgDiv.classList.add('image-preview');
-                    imgDiv.innerHTML = `<img src="${e.target.result}" alt="Image Preview">`;
-                    previewContainer.appendChild(imgDiv);
-                }
-                reader.readAsDataURL(file);
-            });
-            });
-
-            // Code pour envoyer les images au serveur 
-            // const formData = new FormData();
-            // Array.from(files).forEach(file => {
-            //     formData.append('images[]', file);
-            // });
-            // fetch('YOUR_SERVER_URL', {
-            //     method: 'POST',
-            //     body: formData
-            // }).then(response => {
-            //     console.log('Images envoyées avec succès!');
-            // }).catch(error => {
-            //     console.error('Erreur lors de l\'envoi:', error);
-            // });
-            </script>
 
         
 

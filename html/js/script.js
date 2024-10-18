@@ -7,26 +7,24 @@ searchBar.addEventListener("input", (e) => {
 });
 
 //Page DetailsOffer
-document
-  .getElementById("imageInput")
-  .addEventListener("change", function (event) {
-    const files = event.target.files;
-    const previewContainer = document.getElementById("imagePreview");
-    previewContainer.innerHTML = ""; // Clear previous previews
+document.getElementById('photos').addEventListener('change', function (event) {
+  const files = event.target.files;
+  const previewContainer = document.getElementById('afficheImages');
+  previewContainer.innerHTML = ''; // On efface les anciennes photos
 
-    Array.from(files).forEach((file) => {
+  Array.from(files).forEach(file => {
       const reader = new FileReader();
       reader.onload = function (e) {
-        const imgDiv = document.createElement("div");
-        imgDiv.classList.add("image-preview");
-        imgDiv.innerHTML = `<img src="${e.target.result}" alt="Image Preview">`;
-        previewContainer.appendChild(imgDiv);
-      };
+          const imgDiv = document.createElement('figure');
+          imgDiv.classList.add('imageOffre');
+          imgDiv.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Photo selectionnée">`;
+          previewContainer.appendChild(imgDiv);
+      }
       reader.readAsDataURL(file);
-    });
   });
+});
 
-// Ici, vous pouvez envoyer les images au serveur si nécessaire
+// Code pour envoyer les images au serveur 
 // const formData = new FormData();
 // Array.from(files).forEach(file => {
 //     formData.append('images[]', file);
@@ -38,5 +36,4 @@ document
 //     console.log('Images envoyées avec succès!');
 // }).catch(error => {
 //     console.error('Erreur lors de l\'envoi:', error);
-// });
 // });
