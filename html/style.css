@@ -671,5 +671,21 @@ header div > a > img {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
 
-/* #detailsOffer article { 
-}*/
+
+#detailsOffer section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  gap: 10px;
+/* background-color: yellow; */
+ } 
+
+ #detailsOffer  input[type="button"] {
+  background-color:#FF0E0E;
+  color: #FFFFFF;
+  border-radius: 15px;
+  height: 50px;
+  width: 200px;
+  border: none;
+  box-shadow: inset -4px -4px 4px #b01111;
+}
