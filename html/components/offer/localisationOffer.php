@@ -1,0 +1,1 @@
+<form id="localisationOffer" action="enregOffer.php" method="post">

@@ -10,6 +10,7 @@
   --accent: #edae14;
   --text-dark: #000;
   --text-light: #eaeaea;
+  --header-size: clamp(100px, 13vh, 150px);
 }
 
 * {
@@ -142,7 +143,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: 13vh;
+  height: var(--header-size);
   z-index: 3;
   background-color: var(--background);
 }
@@ -255,7 +256,7 @@ header div > a > img {
 
 #manageOffer aside {
   position: absolute;
-  top: 13vh;
+  top: var(--header-size);
   left: 0;
   width: 17em;
   height: fit-content;
@@ -356,10 +357,19 @@ header div > a > img {
     inset 4px 4px 4px #b01111 !important;
 }
 
-#manageOffer section {
+#manageOffer aside + section {
   margin-left: 17em;
-  margin-top: 13vh;
+  margin-top: var(--header-size);
   min-height: 70vh;
+}
+
+#manageOffer aside + section + div {
+  position: absolute;
+  bottom: 20vh;
+  right: 1%;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 3%;
 }
 
 /* # selection de l'offre # */
@@ -368,14 +378,20 @@ header div > a > img {
 #selectOffer > div:first-child {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-evenly;
+  margin-top: calc(var(--header-size) + 3vh);
 }
 
 /* Toute les type d'offre */
 #selectOffer > div:first-child > div {
-  height: 50vh;
+  position: relative;
+  height: clamp(400px, 50vh, 450px);
   width: 20em;
   margin-right: 2%;
   border-radius: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
   /* offre gratuite */
   color: var(--text-dark);
   background-color: var(--secondary20);
@@ -383,8 +399,26 @@ header div > a > img {
     inset -4px -4px 4px var(--secondary60);
 }
 
+/* Prix par mois */
+#selectOffer > div:first-child > div h3 {
+  margin-top: -20px;
+}
+
+/* Bouton séletionner */
+#selectOffer > div:first-child > div ul + div {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#selectOffer > div:first-child > div ul {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: clamp(10px, 2vh, 25px);
+}
 #selectOffer > div:first-child > div li {
-  list-style: circle;
+  list-style: disc;
 }
 
 /* offre premium */
@@ -401,23 +435,45 @@ header div > a > img {
     inset -4px -4px 4px var(--primary60);
 }
 
-#selectOffer input[type="radio"] {
+#selectOffer input[type="radio"],
+#detailsOffer input[type="radio"] {
   display: none;
 }
 
-#selectOffer input[type="radio"] + label {
-  width: 150px;
-  height: 20px;
-  padding: 5px;
-  text-align: center;
-  border-radius: 10px;
-  border: var(--text-dark) 1px solid;
-  color: #000;
+#selectOffer input[type="radio"] + label,
+#detailsOffer input[type="radio"] + label {
+  display: inline-block;
+  padding: 5px 30px;
+  border-radius: 50px;
   background-color: var(--secondary);
+  height: 30px;
+  font-size: 22px;
+  padding: 5px 30px;
+  margin: 5px;
+  color: var(--text-dark);
+  box-shadow: inset -4px -4px 4px #aca8b5;
+  border: none;
 }
 
-#selectOffer input[type="radio"]:checked + label {
+#selectOffer input[type="radio"]:checked + label,
+#detailsOffer input[type="radio"]:checked + label {
   background-color: var(--accent);
+  box-shadow: inset -4px -4px 4px #bb880e;
+}
+
+#selectOffer input[disabled] + label {
+  color: rgba(20, 20, 20, 0.5);
+  border-color: rgba(20, 20, 20, 0.5);
+}
+
+#selectOffer > div:first-child + div {
+  margin-top: 4vh;
+  margin-left: 6%;
+}
+
+/* Message de prévention */
+#selectOffer > div:first-child + div p {
+  color: red;
 }
 
 /* ------------------------- HOURLY OFFER CSS --------------------------------*/
@@ -429,6 +485,10 @@ header div > a > img {
   /* Alignement vertical du texte dans le bouton */
   justify-content: center;
   margin-bottom: 10px;
+}
+
+#hourlyOffer div > div {
+  display: flex;
 }
 
 #hourlyOffer div > input[type="button"] {
@@ -451,81 +511,127 @@ header div > a > img {
     inset 4px 4px 4px #1883bc;
 }
 
-#hourlyOffer div > div > p {
-  display: flex;
-  background-color: yellow;
-}
-
-#hourlyOffer div > div > input[type="button"] {
+#hourlyOffer div > div > div > input[type="button"] {
   /*Pour les boutons retirer*/
   height: 50px;
   width: 100px;
   text-align: center;
 }
+#hourlyOffer div > div > p {
+  display: block;
 
+  background-color: yellow;
+}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-#detailsOffer {
+#detailsOffer article:first-child {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 300px;
-  background-color: #d1ccdc;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
-#detailsOffer > div {
+#detailsOffer article:first-child > div {
   width: 45%;
   margin: 1%;
-  background-color: #1ca4ed;
 }
 
-#detailsOffer > div > section {
-  width: 200px;
-  height: 50px;
-  border: 2px solid grey;
-}
-
-#detailsOffer > div > input[type="text"] {
-  width: 90%;
-  height: 30px;
-  font-size: 15px;
-  padding-left: 10px;
-}
-
-#detailsOffer > div > input[type="textarea"] {
-  width: 90%;
-  font-size: 15px;
-  padding-left: 10px;
-  box-sizing: border-box;
-  vertical-align: top; /* Facultatif */
-}
-#detailsOffer > div > input[id="resume"] {
+#detailsOffer article:first-child section {
+  width: 70%;
   height: 100px;
+  padding: 5px;
+  background-color: #fff;
+  border: 2px solid var(--secondary);
 }
 
-#detailsOffer > div > input[id="description"] {
-  height: 300px;
-}
-
-#detailsOffer > div > label {
-  font-size: 25px;
-}
-
-#detailsOffer > div > div {
-  font-size: 25px;
-  background-color: #edae14;
-}
-
-#detailsOffer > div > div > button {
-  width: 150px;
+#detailsOffer article:first-child > div > input[type="text"] {
+  width: 90%;
   height: 30px;
-  background-color: var(--secondary);
-  border-radius: 20px;
-  font-size: 20px;
+  font-size: 15px;
+  padding-left: 10px;
 }
+
+#detailsOffer article:first-child textarea {
+  width: 90%;
+  max-width: 90%;
+  min-width: 90%;
+  font-size: 16px;
+  padding-left: 10px;
+}
+#detailsOffer article:first-child textarea[id="resume"] {
+  height: 80px;
+  min-height: 60px;
+  max-height: 100px;
+}
+
+#detailsOffer article:first-child textarea[id="description"] {
+  height: 250px;
+  min-height: 100px;
+  max-height: 400px;
+}
+
+#detailsOffer article:first-child > div > label,
+#detailsOffer article:first-child > div > div > label[for="categorie"] {
+  display: inline-block;
+  font-size: 25px;
+  width: 90%;
+}
+
+#detailsOffer article:first-child > div > input[id="tag"] {
+  width: 70%;
+}
+
+#detailsOffer article:first-child button[value="ajoutTag"] {
+  display: inline-block;
+  height: 40px;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 50px;
+  color: #000;
+  background-color: var(--primary);
+  margin: 5px;
+  box-shadow: inset -4px -4px 4px var(--bloc);
+  border: none;
+}
+
+#detailsOffer article:first-child p {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+  #afficheImages {
+    width: 600px;
+    min-height: 60px;
+    margin: 15px 0;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+#afficheImages figure {
+  width: 70px;
+  height: 70px;
+  margin: 5px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+#afficheImages img {
+  width: 100%;
+  height: auto;
+}
+
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
+
+/* #detailsOffer article { 
+}*/

@@ -6,36 +6,34 @@ searchBar.addEventListener("input", (e) => {
   formHeader.setAttribute("action", "search.php?search=" + e.target.value);
 });
 
-
 //Page DetailsOffer
-document.getElementById('imageInput').addEventListener('change', function (event) {
+document.getElementById('photos').addEventListener('change', function (event) {
   const files = event.target.files;
-  const previewContainer = document.getElementById('imagePreview');
-  previewContainer.innerHTML = ''; // Clear previous previews
+  const previewContainer = document.getElementById('afficheImages');
+  previewContainer.innerHTML = ''; // On efface les anciennes photos
 
   Array.from(files).forEach(file => {
       const reader = new FileReader();
       reader.onload = function (e) {
-          const imgDiv = document.createElement('div');
-          imgDiv.classList.add('image-preview');
-          imgDiv.innerHTML = `<img src="${e.target.result}" alt="Image Preview">`;
+          const imgDiv = document.createElement('figure');
+          imgDiv.classList.add('imageOffre');
+          imgDiv.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Photo selectionnée">`;
           previewContainer.appendChild(imgDiv);
       }
       reader.readAsDataURL(file);
   });
 });
 
-  // Ici, vous pouvez envoyer les images au serveur si nécessaire
-  // const formData = new FormData();
-  // Array.from(files).forEach(file => {
-  //     formData.append('images[]', file);
-  // });
-  // fetch('YOUR_SERVER_URL', {
-  //     method: 'POST',
-  //     body: formData
-  // }).then(response => {
-  //     console.log('Images envoyées avec succès!');
-  // }).catch(error => {
-  //     console.error('Erreur lors de l\'envoi:', error);
-  // });
-});
+// Code pour envoyer les images au serveur 
+// const formData = new FormData();
+// Array.from(files).forEach(file => {
+//     formData.append('images[]', file);
+// });
+// fetch('YOUR_SERVER_URL', {
+//     method: 'POST',
+//     body: formData
+// }).then(response => {
+//     console.log('Images envoyées avec succès!');
+// }).catch(error => {
+//     console.error('Erreur lors de l\'envoi:', error);
+// });

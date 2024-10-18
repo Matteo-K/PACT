@@ -1,0 +1,1 @@
+<form id="paymentOffer" action="enregOffer.php" method="post">
