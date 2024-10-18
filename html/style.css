@@ -254,9 +254,13 @@ header div > a > img {
 
 /* Gestion de l'offre */
 
+#manageOffer main {
+  position: relative;
+}
+
 #manageOffer aside {
   position: absolute;
-  top: var(--header-size);
+  top: v0;
   left: 0;
   width: 17em;
   height: fit-content;
@@ -363,13 +367,25 @@ header div > a > img {
   min-height: 70vh;
 }
 
+/* Bouton suivant précédent */
 #manageOffer aside + section + div {
   position: absolute;
-  bottom: 20vh;
-  right: 1%;
+  bottom: 5px;
+  right: 3%;
   display: flex;
   flex-flow: row nowrap;
   gap: 3%;
+}
+
+#manageOffer aside + section + div a {
+  text-align: center;
+  width: 150px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.blueBtnOffer {
+  background-color: var(--primary);
 }
 
 /* # selection de l'offre # */
@@ -379,7 +395,6 @@ header div > a > img {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
-  margin-top: calc(var(--header-size) + 3vh);
 }
 
 /* Toute les type d'offre */
@@ -388,6 +403,7 @@ header div > a > img {
   height: clamp(400px, 50vh, 450px);
   width: 20em;
   margin-right: 2%;
+  margin-top: 3vh;
   border-radius: 20px;
   display: flex;
   flex-flow: column nowrap;
@@ -500,12 +516,14 @@ header div > a > img {
   box-shadow: inset -4px -4px 4px #1883bc;
 }
 
-#hourlyOffer div > input[type="button"]:hover {
+#hourlyOffer div > input[type="button"]:hover,
+.blueBtnOffer {
   /* en cas de survol des boutons */
   box-shadow: none;
 }
 
-#hourlyOffer div > input[type="button"]:active {
+#hourlyOffer div > input[type="button"]:active,
+.blueBtnOffer {
   /* en cas de clic sur les  boutons */
   box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
     inset 4px 4px 4px #1883bc;
@@ -533,7 +551,7 @@ header div > a > img {
 }
 
 #detailsOffer article:first-child > div {
-  width: 45%;
+  width: 48%;
   margin: 1%;
 }
 
@@ -545,7 +563,7 @@ header div > a > img {
   border: 2px solid var(--secondary);
 }
 
-#detailsOffer article:first-child > div > input[type="text"] {
+#detailsOffer article:first-child input[type="text"] {
   width: 90%;
   height: 30px;
   font-size: 15px;
@@ -600,22 +618,22 @@ header div > a > img {
   margin: 5px 0;
 }
 
-  #afficheImages {
-    width: 600px;
-    min-height: 60px;
-    margin: 15px 0;
-    background: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
+#afficheImages {
+  width: 600px;
+  min-height: 60px;
+  margin: 15px 0;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 #afficheImages figure {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   margin: 5px;
   overflow: hidden;
   border-radius: 5px;
@@ -625,8 +643,6 @@ header div > a > img {
   width: 100%;
   height: auto;
 }
-
-
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

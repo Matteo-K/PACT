@@ -39,9 +39,11 @@
             <label for="tag">Tags supplémentaires </label>
             <input type="text" id="tag" name="tag" placeholder="Entrez un tag décrivant votre activité / établissement">
             <button type="button" value = ajoutTag>Ajouter</button>
+
             <section>
                 
             </section>
+            
             <p>
                 Cliquez sur un tag pour le supprimer <br>
                 Vous pouvez entrer jusqu'à 6 tags

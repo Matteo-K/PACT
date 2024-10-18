@@ -7,22 +7,37 @@ searchBar.addEventListener("input", (e) => {
 });
 
 //Page DetailsOffer
+let compteurImages = 0;
 document.getElementById('photos').addEventListener('change', function (event) {
   const files = event.target.files;
   const previewContainer = document.getElementById('afficheImages');
-  previewContainer.innerHTML = ''; // On efface les anciennes photos
 
   Array.from(files).forEach(file => {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-          const imgDiv = document.createElement('figure');
-          imgDiv.classList.add('imageOffre');
-          imgDiv.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Photo selectionnée">`;
-          previewContainer.appendChild(imgDiv);
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      if (compteurImages < 10) {
+        compteurImages++;
+        const imgDiv = document.createElement('figure');
+        imgDiv.classList.add('imageOffre');
+        imgDiv.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Photo selectionnée">`;
+        previewContainer.appendChild(imgDiv);
+
+        imgDiv.querySelector('img').addEventListener('click', function() {
+          if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
+            compteurImages--;
+              imgDiv.remove(); // Supprime l'élément image et son conteneur
+          }
+      });
+      }
+          
+
+          
       }
       reader.readAsDataURL(file);
   });
 });
+
+
 
 // Code pour envoyer les images au serveur 
 // const formData = new FormData();
