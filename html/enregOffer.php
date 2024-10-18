@@ -1,6 +1,6 @@
 <?php
 $page = isset($_POST['page']) ? $_POST['page'] : 1;
-$idOffre = $_POST["idOffre"];
+$idOffre = isset($_POST["idOffre"])?$_POST["idOffre"]:"";
 if ($idOffre == "") {
   /* Incrémente depuis l'id la plus grande */
   // Select id from offre order by id limit 1;

@@ -263,7 +263,7 @@ header div > a > img {
   top: v0;
   left: 0;
   width: 17em;
-  height: fit-content;
+  height: clamp(520px, 65vh, 580px);
   background-color: var(--bloc);
   border-radius: 0 0 50px 0;
 }
@@ -499,10 +499,16 @@ header div > a > img {
   padding: 20px;
   padding-bottom: 6%;
 }
+
 #hourlyOffer div > div {
   display: flex;
   flex-flow: nowrap row;
   align-items: center;
+}
+
+/* div de saisie */
+#hourlyOffer div > div + div {
+  margin-left: 50px;
 }
 
 #hourlyOffer span {
@@ -513,7 +519,7 @@ header div > a > img {
   margin-left: 30px;
 }
 
-#hourlyOffer div > input[type="button"] {
+#hourlyOffer input[type="button"] {
   border-radius: 15px;
   height: 50px;
   width: 250px;
@@ -522,13 +528,13 @@ header div > a > img {
 }
 
 /* en cas de survol des boutons */
-#hourlyOffer div > input[type="button"]:hover,
+#hourlyOffer input[type="button"]:hover,
 .blueBtnOffer:hover {
   box-shadow: none;
 }
 
 /* en cas de clic sur les  boutons */
-#hourlyOffer div > input[type="button"]:active,
+#hourlyOffer input[type="button"]:active,
 .blueBtnOffer:active {
   box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
     inset 4px 4px 4px #1883bc;
@@ -536,6 +542,15 @@ header div > a > img {
 
 .hourlyHide {
   display: none;
+}
+
+.btnDisabledHourly {
+  background-color: var(--secondary);
+  box-shadow: none;
+}
+
+.btnDisabledHourly:active {
+  box-shadow: none !important;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
