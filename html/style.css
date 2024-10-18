@@ -469,6 +469,7 @@ header div > a > img {
   color: var(--text-dark);
   box-shadow: inset -4px -4px 4px #aca8b5;
   border: none;
+  cursor: pointer;
 }
 
 #selectOffer input[type="radio"]:checked + label,
@@ -540,6 +541,57 @@ header div > a > img {
 
   background-color: yellow;
 }
+/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
+                                        BOOMER                                            
+   OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
+                                       FIN BOOMER                                            
+   OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO */
+
+
+
+
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -555,13 +607,19 @@ header div > a > img {
   margin: 1%;
 }
 
-#artDetailOffer section {
-  width: 70%;
-  height: 100px;
-  padding: 5px;
-  background-color: #fff;
-  border: 2px solid var(--secondary);
+#artDetailOffer > div > label:not(#labelAjoutPhoto),
+#artDetailOffer > div > div > label[for="categorie"] {
+  display: inline-block;
+  font-size: 25px;
+  width: 90%;
 }
+
+#artDetailOffer p {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+
 
 #artDetailOffer input[type="text"] {
   width: 90%;
@@ -577,6 +635,7 @@ header div > a > img {
   font-size: 16px;
   padding-left: 10px;
 }
+
 #artDetailOffer textarea[id="resume"] {
   height: 80px;
   min-height: 60px;
@@ -589,20 +648,11 @@ header div > a > img {
   max-height: 400px;
 }
 
-#artDetailOffer > div > label,
-#artDetailOffer > div > div > label[for="categorie"] {
-  display: inline-block;
-  font-size: 25px;
-  width: 90%;
-}
 
-#artDetailOffer > div > input[id="tag"] {
-  width: 70%;
-}
 
-#artDetailOffer button[value="ajoutTag"] {
+#labelAjoutPhoto{
   display: inline-block;
-  height: 40px;
+  height: 30px;
   font-size: 22px;
   padding: 5px 30px;
   border-radius: 50px;
@@ -611,11 +661,12 @@ header div > a > img {
   margin: 5px;
   box-shadow: inset -4px -4px 4px var(--bloc);
   border: none;
+  cursor: pointer;
+  text-align: center;
 }
 
-#artDetailOffer p {
-  font-size: 20px;
-  margin: 5px 0;
+#artDetailOffer input[type=file]{
+  display: none;
 }
 
 #afficheImages {
@@ -637,6 +688,7 @@ header div > a > img {
   margin: 5px;
   overflow: hidden;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 #afficheImages img {
@@ -644,13 +696,78 @@ header div > a > img {
   height: auto;
 }
 
+
+
+#artDetailOffer > div > input[id="tag"] {
+  width: 70%;
+}
+
+#artDetailOffer button[value="ajoutTag"] {
+  display: inline-block;
+  height: 40px;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 50px;
+  color: #000;
+  background-color: var(--primary);
+  margin: 5px;
+  box-shadow: inset -4px -4px 4px var(--bloc);
+  border: none;
+  cursor: pointer;
+}
+
+#artDetailOffer section {
+  width: 70%;
+  height: 100px;
+  padding: 5px;
+  background-color: #fff;
+  border: 2px solid var(--secondary);
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* Swiper */
+
+.swiper {
+  width: 90%;
+  max-width: 1200px;
+  height: 35em;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.2s ease;
+}
+
+.swiper-slide:hover img {
+  transform: scale(1.05);
+}
+
+.myThumbSlider {
+  margin-top: 20px;
+  height: 100px;
+  width: 90%;
+  max-width: 1200px;
+}
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
 
 
-#detailsOffer section {
+#specialOffer  {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
@@ -658,7 +775,7 @@ header div > a > img {
 /* background-color: yellow; */
  } 
 
- #detailsOffer  input[type="button"] {
+  #specialOffer  input[type="button"] {
   background-color:#FF0E0E;
   color: #FFFFFF;
   border-radius: 15px;
