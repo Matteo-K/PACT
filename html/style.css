@@ -24,7 +24,7 @@ h4 {
   font-family: "Belanosima", sans-serif;
 }
 
-h1 {
+#logoText {
   font-family: "Mogra", system-ui;
   font-size: 3rem;
 }
@@ -134,6 +134,7 @@ footer div + div p {
 
 /* Conteneur principal dans le header */
 header {
+  border-bottom: var(--bloc) 2px solid;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -728,16 +729,61 @@ header div > a > img {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/* Swiper */
 
-.swiper {
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     ~~~~~~~~~~~~~~~~~~~~~~~~~DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.mainOffer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#titleOffer{
+  margin-top:calc(var(--header-size) + 0.5em);
+  font-size: 5em;
+  color: var(--bloc);
+  
+}
+/* Swiper Styles */
+.swiper-container {
+  position: relative; /* Allow positioning of buttons */
   width: 90%;
   max-width: 1200px;
-  height: 35em;
+  margin: auto; /* Center the container */
+}
+
+/* Swiper Styles */
+.mySwiper {
+  height: 35em; /* Height of the main Swiper */
   border-radius: 15px;
   overflow: hidden;
 }
 
+/* Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  top:40%;
+  background-color: var(--accent60);
+  padding: 3em 0.5em; /* Padding for buttons */
+  color: var(--background);
+  font-size: 20px;
+  z-index: 1; /* Ensure buttons are on top */
+}
+
+/* Horizontal positioning */
+.swiper-button-next {
+  transform: translateX(120%);
+  border-radius: 0 1em 1em 0; /* Rounded corners for the next button */
+}
+
+.swiper-button-prev {
+  transform: translateX(-120%);
+  border-radius: 1em 0 0 1em; /* Rounded corners for the prev button */
+}
+
+/* Slide Styles */
 .swiper-slide {
   display: flex;
   justify-content: center;
@@ -758,12 +804,21 @@ header div > a > img {
   transform: scale(1.05);
 }
 
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: var(--accent);
+}
+
+/* Thumbnail Slider */
 .myThumbSlider {
   margin-top: 20px;
   height: 100px;
   width: 90%;
   max-width: 1200px;
 }
+
+
+
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
 
 

@@ -5,7 +5,7 @@
     <div>
         <a href="../index.php">
             <img id="logo" src="../img/logo.png" title="logo du site">
-            <h1>PACT</h1>
+            <h1 id="logoText">PACT</h1>
         </a>
     </div>
     <form method="post" action="search.php" id="formHeader">
