@@ -533,7 +533,7 @@ header div > a > img {
 }
 
 #detailsOffer article:first-child > div {
-  width: 45%;
+  width: 48%;
   margin: 1%;
 }
 
@@ -545,7 +545,7 @@ header div > a > img {
   border: 2px solid var(--secondary);
 }
 
-#detailsOffer article:first-child > div > input[type="text"] {
+#detailsOffer article:first-child input[type="text"] {
   width: 90%;
   height: 30px;
   font-size: 15px;
@@ -601,8 +601,8 @@ header div > a > img {
 }
 
   #afficheImages {
-    width: 600px;
-    min-height: 60px;
+    width: 90%;
+    min-height: 100px;
     margin: 15px 0;
     background: white;
     padding: 10px;
@@ -614,8 +614,8 @@ header div > a > img {
 }
 
 #afficheImages figure {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   margin: 5px;
   overflow: hidden;
   border-radius: 5px;
