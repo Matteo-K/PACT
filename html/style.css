@@ -54,6 +54,17 @@ body {
   background-color: var(--background);
 }
 
+input[type="text"], textarea {
+  padding: 5px;
+  border: 2px solid var(--secondary);
+  text-indent: 10px;
+  border-radius: 2px;
+}
+
+input[type="text"]:focus, textarea:focus {
+  outline-color: var(--bloc);
+}
+
 /* ##### Components ##### */
 
 /* ### Footer ### */
@@ -67,7 +78,7 @@ footer {
 }
 
 /* Bloc principale + mention légale*/
-footer > div:first-child {
+footer>div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
@@ -83,7 +94,7 @@ footer figure {
 }
 
 /* paragraphe principale */
-footer figure + p {
+footer figure+p {
   margin-left: 2%;
 }
 
@@ -115,7 +126,7 @@ footer h4 {
   text-decoration: underline;
 }
 
-footer div + div {
+footer div+div {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -124,7 +135,7 @@ footer div + div {
   width: max-content;
 }
 
-footer div + div p {
+footer div+div p {
   padding: 0 500px;
 }
 
@@ -158,7 +169,7 @@ header div {
   height: 3em;
 }
 
-header div > a {
+header div>a {
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -171,7 +182,7 @@ header h1 {
   color: var(--bloc);
 }
 
-header div > a > img {
+header div>a>img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
@@ -269,7 +280,7 @@ header div > a > img {
   border-radius: 0 0 50px 0;
 }
 
-#manageOffer aside > h3,
+#manageOffer aside>h3,
 #manageOffer aside li a {
   font-family: "Belanosima", sans-serif;
   text-decoration: none;
@@ -299,13 +310,13 @@ header div > a > img {
   justify-content: space-evenly;
 }
 
-#manageOffer aside > :nth-child(2) {
+#manageOffer aside> :nth-child(2) {
   height: clamp(340px, 35vh, 400px);
   padding-bottom: 1vh;
   border-bottom: var(--text-light) 2px solid;
 }
 
-#manageOffer aside > :nth-child(3) {
+#manageOffer aside> :nth-child(3) {
   height: 10vh;
   gap: 10px;
 }
@@ -362,14 +373,14 @@ header div > a > img {
     inset 4px 4px 4px #b01111 !important;
 }
 
-#manageOffer aside + section {
+#manageOffer aside+section {
   margin-left: 17em;
   margin-top: var(--header-size);
   min-height: 70vh;
 }
 
 /* Bouton suivant précédent */
-#manageOffer aside + section + div {
+#manageOffer aside+section+div {
   position: absolute;
   bottom: 5px;
   right: 3%;
@@ -378,7 +389,7 @@ header div > a > img {
   gap: 3%;
 }
 
-#manageOffer aside + section + div a {
+#manageOffer aside+section+div a {
   text-align: center;
   width: 150px;
   padding: 10px;
@@ -387,19 +398,20 @@ header div > a > img {
 
 .blueBtnOffer {
   background-color: var(--primary);
+  box-shadow: inset -4px -4px 4px #1883bc;
 }
 
 /* # selection de l'offre # */
 
 /* Bloc de chaque type d'offre*/
-#selectOffer > div:first-child {
+#selectOffer>div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
 }
 
 /* Toute les type d'offre */
-#selectOffer > div:first-child > div {
+#selectOffer>div:first-child>div {
   position: relative;
   height: clamp(400px, 50vh, 450px);
   width: 20em;
@@ -417,48 +429,49 @@ header div > a > img {
 }
 
 /* Prix par mois */
-#selectOffer > div:first-child > div h3 {
+#selectOffer>div:first-child>div h3 {
   margin-top: -20px;
 }
 
 /* Bouton séletionner */
-#selectOffer > div:first-child > div ul + div {
+#selectOffer>div:first-child>div ul+div {
   position: absolute;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-#selectOffer > div:first-child > div ul {
+#selectOffer>div:first-child>div ul {
   display: flex;
   flex-flow: column nowrap;
   gap: clamp(10px, 2vh, 25px);
 }
-#selectOffer > div:first-child > div li {
+
+#selectOffer>div:first-child>div li {
   list-style: disc;
 }
 
 /* offre premium */
-#selectOffer > div:first-child > div:nth-child(2) {
+#selectOffer>div:first-child>div:nth-child(2) {
   background-color: var(--accent20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--accent60);
 }
 
 /* offre standard */
-#selectOffer > div:first-child > div:nth-child(3) {
+#selectOffer>div:first-child>div:nth-child(3) {
   background-color: var(--primary20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--primary60);
 }
 
 #selectOffer input[type="radio"],
-#detailsOffer input[type="radio"] {
+#detailsOffer article:first-child input[type="radio"] {
   display: none;
 }
 
 #selectOffer input[type="radio"] + label,
-#detailsOffer input[type="radio"] + label {
+#detailsOffer article:first-child input[type="radio"] + label {
   display: inline-block;
   padding: 5px 30px;
   border-radius: 50px;
@@ -474,35 +487,39 @@ header div > a > img {
 }
 
 #selectOffer input[type="radio"]:checked + label,
-#detailsOffer input[type="radio"]:checked + label {
+#detailsOffer article:first-child input[type="radio"]:checked + label {
   background-color: var(--accent);
   box-shadow: inset -4px -4px 4px #bb880e;
 }
 
-#selectOffer input[disabled] + label {
+#selectOffer input[disabled]+label {
   color: rgba(20, 20, 20, 0.5);
   border-color: rgba(20, 20, 20, 0.5);
 }
 
-#selectOffer > div:first-child + div {
+#selectOffer>div:first-child+div {
   margin-top: 4vh;
   margin-left: 6%;
 }
 
 /* Message de prévention */
-#selectOffer > div:first-child + div p {
+#selectOffer>div:first-child+div p {
   color: red;
 }
 
 /* ------------------------- HOURLY OFFER CSS --------------------------------*/
-#hourlyOffer div {
+#hourlyOffer {
+  padding: 20px;
+  padding-bottom: 6%;
+}
+#hourlyOffer div > div {
   display: flex;
-
-  gap: 10px;
+  flex-flow: nowrap row;
   align-items: center;
-  /* Alignement vertical du texte dans le bouton */
-  justify-content: center;
-  margin-bottom: 10px;
+}
+
+#hourlyOffer span {
+  margin-left: 10px;
 }
 
 #hourlyOffer div > div {
@@ -510,92 +527,46 @@ header div > a > img {
 }
 
 #hourlyOffer div > input[type="button"] {
-  background-color: var(--primary);
   border-radius: 15px;
   height: 50px;
   width: 250px;
   border: none;
-  box-shadow: inset -4px -4px 4px #1883bc;
+  margin-left: 10px;
 }
 
+/* en cas de survol des boutons */
 #hourlyOffer div > input[type="button"]:hover,
-.blueBtnOffer {
-  /* en cas de survol des boutons */
+.blueBtnOffer:hover {
   box-shadow: none;
 }
 
+/* en cas de clic sur les  boutons */
 #hourlyOffer div > input[type="button"]:active,
-.blueBtnOffer {
-  /* en cas de clic sur les  boutons */
+.blueBtnOffer:active {
   box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
     inset 4px 4px 4px #1883bc;
 }
 
-#hourlyOffer div > div > div > input[type="button"] {
-  /*Pour les boutons retirer*/
-  height: 50px;
-  width: 100px;
-  text-align: center;
+.hourlyHide {
+  display: none;
 }
-#hourlyOffer div > div > p {
-  display: block;
-
-  background-color: yellow;
-}
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
-                                        BOOMER                                            
-   OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
-                                       FIN BOOMER                                            
-   OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO */
-
-
-
-
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.buttonDetailOffer{
+  display: inline-block;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 50px;
+  color: #000;
+  margin: 5px;
+  box-shadow: inset -4px -4px 4px var(--bloc);
+  border: none;
+  cursor: pointer;
+}
+
+
 
 #artDetailOffer {
   display: flex;
@@ -603,16 +574,18 @@ header div > a > img {
   flex-wrap: nowrap;
 }
 
-#artDetailOffer > div {
+#artDetailOffer>div {
   width: 48%;
   margin: 1%;
 }
 
 #artDetailOffer > div > label:not(#labelAjoutPhoto),
-#artDetailOffer > div > div > label[for="categorie"] {
+#artDetailOffer > div > div > label[for="categorie"],
+#choixImage label {
   display: inline-block;
   font-size: 25px;
   width: 90%;
+  margin: 15px 0 5px 0;
 }
 
 #artDetailOffer p {
@@ -620,21 +593,19 @@ header div > a > img {
   margin: 5px 0;
 }
 
-
-
 #artDetailOffer input[type="text"] {
   width: 90%;
   height: 30px;
   font-size: 15px;
-  padding-left: 10px;
+  text-indent: 10px;
 }
+
 
 #artDetailOffer textarea {
   width: 90%;
   max-width: 90%;
   min-width: 90%;
   font-size: 16px;
-  padding-left: 10px;
 }
 
 #artDetailOffer textarea[id="resume"] {
@@ -651,28 +622,24 @@ header div > a > img {
 
 
 
-#labelAjoutPhoto{
+#choixImage{
   display: inline-block;
-  height: 30px;
-  font-size: 22px;
-  padding: 5px 30px;
-  border-radius: 50px;
-  color: #000;
-  background-color: var(--primary);
-  margin: 5px;
-  box-shadow: inset -4px -4px 4px var(--bloc);
-  border: none;
-  cursor: pointer;
-  text-align: center;
+  width: 70%;
+  margin-right: 14px;
 }
 
-#artDetailOffer input[type=file]{
+#labelAjoutPhoto{
+  background-color: var(--primary);
+  margin: 5 0 0 0;
+}
+
+#artDetailOffer input[type="file"] {
   display: none;
 }
 
 #afficheImages {
-  width: 600px;
-  min-height: 60px;
+  width: calc(70% + 138.625px); /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
+  min-height: 100px;
   margin: 15px 0;
   background: white;
   padding: 10px;
@@ -684,8 +651,8 @@ header div > a > img {
 }
 
 #afficheImages figure {
-  width: 90px;
-  height: 90px;
+  max-width: 90px;
+  max-height: 90px;
   margin: 5px;
   overflow: hidden;
   border-radius: 5px;
@@ -704,25 +671,19 @@ header div > a > img {
 }
 
 #artDetailOffer button[value="ajoutTag"] {
-  display: inline-block;
-  height: 40px;
-  font-size: 22px;
-  padding: 5px 30px;
-  border-radius: 50px;
-  color: #000;
   background-color: var(--primary);
-  margin: 5px;
-  box-shadow: inset -4px -4px 4px var(--bloc);
-  border: none;
-  cursor: pointer;
 }
 
 #artDetailOffer section {
-  width: 70%;
-  height: 100px;
-  padding: 5px;
-  background-color: #fff;
-  border: 2px solid var(--secondary);
+  width: calc(70% + 138.625px); /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
+  min-height: 100px;
+  margin: 15px 0 5px 0;
+  background: white;
+  padding: 7px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -821,21 +782,36 @@ header div > a > img {
 
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
 
+#specialOffer { /* toute la partie spécifique a une offre */
 
-#specialOffer  {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-  gap: 10px;
-/* background-color: yellow; */
- } 
+  margin-bottom: 10px; /* marge de 10 px en bas */
+  gap: 10px; /* gap de 10 px */
+  
+}
 
-  #specialOffer  input[type="button"] {
-  background-color:#FF0E0E;
-  color: #FFFFFF;
-  border-radius: 15px;
-  height: 50px;
-  width: 200px;
-  border: none;
-  box-shadow: inset -4px -4px 4px #b01111;
+
+#specialOffer section > article{
+  display: inline-block;
+  width: 355px; /* largeur de 355 px pour l'article */
+  margin-right: 15px; /* marge de 15 px a droite */
+  padding-bottom: 15px; /* padding de 15 px en bas*/
+  
+  
+
+  
+}
+#specialOffer  textarea[id="texteLangueVisit"],textarea[id="Resume"] { /* tailler des zone de texte */
+  width: 335px; /* largeur de 335px*/
+  height: 165px; /* hauteur de 165px*/
+  resize: none; /* Non redimensinnable */
+  
+
+}
+#visit{
+  background-color: orange; /* Juste pour moi voir les separations */
+}
+
+
+#show{
+  background-color: yellow; /* Juste pour moi voir les separations */
 }

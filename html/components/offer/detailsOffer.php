@@ -16,13 +16,19 @@
 
         <div>
 
-        <label for="photosTitre">Photos de votre offre*</label>
-        <p>Vous pouvez insérer jusqu'à 10 photos</p>
-        
-        <label for="photos" id="labelAjoutPhoto">Ajouter</label>
-        <input type="file" id="photos" name="photos" accept="image/*" multiple>
+            <div id="choixImage">
+                <label for="photosTitre">Photos de votre offre*</label>
+                <p>
+                    Vous pouvez insérer jusqu'à 10 photos<br>
+                    Cliquez sur une image pour la supprimer
+                </p>
+            </div>
 
-        <div id="afficheImages"></div>
+
+            <label for="photos" id="labelAjoutPhoto" class="buttonDetailOffer">Ajouter</label>
+            <input type="file" id="photos" name="photos" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" multiple>
+
+            <div id="afficheImages"></div>
 
 
             <div>
@@ -36,27 +42,26 @@
 
             <label for="tag">Tags supplémentaires </label>
             <input type="text" id="tag" name="tag" placeholder="Entrez un tag décrivant votre activité / établissement">
-            <button type="button" value = ajoutTag>Ajouter</button>
+            <button type="button" value = ajoutTag class="buttonDetailOffer">Ajouter</button>
 
             <section>
                 
             </section>
 
             <p>
-                Cliquez sur un tag pour le supprimer <br>
-                Vous pouvez entrer jusqu'à 6 tags
+                Vous pouvez entrer jusqu'à 6 tags <br>
+                Cliquez sur un tag pour le supprimer
             </p>
 
 
         </div>
     </article>
-    <article id="specialOffer">
+    <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
     <?php
-       // require_once "details/detailsRestaurant.php";
         require_once "details/detailsActivity.php";
         require_once "details/detailsVisit.php";
         require_once "details/detailsPark.php";
         require_once "details/detailsShow.php";
         
     ?>
-    </article>
+ 

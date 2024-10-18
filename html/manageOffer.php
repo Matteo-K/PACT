@@ -69,6 +69,7 @@ require_once "components/offer/checkOffer.php"
         }
       ?>
           <input type="hidden" name="page" id="currentPage" value="<?php echo $step ?>">
+          <input type="hidden" name="idOffre" id="idOffre" value="<?php echo isset($_GET["idOffre"])?$_GET["idOffre"]:"" ?>">
       </form>
     </section>
     <div>
