@@ -386,6 +386,7 @@ header div > a > img {
 
 .blueBtnOffer {
   background-color: var(--primary);
+  box-shadow: inset -4px -4px 4px #1883bc;
 }
 
 /* # selection de l'offre # */
@@ -452,12 +453,12 @@ header div > a > img {
 }
 
 #selectOffer input[type="radio"],
-#detailsOffer input[type="radio"] {
+#detailsOffer article:first-child input[type="radio"] {
   display: none;
 }
 
 #selectOffer input[type="radio"] + label,
-#detailsOffer input[type="radio"] + label {
+#detailsOffer article:first-child input[type="radio"] + label {
   display: inline-block;
   padding: 5px 30px;
   border-radius: 50px;
@@ -472,7 +473,7 @@ header div > a > img {
 }
 
 #selectOffer input[type="radio"]:checked + label,
-#detailsOffer input[type="radio"]:checked + label {
+#detailsOffer article:first-child input[type="radio"]:checked + label {
   background-color: var(--accent);
   box-shadow: inset -4px -4px 4px #bb880e;
 }
@@ -493,53 +494,49 @@ header div > a > img {
 }
 
 /* ------------------------- HOURLY OFFER CSS --------------------------------*/
-#hourlyOffer div {
-  display: flex;
-
-  gap: 10px;
-  align-items: center;
-  /* Alignement vertical du texte dans le bouton */
-  justify-content: center;
-  margin-bottom: 10px;
+#hourlyOffer {
+  padding: 20px;
+  padding-bottom: 6%;
 }
-
 #hourlyOffer div > div {
   display: flex;
+  flex-flow: nowrap row;
+  align-items: center;
+}
+
+#hourlyOffer span {
+  margin-left: 10px;
+}
+
+#hourlyOffer label + span {
+  margin-left: 30px;
 }
 
 #hourlyOffer div > input[type="button"] {
-  background-color: var(--primary);
   border-radius: 15px;
   height: 50px;
   width: 250px;
   border: none;
-  box-shadow: inset -4px -4px 4px #1883bc;
+  margin-left: 10px;
 }
 
+/* en cas de survol des boutons */
 #hourlyOffer div > input[type="button"]:hover,
-.blueBtnOffer {
-  /* en cas de survol des boutons */
+.blueBtnOffer:hover {
   box-shadow: none;
 }
 
+/* en cas de clic sur les  boutons */
 #hourlyOffer div > input[type="button"]:active,
-.blueBtnOffer {
-  /* en cas de clic sur les  boutons */
+.blueBtnOffer:active {
   box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
     inset 4px 4px 4px #1883bc;
 }
 
-#hourlyOffer div > div > div > input[type="button"] {
-  /*Pour les boutons retirer*/
-  height: 50px;
-  width: 100px;
-  text-align: center;
+.hourlyHide {
+  display: none;
 }
-#hourlyOffer div > div > p {
-  display: block;
 
-  background-color: yellow;
-}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
