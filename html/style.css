@@ -435,11 +435,13 @@ header div > a > img {
     inset -4px -4px 4px var(--primary60);
 }
 
-#selectOffer input[type="radio"], #detailsOffer input[type="radio"]{
+#selectOffer input[type="radio"],
+#detailsOffer input[type="radio"] {
   display: none;
 }
 
-#selectOffer input[type="radio"] + label, #detailsOffer input[type="radio"] + label {
+#selectOffer input[type="radio"] + label,
+#detailsOffer input[type="radio"] + label {
   display: inline-block;
   padding: 5px 30px;
   border-radius: 50px;
@@ -448,12 +450,13 @@ header div > a > img {
   font-size: 22px;
   padding: 5px 30px;
   margin: 5px;
-  color: #000;
+  color: var(--text-dark);
   box-shadow: inset -4px -4px 4px #aca8b5;
   border: none;
 }
 
-#selectOffer input[type="radio"]:checked + label, #detailsOffer input[type="radio"]:checked + label {
+#selectOffer input[type="radio"]:checked + label,
+#detailsOffer input[type="radio"]:checked + label {
   background-color: var(--accent);
   box-shadow: inset -4px -4px 4px #bb880e;
 }
@@ -482,17 +485,14 @@ header div > a > img {
   /* Alignement vertical du texte dans le bouton */
   justify-content: center;
   margin-bottom: 10px;
-  
 }
 
 #hourlyOffer div > div {
   display: flex;
-  
-
 }
 
 #hourlyOffer div > input[type="button"] {
-  background-color: var(--primary);   
+  background-color: var(--primary);
   border-radius: 15px;
   height: 50px;
   width: 250px;
@@ -511,110 +511,104 @@ header div > a > img {
     inset 4px 4px 4px #1883bc;
 }
 
-
-
 #hourlyOffer div > div > div > input[type="button"] {
   /*Pour les boutons retirer*/
   height: 50px;
   width: 100px;
   text-align: center;
-  
-  
 }
 #hourlyOffer div > div > p {
   display: block;
-  
+
   background-color: yellow;
-  
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-   #detailsOffer{
-    display: flex;
-    flex-direction:column;
-    flex-wrap:wrap;
-    height: 300px;
-  }
-  
-  #detailsOffer > div{
-    width: 45%;
-    margin: 1%;
-  }
-
-  #detailsOffer section{
-    width: 70%;
-    height: 100px;
-    padding: 5px;
-    background-color: #fff;
-    border: 2px solid var(--secondary);
-  }
-  
-  #detailsOffer > div > input[type=text]{
-    width: 90%;
-    height: 30px;
-    font-size: 15px;
-    padding-left: 10px;
-  }
-  
-  
-  #detailsOffer textarea{
-    width: 90%;
-    max-width: 90%;
-    min-width: 90%;
-    font-size: 16px;
-    padding-left: 10px;
-  }
-  #detailsOffer textarea[id="resume"]{
-    height: 80px;
-    min-height: 60px;
-    max-height: 100px;
-  }
-  
-  #detailsOffer textarea[id="description"]{
-    height: 250px;
-    min-height: 100px;
-    max-height: 400px;
-  }
-  
-  #detailsOffer > div > label, #detailsOffer > div > div > label[for="categorie"]{
-    display: inline-block;
-    font-size: 25px;
-    width: 90%;
-  }
-
-  #detailsOffer > div > input[id="tag"]{
-    width: 70%;
-  }
-  
-  #detailsOffer button[value=ajoutTag]{
-    display: inline-block;
-    height: 40px;
-    font-size: 22px;
-    padding: 5px 30px;
-    border-radius: 50px;
-    color: #000;
-    background-color: var(--primary);
-    margin: 5px;
-    box-shadow: inset -4px -4px 4px var(--bloc);
-    border: none;
-  }
-
-  #detailsOffer p{
-    font-size: 20px;
-    margin: 5px 0;
-  }
-
-  #affichePhotos {
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+#detailsOffer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 300px;
 }
 
+#detailsOffer > div {
+  width: 45%;
+  margin: 1%;
+}
+
+#detailsOffer section {
+  width: 70%;
+  height: 100px;
+  padding: 5px;
+  background-color: #fff;
+  border: 2px solid var(--secondary);
+}
+
+#detailsOffer > div > input[type="text"] {
+  width: 90%;
+  height: 30px;
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+#detailsOffer textarea {
+  width: 90%;
+  max-width: 90%;
+  min-width: 90%;
+  font-size: 16px;
+  padding-left: 10px;
+}
+#detailsOffer textarea[id="resume"] {
+  height: 80px;
+  min-height: 60px;
+  max-height: 100px;
+}
+
+#detailsOffer textarea[id="description"] {
+  height: 250px;
+  min-height: 100px;
+  max-height: 400px;
+}
+
+#detailsOffer > div > label,
+#detailsOffer > div > div > label[for="categorie"] {
+  display: inline-block;
+  font-size: 25px;
+  width: 90%;
+}
+
+#detailsOffer > div > input[id="tag"] {
+  width: 70%;
+}
+
+#detailsOffer button[value="ajoutTag"] {
+  display: inline-block;
+  height: 40px;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 50px;
+  color: #000;
+  background-color: var(--primary);
+  margin: 5px;
+  box-shadow: inset -4px -4px 4px var(--bloc);
+  border: none;
+}
+
+#detailsOffer p {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+#affichePhotos {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
 #imagePreview {
   display: flex;
