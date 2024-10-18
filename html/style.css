@@ -429,10 +429,17 @@ header div > a > img {
   /* Alignement vertical du texte dans le bouton */
   justify-content: center;
   margin-bottom: 10px;
+  
+}
+
+#hourlyOffer div > div {
+  display: flex;
+  
+
 }
 
 #hourlyOffer div > input[type="button"] {
-  background-color: var(--primary);
+  background-color: var(--primary);   
   border-radius: 15px;
   height: 50px;
   width: 250px;
@@ -451,18 +458,22 @@ header div > a > img {
     inset 4px 4px 4px #1883bc;
 }
 
-#hourlyOffer div > div > p {
-  display: flex;
-  background-color: yellow;
-}
 
-#hourlyOffer div > div > input[type="button"] {
+
+#hourlyOffer div > div > div > input[type="button"] {
   /*Pour les boutons retirer*/
   height: 50px;
   width: 100px;
   text-align: center;
+  
+  
 }
-
+#hourlyOffer div > div > p {
+  display: flex;
+  
+  background-color: yellow;
+  
+}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
