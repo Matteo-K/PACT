@@ -1,5 +1,8 @@
 <!-- Restaurant -->
 <section id="restaurant">
 
-<p> TEST THIS IS A TEST A SIMPLE TEST </p>
-</article> 
+    <p> Tarif : </p>
+    <p> Prix Minimal</p>
+    <input type="number" id="prixMinDetRestaurant" name="prixMinDetRestaurant" />
+    <p>€</p>
+    </article>
