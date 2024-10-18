@@ -1,46 +1,52 @@
 <!-- Visite -->
 
-<section id="visit">
-    <div>
-        <label>Durée :</label>
-        <br>
+<section id="visit"> <!-- donne un id a la section pour l'identifier dans le css -->
+    <article> <!-- separation en article pour l'alignement -->
+        <div>
+            <label>Durée :</label> <!-- Label durée -->
+            <br>
 
 
-        <input type="number" id="numberHVisit" name="numberHVisit" placeholder="0" />
-        <label>H</label>
+            <input type="number" id="numberHVisit" name="numberHVisit" placeholder="0" />
+            <!-- zone de texte ou seul un chiffre/nombre est accepte -->
+            <label>H</label> <!-- Label H (pour heure) -->
 
-    </div>
-    <div>
-        <label>Résumé</label>
-        <br>
-        
-        <textarea name="texteResumeVisit" id="texteResumeVisit" placeholder="Résumé de la visite"></textarea>
-    </div>
+        </div>
+        <div>
+            <label>Résumé</label> <!-- Label resume -->
+            <br>
 
-    <div>
-        <label>Accessibilité</label>
-        <br>
+            <textarea name="texteResumeVisit" id="texteResumeVisit" placeholder="Résumé de la visite"></textarea>
+            <!-- Zone de texte avec le resume de la visite -->
+        </div>
+    </article> <!-- fin du 1er article -->
+    <article> <!-- début du 2ème article (pour le positionnement)-->
+        <div>
+            <label>Accessibilité</label> <!-- Label Accessibilité -->
+            <br>
 
 
-        <input type="checkbox" id="radioButtonAccesPmrRequis" name="radioButtonAccesPmrRequis">
-        <!--il faut trouver le type du radio button -->
-        <br>
-        <input type="checkbox" id="radioButtonAccesPmrRequis" name="radioButtonAccesPmrRequis">
-        <!--il faut trouver le type du radio button -->
-        <?php echo "radio button test" ?>
-        <br>
-        
-        <input type="radio" id="radioButtonAccesPmrRequis" name="radioButtonAccesPmrRequis" value="radioButtonAccesPmrRequis" >
-        <label for="radioButtonAccesPmrRequis"> toto</label>
-        <br>    
-    </div>
+            <input type="radio" id="radioButtonAccesPmrRequis" name="Accessibilité" value="Accès personne handicapées"
+                checked>
+            <!-- Bouton radio pour le choix de l'accesibilite PMR il est lier avec le 2eme et est selectionner par defaut -->
+            <label for="radioButtonAccesPmrRequis"> Accès personne handicapées</label>
+            <!-- Label associé au bouton radio -->
+            <br>
+            <input type="radio" id="radioButtonAccesPmrNonRequis" name="Accessibilité"
+                value="Pas d’accès personne handicapées"> <!-- 2eme bouton radio liés au 1er via l'id -->
+            <label for="Pas d’accès personne handicapées"> Pas d’accès personne handicapées </label>
+            <!-- Label du 2eme bouton radio -->
+            <br>
+        </div>
 
-    <div>
-        <label>Langue proposée(s) :</label>
-        <br>
-        <textarea name="texteLangueVisit" id="texteLangueVisit" placeholder="Langue proposée" ></textarea>
-        
-    </div>
+        <div>
+            <label>Langue proposée(s) :</label> <!-- Label langue proposée -->
+            <br>
+            <textarea name="texteLangueVisit" id="texteLangueVisit"
+                placeholder="Entrer les langues proposées pour la visite"></textarea>
+            <!-- Zone de texte avec les langues de la visite avec un affichage (griser) par default-->
 
-    
+        </div>
+
+    </article>
 </section>

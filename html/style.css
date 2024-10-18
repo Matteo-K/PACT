@@ -750,16 +750,15 @@ header div>a>img {
 }
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
 
-
-#detailsOffer section {
+#specialOffer {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
   gap: 10px;
-/* background-color: yellow; */
- } 
+  /* background-color: yellow; */
+}
 
- #detailsOffer  input[type="button"] {
+  #specialOffer  input[type="button"] {
   background-color:#FF0E0E;
   color: #FFFFFF;
   border-radius: 15px;
