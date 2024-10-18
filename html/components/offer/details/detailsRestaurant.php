@@ -3,6 +3,7 @@
 
     <p> Tarif : </p>
     <p> Prix Minimal</p>
-    <input type="number" id="prixMinDetRestaurant" name="prixMinDetRestaurant" />
+    
+    <input type="number" id="prixMinDetRestaurant" name="prixMinDetRestaurant" placeholder="0"/>
     <p>€</p>
     </article>

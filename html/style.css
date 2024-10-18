@@ -649,5 +649,11 @@ header div > a > img {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
 
-/* #detailsOffer article { 
-}*/
+
+#detailsOffer section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  gap: 10px;
+/* background-color: yellow; */
+ } 
