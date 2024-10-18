@@ -1,5 +1,5 @@
 <form id="detailsOffer" action="enregOffer.php" method="post">
-    <article>
+    <article id="artDetailOffer">
         <div>
 
             <label for="nom">Nom de votre offre*</label>
@@ -24,9 +24,6 @@
         <div id="afficheImages"></div>
 
 
-
-            
-
             <div>
                 <label for="categorie">Catégorie de l'offre*</label>   
                 <input type="radio" name="categorie" id="radioRestaurant" value=restaurant> <label for="radioRestaurant">Restaurant</label>
@@ -43,7 +40,7 @@
             <section>
                 
             </section>
-            
+
             <p>
                 Cliquez sur un tag pour le supprimer <br>
                 Vous pouvez entrer jusqu'à 6 tags

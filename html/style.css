@@ -544,18 +544,18 @@ header div > a > img {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-#detailsOffer article:first-child {
+#artDetailOffer {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
 
-#detailsOffer article:first-child > div {
+#artDetailOffer > div {
   width: 48%;
   margin: 1%;
 }
 
-#detailsOffer article:first-child section {
+#artDetailOffer section {
   width: 70%;
   height: 100px;
   padding: 5px;
@@ -563,44 +563,44 @@ header div > a > img {
   border: 2px solid var(--secondary);
 }
 
-#detailsOffer article:first-child input[type="text"] {
+#artDetailOffer input[type="text"] {
   width: 90%;
   height: 30px;
   font-size: 15px;
   padding-left: 10px;
 }
 
-#detailsOffer article:first-child textarea {
+#artDetailOffer textarea {
   width: 90%;
   max-width: 90%;
   min-width: 90%;
   font-size: 16px;
   padding-left: 10px;
 }
-#detailsOffer article:first-child textarea[id="resume"] {
+#artDetailOffer textarea[id="resume"] {
   height: 80px;
   min-height: 60px;
   max-height: 100px;
 }
 
-#detailsOffer article:first-child textarea[id="description"] {
+#artDetailOffer textarea[id="description"] {
   height: 250px;
   min-height: 100px;
   max-height: 400px;
 }
 
-#detailsOffer article:first-child > div > label,
-#detailsOffer article:first-child > div > div > label[for="categorie"] {
+#artDetailOffer > div > label,
+#artDetailOffer > div > div > label[for="categorie"] {
   display: inline-block;
   font-size: 25px;
   width: 90%;
 }
 
-#detailsOffer article:first-child > div > input[id="tag"] {
+#artDetailOffer > div > input[id="tag"] {
   width: 70%;
 }
 
-#detailsOffer article:first-child button[value="ajoutTag"] {
+#artDetailOffer button[value="ajoutTag"] {
   display: inline-block;
   height: 40px;
   font-size: 22px;
@@ -613,7 +613,7 @@ header div > a > img {
   border: none;
 }
 
-#detailsOffer article:first-child p {
+#artDetailOffer p {
   font-size: 20px;
   margin: 5px 0;
 }
@@ -649,5 +649,11 @@ header div > a > img {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN -------------------- */
 
-/* #detailsOffer article { 
-}*/
+
+#detailsOffer section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  gap: 10px;
+/* background-color: yellow; */
+ } 
