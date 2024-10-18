@@ -1,4 +1,5 @@
 <form id="detailsOffer" action="enregOffer.php" method="post">
+    <article>
         <div>
 
             <label for="nom">Nom de votre offre*</label>
@@ -82,6 +83,8 @@
 
 
         </div>
+    </article>
+    <article>
     <?php
         require_once "details/detailsRestaurant.php";
         require_once "details/detailsActivity.php";
@@ -89,3 +92,4 @@
         require_once "details/detailsPark.php";
         require_once "details/detailsShow.php";
     ?>
+    </article>

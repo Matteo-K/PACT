@@ -1,5 +1,5 @@
 <!-- Restaurant -->
-<article id="restaurant">
+<section id="restaurant">
 
 <p> TEST THIS IS A TEST A SIMPLE TEST </p>
-</article> 
+</section> 

@@ -1,4 +1,4 @@
 <!-- Activité -->
- <article id="activity">
+ <section id="activity">
 
- </article>
+ </section>
