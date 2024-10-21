@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $page != -1) {
 
 
 
-if ($page == -1 || $page == 0) {
+if ($page < 1) {
   header("Location: search.php");
   exit();
 } else {
