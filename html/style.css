@@ -58,7 +58,6 @@ input[type="text"],
 textarea {
   padding: 5px;
   border: 2px solid var(--secondary);
-  text-indent: 10px;
   border-radius: 2px;
 }
 
