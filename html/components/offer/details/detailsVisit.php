@@ -12,13 +12,7 @@
             <label>H</label> <!-- Label H (pour heure) -->
 
         </div>
-        <div>
-            <label>Résumé</label> <!-- Label resume -->
-            <br>
 
-            <textarea name="texteResumeVisit" id="Resume" placeholder="Résumé de la visite"></textarea>
-            <!-- Zone de texte avec le resume de la visite -->
-        </div>
     </article> <!-- fin du 1er article -->
     <article id="ArtVisit"> <!-- début du 2ème article (pour le positionnement)-->
         <div>

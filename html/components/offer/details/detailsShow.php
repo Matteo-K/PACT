@@ -8,20 +8,14 @@
     <br>
 
     <article> <!-- Article pour le placement -->
-
-        <textarea name="texteNbPlace" id="texteNbPlace" placeholder="0"></textarea>
+        <input type="number" id="nb"name="nbPlaceShow" placeholder="0"> <!-- Pour le nombre de place -->
+        
         <!-- zone de texte pour nombre de place -->
 
-        <textarea name="texteDureeH" id="texteDureeH" placeholder="0"></textarea> <!-- Zone de texte pour la durée -->
+        <input type="number" id="nb"name="DuréeShow" placeholder="0"> <!-- Pour le durée -->
     </article>
 
-    <br>
-    <article> <!-- Article pour le placement -->
-        <label>Résume</label> <!-- Label resume -->
-        <br>
-        <textarea name="texteDureeH" id="Resume" placeholder="Résumé"></textarea>
-        <!-- Zone de texte pour le resume avec un id car c'est la meme zone de texte que sur lapage visit -->
-    </article>
+ 
 
     
 
