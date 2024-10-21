@@ -7,7 +7,7 @@
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_creation_compte_pro.css">
     <link rel="icon" href="logo.png" type="image/x-icon">
     <title>Créer un compte</title>
 </head>
@@ -135,6 +135,9 @@
                 $siren = trim($_POST['siren']);
                 $motdepasse = $_POST['motdepasse'];
 
+                $adresseParts = explode(' ', $adresse, 2); 
+                $numeroRue = isset($adresseParts[0]) ? $adresseParts[0] : '';
+                $rue = isset($adresseParts[1]) ? $adresseParts[1] : '';
 
                 // Hashage du mot de passe
                 $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
@@ -143,13 +146,13 @@
 
                 // pro public
                 if ($secteur == 'public') {
-                    $stmt = $pdo->prepare("INSERT INTO proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, 'France', ?, 'img/profile_picture/default.svg')");
+                    $stmt = $pdo->prepare("INSERT INTO proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal) VALUES (?, ?, ?, ?, ?, ?, 'France', ?)");
                     $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $adresse, $code, $ville]);
                 } 
 
                 // pro privé
                 else { 
-                    $stmt = $pdo->prepare("INSERT INTO proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, 'France', ?, 'img/profile_picture/default.svg')");
+                    $stmt = $pdo->prepare("INSERT INTO proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal) VALUES (?, ?, ?, ?, ?, ?, ?, 'France', ?)");
                     $stmt->execute([$denomination, $siren, $hashedPassword, $telephone, $mail, $adresse, $code, $ville, ]);
                 }
                 

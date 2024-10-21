@@ -29,15 +29,15 @@ h4 {
   font-size: 3rem;
 }
 
-h2 {
+h1 {
   font-size: 2.5rem;
 }
 
-h1 {
+h2 {
   font-size: 2rem;
 }
 
-h1 {
+h3 {
   font-size: 1.5rem;
 }
 
@@ -635,7 +635,7 @@ header div > a > img {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-.buttonDetailOffer {
+.buttonDetailOffer, .tag {
   display: inline-block;
   font-size: 22px;
   padding: 5px 30px;
@@ -863,10 +863,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     ~~~~~~~~~~~~~~~~~~~~~~~~~DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*  ***************************************************************************************
+     **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
+     *************************************************************************************** */
 
 .mainOffer {
   display: flex;
@@ -880,25 +879,25 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #titleOffer {
-  margin-top: calc(var(--header-size) + 0.5em);
+  margin-top: calc(var(--header-size) + 0.6em);
   font-size: 5em;
   color: var(--bloc);
-}
-#titleOffer {
-  margin-top: calc(var(--header-size) + 0.5em);
-  font-size: 5em;
-  color: var(--bloc);
+  margin-bottom: 0.5em;
+  
 }
 
-/* Swiper Styles */
-.swiper-container {
-  position: relative;
-  /* Allow positioning of buttons */
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  /* Center the container */
+.tag{
+
+  background-color: var(--accent);
+  box-shadow: none;
 }
+
+.mainOffer > div{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
 /* Swiper Styles */
 .swiper-container {
   position: relative;
