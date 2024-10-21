@@ -76,7 +76,6 @@ footer {
   background-color: var(--bloc);
   padding: 1% 0.5%;
   margin: 0;
-  height: 23vh;
 }
 
 /* Bloc principale + mention légale*/
@@ -343,6 +342,7 @@ header div > a > img {
 .guideComplete {
   background-color: rgb(21, 176, 21) !important;
   box-shadow: inset -4px -4px 4px #008000 !important;
+  transition: all 0.3s ease;
 }
 
 .guideComplete:active {
@@ -354,6 +354,7 @@ header div > a > img {
 .guideSelect {
   background-color: var(--accent) !important;
   box-shadow: inset -4px -4px 4px #bb880e !important;
+  transition: all 0.3s ease;
 }
 
 .guideSelect:active {
@@ -366,6 +367,7 @@ header div > a > img {
   color: var(--text-light) !important;
   background-color: red !important;
   box-shadow: inset -4px -4px 4px #b01111 !important;
+  transition: all 0.3s ease;
 }
 
 .guideStartComplete:active {
@@ -399,6 +401,7 @@ header div > a > img {
 .blueBtnOffer {
   background-color: var(--primary);
   box-shadow: inset -4px -4px 4px #1883bc;
+  transition: all 0.3s ease;
 }
 
 /* # selection de l'offre # */
@@ -600,10 +603,17 @@ header div > a > img {
   gap: 10px;
 }
 
+/* */
 #contactOffer h4 {
   margin-bottom: 10px;
 }
 
+/* bloc consentement afficher numéro */
+#contactOffer input[type="tel"] + div {
+  margin-bottom: 50px;
+}
+
+/* bloc de chaque radio button */
 #contactOffer div > div {
   display: flex;
   flex-flow: row wrap;
@@ -762,7 +772,6 @@ header div > a > img {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
@@ -784,9 +793,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .sectionLoca div {
   margin-bottom: 25px;
 }
-.sectionLoca div {
-  margin-bottom: 25px;
-}
 
 .sectionLoca input {
   display: block;
@@ -794,18 +800,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 40px;
   font-size: 20px;
   font-weight: 500;
-  color: var(--secondary);
-  border: solid 2px;
-  border-color: var(--secondary);
-  padding-left: 10px;
-}
-.sectionLoca input {
-  display: block;
-  width: 100%;
-  height: 40px;
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--secondary);
+  color: var(--text-dark);
   border: solid 2px;
   border-color: var(--secondary);
   padding-left: 10px;
@@ -816,22 +811,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 50px;
   width: 100%;
 }
-.sectionLoca section {
-  display: flex;
-  gap: 50px;
-  width: 100%;
-}
 
 .codeP {
   width: 25%;
 }
-.codeP {
-  width: 25%;
-}
 
-.villeL {
-  width: 68%;
-}
 .villeL {
   width: 68%;
 }
@@ -846,21 +830,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin: 50px 50px 50px 50px;
   gap: 50px;
 }
-.map {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  width: 100%;
-  margin: 50px 50px 50px 50px;
-  gap: 50px;
-}
 
-#map {
-  height: 40vh;
-  width: 90%;
-}
 #map {
   height: 40vh;
   width: 90%;
@@ -1169,7 +1139,6 @@ textarea[id="Resume"] {
   text-align: center;
 }
 
-
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*++++++++++++++++++++++++++++++++++++++++++*/
@@ -1200,7 +1169,7 @@ a[id="lienConnexion"]:hover {
 h1[id="inscriptionTitre"] {
   text-align: center;
   margin: 30px 10px;
-  color: #034D7C;
+  color: #034d7c;
   font-weight: 100;
   font-size: 65px;
 }
@@ -1218,11 +1187,11 @@ aside[id="asideRetour"] {
 button[id="retour"] {
   background: none;
   border: none;
-  color: #034D7C;
+  color: #034d7c;
   text-decoration: underline;
   font: inherit;
   cursor: pointer;
-  padding: 0; 
+  padding: 0;
 }
 
 aside[id="asideRetour"] > button[id="retour"] > img {
@@ -1243,7 +1212,7 @@ aside[id="asideRetour"] > button[id="retour"] > img {
   margin: auto;
   width: 900px;
   height: auto;
-  background-color: #034D7C;
+  background-color: #034d7c;
   color: white;
 }
 
@@ -1263,46 +1232,41 @@ body[id="body_creation_compte_pro"] ::placeholder {
   text-align: left;
 }
 
-
-.creation-compte div.ligne1 > label, div.ligne6 > label {
+.creation-compte div.ligne1 > label,
+div.ligne6 > label {
   display: inline-block;
   width: 408px;
 }
 
-
-
-.creation-compte div.ligne2 > label, div.ligne3 > label {
+.creation-compte div.ligne2 > label,
+div.ligne3 > label {
   display: flex;
   justify-content: left;
   width: 823px;
   margin: 5px auto;
 }
 
-
-
 .creation-compte div.ligne4 > label {
   display: inline-block;
   width: 215px;
-} 
+}
 
 .creation-compte div.ligne4 > label[for="ville"] {
   width: 601px;
 }
-
-
 
 .creation-compte .ligne5 {
   display: flex;
   align-items: center;
   margin: 10px 26px;
   text-align: left;
-  justify-content: space-between;  
+  justify-content: space-between;
 }
 
 .creation-compte .ligne5_1 {
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
 }
 
 .creation-compte .ligne5 input[type="radio"] {
@@ -1321,16 +1285,13 @@ body[id="body_creation_compte_pro"] ::placeholder {
   font-size: 25px;
 }
 
-
-
 .creation-compte .ligne7 {
   display: flex;
   align-items: center;
   margin: 5px;
   text-align: left;
-  justify-content: center;  
+  justify-content: center;
 }
-
 
 .creation-compte input {
   font-size: 20px;
@@ -1338,41 +1299,46 @@ body[id="body_creation_compte_pro"] ::placeholder {
   border: 0;
 }
 
-input[id="denomination"], input[id="telephone"], input[id="motdepasse"], input[id="confirmer"]{
+input[id="denomination"],
+input[id="telephone"],
+input[id="motdepasse"],
+input[id="confirmer"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid #edae14;
 }
 
-input[id="email"], input[id="adresse"]{
+input[id="email"],
+input[id="adresse"] {
   width: 823px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid #edae14;
 }
 
-input[id="code"]{
+input[id="code"] {
   width: 210px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid #edae14;
 }
 
-input[id="ville"]{
+input[id="ville"] {
   width: 596px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid #edae14;
 }
 
-input[id="public"], input[id="prive"]{
+input[id="public"],
+input[id="prive"] {
   width: 25px;
   height: 25px;
   margin: 0 5px;
 }
 
-input[id="siren"]{
+input[id="siren"] {
   width: 408px;
   height: 40px;
   /* margin: 0 5px; */
@@ -1381,13 +1347,13 @@ input[id="siren"]{
   border: 3px solid #edae14;
 }
 
-input[type="checkbox"]{
+input[type="checkbox"] {
   width: 25px;
   height: 25px;
   margin: 0 5px;
 }
 
-button[id = "boutonInscriptionPro"] {
+button[id="boutonInscriptionPro"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
@@ -1432,7 +1398,7 @@ a[id="lienMotDePasseOublie"]:hover {
 h1[id="connexionTitre"] {
   text-align: center;
   margin: 30px 10px;
-  color: #034D7C;
+  color: #034d7c;
   font-weight: 100;
   font-size: 65px;
 }
@@ -1440,7 +1406,7 @@ h1[id="connexionTitre"] {
 h1[id="pasDeCompteTitre"] {
   text-align: center;
   margin: 50px 10px;
-  color: #034D7C;
+  color: #034d7c;
   font-weight: 100;
   font-size: 50px;
 }
@@ -1454,11 +1420,11 @@ aside[id="asideRetour"] {
 button[id="retour"] {
   background: none;
   border: none;
-  color: #034D7C;
+  color: #034d7c;
   text-decoration: underline;
   font: inherit;
   cursor: pointer;
-  padding: 0; 
+  padding: 0;
 }
 
 aside[id="asideRetour"] > button[id="retour"] > img {
@@ -1479,7 +1445,7 @@ aside[id="asideRetour"] > button[id="retour"] > img {
   margin: auto;
   width: 500px;
   height: auto;
-  background-color:#034D7C;
+  background-color: #034d7c;
   color: white;
 }
 
@@ -1499,7 +1465,7 @@ div[id="lienBouton"] {
   text-align: center;
 }
 
-div[id="lienBouton"] > div{
+div[id="lienBouton"] > div {
   display: flex;
   flex-direction: column;
   width: 600px;
@@ -1511,12 +1477,10 @@ div[id="lienBouton"] > div{
   text-align: left;
 }
 
-
 div.ligne1 > label {
   display: inline-block;
   width: 408px;
 }
-
 
 .connexion-compte input {
   font-size: 20px;
@@ -1524,7 +1488,7 @@ div.ligne1 > label {
   border: 0;
 }
 
-input[id="login"]{
+input[id="login"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
@@ -1532,7 +1496,7 @@ input[id="login"]{
   border: 3px solid #edae14;
 }
 
-input[id="motdepasseConnexion"]{
+input[id="motdepasseConnexion"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
@@ -1540,7 +1504,7 @@ input[id="motdepasseConnexion"]{
   border: 3px solid #edae14;
 }
 
-button[id = "boutonConnexion"]{
+button[id="boutonConnexion"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
@@ -1550,7 +1514,8 @@ button[id = "boutonConnexion"]{
   background-color: #edae14;
 }
 
-a[id="boutonLienMembre"], a[id="boutonLienPro"]{
+a[id="boutonLienMembre"],
+a[id="boutonLienPro"] {
   width: 300px;
   padding: 15px 10px;
   font-size: 20px;
@@ -1563,8 +1528,9 @@ a[id="boutonLienMembre"], a[id="boutonLienPro"]{
   text-decoration: none;
 }
 
-p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
+p[id="legendeBoutonLienMembre"],
+p[id="legendeBoutonLienPro"] {
   font-size: 20px;
-  color: #034D7C;
+  color: #034d7c;
   width: 550px;
 }

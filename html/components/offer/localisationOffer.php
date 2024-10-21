@@ -1,19 +1,32 @@
+ <?php
+ $idOffre = $_POST["idOffre"];
+ // Requête de récupération des données avec l'id de l'offre
+ $getAdresse = "Lannion";
+ $getCodePostal = "22300";
+ $getVille = "Lannion";
+
+ // Vérification si les données existes
+ $adresse = isset($getAdresse) ? $getAdresse : "";
+ $codePostal = isset($getCodePostal) ? $getCodePostal : "";
+ $ville = isset($getVille) ? $getVille : "";
+
+ ?>
   <form id="localisationOffer" action="enregOffer.php" method="post">
     <section class="map">
       <section class="sectionParent">
         <section class="sectionLoca">
           <div>
             <label for="adresse2">Adresse postale* :</label>
-            <input type="text" id="adresse2" placeholder="Adresse" required/>
+            <input type="text" id="adresse2" placeholder="Adresse" value="<?php echo $adresse ?>" required/>
           </div>
           <section>
             <div class="codeP">
               <label for="codepostal">Code postal* :</label>
-              <input type="text" id="codepostal" placeholder="Code postal" required/>
+              <input type="text" id="codepostal" placeholder="Code postal" value="<?php echo $codePostal ?>" required/>
             </div>
             <div class="villeL">
               <label for="ville2">Ville* :</label>
-              <input type="text" id="ville2" placeholder="Ville" required/>
+              <input type="text" id="ville2" placeholder="Ville" value="<?php echo $ville ?>" required/>
             </div>
           </section>
         </section>

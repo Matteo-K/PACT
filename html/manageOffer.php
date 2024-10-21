@@ -93,7 +93,7 @@ require_once "components/offer/checkOffer.php"
   function submitForm(page) {
       document.getElementById('currentPage').value = page;
       let form = document.querySelector('section form');
-      let confirm_page = (page == -1)? confirm("Les données ne seront pas sauvegardés") : true;
+      let confirm_page = (page == -1)? confirm("Les données ne seront pas enregistrées.\n Toute modification apportée aux données ne sera pas prise en compte.") : true;
       console.log((page < 0 || form.checkValidity()) && confirm_page);
       if ((page < 0 || form.checkValidity()) && confirm_page) {
         form.submit();
