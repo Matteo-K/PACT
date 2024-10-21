@@ -6,7 +6,7 @@ searchBar.addEventListener("input", (e) => {
   formHeader.setAttribute("action", "search.php?search=" + e.target.value);
 });
 
-//Page DetailsOffer
+//Page DetailsOffer by EWEN 
 try {
   let compteurImages = 0;
   document
@@ -81,6 +81,40 @@ try {
   tags.remove(tagElement);
   }
 } catch (error) {}
+
+/* Affichage pour un type d'offre particulier */
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sélection des éléments du formulaire et des radios
+        const radioRestaurant = document.getElementById('radioRestaurant');
+        const autresCategories = [
+            document.getElementById('radioParc'),
+            document.getElementById('radioActivite'),
+            document.getElementById('radioSpectacle'),
+            document.getElementById('radioVisite')
+        ];
+        
+        const specialOffer = document.getElementById('specialOffer'); // Div contenant les requires_once
+
+        // Fonction pour afficher ou masquer la div des require_once
+        function toggleSpecialOffer() {
+            if (radioRestaurant.checked) {
+                // Si "Restaurant" est sélectionné, on cache le contenu des détails
+                specialOffer.style.display = 'none';
+            } else {
+                // Sinon, on affiche les autres détails
+                specialOffer.style.display = 'block';
+            }
+        }
+
+        // Associe la fonction de toggle au clic sur tous les boutons radio
+        radioRestaurant.addEventListener('click', toggleSpecialOffer);
+        autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
+
+        // Appel initial de la fonction pour vérifier l'état initial
+        toggleSpecialOffer();
+    });
 
 
 

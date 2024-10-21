@@ -1089,11 +1089,7 @@ textarea[id="Resume"] {
   /* Non redimensinnable */
 }
 
-#visit {
-  background-color: orange;
-  /* Juste pour moi voir les separations */
-  vertical-align: top;
-}
+
 #visit {
   display: flex;
 }
