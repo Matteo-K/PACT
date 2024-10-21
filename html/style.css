@@ -685,15 +685,10 @@ header div > a > img {
   height: auto;
 }
 
-#choixCategorie {
-  width: calc(
-    70% + 141.625px
-  ); /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
-}
+
 
 #choixCategorie {
-  width: calc(70% + 141.625px);
-  /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
+  width: calc(70% + 141.625px);/*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
 }
 
 
