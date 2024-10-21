@@ -31,7 +31,7 @@
             <div id="afficheImages"></div>
 
 
-            <div>
+            <div id="choixCategorie">
                 <label for="categorie">Catégorie de l'offre*</label>   
                 <input type="radio" name="categorie" id="radioRestaurant" value=restaurant> <label for="radioRestaurant">Restaurant</label>
                 <input type="radio" name="categorie" id="radioParc" value=parc> <label for="radioParc">Parc d'attraction</label>

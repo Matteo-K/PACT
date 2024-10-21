@@ -579,7 +579,7 @@ header div>a>img {
 }
 
 #artDetailOffer > div > label:not(#labelAjoutPhoto),
-#artDetailOffer > div > div > label[for="categorie"],
+#choixCategorie label[for="categorie"] ,
 #choixImage label {
   display: inline-block;
   font-size: 25px;
@@ -661,6 +661,15 @@ header div>a>img {
 #afficheImages img {
   width: 100%;
   height: auto;
+}
+
+
+#choixCategorie{
+  width: calc(70% + 138.625px); /*calcul pour que la taille corresponde a la ligne au dessus et celle d'en dessous*/
+}
+
+#choixCategorie label{
+  margin: auto;
 }
 
 
