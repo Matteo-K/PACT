@@ -1402,7 +1402,7 @@ button[id = "boutonInscriptionPro"] {
 /* Css page connexion, Antoine */
 /*+++++++++++++++++++++++++++++*/
 body[id="body_connexion"] {
-  background-image: url("fond.png");
+  background-image: url("img/fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
