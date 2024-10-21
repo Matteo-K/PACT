@@ -1,6 +1,6 @@
 <?php
 $nameOffer = "";
-$step = isset($_GET["page"]) ? $_GET["page"] : 1;
+$step = isset($_POST["page"]) ? $_POST["page"] : 1;
 require_once "components/offer/checkOffer.php"
 ?>
 <!DOCTYPE html>
@@ -68,7 +68,7 @@ require_once "components/offer/checkOffer.php"
         }
       ?>
           <input type="hidden" name="page" id="currentPage" value="<?php echo $step ?>">
-          <input type="hidden" name="idOffre" id="idOffre" value="<?php echo isset($_GET["idOffre"])?$_GET["idOffre"]:"" ?>">
+          <input type="hidden" name="idOffre" id="idOffre" value="<?php echo isset($_POST["idOffre"])?$_POST["idOffre"]:"" ?>">
       </form>
     </section>
     <div>
