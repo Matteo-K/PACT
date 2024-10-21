@@ -468,12 +468,12 @@ header div > a > img {
 }
 
 #selectOffer input[type="radio"],
-#detailsOffer article:first-child input[type="radio"] {
+#detailsOffer #artDetailOffer input[type="radio"] {
   display: none;
 }
 
-#selectOffer input[type="radio"] + label,
-#detailsOffer article:first-child input[type="radio"] + label {
+#selectOffer input[type="radio"]+label,
+#detailsOffer article:first-child input[type="radio"]+label {
   display: inline-block;
   padding: 5px 30px;
   border-radius: 50px;
@@ -488,8 +488,8 @@ header div > a > img {
   cursor: pointer;
 }
 
-#selectOffer input[type="radio"]:checked + label,
-#detailsOffer article:first-child input[type="radio"]:checked + label {
+#selectOffer input[type="radio"]:checked+label,
+#detailsOffer article:first-child input[type="radio"]:checked+label {
   background-color: var(--accent);
   box-shadow: inset -4px -4px 4px #bb880e;
 }
@@ -1055,18 +1055,19 @@ textarea[id="Resume"] {
   vertical-align: top;
 }
 #visit {
-  background-color: orange;
-  /* Juste pour moi voir les separations */
-  vertical-align: top;
+  display: flex;
 }
 
 #show {
-  background-color: yellow;
+  
+  margin-top: 5px;
   /* Juste pour moi voir les separations */
 }
-#show {
-  background-color: yellow;
-  /* Juste pour moi voir les separations */
+/* #show */
+
+#park {
+  background-color: blueviolet;
+  /* Juste pour moi pour voir les séparations */
 }
 
 #park{
