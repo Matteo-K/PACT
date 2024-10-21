@@ -68,7 +68,7 @@
     <link rel="icon" href="logo.png" type="image/x-icon">
     <title>Connexion</title>
 </head>
-<body id="body_connexion">
+<body id ="body_connexion" class="connexion-compte">
     <aside id="asideRetour">
         <button id="retour" onclick="history.back();">
             <img src="logo.png" alt="Logo" title="Retour page précédente"/>
@@ -89,25 +89,25 @@
                 <input type="password" placeholder="Mot de passe" id="motdepasseConnexion" name="motdepasseConnexion" required>
             </div>
     
-            <button type="submit" id="boutonConnexion">Connexion</button>
-            <a id="lienMotDePasseOublie" href="#">Mot de passe oublié ?</a>
+    
+            <button onclick = "validationFormConnexion()" id="boutonConnexion">Connexion</button>
+            <script src = validationFormInscription.js></script>
+
+            <a id="lienMotDePasseOublie" href=""> Mot de passe oublié ?</a>
+            <script src = validationFormConnexion.js></script>
         </form>
     
         <h1 id="pasDeCompteTitre">Vous n'avez pas de compte ? Créez-en un !</h1>
 
         <div id="lienBouton">
             <div>
-                <a href="creation_compte_membre.php">
-                    <button id="boutonLienMembre">Compte membre</button>
-                </a>
+                <a href="" id="boutonLienMembre">Compte membre</a>
                 <p id="legendeBoutonLienMembre">Compte gratuit pour une utilisation classique de la plateforme</p>
             </div>
 
             <div>
-                <a href="creation_compte_pro.php">
-                    <button id="boutonLienPro">Compte professionnel</button>
-                </a>
-                <p id="legendeBoutonLienPro">Compte destiné aux professionnels voulant promouvoir une offre de leur entreprise</p>
+                <a href="creation_compte_pro.php" id="boutonLienPro">Compte professionnel</a>
+                <p id="legendeBoutonLienPro">Compte destiné aux professionels voulant promouvoir une offre de leur entreprise</p>
             </div>
         </div>
     </main>
