@@ -635,7 +635,8 @@ header div > a > img {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-.buttonDetailOffer, .tag {
+.buttonDetailOffer,
+.tag {
   display: inline-block;
   font-size: 22px;
   padding: 5px 30px;
@@ -868,9 +869,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #checkAddressBtn {
-  background-color: #4caf50;
-  color: white;
-  border: solid #4caf50 1px;
+  background-color: #1ca4ed;
+  color: black;
+  border: solid #1ca4ed 1px;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -884,13 +885,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #checkAddressBtn:hover {
-  background-color: #fff;
-  border: solid #4caf50 1px;
-  color: #4caf50;
+  background-color: white;
+  border: solid #1ca4ed 1px;
+  color: #1ca4ed;
 }
 
 #checkAddressBtn:active {
-  background-color: #3e8e41;
+  background-color: #034d7c;
 }
 
 #checkAddressBtn:focus {
@@ -923,16 +924,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 5em;
   color: var(--bloc);
   margin-bottom: 0.5em;
-  
 }
 
-.tag{
-
+.tag {
   background-color: var(--accent);
   box-shadow: none;
 }
 
-.mainOffer > div{
+.mainOffer > div {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
