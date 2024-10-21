@@ -756,7 +756,6 @@ header div > a > img {
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -1089,7 +1088,6 @@ textarea[id="Resume"] {
   /* Non redimensinnable */
 }
 
-
 #visit {
   display: flex;
 }
@@ -1135,8 +1133,6 @@ textarea[id="Resume"] {
   text-align: center;
 }
 
-
-
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*++++++++++++++++++++++++++++++++++++++++++*/
@@ -1169,7 +1165,7 @@ a[id="lienConnexion"]:hover {
 h1[id="inscriptionTitre"] {
   text-align: center;
   margin: 30px 10px;
-  color: #034D7C;
+  color: #034d7c;
   font-weight: 100;
   font-size: 65px;
 }
@@ -1187,11 +1183,11 @@ aside[id="asideRetour"] {
 button[id="retour"] {
   background: none;
   border: none;
-  color: #034D7C;
+  color: #034d7c;
   text-decoration: underline;
   font: inherit;
   cursor: pointer;
-  padding: 0; 
+  padding: 0;
 }
 
 aside[id="asideRetour"] > button[id="retour"] > img {
@@ -1212,11 +1208,11 @@ aside[id="asideRetour"] > button[id="retour"] > img {
   margin: auto;
   width: 900px;
   height: auto;
-  background-color: #034D7C;
+  background-color: #034d7c;
   color: white;
 }
 
-body[id="body_creation_compte_pro"] ::placeholder {
+body[id="body_creation_compte_pro"]::placeholder {
   font-size: 20px;
 }
 
@@ -1232,46 +1228,41 @@ body[id="body_creation_compte_pro"] ::placeholder {
   text-align: left;
 }
 
-
-.creation-compte div.ligne1 > label, div.ligne6 > label {
+.creation-compte div.ligne1 > label,
+div.ligne6 > label {
   display: inline-block;
   width: 408px;
 }
 
-
-
-.creation-compte div.ligne2 > label, div.ligne3 > label {
+.creation-compte div.ligne2 > label,
+div.ligne3 > label {
   display: flex;
   justify-content: left;
   width: 823px;
   margin: 5px auto;
 }
 
-
-
 .creation-compte div.ligne4 > label {
   display: inline-block;
   width: 215px;
-} 
+}
 
 .creation-compte div.ligne4 > label[for="ville"] {
   width: 601px;
 }
-
-
 
 .creation-compte .ligne5 {
   display: flex;
   align-items: center;
   margin: 10px 26px;
   text-align: left;
-  justify-content: space-between;  
+  justify-content: space-between;
 }
 
 .creation-compte .ligne5_1 {
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
 }
 
 .creation-compte .ligne5 input[type="radio"] {
@@ -1290,16 +1281,13 @@ body[id="body_creation_compte_pro"] ::placeholder {
   font-size: 25px;
 }
 
-
-
 .creation-compte .ligne7 {
   display: flex;
   align-items: center;
   margin: 5px;
   text-align: left;
-  justify-content: center;  
+  justify-content: center;
 }
-
 
 .creation-compte input {
   font-size: 20px;
@@ -1307,41 +1295,46 @@ body[id="body_creation_compte_pro"] ::placeholder {
   border: 0;
 }
 
-input[id="denomination"], input[id="telephone"], input[id="motdepasse"], input[id="confirmer"]{
+input[id="denomination"],
+input[id="telephone"],
+input[id="motdepasse"],
+input[id="confirmer"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid #edae14;
 }
 
-input[type=email], input[id="adresse"]{
+input[id="email"],
+input[id="adresse"] {
   width: 823px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid #edae14;
 }
 
-input[id="code"]{
+input[id="code"] {
   width: 210px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid #edae14;
 }
 
-input[id="ville"]{
+input[id="ville"] {
   width: 596px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid #edae14;
 }
 
-input[id="public"], input[id="prive"]{
+input[id="public"],
+input[id="prive"] {
   width: 25px;
   height: 25px;
   margin: 0 5px;
 }
 
-input[id="siren"]{
+input[id="siren"] {
   width: 408px;
   height: 40px;
   /* margin: 0 5px; */
@@ -1350,13 +1343,13 @@ input[id="siren"]{
   border: 3px solid #edae14;
 }
 
-input[type="checkbox"]{
+input[type="checkbox"] {
   width: 25px;
   height: 25px;
   margin: 0 5px;
 }
 
-button[id = "boutonInscriptionPro"] {
+button[id="boutonInscriptionPro"] {
   width: 200px;
   font-size: 25px;
   height: 60px;

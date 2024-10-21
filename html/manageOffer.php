@@ -93,8 +93,10 @@ require_once "components/offer/checkOffer.php"
   function submitForm(page) {
       document.getElementById('currentPage').value = page;
       let form = document.querySelector('section form');
-      console.log(page);
-      if (page < 1 || form.checkValidity()) {
+      if (page < 0 || form.checkValidity()) {
+        if (page ) {
+          
+        }
         form.submit();
       } else {
         form.reportValidity();
