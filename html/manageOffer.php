@@ -11,7 +11,6 @@ require_once "components/offer/checkOffer.php"
   <!-- Change le titre par le nom de l'offre -->
   <title><?php echo isset($nameOffer)? $nameOffer : "Gestion de l'offre" ?></title>
   <link rel="stylesheet" href="style.css">
-
 </head>
 <body id="manageOffer">
 <script src="js/setColor.js"></script>

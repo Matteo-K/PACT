@@ -11,35 +11,55 @@
             <h4><?php echo $value?>&nbsp;:&nbsp;</h4>
         </div>
         <div>
-            <input type="checkbox" id="check<?php echo $value?>" name="check<?php echo $value?>" />
-            <label for="check<?php echo $value?>">Ferme</label>
-            <span class="hourly1">
-                <label for="horairesOuv1<?php echo $value?>">Ouvert de</label>
-                <input type="time" name="horairesOuv1<?php echo $value?>" id="horairesOuv1<?php echo $value?>">
-                <!-- Zone de texte de type time pour saisir uniquement des heures -->
-                <label for="horairesF1<?php echo $value?>">à</label>
-                <input type="time" name="horairesF1<?php echo $value?>" id="horairesF1<?php echo $value?>">
-                <!-- Zone de texte de type time pour saisir uniquement des heures -->
+            <input type="checkbox" id="check<?php echo $value?>" name="check<?php echo $value?>" onclick="toggleInputs(this)"/>
+            <label for="check<?php echo $value?>">Fermé</label>
+            <span>
+                <span class="hourly1">
+                    <label for="horairesOuv1<?php echo $value?>">Ouvert de</label>
+                    <input type="time" name="horairesOuv1<?php echo $value?>" id="horairesOuv1<?php echo $value?>">
+                    <!-- Zone de texte de type time pour saisir uniquement des heures -->
+                    <label for="horairesF1<?php echo $value?>">à</label>
+                    <input type="time" name="horairesF1<?php echo $value?>" id="horairesF1<?php echo $value?>">
+                    <!-- Zone de texte de type time pour saisir uniquement des heures -->
+                </span>
+                <input type="button" value="Ajouter un horaire" name="btnAjout<?php echo $value?>" id="btnAjout<?php echo $value?>" class="blueBtnOffer btnAddOffer">
+                <!-- Partie avec les horaire de l'après midi du Lundi-->
+                <span class="hourly2 hourlyHide">
+                    <label for="horairesOuv2<?php echo $value?>">et de</label>
+                    <input type="time" name="horairesOuv2<?php echo $value?>" id="horairesOuv2<?php echo $value?>">
+                    <!-- Zone de texte de type time pour saisir uniquement des heures -->
+                    <label for="horairesF2<?php echo $value?>">à</label>
+                    <input type="time" name="horairesF2<?php echo $value?>" id="horairesF2<?php echo $value?>">
+                    <!-- Zone de texte de type time pour saisir uniquement des heures -->
+                </span>
+                <input type="button" value="Retirer" name="btnRetirer<?php echo $value?>" id="btnRetirer<?php echo $value?>" class="blueBtnOffer btnRmOffer hourlyHide">
+                <!-- bouton pour retirer les horaires -->
             </span>
-            <input type="button" value="Ajouter un horaire" name="btnAjout<?php echo $value?>" id="btnAjout<?php echo $value?>" class="blueBtnOffer btnAddOffer">
-            <!-- Partie avec les horaire de l'après midi du Lundi-->
-            <span class="hourly2 hourlyHide">
-                <label for="horairesOuv2<?php echo $value?>">et de</label>
-                <input type="time" name="horairesOuv2<?php echo $value?>" id="horairesOuv2<?php echo $value?>">
-                <!-- Zone de texte de type time pour saisir uniquement des heures -->
-                <label for="horairesF2<?php echo $value?>">à</label>
-                <input type="time" name="horairesF2<?php echo $value?>" id="horairesF2<?php echo $value?>">
-                <!-- Zone de texte de type time pour saisir uniquement des heures -->
-            </span>
-            <input type="button" value="Retirer" name="btnRetirer<?php echo $value?>" id="btnRetirer<?php echo $value?>" class="blueBtnOffer btnRmOffer hourlyHide">
-            <!-- bouton pour retirer les horaires -->
         </div>
     </div>
     <?php
         }
     } else {
     ?>
-
+        <div>
+            <h4>Ajouter une date pour le spectacle&nbsp;:&nbsp;</h4>            
+        </div>
+        <div id="Representation">
+            <div>
+                <!-- Saisie de la date -->
+                <!-- Lors de l'ajout dans la base de donnée, il faut vérifier si la date éxiste déjà à la même heure -->
+                <input type="date" name="dateRepN1" id="dateRepresentation" value="<?php echo date("Y-m-j"); ?>" min="<?php echo date("Y-m-j"); ?>">
+                <!-- Saisie des heures -->
+                <span class="hourly1">
+                    <label for="HRepN1_part1.1">Représentation de</label>
+                    <input type="time" name="HRepN1_part1.1" id="HRepN1_part1.1">
+                    <label for="HRepN1_part1.2">à</label>
+                    <input type="time" name="HRepN1_part1.2" id="HRepN1_part1.2">
+                </span>
+                <input type="button" value="Retirer" name="btnRetirerRepN1" id="btnRetirerRepN1" class="blueBtnOffer" onclick="removeDateRep(this)">
+            </div>
+        </div>
+        <input type="button" value="Ajouter une date" name="addRep" id="addRep" class="guideSelect" onclick="addDateRep()">
     <?php
     }
     ?>
