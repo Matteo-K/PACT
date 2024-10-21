@@ -1,5 +1,6 @@
 <form id="detailsOffer" action="enregOffer.php" method="post">
     <article id="artDetailOffer">
+
         <div>
 
             <label for="nom">Nom de votre offre*</label>
@@ -40,12 +41,12 @@
                 <input type="radio" name="categorie" id="radioVisite" value=visite> <label for="radioVisite">Visite</label>
             </div>
 
-            <label for="tag">Tags supplémentaires </label>
-            <input type="text" id="tag" name="tag" placeholder="Entrez un tag décrivant votre activité / établissement">
-            <button type="button" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button>
+            <label for="inputTag">Tags supplémentaires </label>
+            <input type="text" id="inputTag" name="inputTag" placeholder="Entrez un tag décrivant votre activité / établissement">
+            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer">Ajouter</button>
 
-            <section>
-                
+            <section id="sectionTag">
+                <!-- Les tags ajoutés apparaîtront ici -->
             </section>
 
             <p>
