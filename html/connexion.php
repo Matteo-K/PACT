@@ -1,7 +1,7 @@
 <?php 
     // Démarrer la session
     session_start();
-    require_once 'dbLocalKylian.php';
+    require_once 'db.php';
 
     if(isset($_SESSION['idUser'])){
         header("Location: index.php");
