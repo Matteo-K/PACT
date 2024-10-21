@@ -92,7 +92,13 @@ require_once "components/offer/checkOffer.php"
   /* envoie un formulaire à la page enregistrement (enregOffer.php) */
   function submitForm(page) {
       document.getElementById('currentPage').value = page;
-      document.querySelector('section form').submit();
+      let form = document.querySelector('section form');
+      console.log(page);
+      if (page < 1 || form.checkValidity()) {
+        form.submit();
+      } else {
+        form.reportValidity();
+      }
   }
 </script>
 </html>

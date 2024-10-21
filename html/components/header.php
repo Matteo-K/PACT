@@ -1,6 +1,4 @@
 
-
-<link rel="stylesheet" href="../style.css">
 <header theme="light">
     <div>
         <a href="../index.php">

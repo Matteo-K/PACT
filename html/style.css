@@ -590,6 +590,10 @@ header div > a > img {
   gap: 10px;
 }
 
+/* ------------------------- END HOURLY OFFER CSS --------------------------------*/
+/* ------------------------- Contact OFFER CSS --------------------------------*/
+
+/* ------------------------- END Contact OFFER CSS --------------------------------*/
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -601,7 +605,6 @@ header div > a > img {
   border-radius: 50px;
   color: #000;
   margin: 0 5px;
-  box-shadow: inset -4px -4px 4px var(--bloc);
   border: none;
   cursor: pointer;
 }
@@ -672,17 +675,22 @@ header div > a > img {
 }
 
 #afficheImages figure {
+  position: relative;
   max-width: 90px;
   max-height: 90px;
   margin: 5px;
   overflow: hidden;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #afficheImages img {
+  height: 100%;
   width: 100%;
-  height: auto;
+  object-fit: cover;
 }
 
 #choixCategorie {

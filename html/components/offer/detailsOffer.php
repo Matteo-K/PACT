@@ -25,7 +25,7 @@
             </div>
 
 
-            <label for="photos" id="labelAjoutPhoto" class="buttonDetailOffer">Ajouter</label>
+            <label for="photos" id="labelAjoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
             <input type="file" id="photos" name="photos" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" multiple>
 
             <div id="afficheImages"></div>
@@ -42,7 +42,7 @@
 
             <label for="tag">Tags supplémentaires </label>
             <input type="text" id="tag" name="tag" placeholder="Entrez un tag décrivant votre activité / établissement">
-            <button type="button" value = ajoutTag class="buttonDetailOffer">Ajouter</button>
+            <button type="button" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button>
 
             <section>
                 
