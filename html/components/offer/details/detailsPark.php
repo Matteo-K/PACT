@@ -7,7 +7,7 @@
     <br>
     <input type="file" id="imagePark" name="image1Park">
     <br>
-    <input type="button" value="Importer des photos" name="addRep" id="addPhto" >
+    <input type="button" value="Ajouter des photos" name="addRep" id="addPhto" >
     <br>
 
 
