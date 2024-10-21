@@ -522,7 +522,8 @@ header div > a > img {
   margin-bottom: -7px;
 }
 
-#hourlyOffer h4 {
+#hourlyOffer h4,
+#contactOffer h4 {
   font-family: "Lato", sans-serif;
   font-weight: normal;
   font-size: 1.25em;
@@ -592,6 +593,42 @@ header div > a > img {
 
 /* ------------------------- END HOURLY OFFER CSS --------------------------------*/
 /* ------------------------- Contact OFFER CSS --------------------------------*/
+
+#contactOffer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 10px;
+}
+
+#contactOffer h4 {
+  margin-bottom: 10px;
+}
+
+#contactOffer div > div {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#contactOffer input[type="text"],
+#contactOffer input[type="email"],
+#contactOffer input[type="tel"] {
+  text-indent: 0;
+  padding: 10px;
+  width: 70%;
+  min-width: 300px;
+  border: solid 2px var(--secondary);
+}
+
+#contactOffer input[type="email"] {
+  width: 50%;
+}
+
+#contactOffer input[type="tel"] {
+  width: 150px;
+  min-width: 150px;
+}
 
 /* ------------------------- END Contact OFFER CSS --------------------------------*/
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -701,8 +738,6 @@ header div > a > img {
     70% + 141.625px
   ); /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
 }
-
-
 
 #inputTag {
   width: 70%;
@@ -929,6 +964,6 @@ textarea[id="Resume"] {
   /* Juste pour moi voir les separations */
 }
 
-#park{
-  background-color:blueviolet; /* Juste pour moi pour voir les séparations */
+#park {
+  background-color: blueviolet; /* Juste pour moi pour voir les séparations */
 }
