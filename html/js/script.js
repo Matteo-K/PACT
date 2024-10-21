@@ -8,14 +8,16 @@ searchBar.addEventListener("input", (e) => {
 
 //Page DetailsOffer
 try {
+  //Affichage des images a leur selection
   let compteurImages = 0;
-  document
-    .getElementById("photos")
-    .addEventListener("change", function (event) {
-      const files = event.target.files;
-      const previewContainer = document.getElementById("afficheImages");
+  const pImage = document.querySelector('#choixImage > p');
+  document.getElementById("photos").addEventListener("change", afficheImage(event));
+  
+  function afficheImage(event){
+      const images = event.target.files;
+      const conteneur = document.getElementById("afficheImages");
 
-      Array.from(files).forEach((file) => {
+      Array.from(images).forEach((file) => {
         const reader = new FileReader();
         reader.onload = function (e) {
           if (compteurImages < 10) {
@@ -29,64 +31,59 @@ try {
               if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
                 compteurImages--;
                 imgDiv.remove(); // Supprime l'élément image et son conteneur
+                pTag.style.color="black"; //on remet la couleur pas defaut au cas où c'etait en rouge
               }
             });
+          }
+          else{
+            pImage.style.color="red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
           }
         };
         reader.readAsDataURL(file);
       });
-    });
+    };
 
 
-
-
-    // Sélection des éléments HTML
-  const tagInput = document.getElementById('inputTag');
-  const addButton = document.getElementById('ajoutTag');
-  const tagSection = document.getElementById('sectionTag');
-
-  const p = document.querySelector('#sectionTag + p');
+  //Affichage des tags a leur ajout
+  const inputTag = document.getElementById('inputTag');
+  const buttonTag = document.getElementById('ajoutTag');
+  const sectionTag = document.getElementById('sectionTag');
+  const pTag = document.querySelector('#sectionTag + p');
   let tags = []; // Tableau pour stocker les tags
 
   // Fonction pour ajouter un tag
-  addButton.addEventListener('click', function() {
-      const tagValue = tagInput.value.trim(); // Récupère la valeur de l'input et enlève les espaces
+  buttonTag.addEventListener('click', ajoutTag()) 
+  
+  function ajoutTag(){
+      const valeurTag = inputTag.value.trim(); // Récupère la valeur de l'input et enlève les espaces
 
-      if (tagValue && !tags.includes(tagValue) && tags.length < 6) {
-          tags.push(tagValue); // Ajoute le tag au tableau
+      if (valeurTag && !tags.includes(valeurTag) && tags.length < 6) {
+          tags.push(valeurTag); // Ajoute le tag au tableau
 
           // Crée l'élément pour afficher le tag
-          const tagElement = document.createElement('span');
-          tagElement.classList.add('tag');
-          tagElement.textContent = tagValue;
+          const elementTag = document.createElement('span');
+          elementTag.classList.add('tag');
+          elementTag.textContent = valeurTag;
 
           // Ajoute un événement pour supprimer le tag au clic
-          tagElement.addEventListener('click', function() {
-              removeTag(tagValue, tagElement);
-          });
+          elementTag.addEventListener('click', removeTag(valeurTag, elementTag));
 
-          tagSection.appendChild(tagElement); // Ajoute l'élément à la section
+          sectionTag.appendChild(elementTag); // Ajoute l'élément à la section
 
-          tagInput.value = ''; // Réinitialise l'input
+          inputTag.value = ''; // Réinitialise l'input
       } else if (tags.length >= 6) {
-          p.style.color="red";
+        pTag.style.color="red"; //On met le txte en rouge pour signaler que la limite des 6 tags est atteinte
       }
-  });
+  };
 
   // Fonction pour supprimer un tag
-  function removeTag(tagValue, tagElement) {
-  p.style.color="black"; //on remet la couleur pas defaut au cas où c'etait en rouge
-  tags = tags.filter(tag => tag !== tagValue); // Supprime le tag du tableau
-  tagSection.removeChild(tagElement); // Supprime l'élément visuel
-  tags.remove(tagElement);
+  function removeTag(valeurTag, elementTag) {
+    pTag.style.color="black"; //on remet la couleur par defaut au cas où c'etait en rouge
+    tags = tags.filter(tag => tag !== valeurTag); // Supprime le tag du tableau
+    sectionTag.removeChild(elementTag); // Supprime l'élément visuel correspondant au tag
+    tags.remove(elementTag);
   }
 } catch (error) {}
-
-
-
-
-
-
 
 // Code pour envoyer les images au serveur
 // const formData = new FormData();

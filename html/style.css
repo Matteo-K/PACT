@@ -628,11 +628,10 @@ header div > a > img {
 
 #artDetailOffer p {
   font-size: 20px;
-  margin: 5px 0;
+  margin: 5px 0 0;
 }
 
 #artDetailOffer input[type="text"] {
-  width: 90%;
   height: 30px;
   font-size: 15px;
   text-indent: 10px;
@@ -643,6 +642,10 @@ header div > a > img {
   max-width: 90%;
   min-width: 90%;
   font-size: 16px;
+}
+
+#artDetailOffer input[id="nom"] {
+  width: 90%;
 }
 
 #artDetailOffer textarea[id="resume"] {
