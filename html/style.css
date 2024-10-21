@@ -704,266 +704,265 @@ header div>a>img {
 
 
 #inputTag {
-#artDetailOffer>div>input[id="tag"] {
-  width: 70%;
-}
+  #artDetailOffer>div>input[id="tag"] {
+    width: 70%;
+  }
 
-#ajoutTag {
-  background-color: var(--primary);
-}
+  #ajoutTag {
+    background-color: var(--primary);
+  }
 
-#artDetailOffer section,
-#afficheImages {
-  width: calc(70% + 141.625px);
-  /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
-  min-height: 100px;
-  margin: 10px 0 5px 0;
-  background: white;
-  padding: 7px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-wrap: wrap;
-}
+  #artDetailOffer section,
+  #afficheImages {
+    width: calc(70% + 141.625px);
+    /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
+    min-height: 100px;
+    margin: 10px 0 5px 0;
+    background: white;
+    padding: 7px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
+  /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
-.sectionLoca {
-  width: 700px;
-  font-size: 25px;
-}
+  .sectionLoca {
+    width: 700px;
+    font-size: 25px;
+  }
 
-.sectionLoca div {
-  margin-bottom: 25px;
-}
+  .sectionLoca div {
+    margin-bottom: 25px;
+  }
 
-.sectionLoca input {
-  display: block;
-  width: 100%;
-  height: 40px;
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--secondary);
-  border: solid 2px;
-  border-color: var(--secondary);
-  padding-left: 10px;
-}
+  .sectionLoca input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--secondary);
+    border: solid 2px;
+    border-color: var(--secondary);
+    padding-left: 10px;
+  }
 
-.sectionLoca section {
-  display: flex;
-  gap: 50px;
-  width: 100%;
-}
+  .sectionLoca section {
+    display: flex;
+    gap: 50px;
+    width: 100%;
+  }
 
-.codeP {
-  width: 25%;
-}
+  .codeP {
+    width: 25%;
+  }
 
-.villeL {
-  width: 68%;
-}
+  .villeL {
+    width: 68%;
+  }
 
-.map {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  width: 100%;
-  margin: 50px 50px 50px 50px;
-  gap: 50px;
-}
+  .map {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+    margin: 50px 50px 50px 50px;
+    gap: 50px;
+  }
 
-#map {
-  height: 40vh;
-  width: 90%;
-}
+  #map {
+    height: 40vh;
+    width: 90%;
+  }
 
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
+  /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-.mainOffer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .mainOffer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-#titleOffer {
-  margin-top: calc(var(--header-size) + 0.5em);
-  font-size: 5em;
-  color: var(--bloc);
-}
+  #titleOffer {
+    margin-top: calc(var(--header-size) + 0.5em);
+    font-size: 5em;
+    color: var(--bloc);
+  }
 
-/* Swiper Styles */
-.swiper-container {
-  position: relative;
-  /* Allow positioning of buttons */
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  /* Center the container */
-}
+  /* Swiper Styles */
+  .swiper-container {
+    position: relative;
+    /* Allow positioning of buttons */
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    /* Center the container */
+  }
 
-/* Swiper Styles */
-.mySwiper {
-  height: 35em;
-  /* Height of the main Swiper */
-  border-radius: 15px;
-  overflow: hidden;
-}
+  /* Swiper Styles */
+  .mySwiper {
+    height: 35em;
+    /* Height of the main Swiper */
+    border-radius: 15px;
+    overflow: hidden;
+  }
 
-/* Navigation Buttons */
-.swiper-button-next,
-.swiper-button-prev {
-  top: 40%;
-  background-color: var(--accent60);
-  padding: 3em 0.5em;
-  /* Padding for buttons */
-  color: var(--background);
-  font-size: 20px;
-  z-index: 1;
-  /* Ensure buttons are on top */
-}
+  /* Navigation Buttons */
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 40%;
+    background-color: var(--accent60);
+    padding: 3em 0.5em;
+    /* Padding for buttons */
+    color: var(--background);
+    font-size: 20px;
+    z-index: 1;
+    /* Ensure buttons are on top */
+  }
 
-/* Horizontal positioning */
-.swiper-button-next {
-  transform: translateX(120%);
-  border-radius: 0 1em 1em 0;
-  /* Rounded corners for the next button */
-}
+  /* Horizontal positioning */
+  .swiper-button-next {
+    transform: translateX(120%);
+    border-radius: 0 1em 1em 0;
+    /* Rounded corners for the next button */
+  }
 
-.swiper-button-prev {
-  transform: translateX(-120%);
-  border-radius: 1em 0 0 1em;
-  /* Rounded corners for the prev button */
-}
+  .swiper-button-prev {
+    transform: translateX(-120%);
+    border-radius: 1em 0 0 1em;
+    /* Rounded corners for the prev button */
+  }
 
-/* Slide Styles */
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-}
+  /* Slide Styles */
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+  }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 15px;
-  transition: transform 0.2s ease;
-}
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.2s ease;
+  }
 
-.swiper-slide:hover img {
-  transform: scale(1.05);
-}
+  .swiper-slide:hover img {
+    transform: scale(1.05);
+  }
 
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-  background-color: var(--accent);
-}
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background-color: var(--accent);
+  }
 
-/* Thumbnail Slider */
-.myThumbSlider {
-  margin-top: 20px;
-  height: 100px;
-  width: 90%;
-  max-width: 1200px;
-}
+  /* Thumbnail Slider */
+  .myThumbSlider {
+    margin-top: 20px;
+    height: 100px;
+    width: 90%;
+    max-width: 1200px;
+  }
 
-/*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
+  /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
-#specialOffer {
-  /* toute la partie spécifique a une offre */
+  #specialOffer {
+    /* toute la partie spécifique a une offre */
 
-  margin-bottom: 10px;
-  /* marge de 10 px en bas */
-  gap: 10px;
-  /* gap de 10 px */
-}
+    margin-bottom: 10px;
+    /* marge de 10 px en bas */
+    gap: 10px;
+    /* gap de 10 px */
+  }
 
-#specialOffer section>article {
-  display: inline-block;
-  width: 355px;
-  /* largeur de 355 px pour l'article */
-  margin-right: 15px;
-  /* marge de 15 px a droite */
-  padding-bottom: 15px;
-  /* padding de 15 px en bas*/
-}
+  #specialOffer section>article {
+    display: inline-block;
+    width: 355px;
+    /* largeur de 355 px pour l'article */
+    margin-right: 15px;
+    /* marge de 15 px a droite */
+    padding-bottom: 15px;
+    /* padding de 15 px en bas*/
+  }
 
-#specialOffer textarea[id="texteLangueVisit"],
-textarea[id="Resume"] {
-  /* tailler des zone de texte */
-  width: 335px;
-  /* largeur de 335px*/
-  height: 165px;
-  /* hauteur de 165px*/
-  resize: none;
-  /* Non redimensinnable */
-}
+  #specialOffer textarea[id="texteLangueVisit"],
+  textarea[id="Resume"] {
+    /* tailler des zone de texte */
+    width: 335px;
+    /* largeur de 335px*/
+    height: 165px;
+    /* hauteur de 165px*/
+    resize: none;
+    /* Non redimensinnable */
+  }
 
-#visit {
-  background-color: orange;
-  /* Juste pour moi voir les separations */
-  vertical-align: top;
-}
+  #visit {
+    background-color: orange;
+    /* Juste pour moi voir les separations */
+    vertical-align: top;
+  }
 
-#show {
-  background-color: yellow;
-  /* Juste pour moi voir les separations */
-}
+  #show {
+    background-color: yellow;
+    /* Juste pour moi voir les separations */
+  }
 
-#park {
-  background-color: blueviolet;
-  /* Juste pour moi pour voir les séparations */
-}
+  #park {
+    background-color: blueviolet;
+    /* Juste pour moi pour voir les séparations */
+  }
 
-#park input[type="button"] {
-  background-color: #1CA4ED;
-  border-radius: 15px;
-  height: 50px;
-  width: fit-content;
-  padding-inline: 20px;
-  border: none;
-  margin-left: 10px;
-}
+  #park input[type="button"] {
+    background-color: #1CA4ED;
+    border-radius: 15px;
+    height: 50px;
+    width: fit-content;
+    padding-inline: 20px;
+    border: none;
+    margin-left: 10px;
+  }
 
-#park input[type="button"]:hover
-{
-box-shadow: none;
-}
+  #park input[type="button"]:hover {
+    box-shadow: none;
+  }
 
-/* en cas de clic sur les  boutons */
-#park input[type="button"]:active
-{
-box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
-  inset 4px 4px 4px #1883bc;
-}
+  /* en cas de clic sur les  boutons */
+  #park input[type="button"]:active {
+    box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+      inset 4px 4px 4px #1883bc;
+  }
 
-#activity{
-  background-color: cyan;
-}
+  #activity {
+    background-color: cyan;
+  }
 
-#activity article >p >textarea[id="txtAct"] {
+  #activity article>p>textarea[id="txtAct"] {
 
-  resize: none;
-  height: px;
-  width: 100px;
-  text-align: center;
-  
+    resize: none;
+    height: px;
+    width: 100px;
+    text-align: center;
+
+  }
 }
