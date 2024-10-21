@@ -23,14 +23,7 @@
         <!-- Zone de texte pour le resume avec un id car c'est la meme zone de texte que sur lapage visit -->
     </article>
 
-
-
-
-
-
-
-
-
+    
 
 
 </section>
