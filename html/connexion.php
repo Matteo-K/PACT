@@ -20,7 +20,7 @@
         
         if ($admin && $password == $admin['password']) {
             // Connexion réussie
-            $_SESSION['idUser'] = $admin['idU'];
+            $_SESSION['idUser'] = $admin['u.idU'];
             $_SESSION['typeUser'] = 'admin';
 
             header('Location: index.php'); // Rediriger vers une page protégée
