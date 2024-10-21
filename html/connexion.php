@@ -19,6 +19,7 @@
         $admin = $stmt->fetch(PDO::FETCH_ASSOC);
         
         if ($admin && $password == $admin['password']) {
+            print_r($admin);
             // Connexion réussie
             $_SESSION['idUser'] = $admin['idU'];
             $_SESSION['typeUser'] = 'admin';
