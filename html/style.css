@@ -1149,6 +1149,7 @@ body[id="body_creation_compte_pro"] {
 
 a[id="lienCGU"] {
   color: white;
+  text-decoration: underline;
 }
 
 a[id="lienCGU"]:hover {
@@ -1158,6 +1159,7 @@ a[id="lienCGU"]:hover {
 a[id="lienConnexion"] {
   color: white;
   font-family: "Belanosima", sans-serif;
+  text-decoration: underline;
 }
 
 a[id="lienConnexion"]:hover {
