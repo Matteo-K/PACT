@@ -135,9 +135,9 @@
                 $siren = trim($_POST['siren']);
                 $motdepasse = $_POST['motdepasse'];
 
-                $adresseParts = explode(' ', $adresse, 2); 
-                $numeroRue = isset($adresseParts[0]) ? $adresseParts[0] : '';
-                $rue = isset($adresseParts[1]) ? $adresseParts[1] : '';
+                $adresseExplode = explode(' ', $adresse, 2); 
+                $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
+                $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
 
                 // Hashage du mot de passe
                 $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
