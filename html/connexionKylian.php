@@ -1,6 +1,10 @@
 <?php
 session_start();
-include 'db.php'; // Fichier de configuration pour la connexion à la BDD
+include 'dbLocalKylian.php'; // Fichier de configuration pour la connexion à la BDD
+
+if(isset($_SESSION["idUser"])){
+    header("location: index.php");
+}
 
 // On vérifie si le formulaire a été soumis
 if (isset($_POST['submit'])) {
@@ -18,9 +22,9 @@ if (isset($_POST['submit'])) {
 
         // Vérification du mot de passe pour l'admin
         if ($admin && $password == $admin['password']) { // Remplacez par password_verify si les mots de passe sont hashés
-            $_SESSION['user_id'] = $admin['idU'];
+            $_SESSION['idUser'] = $admin['idU'];
             $_SESSION['user_type'] = 'admin';
-            header("Location: components/header.php"); // Redirection vers la page admin
+            header("Location: detailsOffer.php"); // Redirection vers la page admin
             exit(); // S'assurer que le script s'arrête après la redirection
         } else {
             // Si ce n'est pas un admin, on vérifie si c'est un membre non admin
@@ -33,7 +37,7 @@ if (isset($_POST['submit'])) {
 
             // Vérification du mot de passe pour le membre
             if ($membre && $password == $membre['password']) { // Remplacez par password_verify si les mots de passe sont hashés
-                $_SESSION['user_id'] = $membre['idU'];
+                $_SESSION['idUser'] = $membre['idU'];
                 $_SESSION['user_type'] = 'membre';
                 header("Location: membre_dashboard.php"); // Redirection vers la page membre
                 exit(); // S'assurer que le script s'arrête après la redirection
