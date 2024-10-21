@@ -274,10 +274,9 @@ header div > a > img {
 
 #manageOffer aside {
   position: absolute;
-  top: v0;
+  top: 0;
   left: 0;
   width: 17em;
-  height: clamp(520px, 65vh, 580px);
   background-color: var(--bloc);
   border-radius: 0 0 50px 0;
 }
@@ -319,7 +318,6 @@ header div > a > img {
 }
 
 #manageOffer aside > :nth-child(3) {
-  height: 10vh;
   gap: 10px;
 }
 
@@ -635,7 +633,8 @@ header div > a > img {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-.buttonDetailOffer, .tag {
+.buttonDetailOffer,
+.tag {
   display: inline-block;
   font-size: 22px;
   padding: 5px 30px;
@@ -883,16 +882,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 5em;
   color: var(--bloc);
   margin-bottom: 0.5em;
-  
 }
 
-.tag{
-
+.tag {
   background-color: var(--accent);
   box-shadow: none;
 }
 
-.mainOffer > div{
+.mainOffer > div {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
