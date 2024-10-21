@@ -15,7 +15,7 @@ session_start();
 </head>
 <body>
     <script src="js/setColor.js"></script>
-    <?php require_once "components/header.php" ?>
+    <?php require_once "components/headerTest.php" ?>
     <main class="mainOffer">
         <h2 id="titleOffer">Le Village Gaulois</h2>
         <div>

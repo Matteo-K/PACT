@@ -26,7 +26,7 @@
             </div>
 
 
-            <label for="photos" id="labelAjoutPhoto" class="buttonDetailOffer">Ajouter</label>
+            <label for="photos" id="labelAjoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
             <input type="file" id="photos" name="photos" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" multiple>
 
             <div id="afficheImages"></div>
@@ -59,10 +59,10 @@
     </article>
     <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
     <?php
-        require_once "details/detailsActivity.php";
         require_once "details/detailsVisit.php";
+        require_once "details/detailsShow.php";
         require_once "details/detailsPark.php";
-       // require_once "details/detailsShow.php";
+        require_once "details/detailsActivity.php";
         
     ?>
  

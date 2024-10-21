@@ -41,7 +41,25 @@
         }
     } else {
     ?>
-        <h4>Ajouter une date pour le spectacle</h4>
+        <div>
+            <h4>Ajouter une date pour le spectacle&nbsp;:&nbsp;</h4>            
+        </div>
+        <div id="Representation">
+            <div>
+                <!-- Saisie de la date -->
+                <!-- Lors de l'ajout dans la base de donnée, il faut vérifier si la date éxiste déjà à la même heure -->
+                <input type="date" name="dateRepN1" id="dateRepresentation" value="<?php echo date("Y-m-j"); ?>" min="<?php echo date("Y-m-j"); ?>">
+                <!-- Saisie des heures -->
+                <span class="hourly1">
+                    <label for="HRepN1_part1.1">Représentation de</label>
+                    <input type="time" name="HRepN1_part1.1" id="HRepN1_part1.1">
+                    <label for="HRepN1_part1.2">à</label>
+                    <input type="time" name="HRepN1_part1.2" id="HRepN1_part1.2">
+                </span>
+                <input type="button" value="Retirer" name="btnRetirerRepN1" id="btnRetirerRepN1" class="blueBtnOffer" onclick="removeDateRep(this)">
+            </div>
+        </div>
+        <input type="button" value="Ajouter une date" name="addRep" id="addRep" class="guideSelect" onclick="addDateRep()">
     <?php
     }
     ?>

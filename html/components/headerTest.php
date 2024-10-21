@@ -1,4 +1,9 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION["idUser"]);
+?>
 
+<link rel="stylesheet" href="../style.css">
 <header theme="light">
     <div>
         <a href="../index.php">
@@ -12,6 +17,15 @@
     </form>
 
     <div id="auth">
-        <a href="../login.php"><div id="btnConn">Connexion</div></a>
+        <?php
+        if($isLoggedIn){
+            echo "test";
+
+        } else{
+            ?>
+            <a href="../login.php"><div id="btnConn">Connexion</div></a>
+        <?php
+        }
+        ?>
     </div>
 </header>

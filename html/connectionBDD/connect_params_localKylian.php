@@ -1,7 +1,7 @@
 <?php
-    $server = 'localhost';
+    $server = 'the-void.ventsdouest.dev';
     $driver = 'pgsql';
-    $dbname = 'bdd';
-    $user   = '...';
-    $pass	= '...';
+    $dbname = 'sae';
+    $user   = 'sae';
+    $pass	= 'digital-costaRd-sc0uts';
 ?>
