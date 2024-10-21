@@ -11,24 +11,23 @@
     // Vérification du formulaire
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $login = $_POST['login'];
-        $password = $_POST['motdepasseConnexion']; // Nom mis à jour pour correspondre au formulaire
+        $password = $_POST['motdepasseConnexion'];
 
         // Vérification admin
         $stmt = $conn->prepare("SELECT * FROM pact._admin a JOIN pact._utilisateur u ON a.idU = u.idU WHERE a.login = ?");
         $stmt->execute([$login]);
-        $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if ($admin && $password == $admin['password']) {
-            print_r($admin);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch a single row
+
+        if ($result && $password == $result['password']) {
             // Connexion réussie
-            $_SESSION['idUser'] = $admin['idU'];
+            $_SESSION['idUser'] = $result['idU'];
             $_SESSION['typeUser'] = 'admin';
 
             header('Location: index.php'); // Rediriger vers une page protégée
             exit();
         } else {
             // Vérification pro
-            $stmt = $conn->prepare("SELECT mail, idU, motdepasse, siren FROM proPublic WHERE mail = ? UNION SELECT mail, idU, motdepasse, siren FROM proPrive WHERE mail = ?;");
+            $stmt = $conn->prepare('SELECT mail, idU, motdepasse, siren FROM propublic WHERE mail = ? UNION SELECT mail, idU, motdepasse, siren FROM proprive WHERE mail = ?;');
             $stmt->execute([$login, $login]);
             $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
     
@@ -37,7 +36,7 @@
                 $_SESSION['idUser'] = $proUser['idU'];
                 $_SESSION['typeUser'] = $proUser['siren'] ? 'pro_prive' : 'pro_public'; // Détermine le type
     
-                header("Location: index.php"); // Rediriger vers une page protégée
+                header("Location: index.php");
                 exit();
             } else {
                 // Vérification membre
@@ -50,7 +49,7 @@
                     $_SESSION['idUser'] = $member['idU'];
                     $_SESSION['typeUser'] = 'membre';
 
-                    header("Location: index.php"); // Rediriger vers une page protégée
+                    header("Location: index.php");
                     exit();
                 } else {
                     $error = "Identifiant ou mot de passe incorrect.";
@@ -59,19 +58,20 @@
         }
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_connexion.css">
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
     <title>Connexion</title>
 </head>
 <body id="body_connexion">
     <aside id="asideRetour">
         <button id="retour" onclick="history.back();">
-            <img src="logo.png" alt="Logo" title="Retour page précédente"/>
+            <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
             Retour
         </button>
     </aside>
