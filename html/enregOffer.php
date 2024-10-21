@@ -19,7 +19,11 @@ if ($page == -1 || $page == 0) {
 } else {
   
 }
-
-header("Location: manageOffer.php?page=" . $page."&idOffre=".$idOffre);
-exit();
 ?>
+<form id="myForm" action="manageOffer.php" method="POST">
+    <input type="hidden" name="page" value="<?php echo $page; ?>">
+    <input type="hidden" name="idOffre" value="<?php echo $idOffre; ?>">
+</form>
+<script>
+    document.getElementById('myForm').submit();
+</script>

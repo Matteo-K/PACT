@@ -1,5 +1,6 @@
 <form id="detailsOffer" action="enregOffer.php" method="post">
     <article id="artDetailOffer">
+
         <div>
 
             <label for="nom">Nom de votre offre*</label>
@@ -25,7 +26,7 @@
             </div>
 
 
-            <label for="photos" id="labelAjoutPhoto" class="buttonDetailOffer">Ajouter</label>
+            <label for="photos" id="labelAjoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
             <input type="file" id="photos" name="photos" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" multiple>
 
             <div id="afficheImages"></div>
@@ -33,19 +34,19 @@
 
             <div id="choixCategorie">
                 <label for="categorie">Catégorie de l'offre*</label>   
-                <input type="radio" name="categorie" id="radioRestaurant" value=restaurant> <label for="radioRestaurant">Restaurant</label>
+                <input type="radio" name="categorie" id="radioRestaurant" value=restaurant required> <label for="radioRestaurant">Restaurant</label>
                 <input type="radio" name="categorie" id="radioParc" value=parc> <label for="radioParc">Parc d'attraction</label>
                 <input type="radio" name="categorie" id="radioActivite" value=activite> <label for="radioActivite">Activite</label>
                 <input type="radio" name="categorie" id="radioSpectacle" value=spectacle> <label for="radioSpectacle">Spectacle</label>
                 <input type="radio" name="categorie" id="radioVisite" value=visite> <label for="radioVisite">Visite</label>
             </div>
 
-            <label for="tag">Tags supplémentaires </label>
-            <input type="text" id="tag" name="tag" placeholder="Entrez un tag décrivant votre activité / établissement">
-            <button type="button" value = ajoutTag class="buttonDetailOffer">Ajouter</button>
+            <label for="inputTag">Tags supplémentaires </label>
+            <input type="text" id="inputTag" name="inputTag" placeholder="Entrez un tag décrivant votre activité / établissement">
+            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button>
 
-            <section>
-                
+            <section id="sectionTag">
+                <!-- Les tags ajoutés apparaîtront ici -->
             </section>
 
             <p>
@@ -58,10 +59,10 @@
     </article>
     <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
     <?php
-        require_once "details/detailsActivity.php";
         require_once "details/detailsVisit.php";
+        require_once "details/detailsShow.php";
         require_once "details/detailsPark.php";
-       // require_once "details/detailsShow.php";
+        require_once "details/detailsActivity.php";
         
     ?>
  

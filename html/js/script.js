@@ -6,7 +6,7 @@ searchBar.addEventListener("input", (e) => {
   formHeader.setAttribute("action", "search.php?search=" + e.target.value);
 });
 
-//Page DetailsOffer
+//Page DetailsOffer by EWEN 
 try {
   let compteurImages = 0;
   document
@@ -36,7 +36,91 @@ try {
         reader.readAsDataURL(file);
       });
     });
+
+
+
+
+    // Sélection des éléments HTML
+  const tagInput = document.getElementById('inputTag');
+  const addButton = document.getElementById('ajoutTag');
+  const tagSection = document.getElementById('sectionTag');
+
+  const p = document.querySelector('#sectionTag + p');
+  let tags = []; // Tableau pour stocker les tags
+
+  // Fonction pour ajouter un tag
+  addButton.addEventListener('click', function() {
+      const tagValue = tagInput.value.trim(); // Récupère la valeur de l'input et enlève les espaces
+
+      if (tagValue && !tags.includes(tagValue) && tags.length < 6) {
+          tags.push(tagValue); // Ajoute le tag au tableau
+
+          // Crée l'élément pour afficher le tag
+          const tagElement = document.createElement('span');
+          tagElement.classList.add('tag');
+          tagElement.textContent = tagValue;
+
+          // Ajoute un événement pour supprimer le tag au clic
+          tagElement.addEventListener('click', function() {
+              removeTag(tagValue, tagElement);
+          });
+
+          tagSection.appendChild(tagElement); // Ajoute l'élément à la section
+
+          tagInput.value = ''; // Réinitialise l'input
+      } else if (tags.length >= 6) {
+          p.style.color="red";
+      }
+  });
+
+  // Fonction pour supprimer un tag
+  function removeTag(tagValue, tagElement) {
+  p.style.color="black"; //on remet la couleur pas defaut au cas où c'etait en rouge
+  tags = tags.filter(tag => tag !== tagValue); // Supprime le tag du tableau
+  tagSection.removeChild(tagElement); // Supprime l'élément visuel
+  tags.remove(tagElement);
+  }
 } catch (error) {}
+
+/* Affichage pour un type d'offre particulier */
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sélection des éléments du formulaire et des radios
+        const radioRestaurant = document.getElementById('radioRestaurant');
+        const autresCategories = [
+            document.getElementById('radioParc'),
+            document.getElementById('radioActivite'),
+            document.getElementById('radioSpectacle'),
+            document.getElementById('radioVisite')
+        ];
+        
+        const specialOffer = document.getElementById('specialOffer'); // Div contenant les requires_once
+
+        // Fonction pour afficher ou masquer la div des require_once
+        function toggleSpecialOffer() {
+            if (radioRestaurant.checked) {
+                // Si "Restaurant" est sélectionné, on cache le contenu des détails
+                specialOffer.style.display = 'none';
+            } else {
+                // Sinon, on affiche les autres détails
+                specialOffer.style.display = 'block';
+            }
+        }
+
+        // Associe la fonction de toggle au clic sur tous les boutons radio
+        radioRestaurant.addEventListener('click', toggleSpecialOffer);
+        autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
+
+        // Appel initial de la fonction pour vérifier l'état initial
+        toggleSpecialOffer();
+    });
+
+
+
+
+
+
 
 // Code pour envoyer les images au serveur
 // const formData = new FormData();

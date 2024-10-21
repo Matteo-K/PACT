@@ -13,15 +13,6 @@
 
         </div>
         <div>
-            <label>Résumé</label> <!-- Label resume -->
-            <br>
-
-            <textarea name="texteResumeVisit" id="Resume" placeholder="Résumé de la visite"></textarea>
-            <!-- Zone de texte avec le resume de la visite -->
-        </div>
-    </article> <!-- fin du 1er article -->
-    <article id="ArtVisit"> <!-- début du 2ème article (pour le positionnement)-->
-        <div>
             <label>Accessibilité</label> <!-- Label Accessibilité -->
             <br>
 
@@ -32,9 +23,9 @@
             <label for="radioButtonAccesPmrRequis"> Accès personne handicapées</label>
             <!-- Label associé au bouton radio -->
             <br>
-            <input type="radio" id="radioButtonAccesPmrNonRequis" name="Accessibilité"
+            <input type="radio" id="pasAcces" name="Accessibilité"
                 value="Pas d’accès personne handicapées"> <!-- 2eme bouton radio liés au 1er via l'id -->
-            <label for="Pas d’accès personne handicapées"> Pas d’accès personne handicapées </label>
+            <label for="pasAcces"> Pas d’accès personne handicapées </label>
             <!-- Label du 2eme bouton radio -->
             <br>
         </div>
