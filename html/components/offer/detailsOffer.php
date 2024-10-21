@@ -34,7 +34,7 @@
 
             <div id="choixCategorie">
                 <label for="categorie">Catégorie de l'offre*</label>   
-                <input type="radio" name="categorie" id="radioRestaurant" value=restaurant> <label for="radioRestaurant">Restaurant</label>
+                <input type="radio" name="categorie" id="radioRestaurant" value=restaurant required> <label for="radioRestaurant">Restaurant</label>
                 <input type="radio" name="categorie" id="radioParc" value=parc> <label for="radioParc">Parc d'attraction</label>
                 <input type="radio" name="categorie" id="radioActivite" value=activite> <label for="radioActivite">Activite</label>
                 <input type="radio" name="categorie" id="radioSpectacle" value=spectacle> <label for="radioSpectacle">Spectacle</label>
@@ -43,7 +43,7 @@
 
             <label for="inputTag">Tags supplémentaires </label>
             <input type="text" id="inputTag" name="inputTag" placeholder="Entrez un tag décrivant votre activité / établissement">
-            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer">Ajouter</button>
+            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button>
 
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->

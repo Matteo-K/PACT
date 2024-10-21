@@ -29,15 +29,15 @@ h4 {
   font-size: 3rem;
 }
 
-h2 {
+h1 {
   font-size: 2.5rem;
 }
 
-h1 {
+h2 {
   font-size: 2rem;
 }
 
-h1 {
+h3 {
   font-size: 1.5rem;
 }
 
@@ -468,12 +468,12 @@ header div > a > img {
 }
 
 #selectOffer input[type="radio"],
-#detailsOffer article:first-child input[type="radio"] {
+#detailsOffer #artDetailOffer input[type="radio"] {
   display: none;
 }
 
 #selectOffer input[type="radio"] + label,
-#detailsOffer article:first-child input[type="radio"] + label {
+#detailsOffer #artDetailOffer input[type="radio"] + label {
   display: inline-block;
   padding: 5px 30px;
   border-radius: 50px;
@@ -489,7 +489,7 @@ header div > a > img {
 }
 
 #selectOffer input[type="radio"]:checked + label,
-#detailsOffer article:first-child input[type="radio"]:checked + label {
+#detailsOffer #artDetailOffer input[type="radio"]:checked + label {
   background-color: var(--accent);
   box-shadow: inset -4px -4px 4px #bb880e;
 }
@@ -522,7 +522,8 @@ header div > a > img {
   margin-bottom: -7px;
 }
 
-#hourlyOffer h4 {
+#hourlyOffer h4,
+#contactOffer h4 {
   font-family: "Lato", sans-serif;
   font-weight: normal;
   font-size: 1.25em;
@@ -590,11 +591,51 @@ header div > a > img {
   gap: 10px;
 }
 
+/* ------------------------- END HOURLY OFFER CSS --------------------------------*/
+/* ------------------------- Contact OFFER CSS --------------------------------*/
+
+#contactOffer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 10px;
+}
+
+#contactOffer h4 {
+  margin-bottom: 10px;
+}
+
+#contactOffer div > div {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#contactOffer input[type="text"],
+#contactOffer input[type="email"],
+#contactOffer input[type="tel"] {
+  text-indent: 0;
+  padding: 10px;
+  width: 70%;
+  min-width: 300px;
+  border: solid 2px var(--secondary);
+}
+
+#contactOffer input[type="email"] {
+  width: 50%;
+}
+
+#contactOffer input[type="tel"] {
+  width: 150px;
+  min-width: 150px;
+}
+
+/* ------------------------- END Contact OFFER CSS --------------------------------*/
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-.buttonDetailOffer {
+.buttonDetailOffer, .tag {
   display: inline-block;
   font-size: 22px;
   padding: 5px 30px;
@@ -688,12 +729,11 @@ header div > a > img {
   height: auto;
 }
 
-
-
 #choixCategorie {
-  width: calc(70% + 141.625px);/*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
+  width: calc(
+    70% + 141.625px
+  ); /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
 }
-
 
 #inputTag {
   width: 70%;
@@ -718,7 +758,6 @@ header div > a > img {
   flex-wrap: wrap;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -827,10 +866,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     ~~~~~~~~~~~~~~~~~~~~~~~~~DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*  ***************************************************************************************
+     **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
+     *************************************************************************************** */
 
 .mainOffer {
   display: flex;
@@ -844,25 +882,25 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #titleOffer {
-  margin-top: calc(var(--header-size) + 0.5em);
+  margin-top: calc(var(--header-size) + 0.6em);
   font-size: 5em;
   color: var(--bloc);
-}
-#titleOffer {
-  margin-top: calc(var(--header-size) + 0.5em);
-  font-size: 5em;
-  color: var(--bloc);
+  margin-bottom: 0.5em;
+  
 }
 
-/* Swiper Styles */
-.swiper-container {
-  position: relative;
-  /* Allow positioning of buttons */
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  /* Center the container */
+.tag{
+
+  background-color: var(--accent);
+  box-shadow: none;
 }
+
+.mainOffer > div{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
 /* Swiper Styles */
 .swiper-container {
   position: relative;
@@ -1007,14 +1045,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #specialOffer {
   /* toute la partie spécifique a une offre */
-#specialOffer {
-  /* toute la partie spécifique a une offre */
+  #specialOffer {
+    /* toute la partie spécifique a une offre */
 
-  margin-bottom: 10px;
-  /* marge de 10 px en bas */
-  gap: 10px;
-  /* gap de 10 px */
-}
+    margin-bottom: 10px;
+    /* marge de 10 px en bas */
+    gap: 10px;
+    /* gap de 10 px */
+  }
   margin-bottom: 10px;
   /* marge de 10 px en bas */
   gap: 10px;
@@ -1053,25 +1091,271 @@ textarea[id="Resume"] {
 }
 
 #visit {
-  background-color: orange;
-  /* Juste pour moi voir les separations */
-  vertical-align: top;
-}
-#visit {
-  background-color: orange;
-  /* Juste pour moi voir les separations */
-  vertical-align: top;
+  display: flex;
 }
 
 #show {
-  background-color: yellow;
+  margin-top: 5px;
   /* Juste pour moi voir les separations */
 }
-#show {
-  background-color: yellow;
-  /* Juste pour moi voir les separations */
+/* #show */
+
+#park {
+  background-color: blueviolet; /* Juste pour moi pour voir les séparations */
 }
 
-#park{
-  background-color:blueviolet; /* Juste pour moi pour voir les séparations */
+#park input[type="button"] {
+  background-color: #1ca4ed;
+  border-radius: 15px;
+  height: 50px;
+  width: fit-content;
+  padding-inline: 20px;
+  border: none;
+  margin-left: 10px;
+}
+
+#park input[type="button"]:hover {
+  box-shadow: none;
+}
+
+/* en cas de clic sur les  boutons */
+#park input[type="button"]:active {
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #1883bc;
+}
+
+#activity {
+  background-color: cyan;
+}
+
+#activity article > p > textarea[id="txtAct"] {
+  resize: none;
+  height: px;
+  width: 100px;
+  text-align: center;
+}
+
+/*+++++++++++++++++++++++++++++++++++++++++++*/
+/* Css page création de compte pro, Antoine */
+/*++++++++++++++++++++++++++++++++++++++++++*/
+body[id="body_creation_compte_pro"] {
+  background-image: url("fond.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+a[id="lienCGU"] {
+  color: white;
+  text-decoration: underline;
+}
+
+a[id="lienCGU"]:hover {
+  color: #edae14;
+}
+
+a[id="lienConnexion"] {
+  color: white;
+  font-family: "Belanosima", sans-serif;
+  text-decoration: underline;
+}
+
+a[id="lienConnexion"]:hover {
+  color: #edae14;
+}
+
+h1[id="inscriptionTitre"] {
+  text-align: center;
+  margin: 30px 10px;
+  color: #034d7c;
+  font-weight: 100;
+  font-size: 65px;
+}
+
+body[id="body_creation_compte_pro"] h2 {
+  font-weight: 100;
+}
+
+aside[id="asideRetour"] {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+button[id="retour"] {
+  background: none;
+  border: none;
+  color: #034d7c;
+  text-decoration: underline;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+aside[id="asideRetour"] > button[id="retour"] > img {
+  vertical-align: middle;
+  width: 70px;
+  height: 65px;
+  margin-right: 5px;
+}
+
+.creation-compte form {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  border-radius: 20px;
+  padding: 15px;
+  margin: auto;
+  width: 900px;
+  height: auto;
+  background-color: #034d7c;
+  color: white;
+}
+
+body[id="body_creation_compte_pro"]::placeholder {
+  font-size: 20px;
+}
+
+.creation-compte div {
+  display: inline;
+  justify-content: center;
+  margin: 10px;
+}
+
+.creation-compte label {
+  font-size: 25px;
+  margin: 5px;
+  text-align: left;
+}
+
+.creation-compte div.ligne1 > label,
+div.ligne6 > label {
+  display: inline-block;
+  width: 408px;
+}
+
+.creation-compte div.ligne2 > label,
+div.ligne3 > label {
+  display: flex;
+  justify-content: left;
+  width: 823px;
+  margin: 5px auto;
+}
+
+.creation-compte div.ligne4 > label {
+  display: inline-block;
+  width: 215px;
+}
+
+.creation-compte div.ligne4 > label[for="ville"] {
+  width: 601px;
+}
+
+.creation-compte .ligne5 {
+  display: flex;
+  align-items: center;
+  margin: 10px 26px;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.creation-compte .ligne5_1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.creation-compte .ligne5 input[type="radio"] {
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+.creation-compte .ligne5 label {
+  margin-right: 20px;
+  margin-left: 5px;
+  font-size: 25px;
+}
+
+.creation-compte .ligne5_1 label {
+  margin: 0;
+  font-size: 25px;
+}
+
+.creation-compte .ligne7 {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  text-align: left;
+  justify-content: center;
+}
+
+.creation-compte input {
+  font-size: 20px;
+  padding-left: 0 5px;
+  border: 0;
+}
+
+input[id="denomination"],
+input[id="telephone"],
+input[id="motdepasse"],
+input[id="confirmer"] {
+  width: 403px;
+  height: 40px;
+  margin: 0 5px;
+  border: 3px solid #edae14;
+}
+
+input[id="email"],
+input[id="adresse"] {
+  width: 823px;
+  height: 40px;
+  margin: 0 5px;
+  border: 3px solid #edae14;
+}
+
+input[id="code"] {
+  width: 210px;
+  height: 40px;
+  margin: 0 5px;
+  border: 3px solid #edae14;
+}
+
+input[id="ville"] {
+  width: 596px;
+  height: 40px;
+  margin: 0 5px;
+  border: 3px solid #edae14;
+}
+
+input[id="public"],
+input[id="prive"] {
+  width: 25px;
+  height: 25px;
+  margin: 0 5px;
+}
+
+input[id="siren"] {
+  width: 408px;
+  height: 40px;
+  /* margin: 0 5px; */
+  margin-right: 0;
+  margin-left: 10px;
+  border: 3px solid #edae14;
+}
+
+input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  margin: 0 5px;
+}
+
+button[id="boutonInscriptionPro"] {
+  width: 200px;
+  font-size: 25px;
+  height: 60px;
+  border-radius: 15px;
+  margin: 5px auto;
+  background-color: #edae14;
 }
