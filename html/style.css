@@ -1070,6 +1070,67 @@ textarea[id="Resume"] {
   /* Juste pour moi pour voir les séparations */
 }
 
-#park{
-  background-color:blueviolet; /* Juste pour moi pour voir les séparations */
+#park input[type="button"] {
+  background-color: #1CA4ED;
+  border-radius: 15px;
+  height: 50px;
+  width: fit-content;
+  padding-inline: 20px;
+  border: none;
+  margin-left: 10px;
+}
+
+#park input[type="button"]:hover
+{
+box-shadow: none;
+}
+
+/* en cas de clic sur les  boutons */
+#park input[type="button"]:active
+{
+box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+  inset 4px 4px 4px #1883bc;
+}
+
+#activity{
+  background-color: cyan;
+}
+
+#activity article >p >textarea[id="txtAct"] {
+
+  resize: none;
+  height: px;
+  width: 100px;
+  text-align: center;
+  
+}
+  width: fit-content;
+  padding-inline: 20px;
+  border: none;
+  margin-left: 10px;
+}
+
+#park input[type="button"]:hover
+{
+box-shadow: none;
+}
+
+/* en cas de clic sur les  boutons */
+#park input[type="button"]:active
+{
+box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+  inset 4px 4px 4px #1883bc;
+}
+
+#activity{
+  background-color: cyan;
+}
+
+#activity article >p >textarea[id="txtAct"] {
+
+  resize: none;
+  height: px;
+  width: 100px;
+  text-align: center;
+  
 }
