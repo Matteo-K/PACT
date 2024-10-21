@@ -1,0 +1,180 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
+
+* {
+    font-family: "Lato", sans-serif;
+}
+
+h1, h2, h3, h4 {
+    font-family: "Belanosima", sans-serif;
+}
+
+/* Css page connexion, Antoine */
+body[id="body_connexion"] {
+    background-image: url("fond.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+main[id="mainConnexion"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+a[id="lienMotDePasseOublie"] {
+    color: white;
+    font-size: 25px;
+    margin: 30px 0;
+}
+
+a[id="lienMotDePasseOublie"]:hover {
+    color: #edae14;
+}
+
+a {
+    text-decoration: underline;
+    color: white;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+h1[id="connexionTitre"] {
+    text-align: center;
+    margin: 30px 10px;
+    color: #034D7C;
+    font-weight: 100;
+    font-size: 65px;
+}
+
+h1[id="pasDeCompteTitre"] {
+    text-align: center;
+    margin: 50px 10px;
+    color: #034D7C;
+    font-weight: 100;
+    font-size: 50px;
+}
+
+aside[id="asideRetour"] {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+button[id="retour"] {
+    background: none;
+    border: none;
+    color: #034D7C;
+    text-decoration: underline;
+    font: inherit;
+    cursor: pointer;
+    padding: 0; 
+}
+
+aside[id="asideRetour"] > button[id="retour"] > img {
+    vertical-align: middle;
+    width: 70px;
+    height: 65px;
+    margin-right: 5px;
+}
+
+form {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    border-radius: 20px;
+    padding: 15px;
+    margin: auto;
+    width: 500px;
+    height: auto;
+    background-color: #034D7C;
+    color: white;
+}
+
+::placeholder {
+    font-size: 20px;
+}
+
+div {
+    display: inline;
+    justify-content: center;
+    margin: 10px;
+}
+
+div[id="lienBouton"] {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+div[id="lienBouton"] > div{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+}
+
+label {
+    font-size: 25px;
+    margin: 5px;
+    text-align: left;
+}
+
+
+div.ligne1 > label {
+    display: inline-block;
+    width: 408px;
+}
+
+
+input {
+    font-size: 20px;
+    padding-left: 0 5px;
+    border: 0;
+}
+
+input[id="login"]{
+    width: 403px;
+    height: 40px;
+    margin: 0 5px;
+    margin-top: 30px;
+    border: 3px solid #edae14;
+}
+
+input[id="motdepasseConnexion"]{
+    width: 403px;
+    height: 40px;
+    margin: 0 5px;
+    margin-top: 30px;
+    border: 3px solid #edae14;
+}
+
+button[id = "boutonConnexion"]{
+    width: 200px;
+    font-size: 25px;
+    height: 60px;
+    border-radius: 15px;
+    margin: 5px auto;
+    margin-top: 30px;
+    background-color: #edae14;
+}
+
+button[id="boutonLienMembre"], button[id="boutonLienPro"]{
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 15px;
+    margin: 5px auto;
+    margin-top: 30px;
+    background-color: #edae14;
+}
+
+p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
+    font-size: 20px;
+    color: #034D7C;
+    width: 550px;
+}

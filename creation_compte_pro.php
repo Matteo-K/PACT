@@ -1,3 +1,7 @@
+<?php 
+    // Démarrer la session
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head> 
@@ -7,7 +11,7 @@
     <link rel="icon" href="logo.png" type="image/x-icon">
     <title>Créer un compte</title>
 </head>
-<body id ="body_creation_compte_pro">
+<body id ="body_creation_compte_pro" class="creation-compte">
     <aside id="asideRetour">
         <button id="retour">
             <img src="logo.png" alt="Logo" title="Retour page précédente"/>
@@ -25,7 +29,7 @@
             <input type="text" placeholder = "MonEntreprise" id="denomination" name="denomination" required>
 
             <!-- Saisi du numéro de téléphone -->
-            <input type="text" placeholder = "06 01 02 03 04" id = "telephone" name="telephone" required>
+            <input type="tel" placeholder = "06 01 02 03 04" id = "telephone" name="telephone" required>
         </div>
 
 
@@ -103,45 +107,53 @@
         <button onclick = "validationFormInscription()" id="boutonInscriptionPro">S'inscrire</button>
         <script src = validationFormInscription.js></script>
 
-        <h2>Vous avez déjà un compte ? <a href="connexion.html"></a>Se connecter</h2>
+        <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="connexion.php">Se connecter</a></h2>
     </form>
 
 
     <?php
-        // Démarrer la session
-        session_start();
-
         // Configuration de la base de données
-        $host = 'localhost'; // Hôte de ta base de données
-        $db = 'nom_de_la_base_de_donnees'; // Nom de ta base de données
-        $user = 'nom_utilisateur'; // Ton nom d'utilisateur
-        $pass = 'mot_de_passe'; // Ton mot de passe
+        $host = 'the-void.ventsdouest.dev'; // Hôte de ta base de données
+        $db = 'sae'; // Nom de la base de données
+        $user = 'sae'; // Nom d'utilisateur
+        $pass = 'digital-costaRd-sc0uts'; // Mot de passe
 
         try {
             // Connexion à la base de données
-            $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+            $pdo = new PDO("pgsql:host=$host;dbname=$db;charset=utf8", $user, $pass);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Récupérer les données du formulaire
                 $denomination = trim($_POST['denomination']);
                 $telephone = trim($_POST['telephone']);
-                $email = trim($_POST['email']);
+                $mail = trim($_POST['email']);
                 $adresse = trim($_POST['adresse']);
                 $code = trim($_POST['code']);
                 $ville = trim($_POST['ville']);
+                $secteur = $_POST['secteur'];
                 $siren = trim($_POST['siren']);
                 $motdepasse = $_POST['motdepasse'];
-                $cgu = isset($_POST['cgu']) ? 1 : 0;
+
 
                 // Hashage du mot de passe
                 $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
 
-                // Préparer et exécuter la requête d'insertion
-                $stmt = $pdo->prepare("INSERT INTO utilisateurs (denomination, telephone, email, adresse, code, ville, siren, motdepasse, cgu)
-                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                // Préparer la requête d'insertion en fonction du secteur
+
+                // pro public
+                if ($secteur == 'public') {
+                    $stmt = $pdo->prepare("INSERT INTO proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, 'France', ?, 'img/profile_picture/default.svg')");
+                    $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $adresse, $code, $ville]);
+                } 
+
+                // pro privé
+                else { 
+                    $stmt = $pdo->prepare("INSERT INTO proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, 'France', ?, 'img/profile_picture/default.svg')");
+                    $stmt->execute([$denomination, $siren, $hashedPassword, $telephone, $mail, $adresse, $code, $ville, ]);
+                }
                 
-                $stmt->execute([$denomination, $telephone, $email, $adresse, $code, $ville, $siren, $hashedPassword, $cgu]);
+                $stmt->execute([$denomination, $telephone, $mail, $adresse, $code, $ville, $siren, $hashedPassword]);
 
                 // Redirection vers une page de succès
                 header('Location: success.html');

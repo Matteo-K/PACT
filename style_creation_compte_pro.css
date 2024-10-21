@@ -1,17 +1,17 @@
-/* Css page création de compte pro */
 
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
 
 * {
-  font-family: "Lato", sans-serif;
+    font-family: "Lato", sans-serif;
 }
 
 h1, h2, h3, h4 {
-  font-family: "Belanosima", sans-serif;
+    font-family: "Belanosima", sans-serif;
 }
 
+/* Css page création de compte pro, Antoine */
 body[id="body_creation_compte_pro"] {
     background-image: url("fond.png");
     background-repeat: no-repeat;
@@ -27,12 +27,25 @@ a[id="lienCGU"]:hover {
     color: #edae14;
 }
 
+a[id="lienConnexion"] {
+    color: white;
+    font-family: "Belanosima", sans-serif;
+}
+
+a[id="lienConnexion"]:hover {
+    color: #edae14;
+}
+
 h1[id="inscriptionTitre"] {
     text-align: center;
     margin: 30px 10px;
     color: #034D7C;
     font-weight: 100;
     font-size: 65px;
+}
+
+body[id="body_creation_compte_pro"] h2 {
+    font-weight: 100;
 }
 
 aside[id="asideRetour"] {
@@ -58,7 +71,7 @@ aside[id="asideRetour"] > button[id="retour"] > img {
     margin-right: 5px;
 }
 
-form {
+.creation-compte form {
     display: grid;
     justify-content: center;
     align-items: center;
@@ -73,31 +86,31 @@ form {
     color: white;
 }
 
-::placeholder {
+body[id="body_creation_compte_pro"] ::placeholder {
     font-size: 20px;
 }
 
-div {
+.creation-compte div {
     display: inline;
     justify-content: center;
     margin: 10px;
 }
 
-label {
+.creation-compte label {
     font-size: 25px;
     margin: 5px;
     text-align: left;
 }
 
 
-div.ligne1 > label, div.ligne6 > label {
+.creation-compte div.ligne1 > label, div.ligne6 > label {
     display: inline-block;
     width: 408px;
 }
 
 
 
-div.ligne2 > label, div.ligne3 > label {
+.creation-compte div.ligne2 > label, div.ligne3 > label {
     display: flex;
     justify-content: left;
     width: 823px;
@@ -106,18 +119,18 @@ div.ligne2 > label, div.ligne3 > label {
 
 
 
-div.ligne4 > label {
+.creation-compte div.ligne4 > label {
     display: inline-block;
     width: 215px;
 } 
 
-div.ligne4 > label[for="ville"] {
+.creation-compte div.ligne4 > label[for="ville"] {
     width: 601px;
 }
 
 
 
-.ligne5 {
+.creation-compte .ligne5 {
     display: flex;
     align-items: center;
     margin: 10px 26px;
@@ -125,31 +138,31 @@ div.ligne4 > label[for="ville"] {
     justify-content: space-between;  
 }
 
-.ligne5_1 {
+.creation-compte .ligne5_1 {
     display: flex;
     align-items: center;
     justify-content: center;  
 }
 
-.ligne5 input[type="radio"] {
+.creation-compte .ligne5 input[type="radio"] {
     margin-right: 5px;
     margin-left: 10px;
 }
 
-.ligne5 label {
+.creation-compte .ligne5 label {
     margin-right: 20px;
     margin-left: 5px;
     font-size: 25px;
 }
 
-.ligne5_1 label {
+.creation-compte .ligne5_1 label {
     margin: 0;
     font-size: 25px;
 }
 
 
 
-.ligne7 {
+.creation-compte .ligne7 {
     display: flex;
     align-items: center;
     margin: 5px;
@@ -158,7 +171,7 @@ div.ligne4 > label[for="ville"] {
 }
 
 
-input {
+.creation-compte input {
     font-size: 20px;
     padding-left: 0 5px;
     border: 0;
