@@ -80,7 +80,7 @@ footer {
 }
 
 /* Bloc principale + mention légale*/
-footer>div:first-child {
+footer > div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
@@ -96,7 +96,7 @@ footer figure {
 }
 
 /* paragraphe principale */
-footer figure+p {
+footer figure + p {
   margin-left: 2%;
 }
 
@@ -128,7 +128,7 @@ footer h4 {
   text-decoration: underline;
 }
 
-footer div+div {
+footer div + div {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -137,7 +137,7 @@ footer div+div {
   width: max-content;
 }
 
-footer div+div p {
+footer div + div p {
   padding: 0 500px;
 }
 
@@ -171,7 +171,7 @@ header div {
   height: 3em;
 }
 
-header div>a {
+header div > a {
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -184,7 +184,7 @@ header h1 {
   color: var(--bloc);
 }
 
-header div>a>img {
+header div > a > img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
@@ -282,7 +282,7 @@ header div>a>img {
   border-radius: 0 0 50px 0;
 }
 
-#manageOffer aside>h3,
+#manageOffer aside > h3,
 #manageOffer aside li a {
   font-family: "Belanosima", sans-serif;
   text-decoration: none;
@@ -312,13 +312,13 @@ header div>a>img {
   justify-content: space-evenly;
 }
 
-#manageOffer aside> :nth-child(2) {
+#manageOffer aside > :nth-child(2) {
   height: clamp(340px, 35vh, 400px);
   padding-bottom: 1vh;
   border-bottom: var(--text-light) 2px solid;
 }
 
-#manageOffer aside> :nth-child(3) {
+#manageOffer aside > :nth-child(3) {
   height: 10vh;
   gap: 10px;
 }
@@ -375,14 +375,14 @@ header div>a>img {
     inset 4px 4px 4px #b01111 !important;
 }
 
-#manageOffer aside+section {
+#manageOffer aside + section {
   margin-left: 17em;
   margin-top: var(--header-size);
   min-height: 70vh;
 }
 
 /* Bouton suivant précédent */
-#manageOffer aside+section+div {
+#manageOffer aside + section + div {
   position: absolute;
   bottom: 5px;
   right: 3%;
@@ -391,7 +391,7 @@ header div>a>img {
   gap: 3%;
 }
 
-#manageOffer aside+section+div a {
+#manageOffer aside + section + div a {
   text-align: center;
   width: 150px;
   padding: 10px;
@@ -406,14 +406,14 @@ header div>a>img {
 /* # selection de l'offre # */
 
 /* Bloc de chaque type d'offre*/
-#selectOffer>div:first-child {
+#selectOffer > div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
 }
 
 /* Toute les type d'offre */
-#selectOffer>div:first-child>div {
+#selectOffer > div:first-child > div {
   position: relative;
   height: clamp(400px, 50vh, 450px);
   width: 20em;
@@ -431,37 +431,37 @@ header div>a>img {
 }
 
 /* Prix par mois */
-#selectOffer>div:first-child>div h3 {
+#selectOffer > div:first-child > div h3 {
   margin-top: -20px;
 }
 
 /* Bouton séletionner */
-#selectOffer>div:first-child>div ul+div {
+#selectOffer > div:first-child > div ul + div {
   position: absolute;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-#selectOffer>div:first-child>div ul {
+#selectOffer > div:first-child > div ul {
   display: flex;
   flex-flow: column nowrap;
   gap: clamp(10px, 2vh, 25px);
 }
 
-#selectOffer>div:first-child>div li {
+#selectOffer > div:first-child > div li {
   list-style: disc;
 }
 
 /* offre premium */
-#selectOffer>div:first-child>div:nth-child(2) {
+#selectOffer > div:first-child > div:nth-child(2) {
   background-color: var(--accent20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--accent60);
 }
 
 /* offre standard */
-#selectOffer>div:first-child>div:nth-child(3) {
+#selectOffer > div:first-child > div:nth-child(3) {
   background-color: var(--primary20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--primary60);
@@ -472,8 +472,8 @@ header div>a>img {
   display: none;
 }
 
-#selectOffer input[type="radio"]+label,
-#detailsOffer article:first-child input[type="radio"]+label {
+#selectOffer input[type="radio"] + label,
+#detailsOffer article:first-child input[type="radio"] + label {
   display: inline-block;
   padding: 5px 30px;
   border-radius: 50px;
@@ -488,24 +488,24 @@ header div>a>img {
   cursor: pointer;
 }
 
-#selectOffer input[type="radio"]:checked+label,
-#detailsOffer article:first-child input[type="radio"]:checked+label {
+#selectOffer input[type="radio"]:checked + label,
+#detailsOffer article:first-child input[type="radio"]:checked + label {
   background-color: var(--accent);
   box-shadow: inset -4px -4px 4px #bb880e;
 }
 
-#selectOffer input[disabled]+label {
+#selectOffer input[disabled] + label {
   color: rgba(20, 20, 20, 0.5);
   border-color: rgba(20, 20, 20, 0.5);
 }
 
-#selectOffer>div:first-child+div {
+#selectOffer > div:first-child + div {
   margin-top: 4vh;
   margin-left: 6%;
 }
 
 /* Message de prévention */
-#selectOffer>div:first-child+div p {
+#selectOffer > div:first-child + div p {
   color: red;
 }
 
@@ -529,14 +529,14 @@ header div>a>img {
   margin-bottom: -7px;
 }
 
-#hourlyOffer div>div {
+#hourlyOffer div > div {
   display: flex;
   flex-flow: nowrap row;
   align-items: center;
 }
 
 /* div de saisie */
-#hourlyOffer div>div+div:not(#Representation div) {
+#hourlyOffer div > div + div:not(#Representation div) {
   margin-left: 50px;
 }
 
@@ -544,7 +544,7 @@ header div>a>img {
   margin-left: 10px;
 }
 
-#hourlyOffer div>div {
+#hourlyOffer div > div {
   display: flex;
 }
 
@@ -615,12 +615,12 @@ header div>a>img {
   flex-wrap: nowrap;
 }
 
-#artDetailOffer>div {
+#artDetailOffer > div {
   width: 48%;
   margin: 1%;
 }
 
-#artDetailOffer>div>label:not(#labelAjoutPhoto),
+#artDetailOffer > div > label:not(#labelAjoutPhoto),
 #choixCategorie label[for="categorie"],
 #choixImage label {
   display: inline-block;
@@ -697,272 +697,238 @@ header div>a>img {
 }
 
 #choixCategorie {
-  width: calc(70% + 141.625px);
-  /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
+  width: calc(
+    70% + 141.625px
+  ); /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
 }
 
 
 
 #inputTag {
-  #artDetailOffer>div>input[id="tag"] {
-    width: 70%;
-  }
+  width: 70%;
+}
 
-  #ajoutTag {
-    background-color: var(--primary);
-  }
+#ajoutTag {
+  background-color: var(--primary);
+}
 
-  #artDetailOffer section,
-  #afficheImages {
-    width: calc(70% + 141.625px);
-    /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
-    min-height: 100px;
-    margin: 10px 0 5px 0;
-    background: white;
-    padding: 7px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-wrap: wrap;
-  }
+#artDetailOffer section,
+#afficheImages {
+  width: calc(
+    70% + 141.625px
+  ); /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
+  min-height: 100px;
+  margin: 10px 0 5px 0;
+  background: white;
+  padding: 7px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-  /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
+/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
-  .sectionLoca {
-    width: 700px;
-    font-size: 25px;
-  }
+.sectionLoca {
+  width: 700px;
+  font-size: 25px;
+}
 
-  .sectionLoca div {
-    margin-bottom: 25px;
-  }
+.sectionLoca div {
+  margin-bottom: 25px;
+}
 
-  .sectionLoca input {
-    display: block;
-    width: 100%;
-    height: 40px;
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--secondary);
-    border: solid 2px;
-    border-color: var(--secondary);
-    padding-left: 10px;
-  }
+.sectionLoca input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--secondary);
+  border: solid 2px;
+  border-color: var(--secondary);
+  padding-left: 10px;
+}
 
-  .sectionLoca section {
-    display: flex;
-    gap: 50px;
-    width: 100%;
-  }
+.sectionLoca section {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+}
 
-  .codeP {
-    width: 25%;
-  }
+.codeP {
+  width: 25%;
+}
 
-  .villeL {
-    width: 68%;
-  }
+.villeL {
+  width: 68%;
+}
 
-  .map {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: fit-content;
-    width: 100%;
-    margin: 50px 50px 50px 50px;
-    gap: 50px;
-  }
+.map {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: 100%;
+  margin: 50px 50px 50px 50px;
+  gap: 50px;
+}
 
-  #map {
-    height: 40vh;
-    width: 90%;
-  }
+#map {
+  height: 40vh;
+  width: 90%;
+}
 
-  /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
+/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
-  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-  .mainOffer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.mainOffer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  #titleOffer {
-    margin-top: calc(var(--header-size) + 0.5em);
-    font-size: 5em;
-    color: var(--bloc);
-  }
+#titleOffer {
+  margin-top: calc(var(--header-size) + 0.5em);
+  font-size: 5em;
+  color: var(--bloc);
+}
 
-  /* Swiper Styles */
-  .swiper-container {
-    position: relative;
-    /* Allow positioning of buttons */
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    /* Center the container */
-  }
+/* Swiper Styles */
+.swiper-container {
+  position: relative;
+  /* Allow positioning of buttons */
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  /* Center the container */
+}
 
-  /* Swiper Styles */
-  .mySwiper {
-    height: 35em;
-    /* Height of the main Swiper */
-    border-radius: 15px;
-    overflow: hidden;
-  }
+/* Swiper Styles */
+.mySwiper {
+  height: 35em;
+  /* Height of the main Swiper */
+  border-radius: 15px;
+  overflow: hidden;
+}
 
-  /* Navigation Buttons */
-  .swiper-button-next,
-  .swiper-button-prev {
-    top: 40%;
-    background-color: var(--accent60);
-    padding: 3em 0.5em;
-    /* Padding for buttons */
-    color: var(--background);
-    font-size: 20px;
-    z-index: 1;
-    /* Ensure buttons are on top */
-  }
+/* Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  top: 40%;
+  background-color: var(--accent60);
+  padding: 3em 0.5em;
+  /* Padding for buttons */
+  color: var(--background);
+  font-size: 20px;
+  z-index: 1;
+  /* Ensure buttons are on top */
+}
 
-  /* Horizontal positioning */
-  .swiper-button-next {
-    transform: translateX(120%);
-    border-radius: 0 1em 1em 0;
-    /* Rounded corners for the next button */
-  }
+/* Horizontal positioning */
+.swiper-button-next {
+  transform: translateX(120%);
+  border-radius: 0 1em 1em 0;
+  /* Rounded corners for the next button */
+}
 
-  .swiper-button-prev {
-    transform: translateX(-120%);
-    border-radius: 1em 0 0 1em;
-    /* Rounded corners for the prev button */
-  }
+.swiper-button-prev {
+  transform: translateX(-120%);
+  border-radius: 1em 0 0 1em;
+  /* Rounded corners for the prev button */
+}
 
-  /* Slide Styles */
-  .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-  }
+/* Slide Styles */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
 
-  .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-    transition: transform 0.2s ease;
-  }
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.2s ease;
+}
 
-  .swiper-slide:hover img {
-    transform: scale(1.05);
-  }
+.swiper-slide:hover img {
+  transform: scale(1.05);
+}
 
-  .swiper-button-next:hover,
-  .swiper-button-prev:hover {
-    background-color: var(--accent);
-  }
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: var(--accent);
+}
 
-  /* Thumbnail Slider */
-  .myThumbSlider {
-    margin-top: 20px;
-    height: 100px;
-    width: 90%;
-    max-width: 1200px;
-  }
+/* Thumbnail Slider */
+.myThumbSlider {
+  margin-top: 20px;
+  height: 100px;
+  width: 90%;
+  max-width: 1200px;
+}
 
-  /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
+/*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
-  #specialOffer {
-    /* toute la partie spécifique a une offre */
+#specialOffer {
+  /* toute la partie spécifique a une offre */
 
-    margin-bottom: 10px;
-    /* marge de 10 px en bas */
-    gap: 10px;
-    /* gap de 10 px */
-  }
+  margin-bottom: 10px;
+  /* marge de 10 px en bas */
+  gap: 10px;
+  /* gap de 10 px */
+}
 
-  #specialOffer section>article {
-    display: inline-block;
-    width: 355px;
-    /* largeur de 355 px pour l'article */
-    margin-right: 15px;
-    /* marge de 15 px a droite */
-    padding-bottom: 15px;
-    /* padding de 15 px en bas*/
-  }
+#specialOffer section > article {
+  display: inline-block;
+  width: 355px;
+  /* largeur de 355 px pour l'article */
+  margin-right: 15px;
+  /* marge de 15 px a droite */
+  padding-bottom: 15px;
+  /* padding de 15 px en bas*/
+}
 
-  #specialOffer textarea[id="texteLangueVisit"],
-  textarea[id="Resume"] {
-    /* tailler des zone de texte */
-    width: 335px;
-    /* largeur de 335px*/
-    height: 165px;
-    /* hauteur de 165px*/
-    resize: none;
-    /* Non redimensinnable */
-  }
+#specialOffer textarea[id="texteLangueVisit"],
+textarea[id="Resume"] {
+  /* tailler des zone de texte */
+  width: 335px;
+  /* largeur de 335px*/
+  height: 165px;
+  /* hauteur de 165px*/
+  resize: none;
+  /* Non redimensinnable */
+}
 
-  #visit {
-    background-color: orange;
-    /* Juste pour moi voir les separations */
-    vertical-align: top;
-  }
+#visit {
+  background-color: orange;
+  /* Juste pour moi voir les separations */
+  vertical-align: top;
+}
 
-  #show {
-    background-color: yellow;
-    /* Juste pour moi voir les separations */
-  }
+#show {
+  background-color: yellow;
+  /* Juste pour moi voir les separations */
+}
 
-  #park {
-    background-color: blueviolet;
-    /* Juste pour moi pour voir les séparations */
-  }
-
-  #park input[type="button"] {
-    background-color: #1CA4ED;
-    border-radius: 15px;
-    height: 50px;
-    width: fit-content;
-    padding-inline: 20px;
-    border: none;
-    margin-left: 10px;
-  }
-
-  #park input[type="button"]:hover {
-    box-shadow: none;
-  }
-
-  /* en cas de clic sur les  boutons */
-  #park input[type="button"]:active {
-    box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
-      inset 4px 4px 4px #1883bc;
-  }
-
-  #activity {
-    background-color: cyan;
-  }
-
-  #activity article>p>textarea[id="txtAct"] {
-
-    resize: none;
-    height: px;
-    width: 100px;
-    text-align: center;
-
-  }
+#park{
+  background-color:blueviolet; /* Juste pour moi pour voir les séparations */
 }
