@@ -52,9 +52,60 @@ try {
 //     console.error('Erreur lors de l\'envoi:', error);
 // });
 
+/* Intéraction horaire */
 try {
-  const btnAddHourly = document.querySelectorAll(".btnAddOffer");
-  const btnRmHourly = document.querySelectorAll(".btnRmOffer");
+  const btnsAddHourly = document.querySelectorAll(".btnAddOffer");
+  const btnsRmHourly = document.querySelectorAll(".btnRmOffer");
+  const chckbxClose = document.querySelectorAll(
+    "#hourlyOffer input[type='checkbox']"
+  );
 
-  console.log(btnAddHourly);
+  btnsAddHourly.forEach((button) => {
+    button.addEventListener("click", () => {
+      let nextSpan = button.nextElementSibling;
+      let nextBtn = nextSpan.nextElementSibling;
+      nextSpan.classList.remove("hourlyHide");
+      nextBtn.classList.remove("hourlyHide");
+      button.classList.add("hourlyHide");
+    });
+  });
+
+  btnsRmHourly.forEach((button) => {
+    button.addEventListener("click", () => {
+      let span = button.previousElementSibling;
+      span.querySelectorAll("input").forEach((input) => {
+        input.value = "";
+        console.log(input);
+      });
+      span.classList.add("hourlyHide");
+      button.classList.add("hourlyHide");
+      span.previousElementSibling.classList.remove("hourlyHide");
+    });
+  });
+
+  function toggleInputs(checkbox) {
+    const timeInputs =
+      checkbox.parentNode.querySelectorAll('input[type="time"]');
+    const buttons = checkbox.parentNode.querySelectorAll(
+      "input[type='button']"
+    );
+    if (checkbox.checked) {
+      // Désactiver les boutons et inputs time
+      buttons.forEach((button) => {
+        button.disabled = true;
+        button.classList.add("btnDisabledHourly");
+      });
+      timeInputs.forEach((input) => {
+        input.disabled = true;
+        input.value = ""; // Réinitialiser le contenu des inputs time
+      });
+    } else {
+      // Réactiver les boutons et inputs time
+      buttons.forEach((button) => {
+        button.disabled = false;
+        button.classList.remove("btnDisabledHourly");
+      });
+      timeInputs.forEach((input) => (input.disabled = false));
+    }
+  }
 } catch (error) {}
