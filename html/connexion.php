@@ -94,22 +94,22 @@
             <script src = validationFormInscription.js></script>
 
             <a id="lienMotDePasseOublie" href=""> Mot de passe oublié ?</a>
-            <script src = validationFormConnexion.js></script>
         </form>
-    
+        
         <h1 id="pasDeCompteTitre">Vous n'avez pas de compte ? Créez-en un !</h1>
-
+        
         <div id="lienBouton">
             <div>
                 <a href="" id="boutonLienMembre">Compte membre</a>
                 <p id="legendeBoutonLienMembre">Compte gratuit pour une utilisation classique de la plateforme</p>
             </div>
-
+            
             <div>
                 <a href="creation_compte_pro.php" id="boutonLienPro">Compte professionnel</a>
                 <p id="legendeBoutonLienPro">Compte destiné aux professionels voulant promouvoir une offre de leur entreprise</p>
             </div>
         </div>
     </main>
+    <script src = validationFormConnexion.js></script>
 </body>
 </html>
