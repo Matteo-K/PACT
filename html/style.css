@@ -515,6 +515,13 @@ header div > a > img {
   padding-bottom: 6%;
 }
 
+#hourlyOffer h4 {
+  font-family: "Lato", sans-serif;
+  font-weight: normal;
+  font-size: 1.25em;
+  margin-bottom: -7px;
+}
+
 #hourlyOffer div > div {
   display: flex;
   flex-flow: nowrap row;
@@ -522,7 +529,7 @@ header div > a > img {
 }
 
 /* div de saisie */
-#hourlyOffer div > div + div {
+#hourlyOffer div > div + div:not(#Representation div) {
   margin-left: 50px;
 }
 
@@ -537,7 +544,8 @@ header div > a > img {
 #hourlyOffer input[type="button"] {
   border-radius: 15px;
   height: 50px;
-  width: 250px;
+  width: fit-content;
+  padding-inline: 20px;
   border: none;
   margin-left: 10px;
 }
@@ -567,6 +575,14 @@ header div > a > img {
 .btnDisabledHourly:active {
   box-shadow: none !important;
 }
+
+#Representation {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 10px;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
