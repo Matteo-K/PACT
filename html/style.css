@@ -594,7 +594,7 @@ header div > a > img {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-.buttonDetailOffer {
+.buttonDetailOffer, .tag {
   display: inline-block;
   font-size: 22px;
   padding: 5px 30px;
@@ -783,9 +783,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     ~~~~~~~~~~~~~~~~~~~~~~~~~DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*  ***************************************************************************************
+     **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
+     *************************************************************************************** */
 
 .mainOffer {
   display: flex;
@@ -794,9 +794,23 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #titleOffer {
-  margin-top: calc(var(--header-size) + 0.5em);
+  margin-top: calc(var(--header-size) + 0.6em);
   font-size: 5em;
   color: var(--bloc);
+  margin-bottom: 0.5em;
+  
+}
+
+.tag{
+
+  background-color: var(--accent);
+  box-shadow: none;
+}
+
+.mainOffer > div{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
 }
 
 /* Swiper Styles */

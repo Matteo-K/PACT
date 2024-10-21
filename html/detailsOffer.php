@@ -1,8 +1,4 @@
-<?php
-session_start();
-
-?>
-
+<?php require_once "components/headerTest.php" ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,16 +11,16 @@ session_start();
 </head>
 <body>
     <script src="js/setColor.js"></script>
-    <?php require_once "components/headerTest.php" ?>
+    
     <main class="mainOffer">
         <h2 id="titleOffer">Le Village Gaulois</h2>
         <div>
             <!-- foreach ici !-->
-            <a href="search.php?search=parc">Parc d'attraction</a>
-            <a href="search.php?search=air">Plein air</a>
-            <a href="search.php?search=familliale">Familliale</a>
-            <a href="search.php?search=pleumeur">Pleumeur-Bodou</a>
-            <a href="search.php?state=ouvert">Ouvert</a>
+            <a class="tag" href="search.php?search=parc">Parc d'attraction</a>
+            <a class="tag" href="search.php?search=air">Plein air</a>
+            <a class="tag" href="search.php?search=familliale">Familliale</a>
+            <a class="tag" href="search.php?search=pleumeur">Pleumeur-Bodou</a>
+            <a class="tag" href="search.php?state=ouvert">Ouvert</a>
         </div>
         <div>
             <a href="https://maps.app.goo.gl/PSBboQALwGsqgqKM8">Route du Radome, 22560 Pleumeur-Bodou</a>
