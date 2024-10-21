@@ -468,12 +468,12 @@ header div > a > img {
 }
 
 #selectOffer input[type="radio"],
-#detailsOffer article:first-child input[type="radio"] {
+#detailsOffer #artDetailOffer input[type="radio"] {
   display: none;
 }
 
 #selectOffer input[type="radio"] + label,
-#detailsOffer article:first-child input[type="radio"] + label {
+#detailsOffer #artDetailOffer input[type="radio"] + label {
   display: inline-block;
   padding: 5px 30px;
   border-radius: 50px;
@@ -489,7 +489,7 @@ header div > a > img {
 }
 
 #selectOffer input[type="radio"]:checked + label,
-#detailsOffer article:first-child input[type="radio"]:checked + label {
+#detailsOffer #artDetailOffer input[type="radio"]:checked + label {
   background-color: var(--accent);
   box-shadow: inset -4px -4px 4px #bb880e;
 }
@@ -642,6 +642,7 @@ header div > a > img {
   border-radius: 50px;
   color: #000;
   margin: 0 5px;
+  box-shadow: inset -4px -4px 4px var(--bloc);
   border: none;
   cursor: pointer;
 }
@@ -672,6 +673,7 @@ header div > a > img {
 }
 
 #artDetailOffer input[type="text"] {
+  width: 90%;
   height: 30px;
   font-size: 15px;
   text-indent: 10px;
@@ -682,10 +684,6 @@ header div > a > img {
   max-width: 90%;
   min-width: 90%;
   font-size: 16px;
-}
-
-#artDetailOffer input[id="nom"] {
-  width: 90%;
 }
 
 #artDetailOffer textarea[id="resume"] {
@@ -715,22 +713,17 @@ header div > a > img {
 }
 
 #afficheImages figure {
-  position: relative;
   max-width: 90px;
   max-height: 90px;
   margin: 5px;
   overflow: hidden;
   border-radius: 5px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 #afficheImages img {
-  height: 100%;
   width: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 #choixCategorie {
@@ -763,9 +756,11 @@ header div > a > img {
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
@@ -774,11 +769,29 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 700px;
   font-size: 25px;
 }
+.sectionLoca {
+  width: 700px;
+  font-size: 25px;
+}
 
 .sectionLoca div {
   margin-bottom: 25px;
 }
+.sectionLoca div {
+  margin-bottom: 25px;
+}
 
+.sectionLoca input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--secondary);
+  border: solid 2px;
+  border-color: var(--secondary);
+  padding-left: 10px;
+}
 .sectionLoca input {
   display: block;
   width: 100%;
@@ -796,7 +809,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 50px;
   width: 100%;
 }
+.sectionLoca section {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+}
 
+.codeP {
+  width: 25%;
+}
 .codeP {
   width: 25%;
 }
@@ -804,7 +825,20 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .villeL {
   width: 68%;
 }
+.villeL {
+  width: 68%;
+}
 
+.map {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: 100%;
+  margin: 50px 50px 50px 50px;
+  gap: 50px;
+}
 .map {
   display: flex;
   flex-direction: column;
@@ -820,11 +854,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 40vh;
   width: 90%;
 }
+#map {
+  height: 40vh;
+  width: 90%;
+}
 
+/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -834,7 +874,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-direction: column;
   align-items: center;
 }
+.mainOffer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+#titleOffer {
+  margin-top: calc(var(--header-size) + 0.5em);
+  font-size: 5em;
+  color: var(--bloc);
+}
 #titleOffer {
   margin-top: calc(var(--header-size) + 0.5em);
   font-size: 5em;
@@ -850,7 +900,23 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin: auto;
   /* Center the container */
 }
+/* Swiper Styles */
+.swiper-container {
+  position: relative;
+  /* Allow positioning of buttons */
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  /* Center the container */
+}
 
+/* Swiper Styles */
+.mySwiper {
+  height: 35em;
+  /* Height of the main Swiper */
+  border-radius: 15px;
+  overflow: hidden;
+}
 /* Swiper Styles */
 .mySwiper {
   height: 35em;
@@ -871,7 +937,25 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   z-index: 1;
   /* Ensure buttons are on top */
 }
+/* Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  top: 40%;
+  background-color: var(--accent60);
+  padding: 3em 0.5em;
+  /* Padding for buttons */
+  color: var(--background);
+  font-size: 20px;
+  z-index: 1;
+  /* Ensure buttons are on top */
+}
 
+/* Horizontal positioning */
+.swiper-button-next {
+  transform: translateX(120%);
+  border-radius: 0 1em 1em 0;
+  /* Rounded corners for the next button */
+}
 /* Horizontal positioning */
 .swiper-button-next {
   transform: translateX(120%);
@@ -884,7 +968,19 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 1em 0 0 1em;
   /* Rounded corners for the prev button */
 }
+.swiper-button-prev {
+  transform: translateX(-120%);
+  border-radius: 1em 0 0 1em;
+  /* Rounded corners for the prev button */
+}
 
+/* Slide Styles */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
 /* Slide Styles */
 .swiper-slide {
   display: flex;
@@ -901,11 +997,26 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 15px;
   transition: transform 0.2s ease;
 }
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.2s ease;
+}
 
 .swiper-slide:hover img {
   transform: scale(1.05);
 }
+.swiper-slide:hover img {
+  transform: scale(1.05);
+}
 
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: var(--accent);
+}
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   background-color: var(--accent);
@@ -918,14 +1029,29 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
   max-width: 1200px;
 }
+/* Thumbnail Slider */
+.myThumbSlider {
+  margin-top: 20px;
+  height: 100px;
+  width: 90%;
+  max-width: 1200px;
+}
 
+/*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
 #specialOffer {
   /* toute la partie spécifique a une offre */
+  #specialOffer {
+    /* toute la partie spécifique a une offre */
 
+    margin-bottom: 10px;
+    /* marge de 10 px en bas */
+    gap: 10px;
+    /* gap de 10 px */
+  }
   margin-bottom: 10px;
   /* marge de 10 px en bas */
   gap: 10px;
@@ -952,18 +1078,63 @@ textarea[id="Resume"] {
   resize: none;
   /* Non redimensinnable */
 }
+#specialOffer textarea[id="texteLangueVisit"],
+textarea[id="Resume"] {
+  /* tailler des zone de texte */
+  width: 335px;
+  /* largeur de 335px*/
+  height: 165px;
+  /* hauteur de 165px*/
+  resize: none;
+  /* Non redimensinnable */
+}
 
 #visit {
   background-color: orange;
   /* Juste pour moi voir les separations */
   vertical-align: top;
 }
+#visit {
+  display: flex;
+}
 
 #show {
-  background-color: yellow;
+  margin-top: 5px;
   /* Juste pour moi voir les separations */
 }
+/* #show */
 
 #park {
   background-color: blueviolet; /* Juste pour moi pour voir les séparations */
+}
+
+#park input[type="button"] {
+  background-color: #1ca4ed;
+  border-radius: 15px;
+  height: 50px;
+  width: fit-content;
+  padding-inline: 20px;
+  border: none;
+  margin-left: 10px;
+}
+
+#park input[type="button"]:hover {
+  box-shadow: none;
+}
+
+/* en cas de clic sur les  boutons */
+#park input[type="button"]:active {
+  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 4px #1883bc;
+}
+
+#activity {
+  background-color: cyan;
+}
+
+#activity article > p > textarea[id="txtAct"] {
+  resize: none;
+  height: px;
+  width: 100px;
+  text-align: center;
 }
