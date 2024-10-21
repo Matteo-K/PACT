@@ -3,8 +3,8 @@
       <section class="sectionParent">
         <section class="sectionLoca">
           <div>
-            <label for="adresse">Adresse postale* :</label>
-            <input type="text" id="adresse" placeholder="Adresse" required/>
+            <label for="adresse2">Adresse postale* :</label>
+            <input type="text" id="adresse2" placeholder="Adresse" required/>
           </div>
           <section>
             <div class="codeP">
@@ -12,8 +12,8 @@
               <input type="text" id="codepostal" placeholder="Code postal" required/>
             </div>
             <div class="villeL">
-              <label for="ville">Ville* :</label>
-              <input type="text" id="ville" placeholder="Ville" required/>
+              <label for="ville2">Ville* :</label>
+              <input type="text" id="ville2" placeholder="Ville" required/>
             </div>
           </section>
         </section>
@@ -53,9 +53,9 @@ function initMap() {
 
 // Fonction pour vérifier que tous les champs sont remplis
 function checkInputsAndGeocode() {
-    const ville = document.getElementById("ville").value.trim();
+    const ville = document.getElementById("ville2").value.trim();
     const codepostal = document.getElementById("codepostal").value.trim();
-    const adresse = document.getElementById("adresse").value.trim();
+    const adresse = document.getElementById("adresse2").value.trim();
 
     // Vérification que les champs ne sont pas vides
     if (!ville && !codepostal && !adresse) {
