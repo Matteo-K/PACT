@@ -7,48 +7,54 @@
     <article>
       <div>
         <input type="radio" name="typePaiement" id="carte_bancaire" checked>
-        <label for="cb">
-          <figuer>
+        <label for="carte_bancaire">
+          <figure>
             <figcaption>CARTE BANCAIRE</figcaption>
             <img src="../../img/logo/visa-mastercard.png" alt="logo visa-mastercard">
-          </figuer>
+          </figure>
         </label>
       </div>
       <div>
-        <input type="radio" name="typePaiement" id="">
+        <input type="radio" name="typePaiement" id="virement_bancaire">
         <label for="virement_bancaire">
-          <figuer>
+          <figure>
             <figcaption>VIREMENT BANCAIRE</figcaption>
-          </figuer>
+          </figure>
         </label>
       </div>
       <div>
         <input type="radio" name="typePaiement" id="paypal">
         <label for="paypal">
-          <figuer>
+          <figure>
             <figcaption>PAYPAL</figcaption>
             <img src="../../img/logo/paypal.png" alt="logo paypal">
-          </figuer>
+          </figure>
         </label>
       </div>
     </article>
     <!-- Saisi du moyen de paiement -->
     <article>
       <!-- Carte bancaire -->
-      <div id="bank_card">
+      <div id="Form_CB">
         <label for="CBnumCarte">Numéro de carte bancaire*&nbsp;:&nbsp;</label>
         <input type="number" name="CBnumCarte" id="CBnumCarte" placeholder="Numéro carte">
-        <label for="CBDateExpir">Date expiration*&nbsp;:&nbsp;</label>
-        <input type="month" name="CBDateExpir" id="CBDateExpir" value="<?php echo date('Y-m'); ?>">
-        <label for="CBCodeSecur">Code sécurité*&nbsp;:&nbsp;</label>
-        <input type="number" name="CBCodeSecur" id="CBCodeSecur" placeholder="CVC">
+        <div>
+          <div>
+            <label for="CBDateExpir">Date expiration*&nbsp;:&nbsp;</label>
+            <input type="month" name="CBDateExpir" id="CBDateExpir" value="<?php echo date('Y-m'); ?>">
+          </div>
+          <div>
+            <label for="CBCodeSecur">Code sécurité*&nbsp;:&nbsp;</label>
+            <input type="number" name="CBCodeSecur" id="CBCodeSecur" placeholder="CVC">
+          </div>
+        </div>
         <label for="CBNomCarte">Nom sur la carte*&nbsp;:&nbsp;</label>
         <input type="text" name="CBDateExpir" id="CBDateExpir" placeholder="Prénom et nom">
 
         <button>Valider le moyen de paiement</button>
       </div>
       <!-- Virement bancaire -->
-      <div>
+      <div id="Form_VB">
         <label for="VBIban">IBAN*&nbsp;:&nbsp;</label>
         <input type="text" name="VBIban" id="VBIban" placeholder="IBAN">
         <label for="VBTitulaire">Nom du titulaire du compte*&nbsp;:&nbsp;</label>

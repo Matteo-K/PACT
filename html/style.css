@@ -638,6 +638,82 @@ header div > a > img {
 }
 
 /* ------------------------- END Contact OFFER CSS --------------------------------*/
+/* ------------------------- Payment OFFER CSS --------------------------------*/
+
+#paymentOffer {
+  padding: 15px;
+}
+
+#paymentOffer section {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+/* bloc radBtn & tout les moyens de payement*/
+#paymentOffer article {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 40%;
+}
+
+#paymentOffer article:nth-child(1) {
+  width: 40%;
+}
+
+#paymentOffer input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}
+
+/* Chaque moyen de payment */
+#paymentOffer article:nth-child(1) div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  border: var(--text-dark) 2px solid;
+  border-left: none;
+  border-top: none;
+  height: 33%;
+  padding-left: 30px;
+}
+
+#paymentOffer figure {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: left;
+  gap: 20px;
+}
+
+#paymentOffer img {
+  width: 15vh;
+  height: 15vh;
+}
+
+#paypal + label img {
+  width: 10vh;
+  height: 10vh;
+}
+
+/* Chaque moyen de payment */
+#paymentOffer article:nth-child(2) div {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#paymentOffer article:nth-child(2) div > div:not(div > div > div) {
+  display: flex;
+  flex-flow: row;
+}
+
+/* tout les input du moyen de payment */
+#paymentOffer article:nth-child(2) input {
+  height: 20px;
+  border: var(--secondary) 3px solid;
+  padding: 5px;
+}
+
+/* ------------------------- END Payment OFFER CSS --------------------------------*/
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -867,7 +943,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
@@ -1041,7 +1116,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   max-width: 1200px;
 }
 
-/*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
@@ -1361,11 +1435,11 @@ button[id="boutonInscriptionPro"] {
   background-color: #edae14;
 }
 
-/*+++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
-/*+++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++*/
 body[id="body_connexion"] {
-  background-image: url("img/fond.png");
+  background-image: url("fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
