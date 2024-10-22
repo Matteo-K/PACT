@@ -16,7 +16,6 @@
     $stmt = $conn->prepare("SELECT * FROM pact._horairemidi");
     $stmt->execute();
     $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
 
@@ -46,7 +45,7 @@ $horaires = array_merge($resultsSoir, $resultsMidi); // Fusionner les résultats
 
 $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
 
-foreach ($resultsMidi as $horaire) {
+foreach ($horaires as $horaire) {
     print_r($horaire);
     echo $horaire['idoffre']." et ".$horaire['jour']." et ".$currentDay;
     if ($horaire['idoffre'] == 3 && $horaire['jour'] == $currentDay) {
