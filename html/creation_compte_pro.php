@@ -31,11 +31,11 @@
 
        // Secteur public
         if ($secteur == 'public') {
-            $stmt = $conn->prepare("INSERT INTO proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $numeroRue, $rue, $ville, $pays, $code, $photo]);
-        } else { 
             $stmt = $conn->prepare("INSERT INTO proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$denomination, $siren, $hashedPassword, $telephone, $mail, $numeroRue, $rue, $ville, $pays, $code, $photo]);
+        } else { 
+            $stmt = $conn->prepare("INSERT INTO proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $numeroRue, $rue, $ville, $pays, $code, $photo]);
         }
 
 
