@@ -4,6 +4,7 @@
     require_once 'dbLocalKylian.php';
 
     if(isset($_SESSION['idUser'])){
+        header("Location: index.php");
         exit();
     }
 
@@ -12,17 +13,20 @@
         $login = $_POST['login'];
         $password = $_POST['motdepasseConnexion'];
 
-        echo $login . $password;
-
         // Vérification admin
         $stmt = $conn->prepare("SELECT * FROM pact._admin a JOIN pact._utilisateur u ON a.idU = u.idU WHERE a.login = ?");
         $stmt->execute([$login]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch a single row
 
         if ($result && $password == $result['password']) {
-            print_r($result);
+            // Connexion réussie
+            $_SESSION['idUser'] = $result['idu'];
+            $_SESSION['typeUser'] = 'admin';
 
-            
+            header("Location: index.php");
+             // Rediriger vers une page protégée
+            exit();
+
         } else {
             // Vérification pro
             $stmt = $conn->prepare('SELECT mail, idU, motdepasse, siren FROM propublic WHERE mail = ? UNION SELECT mail, idU, motdepasse, siren FROM proprive WHERE mail = ?;');
@@ -31,10 +35,11 @@
     
             if ($proUser && password_verify($password, $proUser['motdepasse'])) {
                 // Connexion réussie
-                $_SESSION['idUser'] = $proUser['idU'];
+                $_SESSION['idUser'] = $proUser['idu'];
                 $_SESSION['typeUser'] = $proUser['siren'] ? 'pro_prive' : 'pro_public'; // Détermine le type
-    
+                header("Location: index.php");
                 exit();
+
             } else {
                 // Vérification membre
                 $stmt = $conn->prepare("SELECT * FROM membre WHERE pseudo = ? OR mail = ?");
@@ -43,8 +48,9 @@
     
                 if ($member && password_verify($password, $member['motdepasse'])) {
                     // Connexion réussie
-                    $_SESSION['idUser'] = $member['idU'];
+                    $_SESSION['idUser'] = $member['idu'];
                     $_SESSION['typeUser'] = 'membre';
+                    header("Location: index.php");
 
                     exit();
                 } else {
@@ -74,7 +80,7 @@
 
     <main id="mainConnexion">
         <h1 id="connexionTitre">Connectez-vous à votre compte</h1>
-        <form id="formConnexion" action="connexionTest.php" method="post">
+        <form id="formConnexion" action="connexion.php" method="post">
             <div class="ligne1">
                 <!-- Saisie du login -->
                 <input type="text" placeholder="Identifiant/adresse mail" id="login" name="login" required>
