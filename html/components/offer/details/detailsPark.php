@@ -8,7 +8,7 @@
     <p> Vous pouvez inserer jusqu'a 5 photos du plan  </p>
     <br>
     
-    <input type="file" id="imagePark" name="image1Park">
+    <input type="file" id="imagePark" name="image1Park" accept=".png,.jpg,jpeg,gif,wepb">
     <br>
     
     <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter des photos </button>
