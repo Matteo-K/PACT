@@ -1,6 +1,5 @@
 <form id="detailsOffer" action="enregOffer.php" method="post">
     <article id="artDetailOffer">
-
         <div>
 
             <label for="nom">Nom de votre offre*</label>
@@ -11,12 +10,9 @@
 
             <label for="description">Description de votre offre*</label>
             <textarea id="description" name="description" placeholder="Description détaillée, 1000 caractères maximum" maxlength=999 required></textarea>
-        
         </div>
 
-
         <div>
-
             <div id="choixImage">
                 <label for="photosTitre">Photos de votre offre*</label>
                 <p>
@@ -24,14 +20,9 @@
                     Cliquez sur une image pour la supprimer
                 </p>
             </div>
-
-
             <label for="photos" id="labelAjoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
             <input type="file" id="photos" name="photos" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" multiple>
-
             <div id="afficheImages"></div>
-
-
             <div id="choixCategorie">
                 <label for="categorie">Catégorie de l'offre*</label>   
                 <input type="radio" name="categorie" id="radioRestaurant" value=restaurant required> <label for="radioRestaurant">Restaurant</label>

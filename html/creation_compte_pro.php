@@ -7,14 +7,14 @@
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_creation_compte_pro.css">
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
     <title>Créer un compte</title>
 </head>
 <body id ="body_creation_compte_pro" class="creation-compte">
     <aside id="asideRetour">
         <button id="retour">
-            <img src="logo.png" alt="Logo" title="Retour page précédente"/>
+            <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
             Retour
         </button>
     </aside>
@@ -66,11 +66,11 @@
 
         <div class="ligne5">
             <!-- Radio bouton public -->
-            <input type="radio" id="public" name="secteur" value="public">
+            <input type="radio" id="radioPublic" name="secteur" value="public">
             <label for="public">Public</label>
     
             <!-- Radio bouton privée -->
-            <input type="radio" id="prive" name="secteur" value="prive" checked>
+            <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
             <label for="prive">Privé</label>
 
             <div class="ligne5_1">
@@ -104,20 +104,19 @@
         </div>
 
 
-        <button onclick = "validationFormInscription()" id="boutonInscriptionPro">S'inscrire</button>
-        <script src = validationFormInscription.js></script>
-
+        <button onclick = "validationForm()" id="boutonInscriptionPro">S'inscrire</button>
+        
         <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="connexion.php">Se connecter</a></h2>
     </form>
-
-
+    
+    
     <?php
         // Configuration de la base de données
         $host = 'the-void.ventsdouest.dev'; // Hôte de ta base de données
         $db = 'sae'; // Nom de la base de données
         $user = 'sae'; // Nom d'utilisateur
         $pass = 'digital-costaRd-sc0uts'; // Mot de passe
-
+        
         try {
             // Connexion à la base de données
             $pdo = new PDO("pgsql:host=$host;dbname=$db;charset=utf8", $user, $pass);
@@ -134,22 +133,24 @@
                 $secteur = $_POST['secteur'];
                 $siren = trim($_POST['siren']);
                 $motdepasse = $_POST['motdepasse'];
-
-                $adresseExplode = explode(' ', $adresse, 2); 
-                $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
-                $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
-
+                
+                
+                // Exploser l'adresse pour obtenir le numéro et la rue
+                $adresseParts = explode(' ', $adresse, 2); 
+                $numeroRue = isset($adresseParts[0]) ? $adresseParts[0] : '';
+                $rue = isset($adresseParts[1]) ? $adresseParts[1] : '';
+                
                 // Hashage du mot de passe
                 $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
-
+                
                 // Préparer la requête d'insertion en fonction du secteur
-
+                
                 // pro public
                 if ($secteur == 'public') {
                     $stmt = $pdo->prepare("INSERT INTO proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal) VALUES (?, ?, ?, ?, ?, ?, 'France', ?)");
                     $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $adresse, $code, $ville]);
                 } 
-
+                
                 // pro privé
                 else { 
                     $stmt = $pdo->prepare("INSERT INTO proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal) VALUES (?, ?, ?, ?, ?, ?, ?, 'France', ?)");
@@ -157,7 +158,7 @@
                 }
                 
                 $stmt->execute([$denomination, $telephone, $mail, $adresse, $code, $ville, $siren, $hashedPassword]);
-
+                
                 // Redirection vers une page de succès
                 header('Location: success.html');
                 exit;
@@ -165,6 +166,7 @@
         } catch (PDOException $e) {
             echo 'Erreur de connexion à la base de données : ' . $e->getMessage();
         }
-    ?>
+        ?>
 </body>
+<script src="validationFormInscription.js"></script>
 </html>

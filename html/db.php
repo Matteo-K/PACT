@@ -1,13 +1,13 @@
 <?php
 include('./connectionBDD/connect_params.php');
+
+try {
     $conn = new PDO("$driver:host=$server;dbname=$dbname", $user, $pass);
-    foreach($conn->query('SELECT u.idU, u.password 
-                                FROM pact._admin a 
-                                JOIN pact._utilisateur u ON a.idU = u.idU 
-                                WHERE a.login = admin1', PDO::FETCH_ASSOC) as $row) {
-        echo "<pre>";
-        print_r("uhdduiuf");
-        echo "</pre>";
-    }
-    $conn = null;
+    // Set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    // Display error message if connection fails
+    echo "Database connection failed: " . $e->getMessage();
+    exit(); // Stop further execution if the connection fails
+}
 ?>

@@ -1,5 +1,5 @@
 <?php
-    $server = 'postgresdb';
+    $server = 'the-void.ventsdouest.dev';
     $driver = 'pgsql';
     $dbname = 'sae';
     $user   = 'sae';

@@ -58,7 +58,6 @@ input[type="text"],
 textarea {
   padding: 5px;
   border: 2px solid var(--secondary);
-  text-indent: 10px;
   border-radius: 2px;
 }
 
@@ -76,7 +75,6 @@ footer {
   background-color: var(--bloc);
   padding: 1% 0.5%;
   margin: 0;
-  height: 23vh;
 }
 
 /* Bloc principale + mention légale*/
@@ -151,8 +149,8 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  gap: 12em;
   align-items: center;
+  gap: 12em;
   position: fixed;
   top: 0;
   left: 0;
@@ -241,7 +239,51 @@ header div > a > img {
 #formHeader img {
   width: 2em;
 }
+#auth2 {
+  display: none;
+}
 
+#menuBurger {
+  display: none;
+}
+
+@media (max-width: 756px) {
+  header {
+    height: 200px;
+    flex-direction: column; /* Passer les éléments en colonne */
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+  }
+  #auth {
+    display: none;
+  }
+  /* Afficher le menu burger */
+  #menuBurger {
+    display: block; /* Montrer l'icône du menu burger */
+    position: absolute;
+    left: 1em;
+    top: 1em;
+  }
+  /* Placer le bouton de connexion à droite */
+  #auth2 {
+    display: block;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+  }
+
+  /* La barre de recherche se place sous le logo */
+  #formHeader {
+    width: 90%; /* Largeur à 90% de l'écran */
+    margin-top: 1em;
+    margin-bottom: 25px;
+  }
+  #profilePicture {
+    width: 5em; /* Taille légèrement réduite pour mobile */
+    height: 5em;
+  }
+}
 /* Bouton de connexion */
 #btnConn {
   display: flex;
@@ -274,10 +316,9 @@ header div > a > img {
 
 #manageOffer aside {
   position: absolute;
-  top: v0;
+  top: 0;
   left: 0;
   width: 17em;
-  height: clamp(520px, 65vh, 580px);
   background-color: var(--bloc);
   border-radius: 0 0 50px 0;
 }
@@ -319,7 +360,6 @@ header div > a > img {
 }
 
 #manageOffer aside > :nth-child(3) {
-  height: 10vh;
   gap: 10px;
 }
 
@@ -345,6 +385,7 @@ header div > a > img {
 .guideComplete {
   background-color: rgb(21, 176, 21) !important;
   box-shadow: inset -4px -4px 4px #008000 !important;
+  transition: all 0.3s ease;
 }
 
 .guideComplete:active {
@@ -356,6 +397,7 @@ header div > a > img {
 .guideSelect {
   background-color: var(--accent) !important;
   box-shadow: inset -4px -4px 4px #bb880e !important;
+  transition: all 0.3s ease;
 }
 
 .guideSelect:active {
@@ -368,6 +410,7 @@ header div > a > img {
   color: var(--text-light) !important;
   background-color: red !important;
   box-shadow: inset -4px -4px 4px #b01111 !important;
+  transition: all 0.3s ease;
 }
 
 .guideStartComplete:active {
@@ -401,6 +444,7 @@ header div > a > img {
 .blueBtnOffer {
   background-color: var(--primary);
   box-shadow: inset -4px -4px 4px #1883bc;
+  transition: all 0.3s ease;
 }
 
 /* # selection de l'offre # */
@@ -602,10 +646,17 @@ header div > a > img {
   gap: 10px;
 }
 
+/* */
 #contactOffer h4 {
   margin-bottom: 10px;
 }
 
+/* bloc consentement afficher numéro */
+#contactOffer input[type="tel"] + div {
+  margin-bottom: 50px;
+}
+
+/* bloc de chaque radio button */
 #contactOffer div > div {
   display: flex;
   flex-flow: row wrap;
@@ -631,11 +682,89 @@ header div > a > img {
 }
 
 /* ------------------------- END Contact OFFER CSS --------------------------------*/
+/* ------------------------- Payment OFFER CSS --------------------------------*/
+
+#paymentOffer {
+  padding: 15px;
+}
+
+#paymentOffer section {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+/* bloc radBtn & tout les moyens de payement*/
+#paymentOffer article {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 40%;
+}
+
+#paymentOffer article:nth-child(1) {
+  width: 40%;
+}
+
+#paymentOffer input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}
+
+/* Chaque moyen de payment */
+#paymentOffer article:nth-child(1) div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  border: var(--text-dark) 2px solid;
+  border-left: none;
+  border-top: none;
+  height: 33%;
+  padding-left: 30px;
+}
+
+#paymentOffer figure {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: left;
+  gap: 20px;
+}
+
+#paymentOffer img {
+  width: 15vh;
+  height: 15vh;
+}
+
+/* logo paypal */
+#paypal + label img {
+  width: 10vh;
+  height: 10vh;
+}
+
+/* Chaque moyen de payment */
+#paymentOffer article:nth-child(2) div {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#paymentOffer article:nth-child(2) div > div:not(div > div > div) {
+  display: flex;
+  flex-flow: row;
+}
+
+/* tout les input du moyen de payment */
+#paymentOffer article:nth-child(2) input {
+  height: 20px;
+  border: var(--secondary) 3px solid;
+  padding: 5px;
+}
+
+/* ------------------------- END Payment OFFER CSS --------------------------------*/
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-.buttonDetailOffer, .tag {
+.buttonDetailOffer,
+.tag {
   display: inline-block;
   font-size: 22px;
   padding: 5px 30px;
@@ -770,24 +899,27 @@ header div > a > img {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
 .sectionLoca {
   width: 700px;
   font-size: 25px;
-}
-.sectionLoca {
-  width: 700px;
-  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 5px;
 }
 
-.sectionLoca div {
-  margin-bottom: 25px;
+.sectionParent {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-top: 50px;
 }
-.sectionLoca div {
-  margin-bottom: 25px;
+
+#localisationOffer {
+  height: 750px;
 }
 
 .sectionLoca input {
@@ -796,18 +928,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 40px;
   font-size: 20px;
   font-weight: 500;
-  color: var(--secondary);
-  border: solid 2px;
-  border-color: var(--secondary);
-  padding-left: 10px;
-}
-.sectionLoca input {
-  display: block;
-  width: 100%;
-  height: 40px;
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--secondary);
+  color: #000;
   border: solid 2px;
   border-color: var(--secondary);
   padding-left: 10px;
@@ -818,22 +939,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 50px;
   width: 100%;
 }
-.sectionLoca section {
-  display: flex;
-  gap: 50px;
-  width: 100%;
-}
 
 .codeP {
   width: 25%;
 }
-.codeP {
-  width: 25%;
-}
 
-.villeL {
-  width: 68%;
-}
 .villeL {
   width: 68%;
 }
@@ -845,17 +955,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
   height: fit-content;
   width: 100%;
-  margin: 50px 50px 50px 50px;
-  gap: 50px;
-}
-.map {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  width: 100%;
-  margin: 50px 50px 50px 50px;
   gap: 50px;
 }
 
@@ -863,12 +962,38 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 40vh;
   width: 90%;
 }
-#map {
-  height: 40vh;
-  width: 90%;
+
+#checkAddressBtn {
+  background-color: #1ca4ed;
+  color: black;
+  border: solid #1ca4ed 1px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
+#checkAddressBtn:hover {
+  background-color: white;
+  border: solid #1ca4ed 1px;
+  color: #1ca4ed;
+}
+
+#checkAddressBtn:active {
+  background-color: #034d7c;
+}
+
+#checkAddressBtn:focus {
+  outline: none; /* Supprimer le contour bleu au focus */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Effet d'ombre au focus */
+}
+
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
@@ -893,7 +1018,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 5em;
   color: var(--bloc);
   margin-bottom: 0.5em;
-  
 }
 
 .mainOffer .tag{
@@ -901,7 +1025,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   box-shadow: none;
 }
 
-.mainOffer > div{
+.mainOffer > div {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
@@ -1045,7 +1169,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
-/*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
@@ -1071,7 +1194,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* largeur de 355 px pour l'article */
   margin-right: 15px;
   /* marge de 15 px a droite */
-  padding-bottom: 15px;
+  padding-bottom: 15px; 
   /* padding de 15 px en bas*/
 }
 
@@ -1143,9 +1266,9 @@ textarea[id="Resume"] {
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
-/*++++++++++++++++++++++++++++++++++++++++++*/
+/*+++++++++++++++++++++++++++++++++++++++++*/
 body[id="body_creation_compte_pro"] {
-  background-image: url("fond.png");
+  background-image: url("img/fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -1162,8 +1285,8 @@ a[id="lienCGU"]:hover {
 
 a[id="lienConnexion"] {
   color: white;
-  font-family: "Belanosima", sans-serif;
   text-decoration: underline;
+  font-family: "Belanosima", sans-serif;
 }
 
 a[id="lienConnexion"]:hover {
@@ -1173,13 +1296,251 @@ a[id="lienConnexion"]:hover {
 h1[id="inscriptionTitre"] {
   text-align: center;
   margin: 30px 10px;
-  color: #034d7c;
+  color: #034D7C;
   font-weight: 100;
   font-size: 65px;
 }
 
 body[id="body_creation_compte_pro"] h2 {
   font-weight: 100;
+}
+
+aside[id="asideRetour"] {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+button[id="retour"] {
+  background: none;
+  border: none;
+  color: #034D7C;
+  text-decoration: underline;
+  font: inherit;
+  cursor: pointer;
+  padding: 0; 
+}
+
+aside[id="asideRetour"] > button[id="retour"] > img {
+  vertical-align: middle;
+  width: 70px;
+  height: 65px;
+  margin-right: 5px;
+}
+
+.creation-compte form {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  border-radius: 20px;
+  padding: 15px;
+  margin: auto;
+  width: 900px;
+  height: auto;
+  background-color: #034D7C;
+  color: white;
+}
+
+body[id="body_creation_compte_pro"] ::placeholder {
+  font-size: 20px;
+}
+
+.creation-compte div {
+  display: inline;
+  justify-content: center;
+  margin: 10px;
+}
+
+.creation-compte label {
+  font-size: 25px;
+  margin: 5px;
+  text-align: left;
+}
+
+
+.creation-compte div.ligne1 > label, div.ligne6 > label {
+  display: inline-block;
+  width: 408px;
+}
+
+
+
+.creation-compte div.ligne2 > label, div.ligne3 > label {
+  display: flex;
+  justify-content: left;
+  width: 823px;
+  margin: 5px auto;
+}
+
+
+
+.creation-compte div.ligne4 > label {
+  display: inline-block;
+  width: 215px;
+} 
+
+.creation-compte div.ligne4 > label[for="ville"] {
+  width: 601px;
+}
+
+
+
+.creation-compte .ligne5 {
+  display: flex;
+  align-items: center;
+  margin: 10px 26px;
+  text-align: left;
+  justify-content: space-between;  
+}
+
+.creation-compte .ligne5_1 {
+  display: flex;
+  height: 68px;
+  width: auto;
+  align-items: center;
+  justify-content: center;  
+}
+
+.creation-compte .ligne5 input[type="radio"] {
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+.creation-compte .ligne5 label {
+  margin-right: 20px;
+  margin-left: 5px;
+  font-size: 25px;
+}
+
+.creation-compte .ligne5_1 label {
+  margin: 0;
+  font-size: 25px;
+}
+
+
+
+.creation-compte .ligne7 {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  text-align: left;
+  justify-content: center;  
+}
+
+
+.creation-compte input {
+  font-size: 20px;
+  padding-left: 0 5px;
+  border: 0;
+}
+
+input[id="denomination"], input[id="telephone"], input[id="motdepasse"], input[id="confirmer"]{
+  width: 403px;
+  height: 40px;
+  margin: 0 5px;
+  border: 3px solid #edae14;
+}
+
+input[id="email"], input[id="adresse"]{
+  width: 823px;
+  height: 40px;
+  margin: 0 5px;
+  border: 3px solid #edae14;
+}
+
+input[id="code"]{
+  width: 210px;
+  height: 40px;
+  margin: 0 5px;
+  border: 3px solid #edae14;
+}
+
+input[id="ville"]{
+  width: 596px;
+  height: 40px;
+  margin: 0 5px;
+  border: 3px solid #edae14;
+}
+
+input[id="radioPublic"], input[id="radioPrive"]{
+  width: 25px;
+  height: 25px;
+  margin: 0 5px;
+}
+
+input[id="siren"]{
+  width: 408px;
+  height: 40px;
+  /* margin: 0 5px; */
+  margin-right: 0;
+  margin-left: 10px;
+  border: 3px solid #edae14;
+}
+
+input[type="checkbox"]{
+  width: 25px;
+  height: 25px;
+  margin: 0 5px;
+}
+
+button[id = "boutonInscriptionPro"] {
+  width: 200px;
+  font-size: 25px;
+  height: 60px;
+  border-radius: 15px;
+  margin: 5px auto;
+  background-color: #edae14;
+}
+
+/*+++++++++++++++++++++++++++++++*/
+/* Css page connexion, Antoine */
+/*+++++++++++++++++++++++++++++*/
+body[id="body_connexion"] {
+  background-image: url("img/fond.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+main[id="mainConnexion"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a[id="lienMotDePasseOublie"] {
+  color: white;
+  font-size: 25px;
+  margin: 30px 0;
+}
+
+a[id="lienMotDePasseOublie"]:hover {
+  color: #edae14;
+}
+
+.connexion-compte a {
+  text-decoration: underline;
+  color: white;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+h1[id="connexionTitre"] {
+  text-align: center;
+  margin: 30px 10px;
+  color: #034d7c;
+  font-weight: 100;
+  font-size: 65px;
+}
+
+h1[id="pasDeCompteTitre"] {
+  text-align: center;
+  margin: 50px 10px;
+  color: #034d7c;
+  font-weight: 100;
+  font-size: 50px;
 }
 
 aside[id="asideRetour"] {
@@ -1205,7 +1566,7 @@ aside[id="asideRetour"] > button[id="retour"] > img {
   margin-right: 5px;
 }
 
-.creation-compte form {
+.connexion-compte form {
   display: grid;
   justify-content: center;
   align-items: center;
@@ -1214,154 +1575,94 @@ aside[id="asideRetour"] > button[id="retour"] > img {
   border-radius: 20px;
   padding: 15px;
   margin: auto;
-  width: 900px;
+  width: 500px;
   height: auto;
   background-color: #034d7c;
   color: white;
 }
 
-body[id="body_creation_compte_pro"]::placeholder {
+.connexion-compte::placeholder {
   font-size: 20px;
 }
 
-.creation-compte div {
+.connexion-compte div {
   display: inline;
   justify-content: center;
   margin: 10px;
 }
 
-.creation-compte label {
+div[id="lienBouton"] {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+div[id="lienBouton"] > div {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.connexion-compte label {
   font-size: 25px;
   margin: 5px;
   text-align: left;
 }
 
-.creation-compte div.ligne1 > label,
-div.ligne6 > label {
+div.ligne1 > label {
   display: inline-block;
   width: 408px;
 }
 
-.creation-compte div.ligne2 > label,
-div.ligne3 > label {
-  display: flex;
-  justify-content: left;
-  width: 823px;
-  margin: 5px auto;
-}
-
-.creation-compte div.ligne4 > label {
-  display: inline-block;
-  width: 215px;
-}
-
-.creation-compte div.ligne4 > label[for="ville"] {
-  width: 601px;
-}
-
-.creation-compte .ligne5 {
-  display: flex;
-  align-items: center;
-  margin: 10px 26px;
-  text-align: left;
-  justify-content: space-between;
-}
-
-.creation-compte .ligne5_1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.creation-compte .ligne5 input[type="radio"] {
-  margin-right: 5px;
-  margin-left: 10px;
-}
-
-.creation-compte .ligne5 label {
-  margin-right: 20px;
-  margin-left: 5px;
-  font-size: 25px;
-}
-
-.creation-compte .ligne5_1 label {
-  margin: 0;
-  font-size: 25px;
-}
-
-.creation-compte .ligne7 {
-  display: flex;
-  align-items: center;
-  margin: 5px;
-  text-align: left;
-  justify-content: center;
-}
-
-.creation-compte input {
+.connexion-compte input {
   font-size: 20px;
   padding-left: 0 5px;
   border: 0;
 }
 
-input[id="denomination"],
-input[id="telephone"],
-input[id="motdepasse"],
-input[id="confirmer"] {
+input[id="login"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
+  margin-top: 30px;
   border: 3px solid #edae14;
 }
 
-input[id="email"],
-input[id="adresse"] {
-  width: 823px;
+input[id="motdepasseConnexion"] {
+  width: 403px;
   height: 40px;
   margin: 0 5px;
+  margin-top: 30px;
   border: 3px solid #edae14;
 }
 
-input[id="code"] {
-  width: 210px;
-  height: 40px;
-  margin: 0 5px;
-  border: 3px solid #edae14;
-}
-
-input[id="ville"] {
-  width: 596px;
-  height: 40px;
-  margin: 0 5px;
-  border: 3px solid #edae14;
-}
-
-input[id="public"],
-input[id="prive"] {
-  width: 25px;
-  height: 25px;
-  margin: 0 5px;
-}
-
-input[id="siren"] {
-  width: 408px;
-  height: 40px;
-  /* margin: 0 5px; */
-  margin-right: 0;
-  margin-left: 10px;
-  border: 3px solid #edae14;
-}
-
-input[type="checkbox"] {
-  width: 25px;
-  height: 25px;
-  margin: 0 5px;
-}
-
-button[id="boutonInscriptionPro"] {
+button[id="boutonConnexion"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
   border-radius: 15px;
   margin: 5px auto;
+  margin-top: 30px;
   background-color: #edae14;
+}
+
+a[id="boutonLienMembre"],
+a[id="boutonLienPro"] {
+  width: 300px;
+  padding: 15px 10px;
+  font-size: 20px;
+  border-radius: 15px;
+  border: solid 2px;
+  margin: 5px auto;
+  margin-top: 30px;
+  color: black;
+  background-color: #edae14;
+  text-decoration: none;
+}
+
+p[id="legendeBoutonLienMembre"],
+p[id="legendeBoutonLienPro"] {
+  font-size: 20px;
+  color: #034d7c;
+  width: 550px;
 }
