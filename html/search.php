@@ -26,7 +26,8 @@ $horaires = array_merge($resultsSoir, $resultsMidi); // Fusionner les résultats
 
 $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
 
-foreach ($horaires as $horaire) {
+foreach ($resultsMidi as $horaire) {
+    print_r($horaire);
     if ($horaire['idoffre'] == 3 && strtolower($horaire['jour']) == $currentDay) {
         // Convertir les horaires d'ouverture et de fermeture en DateTime
         $tab=$horaire;
