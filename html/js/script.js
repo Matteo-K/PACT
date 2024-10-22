@@ -6,42 +6,44 @@ searchBar.addEventListener("input", (e) => {
   formHeader.setAttribute("action", "search.php?search=" + e.target.value);
 });
 
+
+
 //Page DetailsOffer by EWEN 
 try {
   //Affichage des images a leur selection
   let compteurImages = 0;
   const pImage = document.querySelector('#choixImage > p');
-  document.getElementById("photos").addEventListener("change", afficheImage(event));
+  document.getElementById("photos").addEventListener("change", afficheImage);
   
   function afficheImage(event){
-      const images = event.target.files;
-      const conteneur = document.getElementById("afficheImages");
+    const images = event.target.files;
+    const conteneur = document.getElementById("afficheImages");
 
-      Array.from(images).forEach((file) => {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          if (compteurImages < 10) {
-            compteurImages++;
-            const imgDiv = document.createElement("figure");
-            imgDiv.classList.add("imageOffre");
-            imgDiv.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Photo selectionnée">`;
-            previewContainer.appendChild(imgDiv);
+    Array.from(images).forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        if (compteurImages < 10) {
+          compteurImages++;
+          const figureImg = document.createElement("figure");
+          figureImg.classList.add("imageOffre");
+          figureImg.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
+          conteneur.appendChild(figureImg);
 
-            imgDiv.querySelector("img").addEventListener("click", function () {
-              if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
-                compteurImages--;
-                imgDiv.remove(); // Supprime l'élément image et son conteneur
-                pTag.style.color="black"; //on remet la couleur pas defaut au cas où c'etait en rouge
-              }
-            });
+          figureImg.addEventListener("click", function() {
+          if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
+            compteurImages--;
+            figureImg.remove(); // Supprime l'élément image et son conteneur
+            pImage.style.color="black"; //on remet la couleur par défaut au cas où c'etait en rouge
           }
-          else{
-            pImage.style.color="red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
-          }
-        };
-        reader.readAsDataURL(file);
-      });
-    };
+          });
+        }
+        else{
+          pImage.style.color="red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  };
 
 
   //Affichage des tags a leur ajout
@@ -52,38 +54,51 @@ try {
   let tags = []; // Tableau pour stocker les tags
 
   // Fonction pour ajouter un tag
-  buttonTag.addEventListener('click', ajoutTag()) 
+  buttonTag.addEventListener('click', ajoutTag);
+  inputTag.addEventListener("keypress", ajoutTagKeyboard);
+  let compteurTags = 0;
   
+  //detection d'un appui sur entrée
+  function ajoutTagKeyboard(e) {
+    if (e.code == "Enter") {
+      ajoutTag();
+    }
+  }
+
   function ajoutTag(){
       const valeurTag = inputTag.value.trim(); // Récupère la valeur de l'input et enlève les espaces
 
-      if (valeurTag && !tags.includes(valeurTag) && tags.length < 6) {
-          tags.push(valeurTag); // Ajoute le tag au tableau
+      if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
+        compteurTags++;
+        tags.push(valeurTag); // Ajoute le tag au tableau
 
-          // Crée l'élément pour afficher le tag
-          const elementTag = document.createElement('span');
-          elementTag.classList.add('tag');
-          elementTag.textContent = valeurTag;
+        // Crée l'élément pour afficher le tag
+        const elementTag = document.createElement('span');
+        elementTag.classList.add('tag');
+        elementTag.textContent = valeurTag;
 
-          // Ajoute un événement pour supprimer le tag au clic
-          elementTag.addEventListener('click', removeTag(valeurTag, elementTag));
+        // Ajoute un événement pour supprimer le tag au clic
+        elementTag.addEventListener('click', function(){
+          tags.splice(tags.indexOf(valeurTag), 1); // Supprime un élément à l'index trouvé
+          sectionTag.removeChild(elementTag); // Supprime l'élément visuel correspondant au tag
+          pTag.style.color="black"; //on remet la couleur par defaut au cas où c'etait en rouge
+          compteurTags--;
+        });
 
-          sectionTag.appendChild(elementTag); // Ajoute l'élément à la section
+        sectionTag.appendChild(elementTag); // Ajoute l'élément à la section
 
-          inputTag.value = ''; // Réinitialise l'input
-      } else if (tags.length >= 6) {
+        inputTag.value = ''; // Réinitialise l'input
+      } 
+      else if (tags.length >= 6) {
         pTag.style.color="red"; //On met le txte en rouge pour signaler que la limite des 6 tags est atteinte
+      }
+      else if (tags.includes(valeurTag)) {
+        alert("Ce tag à déjà été entré !");
       }
   };
 
-  // Fonction pour supprimer un tag
-  function removeTag(valeurTag, elementTag) {
-    pTag.style.color="black"; //on remet la couleur par defaut au cas où c'etait en rouge
-    tags = tags.filter(tag => tag !== valeurTag); // Supprime le tag du tableau
-    sectionTag.removeChild(elementTag); // Supprime l'élément visuel correspondant au tag
-    tags.remove(elementTag);
-  }
 } catch (error) {}
+
 
 /* Affichage pour un type d'offre particulier */
 

@@ -716,17 +716,17 @@ header div > a > img {
 }
 
 #afficheImages figure {
-  max-width: 90px;
+  max-width: 120px;
   max-height: 90px;
   margin: 5px;
   overflow: hidden;
-  border-radius: 5px;
   cursor: pointer;
 }
 
 #afficheImages img {
   width: 100%;
   height: auto;
+  border-radius: 3px;
 }
 
 #choixCategorie {
@@ -741,6 +741,13 @@ header div > a > img {
 
 #ajoutTag {
   background-color: var(--primary);
+}
+
+#artDetailOffer .tag{
+  box-shadow: none;
+  background-color: var(--secondary);
+  height: 30px;
+  margin: 5px;
 }
 
 #artDetailOffer section,
@@ -889,8 +896,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   
 }
 
-.tag{
-
+.mainOffer .tag{
   background-color: var(--accent);
   box-shadow: none;
 }
