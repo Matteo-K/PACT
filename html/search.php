@@ -4,7 +4,7 @@
 
     require_once "db.php"; // fichier de connexion à la BDD
 
-    $stmt = $conn->prepare("SELECT * FROM pact._offre ORDER BY SELECT * FROM _offre ORDER BY dateCrea DESC;");
+    $stmt = $conn->prepare("SELECT * FROM pact._offre ORDER BY SELECT * FROM _offre ORDER BY dateCrea DESC");
     $stmt->execute();
     print_r($stmt);
 ?>
