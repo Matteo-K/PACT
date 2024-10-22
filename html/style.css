@@ -638,6 +638,82 @@ header div > a > img {
 }
 
 /* ------------------------- END Contact OFFER CSS --------------------------------*/
+/* ------------------------- Payment OFFER CSS --------------------------------*/
+
+#paymentOffer {
+  padding: 15px;
+}
+
+#paymentOffer section {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+/* bloc radBtn & tout les moyens de payement*/
+#paymentOffer article {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 40%;
+}
+
+#paymentOffer article:nth-child(1) {
+  width: 40%;
+}
+
+#paymentOffer input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}
+
+/* Chaque moyen de payment */
+#paymentOffer article:nth-child(1) div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  border: var(--text-dark) 2px solid;
+  border-left: none;
+  border-top: none;
+  height: 33%;
+  padding-left: 30px;
+}
+
+#paymentOffer figure {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: left;
+  gap: 20px;
+}
+
+#paymentOffer img {
+  width: 15vh;
+  height: 15vh;
+}
+
+#paypal + label img {
+  width: 10vh;
+  height: 10vh;
+}
+
+/* Chaque moyen de payment */
+#paymentOffer article:nth-child(2) div {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#paymentOffer article:nth-child(2) div > div:not(div > div > div) {
+  display: flex;
+  flex-flow: row;
+}
+
+/* tout les input du moyen de payment */
+#paymentOffer article:nth-child(2) input {
+  height: 20px;
+  border: var(--secondary) 3px solid;
+  padding: 5px;
+}
+
+/* ------------------------- END Payment OFFER CSS --------------------------------*/
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -800,7 +876,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 40px;
   font-size: 20px;
   font-weight: 500;
-  color: #000 ;
+  color: #000;
   border: solid 2px;
   border-color: var(--secondary);
   padding-left: 10px;
@@ -866,7 +942,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Effet d'ombre au focus */
 }
 
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
@@ -1042,7 +1117,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
-/*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
@@ -1137,7 +1211,6 @@ textarea[id="Resume"] {
   width: 100px;
   text-align: center;
 }
-
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
@@ -1360,4 +1433,177 @@ button[id="boutonInscriptionPro"] {
   border-radius: 15px;
   margin: 5px auto;
   background-color: #edae14;
+}
+
+/*+++++++++++++++++++++++++++++++*/
+/* Css page connexion, Antoine */
+/*+++++++++++++++++++++++++++++*/
+body[id="body_connexion"] {
+  background-image: url("img/fond.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+main[id="mainConnexion"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a[id="lienMotDePasseOublie"] {
+  color: white;
+  font-size: 25px;
+  margin: 30px 0;
+}
+
+a[id="lienMotDePasseOublie"]:hover {
+  color: #edae14;
+}
+
+.connexion-compte a {
+  text-decoration: underline;
+  color: white;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+h1[id="connexionTitre"] {
+  text-align: center;
+  margin: 30px 10px;
+  color: #034d7c;
+  font-weight: 100;
+  font-size: 65px;
+}
+
+h1[id="pasDeCompteTitre"] {
+  text-align: center;
+  margin: 50px 10px;
+  color: #034d7c;
+  font-weight: 100;
+  font-size: 50px;
+}
+
+aside[id="asideRetour"] {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+button[id="retour"] {
+  background: none;
+  border: none;
+  color: #034d7c;
+  text-decoration: underline;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+aside[id="asideRetour"] > button[id="retour"] > img {
+  vertical-align: middle;
+  width: 70px;
+  height: 65px;
+  margin-right: 5px;
+}
+
+.connexion-compte form {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  border-radius: 20px;
+  padding: 15px;
+  margin: auto;
+  width: 500px;
+  height: auto;
+  background-color: #034d7c;
+  color: white;
+}
+
+.connexion-compte ::placeholder {
+  font-size: 20px;
+}
+
+.connexion-compte div {
+  display: inline;
+  justify-content: center;
+  margin: 10px;
+}
+
+div[id="lienBouton"] {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+div[id="lienBouton"] > div {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.connexion-compte label {
+  font-size: 25px;
+  margin: 5px;
+  text-align: left;
+}
+
+div.ligne1 > label {
+  display: inline-block;
+  width: 408px;
+}
+
+.connexion-compte input {
+  font-size: 20px;
+  padding-left: 0 5px;
+  border: 0;
+}
+
+input[id="login"] {
+  width: 403px;
+  height: 40px;
+  margin: 0 5px;
+  margin-top: 30px;
+  border: 3px solid #edae14;
+}
+
+input[id="motdepasseConnexion"] {
+  width: 403px;
+  height: 40px;
+  margin: 0 5px;
+  margin-top: 30px;
+  border: 3px solid #edae14;
+}
+
+button[id="boutonConnexion"] {
+  width: 200px;
+  font-size: 25px;
+  height: 60px;
+  border-radius: 15px;
+  margin: 5px auto;
+  margin-top: 30px;
+  background-color: #edae14;
+}
+
+a[id="boutonLienMembre"],
+a[id="boutonLienPro"] {
+  width: 300px;
+  padding: 15px 10px;
+  font-size: 20px;
+  border-radius: 15px;
+  border: solid 2px;
+  margin: 5px auto;
+  margin-top: 30px;
+  color: black;
+  background-color: #edae14;
+  text-decoration: none;
+}
+
+p[id="legendeBoutonLienMembre"],
+p[id="legendeBoutonLienPro"] {
+  font-size: 20px;
+  color: #034d7c;
+  width: 550px;
 }
