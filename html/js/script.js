@@ -101,67 +101,54 @@ try {
   }
 } catch (error) {}
 
-/* Affichage pour un type d'offre particulier */
+try {
+  /* Affichage pour un type d'offre particulier */
+  // Sélection des éléments du formulaire et des radios
+  const radioRestaurant = document.getElementById("radioRestaurant");
+  const radioPark = document.getElementById("radioParc");
+  const radioActivite = document.getElementById("radioActivite");
+  const radioSpectacle = document.getElementById("radioSpectacle");
+  const radioVisite = document.getElementById("radioVisite");
 
-// Sélection des éléments du formulaire et des radios
-const radioRestaurant = document.getElementById("radioRestaurant");
-const radioPark = document.getElementById("radioParc");
-const radioActivite = document.getElementById("radioActivite");
-const radioSpectacle = document.getElementById("radioSpectacle");
-const radioVisite = document.getElementById("radioVisite");
+  const ParkOffer = document.getElementById("park");
+  const ActiviteOffer = document.getElementById("activity");
+  const SpectacleOffer = document.getElementById("show");
+  const VisiteOffer = document.getElementById("visit");
 
-const ParkOffer = document.getElementById("park");
-const ActiviteOffer = document.getElementById("activity");
-const SpectacleOffer = document.getElementById("show");
-const VisiteOffer = document.getElementById("visit");
-
-function hidenOffer() {
-  ParkOffer.style.display = "none";
-  ActiviteOffer.style.display = "none";
-  SpectacleOffer.style.display = "none";
-  VisiteOffer.style.display = "none";
-}
-
-// Fonction pour afficher ou masquer la div des require_once
-hidenOffer();
-function toggleSpecialOffer() {
-  hidenOffer();
-  if (radioPark.checked) {
-    ParkOffer.style.display = "block";
-  } else if (radioActivite.checked) {
-    ActiviteOffer.style.display = "block";
-  } else if (radioSpectacle.checked) {
-    SpectacleOffer.style.display = "block";
-  } else if (radioVisite.checked) {
-    VisiteOffer.style.display = "block";
+  function hidenOffer() {
+    ParkOffer.style.display = "none";
+    ActiviteOffer.style.display = "none";
+    SpectacleOffer.style.display = "none";
+    VisiteOffer.style.display = "none";
   }
-}
 
-// Associe la fonction de toggle au clic sur tous les boutons radio
-radioRestaurant.addEventListener("input", toggleSpecialOffer);
-radioPark.addEventListener("input", toggleSpecialOffer);
-radioActivite.addEventListener("input", toggleSpecialOffer);
-radioSpectacle.addEventListener("input", toggleSpecialOffer);
-radioVisite.addEventListener("input", toggleSpecialOffer);
+  // Fonction pour afficher ou masquer la div des require_once
+  hidenOffer();
+  function toggleSpecialOffer() {
+    hidenOffer();
+    if (radioPark.checked) {
+      ParkOffer.style.display = "block";
+    } else if (radioActivite.checked) {
+      ActiviteOffer.style.display = "block";
+    } else if (radioSpectacle.checked) {
+      SpectacleOffer.style.display = "block";
+    } else if (radioVisite.checked) {
+      VisiteOffer.style.display = "block";
+    }
+  }
 
-// autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
+  // Associe la fonction de toggle au clic sur tous les boutons radio
+  radioRestaurant.addEventListener("input", toggleSpecialOffer);
+  radioPark.addEventListener("input", toggleSpecialOffer);
+  radioActivite.addEventListener("input", toggleSpecialOffer);
+  radioSpectacle.addEventListener("input", toggleSpecialOffer);
+  radioVisite.addEventListener("input", toggleSpecialOffer);
 
-// Appel initial de la fonction pour vérifier l'état initial
-toggleSpecialOffer();
+  // autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
 
-// Code pour envoyer les images au serveur
-// const formData = new FormData();
-// Array.from(files).forEach(file => {
-//     formData.append('images[]', file);
-// });
-// fetch('YOUR_SERVER_URL', {
-//     method: 'POST',
-//     body: formData
-// }).then(response => {
-//     console.log('Images envoyées avec succès!');
-// }).catch(error => {
-//     console.error('Erreur lors de l\'envoi:', error);
-// });
+  // Appel initial de la fonction pour vérifier l'état initial
+  toggleSpecialOffer();
+} catch (error) {}
 
 /* Intéraction horaire */
 let counterRep = 1;
