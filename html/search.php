@@ -9,11 +9,11 @@
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt = $conn->prepare("SELECT * FROM pact._horrairesoir");
+    $stmt = $conn->prepare("SELECT * FROM pact._horairesoir");
     $stmt->execute();
     $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt = $conn->prepare("SELECT * FROM pact._horrairemidi");
+    $stmt = $conn->prepare("SELECT * FROM pact._horairemidi");
     $stmt->execute();
     $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
