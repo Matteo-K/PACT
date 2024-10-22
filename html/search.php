@@ -55,7 +55,6 @@ foreach ($resultsMidi as $horaire) {
     <script src="./js/setColor.js"></script>
 </head>
 <body id="search">
-    <?php require_once "components/header.php" ?>
     <main>
         <aside>
             <h2>Tri des offres</h2>
