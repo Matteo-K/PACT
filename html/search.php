@@ -33,9 +33,9 @@
                 <ul>
                     <?php foreach ($results as $offre): ?>
                         <li>
-                            <h3><?= htmlspecialchars($offre['titre']); ?></h3>
+                            <h3><?= htmlspecialchars($offre['nom']); ?></h3>
                             <p><?= htmlspecialchars($offre['description']); ?></p>
-                            <p><strong>Date de création :</strong> <?= htmlspecialchars($offre['dateCrea']); ?></p>
+                            <p><strong>Date de création :</strong> <?= htmlspecialchars($offre['datecrea']); ?></p>
                             <!-- Ajoute d'autres champs si nécessaire -->
                         </li>
                     <?php endforeach; ?>
