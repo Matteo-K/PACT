@@ -2,7 +2,7 @@
     // Démarrer la session
     session_start();
 
-    require_once "db.php"; // fichier de connexion à la BDD
+    require_once "dbServer.php"; // fichier de connexion à la BDD
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Récupérer les données du formulaire
