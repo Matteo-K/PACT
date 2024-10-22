@@ -1,7 +1,51 @@
 <?php 
     // Démarrer la session
     session_start();
+
+    require_once "db.php"; // fichier de connexion à la BDD
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les données du formulaire
+        $denomination = trim($_POST['denomination']);
+        $telephone = trim($_POST['telephone']);
+        $mail = trim($_POST['email']);
+        $adresse = trim($_POST['adresse']);
+        $code = trim($_POST['code']);
+        $ville = trim($_POST['ville']);
+        $secteur = $_POST['secteur'];
+        $siren = trim($_POST['siren']);
+        $motdepasse = $_POST['motdepasse'];
+
+        // Séparer le numéro et le nom de la rue
+        $adresseExplode = explode(' ', $adresse, 2); 
+        $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
+        $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
+        $pays = "France";
+        $photo = "./img/profile_picture/default.svg";
+
+        // Hashage du mot de passe
+        $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
+
+        // Préparer la requête d'insertion en fonction du secteur
+
+       // Secteur public
+        if ($secteur == 'public') {
+            $stmt = $conn->prepare("INSERT INTO proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $numeroRue, $rue, $ville, $pays, $code, $photo]);
+        } else { 
+            $stmt = $conn->prepare("INSERT INTO proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$denomination, $siren, $hashedPassword, $telephone, $mail, $numeroRue, $rue, $ville, $pays, $code, $photo]);
+        }
+
+
+
+        // Redirection vers une page de succès
+        header('Location: success.html');
+        exit;
+    }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head> 
@@ -109,62 +153,5 @@
 
         <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="connexion.php">Se connecter</a></h2>
     </form>
-
-
-    <?php
-        // Configuration de la base de données
-        $host = 'the-void.ventsdouest.dev'; // Hôte de ta base de données
-        $db = 'sae'; // Nom de la base de données
-        $user = 'sae'; // Nom d'utilisateur
-        $pass = 'digital-costaRd-sc0uts'; // Mot de passe
-
-        try {
-            // Connexion à la base de données
-            $pdo = new PDO("pgsql:host=$host;dbname=$db;charset=utf8", $user, $pass);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Récupérer les données du formulaire
-                $denomination = trim($_POST['denomination']);
-                $telephone = trim($_POST['telephone']);
-                $mail = trim($_POST['email']);
-                $adresse = trim($_POST['adresse']);
-                $code = trim($_POST['code']);
-                $ville = trim($_POST['ville']);
-                $secteur = $_POST['secteur'];
-                $siren = trim($_POST['siren']);
-                $motdepasse = $_POST['motdepasse'];
-
-                $adresseExplode = explode(' ', $adresse, 2); 
-                $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
-                $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
-
-                // Hashage du mot de passe
-                $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
-
-                // Préparer la requête d'insertion en fonction du secteur
-
-                // pro public
-                if ($secteur == 'public') {
-                    $stmt = $pdo->prepare("INSERT INTO proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal) VALUES (?, ?, ?, ?, ?, ?, 'France', ?)");
-                    $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $adresse, $code, $ville]);
-                } 
-
-                // pro privé
-                else { 
-                    $stmt = $pdo->prepare("INSERT INTO proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal) VALUES (?, ?, ?, ?, ?, ?, ?, 'France', ?)");
-                    $stmt->execute([$denomination, $siren, $hashedPassword, $telephone, $mail, $adresse, $code, $ville, ]);
-                }
-                
-                $stmt->execute([$denomination, $telephone, $mail, $adresse, $code, $ville, $siren, $hashedPassword]);
-
-                // Redirection vers une page de succès
-                header('Location: success.html');
-                exit;
-            }
-        } catch (PDOException $e) {
-            echo 'Erreur de connexion à la base de données : ' . $e->getMessage();
-        }
-    ?>
 </body>
 </html>
