@@ -20,10 +20,22 @@
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
 
-// Récupérer le jour actuel en français avec une majuscule
-$currentDay = strftime('%A'); // Ex: "Lundi", "Mardi", etc.
-$currentDay = ucfirst($currentDay); // S'assurer que la première lettre soit en majuscule
+// Récupérer le jour actuel en français avec la classe DateTime
+$currentDay = (new DateTime())->format('l'); // Récupère le jour en anglais
 
+// Tableau pour convertir les jours de la semaine de l'anglais au français
+$daysOfWeek = [
+    'Monday'    => 'Lundi',
+    'Tuesday'   => 'Mardi',
+    'Wednesday' => 'Mercredi',
+    'Thursday'  => 'Jeudi',
+    'Friday'    => 'Vendredi',
+    'Saturday'  => 'Samedi',
+    'Sunday'    => 'Dimanche'
+];
+
+// Convertir le jour actuel en français
+$currentDay = $daysOfWeek[$currentDay];
 $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
 // Filtrer les horaires de l'offre en fonction de l'idOffre et du jour actuel
