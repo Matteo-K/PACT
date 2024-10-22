@@ -1,20 +1,64 @@
 <?php 
     // Démarrer la session
     session_start();
+
+    require_once "db.php"; // fichier de connexion à la BDD
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les données du formulaire
+        $denomination = trim($_POST['denomination']);
+        $telephone = trim($_POST['telephone']);
+        $mail = trim($_POST['email']);
+        $adresse = trim($_POST['adresse']);
+        $code = trim($_POST['code']);
+        $ville = trim($_POST['ville']);
+        $secteur = $_POST['secteur'];
+        $siren = trim($_POST['siren']);
+        $motdepasse = $_POST['motdepasse'];
+
+        // Séparer le numéro et le nom de la rue
+        $adresseExplode = explode(' ', $adresse, 2); 
+        $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
+        $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
+        $pays = "France";
+        $photo = "./img/profile_picture/default.svg";
+
+        // Hashage du mot de passe
+        $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
+
+        // Préparer la requête d'insertion en fonction du secteur
+
+       // Secteur public
+        if ($secteur == 'public') {
+            $stmt = $conn->prepare("INSERT INTO proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $numeroRue, $rue, $ville, $pays, $code, $photo]);
+        } else { 
+            $stmt = $conn->prepare("INSERT INTO proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$denomination, $siren, $hashedPassword, $telephone, $mail, $numeroRue, $rue, $ville, $pays, $code, $photo]);
+        }
+
+
+
+        // Redirection vers une page de succès
+        header('Location: success.html');
+        exit;
+    }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style_creation_compte_pro.css">
+    <link rel="icon" href="logo.png" type="image/x-icon">
     <title>Créer un compte</title>
 </head>
 <body id ="body_creation_compte_pro" class="creation-compte">
     <aside id="asideRetour">
         <button id="retour">
-            <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
+            <img src="logo.png" alt="Logo" title="Retour page précédente"/>
             Retour
         </button>
     </aside>
@@ -65,18 +109,20 @@
         
 
         <div class="ligne5">
-            <!-- Radio bouton public -->
-            <input type="radio" id="radioPublic" name="secteur" value="public">
-            <label for="public">Public</label>
-    
-            <!-- Radio bouton privée -->
-            <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
-            <label for="prive">Privé</label>
-
             <div class="ligne5_1">
+                <!-- Radio bouton public -->
+                <input type="radio" id="radioPublic" name="secteur" value="public">
+                <label for="public">Public</label>
+        
+                <!-- Radio bouton privée -->
+                <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
+                <label for="prive">Privé</label>
+            </div>
+
+            <div class="ligne5_2">
                 <!-- Saisi du numéro de SIREN -->
                 <label for="siren">N° SIREN*:</label>
-                <input type="text" placeholder = "123 456 789" id="siren" name="siren" required>
+                <input type="text" placeholder = "123 456 789" id="siren" name="siren" >
             </div>
         </div>
 
@@ -102,71 +148,12 @@
             <input type="checkbox" id="cgu" name="cgu" value="cgu" />
             <label for="cgu">J’accepte les <a id="lienCGU" href= "cgu.html">conditions générales d’utilisation</a> de la PACT</label>
         </div>
-
-
+        
+        
         <button onclick = "validationForm()" id="boutonInscriptionPro">S'inscrire</button>
         
         <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="connexion.php">Se connecter</a></h2>
     </form>
-    
-    
-    <?php
-        // Configuration de la base de données
-        $host = 'the-void.ventsdouest.dev'; // Hôte de ta base de données
-        $db = 'sae'; // Nom de la base de données
-        $user = 'sae'; // Nom d'utilisateur
-        $pass = 'digital-costaRd-sc0uts'; // Mot de passe
-        
-        try {
-            // Connexion à la base de données
-            $pdo = new PDO("pgsql:host=$host;dbname=$db;charset=utf8", $user, $pass);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Récupérer les données du formulaire
-                $denomination = trim($_POST['denomination']);
-                $telephone = trim($_POST['telephone']);
-                $mail = trim($_POST['email']);
-                $adresse = trim($_POST['adresse']);
-                $code = trim($_POST['code']);
-                $ville = trim($_POST['ville']);
-                $secteur = $_POST['secteur'];
-                $siren = trim($_POST['siren']);
-                $motdepasse = $_POST['motdepasse'];
-                
-                
-                // Exploser l'adresse pour obtenir le numéro et la rue
-                $adresseParts = explode(' ', $adresse, 2); 
-                $numeroRue = isset($adresseParts[0]) ? $adresseParts[0] : '';
-                $rue = isset($adresseParts[1]) ? $adresseParts[1] : '';
-                
-                // Hashage du mot de passe
-                $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
-                
-                // Préparer la requête d'insertion en fonction du secteur
-                
-                // pro public
-                if ($secteur == 'public') {
-                    $stmt = $pdo->prepare("INSERT INTO proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal) VALUES (?, ?, ?, ?, ?, ?, 'France', ?)");
-                    $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $adresse, $code, $ville]);
-                } 
-                
-                // pro privé
-                else { 
-                    $stmt = $pdo->prepare("INSERT INTO proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal) VALUES (?, ?, ?, ?, ?, ?, ?, 'France', ?)");
-                    $stmt->execute([$denomination, $siren, $hashedPassword, $telephone, $mail, $adresse, $code, $ville, ]);
-                }
-                
-                $stmt->execute([$denomination, $telephone, $mail, $adresse, $code, $ville, $siren, $hashedPassword]);
-                
-                // Redirection vers une page de succès
-                header('Location: success.html');
-                exit;
-            }
-        } catch (PDOException $e) {
-            echo 'Erreur de connexion à la base de données : ' . $e->getMessage();
-        }
-        ?>
 </body>
-<script src="validationFormInscription.js"></script>
+<script src="js/validationFormInscription.js"></script>
 </html>

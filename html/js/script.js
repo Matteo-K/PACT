@@ -103,41 +103,56 @@ try {
 /* Affichage pour un type d'offre particulier */
 
 
-    document.addEventListener('DOMContentLoaded', function() {
-        // Sélection des éléments du formulaire et des radios
-        const radioRestaurant = document.getElementById('radioRestaurant');
-        const autresCategories = [
-            document.getElementById('radioParc'),
-            document.getElementById('radioActivite'),
-            document.getElementById('radioSpectacle'),
-            document.getElementById('radioVisite')
-        ];
-        
-        const specialOffer = document.getElementById('specialOffer'); // Div contenant les requires_once
+// Sélection des éléments du formulaire et des radios
+const radioRestaurant = document.getElementById('radioRestaurant');
+const radioPark = document.getElementById('radioParc');
+const radioActivite = document.getElementById('radioActivite');
+const radioSpectacle = document.getElementById('radioSpectacle');
+const radioVisite = document.getElementById('radioVisite');
 
-        // Fonction pour afficher ou masquer la div des require_once
-        function toggleSpecialOffer() {
-            if (radioRestaurant.checked) {
-                // Si "Restaurant" est sélectionné, on cache le contenu des détails
-                specialOffer.style.display = 'none';
-            } else {
-                // Sinon, on affiche les autres détails
-                specialOffer.style.display = 'block';
-            }
-        }
+const ParkOffer = document.getElementById('park');
+const ActiviteOffer = document.getElementById('activity');
+const SpectacleOffer = document.getElementById('show');
+const VisiteOffer = document.getElementById('visit');
 
-        // Associe la fonction de toggle au clic sur tous les boutons radio
-        radioRestaurant.addEventListener('click', toggleSpecialOffer);
-        autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
+function hidenOffer() {
+  ParkOffer.style.display = "none";
+  ActiviteOffer.style.display = "none";
+  SpectacleOffer.style.display = "none";
+  VisiteOffer.style.display = "none";
+}
 
-        // Appel initial de la fonction pour vérifier l'état initial
-        toggleSpecialOffer();
-    });
+// Fonction pour afficher ou masquer la div des require_once
+hidenOffer();
+function toggleSpecialOffer() {
+    hidenOffer();
+    if (radioPark.checked) {
+      ParkOffer.style.display = "block";
+    } else if (radioActivite.checked){
+      ActiviteOffer.style.display = "block";
+    } else if (radioSpectacle.checked) {
+      SpectacleOffer.style.display = "block";
+    } else if (radioVisite.checked) {
+      VisiteOffer.style.display = "block";
+    }
+}
+
+// Associe la fonction de toggle au clic sur tous les boutons radio
+radioRestaurant.addEventListener('input', toggleSpecialOffer);
+radioPark.addEventListener('input', toggleSpecialOffer);
+radioActivite.addEventListener('input', toggleSpecialOffer);
+radioSpectacle.addEventListener('input', toggleSpecialOffer);
+radioVisite.addEventListener('input', toggleSpecialOffer);
+
+// autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
+
+// Appel initial de la fonction pour vérifier l'état initial
+toggleSpecialOffer();
 
 
 
 
-
+/* ----------------- FIN JS SELECTION OFFRE PARTICULIERE ---------------------*/
 
 
 // Code pour envoyer les images au serveur
