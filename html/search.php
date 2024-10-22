@@ -4,9 +4,12 @@
 
     require_once "db.php"; // fichier de connexion à la BDD
 
+    // Préparer et exécuter la requête SQL
     $stmt = $conn->prepare("SELECT * FROM pact._offre ORDER BY dateCrea DESC");
     $stmt->execute();
-    print_r($stmt);
+
+    // Récupérer tous les résultats sous forme de tableau associatif
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +28,21 @@
             <h2>Filtre</h2>
         </aside>
         <section>
-            <?php print_r($stmt)?>
+            <h2>Liste des offres</h2>
+            <?php if ($results): ?>
+                <ul>
+                    <?php foreach ($results as $offre): ?>
+                        <li>
+                            <h3><?= htmlspecialchars($offre['titre']); ?></h3>
+                            <p><?= htmlspecialchars($offre['description']); ?></p>
+                            <p><strong>Date de création :</strong> <?= htmlspecialchars($offre['dateCrea']); ?></p>
+                            <!-- Ajoute d'autres champs si nécessaire -->
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php else: ?>
+                <p>Aucune offre trouvée.</p>
+            <?php endif; ?>
         </section>
     </main>
 </body>
