@@ -800,7 +800,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 40px;
   font-size: 20px;
   font-weight: 500;
-  color: var(--secondary);
+  color: #000 ;
   border: solid 2px;
   border-color: var(--secondary);
   padding-left: 10px;

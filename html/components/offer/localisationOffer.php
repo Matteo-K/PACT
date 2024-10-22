@@ -22,7 +22,7 @@
           <section>
             <div class="codeP">
               <label for="codepostal">Code postal* :</label>
-              <input type="text" id="codepostal" placeholder="Code postal" value="<?php echo $codePostal ?>" required/>
+              <input type="text" id="codepostal" placeholder="Code Postal" value="<?php echo $codePostal ?>" required/>
             </div>
             <div class="villeL">
               <label for="ville2">Ville* :</label>
@@ -105,6 +105,6 @@ function geocodeadresse(fulladresse) {
 </script>
 <!-- Inclure l'API Google Maps avec votre clé API -->
 <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap"
+  src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
   async defer
 ></script>
