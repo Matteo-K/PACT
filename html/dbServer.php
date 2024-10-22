@@ -1,5 +1,5 @@
 <?php
-include('./connectionBDD/connect_params.php');
+include('./connectionBDD/connect_paramsServer.php');
 
 try {
     $conn = new PDO("$driver:host=$server;dbname=$dbname", $user, $pass);

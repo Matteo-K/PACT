@@ -6,6 +6,8 @@ searchBar.addEventListener("input", (e) => {
   formHeader.setAttribute("action", "search.php?search=" + e.target.value);
 });
 
+
+
 //Page DetailsOffer by EWEN
 try {
   //Affichage des images a leur selection
@@ -18,31 +20,39 @@ try {
   function afficheImage(event) {
     const images = event.target.files;
     const conteneur = document.getElementById("afficheImages");
+  const pImage = document.querySelector('#choixImage > p');
+  document.getElementById("photos").addEventListener("change", afficheImage);
+  
+  function afficheImage(event){
+    const images = event.target.files;
+    const conteneur = document.getElementById("afficheImages");
 
     Array.from(images).forEach((file) => {
       const reader = new FileReader();
       reader.onload = function (e) {
         if (compteurImages < 10) {
           compteurImages++;
-          const imgDiv = document.createElement("figure");
-          imgDiv.classList.add("imageOffre");
-          imgDiv.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Photo selectionnée">`;
-          previewContainer.appendChild(imgDiv);
+          const figureImg = document.createElement("figure");
+          figureImg.classList.add("imageOffre");
+          figureImg.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
+          conteneur.appendChild(figureImg);
 
-          imgDiv.querySelector("img").addEventListener("click", function () {
-            if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
-              compteurImages--;
-              imgDiv.remove(); // Supprime l'élément image et son conteneur
-              pTag.style.color = "black"; //on remet la couleur pas defaut au cas où c'etait en rouge
-            }
+          figureImg.addEventListener("click", function() {
+          if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
+            compteurImages--;
+            figureImg.remove(); // Supprime l'élément image et son conteneur
+            pImage.style.color="black"; //on remet la couleur par défaut au cas où c'etait en rouge
+          }
           });
-        } else {
-          pImage.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
+        }
+        else{
+          pImage.style.color="red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
         }
       };
       reader.readAsDataURL(file);
     });
-  }
+  };
+
 
   //Affichage des tags a leur ajout
   const inputTag = document.getElementById("inputTag");
@@ -52,73 +62,120 @@ try {
   let tags = []; // Tableau pour stocker les tags
 
   // Fonction pour ajouter un tag
-  buttonTag.addEventListener("click", ajoutTag());
-
-  function ajoutTag() {
-    const valeurTag = inputTag.value.trim(); // Récupère la valeur de l'input et enlève les espaces
-
-    if (valeurTag && !tags.includes(valeurTag) && tags.length < 6) {
-      tags.push(valeurTag); // Ajoute le tag au tableau
-
-      // Crée l'élément pour afficher le tag
-      const elementTag = document.createElement("span");
-      elementTag.classList.add("tag");
-      elementTag.textContent = valeurTag;
-
-      // Ajoute un événement pour supprimer le tag au clic
-      elementTag.addEventListener("click", removeTag(valeurTag, elementTag));
-
-      sectionTag.appendChild(elementTag); // Ajoute l'élément à la section
-
-      inputTag.value = ""; // Réinitialise l'input
-    } else if (tags.length >= 6) {
-      pTag.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 6 tags est atteinte
+  buttonTag.addEventListener('click', ajoutTag);
+  inputTag.addEventListener("keypress", ajoutTagKeyboard);
+  let compteurTags = 0;
+  
+  //detection d'un appui sur entrée
+  function ajoutTagKeyboard(e) {
+    if (e.code == "Enter") {
+      ajoutTag();
     }
   }
 
-  // Fonction pour supprimer un tag
-  function removeTag(valeurTag, elementTag) {
-    pTag.style.color = "black"; //on remet la couleur par defaut au cas où c'etait en rouge
-    tags = tags.filter((tag) => tag !== valeurTag); // Supprime le tag du tableau
-    sectionTag.removeChild(elementTag); // Supprime l'élément visuel correspondant au tag
-    tags.remove(elementTag);
-  }
+  function ajoutTag(){
+      const valeurTag = inputTag.value.trim(); // Récupère la valeur de l'input et enlève les espaces
+
+      if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
+        compteurTags++;
+        tags.push(valeurTag); // Ajoute le tag au tableau
+
+        // Crée l'élément pour afficher le tag
+        const elementTag = document.createElement('span');
+        elementTag.classList.add('tag');
+        elementTag.textContent = valeurTag;
+
+        // Ajoute un événement pour supprimer le tag au clic
+        elementTag.addEventListener('click', function(){
+          tags.splice(tags.indexOf(valeurTag), 1); // Supprime un élément à l'index trouvé
+          sectionTag.removeChild(elementTag); // Supprime l'élément visuel correspondant au tag
+          pTag.style.color="black"; //on remet la couleur par defaut au cas où c'etait en rouge
+          compteurTags--;
+        });
+
+        sectionTag.appendChild(elementTag); // Ajoute l'élément à la section
+
+        inputTag.value = ''; // Réinitialise l'input
+      } 
+      else if (tags.length >= 6) {
+        pTag.style.color="red"; //On met le txte en rouge pour signaler que la limite des 6 tags est atteinte
+      }
+      else if (tags.includes(valeurTag)) {
+        alert("Ce tag à déjà été entré !");
+      }
+  };
+
 } catch (error) {}
+
 
 /* Affichage pour un type d'offre particulier */
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Sélection des éléments du formulaire et des radios
-  const radioRestaurant = document.getElementById("radioRestaurant");
-  const autresCategories = [
-    document.getElementById("radioParc"),
-    document.getElementById("radioActivite"),
-    document.getElementById("radioSpectacle"),
-    document.getElementById("radioVisite"),
-  ];
 
-  const specialOffer = document.getElementById("specialOffer"); // Div contenant les requires_once
+// Sélection des éléments du formulaire et des radios
+const radioRestaurant = document.getElementById('radioRestaurant');
+const radioPark = document.getElementById('radioParc');
+const radioActivite = document.getElementById('radioActivite');
+const radioSpectacle = document.getElementById('radioSpectacle');
+const radioVisite = document.getElementById('radioVisite');
 
-  // Fonction pour afficher ou masquer la div des require_once
-  function toggleSpecialOffer() {
-    if (radioRestaurant.checked) {
-      // Si "Restaurant" est sélectionné, on cache le contenu des détails
-      specialOffer.style.display = "none";
-    } else {
-      // Sinon, on affiche les autres détails
-      specialOffer.style.display = "block";
+const ParkOffer = document.getElementById('park');
+const ActiviteOffer = document.getElementById('activity');
+const SpectacleOffer = document.getElementById('show');
+const VisiteOffer = document.getElementById('visit');
+
+function hidenOffer() {
+  ParkOffer.style.display = "none";
+  ActiviteOffer.style.display = "none";
+  SpectacleOffer.style.display = "none";
+  VisiteOffer.style.display = "none";
+}
+
+// Fonction pour afficher ou masquer la div des require_once
+hidenOffer();
+function toggleSpecialOffer() {
+    hidenOffer();
+    if (radioPark.checked) {
+      ParkOffer.style.display = "block";
+    } else if (radioActivite.checked){
+      ActiviteOffer.style.display = "block";
+    } else if (radioSpectacle.checked) {
+      SpectacleOffer.style.display = "block";
+    } else if (radioVisite.checked) {
+      VisiteOffer.style.display = "block";
     }
-  }
+}
 
-  // Associe la fonction de toggle au clic sur tous les boutons radio
-  radioRestaurant.addEventListener("click", toggleSpecialOffer);
-  autresCategories.forEach((radio) =>
-    radio.addEventListener("click", toggleSpecialOffer)
-  );
+// Associe la fonction de toggle au clic sur tous les boutons radio
+radioRestaurant.addEventListener('input', toggleSpecialOffer);
+radioPark.addEventListener('input', toggleSpecialOffer);
+radioActivite.addEventListener('input', toggleSpecialOffer);
+radioSpectacle.addEventListener('input', toggleSpecialOffer);
+radioVisite.addEventListener('input', toggleSpecialOffer);
 
-  // Appel initial de la fonction pour vérifier l'état initial
-  toggleSpecialOffer();
-});
+// autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
+
+// Appel initial de la fonction pour vérifier l'état initial
+toggleSpecialOffer();
+
+
+
+
+
+
+
+// Code pour envoyer les images au serveur
+// const formData = new FormData();
+// Array.from(files).forEach(file => {
+//     formData.append('images[]', file);
+// });
+// fetch('YOUR_SERVER_URL', {
+//     method: 'POST',
+//     body: formData
+// }).then(response => {
+//     console.log('Images envoyées avec succès!');
+// }).catch(error => {
+//     console.error('Erreur lors de l\'envoi:', error);
+// });
 
 /* Intéraction horaire */
 let counterRep = 1;

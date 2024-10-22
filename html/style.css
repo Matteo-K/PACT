@@ -153,8 +153,8 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  gap: 12em;
   align-items: center;
+  gap: 12em;
   position: fixed;
   top: 0;
   left: 0;
@@ -186,7 +186,7 @@ header h1 {
   color: var(--bloc);
 }
 
-header div > a > img {
+header div > a > img, header #auth img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
@@ -243,7 +243,51 @@ header div > a > img {
 #formHeader img {
   width: 2em;
 }
+#auth2 {
+  display: none;
+}
 
+#menuBurger {
+  display: none;
+}
+
+@media (max-width: 756px) {
+  header {
+    height: 200px;
+    flex-direction: column; /* Passer les éléments en colonne */
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+  }
+  #auth {
+    display: none;
+  }
+  /* Afficher le menu burger */
+  #menuBurger {
+    display: block; /* Montrer l'icône du menu burger */
+    position: absolute;
+    left: 1em;
+    top: 1em;
+  }
+  /* Placer le bouton de connexion à droite */
+  #auth2 {
+    display: block;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+  }
+
+  /* La barre de recherche se place sous le logo */
+  #formHeader {
+    width: 90%; /* Largeur à 90% de l'écran */
+    margin-top: 1em;
+    margin-bottom: 25px;
+  }
+  #profilePicture {
+    width: 5em; /* Taille légèrement réduite pour mobile */
+    height: 5em;
+  }
+}
 /* Bouton de connexion */
 #btnConn {
   display: flex;
@@ -830,17 +874,17 @@ header div > a > img {
 }
 
 #afficheImages figure {
-  max-width: 90px;
+  max-width: 120px;
   max-height: 90px;
   margin: 5px;
   overflow: hidden;
-  border-radius: 5px;
   cursor: pointer;
 }
 
 #afficheImages img {
   width: 100%;
   height: auto;
+  border-radius: 3px;
 }
 
 #choixCategorie {
@@ -855,6 +899,13 @@ header div > a > img {
 
 #ajoutTag {
   background-color: var(--primary);
+}
+
+#artDetailOffer .tag{
+  box-shadow: none;
+  background-color: var(--secondary);
+  height: 30px;
+  margin: 5px;
 }
 
 #artDetailOffer section,
@@ -998,7 +1049,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-bottom: 0.5em;
 }
 
-.tag {
+.mainOffer .tag{
   background-color: var(--accent);
   box-shadow: none;
 }
@@ -1246,7 +1297,7 @@ textarea[id="Resume"] {
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
 body[id="body_creation_compte_pro"] {
-  background-image: url("img/fond.png");
+  background-image: url("fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -1254,7 +1305,6 @@ body[id="body_creation_compte_pro"] {
 
 a[id="lienCGU"] {
   color: white;
-  text-decoration: underline;
 }
 
 a[id="lienCGU"]:hover {
@@ -1263,7 +1313,6 @@ a[id="lienCGU"]:hover {
 
 a[id="lienConnexion"] {
   color: white;
-  text-decoration: underline;
   font-family: "Belanosima", sans-serif;
 }
 
@@ -1274,7 +1323,7 @@ a[id="lienConnexion"]:hover {
 h1[id="inscriptionTitre"] {
   text-align: center;
   margin: 30px 10px;
-  color: #034d7c;
+  color: #034D7C;
   font-weight: 100;
   font-size: 65px;
 }
@@ -1292,11 +1341,11 @@ aside[id="asideRetour"] {
 button[id="retour"] {
   background: none;
   border: none;
-  color: #034d7c;
+  color: #034D7C;
   text-decoration: underline;
   font: inherit;
   cursor: pointer;
-  padding: 0;
+  padding: 0; 
 }
 
 aside[id="asideRetour"] > button[id="retour"] > img {
@@ -1317,7 +1366,7 @@ aside[id="asideRetour"] > button[id="retour"] > img {
   margin: auto;
   width: 900px;
   height: auto;
-  background-color: #034d7c;
+  background-color: #034D7C;
   color: white;
 }
 
@@ -1337,39 +1386,46 @@ body[id="body_creation_compte_pro"] ::placeholder {
   text-align: left;
 }
 
-.creation-compte div.ligne1 > label,
-div.ligne6 > label {
+
+.creation-compte div.ligne1 > label, div.ligne6 > label {
   display: inline-block;
   width: 408px;
 }
 
-.creation-compte div.ligne2 > label,
-div.ligne3 > label {
+
+
+.creation-compte div.ligne2 > label, div.ligne3 > label {
   display: flex;
   justify-content: left;
   width: 823px;
   margin: 5px auto;
 }
 
+
+
 .creation-compte div.ligne4 > label {
   display: inline-block;
   width: 215px;
-}
+} 
 
 .creation-compte div.ligne4 > label[for="ville"] {
   width: 601px;
 }
+
+
 
 .creation-compte .ligne5 {
   display: flex;
   align-items: center;
   margin: 10px 26px;
   text-align: left;
-  justify-content: space-between;
+  justify-content: space-between;  
 }
 
-.creation-compte .ligne5_1 {
+.creation-compte .ligne5_1, .creation-compte .ligne5_2 {
   display: flex;
+  height: 68px;
+  width: auto;
   align-items: center;
   justify-content: center;
 }
@@ -1385,18 +1441,21 @@ div.ligne3 > label {
   font-size: 25px;
 }
 
-.creation-compte .ligne5_1 label {
+.creation-compte .ligne5_2 label {
   margin: 0;
   font-size: 25px;
 }
+
+
 
 .creation-compte .ligne7 {
   display: flex;
   align-items: center;
   margin: 5px;
   text-align: left;
-  justify-content: center;
+  justify-content: center;  
 }
+
 
 .creation-compte input {
   font-size: 20px;
@@ -1404,46 +1463,41 @@ div.ligne3 > label {
   border: 0;
 }
 
-input[id="denomination"],
-input[id="telephone"],
-input[id="motdepasse"],
-input[id="confirmer"] {
+input[id="denomination"], input[id="telephone"], input[id="motdepasse"], input[id="confirmer"]{
   width: 403px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid #edae14;
 }
 
-input[id="email"],
-input[id="adresse"] {
+input[id="email"], input[id="adresse"]{
   width: 823px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid #edae14;
 }
 
-input[id="code"] {
+input[id="code"]{
   width: 210px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid #edae14;
 }
 
-input[id="ville"] {
+input[id="ville"]{
   width: 596px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid #edae14;
 }
 
-input[id="public"],
-input[id="prive"] {
+input[id="radioPublic"], input[id="radioPrive"]{
   width: 25px;
   height: 25px;
   margin: 0 5px;
 }
 
-input[id="siren"] {
+input[id="siren"]{
   width: 408px;
   height: 40px;
   /* margin: 0 5px; */
@@ -1452,13 +1506,13 @@ input[id="siren"] {
   border: 3px solid #edae14;
 }
 
-input[type="checkbox"] {
+input[type="checkbox"]{
   width: 25px;
   height: 25px;
   margin: 0 5px;
 }
 
-button[id="boutonInscriptionPro"] {
+button[id = "boutonInscriptionPro"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
@@ -1466,6 +1520,7 @@ button[id="boutonInscriptionPro"] {
   margin: 5px auto;
   background-color: #edae14;
 }
+
 
 /*+++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
