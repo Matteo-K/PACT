@@ -1530,7 +1530,7 @@ button[id = "boutonInscriptionPro"] {
 /* Css page connexion, Antoine */
 /*+++++++++++++++++++++++++++++*/
 body[id="body_connexion"] {
-  background-image: url("img/fond.png");
+  background-image: url("fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -1562,7 +1562,7 @@ a[id="lienMotDePasseOublie"]:hover {
 h1[id="connexionTitre"] {
   text-align: center;
   margin: 30px 10px;
-  color: #034d7c;
+  color: #034D7C;
   font-weight: 100;
   font-size: 65px;
 }
@@ -1570,7 +1570,7 @@ h1[id="connexionTitre"] {
 h1[id="pasDeCompteTitre"] {
   text-align: center;
   margin: 50px 10px;
-  color: #034d7c;
+  color: #034D7C;
   font-weight: 100;
   font-size: 50px;
 }
@@ -1584,11 +1584,11 @@ aside[id="asideRetour"] {
 button[id="retour"] {
   background: none;
   border: none;
-  color: #034d7c;
+  color: #034D7C;
   text-decoration: underline;
   font: inherit;
   cursor: pointer;
-  padding: 0;
+  padding: 0; 
 }
 
 aside[id="asideRetour"] > button[id="retour"] > img {
@@ -1609,11 +1609,11 @@ aside[id="asideRetour"] > button[id="retour"] > img {
   margin: auto;
   width: 500px;
   height: auto;
-  background-color: #034d7c;
+  background-color:#034D7C;
   color: white;
 }
 
-.connexion-compte::placeholder {
+.connexion-compte ::placeholder {
   font-size: 20px;
 }
 
@@ -1629,7 +1629,7 @@ div[id="lienBouton"] {
   text-align: center;
 }
 
-div[id="lienBouton"] > div {
+div[id="lienBouton"] > div{
   display: flex;
   flex-direction: column;
   width: 600px;
@@ -1641,10 +1641,12 @@ div[id="lienBouton"] > div {
   text-align: left;
 }
 
+
 div.ligne1 > label {
   display: inline-block;
   width: 408px;
 }
+
 
 .connexion-compte input {
   font-size: 20px;
@@ -1652,7 +1654,7 @@ div.ligne1 > label {
   border: 0;
 }
 
-input[id="login"] {
+input[id="login"]{
   width: 403px;
   height: 40px;
   margin: 0 5px;
@@ -1660,7 +1662,7 @@ input[id="login"] {
   border: 3px solid #edae14;
 }
 
-input[id="motdepasseConnexion"] {
+input[id="motdepasseConnexion"]{
   width: 403px;
   height: 40px;
   margin: 0 5px;
@@ -1668,7 +1670,7 @@ input[id="motdepasseConnexion"] {
   border: 3px solid #edae14;
 }
 
-button[id="boutonConnexion"] {
+button[id = "boutonConnexion"]{
   width: 200px;
   font-size: 25px;
   height: 60px;
@@ -1678,8 +1680,7 @@ button[id="boutonConnexion"] {
   background-color: #edae14;
 }
 
-a[id="boutonLienMembre"],
-a[id="boutonLienPro"] {
+a[id="boutonLienMembre"], a[id="boutonLienPro"]{
   width: 300px;
   padding: 15px 10px;
   font-size: 20px;
@@ -1692,9 +1693,8 @@ a[id="boutonLienPro"] {
   text-decoration: none;
 }
 
-p[id="legendeBoutonLienMembre"],
-p[id="legendeBoutonLienPro"] {
+p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
   font-size: 20px;
-  color: #034d7c;
+  color: #034D7C;
   width: 550px;
 }
