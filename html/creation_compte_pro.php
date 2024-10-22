@@ -155,5 +155,5 @@
         <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="connexion.php">Se connecter</a></h2>
     </form>
 </body>
-<script src="validationFormInscription.js"></script>
+<script src="js/validationFormInscription.js"></script>
 </html>

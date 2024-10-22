@@ -112,6 +112,6 @@
             </div>
         </div>
     </main>
-    <script src = validationFormConnexion.js></script>
+    <script src = "js/validationFormConnexion.js"></script>
 </body>
 </html>
