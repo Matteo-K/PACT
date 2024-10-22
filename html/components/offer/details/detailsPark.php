@@ -7,7 +7,7 @@
     <br>
     <input type="file" id="imagePark" name="image1Park">
     <br>
-    <input type="button" value="Ajouter des photos" name="addRep" id="addPhto" >
+    <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter des photos </button>
     <br>
 
 
