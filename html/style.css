@@ -78,7 +78,7 @@ footer {
 }
 
 /* Bloc principale + mention légale*/
-footer > div:first-child {
+footer>div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
@@ -94,7 +94,7 @@ footer figure {
 }
 
 /* paragraphe principale */
-footer figure + p {
+footer figure+p {
   margin-left: 2%;
 }
 
@@ -126,7 +126,7 @@ footer h4 {
   text-decoration: underline;
 }
 
-footer div + div {
+footer div+div {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -135,7 +135,7 @@ footer div + div {
   width: max-content;
 }
 
-footer div + div p {
+footer div+div p {
   padding: 0 500px;
 }
 
@@ -169,7 +169,7 @@ header div {
   height: 3em;
 }
 
-header div > a {
+header div>a {
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -183,6 +183,7 @@ header h1 {
 }
 
 header div > a > img, header #auth img {
+header div>a>img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
@@ -323,7 +324,7 @@ header div > a > img, header #auth img {
   border-radius: 0 0 50px 0;
 }
 
-#manageOffer aside > h3,
+#manageOffer aside>h3,
 #manageOffer aside li a {
   font-family: "Belanosima", sans-serif;
   text-decoration: none;
@@ -353,13 +354,13 @@ header div > a > img, header #auth img {
   justify-content: space-evenly;
 }
 
-#manageOffer aside > :nth-child(2) {
+#manageOffer aside> :nth-child(2) {
   height: clamp(340px, 35vh, 400px);
   padding-bottom: 1vh;
   border-bottom: var(--text-light) 2px solid;
 }
 
-#manageOffer aside > :nth-child(3) {
+#manageOffer aside> :nth-child(3) {
   gap: 10px;
 }
 
@@ -418,14 +419,14 @@ header div > a > img, header #auth img {
     inset 4px 4px 4px #b01111 !important;
 }
 
-#manageOffer aside + section {
+#manageOffer aside+section {
   margin-left: 17em;
   margin-top: var(--header-size);
   min-height: 70vh;
 }
 
 /* Bouton suivant précédent */
-#manageOffer aside + section + div {
+#manageOffer aside+section+div {
   position: absolute;
   bottom: 5px;
   right: 3%;
@@ -434,7 +435,7 @@ header div > a > img, header #auth img {
   gap: 3%;
 }
 
-#manageOffer aside + section + div a {
+#manageOffer aside+section+div a {
   text-align: center;
   width: 150px;
   padding: 10px;
@@ -450,14 +451,14 @@ header div > a > img, header #auth img {
 /* # selection de l'offre # */
 
 /* Bloc de chaque type d'offre*/
-#selectOffer > div:first-child {
+#selectOffer>div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
 }
 
 /* Toute les type d'offre */
-#selectOffer > div:first-child > div {
+#selectOffer>div:first-child>div {
   position: relative;
   height: clamp(400px, 50vh, 450px);
   width: 20em;
@@ -475,37 +476,37 @@ header div > a > img, header #auth img {
 }
 
 /* Prix par mois */
-#selectOffer > div:first-child > div h3 {
+#selectOffer>div:first-child>div h3 {
   margin-top: -20px;
 }
 
 /* Bouton séletionner */
-#selectOffer > div:first-child > div ul + div {
+#selectOffer>div:first-child>div ul+div {
   position: absolute;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-#selectOffer > div:first-child > div ul {
+#selectOffer>div:first-child>div ul {
   display: flex;
   flex-flow: column nowrap;
   gap: clamp(10px, 2vh, 25px);
 }
 
-#selectOffer > div:first-child > div li {
+#selectOffer>div:first-child>div li {
   list-style: disc;
 }
 
 /* offre premium */
-#selectOffer > div:first-child > div:nth-child(2) {
+#selectOffer>div:first-child>div:nth-child(2) {
   background-color: var(--accent20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--accent60);
 }
 
 /* offre standard */
-#selectOffer > div:first-child > div:nth-child(3) {
+#selectOffer>div:first-child>div:nth-child(3) {
   background-color: var(--primary20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--primary60);
@@ -516,8 +517,8 @@ header div > a > img, header #auth img {
   display: none;
 }
 
-#selectOffer input[type="radio"] + label,
-#detailsOffer #artDetailOffer input[type="radio"] + label {
+#selectOffer input[type="radio"]+label,
+#detailsOffer #artDetailOffer input[type="radio"]+label {
   display: inline-block;
   padding: 5px 30px;
   border-radius: 50px;
@@ -532,24 +533,24 @@ header div > a > img, header #auth img {
   cursor: pointer;
 }
 
-#selectOffer input[type="radio"]:checked + label,
-#detailsOffer #artDetailOffer input[type="radio"]:checked + label {
+#selectOffer input[type="radio"]:checked+label,
+#detailsOffer #artDetailOffer input[type="radio"]:checked+label {
   background-color: var(--accent);
   box-shadow: inset -4px -4px 4px #bb880e;
 }
 
-#selectOffer input[disabled] + label {
+#selectOffer input[disabled]+label {
   color: rgba(20, 20, 20, 0.5);
   border-color: rgba(20, 20, 20, 0.5);
 }
 
-#selectOffer > div:first-child + div {
+#selectOffer>div:first-child+div {
   margin-top: 4vh;
   margin-left: 6%;
 }
 
 /* Message de prévention */
-#selectOffer > div:first-child + div p {
+#selectOffer>div:first-child+div p {
   color: red;
 }
 
@@ -574,14 +575,14 @@ header div > a > img, header #auth img {
   margin-bottom: -7px;
 }
 
-#hourlyOffer div > div {
+#hourlyOffer div>div {
   display: flex;
   flex-flow: nowrap row;
   align-items: center;
 }
 
 /* div de saisie */
-#hourlyOffer div > div + div:not(#Representation div) {
+#hourlyOffer div>div+div:not(#Representation div) {
   margin-left: 50px;
 }
 
@@ -589,7 +590,7 @@ header div > a > img, header #auth img {
   margin-left: 10px;
 }
 
-#hourlyOffer div > div {
+#hourlyOffer div>div {
   display: flex;
 }
 
@@ -652,12 +653,12 @@ header div > a > img, header #auth img {
 }
 
 /* bloc consentement afficher numéro */
-#contactOffer input[type="tel"] + div {
+#contactOffer input[type="tel"]+div {
   margin-bottom: 50px;
 }
 
 /* bloc de chaque radio button */
-#contactOffer div > div {
+#contactOffer div>div {
   display: flex;
   flex-flow: row wrap;
 }
@@ -735,7 +736,7 @@ header div > a > img, header #auth img {
 }
 
 /* logo paypal */
-#paypal + label img {
+#paypal+label img {
   width: 10vh;
   height: 10vh;
 }
@@ -746,7 +747,7 @@ header div > a > img, header #auth img {
   flex-flow: column nowrap;
 }
 
-#paymentOffer article:nth-child(2) div > div:not(div > div > div) {
+#paymentOffer article:nth-child(2) div>div:not(div > div > div) {
   display: flex;
   flex-flow: row;
 }
@@ -782,12 +783,12 @@ header div > a > img, header #auth img {
   flex-wrap: nowrap;
 }
 
-#artDetailOffer > div {
+#artDetailOffer>div {
   width: 48%;
   margin: 1%;
 }
 
-#artDetailOffer > div > label:not(#labelAjoutPhoto),
+#artDetailOffer>div>label:not(#labelAjoutPhoto),
 #choixCategorie label[for="categorie"],
 #choixImage label {
   display: inline-block;
@@ -859,9 +860,8 @@ header div > a > img, header #auth img {
 }
 
 #choixCategorie {
-  width: calc(
-    70% + 141.625px
-  ); /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
+  width: calc(70% + 141.625px);
+  /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
 }
 
 #inputTag {
@@ -881,9 +881,8 @@ header div > a > img, header #auth img {
 
 #artDetailOffer section,
 #afficheImages {
-  width: calc(
-    70% + 141.625px
-  ); /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
+  width: calc(70% + 141.625px);
+  /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
   min-height: 100px;
   margin: 10px 0 5px 0;
   background: white;
@@ -990,8 +989,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #checkAddressBtn:focus {
-  outline: none; /* Supprimer le contour bleu au focus */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Effet d'ombre au focus */
+  outline: none;
+  /* Supprimer le contour bleu au focus */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  /* Effet d'ombre au focus */
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
@@ -1174,27 +1175,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #specialOffer {
   /* toute la partie spécifique a une offre */
-  #specialOffer {
-    /* toute la partie spécifique a une offre */
 
-    margin-bottom: 10px;
-    /* marge de 10 px en bas */
-    gap: 10px;
-    /* gap de 10 px */
-  }
   margin-bottom: 10px;
   /* marge de 10 px en bas */
   gap: 10px;
   /* gap de 10 px */
 }
 
-#specialOffer section > article {
+
+#specialOffer section>article {
   display: inline-block;
   width: 355px;
   /* largeur de 355 px pour l'article */
   margin-right: 15px;
   /* marge de 15 px a droite */
-  padding-bottom: 15px; 
+  padding-bottom: 15px;
   /* padding de 15 px en bas*/
 }
 
@@ -1208,6 +1203,7 @@ textarea[id="Resume"] {
   resize: none;
   /* Non redimensinnable */
 }
+
 #specialOffer textarea[id="texteLangueVisit"],
 textarea[id="Resume"] {
   /* tailler des zone de texte */
@@ -1227,10 +1223,12 @@ textarea[id="Resume"] {
   margin-top: 5px;
   /* Juste pour moi voir les separations */
 }
+
 /* #show */
 
 #park {
-  background-color: blueviolet; /* Juste pour moi pour voir les séparations */
+  background-color: blueviolet;
+  /* Juste pour moi pour voir les séparations */
 }
 
 #park input[type="button"] {
@@ -1257,12 +1255,18 @@ textarea[id="Resume"] {
   background-color: cyan;
 }
 
-#activity article > p > textarea[id="txtAct"] {
+#activity article>p>textarea[id="txtAct"] {
   resize: none;
   height: px;
   width: 100px;
   text-align: center;
 }
+
+
+
+
+
+
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
@@ -1321,7 +1325,7 @@ button[id="retour"] {
   padding: 0; 
 }
 
-aside[id="asideRetour"] > button[id="retour"] > img {
+aside[id="asideRetour"]>button[id="retour"]>img {
   vertical-align: middle;
   width: 70px;
   height: 65px;
@@ -1381,7 +1385,7 @@ body[id="body_creation_compte_pro"] ::placeholder {
   width: 215px;
 } 
 
-.creation-compte div.ligne4 > label[for="ville"] {
+.creation-compte div.ligne4>label[for="ville"] {
   width: 601px;
 }
 
@@ -1559,7 +1563,7 @@ button[id="retour"] {
   padding: 0;
 }
 
-aside[id="asideRetour"] > button[id="retour"] > img {
+aside[id="asideRetour"]>button[id="retour"]>img {
   vertical-align: middle;
   width: 70px;
   height: 65px;
@@ -1597,7 +1601,7 @@ div[id="lienBouton"] {
   text-align: center;
 }
 
-div[id="lienBouton"] > div {
+div[id="lienBouton"]>div {
   display: flex;
   flex-direction: column;
   width: 600px;
@@ -1609,7 +1613,7 @@ div[id="lienBouton"] > div {
   text-align: left;
 }
 
-div.ligne1 > label {
+div.ligne1>label {
   display: inline-block;
   width: 408px;
 }
