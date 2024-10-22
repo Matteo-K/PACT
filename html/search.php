@@ -20,6 +20,9 @@
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
 
+date_default_timezone_set('Europe/Paris');
+
+
 // Récupérer le jour actuel en français avec la classe DateTime
 $currentDay = (new DateTime())->format('l'); // Récupère le jour en anglais
 
