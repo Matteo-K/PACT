@@ -853,20 +853,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .sectionLoca {
   width: 700px;
   font-size: 25px;
-}
-.sectionLoca {
-  width: 700px;
-  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 5px;
 }
 
 .sectionParent {
   display: flex;
   align-items: center;
   gap: 50px;
+  margin-top: 50px;
 }
 
-.sectionLoca div {
-  margin-bottom: 25px;
+#localisationOffer {
+  height: 750px;
 }
 
 .sectionLoca input {
@@ -875,7 +876,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 40px;
   font-size: 20px;
   font-weight: 500;
-  color: var(--text-dark);
+  color: #000;
   border: solid 2px;
   border-color: var(--secondary);
   padding-left: 10px;
@@ -902,7 +903,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
   height: fit-content;
   width: 100%;
-  margin: 50px 50px 50px 50px;
   gap: 50px;
 }
 
@@ -1214,9 +1214,9 @@ textarea[id="Resume"] {
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
-/*++++++++++++++++++++++++++++++++++++++++++*/
+/*+++++++++++++++++++++++++++++++++++++++++*/
 body[id="body_creation_compte_pro"] {
-  background-image: url("fond.png");
+  background-image: url("img/fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -1435,11 +1435,11 @@ button[id="boutonInscriptionPro"] {
   background-color: #edae14;
 }
 
-/*++++++++++++++++++++++++*/
+/*+++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
-/*++++++++++++++++++++++*/
+/*+++++++++++++++++++++++++++++*/
 body[id="body_connexion"] {
-  background-image: url("fond.png");
+  background-image: url("img/fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
