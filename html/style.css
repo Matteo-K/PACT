@@ -777,20 +777,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .sectionLoca {
   width: 700px;
   font-size: 25px;
-}
-.sectionLoca {
-  width: 700px;
-  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 5px;
 }
 
 .sectionParent {
   display: flex;
   align-items: center;
   gap: 50px;
+  margin-top: 50px;
 }
 
-.sectionLoca div {
-  margin-bottom: 25px;
+#localisationOffer {
+  height: 750px;
 }
 
 .sectionLoca input {
@@ -799,12 +800,28 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 40px;
   font-size: 20px;
   font-weight: 500;
-  color: var(--text-dark);
+  color: var(--secondary);
+  border: solid 2px;
+  border-color: var(--secondary);
+  padding-left: 10px;
+}
+.sectionLoca input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--secondary);
   border: solid 2px;
   border-color: var(--secondary);
   padding-left: 10px;
 }
 
+.sectionLoca section {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+}
 .sectionLoca section {
   display: flex;
   gap: 50px;
@@ -819,6 +836,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 68%;
 }
 
+.map {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: 100%;
+  margin: 50px 50px 50px 50px;
+  gap: 50px;
+}
 .map {
   display: flex;
   flex-direction: column;
@@ -1359,177 +1386,4 @@ button[id="boutonInscriptionPro"] {
   border-radius: 15px;
   margin: 5px auto;
   background-color: #edae14;
-}
-
-/*+++++++++++++++++++++++++++++++*/
-/* Css page connexion, Antoine */
-/*+++++++++++++++++++++++++++++*/
-body[id="body_connexion"] {
-  background-image: url("img/fond.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
-main[id="mainConnexion"] {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-a[id="lienMotDePasseOublie"] {
-  color: white;
-  font-size: 25px;
-  margin: 30px 0;
-}
-
-a[id="lienMotDePasseOublie"]:hover {
-  color: #edae14;
-}
-
-.connexion-compte a {
-  text-decoration: underline;
-  color: white;
-  font-size: 20px;
-  margin-top: 30px;
-}
-
-h1[id="connexionTitre"] {
-  text-align: center;
-  margin: 30px 10px;
-  color: #034d7c;
-  font-weight: 100;
-  font-size: 65px;
-}
-
-h1[id="pasDeCompteTitre"] {
-  text-align: center;
-  margin: 50px 10px;
-  color: #034d7c;
-  font-weight: 100;
-  font-size: 50px;
-}
-
-aside[id="asideRetour"] {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-}
-
-button[id="retour"] {
-  background: none;
-  border: none;
-  color: #034d7c;
-  text-decoration: underline;
-  font: inherit;
-  cursor: pointer;
-  padding: 0;
-}
-
-aside[id="asideRetour"] > button[id="retour"] > img {
-  vertical-align: middle;
-  width: 70px;
-  height: 65px;
-  margin-right: 5px;
-}
-
-.connexion-compte form {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  border-radius: 20px;
-  padding: 15px;
-  margin: auto;
-  width: 500px;
-  height: auto;
-  background-color: #034d7c;
-  color: white;
-}
-
-.connexion-compte ::placeholder {
-  font-size: 20px;
-}
-
-.connexion-compte div {
-  display: inline;
-  justify-content: center;
-  margin: 10px;
-}
-
-div[id="lienBouton"] {
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
-div[id="lienBouton"] > div {
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-}
-
-.connexion-compte label {
-  font-size: 25px;
-  margin: 5px;
-  text-align: left;
-}
-
-div.ligne1 > label {
-  display: inline-block;
-  width: 408px;
-}
-
-.connexion-compte input {
-  font-size: 20px;
-  padding-left: 0 5px;
-  border: 0;
-}
-
-input[id="login"] {
-  width: 403px;
-  height: 40px;
-  margin: 0 5px;
-  margin-top: 30px;
-  border: 3px solid #edae14;
-}
-
-input[id="motdepasseConnexion"] {
-  width: 403px;
-  height: 40px;
-  margin: 0 5px;
-  margin-top: 30px;
-  border: 3px solid #edae14;
-}
-
-button[id="boutonConnexion"] {
-  width: 200px;
-  font-size: 25px;
-  height: 60px;
-  border-radius: 15px;
-  margin: 5px auto;
-  margin-top: 30px;
-  background-color: #edae14;
-}
-
-a[id="boutonLienMembre"],
-a[id="boutonLienPro"] {
-  width: 300px;
-  padding: 15px 10px;
-  font-size: 20px;
-  border-radius: 15px;
-  border: solid 2px;
-  margin: 5px auto;
-  margin-top: 30px;
-  color: black;
-  background-color: #edae14;
-  text-decoration: none;
-}
-
-p[id="legendeBoutonLienMembre"],
-p[id="legendeBoutonLienPro"] {
-  font-size: 20px;
-  color: #034d7c;
-  width: 550px;
 }
