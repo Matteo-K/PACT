@@ -6,8 +6,6 @@ searchBar.addEventListener("input", (e) => {
   formHeader.setAttribute("action", "search.php?search=" + e.target.value);
 });
 
-
-
 //Page DetailsOffer by EWEN
 try {
   //Affichage des images a leur selection
@@ -20,60 +18,58 @@ try {
   function afficheImage(event) {
     const images = event.target.files;
     const conteneur = document.getElementById("afficheImages");
-  const pImage = document.querySelector('#choixImage > p');
-  document.getElementById("photos").addEventListener("change", afficheImage);
-  
-  function afficheImage(event){
-    const images = event.target.files;
-    const conteneur = document.getElementById("afficheImages");
+    const pImage = document.querySelector("#choixImage > p");
+    document.getElementById("photos").addEventListener("change", afficheImage);
 
-    Array.from(images).forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        if (compteurImages < 10) {
-          compteurImages++;
-          const figureImg = document.createElement("figure");
-          figureImg.classList.add("imageOffre");
-          figureImg.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
-          conteneur.appendChild(figureImg);
+    function afficheImage(event) {
+      const images = event.target.files;
+      const conteneur = document.getElementById("afficheImages");
 
-          figureImg.addEventListener("click", function() {
-          if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
-            compteurImages--;
-            figureImg.remove(); // Supprime l'élément image et son conteneur
-            pImage.style.color="black"; //on remet la couleur par défaut au cas où c'etait en rouge
+      Array.from(images).forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          if (compteurImages < 10) {
+            compteurImages++;
+            const figureImg = document.createElement("figure");
+            figureImg.classList.add("imageOffre");
+            figureImg.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
+            conteneur.appendChild(figureImg);
+
+            figureImg.addEventListener("click", function () {
+              if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
+                compteurImages--;
+                figureImg.remove(); // Supprime l'élément image et son conteneur
+                pImage.style.color = "black"; //on remet la couleur par défaut au cas où c'etait en rouge
+              }
+            });
+          } else {
+            pImage.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
           }
-          });
-        }
-        else{
-          pImage.style.color="red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
-        }
-      };
-      reader.readAsDataURL(file);
-    });
-  };
-
-
-  //Affichage des tags a leur ajout
-  const inputTag = document.getElementById("inputTag");
-  const buttonTag = document.getElementById("ajoutTag");
-  const sectionTag = document.getElementById("sectionTag");
-  const pTag = document.querySelector("#sectionTag + p");
-  let tags = []; // Tableau pour stocker les tags
-
-  // Fonction pour ajouter un tag
-  buttonTag.addEventListener('click', ajoutTag);
-  inputTag.addEventListener("keypress", ajoutTagKeyboard);
-  let compteurTags = 0;
-  
-  //detection d'un appui sur entrée
-  function ajoutTagKeyboard(e) {
-    if (e.code == "Enter") {
-      ajoutTag();
+        };
+        reader.readAsDataURL(file);
+      });
     }
-  }
 
-  function ajoutTag(){
+    //Affichage des tags a leur ajout
+    const inputTag = document.getElementById("inputTag");
+    const buttonTag = document.getElementById("ajoutTag");
+    const sectionTag = document.getElementById("sectionTag");
+    const pTag = document.querySelector("#sectionTag + p");
+    let tags = []; // Tableau pour stocker les tags
+
+    // Fonction pour ajouter un tag
+    buttonTag.addEventListener("click", ajoutTag);
+    inputTag.addEventListener("keypress", ajoutTagKeyboard);
+    let compteurTags = 0;
+
+    //detection d'un appui sur entrée
+    function ajoutTagKeyboard(e) {
+      if (e.code == "Enter") {
+        ajoutTag();
+      }
+    }
+
+    function ajoutTag() {
       const valeurTag = inputTag.value.trim(); // Récupère la valeur de l'input et enlève les espaces
 
       if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
@@ -81,47 +77,43 @@ try {
         tags.push(valeurTag); // Ajoute le tag au tableau
 
         // Crée l'élément pour afficher le tag
-        const elementTag = document.createElement('span');
-        elementTag.classList.add('tag');
+        const elementTag = document.createElement("span");
+        elementTag.classList.add("tag");
         elementTag.textContent = valeurTag;
 
         // Ajoute un événement pour supprimer le tag au clic
-        elementTag.addEventListener('click', function(){
+        elementTag.addEventListener("click", function () {
           tags.splice(tags.indexOf(valeurTag), 1); // Supprime un élément à l'index trouvé
           sectionTag.removeChild(elementTag); // Supprime l'élément visuel correspondant au tag
-          pTag.style.color="black"; //on remet la couleur par defaut au cas où c'etait en rouge
+          pTag.style.color = "black"; //on remet la couleur par defaut au cas où c'etait en rouge
           compteurTags--;
         });
 
         sectionTag.appendChild(elementTag); // Ajoute l'élément à la section
 
-        inputTag.value = ''; // Réinitialise l'input
-      } 
-      else if (tags.length >= 6) {
-        pTag.style.color="red"; //On met le txte en rouge pour signaler que la limite des 6 tags est atteinte
-      }
-      else if (tags.includes(valeurTag)) {
+        inputTag.value = ""; // Réinitialise l'input
+      } else if (tags.length >= 6) {
+        pTag.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 6 tags est atteinte
+      } else if (tags.includes(valeurTag)) {
         alert("Ce tag à déjà été entré !");
       }
-  };
-
+    }
+  }
 } catch (error) {}
-
 
 /* Affichage pour un type d'offre particulier */
 
-
 // Sélection des éléments du formulaire et des radios
-const radioRestaurant = document.getElementById('radioRestaurant');
-const radioPark = document.getElementById('radioParc');
-const radioActivite = document.getElementById('radioActivite');
-const radioSpectacle = document.getElementById('radioSpectacle');
-const radioVisite = document.getElementById('radioVisite');
+const radioRestaurant = document.getElementById("radioRestaurant");
+const radioPark = document.getElementById("radioParc");
+const radioActivite = document.getElementById("radioActivite");
+const radioSpectacle = document.getElementById("radioSpectacle");
+const radioVisite = document.getElementById("radioVisite");
 
-const ParkOffer = document.getElementById('park');
-const ActiviteOffer = document.getElementById('activity');
-const SpectacleOffer = document.getElementById('show');
-const VisiteOffer = document.getElementById('visit');
+const ParkOffer = document.getElementById("park");
+const ActiviteOffer = document.getElementById("activity");
+const SpectacleOffer = document.getElementById("show");
+const VisiteOffer = document.getElementById("visit");
 
 function hidenOffer() {
   ParkOffer.style.display = "none";
@@ -133,35 +125,29 @@ function hidenOffer() {
 // Fonction pour afficher ou masquer la div des require_once
 hidenOffer();
 function toggleSpecialOffer() {
-    hidenOffer();
-    if (radioPark.checked) {
-      ParkOffer.style.display = "block";
-    } else if (radioActivite.checked){
-      ActiviteOffer.style.display = "block";
-    } else if (radioSpectacle.checked) {
-      SpectacleOffer.style.display = "block";
-    } else if (radioVisite.checked) {
-      VisiteOffer.style.display = "block";
-    }
+  hidenOffer();
+  if (radioPark.checked) {
+    ParkOffer.style.display = "block";
+  } else if (radioActivite.checked) {
+    ActiviteOffer.style.display = "block";
+  } else if (radioSpectacle.checked) {
+    SpectacleOffer.style.display = "block";
+  } else if (radioVisite.checked) {
+    VisiteOffer.style.display = "block";
+  }
 }
 
 // Associe la fonction de toggle au clic sur tous les boutons radio
-radioRestaurant.addEventListener('input', toggleSpecialOffer);
-radioPark.addEventListener('input', toggleSpecialOffer);
-radioActivite.addEventListener('input', toggleSpecialOffer);
-radioSpectacle.addEventListener('input', toggleSpecialOffer);
-radioVisite.addEventListener('input', toggleSpecialOffer);
+radioRestaurant.addEventListener("input", toggleSpecialOffer);
+radioPark.addEventListener("input", toggleSpecialOffer);
+radioActivite.addEventListener("input", toggleSpecialOffer);
+radioSpectacle.addEventListener("input", toggleSpecialOffer);
+radioVisite.addEventListener("input", toggleSpecialOffer);
 
 // autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
 
 // Appel initial de la fonction pour vérifier l'état initial
 toggleSpecialOffer();
-
-
-
-
-
-
 
 // Code pour envoyer les images au serveur
 // const formData = new FormData();
