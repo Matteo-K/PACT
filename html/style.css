@@ -1143,7 +1143,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* largeur de 355 px pour l'article */
   margin-right: 15px;
   /* marge de 15 px a droite */
-  padding-bottom: 15px;
+  padding-bottom: 15px; 
   /* padding de 15 px en bas*/
 }
 
@@ -1225,6 +1225,7 @@ body[id="body_creation_compte_pro"] {
 
 a[id="lienCGU"] {
   color: white;
+  text-decoration: underline;
 }
 
 a[id="lienCGU"]:hover {
@@ -1233,6 +1234,7 @@ a[id="lienCGU"]:hover {
 
 a[id="lienConnexion"] {
   color: white;
+  text-decoration: underline;
   font-family: "Belanosima", sans-serif;
 }
 

@@ -1,7 +1,7 @@
-<?php 
+<?php
     // Démarrer la session
     session_start();
-    require_once 'dbLocalKylian.php';
+    require_once 'db.php';
 
     if(isset($_SESSION['idUser'])){
         header("Location: index.php");
@@ -20,11 +20,13 @@
 
         if ($result && $password == $result['password']) {
             // Connexion réussie
-            $_SESSION['idUser'] = $result['idU'];
+            $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
 
-            header('Location: index.php'); // Rediriger vers une page protégée
+            header("Location: index.php");
+             // Rediriger vers une page protégée
             exit();
+
         } else {
             // Vérification pro
             $stmt = $conn->prepare('SELECT mail, idU, motdepasse, siren FROM propublic WHERE mail = ? UNION SELECT mail, idU, motdepasse, siren FROM proprive WHERE mail = ?;');
@@ -33,11 +35,11 @@
     
             if ($proUser && password_verify($password, $proUser['motdepasse'])) {
                 // Connexion réussie
-                $_SESSION['idUser'] = $proUser['idU'];
+                $_SESSION['idUser'] = $proUser['idu'];
                 $_SESSION['typeUser'] = $proUser['siren'] ? 'pro_prive' : 'pro_public'; // Détermine le type
-    
                 header("Location: index.php");
                 exit();
+
             } else {
                 // Vérification membre
                 $stmt = $conn->prepare("SELECT * FROM membre WHERE pseudo = ? OR mail = ?");
@@ -46,10 +48,10 @@
     
                 if ($member && password_verify($password, $member['motdepasse'])) {
                     // Connexion réussie
-                    $_SESSION['idUser'] = $member['idU'];
+                    $_SESSION['idUser'] = $member['idu'];
                     $_SESSION['typeUser'] = 'membre';
-
                     header("Location: index.php");
+
                     exit();
                 } else {
                     $error = "Identifiant ou mot de passe incorrect.";
