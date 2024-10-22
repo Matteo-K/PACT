@@ -110,11 +110,11 @@
 
         <div class="ligne5">
             <!-- Radio bouton public -->
-            <input type="radio" id="public" name="secteur" value="public">
+            <input type="radio" id="radioPublic" name="secteur" value="public">
             <label for="public">Public</label>
     
             <!-- Radio bouton privée -->
-            <input type="radio" id="prive" name="secteur" value="prive" checked>
+            <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
             <label for="prive">Privé</label>
 
             <div class="ligne5_1">
@@ -148,10 +148,10 @@
         </div>
 
 
-        <button onclick = "validationFormInscription()" id="boutonInscriptionPro">S'inscrire</button>
-        <script src = validationFormInscription.js></script>
-
+        <button onclick = "validationForm()" id="boutonInscriptionPro">S'inscrire</button>
+        
         <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="connexion.php">Se connecter</a></h2>
     </form>
 </body>
+<script src="validationFormInscription.js"></script>
 </html>
