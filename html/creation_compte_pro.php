@@ -51,14 +51,14 @@
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style_creation_compte_pro.css">
+    <link rel="icon" href="logo.png" type="image/x-icon">
     <title>Créer un compte</title>
 </head>
 <body id ="body_creation_compte_pro" class="creation-compte">
     <aside id="asideRetour">
         <button id="retour">
-            <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
+            <img src="logo.png" alt="Logo" title="Retour page précédente"/>
             Retour
         </button>
     </aside>
@@ -109,15 +109,17 @@
         
 
         <div class="ligne5">
-            <!-- Radio bouton public -->
-            <input type="radio" id="radioPublic" name="secteur" value="public">
-            <label for="public">Public</label>
-    
-            <!-- Radio bouton privée -->
-            <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
-            <label for="prive">Privé</label>
-
             <div class="ligne5_1">
+                <!-- Radio bouton public -->
+                <input type="radio" id="radioPublic" name="secteur" value="public">
+                <label for="public">Public</label>
+        
+                <!-- Radio bouton privée -->
+                <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
+                <label for="prive">Privé</label>
+            </div>
+
+            <div class="ligne5_2">
                 <!-- Saisi du numéro de SIREN -->
                 <label for="siren">N° SIREN*:</label>
                 <input type="text" placeholder = "123 456 789" id="siren" name="siren" required>
@@ -146,8 +148,8 @@
             <input type="checkbox" id="cgu" name="cgu" value="cgu" />
             <label for="cgu">J’accepte les <a id="lienCGU" href= "cgu.html">conditions générales d’utilisation</a> de la PACT</label>
         </div>
-
-
+        
+        
         <button onclick = "validationForm()" id="boutonInscriptionPro">S'inscrire</button>
         
         <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="connexion.php">Se connecter</a></h2>
