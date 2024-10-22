@@ -105,6 +105,6 @@ function geocodeadresse(fulladresse) {
 </script>
 <!-- Inclure l'API Google Maps avec votre clé API -->
 <script
-  src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap"
   async defer
 ></script>
