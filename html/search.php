@@ -27,7 +27,7 @@ $horaires = array_merge($resultsSoir, $resultsMidi); // Fusionner les résultats
 $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
 
 foreach ($horaires as $horaire) {
-    if ($horaire['idOffre'] == $idOffre && strtolower($horaire['jour']) == $currentDay) {
+    if ($horaire['idoffre'] == $idOffre && strtolower($horaire['jour']) == $currentDay) {
         // Convertir les horaires d'ouverture et de fermeture en DateTime
         $heureOuverture = DateTime::createFromFormat('H\hi', str_replace('h', ':', $horaire['heure_ouverture']));
         $heureFermeture = DateTime::createFromFormat('H\hi', str_replace('h', ':', $horaire['heure_fermeture']));
