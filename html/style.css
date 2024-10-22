@@ -690,6 +690,7 @@ header div > a > img {
   height: 15vh;
 }
 
+/* logo paypal */
 #paypal + label img {
   width: 10vh;
   height: 10vh;
@@ -1524,7 +1525,7 @@ aside[id="asideRetour"] > button[id="retour"] > img {
   color: white;
 }
 
-.connexion-compte ::placeholder {
+.connexion-compte::placeholder {
   font-size: 20px;
 }
 
