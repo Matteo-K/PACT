@@ -35,7 +35,7 @@
     <!-- Saisi du moyen de paiement -->
     <article>
       <!-- Carte bancaire -->
-      <div id="Form_CB">
+      <div id="Form_CB" class="payment_hide">
         <label for="CBnumCarte">Numéro de carte bancaire*&nbsp;:&nbsp;</label>
         <input type="number" name="CBnumCarte" id="CBnumCarte" placeholder="Numéro carte">
         <div>
@@ -54,7 +54,7 @@
         <button>Valider le moyen de paiement</button>
       </div>
       <!-- Virement bancaire -->
-      <div id="Form_VB">
+      <div id="Form_VB" class="payment_hide">
         <label for="VBIban">IBAN*&nbsp;:&nbsp;</label>
         <input type="text" name="VBIban" id="VBIban" placeholder="IBAN">
         <label for="VBTitulaire">Nom du titulaire du compte*&nbsp;:&nbsp;</label>
@@ -63,7 +63,7 @@
         <button>Valider le moyen de paiement</button>
       </div>
       <!-- Paypal -->
-      <div>
+      <div id="Form_paypal">
         <h4>Connectez-vous à <br> votre compte paypal</h4>
         <label for="PaypalAdresse">Adresse mail*&nbsp;:&nbsp;</label>
         <input type="text" name="PaypalAdress" id="PaypalAdress" placeholder="Mail">
