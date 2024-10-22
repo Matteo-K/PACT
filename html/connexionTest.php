@@ -12,6 +12,8 @@
         $login = $_POST['login'];
         $password = $_POST['motdepasseConnexion'];
 
+        echo $login . $password;
+
         // Vérification admin
         $stmt = $conn->prepare("SELECT * FROM pact._admin a JOIN pact._utilisateur u ON a.idU = u.idU WHERE a.login = ?");
         $stmt->execute([$login]);
@@ -19,9 +21,6 @@
 
         if ($result && $password == $result['password']) {
             print_r($result);
-            // Connexion réussie
-            $_SESSION['idUser'] = $result['idU'];
-            $_SESSION['typeUser'] = 'admin';
 
             
         } else {
@@ -75,7 +74,7 @@
 
     <main id="mainConnexion">
         <h1 id="connexionTitre">Connectez-vous à votre compte</h1>
-        <form id="formConnexion" action="connexion.php" method="post">
+        <form id="formConnexion" action="connexionTest.php" method="post">
             <div class="ligne1">
                 <!-- Saisie du login -->
                 <input type="text" placeholder="Identifiant/adresse mail" id="login" name="login" required>
