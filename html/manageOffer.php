@@ -61,10 +61,6 @@ require_once "components/offer/checkOffer.php"
           case 7:
             require_once "components/offer/paymentOffer.php";
             break;
-          case 8:
-            require_once "components/offer/paymentOffer.php";
-            require_once "components/offer/ValidCreateOffer.php";
-            break;
           default:
           require_once "components/offer/errorOffer.php";
             break;

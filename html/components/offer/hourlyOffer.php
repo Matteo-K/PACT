@@ -1,6 +1,6 @@
 <form id="hourlyOffer" action="enregOffer.php" method="post">
     <?php
-        $is_show = true;
+        $is_show = false;
         if (!$is_show) {
             $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
             foreach ($jour_semaine as $value) {
