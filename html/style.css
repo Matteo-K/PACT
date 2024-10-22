@@ -1261,7 +1261,7 @@ textarea[id="Resume"] {
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
 body[id="body_creation_compte_pro"] {
-  background-image: url("fond.png");
+  background-image: url("img/fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -1269,6 +1269,7 @@ body[id="body_creation_compte_pro"] {
 
 a[id="lienCGU"] {
   color: white;
+  text-decoration: underline;
 }
 
 a[id="lienCGU"]:hover {
@@ -1277,6 +1278,7 @@ a[id="lienCGU"]:hover {
 
 a[id="lienConnexion"] {
   color: white;
+  text-decoration: underline;
   font-family: "Belanosima", sans-serif;
 }
 
