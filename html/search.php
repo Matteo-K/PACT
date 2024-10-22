@@ -18,7 +18,12 @@
     $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Récupérer l'heure actuelle et le jour actuel
-$currentDay = strtolower(date('l')); // ex: "monday", "tuesday", etc.
+setlocale(LC_TIME, 'fr_FR.UTF-8');
+
+// Récupérer le jour actuel en français avec une majuscule
+$currentDay = strftime('%A'); // Ex: "Lundi", "Mardi", etc.
+$currentDay = ucfirst($currentDay); // S'assurer que la première lettre soit en majuscule
+
 $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
 // Filtrer les horaires de l'offre en fonction de l'idOffre et du jour actuel
