@@ -50,9 +50,9 @@
     </article>
     <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
     <?php
+        require_once "details/detailsPark.php";
         require_once "details/detailsVisit.php";
         require_once "details/detailsShow.php";
-        require_once "details/detailsPark.php";
         require_once "details/detailsActivity.php";
         
     ?>
