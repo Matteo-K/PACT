@@ -61,7 +61,10 @@ require_once "components/offer/checkOffer.php"
           case 7:
             require_once "components/offer/paymentOffer.php";
             break;
-          
+          case 8:
+            require_once "components/offer/paymentOffer.php";
+            require_once "components/offer/ValidCreateOffer.php";
+            break;
           default:
           require_once "components/offer/errorOffer.php";
             break;
@@ -94,8 +97,7 @@ require_once "components/offer/checkOffer.php"
       document.getElementById('currentPage').value = page;
       let form = document.querySelector('section form:not(#paypal)');
       let confirm_page = (page == -1)? confirm("Les données ne seront pas enregistrées.\n Toute modification apportée aux données ne sera pas prise en compte.") : true;
-      console.log((page < 0 || form.checkValidity()) && confirm_page);
-      if ((page < 0 || form.checkValidity()) && confirm_page) {
+      if (form.checkValidity() && confirm_page) {
         form.submit();
       } else {
         form.reportValidity();

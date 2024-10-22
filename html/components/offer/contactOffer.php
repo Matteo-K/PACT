@@ -22,7 +22,9 @@
   <label for="mail">Adresse mail de contact pour votre offre*&nbsp;:&nbsp;</label>
   <input type="email" name="mail" id="mail" required="required" placeholder="Adresse mail - (exemple@mail.com)" value="<?php echo $mail; ?>">
   <label for="phone">Numéro de fixe&nbsp;:&nbsp;</label>
-  <input type="tel" name="phone" id="phone" placeholder="Numéro fixe" value="<?php echo $phone; ?>">
+  <div>
+    <input type="tel" name="phone" id="phone" placeholder="Numéro fixe" value="<?php echo $phone; ?>"> <label></label>
+  </div>
   <div>
     <h4>Consentez vous à afficher votre numéro de portable sur l’offre &nbsp;?&nbsp;</h4>
     <div>

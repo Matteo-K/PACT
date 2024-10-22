@@ -35,7 +35,7 @@
     <!-- Saisi du moyen de paiement -->
     <article>
       <!-- Carte bancaire -->
-      <div id="Form_CB" class="payment_hide">
+      <div id="Form_CB">
         <label for="CBnumCarte">Numéro de carte bancaire*&nbsp;:&nbsp;</label>
         <input type="number" name="CBnumCarte" id="CBnumCarte" placeholder="Numéro carte">
         <div>
@@ -51,7 +51,7 @@
         <label for="CBNomCarte">Nom sur la carte*&nbsp;:&nbsp;</label>
         <input type="text" name="CBDateExpir" id="CBDateExpir" placeholder="Prénom et nom">
 
-        <button>Valider le moyen de paiement</button>
+        <button class="blueBtnOffer">Valider le moyen de paiement</button>
       </div>
       <!-- Virement bancaire -->
       <div id="Form_VB" class="payment_hide">
@@ -60,16 +60,16 @@
         <label for="VBTitulaire">Nom du titulaire du compte*&nbsp;:&nbsp;</label>
         <input type="text" name="VBTitulaire" id="VBTitulaire" placeholder="Prénom et nom">
 
-        <button>Valider le moyen de paiement</button>
+        <button class="blueBtnOffer">Valider le moyen de paiement</button>
       </div>
       <!-- Paypal -->
-      <div id="Form_paypal">
+      <div id="Form_paypal" class="payment_hide">
         <h4>Connectez-vous à <br> votre compte paypal</h4>
         <label for="PaypalAdresse">Adresse mail*&nbsp;:&nbsp;</label>
         <input type="text" name="PaypalAdress" id="PaypalAdress" placeholder="Mail">
         <label for="PaypalPassword">Mot de passe*&nbsp;:&nbsp;</label>
         <input type="password" name="PaypalPassword" id="PaypalPassword" placeholder="Mot de passe">
-        <button>Se connecter</button>
+        <button class="blueBtnOffer">Se connecter</button>
       </div>
     </article>
   </section>
