@@ -29,8 +29,9 @@ $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
 foreach ($horaires as $horaire) {
     if ($horaire['idoffre'] == 3 && strtolower($horaire['jour']) == $currentDay) {
         // Convertir les horaires d'ouverture et de fermeture en DateTime
-        $heureOuverture = DateTime::createFromFormat('H\hi', str_replace('h', ':', $horaire['heureouverture']));
-        $heureFermeture = DateTime::createFromFormat('H\hi', str_replace('h', ':', $horaire['heurefermeture']));
+
+        $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
+        $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
         // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
         if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
             $restaurantOuvert = true;
