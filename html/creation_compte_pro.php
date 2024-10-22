@@ -1,8 +1,9 @@
 <?php 
     // Démarrer la session
     session_start();
-
-    require_once "db.php"; // fichier de connexion à la BDD
+    
+    // fichier de connexion à la BDD
+    require_once "db.php"; 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Récupérer les données du formulaire
@@ -30,11 +31,11 @@
 
        // Secteur public
         if ($secteur == 'public') {
-            $stmt = $conn->prepare("INSERT INTO proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $numeroRue, $rue, $ville, $pays, $code, $photo]);
-        } else { 
             $stmt = $conn->prepare("INSERT INTO proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$denomination, $siren, $hashedPassword, $telephone, $mail, $numeroRue, $rue, $ville, $pays, $code, $photo]);
+        } else { 
+            $stmt = $conn->prepare("INSERT INTO proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $numeroRue, $rue, $ville, $pays, $code, $photo]);
         }
 
 
@@ -51,14 +52,14 @@
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_creation_compte_pro.css">
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
     <title>Créer un compte</title>
 </head>
 <body id ="body_creation_compte_pro" class="creation-compte">
     <aside id="asideRetour">
         <button id="retour">
-            <img src="logo.png" alt="Logo" title="Retour page précédente"/>
+            <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
             Retour
         </button>
     </aside>
@@ -122,7 +123,7 @@
             <div class="ligne5_2">
                 <!-- Saisi du numéro de SIREN -->
                 <label for="siren">N° SIREN*:</label>
-                <input type="text" placeholder = "123 456 789" id="siren" name="siren" required>
+                <input type="text" placeholder = "123 456 789" id="siren" name="siren" >
             </div>
         </div>
 

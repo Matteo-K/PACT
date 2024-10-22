@@ -1,20 +1,49 @@
-// Script Javascript de validation du formulaire pour la création de compte pro
-
-document.getElementById('retour').addEventListener('click', function() {
-    window.history.back();
-});
-
-
+// +++++++++++++++++++//
+// Script JS Antoine //
+// +++++++++++++++++//
 document.addEventListener('DOMContentLoaded', function() {
-    const boutonInscription = document.getElementById('boutonInscriptionPro');
-    
-    // Ajouter l'écouteur d'événement une seule fois
-    boutonInscription.addEventListener('click', validationForm);
-});
+    // Gestion du bouton retour
+    document.getElementById('retour').addEventListener('click', function() {
+        window.history.back();
+    });
 
+    const boutonInscription = document.getElementById('boutonInscriptionPro');
+    boutonInscription.addEventListener('click', validationForm);
+
+    // Récupérer les éléments nécessaires pour le SIREN
+    const sirenLabel = document.querySelector("label[for='siren']");
+    const sirenInput = document.getElementById("siren");
+    const publicRadio = document.getElementById("radioPublic");
+    const priveRadio = document.getElementById("radioPrive");
+
+    // Fonction pour mettre à jour l'affichage du SIREN
+    function updateSirenVisibility() {
+        if (priveRadio.checked) {
+            sirenLabel.style.display = "block"; // Affiche le label
+            sirenInput.style.display = "block"; // Affiche le champ
+        } 
+        
+        else {
+            sirenLabel.style.display = "none";   // Cache le label
+            sirenInput.style.display = "none";   // Cache le champ
+        }
+    }
+
+    // Initialiser l'affichage
+    updateSirenVisibility();
+
+    // Ajouter des écouteurs d'événements sur les boutons radio
+    publicRadio.addEventListener("click", updateSirenVisibility);
+    priveRadio.addEventListener("click", updateSirenVisibility);
+});
 
 function validationForm(event) {
-    event.preventDefault(); // Empêche l'envoi du formulaire
+    // Empêche l'envoi du formulaire
+    event.preventDefault(); 
+
+    // Récupérer les éléments de radio
+    const publicRadio = document.getElementById("radioPublic");
+    const privateRadio = document.getElementById("radioPrive");
 
     // Récupérer les champs
     const denomination = document.getElementById('denomination').value.trim();
@@ -29,7 +58,7 @@ function validationForm(event) {
     const cgu = document.getElementById('cgu').checked;
 
     // Vérification des champs
-    if (!denomination || !telephone || !email || !adresse || !code || !ville || !siren || !motdepasse || !confirmer) {
+    if (!denomination || !telephone || !email || !adresse || !code || !ville || (!publicRadio.checked && !privateRadio.checked) || !motdepasse || !confirmer) {
         alert('Tous les champs marqués d\'un astérisque (*) doivent être remplis.');
         return;
     }
@@ -71,11 +100,10 @@ function validationForm(event) {
 
     // Vérification du numéro de SIREN (9 chiffres ou format avec espaces)
     const sirenPattern = /^(?:\d{3} \d{3} \d{3}|\d{9})$/;
-    if (!sirenPattern.test(siren)) {
+    if (privateRadio.checked && !sirenPattern.test(siren)) {
         alert('Veuillez entrer un numéro de SIREN valide (ex : 123 456 789 ou 123456789).');
         return;
     }
-
 
     // Vérification du mot de passe
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/;
