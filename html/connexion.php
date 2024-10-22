@@ -1,4 +1,4 @@
-<?php 
+<?php
     // Démarrer la session
     session_start();
     require_once 'dbLocalKylian.php';
