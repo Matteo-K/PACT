@@ -1262,7 +1262,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* marge de 10 px en bas */
   gap: 10px;
   /* gap de 10 px */
-  padding-bottom: 35px ;
+  padding-bottom: 45px ;
 }
 
 #specialOffer section>article {
@@ -1299,18 +1299,27 @@ textarea[id="Resume"] {
 
 #visit {
   display: flex;
+  text-align: left;
+  margin-left: 675px;
+}
+#visit div {
+  margin-top: 10px;
 }
 
 #show {
-  margin-top: 5px;
-  /* Juste pour moi voir les separations */
+  margin-top: 10px;
+  margin-left: 675px;
 }
 
 /* #show */
 
 #park {
-  background-color: blueviolet;
-  /* Juste pour moi pour voir les séparations */
+  display: flex;
+  margin-left: 675px;
+}
+
+#park article >p {
+  margin-top: 15px ;
 }
 
 #park input[type="button"] {
