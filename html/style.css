@@ -1268,7 +1268,7 @@ textarea[id="Resume"] {
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
 body[id="body_creation_compte_pro"] {
-  background-image: url("img/fond.png");
+  background-image: url("fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -1276,7 +1276,6 @@ body[id="body_creation_compte_pro"] {
 
 a[id="lienCGU"] {
   color: white;
-  text-decoration: underline;
 }
 
 a[id="lienCGU"]:hover {
@@ -1285,7 +1284,6 @@ a[id="lienCGU"]:hover {
 
 a[id="lienConnexion"] {
   color: white;
-  text-decoration: underline;
   font-family: "Belanosima", sans-serif;
 }
 
@@ -1395,12 +1393,12 @@ body[id="body_creation_compte_pro"] ::placeholder {
   justify-content: space-between;  
 }
 
-.creation-compte .ligne5_1 {
+.creation-compte .ligne5_1, .creation-compte .ligne5_2 {
   display: flex;
   height: 68px;
   width: auto;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
 }
 
 .creation-compte .ligne5 input[type="radio"] {
@@ -1414,7 +1412,7 @@ body[id="body_creation_compte_pro"] ::placeholder {
   font-size: 25px;
 }
 
-.creation-compte .ligne5_1 label {
+.creation-compte .ligne5_2 label {
   margin: 0;
   font-size: 25px;
 }
@@ -1493,6 +1491,7 @@ button[id = "boutonInscriptionPro"] {
   margin: 5px auto;
   background-color: #edae14;
 }
+
 
 /*+++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
