@@ -1138,9 +1138,10 @@ textarea[id="Resume"] {
   text-align: center;
 }
 
+
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
-/*++++++++++++++++++++++++++++++++++++++++++*/
+/*+++++++++++++++++++++++++++++++++++++++++*/
 body[id="body_creation_compte_pro"] {
   background-image: url("img/fond.png");
   background-repeat: no-repeat;
