@@ -1224,6 +1224,7 @@ body[id="body_creation_compte_pro"] {
 
 a[id="lienCGU"] {
   color: white;
+  text-decoration: underline;
 }
 
 a[id="lienCGU"]:hover {
@@ -1249,6 +1250,7 @@ h1[id="inscriptionTitre"] {
 
 body[id="body_creation_compte_pro"] h2 {
   font-weight: 100;
+  text-decoration: underline;
 }
 
 aside[id="asideRetour"] {
