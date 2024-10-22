@@ -31,7 +31,6 @@ foreach ($horaires as $horaire) {
         // Convertir les horaires d'ouverture et de fermeture en DateTime
         $heureOuverture = DateTime::createFromFormat('H\hi', str_replace('h', ':', $horaire['heureouverture']));
         $heureFermeture = DateTime::createFromFormat('H\hi', str_replace('h', ':', $horaire['heurefermeture']));
-
         // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
         if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
             $restaurantOuvert = true;
@@ -68,6 +67,7 @@ foreach ($horaires as $horaire) {
                         $nomOffre=htmlspecialchars($offre['nom']);
                         $noteAvg="Non noté";
                     }
+                    echo($heureFermeture+" "+$heureOuverture);
                     if ($restaurantOuvert) {
                         echo "Le restaurant est ouvert.";
                     } else {
