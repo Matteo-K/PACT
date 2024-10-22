@@ -45,7 +45,7 @@ $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
 
 foreach ($resultsMidi as $horaire) {
     print_r($horaire);
-    if ($horaire['idoffre'] == 3 && strtolower($horaire['jour']) == $currentDay) {
+    if ($horaire['idoffre'] == 3 && $horaire['jour'] == $currentDay) {
         // Convertir les horaires d'ouverture et de fermeture en DateTime
         $tab=$horaire;
         $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
