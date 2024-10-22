@@ -25,7 +25,7 @@
             <h2>Filtre</h2>
         </aside>
         <section>
-
+            <?php print_r($stmt)?>
         </section>
     </main>
 </body>
