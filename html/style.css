@@ -1301,7 +1301,7 @@ textarea[id="Resume"] {
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
 body[id="body_creation_compte_pro"] {
-  background-image: url("fond.png");
+  background-image: url("img/fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -1530,7 +1530,7 @@ button[id = "boutonInscriptionPro"] {
 /* Css page connexion, Antoine */
 /*+++++++++++++++++++++++++++++*/
 body[id="body_connexion"] {
-  background-image: url("fond.png");
+  background-image: url("img/fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
