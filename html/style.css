@@ -759,6 +759,39 @@ header div > a > img {
 }
 
 /* ------------------------- END Payment OFFER CSS --------------------------------*/
+
+/*eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                           Page erreur
+  eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
+
+.pageErreur {
+  text-align: center;
+  background-color: var(--secondary);
+  padding: 50px;
+}
+.pageErreur h1 {
+    color: var(--primary); /* Rouge pour l'erreur */
+}
+.pageErreur img {
+    max-width: 200px; /* Ajuste la taille du logo */
+    margin-bottom: 20px;
+}
+.pageErreur a {
+    text-decoration: none;
+    color: var(--bloc); /* Couleur du lien */
+    font-weight: bold;
+}
+.pageErreur a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/*eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                          Fin page erreur
+  eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -826,7 +859,7 @@ header div > a > img {
 
 #artDetailOffer textarea[id="description"] {
   height: 250px;
-  min-height: 100px;
+  min-height: 250px;
   max-height: 400px;
 }
 
