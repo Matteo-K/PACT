@@ -45,6 +45,7 @@ $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
 
 foreach ($resultsMidi as $horaire) {
     print_r($horaire);
+    echo $horaire['idoffre']+" et "+$horaire['jour']+" et "+$currentDay;
     if ($horaire['idoffre'] == 3 && $horaire['jour'] == $currentDay) {
         // Convertir les horaires d'ouverture et de fermeture en DateTime
         $tab=$horaire;
