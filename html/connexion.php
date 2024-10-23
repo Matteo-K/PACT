@@ -30,7 +30,7 @@
             exit();
 
         } else {
-            // Vérification pro
+            // Vérification proprive
             $stmt = $conn->prepare('SELECT * FROM pact.proprive WHERE mail = ?');
             $stmt->execute([$login]);
             $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -40,25 +40,42 @@
             if ($proUser && password_verify($password, $proUser['password'])) {
                 // Connexion réussie
                 $_SESSION['idUser'] = $proUser['idu'];
-                $_SESSION['typeUser'] = $proUser['siren'] ? 'pro_prive' : 'pro_public'; // Détermine le type
+                $_SESSION['typeUser'] = 'pro_prive'; // Détermine le type
                 header("Location: index.php");
                 exit();
 
             } else {
-                // Vérification membre
-                $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE pseudo = ? OR mail = ?");
-                $stmt->execute([$login, $login]);
-                $member = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-                if ($member && password_verify($password, $member['motdepasse'])) {
-                    // Connexion réussie
-                    $_SESSION['idUser'] = $member['idu'];
-                    $_SESSION['typeUser'] = 'membre';
-                    header("Location: index.php");
 
+                // Vérification proprive
+                $stmt = $conn->prepare('SELECT * FROM pact.proprive WHERE mail = ?');
+                $stmt->execute([$login]);
+                $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                print_r($proUser);
+        
+                if ($proUser && password_verify($password, $proUser['password'])) {
+                    // Connexion réussie
+                    $_SESSION['idUser'] = $proUser['idu'];
+                    $_SESSION['typeUser'] = $proUser['siren'] ? 'pro_prive' : 'pro_public'; // Détermine le type
+                    header("Location: index.php");
                     exit();
-                } else {
-                    $error = "Identifiant ou mot de passe incorrect.";
+                }else{
+
+                    // Vérification membre
+                    $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE pseudo = ? OR mail = ?");
+                    $stmt->execute([$login, $login]);
+                    $member = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+                    if ($member && password_verify($password, $member['motdepasse'])) {
+                        // Connexion réussie
+                        $_SESSION['idUser'] = $member['idu'];
+                        $_SESSION['typeUser'] = 'membre';
+                        header("Location: index.php");
+
+                        exit();
+                    } else {
+                        $error = "Identifiant ou mot de passe incorrect.";
+                    }
                 }
             }
         }

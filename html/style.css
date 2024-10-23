@@ -1767,3 +1767,60 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
   color: #034D7C;
   width: 550px;
 }
+
+
+/* Média query pour passer au format téléphone */
+@media (max-width: 600px) {
+  /* Réduire la taille des titres */
+  h1[id="connexionTitre"] {
+      font-size: 45px;
+      padding-top: 150px;
+  }
+
+  h1[id="pasDeCompteTitre"] {
+      display: none;
+  }
+
+  /* Ajustement du formulaire */
+  .connexion-compte form {
+      justify-content: center;
+      width: 90%;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 10px;
+  }
+
+  /* Les champs de saisie restent inchangés */
+  .connexion-compte input {
+      width: 350px;
+  }
+
+  /* Réduire la taille du bouton de connexion */
+  button[id="boutonConnexion"] {
+      width: 180px;
+      height: 50px;
+      font-size: 22px;
+  }
+
+  /* Empiler les boutons de création de compte verticalement */
+  div[id="lienBouton"] {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+
+  div[id="lienBouton"] > div {
+      width: 100%;
+      margin: 10px 0;
+  }
+
+  /* Ajustement des boutons de création de compte */
+  a[id="boutonLienMembre"], a[id="boutonLienPro"] {
+      display: none;
+  }
+
+  /* Ajustement des labels pour les boutons de création de compte */
+  p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
+      display: none;
+  }
+}
