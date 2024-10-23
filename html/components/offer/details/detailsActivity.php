@@ -2,16 +2,16 @@
 <section id="activity">
     <article> <!-- Article pour le placement des elements de gauche-->
         <p>
-            <label id="labDuréeAct" name="labDuréeAct"> Durée: </label>
+            <label class="labDuréeAct" name="labDuréeAct"> Durée: </label>
             <br>
-            <textarea name="duréeAct" id="txtAct" placeholder="0"></textarea>
-            <label id="labHAct" name="labHAct"> H </label>
+            <textarea name="duréeAct" class="txtAct" placeholder="0"></textarea>
+            <label class="labHAct" name="labHAct"> H </label>
         </p>
 
         <p>
-            <label id="labAgeAct" name="labAgeAct"> Age: </label>
-            <textarea name="AgeAct" id="txtAct" placeholder="Age"></textarea>
-            <label id="labAnsAct" name="labAgeAct"> Ans </label>
+            <label class="labAgeAct" name="labAgeAct"> Age: </label>
+            <textarea name="AgeAct" class="txtAct" placeholder="Age"></textarea>
+            <label class="labAnsAct" name="labAgeAct"> Ans </label>
 
         </p>
 

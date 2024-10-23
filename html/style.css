@@ -253,6 +253,24 @@ header #auth > img {
 #menuBurger {
   display: none;
 }
+#logoText {
+  font-size: 48px;
+  color: var(--bloc);
+  text-align: center; /* Centrer le texte horizontalement */
+}
+
+#pro {
+  font-family: "Lato";
+  font-size: 16px; /* Ajuste la taille du texte "PRO" */
+  color: var(--text-dark);
+  text-align: center; /* Centrer le texte horizontalement */
+  margin-top: -10px; /* Ajuste l'espacement entre "PACT" et "PRO" */
+}
+
+header > div > a > div{
+  display: flex;
+  flex-direction: column;
+}
 
 @media (max-width: 756px) {
   header {
@@ -861,8 +879,8 @@ header #auth > img {
   margin: 1%;
 }
 
-#artDetailOffer>div>label:not(#labelAjoutPhoto),
-#choixCategorie label[for="categorie"],
+#artDetailOffer>div>label:not(.buttonDetailOffer),
+#choixCategorie:first-child,
 #choixImage label {
   display: inline-block;
   font-size: 25px;
@@ -879,6 +897,7 @@ header #auth > img {
   height: 30px;
   font-size: 15px;
   text-indent: 10px;
+  padding: 5px;
 }
 
 #artDetailOffer textarea {
@@ -886,6 +905,7 @@ header #auth > img {
   max-width: 90%;
   min-width: 90%;
   font-size: 16px;
+  padding: 5px;
 }
 
 #artDetailOffer input[id="nom"] {
@@ -904,13 +924,15 @@ header #auth > img {
   max-height: 400px;
 }
 
+
+
 #choixImage {
   display: inline-block;
   width: 70%;
   margin-right: 14px;
 }
 
-#labelAjoutPhoto {
+#ajoutPhoto {
   background-color: var(--primary);
 }
 
@@ -1264,6 +1286,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 10px;
   /* gap de 10 px */
   padding-bottom: 45px ;
+  font-size: 18px;
 }
 
 #specialOffer section>article {
@@ -1302,6 +1325,7 @@ textarea[id="Resume"] {
   display: flex;
   text-align: left;
   margin-left: 675px;
+
 }
 #visit div {
   margin-top: 10px;
@@ -1394,6 +1418,7 @@ h1[id="inscriptionTitre"] {
 
 body[id="body_creation_compte_pro"] h2 {
   font-weight: 100;
+  font-size: 2rem;
 }
 
 aside[id="asideRetour"] {
@@ -1427,7 +1452,7 @@ aside[id="asideRetour"]>button[id="retour"]>img {
 
   border-radius: 20px;
   padding: 15px;
-  margin: auto;
+  margin: 30px auto;
   width: 900px;
   height: auto;
   background-color: var(--bloc);
@@ -1517,11 +1542,10 @@ div.ligne3>label {
 .creation-compte .ligne7 {
   display: flex;
   align-items: center;
-  margin: 5px;
+  margin: 0 5px 20px;
   text-align: left;
   justify-content: center;
 }
-
 
 .creation-compte input {
   font-size: 20px;
@@ -1775,7 +1799,7 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
   /* Réduire la taille des titres */
   h1[id="connexionTitre"] {
       font-size: 45px;
-      padding-top: 150px;
+      margin-top: 20vh;
   }
 
   h1[id="pasDeCompteTitre"] {
@@ -1793,7 +1817,8 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 
   /* Les champs de saisie restent inchangés */
   .connexion-compte input {
-      width: 350px;
+      min-width: 200px;
+      max-width: 280px;
   }
 
   /* Réduire la taille du bouton de connexion */
