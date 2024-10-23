@@ -1,9 +1,3 @@
-<?php
-session_start();
-$isLoggedIn = isset($_SESSION["idUser"]);
-$typeUser = $_SESSION["typeUser"];
-require_once "db.php";
-?>
 
 <!DOCTYPE html>
 <html lang="fr">

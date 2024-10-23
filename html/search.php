@@ -9,13 +9,6 @@
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt = $conn->prepare("SELECT * FROM pact._horairesoir");
-    $stmt->execute();
-    $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    $stmt = $conn->prepare("SELECT * FROM pact._horairemidi");
-    $stmt->execute();
-    $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
 
@@ -41,25 +34,7 @@ $currentDay = $daysOfWeek[$currentDay];
 $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
 // Filtrer les horaires de l'offre en fonction de l'idOffre et du jour actuel
-$horaires = array_merge($resultsSoir, $resultsMidi); // Fusionner les résultats midi et soir
 
-$restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
-
-foreach ($horaires as $horaire) {
-    print_r($horaire);
-    echo $horaire['idoffre']." et ".$horaire['jour']." et ".$currentDay;
-    if ($horaire['idoffre'] == 3 && $horaire['jour'] == $currentDay) {
-        // Convertir les horaires d'ouverture et de fermeture en DateTime
-        $tab=$horaire;
-        $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
-        $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
-        // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
-        if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
-            $restaurantOuvert = true;
-            break; // Si on trouve que le restaurant est ouvert, on arrête la boucle
-        }
-    }
-}
 
 
 
@@ -74,6 +49,7 @@ foreach ($horaires as $horaire) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recherche d'offre</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
     <script src="./js/setColor.js"></script>
 </head>
 <body id="search">
@@ -95,22 +71,48 @@ foreach ($horaires as $horaire) {
                         $img = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre=$idOffre ORDER BY url ASC");
                         $img->execute();
                         $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
+
+                        $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=$idOffre");
+                        $stmt->execute();
+                        $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=$idOffre");
+                        $stmt->execute();
+                        $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        
+                        $horaires = array_merge($resultsSoir, $resultsMidi); // Fusionner les résultats midi et soir
+                        $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
+
+                        foreach ($horaires as $horaire) {
+                            if ($horaire['jour'] == $currentDay) {
+                                // Convertir les horaires d'ouverture et de fermeture en DateTime
+                                $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
+                                $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
+                                // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
+                                if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
+                                    $restaurantOuvert = true;
+                                    break; // Si on trouve que le restaurant est ouvert, on arrête la boucle
+                                }
+                            }
+                        }
+                            
+
                         if ($offre['statut']=='actif') {
                             ?>
                         <div>
                             <h4><?php echo $nomOffre; ?></h4>
                             <p><?php echo $noteAvg ?></p>
-                            <img src="<?php echo $urlImg[0]['url']; ?>" alt="">
+                            <p><?php if ($restaurantOuvert) {
+                                        echo "Le restaurant est ouvert.";
+                                     } else {
+                                        echo "Le restaurant est fermé.";
+                            }?></p>
+                            <a href="/detailsOffer.php?idoffre=<?php echo $idOffre ;?>&ouvert=<?php echo $restaurantOuvert; ?>"><img src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
+                            </a>
                         </div>
                         <?php
                         }
-                    }
-                    print_r($tab);
-                    if ($restaurantOuvert) {
-                        echo "Le restaurant est ouvert.";
-                    } else {
-                        echo "Le restaurant est fermé.";
-                    }
+                    }                    
                     ?>
                 </ul>
             <?php } else{ ?>

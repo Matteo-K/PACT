@@ -1,4 +1,30 @@
-<?php require_once "components/headerTest.php" ?>
+<?php 
+    require_once "config.php";
+    require_once "db.php";
+    
+    // Check if idoffre is set
+    if(!isset($_GET["idoffre"])){
+        header("location: index.php");
+        exit();
+    }
+
+    $idOffre = $_GET["idoffre"];
+
+    // Prepare the SQL statement with a placeholder
+    $stmt = $conn->prepare("SELECT * FROM pact.parcs_attractions WHERE idoffre = :idOffre");
+    $stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Check if a result was found
+    if (!$result) {
+        echo "No offer found with this ID.";
+        exit();
+    }
+
+    print_r($result);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,10 +36,13 @@
     <title><?php echo "h" ?></title>
 </head>
 <body>
+    <?php
+        require_once "components/headerTest.php";
+    ?>
     <script src="js/setColor.js"></script>
     
     <main class="mainOffer">
-        <h2 id="titleOffer">Le Village Gaulois</h2>
+        <h2 id="titleOffer"><?php echo $result["nom_offre"]?> </h2>
         <div>
             <!-- foreach ici !-->
             <a class="tag" href="search.php?search=parc">Parc d'attraction</a>
@@ -90,7 +119,7 @@
         var swiper2 = new Swiper(".mySwiper", {
             loop: true,
             autoplay: {
-                delay: 3000,
+                delay: 5000,
             },
             spaceBetween: 10,
             navigation: {

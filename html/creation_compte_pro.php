@@ -1,4 +1,4 @@
-<?php 
+<?php
     // Démarrer la session
     session_start();
     
@@ -41,7 +41,7 @@
 
 
         // Redirection vers une page de succès
-        header('Location: connexion.html');
+        header('Location: connexion.php');
         exit;
     }
 ?>
@@ -53,7 +53,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
     <title>Créer un compte</title>
 </head>
 <body id ="body_creation_compte_pro" class="creation-compte">

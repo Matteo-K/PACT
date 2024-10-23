@@ -1416,6 +1416,7 @@ h1[id="inscriptionTitre"] {
 
 body[id="body_creation_compte_pro"] h2 {
   font-weight: 100;
+  font-size: 2rem;
 }
 
 aside[id="asideRetour"] {
@@ -1449,7 +1450,7 @@ aside[id="asideRetour"]>button[id="retour"]>img {
 
   border-radius: 20px;
   padding: 15px;
-  margin: auto;
+  margin: 30px auto;
   width: 900px;
   height: auto;
   background-color: var(--bloc);
@@ -1539,11 +1540,10 @@ div.ligne3>label {
 .creation-compte .ligne7 {
   display: flex;
   align-items: center;
-  margin: 5px;
+  margin: 0 5px 20px;
   text-align: left;
   justify-content: center;
 }
-
 
 .creation-compte input {
   font-size: 20px;
@@ -1797,7 +1797,7 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
   /* Réduire la taille des titres */
   h1[id="connexionTitre"] {
       font-size: 45px;
-      padding-top: 150px;
+      margin-top: 20vh;
   }
 
   h1[id="pasDeCompteTitre"] {
@@ -1815,7 +1815,8 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 
   /* Les champs de saisie restent inchangés */
   .connexion-compte input {
-      width: 350px;
+      min-width: 200px;
+      max-width: 280px;
   }
 
   /* Réduire la taille du bouton de connexion */
