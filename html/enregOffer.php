@@ -14,9 +14,9 @@ if (empty($idOffre)) {
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     print_r($result);
-    $idOffre = $result["idoffre"]+1;
+    $idOffre = intval($result["idoffre"])+1;
   } catch (PDOException $e) {
-      echo "Une erreur s'est produite lors de la récupération de l'offre: " . $e->getMessage();
+      echo "Une erreur s'est produite lors de la récupération de l'offre: \n" . $e->getMessage() . "\n";
   }
 
   /* Obtention de la date current */
@@ -24,8 +24,12 @@ if (empty($idOffre)) {
   $date = $currentDateTime->format('Y-m-d H:i:s.u');
 
   /* création d'une offre avec la nouvelle id */
-  $stmt = $conn->prepare("INSERT INTO pact._offre (idu, statut, idoffre, nom, description, mail, telephone, affiche, urlsite, resume, datecrea) VALUES (?, ?, ?, null, null, null, null, null, null, null, ?)");
-  $stmt->execute([$idUser, 'inactif', $idOffre, $date]);
+  try {
+    $stmt = $conn->prepare("INSERT INTO pact._offre (idu, statut, idoffre, nom, description, mail, telephone, affiche, urlsite, resume, datecrea) VALUES (?, ?, ?, null, null, null, null, null, null, null, ?)");
+    $stmt->execute([$idUser, 'inactif', $idOffre, $date]);
+  } catch (PDOException $e) {
+    echo "Une erreur s'est produite lors de la création de l'offre: \n" . $e->getMessage() . "\n";
+  }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $page < 1) {
