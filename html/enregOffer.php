@@ -10,7 +10,7 @@ require_once 'db.php';
 if (empty($idOffre)) {
   /* obtention de la nouvelle id de l'offre */
   try {
-    $stmt = $conn->prepare("SELECT idoffre FROM _offre ORDER BY idoffre DESC LIMIT 1");
+    $stmt = $conn->prepare("SELECT o.idoffre FROM pact._offre o ORDER BY idoffre DESC LIMIT 1");
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     print_r($result);
