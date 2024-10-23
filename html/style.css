@@ -407,11 +407,11 @@ header>div>a>div {
   border-radius: 10px;
   background-color: var(--secondary);
   color: var(--text-dark);
-  box-shadow: inset -4px -4px 4px #aca8b5;
 }
 
 #manageOffer aside a:hover {
   box-shadow: none;
+  background-color: red;
 }
 
 #manageOffer aside a:active {
