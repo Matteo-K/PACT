@@ -1,21 +1,18 @@
 <?php 
-  $idOffre = $_POST["idOffre"];
   // Requête de récupération des données avec l'id de l'offre
-  $getMail = "adresse@gmail.com";
-  $getPhone = "";
-  $getDisplayNumber = true;
-  $getLinkWeb = "https://";
-  $getLinkWebExmpl1 = "";
-  $getLinkWebExmpl2 = "https://www.free.fr/freebox/";
-  
-  // Vérification si les données existes
-  $mail = isset($getMail) ? $getMail : "";
-  $phone = isset($getPhone) ? $getPhone : "";
-  $displayNumber = isset($getDisplayNumber) ? $getDisplayNumber : true;
-  if (!isset($getLinkWeb) || $getLinkWeb === "" || $getLinkWeb === "https://") {
+  $stmt = $conn->prepare("SELECT mail, telephone, affiche, urlsite FROM pact._offre WHERE idoffre= ?");
+  $stmt->execute([$idOffre]);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  if ($result === false) {
+    $mail = "";
+    $phone = "";
+    $displayNumber = true;
     $linkWeb = "https://";
   } else {
-    $linkWeb = $getLinkWeb;
+    $mail = $result["mail"];
+    $phone = $result["telephone"] == null ? "" : $result["telephone"];
+    $displayNumber = $result["affiche"] == null ? true : $result["affiche"];
+    $linkWeb = $result["urlsite"] == null ? "https://" : $result["urlsite"];
   }
 ?>
 <form id="contactOffer" action="enregOffer.php" method="post">
