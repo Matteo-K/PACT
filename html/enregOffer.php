@@ -7,13 +7,17 @@ session_start();
 require_once 'db.php';
 
 /* Création d'une nouvelle offre */
-if ($idOffre == "") {
+if (empty($idOffre)) {
   /* obtention de la nouvelle id de l'offre */
-  $stmt = $conn->prepare("SELECT pact.idoffre FROM pact._offre ORDER BY idoffre DESC LIMIT 1");
+  try {
+    $stmt = $conn->prepare("SELECT idoffre FROM _offre ORDER BY idoffre DESC LIMIT 1");
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  print_r($result);
-  $idOffre = $result["idoffre"]+1;
+    print_r($result);
+    $idOffre = $result["idoffre"]+1;
+  } catch (PDOException $e) {
+      echo "Une erreur s'est produite lors de la récupération de l'offre: " . $e->getMessage();
+  }
 
   /* Obtention de la date current */
   $currentDateTime = new DateTime();
