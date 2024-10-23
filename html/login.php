@@ -26,7 +26,7 @@
             $_SESSION['typeUser'] = 'admin';
 
             header("Location: index.php");
-             // Rediriger vers une page protégée
+            // Rediriger vers une page protégée
             exit();
 
         } else {
