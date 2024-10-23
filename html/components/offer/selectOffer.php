@@ -3,8 +3,8 @@ $is_prive = $_SESSION["typeUser"] == "pro_prive";
 
 if ($is_prive) {
   if (!empty($idOffre)) {
-    $stmt = $conn->prepare("SELECT nomabonnement FROM _abonner WHERE idoffre = ?");
-    $stmt->execute();
+    $stmt = $conn->prepare("SELECT nomabonnement FROM _abonner WHERE idoffre = ? ");
+    $stmt->execute([$idOffre]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $abonnement = $result["nomabonnement"];
     echo $abonnement;
