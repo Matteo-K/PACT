@@ -4,6 +4,9 @@
     
     // fichier de connexion à la BDD
     require_once "db.php";
+    
+    // Initialisation du tableau pour stocker les erreurs
+    $errors = []; 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Récupérer les données du formulaire
@@ -32,16 +35,16 @@
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE denomination = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE denomination = ?");
             $stmt->execute([$denomination, $denomination]);
             $count = $stmt->fetchColumn();
-    
+
             if ($count > 0) {
                 $errors[] = "La dénomination existe déjà.";
             }
         } 
         
         catch (Exception $e) {
-            $errors[] = "Erreur lors de la vérification: " . $e->getMessage();
+            $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
         }
-    
+
 
 
         // Vérifier si le numéro de SIREN existe déjà dans la base de données
@@ -56,17 +59,21 @@
         } 
         
         catch (Exception $e) {
-            $errors[] = "Erreur lors de la vérification: " . $e->getMessage();
+            $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
         }
-    
+
+
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if (!empty($errors)) {
             // Afficher les erreurs à l'utilisateur
+            echo "<div class='messageErreur'>";
             foreach ($errors as $error) {
-                echo "<div class='messageErreur'>" . htmlspecialchars($error) . "</div>";
+                echo "<li>" . htmlspecialchars($error) . "</li>";
             }
+            echo "</div>";
             exit;
         }
+
 
         // Préparer la requête d'insertion en fonction du secteur
         if ($secteur == 'public') {
