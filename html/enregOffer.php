@@ -68,6 +68,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
       case 1:
         // Modification des options
         // Select * option where idoffre = $idOffre;
+        $stmt = $conn->prepare("SELECT o.idoffre FROM pact._offre o ORDER BY idoffre DESC LIMIT 1");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         // Si à la une est coché && n'est pas dans la base : ajoute à la base
         // Si à la une est pas sélectionné && est dans la base : supprime de la base
 
