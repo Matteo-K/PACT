@@ -71,7 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre = ?");
         $stmt->execute([$idOffre]);
         $options = $stmt->fetch(PDO::FETCH_ASSOC);
-        print_r($options);
         // Si à la une est coché && n'est pas dans la base : ajoute à la base
         if (isset($_POST["aLaUne"]) && !in_array("aLaUne",$options)) {
           $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
@@ -79,7 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         }
         // Si à la une est pas sélectionné && est dans la base : supprime de la base
         if (!isset($_POST["aLaUne"]) && in_array("aLaUne",$options)) {
-          
+          $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ? AND nomoption='aLaUne'");
+          $stmt->execute([$idOffre]);
         }
         // Si en relief est coché && n'est pas dans la base : ajoute à la base
         if (isset($_POST["enRelief"]) && !in_array("enRelief",$options)) {
@@ -88,7 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         }
         // Si en relief est pas sélectionné && est dans la base : supprime de la base
         if (!isset($_POST["enRelief"]) && in_array("enRelief",$options)) {
-          
+          $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ? AND nomoption='EnRelief'");
+          $stmt->execute([$idOffre]);
         }
 
 
