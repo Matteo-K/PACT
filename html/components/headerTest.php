@@ -1,8 +1,3 @@
-<?php
-session_start();
-$isLoggedIn = isset($_SESSION["idUser"]);
-$typeUser = $_SESSION["typeUser"];
-?>
 
 <!DOCTYPE html>
 <html lang="fr">
