@@ -13,7 +13,7 @@ if ($idOffre == "") {
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
   print_r($result);
-  $idOffre = $result;
+  $idOffre = $result["idoffre"]+1;
 
   /* Obtention de la date current */
   $currentDateTime = new DateTime();
