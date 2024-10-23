@@ -180,10 +180,8 @@
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             ?>
            
-            <img id="profilePic" src="./<?php echo $result["url"] ?>" title="Photo de profil utilisateur">
-            <?php
-            print_r($result);
-            ?>
+            <img id="profilePic" src="<?php echo $result["url"] ?>" title="Photo de profil utilisateur">
+
             <!-- Menu caché intégré dans le header -->
             <div id="profileMenu" class="hidden">
                 <div id="backButton">

@@ -2,6 +2,27 @@
     require_once "config.php";
     require_once "db.php";
     
+    // Check if idoffre is set
+    if(!isset($_GET["idoffre"])){
+        header("location: index.php");
+        exit();
+    }
+
+    $idOffre = $_GET["idoffre"];
+
+    // Prepare the SQL statement with a placeholder
+    $stmt = $conn->prepare("SELECT * FROM pact.parcs_attractions WHERE idoffre = :idOffre");
+    $stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Check if a result was found
+    if (!$result) {
+        echo "No offer found with this ID.";
+        exit();
+    }
+
+    print_r($result);
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +30,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/logo.png" type="image/x-icon">
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
@@ -22,6 +42,7 @@
     <script src="js/setColor.js"></script>
     
     <main class="mainOffer">
+        <h2 id="titleOffer"><?php echo $result["nom_offre"]?> </h2>
         <div>
             <!-- foreach ici !-->
             <a class="tag" href="search.php?search=parc">Parc d'attraction</a>
