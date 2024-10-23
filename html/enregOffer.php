@@ -9,7 +9,7 @@ require_once 'db.php';
 /* Création d'une nouvelle offre */
 if ($idOffre == "") {
   /* obtention de la nouvelle id de l'offre */
-  $stmt = $conn->prepare("SELECT pact.idoffre FROM _offre ORDER BY idoffre DESC LIMIT 1;");
+  $stmt = $conn->prepare("SELECT pact.idoffre FROM _offre ORDER BY idoffre DESC LIMIT 1");
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
   print_r($result);
