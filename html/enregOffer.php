@@ -3,6 +3,8 @@ $page = isset($_POST['page']) ? $_POST['page'] : 1;
 $idOffre = isset($_POST["idOffre"])?$_POST["idOffre"]:"";
 $idUser = $_POST["idUser"];
 
+require_once 'db.php';
+
 /* Création d'une nouvelle offre */
 if ($idOffre == "") {
   /* obtention de la nouvelle id de l'offre */
