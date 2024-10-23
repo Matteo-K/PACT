@@ -71,11 +71,11 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         $img->execute();
                         $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
 
-                        $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=$idOffre and jour=$currentDay");
+                        $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=$idOffre");
                         $stmt->execute();
                         $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                        $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=$idOffre and jour=$currentDay");
+                        $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=$idOffre");
                         $stmt->execute();
                         $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         
@@ -84,6 +84,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
 
                         foreach ($horaires as $horaire) {
+                        }
+                        if ($horaire['jour'] == $currentDay) {
+                            // Convertir les horaires d'ouverture et de fermeture en DateTime
                             $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
                             $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
                             // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
