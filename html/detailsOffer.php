@@ -62,7 +62,6 @@
     <script src="js/setColor.js"></script>
     
     <main class="mainOffer">
-        <?php print_r($result)?>
         <h2 id="titleOffer"><?php echo $result["nom_offre"]?> </h2>
         <div>
             <!-- foreach ici !-->
@@ -79,9 +78,9 @@
             <a href="https://www.levillagegaulois.org/">https://www.levillagegaulois.org/</a>
         </div>
         <?php
-            $stmt = $conn->prepare("SELECT * FROM pact.visites WHERE idoffre = '$idOffre'");
+            $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = '$idOffre'");
             $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $photo = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
         <div class="swiper-container">
             <div class="swiper mySwiper">

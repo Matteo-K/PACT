@@ -177,10 +177,10 @@
                 $stmt = $conn->prepare("SELECT * FROM pact.proPrive WHERE idU = ?");
             }
             $stmt->execute([$_SESSION["idUser"]]);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
             ?>
            
-            <img id="profilePic" src="<?php echo $result["url"] ?>" title="Photo de profil utilisateur">
+            <img id="profilePic" src="<?php echo $user["url"] ?>" title="Photo de profil utilisateur">
 
             <!-- Menu caché intégré dans le header -->
             <div id="profileMenu" class="hidden">
@@ -188,15 +188,15 @@
                     <span id="backText">< Retour</span>
                 </div>
                 <figure id="imagProfil">
-                    <img src="<?php echo $result["url"] ?>" title="photo de profil utilisateur" id="menuProfilePic">
+                    <img src="<?php echo $user["url"] ?>" title="photo de profil utilisateur" id="menuProfilePic">
                     <figcaption>
                         <?php
                         if ($typeUser === "admin") {
-                            echo $result["login"];
+                            echo $user["login"];
                         } else if ($typeUser === "pro_public" || $typeUser === "pro_prive") {
-                            echo $result["denomination"];
+                            echo $user["denomination"];
                         } else if ($typeUser === "membre") {
-                            echo $result["pseudo"];
+                            echo $user["pseudo"];
                         }
                         ?>
                     </figcaption>
