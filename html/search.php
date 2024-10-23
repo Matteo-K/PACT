@@ -52,77 +52,87 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
             <h2>Tri</h2>
         </aside>
         <section class="searchoffre">
-            <?php if ($results){ ?>
-                <ul>
-                    <?php 
-                        foreach ($results as $offre){
-                        $idOffre=$offre['idoffre'];
-                        $nomOffre=$offre['nom'];
-                        $noteAvg="Non noté";
-                        $img = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre=$idOffre ORDER BY url ASC");
-                        $img->execute();
-                        $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
+        <?php if ($results){ ?>
+            <?php foreach ($results as $offre){ 
+                $idOffre = $offre['idoffre'];
+                $nomOffre = $offre['nom'];
+                $noteAvg = "Non noté";
 
-                        $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=$idOffre");
-                        $stmt->execute();
-                        $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // Requête pour récupérer l'image de l'offre
+                $img = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = $idOffre ORDER BY url ASC");
+                $img->execute();
+                $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
 
-                        $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=$idOffre");
-                        $stmt->execute();
-                        $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        
-                        $horaires = array_merge($resultsSoir, $resultsMidi); // Fusionner les résultats midi et soir
-                        $restaurantOuvert = "EstFermé"; // Par défaut, on considère le restaurant fermé
+                // Requête pour récupérer les horaires du soir
+                $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre");
+                $stmt->execute();
+                $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                        foreach ($horaires as $horaire) {
-                            if ($horaire['jour'] == $currentDay) {
-                                // Convertir les horaires d'ouverture et de fermeture en DateTime
-                                $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
-                                $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
-                                // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
-                                if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
-                                    $restaurantOuvert = "EstOuvert";
-                                    break; // Si on trouve que le restaurant est ouvert, on arrête la boucle
-                                }
-                            }
+                // Requête pour récupérer les horaires du midi
+                $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre = $idOffre");
+                $stmt->execute();
+                $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                // Fusionner les horaires midi et soir
+                $horaires = array_merge($resultsSoir, $resultsMidi);
+                $restaurantOuvert = "EstFermé"; // Par défaut, le restaurant est fermé
+
+                // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
+                foreach ($horaires as $horaire) {
+                    if ($horaire['jour'] == $currentDay) {
+                        $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
+                        $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
+                        if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
+                            $restaurantOuvert = "EstOuvert";
+                            break;
                         }
-                        
-                        $loca = $conn->prepare("SELECT * FROM pact._localisation WHERE idOffre=$idOffre");
-                        $loca->execute();
-                        $ville = $loca->fetchAll(PDO::FETCH_ASSOC);
-                        
-                        $prix = $conn->prepare("SELECT * FROM pact.restaurants WHERE idOffre=$idOffre");
-                        $prix->execute();
-                        $gamme = $prix->fetchAll(PDO::FETCH_ASSOC);
+                    }
+                }
 
-                        if ($offre['statut']=='actif') {
-                            ?>
-                        <div class="carteOffre">
-                            <h4><?php echo $nomOffre; ?></h4>
-                            <p><?php echo $noteAvg ?></p>
-                            <p><?php echo $ville[0]['ville'] ?></p>
-                            <?php
-                            if ($gamme) {
-                                ?><p><?php echo $gamme[0]['gammedeprix'] ?></p><?php
-                            }                            
-                            ?>
-                            <p><?php if ($restaurantOuvert) {
-                                        echo "Ouvert";
-                                     } else {
-                                        echo "Fermé";
-                            }?></p>
-                            <a href="/detailsOffer.php?idoffre=<?php echo $idOffre ;?>&ouvert=<?php echo $restaurantOuvert; ?>"><img src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
-                            </a>
+                // Requête pour la localisation
+                $loca = $conn->prepare("SELECT * FROM pact._localisation WHERE idOffre = $idOffre");
+                $loca->execute();
+                $ville = $loca->fetchAll(PDO::FETCH_ASSOC);
+
+                // Requête pour la gamme de prix
+                $prix = $conn->prepare("SELECT * FROM pact.restaurants WHERE idOffre = $idOffre");
+                $prix->execute();
+                $gamme = $prix->fetchAll(PDO::FETCH_ASSOC);
+                $gammeText = ($gamme) ? " ⋅ " . $gamme[0]['gammedeprix'] : "";
+
+                if ($offre['statut'] == 'actif') { ?>
+                    <div class="carteOffre">
+                        <div class="infoOffre">
+                            <p class="titre"><?php echo $nomOffre; ?></p>
+                            <p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText; ?></p>
+
+                            <div class="noteStatut">
+                                <p><?php echo $noteAvg; ?></p>
+                                <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
+                                    <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
+                                </p>
+                                <script>
+                                    let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
+                                    if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
+                                        st_<?php echo $idOffre; ?>.classList.add("searchStatutO");
+                                    } else {
+                                        st_<?php echo $idOffre; ?>.classList.add("searchStatutF");
+                                    }
+                                </script>
+                            </div>
                         </div>
-                        <?php
-                        }
-                    }                    
-                    ?>
-                </ul>
-            <?php } else{ ?>
-                <p>Aucune offre trouvée </p>
-            <?php } ?>
-        </section>
+                        <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
+                            <img src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
+                        </a>
+                    </div>
+                <?php }
+            } ?>
+        <?php } else { ?>
+            <p>Aucune offre trouvée </p>
+        <?php } ?>
+    </section>
+
     </main>
+    <?php require_once "components/footer.php"; ?>
 </body>
 </html>
