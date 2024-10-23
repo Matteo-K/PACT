@@ -11,6 +11,8 @@
     $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idoffre = '$idOffre'");
     $stmt -> execute();
     $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+    print_r($result);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
