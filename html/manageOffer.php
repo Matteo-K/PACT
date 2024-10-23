@@ -5,9 +5,13 @@ session_start();
 // fichier de connexion à la BDD
 require_once 'db.php';
 
-if(!isset($_SESSION['idUser']) && !($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] == "pro_prive")){
+if(!isset($_SESSION['idUser'])){
     header("Location: index.php");
     exit();
+}
+if (!($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] == "pro_prive")) {
+  header("Location: index.php");
+  exit();
 }
 
 $nameOffer = "";
