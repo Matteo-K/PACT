@@ -1,15 +1,18 @@
  <?php
- $idOffre = $_POST["idOffre"];
  // Requête de récupération des données avec l'id de l'offre
- $getAdresse = "Lannion";
- $getCodePostal = "22300";
- $getVille = "Lannion";
+  $stmt = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre = ?");
+  $stmt->execute([$idOffre]);
+  $localisation = $stmt->fetch(PDO::FETCH_ASSOC);
 
- // Vérification si les données existes
- $adresse = isset($getAdresse) ? $getAdresse : "";
- $codePostal = isset($getCodePostal) ? $getCodePostal : "";
- $ville = isset($getVille) ? $getVille : "";
-
+  if (isset($localisation["codepostal"])) {
+    $adresse = $localisation["numerorue"] . " ". $localisation["rue"];
+    $codePostal = $localisation["codepostal"];
+    $ville = $localisation["ville"];
+  } else {
+    $adresse = "";
+    $codePostal = "";
+    $ville = "";
+  }
  ?>
   <form id="localisationOffer" action="enregOffer.php" method="post">
     <section class="map">
