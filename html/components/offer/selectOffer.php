@@ -1,10 +1,20 @@
 <?php
-// select * from _abonnement where idoffre = $idOffre;
-// si isset($result)?$result["nomAbonnement"]:"";
-$abonnement = "";
+$is_prive = $_SESSION["typeUser"] == "pro_prive";
+
+if ($is_prive) {
+  if (!empty($idOffre)) {
+    $stmt = $conn->prepare("SELECT nomabonnement FROM _abonner WHERE idoffre = ? ");
+    $stmt->execute([$idOffre]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $abonnement = $result["nomabonnement"];
+    echo $abonnement;
+  } else {
+    $abonnement = ""; 
+  }
+}
+  
 // select option from _option where idoffre = $idOffre;
 $options = ["EnRelief"];
-$is_prive = $_SESSION["typeUser"] == "pro_prive";
 ?>
 <form id="selectOffer" action="enregOffer.php" method="post">
   <div>
@@ -24,6 +34,9 @@ $is_prive = $_SESSION["typeUser"] == "pro_prive";
     </div>
     <?php
     } else {
+      $stmt = $conn->prepare("SELECT o.idoffre FROM pact._offre o ORDER BY idoffre DESC LIMIT 1");
+      $stmt->execute();
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
     ?>
     <div>
       <h2>Offre Premium</h2>
