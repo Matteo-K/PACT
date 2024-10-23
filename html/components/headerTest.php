@@ -150,7 +150,18 @@ require_once "db.php";
     <div>
         <a href="../index.php">
             <img id="logo" src="../img/logo.png" title="logo du site">
-            <h1 id="logoText">PACT</h1>
+            <div>
+                <h1 id="logoText">PACT</h1>
+                <?php
+                if($isLoggedIn){
+                    if($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] === "pro_prive"){
+                ?>
+                <h3 id="pro">PRO</h3>
+                <?php
+                    }
+                }
+                ?>
+            <div>
         </a>
     </div>
     <form method="post" action="search.php" id="formHeader">
