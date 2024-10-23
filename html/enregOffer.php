@@ -69,11 +69,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         // Modification des options
         // Récupération des offres
         $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre = ?");
-        $stmt->execute([2]);
+        $stmt->execute([$idOffre]);
         $options = $stmt->fetch(PDO::FETCH_ASSOC);
         print_r($options);
         // Si à la une est coché && n'est pas dans la base : ajoute à la base
-        if (isset($_POST["aLaUne"])) {
+        if (isset($_POST["aLaUne"]) && !in_array("aLaUne",$options)) {
           
         }
         // Si à la une est pas sélectionné && est dans la base : supprime de la base
@@ -160,7 +160,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 }
 
 // Redirection vers les bonnes pages
-/*
 if ($pageDirection >= 1) {
   ?>
   <form id="myForm" action="manageOffer.php" method="POST">
@@ -171,7 +170,7 @@ if ($pageDirection >= 1) {
 } else {
   header("Location: search.php");
   exit();
-}*/
+}
 ?>
 <script>
     document.getElementById('myForm').submit();
