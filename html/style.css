@@ -252,6 +252,24 @@ header #auth > img {
 #menuBurger {
   display: none;
 }
+#logoText {
+  font-size: 48px;
+  color: var(--bloc);
+  text-align: center; /* Centrer le texte horizontalement */
+}
+
+#pro {
+  font-family: "Lato";
+  font-size: 16px; /* Ajuste la taille du texte "PRO" */
+  color: var(--text-dark);
+  text-align: center; /* Centrer le texte horizontalement */
+  margin-top: -10px; /* Ajuste l'espacement entre "PACT" et "PRO" */
+}
+
+header > div > a > div{
+  display: flex;
+  flex-direction: column;
+}
 
 @media (max-width: 756px) {
   header {
