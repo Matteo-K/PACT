@@ -75,6 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         if ($_POST["standard"]) {
           
         }
+        bonjou
         // Si à la une est coché && n'est pas dans la base : ajoute à la base
         // Si à la une est pas sélectionné && est dans la base : supprime de la base
 
