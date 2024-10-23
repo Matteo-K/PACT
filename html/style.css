@@ -1308,6 +1308,59 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   max-width: 1200px;
 }
 
+
+
+table {
+  width: 50em; /* Ajustez la largeur selon vos besoins */
+  border-collapse: separate; /* Utiliser 'separate' pour afficher les bordures */
+  border-spacing: 0; /* Optionnel : pour supprimer l'espace entre les cellules */
+  margin: 20px auto; /* Centrer le tableau horizontalement */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre */
+  border: 2px solid var(--accent); /* Ajout de la bordure au tableau */
+  border-radius: 20px 20px 0 0; /* Coins arrondis pour le tableau */
+  overflow: hidden; /* Pour que le border-radius soit visible sur les cellules */
+}
+
+
+
+td[class="jourSemaine"]{
+  font-family: "Belanosima", sans-serif;
+  
+}
+td, th{
+  padding: 10px; /* Ajoutez un peu de remplissage */
+  font-size: 24px;
+}
+th{
+  border-radius: 20px 20px 0 0;
+  font-family: "Belanosima", sans-serif;
+  font-size: 30px;
+}
+thead {
+  background-color: var(--accent);
+
+}
+
+tbody{
+  border: 2px solid var(--accent);
+}
+
+tbody tr:nth-child(even) td {
+  background-color: var(--background); /* Couleur des cellules paires */
+}
+
+tbody tr:nth-child(odd) td {
+  background-color: #fff; /* Couleur des cellules impaires (blanc) */
+}
+
+tbody td:first-child {
+  text-align: left; /* Alignement du jour à gauche */
+}
+
+tbody td:last-child {
+  text-align: right; /* Alignement de l'horaire à droite */
+}
+
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
