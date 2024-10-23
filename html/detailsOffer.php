@@ -41,7 +41,7 @@
     <script src="js/setColor.js"></script>
     
     <main class="mainOffer">
-        <h2 id="titleOffer"><?php echo $result["nom_offre"]?> </h2>
+        <h2 id="titleOffer"><?php echo $result[0]["nom_offre"]?> </h2>
         <div>
             <!-- foreach ici !-->
             <a class="tag" href="search.php?search=parc">Parc d'attraction</a>
