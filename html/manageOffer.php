@@ -83,7 +83,8 @@
             break;
         }
       ?>
-          <input type="hidden" name="page" id="currentPage" value="<?php echo $step ?>">
+          <input type="hidden" name="pageCurrent" id="pageCurrent" value="">
+          <input type="hidden" name="pageBefore" id="pageBefore" value="<?php echo $step ?>">
           <input type="hidden" name="idOffre" id="idOffre" value="<?php echo $idOffre ?>">
           <input type="hidden" name="idUser" id="idUser" value="<?php echo $_SESSION['idUser']; ?>">
       </form>
@@ -108,7 +109,7 @@
 <script>
   /* envoie un formulaire à la page enregistrement (enregOffer.php) */
   function submitForm(page) {
-      document.getElementById('currentPage').value = page;
+      document.getElementById('pageCurrent').value = page;
       let form = document.querySelector('section form:not(#paypal)');
       let confirm_page = (page == -1)? confirm("Les données ne seront pas enregistrées.\n Toute modification apportée aux données ne sera pas prise en compte.") : true;
       if (form.checkValidity() && confirm_page) {
