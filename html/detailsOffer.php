@@ -1,6 +1,8 @@
 <?php 
     require_once "config.php";
     require_once "db.php";
+    
+    // Check if idoffre is set
     if(!isset($_GET["idoffre"])){
         header("location: index.php");
         exit();
@@ -8,12 +10,21 @@
 
     $idOffre = $_GET["idoffre"];
 
-    $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idoffre = '$idOffre'");
-    $stmt -> execute();
-    $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+    // Prepare the SQL statement with a placeholder
+    $stmt = $conn->prepare("SELECT * FROM pact.parcs_attractions WHERE idoffre = :idOffre");
+    $stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Check if a result was found
+    if (!$result) {
+        echo "No offer found with this ID.";
+        exit();
+    }
 
     print_r($result);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
