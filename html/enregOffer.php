@@ -168,8 +168,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         }
 
         // Insertion dans localisation
-        $stmt = $conn->prepare("insert into pact._localisation (idoffre, codepostal, ville, pays, rue, numerorue) values (?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$idOffre, $codePostal, $ville, $pays, $rue, $numerorue]);
+        // Ajout ou modification
+        $stmt = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre = ?");
+        $stmt->execute([$idOffre]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // ajout si aucun résultat
+        if ($result === false) {
+          $stmt = $conn->prepare("INSERT INTO pact._localisation (idoffre, codepostal, ville, pays, rue, numerorue) VALUES (?, ?, ?, ?, ?, ?)");
+          $stmt->execute([$idOffre, $codePostal, $ville, $pays, $rue, $numerorue]);
+        } else {
+          // modifiaction
+          $stmt = $conn->prepare("UPDATE pact._localisation SET codepostal=?, ville=?, pays=?, rue=?, numerorue=?  WHERE idoffre= ?");
+          $stmt->execute([$codePostal, $ville, $pays, $rue, $numerorue, $idOffre]);
+        }
         break;
 
       case 4:
