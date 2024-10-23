@@ -8,8 +8,6 @@ $idUser = 4;
 session_start();
 require_once 'db.php';
 
-print_r($_POST);
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
   $pageBefore = $_POST['pageBefore'];
 
@@ -135,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
     }
   }
 }
-/*
+
 if ($pageDirection >= 1) {
   ?>
   <form id="myForm" action="manageOffer.php" method="POST">
@@ -146,7 +144,7 @@ if ($pageDirection >= 1) {
 } else {
   header("Location: search.php");
   exit();
-}*/
+}
 ?>
 <script>
     document.getElementById('myForm').submit();
