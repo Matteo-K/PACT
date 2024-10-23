@@ -31,9 +31,11 @@
 
         } else {
             // Vérification pro
-            $stmt = $conn->prepare('SELECT mail, idU, motdepasse, siren FROM propublic WHERE mail = ? UNION SELECT mail, idU, motdepasse, siren FROM proprive WHERE mail = ?;');
+            $stmt = $conn->prepare('SELECT mail, idU, motdepasse, siren FROM pact.propublic WHERE mail = ? UNION SELECT mail, idU, motdepasse, siren FROM pact.proprive WHERE mail = ?;');
             $stmt->execute([$login, $login]);
             $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            print_r($proUser);
     
             if ($proUser && password_verify($password, $proUser['motdepasse'])) {
                 // Connexion réussie
@@ -91,7 +93,7 @@
     
             <div class="ligne2">
                 <!-- Saisi du mot de passe -->
-                <input type="password" placeholder = "Mot de passe" id = "motdepasseConnexion" name="mot de passe" required>
+                <input type="password" placeholder = "Mot de passe" id="motdepasseConnexion" name="motdepasseConnexion" required>
             </div>
     
     
