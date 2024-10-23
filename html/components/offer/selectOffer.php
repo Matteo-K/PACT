@@ -21,9 +21,13 @@ if ($is_prive) {
 }
   
 // select option from _option where idoffre = $idOffre;
-$stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre=?");
-$stmt->execute([$idOffre]);
-$options = $stmt->fetch(PDO::FETCH_ASSOC);
+$options = [];
+if (!empty($idOffre)) {
+  $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre=?");
+  $stmt->execute([$idOffre]);
+  $options = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 
 ?>
 <form id="selectOffer" action="enregOffer.php" method="post">
