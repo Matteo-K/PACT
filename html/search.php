@@ -86,7 +86,9 @@ foreach ($horaires as $horaire) {
             <h2>Liste des offres</h2>
             <?php if ($results){ ?>
                 <ul>
-                    <?php foreach ($results as $offre){
+                    <?php 
+                    print_r($results);
+                        foreach ($results as $offre){
                         $idOffre=$offre['idoffre'];
                         $nomOffre=$offre['nom'];
                         $noteAvg="Non noté";
