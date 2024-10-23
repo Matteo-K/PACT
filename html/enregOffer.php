@@ -141,13 +141,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
       case 3:
         // Détails Localisation update
         // insertion dans adresse
-        
+        $adresse = $_POST["adresse2"];
+        $codePostal = $_POST["codepostal"];
+        $ville = $_POST["ville2"];
+        $pays = 'France';
+        // obtention du split de l'adresse par une expression régulière
+        preg_match('/^(\d+)\s+(.*)$/', $adresse, $matches);
+        $numerorue = $matches[1];
+        $rue = $matches[2];
+
         $stmt = $conn->prepare("INSERT INTO pact._adresse (codepostal, ville, pays, rue, numerorue) values (?, ?, ?, ?, ?)");
-        $stmt->execute([$idOffre]);
+        $stmt->execute([$codePostal, $ville, $pays, $rue, $numerorue]);
 
         // insertion dans localisation
-        $stmt = $conn->prepare("insert into pact._localisation (idoffre, codepostal, ville, pays, rue, numerorue) values (8, '78590',null,null,null,null)");
-        $stmt->execute([$idOffre]);
+        $stmt = $conn->prepare("insert into pact._localisation (idoffre, codepostal, ville, pays, rue, numerorue) values (?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$idOffre, $codePostal, $ville, $pays, $rue, $numerorue]);
         break;
 
       case 4:

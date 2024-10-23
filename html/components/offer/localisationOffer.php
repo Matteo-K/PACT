@@ -17,16 +17,16 @@
         <section class="sectionLoca">
           <div>
             <label for="adresse2">Adresse postale* :</label>
-            <input type="text" id="adresse2" placeholder="Adresse" value="<?php echo $adresse ?>" required/>
+            <input type="text" id="adresse2" name="adresse2" placeholder="Adresse" value="<?php echo $adresse ?>" required/>
           </div>
           <section>
             <div class="codeP">
               <label for="codepostal">Code postal* :</label>
-              <input type="text" id="codepostal" placeholder="Code Postal" value="<?php echo $codePostal ?>" required/>
+              <input type="text" id="codepostal" name="codepostal" placeholder="Code Postal" value="<?php echo $codePostal ?>" required/>
             </div>
             <div class="villeL">
               <label for="ville2">Ville* :</label>
-              <input type="text" id="ville2" placeholder="Ville" value="<?php echo $ville ?>" required/>
+              <input type="text" id="ville2" name="ville2" placeholder="Ville" value="<?php echo $ville ?>" required/>
             </div>
           </section>
         </section>
