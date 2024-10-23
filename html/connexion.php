@@ -46,7 +46,7 @@
 
             } else {
                 // Vérification membre
-                $stmt = $conn->prepare("SELECT * FROM membre WHERE pseudo = ? OR mail = ?");
+                $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE pseudo = ? OR mail = ?");
                 $stmt->execute([$login, $login]);
                 $member = $stmt->fetch(PDO::FETCH_ASSOC);
     
