@@ -102,7 +102,7 @@ $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($urlImg as $array) {
                         print_r($array);
                         echo $array['url'];
-                        ?><a href="<?php $array['url'] ?>"></a><?php
+                        ?><img src="<?php echo $array['url'] ?>" alt=""><?php
                     }
                     ?>
                 </ul>
