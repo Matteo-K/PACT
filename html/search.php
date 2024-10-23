@@ -71,11 +71,11 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         $img->execute();
                         $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
 
-                        $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=$idOffre and jour=$currentDay");
+                        $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=$idOffre");
                         $stmt->execute();
                         $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                        $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=$idOffre and jour=$currentDay");
+                        $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=$idOffre");
                         $stmt->execute();
                         $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         
@@ -84,6 +84,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
 
                         foreach ($horaires as $horaire) {
+                        }
+                        if ($horaire['jour'] == $currentDay) {
+                            // Convertir les horaires d'ouverture et de fermeture en DateTime
                             $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
                             $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
                             // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
@@ -99,19 +102,17 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <div>
                             <h4><?php echo $nomOffre; ?></h4>
                             <p><?php echo $noteAvg ?></p>
-                            <p><?php echo $restaurantOuvert ?></p>
+                            <p><?php if ($restaurantOuvert) {
+                                        echo "Le restaurant est ouvert.";
+                                     } else {
+                                        echo "Le restaurant est fermé.";
+                            }?></p>
                             <a href="/detailsOffer.php?idoffre=<?php echo $idOffre ;?>&ouvert=<?php echo TRUE; ?>"><img src="<?php echo $urlImg[0]['url']; ?>" alt="">
                             </a>
                         </div>
                         <?php
                         }
-                    }
-                    print_r($tab);
-                    if ($restaurantOuvert) {
-                        echo "Le restaurant est ouvert.";
-                    } else {
-                        echo "Le restaurant est fermé.";
-                    }
+                    }                    
                     ?>
                 </ul>
             <?php } else{ ?>
