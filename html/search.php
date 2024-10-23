@@ -102,19 +102,17 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <div>
                             <h4><?php echo $nomOffre; ?></h4>
                             <p><?php echo $noteAvg ?></p>
-                            <p><?php echo $restaurantOuvert ?></p>
+                            <p><?php if ($restaurantOuvert) {
+                                        echo "Le restaurant est ouvert.";
+                                     } else {
+                                        echo "Le restaurant est fermé.";
+                            }?></p>
                             <a href="/detailsOffer.php?idoffre=<?php echo $idOffre ;?>&ouvert=<?php echo TRUE; ?>"><img src="<?php echo $urlImg[0]['url']; ?>" alt="">
                             </a>
                         </div>
                         <?php
                         }
-                    }
-                    print_r($tab);
-                    if ($restaurantOuvert) {
-                        echo "Le restaurant est ouvert.";
-                    } else {
-                        echo "Le restaurant est fermé.";
-                    }
+                    }                    
                     ?>
                 </ul>
             <?php } else{ ?>
