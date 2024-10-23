@@ -3,7 +3,7 @@
     session_start();
 
     // fichier de connexion à la BDD
-    //require_once 'db.php';
+    require_once 'db.php';
 
     if(isset($_SESSION['idUser'])){
         header("Location: index.php");
