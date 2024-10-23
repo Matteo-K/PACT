@@ -1286,6 +1286,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 10px;
   /* gap de 10 px */
   padding-bottom: 45px ;
+  font-size: 18px;
 }
 
 #specialOffer section>article {
@@ -1324,6 +1325,7 @@ textarea[id="Resume"] {
   display: flex;
   text-align: left;
   margin-left: 675px;
+
 }
 #visit div {
   margin-top: 10px;
