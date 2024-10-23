@@ -222,6 +222,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
       case 5:
         // Détails Horaires update
+        $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
+        
+        // Ajoute dans la base de donnée les heures pour chaque jour
+        // Si fermé ou les champs son vides, on ajoute pas dans la base de donnée
+        foreach ($jour_semaine as $value) {
+          $ferme = isset($_POST["check".$value])?true:false;
+          $ouvMidi = isset($_POST["horairesOuv1".$value]) ? $_POST["horairesOuv1".$value] : "";
+          $fermMidi = isset($_POST["horairesF1".$value]) ? $_POST["horairesF1".$value] : "";
+          $ouvSoir = isset($_POST["horairesOuv2".$value]) ? $_POST["horairesOuv2".$value] : "";
+          $fermSoir = isset($_POST["horairesF2".$value]) ? $_POST["horairesF2".$value] : "";
+          // Si il n'est pas fermé et que les deux entré ne sont pas vide
+          if (!($ferme || empty($ouvMidi) || empty($fermMidi))) {
+            // Ajoute les horaires du midi au jour de la semaine
+          }
+          if (!($ferme || empty($ouvSoir) || empty($fermSoir))) {
+            // Ajoute les horaires du soir au jour de la semaine
+          }
+        }
         break;
 
       case 6:
