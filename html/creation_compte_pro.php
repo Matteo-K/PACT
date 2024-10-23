@@ -32,7 +32,7 @@
        // Secteur public
         if ($secteur == 'public') {
             $stmt = $conn->prepare("INSERT INTO pact.proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
-            $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $numeroRue, $rue, $ville, $pays, $code, $photo]);
+            $stmt->execute();
         } else { 
             $stmt = $conn->prepare("INSERT INTO pact.proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$siren', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
             $stmt->execute();
