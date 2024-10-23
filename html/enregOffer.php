@@ -71,9 +71,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
       case 1:
         // Insert/Modifications des options
         // Récupération des offres
+        $options = Array();
         $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre = ?");
         $stmt->execute([$idOffre]);
-        $options = $stmt->fetch(PDO::FETCH_ASSOC);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        foreach ($res as $elem) {
+          array_push($options,$elem["nomoption"]);
+        }
         // Si à la une est coché && n'est pas dans la base : ajoute à la base
         if (isset($_POST["aLaUne"]) && !in_array("aLaUne",$options)) {
           $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
@@ -150,8 +154,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         $numerorue = $matches[1];
         $rue = $matches[2];
 
-        $stmt = $conn->prepare("INSERT INTO pact._adresse (codepostal, ville, pays, rue, numerorue) values (?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("SELECT * FROM pact._adresse WHERE codepostal = ? AND ville = ? AND pays = ? AND rue = ? AND numerorue = ?");
         $stmt->execute([$codePostal, $ville, $pays, $rue, $numerorue]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result === false) {
+          $stmt = $conn->prepare("INSERT INTO pact._adresse (codepostal, ville, pays, rue, numerorue) values (?, ?, ?, ?, ?)");
+          $stmt->execute([$codePostal, $ville, $pays, $rue, $numerorue]);
+        }
 
         // insertion dans localisation
         $stmt = $conn->prepare("insert into pact._localisation (idoffre, codepostal, ville, pays, rue, numerorue) values (?, ?, ?, ?, ?, ?)");
