@@ -8,6 +8,7 @@
   --primary: #1ca4ed;
   --secondary: #d1ccdc;
   --accent: #edae14;
+  --accent-border: #bb880e;
   --text-dark: #000;
   --text-light: #eaeaea;
   --header-size: clamp(100px, 13vh, 150px);
@@ -411,13 +412,13 @@ header #auth > img {
 /* quand l'utilisateur est à cette étape */
 .guideSelect {
   background-color: var(--accent) !important;
-  box-shadow: inset -4px -4px 4px #bb880e !important;
+  box-shadow: inset -4px -4px 4px var(--accent-border) !important;
   transition: all 0.3s ease;
 }
 
 .guideSelect:active {
   box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
-    inset 4px 4px 4px #bb880e !important;
+    inset 4px 4px 4px var(--accent-border) !important;
 }
 
 /* quand l'utilisateur n'a pas compléter toute les informations obligatoires*/
@@ -550,7 +551,7 @@ header #auth > img {
 #selectOffer input[type="radio"]:checked+label,
 #detailsOffer #artDetailOffer input[type="radio"]:checked+label {
   background-color: var(--accent);
-  box-shadow: inset -4px -4px 4px #bb880e;
+  box-shadow: inset -4px -4px 4px var(--accent-border);
 }
 
 #selectOffer input[disabled]+label {
@@ -1370,7 +1371,7 @@ a[id="lienCGU"] {
 }
 
 a[id="lienCGU"]:hover {
-  color: #edae14;
+  color: var(--accent);
 }
 
 a[id="lienConnexion"] {
@@ -1380,13 +1381,13 @@ a[id="lienConnexion"] {
 }
 
 a[id="lienConnexion"]:hover {
-  color: #edae14;
+  color: var(--accent);
 }
 
 h1[id="inscriptionTitre"] {
   text-align: center;
   margin: 30px 10px;
-  color: #034D7C;
+  color: var(--bloc);
   font-weight: 100;
   font-size: 65px;
 }
@@ -1404,7 +1405,7 @@ aside[id="asideRetour"] {
 button[id="retour"] {
   background: none;
   border: none;
-  color: #034D7C;
+  color: var(--bloc);
   text-decoration: underline;
   font: inherit;
   cursor: pointer;
@@ -1429,7 +1430,7 @@ aside[id="asideRetour"]>button[id="retour"]>img {
   margin: auto;
   width: 900px;
   height: auto;
-  background-color: #034D7C;
+  background-color: var(--bloc);
   color: white;
 }
 
@@ -1534,7 +1535,7 @@ input[id="confirmer"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid #edae14;
+  border: 3px solid var(--accent);
 }
 
 input[id="email"],
@@ -1542,21 +1543,21 @@ input[id="adresse"] {
   width: 823px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid #edae14;
+  border: 3px solid var(--accent);
 }
 
 input[id="code"] {
   width: 210px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid #edae14;
+  border: 3px solid var(--accent);
 }
 
 input[id="ville"] {
   width: 596px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid #edae14;
+  border: 3px solid var(--accent);
 }
 
 input[id="radioPublic"],
@@ -1572,7 +1573,7 @@ input[id="siren"] {
   /* margin: 0 5px; */
   margin-right: 0;
   margin-left: 10px;
-  border: 3px solid #edae14;
+  border: 3px solid var(--accent);
 }
 
 input[type="checkbox"] {
@@ -1588,8 +1589,8 @@ button[id="boutonInscriptionPro"] {
   border-radius: 15px;
   margin: 5px auto;
   border: none;
-  box-shadow: inset -4px -4px 4px #bb880e;
-  background-color: #edae14;
+  box-shadow: inset -4px -4px 4px var(--accent-border);
+  background-color: var(--accent);
 }
 
 
@@ -1629,7 +1630,7 @@ a[id="lienMotDePasseOublie"]:hover {
 h1[id="connexionTitre"] {
   text-align: center;
   margin: 30px 10px;
-  color: #034D7C;
+  color: var(--bloc);
   font-weight: 100;
   font-size: 65px;
 }
@@ -1637,7 +1638,7 @@ h1[id="connexionTitre"] {
 h1[id="pasDeCompteTitre"] {
   text-align: center;
   margin: 50px 10px;
-  color: #034D7C;
+  color: var(--bloc);
   font-weight: 100;
   font-size: 50px;
 }
@@ -1651,7 +1652,7 @@ aside[id="asideRetour"] {
 button[id="retour"] {
   background: none;
   border: none;
-  color: #034D7C;
+  color: var(--bloc);
   text-decoration: underline;
   font: inherit;
   cursor: pointer;
@@ -1676,7 +1677,7 @@ aside[id="asideRetour"]>button[id="retour"]>img {
   margin: auto;
   width: 500px;
   height: auto;
-  background-color:#034D7C;
+  background-color:var(--bloc);
   color: white;
 }
 
@@ -1725,7 +1726,7 @@ input[id="login"]{
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  border: 3px solid #edae14;
+  border: 3px solid var(--accent);
 }
 
 input[id="motdepasseConnexion"]{
@@ -1733,7 +1734,7 @@ input[id="motdepasseConnexion"]{
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  border: 3px solid #edae14;
+  border: 3px solid var(--accent);
 }
 
 button[id = "boutonConnexion"]{
@@ -1742,10 +1743,10 @@ button[id = "boutonConnexion"]{
   height: 60px;
   border-radius: 15px;
   border: none;
-  box-shadow: inset -4px -4px 4px #bb880e;
+  box-shadow: inset -4px -4px 4px var(--accent-border);
   margin: 5px auto;
   margin-top: 30px;
-  background-color: #edae14;
+  background-color: var(--accent);
 }
 
 a[id="boutonLienMembre"], a[id="boutonLienPro"]{
@@ -1754,17 +1755,17 @@ a[id="boutonLienMembre"], a[id="boutonLienPro"]{
   font-size: 20px;
   border-radius: 15px;
   border: none;
-  box-shadow: inset -4px -4px 4px #bb880e;
+  box-shadow: inset -4px -4px 4px var(--accent-border);
   margin: 5px auto;
   margin-top: 30px;
-  color: black;
-  background-color: #edae14;
+  color: var(--text-dark);
+  background-color: var(--accent);
   text-decoration: none;
 }
 
 p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
   font-size: 20px;
-  color: #034D7C;
+  color: var(--bloc);
   width: 550px;
 }
 
