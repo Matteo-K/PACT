@@ -41,7 +41,7 @@
 
 
         // Redirection vers une page de succès
-        header('Location: success.html');
+        header('Location: connexion.html');
         exit;
     }
 ?>
