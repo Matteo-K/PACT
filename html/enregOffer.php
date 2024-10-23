@@ -13,6 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
   /* Création d'une nouvelle offre */
   if (empty($idOffre)) {
+    // Initialisation d'une offre
+
+    // ##### Main info de l'offre #####
     /* obtention de la nouvelle id de l'offre */
     try {
       $stmt = $conn->prepare("SELECT o.idoffre FROM pact._offre o ORDER BY idoffre DESC LIMIT 1");
@@ -34,7 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
     } catch (PDOException $e) {
       echo "Une erreur s'est produite lors de la création de l'offre: \n" . $e->getMessage() . "\n";
     }
-  
+    
+    // ##### Abonnement à propos de l'offre #####
     /* Obtention du type de l'abonnement */
     $typeOffre;
     switch ($_POST["typeOffre"]) {
@@ -62,11 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
     } catch (PDOException $e) {
       echo "Une erreur s'est produite lors de la saisit de l'abonnement de l'offre: \n" . $e->getMessage() . "\n";
     }
-
   } else {
     switch ($pageBefore) {
       case 1:
-        // Modification des options
+        // Insert/Modifications des options
         // Récupération des offres
         $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre = ?");
         $stmt->execute([$idOffre]);
@@ -137,6 +140,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
       
       case 3:
         // Détails Localisation update
+        // insertion dans adresse
+        
+        $stmt = $conn->prepare("INSERT INTO pact._adresse (codepostal, ville, pays, rue, numerorue) values (?, ?, ?, ?, ?)");
+        $stmt->execute([$idOffre]);
+
+        // insertion dans localisation
+        $stmt = $conn->prepare("insert into pact._localisation (idoffre, codepostal, ville, pays, rue, numerorue) values (8, '78590',null,null,null,null)");
+        $stmt->execute([$idOffre]);
         break;
 
       case 4:

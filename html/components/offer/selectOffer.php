@@ -1,6 +1,8 @@
 <?php
 $is_prive = $_SESSION["typeUser"] == "pro_prive";
 
+// Définit le type d'abonnement lors de la modification
+// Si c'est lors de la modification, alors on ne peut pas la changé.
 if ($is_prive) {
   if (!empty($idOffre)) {
     $stmt = $conn->prepare("SELECT nomabonnement FROM pact._abonner WHERE idoffre = ? ");
@@ -20,7 +22,7 @@ if ($is_prive) {
   }
 }
   
-// select option from _option where idoffre = $idOffre;
+// insert les options de l'offre dans un tableau
 $options = [];
 if (!empty($idOffre)) {
   $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre=?");
