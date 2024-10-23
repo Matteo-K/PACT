@@ -82,7 +82,7 @@
 
     <main id="mainConnexion">
         <h1 id="connexionTitre">Connectez-vous à votre compte</h1>
-        <form id = "formConnexion" action=".php" method="post" enctype="multipart/form-data">
+        <form id = "formConnexion" action="connexion.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
                 <!-- Saisi du login -->
                 <input type="text" placeholder = "Identifiant/adresse mail" id="login" name="login" required>
@@ -114,6 +114,6 @@
             </div>
         </div>
     </main>
-    <script src = "js/validationFormConnexion.js"></script>
 </body>
+<script src = "js/validationFormConnexion.js"></script>
 </html>
