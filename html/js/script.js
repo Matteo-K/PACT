@@ -1,6 +1,7 @@
 const formHeader = document.querySelector("header form");
 const searchBar = document.querySelector("header input");
 
+
 // Modifie le lien vers la recherche a chaque entré
 searchBar.addEventListener("input", (e) => {
   formHeader.setAttribute("action", "search.php?search=" + e.target.value);
@@ -13,17 +14,12 @@ try {
   const pImage = document.querySelector("#choixImage > p");
   document
     .getElementById("photos")
-    .addEventListener("change", afficheImage(event));
+    .addEventListener("change", afficheImage);
 
   function afficheImage(event) {
     const images = event.target.files;
     const conteneur = document.getElementById("afficheImages");
     const pImage = document.querySelector("#choixImage > p");
-    document.getElementById("photos").addEventListener("change", afficheImage);
-
-    function afficheImage(event) {
-      const images = event.target.files;
-      const conteneur = document.getElementById("afficheImages");
 
       Array.from(images).forEach((file) => {
         const reader = new FileReader();
@@ -48,7 +44,6 @@ try {
         };
         reader.readAsDataURL(file);
       });
-    }
 
     //Affichage des tags a leur ajout
     const inputTag = document.getElementById("inputTag");
@@ -70,6 +65,7 @@ try {
     }
 
     function ajoutTag() {
+
       const valeurTag = inputTag.value.trim(); // Récupère la valeur de l'input et enlève les espaces
 
       if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
@@ -92,9 +88,11 @@ try {
         sectionTag.appendChild(elementTag); // Ajoute l'élément à la section
 
         inputTag.value = ""; // Réinitialise l'input
-      } else if (tags.length >= 6) {
+      } 
+      else if (tags.length >= 6) {
         pTag.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 6 tags est atteinte
-      } else if (tags.includes(valeurTag)) {
+      } 
+      else if (tags.includes(valeurTag)) {
         alert("Ce tag à déjà été entré !");
       }
     }
