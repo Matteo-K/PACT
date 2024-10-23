@@ -75,8 +75,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre = ?");
         $stmt->execute([$idOffre]);
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
-        foreach ($res as $elem) {
-          array_push($options,$elem["nomoption"]);
+        // si il y a un résultat, on l'ajoute dans la liste
+        if ($res !== false) {
+          foreach ($res as $elem) {
+            array_push($options,$elem["nomoption"]);
+          }
         }
         // Si à la une est coché && n'est pas dans la base : ajoute à la base
         if (isset($_POST["aLaUne"]) && !in_array("aLaUne",$options)) {
@@ -154,15 +157,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         $numerorue = $matches[1];
         $rue = $matches[2];
 
+        // Vérification Si l'adresse n'éxiste pas déjà dans la base de donnée
         $stmt = $conn->prepare("SELECT * FROM pact._adresse WHERE codepostal = ? AND ville = ? AND pays = ? AND rue = ? AND numerorue = ?");
         $stmt->execute([$codePostal, $ville, $pays, $rue, $numerorue]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Insertion si elle n'existe pas
         if ($result === false) {
           $stmt = $conn->prepare("INSERT INTO pact._adresse (codepostal, ville, pays, rue, numerorue) values (?, ?, ?, ?, ?)");
           $stmt->execute([$codePostal, $ville, $pays, $rue, $numerorue]);
         }
 
-        // insertion dans localisation
+        // Insertion dans localisation
         $stmt = $conn->prepare("insert into pact._localisation (idoffre, codepostal, ville, pays, rue, numerorue) values (?, ?, ?, ?, ?, ?)");
         $stmt->execute([$idOffre, $codePostal, $ville, $pays, $rue, $numerorue]);
         break;
