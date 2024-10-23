@@ -1292,19 +1292,10 @@ textarea[id="Resume"] {
   height: 165px;
   /* hauteur de 165px*/
   resize: none;
-  /* Non redimensinnable */
+  /* Non redimensionnable */
 }
 
-#specialOffer textarea[id="texteLangueVisit"],
-textarea[id="Resume"] {
-  /* tailler des zone de texte */
-  width: 335px;
-  /* largeur de 335px*/
-  height: 165px;
-  /* hauteur de 165px*/
-  resize: none;
-  /* Non redimensinnable */
-}
+
 
 #visit {
   display: flex;
@@ -1331,11 +1322,11 @@ textarea[id="Resume"] {
 
 #park article>p {
   margin-top: 15px;
+  background-color: pink;
 }
 
 #park input[type="button"] {
   background-color: #1ca4ed;
-  border-radius: 15px; 
   height: 50px;
   width: fit-content;
   padding-inline: 20px;
@@ -1351,7 +1342,7 @@ textarea[id="Resume"] {
 #park input[type="button"]:active {
   box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
     inset 4px 4px 4px #1883bc;
-}
+} 
 
 #activity {
   background-color: cyan;
