@@ -3,7 +3,7 @@
 // si isset($result)?$result["nomAbonnement"]:"";
 $abonnement = "";
 // select option from _option where idoffre = $idOffre;
-$options = $res;
+$options = ["EnRelief"];
 $is_prive = $_SESSION["typeUser"] == "pro_prive";
 ?>
 <form id="selectOffer" action="enregOffer.php" method="post">
@@ -57,11 +57,11 @@ $is_prive = $_SESSION["typeUser"] == "pro_prive";
   <div>
     <div>
       <span>(&nbsp;+14.99&euro;&nbsp;)</span>
-      <input type="checkbox" name="enRelief" id="enRelief" <?php echo in_array('',$options)?"checked":"" ?>>
+      <input type="checkbox" name="enRelief" id="enRelief" <?php echo in_array('ALaUne',$options)?"checked":"" ?>>
       <label for="enRelief"><span>En relief</span> : met votre offre en exergue lors de son affichage dans la liste d’offres</label></div>
     <div>
       <span>(&nbsp;+19.99&euro;&nbsp;)</span>
-      <input type="checkbox" name="aLaUne" id="aLaUne" <?php echo in_array('',$options)?"checked":"" ?>>
+      <input type="checkbox" name="aLaUne" id="aLaUne" <?php echo in_array('EnRelief',$options)?"checked":"" ?>>
       <label for="aLaUne"><span>À la une</span> : met votre offre sur la page d’accueil du site</label>
     </div>
     <p>Attention ! Vous ne pouvez pas changer d’offre une fois séléctionée.</p>
