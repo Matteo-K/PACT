@@ -1092,19 +1092,33 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 
 .search{
-  margin-top: 200px;
+  margin-top: 220px;
 }
 
 .sectionFiltre{
   display: flex;
   justify-content: center;
+  padding-top: 30px;
   gap: 30vh;
 }
 
 .searchoffre{
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
+
+.carteOffre img {
+  object-fit: contain;
+  width: 370px;
+  height: 180px;
+}
+
+.carteOffre{
+  background-color: var(--secondary80);
+}
+
+
 
 
 

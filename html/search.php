@@ -42,17 +42,16 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <title>Recherche d'offre</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/logo.png" type="image/x-icon">
-    <script src="./js/setColor.js"></script>
 </head>
 <body id="search">
+    <script src="js/setColor.js"></script>
     <?php require_once "components/header.php"; ?>
     <main class="search">
         <aside class="sectionFiltre">
-            <h2>Tri</h2>
             <h2>Filtre</h2>
+            <h2>Tri</h2>
         </aside>
         <section class="searchoffre">
-            <h2>Liste des offres</h2>
             <?php if ($results){ ?>
                 <ul>
                     <?php 
@@ -73,7 +72,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         
                         $horaires = array_merge($resultsSoir, $resultsMidi); // Fusionner les résultats midi et soir
-                        $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
+                        $restaurantOuvert = "EstFermé"; // Par défaut, on considère le restaurant fermé
 
                         foreach ($horaires as $horaire) {
                             if ($horaire['jour'] == $currentDay) {
@@ -82,7 +81,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
                                 // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
                                 if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
-                                    $restaurantOuvert = true;
+                                    $restaurantOuvert = "EstOuvert";
                                     break; // Si on trouve que le restaurant est ouvert, on arrête la boucle
                                 }
                             }
@@ -98,7 +97,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
                         if ($offre['statut']=='actif') {
                             ?>
-                        <div>
+                        <div class="carteOffre">
                             <h4><?php echo $nomOffre; ?></h4>
                             <p><?php echo $noteAvg ?></p>
                             <p><?php echo $ville[0]['ville'] ?></p>
