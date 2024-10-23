@@ -71,31 +71,25 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         $img->execute();
                         $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
 
-                        $stmt = $conn->prepare("SELECT * FROM pact._horairesoir");
+                        $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=$idOffre and jour=$currentDay");
                         $stmt->execute();
                         $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                        $stmt = $conn->prepare("SELECT * FROM pact._horairemidi");
+                        $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=$idOffre and jour=$currentDay");
                         $stmt->execute();
                         $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         
                         $horaires = array_merge($resultsSoir, $resultsMidi); // Fusionner les résultats midi et soir
 
                         $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
-                                                
+
                         foreach ($horaires as $horaire) {
-                            print_r($horaire);
-                            echo $horaire['idoffre']." et ".$horaire['jour']." et ".$currentDay;
-                            if ($horaire['idoffre'] == 3 && $horaire['jour'] == $currentDay) {
-                                // Convertir les horaires d'ouverture et de fermeture en DateTime
-                                $tab=$horaire;
-                                $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
-                                $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
-                                // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
-                                if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
-                                    $restaurantOuvert = true;
-                                    break; // Si on trouve que le restaurant est ouvert, on arrête la boucle
-                                }
+                            $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
+                            $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
+                            // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
+                            if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
+                                $restaurantOuvert = true;
+                                break; // Si on trouve que le restaurant est ouvert, on arrête la boucle
                             }
                         }
 
@@ -105,6 +99,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <div>
                             <h4><?php echo $nomOffre; ?></h4>
                             <p><?php echo $noteAvg ?></p>
+                            <p><?php echo $restaurantOuvert ?></p>
                             <a href="/detailsOffer.php?idoffre=<?php echo $idOffre ;?>&ouvert=<?php echo TRUE; ?>"><img src="<?php echo $urlImg[0]['url']; ?>" alt="">
                             </a>
                         </div>
