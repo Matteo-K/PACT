@@ -9,10 +9,11 @@ if(!isset($_SESSION['idUser'])){
     header("Location: index.php");
     exit();
 }
+/*
 if (!($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] == "pro_prive")) {
   header("Location: index.php");
   exit();
-}
+}*/
 
 $nameOffer = "";
 $step = isset($_POST["page"]) ? $_POST["page"] : 1;
