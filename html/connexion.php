@@ -57,7 +57,7 @@
                     $_SESSION['typeUser'] = 'pro_public'; // Détermine le type
                     header("Location: index.php");
                     exit();
-                }else{
+                } else{
 
                     // Vérification membre
                     $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE pseudo = ? OR mail = ?");

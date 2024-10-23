@@ -27,18 +27,36 @@
         // Hashage du mot de passe
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
 
-        // Préparer la requête d'insertion en fonction du secteur
+        // Vérifier si la dénomination existe déjà dans la base de données
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE denomination = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE denomination = ?");
+        $stmt->execute([$denomination, $denomination]);
+        $count = $stmt->fetchColumn();
 
-       // Secteur public
+        if ($count > 0) {
+            echo "La dénomination existe déjà.";
+            exit;
+        }
+
+        // Vérifier si le numéro de SIREN existe déjà dans la base de données
+        if ($secteur == 'prive') {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
+            $stmt->execute([$siren]);
+            if ($stmt->fetchColumn() > 0) {
+                echo "Le numéro de SIREN existe déjà.";
+                exit;
+            }
+        }
+
+        // Préparer la requête d'insertion en fonction du secteur
         if ($secteur == 'public') {
             $stmt = $conn->prepare("INSERT INTO pact.proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
             $stmt->execute();
-        } else { 
+        } 
+        
+        else { 
             $stmt = $conn->prepare("INSERT INTO pact.proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$siren', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
             $stmt->execute();
         }
-
-
 
         // Redirection vers une page de succès
         header('Location: connexion.php');
