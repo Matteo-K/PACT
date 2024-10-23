@@ -6,37 +6,37 @@
  * Si la partie est vide : return ""
  */
 // Partie de sélection de l'offre
-function checkSelectOffer() : string {
+function checkSelectOffer($idOffre) : string {
   return "";
 }
 
 // Partie de détails de l'offre
-function checkDetailsOffer() : string {
+function checkDetailsOffer($idOffre) : string {
   return "";
 }
 
 // Partie de localisation de l'offre
-function checkLocalisationOffer() : string {
+function checkLocalisationOffer($idOffre) : string {
   return "";
 }
 
 // Partie de contact de l'offre
-function checkContactOffer() : string {
+function checkContactOffer($idOffre) : string {
   return "";
 }
 
 // Partie d'horaire de l'offre
-function checkHourlyOffer() : string {
+function checkHourlyOffer($idOffre) : string {
   return "";
 }
 
 // Partie de prévisualisation de l'offre
-function checkPreviewOffer() : string {
+function checkPreviewOffer($idOffre) : string {
   return "";
 }
 
 // Partie de paiement de l'offre
-function checkPayementOffer() : string {
+function checkPayementOffer($idOffre) : string {
   return "";
 }
 
