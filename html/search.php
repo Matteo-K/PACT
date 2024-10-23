@@ -14,7 +14,6 @@ setlocale(LC_TIME, 'fr_FR.UTF-8');
 
 date_default_timezone_set('Europe/Paris');
 
-
 // Récupérer le jour actuel en français avec la classe DateTime
 $currentDay = (new DateTime())->format('l'); // Récupère le jour en anglais
 
@@ -33,13 +32,6 @@ $daysOfWeek = [
 $currentDay = $daysOfWeek[$currentDay];
 $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
-// Filtrer les horaires de l'offre en fonction de l'idOffre et du jour actuel
-
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +45,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <script src="./js/setColor.js"></script>
 </head>
 <body id="search">
-    <main>
+    <?php require_once "components/header.php"; ?>
+    <main class="search">
         <aside>
             <h2>Tri des offres</h2>
             <h2>Filtre</h2>
@@ -63,7 +56,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
             <?php if ($results){ ?>
                 <ul>
                     <?php 
-                    print_r($results);
                         foreach ($results as $offre){
                         $idOffre=$offre['idoffre'];
                         $nomOffre=$offre['nom'];
@@ -99,6 +91,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         $loca = $conn->prepare("SELECT * FROM pact._localisation WHERE idOffre=$idOffre");
                         $loca->execute();
                         $ville = $loca->fetchAll(PDO::FETCH_ASSOC);
+                        
+                        $prix = $conn->prepare("SELECT * FROM pact.restaurants WHERE idOffre=$idOffre");
+                        $prix->execute();
+                        $gamme = $prix->fetchAll(PDO::FETCH_ASSOC);
 
                         if ($offre['statut']=='actif') {
                             ?>
@@ -106,10 +102,15 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             <h4><?php echo $nomOffre; ?></h4>
                             <p><?php echo $noteAvg ?></p>
                             <p><?php echo $ville[0]['ville'] ?></p>
+                            <?php
+                            if ($gamme) {
+                                ?><p><?php echo $gamme[0]['gammedeprix'] ?></p><?php
+                            }                            
+                            ?>
                             <p><?php if ($restaurantOuvert) {
-                                        echo "Ouvert.";
+                                        echo "Ouvert";
                                      } else {
-                                        echo "Fermé.";
+                                        echo "Fermé";
                             }?></p>
                             <a href="/detailsOffer.php?idoffre=<?php echo $idOffre ;?>&ouvert=<?php echo $restaurantOuvert; ?>"><img src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
