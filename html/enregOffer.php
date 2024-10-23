@@ -8,7 +8,7 @@ $idUser = 4;
 session_start();
 require_once 'db.php';
 
-print($_POST);
+print_r($_POST);
 
 /* Création d'une nouvelle offre */
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
