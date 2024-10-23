@@ -64,7 +64,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,7 +74,7 @@
 </head>
 <body id ="body_connexion" class="connexion-compte">
     <aside id="asideRetour">
-        <button id="retour" onclick="history.back();">
+        <button id="retour">
             <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
             Retour
         </button>
@@ -82,20 +82,20 @@
 
     <main id="mainConnexion">
         <h1 id="connexionTitre">Connectez-vous à votre compte</h1>
-        <form id="formConnexion" action="connexion.php" method="post">
+        <form id = "formConnexion" action=".php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
-                <!-- Saisie du login -->
-                <input type="text" placeholder="Identifiant/adresse mail" id="login" name="login" required>
+                <!-- Saisi du login -->
+                <input type="text" placeholder = "Identifiant/adresse mail" id="login" name="login" required>
             </div>
     
+    
             <div class="ligne2">
-                <!-- Saisie du mot de passe -->
-                <input type="password" placeholder="Mot de passe" id="motdepasseConnexion" name="motdepasseConnexion" required>
+                <!-- Saisi du mot de passe -->
+                <input type="password" placeholder = "Mot de passe" id = "motdepasseConnexion" name="mot de passe" required>
             </div>
     
     
             <button onclick = "validationFormConnexion()" id="boutonConnexion">Connexion</button>
-            <script src = validationFormInscription.js></script>
 
             <a id="lienMotDePasseOublie" href=""> Mot de passe oublié ?</a>
         </form>

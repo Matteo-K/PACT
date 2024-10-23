@@ -1,7 +1,24 @@
 <?php
-$nameOffer = "";
-$step = isset($_POST["page"]) ? $_POST["page"] : 1;
-require_once "components/offer/checkOffer.php"
+// Démarrer la session
+session_start();
+
+// fichier de connexion à la BDD
+require_once 'db.php';
+
+if(!isset($_SESSION['idUser'])){
+    header("Location: index.php");
+    exit();
+}
+/*
+if (!($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] == "pro_prive")) {
+  header("Location: index.php");
+  exit();
+}*/
+
+  $nameOffer = "";
+  $step = isset($_POST["page"]) ? $_POST["page"] : 1;
+  $idOffre = isset($_POST["idOffre"])?$_POST["idOffre"]:"";
+  require_once "components/offer/checkOffer.php"
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -21,13 +38,13 @@ require_once "components/offer/checkOffer.php"
       <h3>Création de votre offre</h3>
       <ul>
         <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
-        <li><a onclick="submitForm(1)" class="<?php echo $step == 1 ? "guideSelect" : checkSelectOffer() ?>">Sélection de l’offre</a></li>
-        <li><a onclick="submitForm(2)" class="<?php echo $step == 2 ? "guideSelect" : checkDetailsOffer() ?>">Détails de l’offre</a></li>
-        <li><a onclick="submitForm(3)" class="<?php echo $step == 3 ? "guideSelect" : checkLocalisationOffer() ?>">Localisation</a></li>
-        <li><a onclick="submitForm(4)" class="<?php echo $step == 4 ? "guideSelect" : checkContactOffer() ?>">Contact</a></li>
-        <li><a onclick="submitForm(5)" class="<?php echo $step == 5 ? "guideSelect" : checkHourlyOffer() ?>">Horaires</a></li>
-        <li><a onclick="submitForm(6)" class="<?php echo $step == 6 ? "guideSelect" : checkPreviewOffer() ?>">Prévisualiser l’offre</a></li>
-        <li><a onclick="submitForm(7)" class="<?php echo $step == 7 ? "guideSelect" : checkPayementOffer() ?>">Paiement</a></li>
+        <li><a onclick="submitForm(1)" class="<?php echo $step == 1 ? "guideSelect" : checkSelectOffer($idOffre) ?>">Sélection de l’offre</a></li>
+        <li><a onclick="submitForm(2)" class="<?php echo $step == 2 ? "guideSelect" : checkDetailsOffer($idOffre) ?>">Détails de l’offre</a></li>
+        <li><a onclick="submitForm(3)" class="<?php echo $step == 3 ? "guideSelect" : checkLocalisationOffer($idOffre) ?>">Localisation</a></li>
+        <li><a onclick="submitForm(4)" class="<?php echo $step == 4 ? "guideSelect" : checkContactOffer($idOffre) ?>">Contact</a></li>
+        <li><a onclick="submitForm(5)" class="<?php echo $step == 5 ? "guideSelect" : checkHourlyOffer($idOffre) ?>">Horaires</a></li>
+        <li><a onclick="submitForm(6)" class="<?php echo $step == 6 ? "guideSelect" : checkPreviewOffer($idOffre) ?>">Prévisualiser l’offre</a></li>
+        <li><a onclick="submitForm(7)" class="<?php echo $step == 7 ? "guideSelect" : checkPayementOffer($idOffre) ?>">Paiement</a></li>
       </ul>
       <ul>
         <!-- Si 0 on enregistre et retourne au menu du professionnel -->
@@ -67,7 +84,8 @@ require_once "components/offer/checkOffer.php"
         }
       ?>
           <input type="hidden" name="page" id="currentPage" value="<?php echo $step ?>">
-          <input type="hidden" name="idOffre" id="idOffre" value="<?php echo isset($_POST["idOffre"])?$_POST["idOffre"]:"" ?>">
+          <input type="hidden" name="idOffre" id="idOffre" value="<?php echo $idOffre ?>">
+          <input type="hidden" name="idUser" id="idUser" value="<?php echo $_SESSION['idUser']; ?>">
       </form>
     </section>
     <div>

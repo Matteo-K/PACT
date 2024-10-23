@@ -187,7 +187,7 @@ header h1 {
 }
 
 header div>a>img,
-header #auth img {
+header #auth > img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
@@ -1262,7 +1262,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* marge de 10 px en bas */
   gap: 10px;
   /* gap de 10 px */
-  padding-bottom: 35px ;
+  padding-bottom: 45px ;
 }
 
 #specialOffer section>article {
@@ -1299,18 +1299,27 @@ textarea[id="Resume"] {
 
 #visit {
   display: flex;
+  text-align: left;
+  margin-left: 675px;
+}
+#visit div {
+  margin-top: 10px;
 }
 
 #show {
-  margin-top: 5px;
-  /* Juste pour moi voir les separations */
+  margin-top: 10px;
+  margin-left: 675px;
 }
 
 /* #show */
 
 #park {
-  background-color: blueviolet;
-  /* Juste pour moi pour voir les séparations */
+  display: flex;
+  margin-left: 675px;
+}
+
+#park article >p {
+  margin-top: 15px ;
 }
 
 #park input[type="button"] {
@@ -1490,6 +1499,7 @@ div.ligne3>label {
 }
 
 .creation-compte .ligne5 label {
+  margin-right: 20px;
   margin-left: 5px;
   font-size: 25px;
 }
@@ -1512,7 +1522,6 @@ div.ligne3>label {
 
 .creation-compte input {
   font-size: 20px;
-  padding-left: 0 5px;
   border: 0;
 }
 
@@ -1576,6 +1585,8 @@ button[id="boutonInscriptionPro"] {
   height: 60px;
   border-radius: 15px;
   margin: 5px auto;
+  border: none;
+  box-shadow: inset -4px -4px 4px #bb880e;
   background-color: #edae14;
 }
 
@@ -1704,7 +1715,6 @@ div.ligne1>label {
 
 .connexion-compte input {
   font-size: 20px;
-  padding-left: 0 5px;
   border: 0;
 }
 
@@ -1729,6 +1739,8 @@ button[id = "boutonConnexion"]{
   font-size: 25px;
   height: 60px;
   border-radius: 15px;
+  border: none;
+  box-shadow: inset -4px -4px 4px #bb880e;
   margin: 5px auto;
   margin-top: 30px;
   background-color: #edae14;
@@ -1739,7 +1751,8 @@ a[id="boutonLienMembre"], a[id="boutonLienPro"]{
   padding: 15px 10px;
   font-size: 20px;
   border-radius: 15px;
-  border: solid 2px;
+  border: none;
+  box-shadow: inset -4px -4px 4px #bb880e;
   margin: 5px auto;
   margin-top: 30px;
   color: black;
