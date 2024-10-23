@@ -1,10 +1,16 @@
 <?php 
+    require_once "config.php";
+    require_once "db.php";
     if(isset($_GET["idOffre"])){
         header("location: index.php");
         exit();
     }
-    
+
     $idOffre = $_GET["idOffre"];
+
+    $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idoffre = '$idOffre'");
+    $stmt -> execute();
+    $result = $stmt -> fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -23,7 +29,7 @@
     <script src="js/setColor.js"></script>
     
     <main class="mainOffer">
-        <h2 id="titleOffer"></h2>
+        <h2 id="titleOffer"><?php echo $result["nom_offre"]?> </h2>
         <div>
             <!-- foreach ici !-->
             <a class="tag" href="search.php?search=parc">Parc d'attraction</a>
