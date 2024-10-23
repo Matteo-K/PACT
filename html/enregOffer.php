@@ -10,9 +10,10 @@ require_once 'db.php';
 
 print_r($_POST);
 
-/* Création d'une nouvelle offre */
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
   $pageBefore = $_POST['pageBefore'];
+
+  /* Création d'une nouvelle offre */
   if (empty($idOffre)) {
     /* obtention de la nouvelle id de l'offre */
     try {
@@ -36,13 +37,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
       echo "Une erreur s'est produite lors de la création de l'offre: \n" . $e->getMessage() . "\n";
     }
   
+    /* Obtention du type de l'abonnement */
+    $typeOffre;
+    switch ($_POST["typeOffre"]) {
+      case 'premium':
+        $typeOffre = 'Premium';
+        break;
+      
+      case 'standard':
+        $typeOffre = 'Basique';
+        break;
+
+      case 'gratuit':
+        $typeOffre = 'Gratuit';
+        break;
+
+      default:
+        echo "Type d'offre inconnue";
+        break;
+    }
+
     /* Définition de l'abonnement */
     try {
-      $stmt = $conn->prepare("INSERT INTO pact._abonner (idoffre, nomabonnement) VALUES (?, ?, ?, null, null, null, null, null, null, null, ?)");
-      $stmt->execute([$idUser, 'inactif', $idOffre, $date]);
+      $stmt = $conn->prepare("INSERT INTO pact._abonner (idoffre, nomabonnement) VALUES (?, ?)");
+      $stmt->execute([$idOffre, $typeOffre]);
     } catch (PDOException $e) {
       echo "Une erreur s'est produite lors de la saisit de l'abonnement de l'offre: \n" . $e->getMessage() . "\n";
     }
+
   } else {
     switch ($pageBefore) {
       case 1:
