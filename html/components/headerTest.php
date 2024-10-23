@@ -214,7 +214,7 @@
             <?php
         } else {
             ?>
-            <a href="../connexion.php"><div id="btnConn">Connexion</div></a>
+            <a href="../login.php"><div id="btnConn">Connexion</div></a>
         <?php
         }
         ?>
