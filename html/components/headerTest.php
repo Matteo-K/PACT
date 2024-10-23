@@ -59,11 +59,6 @@ require_once "db.php";
             margin: 0;
             width: 10em; /* Ajustez à la taille désirée, par exemple 100px */
             border-radius: 50%; /* Pour rendre l'image ronde */
-            transition: transform 0.3s; /* Animation au survol */
-        }
-
-        #imagProfil img:hover {
-            transform: scale(1.05); /* Zoom léger au survol */
         }
 
         /* Styles pour le pseudo ou le nom */
@@ -114,21 +109,38 @@ require_once "db.php";
         }
 
         header ul + div{
+            width: 100%;
             flex-direction: column;
             margin-bottom: 3em; /* Espacement en bas */
             gap:10px;
         }
+        .buttonMenu {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centre horizontalement et verticalement */
+            width: 75%; /* Largeur des boutons */
+            padding: 10px; /* Ajoute un peu de padding */
+            border-radius: 0.5em;
+            text-align: center;
+            margin: 0 auto; /* Centre le bouton horizontalement dans son conteneur */
+            text-decoration: none; /* Supprime le soulignement */
+            }
+
+        
+        #changeAccount{
+            background-color: #034d7ccc;
+        }
+        #changeAccount:hover{
+            background-color: #034d7c;
+        }
 
         #logoutButton {
-            border-radius: 0.5em;
-            padding: 0 2em;
-            background-color: red;
-            text-align: center; /* Centre le texte */
+            background-color: #ff0000cc;
             margin-bottom: 2em; /* Espacement en bas */
         }
 
         #logoutButton:hover{
-            background-color: #ff0000dd;
+            background-color: #ff0000; 
         }
         
     </style>
@@ -189,8 +201,8 @@ require_once "db.php";
                     <li><a href="settings.php">Paramètres</a></li>
                 </ul>
                 <div>
-                    <a id="changeAccount" href="">Changer de compte</a>
-                    <a id="logoutButton" href="logout.php">Déconnexion</a>
+                    <a id="changeAccount" class="buttonMenu" href="logout.php?change=true">Changer de compte</a>
+                    <a id="logoutButton" class="buttonMenu"  href="logout.php">Déconnexion</a>
                 </div>
             </div>
 
