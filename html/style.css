@@ -1651,6 +1651,12 @@ button[id="boutonInscriptionPro"] {
   background-color: var(--accent);
 }
 
+.messageErreur {
+  color: red;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
 
 /*+++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
