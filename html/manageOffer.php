@@ -1,4 +1,15 @@
 <?php
+// Démarrer la session
+session_start();
+
+// fichier de connexion à la BDD
+require_once 'db.php';
+
+if(!isset($_SESSION['idUser']) && !($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] == "pro_prive")){
+    header("Location: index.php");
+    exit();
+}
+
 $nameOffer = "";
 $step = isset($_POST["page"]) ? $_POST["page"] : 1;
 require_once "components/offer/checkOffer.php"
@@ -68,6 +79,7 @@ require_once "components/offer/checkOffer.php"
       ?>
           <input type="hidden" name="page" id="currentPage" value="<?php echo $step ?>">
           <input type="hidden" name="idOffre" id="idOffre" value="<?php echo isset($_POST["idOffre"])?$_POST["idOffre"]:"" ?>">
+          <input type="hidden" name="idUser" id="idUser" value="<?php echo $_SESSION['idUser']; ?>">
       </form>
     </section>
     <div>
