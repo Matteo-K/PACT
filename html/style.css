@@ -1099,6 +1099,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: flex;
 }
 
+.filtre h2 {
+  width: fit-content;
+}
+
 .searchoffre{
   display: flex;
   flex-direction: column;
