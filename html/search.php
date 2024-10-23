@@ -81,7 +81,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         
                         $horaires = array_merge($resultsSoir, $resultsMidi); // Fusionner les résultats midi et soir
-                        print_r($horaires);
                         $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
 
                         foreach ($horaires as $horaire) {
@@ -90,7 +89,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
                                 $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
                                 // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
-                                echo(" oui ");
                                 if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
                                     $restaurantOuvert = true;
                                     break; // Si on trouve que le restaurant est ouvert, on arrête la boucle
@@ -109,7 +107,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                      } else {
                                         echo "Le restaurant est fermé.";
                             }?></p>
-                            <a href="/detailsOffer.php?idoffre=<?php echo $idOffre ;?>&ouvert=<?php echo $restaurantOuvert; ?>"><img src="<?php echo $urlImg[0]['url']; ?>" alt="">
+                            <a href="/detailsOffer.php?idoffre=<?php echo $idOffre ;?>&ouvert=<?php echo $restaurantOuvert; ?>"><img src="<?php echo ".".$urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                         </div>
                         <?php
