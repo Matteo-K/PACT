@@ -1811,7 +1811,7 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 
   /* Les champs de saisie restent inchangés */
   .connexion-compte input {
-      min-width: 250px;
+      min-width: 200px;
       max-width: 280px;
   }
 
