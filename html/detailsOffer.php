@@ -6,7 +6,7 @@
         exit();
     }
 
-    $idOffre = $_GET["idOffre"];
+    $idOffre = $_GET["idoffre"];
 
     $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idOffre = '$idOffre'");
     $stmt -> execute();
