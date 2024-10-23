@@ -1,4 +1,11 @@
-<?php require_once "components/headerTest.php" ?>
+<?php 
+    if(isset($_GET["idOffre"])){
+        header("location: index.php");
+        exit();
+    }
+    
+    $idOffre = $_GET["idOffre"];
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,10 +17,13 @@
     <title><?php echo "h" ?></title>
 </head>
 <body>
+    <?php
+        require_once "components/headerTest.php";
+    ?>
     <script src="js/setColor.js"></script>
     
     <main class="mainOffer">
-        <h2 id="titleOffer">Le Village Gaulois</h2>
+        <h2 id="titleOffer"></h2>
         <div>
             <!-- foreach ici !-->
             <a class="tag" href="search.php?search=parc">Parc d'attraction</a>
@@ -90,7 +100,7 @@
         var swiper2 = new Swiper(".mySwiper", {
             loop: true,
             autoplay: {
-                delay: 3000,
+                delay: 5000,
             },
             spaceBetween: 10,
             navigation: {
