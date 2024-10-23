@@ -105,7 +105,7 @@ $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
                         ?><img src="<?php echo $array['url']; ?>" alt=""><?php
                     }
                     ?>
-                    <img src="./img/imageoffre/lapotiniere0.png" alt="">
+                    <img src="../img/imageoffre/lapotiniere0.png" alt="">
                 </ul>
             <?php } else{ ?>
                 <p>Aucune offre trouvée </p>
