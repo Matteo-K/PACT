@@ -17,8 +17,10 @@
 
     // Check if a result was found
     if (!$result) {
-        echo "No offer found with this ID.";
-        exit();
+        $stmt = $conn->prepare("SELECT * FROM pact.restaurants WHERE idoffre = '$idOffre'");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
     }
 
     print_r($result);
