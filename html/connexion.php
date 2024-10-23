@@ -32,7 +32,7 @@
         } else {
             // Vérification pro
             $stmt = $conn->prepare('SELECT * FROM pact.proprive WHERE mail = ?');
-            $stmt->execute([$login, $login]);
+            $stmt->execute([$login]);
             $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
 
             print_r($proUser);
