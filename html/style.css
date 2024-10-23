@@ -1095,11 +1095,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-top: 200px;
 }
 
+.filtre{
+  display: flex;
+}
 
+.filtre h2 {
+  width: fit-content;
+}
 
-
-
-
+.searchoffre{
+  display: flex;
+  flex-direction: column;
+}
 
 
 
@@ -1727,7 +1734,7 @@ aside[id="asideRetour"]>button[id="retour"]>img {
 .connexion-compte div {
   display: inline;
   justify-content: center;
-  margin: 10px;
+  margin: 10px 50px;
 }
 
 div[id="lienBouton"] {
@@ -1740,6 +1747,7 @@ div[id="lienBouton"] > div {
   display: flex;
   flex-direction: column;
   width: 600px;
+  align-items: center;
 }
 
 .connexion-compte label {
@@ -1805,7 +1813,7 @@ a[id="boutonLienMembre"], a[id="boutonLienPro"]{
 p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
   font-size: 20px;
   color: var(--bloc);
-  width: 550px;
+  width: 520px;
 }
 
 
