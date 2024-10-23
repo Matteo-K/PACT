@@ -109,6 +109,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
       case 2:
         // Détails offre update
         
+        // Information obligatoire (Titre, Description)
+        $titre = $_POST["nom"];
+        $description = $_POST["description"];
+        $stmt = $conn->prepare("UPDATE pact._offre SET nom= ?, description= ? WHERE idoffre= ?");
+        $stmt->execute([$titre, $description, $idOffre]);
+
+        // Résumer
+        if (isset($_POST["resume"])) {
+          $resume = $_POST["resume"];
+          $stmt = $conn->prepare("UPDATE pact._offre SET resume= ? WHERE idoffre= ?");
+          $stmt->execute([$resume, $idOffre]);
+        }
+
         // Traitement des images
         $dossierImg = "../../img/imageOffre/";
         print_r($_FILES);
@@ -122,7 +135,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
         // Vérifie si l'image a été uploadée sans erreur
           if ($fileError === UPLOAD_ERR_OK) {
-
             // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
             $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
             $dossierImgNom = $dossierImg . $newFileName;
@@ -140,15 +152,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             echo "Erreur lors du téléchargement de l'image $fileName (Erreur $fileError).<br>";
           }
         }
-        switch ($variable) {
-          case 'value':
-            # code...
+
+        // Ajout des informations suivant la catégorie de l'offre
+        switch ($_POST["categorie"]) {
+          case 'restaurant':
+            break;
+          case 'parc':
+            break;
+          case 'activite':
+            break;
+          case 'spectacle':
+            break;
+          case 'visite':
             break;
           
           default:
             # code...
             break;
         }
+
+        // Traitement des tags (Bon courage!)
 
         break;
       
