@@ -1838,9 +1838,9 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 
   /* Les champs de saisie restent inchangés */
   .connexion-compte input {
-      /* min-width: 200px;
-      max-width: 280px; */
-      width: 90%;
+      min-width: 200px;
+      max-width: 280px;
+      width: 230px;
   }
 
   /* Réduire la taille du bouton de connexion */
@@ -1894,10 +1894,9 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
       padding: 10px;
   }
 
-  /* Les champs de saisie restent inchangés */
   .connexion-compte input {
       min-width: 200px;
-      max-width: 280px; 
+      max-width: 280px;
   }
 
   /* Réduire la taille du bouton de connexion */
