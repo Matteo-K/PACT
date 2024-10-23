@@ -1,7 +1,7 @@
 <?php 
     require_once "config.php";
     require_once "db.php";
-    if(isset($_GET["idOffre"])){
+    if(!isset($_GET["idoffre"])){
         header("location: index.php");
         exit();
     }
