@@ -95,13 +95,17 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 }
                             }
                         }
-                            
+                        
+                        $loca = $conn->prepare("SELECT * FROM pact._localisation WHERE idOffre=$idOffre");
+                        $loca->execute();
+                        $ville = $loca->fetchAll(PDO::FETCH_ASSOC);
 
                         if ($offre['statut']=='actif') {
                             ?>
                         <div>
                             <h4><?php echo $nomOffre; ?></h4>
                             <p><?php echo $noteAvg ?></p>
+                            <p><?php echo $ville[0]['ville'] ?></p>
                             <p><?php if ($restaurantOuvert) {
                                         echo "Le restaurant est ouvert.";
                                      } else {

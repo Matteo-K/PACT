@@ -17,8 +17,10 @@
 
     // Check if a result was found
     if (!$result) {
-        echo "No offer found with this ID.";
-        exit();
+        $stmt = $conn->prepare("SELECT * FROM pact.restaurants WHERE idoffre = '$idOffre'");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
     }
 
     print_r($result);
@@ -41,6 +43,7 @@
     <script src="js/setColor.js"></script>
     
     <main class="mainOffer">
+        <?php print_r($result)?>
         <h2 id="titleOffer"><?php echo $result["nom_offre"]?> </h2>
         <div>
             <!-- foreach ici !-->
