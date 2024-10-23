@@ -85,20 +85,20 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
 
                         foreach ($horaires as $horaire) {
-                        }
-                        if ($horaire['jour'] == $currentDay) {
-                            // Convertir les horaires d'ouverture et de fermeture en DateTime
-                            $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
-                            $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
-                            // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
-                            echo(" oui ");
-                            $ok=DateTime::createFromFormat('H:i','20:00');
-                            if ($ok >= $heureOuverture && $ok <= $heureFermeture) {
-                                $restaurantOuvert = true;
-                                break; // Si on trouve que le restaurant est ouvert, on arrête la boucle
+                            if ($horaire['jour'] == $currentDay) {
+                                // Convertir les horaires d'ouverture et de fermeture en DateTime
+                                $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
+                                $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
+                                // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
+                                echo(" oui ");
+                                $ok=DateTime::createFromFormat('H:i','20:00');
+                                if ($ok >= $heureOuverture && $ok <= $heureFermeture) {
+                                    $restaurantOuvert = true;
+                                    break; // Si on trouve que le restaurant est ouvert, on arrête la boucle
+                                }
                             }
                         }
-
+                            
 
                         if ($offre['statut']=='actif') {
                             ?>
