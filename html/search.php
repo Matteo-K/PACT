@@ -61,6 +61,10 @@ foreach ($horaires as $horaire) {
     }
 }
 
+$img = $conn->prepare("SELECT * FROM pact._illustre");
+$img->execute();
+$urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
+
 
 
 ?>
@@ -85,7 +89,7 @@ foreach ($horaires as $horaire) {
             <?php if ($results){ ?>
                 <ul>
                     <?php foreach ($results as $offre){
-                        $nomOffre=htmlspecialchars($offre['nom']);
+                        $nomOffre=$offre['nom'];
                         $noteAvg="Non noté";
                     }
                     print_r($tab);
@@ -94,10 +98,17 @@ foreach ($horaires as $horaire) {
                     } else {
                         echo "Le restaurant est fermé.";
                     }
+
+                    foreach ($urlImg as $array) {
+                        print_r($array);
+                        echo $array['url'];
+                        ?><img src="<?php echo $array['url']; ?>" alt=""><?php
+                    }
                     ?>
+                    <img src="/img/imageOffre/lapotiniere0.png" alt="auai pas mal">
                 </ul>
             <?php } else{ ?>
-                <p>Aucune offre trouvée.</p>
+                <p>Aucune offre trouvée </p>
             <?php } ?>
         </section>
     </main>

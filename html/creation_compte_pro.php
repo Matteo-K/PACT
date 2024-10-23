@@ -22,7 +22,7 @@
         $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
         $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
         $pays = "France";
-        $photo = "./img/profile_picture/default.svg";
+        $photo = "/img/profile_picture/default.svg";
 
         // Hashage du mot de passe
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
@@ -31,8 +31,8 @@
 
        // Secteur public
         if ($secteur == 'public') {
-            $stmt = $conn->prepare("INSERT INTO pact.proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$denomination, $hashedPassword, $telephone, $mail, $numeroRue, $rue, $ville, $pays, $code, $photo]);
+            $stmt = $conn->prepare("INSERT INTO pact.proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
+            $stmt->execute();
         } else { 
             $stmt = $conn->prepare("INSERT INTO pact.proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$siren', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
             $stmt->execute();
@@ -41,7 +41,7 @@
 
 
         // Redirection vers une page de succès
-        header('Location: success.html');
+        header('Location: connexion.html');
         exit;
     }
 ?>
