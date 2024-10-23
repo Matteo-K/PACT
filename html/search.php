@@ -101,9 +101,8 @@ $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
 
                     foreach ($urlImg as $array) {
                         print_r($array);
-                        if ($array['idoffre']==1) {
-                            ?><a href="<?php echo $array['url'] ?>"></a><?php
-                        }
+                        echo $array['url'];
+                        ?><a href="<?php echo $array['url'] ?>"></a><?php
                     }
                     ?>
                 </ul>
