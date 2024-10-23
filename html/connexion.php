@@ -31,7 +31,7 @@
 
         } else {
             // Vérification pro
-            $stmt = $conn->prepare('SELECT * FROM pact.propublic WHERE mail = ? UNION SELECT * FROM pact.proprive WHERE mail = ?;');
+            $stmt = $conn->prepare('SELECT * FROM pact.proprive WHERE mail = ?');
             $stmt->execute([$login, $login]);
             $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
 
