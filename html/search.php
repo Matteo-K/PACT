@@ -89,7 +89,7 @@ $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
             <?php if ($results){ ?>
                 <ul>
                     <?php foreach ($results as $offre){
-                        $nomOffre=htmlspecialchars($offre['nom']);
+                        $nomOffre=$offre['nom'];
                         $noteAvg="Non noté";
                     }
                     print_r($tab);
