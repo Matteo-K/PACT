@@ -31,13 +31,13 @@
 
         } else {
             // Vérification pro
-            $stmt = $conn->prepare('SELECT mail, idU, motdepasse, siren FROM pact.propublic WHERE mail = ? UNION SELECT mail, idU, motdepasse, siren FROM pact.proprive WHERE mail = ?;');
+            $stmt = $conn->prepare('SELECT * FROM pact.propublic WHERE mail = ? UNION SELECT * FROM pact.proprive WHERE mail = ?;');
             $stmt->execute([$login, $login]);
             $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
 
             print_r($proUser);
     
-            if ($proUser && password_verify($password, $proUser['motdepasse'])) {
+            if ($proUser && password_verify($password, $proUser['password'])) {
                 // Connexion réussie
                 $_SESSION['idUser'] = $proUser['idu'];
                 $_SESSION['typeUser'] = $proUser['siren'] ? 'pro_prive' : 'pro_public'; // Détermine le type
