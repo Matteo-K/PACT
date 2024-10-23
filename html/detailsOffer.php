@@ -53,7 +53,7 @@
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
-    <title><?php echo "h" ?></title>
+    <title><?php echo $result["nom_offre"]?> </title>
 </head>
 <body>
     <?php
@@ -78,6 +78,11 @@
             <a href="mailto: paulblanc@gmail.com">paulblanc@gmail.com</a>
             <a href="https://www.levillagegaulois.org/">https://www.levillagegaulois.org/</a>
         </div>
+        <?php
+            $stmt = $conn->prepare("SELECT * FROM pact.visites WHERE idoffre = '$idOffre'");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        ?>
         <div class="swiper-container">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
