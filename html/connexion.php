@@ -34,6 +34,8 @@
             $stmt = $conn->prepare('SELECT mail, idU, motdepasse, siren FROM pact.propublic WHERE mail = ? UNION SELECT mail, idU, motdepasse, siren FROM pact.proprive WHERE mail = ?;');
             $stmt->execute([$login, $login]);
             $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            print_r($proUser);
     
             if ($proUser && password_verify($password, $proUser['motdepasse'])) {
                 // Connexion réussie
