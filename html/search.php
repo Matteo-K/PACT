@@ -14,7 +14,6 @@ setlocale(LC_TIME, 'fr_FR.UTF-8');
 
 date_default_timezone_set('Europe/Paris');
 
-
 // Récupérer le jour actuel en français avec la classe DateTime
 $currentDay = (new DateTime())->format('l'); // Récupère le jour en anglais
 
@@ -33,13 +32,6 @@ $daysOfWeek = [
 $currentDay = $daysOfWeek[$currentDay];
 $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
-// Filtrer les horaires de l'offre en fonction de l'idOffre et du jour actuel
-
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +45,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <script src="./js/setColor.js"></script>
 </head>
 <body id="search">
-    <main>
+    <?php require_once "components/header.php"; ?>
+    <main class="search">
         <aside>
             <h2>Tri des offres</h2>
             <h2>Filtre</h2>
