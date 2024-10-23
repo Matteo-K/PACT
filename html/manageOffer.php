@@ -27,6 +27,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Change le titre par le nom de l'offre -->
   <title><?php echo isset($nameOffer)? $nameOffer : "Gestion de l'offre" ?></title>
+  <link rel="icon" href="img/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
 </head>
 <body id="manageOffer">

@@ -49,6 +49,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recherche d'offre</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
     <script src="./js/setColor.js"></script>
 </head>
 <body id="search">
@@ -80,7 +81,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         
                         $horaires = array_merge($resultsSoir, $resultsMidi); // Fusionner les résultats midi et soir
-
+                        print_r($horaires);
                         $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
 
                         foreach ($horaires as $horaire) {
