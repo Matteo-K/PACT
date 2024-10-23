@@ -3,6 +3,7 @@ $page = isset($_POST['page']) ? $_POST['page'] : 1;
 $idOffre = isset($_POST["idOffre"])?$_POST["idOffre"]:"";
 $idUser = $_POST["idUser"];
 
+$idUser = 4;
 session_start();
 require_once 'db.php';
 
