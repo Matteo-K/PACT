@@ -71,7 +71,7 @@
         
         
             foreach ($tags as $tag): ?>
-                <a class="tag" href="search.php"><?php echo htmlspecialchars($tag["nomTag"]); ?></a>
+                <a class="tag" href="search.php"><?php echo htmlspecialchars($tag["nomtag"]); ?></a>
             <?php endforeach; ?>
         </div>
 
