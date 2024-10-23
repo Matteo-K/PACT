@@ -74,18 +74,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         print_r($options);
         // Si à la une est coché && n'est pas dans la base : ajoute à la base
         if (isset($_POST["aLaUne"]) && !in_array("aLaUne",$options)) {
-          
+          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
+          $stmt->execute([$idOffre]);
         }
         // Si à la une est pas sélectionné && est dans la base : supprime de la base
-        if (!isset($_POST["aLaUne"])) {
+        if (!isset($_POST["aLaUne"]) && in_array("aLaUne",$options)) {
           
         }
         // Si en relief est coché && n'est pas dans la base : ajoute à la base
-        if (isset($_POST["enRelief"])) {
-          
+        if (isset($_POST["enRelief"]) && !in_array("enRelief",$options)) {
+          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'enRelief')");
+          $stmt->execute([$idOffre]);
         }
         // Si en relief est pas sélectionné && est dans la base : supprime de la base
-        if (!isset($_POST["enRelief"])) {
+        if (!isset($_POST["enRelief"]) && in_array("enRelief",$options)) {
           
         }
 
