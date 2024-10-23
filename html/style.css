@@ -1536,11 +1536,10 @@ div.ligne3>label {
 .creation-compte .ligne7 {
   display: flex;
   align-items: center;
-  margin: 5px;
+  margin: 0 5px 20px;
   text-align: left;
   justify-content: center;
 }
-
 
 .creation-compte input {
   font-size: 20px;
@@ -1794,7 +1793,7 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
   /* Réduire la taille des titres */
   h1[id="connexionTitre"] {
       font-size: 45px;
-      padding-top: 150px;
+      margin-top: 20vh;
   }
 
   h1[id="pasDeCompteTitre"] {
@@ -1812,7 +1811,8 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 
   /* Les champs de saisie restent inchangés */
   .connexion-compte input {
-      width: 350px;
+      min-width: 250px;
+      max-width: 280px;
   }
 
   /* Réduire la taille du bouton de connexion */
