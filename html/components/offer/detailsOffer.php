@@ -55,10 +55,12 @@
     <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
 
     <?php
-        require_once "details/detailsPark.php";
-        require_once "details/detailsVisit.php";
-        require_once "details/detailsShow.php";
-        require_once "details/detailsActivity.php";
+        $source = "details/";
+        require_once $source . "detailsRestaurant.php";
+        require_once $source . "detailsPark.php";
+        require_once $source . "detailsVisit.php";
+        require_once $source . "detailsShow.php";
+        require_once $source . "detailsActivity.php";
         
     ?>
  

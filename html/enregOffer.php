@@ -108,15 +108,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
       
       case 2:
         // Détails offre update
-        // Faire un switch suivant le type d'offre (restaurant, ...)
+        
+        // Traitement des images
         $dossierImg = "../../img/imageOffre/";
-
         print_r($_FILES);
-
         $imageCounter = 0;  // Compteur pour renommer les images
-
         $totalFiles = count($_FILES['photos']['name']); //nb d'images uploadé
-
         // Boucle à travers chaque fichier uploadé
         for ($i = 0; $i < $totalFiles && $imageCounter < $maxImages; $i++) {
           $fileTmpPath = $_FILES['photos']['tmp_name'][$i];
@@ -143,6 +140,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             echo "Erreur lors du téléchargement de l'image $fileName (Erreur $fileError).<br>";
           }
         }
+        switch ($variable) {
+          case 'value':
+            # code...
+            break;
+          
+          default:
+            # code...
+            break;
+        }
+
         break;
       
       case 3:
