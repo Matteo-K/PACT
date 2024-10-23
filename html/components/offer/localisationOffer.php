@@ -1,15 +1,18 @@
  <?php
- $idOffre = $_POST["idOffre"];
  // Requête de récupération des données avec l'id de l'offre
- $getAdresse = "Lannion";
- $getCodePostal = "22300";
- $getVille = "Lannion";
+  $stmt = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre = ?");
+  $stmt->execute([$idOffre]);
+  $localisation = $stmt->fetch(PDO::FETCH_ASSOC);
 
- // Vérification si les données existes
- $adresse = isset($getAdresse) ? $getAdresse : "";
- $codePostal = isset($getCodePostal) ? $getCodePostal : "";
- $ville = isset($getVille) ? $getVille : "";
-
+  if (isset($localisation["codepostal"])) {
+    $adresse = $localisation["numerorue"] . " ". $localisation["rue"];
+    $codePostal = $localisation["codepostal"];
+    $ville = $localisation["ville"];
+  } else {
+    $adresse = "";
+    $codePostal = "";
+    $ville = "";
+  }
  ?>
   <form id="localisationOffer" action="enregOffer.php" method="post">
     <section class="map">
@@ -17,16 +20,16 @@
         <section class="sectionLoca">
           <div>
             <label for="adresse2">Adresse postale* :</label>
-            <input type="text" id="adresse2" placeholder="Adresse" value="<?php echo $adresse ?>" required/>
+            <input type="text" id="adresse2" name="adresse2" placeholder="Adresse" value="<?php echo $adresse ?>" required/>
           </div>
           <section>
             <div class="codeP">
               <label for="codepostal">Code postal* :</label>
-              <input type="text" id="codepostal" placeholder="Code Postal" value="<?php echo $codePostal ?>" required/>
+              <input type="text" id="codepostal" name="codepostal" placeholder="Code Postal" value="<?php echo $codePostal ?>" required/>
             </div>
             <div class="villeL">
               <label for="ville2">Ville* :</label>
-              <input type="text" id="ville2" placeholder="Ville" value="<?php echo $ville ?>" required/>
+              <input type="text" id="ville2" name="ville2" placeholder="Ville" value="<?php echo $ville ?>" required/>
             </div>
           </section>
         </section>

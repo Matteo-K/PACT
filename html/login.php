@@ -26,7 +26,7 @@
             $_SESSION['typeUser'] = 'admin';
 
             header("Location: index.php");
-             // Rediriger vers une page protégée
+            // Rediriger vers une page protégée
             exit();
 
         } else {
@@ -99,6 +99,11 @@
 
     <main id="mainConnexion">
         <h1 id="connexionTitre">Connectez-vous à votre compte</h1>
+
+        <?php if (!empty($error)): ?>
+            <div class="messageErreur"><?php echo htmlspecialchars($error); ?></div>
+        <?php endif; ?>
+
         <form id = "formConnexion" action="login.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
                 <!-- Saisi du login -->
@@ -110,7 +115,6 @@
                 <!-- Saisi du mot de passe -->
                 <input type="password" placeholder = "Mot de passe" id="motdepasseConnexion" name="motdepasseConnexion" required>
             </div>
-    
     
             <button onclick = "validationFormConnexion()" id="boutonConnexion">Connexion</button>
 

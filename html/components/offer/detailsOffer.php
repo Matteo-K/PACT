@@ -28,11 +28,11 @@
 
             <div id="choixCategorie">
                 <label>Catégorie de l'offre*</label>   
-                <input type="radio" name="categorie" id="radioRestaurant" value=restaurant required> <label for="radioRestaurant">Restaurant</label>
-                <input type="radio" name="categorie" id="radioParc" value=parc> <label for="radioParc">Parc d'attraction</label>
-                <input type="radio" name="categorie" id="radioActivite" value=activite> <label for="radioActivite">Activite</label>
-                <input type="radio" name="categorie" id="radioSpectacle" value=spectacle> <label for="radioSpectacle">Spectacle</label>
-                <input type="radio" name="categorie" id="radioVisite" value=visite> <label for="radioVisite">Visite</label>
+                <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required> <label for="radioRestaurant">Restaurant</label>
+                <input type="radio" name="categorie" id="radioParc" value="parc"> <label for="radioParc">Parc d'attraction</label>
+                <input type="radio" name="categorie" id="radioActivite" value="activite"> <label for="radioActivite">Activite</label>
+                <input type="radio" name="categorie" id="radioSpectacle" value="spectacle"> <label for="radioSpectacle">Spectacle</label>
+                <input type="radio" name="categorie" id="radioVisite" value="visite"> <label for="radioVisite">Visite</label>
             </div>
 
             <label for="inputTag">Tags supplémentaires </label>
@@ -55,10 +55,12 @@
     <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
 
     <?php
-        require_once "details/detailsPark.php";
-        require_once "details/detailsVisit.php";
-        require_once "details/detailsShow.php";
-        require_once "details/detailsActivity.php";
+        $source = "details/";
+        require_once $source . "detailsRestaurant.php";
+        require_once $source . "detailsPark.php";
+        require_once $source . "detailsVisit.php";
+        require_once $source . "detailsShow.php";
+        require_once $source . "detailsActivity.php";
         
     ?>
  
