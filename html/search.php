@@ -63,7 +63,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
             <?php if ($results){ ?>
                 <ul>
                     <?php 
-                    print_r($results);
                         foreach ($results as $offre){
                         $idOffre=$offre['idoffre'];
                         $nomOffre=$offre['nom'];
@@ -95,17 +94,30 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 }
                             }
                         }
-                            
+                        
+                        $loca = $conn->prepare("SELECT * FROM pact._localisation WHERE idOffre=$idOffre");
+                        $loca->execute();
+                        $ville = $loca->fetchAll(PDO::FETCH_ASSOC);
+                        
+                        $prix = $conn->prepare("SELECT * FROM pact.restaurants WHERE idOffre=$idOffre");
+                        $prix->execute();
+                        $gamme = $prix->fetchAll(PDO::FETCH_ASSOC);
 
                         if ($offre['statut']=='actif') {
                             ?>
                         <div>
                             <h4><?php echo $nomOffre; ?></h4>
                             <p><?php echo $noteAvg ?></p>
+                            <p><?php echo $ville[0]['ville'] ?></p>
+                            <?php
+                            if ($gamme) {
+                                ?><p><?php echo $gamme[0]['gammedeprix'] ?></p><?php
+                            }                            
+                            ?>
                             <p><?php if ($restaurantOuvert) {
-                                        echo "Le restaurant est ouvert.";
+                                        echo "Ouvert";
                                      } else {
-                                        echo "Le restaurant est fermé.";
+                                        echo "Fermé";
                             }?></p>
                             <a href="/detailsOffer.php?idoffre=<?php echo $idOffre ;?>&ouvert=<?php echo $restaurantOuvert; ?>"><img src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>

@@ -1286,6 +1286,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 10px;
   /* gap de 10 px */
   padding-bottom: 45px ;
+  font-size: 18px;
 }
 
 #specialOffer section>article {
@@ -1324,6 +1325,7 @@ textarea[id="Resume"] {
   display: flex;
   text-align: left;
   margin-left: 675px;
+
 }
 #visit div {
   margin-top: 10px;
@@ -1793,6 +1795,64 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 
 
 /* Média query pour passer au format téléphone */
+@media (max-width: 375px) {
+  /* Réduire la taille des titres */
+  h1[id="connexionTitre"] {
+      font-size: 45px;
+      margin-top: 20vh;
+  }
+
+  h1[id="pasDeCompteTitre"] {
+      display: none;
+  }
+
+  /* Ajustement du formulaire */
+  .connexion-compte form {
+      justify-content: center;
+      width: 90%;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 10px;
+  }
+
+  /* Les champs de saisie restent inchangés */
+  .connexion-compte input {
+      /* min-width: 200px;
+      max-width: 280px; */
+      width: 90%;
+  }
+
+  /* Réduire la taille du bouton de connexion */
+  button[id="boutonConnexion"] {
+      width: 180px;
+      height: 50px;
+      font-size: 22px;
+  }
+
+  /* Empiler les boutons de création de compte verticalement */
+  div[id="lienBouton"] {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+
+  div[id="lienBouton"] > div {
+      width: 100%;
+      margin: 10px 0;
+  }
+
+  /* Ajustement des boutons de création de compte */
+  a[id="boutonLienMembre"], a[id="boutonLienPro"] {
+      display: none;
+  }
+
+  /* Ajustement des labels pour les boutons de création de compte */
+  p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
+      display: none;
+  }
+}
+
+
 @media (max-width: 600px) {
   /* Réduire la taille des titres */
   h1[id="connexionTitre"] {
@@ -1816,7 +1876,7 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
   /* Les champs de saisie restent inchangés */
   .connexion-compte input {
       min-width: 200px;
-      max-width: 280px;
+      max-width: 280px; 
   }
 
   /* Réduire la taille du bouton de connexion */

@@ -11,15 +11,35 @@
     $idOffre = $_GET["idoffre"];
 
     // Prepare the SQL statement with a placeholder
-    $stmt = $conn->prepare("SELECT * FROM pact.parcs_attractions WHERE idoffre = :idOffre");
-    $stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+    $stmt = $conn->prepare("SELECT * FROM pact.parcs_attractions WHERE idoffre = '$idOffre'");
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Check if a result was found
     if (!$result) {
-        echo "No offer found with this ID.";
-        exit();
+        $stmt = $conn->prepare("SELECT * FROM pact.restaurants WHERE idoffre = '$idOffre'");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            $stmt = $conn->prepare("SELECT * FROM pact.activites WHERE idoffre = '$idOffre'");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$result) {
+                $stmt = $conn->prepare("SELECT * FROM pact.spectacles WHERE idoffre = '$idOffre'");
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if (!$result) {
+                    $stmt = $conn->prepare("SELECT * FROM pact.visites WHERE idoffre = '$idOffre'");
+                    $stmt->execute();
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                    
+                }
+            }
+        }
+            
     }
 
     print_r($result);
@@ -42,6 +62,7 @@
     <script src="js/setColor.js"></script>
     
     <main class="mainOffer">
+        <?php print_r($result)?>
         <h2 id="titleOffer"><?php echo $result["nom_offre"]?> </h2>
         <div>
             <!-- foreach ici !-->

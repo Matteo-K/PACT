@@ -3,22 +3,24 @@
   session_start();
 
   // fichier de connexion à la BDD
-  require_once 'db.php';
+  require_once 'db.php'; 
 
   if(!isset($_SESSION['idUser'])){
       header("Location: index.php");
       exit();
   }
-/*
+
+
   if (!($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] == "pro_prive")) {
     header("Location: index.php");
     exit();
-}*/
+  } 
+
 
   $nameOffer = "";
   $step = isset($_POST["page"]) ? $_POST["page"] : 1;
   $idOffre = isset($_POST["idOffre"])?$_POST["idOffre"]:"";
-  require_once "components/offer/checkOffer.php"
+  require_once "components/offer/checkOffer.php";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -55,34 +57,37 @@
       </ul>
     </aside>
     <section>
+      <?php echo "id offre : $idOffre, page : $step"; ?>
       <?php
         // Affichage du formulaire suivant l'étape indiquer par un chiffre dans la barre de recherche avec un require
+        $partOffer;
         switch ($step) {
           case 1:
-            require_once "components/offer/selectOffer.php";
+            $partOffer = "selectOffer.php";
             break;
           case 2:
-            require_once "components/offer/detailsOffer.php";
+            $partOffer = "detailsOffer.php";
             break;
           case 3:
-            require_once "components/offer/localisationOffer.php";
+            $partOffer = "localisationOffer.php";
             break;
           case 4:
-            require_once "components/offer/contactOffer.php";
+            $partOffer = "contactOffer.php";
             break;
           case 5:
-            require_once "components/offer/hourlyOffer.php";
+            $partOffer = "hourlyOffer.php";
             break;
           case 6:
-            require_once "components/offer/previewOffer.php";
+            $partOffer = "previewOffer.php";
             break;
           case 7:
-            require_once "components/offer/paymentOffer.php";
+            $partOffer = "paymentOffer.php";
             break;
           default:
-          require_once "components/offer/errorOffer.php";
+            $partOffer = "errorOffer.php";
             break;
         }
+        require_once "components/offer/".$partOffer;
       ?>
           <input type="hidden" name="pageCurrent" id="pageCurrent" value="">
           <input type="hidden" name="pageBefore" id="pageBefore" value="<?php echo $step ?>">

@@ -3,7 +3,7 @@
     session_start();
     
     // fichier de connexion à la BDD
-    require_once "db.php"; 
+    require_once "db.php";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Récupérer les données du formulaire
@@ -22,7 +22,7 @@
         $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
         $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
         $pays = "France";
-        $photo = "/img/profile_picture/default.svg";
+        $photo = "./img/profile_picture/default.svg";
 
         // Hashage du mot de passe
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
