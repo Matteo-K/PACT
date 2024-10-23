@@ -1,4 +1,6 @@
-<form id="detailsOffer" action="enregOffer.php" method="post">
+
+
+<form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
         <div>
 
