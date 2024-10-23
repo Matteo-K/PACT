@@ -93,7 +93,7 @@
     
             <div class="ligne2">
                 <!-- Saisi du mot de passe -->
-                <input type="password" placeholder = "Mot de passe" id = "motdepasseConnexion" name="mot de passe" required>
+                <input type="password" placeholder = "Mot de passe" id="motdepasseConnexion" name="motdepasseConnexion" required>
             </div>
     
     
