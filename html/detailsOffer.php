@@ -11,8 +11,7 @@
     $idOffre = $_GET["idoffre"];
 
     // Prepare the SQL statement with a placeholder
-    $stmt = $conn->prepare("SELECT * FROM pact.parcs_attractions WHERE idoffre = :idOffre");
-    $stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+    $stmt = $conn->prepare("SELECT * FROM pact.parcs_attractions WHERE idoffre = '$idOffre'");
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
