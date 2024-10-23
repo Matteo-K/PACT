@@ -1095,11 +1095,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-top: 200px;
 }
 
+.filtre{
+  display: flex;
+}
 
-
-
-
-
+.searchoffre{
+  display: flex;
+  flex-direction: column;
+}
 
 
 
