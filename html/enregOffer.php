@@ -101,9 +101,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ? AND nomoption='EnRelief'");
           $stmt->execute([$idOffre]);
         }
-
-
-
         break;
       
       case 2:
@@ -215,6 +212,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
       case 4:
         // Détails Contact update
+        $mail = $_POST["mail"];
+        $telephone = isset($_POST["phone"]) ? $_POST["phone"] : null;
+        $affiche = $_POST['DisplayNumber'] == "Oui" ? true : false;
+        $site = empty($_POST["webSide"]) || $_POST["webSide"] == "https://" ? null : $_POST["webSide"];
+        $stmt = $conn->prepare("UPDATE pact._offre SET mail=?, telephone=?, affiche=?, urlsite=? WHERE idoffre= ?");
+        $stmt->execute([$mail, $telephone, $affiche, $site, $idOffre]);
         break;
 
       case 5:
