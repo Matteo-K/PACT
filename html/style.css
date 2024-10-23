@@ -187,7 +187,7 @@ header h1 {
 }
 
 header div>a>img,
-header #auth img {
+header #auth > img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
