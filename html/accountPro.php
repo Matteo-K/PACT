@@ -59,7 +59,7 @@
         }
 
         // Redirection vers une page de succès
-        header('Location: connexion.php');
+        header('Location: login.php');
         exit;
     }
 ?>
@@ -83,7 +83,7 @@
     </aside>
 
     <h1 id="inscriptionTitre">Inscription</h1>
-    <form id = "formPro" action="creation_compte_pro.php" method="post" enctype="multipart/form-data">
+    <form id = "formPro" action="accountPro.php" method="post" enctype="multipart/form-data">
         <div class="ligne1">
             <label for="denomination">Dénomination*:</label>
             <label for="telephone">Numéro de téléphone*:</label>
@@ -171,7 +171,7 @@
         
         <button onclick = "validationForm()" id="boutonInscriptionPro">S'inscrire</button>
         
-        <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="connexion.php">Se connecter</a></h2>
+        <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="login.php">Se connecter</a></h2>
     </form>
 </body>
 <script src="js/validationFormInscription.js"></script>

@@ -99,7 +99,7 @@
 
     <main id="mainConnexion">
         <h1 id="connexionTitre">Connectez-vous à votre compte</h1>
-        <form id = "formConnexion" action="connexion.php" method="post" enctype="multipart/form-data">
+        <form id = "formConnexion" action="login.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
                 <!-- Saisi du login -->
                 <input type="text" placeholder = "Identifiant/adresse mail" id="login" name="login" required>
@@ -126,7 +126,7 @@
             </div>
             
             <div>
-                <a href="creation_compte_pro.php" id="boutonLienPro">Compte professionnel</a>
+                <a href="accountPro.php" id="boutonLienPro">Compte professionnel</a>
                 <p id="legendeBoutonLienPro">Compte destiné aux professionels voulant promouvoir une offre de leur entreprise</p>
             </div>
         </div>
