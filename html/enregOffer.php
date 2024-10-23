@@ -74,9 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         // Faire un switch suivant le type d'offre (restaurant, ...)
         $dossierImg = "../../img/imageOffre/";
 
-        // Compteur pour renommer les images
-        $imageCounter = 0;
+        $imageCounter = 0;  // Compteur pour renommer les images
 
+        $totalFiles = count($_FILES['photos']['name']); //nb d'images uploadé
 
         // Boucle à travers chaque fichier uploadé
         for ($i = 0; $i < $totalFiles && $imageCounter < $maxImages; $i++) {
@@ -86,9 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
         // Vérifie si l'image a été uploadée sans erreur
           if ($fileError === UPLOAD_ERR_OK) {
-            $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-            // Renommage de l'image (image0, image1, etc.)
+            // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
             $fileName = 'idOffre' . $idOffre . 'image' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
             $dossierImgNom = $dossierImg . $newFileName;
 

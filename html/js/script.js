@@ -12,7 +12,7 @@ try {
   //Affichage des images a leur selection
   let compteurImages = 0;
   const pImage = document.querySelector("#choixImage > p");
-  document.querySelectorAll("#afficheImages + label")[0].addEventListener("change", afficheImage);
+  document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
 
   function afficheImage(event) {
     const images = event.target.files;
@@ -95,7 +95,8 @@ try {
       }
     }
   }
-} catch (error) {}
+} catch (error) {
+}
 
 try {
   /* Affichage pour un type d'offre particulier */
