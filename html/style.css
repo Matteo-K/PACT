@@ -1499,6 +1499,7 @@ div.ligne3>label {
 }
 
 .creation-compte .ligne5 label {
+  margin-right: 20px;
   margin-left: 5px;
   font-size: 25px;
 }
@@ -1521,7 +1522,6 @@ div.ligne3>label {
 
 .creation-compte input {
   font-size: 20px;
-  padding-left: 0 5px;
   border: 0;
 }
 
@@ -1585,6 +1585,8 @@ button[id="boutonInscriptionPro"] {
   height: 60px;
   border-radius: 15px;
   margin: 5px auto;
+  border: none;
+  box-shadow: inset -4px -4px 4px #bb880e;
   background-color: #edae14;
 }
 
@@ -1713,7 +1715,6 @@ div.ligne1>label {
 
 .connexion-compte input {
   font-size: 20px;
-  padding-left: 0 5px;
   border: 0;
 }
 
@@ -1738,6 +1739,8 @@ button[id = "boutonConnexion"]{
   font-size: 25px;
   height: 60px;
   border-radius: 15px;
+  border: none;
+  box-shadow: inset -4px -4px 4px #bb880e;
   margin: 5px auto;
   margin-top: 30px;
   background-color: #edae14;
@@ -1748,7 +1751,8 @@ a[id="boutonLienMembre"], a[id="boutonLienPro"]{
   padding: 15px 10px;
   font-size: 20px;
   border-radius: 15px;
-  border: solid 2px;
+  border: none;
+  box-shadow: inset -4px -4px 4px #bb880e;
   margin: 5px auto;
   margin-top: 30px;
   color: black;
