@@ -95,13 +95,15 @@ foreach ($horaires as $horaire) {
                         $img = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre=$idOffre ORDER BY url ASC");
                         $img->execute();
                         $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
-                        ?>
+                        if ($offre['statut']=='actif') {
+                            ?>
                         <div>
                             <h4><?php echo $nomOffre; ?></h4>
                             <p><?php echo $noteAvg ?></p>
                             <img src="<?php echo $urlImg[0]['url']; ?>" alt="">
                         </div>
-                    <?php
+                        <?php
+                        }
                     }
                     print_r($tab);
                     if ($restaurantOuvert) {
