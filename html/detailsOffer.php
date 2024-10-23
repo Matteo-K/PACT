@@ -96,21 +96,15 @@
 
         <div thumbsSlider="" class="swiper myThumbSlider">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="img/1.jpeg" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="img/2.jpeg" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="img/3.jpeg" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="img/4.jpeg" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="img/5.jpeg" />
-                </div>
+            <?php
+                foreach ($photos as $picture) {
+            ?>
+                    <div class="swiper-slide">
+                        <img src="<?php echo $picture['url']; ?>" />
+                    </div>
+            <?php
+                }
+            ?>
             </div>
         </div>
 
