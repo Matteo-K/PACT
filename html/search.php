@@ -9,13 +9,6 @@
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt = $conn->prepare("SELECT * FROM pact._horairesoir");
-    $stmt->execute();
-    $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    $stmt = $conn->prepare("SELECT * FROM pact._horairemidi");
-    $stmt->execute();
-    $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
 
@@ -95,12 +88,22 @@ foreach ($horaires as $horaire) {
                         $img = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre=$idOffre ORDER BY url ASC");
                         $img->execute();
                         $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
+
+                        $stmt = $conn->prepare("SELECT * FROM pact._horairesoir");
+                        $stmt->execute();
+                        $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        $stmt = $conn->prepare("SELECT * FROM pact._horairemidi");
+                        $stmt->execute();
+                        $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
                         if ($offre['statut']=='actif') {
                             ?>
                         <div>
                             <h4><?php echo $nomOffre; ?></h4>
                             <p><?php echo $noteAvg ?></p>
-                            <img src="<?php echo $urlImg[0]['url']; ?>" alt="">
+                            <a href="/detailsOffer.php?idoffre=<?php echo $idOffre ;?>&ouvert=<?php echo TRUE; ?>"><img src="<?php echo $urlImg[0]['url']; ?>" alt="">
+                            </a>
                         </div>
                         <?php
                         }
