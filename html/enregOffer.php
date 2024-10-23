@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           if ($fileError === UPLOAD_ERR_OK) {
 
             // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
-            $fileName = 'idOffre' . $idOffre . 'image' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+            $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
             $dossierImgNom = $dossierImg . $newFileName;
 
             // Déplace l'image vers le dossier cible

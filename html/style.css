@@ -1097,6 +1097,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .sectionFiltre{
   display: flex;
+  justify-content: center;
+  gap: 30vh;
 }
 
 .searchoffre{

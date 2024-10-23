@@ -6,10 +6,17 @@ if ($is_prive) {
     $stmt = $conn->prepare("SELECT nomabonnement FROM _abonner WHERE idoffre = ? ");
     $stmt->execute([$idOffre]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $abonnement = $result["nomabonnement"];
-    echo $abonnement;
+    if ($result["nomabonnement"] == "Premium") {
+      $premium = "checked";
+      $standard = "disabled";
+    } else {
+      // abonnement standard
+      $premium = "disabled";
+      $standard = "checked";
+    }
   } else {
-    $abonnement = ""; 
+    $premium = "checked";
+    $standard = "";
   }
 }
   
@@ -47,7 +54,7 @@ $options = ["EnRelief"];
         <li>Blackliste sur 3 avis</li>
       </ul>
       <div>
-        <input type="radio" name="typeOffre" id="premium" value="premium" <?php echo (empty($abonnement) || $abonnement == "Premium")?"checked":"" ?>>
+        <input type="radio" name="typeOffre" id="premium" value="premium" <?php echo $premium ?>>
         <label for="premium">Sélectionner</label>
       </div>
     </div>
@@ -59,7 +66,7 @@ $options = ["EnRelief"];
         <li>Saisie d’une grille tarifaire</li>
       </ul>
       <div>
-        <input type="radio" name="typeOffre" id="standard" value="standard" <?php echo ($abonnement == "Basique") ?"checked":"" ?>>
+        <input type="radio" name="typeOffre" id="standard" value="standard" <?php echo $standard ?>>
         <label for="standard">Sélectionner</label>
       </div>
     </div>
