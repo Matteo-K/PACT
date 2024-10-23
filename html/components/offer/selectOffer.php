@@ -27,6 +27,7 @@ if (!empty($idOffre)) {
   $stmt->execute([$idOffre]);
   $options = $stmt->fetch(PDO::FETCH_ASSOC);
 }
+print_r($options);
 
 
 ?>
