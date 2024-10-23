@@ -25,10 +25,11 @@ $options = [];
 if (!empty($idOffre)) {
   $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre=?");
   $stmt->execute([$idOffre]);
-  $options = $stmt->fetch(PDO::FETCH_ASSOC);
+  $res = $stmt->fetch(PDO::FETCH_ASSOC);
+  foreach ($res as $elem) {
+    array_push($options,$elem["nomoption"]);
+  }
 }
-print_r($options);
-
 
 ?>
 <form id="selectOffer" action="enregOffer.php" method="post">
