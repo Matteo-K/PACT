@@ -107,7 +107,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                      } else {
                                         echo "Le restaurant est fermé.";
                             }?></p>
-                            <a href="/detailsOffer.php?idoffre=<?php echo $idOffre ;?>&ouvert=<?php echo $restaurantOuvert; ?>"><img src="<?php echo ".".$urlImg[0]['url']; ?>" alt="photo principal de l'offre">
+                            <a href="/detailsOffer.php?idoffre=<?php echo $idOffre ;?>&ouvert=<?php echo $restaurantOuvert; ?>"><img src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                         </div>
                         <?php
