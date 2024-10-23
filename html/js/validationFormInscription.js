@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } 
         
         else {
-            sirenLabel.style.display = "none";   // Cache le label
-            sirenInput.style.display = "none";   // Cache le champ
+            sirenLabel.style.display = "none"; // Cache le label
+            sirenInput.style.display = "none"; // Cache le champ
         }
     }
 
