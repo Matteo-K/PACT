@@ -80,7 +80,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         
                         $horaires = array_merge($resultsSoir, $resultsMidi); // Fusionner les résultats midi et soir
-
+                        print_r($horaires);
                         $restaurantOuvert = false; // Par défaut, on considère le restaurant fermé
 
                         foreach ($horaires as $horaire) {
