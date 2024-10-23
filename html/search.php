@@ -90,6 +90,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             $heureOuverture = DateTime::createFromFormat('H:i',$horaire['heureouverture']);
                             $heureFermeture = DateTime::createFromFormat('H:i',$horaire['heurefermeture']);
                             // Vérifier si l'heure actuelle est comprise entre l'heure d'ouverture et de fermeture
+                            echo(" oui ");
                             if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
                                 $restaurantOuvert = true;
                                 break; // Si on trouve que le restaurant est ouvert, on arrête la boucle
