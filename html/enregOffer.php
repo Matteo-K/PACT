@@ -67,6 +67,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
     switch ($pageBefore) {
       case 1:
         // Modification des options
+        // Select * option where idoffre = $idOffre;
+        // Si à la une est coché && n'est pas dans la base : ajoute à la base
+        // Si à la une est pas sélectionné && est dans la base : supprime de la base
+
+        // Si en relief est coché && n'est pas dans la base : ajoute à la base
+        // Si en relief est pas sélectionné && est dans la base : supprime de la base
         break;
       
       case 2:
