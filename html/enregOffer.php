@@ -72,15 +72,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         $stmt->execute([$idOffre]);
         $options = $stmt->fetch(PDO::FETCH_ASSOC);
         print_r($options);
-        if (isset($_POST["standard"])) {
+        // Si à la une est coché && n'est pas dans la base : ajoute à la base
+        if (isset($_POST["aLaUne"]) && !in_array("aLaUne",$options)) {
           
         }
-        ghjk
-        // Si à la une est coché && n'est pas dans la base : ajoute à la base
         // Si à la une est pas sélectionné && est dans la base : supprime de la base
-
+        if (!isset($_POST["aLaUne"])) {
+          
+        }
         // Si en relief est coché && n'est pas dans la base : ajoute à la base
+        if (isset($_POST["enRelief"])) {
+          
+        }
         // Si en relief est pas sélectionné && est dans la base : supprime de la base
+        if (!isset($_POST["enRelief"])) {
+          
+        }
+
+
+
         break;
       
       case 2:
@@ -149,6 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
   }
 }
 
+// Redirection vers les bonnes pages
 if ($pageDirection >= 1) {
   ?>
   <form id="myForm" action="manageOffer.php" method="POST">
