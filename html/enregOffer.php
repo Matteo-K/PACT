@@ -83,6 +83,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         // Faire un switch suivant le type d'offre (restaurant, ...)
         $dossierImg = "../../img/imageOffre/";
 
+        print_r($_FILES);
+
         $imageCounter = 0;  // Compteur pour renommer les images
 
         $totalFiles = count($_FILES['photos']['name']); //nb d'images uploadé

@@ -47,11 +47,11 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
 <body id="search">
     <?php require_once "components/header.php"; ?>
     <main class="search">
-        <aside>
-            <h2>Tri des offres</h2>
+        <aside class="sectionFiltre">
+            <h2>Tri</h2>
             <h2>Filtre</h2>
         </aside>
-        <section>
+        <section class="searchoffre">
             <h2>Liste des offres</h2>
             <?php if ($results){ ?>
                 <ul>
