@@ -66,7 +66,7 @@
                     $stmt->execute([$login, $login]);
                     $member = $stmt->fetch(PDO::FETCH_ASSOC);
         
-                    if ($member && $password === $member['motdepasse']) {
+                    if ($member && $password === $member['password']) {
                         // Connexion réussie
                         $_SESSION['idUser'] = $member['idu'];
                         $_SESSION['typeUser'] = 'membre';
