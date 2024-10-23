@@ -1,6 +1,6 @@
 <?php
 $page = isset($_POST['page']) ? $_POST['page'] : 1;
-$idOffre = isset($_POST["idOffre"])?$_POST["idOffre"]:"";
+$idOffre = $_POST["idOffre"];
 $idUser = $_POST["idUser"];
 
 $idUser = 4;
@@ -30,9 +30,18 @@ if (empty($idOffre)) {
   } catch (PDOException $e) {
     echo "Une erreur s'est produite lors de la création de l'offre: \n" . $e->getMessage() . "\n";
   }
+
+  /* Définition de l'abonnement */
+  print($_POST);
+  try {
+    $stmt = $conn->prepare("INSERT INTO pact._abonner (idoffre, nomabonnement, idoffre, nom, description, mail, telephone, affiche, urlsite, resume, datecrea) VALUES (?, ?, ?, null, null, null, null, null, null, null, ?)");
+    $stmt->execute([$idUser, 'inactif', $idOffre, $date]);
+  } catch (PDOException $e) {
+    echo "Une erreur s'est produite lors de la saisit de l'abonnement de l'offre: \n" . $e->getMessage() . "\n";
+  }
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && $page < 1) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $page >= 1) {
   ?>
   <form id="myForm" action="manageOffer.php" method="POST">
     <input type="hidden" name="page" value="<?php echo $page; ?>">
