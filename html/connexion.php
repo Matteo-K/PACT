@@ -46,8 +46,8 @@
 
             } else {
 
-                // Vérification proprive
-                $stmt = $conn->prepare('SELECT * FROM pact.proprive WHERE mail = ?');
+                // Vérification propublic
+                $stmt = $conn->prepare('SELECT * FROM pact.propublic WHERE mail = ?');
                 $stmt->execute([$login]);
                 $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -56,7 +56,7 @@
                 if ($proUser && password_verify($password, $proUser['password'])) {
                     // Connexion réussie
                     $_SESSION['idUser'] = $proUser['idu'];
-                    $_SESSION['typeUser'] = $proUser['siren'] ? 'pro_prive' : 'pro_public'; // Détermine le type
+                    $_SESSION['typeUser'] = 'pro_public'; // Détermine le type
                     header("Location: index.php");
                     exit();
                 }else{
