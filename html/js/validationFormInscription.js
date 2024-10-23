@@ -78,9 +78,9 @@ function validationForm(event) {
     }
 
     // Vérification de l'adresse postale (doit contenir un numéro suivi d'au moins un mot)
-    const adressePattern = /^\d+\s+[A-Za-z\s]+/;
+    const adressePattern = /^\d+\s+(bis\s+)?[A-Za-z\s]+/i;
     if (!adressePattern.test(adresse)) {
-        alert('Veuillez entrer une adresse postale valide (ex : 123 Rue de Paris).');
+        alert('Veuillez entrer une adresse postale valide (ex : 123 bis Rue de Paris).');
         return;
     }
 
