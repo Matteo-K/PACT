@@ -1,8 +1,9 @@
 <?php 
     // Démarrer la session
     session_start();
-
-    require_once "db.php"; // fichier de connexion à la BDD
+    
+    // fichier de connexion à la BDD
+    require_once "db.php"; 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Récupérer les données du formulaire
@@ -122,7 +123,7 @@
             <div class="ligne5_2">
                 <!-- Saisi du numéro de SIREN -->
                 <label for="siren">N° SIREN*:</label>
-                <input type="text" placeholder = "123 456 789" id="siren" name="siren" >
+                <input type="text" placeholder = "123 456 789" id="siren" name="siren" required>
             </div>
         </div>
 

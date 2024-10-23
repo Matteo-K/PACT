@@ -49,23 +49,25 @@ require_once "db.php";
             margin-top: 4em;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centre les éléments horizontalement */
+            align-items: center;
+            justify-content: center;
             margin-bottom: 20px;
         }
 
         /* Styles pour l'image de profil dans le menu */
         #imagProfil img {
-            width: 100px; /* Ajustez à la taille désirée, par exemple 100px */
+            margin: 0;
+            width: 10em; /* Ajustez à la taille désirée, par exemple 100px */
             border-radius: 50%; /* Pour rendre l'image ronde */
             transition: transform 0.3s; /* Animation au survol */
         }
 
         #imagProfil img:hover {
-            transform: scale(1.15); /* Zoom léger au survol */
+            transform: scale(1.05); /* Zoom léger au survol */
         }
 
         /* Styles pour le pseudo ou le nom */
-        #imagProfil h2 {
+        #imagProfil figcaption {
             text-shadow: black -2px 2px;
             text-align: center; /* Centre le texte sous l'image */
             font-size: 20px; /* Taille de la police */
@@ -107,14 +109,28 @@ require_once "db.php";
             border-radius: 5px; /* Coins arrondis */
         }
 
-        #profileMenu a:hover {
+        #profileMenu ul a:hover {
             background-color: rgba(255, 255, 255, 0.1); /* Couleur de fond au survol */
         }
 
-        #logoutButton {
-            text-align: center; /* Centre le texte */
-            margin-bottom: 20px; /* Espacement en bas */
+        header ul + div{
+            flex-direction: column;
+            margin-bottom: 3em; /* Espacement en bas */
+            gap:10px;
         }
+
+        #logoutButton {
+            border-radius: 0.5em;
+            padding: 0 2em;
+            background-color: red;
+            text-align: center; /* Centre le texte */
+            margin-bottom: 2em; /* Espacement en bas */
+        }
+
+        #logoutButton:hover{
+            background-color: #ff0000dd;
+        }
+        
     </style>
 </head>
 <body>
@@ -150,13 +166,13 @@ require_once "db.php";
             <img id="profilePic" src="<?php echo $result["url"] ?>" title="Photo de profil utilisateur">
 
             <!-- Menu caché intégré dans le header -->
-            <aside id="profileMenu" class="hidden">
+            <div id="profileMenu" class="hidden">
                 <div id="backButton">
                     <span id="backText">< Retour</span>
                 </div>
-                <div id="imagProfil">
+                <figure id="imagProfil">
                     <img src="<?php echo $result["url"] ?>" title="photo de profil utilisateur" id="menuProfilePic">
-                    <h2>
+                    <figcaption>
                         <?php
                         if ($typeUser === "admin") {
                             echo $result["login"];
@@ -166,16 +182,17 @@ require_once "db.php";
                             echo $result["pseudo"];
                         }
                         ?>
-                    </h2>
-                </div>
+                    </figcaption>
+                </figure>
                 <ul>
                     <li><a href="profile.php">Mon Profil</a></li>
                     <li><a href="settings.php">Paramètres</a></li>
                 </ul>
-                <div id="logoutButton">
-                    <a href="logout.php">Déconnexion</a>
+                <div>
+                    <a id="changeAccount" href="">Changer de compte</a>
+                    <a id="logoutButton" href="logout.php">Déconnexion</a>
                 </div>
-            </aside>
+            </div>
 
             <?php
         } else {
