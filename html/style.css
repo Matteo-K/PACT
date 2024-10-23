@@ -60,9 +60,9 @@ body {
 
 input[type="text"],
 textarea {
-  padding: 5px;
   border: 2px solid var(--secondary);
   border-radius: 2px;
+  text-indent: 5px;
 }
 
 input[type="text"]:focus,
@@ -1366,6 +1366,7 @@ body[id="body_creation_compte_pro"] {
 
 a[id="lienCGU"] {
   color: white;
+  text-decoration: underline;
 }
 
 a[id="lienCGU"]:hover {
@@ -1374,6 +1375,7 @@ a[id="lienCGU"]:hover {
 
 a[id="lienConnexion"] {
   color: white;
+  text-decoration: underline;
   font-family: "Belanosima", sans-serif;
 }
 
