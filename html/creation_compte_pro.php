@@ -41,7 +41,7 @@
 
 
         // Redirection vers une page de succès
-        header('Location: connexion.html');
+        header('Location: connexion.php');
         exit;
     }
 ?>
