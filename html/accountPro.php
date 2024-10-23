@@ -28,23 +28,44 @@
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
 
         // Vérifier si la dénomination existe déjà dans la base de données
-        $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE denomination = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE denomination = ?");
-        $stmt->execute([$denomination, $denomination]);
-        $count = $stmt->fetchColumn();
-
-        if ($count > 0) {
-            echo "La dénomination existe déjà.";
-            exit;
+        try {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE denomination = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE denomination = ?");
+            $stmt->execute([$denomination, $denomination]);
+            $count = $stmt->fetchColumn();
+    
+            if ($count > 0) {
+                $errors[] = "La dénomination existe déjà.";
+            }
+        } 
+        
+        catch (Exception $e) {
+            $errors[] = "Erreur lors de la vérification: " . $e->getMessage();
         }
+    
+
 
         // Vérifier si le numéro de SIREN existe déjà dans la base de données
-        if ($secteur == 'prive') {
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
-            $stmt->execute([$siren]);
-            if ($stmt->fetchColumn() > 0) {
-                echo "Le numéro de SIREN existe déjà.";
-                exit;
+        try {
+            if ($secteur == 'prive') {
+                $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
+                $stmt->execute([$siren]);
+                if ($stmt->fetchColumn() > 0) {
+                    $errors[] = "Le numéro de SIREN existe déjà.";
+                }
             }
+        } 
+        
+        catch (Exception $e) {
+            $errors[] = "Erreur lors de la vérification: " . $e->getMessage();
+        }
+    
+        // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
+        if (!empty($errors)) {
+            // Afficher les erreurs à l'utilisateur
+            foreach ($errors as $error) {
+                echo "<div class='messageErreur'>" . htmlspecialchars($error) . "</div>";
+            }
+            exit;
         }
 
         // Préparer la requête d'insertion en fonction du secteur
@@ -83,18 +104,18 @@
         </aside>
         
         <h1 id="inscriptionTitre">Inscription</h1>
+
+        <?php if (!empty($errors)): ?>
+            <div class="messageErreur">
+                <ul>
+                    <?php foreach ($errors as $error): ?>
+                        <li><?php echo htmlspecialchars($error); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
         <form id = "formPro" action="accountPro.php" method="post" enctype="multipart/form-data">
-
-            <?php if (!empty($errors)): ?>
-                <div class="messageErreur">
-                    <ul>
-                        <?php foreach ($errors as $error): ?>
-                            <li><?php echo htmlspecialchars($error); ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            <?php endif; ?>
-
             <div class="ligne1">
                 <label for="denomination">Dénomination*:</label>
                 <label for="telephone">Numéro de téléphone*:</label>
