@@ -57,12 +57,25 @@
     <main class="mainOffer">
         <h2 id="titleOffer"><?php echo $result["nom_offre"] ?> </h2>
         <div>
-            <!-- foreach ici !-->
-            <a class="tag" href="search.php?search=parc">Parc d'attraction</a>
-            <a class="tag" href="search.php?search=air">Plein air</a>
-            <a class="tag" href="search.php?search=familliale">Familliale</a>
-            <a class="tag" href="search.php?search=pleumeur">Pleumeur-Bodou</a>
-            <a class="tag" href="search.php?state=ouvert">Ouvert</a>
+        <?php 
+            $stmt = $conn->prepare("SELECT t.nomTag FROM pact._offre o
+                                    LEFT JOIN pact._tag_parc tp ON o.idOffre = tp.idOffre
+                                    LEFT JOIN pact._tag_spec ts ON o.idOffre = ts.idOffre
+                                    LEFT JOIN pact._tag_Act ta ON o.idOffre = ta.idOffre
+                                    LEFT JOIN pact._tag_restaurant tr ON o.idOffre = tr.idOffre
+                                    LEFT JOIN pact._tag_visite tv ON o.idOffre = tv.idOffre
+                                    LEFT JOIN pact._tag t ON t.nomTag = COALESCE(tp.nomTag, ts.nomTag, ta.nomTag, tr.nomTag, tv.nomTag)
+                                    WHERE o.idOffre = '$idOffre' ORDER BY o.idOffre");
+            $stmt->execute();
+            $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        
+            foreach ($tags as $tag): ?>
+                <a class="tag" href="search.php"><?php echo htmlspecialchars($tag["nomTag"]); ?></a>
+            <?php endforeach; ?>
+        </div>
+
+           
         </div>
         <div>
             <a href="https://maps.app.goo.gl/PSBboQALwGsqgqKM8">Route du Radome, 22560 Pleumeur-Bodou</a>
