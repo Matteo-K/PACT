@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         // Modification des options
         // Récupération des offres
         $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre = ?");
-        $stmt->execute([$idOffre]);
+        $stmt->execute([2]);
         $options = $stmt->fetch(PDO::FETCH_ASSOC);
         print_r($options);
         // Si à la une est coché && n'est pas dans la base : ajoute à la base
