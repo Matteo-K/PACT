@@ -86,14 +86,24 @@ foreach ($horaires as $horaire) {
             <h2>Liste des offres</h2>
             <?php if ($results){ ?>
                 <ul>
-                    <?php foreach ($results as $offre){
+                    <?php 
+                    print_r($results);
+                        foreach ($results as $offre){
                         $idOffre=$offre['idoffre'];
                         $nomOffre=$offre['nom'];
                         $noteAvg="Non noté";
                         $img = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre=$idOffre ORDER BY url ASC");
                         $img->execute();
                         $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
-                        ?><img src="<?php echo $urlImg[0]['url']; ?>" alt=""><?php
+                        if ($offre['statut']=='actif') {
+                            ?>
+                        <div>
+                            <h4><?php echo $nomOffre; ?></h4>
+                            <p><?php echo $noteAvg ?></p>
+                            <img src="<?php echo $urlImg[0]['url']; ?>" alt="">
+                        </div>
+                        <?php
+                        }
                     }
                     print_r($tab);
                     if ($restaurantOuvert) {
