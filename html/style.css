@@ -1100,9 +1100,68 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Effet d'ombre au focus */
 }
 
+.searchoffre{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  padding-top: 30px;
+  gap: 20px;
+}
 
+.carteOffre{
+  display: flex;
+  width: 70%;
+  background-color: var(--primary70);
+}
 
-@media (max-width: 700px){
+.carteOffre p{
+  margin: 2px;
+}
+
+.searchImage{
+  object-fit: contain;
+  width: 290px;
+  height: 170px;
+}
+
+.infoOffre{
+  flex-grow: 1;  
+}
+
+.searchTitre{
+  font-size: 24px;
+  color: white;
+}
+
+.searchResume{
+  font-size: 12px;
+}
+
+.searchTag {
+  background-color: var(--accent);
+  color: #000;
+  padding: 5px 5px;
+  border-radius: 10px;
+  font-size: 0.7em;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.searchNote{
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchAvis{
+  padding: 5px;
+  flex-grow: 1;
+}
+
+.avisSearch{
+  font-size: 0.7em;
+}
+/* @media (max-width: 700px){
   .search{
     margin-top: 220px;
   }
@@ -1136,6 +1195,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .infoOffre{
+
+    
     padding-left: 20px;
     padding-right: 20px;
     color: var(--bloc);
@@ -1168,6 +1229,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   }
 
+  } */
   .searchStatutO{
     color: #008000;
   }
@@ -1175,8 +1237,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .searchStatutF{
     color: #b01111;
   }
-}
-
+  
 
 
 
