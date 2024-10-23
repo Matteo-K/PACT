@@ -8,7 +8,7 @@
 
     $idOffre = $_GET["idOffre"];
 
-    $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idoffre = '$idOffre'");
+    $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idOffre = '$idOffre'");
     $stmt -> execute();
     $result = $stmt -> fetch(PDO::FETCH_ASSOC);
 ?>
