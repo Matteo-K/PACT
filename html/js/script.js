@@ -12,9 +12,7 @@ try {
   //Affichage des images a leur selection
   let compteurImages = 0;
   const pImage = document.querySelector("#choixImage > p");
-  document
-    .getElementById("photos")
-    .addEventListener("change", afficheImage);
+  document.querySelectorAll("#afficheImages + label")[0].addEventListener("change", afficheImage);
 
   function afficheImage(event) {
     const images = event.target.files;
