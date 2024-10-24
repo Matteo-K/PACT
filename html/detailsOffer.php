@@ -1,7 +1,19 @@
 <?php
 require_once "config.php";
-$idOffre = $_POST["idoffre"] ?? null;
-$ouvert = $_POST["ouvert"] ?? null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Récupérer les données POST
+    $idOffre = $_POST['idOffre'] ?? null;
+    $status = $_POST['status'] ?? null;
+
+    if ($idOffre && $status) {
+        // Effectuer le traitement (par exemple, ouvrir ou fermer l'offre)
+        echo "Offre ID: $idOffre a été mise à jour avec le statut : $status";
+    } else {
+        echo "Données manquantes.";
+    }
+}
+
+
 
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
