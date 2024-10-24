@@ -113,7 +113,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div>
             <img src="./img/icone/lieu.png">
-            <p><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></p>
+            <p id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></p>
             <img src="./img/icone/tel.png">
             <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
             <img src="./img/icone/mail.png">
@@ -202,12 +202,72 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </tbody>
             </table>
         </section>
+        <!-- Carte Google Maps -->
+        <div id="map"></div>
     </main>
 
     <?php require_once "components/footer.php"; ?>
+    
+    <script>
+        let map;
+        let geocoder;
+        let marker; // Variable pour stocker le marqueur actuel
+
+        // Initialisation de la carte Google
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 48.8566, lng: 2.3522 }, // Paris comme point de départ
+                zoom: 8,
+            });
+            geocoder = new google.maps.Geocoder();
+
+            // Effectuer le géocodage dès que la carte est chargée
+            checkInputsAndGeocode();
+        }
+
+        function checkInputsAndGeocode() {
+            const adresse = "<?php echo $lieu['numerorue'] . ' ' . $lieu['rue'] . ', ' . $lieu['codepostal'] . ' ' . $lieu['ville']; ?>";
+
+            if (!adresse || adresse.trim() === "") {
+                alert("L'adresse est manquante.");
+            } else {
+                geocodeadresse(adresse);
+            }
+        }
+
+        function geocodeadresse(fulladresse) {
+            console.log("Adresse envoyée pour géocodage : ", fulladresse);
+            geocoder.geocode({ 'address': fulladresse }, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK && results[0]) {
+                    console.log("Résultat du géocodage : ", results[0]);
+
+                    // Supprimer l'ancien marqueur s'il existe
+                    if (marker) {
+                        marker.setMap(null);
+                    }
+
+                    // Centrer la carte et placer le marqueur
+                    map.setCenter(results[0].geometry.location);
+                    map.setZoom(15);
+                    marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    console.error("Échec du géocodage : ", status, results); // Affichez plus d'informations
+                }
+            });
+        }
+
+    </script>
+
+        <!-- Inclure l'API Google Maps avec votre clé API -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-            <!-- Initialize Swiper -->
-            <script>
+    <!-- Initialize Swiper -->
+    <script>
         var swiper = new Swiper(".myThumbSlider", {
             loop: true,
             spaceBetween: 10,

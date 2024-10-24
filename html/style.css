@@ -1100,6 +1100,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Effet d'ombre au focus */
 }
 
+.search{
+  margin-top: 110px;
+  margin-bottom: 20px;
+  background-image: url("/img/phare.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--primary30);
+  backdrop-filter: var(--primary30);
+}
+
 .searchoffre{
   display: flex;
   flex-direction: column;
@@ -1113,6 +1124,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: flex;
   width: 70%;
   background-color: var(--primary70);
+  border-radius: 20px;
 }
 
 .carteOffre p{
@@ -1126,7 +1138,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .infoOffre{
-  flex-grow: 1;  
+  flex-grow: 2;  
 }
 
 .searchTitre{
@@ -1155,7 +1167,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .searchAvis{
   padding: 5px;
-  flex-grow: 1;
+  width: 20%;
 }
 
 .avisSearch{
@@ -1231,11 +1243,23 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   } */
   .searchStatutO{
-    color: #008000;
+    background-color: #008000;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 10px;
+    font-size: 0.7em;
+    margin-right: 5px;
+    display: inline-block;
   }
 
   .searchStatutF{
-    color: #b01111;
+    background-color: #b01111;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 10px;
+    font-size: 0.7em;
+    margin-right: 5px;
+    display: inline-block;
   }
   
 
@@ -1474,7 +1498,7 @@ textarea[id="Resume"] {
   margin-left: 675px;
 }
 
-/* #show */
+
 
 #park {
   display: flex;
@@ -1483,14 +1507,13 @@ textarea[id="Resume"] {
 
 #park article>p {
   margin-top: 15px;
-  background-color: pink;
 }
 
-#park input[type="button"] {
+#park input[type="button"],#activity input[type=button] {
   background-color: #1ca4ed;
   height: 50px;
   width: fit-content;
-  padding-inline: 20px;
+  border-radius: 15px ;
   border: none;
   margin-left: 10px;
 }
@@ -1507,6 +1530,7 @@ textarea[id="Resume"] {
 
 #activity {
   background-color: cyan;
+  display: flex;
 
 }
 
@@ -1760,6 +1784,7 @@ button[id="boutonInscriptionPro"] {
   color: red;
   margin-bottom: 20px;
   font-size: 20px;
+  text-align: center;
 }
 
 

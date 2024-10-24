@@ -1,12 +1,7 @@
 <?php 
     // Démarrer la session
     
-    require_once "config.php"; // fichier de connexion à la BDD
-
-    // Préparer et exécuter la requête SQL
-    $stmt = $conn->prepare("SELECT * FROM pact._offre ORDER BY dateCrea DESC");
-    $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    require_once "config.php";
 
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
@@ -46,13 +41,13 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <script src="js/setColor.js"></script>
     <?php require_once "components/header.php"; ?>
     <main class="search">
-        <aside class="sectionFiltre">
+        <!-- <aside class="sectionFiltre">
             <h2>Filtre</h2>
-            <h2>Tri</h2>
-        </aside>
+            <h2>Tri</h2>    
+        </aside> -->
 
         <?php 
-        if (($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] == "pro_prive")) {
+        if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
             $idutilisateur=$_SESSION["idUser"];
             $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idu=$idutilisateur ORDER BY dateCrea DESC");
             $stmt->execute();
