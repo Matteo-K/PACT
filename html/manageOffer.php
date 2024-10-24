@@ -6,7 +6,6 @@
       exit();
   }
 
-
   if (!($typeUser == "pro_public" || $typeUser == "pro_prive")) {
     header("Location: index.php");
     exit();
