@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         $nbImages = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
 
         //On récupère le nb d'images déjà importées 
-        $stmt = $conn->prepare("SELECT * from pact._image where idoffre=$idOffre");
+        $stmt = $conn->prepare("SELECT * from pact._illustre where idoffre=?");
         $stmt->execute([$idOffre]);
         $nbResultats = $stmt->rowCount();
 
