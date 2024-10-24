@@ -124,7 +124,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div>
             <?php
-            $stmt = $conn -> prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre");
+            $stmt = $conn -> prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
             $stmt -> execute();
             $tel = $stmt -> fetch(PDO::FETCH_ASSOC);
 
