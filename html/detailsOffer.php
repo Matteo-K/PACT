@@ -206,8 +206,6 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     $horairesAffichage[] = "Fermé";
                                 }
                                 echo implode(' et ', $horairesAffichage);
-
-                                print_r($horairesAffichage);
                                 ?>
                             </td>
                         </tr>
