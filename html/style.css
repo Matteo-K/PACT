@@ -1561,20 +1561,19 @@ textarea[id="Resume"] {
   height: px;
   width: 100px;
   text-align: center;
-  flex-direction: row;
+  
 }
 
 #activity article>p>textarea[id="textePrestation"]{
   width: 350px;
   height: 50px;
-  flex-direction: row;
+  
 }
 #activity article>p>input[id="numberAct"] {
   width: 100px;
   height: 50px;
-  flex-direction: row;
+  
 }
-
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
