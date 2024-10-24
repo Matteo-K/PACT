@@ -307,7 +307,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
+                            <a onclick="sendData(<?php echo $idOffre ?>, <?php echo $restaurantOuvert ?>)" href="/detailsOffer.php">
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                             <div class="infoOffre">
@@ -366,5 +366,34 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
     </main>
     <?php require_once "components/footer.php"; ?>
+
+    <script>
+        function sendData(idOffre, status) {
+            let formData = new FormData();
+
+            // Ajouter les données
+            formData.append('idOffre', idOffre);
+            formData.append('status', status);  // 'estOuvert' ou 'estFerme'
+
+            // Envoyer la requête POST
+            fetch('detailsOffer.php', {  // Remplace 'url_de_traitement.php' par l'URL de ton script serveur
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();  // Ou response.json() si tu attends une réponse JSON
+                }
+                throw new Error('Erreur lors de l\'envoi de la requête');
+            })
+            .then(data => {
+                console.log('Réponse du serveur:', data);
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+        }
+
+    </script>
 </body>
 </html>
