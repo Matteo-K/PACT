@@ -150,7 +150,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <a id="testtest">
+                            <a href="detailsOffer.php" id="testtest">
                                 <form class="offerForm" action="detailsOffer.php" method="POST" style="display: none;">
                                     <input type="hidden" name="idOffre" id="idOffre" value="<?php echo $idOffre?>">
                                     <input type="hidden" name="status" id="status" value="<?php echo $restaurantOuvert?>">
@@ -308,13 +308,13 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <p id="testtest">
+                            <a href="detailsOffer.php" id="testtest"">
                                 <form class="offerForm" action="detailsOffer.php" method="POST" style="display: none;">
                                     <input type="hidden" name="idOffre" id="idOffre" value="<?php echo $idOffre?>">
                                     <input type="hidden" name="status" id="status" value="<?php echo $restaurantOuvert?>">
                                 </form>
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
-                            </p>
+                            </a>
                             <div class="infoOffre">
                                 <p class="searchTitre"><?php echo $nomOffre; ?></p>
     
