@@ -1544,14 +1544,26 @@ textarea[id="Resume"] {
   display: flex;
   text-align: left;
   margin-left: 675px;
+  
+}
+#activity article>p>label, #activity label[id="labAccess"]{
+  font-size: 24px;
 
 }
-
 #activity article>p>textarea[id="txtAct"] {
   resize: none;
   height: px;
   width: 100px;
   text-align: center;
+}
+
+#activity article>p>textarea[id="textePrestation"]{
+  width: 350px;
+  height: 50px;
+}
+#activity article>p>input[id="numberAct"] {
+  width: 100px;
+  height: 50px;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/

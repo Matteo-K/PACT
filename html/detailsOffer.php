@@ -1,7 +1,7 @@
 <?php
 require_once "config.php";
-$idOffre = $_GET["idoffre"] ?? null;
-$ouvert = $_GET["ouvert"] ?? null;
+$idOffre = $_POST["idoffre"] ?? null;
+$ouvert = $_POST["ouvert"] ?? null;
 
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
