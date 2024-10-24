@@ -154,7 +154,8 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             </div>
         </div>
-
+        
+        <p>Pas de note pour this moment</p>
         <section>
             <h4>Description</h4>
             <p><?php echo htmlspecialchars($result["description"]); ?></p>
