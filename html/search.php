@@ -369,29 +369,18 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
     <script>
         function sendPost(idOffre, restaurantOuvert) {
-            // Préparation des données à envoyer
-            const data = {
-                idOffre: idOffre,
-                restaurantOuvert: restaurantOuvert
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "votre_script.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText); // Pour voir la réponse
+                }
             };
-
-            // Envoi de la requête POST avec fetch
-            fetch('/detailsOffer.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.text())
-            .then(data => {
-                // Redirection ou action en cas de succès
-                window.location.href = '/detailsOffer.php';  // Rediriger vers la page
-            })
-            .catch(error => {
-                console.error('Erreur:', error);
-            });
+            const params = "idoffre=" + encodeURIComponent(idOffre) + "&restaurantOuvert=" + encodeURIComponent(restaurantOuvert);
+            xhr.send(params);
         }
+
     </script>
 
 </body>
