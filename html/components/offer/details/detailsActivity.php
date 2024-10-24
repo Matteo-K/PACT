@@ -36,8 +36,8 @@
             <label>Prestations</label>
             <textarea name="textPrestationsAct" id="textePrestation act"
                 placeholder="Entrer une prestation "></textarea>
-
-            <button type="button" id="ajoutPresta" value=Ajouter class="buttonDetailOffer blueBtnOffer">Ajouter </button>
+                <input type="button" id="buttonAjoutPresta" name="BtnAjoutPresta" value="Ajouter des presations">
+            <!-- <button type="button" id="ajoutPresta" value=Ajouter class="buttonDetailOffer blueBtnOffer">Ajouter </button> -->
 
         </p>
 
