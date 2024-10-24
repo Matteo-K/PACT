@@ -166,7 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
           //Si il n'existe pas on l'ajoute a la table _tag
           if ($result == false) {
-            $stmt = $conn->prepare("INSERT INTO pact._tag (tag) VALUES (?)");
+            $stmt = $conn->prepare("INSERT INTO pact._tag (nomtag) VALUES (?)");
             $stmt->execute([$tag]);
             echo "tag ajouté a la table générale";
           }
