@@ -151,9 +151,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <p onclick="sendPost(<?php echo $idOffre; ?>, '<?php echo $restaurantOuvert; ?>')">
+                            <a onclick="sendPost(<?php echo $idOffre; ?>, '<?php echo $restaurantOuvert; ?>')">
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
-                            </p>
+                            </a>
                             <div class="infoOffre">
                                 
                                 <p class="searchTitre"><?php echo $nomOffre; ?></p>
@@ -307,9 +307,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <p onclick="sendPost(<?php echo $idOffre; ?>, '<?php echo $restaurantOuvert; ?>')">
+                            <a onclick="sendPost(<?php echo $idOffre; ?>, '<?php echo $restaurantOuvert; ?>')">
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
-                            </p>
+                            </a>
 
                             <div class="infoOffre">
                                 <p class="searchTitre"><?php echo $nomOffre; ?></p>
