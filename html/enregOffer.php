@@ -221,19 +221,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         
         // Ajoute dans la base de donnée les heures pour chaque jour
         // Si fermé ou les champs son vides, on ajoute pas dans la base de donnée
-        foreach ($jour_semaine as $value) {
-          $ferme = isset($_POST["check".$value])?true:false;
-          $ouvMidi = isset($_POST["horairesOuv1".$value]) ? $_POST["horairesOuv1".$value] : "";
-          $fermMidi = isset($_POST["horairesF1".$value]) ? $_POST["horairesF1".$value] : "";
-          $ouvSoir = isset($_POST["horairesOuv2".$value]) ? $_POST["horairesOuv2".$value] : "";
-          $fermSoir = isset($_POST["horairesF2".$value]) ? $_POST["horairesF2".$value] : "";
-          // Si il n'est pas fermé et que les deux entré ne sont pas vide
-          if (!($ferme || empty($ouvMidi) || empty($fermMidi))) {
-            // Ajoute les horaires du midi au jour de la semaine
-          }
-          if (!($ferme || empty($ouvSoir) || empty($fermSoir))) {
-            // Ajoute les horaires du soir au jour de la semaine
-          }
+        foreach ($jours_semaine as $jour) {
+            // Vérifier si le jour est fermé
+            if (!isset($_POST["check$jour"])) {
+                // Récupérer les horaires
+                $horairesOuv1 = $_POST["horairesOuv1$jour"] ?? null; // Utiliser null si non défini
+                $horairesF1 = $_POST["horairesF1$jour"] ?? null; // Utiliser null si non défini
+                $horairesOuv2 = $_POST["horairesOuv2$jour"] ?? null; // Utiliser null si non défini
+                $horairesF2 = $_POST["horairesF2$jour"] ?? null; // Utiliser null si non défini
+
+                // Ajouter les horaires au Midi
+                if ($horairesOuv1 && $horairesF1) {
+                    // Vérifier que l'horaire d'ouverture est avant l'horaire de fermeture
+                    if ($horairesOuv1 < $horairesF1) {
+                        // Requête ajout dans la base de donnée midi
+                        /*
+                        $stmt = $conn->prepare("SELECT o.idoffre FROM pact._offre o ORDER BY idoffre DESC LIMIT 1");
+                        $stmt->execute();
+                        $result = $stmt->fetch(PDO::FETCH_ASSOC);*/
+                        if ($result !== false) {
+                          // si existe déjà, on modifie
+                          /*
+                          $stmt = $conn->prepare("UPDATE pact._offre SET mail=?, telephone=?, affiche=?, urlsite=? WHERE idoffre= ?");
+                          $stmt->execute([$mail, $telephone, $affiche, $site, $idOffre]);*/
+                        } {
+                          // sinon ajoute
+                          
+                        }
+                    }
+                }
+
+                if ($horairesOuv2 && $horairesF2) {
+                    // Requête ajout dans la base de donnée Soir
+                }
+            }
         }
         break;
 
