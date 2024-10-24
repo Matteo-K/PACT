@@ -74,9 +74,9 @@ try {
         elementTag.classList.add("tag");
         elementTag.textContent = valeurTag;
         const hidenInputTag = document.createElement("input");
-        hidenInputTag.type = "hiden";
-        hidenInputTag.value = $valeurTag;
-        hidenInputTag.name = $valeurTag;
+        hidenInputTag.type = "hidden";
+        hidenInputTag.value = valeurTag;
+        hidenInputTag.name = valeurTag;
 
 
         // Ajoute un événement pour supprimer le tag au clic
