@@ -206,6 +206,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             }
             break;
           case 'activite':
+            $duree = $_POST["duréeAct"];
+            $age = $_POST["ageAct"];
+            $accessibilite = $_POST["Accessibilite"];
             break;
           case 'spectacle':
             break;

@@ -422,6 +422,7 @@ header > div > a > div {
 .guideComplete {
   background-color: rgb(21, 176, 21) !important;
   box-shadow: inset -4px -4px 4px #008000 !important;
+  color: var(--text-light) !important;
   transition: all 0.3s ease;
 }
 

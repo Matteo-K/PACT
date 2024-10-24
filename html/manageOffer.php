@@ -52,7 +52,6 @@
       </ul>
     </aside>
     <section>
-      <?php echo "id offre : $idOffre, page : $step"; ?>
       <?php
         // Affichage du formulaire suivant l'étape indiquer par un chiffre dans la barre de recherche avec un require
         $partOffer;
