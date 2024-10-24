@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
       case 2:
         // Détails offre update
 
-        print_r($_FILES);
+        print_r($_POST);
         
         // Informations obligatoires (Titre, Description) + résumé
         $titre = $_POST["nom"];
@@ -118,10 +118,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         $dossierImg = "../../img/imageOffre/";
         $imageCounter = 0;  // Compteur pour renommer les images
 
-        $totalFiles = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
+        $nbImages = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
 
         // Boucle à travers chaque fichier uploadé
-        for ($i = 0; $i < $totalFiles && $imageCounter < $maxImages; $i++) {
+        for ($i = 0; $i < $nbImages; $i++) {
           $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
           $fileName = $_FILES['ajoutPhoto']['name'][$i];
           $fileError = $_FILES['ajoutPhoto']['error'][$i];
