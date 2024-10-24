@@ -1,7 +1,7 @@
 <?php
-$pageDirection = isset($_POST['pageCurrent']) ? $_POST['pageCurrent'] : 1;
-$idOffre = $_POST["idOffre"];
-$idUser = $_POST["idUser"];
+$pageDirection = 2; //isset($_POST['pageCurrent']) ? $_POST['pageCurrent'] : 1;
+$idOffre = 11;// $_POST["idOffre"];
+$idUser = 2; //$_POST["idUser"];
 
 session_start();
 require_once 'db.php';
@@ -170,6 +170,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             break;
         }
 
+        
         // Traitement des tags
         $tags = $_POST["tags"];
 
@@ -344,5 +345,5 @@ if ($pageDirection >= 1) {
 }
 ?>
 <script>
-    document.getElementById('myForm').submit();
+    //document.getElementById('myForm').submit();
 </script>
