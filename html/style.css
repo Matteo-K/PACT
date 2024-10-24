@@ -1100,9 +1100,68 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Effet d'ombre au focus */
 }
 
+.searchoffre{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  padding-top: 30px;
+  gap: 20px;
+}
 
+.carteOffre{
+  display: flex;
+  width: 70%;
+  background-color: var(--primary70);
+}
 
-@media (max-width: 700px){
+.carteOffre p{
+  margin: 2px;
+}
+
+.searchImage{
+  object-fit: contain;
+  width: 290px;
+  height: 170px;
+}
+
+.infoOffre{
+  flex-grow: 1;  
+}
+
+.searchTitre{
+  font-size: 24px;
+  color: white;
+}
+
+.searchResume{
+  font-size: 12px;
+}
+
+.searchTag {
+  background-color: var(--accent);
+  color: #000;
+  padding: 5px 5px;
+  border-radius: 10px;
+  font-size: 0.7em;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.searchNote{
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchAvis{
+  padding: 5px;
+  flex-grow: 1;
+}
+
+.avisSearch{
+  font-size: 0.7em;
+}
+/* @media (max-width: 700px){
   .search{
     margin-top: 220px;
   }
@@ -1136,6 +1195,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .infoOffre{
+
+    
     padding-left: 20px;
     padding-right: 20px;
     color: var(--bloc);
@@ -1168,6 +1229,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   }
 
+  } */
   .searchStatutO{
     color: #008000;
   }
@@ -1175,8 +1237,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .searchStatutF{
     color: #b01111;
   }
-}
-
+  
 
 
 
@@ -1305,6 +1366,59 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   max-width: 1200px;
 }
 
+
+
+
+table {
+  width: 50em; /* Ajustez la largeur selon vos besoins */
+  border-collapse: separate; /* Utiliser 'separate' pour afficher les bordures */
+  border-spacing: 0; /* Optionnel : pour supprimer l'espace entre les cellules */
+  margin: 20px auto; /* Centrer le tableau horizontalement */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre */
+  border: 2px solid var(--accent); /* Ajout de la bordure au tableau */
+  border-radius: 20px 20px 0 0; /* Coins arrondis pour le tableau */
+  overflow: hidden; /* Pour que le border-radius soit visible sur les cellules */
+}
+
+
+
+td[class="jourSemaine"]{
+  font-family: "Belanosima", sans-serif;
+  
+}
+td, th{
+  padding: 10px; /* Ajoutez un peu de remplissage */
+  font-size: 24px;
+}
+th{
+  border-radius: 20px 20px 0 0;
+  font-family: "Belanosima", sans-serif;
+  font-size: 30px;
+}
+thead {
+  background-color: var(--accent);
+
+}
+
+tbody{
+  border: 2px solid var(--accent);
+}
+
+tbody tr:nth-child(even) td {
+  background-color: var(--background); /* Couleur des cellules paires */
+}
+
+tbody tr:nth-child(odd) td {
+  background-color: #fff; /* Couleur des cellules impaires (blanc) */
+}
+
+tbody td:first-child {
+  text-align: left; /* Alignement du jour à gauche */
+}
+
+tbody td:last-child {
+  text-align: right; /* Alignement de l'horaire à droite */
+}
 
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
