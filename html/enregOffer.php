@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         $categorie = $_POST["categorie"];
 
         // Traitement des images
-        $dossierImg = "../../img/imageOffre/";
+        $dossierImg = "img/imageOffre/";
         $imageCounter = 0;  // Compteur pour renommer les images
 
         $nbImages = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           if ($fileError === UPLOAD_ERR_OK) {
             // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
             $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-            $dossierImgNom = $dossierImg . $newFileName;
+            $dossierImgNom = $dossierImg . $fileName;
 
             // Déplace l'image vers le dossier cible
             if (move_uploaded_file($fileTmpPath, $dossierImgNom)) {
