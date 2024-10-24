@@ -154,40 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         }
 
 
-        // Ajout des informations suivant la catégorie de l'offre
-        switch ($_POST["categorie"]) {
-          case 'restaurant':
-            $gammeDePrix = $_POST["gamme_prix"];
-            echo $gammeDePrix;
-            $url = null;
-            $stmt = $conn->prepare("SELECT * from pact._restauration where idoffre=?");
-            $stmt->execute([$idOffre]);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            // Si pas de donnée, on créer
-            if ($result === false) {
-              $stmt = $conn->prepare("INSERT INTO pact._restauration (idoffre, gammedeprix, urlmenu) VALUES (?, ?, ?) ");
-              $stmt->execute([$idOffre, $gammeDePrix, $url]);
-            } else {
-              // sinon modifie
-              $stmt = $conn->prepare("UPDATE pact._restauration SET gammedeprix=?, urlmenu=? where idoffre=?");
-              $stmt->execute([$gammeDePrix, $url, $idOffre]);
-            }
-            break;
-          case 'parc':
-            break;
-          case 'activite':
-            break;
-          case 'spectacle':
-            break;
-          case 'visite':
-            break;
-          
-          default:
-            # code...
-            break;
-        }
-
-        
+         
         // Traitement des tags
         $tags = $_POST["tags"];
 
@@ -236,6 +203,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
               break;
           }
         }
+
+
+        // Ajout des informations suivant la catégorie de l'offre
+        switch ($_POST["categorie"]) {
+          case 'restaurant':
+            $gammeDePrix = $_POST["gamme_prix"];
+            echo $gammeDePrix;
+            $url = null;
+            $stmt = $conn->prepare("SELECT * from pact._restauration where idoffre=?");
+            $stmt->execute([$idOffre]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            // Si pas de donnée, on créer
+            if ($result === false) {
+              $stmt = $conn->prepare("INSERT INTO pact._restauration (idoffre, gammedeprix, urlmenu) VALUES (?, ?, ?) ");
+              $stmt->execute([$idOffre, $gammeDePrix, $url]);
+            } else {
+              // sinon modifie
+              $stmt = $conn->prepare("UPDATE pact._restauration SET gammedeprix=?, urlmenu=? where idoffre=?");
+              $stmt->execute([$gammeDePrix, $url, $idOffre]);
+            }
+            break;
+          case 'parc':
+            break;
+          case 'activite':
+            break;
+          case 'spectacle':
+            break;
+          case 'visite':
+            break;
+          
+          default:
+            # code...
+            break;
+        }
+
 
         break;
       
