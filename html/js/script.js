@@ -71,9 +71,13 @@ try {
 
         // Crée l'élément pour afficher le tag
         const elementTag = document.createElement("span");
-        const hidenInputTag = document.createElement(`input type="hiden" value="${$valeurTag}" name="${$valeurTag}" `);
         elementTag.classList.add("tag");
         elementTag.textContent = valeurTag;
+        const hidenInputTag = document.createElement("input");
+        hidenInputTag.type = "hiden";
+        hidenInputTag.value = $valeurTag;
+        hidenInputTag.name = $valeurTag;
+
 
         // Ajoute un événement pour supprimer le tag au clic
         elementTag.addEventListener("click", function () {
