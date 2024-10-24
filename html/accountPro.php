@@ -42,7 +42,7 @@
         } 
         
         catch (Exception $e) {
-            $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
         }
 
 
@@ -59,7 +59,7 @@
         } 
         
         catch (Exception $e) {
-            $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
         }
 
 
