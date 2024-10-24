@@ -1981,7 +1981,7 @@ p[id="legendeBoutonLienPro"] {
   /* Réduire la taille des titres */
   h1[id="connexionTitre"] {
     font-size: 45px;
-    margin-top: 20vh;
+    margin-top: 15vh;
   }
 
   h1[id="pasDeCompteTitre"] {
