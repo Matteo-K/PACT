@@ -140,13 +140,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             } 
 
             try {
-              $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
+              $stmt = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
               $stmt->execute([$dossierImg, $fileName]);
 
               $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
               $stmt->execute([$idOffre, $dossierImg]);
-            } catch (PDOException $e) {
-              echo "Une erreur s'est produite lors de la création de l'offre: \n" . $e->getMessage() . "\n";
+            } catch (e) {
+
             }
           } 
         }
@@ -170,7 +170,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             break;
         }
 
-        // Traitement des tags (Bon courage!)
+        // Traitement des tags
+        $tags = $_POST["tags"];
+
+        foreach ($variable as $key => $tag) {
+          //On verifie si le tag existe dans la BDD
+          $stmt = $conn->prepare("SELECT * FROM pact._tag WHERE tag = ?");
+          $stmt->execute([$tag]);
+          $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+          //Si il n'existe pas on l'ajoute a la table _tag
+          if ($result != false) {
+            $stmt = $conn->prepare("INSERT INTO pact._tag (tag) VALUES (?)");
+            $stmt->execute([$tag]);
+
+            // et dans tous les cas on ajoute la relation tag <-> offre (différentes tables selon la catégorie)
+            switch ($_POST["categorie"]) {
+              case 'restaurant':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_restaurant (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                break;
+              case 'parc':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_parc (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                break;
+              case 'activite':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_act (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                break;
+              case 'spectacle':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_spec (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                break;
+              case 'visite':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_visite (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                break;
+              default:
+                break;
+            }
+          }
+        }
 
         break;
       
