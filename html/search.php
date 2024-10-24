@@ -40,10 +40,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <script src="js/setColor.js"></script>
     <?php require_once "components/header.php"; ?>
     <main class="search">
-        <aside class="sectionFiltre">
-            <h2>Filtre</h2>
-            <h2>Tri</h2>
-        </aside>
 
         <?php 
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
