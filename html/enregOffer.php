@@ -196,7 +196,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
         foreach ($tags as $key => $tag) {
           //On verifie si le tag existe dans la BDD
-          $stmt = $conn->prepare("SELECT * FROM pact._tag WHERE tag = ?");
+          $stmt = $conn->prepare("SELECT * FROM pact._tag WHERE nomtag = ?");
           $stmt->execute([$tag]);
           $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
