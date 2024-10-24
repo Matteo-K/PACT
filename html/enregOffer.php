@@ -1,7 +1,7 @@
 <?php
-$pageDirection = 2; //isset($_POST['pageCurrent']) ? $_POST['pageCurrent'] : 1;
-$idOffre = 11;// $_POST["idOffre"];
-$idUser = 2; //$_POST["idUser"];
+$pageDirection = $pageDirection = $_POST['pageCurrent'] ?? 1;
+$idOffre = $_POST["idOffre"];
+$idUser = $_POST["idUser"];
 
 session_start();
 require_once 'db.php';
