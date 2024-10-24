@@ -71,6 +71,7 @@ try {
 
         // Crée l'élément pour afficher le tag
         const elementTag = document.createElement("span");
+        const hidenInputTag = document.createElement(`input type="hiden" value="${$valeurTag}" name="${$valeurTag}" `);
         elementTag.classList.add("tag");
         elementTag.textContent = valeurTag;
 
@@ -78,6 +79,7 @@ try {
         elementTag.addEventListener("click", function () {
           tags.splice(tags.indexOf(valeurTag), 1); // Supprime un élément à l'index trouvé
           sectionTag.removeChild(elementTag); // Supprime l'élément visuel correspondant au tag
+          sectionTag.removeChild(input[value=`"${$valeurTag}"`]); // Supprime l'input caché du form correspondant
           pTag.style.color = "black"; //on remet la couleur par defaut au cas où c'etait en rouge
           compteurTags--;
         });
