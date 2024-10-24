@@ -1098,6 +1098,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .search {
   margin-top: 110px;
   padding-bottom: 20px;
+  padding-top: 20px;
   background-image: url("/img/phare.jpg");
   background-attachment: fixed;
   background-position: center;
@@ -1105,7 +1106,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-repeat: no-repeat;
   background-color: var(--primary30);
   backdrop-filter: var(--primary30);
-  padding-top: 110px;
 }
 
 .searchoffre {
