@@ -121,8 +121,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
         $nbImages = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
 
+        //On récupère le nb d'images déjà importées 
+        $stmt = $conn->prepare("SELECT * from pact._illustre where idoffre=?");
+        $stmt->execute([$idOffre]);
+        $nbResultats = $stmt->rowCount();
+
         // Boucle à travers chaque fichier uploadé
-        for ($i = 0; $i < $nbImages; $i++) {
+        for ($i = $nbResultats; $i < $nbImages && $i < 10; $i++) {
           $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
           $fileName = $_FILES['ajoutPhoto']['name'][$i];
           $fileError = $_FILES['ajoutPhoto']['error'][$i];
@@ -141,10 +146,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
             try {
               $stmt = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
-              $stmt->execute([$dossierImg, $fileName]);
+              $stmt->execute([$dossierImgNom, $fileName]);
 
               $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
-              $stmt->execute([$idOffre, $dossierImg]);
+              $stmt->execute([$idOffre, $dossierImgNom]);
             } catch (e) {
 
             }
@@ -189,7 +194,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         // Traitement des tags
         $tags = $_POST["tags"];
 
-        foreach ($variable as $key => $tag) {
+        foreach ($tags as $key => $tag) {
           //On verifie si le tag existe dans la BDD
           $stmt = $conn->prepare("SELECT * FROM pact._tag WHERE tag = ?");
           $stmt->execute([$tag]);
