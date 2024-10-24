@@ -1136,6 +1136,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   object-fit: cover;
   width: 290px;
   height: 170px;
+  margin-left: 5px;
+  border-radius: 20px;
 }
 
 .infoOffre{
