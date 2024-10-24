@@ -1,7 +1,7 @@
 <?php
 $pageDirection = $_POST['pageCurrent'] ?? 1;
-$idOffre = $_POST["idOffre"] ?? "";
-$idUser = $_POST["idUser"] ?? "";
+$idOffre = $_POST["idOffre"];
+$idUser = $_POST["idUser"];
 
 session_start();
 require_once 'db.php';
@@ -144,15 +144,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
               $imageCounter++;
             } 
 
-            try {
-              $stmt = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
-              $stmt->execute([$dossierImgNom, $fileName]);
+            $stmt = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
+            $stmt->execute([$dossierImgNom, $fileName]);
 
-              $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
-              $stmt->execute([$idOffre, $dossierImgNom]);
-            } catch (e) {
+            $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
+            $stmt->execute([$idOffre, $dossierImgNom]);
 
-            }
           } 
         }
 
@@ -201,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
           //Si il n'existe pas on l'ajoute a la table _tag
-          if ($result != false) {
+          if ($result == false) {
             $stmt = $conn->prepare("INSERT INTO pact._tag (tag) VALUES (?)");
             $stmt->execute([$tag]);
             echo "tag ajouté a la table générale";
