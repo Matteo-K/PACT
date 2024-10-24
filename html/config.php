@@ -7,5 +7,7 @@ if($isLoggedIn){
 
     $idUser = $_SESSION["idUser"];
     $typeUser = $_SESSION["typeUser"];
+}else{
+    $typeUser = "visiteur";
 }
 ?>
