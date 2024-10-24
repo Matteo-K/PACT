@@ -103,18 +103,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
       
       case 2:
         // Détails offre update
+
+        print_r($_POST);
         
-        // Information obligatoire (Titre, Description) + résumer
+        // Informations obligatoires (Titre, Description, Catégorie) + résumé
         $titre = $_POST["nom"];
         $description = $_POST["description"];
+        //$categorie = $_POST
         $resume = empty($_POST["resume"]) ? null : $_POST["resume"];
         $stmt = $conn->prepare("UPDATE pact._offre SET nom= ?, description= ?, resume= ? WHERE idoffre= ?");
         $stmt->execute([$titre, $description, $resume, $idOffre]);
 
         // Traitement des images
         $dossierImg = "../../img/imageOffre/";
-        print_r($_FILES);
-        print_r($_FILES['ajoutPhoto']);
         $imageCounter = 0;  // Compteur pour renommer les images
 
         $totalFiles = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
@@ -136,13 +137,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
               echo "L'image $fileName a été uploadée avec succès.<br>";
               $imageCounter++;
             } 
-            else {
-              echo "Erreur lors du téléchargement de l'image $fileName.<br>";
-            }
-          } else {
-            echo "Le fichier $fileName n'est pas un type d'image valide.<br>";
-            echo "Erreur lors du téléchargement de l'image $fileName (Erreur $fileError).<br>";
-          }
+            // else {
+            //   echo "Erreur lors du téléchargement de l'image $fileName.<br>";
+            // }
+          } 
+          // else {
+          //   echo "Le fichier $fileName n'est pas un type d'image valide.<br>";
+          //   echo "Erreur lors du téléchargement de l'image $fileName (Erreur $fileError).<br>";
+          // }
+        }
+
+        // Ajout des camps obligatoires
+        if (isset($titre, $description, categ) && !in_array("ALaUne",$options)) {
+          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
+          $stmt->execute([$idOffre]);
         }
 
         // Ajout des informations suivant la catégorie de l'offre
