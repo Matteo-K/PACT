@@ -151,7 +151,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <a onclick="sendData(<?php echo $idOffre ?>, <?php echo $restaurantOuvert ?>)" href="/detailsOffer.php"">
+                            <a onclick="sendPost(<?php echo $idOffre; ?>, '<?php echo $restaurantOuvert; ?>')">
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                             <div class="infoOffre">
@@ -307,9 +307,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <a onclick="sendData(<?php echo $idOffre ?>, <?php echo $restaurantOuvert ?>)" href="/detailsOffer.php">
+                            <a onclick="sendPost(<?php echo $idOffre; ?>, '<?php echo $restaurantOuvert; ?>')">
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
+
                             <div class="infoOffre">
                                 <p class="searchTitre"><?php echo $nomOffre; ?></p>
     
@@ -368,32 +369,20 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <?php require_once "components/footer.php"; ?>
 
     <script>
-        function sendData(idOffre, status) {
-            let formData = new FormData();
-
-            // Ajouter les données
-            formData.append('idOffre', idOffre);
-            formData.append('status', status);  // 'estOuvert' ou 'estFerme'
-
-            // Envoyer la requête POST
-            fetch('detailsOffer.php', {  // Remplace 'url_de_traitement.php' par l'URL de ton script serveur
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.text();  // Ou response.json() si tu attends une réponse JSON
+        function sendPost(idOffre, restaurantOuvert) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "votre_script.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText); // Pour voir la réponse
                 }
-                throw new Error('Erreur lors de l\'envoi de la requête');
-            })
-            .then(data => {
-                console.log('Réponse du serveur:', data);
-            })
-            .catch(error => {
-                console.error('Erreur:', error);
-            });
+            };
+            const params = "idoffre=" + encodeURIComponent(idOffre) + "&restaurantOuvert=" + encodeURIComponent(restaurantOuvert);
+            xhr.send(params);
         }
 
     </script>
+
 </body>
 </html>
