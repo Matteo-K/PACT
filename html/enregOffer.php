@@ -109,10 +109,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         // Informations obligatoires (Titre, Description) + résumé
         $titre = $_POST["nom"];
         $description = $_POST["description"];
-        //$categorie = $_POST
         $resume = empty($_POST["resume"]) ? null : $_POST["resume"];
         $stmt = $conn->prepare("UPDATE pact._offre SET nom= ?, description= ?, resume= ? WHERE idoffre= ?");
         $stmt->execute([$titre, $description, $resume, $idOffre]);
+
+        $categorie = $_POST["categorie"];
 
         // Traitement des images
         $dossierImg = "../../img/imageOffre/";
@@ -147,11 +148,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           // }
         }
 
-        // Ajout des champs obligatoires
-        if ($titre && $description && $categorie){
-          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
-          $stmt->execute([$idOffre]);
-        }
 
         // Ajout des informations suivant la catégorie de l'offre
         switch ($_POST["categorie"]) {
@@ -182,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         $codePostal = $_POST["codepostal"];
         $ville = $_POST["ville2"];
         $pays = 'France';
-        // obtention du split de l'adresse par une expression régulière
+         // obtention du split de l'adresse par une expression régulière
         preg_match('/^(\d+)\s+(.*)$/', $adresse, $matches);
         $numerorue = $matches[1];
         $rue = $matches[2];
