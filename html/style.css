@@ -1549,7 +1549,7 @@ textarea[id="Resume"] {
   
 }
 
-#activity article{
+#activity article>p{
   padding: 10px;
 }
 #activity article>p>label, #activity label[id="labAccess"]{
