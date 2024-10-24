@@ -106,22 +106,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
         print_r($_POST);
         
-        // Informations obligatoires (Titre, Description, Catégorie) + résumé
+        // Informations obligatoires (Titre, Description) + résumé
         $titre = $_POST["nom"];
         $description = $_POST["description"];
-        //$categorie = $_POST
         $resume = empty($_POST["resume"]) ? null : $_POST["resume"];
         $stmt = $conn->prepare("UPDATE pact._offre SET nom= ?, description= ?, resume= ? WHERE idoffre= ?");
         $stmt->execute([$titre, $description, $resume, $idOffre]);
 
+        $categorie = $_POST["categorie"];
+
         // Traitement des images
-        $dossierImg = "../../img/imageOffre/";
+        $dossierImg = "img/imageOffre/";
         $imageCounter = 0;  // Compteur pour renommer les images
 
-        $totalFiles = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
+        $nbImages = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
 
         // Boucle à travers chaque fichier uploadé
-        for ($i = 0; $i < $totalFiles && $imageCounter < $maxImages; $i++) {
+        for ($i = 0; $i < $nbImages; $i++) {
           $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
           $fileName = $_FILES['ajoutPhoto']['name'][$i];
           $fileError = $_FILES['ajoutPhoto']['error'][$i];
@@ -130,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           if ($fileError === UPLOAD_ERR_OK) {
             // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
             $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-            $dossierImgNom = $dossierImg . $newFileName;
+            $dossierImgNom = $dossierImg . $fileName;
 
             // Déplace l'image vers le dossier cible
             if (move_uploaded_file($fileTmpPath, $dossierImgNom)) {
@@ -147,11 +148,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           // }
         }
 
-        // Ajout des champs obligatoires
-        if ($titre && $description && $categorie){
-          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
-          $stmt->execute([$idOffre]);
-        }
 
         // Ajout des informations suivant la catégorie de l'offre
         switch ($_POST["categorie"]) {
@@ -182,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         $codePostal = $_POST["codepostal"];
         $ville = $_POST["ville2"];
         $pays = 'France';
-        // obtention du split de l'adresse par une expression régulière
+         // obtention du split de l'adresse par une expression régulière
         preg_match('/^(\d+)\s+(.*)$/', $adresse, $matches);
         $numerorue = $matches[1];
         $rue = $matches[2];
@@ -305,5 +301,5 @@ if ($pageDirection >= 1) {
 }
 ?>
 <script>
-    document.getElementById('myForm').submit();
+    //document.getElementById('myForm').submit();
 </script>
