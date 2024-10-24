@@ -1135,14 +1135,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .searchImage{
   object-fit: cover;
   width: 290px;
-  height: fit-content;
+  height: 170px;
   margin-right: 5px;
   margin-left: 0;
   border-radius: 20px;
 }
 
 .infoOffre{
-  flex-grow: 2;  
+  flex-grow: 2;
+  height: auto;
 }
 
 .searchTitre{
