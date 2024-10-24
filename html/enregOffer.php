@@ -104,9 +104,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
       case 2:
         // Détails offre update
 
-        print_r($_POST);
+        print_r($_FILES);
         
-        // Informations obligatoires (Titre, Description, Catégorie) + résumé
+        // Informations obligatoires (Titre, Description) + résumé
         $titre = $_POST["nom"];
         $description = $_POST["description"];
         //$categorie = $_POST
