@@ -185,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
                  
         // Traitement des tags
-        $tags = $_POST["tags"];
+        $tags = $_POST["tags"] ?? [];
 
         foreach ($tags as $key => $tag) {
           //On verifie si le tag existe dans la BDD
