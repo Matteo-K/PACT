@@ -116,16 +116,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         // Traitement des images
         $dossierImg = "../../img/imageOffre/";
         print_r($_FILES);
-        print_r($_FILES['ajoutPhotos']);
+        print_r($_FILES['ajoutPhoto']);
         $imageCounter = 0;  // Compteur pour renommer les images
 
-        $totalFiles = count($_FILES['ajoutPhotos']['name']); //nb d'images uploadé
+        $totalFiles = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
 
         // Boucle à travers chaque fichier uploadé
         for ($i = 0; $i < $totalFiles && $imageCounter < $maxImages; $i++) {
-          $fileTmpPath = $_FILES['ajoutPhotos']['tmp_name'][$i];
-          $fileName = $_FILES['ajoutPhotos']['name'][$i];
-          $fileError = $_FILES['ajoutPhotos']['error'][$i];
+          $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
+          $fileName = $_FILES['ajoutPhoto']['name'][$i];
+          $fileError = $_FILES['ajoutPhoto']['error'][$i];
 
         // Vérifie si l'image a été uploadée sans erreur
           if ($fileError === UPLOAD_ERR_OK) {
