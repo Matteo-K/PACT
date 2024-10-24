@@ -1544,9 +1544,12 @@ textarea[id="Resume"] {
   display: flex;
   text-align: left;
   margin-left: 675px;
+  
+}
+#activity article>p>label, #activity label{
+  font-size: 24px;
 
 }
-
 #activity article>p>textarea[id="txtAct"] {
   resize: none;
   height: px;
