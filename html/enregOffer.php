@@ -102,13 +102,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
         $imageCounter = 0;  // Compteur pour renommer les images
 
-        $totalFiles = count($_FILES['photos']['name']); //nb d'images uploadé
+        $totalFiles = count($_FILES['ajoutPhotos']['name']); //nb d'images uploadé
 
         // Boucle à travers chaque fichier uploadé
         for ($i = 0; $i < $totalFiles && $imageCounter < $maxImages; $i++) {
-          $fileTmpPath = $_FILES['photos']['tmp_name'][$i];
-          $fileName = $_FILES['photos']['name'][$i];
-          $fileError = $_FILES['photos']['error'][$i];
+          $fileTmpPath = $_FILES['ajoutPhotos']['tmp_name'][$i];
+          $fileName = $_FILES['ajoutPhotos']['name'][$i];
+          $fileError = $_FILES['ajoutPhotos']['error'][$i];
 
         // Vérifie si l'image a été uploadée sans erreur
           if ($fileError === UPLOAD_ERR_OK) {
