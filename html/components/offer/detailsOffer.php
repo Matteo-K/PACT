@@ -5,7 +5,6 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $titre = $result["nom"] ?? "";
 $description = $result["description"] ?? "";
 $resume = $result["resume"] ?? "";
-print_r($result);
 ?>
 <form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
