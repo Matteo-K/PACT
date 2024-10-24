@@ -151,7 +151,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <a onclick="sendData(<?php echo $idOffre ?>, <?php echo $restaurantOuvert ?>)" href="/detailsOffer.php"">
+                            <a href="#" onclick="sendPost(<?php echo $idOffre; ?>, '<?php echo $restaurantOuvert; ?>')">
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                             <div class="infoOffre">
@@ -307,7 +307,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <a onclick="sendData(<?php echo $idOffre ?>, <?php echo $restaurantOuvert ?>)" href="/detailsOffer.php">
+                            <a href="#" onclick="sendPost(<?php echo $idOffre; ?>, '<?php echo $restaurantOuvert; ?>')">
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                             <div class="infoOffre">
@@ -368,32 +368,31 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <?php require_once "components/footer.php"; ?>
 
     <script>
-        function sendData(idOffre, status) {
-            let formData = new FormData();
+        function sendPost(idOffre, restaurantOuvert) {
+            // Préparation des données à envoyer
+            const data = {
+                idOffre: idOffre,
+                restaurantOuvert: restaurantOuvert
+            };
 
-            // Ajouter les données
-            formData.append('idOffre', idOffre);
-            formData.append('status', status);  // 'estOuvert' ou 'estFerme'
-
-            // Envoyer la requête POST
-            fetch('detailsOffer.php', {  // Remplace 'url_de_traitement.php' par l'URL de ton script serveur
+            // Envoi de la requête POST avec fetch
+            fetch('/detailsOffer.php', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
             })
-            .then(response => {
-                if (response.ok) {
-                    return response.text();  // Ou response.json() si tu attends une réponse JSON
-                }
-                throw new Error('Erreur lors de l\'envoi de la requête');
-            })
+            .then(response => response.text())
             .then(data => {
-                console.log('Réponse du serveur:', data);
+                // Redirection ou action en cas de succès
+                window.location.href = '/detailsOffer.php';  // Rediriger vers la page
             })
             .catch(error => {
                 console.error('Erreur:', error);
             });
         }
-
     </script>
+
 </body>
 </html>
