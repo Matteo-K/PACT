@@ -138,14 +138,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
               echo "L'image $fileName a été uploadée avec succès.<br>";
               $imageCounter++;
             } 
-            // else {
-            //   echo "Erreur lors du téléchargement de l'image $fileName.<br>";
-            // }
+
+            try {
+              $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
+              $stmt->execute([$dossierImg, $fileName]);
+            } catch (PDOException $e) {
+              echo "Une erreur s'est produite lors de la création de l'offre: \n" . $e->getMessage() . "\n";
+            }
           } 
-          // else {
-          //   echo "Le fichier $fileName n'est pas un type d'image valide.<br>";
-          //   echo "Erreur lors du téléchargement de l'image $fileName (Erreur $fileError).<br>";
-          // }
         }
 
 
