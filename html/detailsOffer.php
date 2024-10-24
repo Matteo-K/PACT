@@ -5,10 +5,7 @@ $ouvert = $_POST["ouvert"] ?? null;
 
 echo $idOffre;
 // Vérifiez si idoffre est défini
-if (!$idOffre) {
-    header("location: index.php");
-    exit();
-}
+
 
 // Fonction pour récupérer les horaires
 function getSchedules($conn, $idOffre) {
