@@ -376,7 +376,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
             formData.append('status', status);  // 'estOuvert' ou 'estFerme'
 
             // Envoyer la requête POST
-            fetch('url_de_traitement.php', {  // Remplace 'url_de_traitement.php' par l'URL de ton script serveur
+            fetch('detailsOffer.php', {  // Remplace 'url_de_traitement.php' par l'URL de ton script serveur
                 method: 'POST',
                 body: formData
             })
