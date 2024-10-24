@@ -13,8 +13,8 @@
 
 
   $nameOffer = "";
-  $step =  isset($_POST["page"]) ? $_POST["page"] : 1;
-  $idOffre = isset($_POST["idOffre"])?$_POST["idOffre"]:"";
+  $step =  2; //isset($_POST["page"]) ? $_POST["page"] : 1;
+  $idOffre = 11; //isset($_POST["idOffre"])?$_POST["idOffre"]:"";
   require_once "components/offer/checkOffer.php";
 ?>
 <!DOCTYPE html>
