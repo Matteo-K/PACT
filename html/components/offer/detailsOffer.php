@@ -5,7 +5,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $titre = $result["nom"] ?? "";
 $description = $result["description"] ?? "";
 $resume = $result["resume"] ?? "";
-
+print_r($result);
 ?>
 <form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
@@ -15,7 +15,7 @@ $resume = $result["resume"] ?? "";
             <input type="text" id="nom" name="nom" placeholder="Nom" value="<?php echo $titre; ?>" required>
 
             <label for="resume">Résumé de l'offre</label>
-            <textarea id="resume" name="resume" value="<?php echo $resume; ?>" placeholder="Courte descrition, 100 caractères maximum" maxlength=99></textarea>
+            <textarea id="resume" name="resume" value="<?php echo $resume;?>" placeholder="Courte descrition, 100 caractères maximum" maxlength=99></textarea>
 
             <label for="description">Description de votre offre*</label>
             <textarea id="description" name="description" value="<?php echo $description; ?>" placeholder="Description détaillée, 1000 caractères maximum" maxlength=999 required></textarea>
