@@ -42,7 +42,7 @@
         } 
         
         catch (Exception $e) {
-            $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
         }
 
 
@@ -59,21 +59,14 @@
         } 
         
         catch (Exception $e) {
-            $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
         }
 
 
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
-        if (!empty($errors)) {
-            // Afficher les erreurs à l'utilisateur
-            echo "<div class='messageErreur'>";
-            foreach ($errors as $error) {
-                echo "<li>" . htmlspecialchars($error) . "</li>";
-            }
-            echo "</div>";
-        }
 
-        else {
+
+        if(empty($errors)) {
             // Préparer la requête d'insertion en fonction du secteur
             if ($secteur == 'public') {
                 $stmt = $conn->prepare("INSERT INTO pact.proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
@@ -114,6 +107,18 @@
         </aside>
         
         <h1 id="inscriptionTitre">Inscription</h1>
+
+        <?php
+            if (!empty($errors)) {
+                // Afficher les erreurs à l'utilisateur
+                echo "<div class='messageErreur'>";
+                foreach ($errors as $error) {
+                    echo "<li>" . htmlspecialchars($error) . "</li>";
+                }
+                echo "</div>";
+            }
+        ?>
+
 
         <form id = "formPro" action="accountPro.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">

@@ -31,16 +31,25 @@
             <!-- Label du 2eme bouton radio -->
             <br>
         </div>
-
+</article>
+<br>
+<article>
         <p>
-            <label>Prestations</label>
-            <textarea name="textPrestationsAct" id="textePrestation act"
+            <label>Prestation(s)</label>
+            <textarea name="textPrestationsAct" id="textePrestationNPActi"
                 placeholder="Entrer une prestation "></textarea>
-
-            <button type="button" id="ajoutPresta" value=Ajouter class="buttonDetailOffer blueBtnOffer">Ajouter </button>
+                <input type="button" id="buttonAjoutPresta" name="BtnAjoutPresta" value="Ajouter des presations">
+            
 
         </p>
+        <p>
+            <label>Prestation(s) non proposée(s)</label>
+            <textarea name="textPrestationsNPAct" id="textePrestationNPActi"
+                placeholder="Entrer une prestation "></textarea>
+                <input type="button" id="buttonAjoutPrestaNp" name="BtnAjoutPrestaNp" value="Ajouter des presation(s) non proposée(s)">
 
+        </p>
+    
 
     </article>
 

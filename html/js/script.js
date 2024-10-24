@@ -18,7 +18,6 @@ try {
   function afficheImage(event) {
     const images = event.target.files;
     const conteneur = document.getElementById("afficheImages");
-    const pImage = document.querySelector("#choixImage > p");
 
     Array.from(images).forEach((file) => {
       const reader = new FileReader();
