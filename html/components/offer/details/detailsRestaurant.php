@@ -3,7 +3,11 @@
 $stmt = $conn->prepare("SELECT * from pact._restauration where idoffre=?");
 $stmt->execute([$idOffre]);
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
-$gamme = $result["gammedeprix"];
+if ($result !== false) {
+  $gamme = $result["gammedeprix"];
+} else {
+  $gamme = "";
+}
 ?>
 <section id="restaurant">
   <h4>Gamme de prix : </h4>
