@@ -1,11 +1,13 @@
 <?php
 require_once "config.php";
-$idOffre = $_POST["idoffre"] ?? null;
-$ouvert = $_POST["ouvert"] ?? null;
+$idOffre = $_GET["idoffre"] ?? null;
+$ouvert = $_GET["ouvert"] ?? null;
 
-echo $idOffre;
 // Vérifiez si idoffre est défini
-
+if (!$idOffre) {
+    header("location: index.php");
+    exit();
+}
 
 // Fonction pour récupérer les horaires
 function getSchedules($conn, $idOffre) {

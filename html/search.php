@@ -150,11 +150,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <a href="detailsOffer.php" fid="testtest">
-                                <form class="offerForm" action="detailsOffer.php" method="POST" style="display: none;">
-                                    <input type="hidden" name="idOffre" id="idOffre" value="<?php echo $idOffre?>">
-                                    <input type="hidden" name="status" id="status" value="<?php echo $restaurantOuvert?>">
-                                </form>
+                            <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                             <div class="infoOffre">
@@ -308,11 +304,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <a href="detailsOffer.php" id="testtest"">
-                                <form class="offerForm" action="detailsOffer.php" method="POST" style="display: none;">
-                                    <input type="hidden" name="idOffre" id="idOffre" value="<?php echo $idOffre?>">
-                                    <input type="hidden" name="status" id="status" value="<?php echo $restaurantOuvert?>">
-                                </form>
+                            <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                             <div class="infoOffre">
@@ -367,14 +359,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         <?php      
         } 
         ?>
-        <script>
-            document.getElementById("testtest").addEventListener("click", function() {
-
-                // Soumettre le formulaire
-                document.getElementsByClassName("offerForm").submit();
-            });
-        </script>
-
+        
 
     </main>
     <?php require_once "components/footer.php"; ?>
