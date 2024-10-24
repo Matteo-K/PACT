@@ -71,7 +71,6 @@
                 echo "<li>" . htmlspecialchars($error) . "</li>";
             }
             echo "</div>";
-            exit;
         }
 
         else {
@@ -115,16 +114,6 @@
         </aside>
         
         <h1 id="inscriptionTitre">Inscription</h1>
-
-        <?php if (!empty($errors)): ?>
-            <div class="messageErreur">
-                <ul>
-                    <?php foreach ($errors as $error): ?>
-                        <li><?php echo htmlspecialchars($error); ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
 
         <form id = "formPro" action="accountPro.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
