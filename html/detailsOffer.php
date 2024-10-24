@@ -122,7 +122,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
         </div>
 
-        <div>
+        <div id="infoPro">
             <?php
             $stmt = $conn -> prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
             $stmt -> execute();

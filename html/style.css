@@ -1429,6 +1429,10 @@ tbody td:last-child {
   text-align: right; /* Alignement de l'horaire à droite */
 }
 
+#infoPro > img{
+  width: 1em;
+}
+
  
 
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
