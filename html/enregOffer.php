@@ -156,19 +156,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         switch ($_POST["categorie"]) {
           case 'restaurant':
             $gammeDePrix = $_POST["gamme_prix"];
-            echo $gammeDePrix;
-            $url = null;
             $stmt = $conn->prepare("SELECT * from pact._restauration where idoffre=?");
             $stmt->execute([$idOffre]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             // Si pas de donnée, on créer
             if ($result === false) {
-              $stmt = $conn->prepare("INSERT INTO pact._restauration (idoffre, gammedeprix, urlmenu) VALUES (?, ?, ?) ");
-              $stmt->execute([$idOffre, $gammeDePrix, $url]);
+              $stmt = $conn->prepare("INSERT INTO pact._restauration (idoffre, gammedeprix) VALUES (?, ?) ");
+              $stmt->execute([$idOffre, $gammeDePrix]);
             } else {
               // sinon modifie
-              $stmt = $conn->prepare("UPDATE pact._restauration SET gammedeprix=?, urlmenu=? where idoffre=?");
-              $stmt->execute([$gammeDePrix, $url, $idOffre]);
+              $stmt = $conn->prepare("UPDATE pact._restauration SET gammedeprix=? where idoffre=?");
+              $stmt->execute([$gammeDePrix, $idOffre]);
             }
             break;
           case 'parc':
