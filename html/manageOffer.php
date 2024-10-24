@@ -46,7 +46,7 @@
       </ul>
       <ul>
         <!-- Si 0 on enregistre et retourne au menu du professionnel -->
-        <li><a onclick="submitForm(0)" class="guideStartComplete">Quitter</a></li>
+        <li><a onclick="submitForm(0)" class="guideComplete">Sauvegarder & Quitter</a></li>
         <!-- Si -1 on retourne au menu du professionnel sans enregistrer -->
         <li><a onclick="submitForm(-1)" class="guideStartComplete">Annuler</a></li>
       </ul>
@@ -112,7 +112,7 @@
   function submitForm(page) {
       document.getElementById('pageCurrent').value = page;
       let form = document.querySelector('section form:not(#paypal)');
-      let confirm_quit = (page == 0)? confirm("Les données seront enregistrées.\n Vous pourrez reprendre vos modifications plus tard.") : true;
+      let confirm_quit = (page == 0)? confirm("Les données seront enregistrées.\n Vous pourrez reprendre vos modifications plus tard.\n Il faut compléter toute les données obligatoires pour quitter") : true;
       let confirm_annule = (page == -1)? confirm("Les données ne seront pas enregistrées.\n Toute modification apportée aux données ne sera pas prise en compte.") : true;
       if (form.checkValidity() && confirm_annule && confirm_quit) {
         form.submit();
