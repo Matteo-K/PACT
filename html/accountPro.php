@@ -71,7 +71,6 @@
                 echo "<li>" . htmlspecialchars($error) . "</li>";
             }
             echo "</div>";
-            print_r($error);
             exit;
         }
 
