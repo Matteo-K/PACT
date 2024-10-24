@@ -52,7 +52,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         </aside>
 
         <?php 
-        if (($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] == "pro_prive")) {
+        if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
             $idutilisateur=$_SESSION["idUser"];
             $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idu=$idutilisateur ORDER BY dateCrea DESC");
             $stmt->execute();
