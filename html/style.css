@@ -1512,7 +1512,7 @@ textarea[id="Resume"] {
 #activity {
   display: flex;
   text-align: left;
-  margin-left: 525px;
+  /* margin-left: 525px; */
   flex-direction: row;
   padding: 10px;
 }
