@@ -1102,7 +1102,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .search{
   margin-top: 110px;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
   background-image: url("/img/phare.jpg");
   background-attachment: fixed;
   background-position: center;
