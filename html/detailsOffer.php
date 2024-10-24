@@ -113,7 +113,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div>
             <img src="./img/icone/lieu.png">
-            <p><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></p>
+            <p id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></p>
             <img src="./img/icone/tel.png">
             <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
             <img src="./img/icone/mail.png">
@@ -202,12 +202,83 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </tbody>
             </table>
         </section>
+        <!-- Carte Google Maps -->
+        <div id="map"></div>
     </main>
 
     <?php require_once "components/footer.php"; ?>
+    
+    <script>
+        let map;
+        let geocoder;
+        let marker; // Variable pour stocker le marqueur actuel
+
+        // Initialisation de la carte Google
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 48.8566, lng: 2.3522 }, // Paris comme point de départ
+                zoom: 8,
+            });
+            geocoder = new google.maps.Geocoder();
+
+            // Détecte l'appui sur la touche 'Enter' dans les champs de texte
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Empêche le comportement par défaut d'envoi du formulaire
+                    checkInputsAndGeocode();
+                }
+            });
+
+            // Ajout d'un écouteur d'événement pour le bouton "Vérifier l'adresse"
+            document.getElementById("checkAddressBtn").addEventListener("click", function() {
+                checkInputsAndGeocode();
+            });
+        }
+
+        // Fonction pour vérifier que tous les champs sont remplis
+        function checkInputsAndGeocode() {
+            const adresse = document.getElementById("lieu").textContent.trim(); // Récupérer l'adresse affichée
+
+            if (!adresse) {
+                alert("L'adresse est manquante.");
+            } else {
+                geocodeadresse(adresse);
+            }
+        }
+
+
+        // Fonction pour géocoder l'adresse
+        function geocodeadresse(fulladresse) {
+            geocoder.geocode({ 'address': fulladresse }, function(results, status) {
+                if (status === 'OK' && results[0]) {
+                    // Supprimer l'ancien marqueur s'il existe
+                    if (marker) {
+                        marker.setMap(null);
+                    }
+
+                    // Centrer la carte sur la nouvelle localisation et appliquer un zoom
+                    map.setCenter(results[0].geometry.location);
+                    map.setZoom(15); // Zoom sur la nouvelle adresse
+
+                    // Ajouter un nouveau marqueur sur la carte
+                    marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    // Alerter si le géocodage échoue ou si aucun résultat n'est trouvé
+                    alert('Adresse introuvable. Veuillez vérifier l\'adresse, le code postal ou la ville.');AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE
+                }
+            });
+        }
+        </script>
+        <!-- Inclure l'API Google Maps avec votre clé API -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfzB111XKB9JGrHUPavP6anrIOhGPDE5s&callback=initMap" async defer></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-            <!-- Initialize Swiper -->
-            <script>
+    <!-- Initialize Swiper -->
+    <script>
         var swiper = new Swiper(".myThumbSlider", {
             loop: true,
             spaceBetween: 10,
