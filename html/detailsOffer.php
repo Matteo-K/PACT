@@ -125,15 +125,34 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="swiper-container">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <?php foreach ($photos as $picture): ?>
+                <?php
+                    foreach ($photos as $picture) {
+                ?>
                         <div class="swiper-slide">
-                            <img src="<?php echo htmlspecialchars($picture['url']); ?>" />
+                            <img src="<?php echo $picture['url']; ?>" />
                         </div>
-                    <?php endforeach; ?>
+                <?php
+                    }
+                ?>
                 </div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        </div>
+
+        <div thumbsSlider="" class="swiper myThumbSlider">
+            <div class="swiper-wrapper">
+            <?php
+                foreach ($photos as $picture) {
+            ?>
+                    <div class="swiper-slide">
+                        <img src="<?php echo $picture['url']; ?>" />
+                    </div>
+            <?php
+                }
+            ?>
+            </div>
         </div>
 
         <section>
@@ -186,6 +205,30 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <?php require_once "components/footer.php"; ?>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="js/swiper.js"></script>
+            <!-- Initialize Swiper -->
+            <script>
+        var swiper = new Swiper(".myThumbSlider", {
+            loop: true,
+            spaceBetween: 10,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+        var swiper2 = new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+            },
+            spaceBetween: 10,
+            navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+            swiper: swiper,
+            },
+        });
+    </script>
+    <script src="js/setColor.js"></script>
 </body>
 </html>
