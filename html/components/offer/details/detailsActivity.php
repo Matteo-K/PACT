@@ -25,13 +25,21 @@
             <label for="radioButtonAccesPmrRequis"> Accès personne handicapées</label>
             <!-- Label associé au bouton radio -->
             <br>
-            <input type="radio" id="pasAcces" name="Accessibilité"
-                value="Pas d’accès personne handicapées"> <!-- 2eme bouton radio liés au 1er via l'id -->
+            <input type="radio" id="pasAcces" name="Accessibilité" value="Pas d’accès personne handicapées">
+            <!-- 2eme bouton radio liés au 1er via l'id -->
             <label for="pasAcces"> Pas d’accès personne handicapées </label>
             <!-- Label du 2eme bouton radio -->
             <br>
         </div>
 
+        <p>
+            <label>Prestations</label>
+            <textarea name="textPrestationsAct" id="textePrestation act"
+                placeholder="Entrer une prestation "></textarea>
+
+            <button type="button" id="ajoutPresta" value=Ajouter class="buttonDetailOffer blueBtnOffer">Ajouter </button>
+
+        </p>
 
 
     </article>
