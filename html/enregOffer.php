@@ -170,18 +170,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             }
             break;
           case 'parc':
-            $gammeDePrix = $_POST["gamme_prix"];
-            $stmt = $conn->prepare("SELECT * from pact._restauration where idoffre=?");
-            $stmt->execute([$idOffre]);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            // Si pas de donnée, on créer
-            if ($result === false) {
-              $stmt = $conn->prepare("INSERT INTO pact._restauration (idoffre, gammedeprix) VALUES (?, ?) ");
-              $stmt->execute([$idOffre, $gammeDePrix]);
-            } else {
-              // sinon modifie
-              $stmt = $conn->prepare("UPDATE pact._restauration SET gammedeprix=? where idoffre=?");
-              $stmt->execute([$gammeDePrix, $idOffre]);
+            $dossierImg = "img/imageOffre/";
+            $imageCounter = 0;  // Compteur pour renommer les images
+    
+            $nbImages = count($_FILES['image1Park']['name']); //nb d'images uploadé
+    
+            // Boucle à travers chaque fichier uploadé
+            for ($i = 0; $i < $nbImages; $i++) {
+              $fileTmpPath = $_FILES['image1Park']['tmp_name'][$i];
+              $fileName = $_FILES['image1Park']['name'][$i];
+              $fileError = $_FILES['image1Park']['error'][$i];
+    
+              // Vérifie si l'image a été uploadée sans erreur
+              if ($fileError === UPLOAD_ERR_OK) {
+                // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
+                $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+                $dossierImgNom = $dossierImg . $fileName;
+    
+                // Déplace l'image vers le dossier cible
+                if (move_uploaded_file($fileTmpPath, $dossierImgNom)) {
+                  echo "L'image $fileName a été uploadée avec succès.<br>";
+                  $imageCounter++;
+                } 
+    
+                try {
+                  $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
+                  $stmt->execute([$dossierImgNom, $fileName]);
+    
+                  $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
+                  $stmt->execute([$idOffre, $dossierImgNom]);
+                } catch (PDOException $e) {
+                  echo "Une erreur s'est produite lors de la création de l'offre: \n" . $e->getMessage() . "\n";
+                }
+              } 
             }
             break;
           case 'activite':
