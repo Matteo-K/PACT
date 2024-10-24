@@ -142,6 +142,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             try {
               $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
               $stmt->execute([$dossierImg, $fileName]);
+
+              $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
+              $stmt->execute([$idOffre, $dossierImg]);
             } catch (PDOException $e) {
               echo "Une erreur s'est produite lors de la création de l'offre: \n" . $e->getMessage() . "\n";
             }
@@ -301,5 +304,5 @@ if ($pageDirection >= 1) {
 }
 ?>
 <script>
-    //document.getElementById('myForm').submit();
+    document.getElementById('myForm').submit();
 </script>
