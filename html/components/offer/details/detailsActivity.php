@@ -36,7 +36,7 @@
     <article>
         <p>
             <label>Prestation(s)</label>
-            <br>
+            
             <textarea name="textPrestationsAct" id="textePrestation" placeholder="Entrer une prestation "></textarea>
             <input type="button" id="buttonAjoutPresta" name="BtnAjoutPresta" value="Ajouter des presations">
             <br>
@@ -49,6 +49,7 @@
                 value="Ajouter des presation(s) non proposée(s)">
 
         </p>
+        
 
 
     </article>
