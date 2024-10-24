@@ -3,8 +3,6 @@ $pageDirection = isset($_POST['pageCurrent']) ? $_POST['pageCurrent'] : 1;
 $idOffre = $_POST["idOffre"];
 $idUser = $_POST["idUser"];
 
-$idUser = 4;
-
 session_start();
 require_once 'db.php';
 
@@ -82,22 +80,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           }
         }
         // Si à la une est coché && n'est pas dans la base : ajoute à la base
-        if (isset($_POST["aLaUne"]) && !in_array("aLaUne",$options)) {
+        if (isset($_POST["aLaUne"]) && !in_array("ALaUne",$options)) {
           $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
           $stmt->execute([$idOffre]);
         }
         // Si à la une est pas sélectionné && est dans la base : supprime de la base
-        if (!isset($_POST["aLaUne"]) && in_array("aLaUne",$options)) {
+        if (!isset($_POST["aLaUne"]) && in_array("ALaUne",$options)) {
           $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ? AND nomoption='aLaUne'");
           $stmt->execute([$idOffre]);
         }
         // Si en relief est coché && n'est pas dans la base : ajoute à la base
-        if (isset($_POST["enRelief"]) && !in_array("enRelief",$options)) {
-          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'enRelief')");
+        if (isset($_POST["enRelief"]) && !in_array("EnRelief",$options)) {
+          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'EnRelief')");
           $stmt->execute([$idOffre]);
         }
         // Si en relief est pas sélectionné && est dans la base : supprime de la base
-        if (!isset($_POST["enRelief"]) && in_array("enRelief",$options)) {
+        if (!isset($_POST["enRelief"]) && in_array("EnRelief",$options)) {
           $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ? AND nomoption='EnRelief'");
           $stmt->execute([$idOffre]);
         }
