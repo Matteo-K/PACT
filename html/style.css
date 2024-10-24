@@ -1313,8 +1313,8 @@ table {
   border-collapse: separate; /* Utiliser 'separate' pour afficher les bordures */
   border-spacing: 0; /* Optionnel : pour supprimer l'espace entre les cellules */
   margin: 20px auto; /* Centrer le tableau horizontalement */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre */
-  border: 2px solid var(--accent); /* Ajout de la bordure au tableau */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ajoute une légère ombre */
+  border: 1px solid var(--accent); /* Ajout de la bordure au tableau */
   border-radius: 20px 20px 0 0; /* Coins arrondis pour le tableau */
   overflow: hidden; /* Pour que le border-radius soit visible sur les cellules */
 }
