@@ -9,7 +9,7 @@
         </p>
 
         <p>
-            <label class="labAgeAct" name="labAgeAct" > Age: </label>
+            <label class="labAgeAct" name="labAgeAct"> Age: </label>
             <input type="number" id="numberAct" name="ageAct" placeholder="1" />
             <label class="labAnsAct" name="labAgeAct"> Ans </label>
         </p>
@@ -31,26 +31,25 @@
             <!-- Label du 2eme bouton radio -->
             <br>
         </div>
-</article>
+    </article>
 
-<article>
+    <article>
         <p>
             <label>Prestation(s)</label>
             <br>
-            <textarea name="textPrestationsAct" id="textePrestation"
-                placeholder="Entrer une prestation "></textarea>
-                <input type="button" id="buttonAjoutPresta" name="BtnAjoutPresta" value="Ajouter des presations">
+            <textarea name="textPrestationsAct" id="textePrestation" placeholder="Entrer une prestation "></textarea>
+            <input type="button" id="buttonAjoutPresta" name="BtnAjoutPresta" value="Ajouter des presations">
             <br>
 
         </p>
         <p>
             <label>Prestation(s) non proposée(s)</label>
-            <textarea name="textPrestationsNPAct" id="textePrestation"
-                placeholder="Entrer une prestation "></textarea>
-                <input type="button" id="buttonAjoutPrestaNp" name="BtnAjoutPrestaNp" value="Ajouter des presation(s) non proposée(s)">
+            <textarea name="textPrestationsNPAct" id="textePrestation" placeholder="Entrer une prestation "></textarea>
+            <input type="button" id="buttonAjoutPrestaNp" name="BtnAjoutPrestaNp"
+                value="Ajouter des presation(s) non proposée(s)">
 
         </p>
-    
+
 
     </article>
 
