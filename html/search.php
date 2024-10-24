@@ -150,7 +150,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <a href="detailsOffer.php" id="testtest">
+                            <a href="detailsOffer.php" fid="testtest">
                                 <form class="offerForm" action="detailsOffer.php" method="POST" style="display: none;">
                                     <input type="hidden" name="idOffre" id="idOffre" value="<?php echo $idOffre?>">
                                     <input type="hidden" name="status" id="status" value="<?php echo $restaurantOuvert?>">
