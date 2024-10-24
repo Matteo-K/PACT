@@ -3,9 +3,9 @@
     <article> <!-- Article pour le placement des elements de gauche-->
         <p>
             <label class="labDuréeAct" name="labDuréeAct"> Durée: </label>
-            <br>
             <input type="number" id="numberAct" name="duréeAct" placeholder="0" />
             <label class="labHAct" name="labHAct"> H </label>
+            <br>
         </p>
 
         <p>
@@ -36,10 +36,11 @@
 <article>
         <p>
             <label>Prestation(s)</label>
+            <br>
             <textarea name="textPrestationsAct" id="textePrestationNPActi"
                 placeholder="Entrer une prestation "></textarea>
                 <input type="button" id="buttonAjoutPresta" name="BtnAjoutPresta" value="Ajouter des presations">
-            
+            <br>
 
         </p>
         <p>
