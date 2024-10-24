@@ -113,7 +113,7 @@
   function submitForm(page) {
       document.getElementById('pageCurrent').value = page;
       let form = document.querySelector('section form:not(#paypal)');
-      let confirm_quit = (page == 0)? confirm("Les données seront enregistrées.\n Vous pourrez reprendre vos modifications.") : true;
+      let confirm_quit = (page == 0)? confirm("Les données seront enregistrées.\n Vous pourrez reprendre vos modifications plus tard.") : true;
       let confirm_annule = (page == -1)? confirm("Les données ne seront pas enregistrées.\n Toute modification apportée aux données ne sera pas prise en compte.") : true;
       if (form.checkValidity() && confirm_annule && confirm_quit) {
         form.submit();
