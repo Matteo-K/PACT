@@ -267,13 +267,13 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     });
                 } else {
                     // Alerter si le géocodage échoue ou si aucun résultat n'est trouvé
-                    alert('Adresse introuvable. Veuillez vérifier l\'adresse, le code postal ou la ville.');AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE
+                    alert('Adresse introuvable. Veuillez vérifier l\'adresse, le code postal ou la ville.');
                 }
             });
         }
         </script>
         <!-- Inclure l'API Google Maps avec votre clé API -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfzB111XKB9JGrHUPavP6anrIOhGPDE5s&callback=initMap" async defer></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
