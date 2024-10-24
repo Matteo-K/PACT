@@ -2015,15 +2015,9 @@ p[id="legendeBoutonLienPro"] {
     margin: 10px 0;
   }
 
-  /* Ajustement des boutons de création de compte */
-  a[id="boutonLienMembre"],
-  a[id="boutonLienPro"] {
-    display: none;
-  }
-
-  /* Ajustement des labels pour les boutons de création de compte */
-  p[id="legendeBoutonLienMembre"],
-  p[id="legendeBoutonLienPro"] {
+  /* Ajustement des boutons et des labels de création de compte */
+  a[id="boutonLienMembre"], a[id="boutonLienPro"], 
+  p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
     display: none;
   }
 }
@@ -2076,15 +2070,9 @@ p[id="legendeBoutonLienPro"] {
     margin: 10px 0;
   }
 
-  /* Ajustement des boutons de création de compte */
-  a[id="boutonLienMembre"],
-  a[id="boutonLienPro"] {
-    display: none;
-  }
-
-  /* Ajustement des labels pour les boutons de création de compte */
-  p[id="legendeBoutonLienMembre"],
-  p[id="legendeBoutonLienPro"] {
+  /* Ajustement des boutons et des labels de création de compte */
+  a[id="boutonLienMembre"], a[id="boutonLienPro"], 
+  p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"]{
     display: none;
   }
 }
