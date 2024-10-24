@@ -213,15 +213,6 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         let geocoder;
         let marker; // Variable pour stocker le marqueur actuel
 
-        // Récupérer les informations de l'adresse depuis PHP
-        const lieu = {
-            numerorue: "<?php echo htmlspecialchars($lieu['numerorue']); ?>",
-            rue: "<?php echo htmlspecialchars($lieu['rue']); ?>",
-            codepostal: "<?php echo htmlspecialchars($lieu['codepostal']); ?>",
-            ville: "<?php echo htmlspecialchars($lieu['ville']); ?>"
-        };
-
-        console.log("Adresse complète : ", "<?php echo $lieu['numerorue'] . ' ' . $lieu['rue'] . ', ' . $lieu['codepostal'] . ' ' . $lieu['ville']; ?>");
         // Initialisation de la carte Google
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
@@ -264,7 +255,6 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     });
                 } else {
                     console.error("Échec du géocodage : ", status, results); // Affichez plus d'informations
-                    alert("Échec du géocodage : " + status + ". Vérifiez l'adresse.");
                 }
             });
         }
