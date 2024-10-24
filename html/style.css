@@ -1547,6 +1547,10 @@ textarea[id="Resume"] {
   flex-direction: row;
   
 }
+
+#activity article{
+  flex-direction: row;
+}
 #activity article>p>label, #activity label[id="labAccess"]{
   font-size: 24px;
 
