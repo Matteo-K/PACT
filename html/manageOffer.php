@@ -36,7 +36,7 @@
       <h3>Création de votre offre</h3>
       <ul>
         <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
-        <li><a onclick="submitForm(1)" class="<?php echo $step == 1 ? "guideSelect" : checkSelectOffer($idOffre) ?>">Sélection de l’offre</a></li>
+        <li><a onclick="submitForm(1)" class="<?php echo $step == 1 ? "guideSelect" : checkSelectOffer($idOffre) ?>">Sélection de l’abonnement</a></li>
         <li><a onclick="submitForm(2)" class="<?php echo $step == 2 ? "guideSelect" : checkDetailsOffer($idOffre) ?>">Détails de l’offre</a></li>
         <li><a onclick="submitForm(3)" class="<?php echo $step == 3 ? "guideSelect" : checkLocalisationOffer($idOffre) ?>">Localisation</a></li>
         <li><a onclick="submitForm(4)" class="<?php echo $step == 4 ? "guideSelect" : checkContactOffer($idOffre) ?>">Contact</a></li>
