@@ -210,22 +210,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
               case 'restaurant':
                 $stmt = $conn->prepare("INSERT INTO pact._tag_restaurant (idoffre, nomtag) VALUES (?, ?)");
                 $stmt->execute([$idOffre, $tag]);
+                echo "ajouté tag au resto";
                 break;
               case 'parc':
                 $stmt = $conn->prepare("INSERT INTO pact._tag_parc (idoffre, nomtag) VALUES (?, ?)");
                 $stmt->execute([$idOffre, $tag]);
+                echo "ajouté tag au parc";
                 break;
               case 'activite':
                 $stmt = $conn->prepare("INSERT INTO pact._tag_act (idoffre, nomtag) VALUES (?, ?)");
                 $stmt->execute([$idOffre, $tag]);
+                echo "ajouté tag au activite";
                 break;
               case 'spectacle':
                 $stmt = $conn->prepare("INSERT INTO pact._tag_spec (idoffre, nomtag) VALUES (?, ?)");
                 $stmt->execute([$idOffre, $tag]);
+                echo "ajouté tag au spectacle";
                 break;
               case 'visite':
                 $stmt = $conn->prepare("INSERT INTO pact._tag_visite (idoffre, nomtag) VALUES (?, ?)");
                 $stmt->execute([$idOffre, $tag]);
+                echo "ajouté tag au visite";
                 break;
               default:
                 break;
