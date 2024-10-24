@@ -301,5 +301,5 @@ if ($pageDirection >= 1) {
 }
 ?>
 <script>
-    //document.getElementById('myForm').submit();
+    document.getElementById('myForm').submit();
 </script>
