@@ -15,7 +15,7 @@
         </p>
 
         <div>
-            <label>Accessibilité</label> <!-- Label Accessibilité -->
+            <label id="labAccess">Accessibilité</label> <!-- Label Accessibilité -->
             <br>
 
 

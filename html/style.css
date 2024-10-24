@@ -1546,7 +1546,7 @@ textarea[id="Resume"] {
   margin-left: 675px;
   
 }
-#activity article>p>label, #activity label{
+#activity article>p>label, #activity label[id="labAccess"]{
   font-size: 24px;
 
 }
