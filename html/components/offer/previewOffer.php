@@ -46,11 +46,6 @@ if (!$result) {
     $typeOffer = "parcs_attractions";
 }
 
-if (!$result) {
-    echo "Aucune offre trouvée avec cet id.<br>";
-    exit();
-}
-
 // Récupérer les détails de localisation
 $stmt = $conn->prepare("SELECT * FROM pact.localisations_offres WHERE idoffre = :idoffre");
 $stmt->bindParam(':idoffre', $idOffre);
@@ -64,7 +59,6 @@ $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-?>
 
 <form id="previewOffer" action="enregOffer.php" method="post">
 <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
