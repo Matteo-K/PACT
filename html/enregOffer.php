@@ -1,7 +1,7 @@
 <?php
-$pageDirection = $pageDirection = $_POST['pageCurrent'] ?? 1;
-$idOffre = $_POST["idOffre"];
-$idUser = $_POST["idUser"];
+$pageDirection = $_POST['pageCurrent'] ?? 1;
+$idOffre = $_POST["idOffre"] ?? "";
+$idUser = $_POST["idUser"] ?? "";
 
 session_start();
 require_once 'db.php';
@@ -204,32 +204,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           if ($result != false) {
             $stmt = $conn->prepare("INSERT INTO pact._tag (tag) VALUES (?)");
             $stmt->execute([$tag]);
+            echo "tag ajouté a la table générale";
+          }
 
-            // et dans tous les cas on ajoute la relation tag <-> offre (différentes tables selon la catégorie)
-            switch ($_POST["categorie"]) {
-              case 'restaurant':
-                $stmt = $conn->prepare("INSERT INTO pact._tag_restaurant (idoffre, nomtag) VALUES (?, ?)");
-                $stmt->execute([$idOffre, $tag]);
-                break;
-              case 'parc':
-                $stmt = $conn->prepare("INSERT INTO pact._tag_parc (idoffre, nomtag) VALUES (?, ?)");
-                $stmt->execute([$idOffre, $tag]);
-                break;
-              case 'activite':
-                $stmt = $conn->prepare("INSERT INTO pact._tag_act (idoffre, nomtag) VALUES (?, ?)");
-                $stmt->execute([$idOffre, $tag]);
-                break;
-              case 'spectacle':
-                $stmt = $conn->prepare("INSERT INTO pact._tag_spec (idoffre, nomtag) VALUES (?, ?)");
-                $stmt->execute([$idOffre, $tag]);
-                break;
-              case 'visite':
-                $stmt = $conn->prepare("INSERT INTO pact._tag_visite (idoffre, nomtag) VALUES (?, ?)");
-                $stmt->execute([$idOffre, $tag]);
-                break;
-              default:
-                break;
-            }
+          // et dans tous les cas on ajoute la relation tag <-> offre (différentes tables selon la catégorie)
+          switch ($categorie) {
+            case 'restaurant':
+              $stmt = $conn->prepare("INSERT INTO pact._tag_restaurant (idoffre, nomtag) VALUES (?, ?)");
+              $stmt->execute([$idOffre, $tag]);
+              echo "ajouté tag au resto";
+              break;
+            case 'parc':
+              $stmt = $conn->prepare("INSERT INTO pact._tag_parc (idoffre, nomtag) VALUES (?, ?)");
+              $stmt->execute([$idOffre, $tag]);
+              echo "ajouté tag au parc";
+              break;
+            case 'activite':
+              $stmt = $conn->prepare("INSERT INTO pact._tag_act (idoffre, nomtag) VALUES (?, ?)");
+              $stmt->execute([$idOffre, $tag]);
+              echo "ajouté tag au activite";
+              break;
+            case 'spectacle':
+              $stmt = $conn->prepare("INSERT INTO pact._tag_spec (idoffre, nomtag) VALUES (?, ?)");
+              $stmt->execute([$idOffre, $tag]);
+              echo "ajouté tag au spectacle";
+              break;
+            case 'visite':
+              $stmt = $conn->prepare("INSERT INTO pact._tag_visite (idoffre, nomtag) VALUES (?, ?)");
+              $stmt->execute([$idOffre, $tag]);
+              echo "ajouté tag au visite";
+              break;
+            default:
+              echo "tag pas ajouté, pas de catégorie trouvée...";
+              break;
           }
         }
 
@@ -306,6 +313,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
                         $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=? AND jour=?");
                         $stmt->execute([$idOffre, $jour]);
                         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
                         if ($result !== false) {
                           // si existe déjà, on modifie
                           $stmt = $conn->prepare("UPDATE pact._horairemidi SET heureouverture=?, heurefermeture=? where idoffre=? and jour=?");
@@ -366,5 +374,5 @@ if ($pageDirection >= 1) {
 }
 ?>
 <script>
-    //document.getElementById('myForm').submit();
+    document.getElementById('myForm').submit();
 </script>

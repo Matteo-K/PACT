@@ -4,6 +4,7 @@
         if (!$is_show) {
             $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
             foreach ($jour_semaine as $value) {
+              
     ?>
     <!-- Créer une ligne pour chaque jour de la semaine -->
      <div>
