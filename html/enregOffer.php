@@ -3,8 +3,6 @@ $pageDirection = isset($_POST['pageCurrent']) ? $_POST['pageCurrent'] : 1;
 $idOffre = $_POST["idOffre"];
 $idUser = $_POST["idUser"];
 
-$idUser = 4;
-
 session_start();
 require_once 'db.php';
 
@@ -82,22 +80,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           }
         }
         // Si à la une est coché && n'est pas dans la base : ajoute à la base
-        if (isset($_POST["aLaUne"]) && !in_array("aLaUne",$options)) {
+        if (isset($_POST["aLaUne"]) && !in_array("ALaUne",$options)) {
           $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
           $stmt->execute([$idOffre]);
         }
         // Si à la une est pas sélectionné && est dans la base : supprime de la base
-        if (!isset($_POST["aLaUne"]) && in_array("aLaUne",$options)) {
+        if (!isset($_POST["aLaUne"]) && in_array("ALaUne",$options)) {
           $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ? AND nomoption='aLaUne'");
           $stmt->execute([$idOffre]);
         }
         // Si en relief est coché && n'est pas dans la base : ajoute à la base
-        if (isset($_POST["enRelief"]) && !in_array("enRelief",$options)) {
-          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'enRelief')");
+        if (isset($_POST["enRelief"]) && !in_array("EnRelief",$options)) {
+          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'EnRelief')");
           $stmt->execute([$idOffre]);
         }
         // Si en relief est pas sélectionné && est dans la base : supprime de la base
-        if (!isset($_POST["enRelief"]) && in_array("enRelief",$options)) {
+        if (!isset($_POST["enRelief"]) && in_array("EnRelief",$options)) {
           $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ? AND nomoption='EnRelief'");
           $stmt->execute([$idOffre]);
         }
@@ -116,13 +114,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         // Traitement des images
         $dossierImg = "../../img/imageOffre/";
         print_r($_FILES);
+        print_r($_FILES['ajoutPhoto']);
         $imageCounter = 0;  // Compteur pour renommer les images
-        $totalFiles = count($_FILES['photos']['name']); //nb d'images uploadé
+
+        $totalFiles = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
+
         // Boucle à travers chaque fichier uploadé
         for ($i = 0; $i < $totalFiles && $imageCounter < $maxImages; $i++) {
-          $fileTmpPath = $_FILES['photos']['tmp_name'][$i];
-          $fileName = $_FILES['photos']['name'][$i];
-          $fileError = $_FILES['photos']['error'][$i];
+          $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
+          $fileName = $_FILES['ajoutPhoto']['name'][$i];
+          $fileError = $_FILES['ajoutPhoto']['error'][$i];
 
         // Vérifie si l'image a été uploadée sans erreur
           if ($fileError === UPLOAD_ERR_OK) {
