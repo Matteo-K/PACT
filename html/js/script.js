@@ -82,14 +82,14 @@ try {
         // Ajoute un événement pour supprimer le tag au clic
         elementTag.addEventListener("click", function () {
           tags.splice(tags.indexOf(valeurTag), 1); // Supprime un élément à l'index trouvé
-          elementTag.removeChild(hidenInputTag); // Supprime l'input caché du form correspondant au tag
+          sectionTag.removeChild(hidenInputTag); // Supprime l'input caché du form correspondant au tag
           sectionTag.removeChild(elementTag); // Supprime l'élément visuel correspondant 
           pTag.style.color = "black"; //on remet la couleur par defaut au cas où c'etait en rouge
           compteurTags--;
         });
 
         sectionTag.appendChild(elementTag); // Ajoute l'élément à la section
-        elementTag.appendChild(hidenInputTag); 
+        sectionTag.appendChild(hidenInputTag); 
 
         inputTag.value = ""; // Réinitialise l'input
       } else if (tags.length >= 6) {
