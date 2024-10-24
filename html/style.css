@@ -1100,6 +1100,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Effet d'ombre au focus */
 }
 
+.search{
+  margin-top: 110px;
+  padding-bottom: 20px;
+  background-image: url("/img/phare.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--primary30);
+  backdrop-filter: var(--primary30);
+}
+
 .searchoffre{
   display: flex;
   flex-direction: column;
@@ -1112,7 +1124,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .carteOffre{
   display: flex;
   width: 70%;
-  background-color: var(--primary70);
+  background-color: var(--primary90);
+  border-radius: 20px;
 }
 
 .carteOffre p{
@@ -1123,10 +1136,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   object-fit: contain;
   width: 290px;
   height: 170px;
+  padding-left: 0;
 }
 
 .infoOffre{
-  flex-grow: 1;  
+  flex-grow: 2;  
 }
 
 .searchTitre{
@@ -1155,12 +1169,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .searchAvis{
   padding: 5px;
-  flex-grow: 1;
+  width: 20%;
 }
 
 .avisSearch{
   font-size: 0.7em;
 }
+
+/* .createur{
+
+} */
+
+.searchUser{
+  font-size: 12px;
+}
+
 /* @media (max-width: 700px){
   .search{
     margin-top: 220px;
@@ -1231,11 +1254,23 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   } */
   .searchStatutO{
-    color: #008000;
+    background-color: #008000;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 10px;
+    font-size: 0.7em;
+    margin-right: 5px;
+    display: inline-block;
   }
 
   .searchStatutF{
-    color: #b01111;
+    background-color: #b01111;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 10px;
+    font-size: 0.7em;
+    margin-right: 5px;
+    display: inline-block;
   }
   
 
@@ -1505,7 +1540,6 @@ textarea[id="Resume"] {
 } 
 
 #activity {
-  background-color: cyan;
   display: flex;
 
 }
@@ -1949,7 +1983,7 @@ p[id="legendeBoutonLienPro"] {
   /* Réduire la taille des titres */
   h1[id="connexionTitre"] {
     font-size: 45px;
-    margin-top: 20vh;
+    margin-top: 15vh;
   }
 
   h1[id="pasDeCompteTitre"] {
@@ -1991,15 +2025,9 @@ p[id="legendeBoutonLienPro"] {
     margin: 10px 0;
   }
 
-  /* Ajustement des boutons de création de compte */
-  a[id="boutonLienMembre"],
-  a[id="boutonLienPro"] {
-    display: none;
-  }
-
-  /* Ajustement des labels pour les boutons de création de compte */
-  p[id="legendeBoutonLienMembre"],
-  p[id="legendeBoutonLienPro"] {
+  /* Ajustement des boutons et des labels de création de compte */
+  a[id="boutonLienMembre"], a[id="boutonLienPro"], 
+  p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
     display: none;
   }
 }
@@ -2052,15 +2080,9 @@ p[id="legendeBoutonLienPro"] {
     margin: 10px 0;
   }
 
-  /* Ajustement des boutons de création de compte */
-  a[id="boutonLienMembre"],
-  a[id="boutonLienPro"] {
-    display: none;
-  }
-
-  /* Ajustement des labels pour les boutons de création de compte */
-  p[id="legendeBoutonLienMembre"],
-  p[id="legendeBoutonLienPro"] {
+  /* Ajustement des boutons et des labels de création de compte */
+  a[id="boutonLienMembre"], a[id="boutonLienPro"], 
+  p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"]{
     display: none;
   }
 }

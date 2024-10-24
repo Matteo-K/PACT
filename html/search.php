@@ -1,16 +1,7 @@
 <?php 
-session_start();
-require_once "db.php";
-
-$isLoggedIn = isset($_SESSION["idUser"]);
-if($isLoggedIn){
-
-    $idUser = $_SESSION["idUser"];
-    $typeUser = $_SESSION["typeUser"];
-}else{
-    $typeUser = "visiteur";
-}
-
+    // Démarrer la session
+    
+    require_once "config.php";
 
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
@@ -50,10 +41,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <script src="js/setColor.js"></script>
     <?php require_once "components/header.php"; ?>
     <main class="search">
-        <aside class="sectionFiltre">
+        <!-- <aside class="sectionFiltre">
             <h2>Filtre</h2>
-            <h2>Tri</h2>
-        </aside>
+            <h2>Tri</h2>    
+        </aside> -->
 
         <?php 
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
@@ -164,11 +155,13 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                             <div class="infoOffre">
+                                
                                 <p class="searchTitre"><?php echo $nomOffre; ?></p>
-    
-                                <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText; ?></p></strong>
-    
+
                                 <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
+                                
+                                <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText; ?></p></strong>
+                                
     
                                 <strong><p>Catégorie :</p></strong>
     

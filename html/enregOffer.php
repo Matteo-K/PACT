@@ -106,22 +106,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
         print_r($_POST);
         
-        // Informations obligatoires (Titre, Description, Catégorie) + résumé
+        // Informations obligatoires (Titre, Description) + résumé
         $titre = $_POST["nom"];
         $description = $_POST["description"];
-        //$categorie = $_POST
         $resume = empty($_POST["resume"]) ? null : $_POST["resume"];
         $stmt = $conn->prepare("UPDATE pact._offre SET nom= ?, description= ?, resume= ? WHERE idoffre= ?");
         $stmt->execute([$titre, $description, $resume, $idOffre]);
+
+        $categorie = $_POST["categorie"];
 
         // Traitement des images
         $dossierImg = "../../img/imageOffre/";
         $imageCounter = 0;  // Compteur pour renommer les images
 
-        $totalFiles = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
+        $nbImages = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
 
         // Boucle à travers chaque fichier uploadé
-        for ($i = 0; $i < $totalFiles && $imageCounter < $maxImages; $i++) {
+        for ($i = 0; $i < $nbImages; $i++) {
           $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
           $fileName = $_FILES['ajoutPhoto']['name'][$i];
           $fileError = $_FILES['ajoutPhoto']['error'][$i];
@@ -147,11 +148,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           // }
         }
 
-        // Ajout des champs obligatoires
-        if ($titre && $description && $categorie){
-          //$stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
-          //$stmt->execute([$idOffre]);
-        }
 
         // Ajout des informations suivant la catégorie de l'offre
         switch ($_POST["categorie"]) {
@@ -182,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         $codePostal = $_POST["codepostal"];
         $ville = $_POST["ville2"];
         $pays = 'France';
-        // obtention du split de l'adresse par une expression régulière
+         // obtention du split de l'adresse par une expression régulière
         preg_match('/^(\d+)\s+(.*)$/', $adresse, $matches);
         $numerorue = $matches[1];
         $rue = $matches[2];
@@ -229,19 +225,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         
         // Ajoute dans la base de donnée les heures pour chaque jour
         // Si fermé ou les champs son vides, on ajoute pas dans la base de donnée
-        foreach ($jour_semaine as $value) {
-          $ferme = isset($_POST["check".$value])?true:false;
-          $ouvMidi = isset($_POST["horairesOuv1".$value]) ? $_POST["horairesOuv1".$value] : "";
-          $fermMidi = isset($_POST["horairesF1".$value]) ? $_POST["horairesF1".$value] : "";
-          $ouvSoir = isset($_POST["horairesOuv2".$value]) ? $_POST["horairesOuv2".$value] : "";
-          $fermSoir = isset($_POST["horairesF2".$value]) ? $_POST["horairesF2".$value] : "";
-          // Si il n'est pas fermé et que les deux entré ne sont pas vide
-          if (!($ferme || empty($ouvMidi) || empty($fermMidi))) {
-            // Ajoute les horaires du midi au jour de la semaine
-          }
-          if (!($ferme || empty($ouvSoir) || empty($fermSoir))) {
-            // Ajoute les horaires du soir au jour de la semaine
-          }
+        foreach ($jours_semaine as $jour) {
+            // Vérifier si le jour est fermé
+            if (!isset($_POST["check$jour"])) {
+                // Récupérer les horaires
+                $horairesOuv1 = $_POST["horairesOuv1$jour"] ?? null; // Utiliser null si non défini
+                $horairesF1 = $_POST["horairesF1$jour"] ?? null; // Utiliser null si non défini
+                $horairesOuv2 = $_POST["horairesOuv2$jour"] ?? null; // Utiliser null si non défini
+                $horairesF2 = $_POST["horairesF2$jour"] ?? null; // Utiliser null si non défini
+
+                // Ajouter les horaires au Midi
+                if ($horairesOuv1 && $horairesF1) {
+                    // Vérifier que l'horaire d'ouverture est avant l'horaire de fermeture
+                    if ($horairesOuv1 < $horairesF1) {
+                        // Requête ajout dans la base de donnée midi
+                        /*
+                        $stmt = $conn->prepare("SELECT o.idoffre FROM pact._offre o ORDER BY idoffre DESC LIMIT 1");
+                        $stmt->execute();
+                        $result = $stmt->fetch(PDO::FETCH_ASSOC);*/
+                        if ($result !== false) {
+                          // si existe déjà, on modifie
+                          /*
+                          $stmt = $conn->prepare("UPDATE pact._offre SET mail=?, telephone=?, affiche=?, urlsite=? WHERE idoffre= ?");
+                          $stmt->execute([$mail, $telephone, $affiche, $site, $idOffre]);*/
+                        } {
+                          // sinon ajoute
+                          
+                        }
+                    }
+                }
+
+                if ($horairesOuv2 && $horairesF2) {
+                    // Requête ajout dans la base de donnée Soir
+                }
+            }
         }
         break;
 
@@ -274,5 +291,5 @@ if ($pageDirection >= 1) {
 }
 ?>
 <script>
-    document.getElementById('myForm').submit();
+    //document.getElementById('myForm').submit();
 </script>

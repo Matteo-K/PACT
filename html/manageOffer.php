@@ -14,8 +14,8 @@
 
 
   $nameOffer = "";
-  $step = isset($_POST["page"]) ? $_POST["page"] : 1;
-  $idOffre = isset($_POST["idOffre"])?$_POST["idOffre"]:"";
+  $step =  2; //isset($_POST["page"]) ? $_POST["page"] : 1;
+  $idOffre = 1; //isset($_POST["idOffre"])?$_POST["idOffre"]:"";
   require_once "components/offer/checkOffer.php";
 ?>
 <!DOCTYPE html>
@@ -113,8 +113,9 @@
   function submitForm(page) {
       document.getElementById('pageCurrent').value = page;
       let form = document.querySelector('section form:not(#paypal)');
-      let confirm_page = (page == -1)? confirm("Les données ne seront pas enregistrées.\n Toute modification apportée aux données ne sera pas prise en compte.") : true;
-      if (form.checkValidity() && confirm_page) {
+      let confirm_quit = (page == 0)? confirm("Les données seront enregistrées.\n Vous pourrez reprendre vos modifications.") : true;
+      let confirm_annule = (page == -1)? confirm("Les données ne seront pas enregistrées.\n Toute modification apportée aux données ne sera pas prise en compte.") : true;
+      if (form.checkValidity() && confirm_annule && confirm_quit) {
         form.submit();
       } else {
         form.reportValidity();
