@@ -1,7 +1,29 @@
 <?php
 require_once "config.php";
-$idOffre = $_POST["idoffre"] ?? null;
-$ouvert = $_POST["ouvert"] ?? null;
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Récupération des données JSON envoyées par JavaScript
+    $inputJSON = file_get_contents('php://input');
+    $data = json_decode($inputJSON, true);
+
+    if (isset($data['idOffre']) && isset($data['restaurantOuvert'])) {
+        $idOffre = $data['idOffre'];
+        $restaurantOuvert = $data['restaurantOuvert'];
+
+        // Ici, tu peux effectuer les traitements nécessaires
+        // Par exemple : requête SQL, redirection, etc.
+
+        // Redirection si nécessaire
+        header('Location: /detailsOffer.php');
+        exit(); // Toujours appeler exit après une redirection pour éviter l'exécution de code supplémentaire
+    } else {
+        echo "Erreur : Données manquantes.";
+    }
+} else {
+    echo "Aucune donnée POST reçue.";
+}
+
+
+
 
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
