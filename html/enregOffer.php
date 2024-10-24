@@ -106,18 +106,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
       case 2:
         // Détails offre update
         
-        // Information obligatoire (Titre, Description)
+        // Information obligatoire (Titre, Description) + résumer
         $titre = $_POST["nom"];
         $description = $_POST["description"];
-        $stmt = $conn->prepare("UPDATE pact._offre SET nom= ?, description= ? WHERE idoffre= ?");
-        $stmt->execute([$titre, $description, $idOffre]);
-
-        // Résumer
-        if (isset($_POST["resume"])) {
-          $resume = $_POST["resume"];
-          $stmt = $conn->prepare("UPDATE pact._offre SET resume= ? WHERE idoffre= ?");
-          $stmt->execute([$resume, $idOffre]);
-        }
+        $resume = isset($_POST["resume"]) ? $_POST["resume"] : null;
+        $stmt = $conn->prepare("UPDATE pact._offre SET nom= ?, description= ?, resume= ? WHERE idoffre= ?");
+        $stmt->execute([$titre, $description, $resume, $idOffre]);
 
         // Traitement des images
         $dossierImg = "../../img/imageOffre/";
