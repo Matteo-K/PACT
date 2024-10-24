@@ -147,10 +147,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           // }
         }
 
-        // Ajout des camps obligatoires
-        if (isset($titre, $description, categ) && !in_array("ALaUne",$options)) {
-          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
-          $stmt->execute([$idOffre]);
+        // Ajout des champs obligatoires
+        if ($titre && $description && $categorie){
+          //$stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
+          //$stmt->execute([$idOffre]);
         }
 
         // Ajout des informations suivant la catégorie de l'offre
