@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         // Information obligatoire (Titre, Description) + résumer
         $titre = $_POST["nom"];
         $description = $_POST["description"];
-        $resume = isset($_POST["resume"]) ? $_POST["resume"] : null;
+        $resume = empty($_POST["resume"]) ? null : $_POST["resume"];
         $stmt = $conn->prepare("UPDATE pact._offre SET nom= ?, description= ?, resume= ? WHERE idoffre= ?");
         $stmt->execute([$titre, $description, $resume, $idOffre]);
 
