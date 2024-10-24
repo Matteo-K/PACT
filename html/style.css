@@ -1545,15 +1545,16 @@ textarea[id="Resume"] {
   text-align: left;
   /* margin-left: 675px; */
   flex-direction: row;
+  padding: 10px;
   
 }
 
 #activity article{
-  flex-direction: row;
+  /* flex-direction: row; */
 }
 #activity article>p>label, #activity label[id="labAccess"]{
   font-size: 24px;
-  /* flex-direction: row; */
+  
 
 }
 #activity article>p>textarea[id="txtAct"] {
