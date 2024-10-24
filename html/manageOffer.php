@@ -1,9 +1,5 @@
 <?php
-  // Démarrer la session
-  session_start();
-
-  // fichier de connexion à la BDD
-  require_once 'db.php'; 
+  require_once 'config.php'; 
 
   if(!isset($_SESSION['idUser'])){
       header("Location: index.php");
@@ -11,7 +7,7 @@
   }
 
 
-  if (!($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] == "pro_prive")) {
+  if (!($typeUser == "pro_public" || $typeUser == "pro_prive")) {
     header("Location: index.php");
     exit();
   } 
