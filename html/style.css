@@ -1546,7 +1546,7 @@ textarea[id="Resume"] {
   margin-left: 675px;
   
 }
-#activity article>p>label, label{
+#activity article>p>label, #activity label{
   font-size: 24px;
 
 }
