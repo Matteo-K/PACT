@@ -116,6 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         // Traitement des images
         $dossierImg = "../../img/imageOffre/";
         print_r($_FILES);
+        print_r($_FILES['ajoutPhotos']);
         $imageCounter = 0;  // Compteur pour renommer les images
 
         $totalFiles = count($_FILES['ajoutPhotos']['name']); //nb d'images uploadé
