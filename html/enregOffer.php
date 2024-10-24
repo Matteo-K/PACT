@@ -207,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
       case 4:
         // Détails Contact update
         $mail = $_POST["mail"];
-        $telephone = isset($_POST["phone"]) ? $_POST["phone"] : null;
+        $telephone = empty($_POST["phone"]) ? null : $_POST["phone"];
         $affiche = $_POST['DisplayNumber'] == "Oui" ? true : false;
         $site = empty($_POST["webSide"]) || $_POST["webSide"] == "https://" ? null : $_POST["webSide"];
         $stmt = $conn->prepare("UPDATE pact._offre SET mail=?, telephone=?, affiche=?, urlsite=? WHERE idoffre= ?");
