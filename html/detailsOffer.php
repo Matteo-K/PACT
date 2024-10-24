@@ -213,6 +213,15 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         let geocoder;
         let marker; // Variable pour stocker le marqueur actuel
 
+        // Récupérer les informations de l'adresse depuis PHP
+        const lieu = {
+            numerorue: "<?php echo htmlspecialchars($lieu['numerorue']); ?>",
+            rue: "<?php echo htmlspecialchars($lieu['rue']); ?>",
+            codepostal: "<?php echo htmlspecialchars($lieu['codepostal']); ?>",
+            ville: "<?php echo htmlspecialchars($lieu['ville']); ?>"
+        };
+
+        console.log("Adresse complète : ", "<?php echo $lieu['numerorue'] . ' ' . $lieu['rue'] . ', ' . $lieu['codepostal'] . ' ' . $lieu['ville']; ?>");
         // Initialisation de la carte Google
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
@@ -221,57 +230,47 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             });
             geocoder = new google.maps.Geocoder();
 
-            // Détecte l'appui sur la touche 'Enter' dans les champs de texte
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter') {
-                    event.preventDefault(); // Empêche le comportement par défaut d'envoi du formulaire
-                    checkInputsAndGeocode();
-                }
-            });
-
-            // Ajout d'un écouteur d'événement pour le bouton "Vérifier l'adresse"
-            document.getElementById("checkAddressBtn").addEventListener("click", function() {
-                checkInputsAndGeocode();
-            });
+            // Effectuer le géocodage dès que la carte est chargée
+            checkInputsAndGeocode();
         }
 
-        // Fonction pour vérifier que tous les champs sont remplis
         function checkInputsAndGeocode() {
-            const adresse = document.getElementById("lieu").textContent.trim(); // Récupérer l'adresse affichée
+            const adresse = "<?php echo $lieu['numerorue'] . ' ' . $lieu['rue'] . ', ' . $lieu['codepostal'] . ' ' . $lieu['ville']; ?>";
 
-            if (!adresse) {
+            if (!adresse || adresse.trim() === "") {
                 alert("L'adresse est manquante.");
             } else {
                 geocodeadresse(adresse);
             }
         }
 
-
-        // Fonction pour géocoder l'adresse
         function geocodeadresse(fulladresse) {
+            console.log("Adresse envoyée pour géocodage : ", fulladresse);
             geocoder.geocode({ 'address': fulladresse }, function(results, status) {
-                if (status === 'OK' && results[0]) {
+                if (status === google.maps.GeocoderStatus.OK && results[0]) {
+                    console.log("Résultat du géocodage : ", results[0]);
+
                     // Supprimer l'ancien marqueur s'il existe
                     if (marker) {
                         marker.setMap(null);
                     }
 
-                    // Centrer la carte sur la nouvelle localisation et appliquer un zoom
+                    // Centrer la carte et placer le marqueur
                     map.setCenter(results[0].geometry.location);
-                    map.setZoom(15); // Zoom sur la nouvelle adresse
-
-                    // Ajouter un nouveau marqueur sur la carte
+                    map.setZoom(15);
                     marker = new google.maps.Marker({
                         map: map,
                         position: results[0].geometry.location
                     });
                 } else {
-                    // Alerter si le géocodage échoue ou si aucun résultat n'est trouvé
-                    alert('Adresse introuvable. Veuillez vérifier l\'adresse, le code postal ou la ville.');
+                    console.error("Échec du géocodage : ", status, results); // Affichez plus d'informations
+                    alert("Échec du géocodage : " + status + ". Vérifiez l'adresse.");
                 }
             });
         }
-        </script>
+
+    </script>
+
         <!-- Inclure l'API Google Maps avec votre clé API -->
         <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>
 
