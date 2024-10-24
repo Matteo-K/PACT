@@ -121,8 +121,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
         $nbImages = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
 
+        //On récupère le nb d'images déjà importées 
+        $stmt = $conn->prepare("SELECT * from pact._illustre where idoffre=?");
+        $stmt->execute([$idOffre]);
+        $nbResultats = $stmt->rowCount();
+
         // Boucle à travers chaque fichier uploadé
-        for ($i = 0; $i < $nbImages; $i++) {
+        for ($i = $nbResultats; $i < $nbImages && $i < 10; $i++) {
           $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
           $fileName = $_FILES['ajoutPhoto']['name'][$i];
           $fileError = $_FILES['ajoutPhoto']['error'][$i];
@@ -140,13 +145,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             } 
 
             try {
-              $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
-              $stmt->execute([$dossierImg, $fileName]);
+              $stmt = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
+              $stmt->execute([$dossierImgNom, $fileName]);
 
               $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
-              $stmt->execute([$idOffre, $dossierImg]);
-            } catch (PDOException $e) {
-              echo "Une erreur s'est produite lors de la création de l'offre: \n" . $e->getMessage() . "\n";
+              $stmt->execute([$idOffre, $dossierImgNom]);
+            } catch (e) {
+
             }
           } 
         }
@@ -185,7 +190,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             break;
         }
 
-        // Traitement des tags (Bon courage!)
+        
+        // Traitement des tags
+        $tags = $_POST["tags"];
+
+        foreach ($tags as $key => $tag) {
+          //On verifie si le tag existe dans la BDD
+          $stmt = $conn->prepare("SELECT * FROM pact._tag WHERE nomtag = ?");
+          $stmt->execute([$tag]);
+          $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+          //Si il n'existe pas on l'ajoute a la table _tag
+          if ($result != false) {
+            $stmt = $conn->prepare("INSERT INTO pact._tag (tag) VALUES (?)");
+            $stmt->execute([$tag]);
+
+            // et dans tous les cas on ajoute la relation tag <-> offre (différentes tables selon la catégorie)
+            switch ($_POST["categorie"]) {
+              case 'restaurant':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_restaurant (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                echo "ajouté tag au resto";
+                break;
+              case 'parc':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_parc (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                echo "ajouté tag au parc";
+                break;
+              case 'activite':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_act (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                echo "ajouté tag au activite";
+                break;
+              case 'spectacle':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_spec (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                echo "ajouté tag au spectacle";
+                break;
+              case 'visite':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_visite (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                echo "ajouté tag au visite";
+                break;
+              default:
+                break;
+            }
+          }
+        }
 
         break;
       
@@ -321,5 +372,5 @@ if ($pageDirection >= 1) {
 }
 ?>
 <script>
-    document.getElementById('myForm').submit();
+    //document.getElementById('myForm').submit();
 </script>
