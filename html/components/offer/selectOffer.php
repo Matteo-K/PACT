@@ -1,9 +1,11 @@
 <?php
 $is_prive = $_SESSION["typeUser"] == "pro_prive";
 
+// Définit le type d'abonnement lors de la modification
+// Si c'est lors de la modification, alors on ne peut pas la changé.
 if ($is_prive) {
   if (!empty($idOffre)) {
-    $stmt = $conn->prepare("SELECT nomabonnement FROM _abonner WHERE idoffre = ? ");
+    $stmt = $conn->prepare("SELECT nomabonnement FROM pact._abonner WHERE idoffre = ? ");
     $stmt->execute([$idOffre]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($result["nomabonnement"] == "Premium") {
@@ -20,8 +22,20 @@ if ($is_prive) {
   }
 }
   
-// select option from _option where idoffre = $idOffre;
-$options = ["EnRelief"];
+// insert les options de l'offre dans un tableau
+$options = [];
+if (!empty($idOffre)) {
+  $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre=?");
+  $stmt->execute([$idOffre]);
+  $res = $stmt->fetch(PDO::FETCH_ASSOC);
+  // si les options éxistent, on les ajoutent dans la base de donnée
+  if ($res !== false) {
+    foreach ($res as $elem) {
+      array_push($options,$elem["nomoption"]);
+    }
+  }
+}
+
 ?>
 <form id="selectOffer" action="enregOffer.php" method="post">
   <div>

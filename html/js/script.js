@@ -1,7 +1,6 @@
 const formHeader = document.querySelector("header form");
 const searchBar = document.querySelector("header input");
 
-
 // Modifie le lien vers la recherche a chaque entré
 searchBar.addEventListener("input", (e) => {
   formHeader.setAttribute("action", "search.php?search=" + e.target.value);
@@ -12,36 +11,38 @@ try {
   //Affichage des images a leur selection
   let compteurImages = 0;
   const pImage = document.querySelector("#choixImage > p");
-  document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
+  document
+    .getElementById("ajoutPhoto")
+    .addEventListener("change", afficheImage);
 
   function afficheImage(event) {
     const images = event.target.files;
     const conteneur = document.getElementById("afficheImages");
     const pImage = document.querySelector("#choixImage > p");
 
-      Array.from(images).forEach((file) => {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          if (compteurImages < 10) {
-            compteurImages++;
-            const figureImg = document.createElement("figure");
-            figureImg.classList.add("imageOffre");
-            figureImg.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
-            conteneur.appendChild(figureImg);
+    Array.from(images).forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        if (compteurImages < 10) {
+          compteurImages++;
+          const figureImg = document.createElement("figure");
+          figureImg.classList.add("imageOffre");
+          figureImg.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
+          conteneur.appendChild(figureImg);
 
-            figureImg.addEventListener("click", function () {
-              if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
-                compteurImages--;
-                figureImg.remove(); // Supprime l'élément image et son conteneur
-                pImage.style.color = "black"; //on remet la couleur par défaut au cas où c'etait en rouge
-              }
-            });
-          } else {
-            pImage.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
-          }
-        };
-        reader.readAsDataURL(file);
-      });
+          figureImg.addEventListener("click", function () {
+            if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
+              compteurImages--;
+              figureImg.remove(); // Supprime l'élément image et son conteneur
+              pImage.style.color = "black"; //on remet la couleur par défaut au cas où c'etait en rouge
+            }
+          });
+        } else {
+          pImage.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
+        }
+      };
+      reader.readAsDataURL(file);
+    });
 
     //Affichage des tags a leur ajout
     const inputTag = document.getElementById("inputTag");
@@ -63,7 +64,6 @@ try {
     }
 
     function ajoutTag() {
-
       const valeurTag = inputTag.value.trim(); // Récupère la valeur de l'input et enlève les espaces
 
       if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
@@ -86,17 +86,14 @@ try {
         sectionTag.appendChild(elementTag); // Ajoute l'élément à la section
 
         inputTag.value = ""; // Réinitialise l'input
-      } 
-      else if (tags.length >= 6) {
+      } else if (tags.length >= 6) {
         pTag.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 6 tags est atteinte
-      } 
-      else if (tags.includes(valeurTag)) {
+      } else if (tags.includes(valeurTag)) {
         alert("Ce tag à déjà été entré !");
       }
     }
   }
-} catch (error) {
-}
+} catch (error) {}
 
 try {
   /* Affichage pour un type d'offre particulier */
@@ -107,12 +104,14 @@ try {
   const radioSpectacle = document.getElementById("radioSpectacle");
   const radioVisite = document.getElementById("radioVisite");
 
+  const RestaurantOffer = document.getElementById("restaurant");
   const ParkOffer = document.getElementById("park");
   const ActiviteOffer = document.getElementById("activity");
   const SpectacleOffer = document.getElementById("show");
   const VisiteOffer = document.getElementById("visit");
 
   function hidenOffer() {
+    RestaurantOffer.style.display = "none";
     ParkOffer.style.display = "none";
     ActiviteOffer.style.display = "none";
     SpectacleOffer.style.display = "none";
@@ -131,6 +130,8 @@ try {
       SpectacleOffer.style.display = "block";
     } else if (radioVisite.checked) {
       VisiteOffer.style.display = "block";
+    } else if (radioRestaurant.checked) {
+      RestaurantOffer.style.display = "block";
     }
   }
 

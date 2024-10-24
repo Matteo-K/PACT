@@ -13,6 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
   /* Création d'une nouvelle offre */
   if (empty($idOffre)) {
+    // Initialisation d'une offre
+
+    // ##### Main info de l'offre #####
     /* obtention de la nouvelle id de l'offre */
     try {
       $stmt = $conn->prepare("SELECT o.idoffre FROM pact._offre o ORDER BY idoffre DESC LIMIT 1");
@@ -34,7 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
     } catch (PDOException $e) {
       echo "Une erreur s'est produite lors de la création de l'offre: \n" . $e->getMessage() . "\n";
     }
-  
+    
+    // ##### Abonnement à propos de l'offre #####
     /* Obtention du type de l'abonnement */
     $typeOffre;
     switch ($_POST["typeOffre"]) {
@@ -62,44 +66,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
     } catch (PDOException $e) {
       echo "Une erreur s'est produite lors de la saisit de l'abonnement de l'offre: \n" . $e->getMessage() . "\n";
     }
-
   } else {
     switch ($pageBefore) {
       case 1:
-        // Modification des options
+        // Insert/Modifications des options
         // Récupération des offres
+        $options = Array();
         $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre = ?");
         $stmt->execute([$idOffre]);
-        $options = $stmt->fetch(PDO::FETCH_ASSOC);
-        print_r($options);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        // si il y a un résultat, on l'ajoute dans la liste
+        if ($res !== false) {
+          foreach ($res as $elem) {
+            array_push($options,$elem["nomoption"]);
+          }
+        }
         // Si à la une est coché && n'est pas dans la base : ajoute à la base
-        if (isset($_POST["aLaUne"])) {
-          
+        if (isset($_POST["aLaUne"]) && !in_array("aLaUne",$options)) {
+          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
+          $stmt->execute([$idOffre]);
         }
         // Si à la une est pas sélectionné && est dans la base : supprime de la base
-        if (!isset($_POST["aLaUne"])) {
-          
+        if (!isset($_POST["aLaUne"]) && in_array("aLaUne",$options)) {
+          $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ? AND nomoption='aLaUne'");
+          $stmt->execute([$idOffre]);
         }
         // Si en relief est coché && n'est pas dans la base : ajoute à la base
-        if (isset($_POST["enRelief"])) {
-          
+        if (isset($_POST["enRelief"]) && !in_array("enRelief",$options)) {
+          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'enRelief')");
+          $stmt->execute([$idOffre]);
         }
         // Si en relief est pas sélectionné && est dans la base : supprime de la base
-        if (!isset($_POST["enRelief"])) {
-          
+        if (!isset($_POST["enRelief"]) && in_array("enRelief",$options)) {
+          $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ? AND nomoption='EnRelief'");
+          $stmt->execute([$idOffre]);
         }
-
-
-
         break;
       
       case 2:
         // Détails offre update
-        // Faire un switch suivant le type d'offre (restaurant, ...)
+        
+        // Information obligatoire (Titre, Description) + résumer
+        $titre = $_POST["nom"];
+        $description = $_POST["description"];
+        $resume = empty($_POST["resume"]) ? null : $_POST["resume"];
+        $stmt = $conn->prepare("UPDATE pact._offre SET nom= ?, description= ?, resume= ? WHERE idoffre= ?");
+        $stmt->execute([$titre, $description, $resume, $idOffre]);
+
+        // Traitement des images
         $dossierImg = "../../img/imageOffre/";
-
         print_r($_FILES);
-
         $imageCounter = 0;  // Compteur pour renommer les images
 
         $totalFiles = count($_FILES['ajoutPhotos']['name']); //nb d'images uploadé
@@ -112,7 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
         // Vérifie si l'image a été uploadée sans erreur
           if ($fileError === UPLOAD_ERR_OK) {
-
             // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
             $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
             $dossierImgNom = $dossierImg . $newFileName;
@@ -130,18 +145,97 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             echo "Erreur lors du téléchargement de l'image $fileName (Erreur $fileError).<br>";
           }
         }
+
+        // Ajout des informations suivant la catégorie de l'offre
+        switch ($_POST["categorie"]) {
+          case 'restaurant':
+            break;
+          case 'parc':
+            break;
+          case 'activite':
+            break;
+          case 'spectacle':
+            break;
+          case 'visite':
+            break;
+          
+          default:
+            # code...
+            break;
+        }
+
+        // Traitement des tags (Bon courage!)
+
         break;
       
       case 3:
         // Détails Localisation update
+        // insertion dans adresse
+        $adresse = $_POST["adresse2"];
+        $codePostal = $_POST["codepostal"];
+        $ville = $_POST["ville2"];
+        $pays = 'France';
+        // obtention du split de l'adresse par une expression régulière
+        preg_match('/^(\d+)\s+(.*)$/', $adresse, $matches);
+        $numerorue = $matches[1];
+        $rue = $matches[2];
+
+        // Vérification Si l'adresse n'éxiste pas déjà dans la base de donnée
+        $stmt = $conn->prepare("SELECT * FROM pact._adresse WHERE codepostal = ? AND ville = ? AND pays = ? AND rue = ? AND numerorue = ?");
+        $stmt->execute([$codePostal, $ville, $pays, $rue, $numerorue]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Insertion si elle n'existe pas
+        if ($result === false) {
+          $stmt = $conn->prepare("INSERT INTO pact._adresse (codepostal, ville, pays, rue, numerorue) values (?, ?, ?, ?, ?)");
+          $stmt->execute([$codePostal, $ville, $pays, $rue, $numerorue]);
+        }
+
+        // Insertion dans localisation
+        // Ajout ou modification
+        $stmt = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre = ?");
+        $stmt->execute([$idOffre]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // ajout si aucun résultat
+        if ($result === false) {
+          $stmt = $conn->prepare("INSERT INTO pact._localisation (idoffre, codepostal, ville, pays, rue, numerorue) VALUES (?, ?, ?, ?, ?, ?)");
+          $stmt->execute([$idOffre, $codePostal, $ville, $pays, $rue, $numerorue]);
+        } else {
+          // modifiaction
+          $stmt = $conn->prepare("UPDATE pact._localisation SET codepostal=?, ville=?, pays=?, rue=?, numerorue=?  WHERE idoffre= ?");
+          $stmt->execute([$codePostal, $ville, $pays, $rue, $numerorue, $idOffre]);
+        }
         break;
 
       case 4:
         // Détails Contact update
+        $mail = $_POST["mail"];
+        $telephone = empty($_POST["phone"]) ? null : $_POST["phone"];
+        $affiche = $_POST['DisplayNumber'] == "Oui" ? true : false;
+        $site = empty($_POST["webSide"]) || $_POST["webSide"] == "https://" ? null : $_POST["webSide"];
+        $stmt = $conn->prepare("UPDATE pact._offre SET mail=?, telephone=?, affiche=?, urlsite=? WHERE idoffre= ?");
+        $stmt->execute([$mail, $telephone, $affiche, $site, $idOffre]);
         break;
 
       case 5:
         // Détails Horaires update
+        $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
+        
+        // Ajoute dans la base de donnée les heures pour chaque jour
+        // Si fermé ou les champs son vides, on ajoute pas dans la base de donnée
+        foreach ($jour_semaine as $value) {
+          $ferme = isset($_POST["check".$value])?true:false;
+          $ouvMidi = isset($_POST["horairesOuv1".$value]) ? $_POST["horairesOuv1".$value] : "";
+          $fermMidi = isset($_POST["horairesF1".$value]) ? $_POST["horairesF1".$value] : "";
+          $ouvSoir = isset($_POST["horairesOuv2".$value]) ? $_POST["horairesOuv2".$value] : "";
+          $fermSoir = isset($_POST["horairesF2".$value]) ? $_POST["horairesF2".$value] : "";
+          // Si il n'est pas fermé et que les deux entré ne sont pas vide
+          if (!($ferme || empty($ouvMidi) || empty($fermMidi))) {
+            // Ajoute les horaires du midi au jour de la semaine
+          }
+          if (!($ferme || empty($ouvSoir) || empty($fermSoir))) {
+            // Ajoute les horaires du soir au jour de la semaine
+          }
+        }
         break;
 
       case 6:
@@ -160,7 +254,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 }
 
 // Redirection vers les bonnes pages
-/*
 if ($pageDirection >= 1) {
   ?>
   <form id="myForm" action="manageOffer.php" method="POST">
@@ -171,7 +264,7 @@ if ($pageDirection >= 1) {
 } else {
   header("Location: search.php");
   exit();
-}*/
+}
 ?>
 <script>
     document.getElementById('myForm').submit();

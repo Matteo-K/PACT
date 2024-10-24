@@ -1,43 +1,76 @@
-<?php 
-    require_once "config.php";
-    require_once "db.php";
-    
-    // Check if idoffre is set
-    if(!isset($_GET["idoffre"])){
-        header("location: index.php");
-        exit();
-    }
+<?php
+require_once "config.php";
+$idOffre = $_GET["idoffre"] ?? null;
 
-    $idOffre = $_GET["idoffre"];
+// Vérifiez si idoffre est défini
+if (!$idOffre) {
+    header("location: index.php");
+    exit();
+}
 
-    // Prepare the SQL statement with placeholders
-    $stmt = $conn->prepare("SELECT * FROM pact.parcs_attractions WHERE idoffre = '$idOffre'");
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+// Fonction pour récupérer les horaires
+function getSchedules($conn, $idOffre) {
+    $schedules = [
+        'midi' => [],
+        'soir' => []
+    ];
 
-    if (!$result) {
-        $stmt = $conn->prepare("SELECT * FROM pact.restaurants WHERE idoffre = '$idOffre'");
+    // Récupérer les horaires du midi et du soir
+    $stmtMidi = $conn->prepare("SELECT * FROM pact._horaireMidi WHERE idOffre = :idOffre");
+    $stmtMidi->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+    $stmtMidi->execute();
+    $schedules['midi'] = $stmtMidi->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmtSoir = $conn->prepare("SELECT * FROM pact._horaireSoir WHERE idOffre = :idOffre");
+    $stmtSoir->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+    $stmtSoir->execute();
+    $schedules['soir'] = $stmtSoir->fetchAll(PDO::FETCH_ASSOC);
+
+    return $schedules;
+}
+
+// Récupérer les horaires
+$schedules = getSchedules($conn, $idOffre);
+
+// Rechercher l'offre dans les parcs d'attractions
+$stmt = $conn->prepare("SELECT * FROM pact.parcs_attractions WHERE idoffre = :idoffre");
+$stmt->bindParam(':idoffre', $idOffre);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$result) {
+    // Recherche dans les restaurants, activités, spectacles, et visites
+    $types = ['restaurants', 'activites', 'spectacles', 'visites'];
+    foreach ($types as $type) {
+        $stmt = $conn->prepare("SELECT * FROM pact.$type WHERE idoffre = :idoffre");
+        $stmt->bindParam(':idoffre', $idOffre);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$result) {
-            $stmt = $conn->prepare("SELECT * FROM pact.activites WHERE idoffre = '$idOffre'");
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if (!$result) {
-                $stmt = $conn->prepare("SELECT * FROM pact.spectacles WHERE idoffre = '$idOffre'");
-                $stmt->execute();
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                if (!$result) {
-                    $stmt = $conn->prepare("SELECT * FROM pact.visites WHERE idoffre = '$idOffre'");
-                    $stmt->execute();
-                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                }
-            }
+        if ($result) {
+            $typeOffer = $type;
+            break; // Sortir de la boucle si une offre est trouvée
         }
     }
+} else{
+    $typeOffer = "parcs_attractions";
+}
+
+if (!$result) {
+    echo "Aucune offre trouvée avec cet id.<br>";
+    exit();
+}
+
+// Récupérer les détails de localisation
+$stmt = $conn->prepare("SELECT * FROM pact.localisations_offres WHERE idoffre = :idoffre");
+$stmt->bindParam(':idoffre', $idOffre);
+$stmt->execute();
+$lieu = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Fetch photos for the offer
+$stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = :idoffre ORDER BY url ASC");
+$stmt->bindParam(':idoffre', $idOffre);
+$stmt->execute();
+$photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -45,49 +78,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
-    <title><?php echo $result["nom_offre"] ?> </title>
+
+    <title><?php echo htmlspecialchars($result["nom_offre"]); ?></title>
 </head>
 <body>
     <?php require_once "components/headerTest.php"; ?>
-    <script src="js/setColor.js"></script>
-    
+
     <main class="mainOffer">
-        <h2 id="titleOffer"><?php echo $result["nom_offre"] ?> </h2>
+        <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
+        
         <div>
-        <?php 
-            $stmt = $conn->prepare("SELECT t.nomTag FROM pact._offre o
-                                    LEFT JOIN pact._tag_parc tp ON o.idOffre = tp.idOffre
-                                    LEFT JOIN pact._tag_spec ts ON o.idOffre = ts.idOffre
-                                    LEFT JOIN pact._tag_Act ta ON o.idOffre = ta.idOffre
-                                    LEFT JOIN pact._tag_restaurant tr ON o.idOffre = tr.idOffre
-                                    LEFT JOIN pact._tag_visite tv ON o.idOffre = tv.idOffre
-                                    LEFT JOIN pact._tag t ON t.nomTag = COALESCE(tp.nomTag, ts.nomTag, ta.nomTag, tr.nomTag, tv.nomTag)
-                                    WHERE o.idOffre = '$idOffre' ORDER BY o.idOffre");
+            <?php 
+            // Fetch tags associated with the offer
+            $stmt = $conn->prepare("
+                SELECT t.nomTag FROM pact._offre o
+                LEFT JOIN pact._tag_parc tp ON o.idOffre = tp.idOffre
+                LEFT JOIN pact._tag_spec ts ON o.idOffre = ts.idOffre
+                LEFT JOIN pact._tag_Act ta ON o.idOffre = ta.idOffre
+                LEFT JOIN pact._tag_restaurant tr ON o.idOffre = tr.idOffre
+                LEFT JOIN pact._tag_visite tv ON o.idOffre = tv.idOffre
+                LEFT JOIN pact._tag t ON t.nomTag = COALESCE(tp.nomTag, ts.nomTag, ta.nomTag, tr.nomTag, tv.nomTag)
+                WHERE o.idOffre = :idoffre
+                ORDER BY o.idOffre");
+            $stmt->bindParam(':idoffre', $idOffre);
             $stmt->execute();
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        
+            
             foreach ($tags as $tag): ?>
-                <a class="tag" href="search.php"><?php echo htmlspecialchars($tag["nomtag"]); ?></a>
+                <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
             <?php endforeach; ?>
         </div>
 
-           
-        </div>
         <div>
-            <a href="https://maps.app.goo.gl/PSBboQALwGsqgqKM8">Route du Radome, 22560 Pleumeur-Bodou</a>
-            <a href="tel: 0296918395">02 96 91 83 95</a>
-            <a href="mailto: paulblanc@gmail.com">paulblanc@gmail.com</a>
-            <a href="https://www.levillagegaulois.org/">https://www.levillagegaulois.org/</a>
+            <img src="./img/icone/lieu.png">
+            <p><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></p>
+            <img src="./img/icone/tel.png">
+            <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
+            <img src="./img/icone/mail.png">
+            <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
+            <img src="./img/icone/globe.png">
+            <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
         </div>
-        <?php
-            $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = '$idOffre' ORDER BY url ASC");
-            $stmt->execute();
-            $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        ?>
+
         <div class="swiper-container">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
@@ -120,12 +154,60 @@
             ?>
             </div>
         </div>
-
-        <!-- Swiper JS -->
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         
-        <!-- Initialize Swiper -->
-        <script>
+        <p>Pas de note pour this moment</p>
+        <section>
+            <h4>Description</h4>
+            <p><?php echo htmlspecialchars($result["description"]); ?></p>
+        </section>
+
+        <section id="InfoComp">
+            <h4>Informations Complémentaires</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Horaires</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    // Tableau de tous les jours de la semaine
+                    $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+
+                    // Afficher les horaires pour chaque jour de la semaine
+                    foreach ($joursSemaine as $jour): ?>
+                        <tr>
+                            <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
+                            <td>
+                                <?php
+                                $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
+                                $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
+
+                                // Collect hours
+                                $horairesAffichage = [];
+                                if (!empty($horaireMidi)) {
+                                    $horairesAffichage[] = htmlspecialchars(current($horaireMidi)['heureouverture']) . " à " . htmlspecialchars(current($horaireMidi)['heurefermeture']);
+                                } 
+                                if (!empty($horaireSoir)) {
+                                    $horairesAffichage[] = htmlspecialchars(current($horaireSoir)['heureouverture']) . " à " . htmlspecialchars(current($horaireSoir)['heurefermeture']);
+                                }
+                                if(empty($horaireMidi) && empty($horaireSoir)){
+                                    $horairesAffichage[] = "Fermé";
+                                }
+                                echo implode(' et ', $horairesAffichage);
+                                ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <?php require_once "components/footer.php"; ?>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+            <!-- Initialize Swiper -->
+            <script>
         var swiper = new Swiper(".myThumbSlider", {
             loop: true,
             spaceBetween: 10,
@@ -147,8 +229,7 @@
             swiper: swiper,
             },
         });
-        </script>
-    </main>
-    <?php require_once "components/footer.php"; ?>
+    </script>
+    <script src="js/setColor.js"></script>
 </body>
 </html>
