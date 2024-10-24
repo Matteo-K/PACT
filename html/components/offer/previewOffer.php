@@ -28,10 +28,10 @@
     }
 
     // selectionner les tags de l'offre en cours de création
-    $stmt = $conn->prepare("SELECT * FROM pact._tag WHERE idOffre = :idOffre");
-    $stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
-    $stmt->execute();
-    $offer = $stmt->fetch(PDO::FETCH_ASSOC);
+    // $stmt = $conn->prepare("SELECT * FROM pact._tag WHERE idOffre = :idOffre");
+    // $stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+    // $stmt->execute();
+    // $offer = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$offer) {
         echo "Aucune offre trouvée pour cet ID.";
