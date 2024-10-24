@@ -1,7 +1,6 @@
 <?php 
-    // Démarrer la session
-    
-    require_once "config.php";
+require_once "config.php";
+
 
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
@@ -41,10 +40,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <script src="js/setColor.js"></script>
     <?php require_once "components/header.php"; ?>
     <main class="search">
-        <!-- <aside class="sectionFiltre">
+        <aside class="sectionFiltre">
             <h2>Filtre</h2>
-            <h2>Tri</h2>    
-        </aside> -->
+            <h2>Tri</h2>
+        </aside>
 
         <?php 
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
@@ -151,17 +150,15 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <a onclick="sendPost(<?php echo $idOffre; ?>, '<?php echo $restaurantOuvert; ?>')">
+                            <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                             <div class="infoOffre">
-                                
                                 <p class="searchTitre"><?php echo $nomOffre; ?></p>
-
-                                <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
-                                
+    
                                 <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText; ?></p></strong>
-                                
+    
+                                <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
     
                                 <strong><p>Catégorie :</p></strong>
     
@@ -307,10 +304,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
-                            <a onclick="sendPost(<?php echo $idOffre; ?>, '<?php echo $restaurantOuvert; ?>')">
+                            <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
-
                             <div class="infoOffre">
                                 <p class="searchTitre"><?php echo $nomOffre; ?></p>
     
@@ -367,22 +363,5 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
     </main>
     <?php require_once "components/footer.php"; ?>
-
-    <script>
-        function sendPost(idOffre, restaurantOuvert) {
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "votre_script.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log(xhr.responseText); // Pour voir la réponse
-                }
-            };
-            const params = "idoffre=" + encodeURIComponent(idOffre) + "&restaurantOuvert=" + encodeURIComponent(restaurantOuvert);
-            xhr.send(params);
-        }
-
-    </script>
-
 </body>
 </html>
