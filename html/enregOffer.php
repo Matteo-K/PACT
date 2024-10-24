@@ -121,8 +121,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
         $nbImages = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
 
+        //On récupère le nb d'images déjà importées 
+        $stmt = $conn->prepare("SELECT * from pact._image where idoffre=$idOffre");
+        $stmt->execute([$idOffre]);
+        $nbResultats = $stmt->rowCount();
+
         // Boucle à travers chaque fichier uploadé
-        for ($i = 0; $i < $nbImages; $i++) {
+        for ($i = $nbResultats; $i < $nbImages && $i < 10; $i++) {
           $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
           $fileName = $_FILES['ajoutPhoto']['name'][$i];
           $fileError = $_FILES['ajoutPhoto']['error'][$i];
