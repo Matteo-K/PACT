@@ -1173,6 +1173,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .avisSearch{
   font-size: 0.7em;
 }
+
+.createur{
+
+}
+
+.searchUser{
+  font-size: 12px;
+}
+
 /* @media (max-width: 700px){
   .search{
     margin-top: 220px;
