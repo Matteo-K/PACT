@@ -1102,8 +1102,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .search{
   margin-top: 110px;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
   background-image: url("/img/phare.jpg");
+  background-attachment: fixed;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1123,7 +1124,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .carteOffre{
   display: flex;
   width: 70%;
-  background-color: var(--primary70);
+  background-color: var(--primary90);
   border-radius: 20px;
 }
 
@@ -1135,6 +1136,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   object-fit: contain;
   width: 290px;
   height: 170px;
+  padding-left: 0;
 }
 
 .infoOffre{
@@ -1174,9 +1176,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 0.7em;
 }
 
-.createur{
+/* .createur{
 
-}
+} */
 
 .searchUser{
   font-size: 12px;
