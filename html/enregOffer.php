@@ -192,7 +192,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
                   echo "L'image $fileName a été uploadée avec succès.<br>";
                   $imageCounter++;
                 } 
-    
+                
                 try {
                   $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
                   $stmt->execute([$dossierImgNom, $fileName]);
