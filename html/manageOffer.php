@@ -33,7 +33,7 @@
   <main>
     <aside>
       <!-- Création ou modification -->
-      <h3>Création de votre offre</h3>
+      <h3>Gestion de votre offre</h3>
       <ul>
         <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
         <li><a onclick="submitForm(1)" class="<?php echo $step == 1 ? "guideSelect" : checkSelectOffer($idOffre) ?>">Sélection de l’abonnement</a></li>

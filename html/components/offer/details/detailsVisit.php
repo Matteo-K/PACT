@@ -17,14 +17,14 @@
             <br>
 
 
-            <input type="radio" id="radioButtonAccesPmrRequis" name="Accessibilité" value="Accès personne handicapées"
+            <input type="radio" id="access" name="Accessibilité" value="access"
                 checked>
             <!-- Bouton radio pour le choix de l'accesibilite PMR il est lier avec le 2eme et est selectionner par defaut -->
-            <label for="radioButtonAccesPmrRequis"> Accès personne handicapées</label>
+            <label for="access"> Accès personne handicapées</label>
             <!-- Label associé au bouton radio -->
             <br>
             <input type="radio" id="pasAcces" name="Accessibilité"
-                value="Pas d’accès personne handicapées"> <!-- 2eme bouton radio liés au 1er via l'id -->
+                value="pasAcces"> <!-- 2eme bouton radio liés au 1er via l'id -->
             <label for="pasAcces"> Pas d’accès personne handicapées </label>
             <!-- Label du 2eme bouton radio -->
             <br>
