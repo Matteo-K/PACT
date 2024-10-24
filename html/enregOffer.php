@@ -1,7 +1,7 @@
 <?php
-$pageDirection = $pageDirection = $_POST['pageCurrent'] ?? 1;
-$idOffre = $_POST["idOffre"];
-$idUser = $_POST["idUser"];
+$pageDirection = $_POST['pageCurrent'] ?? 1;
+$idOffre = $_POST["idOffre"] ?? "";
+$idUser = $_POST["idUser"] ?? "";
 
 session_start();
 require_once 'db.php';
@@ -313,6 +313,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
                         $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=? AND jour=?");
                         $stmt->execute([$idOffre, $jour]);
                         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
                         if ($result !== false) {
                           // si existe déjà, on modifie
                           $stmt = $conn->prepare("UPDATE pact._horairemidi SET heureouverture=?, heurefermeture=? where idoffre=? and jour=?");
