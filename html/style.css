@@ -887,7 +887,7 @@ header > div > a > div {
 }
 
 #artDetailOffer > div > label:not(.buttonDetailOffer),
-#choixCategorie:first-child,
+#choixCategorie label:first-of-type,
 #choixImage label {
   display: inline-block;
   font-size: 25px;
