@@ -151,6 +151,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
                             <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
+                                <form class="offerForm" action="detailsOffer.php" method="POST" style="display: none;">
+                                    <input type="hidden" name="idOffre" id="idOffre" value="">
+                                    <input type="hidden" name="status" id="status" value="">
+                                </form>
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                             <div class="infoOffre">
@@ -305,6 +309,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     if ($offre['statut'] == 'actif') { ?>
                         <div class="carteOffre">
                             <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
+                                <form class="offerForm" action="detailsOffer.php" method="POST" style="display: none;">
+                                    <input type="hidden" name="idOffre" id="idOffre" value="">
+                                    <input type="hidden" name="status" id="status" value="">
+                                </form>
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                             <div class="infoOffre">
@@ -359,7 +367,21 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         <?php      
         } 
         ?>
-        
+        <script>
+            document.getElementById("offerImage").addEventListener("click", function() {
+                // Récupérer les données de l'image
+                var idOffre = this.getAttribute("data-id-offre");
+                var status = this.getAttribute("data-status");
+
+                // Remplir le formulaire avec les données
+                document.getElementById("idOffre").value = idOffre;
+                document.getElementById("status").value = status;
+
+                // Soumettre le formulaire
+                document.getElementsByClassName("offerForm").submit();
+            });
+        </script>
+
 
     </main>
     <?php require_once "components/footer.php"; ?>
