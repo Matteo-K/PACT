@@ -404,7 +404,7 @@ header>div>a>div {
 #manageOffer aside a {
   flex: 5;
   padding: 8px;
-  /* border-radius: 10px; */
+   border-radius: 10px; 
   background-color: var(--secondary);
   color: var(--text-dark);
 }
@@ -1512,7 +1512,6 @@ textarea[id="Resume"] {
 }
 
 
-
 #park {
   display: flex;
   margin-left: 675px;
@@ -1543,6 +1542,8 @@ textarea[id="Resume"] {
 
 #activity {
   display: flex;
+  text-align: left;
+  margin-left: 675px;
 
 }
 
