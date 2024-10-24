@@ -32,6 +32,7 @@
             <br>
         </div>
 </article>
+<br>
 <article>
         <p>
             <label>Prestation(s)</label>
