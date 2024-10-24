@@ -247,7 +247,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <p id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></p>
             <?php
                 }
-            if($result["telephone"]){
+            if($result["telephone"] && $tel["affiche"] == TRUE){
             ?>
                 <img src="./img/icone/tel.png">
                 <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>

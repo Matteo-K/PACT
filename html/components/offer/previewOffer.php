@@ -37,12 +37,12 @@
         echo "Aucune offre trouvée pour cet ID.";
         exit();
     }
+
+    echo "<pre>";
+        print_r($offer);
+    echo "</pre>";
+
 ?>
 
 <form id="previewOffer" action="enregOffer.php" method="post">
-    <h1><?php echo htmlspecialchars($offer["nom_offre"]); ?></h1>
-    <p><strong>Description :</strong> <?php echo htmlspecialchars($offer['description']); ?></p>
-    <p><strong>Type :</strong> <?php echo htmlspecialchars($offer['type']); ?></p>
-    <p><strong>Localisation :</strong> <?php echo htmlspecialchars($offer['localisation']); ?></p>
-    <p><strong>Contact :</strong> <?php echo htmlspecialchars($offer['contact']); ?></p>
-    <p><strong>Horaires :</strong> <?php echo htmlspecialchars($offer['horaires']); ?></p>
+    <h1><?php echo htmlspecialchars($offer["nom"]); ?></h1>
