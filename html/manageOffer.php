@@ -16,8 +16,6 @@
   $step =  isset($_POST["page"]) ? $_POST["page"] : 1;
   $idOffre = isset($_POST["idOffre"])?$_POST["idOffre"]:"";
   require_once "components/offer/checkOffer.php";
-  $step = 5;
-  $idOffre = 2;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
