@@ -81,12 +81,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         }
         // Si à la une est coché && n'est pas dans la base : ajoute à la base
         if (isset($_POST["aLaUne"]) && !in_array("ALaUne",$options)) {
-          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'aLaUne')");
+          $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'ALaUne')");
           $stmt->execute([$idOffre]);
         }
         // Si à la une est pas sélectionné && est dans la base : supprime de la base
         if (!isset($_POST["aLaUne"]) && in_array("ALaUne",$options)) {
-          $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ? AND nomoption='aLaUne'");
+          $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ? AND nomoption='ALaUne'");
           $stmt->execute([$idOffre]);
         }
         // Si en relief est coché && n'est pas dans la base : ajoute à la base
@@ -121,13 +121,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
         $nbImages = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
 
-        //On récupère le nb d'images déjà importées 
-        $stmt = $conn->prepare("SELECT * from pact._illustre where idoffre=?");
-        $stmt->execute([$idOffre]);
-        $nbResultats = $stmt->rowCount();
-
         // Boucle à travers chaque fichier uploadé
-        for ($i = $nbResultats; $i < $nbImages && $i < 10; $i++) {
+        for ($i = 0; $i < $nbImages; $i++) {
           $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
           $fileName = $_FILES['ajoutPhoto']['name'][$i];
           $fileError = $_FILES['ajoutPhoto']['error'][$i];
@@ -144,36 +139,71 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
               $imageCounter++;
             } 
 
-            $stmt = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
-            $stmt->execute([$dossierImgNom, $fileName]);
+            try {
+              $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
+              $stmt->execute([$dossierImgNom, $fileName]);
 
-            $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
-            $stmt->execute([$idOffre, $dossierImgNom]);
-
+              $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
+              $stmt->execute([$idOffre, $dossierImgNom]);
+            } catch (PDOException $e) {
+              echo "Une erreur s'est produite lors de la création de l'offre: \n" . $e->getMessage() . "\n";
+            }
           } 
         }
 
 
         // Ajout des informations suivant la catégorie de l'offre
-        switch ($_POST["categorie"]) {
+        switch ($categorie) {
           case 'restaurant':
             $gammeDePrix = $_POST["gamme_prix"];
-            echo $gammeDePrix;
-            $url = null;
             $stmt = $conn->prepare("SELECT * from pact._restauration where idoffre=?");
             $stmt->execute([$idOffre]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             // Si pas de donnée, on créer
             if ($result === false) {
-              $stmt = $conn->prepare("INSERT INTO pact._restauration (idoffre, gammedeprix, urlmenu) VALUES (?, ?, ?) ");
-              $stmt->execute([$idOffre, $gammeDePrix, $url]);
+              $stmt = $conn->prepare("INSERT INTO pact._restauration (idoffre, gammedeprix) VALUES (?, ?) ");
+              $stmt->execute([$idOffre, $gammeDePrix]);
             } else {
               // sinon modifie
-              $stmt = $conn->prepare("UPDATE pact._restauration SET gammedeprix=?, urlmenu=? where idoffre=?");
-              $stmt->execute([$gammeDePrix, $url, $idOffre]);
+              $stmt = $conn->prepare("UPDATE pact._restauration SET gammedeprix=? where idoffre=?");
+              $stmt->execute([$gammeDePrix, $idOffre]);
             }
             break;
           case 'parc':
+            $dossierImg = "img/imageOffre/";
+            $imageCounter = 0;  // Compteur pour renommer les images
+    
+            $nbImages = count($_FILES['image1Park']['name']); //nb d'images uploadé
+    
+            // Boucle à travers chaque fichier uploadé
+            for ($i = 0; $i < $nbImages; $i++) {
+              $fileTmpPath = $_FILES['image1Park']['tmp_name'][$i];
+              $fileName = $_FILES['image1Park']['name'][$i];
+              $fileError = $_FILES['image1Park']['error'][$i];
+    
+              // Vérifie si l'image a été uploadée sans erreur
+              if ($fileError === UPLOAD_ERR_OK) {
+                // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
+                $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+                $dossierImgNom = $dossierImg . $fileName;
+    
+                // Déplace l'image vers le dossier cible
+                if (move_uploaded_file($fileTmpPath, $dossierImgNom)) {
+                  echo "L'image $fileName a été uploadée avec succès.<br>";
+                  $imageCounter++;
+                } 
+    
+                try {
+                  $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
+                  $stmt->execute([$dossierImgNom, $fileName]);
+    
+                  $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
+                  $stmt->execute([$idOffre, $dossierImgNom]);
+                } catch (PDOException $e) {
+                  echo "Une erreur s'est produite lors de la création de l'offre: \n" . $e->getMessage() . "\n";
+                }
+              } 
+            }
             break;
           case 'activite':
             break;
@@ -187,9 +217,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             break;
         }
 
-        
+                 
         // Traitement des tags
-        $tags = $_POST["tags"];
+        $tags = $_POST["tags"] ?? [];
 
         foreach ($tags as $key => $tag) {
           //On verifie si le tag existe dans la BDD
@@ -199,7 +229,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
           //Si il n'existe pas on l'ajoute a la table _tag
           if ($result == false) {
-            $stmt = $conn->prepare("INSERT INTO pact._tag (tag) VALUES (?)");
+            $stmt = $conn->prepare("INSERT INTO pact._tag (nomtag) VALUES (?)");
             $stmt->execute([$tag]);
             echo "tag ajouté a la table générale";
           }
@@ -310,7 +340,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
                         $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=? AND jour=?");
                         $stmt->execute([$idOffre, $jour]);
                         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
                         if ($result !== false) {
                           // si existe déjà, on modifie
                           $stmt = $conn->prepare("UPDATE pact._horairemidi SET heureouverture=?, heurefermeture=? where idoffre=? and jour=?");
@@ -321,7 +350,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
                           $stmt->execute([$idOffre, $jour, $horairesOuv1, $horairesF1]);
                         }
                         // Ajout du soir si les horaires du midi sont correctes
-                        if ($horairesOuv2 && $horairesF2) {
+                        if (($horairesOuv2 && $horairesF2) && ($horairesF1 < $horairesOuv2)) {
                           // Requête ajout dans la base de donnée Soir
                           $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=? AND jour=?");
                           $stmt->execute([$idOffre, $jour]);

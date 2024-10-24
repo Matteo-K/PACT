@@ -19,13 +19,12 @@
             <br>
 
 
-            <input type="radio" id="radioButtonAccesPmrRequis" name="Accessibilité" value="Accès personne handicapées"
-                checked>
+            <input type="radio" id="Acces" name="Accessibilite" value="Acces" checked>
             <!-- Bouton radio pour le choix de l'accesibilite PMR il est lier avec le 2eme et est selectionner par defaut -->
-            <label for="radioButtonAccesPmrRequis"> Accès personne handicapées</label>
+            <label for="Acces"> Accès personne handicapées</label>
             <!-- Label associé au bouton radio -->
             <br>
-            <input type="radio" id="pasAcces" name="Accessibilité" value="Pas d’accès personne handicapées">
+            <input type="radio" id="pasAcces" name="Accessibilite" value="pasAcces">
             <!-- 2eme bouton radio liés au 1er via l'id -->
             <label for="pasAcces"> Pas d’accès personne handicapées </label>
             <!-- Label du 2eme bouton radio -->
@@ -36,7 +35,7 @@
     <article>
         <p>
             <label>Prestation(s)</label>
-            <br>
+            
             <textarea name="textPrestationsAct" id="textePrestation" placeholder="Entrer une prestation "></textarea>
             <input type="button" id="buttonAjoutPresta" name="BtnAjoutPresta" value="Ajouter des presations">
             <br>
@@ -49,6 +48,7 @@
                 value="Ajouter des presation(s) non proposée(s)">
 
         </p>
+        
 
 
     </article>
