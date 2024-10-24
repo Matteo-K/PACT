@@ -323,7 +323,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
                           $stmt->execute([$idOffre, $jour, $horairesOuv1, $horairesF1]);
                         }
                         // Ajout du soir si les horaires du midi sont correctes
-                        if ($horairesOuv2 && $horairesF2) {
+                        if (($horairesOuv2 && $horairesF2) && ($horairesF1 < $horairesOuv2)) {
                           // Requête ajout dans la base de donnée Soir
                           $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=? AND jour=?");
                           $stmt->execute([$idOffre, $jour]);
