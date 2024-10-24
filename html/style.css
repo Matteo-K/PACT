@@ -83,7 +83,7 @@ footer {
 }
 
 /* Bloc principale + mention légale*/
-footer>div:first-child {
+footer > div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
@@ -99,7 +99,7 @@ footer figure {
 }
 
 /* paragraphe principale */
-footer figure+p {
+footer figure + p {
   margin-left: 2%;
 }
 
@@ -131,7 +131,7 @@ footer h4 {
   text-decoration: underline;
 }
 
-footer div+div {
+footer div + div {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -140,7 +140,7 @@ footer div+div {
   width: max-content;
 }
 
-footer div+div p {
+footer div + div p {
   padding: 0 500px;
 }
 
@@ -174,7 +174,7 @@ header div {
   height: 3em;
 }
 
-header div>a {
+header div > a {
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -187,8 +187,8 @@ header h1 {
   color: var(--bloc);
 }
 
-header div>a>img,
-header #auth>img {
+header div > a > img,
+header #auth > img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
@@ -271,7 +271,7 @@ header #auth>img {
   /* Ajuste l'espacement entre "PACT" et "PRO" */
 }
 
-header>div>a>div {
+header > div > a > div {
   display: flex;
   flex-direction: column;
 }
@@ -361,7 +361,7 @@ header>div>a>div {
   border-radius: 0 0 50px 0;
 }
 
-#manageOffer aside>h3,
+#manageOffer aside > h3,
 #manageOffer aside li a {
   font-family: "Belanosima", sans-serif;
   text-decoration: none;
@@ -391,20 +391,20 @@ header>div>a>div {
   justify-content: space-evenly;
 }
 
-#manageOffer aside> :nth-child(2) {
+#manageOffer aside > :nth-child(2) {
   height: clamp(340px, 35vh, 400px);
   padding-bottom: 1vh;
   border-bottom: var(--text-light) 2px solid;
 }
 
-#manageOffer aside> :nth-child(3) {
+#manageOffer aside > :nth-child(3) {
   gap: 10px;
 }
 
 #manageOffer aside a {
   flex: 5;
   padding: 8px;
-   border-radius: 10px; 
+  border-radius: 10px;
   background-color: var(--secondary);
   color: var(--text-dark);
 }
@@ -455,14 +455,14 @@ header>div>a>div {
     inset 4px 4px 4px #b01111 !important;
 }
 
-#manageOffer aside+section {
+#manageOffer aside + section {
   margin-left: 17em;
   margin-top: var(--header-size);
   min-height: 70vh;
 }
 
 /* Bouton suivant précédent */
-#manageOffer aside+section+div {
+#manageOffer aside + section + div {
   position: absolute;
   bottom: 5px;
   right: 3%;
@@ -471,7 +471,7 @@ header>div>a>div {
   gap: 3%;
 }
 
-#manageOffer aside+section+div a {
+#manageOffer aside + section + div a {
   text-align: center;
   width: 150px;
   padding: 10px;
@@ -487,14 +487,14 @@ header>div>a>div {
 /* # selection de l'offre # */
 
 /* Bloc de chaque type d'offre*/
-#selectOffer>div:first-child {
+#selectOffer > div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
 }
 
 /* Toute les type d'offre */
-#selectOffer>div:first-child>div {
+#selectOffer > div:first-child > div {
   position: relative;
   height: clamp(400px, 50vh, 450px);
   width: 20em;
@@ -512,37 +512,37 @@ header>div>a>div {
 }
 
 /* Prix par mois */
-#selectOffer>div:first-child>div h3 {
+#selectOffer > div:first-child > div h3 {
   margin-top: -20px;
 }
 
 /* Bouton séletionner */
-#selectOffer>div:first-child>div ul+div {
+#selectOffer > div:first-child > div ul + div {
   position: absolute;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-#selectOffer>div:first-child>div ul {
+#selectOffer > div:first-child > div ul {
   display: flex;
   flex-flow: column nowrap;
   gap: clamp(10px, 2vh, 25px);
 }
 
-#selectOffer>div:first-child>div li {
+#selectOffer > div:first-child > div li {
   list-style: disc;
 }
 
 /* offre premium */
-#selectOffer>div:first-child>div:nth-child(2) {
+#selectOffer > div:first-child > div:nth-child(2) {
   background-color: var(--accent20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--accent60);
 }
 
 /* offre standard */
-#selectOffer>div:first-child>div:nth-child(3) {
+#selectOffer > div:first-child > div:nth-child(3) {
   background-color: var(--primary20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--primary60);
@@ -553,8 +553,8 @@ header>div>a>div {
   display: none;
 }
 
-#selectOffer input[type="radio"]+label,
-#detailsOffer #artDetailOffer input[type="radio"]+label {
+#selectOffer input[type="radio"] + label,
+#detailsOffer #artDetailOffer input[type="radio"] + label {
   display: inline-block;
   padding: 5px 30px;
   border-radius: 50px;
@@ -569,24 +569,24 @@ header>div>a>div {
   cursor: pointer;
 }
 
-#selectOffer input[type="radio"]:checked+label,
-#detailsOffer #artDetailOffer input[type="radio"]:checked+label {
+#selectOffer input[type="radio"]:checked + label,
+#detailsOffer #artDetailOffer input[type="radio"]:checked + label {
   background-color: var(--accent);
   box-shadow: inset -4px -4px 4px var(--accent-border);
 }
 
-#selectOffer input[disabled]+label {
+#selectOffer input[disabled] + label {
   color: rgba(20, 20, 20, 0.5);
   border-color: rgba(20, 20, 20, 0.5);
 }
 
-#selectOffer>div:first-child+div {
+#selectOffer > div:first-child + div {
   margin-top: 4vh;
   margin-left: 6%;
 }
 
 /* Message de prévention */
-#selectOffer>div:first-child+div p {
+#selectOffer > div:first-child + div p {
   color: red;
 }
 
@@ -603,14 +603,14 @@ header>div>a>div {
   margin-bottom: -7px;
 }
 
-#hourlyOffer div>div {
+#hourlyOffer div > div {
   display: flex;
   flex-flow: nowrap row;
   align-items: center;
 }
 
 /* div de saisie */
-#hourlyOffer div>div+div:not(#Representation div) {
+#hourlyOffer div > div + div:not(#Representation div) {
   margin-left: 50px;
 }
 
@@ -618,7 +618,7 @@ header>div>a>div {
   margin-left: 10px;
 }
 
-#hourlyOffer div>div {
+#hourlyOffer div > div {
   display: flex;
 }
 
@@ -680,12 +680,12 @@ header>div>a>div {
 }
 
 /* bloc consentement afficher numéro */
-#contactOffer input[type="tel"]+div {
+#contactOffer input[type="tel"] + div {
   margin-bottom: 50px;
 }
 
 /* bloc de chaque radio button */
-#contactOffer div>div {
+#contactOffer div > div {
   display: flex;
   flex-flow: row wrap;
 }
@@ -767,7 +767,7 @@ header>div>a>div {
 }
 
 /* logo paypal */
-#paypal+label img {
+#paypal + label img {
   width: 10vh;
   height: 10vh;
 }
@@ -786,7 +786,7 @@ header>div>a>div {
   gap: 5px;
 }
 
-#paymentOffer article:nth-child(2) div>div:not(div > div > div) {
+#paymentOffer article:nth-child(2) div > div:not(div > div > div) {
   display: flex;
   flex-flow: row;
 }
@@ -854,9 +854,6 @@ header>div>a>div {
   text-decoration: underline;
 }
 
-
-
-
 /*eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                           Fin page erreur
   eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
@@ -884,12 +881,12 @@ header>div>a>div {
   flex-wrap: nowrap;
 }
 
-#artDetailOffer>div {
+#artDetailOffer > div {
   width: 48%;
   margin: 1%;
 }
 
-#artDetailOffer>div>label:not(.buttonDetailOffer),
+#artDetailOffer > div > label:not(.buttonDetailOffer),
 #choixCategorie:first-child,
 #choixImage label {
   display: inline-block;
@@ -933,8 +930,6 @@ header>div>a>div {
   min-height: 250px;
   max-height: 400px;
 }
-
-
 
 #choixImage {
   display: inline-block;
@@ -1100,7 +1095,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Effet d'ombre au focus */
 }
 
-.search{
+.search {
   margin-top: 110px;
   padding-bottom: 20px;
   background-image: url("/img/phare.jpg");
@@ -1110,9 +1105,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-repeat: no-repeat;
   background-color: var(--primary30);
   backdrop-filter: var(--primary30);
+  padding-top: 110px;
 }
 
-.searchoffre{
+.searchoffre {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1121,18 +1117,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 20px;
 }
 
-.carteOffre{
+.carteOffre {
   display: flex;
   width: 70%;
   background-color: var(--primary90);
   border-radius: 20px;
 }
 
-.carteOffre p{
+.carteOffre p {
   margin: 2px;
 }
 
-.searchImage{
+.searchImage {
   object-fit: cover;
   width: 290px;
   height: 170px;
@@ -1141,16 +1137,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 20px;
 }
 
-.infoOffre{
-  flex-grow: 2;  
+.infoOffre {
+  flex-grow: 2;
 }
 
-.searchTitre{
+.searchTitre {
   font-size: 24px;
   color: white;
 }
 
-.searchResume{
+.searchResume {
   font-size: 12px;
 }
 
@@ -1164,17 +1160,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: inline-block;
 }
 
-.searchNote{
+.searchNote {
   display: flex;
   justify-content: space-between;
 }
 
-.searchAvis{
+.searchAvis {
   padding: 5px;
   width: 20%;
 }
 
-.avisSearch{
+.avisSearch {
   font-size: 0.7em;
 }
 
@@ -1182,7 +1178,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 } */
 
-.searchUser{
+.searchUser {
   font-size: 12px;
 }
 
@@ -1255,30 +1251,25 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   } */
-  .searchStatutO{
-    background-color: #008000;
-    color: white;
-    padding: 5px 5px;
-    border-radius: 10px;
-    font-size: 0.7em;
-    margin-right: 5px;
-    display: inline-block;
-  }
+.searchStatutO {
+  background-color: #008000;
+  color: white;
+  padding: 5px 5px;
+  border-radius: 10px;
+  font-size: 0.7em;
+  margin-right: 5px;
+  display: inline-block;
+}
 
-  .searchStatutF{
-    background-color: #b01111;
-    color: white;
-    padding: 5px 5px;
-    border-radius: 10px;
-    font-size: 0.7em;
-    margin-right: 5px;
-    display: inline-block;
-  }
-  
-
-
-
-
+.searchStatutF {
+  background-color: #b01111;
+  color: white;
+  padding: 5px 5px;
+  border-radius: 10px;
+  font-size: 0.7em;
+  margin-right: 5px;
+  display: inline-block;
+}
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
@@ -1287,7 +1278,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 /*  ***************************************************************************************
      **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
      *************************************************************************************** */
-
 
 .mainOffer {
   display: flex;
@@ -1307,7 +1297,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   box-shadow: none;
 }
 
-.mainOffer>div {
+.mainOffer > div {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
@@ -1331,8 +1321,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   overflow: hidden;
 }
 
-
-
 /* Navigation Buttons */
 .swiper-button-next,
 .swiper-button-prev {
@@ -1346,8 +1334,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Ensure buttons are on top */
 }
 
-
-
 /* Horizontal positioning */
 .swiper-button-next {
   transform: translateX(120%);
@@ -1355,15 +1341,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Rounded corners for the next button */
 }
 
-
-
 .swiper-button-prev {
   transform: translateX(-120%);
   border-radius: 1em 0 0 1em;
   /* Rounded corners for the prev button */
 }
-
-
 
 /* Slide Styles */
 .swiper-slide {
@@ -1386,14 +1368,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transform: scale(1.05);
 }
 
-
-
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   background-color: var(--accent);
 }
-
-
 
 /* Thumbnail Slider */
 .myThumbSlider {
@@ -1402,9 +1380,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
   max-width: 1200px;
 }
-
-
-
 
 table {
   width: 50em; /* Ajustez la largeur selon vos besoins */
@@ -1417,27 +1392,24 @@ table {
   overflow: hidden; /* Pour que le border-radius soit visible sur les cellules */
 }
 
-
-
-td[class="jourSemaine"]{
+td[class="jourSemaine"] {
   font-family: "Belanosima", sans-serif;
-  
 }
-td, th{
+td,
+th {
   padding: 10px; /* Ajoutez un peu de remplissage */
   font-size: 24px;
 }
-th{
+th {
   border-radius: 20px 20px 0 0;
   font-family: "Belanosima", sans-serif;
   font-size: 30px;
 }
 thead {
   background-color: var(--accent);
-
 }
 
-tbody{
+tbody {
   border: 2px solid var(--accent);
 }
 
@@ -1461,9 +1433,7 @@ tbody td:last-child {
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
-
 #specialOffer {
-
   margin-bottom: 10px;
   /* marge de 10 px en bas */
   gap: 10px;
@@ -1472,7 +1442,7 @@ tbody td:last-child {
   font-size: 18px;
 }
 
-#specialOffer section>article {
+#specialOffer section > article {
   display: inline-block;
   width: 355px;
   /* largeur de 355 px pour l'article */
@@ -1493,13 +1463,10 @@ textarea[id="Resume"] {
   /* Non redimensionnable */
 }
 
-
-
 #visit {
   display: flex;
   text-align: left;
   margin-left: 675px;
-
 }
 
 #visit div {
@@ -1511,21 +1478,21 @@ textarea[id="Resume"] {
   margin-left: 675px;
 }
 
-
 #park {
   display: flex;
   margin-left: 675px;
 }
 
-#park article>p {
+#park article > p {
   margin-top: 15px;
 }
 
-#park input[type="button"],#activity input[type=button] {
+#park input[type="button"],
+#activity input[type="button"] {
   background-color: #1ca4ed;
   height: 50px;
   width: fit-content;
-  border-radius: 15px ;
+  border-radius: 15px;
   border: none;
   margin-left: 10px;
 }
@@ -1538,7 +1505,7 @@ textarea[id="Resume"] {
 #park input[type="button"]:active {
   box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
     inset 4px 4px 4px #1883bc;
-} 
+}
 
 #activity {
   display: flex;
@@ -1546,32 +1513,28 @@ textarea[id="Resume"] {
   /* margin-left: 675px; */
   flex-direction: row;
   padding: 10px;
-  
 }
 
-#activity article>p{
+#activity article > p {
   padding: 10px;
 }
-#activity article>p>label, #activity label[id="labAccess"]{
+#activity article > p > label,
+#activity label[id="labAccess"] {
   font-size: 24px;
-  
-
 }
-#activity article>p>textarea[id="txtAct"] {
+#activity article > p > textarea[id="txtAct"] {
   resize: none;
   height: px;
   width: 100px;
   text-align: center;
-  
 }
 
-#activity article>p>textarea[id="textePrestation"]{
+#activity article > p > textarea[id="textePrestation"] {
   width: 350px;
   height: 50px;
   resize: none;
-  
 }
-#activity article>p>input[id="numberAct"] {
+#activity article > p > input[id="numberAct"] {
   width: 100px;
   height: 50px;
   resize: none;
@@ -1634,7 +1597,7 @@ button[id="retour"] {
   padding: 0;
 }
 
-aside[id="asideRetour"]>button[id="retour"]>img {
+aside[id="asideRetour"] > button[id="retour"] > img {
   vertical-align: middle;
   width: 70px;
   height: 65px;
@@ -1672,35 +1635,28 @@ body[id="body_creation_compte_pro"] ::placeholder {
   text-align: left;
 }
 
-
-.creation-compte div.ligne1>label,
-div.ligne6>label {
+.creation-compte div.ligne1 > label,
+div.ligne6 > label {
   display: inline-block;
   width: 408px;
 }
 
-
-
-.creation-compte div.ligne2>label,
-div.ligne3>label {
+.creation-compte div.ligne2 > label,
+div.ligne3 > label {
   display: flex;
   justify-content: left;
   width: 823px;
   margin: 5px auto;
 }
 
-
-
-.creation-compte div.ligne4>label {
+.creation-compte div.ligne4 > label {
   display: inline-block;
   width: 215px;
 }
 
-.creation-compte div.ligne4>label[for="ville"] {
+.creation-compte div.ligne4 > label[for="ville"] {
   width: 601px;
 }
-
-
 
 .creation-compte .ligne5 {
   display: flex;
@@ -1734,8 +1690,6 @@ div.ligne3>label {
   margin: 0;
   font-size: 25px;
 }
-
-
 
 .creation-compte .ligne7 {
   display: flex;
@@ -1822,7 +1776,6 @@ button[id="boutonInscriptionPro"] {
   text-align: center;
 }
 
-
 /*+++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
 /*+++++++++++++++++++++++++++++*/
@@ -1888,7 +1841,7 @@ button[id="retour"] {
   padding: 0;
 }
 
-aside[id="asideRetour"]>button[id="retour"]>img {
+aside[id="asideRetour"] > button[id="retour"] > img {
   vertical-align: middle;
   width: 70px;
   height: 65px;
@@ -1926,7 +1879,7 @@ div[id="lienBouton"] {
   text-align: center;
 }
 
-div[id="lienBouton"]>div {
+div[id="lienBouton"] > div {
   display: flex;
   flex-direction: column;
   width: 600px;
@@ -1939,12 +1892,10 @@ div[id="lienBouton"]>div {
   text-align: left;
 }
 
-
-div.ligne1>label {
+div.ligne1 > label {
   display: inline-block;
   width: 408px;
 }
-
 
 .connexion-compte input {
   font-size: 20px;
@@ -2001,10 +1952,8 @@ p[id="legendeBoutonLienPro"] {
   width: 520px;
 }
 
-
 /* Média query pour passer au format téléphone */
 @media (max-width: 375px) {
-
   /* Réduire la taille des titres */
   h1[id="connexionTitre"] {
     font-size: 45px;
@@ -2027,7 +1976,7 @@ p[id="legendeBoutonLienPro"] {
   /* Les champs de saisie restent inchangés */
   .connexion-compte input {
     min-width: 200px;
-      max-width: 280px;
+    max-width: 280px;
     width: 230px;
   }
 
@@ -2045,21 +1994,21 @@ p[id="legendeBoutonLienPro"] {
     align-items: center;
   }
 
-  div[id="lienBouton"]>div {
+  div[id="lienBouton"] > div {
     width: 100%;
     margin: 10px 0;
   }
 
   /* Ajustement des boutons et des labels de création de compte */
-  a[id="boutonLienMembre"], a[id="boutonLienPro"], 
-  p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
+  a[id="boutonLienMembre"],
+  a[id="boutonLienPro"],
+  p[id="legendeBoutonLienMembre"],
+  p[id="legendeBoutonLienPro"] {
     display: none;
   }
 }
 
-
 @media (max-width: 600px) {
-
   /* Réduire la taille des titres */
   h1[id="connexionTitre"] {
     font-size: 45px;
@@ -2080,8 +2029,8 @@ p[id="legendeBoutonLienPro"] {
   }
 
   .connexion-compte input {
-      min-width: 200px;
-      max-width: 280px;
+    min-width: 200px;
+    max-width: 280px;
     min-width: 200px;
     max-width: 280px;
   }
@@ -2100,14 +2049,16 @@ p[id="legendeBoutonLienPro"] {
     align-items: center;
   }
 
-  div[id="lienBouton"]>div {
+  div[id="lienBouton"] > div {
     width: 100%;
     margin: 10px 0;
   }
 
   /* Ajustement des boutons et des labels de création de compte */
-  a[id="boutonLienMembre"], a[id="boutonLienPro"], 
-  p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"]{
+  a[id="boutonLienMembre"],
+  a[id="boutonLienPro"],
+  p[id="legendeBoutonLienMembre"],
+  p[id="legendeBoutonLienPro"] {
     display: none;
   }
 }
