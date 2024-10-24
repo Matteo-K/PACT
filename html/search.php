@@ -1,12 +1,16 @@
 <?php 
-    // Démarrer la session
-    
-    require_once "config.php"; // fichier de connexion à la BDD
+session_start();
+require_once "db.php";
 
-    // Préparer et exécuter la requête SQL
-    $stmt = $conn->prepare("SELECT * FROM pact._offre ORDER BY dateCrea DESC");
-    $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$isLoggedIn = isset($_SESSION["idUser"]);
+if($isLoggedIn){
+
+    $idUser = $_SESSION["idUser"];
+    $typeUser = $_SESSION["typeUser"];
+}else{
+    $typeUser = "visiteur";
+}
+
 
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
