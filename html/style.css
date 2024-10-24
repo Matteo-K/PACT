@@ -1104,6 +1104,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-top: 110px;
   margin-bottom: 20px;
   background-image: url("/img/phare.jpg");
+  background-attachment: fixed;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1174,9 +1175,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 0.7em;
 }
 
-.createur{
+/* .createur{
 
-}
+} */
 
 .searchUser{
   font-size: 12px;
