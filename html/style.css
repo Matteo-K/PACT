@@ -1429,10 +1429,14 @@ tbody td:last-child {
   text-align: right; /* Alignement de l'horaire à droite */
 }
 
-
+/* ++++++++++++++++++++*/
 /* Preview de l'offre */
+/* ++++++++++++++++++*/
 section[id="sectionPreview"] {
-  margin: 272px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 272px;
 }
 
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
