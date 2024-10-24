@@ -189,7 +189,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         // Traitement des tags
         $tags = $_POST["tags"];
 
-        foreach ($variable as $key => $tag) {
+        foreach ($tags as $key => $tag) {
           //On verifie si le tag existe dans la BDD
           $stmt = $conn->prepare("SELECT * FROM pact._tag WHERE tag = ?");
           $stmt->execute([$tag]);
