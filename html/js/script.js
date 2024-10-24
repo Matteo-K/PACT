@@ -42,63 +42,69 @@ try {
       };
       reader.readAsDataURL(file);
     });
+  }
 
-    //Affichage des tags a leur ajout
-    const inputTag = document.getElementById("inputTag");
-    const buttonTag = document.getElementById("ajoutTag");
-    const sectionTag = document.getElementById("sectionTag");
-    const pTag = document.querySelector("#sectionTag + p");
-    let tags = []; // Tableau pour stocker les tags
+    
+  // Variables de sélection des éléments
+  const inputTag = document.getElementById("inputTag");
+  const buttonTag = document.getElementById("ajoutTag");
+  const sectionTag = document.getElementById("sectionTag");
+  const pTag = document.querySelector("#sectionTag + p");
+  let tags = []; // Tableau pour stocker les tags
+  let compteurTags = 0; // Compteur pour limiter à 6 tags
 
-    // Fonction pour ajouter un tag
-    buttonTag.addEventListener("click", ajoutTag);
-    inputTag.addEventListener("keypress", ajoutTagKeyboard);
-    let compteurTags = 0;
+  // Fonction pour ajouter un tag
+  buttonTag.addEventListener("click", ajoutTag);
+  inputTag.addEventListener("keypress", ajoutTagKeyboard);
 
-    //detection d'un appui sur entrée
-    function ajoutTagKeyboard(e) {
-      if (e.code == "Enter") {
-        ajoutTag();
-      }
-    }
-
-    function ajoutTag() {
-      const valeurTag = inputTag.value.trim(); // Récupère la valeur de l'input et enlève les espaces
-
-      if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
-        compteurTags++;
-        tags.push(valeurTag); // Ajoute le tag au tableau
-
-        // Crée l'élément pour afficher le tag
-        const elementTag = document.createElement("span");
-        elementTag.classList.add("tag");
-        elementTag.textContent = valeurTag;
-        const hidenInputTag = document.createElement("input");
-        hidenInputTag.type = "hidden";
-        hidenInputTag.value = valeurTag;
-        hidenInputTag.name = valeurTag;
-
-
-        // Ajoute un événement pour supprimer le tag au clic
-        elementTag.addEventListener("click", function () {
-          tags.splice(tags.indexOf(valeurTag), 1); // Supprime un élément à l'index trouvé
-          sectionTag.removeChild(hidenInputTag); // Supprime l'input caché du form correspondant au tag
-          sectionTag.removeChild(elementTag); // Supprime l'élément visuel correspondant 
-          pTag.style.color = "black"; //on remet la couleur par defaut au cas où c'etait en rouge
-          compteurTags--;
-        });
-
-        sectionTag.appendChild(elementTag); // Ajoute l'élément à la section
-        sectionTag.appendChild(hidenInputTag); 
-
-        inputTag.value = ""; // Réinitialise l'input
-      } else if (tags.length >= 6) {
-        pTag.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 6 tags est atteinte
-      } else if (tags.includes(valeurTag)) {
-        alert("Ce tag à déjà été entré !");
-      }
+  // Détection de l'appui sur la touche "Entrée"
+  function ajoutTagKeyboard(e) {
+    if (e.code === "Enter") {
+      e.preventDefault(); // Empêche la soumission du formulaire si "Enter" est appuyé
+      ajoutTag();
     }
   }
+
+  function ajoutTag() {
+    const valeurTag = inputTag.value.trim(); // Récupère la valeur de l'input sans espaces
+
+    if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
+      compteurTags++;
+      tags.push(valeurTag); // Ajoute le tag dans le tableau
+
+      // Crée l'élément visuel pour afficher le tag
+      const elementTag = document.createElement("span");
+      elementTag.classList.add("tag");
+      elementTag.textContent = valeurTag;
+
+      // Crée l'input caché pour soumettre le tag avec le formulaire
+      const hiddenInputTag = document.createElement("input");
+      hiddenInputTag.type = "hidden";
+      hiddenInputTag.value = valeurTag;
+      hiddenInputTag.name = "tags[]"; // Utilise un tableau pour les tags
+
+      // Ajoute un événement pour supprimer le tag au clic
+      elementTag.addEventListener("click", function () {
+        tags.splice(tags.indexOf(valeurTag), 1); // Retire le tag du tableau
+        sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
+        sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
+        pTag.style.color = "black"; // Remet la couleur par défaut si besoin
+        compteurTags--; // Décrémente le compteur de tags
+      });
+
+      // Ajoute l'élément visuel et l'input caché au DOM
+      sectionTag.appendChild(elementTag); 
+      sectionTag.appendChild(hiddenInputTag);
+
+      // Réinitialise l'input
+      inputTag.value = "";
+    } else if (tags.length >= 6) {
+      pTag.style.color = "red"; // Change la couleur du texte pour signaler la limite atteinte
+    } else if (tags.includes(valeurTag)) {
+      alert("Ce tag a déjà été ajouté !");
+    }
+  }
+
 } catch (error) {}
 
 try {
