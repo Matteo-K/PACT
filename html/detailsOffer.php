@@ -3,6 +3,7 @@ require_once "config.php";
 $idOffre = $_POST["idoffre"] ?? null;
 $ouvert = $_POST["ouvert"] ?? null;
 
+echo $idOffre;
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
     header("location: index.php");
