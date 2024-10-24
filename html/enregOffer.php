@@ -141,10 +141,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
 
             try {
               $stmt = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
-              $stmt->execute([$dossierImg, $fileName]);
+              $stmt->execute([$dossierImgNom, $fileName]);
 
               $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
-              $stmt->execute([$idOffre, $dossierImg]);
+              $stmt->execute([$idOffre, $dossierImgNom]);
             } catch (e) {
 
             }
