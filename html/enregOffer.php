@@ -1,5 +1,5 @@
 <?php
-$pageDirection = isset($_POST['pageCurrent']) ? $_POST['pageCurrent'] : 1;
+$pageDirection = $_POST['pageCurrent'] ?? 1;
 $idOffre = $_POST["idOffre"];
 $idUser = $_POST["idUser"];
 
@@ -152,6 +152,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         // Ajout des informations suivant la catégorie de l'offre
         switch ($_POST["categorie"]) {
           case 'restaurant':
+            $gammeDePrix = $_POST["gamme_prix"];
+            $url = null;
+            $stmt = $conn->prepare("SELECT * from pact._restauration where idoffre=?");
+            $stmt->execute([$idOffre]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            // Si pas de donnée, on créer
+            if ($result === false) {
+              $stmt = $conn->prepare("INSERT INTO pact._restauration (idoffre, gammedeprix, urlmenu) VALUES (?, ?, ?) ");
+              $stmt->execute([$idOffre, $gammeDePrix, $url]);
+            } else {
+              // sinon modifie
+              $stmt = $conn->prepare("UPDATE pact._restauration SET gammedeprix=?, urlmenu=? where idoffre=?");
+              $stmt->execute([$gammeDePrix, $url, $idOffre]);
+            }
             break;
           case 'parc':
             break;
@@ -273,7 +287,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         break;
 
       case 6:
-        // Détails Prévisualisation update
+        // Pad de modification pour la prévisualisation
         break;
 
       case 7:
