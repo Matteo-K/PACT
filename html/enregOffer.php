@@ -242,7 +242,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         
         // Ajoute dans la base de donnée les heures pour chaque jour
         // Si fermé ou les champs son vides, on ajoute pas dans la base de donnée
-        foreach ($jours_semaine as $jour) {
+        foreach ($jour_semaine as $jour) {
             // Vérifier si le jour est fermé
             if (!isset($_POST["check$jour"])) {
                 // Récupérer les horaires
