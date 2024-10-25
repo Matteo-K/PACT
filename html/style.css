@@ -1456,10 +1456,11 @@ tbody td:last-child {
   gap: 20px; /* Space between the map and contact info */
   align-items: start; /* Aligns the items to the top */
   margin-bottom: 1em;
+  width: 75%;
 }
 
 #carte {
-  width:400px;
+  width:50%;
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc;
   border-radius: 8px;
