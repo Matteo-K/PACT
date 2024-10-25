@@ -1646,6 +1646,11 @@ section[id="sectionPreview"] {
   color: red;
 }
 
+#sectionPreview img {
+  width: 100px;
+  height: 100px;
+}
+
 #iconeLienPreview {
   display: flex;
   align-items: center;
