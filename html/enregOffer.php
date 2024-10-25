@@ -131,7 +131,6 @@ if (isset($_POST['pageBefore'])) {
             case 'restaurant':
               // Obtention des données
               $gammeDePrix = $_POST["gamme_prix"];
-              print_r($_POST);
               // Création/Modification d'une offre restaurant
               $stmt = $conn->prepare("SELECT * from pact._restauration where idoffre=?");
               $stmt->execute([$idOffre]);
