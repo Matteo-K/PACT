@@ -105,7 +105,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
               $resto->execute();
               $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
           
-              $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idspect=$idOffre");
+              $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=$idOffre");
               $spec->execute();
               $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
           
