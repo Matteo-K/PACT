@@ -105,11 +105,13 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->bindParam(':idoffre', $idOffre);
             $stmt->execute();
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if($tags){
-                foreach ($tags as $tag): ?>
-                    <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
-                <?php endforeach;
-            }
+            
+                foreach ($tags as $tag): 
+                    if($tag){?>
+                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
+                    
+                <?php } endforeach;
+            
             if($ouvert == "EstOuvert"){
             ?>
                 <a class="ouvert" href="search.php">Ouvert</a>
