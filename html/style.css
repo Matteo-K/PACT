@@ -1578,12 +1578,12 @@ tbody td:last-child {
   gap: 10px;
 
 }
-#infoComp h2{
+#infoComp h2, #descriptionOffre > section > h3{
   color: var(--bloc);
 }
 
 
-#infoComp > section{
+#descriptionOffre > section{
   margin-left: 3em ;
   background-color: var(--accent60);
   border-radius: 0.5em;
