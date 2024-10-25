@@ -908,7 +908,7 @@ header > div > a > div {
   padding: 5px;
 }
 
-#artDetailOffer textarea,#ajoutPhoto2 textarea {
+#artDetailOffer textarea,#choixPhoto2 textarea {
   width: 90%;
   max-width: 90%;
   min-width: 90%;
