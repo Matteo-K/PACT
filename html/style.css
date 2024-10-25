@@ -1587,6 +1587,11 @@ tbody td:last-child {
   margin-left: 3em ;
   background-color: var(--accent60);
   border-radius: 0.5em;
+  padding: 10px;
+  margin-top:1em;
+}
+#descriptionOffre > section> p{
+  text-indent: 20px;
 }
 
 #infoPro{
