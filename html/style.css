@@ -1623,6 +1623,7 @@ tbody td:last-child {
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc;
   border-radius: 8px;
+  margin-bottom: 3em;
 }
 
 .contact-info {
