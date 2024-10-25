@@ -55,8 +55,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <?php foreach ($results as $offre){ 
                     $idOffre = $offre['idoffre'];
                     $iduser= $offre['idu'];
-                    $nomOffre = $offre['nom'];
-                    $resume= $offre['resume'];
+                    $nomOffre = $offre['nom']!=NULL ?$offre['idoffre']:"NULL";
+                    $resume= $offre['resume']!=NULL ?$offre['resume']:"NULL";
                     $noteAvg = "Non noté";
     
                     // Requête pour récupérer l'image de l'offre
@@ -145,54 +145,54 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     }
                     
                      ?>
-                    <div class="carteOffre">
-                        <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
-                            <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
-                        </a>
-                        <div class="infoOffre">
-                            <p class="searchTitre"><?php echo $nomOffre; ?></p>
+                    <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
+                        <div class="carteOffre">
+                                <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
+                                <div class="infoOffre">
+                                    <p class="searchTitre"><?php echo $nomOffre; ?></p>
+                                    
+                                    <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText; ?></p></strong>
+                                    
+                                    <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
 
-                            <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText; ?></p></strong>
+                                    <strong><p>Catégorie :</p></strong>
+                                    
+                                    <div class="searchCategorie">
+                                        <span class="searchTag"><?php echo $nomTag; ?></span>
+                                        <?php
+                                    foreach ($tag as $value) {
+                                        ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
+                                    }
+                                    ?>
+                                </div>
 
-                            <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
+                                <p class="searchResume"><?php echo $resume;?></p>
 
-                            <strong><p>Catégorie :</p></strong>
+                                <section class="searchNote">
+                                    <p><?php echo $noteAvg; ?></p>
+                                    
+                                    <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
+                                        <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
+                                    </p>
+                                </section>
 
-                            <div class="searchCategorie">
-                                <span class="searchTag"><?php echo $nomTag; ?></span>
-                                <?php
-                                foreach ($tag as $value) {
-                                    ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
-                                }
-                                ?>
+                                
+                                <script>
+                                    let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
+                                    if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
+                                        st_<?php echo $idOffre; ?>.classList.add("searchStatutO");
+                                    } else {
+                                        st_<?php echo $idOffre; ?>.classList.add("searchStatutF");
+                                    }
+                                </script>
                             </div>
-
-                            <p class="searchResume"><?php echo $resume;?></p>
-
-                            <section class="searchNote">
-                                <p><?php echo $noteAvg; ?></p>
-    
-                                <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
-                                    <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
-                                </p>
-                            </section>
-
-
-                            <script>
-                                let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
-                                if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
-                                    st_<?php echo $idOffre; ?>.classList.add("searchStatutO");
-                                } else {
-                                    st_<?php echo $idOffre; ?>.classList.add("searchStatutF");
-                                }
-                            </script>
+                            <div class="searchAvis">
+                                <p class="avisSearch">Les avis les plus récent :</p>
+                                <p>Pas d'avis</p>
+                            </div>
                         </div>
-                        <div class="searchAvis">
-                            <p class="avisSearch">Les avis les plus récent :</p>
-                            <p>Pas d'avis</p>
-                        </div>
-                    </div>
-                <?php 
+                    </a>
+                    <?php 
                 } ?>
             <?php } else { ?>
                 <p>Aucune offre trouvée </p>
