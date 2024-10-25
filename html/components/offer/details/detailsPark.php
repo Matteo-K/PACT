@@ -14,7 +14,7 @@
         </div>
         <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
         <input type="file" id="ajoutPhoto" name="ajoutPhoto[]"
-            accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple required>
+            accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>
         <div id="afficheImages"></div>
         <br>
 
