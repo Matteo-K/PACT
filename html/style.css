@@ -1486,7 +1486,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background: #fff;
 }
 
-.swiper-slide img {
+.swiper-slide img{
   display: block;
   width: 100%;
   height: 100%;
@@ -1505,7 +1505,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Thumbnail Slider */
-.myThumbSlider {
+.myThumbSlider , .myThumbSliderPreview {
   margin-top: 20px;
   height: 100px;
   width: 90%;
@@ -1698,38 +1698,38 @@ tbody td:last-child {
   color: var(--text-dark);
 }
 
-#previewOffer .swiper-containerPreview {
+#previewOffer .swiper-container {
   width: 90%;
   max-width: 1200px;
   margin: auto;
 }
 
-#previewOffer .mySwiperPreview {
+#previewOffer .mySwiper {
   height: auto; /* Ajuster la hauteur automatiquement */
   border-radius: 15px;
   overflow: hidden;
 }
 
-#previewOffer .swiper-wrapperPreview {
+#previewOffer .swiper-wrapper {
   display: flex;
   justify-content: center;
 }
 
-#previewOffer .swiper-slidePreview {
+#previewOffer .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#previewOffer .swiper-slidePreview img {
+#previewOffer .swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 15px;
 }
 
-#previewOffer .swiper-button-nextPreview,
-#previewOffer .swiper-button-prevPreview {
+#previewOffer .swiper-button-next,
+#previewOffer .swiper-button-prev {
   background-color: var(--accent60);
   padding: 10px;
   color: var(--background);
