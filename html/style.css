@@ -889,7 +889,7 @@ header > div > a > div {
 
 #artDetailOffer > div > label:not(.buttonDetailOffer),
 #choixCategorie label:first-of-type,
-#choixImage label {
+#choixImage label,#choixImage2 label {
   display: inline-block;
   font-size: 25px;
   width: 90%;
@@ -908,7 +908,7 @@ header > div > a > div {
   padding: 5px;
 }
 
-#artDetailOffer textarea {
+#artDetailOffer textarea,#ajoutPhoto2 textarea {
   width: 90%;
   max-width: 90%;
   min-width: 90%;
@@ -932,21 +932,21 @@ header > div > a > div {
   max-height: 400px;
 }
 
-#choixImage {
+#choixImage,#choixImage2 {
   display: inline-block;
   width: 70%;
   margin-right: 14px;
 }
 
-#ajoutPhoto {
+#ajoutPhoto, #ajoutPhoto2 {
   background-color: var(--primary);
 }
 
-#artDetailOffer input[type="file"] {
+#detailsOffer input[type="file"] ,#ajoutPhoto2 input[type="file"]{
   display: none;
 }
 
-#afficheImages figure {
+#detailsOffer figure {  
   max-width: 120px;
   max-height: 90px;
   margin: 5px;
@@ -954,7 +954,7 @@ header > div > a > div {
   cursor: pointer;
 }
 
-#afficheImages img {
+#detailsOffer img {
   width: 100%;
   height: auto;
   border-radius: 3px;
@@ -981,7 +981,7 @@ header > div > a > div {
 }
 
 #artDetailOffer section,
-#afficheImages {
+#afficheImages,#afficheImages2 {
   width: calc(70% + 141.625px);
   /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
   min-height: 100px;

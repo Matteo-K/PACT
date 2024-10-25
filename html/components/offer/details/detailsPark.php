@@ -5,17 +5,17 @@
 
 
         <br>
-        <div id="choixImage">
+        <div id="choixImage2">
             <label>Plan : </label>
             <p>
                 Vous pouvez insérer jusqu'à 5 photos<br>
 
             </p>
         </div>
-        <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
-        <input type="file" id="ajoutPhoto" name="ajoutPhoto[]"
+        <label for="ajoutPhoto2" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+        <input type="file" id="ajoutPhoto2" name="ajoutPhoto2[]"
             accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>
-        <div id="afficheImages"></div>
+        <div id="afficheImages2"></div>
         <br>
 
 

@@ -57,6 +57,22 @@ if (!$result) {
 }
 
 if (!$result) {
+    $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre = :idoffre");
+    $stmt->bindParam(':idoffre', $idOffre);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result){
+        ?>
+        <form id="manageOfferAuto" action="manageOffer.php" method="post" >
+            <input type="hidden" name="idOffre" value="<?php echo $idOffre?>">
+        </form>
+        <script>
+            document.getElementById("manageOfferAuto").submit();
+        </script>
+        <?php
+        
+    }
+
     echo "Aucune offre trouvée avec cet id.<br>";
     exit();
 }
@@ -105,7 +121,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
               $resto->execute();
               $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
           
-              $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idspect=$idOffre");
+              $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=$idOffre");
               $spec->execute();
               $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
           
@@ -138,7 +154,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   $affiche=true;
                 }
               }
-              $adr = $conn->prepare("SELECT * FROM pact.localisation WHERE idoffre=$idOffre");
+              $adr = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre=$idOffre");
               $adr->execute();
               $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
           
@@ -159,6 +175,17 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </button>
                     </form>
                 <?php          
+            } else {
+                ?>
+                    
+                    <form method="post" action="manageOffer.php">
+                        <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
+                        <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
+                        <button type="submit">
+                            <?php echo "Modifier offre"; ?>
+                        </button>
+                    </form>
+                <?php  
             }
         }
             
@@ -179,11 +206,14 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->bindParam(':idoffre', $idOffre);
             $stmt->execute();
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            array_unshift($tags, ['nomtag' => $typeOffer]);
             
                 foreach ($tags as $tag): 
-                    if($tag){?>
-                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
+                    if($tag["nomtag"] != NULL){
+                        ?>
                     
+                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>   
                 <?php } endforeach;
             
             if($ouvert == "EstOuvert"){
