@@ -5,7 +5,7 @@
             $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
             foreach ($jour_semaine as $value) {
                 $stmt = $conn->prepare("SELECT m.heureouverture heurOuvMidi, m.heurefermeture heurFermMidi, s.heureouverture heurOuvSoir, s.heurefermeture heurFermSoir from pact._horairemidi m left join pact._horairesoir s on m.idoffre=s.idoffre and m.jour = s.jour WHERE idoffre=? and jour=?");
-                $stmt->execute([$idOffre, $jour]);
+                $stmt->execute([$idOffre, $value]);
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($result !== false) {
                     $horairesOuv1 = $result["heurOuvMidi"];
