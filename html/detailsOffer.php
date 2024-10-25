@@ -101,7 +101,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title><?php echo htmlspecialchars($result["nom_offre"]); ?></title>
 </head>
 <body>
-    <?php require_once "components/headerTest.php"; ?>
+    <?php require_once "components/header.php"; ?>
 
     <main class="mainOffer">
         <div class="buttonDetails">
