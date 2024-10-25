@@ -1577,7 +1577,7 @@ tbody td:last-child {
   margin-bottom: 1em;
 }
 
-#infoPro a, .contact-info a{
+#infoPro a{
   color:var(--text-dark);
   text-decoration: none;
 }
@@ -1612,7 +1612,7 @@ tbody td:last-child {
 
 #contact-info div {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 10px;
 }
@@ -1620,6 +1620,10 @@ tbody td:last-child {
 #contact-info img {
   width: 24px;
   height: 24px;
+}
+#contact-info a {
+  color: var(--text-dark);
+  text-decoration: none;
 }
 
 /* ========================= */
