@@ -1698,7 +1698,7 @@ tbody td:last-child {
 }
 
 #previewOffer .mySwiperPreview {
-  height: 30em;
+  height: auto; /* Ajuster la hauteur automatiquement */
   border-radius: 15px;
   overflow: hidden;
 }
@@ -1706,6 +1706,12 @@ tbody td:last-child {
 #previewOffer .swiper-wrapperPreview {
   display: flex;
   justify-content: center;
+}
+
+#previewOffer .swiper-slidePreview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #previewOffer .swiper-slidePreview img {
@@ -1717,7 +1723,7 @@ tbody td:last-child {
 }
 
 #previewOffer .swiper-button-nextPreview,
-.swiper-button-prevPreview {
+#previewOffer .swiper-button-prevPreview {
   background-color: var(--accent60);
   padding: 10px;
   color: var(--background);
@@ -1733,12 +1739,6 @@ tbody td:last-child {
   width: auto; /* Ajuster la largeur si nécessaire */
   height: 100%; /* Maintenir la hauteur à 100% */
   object-fit: cover;
-}
-
-#previewOffer .swiper-slidePreview {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #desciptionPreview {
@@ -1807,10 +1807,11 @@ tbody td:last-child {
 }
 
 #mapPreview img {
-  width: 30px;
-  height: 30px;
+  width: 100%;
+  height: auto; /* Ajuster pour garder le ratio */
   object-fit: cover;
 }
+
 
 
 
