@@ -1740,7 +1740,7 @@ textarea[id="Resume"] {
 #visit {
   display: flex;
   text-align: left;
-  /* margin-left: 80%;z */
+  margin-left: 60%;
 }
 
 #visit div {
