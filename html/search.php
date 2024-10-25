@@ -93,7 +93,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     // Requête pour la localisation
                     $loca = $conn->prepare("SELECT * FROM pact._localisation WHERE idOffre = $idOffre");
                     $loca->execute();
-                    $ville = $loca->fetchAll(PDO::FETCH_ASSOC);
+                    $villes = $loca->fetchAll(PDO::FETCH_ASSOC);
+                    $ville = ($villes)?$villes[0]['ville']:"Pas de localisation entrée";
     
                     $user = $conn->prepare("SELECT * FROM pact._pro WHERE idu = $iduser");
                     $user->execute();
@@ -139,21 +140,24 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     }elseif ($idTagA) {
                         $tag=$idTagA;
                         $nomTag="Activite";
-                    }else {
+                    }elseif ($idTagS) {
                         $tag=$idTagS;
                         $nomTag="Spectacle";
+                    } else {
+                        $tag=NULL;
+                        $nomTag="Pas de categorie";
                     }
                     
                      ?>
                     <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                     <div class="carteOffre">
-                        <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
+                        <a  class="aImg" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                             <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                         </a>
                         <div class="infoOffre">
-                            <p class="searchTitre"><?php echo $nomOffre; ?></p>
+                            <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
 
-                            <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText; ?></p></strong>
+                            <strong><p class="villesearch"><?php echo $ville . $gammeText; ?></p></strong>
 
                             <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
 
@@ -162,13 +166,15 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             <div class="searchCategorie">
                                 <span class="searchTag"><?php echo $nomTag; ?></span>
                                 <?php
-                                foreach ($tag as $value) {
-                                    ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
+                                if ($tag!=NULL) {
+                                    foreach ($tag as $value) {
+                                        ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
+                                    }
                                 }
                                 ?>
                             </div>
 
-                            <p class="searchResume"><?php echo $resume;?></p>
+                            <p class="searchResume"><?php echo $resume!=NULL?$resume:"Pas de resume saisie";?></p>
 
                             <section class="searchNote">
                                 <p><?php echo $noteAvg; ?></p>

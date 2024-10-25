@@ -64,7 +64,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <section id="sectionPreview">
         <h2 id="titleOfferPreview"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
                 
-                <div>
+                <div id="tagPreview">
                     <?php 
                     // Fetch tags associated with the offer
                     $stmt = $conn->prepare("
@@ -96,7 +96,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                 </div>
 
-                <div>
+                <div id="iconeLienPreview">
                     <?php
                     $stmt = $conn -> prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
                     $stmt -> execute();
@@ -165,7 +165,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 
                 <p>Pas de note pour this moment</p>
-                <section>
+                <section id="desciptionPreview">
                     <h4>Description</h4>
                     <?php
                         if($result["description"]) {
