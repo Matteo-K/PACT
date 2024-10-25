@@ -187,7 +187,7 @@ header h1 {
 }
 
 header div > a > img,
-header > img {
+#auth > img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
@@ -397,23 +397,26 @@ header > div > a > div {
   display: flex;
   flex-direction: column; /* Aligne les éléments verticalement */
   justify-content: center; /* Centre les éléments verticalement */
+  gap: 20px;
 }
 
 #profileMenu ul li {
-  margin: 10px 0; /* Espacement entre les éléments */
+  margin: 20px 0; /* Espacement entre les éléments */
+  font-size: 30px;
+  font-family: "Belanosima", sans-serif;;
 }
 
 #profileMenu a {
   color: #fff; /* Couleur des liens */
   text-decoration: none; /* Supprime le soulignement */
-  transition: color 0.3s; /* Animation de couleur */
+  transition: color 0.5s; /* Animation de couleur */
   padding: 10px; /* Ajoute du padding */
   text-align: center; /* Centre le texte */
-  border-radius: 5px; /* Coins arrondis */
+  border-radius: 10px; /* Coins arrondis */
 }
 
 #profileMenu ul a:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Couleur de fond au survol */
+  background-color: rgba(255, 255, 255, 0.2); /* Couleur de fond au survol */
 }
 
 header ul + div{
@@ -422,6 +425,7 @@ header ul + div{
   margin-bottom: 3em; /* Espacement en bas */
   gap:10px;
 }
+
 .buttonMenu {
   display: flex;
   align-items: center;
