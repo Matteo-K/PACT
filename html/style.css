@@ -1848,7 +1848,7 @@ textarea[id="Resume"] {
   resize: none;
   /* Non redimensionnable */
 }
-#detailsOffer button[id="radioActivite"]{
+#detailsOffer article> div>div > button[id="radioActivite"]{
   visibility: hidden;
 }
 
