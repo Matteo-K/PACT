@@ -1432,11 +1432,11 @@ tbody td:last-child {
 }
 
 .ouvert{
-  background-color: lime;
+  background-color: #008000;
 }
 
 .ferme{
-  background-color: red;
+  background-color: #b01111;
   color: var(--background);
 }
 
