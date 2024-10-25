@@ -320,7 +320,7 @@ header > div > a > div {
   color: #000;
   font-size: 25px;
   border-radius: 10px;
-  height: 3em;
+  height: 2em;
   width: 200px;
   background-color: var(--accent);
   text-align: center;
@@ -442,7 +442,7 @@ header ul + div{
   text-align: center;
   margin: 0 auto; /* Centre le bouton horizontalement dans son conteneur */
   text-decoration: none; /* Supprime le soulignement */
-  font-size: 15px;
+  font-size: 20 px;
 }
 
 
