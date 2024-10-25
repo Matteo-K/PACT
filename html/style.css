@@ -193,7 +193,7 @@ header h1 {
 }
 
 header div > a > img,
-header #auth > img {
+header > img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
@@ -1589,8 +1589,7 @@ tbody td:last-child {
 #afficheLoc {
   display: flex;
   gap: 20px; /* Space between the map and contact info */
-  align-items: center; /* Aligns the items to the top */
-  width: 50%;
+  align-items: start; /* Aligns the items to the top */
 }
 
 #carte {
@@ -1619,64 +1618,80 @@ tbody td:last-child {
 }
 
 
-/* ++++++++++++++++++++++++++ */
-/* Preview de l'offre - Style */
-/* ++++++++++++++++++++++++++ */
-
-#sectionPreview {
+/* ++++++++++++++++++++*/
+/* Preview de l'offre */
+/* ++++++++++++++++++*/
+section[id="sectionPreview"] {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-left: 272px;
 }
 
-#tagPreview, #iconeLienPreview {
+#tagPreview {
   margin: 10px 0;
 }
 
-.tag {
+#sectionPreview .tag {
   margin-right: 10px;
-  color: #007bff;
   text-decoration: none;
+  color: #007bff;
 }
 
-.tag.ouvert { color: green; }
-.tag.ferme { color: red; }
+#sectionPreview .tag.ouvert {
+  color: green;
+}
+
+#sectionPreview .tag.ferme {
+  color: red;
+}
+
+#iconeLienPreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
 
 #iconeLienPreview img {
-  width: 20px;
+  width: 20px; /* Ajustez la taille selon vos besoins */
   margin-right: 5px;
 }
 
 .swiper-containerPreview {
   width: 100%;
-  height: 300px;
+  height: 300px; /* Ajustez la hauteur selon vos besoins */
   margin-bottom: 20px;
 }
 
-#descriptionPreview, #InfoCompPreview {
-  margin-bottom: 20px;
+#descriptionPreview {
+  margin-bottom: 20px; /* Espace après la section description */
 }
 
-table {
+#InfoCompPreview {
+  margin-bottom: 20px; /* Espace après les informations complémentaires */
+}
+
+#sectionPreview table {
   width: 100%;
   border-collapse: collapse;
 }
 
-th, td {
-  border: 1px solid #ccc;
+#sectionPreview th, td {
   padding: 10px;
   text-align: center;
 }
 
-.jourSemaine { font-weight: bold; }
-
-#mapPreview {
-  width: 100%;
-  height: 400px;
-  margin-bottom: 20px;
+#sectionPreview.jourSemaine {
+  font-weight: bold;
 }
 
+/* Style pour la carte Google Maps */
+#mapPreview {
+  width: 100%;
+  height: 400px; /* Ajustez la hauteur selon vos besoins */
+  margin-bottom: 20px;
+}
 
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
@@ -1715,7 +1730,7 @@ textarea[id="Resume"] {
 #visit {
   display: flex;
   text-align: left;
-  margin-left: 675px;
+  margin-left: 80%;
 }
 
 #visit div {
