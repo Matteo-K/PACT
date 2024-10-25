@@ -1589,12 +1589,12 @@ tbody td:last-child {
   flex-direction: row;
   gap: 20px; /* Space between the map and contact info */
   align-items: center; /* Aligns the items to the top */
-  width: 75%;
+  width: 60%;
 }
 
 #carte {
   flex:2;
-  width:35%;
+  width:40%;
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc;
   border-radius: 8px;
