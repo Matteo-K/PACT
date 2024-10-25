@@ -55,7 +55,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <?php foreach ($results as $offre){ 
                     $idOffre = $offre['idoffre'];
                     $iduser= $offre['idu'];
-                    $nomOffre = $offre['nom']!=NULL ?$offre['nom']:"NULL";
+                    $nomOffre = $offre['nom']!=NULL ?$offre['idoffre']:"NULL";
                     $resume= $offre['resume']!=NULL ?$offre['resume']:"NULL";
                     $noteAvg = "Non noté";
     
@@ -97,7 +97,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     
                     $user = $conn->prepare("SELECT * FROM pact._pro WHERE idu = $iduser");
                     $user->execute();
-                    $denomination = (($user->fetchAll(PDO::FETCH_ASSOC))[0]['denomination'])!=NULL ?($user->fetchAll(PDO::FETCH_ASSOC))[0]['denomination']:"NULL";
+                    $denomination = ($user->fetchAll(PDO::FETCH_ASSOC))[0]['denomination'];
     
                     // Requête pour la gamme de prix
                     $prix = $conn->prepare("SELECT * FROM pact.restaurants WHERE idOffre = $idOffre");
@@ -151,7 +151,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 <div class="infoOffre">
                                     <p class="searchTitre"><?php echo $nomOffre; ?></p>
                                     
-                                    <strong><p class="villesearch"><?php echo ($ville[0]['ville']!=NULL ?$ville[0]['ville']:"NULL") . $gammeText; ?></p></strong>
+                                    <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText; ?></p></strong>
                                     
                                     <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
 
