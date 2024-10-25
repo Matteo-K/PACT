@@ -1414,7 +1414,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #titleOffer {
   margin-top: calc(var(--header-size) + 0.6em);
   font-size: 5em;
-  margin-top: 1em;
+  margin-top: 0;
   color: var(--bloc);
   margin-bottom: 0.5em;
 }
