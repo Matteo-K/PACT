@@ -93,7 +93,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     // Requête pour la localisation
                     $loca = $conn->prepare("SELECT * FROM pact._localisation WHERE idOffre = $idOffre");
                     $loca->execute();
-                    $ville = $loca->fetchAll(PDO::FETCH_ASSOC);
+                    $villes = $loca->fetchAll(PDO::FETCH_ASSOC);
+                    $ville = ($villes)?$ville[0]['ville']:"Pas de localisation entrée";
     
                     $user = $conn->prepare("SELECT * FROM pact._pro WHERE idu = $iduser");
                     $user->execute();
@@ -153,7 +154,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <div class="infoOffre">
                             <p class="searchTitre"><?php echo $nomOffre; ?></p>
 
-                            <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText; ?></p></strong>
+                            <strong><p class="villesearch"><?php echo $ville . $gammeText; ?></p></strong>
 
                             <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
 
