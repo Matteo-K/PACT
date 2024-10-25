@@ -362,7 +362,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <!-- Carte Google Maps -->
         <div id="afficheLoc">
             <div id="map" class="carte"></div>
-            <div>
+            <div id="contact-info">
             <?php
                 if($lieu){
                 ?>

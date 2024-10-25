@@ -1442,6 +1442,7 @@ tbody td:last-child {
 
 #infoPro{
   gap: 10vh;
+  margin-bottom: 1em;
 }
 
 #infoPro a{
@@ -1453,14 +1454,37 @@ tbody td:last-child {
   width: 25px;
   height: 25px;
 }
-#afficheLoc{
-  flex-direction: row;
-  flex-wrap: nowrap;
+#afficheLoc {
+  display: flex;
+  gap: 20px; /* Space between the map and contact info */
+  align-items: start; /* Aligns the items to the top */
 }
-#afficheLoc .carte + div{
+
+.carte {
+  flex: 3; /* Makes the map take up more space */
+  height: 400px; /* Adjust height as needed */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.contact-info {
+  flex: 1; /* Makes the contact section narrower */
+  display: flex;
   flex-direction: column;
-  align-items:flex-start;
+  gap: 15px; /* Space between each contact item */
 }
+
+.contact-info div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-info img {
+  width: 24px;
+  height: 24px;
+}
+
 
 /* ++++++++++++++++++++*/
 /* Preview de l'offre */
