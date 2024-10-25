@@ -12,11 +12,11 @@
                 $soir = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($jour !== false) {
                     print_r($result);
-                    $horairesOuv1 = $result["heureouverture"];
-                    $horairesFerm1 = $result["heurefermeture"];
+                    $horairesOuv1 = $jour["heureouverture"];
+                    $horairesFerm1 = $jour["heurefermeture"];
                     if ($soir !== false) {
-                        $horairesOuv2 = $result["heureouverture"];
-                        $horairesFerm2 = $result["heurefermeture"];
+                        $horairesOuv2 = $soir["heureouverture"];
+                        $horairesFerm2 = $soir["heurefermeture"];
                     } else {
                         $horairesOuv2 = "";
                         $horairesFerm2 = "";
