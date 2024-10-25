@@ -149,6 +149,10 @@ footer div + div p {
 /* ### Header ### */
 
 /* Conteneur principal dans le header */
+
+
+
+/* Conteneur principal dans le header */
 header {
   border-bottom: var(--bloc) 2px solid;
   display: flex;
@@ -320,28 +324,6 @@ header > div > a > div {
     /* Taille légèrement réduite pour mobile */
     height: 5em;
   }
-}
-
-/* Bouton de connexion */
-#btnConn {
-  display: flex;
-  align-items: center;
-  /* Alignement vertical du texte dans le bouton */
-  justify-content: center;
-  padding-inline: 2em;
-  /* Ajustement du padding */
-  font-size: 25px;
-  font-weight: 600;
-  background-color: var(--accent60);
-  height: 8vh;
-  /* Même hauteur que le formulaire */
-  color: var(--text-dark);
-  text-decoration: none;
-  /* Supprimer la décoration du texte */
-}
-
-#btnConn:hover {
-  background-color: var(--accent);
 }
 
 /* ### Offer ### */
@@ -1063,7 +1045,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
-#checkAddressBtn {
+#checkAddressBtn,.modifierBut {
   background-color: #1ca4ed;
   color: black;
   border: solid #1ca4ed 1px;
@@ -1079,7 +1061,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transition: background-color 0.3s ease;
 }
 
-#checkAddressBtn:hover {
+#checkAddressBtn:hover,.modifierBut:hover {
   background-color: white;
   border: solid #1ca4ed 1px;
   color: #1ca4ed;
@@ -1089,7 +1071,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color: #034d7c;
 }
 
-#checkAddressBtn:focus {
+#checkAddressBtn:focus,.modifierBut:focus {
   outline: none;
   /* Supprimer le contour bleu au focus */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -1284,6 +1266,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.buttonDetails{
+  display: flex;
+  position: fixed;
+  top: 130px; /* Juste sous le header de 100px */
+  right: 20px; /* Décalé de 20px du bord droit */
+  gap: 10px; /* Espacement entre les boutons */
+  z-index: 1000;
 }
 
 #titleOffer {

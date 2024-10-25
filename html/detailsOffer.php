@@ -105,6 +105,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main class="mainOffer">
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
+        <div class="buttonDetails">
         <?php 
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
             $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
@@ -170,7 +171,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
                         <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
                         <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
-                        <button type="submit">
+                        <button class="modifierBut" type="submit">
                             <?php echo $statutActuel === 'inactif' ? 'Mettre en actif' : 'Mettre en inactif'; ?>
                         </button>
                     </form>
@@ -181,15 +182,16 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <form method="post" action="manageOffer.php">
                         <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
                         <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
-                        <button type="submit">
+                        <button class="modifierBut" type="submit">
                             <?php echo "Modifier offre"; ?>
                         </button>
                     </form>
                 <?php  
             }
         }
-            
+        
         ?>
+        </div>
         <div>
             <?php 
             // Fetch tags associated with the offer
