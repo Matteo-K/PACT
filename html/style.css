@@ -1589,8 +1589,8 @@ tbody td:last-child {
 #afficheLoc {
   display: flex;
   gap: 20px; /* Space between the map and contact info */
-  align-items: start; /* Aligns the items to the top */
-  width: 50%;
+  align-items: center; /* Aligns the items to the top */
+  width: 70%;
 }
 
 #carte {
