@@ -176,7 +176,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </button>
                     </form>
                 <?php          
-            } else {
+            }
                 ?>
                     
                     <form method="post" action="manageOffer.php">
@@ -187,7 +187,6 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </button>
                     </form>
                 <?php  
-            }
         }
         
         ?>
