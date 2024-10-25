@@ -88,7 +88,6 @@
           <input type="hidden" name="idOffre" id="idOffre" value="<?php echo $idOffre ?>">
           <input type="hidden" name="idUser" id="idUser" value="<?php echo $_SESSION['idUser']; ?>">
       </form>
-      <form action="index.php" id="formAnnule"></form>
     </section>
     <div>
       <!-- Bouton précédent et suivant -->
@@ -120,7 +119,7 @@
         form.reportValidity();
       }
       if (confirm_annule) {
-        document.getElementById("formAnnule").submit();
+          window.location.href = "URL_DE_VOTRE_PAGE"; 
       }
   }
 </script>
