@@ -8,6 +8,7 @@
                 $stmt->execute([$idOffre, $value]);
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($result !== false) {
+                    print_r($result);
                     $horairesOuv1 = $result["heurOuvMidi"];
                     $horairesFerm1 = $result["heurFermMidi"];
                     $horairesOuv2 = $result["heurOuvSoir"] == null ? "" : $result["heurOuvSoir"];
@@ -18,6 +19,7 @@
                     $horairesOuv2 = "";
                     $horairesFerm2 = "";
                 }
+                // Mettre les boutons cacher ou non lors de l'ajout
     ?>
     <!-- Créer une ligne pour chaque jour de la semaine -->
      <div>
