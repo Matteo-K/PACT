@@ -125,7 +125,7 @@ if (isset($_POST['pageBefore'])) {
             } 
           }
 
-
+          
           // Ajout des informations suivant la catégorie de l'offre
           switch ($categorie) {
             case 'restaurant':
