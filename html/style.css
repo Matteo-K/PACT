@@ -1600,6 +1600,7 @@ tbody td:last-child {
 }
 
 #carte {
+  flex:2;
   width:50%;
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc;
