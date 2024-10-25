@@ -403,6 +403,7 @@ header > div > a > div {
   margin: 20px 0; /* Espacement entre les éléments */
   font-size: 30px;
   font-family: "Belanosima", sans-serif;;
+  font-weight: bold;
 }
 
 #profileMenu a {
