@@ -1741,7 +1741,7 @@ textarea[id="Resume"] {
 #visit {
   display: flex;
   text-align: left;
-  margin-left: 50%;
+  margin-left: 52%;
 }
 
 #visit div {
@@ -1750,12 +1750,12 @@ textarea[id="Resume"] {
 
 #show {
   margin-top: 10px;
-  margin-left: 675px;
+  margin-left: 52%;
 }
 
 #park {
   display: flex;
-  margin-left: 675px;
+  margin-left: 52%;
 }
 
 #park article > p {
