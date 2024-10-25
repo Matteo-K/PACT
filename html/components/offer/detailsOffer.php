@@ -36,7 +36,7 @@ $resume = $result["resume"] ?? "";
                 <label>Catégorie de l'offre*</label>   
                 <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required> <label for="radioRestaurant">Restaurant</label>
                 <input type="radio" name="categorie" id="radioParc" value="parc"> <label for="radioParc">Parc d'attraction</label>
-                <!-- <input type="radio" name="categorie" id="radioActivite" value="activite"> <label for="radioActivite">Activite</label> -->
+                <input type="radio" name="categorie" id="radioActivite" value="activite"> <label for="radioActivite">Activite</label>
                 <input type="radio" name="categorie" id="radioSpectacle" value="spectacle"> <label for="radioSpectacle">Spectacle</label>
                 <input type="radio" name="categorie" id="radioVisite" value="visite"> <label for="radioVisite">Visite</label>
             </div>
