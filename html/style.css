@@ -1405,11 +1405,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .buttonDetails{
   display: flex;
-  margin-top: calc(var(--header-size) + 0.6em);
+  position: fixed;
+  top: 120px; /* Juste sous le header de 100px */
+  right: 20px; /* Décalé de 20px du bord droit */
   gap: 10px; /* Espacement entre les boutons */
 }
- 
+
 #titleOffer {
+  margin-top: calc(var(--header-size) + 0.6em);
   font-size: 5em;
   margin-top: 1em;
   color: var(--bloc);
@@ -1602,7 +1605,7 @@ tbody td:last-child {
   border-radius: 8px;
 }
 
-#contact-info {
+.contact-info {
   flex: 1; /* Makes the contact section narrower */
   display: flex;
   flex-direction: column;
@@ -1610,25 +1613,26 @@ tbody td:last-child {
  
 }
 
-#contact-info div {
+.contact-info div {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 10px;
 }
 
-#contact-info img {
+.contact-info img {
   width: 24px;
   height: 24px;
 }
-#contact-info a {
-  color: var(--text-dark);
+.contact-info a{
+  color:var(--text-dark);
   text-decoration: none;
 }
 
-/* +++++++++++++++++++ */
-/* Style previewOffer */
-/* ++++++++++++++++++*/
+
+/* ========================= */
+/* Styles pour previewOffer.php */
+/* ========================= */
 
 #previewOffer {
   width: 100%;
@@ -1686,8 +1690,7 @@ tbody td:last-child {
   width: 25px;
 }
 
-#iconeLienPreview p,
-#iconeLienPreview a {
+#iconeLienPreview p, #iconeLienPreview a {
   font-size: 1.2em;
   color: var(--text-dark);
 }
@@ -1699,7 +1702,7 @@ tbody td:last-child {
 }
 
 #previewOffer .mySwiperPreview {
-  height: 30em;
+  height: auto; /* Ajuster la hauteur automatiquement */
   border-radius: 15px;
   overflow: hidden;
 }
@@ -1709,16 +1712,21 @@ tbody td:last-child {
   justify-content: center;
 }
 
+#previewOffer .swiper-slidePreview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #previewOffer .swiper-slidePreview img {
   width: 100%;
-  height: auto; /* Maintenir le ratio */
-  max-height: 300px; /* Limiter la hauteur */
+  height: 100%;
   object-fit: cover;
   border-radius: 15px;
 }
 
 #previewOffer .swiper-button-nextPreview,
-.swiper-button-prevPreview {
+#previewOffer .swiper-button-prevPreview {
   background-color: var(--accent60);
   padding: 10px;
   color: var(--background);
@@ -1726,20 +1734,8 @@ tbody td:last-child {
 
 #previewOffer .myThumbSliderPreview {
   margin-top: 20px;
-  height: 80px; /* Réduire la hauteur si nécessaire */
+  height: 100px;
   width: 90%;
-}
-
-#previewOffer .myThumbSliderPreview img {
-  width: auto; /* Ajuster la largeur si nécessaire */
-  height: 100%; /* Maintenir la hauteur à 100% */
-  object-fit: cover;
-}
-
-#previewOffer .swiper-slidePreview {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #desciptionPreview {
@@ -1808,10 +1804,13 @@ tbody td:last-child {
 }
 
 #mapPreview img {
-  width: 30px;
-  height: 30px;
+  width: 100%;
+  height: 100%;
+  width: 100%;
+  height: auto; /* Ajuster pour garder le ratio */
   object-fit: cover;
 }
+
 
 
 
@@ -1848,6 +1847,9 @@ textarea[id="Resume"] {
   /* hauteur de 165px*/
   resize: none;
   /* Non redimensionnable */
+}
+#detailsOffer button[id="radioActivite"]{
+  visibility: hidden;
 }
 
 #visit {
@@ -1900,7 +1902,6 @@ textarea[id="Resume"] {
   margin-left: 525px;
   flex-direction: row;
   padding: 10px;
-  visibility: hidden;
 }
 
 #activity article > p {
