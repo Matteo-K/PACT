@@ -1061,7 +1061,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transition: background-color 0.3s ease;
 }
 
-#checkAddressBtn:hover {
+#checkAddressBtn:hover,.modifierBut:hover {
   background-color: white;
   border: solid #1ca4ed 1px;
   color: #1ca4ed;
@@ -1071,7 +1071,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color: #034d7c;
 }
 
-#checkAddressBtn:focus {
+#checkAddressBtn:focus,.modifierBut:focus {
   outline: none;
   /* Supprimer le contour bleu au focus */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -1270,6 +1270,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .buttonDetails{
   display: flex;
+  position: fixed;
+  top: 100px; /* Juste sous le header de 100px */
+  right: 20px; /* Décalé de 20px du bord droit */
+  gap: 10px; /* Espacement entre les boutons */
+  z-index: 1000;
 }
 
 #titleOffer {
