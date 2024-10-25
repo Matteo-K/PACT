@@ -1440,10 +1440,6 @@ tbody td:last-child {
   color: var(--background);
 }
 
-
-
-
-
 .myThumbSlider + article,
 #infoPro, #infoPro > div, #afficheLoc, #afficheLoc > .carte + div{
   display: flex;
@@ -1465,7 +1461,10 @@ tbody td:last-child {
   width: 25px;
   height: 25px;
 }
-
+#afficheLoc{
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
 #afficheLoc .carte + div{
   flex-direction: column;
   align-items:flex-start;
