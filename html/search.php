@@ -151,11 +151,11 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                      ?>
                     <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                     <div class="carteOffre">
-                        <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
+                        <a  class="aImg" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                             <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                         </a>
                         <div class="infoOffre">
-                            <p class="searchTitre"><?php echo $nomOffre; ?></p>
+                            <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
 
                             <strong><p class="villesearch"><?php echo $ville . $gammeText; ?></p></strong>
 
@@ -174,7 +174,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 ?>
                             </div>
 
-                            <p class="searchResume"><?php echo $resume;?></p>
+                            <p class="searchResume"><?php echo $resume!=NULL?$resume:"Pas de resume saisie";?></p>
 
                             <section class="searchNote">
                                 <p><?php echo $noteAvg; ?></p>
