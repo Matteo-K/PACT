@@ -1708,7 +1708,6 @@ tbody td:last-child {
 }
 
 #sectionPreview th, td {
-  border: 1px solid #ccc;
   padding: 10px;
   text-align: center;
 }
