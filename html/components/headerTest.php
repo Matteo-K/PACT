@@ -69,6 +69,7 @@
                 <ul>
                     <li><a href="profile.php">Mon Profil</a></li>
                     <li><a href="settings.php">Paramètres</a></li>
+                    <li><a href="manageOffer.php">Créer une offre</a></li>
                 </ul>
                 <div>
                     <a id="changeAccount" class="buttonMenu" href="logout.php?change=true">Changer de compte</a>
