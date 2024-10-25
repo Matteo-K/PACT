@@ -889,7 +889,7 @@ header > div > a > div {
 
 #artDetailOffer > div > label:not(.buttonDetailOffer),
 #choixCategorie label:first-of-type,
-#choixImage label {
+#choixImage label,#choixImage2 label {
   display: inline-block;
   font-size: 25px;
   width: 90%;
@@ -932,7 +932,7 @@ header > div > a > div {
   max-height: 400px;
 }
 
-#choixImage {
+#choixImage,#choixImage2 {
   display: inline-block;
   width: 70%;
   margin-right: 14px;
