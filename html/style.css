@@ -1063,7 +1063,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
-#checkAddressBtn {
+#checkAddressBtn,.modifierBut {
   background-color: #1ca4ed;
   color: black;
   border: solid #1ca4ed 1px;
@@ -1284,6 +1284,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.buttonDetails{
+  display: flex;
 }
 
 #titleOffer {
