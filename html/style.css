@@ -1590,10 +1590,11 @@ tbody td:last-child {
   display: flex;
   gap: 20px; /* Space between the map and contact info */
   align-items: start; /* Aligns the items to the top */
+  width: 70%;
 }
 
 #carte {
-  flex: 3; /* Makes the map take up more space */
+  width: 50%;
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc;
   border-radius: 8px;
