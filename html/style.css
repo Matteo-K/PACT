@@ -1610,6 +1610,7 @@ tbody td:last-child {
 .contact-info div {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 

@@ -406,7 +406,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php
             if($typeOffer == "parcs_attractions" ){
         ?>
-                <img src="<?php echo $result["urlplan"]?>">
+              <!--<img src="<?php echo $result["urlplan"]?>">!-->
         <?php
             }
         ?>
