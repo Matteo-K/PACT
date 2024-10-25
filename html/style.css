@@ -194,12 +194,6 @@ header div > a > img,
   /* Espace entre le logo et le texte */
 }
 
-#formHeader,
-#btnConn {
-  border-radius: 2em;
-  height: 3em;
-}
-
 /* Formulaire de recherche */
 #formHeader {
   display: flex;
@@ -208,7 +202,7 @@ header div > a > img,
   border-radius: 2em;
   height: 3em;
   width: 35em;
-  width: 35em;
+  border-radius: 2em;
   /* Largeur du formulaire */
 }
 
@@ -320,6 +314,13 @@ header > div > a > div {
   }
 }
 
+
+#btnConn{
+  display: block;
+  height: 30px;
+  width: 100px;
+  background-color: var(--accent);
+}
 
 /* Style général du menu de profil */
 #profileMenu {
