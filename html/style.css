@@ -1609,8 +1609,8 @@ tbody td:last-child {
 
 #contact-info div {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
   gap: 10px;
 }
 
