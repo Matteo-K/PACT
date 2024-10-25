@@ -1460,7 +1460,7 @@ tbody td:last-child {
   align-items: start; /* Aligns the items to the top */
 }
 
-.carte {
+#carte {
   flex: 3; /* Makes the map take up more space */
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc;

@@ -176,7 +176,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </button>
                     </form>
                 <?php          
-            } else {
+            }
                 ?>
                     
                     <form method="post" action="manageOffer.php">
@@ -187,7 +187,6 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </button>
                     </form>
                 <?php  
-            }
         }
         
         ?>
@@ -361,7 +360,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </section>
         <!-- Carte Google Maps -->
         <div id="afficheLoc">
-            <div id="map" class="carte"></div>
+            <div id="carte"></div>
             <div id="contact-info">
             <?php
                 if($lieu){
@@ -424,7 +423,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Initialisation de la carte Google
         function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
+            map = new google.maps.Map(document.getElementById("carte"), {
                 center: { lat: 48.8566, lng: 2.3522 }, // Paris comme point de départ
                 zoom: 8,
             });
