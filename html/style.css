@@ -1424,6 +1424,7 @@ tbody td:last-child {
 
 .ouvert{
   background-color: #008000;
+  color: var(--background);
 }
 
 .ferme{
