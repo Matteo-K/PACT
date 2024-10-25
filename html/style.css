@@ -1590,7 +1590,7 @@ tbody td:last-child {
   display: flex;
   gap: 20px; /* Space between the map and contact info */
   align-items: center; /* Aligns the items to the top */
-  width: 45%;
+  width: 50%;
 }
 
 #carte {
