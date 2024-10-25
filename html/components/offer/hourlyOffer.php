@@ -4,20 +4,29 @@
         if (!$is_show) {
             $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
             foreach ($jour_semaine as $value) {
-                $stmt = $conn->prepare("SELECT m.heureouverture AS heurOuvMidi, m.heurefermeture AS heurFermMidi, s.heureouverture AS heurOuvSoir, s.heurefermeture AS heurFermSoir from pact._horairemidi m left join pact._horairesoir s on m.idoffre=s.idoffre and m.jour = s.jour WHERE m.idoffre=? and m.jour=?");
+                $stmt = $conn->prepare("SELECT heureouverture, heurefermeture FROM pact._horairemidi WHERE idoffre=? and jour=?");
                 $stmt->execute([$idOffre, $value]);
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                if ($result !== false) {
-                    $horairesOuv1 = $result["heurOuvMidi"];
-                    $horairesFerm1 = $result["heurFermMidi"];
-                    $horairesOuv2 = $result["heurOuvSoir"] == null ? "" : $result["heurOuvSoir"];
-                    $horairesFerm2 = $result["heurFermSoir"] == null ? "" : $result["heurFermSoir"];
+                $jour = $stmt->fetch(PDO::FETCH_ASSOC);
+                $stmt = $conn->prepare("SELECT heureouverture, heurefermeture FROM pact._horairesoir WHERE idoffre=? and jour=?");
+                $stmt->execute([$idOffre, $value]);
+                $soir = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($jour !== false) {
+                    $horairesOuv1 = $jour["heureouverture"];
+                    $horairesFerm1 = $jour["heurefermeture"];
+                    if ($soir !== false) {
+                        $horairesOuv2 = $soir["heureouverture"];
+                        $horairesFerm2 = $soir["heurefermeture"];
+                    } else {
+                        $horairesOuv2 = "";
+                        $horairesFerm2 = "";
+                    }
                 } else {
                     $horairesOuv1 = "";
                     $horairesFerm1 = "";
                     $horairesOuv2 = "";
                     $horairesFerm2 = "";
                 }
+                // Mettre les boutons cacher ou non lors de l'ajout
     ?>
     <!-- Créer une ligne pour chaque jour de la semaine -->
      <div>
