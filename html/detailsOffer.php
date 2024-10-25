@@ -132,7 +132,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
               }else {
                 $tema=$parca;
               }
-          
+
               foreach ($tema[0] as $key => $value) {
                 if ($value==NULL) {
                   $affiche=true;
@@ -152,7 +152,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
                     <form method="post" action="changer_statut.php">
                         <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
-                        <input type="hidden" name="offre_id" value="<?php echo $offre[0]['id']; ?>">
+                        <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
                         <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
                         <button type="submit">
                             <?php echo $statutActuel === 'inactif' ? 'Mettre en actif' : 'Mettre en inactif'; ?>
@@ -163,28 +163,6 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
             
         ?>
-        <script>
-        document.getElementById("toggleStatut").addEventListener("click", function() {
-            let offreId = this.getAttribute("data-offre-id");
-            let nouveauStatut = document.getElementById("statutActuel").innerText === 'inactif' ? 'actif' : 'inactif';
-        
-            // Envoyer une requête POST en AJAX à cette même page
-            fetch("", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: `offre_id=${offreId}&nouveau_statut=${nouveauStatut}`
-            })
-            .then(response => response.text())
-            .then(data => {
-                // Met à jour le statut affiché et le texte du bouton
-                document.getElementById("statutActuel").innerText = data;
-                document.getElementById("toggleStatut").innerText = data === 'inactif' ? 'Mettre en actif' : 'Mettre en inactif';
-            })
-            .catch(error => console.error('Erreur:', error));
-        });
-        </script>
         <div>
             <?php 
             // Fetch tags associated with the offer
