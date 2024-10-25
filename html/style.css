@@ -1403,12 +1403,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .buttonDetails{
   display: flex;
-  position: fixed;
-  top: 120px; /* Juste sous le header de 100px */
-  right: 20px; /* Décalé de 20px du bord droit */
   gap: 10px; /* Espacement entre les boutons */
 }
-
+ 
 #titleOffer {
   margin-top: calc(var(--header-size) + 0.6em);
   font-size: 5em;
