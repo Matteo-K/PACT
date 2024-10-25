@@ -66,7 +66,7 @@ try {
   }
 
   function ajoutTag() {
-    const valeurTag = inputTag.value.trim(); // Récupère la valeur de l'input sans espaces
+    const valeurTag = inputTag.value.trim().toLowerCase(); // Récupère la valeur de l'input sans espaces ni les majuscules
 
     if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
       compteurTags++;
