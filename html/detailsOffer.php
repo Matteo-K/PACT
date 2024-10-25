@@ -57,6 +57,22 @@ if (!$result) {
 }
 
 if (!$result) {
+    $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre = :idoffre");
+    $stmt->bindParam(':idoffre', $idOffre);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result){
+        ?>
+        <form id="manageOfferAuto" action="manageOffer.php" method="post" >
+            <input type="hidden" name="idOffre" value="<?php echo $idOffre?>">
+        </form>
+        <script>
+            document.getElementById("manageOfferAuto").submit();
+        </script>
+        <?php
+        
+    }
+
     echo "Aucune offre trouvée avec cet id.<br>";
     exit();
 }
