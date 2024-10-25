@@ -946,7 +946,7 @@ header > div > a > div {
   display: none;
 }
 
-#afficheImages figure {
+#afficheImages figure, #afficheImages2 figure {
   max-width: 120px;
   max-height: 90px;
   margin: 5px;
@@ -954,7 +954,7 @@ header > div > a > div {
   cursor: pointer;
 }
 
-#afficheImages img {
+#afficheImages img, #afficheImages2 img {
   width: 100%;
   height: auto;
   border-radius: 3px;
@@ -981,7 +981,7 @@ header > div > a > div {
 }
 
 #artDetailOffer section,
-#afficheImages {
+#afficheImages,#afficheImages2 {
   width: calc(70% + 141.625px);
   /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
   min-height: 100px;
