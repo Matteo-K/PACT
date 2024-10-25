@@ -306,7 +306,7 @@ try {
   let compteurImages2 = 0;
   const pImage = document.querySelector("#choixImage > p");
   document
-    .getElementById("ajoutPhoto")
+    .getElementById("ajoutPhoto2")
     .addEventListener("change", afficheImage);
 
   function afficheImage(event) {
