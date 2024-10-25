@@ -1408,7 +1408,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   top: 120px; /* Juste sous le header de 100px */
   right: 20px; /* Décalé de 20px du bord droit */
   gap: 10px; /* Espacement entre les boutons */
-  z-index: 1000;
+  z-index: 5;
 }
 
 #titleOffer {
