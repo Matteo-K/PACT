@@ -147,9 +147,9 @@ if (isset($_POST['pageBefore'])) {
               break;
             case 'parc':
               // Obtention des données
-              $ageMin = null; // Modifier si ajouter dans html
-              $nbAttraction = null; // Modifier si ajouter dans html
-              $prixMinimale = null; // Modifier si ajouter dans html
+              $ageMin = 0; // Modifier si ajouter dans html
+              $nbAttraction = 0; // Modifier si ajouter dans html
+              $prixMinimale = 0; // Modifier si ajouter dans html
               $urlPlan = null; // Modifier si ajouter dans html
               // Création/Modification d'une offre de parc d'attraction
               $stmt = $conn->prepare("SELECT * from pact._parcattraction where idoffre=?");
@@ -165,80 +165,80 @@ if (isset($_POST['pageBefore'])) {
                 $stmt->execute([$ageMin, $nbAttraction, $prixMinimale, $urlPlan, $idOffre]);
               }
 
-            // Gestion des images
-            $dossierImg = "img/imageOffre/";
-            $imageCounter = 0;  // Compteur pour renommer les images
-    
-            $nbImages = count($_FILES['image1Park']['name']); //nb d'images uploadé
-    
-            // Boucle à travers chaque fichier uploadé
-            for ($i = 0; $i < $nbImages; $i++) {
-              $fileTmpPath = $_FILES['image1Park']['tmp_name'][$i];
-              $fileName = $_FILES['image1Park']['name'][$i];
-              $fileError = $_FILES['image1Park']['error'][$i];
-    
-              // Vérifie si l'image a été uploadée sans erreur
-              if ($fileError === UPLOAD_ERR_OK) {
-                // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
-                $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-                $dossierImgNom = $dossierImg . $fileName;
-    
-                // Déplace l'image vers le dossier cible
-                if (move_uploaded_file($fileTmpPath, $dossierImgNom)) {
-                  $imageCounter++;
+              // Gestion des images
+              $dossierImg = "img/imageOffre/";
+              $imageCounter = 0;  // Compteur pour renommer les images
+      
+              $nbImages = count($_FILES['image1Park']['name']); //nb d'images uploadé
+      
+              // Boucle à travers chaque fichier uploadé
+              for ($i = 0; $i < $nbImages; $i++) {
+                $fileTmpPath = $_FILES['image1Park']['tmp_name'][$i];
+                $fileName = $_FILES['image1Park']['name'][$i];
+                $fileError = $_FILES['image1Park']['error'][$i];
+      
+                // Vérifie si l'image a été uploadée sans erreur
+                if ($fileError === UPLOAD_ERR_OK) {
+                  // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
+                  $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+                  $dossierImgNom = $dossierImg . $fileName;
+      
+                  // Déplace l'image vers le dossier cible
+                  if (move_uploaded_file($fileTmpPath, $dossierImgNom)) {
+                    $imageCounter++;
+                  } 
+                  
+                  try {
+                    $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
+                    $stmt->execute([$dossierImgNom, $fileName]);
+      
+                    $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
+                    $stmt->execute([$idOffre, $dossierImgNom]);
+                  } catch (PDOException $e) {}
                 } 
-                
-                try {
-                  $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
-                  $stmt->execute([$dossierImgNom, $fileName]);
-    
-                  $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
-                  $stmt->execute([$idOffre, $dossierImgNom]);
-                } catch (PDOException $e) {}
-              } 
-            }
-            break;
-          case 'activite':
-            // Obtention des données
-            $duree = $_POST["duréeAct"] ?? null;
-            $ageMin = $_POST["ageAct"] ?? null;
-            $accessibilite = $_POST["Accessibilite"] == "Acces" ? true : null; // Modifier si ajouter dans BDD
-            $prixMinimale = null; // Modifier si ajouter dans html
-            $prestation = null; // Modifier si ajouter dans html
-            // Création/Modification d'une offre de parc d'attraction
-            $stmt = $conn->prepare("SELECT * from pact._activite where idoffre=?");
-            $stmt->execute([$idOffre]);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            // Si pas de donnée, on créer
-            if ($result === false) {
-              $stmt = $conn->prepare("INSERT INTO pact._activite (idoffre, duree, agemin, prixminimal, prestation) VALUES (?, ?, ?, ?, ?)");
-              $stmt->execute([$idOffre, $duree, $ageMin, $prixMinimale, $prestation]);
-            } else {
-              // sinon modifie
-              $stmt = $conn->prepare("UPDATE pact._activite SET duree=?, agemin=?, prixminimal=?, prestation=? WHERE idoffre=?");
-              $stmt->execute([$duree, $ageMin, $prixMinimale, $prestation, $idOffre]);
-            }
-            break;
-          case 'spectacle':
-            // Obtention des données
-            $duree = $_POST["DuréeShow"] ?? null;
-            $nbPlace = $_POST["nbPlaceShow"] ?? null;
-            $prixMinimale = null; // Modifier si ajouter dans html
-            // Création/Modification d'une offre de parc d'attraction
-            $stmt = $conn->prepare("SELECT * from pact._spectacle where idoffre=?");
-            $stmt->execute([$idOffre]);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            // Si pas de donnée, on créer
-            if ($result === false) {
-              $stmt = $conn->prepare("INSERT INTO pact._spectacle (idoffre, duree, nbplace, prixminimal) VALUES (?, ?, ?, ?)");
-              $stmt->execute([$idOffre, $duree, $nbPlace, $prixMinimale]);
-            } else {
-              // sinon modifie
-              $stmt = $conn->prepare("UPDATE pact._spectacle SET duree=?, nbplace=?, prixminimal=? WHERE idoffre=?");
-              $stmt->execute([$duree, $nbPlace, $prixMinimale, $idOffre]);
-            }
-            break;
-          case 'visite':
+              }
+              break;
+            case 'activite':
+              // Obtention des données
+              $duree = $_POST["duréeAct"] ?? null;
+              $ageMin = $_POST["ageAct"] ?? null;
+              $accessibilite = $_POST["Accessibilite"] == "Acces" ? true : null; // Modifier si ajouter dans BDD
+              $prixMinimale = null; // Modifier si ajouter dans html
+              $prestation = null; // Modifier si ajouter dans html
+              // Création/Modification d'une offre de parc d'attraction
+              $stmt = $conn->prepare("SELECT * from pact._activite where idoffre=?");
+              $stmt->execute([$idOffre]);
+              $result = $stmt->fetch(PDO::FETCH_ASSOC);
+              // Si pas de donnée, on créer
+              if ($result === false) {
+                $stmt = $conn->prepare("INSERT INTO pact._activite (idoffre, duree, agemin, prixminimal, prestation) VALUES (?, ?, ?, ?, ?)");
+                $stmt->execute([$idOffre, $duree, $ageMin, $prixMinimale, $prestation]);
+              } else {
+                // sinon modifie
+                $stmt = $conn->prepare("UPDATE pact._activite SET duree=?, agemin=?, prixminimal=?, prestation=? WHERE idoffre=?");
+                $stmt->execute([$duree, $ageMin, $prixMinimale, $prestation, $idOffre]);
+              }
+              break;
+            case 'spectacle':
+              // Obtention des données
+              $duree = $_POST["DuréeShow"] ?? null;
+              $nbPlace = $_POST["nbPlaceShow"] ?? null;
+              $prixMinimale = null; // Modifier si ajouter dans html
+              // Création/Modification d'une offre de parc d'attraction
+              $stmt = $conn->prepare("SELECT * from pact._spectacle where idoffre=?");
+              $stmt->execute([$idOffre]);
+              $result = $stmt->fetch(PDO::FETCH_ASSOC);
+              // Si pas de donnée, on créer
+              if ($result === false) {
+                $stmt = $conn->prepare("INSERT INTO pact._spectacle (idoffre, duree, nbplace, prixminimal) VALUES (?, ?, ?, ?)");
+                $stmt->execute([$idOffre, $duree, $nbPlace, $prixMinimale]);
+              } else {
+                // sinon modifie
+                $stmt = $conn->prepare("UPDATE pact._spectacle SET duree=?, nbplace=?, prixminimal=? WHERE idoffre=?");
+                $stmt->execute([$duree, $nbPlace, $prixMinimale, $idOffre]);
+              }
+              break;
+            case 'visite':
             // Obtention des données
             $guide = null; // Modifier si ajouter dans html
             $duree = $_POST["numberHVisit"] ?? null;
