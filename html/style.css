@@ -1271,7 +1271,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .buttonDetails{
   display: flex;
   position: fixed;
-  top: 100px; /* Juste sous le header de 100px */
+  top: 130px; /* Juste sous le header de 100px */
   right: 20px; /* Décalé de 20px du bord droit */
   gap: 10px; /* Espacement entre les boutons */
   z-index: 1000;
