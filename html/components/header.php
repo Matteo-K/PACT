@@ -92,3 +92,45 @@
 </header>
 
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const profilePic = document.getElementById("profilePic");
+    const profileMenu = document.getElementById("profileMenu");
+    const backButton = document.getElementById("backButton");
+
+    // Fonction pour afficher/cacher le menu
+    function toggleMenu() {
+        if (profileMenu.classList.contains("show")) {
+            profileMenu.classList.remove("show");
+            profileMenu.classList.add("hide");
+
+            // Retirer la classe "hide" après la transition
+            setTimeout(() => {
+                profileMenu.classList.remove("hide");
+            }, 300); // Temps de la transition en ms
+        } else {
+            profileMenu.classList.remove("hide");
+            profileMenu.classList.add("show");
+        }
+    }
+
+    // Écouteur pour afficher le menu au clic sur l'image de profil
+    if (profilePic) {
+        profilePic.addEventListener("click", toggleMenu);
+    }
+
+    // Écouteur pour fermer le menu au clic sur le bouton "Retour"
+    if (backButton) {
+        backButton.addEventListener("click", toggleMenu);
+    }
+
+    // Écouteur pour fermer le menu en cliquant en dehors
+    document.addEventListener("click", function(event) {
+        if (!profileMenu.contains(event.target) && !profilePic.contains(event.target)) {
+            if (profileMenu.classList.contains("show")) {
+                toggleMenu();
+            }
+        }
+    });
+});
+</script>
