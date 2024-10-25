@@ -1582,8 +1582,11 @@ tbody td:last-child {
   color: var(--bloc);
 }
 
+
 #infoComp > section{
-  margin-left: 1em ;
+  margin-left: 3em ;
+  background-color: var(--accent60);
+  border-radius: 0.5em;
 }
 
 #infoPro{
