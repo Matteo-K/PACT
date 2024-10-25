@@ -33,10 +33,10 @@
   <main>
     <aside>
       <!-- Création ou modification -->
-      <h3>Création de votre offre</h3>
+      <h3>Gestion de votre offre</h3>
       <ul>
         <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
-        <li><a onclick="submitForm(1)" class="<?php echo $step == 1 ? "guideSelect" : checkSelectOffer($idOffre) ?>">Sélection de l’offre</a></li>
+        <li><a onclick="submitForm(1)" class="<?php echo $step == 1 ? "guideSelect" : checkSelectOffer($idOffre) ?>">Sélection de l’abonnement</a></li>
         <li><a onclick="submitForm(2)" class="<?php echo $step == 2 ? "guideSelect" : checkDetailsOffer($idOffre) ?>">Détails de l’offre</a></li>
         <li><a onclick="submitForm(3)" class="<?php echo $step == 3 ? "guideSelect" : checkLocalisationOffer($idOffre) ?>">Localisation</a></li>
         <li><a onclick="submitForm(4)" class="<?php echo $step == 4 ? "guideSelect" : checkContactOffer($idOffre) ?>">Contact</a></li>
@@ -46,13 +46,12 @@
       </ul>
       <ul>
         <!-- Si 0 on enregistre et retourne au menu du professionnel -->
-        <li><a onclick="submitForm(0)" class="guideStartComplete">Quitter</a></li>
+        <li><a onclick="submitForm(0)" class="guideComplete">Sauvegarder & Quitter</a></li>
         <!-- Si -1 on retourne au menu du professionnel sans enregistrer -->
         <li><a onclick="submitForm(-1)" class="guideStartComplete">Annuler</a></li>
       </ul>
     </aside>
     <section>
-      <?php echo "id offre : $idOffre, page : $step"; ?>
       <?php
         // Affichage du formulaire suivant l'étape indiquer par un chiffre dans la barre de recherche avec un require
         $partOffer;
@@ -112,7 +111,7 @@
   function submitForm(page) {
       document.getElementById('pageCurrent').value = page;
       let form = document.querySelector('section form:not(#paypal)');
-      let confirm_quit = (page == 0)? confirm("Les données seront enregistrées.\n Vous pourrez reprendre vos modifications plus tard.") : true;
+      let confirm_quit = (page == 0)? confirm("Les données seront enregistrées.\n Vous pourrez reprendre vos modifications plus tard.\n Il faut compléter toute les données obligatoires pour quitter") : true;
       let confirm_annule = (page == -1)? confirm("Les données ne seront pas enregistrées.\n Toute modification apportée aux données ne sera pas prise en compte.") : true;
       if (form.checkValidity() && confirm_annule && confirm_quit) {
         form.submit();

@@ -62,7 +62,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <form id="previewOffer" action="enregOffer.php" method="post">
     <section id="sectionPreview">
-        <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
+        <h2 id="titleOfferPreview"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
                 
                 <div>
                     <?php 
@@ -131,13 +131,13 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
                 </div>
 
-                <div class="swiper-container">
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
+                <div class="swiper-containerPreview">
+                    <div class="swiper mySwiperPreview">
+                        <div class="swiper-wrapperPreview">
                         <?php
                             foreach ($photos as $picture) {
                         ?>
-                                <div class="swiper-slide">
+                                <div class="swiper-slidePreview">
                                     <img src="<?php echo $picture['url']; ?>" />
                                 </div>
                         <?php
@@ -146,16 +146,16 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-nextPreview"></div>
+                <div class="swiper-button-prevPreview"></div>
                 </div>
 
-                <div thumbsSlider="" class="swiper myThumbSlider">
-                    <div class="swiper-wrapper">
+                <div thumbsSlider="" class="swiper myThumbSliderPreview">
+                    <div class="swiper-wrapperPreview">
                     <?php
                         foreach ($photos as $picture) {
                     ?>
-                            <div class="swiper-slide">
+                            <div class="swiper-slidePreview">
                                 <img src="<?php echo $picture['url']; ?>" />
                             </div>
                     <?php
@@ -184,7 +184,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                 </section>
 
-                <section id="InfoComp">
+                <section id="InfoCompPreview">
                     <h4>Informations Complémentaires</h4>
                     <table>
                         <thead>
@@ -226,7 +226,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </table>
                 </section>
                 <!-- Carte Google Maps -->
-                <div id="map" class="carte"></div>
+                <div id="mapPreview" class="carte"></div>
                 <div>
                     <?php
                     if($lieu){

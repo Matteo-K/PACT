@@ -89,7 +89,20 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main class="mainOffer">
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
+        <?php 
+            $cook = $conn->prepare("SELECT o.idu FROM pact._offre o WHERE idoffre=$idOffre");
+            $cook->execute();
+            $offre = $cook->fetchAll(PDO::FETCH_ASSOC);
+            if ($offre[0]['idu']==$idUser) {
+                
+                
+
+
+                echo "ok" ;
+            }
+        ?>
         
+        <button></button>
         <div>
             <?php 
             // Fetch tags associated with the offer
@@ -122,7 +135,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
         </div>
 
-        <div>
+        <div id="infoPro">
             <?php
             $stmt = $conn -> prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
             $stmt -> execute();
