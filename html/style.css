@@ -1607,6 +1607,8 @@ tbody td:last-child {
   display: flex;
   flex-direction: column;
   gap: 15px; /* Space between each contact item */
+  color:var(--text-dark);
+  text-decoration: none;
 }
 
 .contact-info div {
