@@ -148,12 +148,6 @@ footer div + div p {
 
 /* ### Header ### */
 
-
-/* Conteneur principal dans le header */
-
-/* Style général du menu de profil */
-
-
 header {
   border-bottom: var(--bloc) 2px solid;
   display: flex;
@@ -204,7 +198,6 @@ header #auth > img {
 #btnConn {
   border-radius: 2em;
   height: 3em;
-  /* Assurez-vous que les deux aient la même hauteur */
 }
 
 /* Formulaire de recherche */
@@ -340,7 +333,7 @@ header > div > a > div {
   background: linear-gradient(to bottom, #034d7c, #1ca4ed); /* Dégradé du haut vers le bas */
   display: flex;
   flex-direction: column; /* Aligne les éléments verticalement */
-  z-index: 1000;
+  z-index: 11000;
   transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease; /* Transition pour le mouvement */
   transform: translateX(100%); /* Commence en dehors de l'écran à droite */
   visibility: hidden; /* Caché par défaut */
