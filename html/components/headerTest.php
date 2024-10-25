@@ -1,5 +1,10 @@
 
 <header theme="light">
+
+    <div id="menuBurger">
+        <img src="./img/icone/burger-bar.png" alt="menu burger">
+    </div>
+
     <div>
         <a href="../index.php">
             <img id="logo" src="../img/logo.png" title="logo du site">
@@ -17,6 +22,7 @@
             <div>
         </a>
     </div>
+
     <form method="post" action="search.php" id="formHeader">
         <input type="text" placeholder="Rechercher :">
         <button type="submit"><img src="../img/icone/loupe.png" title="icone de recherche"></button>
@@ -78,9 +84,15 @@
         }
         ?>
     </div>
+
+    <div id="auth2">
+        <a href="./profile.php">
+            <img id="profilePicture" src="./img/profile_picture/default.svg" alt="Photo de profil">
+        </a>
+    </div>
+
 </header>
 
-<script src="../js/setColor.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
