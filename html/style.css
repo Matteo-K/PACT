@@ -1407,16 +1407,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .buttonDetails{
   display: flex;
-  position: fixed;
-  top: 120px; /* Juste sous le header de 100px */
-  right: 20px; /* Décalé de 20px du bord droit */
+  margin-top: calc(var(--header-size) + 0.6em);
   gap: 10px; /* Espacement entre les boutons */
 }
 
 #titleOffer {
-  margin-top: calc(var(--header-size) + 0.6em);
+  
   font-size: 5em;
-  margin-top: 1em;
+  margin-top: 0;
   color: var(--bloc);
   margin-bottom: 0.5em;
 }
@@ -1850,7 +1848,7 @@ textarea[id="Resume"] {
   resize: none;
   /* Non redimensionnable */
 }
-#detailsOffer button[id="radioActivite"]{
+#detailsOffer article> div>div > button[id="radioActivite"]{
   visibility: hidden;
 }
 
