@@ -56,12 +56,25 @@
                     $errors[] = "Le numéro de SIREN existe déjà.";
                 }
             }
+        } catch (Exception $e) {
+            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+        }
+
+        // Vérifier si l'adresse existe déjà dans la base de données
+        try {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE numeroRue = ? AND rue = ? AND codePostal = ? AND ville = ? 
+                                    UNION SELECT COUNT(*) FROM pact.proPrive WHERE numeroRue = ? AND rue = ? AND codePostal = ? AND ville = ?");
+            $stmt->execute([$numeroRue, $rue, $code, $ville, $numeroRue, $rue, $code, $ville]);
+            $addressCount = $stmt->fetchColumn();
+
+            if ($addressCount > 0) {
+                $errors[] = "L'adresse postale existe déjà.";
+            }
         } 
         
         catch (Exception $e) {
             // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
         }
-
 
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
 
