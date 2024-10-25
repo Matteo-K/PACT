@@ -1594,7 +1594,7 @@ tbody td:last-child {
 }
 
 #carte {
-  width: 85%;
+  width: 80%;
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc;
   border-radius: 8px;
