@@ -138,7 +138,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   $affiche=true;
                 }
               }
-              $adr = $conn->prepare("SELECT * FROM pact.localisation WHERE idoffre=$idOffre");
+              $adr = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre=$idOffre");
               $adr->execute();
               $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
           
