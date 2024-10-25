@@ -1455,6 +1455,7 @@ tbody td:last-child {
   display: flex;
   gap: 20px; /* Space between the map and contact info */
   align-items: start; /* Aligns the items to the top */
+  margin-bottom: 1em;
 }
 
 #carte {
