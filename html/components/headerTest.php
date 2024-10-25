@@ -80,6 +80,8 @@
     </div>
 </header>
 
+<script src="../js/setColor.js"></script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const profilePic = document.getElementById("profilePic");
