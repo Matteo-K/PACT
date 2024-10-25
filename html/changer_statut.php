@@ -7,8 +7,11 @@ $offreId = $_POST['offre_id'];
 $nouveauStatut = $_POST['nouveau_statut'];
 
 // Mettre à jour le statut de l'offre
-$stmt = $conn->prepare("UPDATE pact._offre SET statut =$nouveauStatut WHERE idoffre =$offreId");
+$stmt = $conn->prepare("UPDATE pact._offre SET statut = :statut WHERE idoffre = :id");
+$stmt->bindParam(':statut', $nouveauStatut);
+$stmt->bindParam(':id', $offreId);
 $stmt->execute();
+
 
 // Rediriger vers la page précédente ou une autre page
 header("Location: detailsOffer.php");
