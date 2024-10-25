@@ -1063,7 +1063,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
-#checkAddressBtn {
+#checkAddressBtn,.modifierBut {
   background-color: #1ca4ed;
   color: black;
   border: solid #1ca4ed 1px;
@@ -1286,6 +1286,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
 }
 
+.buttonDetails{
+  display: flex;
+}
+
 #titleOffer {
   margin-top: calc(var(--header-size) + 0.6em);
   font-size: 5em;
@@ -1440,10 +1444,6 @@ tbody td:last-child {
   color: var(--background);
 }
 
-
-
-
-
 .myThumbSlider + article,
 #infoPro, #infoPro > div, #afficheLoc, #afficheLoc > .carte + div{
   display: flex;
@@ -1465,7 +1465,10 @@ tbody td:last-child {
   width: 25px;
   height: 25px;
 }
-
+#afficheLoc{
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
 #afficheLoc .carte + div{
   flex-direction: column;
   align-items:flex-start;
