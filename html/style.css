@@ -1271,7 +1271,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .buttonDetails{
   display: flex;
   position: fixed;
-  top: 100px; /* Juste sous le header de 100px */
+  top: 120px; /* Juste sous le header de 100px */
   right: 20px; /* Décalé de 20px du bord droit */
   gap: 10px; /* Espacement entre les boutons */
   z-index: 1000;
@@ -1423,11 +1423,12 @@ tbody td:last-child {
 }
 
 .ouvert{
-  background-color: lime;
+  background-color: #008000;
+  color: var(--background);
 }
 
 .ferme{
-  background-color: red;
+  background-color: #b01111;
   color: var(--background);
 }
 

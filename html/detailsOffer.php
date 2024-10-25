@@ -171,7 +171,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
                         <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
                         <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
-                        <button type="submit">
+                        <button class="modifierBut" type="submit">
                             <?php echo $statutActuel === 'inactif' ? 'Mettre en actif' : 'Mettre en inactif'; ?>
                         </button>
                     </form>
