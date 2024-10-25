@@ -152,6 +152,183 @@ footer div + div p {
 /* Conteneur principal dans le header */
 
 /* Style général du menu de profil */
+
+
+header {
+  border-bottom: var(--bloc) 2px solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 12em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-size);
+  z-index: 3;
+  background-color: var(--background);
+}
+
+header div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5em 0.8em;
+  height: 3em;
+}
+
+header div > a {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  align-items: center;
+  /* Alignement vertical de l'image et du texte */
+}
+
+header h1 {
+  font-size: 48px;
+  color: var(--bloc);
+}
+
+header div > a > img,
+header #auth > img {
+  width: 5em;
+  height: 5em;
+  margin-right: 0.5em;
+  /* Espace entre le logo et le texte */
+}
+
+#formHeader,
+#btnConn {
+  border-radius: 2em;
+  height: 3em;
+  /* Assurez-vous que les deux aient la même hauteur */
+}
+
+/* Formulaire de recherche */
+#formHeader {
+  display: flex;
+  align-items: center;
+  border: var(--bloc) solid 3px;
+  border-radius: 2em;
+  height: 3em;
+  width: 35em;
+  width: 35em;
+  /* Largeur du formulaire */
+}
+
+#formHeader input[type="text"],
+#formHeader button,
+#formHeader img {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+#formHeader input[type="text"] {
+  width: 85%;
+  padding-left: 1em;
+  height: 100%;
+  height: 100%;
+  font-size: 16px;
+  border-radius: 2em 0 0 2em;
+}
+
+#formHeader button {
+  flex: 1;
+  padding: 0 1.7em;
+  background-color: var(--primary);
+  border-radius: 0 2em 2em 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+#formHeader img {
+  width: 2em;
+}
+
+#auth2 {
+  display: none;
+}
+
+#menuBurger {
+  display: none;
+}
+
+#logoText {
+  font-size: 48px;
+  color: var(--bloc);
+  text-align: center;
+  /* Centrer le texte horizontalement */
+}
+
+#pro {
+  font-family: "Lato";
+  font-size: 16px;
+  /* Ajuste la taille du texte "PRO" */
+  color: var(--text-dark);
+  text-align: center;
+  /* Centrer le texte horizontalement */
+  margin-top: -10px;
+  /* Ajuste l'espacement entre "PACT" et "PRO" */
+}
+
+header > div > a > div {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 756px) {
+  header {
+    height: 200px;
+    flex-direction: column;
+    /* Passer les éléments en colonne */
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+  }
+
+  #auth {
+    display: none;
+  }
+
+  /* Afficher le menu burger */
+  #menuBurger {
+    display: block;
+    /* Montrer l'icône du menu burger */
+    position: absolute;
+    left: 1em;
+    top: 1em;
+  }
+
+  /* Placer le bouton de connexion à droite */
+  #auth2 {
+    display: block;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+  }
+
+  /* La barre de recherche se place sous le logo */
+  #formHeader {
+    width: 90%;
+    /* Largeur à 90% de l'écran */
+    margin-top: 1em;
+    margin-bottom: 25px;
+  }
+
+  #profilePicture {
+    width: 5em;
+    /* Taille légèrement réduite pour mobile */
+    height: 5em;
+  }
+}
+
+
+/* Style général du menu de profil */
 #profileMenu {
   color: #fff; /* Couleur du texte */
   margin: 0;
@@ -279,54 +456,6 @@ header ul + div{
 
 #logoutButton:hover{
   background-color: #ff0000; 
-}
-
-
-
-@media (max-width: 756px) {
-  header {
-    height: 200px;
-    flex-direction: column;
-    /* Passer les éléments en colonne */
-    align-items: center;
-    gap: 1em;
-    padding: 1em;
-  }
-
-  #auth {
-    display: none;
-  }
-
-  /* Afficher le menu burger */
-  #menuBurger {
-    display: block;
-    /* Montrer l'icône du menu burger */
-    position: absolute;
-    left: 1em;
-    top: 1em;
-  }
-
-  /* Placer le bouton de connexion à droite */
-  #auth2 {
-    display: block;
-    position: absolute;
-    right: 1em;
-    top: 1em;
-  }
-
-  /* La barre de recherche se place sous le logo */
-  #formHeader {
-    width: 90%;
-    /* Largeur à 90% de l'écran */
-    margin-top: 1em;
-    margin-bottom: 25px;
-  }
-
-  #profilePicture {
-    width: 5em;
-    /* Taille légèrement réduite pour mobile */
-    height: 5em;
-  }
 }
 
 /* ### Offer ### */
@@ -1460,12 +1589,12 @@ tbody td:last-child {
 #afficheLoc {
   display: flex;
   gap: 20px; /* Space between the map and contact info */
-  align-items: start; /* Aligns the items to the top */
-  margin-bottom: 1em;
+  align-items: center; /* Aligns the items to the top */
+  width: 45%;
 }
 
 #carte {
-  width:400px;
+  width: 85%;
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -1490,15 +1619,64 @@ tbody td:last-child {
 }
 
 
-/* ++++++++++++++++++++*/
-/* Preview de l'offre */
-/* ++++++++++++++++++*/
-section[id="sectionPreview"] {
+/* ++++++++++++++++++++++++++ */
+/* Preview de l'offre - Style */
+/* ++++++++++++++++++++++++++ */
+
+#sectionPreview {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-left: 272px;
 }
+
+#tagPreview, #iconeLienPreview {
+  margin: 10px 0;
+}
+
+.tag {
+  margin-right: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.tag.ouvert { color: green; }
+.tag.ferme { color: red; }
+
+#iconeLienPreview img {
+  width: 20px;
+  margin-right: 5px;
+}
+
+.swiper-containerPreview {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+#descriptionPreview, #InfoCompPreview {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.jourSemaine { font-weight: bold; }
+
+#mapPreview {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 20px;
+}
+
 
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------

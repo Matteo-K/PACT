@@ -1,14 +1,4 @@
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-    <title>PACT</title>
-
-</head>
-<body>
 <header theme="light">
     <div>
         <a href="../index.php">
@@ -90,6 +80,8 @@
     </div>
 </header>
 
+<script src="../js/setColor.js"></script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const profilePic = document.getElementById("profilePic");
@@ -132,5 +124,3 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
-</body>
-</html>
