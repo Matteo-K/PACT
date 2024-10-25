@@ -4,7 +4,20 @@
         if (!$is_show) {
             $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
             foreach ($jour_semaine as $value) {
-              
+                $stmt = $conn->prepare("SELECT m.heureouverture heurOuvMidi, m.heurefermeture heurFermMidi, s.heureouverture heurOuvSoir, s.heurefermeture heurFermSoir from pact._horairemidi m left join pact._horairesoir s on m.idoffre=s.idoffre and m.jour = s.jour");
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($result !== false) {
+                    $horairesOuv1 = $result["heurOuvMidi"];
+                    $horairesFerm1 = $result["heurFermMidi"];
+                    $horairesOuv2 = $result["heurOuvSoir"] == null ? "" : $result["heurOuvSoir"];
+                    $horairesFerm2 = $result["heurFermSoir"] == null ? "" : $result["heurFermSoir"];
+                } else {
+                    $horairesOuv1 = "";
+                    $horairesFerm1 = "";
+                    $horairesOuv2 = "";
+                    $horairesFerm2 = "";
+                }
     ?>
     <!-- Créer une ligne pour chaque jour de la semaine -->
      <div>
@@ -17,17 +30,17 @@
             <span>
                 <span class="hourly1">
                     <label for="horairesOuv1<?php echo $value?>">Ouvert de</label>
-                    <input type="time" name="horairesOuv1<?php echo $value?>" id="horairesOuv1<?php echo $value?>">
+                    <input type="time" name="horairesOuv1<?php echo $value?>" id="horairesOuv1<?php echo $value?>" value="<?php echo $horairesOuv1; ?>">
                     <!-- Zone de texte de type time pour saisir uniquement des heures -->
                     <label for="horairesF1<?php echo $value?>">à</label>
-                    <input type="time" name="horairesF1<?php echo $value?>" id="horairesF1<?php echo $value?>">
+                    <input type="time" name="horairesF1<?php echo $value?>" id="horairesF1<?php echo $value?>" value="">
                     <!-- Zone de texte de type time pour saisir uniquement des heures -->
                 </span>
                 <input type="button" value="Ajouter un horaire" name="btnAjout<?php echo $value?>" id="btnAjout<?php echo $value?>" class="blueBtnOffer btnAddOffer">
                 <!-- Partie avec les horaire de l'après midi du Lundi-->
                 <span class="hourly2 hourlyHide">
                     <label for="horairesOuv2<?php echo $value?>">et de</label>
-                    <input type="time" name="horairesOuv2<?php echo $value?>" id="horairesOuv2<?php echo $value?>">
+                    <input type="time" name="horairesOuv2<?php echo $value?>" id="horairesOuv2<?php echo $value?>" value="<?php echo $horairesOuv2; ?>">
                     <!-- Zone de texte de type time pour saisir uniquement des heures -->
                     <label for="horairesF2<?php echo $value?>">à</label>
                     <input type="time" name="horairesF2<?php echo $value?>" id="horairesF2<?php echo $value?>">

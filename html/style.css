@@ -1085,7 +1085,7 @@ header > div > a > div {
   padding: 5px;
 }
 
-#artDetailOffer textarea {
+#artDetailOffer textarea,#choixPhoto2 textarea {
   width: 90%;
   max-width: 90%;
   min-width: 90%;
@@ -1119,11 +1119,11 @@ header > div > a > div {
   background-color: var(--primary);
 }
 
-#detailsOffer input[type="file"] {
+#detailsOffer input[type="file"] ,#ajoutPhoto2 input[type="file"]{
   display: none;
 }
 
-#detailsOffer figure {
+#detailsOffer figure {  
   max-width: 120px;
   max-height: 90px;
   margin: 5px;
@@ -1240,7 +1240,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
-#checkAddressBtn {
+#checkAddressBtn,.modifierBut {
   background-color: #1ca4ed;
   color: black;
   border: solid #1ca4ed 1px;
@@ -1463,6 +1463,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
 }
 
+.buttonDetails{
+  display: flex;
+}
+
 #titleOffer {
   margin-top: calc(var(--header-size) + 0.6em);
   font-size: 5em;
@@ -1617,10 +1621,6 @@ tbody td:last-child {
   color: var(--background);
 }
 
-
-
-
-
 .myThumbSlider + article,
 #infoPro, #infoPro > div, #afficheLoc, #afficheLoc > .carte + div{
   display: flex;
@@ -1642,7 +1642,10 @@ tbody td:last-child {
   width: 25px;
   height: 25px;
 }
-
+#afficheLoc{
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
 #afficheLoc .carte + div{
   flex-direction: column;
   align-items:flex-start;

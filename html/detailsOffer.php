@@ -105,6 +105,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main class="mainOffer">
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
+        <div class="buttonDetails">
         <?php 
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
             $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
@@ -175,10 +176,22 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </button>
                     </form>
                 <?php          
+            } else {
+                ?>
+                    
+                    <form method="post" action="manageOffer.php">
+                        <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
+                        <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
+                        <button class="modifierBut" type="submit">
+                            <?php echo "Modifier offre"; ?>
+                        </button>
+                    </form>
+                <?php  
             }
         }
-            
+        
         ?>
+        </div>
         <div>
             <?php 
             // Fetch tags associated with the offer
@@ -458,7 +471,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
 
         <!-- Inclure l'API Google Maps avec votre clé API -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
