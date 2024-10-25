@@ -1461,7 +1461,7 @@ tbody td:last-child {
 }
 
 #carte {
-  flex: 3; /* Makes the map take up more space */
+  width:400px;
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc;
   border-radius: 8px;
