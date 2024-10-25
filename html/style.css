@@ -1569,6 +1569,9 @@ tbody td:last-child {
   gap: 10px;
 
 }
+#infoComp h2{
+  color: var(--bloc);
+}
 
 #infoPro{
   gap: 10vh;
@@ -1584,12 +1587,13 @@ tbody td:last-child {
   width: 25px;
   height: 25px;
 }
-#afficheLoc {
+#afficheLoc, #descriptionOffre{
   display: flex;
   flex-direction: row;
   gap: 20px; /* Space between the map and contact info */
   align-items: center; /* Aligns the items to the top */
   width: 60%;
+
 }
 
 #carte {
@@ -1612,7 +1616,7 @@ tbody td:last-child {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 20px;
 }
 
 #contact-info img {
@@ -1623,6 +1627,8 @@ tbody td:last-child {
   color: var(--text-dark);
   text-decoration: none;
 }
+
+
 
 /* +++++++++++++++++++ */
 /* Style previewOffer */

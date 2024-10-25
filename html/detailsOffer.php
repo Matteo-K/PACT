@@ -308,8 +308,8 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             </div>
         </div>
-        <article>
-            <p>Pas de note pour this moment</p>
+        <article id="descriptionOffre">
+            <p>Pas de note pour le moment</p>
             <section>
                 <h3>Description</h3>
                 <p><?php echo htmlspecialchars($result["description"]); ?></p>
