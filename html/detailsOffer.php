@@ -181,6 +181,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <form method="post" action="manageOffer.php">
                         <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
                         <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
+                        <input type="hidden" name="ouvert" value="<?php echo $_GET['ouvert']; ?>">
                         <button class="modifierBut" type="submit">
                             <?php echo "Modifier offre"; ?>
                         </button>
@@ -308,8 +309,8 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             </div>
         </div>
-        <article>
-            <p>Pas de note pour this moment</p>
+        <article id="descriptionOffre">
+            <p>Pas de note pour le moment</p>
             <section>
                 <h3>Description</h3>
                 <p><?php echo htmlspecialchars($result["description"]); ?></p>
