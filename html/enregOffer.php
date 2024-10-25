@@ -253,7 +253,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             $guide = null; // Modifier si ajouter dans html
             $duree = $_POST["numberHVisit"] ?? null;
             $prixMinimale = null; // Modifier si ajouter dans html
-            $accessibilite = $_POST["Accessibilité"] == "access" ?? false;
+            $accessibilite = $_POST["Accessibilité"] == "access" ? true : null;
             // Création/Modification d'une offre de parc d'attraction
             $stmt = $conn->prepare("SELECT * from pact._visite where idoffre=?");
             $stmt->execute([$idOffre]);
@@ -398,7 +398,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
         $mail = $_POST["mail"];
         $telephone = empty($_POST["phone"]) ? null : $_POST["phone"];
         $affiche = $_POST['DisplayNumber'] == "Oui" ? true : null;
-        echo gettype($affiche);
         $site = empty($_POST["webSide"]) || $_POST["webSide"] == "https://" ? null : $_POST["webSide"];
         $stmt = $conn->prepare("UPDATE pact._offre SET mail=?, telephone=?, affiche=?, urlsite=? WHERE idoffre= ?");
         $stmt->execute([$mail, $telephone, $affiche, $site, $idOffre]);
