@@ -942,7 +942,7 @@ header > div > a > div {
   background-color: var(--primary);
 }
 
-#detailsOffer input[type="file"] {
+#detailsOffer input[type="file"] ,#ajoutPhoto2 input[type="file"]{
   display: none;
 }
 
