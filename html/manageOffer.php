@@ -88,7 +88,6 @@
           <input type="hidden" name="idOffre" id="idOffre" value="<?php echo $idOffre ?>">
           <input type="hidden" name="idUser" id="idUser" value="<?php echo $_SESSION['idUser']; ?>">
       </form>
-      <form action="index.php" id="formAnnule"></form>
     </section>
     <div>
       <!-- Bouton précédent et suivant -->
@@ -114,13 +113,13 @@
       let form = document.querySelector('section form:not(#paypal)');
       let confirm_quit = (page == 0)? confirm("Les données seront enregistrées.\n Vous pourrez reprendre vos modifications plus tard.\n Il faut compléter toute les données obligatoires pour quitter") : true;
       let confirm_annule = (page == -1)? confirm("Les données ne seront pas enregistrées.\n Toute modification apportée aux données ne sera pas prise en compte.") : false;
-      if (form.checkValidity() && confirm_annule && confirm_quit) {
+      if (form.checkValidity() && confirm_quit) {
         form.submit();
       } else {
         form.reportValidity();
       }
       if (confirm_annule) {
-        document.getElementById("formAnnule").submit();
+          window.location.href = "URL_DE_VOTRE_PAGE"; 
       }
   }
 </script>

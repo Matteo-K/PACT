@@ -153,7 +153,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     <div class="carteOffre">
                         <a  class="aImg" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                             <?php 
-                            $alt=($urlImg[0]['url'])!=NULL?"photo principal de l'offre":"Pas de photo attribué à l'offre";
+                            $alt = isset($urlImg[0]['url']) && $urlImg[0]['url'] ? "photo principal de l'offre" : "Pas_de_photo_attribué_à_l'offre";
                             ?>
                             <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt=<?php echo $alt; ?>>
                         </a>
