@@ -126,13 +126,13 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
                 </div>
 
-                <div class="swiper-containerPreview">
+                <div class="swiper-container">
                     <div class="swiper mySwiperPreview">
-                        <div class="swiper-wrapperPreview">
+                        <div class="swiper-wrapper">
                         <?php
                             foreach ($photos as $picture) {
                         ?>
-                                <div class="swiper-slidePreview">
+                                <div class="swiper-slide">
                                     <img src="<?php echo $picture['url']; ?>" />
                                 </div>
                         <?php
@@ -141,16 +141,16 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                <div class="swiper-button-nextPreview"></div>
-                <div class="swiper-button-prevPreview"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
                 </div>
 
                 <div thumbsSlider="" class="swiper myThumbSliderPreview">
-                    <div class="swiper-wrapperPreview">
+                    <div class="swiper-wrapper">
                     <?php
                         foreach ($photos as $picture) {
                     ?>
-                            <div class="swiper-slidePreview">
+                            <div class="swiper-slide">
                                 <img src="<?php echo $picture['url']; ?>" />
                             </div>
                     <?php
@@ -259,3 +259,32 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     }
                 ?>
     </section>
+
+    script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".myThumbSliderPreview", {
+            loop: true,
+            spaceBetween: 10,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+        var swiper2 = new Swiper(".mySwiperPreview", {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+            },
+            spaceBetween: 10,
+            navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+            swiper: swiper,
+            },
+        });
+    </script>

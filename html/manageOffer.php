@@ -25,6 +25,7 @@
   <!-- Change le titre par le nom de l'offre -->
   <title><?php echo isset($nameOffer)? $nameOffer : "Gestion de l'offre" ?></title>
   <link rel="icon" href="img/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body id="manageOffer">
