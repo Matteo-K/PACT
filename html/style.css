@@ -1252,6 +1252,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 20px;
 }
 
+.aImg{
+  width: 290px;
+  height: 170px;
+}
+
 .infoOffre {
   flex-grow: 2;
 }
@@ -1588,12 +1593,14 @@ tbody td:last-child {
 }
 #afficheLoc {
   display: flex;
+  flex-direction: row;
   gap: 20px; /* Space between the map and contact info */
-  align-items: start; /* Aligns the items to the top */
+  align-items: center; /* Aligns the items to the top */
+  width: 80vh;
 }
 
 #carte {
-  flex: 3; /* Makes the map take up more space */
+  width:50%;
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -1735,7 +1742,7 @@ textarea[id="Resume"] {
 #visit {
   display: flex;
   text-align: left;
-  margin-left: 80%;
+  margin-left: 51%;
 }
 
 #visit div {
@@ -1744,12 +1751,12 @@ textarea[id="Resume"] {
 
 #show {
   margin-top: 10px;
-  margin-left: 675px;
+  margin-left: 51%;
 }
 
 #park {
   display: flex;
-  margin-left: 675px;
+  margin-left: 51%;
 }
 
 #park article > p {
