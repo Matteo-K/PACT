@@ -152,7 +152,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                     <div class="carteOffre">
                         <a  class="aImg" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
-                            <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
+                            <?php 
+                            $alt="photo principal de l'offre";
+                            ?>
+                            <img class="searchImage" src="<?php echo $urlImg[0]['url']!=NULL?$urlImg[0]['url']:$alt="Pas de phot entrée pour l'offre"; ?>" alt=<?php echo $alt; ?>>
                         </a>
                         <div class="infoOffre">
                             <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
