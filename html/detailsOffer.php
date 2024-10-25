@@ -89,20 +89,6 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main class="mainOffer">
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
-        <?php 
-            $cook = $conn->prepare("SELECT o.idu FROM pact._offre o WHERE idoffre=$idOffre");
-            $cook->execute();
-            $offre = $cook->fetchAll(PDO::FETCH_ASSOC);
-            if ($offre[0]['idu']==$idUser) {
-                
-                
-
-
-                echo "ok" ;
-            }
-        ?>
-        
-        <button></button>
         <div>
             <?php 
             // Fetch tags associated with the offer
@@ -119,20 +105,22 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->bindParam(':idoffre', $idOffre);
             $stmt->execute();
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
-            foreach ($tags as $tag): ?>
-                <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
-            <?php endforeach; 
-            if($ouvert == "EstOuvert"){
-            ?>
-                <a class="tag ouvert" href="search.php">Ouvert</a>
-            <?php
-            } else if($ouvert == "EstFermé"){
-            ?>
-                <a class="tag ferme" href="search.php">Fermé</a>
-            <?php
+            if($tags){
+                foreach ($tags as $tag): ?>
+                    <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
+                <?php endforeach; 
+                if($ouvert == "EstOuvert"){
+                ?>
+                    <a class="ouvert" href="search.php">Ouvert</a>
+                <?php
+                } else if($ouvert == "EstFermé"){
+                ?>
+                    <a class="ferme" href="search.php">Fermé</a>
+                <?php
+                }
             }
             ?>
+
         </div>
 
         <div id="infoPro">
@@ -144,26 +132,37 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             if($lieu){
             ?>
+            <div>
                 <img src="./img/icone/lieu.png">
-                <p id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></p>
+                <a href="https://www.google.com/maps?q=<?php echo urlencode($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></a>
+            </div>
+                
             <?php
                 }
             if($result["telephone"] && $tel["affiche"] == TRUE){
             ?>
+            <div>
                 <img src="./img/icone/tel.png">
                 <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
-            <?php
+            </div>
+                <?php
             }
             if($result["mail"]){
                 ?>
-                <img src="./img/icone/mail.png">
-                <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
+                <div>
+                    <img src="./img/icone/mail.png">
+                    <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
+                </div>
+                
                 <?php
             }
             if($result["urlsite"]){
                 ?>
-                <img src="./img/icone/globe.png">
-                <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
+                <div>
+                    <img src="./img/icone/globe.png">
+                    <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
+                </div>
+                
                 <?php
             }
             ?>
@@ -202,15 +201,17 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             </div>
         </div>
+        <article>
+            <p>Pas de note pour this moment</p>
+            <section>
+                <h3>Description</h3>
+                <p><?php echo htmlspecialchars($result["description"]); ?></p>
+            </section>
+        </article>
         
-        <p>Pas de note pour this moment</p>
-        <section>
-            <h4>Description</h4>
-            <p><?php echo htmlspecialchars($result["description"]); ?></p>
-        </section>
 
         <section id="InfoComp">
-            <h4>Informations Complémentaires</h4>
+            <h2>Informations Complémentaires</h2>
             <table>
                 <thead>
                     <tr>
@@ -251,35 +252,49 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </table>
         </section>
         <!-- Carte Google Maps -->
-        <div id="map" class="carte"></div>
-        <div>
+        <div id="afficheLoc">
+            <div id="map" class="carte"></div>
+            <div>
             <?php
-            if($lieu){
-            ?>
-                <img src="./img/icone/lieu.png">
-                <p id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></p>
-            <?php
+                if($lieu){
+                ?>
+                <div>
+                    <img src="./img/icone/lieu.png">
+                    <a href="https://www.google.com/maps?q=<?php echo urlencode($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></a>
+                </div>
+                    
+                <?php
+                    }
+                if($result["telephone"] && $tel["affiche"] == TRUE){
+                ?>
+                <div>
+                    <img src="./img/icone/tel.png">
+                    <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
+                </div>
+                    <?php
                 }
-            if($result["telephone"] && $tel["affiche"] == TRUE){
-            ?>
-                <img src="./img/icone/tel.png">
-                <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
-            <?php
-            }
-            if($result["mail"]){
+                if($result["mail"]){
+                    ?>
+                    <div>
+                        <img src="./img/icone/mail.png">
+                        <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
+                    </div>
+                    
+                    <?php
+                }
+                if($result["urlsite"]){
+                    ?>
+                    <div>
+                        <img src="./img/icone/globe.png">
+                        <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
+                    </div>
+                    
+                    <?php
+                }
                 ?>
-                <img src="./img/icone/mail.png">
-                <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
-                <?php
-            }
-            if($result["urlsite"]){
-                ?>
-                <img src="./img/icone/globe.png">
-                <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
-                <?php
-            }
-            ?>   
+            </div>
         </div>
+        
 
         <?php
             if($typeOffer == "parcs_attractions" ){
@@ -294,6 +309,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     
     <script>
+
         let map;
         let geocoder;
         let marker; // Variable pour stocker le marqueur actuel
