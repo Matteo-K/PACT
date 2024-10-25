@@ -1,5 +1,10 @@
 <?php
 $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre=?");
+// $stmtResto = $conn->prepare("SELECT * FROM pact._restauration WHERE idoffre=?");
+// $stmtSpec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=?");
+// $stmtVisite = $conn->prepare("SELECT * FROM pact.visite WHERE idoffre=?");
+// $stmt = $conn->prepare("SELECT * FROM pact._restauration WHERE idoffre=?");
+
 $stmt->execute([$idOffre]);
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $titre = $result["nom"] ?? "";
