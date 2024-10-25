@@ -1403,11 +1403,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .buttonDetails{
   display: flex;
+  margin-top: calc(var(--header-size) + 0.6em);
   gap: 10px; /* Espacement entre les boutons */
 }
  
 #titleOffer {
-  margin-top: calc(var(--header-size) + 0.6em);
   font-size: 5em;
   color: var(--bloc);
   margin-bottom: 0.5em;
