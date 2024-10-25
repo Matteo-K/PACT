@@ -155,7 +155,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             <?php 
                             $alt="photo principal de l'offre";
                             ?>
-                            <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt=<?php echo $urlImg[0]['url']!=NULL?"photo principal de l'offre":"Pas de photo attribué à l'offre"; ?>>
+                            <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt=<?php echo ($urlImg[0]['url'])!=NULL?"photo principal de l'offre":"Pas de photo attribué à l'offre"; ?>>
                         </a>
                         <div class="infoOffre">
                             <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
