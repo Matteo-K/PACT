@@ -65,7 +65,6 @@
                     </figcaption>
                 </figure>
                 <ul>
-                    <li><a href="index.php">Accueil</a></li>
                     <li><a href="search.php">Mes offres</a></li>
                     <li><a href="manageOffer.php">Créer une offre</a></li>
                 </ul>

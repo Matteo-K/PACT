@@ -442,6 +442,7 @@ header ul + div{
   text-align: center;
   margin: 0 auto; /* Centre le bouton horizontalement dans son conteneur */
   text-decoration: none; /* Supprime le soulignement */
+  font-size: 15px;
 }
 
 
