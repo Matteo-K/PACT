@@ -81,19 +81,14 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt->execute();
                     $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
-                    foreach ($tags as $tag): ?>
+                    foreach ($tags as $tag): 
+                    if($tag["nomtag"]) {
+                    ?>
                         <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
-                    <?php endforeach; 
-                    if($ouvert == "EstOuvert"){
+                    <?php 
+                        } endforeach; 
                     ?>
-                        <a class="tag ouvert" href="search.php">Ouvert</a>
-                    <?php
-                    } else if($ouvert == "EstFermé"){
-                    ?>
-                        <a class="tag ferme" href="search.php">Fermé</a>
-                    <?php
-                    }
-                    ?>
+                   
                 </div>
 
                 <div id="iconeLienPreview">
