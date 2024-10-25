@@ -184,9 +184,7 @@
 
             <!-- Menu caché intégré dans le header -->
             <div id="profileMenu" class="hidden">
-                <div id="backButton">
-                    <span id="backText">< Retour</span>
-                </div>
+                <span id="backButton">< Retour</span>
                 <figure id="imagProfil">
                     <img src="<?php echo $user["url"] ?>" title="photo de profil utilisateur" id="menuProfilePic">
                     <figcaption>
