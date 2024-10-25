@@ -316,14 +316,15 @@ header > div > a > div {
 
 
 #btnConn{
-  display: block;
+  display: flex;
   color: #000;
-  font-size: 20px;
+  font-size: 25px;
   border-radius: 10px;
   height: 3em;
   width: 200px;
   background-color: var(--accent);
   text-align: center;
+  justify-content: center;
 }
 
 /* Style général du menu de profil */
