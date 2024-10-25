@@ -115,10 +115,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             $dossierImgNom = $dossierImg . $fileName;
 
             // Déplace l'image vers le dossier cible
-            if (move_uploaded_file($fileTmpPath, $dossierImgNom)) {
-              echo "L'image $fileName a été uploadée avec succès.<br>";
-              $imageCounter++;
-            } 
+            move_uploaded_file($fileTmpPath, $dossierImgNom);
+            $imageCounter++;
 
             try {
               $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
@@ -191,10 +189,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
                 $dossierImgNom = $dossierImg . $fileName;
     
                 // Déplace l'image vers le dossier cible
-                if (move_uploaded_file($fileTmpPath, $dossierImgNom)) {
-                  echo "L'image $fileName a été uploadée avec succès.<br>";
-                  $imageCounter++;
-                } 
+                move_uploaded_file($fileTmpPath, $dossierImgNom);
+                $imageCounter++;
                 
                 try {
                   $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
@@ -317,7 +313,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
           if ($result == false) {
             $stmt = $conn->prepare("INSERT INTO pact._tag (nomtag) VALUES (?)");
             $stmt->execute([$tag]);
-            echo "tag ajouté a la table générale";
           }
 
           // et dans tous les cas on ajoute la relation tag <-> offre (différentes tables selon la catégorie)
@@ -325,30 +320,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             case 'restaurant':
               $stmt = $conn->prepare("INSERT INTO pact._tag_restaurant (idoffre, nomtag) VALUES (?, ?)");
               $stmt->execute([$idOffre, $tag]);
-              echo "ajouté tag au resto";
               break;
             case 'parc':
               $stmt = $conn->prepare("INSERT INTO pact._tag_parc (idoffre, nomtag) VALUES (?, ?)");
               $stmt->execute([$idOffre, $tag]);
-              echo "ajouté tag au parc";
               break;
             case 'activite':
               $stmt = $conn->prepare("INSERT INTO pact._tag_act (idoffre, nomtag) VALUES (?, ?)");
               $stmt->execute([$idOffre, $tag]);
-              echo "ajouté tag au activite";
               break;
             case 'spectacle':
               $stmt = $conn->prepare("INSERT INTO pact._tag_spec (idoffre, nomtag) VALUES (?, ?)");
               $stmt->execute([$idOffre, $tag]);
-              echo "ajouté tag au spectacle";
               break;
             case 'visite':
               $stmt = $conn->prepare("INSERT INTO pact._tag_visite (idoffre, nomtag) VALUES (?, ?)");
               $stmt->execute([$idOffre, $tag]);
-              echo "ajouté tag au visite";
               break;
             default:
-              echo "tag pas ajouté, pas de catégorie trouvée...";
               break;
           }
         }

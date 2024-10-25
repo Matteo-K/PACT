@@ -86,7 +86,9 @@
         }
 
         #profileMenu ul li {
-            margin: 10px 0; /* Espacement entre les éléments */
+            list-style: none;
+            font-size: 30px;
+            font-family: "Belanosima", sans-serif;
         }
 
         #profileMenu a {
@@ -202,6 +204,7 @@
                 <ul>
                     <li><a href="profile.php">Mon Profil</a></li>
                     <li><a href="settings.php">Paramètres</a></li>
+                    <li><a href="manageOffer.php">Créer une offre</a></li>
                 </ul>
                 <div>
                     <a id="changeAccount" class="buttonMenu" href="logout.php?change=true">Changer de compte</a>
