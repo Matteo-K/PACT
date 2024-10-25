@@ -208,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pageBefore'])) {
             // Obtention des données
             $duree = $_POST["duréeAct"] ?? null;
             $ageMin = $_POST["ageAct"] ?? null;
-            $accessibilite = $_POST["Accessibilite"] ?? null; // Modifier si ajouter dans BDD
+            $accessibilite = $_POST["Accessibilite"] == "Acces" ? true : null; // Modifier si ajouter dans BDD
             $prixMinimale = null; // Modifier si ajouter dans html
             $prestation = null; // Modifier si ajouter dans html
             // Création/Modification d'une offre de parc d'attraction

@@ -57,6 +57,22 @@ if (!$result) {
 }
 
 if (!$result) {
+    $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre = :idoffre");
+    $stmt->bindParam(':idoffre', $idOffre);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result){
+        ?>
+        <form id="manageOfferAuto" action="manageOffer.php" method="post" >
+            <input type="hidden" name="idOffre" value="<?php echo $idOffre?>">
+        </form>
+        <script>
+            document.getElementById("manageOfferAuto").submit();
+        </script>
+        <?php
+        
+    }
+
     echo "Aucune offre trouvée avec cet id.<br>";
     exit();
 }
@@ -105,7 +121,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
               $resto->execute();
               $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
           
-              $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idspect=$idOffre");
+              $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=$idOffre");
               $spec->execute();
               $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
           
@@ -132,13 +148,13 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
               }else {
                 $tema=$parca;
               }
-          
+
               foreach ($tema[0] as $key => $value) {
                 if ($value==NULL) {
                   $affiche=true;
                 }
               }
-              $adr = $conn->prepare("SELECT * FROM pact.localisation WHERE idoffre=$idOffre");
+              $adr = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre=$idOffre");
               $adr->execute();
               $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
           
@@ -152,7 +168,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
                     <form method="post" action="changer_statut.php">
                         <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
-                        <input type="hidden" name="offre_id" value="<?php echo $offre[0]['id']; ?>">
+                        <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
                         <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
                         <button type="submit">
                             <?php echo $statutActuel === 'inactif' ? 'Mettre en actif' : 'Mettre en inactif'; ?>
@@ -163,28 +179,6 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
             
         ?>
-        <script>
-        document.getElementById("toggleStatut").addEventListener("click", function() {
-            let offreId = this.getAttribute("data-offre-id");
-            let nouveauStatut = document.getElementById("statutActuel").innerText === 'inactif' ? 'actif' : 'inactif';
-        
-            // Envoyer une requête POST en AJAX à cette même page
-            fetch("", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: `offre_id=${offreId}&nouveau_statut=${nouveauStatut}`
-            })
-            .then(response => response.text())
-            .then(data => {
-                // Met à jour le statut affiché et le texte du bouton
-                document.getElementById("statutActuel").innerText = data;
-                document.getElementById("toggleStatut").innerText = data === 'inactif' ? 'Mettre en actif' : 'Mettre en inactif';
-            })
-            .catch(error => console.error('Erreur:', error));
-        });
-        </script>
         <div>
             <?php 
             // Fetch tags associated with the offer
@@ -201,11 +195,14 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->bindParam(':idoffre', $idOffre);
             $stmt->execute();
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            array_unshift($tags, ['nomtag' => $typeOffer]);
             
                 foreach ($tags as $tag): 
-                    if($tag){?>
-                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
+                    if($tag["nomtag"] != NULL){
+                        ?>
                     
+                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>   
                 <?php } endforeach;
             
             if($ouvert == "EstOuvert"){
