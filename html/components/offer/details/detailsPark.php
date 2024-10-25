@@ -5,7 +5,7 @@
 
 
         <br>
-        <div id="choixImage">
+        <div id="choixImage2">
             <label>Plan : </label>
             <p>
                 Vous pouvez insérer jusqu'à 5 photos<br>
