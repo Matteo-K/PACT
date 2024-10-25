@@ -101,10 +101,9 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title><?php echo htmlspecialchars($result["nom_offre"]); ?></title>
 </head>
 <body>
-    <?php require_once "components/headerTest.php"; ?>
+    <?php require_once "components/header.php"; ?>
 
     <main class="mainOffer">
-        <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
         <div class="buttonDetails">
         <?php 
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
@@ -191,6 +190,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         ?>
         </div>
+        <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
         <div>
             <?php 
             // Fetch tags associated with the offer

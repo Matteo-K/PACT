@@ -160,7 +160,7 @@ header {
   left: 0;
   width: 100%;
   height: var(--header-size);
-  z-index: 3;
+  z-index: 10;
   background-color: var(--background);
 }
 
@@ -333,8 +333,7 @@ header > div > a > div {
   background: linear-gradient(to bottom, #034d7c, #1ca4ed); /* Dégradé du haut vers le bas */
   display: flex;
   flex-direction: column; /* Aligne les éléments verticalement */
-  z-index: 11000;
-  transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease; /* Transition pour le mouvement */
+  transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease; /* Transition pour le mouvement */
   transform: translateX(100%); /* Commence en dehors de l'écran à droite */
   visibility: hidden; /* Caché par défaut */
   opacity: 0; /* Invisible par défaut */
@@ -365,8 +364,8 @@ header > div > a > div {
 /* Styles pour l'image de profil dans le menu */
 #imagProfil img {
   margin: 0;
-  width: 10em; /* Ajustez à la taille désirée, par exemple 100px */
-  border-radius: 50%; /* Pour rendre l'image ronde */
+  width: 10em; 
+  border-radius: 50%; 
 }
 
 /* Styles pour le pseudo ou le nom */
@@ -381,7 +380,7 @@ header > div > a > div {
 
 #backButton {
   margin: 0;
-  font-size: 12px;
+  font-size: 20px;
   cursor: pointer; /* Pointeur pour indiquer un élément cliquable */
   margin-bottom: 2em; /* Espacement en bas */
   position: absolute; /* Position absolue pour le placer dans le coin */
@@ -436,7 +435,7 @@ header ul + div{
   text-align: center;
   margin: 0 auto; /* Centre le bouton horizontalement dans son conteneur */
   text-decoration: none; /* Supprime le soulignement */
-  }
+}
 
 
 #changeAccount{
@@ -1404,15 +1403,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .buttonDetails{
   display: flex;
-  position: fixed;
-  top: 120px; /* Juste sous le header de 100px */
-  right: 20px; /* Décalé de 20px du bord droit */
-  gap: 10px; /* Espacement entre les boutons */
-  
-}
-
-#titleOffer {
   margin-top: calc(var(--header-size) + 0.6em);
+  gap: 10px; /* Espacement entre les boutons */
+}
+ 
+#titleOffer {
   font-size: 5em;
   color: var(--bloc);
   margin-bottom: 0.5em;
@@ -1604,29 +1599,33 @@ tbody td:last-child {
   border-radius: 8px;
 }
 
-.contact-info {
+#contact-info {
   flex: 1; /* Makes the contact section narrower */
   display: flex;
   flex-direction: column;
   gap: 15px; /* Space between each contact item */
+ 
 }
 
-.contact-info div {
+#contact-info div {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 10px;
 }
 
-.contact-info img {
+#contact-info img {
   width: 24px;
   height: 24px;
 }
+#contact-info a {
+  color: var(--text-dark);
+  text-decoration: none;
+}
 
-
-/* ========================= */
-/* Styles pour previewOffer.php */
-/* ========================= */
+/* +++++++++++++++++++ */
+/* Style previewOffer */
+/* ++++++++++++++++++*/
 
 #previewOffer {
   width: 100%;
@@ -1684,7 +1683,8 @@ tbody td:last-child {
   width: 25px;
 }
 
-#iconeLienPreview p, #iconeLienPreview a {
+#iconeLienPreview p,
+#iconeLienPreview a {
   font-size: 1.2em;
   color: var(--text-dark);
 }
@@ -1708,7 +1708,8 @@ tbody td:last-child {
 
 #previewOffer .swiper-slidePreview img {
   width: 100%;
-  height: 100%;
+  height: auto; /* Maintenir le ratio */
+  max-height: 300px; /* Limiter la hauteur */
   object-fit: cover;
   border-radius: 15px;
 }
@@ -1722,8 +1723,14 @@ tbody td:last-child {
 
 #previewOffer .myThumbSliderPreview {
   margin-top: 20px;
-  height: 100px;
+  height: 80px; /* Réduire la hauteur si nécessaire */
   width: 90%;
+}
+
+#previewOffer .myThumbSliderPreview img {
+  width: auto; /* Ajuster la largeur si nécessaire */
+  height: 100%; /* Maintenir la hauteur à 100% */
+  object-fit: cover;
 }
 
 #previewOffer .swiper-slidePreview {
@@ -1798,10 +1805,11 @@ tbody td:last-child {
 }
 
 #mapPreview img {
-  width: 100%;
-  height: 100%;
+  width: 30px;
+  height: 30px;
   object-fit: cover;
 }
+
 
 
 
@@ -1889,6 +1897,7 @@ textarea[id="Resume"] {
   margin-left: 525px;
   flex-direction: row;
   padding: 10px;
+  visibility: hidden;
 }
 
 #activity article > p {
