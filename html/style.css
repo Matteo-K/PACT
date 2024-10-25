@@ -942,11 +942,11 @@ header > div > a > div {
   background-color: var(--primary);
 }
 
-#artDetailOffer input[type="file"] {
+#detailsOffer input[type="file"] {
   display: none;
 }
 
-#afficheImages figure, #afficheImages2 figure {
+#detailsOffer figure {
   max-width: 120px;
   max-height: 90px;
   margin: 5px;
@@ -954,7 +954,7 @@ header > div > a > div {
   cursor: pointer;
 }
 
-#afficheImages img, #afficheImages2 img {
+#detailsOffer img {
   width: 100%;
   height: auto;
   border-radius: 3px;
