@@ -864,7 +864,7 @@ header > div > a > div {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .buttonDetailOffer,
-.tag {
+.tag, .ouvert, .ferme{
   display: inline-block;
   font-size: 22px;
   padding: 5px 30px;
@@ -1293,9 +1293,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-bottom: 0.5em;
 }
 
-.mainOffer .tag {
+.mainOffer .tag, .ouvert, .ferme{
   background-color: var(--accent);
   box-shadow: none;
+  margin-bottom: 2em;
 }
 
 .mainOffer > div {
@@ -1428,6 +1429,46 @@ tbody td:first-child {
 
 tbody td:last-child {
   text-align: right; /* Alignement de l'horaire à droite */
+}
+
+.ouvert{
+  background-color: lime;
+}
+
+.ferme{
+  background-color: red;
+  color: var(--background);
+}
+
+
+
+
+
+.myThumbSlider + article,
+#infoPro, #infoPro > div, #afficheLoc, #afficheLoc > .carte + div{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}
+
+#infoPro{
+  gap: 10vh;
+}
+
+#infoPro a{
+  color:var(--text-dark);
+  text-decoration: none;
+}
+
+#infoPro img, #afficheLoc img{
+  width: 25px;
+  height: 25px;
+}
+
+#afficheLoc .carte + div{
+  flex-direction: column;
+  align-items:flex-start;
 }
 
 /* ++++++++++++++++++++*/
