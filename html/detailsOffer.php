@@ -175,6 +175,17 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </button>
                     </form>
                 <?php          
+            } else {
+                ?>
+                    
+                    <form method="post" action="manageOffer.php">
+                        <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
+                        <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
+                        <button type="submit">
+                            <?php echo "Modifier offre"; ?>
+                        </button>
+                    </form>
+                <?php  
             }
         }
             

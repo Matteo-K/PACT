@@ -908,7 +908,7 @@ header > div > a > div {
   padding: 5px;
 }
 
-#artDetailOffer textarea {
+#artDetailOffer textarea,#choixPhoto2 textarea {
   width: 90%;
   max-width: 90%;
   min-width: 90%;
@@ -942,11 +942,11 @@ header > div > a > div {
   background-color: var(--primary);
 }
 
-#detailsOffer input[type="file"] {
+#detailsOffer input[type="file"] ,#ajoutPhoto2 input[type="file"]{
   display: none;
 }
 
-#detailsOffer figure {
+#detailsOffer figure {  
   max-width: 120px;
   max-height: 90px;
   margin: 5px;
