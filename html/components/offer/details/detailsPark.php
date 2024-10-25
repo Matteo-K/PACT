@@ -4,7 +4,7 @@
     <article>
 
     <label>Plan : </label>
-
+    <br>
     <div id="choixImage">
                 <label>Photos de votre offre*</label>
                 <p>
@@ -17,7 +17,7 @@
             <div id="afficheImages"></div>
     <br>
 
-    <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter des photos </button>
+    
     <br>
 
     </article>
