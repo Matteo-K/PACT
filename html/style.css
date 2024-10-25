@@ -1698,14 +1698,14 @@ tbody td:last-child {
   color: var(--text-dark);
 }
 
-#previewOffer .swiper-container {
+/* #previewOffer .swiper-container {
   width: 90%;
   max-width: 1200px;
   margin: auto;
 }
 
 #previewOffer .mySwiper {
-  height: auto; /* Ajuster la hauteur automatiquement */
+  height: auto; 
   border-radius: 15px;
   overflow: hidden;
 }
@@ -1721,12 +1721,12 @@ tbody td:last-child {
   align-items: center;
 }
 
-/* #previewOffer .swiper-slide img {
+#previewOffer .swiper-slide img {
   width: 100px;
   height: 100px;
   object-fit: cover;
   border-radius: 15px;
-} */
+}
 
 #previewOffer .swiper-button-next,
 #previewOffer .swiper-button-prev {
@@ -1739,7 +1739,7 @@ tbody td:last-child {
   margin-top: 20px;
   height: 100px;
   width: 90%;
-}
+} */
 
 #desciptionPreview {
   margin-top: 20px;
