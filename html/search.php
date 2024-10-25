@@ -94,7 +94,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $loca = $conn->prepare("SELECT * FROM pact._localisation WHERE idOffre = $idOffre");
                     $loca->execute();
                     $villes = $loca->fetchAll(PDO::FETCH_ASSOC);
-                    $ville = ($villes)?$ville[0]['ville']:"Pas de localisation entrée";
+                    $ville = ($villes)?$villes[0]['ville']:"Pas de localisation entrée";
     
                     $user = $conn->prepare("SELECT * FROM pact._pro WHERE idu = $iduser");
                     $user->execute();
@@ -140,9 +140,12 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     }elseif ($idTagA) {
                         $tag=$idTagA;
                         $nomTag="Activite";
-                    }else {
+                    }elseif ($idTagS) {
                         $tag=$idTagS;
                         $nomTag="Spectacle";
+                    } else {
+                        $tag=NULL;
+                        $nomTag="Pas de categorie";
                     }
                     
                      ?>
@@ -163,8 +166,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             <div class="searchCategorie">
                                 <span class="searchTag"><?php echo $nomTag; ?></span>
                                 <?php
-                                foreach ($tag as $value) {
-                                    ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
+                                if ($tag!=NULL) {
+                                    foreach ($tag as $value) {
+                                        ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
+                                    }
                                 }
                                 ?>
                             </div>
