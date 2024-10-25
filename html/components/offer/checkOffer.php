@@ -102,4 +102,5 @@ function getNull($idOffre) : bool {
   echo'ok';
   return true;
 }
+getNull(4);
 ?>

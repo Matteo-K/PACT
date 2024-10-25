@@ -3,16 +3,23 @@
 <section id="park">
     <article>
 
-    <label>Plan : </label>
-    <br>
-    <p> Vous pouvez inserer jusqu'a 5 photos du plan  </p>
-    <br>
-    
-    <input type="file" id="imagePark" name="image1Park" accept=".png,.jpg,jpeg,gif,wepb">
-    <br>
-    
-    <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter des photos </button>
-    <br>
+
+        <br>
+        <div id="choixImage">
+            <label>Plan : </label>
+            <p>
+                Vous pouvez insérer jusqu'à 5 photos<br>
+
+            </p>
+        </div>
+        <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+        <input type="file" id="ajoutPhoto" name="ajoutPhoto[]"
+            accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>
+        <div id="afficheImages"></div>
+        <br>
+
+
+        <br>
 
     </article>
 </section>
