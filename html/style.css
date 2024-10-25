@@ -1579,7 +1579,7 @@ tbody td:last-child {
   margin-bottom: 1em;
 }
 
-#infoPro a{
+#infoPro a, .contact-info a{
   color:var(--text-dark);
   text-decoration: none;
 }
@@ -1604,7 +1604,7 @@ tbody td:last-child {
   border-radius: 8px;
 }
 
-.contact-info {
+#contact-info {
   flex: 1; /* Makes the contact section narrower */
   display: flex;
   flex-direction: column;
@@ -1612,22 +1612,17 @@ tbody td:last-child {
  
 }
 
-.contact-info div {
+#contact-info div {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
 
-.contact-info img {
+#contact-info img {
   width: 24px;
   height: 24px;
 }
-.contact-info a{
-  color:var(--text-dark);
-  text-decoration: none;
-}
-
 
 /* ========================= */
 /* Styles pour previewOffer.php */
