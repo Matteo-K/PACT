@@ -409,14 +409,14 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <img src="<?php echo $result["urlplan"]?>">
         <?php
             }
-
-        require_once "./components/footer.php";
         ?>
 
         
 
     </main>
-
+    <?php
+        require_once "./components/footer.php";
+    ?>
 
     
     <script>
