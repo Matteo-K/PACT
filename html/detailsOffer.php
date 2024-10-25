@@ -172,7 +172,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
                         <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
                         <button class="modifierBut" type="submit">
-                            <?php echo $statutActuel === 'inactif' ? 'Mettre en actif' : 'Mettre en inactif'; ?>
+                            <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
                         </button>
                     </form>
                 <?php          
@@ -411,8 +411,12 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
         ?>
 
-    </main>
+        
 
+    </main>
+    <?php
+        require_once "./components/footer.php";
+    ?>
 
     
     <script>
