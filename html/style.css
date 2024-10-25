@@ -1252,6 +1252,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 20px;
 }
 
+.aImg{
+  width: 290px;
+  height: 170px;
+}
+
 .infoOffre {
   flex-grow: 2;
 }
