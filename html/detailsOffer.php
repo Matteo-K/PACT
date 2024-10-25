@@ -89,6 +89,80 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main class="mainOffer">
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
+        <?php 
+        if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
+            $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
+            $cook->execute();
+            $offre = $cook->fetchAll(PDO::FETCH_ASSOC);
+            $affiche=false;
+            foreach ($offre[0] as $key => $value) {
+              if ($value == NULL) {
+                $affiche=true;
+              }
+            }
+            if ($affiche) {
+              $resto = $conn->prepare("SELECT * FROM pact._restauration WHERE idoffre=$idOffre");
+              $resto->execute();
+              $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
+          
+              $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idspect=$idOffre");
+              $spec->execute();
+              $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
+          
+              $visi = $conn->prepare("SELECT * FROM pact._visite WHERE idoffre=$idOffre");
+              $visi->execute();
+              $visit = $visi->fetchAll(PDO::FETCH_ASSOC);
+          
+              $act = $conn->prepare("SELECT * FROM pact._activite WHERE idoffre=$idOffre");
+              $act->execute();
+              $acti = $act->fetchAll(PDO::FETCH_ASSOC);
+          
+              $parc = $conn->prepare("SELECT * FROM pact._parcattraction WHERE idoffre=$idOffre");
+              $parc->execute();
+              $parca = $parc->fetchAll(PDO::FETCH_ASSOC);
+              
+              if ($restau) {
+                $tema=$restau;
+              }elseif ($spect) {
+                $tema=$spect;
+              }elseif ($visit) {
+                $tema=$visit;
+              }elseif ($acti) {
+                $tema=$acti;
+              }else {
+                $tema=$parca;
+              }
+
+              foreach ($tema[0] as $key => $value) {
+                if ($value==NULL) {
+                  $affiche=true;
+                }
+              }
+              $adr = $conn->prepare("SELECT * FROM pact.localisation WHERE idoffre=$idOffre");
+              $adr->execute();
+              $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
+          
+              if (!$loca) {
+                $affiche=true;
+              }
+            }
+            if (!$affiche) {
+                $statutActuel = $offre[0]['statut'];
+                ?>
+                    
+                    <form method="post" action="changer_statut.php">
+                        <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
+                        <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
+                        <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
+                        <button type="submit">
+                            <?php echo $statutActuel === 'inactif' ? 'Mettre en actif' : 'Mettre en inactif'; ?>
+                        </button>
+                    </form>
+                <?php          
+            }
+        }
+            
+        ?>
         <div>
             <?php 
             // Fetch tags associated with the offer

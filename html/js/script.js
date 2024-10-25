@@ -297,3 +297,44 @@ try {
 
   updateForms();
 } catch (error) {}
+
+
+// Js détails Park 
+
+try {
+  //Affichage des images a leur selection
+  let compteurImages2 = 0;
+  const pImage = document.querySelector("#choixImage > p");
+  document
+    .getElementById("ajoutPhoto2")
+    .addEventListener("change", afficheImage);
+
+  function afficheImage(event) {
+    const images = event.target.files;
+    const conteneur = document.getElementById("afficheImages2");
+
+    Array.from(images).forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        if (compteurImages2 < 5) {
+          compteurImages2++;
+          const figureImg = document.createElement("figure");
+          figureImg.classList.add("imageOffre");
+          figureImg.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
+          conteneur.appendChild(figureImg);
+
+          figureImg.addEventListener("click", function () {
+            if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
+              compteurImages2--;
+              figureImg.remove(); // Supprime l'élément image et son conteneur
+              pImage.style.color = "black"; //on remet la couleur par défaut au cas où c'etait en rouge
+            }
+          });
+        } else {
+          pImage.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+} catch (error) {}
