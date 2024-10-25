@@ -1582,6 +1582,10 @@ tbody td:last-child {
   color: var(--bloc);
 }
 
+#infoComp > section{
+  margin-left: 1em ;
+}
+
 #infoPro{
   gap: 10vh;
   margin-bottom: 1em;
