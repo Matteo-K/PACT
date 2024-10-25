@@ -119,7 +119,7 @@
         form.reportValidity();
       }
       if (confirm_annule) {
-          window.location.href = "URL_DE_VOTRE_PAGE"; 
+          window.location.href = "index.php"; 
       }
   }
 </script>
