@@ -1589,8 +1589,7 @@ tbody td:last-child {
 #afficheLoc {
   display: flex;
   gap: 20px; /* Space between the map and contact info */
-  align-items: center; /* Aligns the items to the top */
-  width: 50%;
+  align-items: start; /* Aligns the items to the top */
 }
 
 #carte {
@@ -1678,13 +1677,12 @@ section[id="sectionPreview"] {
   border-collapse: collapse;
 }
 
-#sectionPreviewth, td {
-  border: 1px solid #ccc;
+#sectionPreview th, td {
   padding: 10px;
   text-align: center;
 }
 
-#sectionPreview .jourSemaine {
+#sectionPreview.jourSemaine {
   font-weight: bold;
 }
 
