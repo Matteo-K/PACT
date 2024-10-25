@@ -11,21 +11,23 @@
                 $stmt->execute([$idOffre, $value]);
                 $soir = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($jour !== false) {
-                    print_r($result);
                     $horairesOuv1 = $jour["heureouverture"];
                     $horairesFerm1 = $jour["heurefermeture"];
                     if ($soir !== false) {
                         $horairesOuv2 = $soir["heureouverture"];
                         $horairesFerm2 = $soir["heurefermeture"];
+                        $soir = true;
                     } else {
                         $horairesOuv2 = "";
                         $horairesFerm2 = "";
+                        $soir = false;
                     }
                 } else {
                     $horairesOuv1 = "";
                     $horairesFerm1 = "";
                     $horairesOuv2 = "";
                     $horairesFerm2 = "";
+                    $soir = false;
                 }
                 // Mettre les boutons cacher ou non lors de l'ajout
     ?>
@@ -46,9 +48,9 @@
                     <input type="time" name="horairesF1<?php echo $value?>" id="horairesF1<?php echo $value?>" value="">
                     <!-- Zone de texte de type time pour saisir uniquement des heures -->
                 </span>
-                <input type="button" value="Ajouter un horaire" name="btnAjout<?php echo $value?>" id="btnAjout<?php echo $value?>" class="blueBtnOffer btnAddOffer">
+                <input type="button" value="Ajouter un horaire" name="btnAjout<?php echo $value?>" id="btnAjout<?php echo $value?>" class="blueBtnOffer btnAddOffer <?php $soir?"hourlyHide" : ""?>">
                 <!-- Partie avec les horaire de l'après midi du Lundi-->
-                <span class="hourly2 hourlyHide">
+                <span class="hourly2 <?php $soir?"" : "hourlyHide"?>">
                     <label for="horairesOuv2<?php echo $value?>">et de</label>
                     <input type="time" name="horairesOuv2<?php echo $value?>" id="horairesOuv2<?php echo $value?>" value="<?php echo $horairesOuv2; ?>">
                     <!-- Zone de texte de type time pour saisir uniquement des heures -->
@@ -56,7 +58,7 @@
                     <input type="time" name="horairesF2<?php echo $value?>" id="horairesF2<?php echo $value?>">
                     <!-- Zone de texte de type time pour saisir uniquement des heures -->
                 </span>
-                <input type="button" value="Retirer" name="btnRetirer<?php echo $value?>" id="btnRetirer<?php echo $value?>" value="<?php echo $horairesFerm2; ?>" class="blueBtnOffer btnRmOffer hourlyHide">
+                <input type="button" value="Retirer" name="btnRetirer<?php echo $value?>" id="btnRetirer<?php echo $value?>" value="<?php echo $horairesFerm2; ?>" class="blueBtnOffer btnRmOffer <?php $soir?"" : "hourlyHide"?>">
                 <!-- bouton pour retirer les horaires -->
             </span>
         </div>

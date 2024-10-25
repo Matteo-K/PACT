@@ -42,8 +42,10 @@
             <img id="profilePic" src="<?php echo $user["url"] ?>" title="Photo de profil utilisateur">
 
             <!-- Menu caché intégré dans le header -->
-            <div id="profileMenu" class="hide">
-                <span id="backButton">< Retour</span>
+            <div id="profileMenu" class="hidden">
+                <div id="backButton">
+                    <span id="backText">< Retour</span>
+                </div>
                 <figure id="imagProfil">
                     <img src="<?php echo $user["url"] ?>" title="photo de profil utilisateur" id="menuProfilePic">
                     <figcaption>
@@ -61,7 +63,6 @@
                 <ul>
                     <li><a href="profile.php">Mon Profil</a></li>
                     <li><a href="settings.php">Paramètres</a></li>
-                    <li><a href="manageOffer.php">Créer une offre</a></li>
                 </ul>
                 <div>
                     <a id="changeAccount" class="buttonMenu" href="logout.php?change=true">Changer de compte</a>
