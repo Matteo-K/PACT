@@ -938,7 +938,7 @@ header > div > a > div {
   margin-right: 14px;
 }
 
-#ajoutPhoto {
+#ajoutPhoto, #ajoutPhoto2 {
   background-color: var(--primary);
 }
 
