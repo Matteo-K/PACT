@@ -105,11 +105,14 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->bindParam(':idoffre', $idOffre);
             $stmt->execute();
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            array_unshift($tags, ['nomtag' => $typeOffer]);
             
                 foreach ($tags as $tag): 
-                    if($tag){?>
-                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
+                    if($tag["nomtag"] != NULL){
+                        ?>
                     
+                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>   
                 <?php } endforeach;
             
             if($ouvert == "EstOuvert"){
