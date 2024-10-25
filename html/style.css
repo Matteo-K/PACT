@@ -1897,6 +1897,7 @@ textarea[id="Resume"] {
   margin-left: 525px;
   flex-direction: row;
   padding: 10px;
+  visibility: hidden;
 }
 
 #activity article > p {
