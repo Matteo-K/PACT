@@ -1910,10 +1910,12 @@ textarea[id="Resume"] {
 
 #activity article > p {
   padding: 10px;
+  margin: 5px;
 }
 #activity article > p > label,
 #activity label[id="labAccess"] {
   font-size: 24px;
+  margin: 10px;
 }
 #activity article > p > textarea[id="txtAct"] {
   resize: none;
@@ -1926,7 +1928,6 @@ textarea[id="Resume"] {
   width: 350px;
   height: 50px;
   resize: none;
-  margin: 10px;
 }
 #activity article > p > input[id="numberAct"] {
   width: 100px;
