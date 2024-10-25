@@ -11,7 +11,6 @@
                 $stmt->execute([$idOffre, $value]);
                 $soir = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($jour !== false) {
-                    print_r($result);
                     $horairesOuv1 = $jour["heureouverture"];
                     $horairesFerm1 = $jour["heurefermeture"];
                     if ($soir !== false) {
