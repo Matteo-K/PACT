@@ -4,8 +4,8 @@
         if (!$is_show) {
             $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
             foreach ($jour_semaine as $value) {
-                $stmt = $conn->prepare("SELECT m.heureouverture heurOuvMidi, m.heurefermeture heurFermMidi, s.heureouverture heurOuvSoir, s.heurefermeture heurFermSoir from pact._horairemidi m left join pact._horairesoir s on m.idoffre=s.idoffre and m.jour = s.jour");
-                $stmt->execute();
+                $stmt = $conn->prepare("SELECT m.heureouverture heurOuvMidi, m.heurefermeture heurFermMidi, s.heureouverture heurOuvSoir, s.heurefermeture heurFermSoir from pact._horairemidi m left join pact._horairesoir s on m.idoffre=s.idoffre and m.jour = s.jour WHERE idoffre=? and jour=?");
+                $stmt->execute([$idOffre, $value]);
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($result !== false) {
                     $horairesOuv1 = $result["heurOuvMidi"];
@@ -46,7 +46,7 @@
                     <input type="time" name="horairesF2<?php echo $value?>" id="horairesF2<?php echo $value?>">
                     <!-- Zone de texte de type time pour saisir uniquement des heures -->
                 </span>
-                <input type="button" value="Retirer" name="btnRetirer<?php echo $value?>" id="btnRetirer<?php echo $value?>" class="blueBtnOffer btnRmOffer hourlyHide">
+                <input type="button" value="Retirer" name="btnRetirer<?php echo $value?>" id="btnRetirer<?php echo $value?>" value="<?php echo $horairesFerm2; ?>" class="blueBtnOffer btnRmOffer hourlyHide">
                 <!-- bouton pour retirer les horaires -->
             </span>
         </div>
