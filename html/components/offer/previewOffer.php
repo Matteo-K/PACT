@@ -81,19 +81,14 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt->execute();
                     $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
-                    foreach ($tags as $tag): ?>
+                    foreach ($tags as $tag): 
+                    if($tag["nomtag"]) {
+                    ?>
                         <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
-                    <?php endforeach; 
-                    if($ouvert == "EstOuvert"){
+                    <?php 
+                        } endforeach; 
                     ?>
-                        <a class="tag ouvert" href="search.php">Ouvert</a>
-                    <?php
-                    } else if($ouvert == "EstFermé"){
-                    ?>
-                        <a class="tag ferme" href="search.php">Fermé</a>
-                    <?php
-                    }
-                    ?>
+                   
                 </div>
 
                 <div id="iconeLienPreview">
@@ -131,13 +126,13 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
                 </div>
 
-                <div class="swiper-containerPreview">
+                <div class="swiper-container">
                     <div class="swiper mySwiperPreview">
-                        <div class="swiper-wrapperPreview">
+                        <div class="swiper-wrapper">
                         <?php
                             foreach ($photos as $picture) {
                         ?>
-                                <div class="swiper-slidePreview">
+                                <div class="swiper-slide">
                                     <img src="<?php echo $picture['url']; ?>" />
                                 </div>
                         <?php
@@ -146,16 +141,16 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                <div class="swiper-button-nextPreview"></div>
-                <div class="swiper-button-prevPreview"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
                 </div>
 
                 <div thumbsSlider="" class="swiper myThumbSliderPreview">
-                    <div class="swiper-wrapperPreview">
+                    <div class="swiper-wrapper">
                     <?php
                         foreach ($photos as $picture) {
                     ?>
-                            <div class="swiper-slidePreview">
+                            <div class="swiper-slide">
                                 <img src="<?php echo $picture['url']; ?>" />
                             </div>
                     <?php
@@ -227,40 +222,34 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
                 <!-- Carte Google Maps -->
                 <div id="mapPreview" class="carte"></div>
-                <div>
-                    <?php
-                    if($lieu){
-                    ?>
-                        <img src="./img/icone/lieu.png">
-                        <p id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></p>
-                    <?php
-                        }
-                    if($result["telephone"] && $tel["affiche"] == TRUE){
-                    ?>
-                        <img src="./img/icone/tel.png">
-                        <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
-                    <?php
-                    }
-                    if($result["mail"]){
-                        ?>
-                        <img src="./img/icone/mail.png">
-                        <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
-                        <?php
-                    }
-                    if($result["urlsite"]){
-                        ?>
-                        <img src="./img/icone/globe.png">
-                        <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
-                        <?php
-                    }
-                    ?>   
-                </div>
-
-                <?php
-                    if($typeOffer == "parcs_attractions" ){
-                ?>
-                        <img src="<?php echo $result["urlplan"]?>">
-                <?php
-                    }
-                ?>
+               
     </section>
+
+    script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".myThumbSliderPreview", {
+            loop: true,
+            spaceBetween: 10,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+        var swiper2 = new Swiper(".mySwiperPreview", {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+            },
+            spaceBetween: 10,
+            navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+            swiper: swiper,
+            },
+        });
+    </script>
