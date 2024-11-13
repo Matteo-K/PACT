@@ -38,6 +38,8 @@ Les adresses peuvent existé pour plusieurs entreprise (ex: les entreprise dans 
 
 La saisie du numéro de téléphone doit se faire par différents moyens. (collé/séparé par des points, espace, des slashs?/ ne pas affiché le premier numéro [0], commencer par +33/ ...)
 
+La vérification des éléments pourrait se faire une fois que l'utilisateur est sorti de l'input (blur)
+
 ### Page Recherche d'offre
 
 Changer l'image de fond / Rendre les pages plus homogène
@@ -99,3 +101,29 @@ Partie pas nécessaire à cette étape
 
 - Homogénisé les pages
 - Expliqué davantage les étapes
+
+## Objectif pour le sprint 2
+
+### Avoir un code propre et commenté
+
+- S : Améliorer la clarté et les commentaires du code.
+- M : S'assurer que le code soit commenté et compréhensible pour tous les membres de l'équipe.
+- A : Mettre en place des revues de code toutes les fins de semaines pour discuter des améliorations et des commentaires nécessaires.
+- R : Réalisable avec l'engagement de l'équipe.
+- T : À réaliser d'ici la fin du sprint (trois semaines).
+
+### Ponctualité coordonnée
+
+- S : Améliorer la ponctualité pour les daily meetings afin d'avoir une meilleur communication.
+- M : Réaliser 100% des daily meeting à temps
+- A : Décaler le meeting à 10h30 si nous avons une autonomie sur ces heures ci. Sinon à l'heure d'autonomie qui suivra.
+- R : Réalisable avec un simple ajustement d'horaire
+- T : À réaliser d'ici la fin du sprint (trois semaines).
+
+### Faire en sorte que benjamin rende un travail correcte de lui même
+
+- S : Évaluer la qualité du travail et le respect des délais.
+- M : Utiliser des indicateurs de performance (nombre de tâches, qualité des livrables, feedback).
+- A : S'assurer que les critères sont réalistes et atteignables.
+- R : Prendre en compte les conditions de travail et les ressources disponibles.
+- T : Évaluation mensuelle ou à la fin de chaque projet/sprint.
