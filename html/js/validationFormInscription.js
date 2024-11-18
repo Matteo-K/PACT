@@ -39,10 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    const form = document.getElementById('formPro');
-    const formErrors = document.getElementById('formErrors');
-
-    // Validation en temps réel sur blur
+    // Validation des champs au blur
     const fields = [
         { id: 'denomination', validator: validateDenomination },
         { id: 'telephone', validator: validatePhone },
@@ -53,17 +50,18 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'siren', validator: validateSiren },
         { id: 'motdepasse', validator: validatePassword },
         { id: 'confirmer', validator: validateConfirmPassword },
-        { id: 'cgu', validator: validateCGU, event: 'change' } // Sur changement pour les checkbox
+        { id: 'cgu', validator: validateCGU, event: 'change' }
     ];
 
-    
     fields.forEach(field => {
         const input = document.getElementById(field.id);
-        const eventType = field.event || 'blur'; // Par défaut, écouter l'événement blur
-        input.addEventListener(eventType, field.validator);
+        const eventType = field.event || 'blur'; // Défaut à 'blur'
+        if (input) {
+            input.addEventListener(eventType, field.validator);
+        }
     });
 
-    // Validation au clic sur le bouton
+    // Gestion du clic sur le bouton
     document.getElementById('boutonInscriptionPro').addEventListener('click', function (event) {
         event.preventDefault();
 
@@ -72,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fields.forEach(field => {
             const input = document.getElementById(field.id);
             field.validator();
-            if (input.classList.contains('invalid')) {
+            if (input && input.classList.contains('invalid')) {
                 hasErrors = true;
             }
         });
@@ -84,30 +82,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Ajout d’un message d’erreur et bordure rouge
+    // Fonction d'affichage des erreurs
     function showError(element, message) {
-        removeError(element); // Supprimez l’erreur existante si elle est déjà affichée
+        removeError(element); // Supprimer toute erreur précédente
 
         const errorMessage = document.createElement('div');
         errorMessage.classList.add('error');
-        errorMessage.setAttribute('data-for', element.id); // Attribuez une référence au champ
+        errorMessage.setAttribute('data-for', element.id); // Lier l'erreur à l'élément
         errorMessage.innerText = message;
 
-        formErrors.appendChild(errorMessage); // Affiche l'erreur en haut du formulaire
-        element.classList.add('invalid'); // Ajoute la bordure rouge
+        formErrors.appendChild(errorMessage); // Ajouter l'erreur au conteneur
+        element.classList.add('invalid'); // Bordure rouge
     }
 
-    // Supprime le message d’erreur et restaure la bordure
+    // Fonction de suppression des erreurs
     function removeError(element) {
         const existingError = formErrors.querySelector(`[data-for="${element.id}"]`);
         if (existingError) {
             existingError.remove();
         }
-        element.classList.remove('invalid'); // Retire la bordure rouge
+        element.classList.remove('invalid'); // Retirer la bordure rouge
     }
 
-    // Fonctions de validation des champs
-
+    // Fonctions de validation
     function validateDenomination() {
         const denomination = document.getElementById('denomination');
         if (!denomination.value.trim()) {
