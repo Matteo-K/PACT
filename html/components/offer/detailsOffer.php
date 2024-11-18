@@ -74,4 +74,6 @@ $resume = $result["resume"] ?? "";
         require_once $source . "detailsActivity.php";
         
     ?>
+
+    </article>
  
