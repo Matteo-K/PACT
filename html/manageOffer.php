@@ -129,8 +129,7 @@
       if (typeof checkOfferValidity === 'function') {
         verifStep = checkOfferValidity(event);
       }
-      console.log(verifStep);
-      console.log(checkOfferValidity(event));
+      
       if ((form.checkValidity() && verifStep) && confirm_quit) {
         form.submit();
       } else {
