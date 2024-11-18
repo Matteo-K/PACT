@@ -47,9 +47,13 @@
      * Vérifie si les input sont conforme pour être enregistrer
      * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
      */
-    function checkOfferValidity() {
+    function checkOfferValidity(event) {
+
+      event.preventDefault();
+      console.log(event);
       // test téléphone
       let tel = document.querySelector("#phone");
+      console.log(tel.value.trim() != "" && tel.validity.patternMismatch);
       if (tel.value.trim() != "" && tel.validity.patternMismatch) {
         document.querySelector("#msgTel").textContent =
             "Numéro de téléphone incorrecte. Exemple 07.28.39.17.28 ou +33123456789";
@@ -58,6 +62,7 @@
 
       // test site web
       let web = document.querySelector("#webSide");
+      console.log(!(web.value.trim() == "" || web.value.trim() == "https://") && web.validity.patternMismatch);
       if (!(web.value.trim() == "" || web.value.trim() == "https://") && web.validity.patternMismatch) {
         document.querySelector("#msgWeb").textContent =
             "Site web incorrecte. Exemple https://www.creperie-le-dundee.fr";
