@@ -37,169 +37,21 @@ document.addEventListener('DOMContentLoaded', function() {
     priveRadio.addEventListener("click", updateSirenVisibility);
 
 
+    // Vérifier le code postal
+    let code = document.getElementById("code");
+    let msgCode = document.getElementById("msgCode");
 
+    code.addEventListener("focusout", function() {
+        if (code.validity.patternMismatch) {
+            event.preventDefault();
+            code.style.borderColor = 'red';
+            msgCode.textContent = "erreur sur la plaque";
+            msgCode.style.color = 'red';
+        }
 
-    // Validation des champs au blur
-    const fields = [
-        { id: 'denomination', validator: validateDenomination },
-        { id: 'telephone', validator: validatePhone },
-        { id: 'email', validator: validateEmail },
-        { id: 'adresse', validator: validateAdresse },
-        { id: 'code', validator: validateCode },
-        { id: 'ville', validator: validateVille },
-        { id: 'siren', validator: validateSiren },
-        { id: 'motdepasse', validator: validatePassword },
-        { id: 'confirmer', validator: validateConfirmPassword },
-        { id: 'cgu', validator: validateCGU, event: 'change' }
-    ];
-
-    fields.forEach(field => {
-        const input = document.getElementById(field.id);
-        const eventType = field.event || 'blur'; // Défaut à 'blur'
-        if (input) {
-            input.addEventListener(eventType, field.validator);
+        else {
+            code.style.borderColor = 'black';
+            msgCode.textContent = "";
         }
     });
-
-    // Gestion du clic sur le bouton
-    document.getElementById('boutonInscriptionPro').addEventListener('click', function (event) {
-        event.preventDefault();
-
-        let hasErrors = false;
-
-        fields.forEach(field => {
-            const input = document.getElementById(field.id);
-            field.validator();
-            if (input && input.classList.contains('invalid')) {
-                hasErrors = true;
-            }
-        });
-
-        if (!hasErrors) {
-            form.submit();
-        } else {
-            alert("Veuillez corriger les erreurs avant de soumettre le formulaire.");
-        }
-    });
-
-    // Fonction d'affichage des erreurs
-    function showError(element, message) {
-        removeError(element); // Supprimer toute erreur précédente
-
-        const errorMessage = document.createElement('div');
-        errorMessage.classList.add('error');
-        errorMessage.setAttribute('data-for', element.id); // Lier l'erreur à l'élément
-        errorMessage.innerText = message;
-
-        formErrors.appendChild(errorMessage); // Ajouter l'erreur au conteneur
-        element.classList.add('invalid'); // Bordure rouge
-    }
-
-    // Fonction de suppression des erreurs
-    function removeError(element) {
-        const existingError = formErrors.querySelector(`[data-for="${element.id}"]`);
-        if (existingError) {
-            existingError.remove();
-        }
-        element.classList.remove('invalid'); // Retirer la bordure rouge
-    }
-
-    // Fonctions de validation
-    function validateDenomination() {
-        const denomination = document.getElementById('denomination');
-        if (!denomination.value.trim()) {
-            showError(denomination, "La dénomination est requise.");
-        } else {
-            removeError(denomination);
-        }
-    }
-
-    function validatePhone() {
-        const telephone = document.getElementById('telephone');
-        const phonePattern = /^0[1-9]([.\-/]?[0-9]{2}){4}$/;
-        if (!phonePattern.test(telephone.value.trim())) {
-            showError(telephone, "Veuillez entrer un numéro de téléphone valide.");
-        } else {
-            removeError(telephone);
-        }
-    }
-
-    function validateEmail() {
-        const email = document.getElementById('email');
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email.value.trim())) {
-            showError(email, "Veuillez entrer une adresse e-mail valide.");
-        } else {
-            removeError(email);
-        }
-    }
-
-    function validateAdresse() {
-        const adresse = document.getElementById('adresse');
-        const adressePattern = /^\d+\s+(bis\s+)?[A-Za-z\s]+/i;
-        if (!adressePattern.test(adresse.value.trim())) {
-            showError(adresse, "Veuillez entrer une adresse postale valide.");
-        } else {
-            removeError(adresse);
-        }
-    }
-
-    function validateCode() {
-        const code = document.getElementById('code');
-        const codePattern = /^[0-9]{5}$/;
-        if (!codePattern.test(code.value.trim())) {
-            showError(code, "Veuillez entrer un code postal valide.");
-        } else {
-            removeError(code);
-        }
-    }
-
-    function validateVille() {
-        const ville = document.getElementById('ville');
-        const villePattern = /^[A-Za-z\s\-]+$/;
-        if (!villePattern.test(ville.value.trim())) {
-            showError(ville, "Veuillez entrer une ville valide.");
-        } else {
-            removeError(ville);
-        }
-    }
-
-    function validateSiren() {
-        const siren = document.getElementById('siren');
-        const sirenPattern = /^(?:\d{3} \d{3} \d{3}|\d{9})$/;
-        if (document.getElementById('radioPrive').checked && !sirenPattern.test(siren.value.trim())) {
-            showError(siren, "Veuillez entrer un numéro de SIREN valide.");
-        } else {
-            removeError(siren);
-        }
-    }
-
-    function validatePassword() {
-        const motdepasse = document.getElementById('motdepasse');
-        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/;
-        if (!passwordPattern.test(motdepasse.value.trim())) {
-            showError(motdepasse, "Le mot de passe doit contenir au moins 10 caractères, une majuscule, une minuscule et un chiffre.");
-        } else {
-            removeError(motdepasse);
-        }
-    }
-
-    function validateConfirmPassword() {
-        const motdepasse = document.getElementById('motdepasse').value.trim();
-        const confirmer = document.getElementById('confirmer').value.trim();
-        if (motdepasse !== confirmer) {
-            showError(document.getElementById('confirmer'), "Les mots de passe ne correspondent pas.");
-        } else {
-            removeError(document.getElementById('confirmer'));
-        }
-    }
-
-    function validateCGU() {
-        const cgu = document.getElementById('cgu');
-        if (!cgu.checked) {
-            showError(cgu, "Vous devez accepter les conditions générales d'utilisation.");
-        } else {
-            removeError(cgu);
-        }
-    }
 });
