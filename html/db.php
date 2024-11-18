@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/SECURE/connect_params.php';
+require_once __DIR__ . '/../SECURE/connect_params.php';
 
 try {
     $conn = new PDO("$driver:host=$server;dbname=$dbname", $user, $pass);
