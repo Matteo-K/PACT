@@ -18,19 +18,21 @@
 
     </article>
     <article>
-        
-            <label class="ligne1">Durée : </label>
-            
-            
-        
+
+        <label class="ligne1">Durée du Spectacle : </label>
+        <br>
+
+
         <div>
             <label class="ligne1">En minutes : </label>
 
             <div>
                 <input type="number" class="nb" name="nbHeures" placeholder="0"> <!-- Pour entrer un prix minimum -->
-            </div>
+            
+
             <label class="ligne1">En heures : </label>
-            <div>
+
+            
                 <input type="number" class="nb" name="nbMinutesHeure" placeholder="0">
                 <!-- Pour entrer un prix minimum -->
             </div>
