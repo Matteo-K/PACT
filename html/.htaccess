@@ -1,4 +1,10 @@
 RewriteEngine On
 
+<FilesMatch "(\.env|\.git|\.htaccess)">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+
 
 ErrorDocument 404 ./404.html
