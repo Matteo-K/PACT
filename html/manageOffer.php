@@ -113,7 +113,7 @@
 <script src="js/script.js"></script>
 <script>
   /* envoie un formulaire à la page enregistrement (enregOffer.php) */
-  function submitForm(page) {
+  function submitForm(event, page) {
       document.getElementById('pageCurrent').value = page;
       let form = document.querySelector('section form:not(#paypal)');
       let confirm_quit = (page == 0)? confirm("Les données seront enregistrées.\n Vous pourrez reprendre vos modifications plus tard.\n Il faut compléter toute les données obligatoires pour quitter") : true;
