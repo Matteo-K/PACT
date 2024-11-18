@@ -1,20 +1,44 @@
 <!-- Spectacle -->
 
 <section id="show"> <!-- Id pour pouvoir modifer separement dans le css -->
+    <article>
+        <label class="ligne1">Nombre de places : </label> <!-- Label nombre de place -->
+        <div>
+            <input type="number" 2class="nb" name="nbPlaceShow" placeholder="0"> <!-- Pour le nombre de place -->
+            <?php echo "places" ?>
+        </div>
 
-    <div>
-        <label class="ligne1">Nombre de place : </label> <!-- Label nombre de place -->
-        <input type="number" 2class="nb" name="nbPlaceShow" placeholder="0"> <!-- Pour le nombre de place -->
-    </div>
-    <div>
-        <label class="ligne1">Durée : </label>
-        <input type="number" class="nb" name="DuréeShow" placeholder="0"> <!-- Pour entrer une durée -->
-        <?php echo "minutes" ?>
-    </div>
-    <div>
+
+
         <label class="ligne1">Prix minimum : </label>
-        <input type="number" class="nb" name="PrixMinShow" placeholder="0"> <!-- Pour entrer un prix minimum -->
-    </div>
+        <div>
+            <input type="number" class="nb" name="PrixMinShow" placeholder="0"> <!-- Pour entrer un prix minimum -->
+            <?php echo "€" ?>
+        </div>
+
+    </article>
+    <article>
+
+        <label class="ligne1">Durée du Spectacle : </label>
+        <br>
+
+
+        <div>
+            <label class="ligne1">En minutes : </label>
+
+            <div>
+                <input type="time" class="nb" name="nbHeures" placeholder="0"> <!-- Pour entrer un prix minimum -->
+
+            
+            
+                <label class="ligne1">En heures : </label>
+
+
+                <input type="time" class="nb" name="nbMinutesHeure" placeholder="0">
+                <!-- Pour entrer un prix minimum -->
+            </div>
+        </div>
+    </article>
 
 
 

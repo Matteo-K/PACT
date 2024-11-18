@@ -521,19 +521,20 @@ header ul + div{
 
 #manageOffer aside button {
   flex: 5;
-  width: 150px;
-  height: 30px;
+  width: 80%;
+  height: 40px;
   border-radius: 10px;
   border: none;
   background-color: var(--secondary);
   color: var(--text-dark);
+  cursor: grabbing;
 }
 
-#manageOffer aside a:hover {
+#manageOffer aside button:hover {
   box-shadow: none;
 }
 
-#manageOffer aside a:active {
+#manageOffer aside button:active {
   box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
     inset 4px 4px 4px #aca8b5;
 }
@@ -592,7 +593,7 @@ header ul + div{
   gap: 3%;
 }
 
-#manageOffer aside + section + div a {
+#manageOffer aside + section + div button {
   text-align: center;
   width: 150px;
   padding: 10px;
@@ -1847,11 +1848,19 @@ tbody td:last-child {
 ---------------------------------------------------------------------------------------------------*/
 
 
+#show{
+  align-items: center;
+}
+#show >article{
 
-#show >div{
-  margin:4px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
   
   
+}
+#show >article>div{
+  margin: 5px;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/

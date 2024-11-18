@@ -34,7 +34,7 @@ Rediriger le changement de compte vers login.php
 
 ### Page création de compte
 
-Les adresses peuvent existé pour plusieurs entreprise (ex: les entreprise dans le même bâtiment)
+Les adresses peuvent exister pour plusieurs entreprise (ex: les entreprise dans le même bâtiment)
 
 La saisie du numéro de téléphone doit se faire par différents moyens. (collé/séparé par des points, espace, des slashs?/ ne pas affiché le premier numéro [0], commencer par +33/ ...)
 

@@ -129,7 +129,7 @@
       if (typeof checkOfferValidity === 'function') {
         verifStep = checkOfferValidity(event);
       }
-  
+      
       if ((form.checkValidity() && verifStep) && confirm_quit) {
         form.submit();
       } else {

@@ -63,10 +63,10 @@ function validationForm(event) {
         return;
     }
 
-    // Vérification du numéro de téléphone (format français sans points)
-    const phonePattern = /^0[1-9]([ -]?[0-9]{2}){4}$/;
+    // Vérification du numéro de téléphone
+    const phonePattern = /^0[1-9]([.\-/]?[0-9]{2}){4}$/;
     if (!phonePattern.test(telephone)) {
-        alert('Veuillez entrer un numéro de téléphone valide (sans points).');
+        alert('Veuillez entrer un numéro de téléphone valide (sans lettres et avec des séparateurs valides tels que . , / ou -).');
         return;
     }
 
