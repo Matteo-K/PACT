@@ -124,6 +124,8 @@
           window.location.href = "index.php"; 
       }
 
+      console.log(event);
+
       // Sinon on vérifie si le formulaire est correcte
       let verifStep = true;
       if (typeof checkOfferValidity === 'function') {
