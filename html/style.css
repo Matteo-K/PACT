@@ -152,12 +152,10 @@ header {
   border-bottom: var(--bloc) 2px solid;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   gap: 12em;
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: var(--header-size);
   z-index: 10;
