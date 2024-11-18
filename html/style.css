@@ -524,7 +524,7 @@ header ul + div{
   width: 150px;
   height: 30px;
   border-radius: 10px;
-  background-color: var(--secondary);
+  background-color: red;
   color: var(--text-dark);
 }
 
