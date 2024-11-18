@@ -55,7 +55,7 @@
       // test téléphone
       let tel = document.querySelector("#phone");
       console.log(tel.value.trim() != "" && tel.validity.patternMismatch);
-      if (tel.value.trim() != "" || tel.validity.patternMismatch) {
+      if (tel.value.trim() != "" && tel.validity.patternMismatch) {
         document.querySelector("#msgTel").textContent =
             "Numéro de téléphone incorrecte. Exemple 07.28.39.17.28 ou +33123456789";
         return false;
