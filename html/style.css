@@ -152,10 +152,12 @@ header {
   border-bottom: var(--bloc) 2px solid;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   gap: 12em;
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: var(--header-size);
   z-index: 10;
@@ -1847,9 +1849,10 @@ tbody td:last-child {
 
 
 
-#show >div{
-  margin:4px;
-  
+#show >article{
+  display: flex;
+  flex-direction: row;
+  margin: right 10px;
   
 }
 
