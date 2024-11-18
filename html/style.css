@@ -167,7 +167,7 @@ header {
 header div {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   margin: 0.5em 0.8em;
   height: 3em;
@@ -1849,8 +1849,7 @@ tbody td:last-child {
 
 #show {
   background-color: yellow;
-  display: flex;
-  flex-direction: row;
+  
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
