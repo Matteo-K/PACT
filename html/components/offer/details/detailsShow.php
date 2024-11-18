@@ -27,14 +27,14 @@
             <label class="ligne1">En minutes : </label>
 
             <div>
-                <input type="number" class="nb" name="nbHeures" placeholder="0"> <!-- Pour entrer un prix minimum -->
+                <input type="time" class="nb" name="nbHeures" placeholder="0"> <!-- Pour entrer un prix minimum -->
 
             
             
                 <label class="ligne1">En heures : </label>
 
 
-                <input type="number" class="nb" name="nbMinutesHeure" placeholder="0">
+                <input type="time" class="nb" name="nbMinutesHeure" placeholder="0">
                 <!-- Pour entrer un prix minimum -->
             </div>
         </div>
