@@ -76,4 +76,3 @@ $resume = $result["resume"] ?? "";
     ?>
 
     </article>
- 
