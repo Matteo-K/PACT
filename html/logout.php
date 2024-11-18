@@ -9,7 +9,7 @@
 
     // changement de compte
     if(isset($_GET["change"])) {
-        header("location: connexion.php");
+        header("location: login.php");
         exit();
     }
 
