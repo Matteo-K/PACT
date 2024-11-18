@@ -480,10 +480,11 @@ header ul + div{
 }
 
 #manageOffer aside > h3,
-#manageOffer aside li a {
+#manageOffer aside li button {
   font-family: "Belanosima", sans-serif;
   text-decoration: none;
   text-align: center;
+  border: none;
 }
 
 #manageOffer aside h3 {
@@ -519,10 +520,11 @@ header ul + div{
   gap: 10px;
 }
 
-#manageOffer aside a {
+#manageOffer aside button {
   flex: 5;
   padding: 8px;
   border-radius: 10px;
+  border: none;
   background-color: var(--secondary);
   color: var(--text-dark);
 }
