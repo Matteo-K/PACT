@@ -1852,8 +1852,7 @@ tbody td:last-child {
   align-items: center;
 }
 #show >article{
-  display: flex;
-  flex-direction: row;
+
   margin-bottom: 10px;
   
   
