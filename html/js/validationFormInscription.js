@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Ajouter la validation du checkbox des CGU
     document.getElementById('cgu').addEventListener('change', validateCGU);
+});
 
     function validationForm(event) {
         // Empêche l'envoi du formulaire si des erreurs existent
@@ -242,4 +243,3 @@ document.addEventListener('DOMContentLoaded', function() {
         // Retirer la bordure rouge
         element.classList.remove('invalid');
     }
-});
