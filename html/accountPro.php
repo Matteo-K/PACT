@@ -134,6 +134,9 @@
             }
         ?>
 
+        <div id="formErrors"></div>
+
+
 
         <form id = "formPro" action="accountPro.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
