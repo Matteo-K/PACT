@@ -11,16 +11,31 @@
 
 
         <div>
+            <label class="ligne1">Prix minimum : </label>
+            <input type="number" class="nb" name="PrixMinShow" placeholder="0"> <!-- Pour entrer un prix minimum -->
+
+        </div>
+
+    </article>
+    <article>
+        <div>
             <label class="ligne1">Durée : </label>
             <input type="number" class="nb" name="DuréeShow" placeholder="0"> <!-- Pour entrer une durée -->
             <?php echo "minutes" ?>
         </div>
+        <div>
+            <label class="ligne1">En minutes : </label>
 
+            <div>
+                <input type="number" class="nb" name="nbHeures" placeholder="0"> <!-- Pour entrer un prix minimum -->
+            </div>
+            <label class="ligne1">En heures : </label>
+            <div>
+                <input type="number" class="nb" name="nbMinutesHeure" placeholder="0">
+                <!-- Pour entrer un prix minimum -->
+            </div>
+        </div>
     </article>
-    <div>
-        <label class="ligne1">Prix minimum : </label>
-        <input type="number" class="nb" name="PrixMinShow" placeholder="0"> <!-- Pour entrer un prix minimum -->
-    </div>
 
 
 
