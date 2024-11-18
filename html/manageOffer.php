@@ -130,8 +130,12 @@
         verifStep = checkOfferValidity(event);
       }
       
-      if ((form.checkValidity() && verifStep) && confirm_quit) {
-        form.submit();
+      if (verifStep) {
+        if (form.checkValidity() && confirm_quit) {
+          form.submit();
+        } else {
+          form.reportValidity();
+        }
       } else {
         form.reportValidity();
       }

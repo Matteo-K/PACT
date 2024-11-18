@@ -22,7 +22,7 @@
   <div>
     <input type="tel" name="phone" id="phone" placeholder="Numéro fixe" 
     pattern="^(?:(?:\+33[0-9]{9})|(?:0[1-9][0-9]{8})|(?:[0-9]{10})|(?:[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}))$"
-    value="<?php echo $phone; ?>" required> <span id="msgTel"></span>
+    value="<?php echo $phone; ?>"> <span id="msgTel"></span>
   </div>
   <div>
     <h4>Consentez vous à afficher votre numéro de portable sur l’offre &nbsp;?&nbsp;</h4>
@@ -38,7 +38,7 @@
   <label for="webSide">Si vous avez un site web pour votre offre, vous pouvez insérer son lien ici pour qu’il apparaîsse sur l’offre&nbsp;:&nbsp;</label>
   <input type="text" name="webSide" id="webSide" 
   pattern="^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+)(\/[^\s]*)?$"
-  placeholder="Lien vers votre site web" value="<?php echo $linkWeb; ?>" required>
+  placeholder="Lien vers votre site web" value="<?php echo $linkWeb; ?>">
 
   <span id="msgWeb"></span>
 
@@ -55,19 +55,23 @@
       // test téléphone
       let tel = document.querySelector("#phone");
       console.log(tel.value.trim() != "" && tel.validity.patternMismatch);
-      if (tel.value.trim() != "" && tel.validity.patternMismatch) {
-        document.querySelector("#msgTel").textContent =
-            "Numéro de téléphone incorrecte. Exemple 07.28.39.17.28 ou +33123456789";
-        return false;
+      if (tel.value.trim() != "") {
+        if (tel.validity.patternMismatch) {
+          document.querySelector("#msgTel").textContent =
+              "Numéro de téléphone incorrecte. Exemple 07.28.39.17.28 ou +33123456789";
+          return false;
+        }
       }
 
       // test site web
       let web = document.querySelector("#webSide");
       console.log(!(web.value.trim() == "" || web.value.trim() == "https://") && web.validity.patternMismatch);
-      if (!(web.value.trim() == "" || web.value.trim() == "https://") && web.validity.patternMismatch) {
-        document.querySelector("#msgWeb").textContent =
-            "Site web incorrecte. Exemple https://www.creperie-le-dundee.fr";
-        return false;
+      if (!(web.value.trim() == "" || web.value.trim() == "https://")) {
+        if (web.validity.patternMismatch) {
+          document.querySelector("#msgWeb").textContent =
+              "Site web incorrecte. Exemple https://www.creperie-le-dundee.fr";
+          return false;
+        }
       }
       return true;
     }
