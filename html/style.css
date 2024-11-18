@@ -167,7 +167,7 @@ header {
 header div {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   margin: 0.5em 0.8em;
   height: 3em;
@@ -519,12 +519,12 @@ header ul + div{
   gap: 10px;
 }
 
-#manageOffer aside li > button {
+#manageOffer aside button {
   flex: 5;
   width: 150px;
   height: 30px;
   border-radius: 10px;
-  background-color: red;
+  background-color: var(--secondary);
   color: var(--text-dark);
 }
 
@@ -1847,9 +1847,10 @@ tbody td:last-child {
 
 
 
-#show >div{
-  margin: 5px;
-  
+#show {
+  background-color: yellow;
+  display: flex;
+  flex-direction: row;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
