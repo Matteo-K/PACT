@@ -1849,8 +1849,7 @@ tbody td:last-child {
 
 #show {
   background-color: yellow;
-  display: flex;
-  flex-direction: row;
+  
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
