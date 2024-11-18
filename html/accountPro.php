@@ -174,7 +174,7 @@
                 <label for="ville">Ville*:</label>
                 
                 <!-- Saisi du code postale -->
-                <input type="text" placeholder = "75000" id="code" name="code" pattern="/^0[1-9]([.\-/]?[0-9]{2}){4}$/" required>
+                <input type="text" placeholder = "75000" id="code" name="code" required>
 
                 <!-- Saisi de la ville -->
                 <input type="text" placeholder = "Paris" id="ville" name="ville" required>
