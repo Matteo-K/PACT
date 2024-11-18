@@ -21,8 +21,8 @@
   <label for="phone">Numéro de fixe&nbsp;:&nbsp;</label>
   <div>
     <input type="tel" name="phone" id="phone" placeholder="Numéro fixe" 
-    pattern="^(?:(?:\+33[0-9]{9})|(?:0[1-9][0-9]{8})|(?:[0-9]{10})|(?:[0-9]{2}[\s./\\]?[0-9]{2}[\s./\\]?[0-9]{2}[\s./\\]?[0-9]{2}[\s./\\]?[0-9]{2}))$" 
-    value="<?php echo $phone; ?>"> <span id="msgTel"></span>
+    pattern="^(?:(?:\+33[0-9]{9})|(?:0[1-9][0-9]{8})|(?:[0-9]{10})|(?:[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}))$"
+    value="<?php echo $phone; ?>" required> <span id="msgTel"></span>
   </div>
   <div>
     <h4>Consentez vous à afficher votre numéro de portable sur l’offre &nbsp;?&nbsp;</h4>
@@ -38,7 +38,8 @@
   <label for="webSide">Si vous avez un site web pour votre offre, vous pouvez insérer son lien ici pour qu’il apparaîsse sur l’offre&nbsp;:&nbsp;</label>
   <input type="text" name="webSide" id="webSide" 
   pattern="^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+)(\/[^\s]*)?$"
-  placeholder="Lien vers votre site web" value="<?php echo $linkWeb; ?>">
+  placeholder="Lien vers votre site web" value="<?php echo $linkWeb; ?>" required>
+
   <span id="msgWeb"></span>
 
   <script>
