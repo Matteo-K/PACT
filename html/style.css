@@ -1848,6 +1848,10 @@ tbody td:last-child {
   background-color: lime;
 }
 
+#activity {
+  background-color: yellow;
+}
+
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
