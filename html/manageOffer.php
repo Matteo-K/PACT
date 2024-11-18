@@ -13,7 +13,6 @@
 
   $nameOffer = "";
   $step =  isset($_POST["page"]) ? $_POST["page"] : 1;
-  $step = 4;
   $idOffre = isset($_POST["idOffre"])?$_POST["idOffre"]:"";
 ?>
 <!DOCTYPE html>
