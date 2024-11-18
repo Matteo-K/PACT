@@ -1854,6 +1854,8 @@ tbody td:last-child {
 #show >article{
 
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
   
   
 }
