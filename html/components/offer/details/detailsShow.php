@@ -5,6 +5,7 @@
         <div>
             <label class="ligne1">Nombre de place : </label> <!-- Label nombre de place -->
             <input type="number" 2class="nb" name="nbPlaceShow" placeholder="0"> <!-- Pour le nombre de place -->
+            <?php echo "places" ?>
         </div>
 
 
