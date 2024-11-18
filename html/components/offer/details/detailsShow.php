@@ -29,7 +29,8 @@
             <div>
                 <input type="number" class="nb" name="nbHeures" placeholder="0"> <!-- Pour entrer un prix minimum -->
 
-
+            </div>
+            <div>
                 <label class="ligne1">En heures : </label>
 
 
