@@ -480,11 +480,10 @@ header ul + div{
 }
 
 #manageOffer aside > h3,
-#manageOffer aside li button {
+#manageOffer aside li a {
   font-family: "Belanosima", sans-serif;
   text-decoration: none;
   text-align: center;
-  border: none;
 }
 
 #manageOffer aside h3 {
@@ -522,9 +521,9 @@ header ul + div{
 
 #manageOffer aside button {
   flex: 5;
-  padding: 8px;
+  width: 150px;
+  height: 30px;
   border-radius: 10px;
-  border: none;
   background-color: var(--secondary);
   color: var(--text-dark);
 }
@@ -1846,12 +1845,12 @@ tbody td:last-child {
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
-#specialOffer{
-  background-color: lime;
-}
 
-#activity {
+
+#show {
   background-color: yellow;
+  display: flex;
+  flex-direction: row;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
