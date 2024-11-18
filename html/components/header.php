@@ -1,9 +1,5 @@
 
-<header theme="light">
-
-    <div id="menuBurger">
-        <img src="./img/icone/burger-bar.png" alt="menu burger">
-    </div>
+<header>
 
     <div>
         <a href="../index.php">

@@ -152,7 +152,7 @@ header {
   border-bottom: var(--bloc) 2px solid;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   gap: 12em;
   position: fixed;
@@ -167,7 +167,7 @@ header {
 header div {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   margin: 0.5em 0.8em;
   height: 3em;
