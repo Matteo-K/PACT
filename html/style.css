@@ -1848,12 +1848,19 @@ tbody td:last-child {
 ---------------------------------------------------------------------------------------------------*/
 
 
-
+#show{
+  align-items: center;
+}
 #show >article{
+
+  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-  margin: right 10px;
   
+  
+}
+#show >article>div{
+  margin: 5px;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
