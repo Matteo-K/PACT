@@ -21,7 +21,6 @@
   <label for="phone">Numéro de fixe&nbsp;:&nbsp;</label>
   <div>
     <input type="tel" name="phone" id="phone" placeholder="Numéro fixe" 
-    pattern="^(?:(?:\+33[0-9]{9})|(?:0[1-9][0-9]{8})|(?:[0-9]{10})|(?:[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}))$"
     value="<?php echo $phone; ?>"> <span id="msgTel"></span>
   </div>
   <div>
@@ -37,7 +36,6 @@
   </div>
   <label for="webSide">Si vous avez un site web pour votre offre, vous pouvez insérer son lien ici pour qu’il apparaîsse sur l’offre&nbsp;:&nbsp;</label>
   <input type="text" name="webSide" id="webSide" 
-  pattern="^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+)(\/[^\s]*)?$"
   placeholder="Lien vers votre site web" value="<?php echo $linkWeb; ?>">
 
   <span id="msgWeb"></span>
@@ -53,12 +51,13 @@
      * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
      */
     function checkOfferValidity(event) {
+      const phonePattern = /^(?:(?:\+33[0-9]{9})|(?:0[1-9][0-9]{8})|(?:[0-9]{10})|(?:[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}))$/g;
+      const urlPattern = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+)(\/[^\s]*)?$/g;
 
-      event.preventDefault();
       // test téléphone
       let tel = document.querySelector("#phone");
       if (tel.value.trim() != "") {
-        if (tel.validity.patternMismatch) {
+        if (!phonePattern.test(tel.value.trim())) {
           document.querySelector("#msgTel").textContent =
               "Numéro de téléphone incorrecte. Exemple 07.28.39.17.28 ou +33123456789";
           return false;
@@ -68,7 +67,7 @@
       // test site web
       let web = document.querySelector("#webSide");
       if (!(web.value.trim() == "" || web.value.trim() == "https://")) {
-        if (web.validity.patternMismatch) {
+        if (!urlPattern.test(web.value.trim())) {
           document.querySelector("#msgWeb").textContent =
               "Site web incorrecte. Exemple https://www.creperie-le-dundee.fr";
           return false;
