@@ -1848,9 +1848,10 @@ tbody td:last-child {
 
 
 
-#show >div{
-  margin:4px;
-  
+#show >article{
+  display: flex;
+  flex-direction: row;
+  background-color: lime;
   
 }
 
