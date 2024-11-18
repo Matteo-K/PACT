@@ -1847,8 +1847,9 @@ tbody td:last-child {
 
 
 
-#show {
-  background-color: yellow;
+#show >div{
+  margin:4px;
+  
   
 }
 
