@@ -156,8 +156,6 @@ header {
   align-items: center;
   gap: 12em;
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: var(--header-size);
   z-index: 10;
