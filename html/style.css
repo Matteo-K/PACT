@@ -519,7 +519,7 @@ header ul + div{
   gap: 10px;
 }
 
-#manageOffer aside button {
+#manageOffer aside li > button {
   flex: 5;
   width: 150px;
   height: 30px;
