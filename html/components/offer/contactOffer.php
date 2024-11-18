@@ -44,6 +44,10 @@
 
   <script>
 
+
+    document.querySelector("#phone").addEventListener("blur", checkOfferValidity);
+    document.querySelector("#webSide").addEventListener("blur", checkOfferValidity);
+
     /**
      * Vérifie si les input sont conforme pour être enregistrer
      * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
@@ -51,10 +55,8 @@
     function checkOfferValidity(event) {
 
       event.preventDefault();
-      console.log(event);
       // test téléphone
       let tel = document.querySelector("#phone");
-      console.log(tel.value.trim() != "" && tel.validity.patternMismatch);
       if (tel.value.trim() != "") {
         if (tel.validity.patternMismatch) {
           document.querySelector("#msgTel").textContent =
@@ -65,7 +67,6 @@
 
       // test site web
       let web = document.querySelector("#webSide");
-      console.log(!(web.value.trim() == "" || web.value.trim() == "https://") && web.validity.patternMismatch);
       if (!(web.value.trim() == "" || web.value.trim() == "https://")) {
         if (web.validity.patternMismatch) {
           document.querySelector("#msgWeb").textContent =
