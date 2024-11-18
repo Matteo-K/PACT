@@ -35,95 +35,211 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ajouter des écouteurs d'événements sur les boutons radio
     publicRadio.addEventListener("click", updateSirenVisibility);
     priveRadio.addEventListener("click", updateSirenVisibility);
+
+
+    // Appliquer la validation en temps réel (sur blur pour chaque champ)
+    document.getElementById('denomination').addEventListener('blur', validateDenomination);
+    document.getElementById('telephone').addEventListener('blur', validatePhone);
+    document.getElementById('email').addEventListener('blur', validateEmail);
+    document.getElementById('adresse').addEventListener('blur', validateAdresse);
+    document.getElementById('code').addEventListener('blur', validateCode);
+    document.getElementById('ville').addEventListener('blur', validateVille);
+    document.getElementById('siren').addEventListener('blur', validateSiren);
+    document.getElementById('motdepasse').addEventListener('blur', validatePassword);
+    document.getElementById('confirmer').addEventListener('blur', validateConfirmPassword);
+
+    // Ajouter la validation du checkbox des CGU
+    document.getElementById('cgu').addEventListener('change', validateCGU);
 });
 
-function validationForm(event) {
-    // Empêche l'envoi du formulaire
-    event.preventDefault(); 
+    function validationForm(event) {
+        // Empêche l'envoi du formulaire si des erreurs existent
+        event.preventDefault();
 
-    // Récupérer les éléments de radio
-    const publicRadio = document.getElementById("radioPublic");
-    const privateRadio = document.getElementById("radioPrive");
-
-    // Récupérer les champs
-    const denomination = document.getElementById('denomination').value.trim();
-    const telephone = document.getElementById('telephone').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const adresse = document.getElementById('adresse').value.trim();
-    const code = document.getElementById('code').value.trim();
-    const ville = document.getElementById('ville').value.trim();
-    const siren = document.getElementById('siren').value.trim();
-    const motdepasse = document.getElementById('motdepasse').value;
-    const confirmer = document.getElementById('confirmer').value;
-    const cgu = document.getElementById('cgu').checked;
-
-    // Vérification des champs
-    if (!denomination || !telephone || !email || !adresse || !code || !ville || (!publicRadio.checked && !privateRadio.checked) || !motdepasse || !confirmer) {
-        alert('Tous les champs marqués d\'un astérisque (*) doivent être remplis.');
-        return;
+        // Vérifie si tous les champs sont valides avant de soumettre
+        if (isFormValid()) {
+            document.getElementById('formPro').submit();
+        } 
+        
+        else {
+            alert("Veuillez corriger les erreurs avant de soumettre le formulaire.");
+        }
     }
 
-    // Vérification du numéro de téléphone (format français sans points)
-    const phonePattern = /^0[1-9]([ -]?[0-9]{2}){4}$/;
-    if (!phonePattern.test(telephone)) {
-        alert('Veuillez entrer un numéro de téléphone valide (sans points).');
-        return;
+    // Vérifier si tous les champs sont valides
+    function isFormValid() {
+        return !document.querySelectorAll('.invalid').length;
     }
 
-    // Vérification du format de l'adresse e-mail
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        alert('Veuillez entrer une adresse e-mail valide.');
-        return;
+    // Validation des champs individuellement
+
+    // Validation de la dénomination
+    function validateDenomination() {
+        const denomination = document.getElementById('denomination');
+
+        if (!denomination.value.trim()) {
+            showError(denomination, "La dénomination est requise.");
+        } 
+        else {
+            removeError(denomination);
+        }
     }
 
-    // Vérification de l'adresse postale (doit contenir un numéro suivi d'au moins un mot)
-    const adressePattern = /^\d+\s+(bis\s+)?[A-Za-z\s]+/i;
-    if (!adressePattern.test(adresse)) {
-        alert('Veuillez entrer une adresse postale valide (ex : 123 bis Rue de Paris).');
-        return;
+    // Validation du téléphone
+    function validatePhone() {
+        const telephone = document.getElementById('telephone');
+        const phonePattern = /^0[1-9]([.\-/]?[0-9]{2}){4}$/;
+
+        if (!phonePattern.test(telephone.value.trim())) {
+            showError(telephone, "Veuillez entrer un numéro de téléphone valide.");
+        } 
+        
+        else {
+            removeError(telephone);
+        }
     }
 
-    // Vérification du code postal (5 chiffres)
-    const codePattern = /^[0-9]{5}$/;
-    if (!codePattern.test(code)) {
-        alert('Veuillez entrer un code postal valide (5 chiffres).');
-        return;
+    // Validation de l'email
+    function validateEmail() {
+        const email = document.getElementById('email');
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email.value.trim())) {
+            showError(email, "Veuillez entrer une adresse e-mail valide.");
+        } 
+        
+        else {
+            removeError(email);
+        }
     }
 
-    // Vérification de la ville (lettres et espaces uniquement)
-    const villePattern = /^[A-Za-z\s\-]+$/; // Autorise les lettres, les espaces et les tirets
-    if (!villePattern.test(ville)) {
-        alert('Veuillez entrer une ville valide (lettres et espaces seulement).');
-        return;
+    // Validation de l'adresse
+    function validateAdresse() {
+        const adresse = document.getElementById('adresse');
+        const adressePattern = /^\d+\s+(bis\s+)?[A-Za-z\s]+/i;
+
+        if (!adressePattern.test(adresse.value.trim())) {
+            showError(adresse, "Veuillez entrer une adresse postale valide.");
+        } 
+        
+        else {
+            removeError(adresse);
+        } 
     }
 
-    // Vérification du numéro de SIREN (9 chiffres ou format avec espaces)
-    const sirenPattern = /^(?:\d{3} \d{3} \d{3}|\d{9})$/;
-    if (privateRadio.checked && !sirenPattern.test(siren)) {
-        alert('Veuillez entrer un numéro de SIREN valide (ex : 123 456 789 ou 123456789).');
-        return;
+    // Validation du code postal
+    function validateCode() {
+        const code = document.getElementById('code');
+        const codePattern = /^[0-9]{5}$/;
+
+        if (!codePattern.test(code.value.trim())) {
+            showError(code, "Veuillez entrer un code postal valide.");
+        } 
+        
+        else {
+            removeError(code);
+        }
     }
 
-    // Vérification du mot de passe
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/;
-    if (!passwordPattern.test(motdepasse)) {
-        alert('Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule et un chiffre.');
-        return;
+    // Validation de la ville
+    function validateVille() {
+        const ville = document.getElementById('ville');
+        const villePattern = /^[A-Za-z\s\-]+$/;
+
+        if (!villePattern.test(ville.value.trim())) {
+            showError(ville, "Veuillez entrer une ville valide.");
+        } 
+        
+        else {
+            removeError(ville);
+        }
     }
 
-    // Vérification de la confirmation du mot de passe
-    if (motdepasse !== confirmer) {
-        alert('Les mots de passe ne correspondent pas.');
-        return;
+    // Validation du SIREN (uniquement si secteur privé)
+    function validateSiren() {
+        const siren = document.getElementById('siren');
+        const sirenPattern = /^(?:\d{3} \d{3} \d{3}|\d{9})$/;
+        const privateRadio = document.getElementById('radioPrive');
+
+        if (privateRadio.checked && !sirenPattern.test(siren.value.trim())) {
+            showError(siren, "Veuillez entrer un numéro de SIREN valide.");
+        } 
+        
+        else {
+            removeError(siren);
+        }
     }
 
-    // Vérification des CGU
-    if (!cgu) {
-        alert('Vous devez accepter les conditions générales d\'utilisation.');
-        return;
+    // Validation du mot de passe
+    function validatePassword() {
+        const motdepasse = document.getElementById('motdepasse');
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/;
+
+        if (!passwordPattern.test(motdepasse.value.trim())) {
+            showError(motdepasse, "Le mot de passe doit contenir au moins 10 caractères, une majuscule, une minuscule et un chiffre.");
+        } 
+        
+        else {
+            removeError(motdepasse);
+        }
     }
 
-    // Si toutes les vérifications sont passées, soumettre le formulaire
-    document.getElementById('formPro').submit();
-}
+    // Validation de la confirmation du mot de passe
+    function validateConfirmPassword() {
+        const motdepasse = document.getElementById('motdepasse').value.trim();
+        const confirmer = document.getElementById('confirmer').value.trim();
+
+        if (motdepasse !== confirmer) {
+            showError(document.getElementById('confirmer'), "Les mots de passe ne correspondent pas.");
+        } 
+        
+        else {
+            removeError(document.getElementById('confirmer'));
+        }
+    }
+
+    // Validation des CGU
+    function validateCGU() {
+        const cgu = document.getElementById('cgu');
+
+        if (!cgu.checked) {
+            showError(cgu, "Vous devez accepter les conditions générales d'utilisation.");
+        } 
+        
+        else {
+            removeError(cgu);
+        }
+    }
+
+    // Afficher un message d'erreur et ajouter une bordure rouge
+    function showError(element, message) {
+        const errorContainer = document.getElementById('formErrors');
+        let errorMessage = document.createElement('div');
+
+        errorMessage.classList.add('error');
+        errorMessage.innerText = message;
+
+        // Ajout de l'erreur en haut du formulaire
+        errorContainer.appendChild(errorMessage);
+
+        // Ajout de la classe d'erreur pour bordure rouge
+        element.classList.add('invalid');
+    }
+
+    // Retirer le message d'erreur et la bordure rouge
+    function removeError(element) {
+        const errorContainer = document.getElementById('formErrors');
+
+        // Retirer tous les messages d'erreur associés à ce champ
+        let errors = errorContainer.getElementsByClassName('error');
+
+        for (let i = 0; i < errors.length; i++) {
+
+            if (errors[i].innerText.includes(element.id)) {
+                errors[i].remove();
+            }
+        }
+
+        // Retirer la bordure rouge
+        element.classList.remove('invalid');
+    }
