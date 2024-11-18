@@ -527,7 +527,7 @@ header ul + div{
   border: none;
   background-color: var(--secondary);
   color: var(--text-dark);
-  cursor: grab;
+  cursor: grabbing;
 }
 
 #manageOffer aside a:hover {
