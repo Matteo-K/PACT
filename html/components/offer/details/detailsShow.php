@@ -18,11 +18,11 @@
 
     </article>
     <article>
-        <div>
+        
             <label class="ligne1">Durée : </label>
-            <input type="number" class="nb" name="DuréeShow" placeholder="0"> <!-- Pour entrer une durée -->
-            <?php echo "minutes" ?>
-        </div>
+            
+            
+        
         <div>
             <label class="ligne1">En minutes : </label>
 
