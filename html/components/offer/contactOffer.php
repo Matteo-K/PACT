@@ -51,6 +51,7 @@
      * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
      */
     function checkOfferValidity(event) {
+      let res = true;
       const phonePattern = /^(?:(?:\+33[0-9]{9})|(?:0[1-9][0-9]{8})|(?:[0-9]{10})|(?:[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}))$/g;
       const urlPattern = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+)(\/[^\s]*)?$/g;
 
@@ -60,7 +61,7 @@
         if (!phonePattern.test(tel.value.trim())) {
           document.querySelector("#msgTel").textContent =
               "Numéro de téléphone incorrecte. Exemple 07.28.39.17.28 ou +33123456789";
-          return false;
+          res = false;
         }
       }
 
@@ -70,9 +71,9 @@
         if (!urlPattern.test(web.value.trim())) {
           document.querySelector("#msgWeb").textContent =
               "Site web incorrecte. Exemple https://www.creperie-le-dundee.fr";
-          return false;
+          res = false;
         }
       }
-      return true;
+      return res;
     }
   </script>
