@@ -30,7 +30,7 @@ responsivité
 
 #### Changement de compte
 
-Redirigé le changement de compte vers login.php
+Rediriger le changement de compte vers login.php
 
 ### Page création de compte
 
@@ -120,7 +120,7 @@ Partie pas nécessaire à cette étape
 - R : Réalisable avec un simple ajustement d'horaire
 - T : À réaliser d'ici la fin du sprint (trois semaines).
 
-### Faire en sorte que benjamin rende un travail correcte de lui même
+### Faire en sorte que benjamin rende un travail correct de lui même
 
 - S : Évaluer la qualité du travail et le respect des délais.
 - M : Utiliser des indicateurs de performance (nombre de tâches, qualité des livrables, feedback).
