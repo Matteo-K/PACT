@@ -79,11 +79,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!denomination.value.trim()) {
             showError(denomination, "La dénomination est requise.");
-            console.log("Dénomination requise")
-        } 
+        }
+        
         else {
             removeError(denomination);
-            console.log("Dénomination correcte")
         }
     }
 
