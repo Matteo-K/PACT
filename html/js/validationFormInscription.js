@@ -37,210 +37,172 @@ document.addEventListener('DOMContentLoaded', function() {
     priveRadio.addEventListener("click", updateSirenVisibility);
 
 
-    // Appliquer la validation en temps réel (sur blur pour chaque champ)
-    document.getElementById('denomination').addEventListener('blur', validateDenomination);
-    document.getElementById('telephone').addEventListener('blur', validatePhone);
-    document.getElementById('email').addEventListener('blur', validateEmail);
-    document.getElementById('adresse').addEventListener('blur', validateAdresse);
-    document.getElementById('code').addEventListener('blur', validateCode);
-    document.getElementById('ville').addEventListener('blur', validateVille);
-    document.getElementById('siren').addEventListener('blur', validateSiren);
-    document.getElementById('motdepasse').addEventListener('blur', validatePassword);
-    document.getElementById('confirmer').addEventListener('blur', validateConfirmPassword);
 
-    // Ajouter la validation du checkbox des CGU
-    document.getElementById('cgu').addEventListener('change', validateCGU);
-});
 
-    function validationForm(event) {
-        // Empêche l'envoi du formulaire si des erreurs existent
+    const form = document.getElementById('formPro');
+    const formErrors = document.getElementById('formErrors');
+
+    // Validation en temps réel sur blur
+    const fields = [
+        { id: 'denomination', validator: validateDenomination },
+        { id: 'telephone', validator: validatePhone },
+        { id: 'email', validator: validateEmail },
+        { id: 'adresse', validator: validateAdresse },
+        { id: 'code', validator: validateCode },
+        { id: 'ville', validator: validateVille },
+        { id: 'siren', validator: validateSiren },
+        { id: 'motdepasse', validator: validatePassword },
+        { id: 'confirmer', validator: validateConfirmPassword },
+        { id: 'cgu', validator: validateCGU, event: 'change' } // Sur changement pour les checkbox
+    ];
+
+    
+    fields.forEach(field => {
+        const input = document.getElementById(field.id);
+        const eventType = field.event || 'blur'; // Par défaut, écouter l'événement blur
+        input.addEventListener(eventType, field.validator);
+    });
+
+    // Validation au clic sur le bouton
+    document.getElementById('boutonInscriptionPro').addEventListener('click', function (event) {
         event.preventDefault();
 
-        // Vérifie si tous les champs sont valides avant de soumettre
-        if (isFormValid()) {
-            document.getElementById('formPro').submit();
-        } 
-        
-        else {
+        let hasErrors = false;
+
+        fields.forEach(field => {
+            const input = document.getElementById(field.id);
+            field.validator();
+            if (input.classList.contains('invalid')) {
+                hasErrors = true;
+            }
+        });
+
+        if (!hasErrors) {
+            form.submit();
+        } else {
             alert("Veuillez corriger les erreurs avant de soumettre le formulaire.");
         }
+    });
+
+    // Ajout d’un message d’erreur et bordure rouge
+    function showError(element, message) {
+        removeError(element); // Supprimez l’erreur existante si elle est déjà affichée
+
+        const errorMessage = document.createElement('div');
+        errorMessage.classList.add('error');
+        errorMessage.setAttribute('data-for', element.id); // Attribuez une référence au champ
+        errorMessage.innerText = message;
+
+        formErrors.appendChild(errorMessage); // Affiche l'erreur en haut du formulaire
+        element.classList.add('invalid'); // Ajoute la bordure rouge
     }
 
-    // Vérifier si tous les champs sont valides
-    function isFormValid() {
-        return !document.querySelectorAll('.invalid').length;
+    // Supprime le message d’erreur et restaure la bordure
+    function removeError(element) {
+        const existingError = formErrors.querySelector(`[data-for="${element.id}"]`);
+        if (existingError) {
+            existingError.remove();
+        }
+        element.classList.remove('invalid'); // Retire la bordure rouge
     }
 
-    // Validation des champs individuellement
+    // Fonctions de validation des champs
 
-    // Validation de la dénomination
     function validateDenomination() {
         const denomination = document.getElementById('denomination');
-
         if (!denomination.value.trim()) {
             showError(denomination, "La dénomination est requise.");
-        }
-        
-        else {
+        } else {
             removeError(denomination);
         }
     }
 
-    // Validation du téléphone
     function validatePhone() {
         const telephone = document.getElementById('telephone');
         const phonePattern = /^0[1-9]([.\-/]?[0-9]{2}){4}$/;
-
         if (!phonePattern.test(telephone.value.trim())) {
             showError(telephone, "Veuillez entrer un numéro de téléphone valide.");
-        } 
-        
-        else {
+        } else {
             removeError(telephone);
         }
     }
 
-    // Validation de l'email
     function validateEmail() {
         const email = document.getElementById('email');
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         if (!emailPattern.test(email.value.trim())) {
             showError(email, "Veuillez entrer une adresse e-mail valide.");
-        } 
-        
-        else {
+        } else {
             removeError(email);
         }
     }
 
-    // Validation de l'adresse
     function validateAdresse() {
         const adresse = document.getElementById('adresse');
         const adressePattern = /^\d+\s+(bis\s+)?[A-Za-z\s]+/i;
-
         if (!adressePattern.test(adresse.value.trim())) {
             showError(adresse, "Veuillez entrer une adresse postale valide.");
-        } 
-        
-        else {
+        } else {
             removeError(adresse);
-        } 
+        }
     }
 
-    // Validation du code postal
     function validateCode() {
         const code = document.getElementById('code');
         const codePattern = /^[0-9]{5}$/;
-
         if (!codePattern.test(code.value.trim())) {
             showError(code, "Veuillez entrer un code postal valide.");
-        } 
-        
-        else {
+        } else {
             removeError(code);
         }
     }
 
-    // Validation de la ville
     function validateVille() {
         const ville = document.getElementById('ville');
         const villePattern = /^[A-Za-z\s\-]+$/;
-
         if (!villePattern.test(ville.value.trim())) {
             showError(ville, "Veuillez entrer une ville valide.");
-        } 
-        
-        else {
+        } else {
             removeError(ville);
         }
     }
 
-    // Validation du SIREN (uniquement si secteur privé)
     function validateSiren() {
         const siren = document.getElementById('siren');
         const sirenPattern = /^(?:\d{3} \d{3} \d{3}|\d{9})$/;
-        const privateRadio = document.getElementById('radioPrive');
-
-        if (privateRadio.checked && !sirenPattern.test(siren.value.trim())) {
+        if (document.getElementById('radioPrive').checked && !sirenPattern.test(siren.value.trim())) {
             showError(siren, "Veuillez entrer un numéro de SIREN valide.");
-        } 
-        
-        else {
+        } else {
             removeError(siren);
         }
     }
 
-    // Validation du mot de passe
     function validatePassword() {
         const motdepasse = document.getElementById('motdepasse');
         const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/;
-
         if (!passwordPattern.test(motdepasse.value.trim())) {
             showError(motdepasse, "Le mot de passe doit contenir au moins 10 caractères, une majuscule, une minuscule et un chiffre.");
-        } 
-        
-        else {
+        } else {
             removeError(motdepasse);
         }
     }
 
-    // Validation de la confirmation du mot de passe
     function validateConfirmPassword() {
         const motdepasse = document.getElementById('motdepasse').value.trim();
         const confirmer = document.getElementById('confirmer').value.trim();
-
         if (motdepasse !== confirmer) {
             showError(document.getElementById('confirmer'), "Les mots de passe ne correspondent pas.");
-        } 
-        
-        else {
+        } else {
             removeError(document.getElementById('confirmer'));
         }
     }
 
-    // Validation des CGU
     function validateCGU() {
         const cgu = document.getElementById('cgu');
-
         if (!cgu.checked) {
             showError(cgu, "Vous devez accepter les conditions générales d'utilisation.");
-        } 
-        
-        else {
+        } else {
             removeError(cgu);
         }
     }
-
-    // Afficher un message d'erreur et ajouter une bordure rouge
-    function showError(element, message) {
-        const errorContainer = document.getElementById('formErrors');
-        let errorMessage = document.createElement('div');
-
-        errorMessage.classList.add('error');
-        errorMessage.innerText = message;
-
-        // Ajout de l'erreur en haut du formulaire
-        errorContainer.appendChild(errorMessage);
-
-        // Ajout de la classe d'erreur pour bordure rouge
-        element.classList.add('invalid');
-    }
-
-    // Retirer le message d'erreur et la bordure rouge
-    function removeError(element) {
-        const errorContainer = document.getElementById('formErrors');
-
-        // Retirer tous les messages d'erreur associés à ce champ
-        let errors = errorContainer.getElementsByClassName('error');
-
-        for (let i = 0; i < errors.length; i++) {
-
-            if (errors[i].innerText.includes(element.id)) {
-                errors[i].remove();
-            }
-        }
-
-        // Retirer la bordure rouge
-        element.classList.remove('invalid');
-    }
+});
