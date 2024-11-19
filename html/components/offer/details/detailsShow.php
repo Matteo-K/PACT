@@ -5,13 +5,14 @@
 
         <div>
             <label class="ligne1">Nombre de places : </label> <!-- Label nombre de place -->
+            <br>
             <div>
                 <input type="number" 2class="nb" name="nbPlaceShow" placeholder="0"> <!-- Pour le nombre de place -->
                 <?php echo "places" ?>
             </div>
 
             <label class="ligne1">Prix minimum : </label>
-
+            <br>
             <div>
                 <input type="number" class="nb" name="PrixMinShow" placeholder="0"> <!-- Pour entrer un prix minimum -->
                 <?php echo "€" ?>
