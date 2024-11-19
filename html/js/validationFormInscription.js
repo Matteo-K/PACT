@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     priveRadio.addEventListener("click", updateSirenVisibility);
 });
 
-function validationForm(event) {
+function validationFormPro(event) {
     // Empêche l'envoi du formulaire
     event.preventDefault(); 
 

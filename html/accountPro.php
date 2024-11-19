@@ -121,7 +121,7 @@
             </button>
         </aside>
         
-        <h1 id="inscriptionTitre">Inscription</h1>
+        <h1 id="inscriptionTitre">Inscription professionnel</h1>
 
         <?php
             if (!empty($errors)) {
@@ -220,7 +220,7 @@
             </div>
             
             
-            <button onclick = "validationForm()" id="boutonInscriptionPro">S'inscrire</button>
+            <button onclick = "validationFormPro()" id="boutonInscriptionPro">S'inscrire</button>
 
             <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="login.php">Se connecter</a></h2>
         </form>
