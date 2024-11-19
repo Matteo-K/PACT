@@ -1,12 +1,25 @@
 <!-- Spectacle -->
 <?php
 // Initialisation des données à vide
-
+$spectacle = [
+    "duree" => "",
+    "nbplace" => "",
+    "prixminimal" => ""
+];
 
 // Si le spectacle était déà existante, on récupère les données
 if ($categorie["_spectacle"]) {
+    $stmt = $conn->prepare("SELECT * from pact._spectacle where idoffre=?");
+    $stmt->execute([$idOffre]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    if ($result) {
+        $spectacle["agemin"] = $result["agemin"];
+        $spectacle["nbplace"] = $result["nbplace"];
+        $spectacle["prixminimal"] = $result["prixminimal"];
+    }
 }
+// Il reste à initialisé les valeurs dans les input
 ?>
 <section id="show"> <!-- Id pour pouvoir modifer separement dans le css -->
     <article>

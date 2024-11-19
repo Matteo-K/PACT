@@ -14,7 +14,7 @@ if ($categorie["_activite"]) {
   $stmt = $conn->prepare("SELECT * from pact._activite where idoffre=?");
   $stmt->execute([$idOffre]);
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  if ($result !== false) {
+  if ($result) {
     $activite["duree"] = $result["duree"];
     $activite["agemin"] = $result["agemin"];
     $activite["prixminimal"] = $result["prixminimal"];

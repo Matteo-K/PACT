@@ -1,12 +1,43 @@
 <!-- Visite -->
 <?php
 // Initialisation des données à vide
-
+$visite = [
+    "guide" => true,
+    "duree" => "",
+    "prixminimal" => "",
+    "accessibilite" => true,
+    "hadicap" => [],
+    "langue" => []
+];
 
 // Si la visite était déà existante, on récupère les données
 if ($categorie["_visite"]) {
+    $stmt = $conn->prepare("SELECT * from pact._visite where idoffre=?");
+    $stmt->execute([$idOffre]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    if ($result) {
+        $visite["guide"] = $result["guide"];
+        $visite["duree"] = $result["duree"];
+        $visite["prixminimal"] = $result["prixminimal"];
+        $visite["accessibilite"] = $result["accessibilite"];
+    }
+
+    $stmt = $conn->prepare("SELECT langue from pact._visite_langue where idoffre=?");
+    $stmt->execute([$idOffre]);
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $visite["langue"][] = $row["langue"];
+    }
+
+    // Ajouté une requête pour l'handicap
+    /*
+    $stmt = $conn->prepare("SELECT * from pact._handicap where idoffre=?");
+    $stmt->execute([$idOffre]);
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $visite["hadicap"][] = $row["hadicap"];
+    }*/
 }
+// Il reste à initialisé les valeurs dans les input
 ?>
 <section id="visit"> <!-- donne un id a la section pour l'identifier dans le css -->
     <article id="ArtVisit"> <!-- separation en article pour l'alignement -->

@@ -1,7 +1,12 @@
 <!-- Parc d'attraction -->
 <?php
 // Initialisation des données à vide
-
+$parc = [
+    "agemin" => "",
+    "nbattraction" => "",
+    "prixminimal" => "",
+    "urlplan" => ""
+];
 
 // Si le parc d'attraction était déà existante, on récupère les données
 if ($categorie["_parcattraction"]) {
@@ -9,10 +14,14 @@ if ($categorie["_parcattraction"]) {
     $stmt->execute([$idOffre]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result != false) {
-        
+    if ($result) {
+        $parc["agemin"] = $result["agemin"];
+        $parc["nbattraction"] = $result["nbattraction"];
+        $parc["prixminimal"] = $result["prixminimal"];
+        $parc["urlplan"] = $result["urlplan"];
     }
 }
+// Il reste à initialisé les valeurs dans les input
 ?>
 <section id="park">
     <article>
@@ -22,7 +31,7 @@ if ($categorie["_parcattraction"]) {
         <div id="choixImage2">
             <label>Plan : </label>
             <p>
-                Vous pouvez insérer jusqu'à 5 photos<br>
+                Vous pouvez insérer jusqu'à 1 photo<br>
 
             </p>
         </div>
