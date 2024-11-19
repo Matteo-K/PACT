@@ -5,7 +5,13 @@
 
 // Si le parc d'attraction était déà existante, on récupère les données
 if ($categorie["_parcattraction"]) {
+    $stmt = $conn->prepare("SELECT * from pact._parcattraction where idoffre=?");
+    $stmt->execute([$idOffre]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    if ($result != false) {
+        
+    }
 }
 ?>
 <section id="park">

@@ -12,7 +12,7 @@ if ($categorie["_restauration"]) {
   $stmt = $conn->prepare("SELECT * from pact._restauration where idoffre=?");
   $stmt->execute([$idOffre]);
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  if ($result !== false) {
+  if ($result) {
     $gamme["€"] = false;
     $gamme[$result["gammedeprix"]] = true;
   }

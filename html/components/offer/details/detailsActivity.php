@@ -1,12 +1,26 @@
 <!-- Activité -->
 <?php
 // Initialisation des données à vide
+$activite = [
+    "duree" => "",
+    "agemin" => "",
+    "prixminimal" => "",
+];
+// Une activité peut avoir plusieurs prestations (Voir avec BDD)
 
 
 // Si l'activité était déà existante, on récupère les données
 if ($categorie["_activite"]) {
-
+  $stmt = $conn->prepare("SELECT * from pact._activite where idoffre=?");
+  $stmt->execute([$idOffre]);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  if ($result !== false) {
+    $activite["duree"] = $result["duree"];
+    $activite["agemin"] = $result["agemin"];
+    $activite["prixminimal"] = $result["prixminimal"];
+  }
 }
+// Il reste à initialisé les valeurs dans les input
 ?>
 
 <section id="activity">
