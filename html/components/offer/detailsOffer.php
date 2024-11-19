@@ -198,6 +198,8 @@ $resume = $result["resume"] ?? "";
         const radBtnSpectacle = document.querySelector("#radioSpectacle");
         const radBtnVisite = document.querySelector("#radioVisite");
 
+        const divImg = document.querySelector("#afficheImages");
+
         const msgCategorie = document.querySelector("#msgCategorie");
 
         /**
@@ -206,23 +208,27 @@ $resume = $result["resume"] ?? "";
          */
         function checkOfferValidity(event) {
             rabBtnCategorie = checkCategorie();
+            checkImg();
             return rabBtnCategorie;
         }
 
         /**
-         * Vérifie si l'adresse mail est correcte
+         * Vérifie si une catégorie à été tapé 
          * @returns {boolean} - Renvoie true si l'input est conforme. False sinon.
          */
         function checkCategorie() {
-            let res = true;
-            if (!emailPattern.test(inputEmail.value.trim())) {
+            let res = radBtnRestaurant.checked || radBtnParc.checked || radBtnActivite.checked || radBtnSpectacle.checked || radBtnVisite.checked;
+            if (!res) {
                 msgCategorie.textContent = 
-                    "Email incorrecte. Exemple ewen@jain-etudiants.univ-rennes1.com";
-                res = false;
+                    "Sélectionner une catégorie";
             } else {
-
+                msgCategorie.textContent = "";
             }
-            return res;
+            return !res;
+        }
+
+        function checkImg() {
+            console.log(divImg);
         }
     </script>
 
