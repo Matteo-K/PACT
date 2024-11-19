@@ -1290,6 +1290,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: inline-block;
 }
 
+.searchTitreDiv{
+  display: flex;
+}
+
 .searchNote {
   display: flex;
   justify-content: space-between;
