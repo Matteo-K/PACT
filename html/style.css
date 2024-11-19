@@ -1249,8 +1249,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .carteOffre p,
 .searchA p {
-  color: #000; /* Forcer le texte en noir (ou autre couleur souhaitée) */
-  text-decoration: none; /* Supprimer tout soulignement */
+  color: #000;
+  text-decoration: none;
 }
 
 
