@@ -22,18 +22,18 @@
           <div>
             <label for="adresse2">Adresse postale* :</label>
             <input type="text" id="adresse2" name="adresse2" placeholder="Adresse" value="<?php echo $adresse ?>" required/>
-            <span id="msgAdresse"></span>
+            <span id="msgAdresse" class="msgError"></span>
           </div>
           <section>
             <div class="codeP">
               <label for="codepostal">Code postal* :</label>
               <input type="text" id="codepostal" name="codepostal" placeholder="Code Postal" value="<?php echo $codePostal ?>" required/>
-              <span id="msgCodePostal"></span>
+              <span id="msgCodePostal" class="msgError"></span>
             </div>
             <div class="villeL">
               <label for="ville2">Ville* :</label>
               <input type="text" id="ville2" name="ville2" placeholder="Ville" value="<?php echo $ville ?>" required/>
-              <span id="msgVille"></span>
+              <span id="msgVille" class="msgError"></span>
             </div>
           </section>
         </section>

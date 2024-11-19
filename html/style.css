@@ -54,6 +54,11 @@ li {
   list-style: none;
 }
 
+.msgError {
+  color: red;
+  font-size: 0.8em;
+}
+
 body {
   margin: 0;
   background-color: var(--background);
@@ -1173,6 +1178,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 15px;
   align-items: center;
   height: fit-content;
   width: 100%;

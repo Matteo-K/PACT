@@ -19,11 +19,11 @@
 <form id="contactOffer" action="enregOffer.php" method="post">
   <label for="mail">Adresse mail de contact pour votre offre*&nbsp;:&nbsp;</label>
   <input type="email" name="mail" id="mail" required="required" placeholder="Adresse mail - (exemple@mail.com)" value="<?php echo $mail; ?>">
-  <span id="msgEmail"></span>
+  <span id="msgEmail" class="msgError"></span>
   <label for="phone">Numéro de fixe&nbsp;:&nbsp;</label>
   <div>
     <input type="tel" name="phone" id="phone" placeholder="Numéro fixe" 
-    value="<?php echo $phone; ?>"> <span id="msgTel"></span>
+    value="<?php echo $phone; ?>"> <span id="msgTel" class="msgError"></span>
   </div>
   <div>
     <h4>Consentez vous à afficher votre numéro de portable sur l’offre &nbsp;?&nbsp;</h4>
@@ -40,7 +40,7 @@
   <input type="text" name="webSide" id="webSide" 
   placeholder="Lien vers votre site web" value="<?php echo $linkWeb; ?>">
 
-  <span id="msgWeb"></span>
+  <span id="msgWeb" class="msgError"></span>
 
   <script>
 
