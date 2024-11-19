@@ -79,7 +79,7 @@
         let code_postal = checkCodePostal();
         // test ville
         let ville = checkVille();
-        return adresse && phone && url;
+        return adresse && code_postal && ville;
       }
 
       /**
@@ -102,7 +102,7 @@
         const codePostalPattern = /^\d{5}$/g;
         if (!codePostalPattern.test(inputCodePostal.value.trim())) {
           msgCodePostal.textContent = 
-              "Incorrecte 22300";
+              "Ex : 22300";
           res = false;
         }
         return res;
