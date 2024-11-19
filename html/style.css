@@ -1129,7 +1129,7 @@ GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
 .sectionLoca {
-  width: 120%;
+  width: 1400px;
   font-size: 25px;
   display: flex;
   flex-direction: column;
@@ -1865,9 +1865,11 @@ tbody td:last-child {
   
   
 }
-#show div>div >label+div>input:number+label{
+#show >article>div>div{
+  
+  display: flex;
+  flex-direction: row;
   background-color: pink;
-
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
