@@ -203,6 +203,12 @@ $resume = $result["resume"] ?? "";
         const msgCategorie = document.querySelector("#msgCategorie");
         const msgImage = document.querySelector("#msgImage");
 
+        radBtnRestaurant.addEventListener("click", removeMsgCategorie);
+        radBtnParc.addEventListener("click", removeMsgCategorie);
+        radBtnActivite.addEventListener("click", removeMsgCategorie);
+        radBtnSpectacle.addEventListener("click", removeMsgCategorie);
+        radBtnVisite.addEventListener("click", removeMsgCategorie);
+
         /**
          * Vérifie si les input sont conforme pour être enregistrer
          * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
@@ -225,18 +231,22 @@ $resume = $result["resume"] ?? "";
             } else {
                 msgCategorie.textContent = "";
             }
-            return !res;
+            return res;
+        }
+
+        function removeMsgCategorie() {
+            msgCategorie.textContent = "";
         }
 
         function checkImg() {
             let res = true;
+            console.log(divImg.childElementCount);
             if (divImg.childElementCount == 0) {
                 msgImage.textContent = 
-                    "Ajouter au moins une image";
+                    "Ajouter une image";
                 res = false;
             } else {
-                msgImage.textContent = 
-                    "";
+                msgImage.textContent = "";
             }
             return res;
         }

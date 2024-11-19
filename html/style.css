@@ -1351,6 +1351,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     width: auto;
     padding: 5px;
   }
+  .searchImage{
+    margin: 0;
+  }
+  .searchA{
+    text-decoration: none;
+  }
 }
 
 /* @media (max-width: 700px){
