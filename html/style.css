@@ -1098,8 +1098,10 @@ header ul + div{
 
 #tagsSelect{
   width: 70%;
-  height: 30px;
+  height: 50px;
   border: 2px solid var(--bloc);
+  background-color: #FFFFFF;
+  font-size: 20px;
 }
 
 #inputTag {
