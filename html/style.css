@@ -1248,8 +1248,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* border:solid 2px #034d7c; */
   background-color: #FFFFFF;
   box-shadow:
-  0 0 5vw 0vw #1ca4ed,
-  0 0 1vw 0.2vw #034d7c;
+  0 0 5px 0px #1ca4ed,
+  0 0 1px 0.2px #034d7c;
 }
 
 .carteOffre p {
