@@ -1245,10 +1245,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: flex;
   width: 70%;
   border-radius: 20px;
-  border:solid 2px #034d7c;
+  /* border:solid 2px #034d7c; */
   background-color: #FFFFFF;
   box-shadow:
-  0 0 10vw 0vw #1ca4ed,
+  0 0 5vw 0vw #1ca4ed,
   0 0 2vw 0.4vw #034d7c;
 }
 
