@@ -1091,6 +1091,12 @@ header ul + div{
   /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
 }
 
+#tagsSelect{
+  width: 70%;
+  height: 30px;
+  border: 2px solid var(--bloc);
+}
+
 #inputTag {
   width: 70%;
 }

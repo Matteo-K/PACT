@@ -46,8 +46,8 @@ $resume = $result["resume"] ?? "";
                 <input type="radio" name="categorie" id="radioVisite" value="visite"> <label for="radioVisite">Visite</label>
             </div>
 
-            <label for="tags">Tags supplémentaires </label>
-            <select name="tags" id="tags">
+            <label for="tagsSelect">Tags supplémentaires </label>
+            <select name="tagsSelect" id="tagsSelect">
 
                 <optgroup label="Général">
                     <option value="local">Local</option>
@@ -163,8 +163,8 @@ $resume = $result["resume"] ?? "";
             </select>
 
             
-            <input type="text" id="inputTag" name="inputTag" placeholder="Entrez un tag décrivant votre activité / établissement">
-            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button>
+            <!-- <input type="text" id="inputTag" name="inputTag" placeholder="Entrez un tag décrivant votre activité / établissement">
+            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
 
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->
