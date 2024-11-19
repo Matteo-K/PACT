@@ -242,7 +242,7 @@ $resume = $result["resume"] ?? "";
             let res = true;
             if (divImg.childElementCount == 0) {
                 msgImage.textContent = 
-                    "Ajouter au moins une image";
+                    "Ajouter une image";
                 res = false;
             } else {
                 msgImage.textContent = 
