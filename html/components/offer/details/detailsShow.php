@@ -8,15 +8,16 @@
             <div>
                 <input type="number" 2class="nb" name="nbPlaceShow" placeholder="0"> <!-- Pour le nombre de place -->
                 <?php echo "places" ?>
+            </div>
 
+            <label class="ligne1">Prix minimum : </label>
 
-                <label class="ligne1">Prix minimum : </label>
-
-
+            <div>
                 <input type="number" class="nb" name="PrixMinShow" placeholder="0"> <!-- Pour entrer un prix minimum -->
                 <?php echo "€" ?>
             </div>
         </div>
+
     </article>
 
 
