@@ -210,18 +210,18 @@ $resume = $result["resume"] ?? "";
         }
 
         /**
-         * Vérifie si une catégorie à été 
+         * Vérifie si une catégorie à été tapé 
          * @returns {boolean} - Renvoie true si l'input est conforme. False sinon.
          */
         function checkCategorie() {
             let res = radBtnRestaurant.checked || radBtnParc.checked || radBtnActivite.checked || radBtnSpectacle.checked || radBtnVisite.checked;
-            if (res) {
+            if (!res) {
                 msgCategorie.textContent = 
                     "Sélectionner une catégorie";
             } else {
                 msgCategorie.textContent = "";
             }
-            return res;
+            return !res;
         }
     </script>
 
