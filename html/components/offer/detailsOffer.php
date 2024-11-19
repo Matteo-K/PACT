@@ -240,6 +240,7 @@ $resume = $result["resume"] ?? "";
 
         function checkImg() {
             let res = true;
+            console.log(divImg.childElementCount);
             if (divImg.childElementCount == 0) {
                 msgImage.textContent = 
                     "Ajouter une image";
