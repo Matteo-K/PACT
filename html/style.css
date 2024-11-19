@@ -1855,6 +1855,7 @@ tbody td:last-child {
 
 #show{
   align-items: center;
+  background-color: pink;
 }
 #show >article{
 
