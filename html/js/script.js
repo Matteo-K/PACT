@@ -45,7 +45,83 @@ try {
     });
   }
 
+
+
+
+
+
+  
+    // Liste des tags proposés
+    const tabTags = [
+      "Local", "International", "Insolite", "Populaire", "Exclusif", "Authentique",
+      "Romantique", "Festif", "Familial", "Calme", "Intimiste", "Ludique",
+      "Traditionnel", "Contemporain", "Convivial", "En extérieur", "En intérieur",
+      "Urbain", "Rural", "En bord de mer", "Montagne", "Patrimonial",
+      "Historique", "Culturel", "Moderne", "Médiéval", "Naturel", "Industriel",
+      "Féérique", "Nocturne", "Diurne", "Week-end", "Vacances scolaires",
+      "Estival", "Hivernal", "Saisonnier", "Couple", "Enfants", "Adolescents",
+      "Seniors", "Groupes", "Solo", "Amateurs de sensations", "Cuisine locale",
+      "Cuisine gastronomique", "Street food", "Brunch", "Végétarien", "Vegan",
+      "Bistronomique", "À thème", "Théâtre", "Musique live", "Cirque", "Comédie",
+      "Danse", "Magie", "Stand-up", "Sport nautique", "Randonnée", "Atelier créatif",
+      "Activité immersive", "Escape game", "Jeux d’équipe", "Découverte sportive",
+      "Sensations fortes", "Familial", "Animaux", "Spectacles inclus", "Thématique",
+      "Aquatique", "Interactif", "Guidée", "Autonome", "Musée", "Lieu insolite",
+      "Monument", "Panoramique", "Éducative"
+    ];
+
+    // Récupération des éléments HTML
+    const inputTag = document.getElementById("inputTag");
+    const autocompleteList = document.getElementById("autocomplete-list");
+
+    // Fonction pour filtrer et afficher les suggestions
+    function updateSuggestions(value) {
+      // Nettoyer les suggestions précédentes
+      autocompleteList.innerHTML = "";
+
+      // Si la saisie est vide, on n'affiche rien
+      if (!value) return;
+
+      // Filtrer les tags correspondant à la saisie
+      const suggestions = tabTags.filter(tag =>
+        tag.toLowerCase().includes(value.toLowerCase())
+      );
+
+      // Ajouter les suggestions dans la liste
+      suggestions.forEach(tag => {
+        const item = document.createElement("div");
+        item.classList.add("autocomplete-item");
+        item.textContent = tag;
+
+        // Quand un utilisateur clique sur une suggestion
+        item.addEventListener("click", () => {
+          inputTag.value = tag; // Met le tag sélectionné dans l'input
+          autocompleteList.innerHTML = ""; // Vide les suggestions
+        });
+
+        autocompleteList.appendChild(item);
+      });
+    }
+
+    // Écouteur d'événement sur l'input
+    inputTag.addEventListener("input", (event) => {
+      updateSuggestions(event.target.value);
+    });
+
+    // Cacher les suggestions si on clique ailleurs
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest("#autocomplete-list") && event.target !== inputTag) {
+        autocompleteList.innerHTML = "";
+      }
+    });
+
+
+
+
+
     
+
+    /*
   // Variables de sélection des éléments
   const inputTag = document.getElementById("inputTag");
   const buttonTag = document.getElementById("ajoutTag");
@@ -106,7 +182,14 @@ try {
     }
   }
 
+  */
+ 
 } catch (error) {}
+
+
+
+
+
 
 try {
   /* Affichage pour un type d'offre particulier */

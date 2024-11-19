@@ -27,7 +27,7 @@ $resume = $result["resume"] ?? "";
 
         <div>
             <div id="choixImage">
-                <label>Photos de votre offre*</label>
+                <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
                 <p>
                     Vous pouvez insérer jusqu'à 10 photos<br>
                     Cliquez sur une image pour la supprimer
@@ -38,7 +38,7 @@ $resume = $result["resume"] ?? "";
             <div id="afficheImages"></div>
 
             <div id="choixCategorie">
-                <label>Catégorie de l'offre*   <span id="msgCategorie" class="msgError"></span></label>   
+                <label>Catégorie de l'offre*  <span id="msgCategorie" class="msgError"></span></label>   
                 <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required> <label for="radioRestaurant">Restaurant</label>
                 <input type="radio" name="categorie" id="radioParc" value="parc"> <label for="radioParc">Parc d'attraction</label>
                 <input type="radio" name="categorie" id="radioActivite" value="activite"> <label for="radioActivite" >Activite</label>
@@ -47,7 +47,7 @@ $resume = $result["resume"] ?? "";
             </div>
 
             <label for="tagsSelect">Tags supplémentaires </label>
-            <select name="tagsSelect" id="tagsSelect">
+            <!--<select name="tagsSelect" id="tagsSelect">
 
                 <optgroup label="Général">
                     <option value="local">Local</option>
@@ -160,11 +160,11 @@ $resume = $result["resume"] ?? "";
                     <option value="panoramique">Panoramique</option>
                     <option value="educative">Éducative</option>
                 </optgroup>
-            </select>
+            </select>-->
 
             
-            <!-- <input type="text" id="inputTag" name="inputTag" placeholder="Entrez un tag décrivant votre activité / établissement">
-            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
+            <input type="text" id="inputTag" name="inputTag" placeholder="Entrez un tag décrivant votre activité / établissement">
+            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button>
 
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->
@@ -198,28 +198,45 @@ $resume = $result["resume"] ?? "";
         const radBtnSpectacle = document.querySelector("#radioSpectacle");
         const radBtnVisite = document.querySelector("#radioVisite");
 
+        const divImg = document.querySelector("#afficheImages");
+
         const msgCategorie = document.querySelector("#msgCategorie");
+        const msgImage = document.querySelector("#msgImage");
 
         /**
          * Vérifie si les input sont conforme pour être enregistrer
          * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
          */
         function checkOfferValidity(event) {
-            rabBtnCategorie = checkCategorie();
-            return rabBtnCategorie;
+            let rabBtnCategorie = checkCategorie();
+            let img = checkImg();
+            return rabBtnCategorie && img;
         }
 
         /**
-         * Vérifie si une catégorie à été 
+         * Vérifie si une catégorie à été tapé 
          * @returns {boolean} - Renvoie true si l'input est conforme. False sinon.
          */
         function checkCategorie() {
             let res = radBtnRestaurant.checked || radBtnParc.checked || radBtnActivite.checked || radBtnSpectacle.checked || radBtnVisite.checked;
-            if (res) {
+            if (!res) {
                 msgCategorie.textContent = 
                     "Sélectionner une catégorie";
             } else {
                 msgCategorie.textContent = "";
+            }
+            return !res;
+        }
+
+        function checkImg() {
+            let res = true;
+            if (divImg.childElementCount == 0) {
+                msgImage.textContent = 
+                    "Ajouter au moins une image";
+                res = false;
+            } else {
+                msgImage.textContent = 
+                    "";
             }
             return res;
         }
