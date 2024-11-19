@@ -1096,6 +1096,14 @@ header ul + div{
   /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
 }
 
+#tagsSelect{
+  width: 70%;
+  height: 50px;
+  border: 2px solid var(--bloc);
+  background-color: #FFFFFF;
+  font-size: 20px;
+}
+
 #inputTag {
   width: 70%;
 }
@@ -1258,6 +1266,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin: 2px;
 }
 
+.carteOffre a{
+  height: fit-content;
+}
+
 .searchImage {
   object-fit: cover;
   width: 290px;
@@ -1339,6 +1351,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
   .infoOffre{
     width: auto;
+    padding: 5px;
   }
 }
 
