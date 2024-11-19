@@ -1,4 +1,5 @@
  <?php
+ require_once __DIR__ . "/../.SECURE/cleAPI.php";
  // Requête de récupération des données avec l'id de l'offre
   $stmt = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre = ?");
   $stmt->execute([$idOffre]);
@@ -187,6 +188,6 @@ function geocodeadresse(fulladresse) {
 </script>
 <!-- Inclure l'API Google Maps avec votre clé API -->
 <script
-  src="https://maps.googleapis.com/maps/api/js?key=CLE&callback=initMap"
+  src="https://maps.googleapis.com/maps/api/js?key=<?php echo $cleAPI?>&callback=initMap"
   async defer
 ></script>
