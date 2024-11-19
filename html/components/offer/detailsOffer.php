@@ -27,7 +27,7 @@ $resume = $result["resume"] ?? "";
 
         <div>
             <div id="choixImage">
-                <label>Photos de votre offre*</label>
+                <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
                 <p>
                     Vous pouvez insérer jusqu'à 10 photos<br>
                     Cliquez sur une image pour la supprimer
@@ -38,7 +38,7 @@ $resume = $result["resume"] ?? "";
             <div id="afficheImages"></div>
 
             <div id="choixCategorie">
-                <label>Catégorie de l'offre*   <span id="msgCategorie" class="msgError"></span></label>   
+                <label>Catégorie de l'offre*  <span id="msgCategorie" class="msgError"></span></label>   
                 <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required> <label for="radioRestaurant">Restaurant</label>
                 <input type="radio" name="categorie" id="radioParc" value="parc"> <label for="radioParc">Parc d'attraction</label>
                 <input type="radio" name="categorie" id="radioActivite" value="activite"> <label for="radioActivite" >Activite</label>
@@ -201,15 +201,16 @@ $resume = $result["resume"] ?? "";
         const divImg = document.querySelector("#afficheImages");
 
         const msgCategorie = document.querySelector("#msgCategorie");
+        const msgImage = document.querySelector("#msgImage");
 
         /**
          * Vérifie si les input sont conforme pour être enregistrer
          * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
          */
         function checkOfferValidity(event) {
-            rabBtnCategorie = checkCategorie();
-            checkImg();
-            return rabBtnCategorie;
+            let rabBtnCategorie = checkCategorie();
+            let img = checkImg();
+            return rabBtnCategorie && img;
         }
 
         /**
@@ -228,7 +229,16 @@ $resume = $result["resume"] ?? "";
         }
 
         function checkImg() {
-            console.log(divImg);
+            let res = true;
+            if (divImg.childElementCount == 0) {
+                msgImage.textContent = 
+                    "Ajouter au moins une image";
+                res = false;
+            } else {
+                msgImage.textContent = 
+                    "";
+            }
+            return res;
         }
     </script>
 
