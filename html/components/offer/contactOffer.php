@@ -89,7 +89,7 @@
       const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/g;
       if (!emailPattern.test(inputEmail.value.trim())) {
         msgEmail.textContent = 
-            "Email incorrecte. Exemple ";
+            "Email incorrecte. Exemple ewen@jain-etudiants.univ-rennes1.com";
         res = false;
       }
       return res;
