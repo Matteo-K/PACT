@@ -29,7 +29,7 @@ if (!empty($idOffre)) {
   $stmt->execute([$idOffre]);
   // si les options éxistent, on les ajoutent dans la base de donnée
   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    array_push($res, [$row["nomoption"]]);
+    array_push($res, $row["nomoption"]);
   }
   print_r($res);
 }
