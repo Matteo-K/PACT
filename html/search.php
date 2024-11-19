@@ -150,57 +150,55 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     
                      ?>
                     <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
-                    <div class="carteOffre">
-                        <a  class="aImg" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
-                            <?php 
-                            $alt = isset($urlImg[0]['url']) && $urlImg[0]['url'] ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";
-                            ?>
-                            <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt=<?php echo $alt; ?>>
-                        </a>
-                        <div class="infoOffre">
-                            <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
-
-                            <strong><p class="villesearch"><?php echo $ville . $gammeText; ?></p></strong>
-
-                            <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
-
-                            <strong><?php echo $nomTag; ?></strong>
-
-                            <div class="searchCategorie">
-                                <?php
-                                if ($tag!=NULL) {
-                                    foreach ($tag as $value) {
-                                        ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
-                                    }
-                                }
+                        <div class="carteOffre">
+                                <?php 
+                                $alt = isset($urlImg[0]['url']) && $urlImg[0]['url'] ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";
                                 ?>
+                                <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt=<?php echo $alt; ?>>
+                            <div class="infoOffre">
+                                <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
+                    
+                                <strong><p class="villesearch"><?php echo $ville . $gammeText; ?></p></strong>
+                    
+                                <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
+                    
+                                <strong><?php echo $nomTag; ?></strong>
+                    
+                                <div class="searchCategorie">
+                                    <?php
+                                    if ($tag!=NULL) {
+                                        foreach ($tag as $value) {
+                                            ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                                
+                                <p class="searchResume"><?php echo $resume!=NULL?$resume:"Pas de resume saisie";?></p>
+                                
+                                <section class="searchNote">
+                                    <p><?php echo $noteAvg; ?></p>
+                                
+                                    <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
+                                        <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
+                                    </p>
+                                </section>
+                                
+                                
+                                <script>
+                                    let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
+                                    if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
+                                        st_<?php echo $idOffre; ?>.classList.add("searchStatutO");
+                                    } else {
+                                        st_<?php echo $idOffre; ?>.classList.add("searchStatutF");
+                                    }
+                                </script>
                             </div>
-
-                            <p class="searchResume"><?php echo $resume!=NULL?$resume:"Pas de resume saisie";?></p>
-
-                            <section class="searchNote">
-                                <p><?php echo $noteAvg; ?></p>
-    
-                                <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
-                                    <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
-                                </p>
-                            </section>
-
-
-                            <script>
-                                let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
-                                if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
-                                    st_<?php echo $idOffre; ?>.classList.add("searchStatutO");
-                                } else {
-                                    st_<?php echo $idOffre; ?>.classList.add("searchStatutF");
-                                }
-                            </script>
+                            <div class="searchAvis">
+                                <p class="avisSearch">Les avis les plus récent :</p>
+                                <p>Pas d'avis</p>
+                            </div>
                         </div>
-                        <div class="searchAvis">
-                            <p class="avisSearch">Les avis les plus récent :</p>
-                            <p>Pas d'avis</p>
-                        </div>
-                    </div>
                     </a>
                 <?php 
                 } ?>
