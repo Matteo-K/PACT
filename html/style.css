@@ -1247,6 +1247,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Effet d'ombre au focus */
 }
 
+.carteOffre p,
+.searchA p {
+  color: #000; /* Forcer le texte en noir (ou autre couleur souhaitée) */
+  text-decoration: none; /* Supprimer tout soulignement */
+}
+
+
 .search {
   margin-top: 110px;
   padding-bottom: 20px;
@@ -1374,76 +1381,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     text-decoration: none;
   }
 }
-
-/* @media (max-width: 700px){
-  .search{
-    margin-top: 220px;
-  }
-
-  .sectionFiltre{
-    display: flex;
-    justify-content: center;
-    padding-top: 30px;
-    gap: 30vh;
-  }
-
-  .searchoffre{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 50px;
-  }
-
-  .carteOffre img {
-    object-fit: cover;
-    width: 370px;
-    height: 180px;
-    border-radius: 0px 0px 20px 20px;
-  }
-
-  .carteOffre{
-    background-color: var(--secondary80);
-    border-radius: 20px;
-  }
-
-  .infoOffre{
-
-    
-    padding-left: 20px;
-    padding-right: 20px;
-    color: var(--bloc);
-  }
-
-  .titre{
-    font-size: 30px;
-    font-family: "Belanosima", sans-serif;
-
-    margin: 0;
-  }
-
-  .villesearch{
-    font-size: 20px;
-    font-family: "Belanosima", sans-serif;
-
-    margin: 0;
-  }
-
-  .noteStatut{
-    display: flex;
-    align-items: center;
-    height: 30px;
-    justify-content: space-between;
-
-  }
-
-  .noteStatut p {
-    font-family: "Belanosima", sans-serif;
-
-  }
-
-  } */
 .searchStatutO {
   background-color: #008000;
   color: white;
