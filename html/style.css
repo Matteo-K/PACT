@@ -1319,6 +1319,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .searchResume{
     display: none;
   }
+  .search{
+    margin-top: 220px;
+  }
+  .searchCategorie{
+    display: none;
+  }
+  .searchAvis{
+    display: none;
+  }
 }
 
 /* @media (max-width: 700px){
