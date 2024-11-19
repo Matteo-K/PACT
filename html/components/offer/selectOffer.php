@@ -27,15 +27,11 @@ $options = [];
 if (!empty($idOffre)) {
   $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre=?");
   $stmt->execute([$idOffre]);
-  while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    print_r($res);
-  }
   // si les options éxistent, on les ajoutent dans la base de donnée
-  if ($res !== false) {
-    foreach ($res as $elem) {
-      array_push($options,$elem["nomoption"]);
-    }
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    array_push($res, [$row["nomoption"]]);
   }
+  print_r($res);
 }
 
 ?>
