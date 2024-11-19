@@ -108,11 +108,7 @@
           msgTel.textContent =
               "Numéro de téléphone incorrecte. Exemple 07.28.39.17.28 ou +33123456789";
           res = false;
-        } else {
-          document.querySelector("#msgTel").textContent = "";
         }
-      } else {
-        document.querySelector("#msgTel").textContent = "";
       }
       return res;
     }
@@ -125,16 +121,12 @@
       let res = true;
       const urlPattern = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+)(\/[^\s]*)?$/g;
       // Vérifie si quelque chose est entré dans le champs
-      if (!(inputUrl.value.trim() == "" || web.value.trim() == "https://")) {
+      if (!(inputUrl.value.trim() == "" || inputUrl.value.trim() == "https://")) {
         if (!urlPattern.test(inputUrl.value.trim())) {
           msgUrl.textContent =
               "Site web incorrecte. Exemple https://www.creperie-le-dundee.fr";
           res = false;
-        } else {
-          document.querySelector("#msgWeb").textContent = "";
         }
-      } else {
-        document.querySelector("#msgWeb").textContent = "";
       }
       return res;
     }
