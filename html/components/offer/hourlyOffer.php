@@ -15,8 +15,6 @@
             WHERE rows > 0;");
         $stmt->execute([$idOffre, $idOffre, $idOffre, $idOffre, $idOffre]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        print_r($result["table_name"]);
-        print($result["table_name"] == "_spectacle");
         if ($result["table_name"] == "_spectacle") {
             $is_show = 1;
         } else if ($result["table_name"] === "_restauration" 
@@ -27,7 +25,6 @@
         } else {
             $is_show = -1;
         }
-        $is_show = false;
         if ($is_show == 0) {
             $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
             foreach ($jour_semaine as $value) {
