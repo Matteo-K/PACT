@@ -1249,11 +1249,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color: #FFFFFF;
   box-shadow:
   0 0 10vw 0vw #1ca4ed,
-  0 0 2vw 4vw #034d7c,
-  
-  inset 0 0 .5vw 0.2vw #1ca4ed,
-  inset 0 0 0.2vw 0.2vw #1883bc,
-  inset 0 0 .25vw 0.2vw #034d7c;
+  0 0 2vw 0.4vw #034d7c;
 }
 
 .carteOffre p {
