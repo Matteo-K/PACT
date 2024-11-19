@@ -210,17 +210,16 @@ $resume = $result["resume"] ?? "";
         }
 
         /**
-         * Vérifie si l'adresse mail est correcte
+         * Vérifie si une catégorie à été 
          * @returns {boolean} - Renvoie true si l'input est conforme. False sinon.
          */
         function checkCategorie() {
-            let res = true;
-            if (!emailPattern.test(inputEmail.value.trim())) {
+            let res = radBtnRestaurant.checked || radBtnParc.checked || radBtnActivite.checked || radBtnSpectacle.checked || radBtnVisite.checked;
+            if (res) {
                 msgCategorie.textContent = 
-                    "Email incorrecte. Exemple ewen@jain-etudiants.univ-rennes1.com";
-                res = false;
+                    "Sélectionner une catégorie";
             } else {
-
+                msgCategorie.textContent = "";
             }
             return res;
         }
