@@ -1329,7 +1329,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     display: none;
   }
   .infoOffre{
-    order: 1;
+    order: -1;
   }
   .carteOffre{
     flex-direction: column;
