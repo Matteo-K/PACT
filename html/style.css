@@ -1226,7 +1226,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-top: 110px;
   padding-bottom: 20px;
   padding-top: 20px;
-  background-image: url("/img/phare.jpg");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -1247,8 +1246,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .carteOffre {
   display: flex;
   width: 70%;
-  background-color: var(--primary90);
   border-radius: 20px;
+  border:solid 1px #034d7c;
 }
 
 .carteOffre p {
