@@ -2106,6 +2106,10 @@ button[id="boutonInscriptionPro"] {
   text-align: center;
 }
 
+input.error {
+  border: 2px solid red;
+}
+
 /*+++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
 /*+++++++++++++++++++++++++++++*/
