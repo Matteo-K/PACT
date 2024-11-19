@@ -1334,6 +1334,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .carteOffre{
     flex-direction: column;
   }
+  .searchImage{
+    order: 2;
+  }
 }
 
 /* @media (max-width: 700px){
