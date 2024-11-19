@@ -114,7 +114,7 @@
     } else {
         ?>
         <div>
-            <h2>Veuillez sélectionner Le type d'offre</h2>
+            <h3>Veuillez sélectionner Le type d'offre</h3>
             <button type="submit" onclick="submitForm(event,2)">Détails de l'offre</button>
         </div>
         <?php

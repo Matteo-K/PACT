@@ -10,6 +10,37 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $titre = $result["nom"] ?? "";
 $description = $result["description"] ?? "";
 $resume = $result["resume"] ?? "";
+
+// Récupération du type d'offre si il existe
+
+$stmt = $conn->prepare("SELECT table_name
+    FROM (
+        SELECT '_restauration' AS table_name, COUNT(*) AS rows FROM pact._restauration WHERE idoffre = ?
+        UNION ALL
+        SELECT '_spectacle', COUNT(*) FROM pact._spectacle WHERE idoffre = ?
+        UNION ALL
+        SELECT '_parcattraction', COUNT(*) FROM pact._parcattraction WHERE idoffre = ?
+        UNION ALL
+        SELECT '_visite', COUNT(*) FROM pact._visite WHERE idoffre = ?
+        UNION ALL
+        SELECT '_activite', COUNT(*) FROM pact._activite WHERE idoffre = ?
+    ) AS result
+    WHERE rows > 0;");
+$stmt->execute([$idOffre, $idOffre, $idOffre, $idOffre, $idOffre]);
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$categorie = [
+    "_restauration" => false,
+    "_spectacle" => false,
+    "_parcattraction" => false,
+    "_visite" => false,
+    "_activite" => false,
+];
+
+if ($result != false) {
+    $categorie[$result["table_name"]] = true;
+}
+
 ?>
 <form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
@@ -39,7 +70,7 @@ $resume = $result["resume"] ?? "";
 
             <div id="choixCategorie">
                 <label>Catégorie de l'offre*  <span id="msgCategorie" class="msgError"></span></label>   
-                <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required> <label for="radioRestaurant">Restaurant</label>
+                <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required selected> <label for="radioRestaurant">Restaurant</label>
                 <input type="radio" name="categorie" id="radioParc" value="parc"> <label for="radioParc">Parc d'attraction</label>
                 <input type="radio" name="categorie" id="radioActivite" value="activite"> <label for="radioActivite" >Activite</label>
                 <input type="radio" name="categorie" id="radioSpectacle" value="spectacle"> <label for="radioSpectacle">Spectacle</label>
