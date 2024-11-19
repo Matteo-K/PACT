@@ -198,6 +198,8 @@ $resume = $result["resume"] ?? "";
         const radBtnSpectacle = document.querySelector("#radioSpectacle");
         const radBtnVisite = document.querySelector("#radioVisite");
 
+        const divImg = document.querySelector("#afficheImages");
+
         const msgCategorie = document.querySelector("#msgCategorie");
 
         /**
@@ -206,6 +208,7 @@ $resume = $result["resume"] ?? "";
          */
         function checkOfferValidity(event) {
             rabBtnCategorie = checkCategorie();
+            checkImg();
             return rabBtnCategorie;
         }
 
@@ -222,6 +225,10 @@ $resume = $result["resume"] ?? "";
                 msgCategorie.textContent = "";
             }
             return !res;
+        }
+
+        function checkImg() {
+            console.log(divImg);
         }
     </script>
 
