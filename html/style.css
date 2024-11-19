@@ -1282,12 +1282,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color: #ffffff;
 }
 
-.carteOffre p {
-  margin: 2px;
-  text-decoration: none;
-  color: #000;
-}
-
 .carteOffre a {
   height: fit-content;
 }
