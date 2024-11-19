@@ -1850,7 +1850,11 @@ tbody td:last-child {
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
-
+#restaurant{
+  background-color: lime;
+  display: flex;
+  flex-direction: column;
+}
 
 #show{
   align-items: center;
@@ -1868,7 +1872,7 @@ tbody td:last-child {
   
   display: flex;
   flex-direction: row;
-  background-color: pink;
+  
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
