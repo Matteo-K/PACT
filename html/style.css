@@ -1315,6 +1315,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 12px;
 }
 
+@media (max-width: 700px) {
+  .searchResume{
+    display: none;
+  }
+}
+
 /* @media (max-width: 700px){
   .search{
     margin-top: 220px;
