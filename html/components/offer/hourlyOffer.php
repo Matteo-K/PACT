@@ -16,6 +16,7 @@
         $stmt->execute([$idOffre, $idOffre, $idOffre, $idOffre, $idOffre]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         print_r($result["table_name"]);
+        print($result["table_name"] == "_spectacle");
         if ($result["table_name"] == "_spectacle") {
             $is_show = 1;
         } else if ($result["table_name"] === "_restauration" 
