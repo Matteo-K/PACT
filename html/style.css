@@ -274,7 +274,6 @@ header > div > a > div {
 }
 
 @media (max-width: 756px) {
-
   #copyrightFooter {
     display: none;
   }
@@ -324,8 +323,7 @@ header > div > a > div {
   }
 }
 
-
-#btnConn{
+#btnConn {
   display: flex;
   color: #000;
   font-size: 25px;
@@ -346,7 +344,11 @@ header > div > a > div {
   right: 0;
   height: 100%; /* Prend toute la hauteur de la page */
   width: 300px; /* Largeur du menu */
-  background: linear-gradient(to bottom, #034d7c, #1ca4ed); /* Dégradé du haut vers le bas */
+  background: linear-gradient(
+    to bottom,
+    #034d7c,
+    #1ca4ed
+  ); /* Dégradé du haut vers le bas */
   display: flex;
   flex-direction: column; /* Aligne les éléments verticalement */
   transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease; /* Transition pour le mouvement */
@@ -380,8 +382,8 @@ header > div > a > div {
 /* Styles pour l'image de profil dans le menu */
 #imagProfil img {
   margin: 0;
-  width: 10em; 
-  border-radius: 50%; 
+  width: 10em;
+  border-radius: 50%;
 }
 
 /* Styles pour le pseudo ou le nom */
@@ -418,7 +420,7 @@ header > div > a > div {
 #profileMenu ul li {
   margin: 20px 0; /* Espacement entre les éléments */
   font-size: 30px;
-  font-family: "Belanosima", sans-serif;;
+  font-family: "Belanosima", sans-serif;
   font-weight: bold;
 }
 
@@ -435,11 +437,11 @@ header > div > a > div {
   background-color: rgba(255, 255, 255, 0.2); /* Couleur de fond au survol */
 }
 
-header ul + div{
+header ul + div {
   width: 100%;
   flex-direction: column;
   margin-bottom: 3em; /* Espacement en bas */
-  gap:10px;
+  gap: 10px;
 }
 
 .buttonMenu {
@@ -455,11 +457,10 @@ header ul + div{
   font-size: 20 px;
 }
 
-
-#changeAccount{
+#changeAccount {
   background-color: #034d7ccc;
 }
-#changeAccount:hover{
+#changeAccount:hover {
   background-color: #034d7c;
 }
 
@@ -468,8 +469,8 @@ header ul + div{
   margin-bottom: 2em; /* Espacement en bas */
 }
 
-#logoutButton:hover{
-  background-color: #ff0000; 
+#logoutButton:hover {
+  background-color: #ff0000;
 }
 
 /* ### Offer ### */
@@ -995,7 +996,9 @@ header ul + div{
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .buttonDetailOffer,
-.tag, .ouvert, .ferme{
+.tag,
+.ouvert,
+.ferme {
   display: inline-block;
   font-size: 22px;
   padding: 5px 30px;
@@ -1020,7 +1023,8 @@ header ul + div{
 
 #artDetailOffer > div > label:not(.buttonDetailOffer),
 #choixCategorie label:first-of-type,
-#choixImage label,#choixImage2 label {
+#choixImage label,
+#choixImage2 label {
   display: inline-block;
   font-size: 25px;
   width: 90%;
@@ -1039,7 +1043,8 @@ header ul + div{
   padding: 5px;
 }
 
-#artDetailOffer textarea,#choixPhoto2 textarea {
+#artDetailOffer textarea,
+#choixPhoto2 textarea {
   width: 90%;
   max-width: 90%;
   min-width: 90%;
@@ -1063,21 +1068,24 @@ header ul + div{
   max-height: 400px;
 }
 
-#choixImage,#choixImage2 {
+#choixImage,
+#choixImage2 {
   display: inline-block;
   width: 70%;
   margin-right: 14px;
 }
 
-#ajoutPhoto, #ajoutPhoto2 {
+#ajoutPhoto,
+#ajoutPhoto2 {
   background-color: var(--primary);
 }
 
-#detailsOffer input[type="file"] ,#ajoutPhoto2 input[type="file"]{
+#detailsOffer input[type="file"],
+#ajoutPhoto2 input[type="file"] {
   display: none;
 }
 
-#detailsOffer figure {  
+#detailsOffer figure {
   max-width: 120px;
   max-height: 90px;
   margin: 5px;
@@ -1096,11 +1104,11 @@ header ul + div{
   /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
 }
 
-#tagsSelect{
+#tagsSelect {
   width: 70%;
   height: 50px;
   border: 2px solid var(--bloc);
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   font-size: 20px;
 }
 
@@ -1120,7 +1128,8 @@ header ul + div{
 }
 
 #artDetailOffer section,
-#afficheImages,#afficheImages2 {
+#afficheImages,
+#afficheImages2 {
   width: calc(70% + 141.625px);
   /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
   min-height: 100px;
@@ -1202,7 +1211,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
-#checkAddressBtn,.modifierBut {
+#checkAddressBtn,
+.modifierBut {
   background-color: #1ca4ed;
   color: black;
   border: solid #1ca4ed 1px;
@@ -1218,7 +1228,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transition: background-color 0.3s ease;
 }
 
-#checkAddressBtn:hover,.modifierBut:hover {
+#checkAddressBtn:hover,
+.modifierBut:hover {
   background-color: white;
   border: solid #1ca4ed 1px;
   color: #1ca4ed;
@@ -1228,12 +1239,22 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color: #034d7c;
 }
 
-#checkAddressBtn:focus,.modifierBut:focus {
+#checkAddressBtn:focus,
+.modifierBut:focus {
   outline: none;
   /* Supprimer le contour bleu au focus */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   /* Effet d'ombre au focus */
 }
+
+.searchTitre,
+.villesearch,
+.avgNote,
+.searchResume {
+  color: #000;
+  text-decoration: none;
+}
+
 
 .search {
   margin-top: 110px;
@@ -1258,14 +1279,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: flex;
   border-radius: 20px;
   /* border:solid 2px #034d7c; */
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .carteOffre p {
   margin: 2px;
 }
 
-.carteOffre a{
+.carteOffre a {
   height: fit-content;
 }
 
@@ -1326,109 +1347,40 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 12px;
 }
 
-.searchA{
+.searchA {
   width: 70%;
   text-decoration: none;
+  color: #000;
 }
 
 @media (max-width: 700px) {
-  .searchResume{
+  .searchResume {
     display: none;
   }
-  .search{
+  .search {
     margin-top: 220px;
   }
-  .searchCategorie{
+  .searchCategorie {
     display: none;
   }
-  .searchAvis{
+  .searchAvis {
     display: none;
   }
-  .carteOffre{
+  .carteOffre {
     flex-direction: column;
     width: fit-content;
   }
-  .infoOffre{
+  .infoOffre {
     width: auto;
     padding: 5px;
   }
-  .searchImage{
+  .searchImage {
     margin: 0;
   }
-  .searchA{
+  .searchA {
     text-decoration: none;
   }
 }
-
-/* @media (max-width: 700px){
-  .search{
-    margin-top: 220px;
-  }
-
-  .sectionFiltre{
-    display: flex;
-    justify-content: center;
-    padding-top: 30px;
-    gap: 30vh;
-  }
-
-  .searchoffre{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 50px;
-  }
-
-  .carteOffre img {
-    object-fit: cover;
-    width: 370px;
-    height: 180px;
-    border-radius: 0px 0px 20px 20px;
-  }
-
-  .carteOffre{
-    background-color: var(--secondary80);
-    border-radius: 20px;
-  }
-
-  .infoOffre{
-
-    
-    padding-left: 20px;
-    padding-right: 20px;
-    color: var(--bloc);
-  }
-
-  .titre{
-    font-size: 30px;
-    font-family: "Belanosima", sans-serif;
-
-    margin: 0;
-  }
-
-  .villesearch{
-    font-size: 20px;
-    font-family: "Belanosima", sans-serif;
-
-    margin: 0;
-  }
-
-  .noteStatut{
-    display: flex;
-    align-items: center;
-    height: 30px;
-    justify-content: space-between;
-
-  }
-
-  .noteStatut p {
-    font-family: "Belanosima", sans-serif;
-
-  }
-
-  } */
 .searchStatutO {
   background-color: #008000;
   color: white;
@@ -1463,21 +1415,22 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
 }
 
-.buttonDetails{
+.buttonDetails {
   display: flex;
   margin-top: calc(var(--header-size) + 0.6em);
   gap: 10px; /* Espacement entre les boutons */
 }
 
 #titleOffer {
-  
   font-size: 5em;
   margin-top: 0;
   color: var(--bloc);
   margin-bottom: 0.5em;
 }
 
-.mainOffer .tag, .ouvert, .ferme{
+.mainOffer .tag,
+.ouvert,
+.ferme {
   background-color: var(--accent);
   box-shadow: none;
   margin-bottom: 2em;
@@ -1541,7 +1494,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background: #fff;
 }
 
-.swiper-slide img{
+.swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
@@ -1560,7 +1513,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Thumbnail Slider */
-.myThumbSlider , .myThumbSliderPreview {
+.myThumbSlider,
+.myThumbSliderPreview {
   margin-top: 20px;
   height: 100px;
   width: 90%;
@@ -1615,65 +1569,68 @@ tbody td:last-child {
   text-align: right; /* Alignement de l'horaire à droite */
 }
 
-.ouvert{
+.ouvert {
   background-color: #008000;
   color: var(--background);
 }
 
-.ferme{
+.ferme {
   background-color: #b01111;
   color: var(--background);
 }
 
 .myThumbSlider + article,
-#infoPro, #infoPro > div, #afficheLoc, #afficheLoc > .carte + div{
+#infoPro,
+#infoPro > div,
+#afficheLoc,
+#afficheLoc > .carte + div {
   display: flex;
   align-items: center;
   gap: 10px;
-
 }
-#infoComp h2, #descriptionOffre > section > h3{
+#infoComp h2,
+#descriptionOffre > section > h3 {
   color: var(--bloc);
 }
 
-
-#descriptionOffre > section{
-  margin-left: 3em ;
+#descriptionOffre > section {
+  margin-left: 3em;
   background-color: var(--accent60);
   border-radius: 0.5em;
   padding: 10px;
-  margin-top:1em;
+  margin-top: 1em;
 }
-#descriptionOffre > section> p{
+#descriptionOffre > section > p {
   text-indent: 20px;
 }
 
-#infoPro{
+#infoPro {
   gap: 10vh;
   margin-bottom: 1em;
 }
 
-#infoPro a{
-  color:var(--text-dark);
+#infoPro a {
+  color: var(--text-dark);
   text-decoration: none;
 }
 
-#infoPro img, #afficheLoc img{
+#infoPro img,
+#afficheLoc img {
   width: 25px;
   height: 25px;
 }
-#afficheLoc, #descriptionOffre{
+#afficheLoc,
+#descriptionOffre {
   display: flex;
   flex-direction: row;
   gap: 20px; /* Space between the map and contact info */
   align-items: center; /* Aligns the items to the top */
   width: 60%;
-
 }
 
 #carte {
-  flex:2;
-  width:40%;
+  flex: 2;
+  width: 40%;
   height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -1685,7 +1642,6 @@ tbody td:last-child {
   display: flex;
   flex-direction: column;
   gap: 15px; /* Space between each contact item */
- 
 }
 
 .contact-info div {
@@ -1699,15 +1655,10 @@ tbody td:last-child {
   width: 24px;
   height: 24px;
 }
-.contact-info a{
-  color:var(--text-dark);
+.contact-info a {
+  color: var(--text-dark);
   text-decoration: none;
 }
-
-
-
-
-
 
 /* ========================= */
 /* Styles pour previewOffer.php */
@@ -1769,7 +1720,8 @@ tbody td:last-child {
   width: 25px;
 }
 
-#iconeLienPreview p, #iconeLienPreview a {
+#iconeLienPreview p,
+#iconeLienPreview a {
   font-size: 1.2em;
   color: var(--text-dark);
 }
@@ -1890,35 +1842,25 @@ tbody td:last-child {
   object-fit: cover;
 }
 
-
-
-
-
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
-#restaurant{
+#restaurant {
   background-color: lime;
-  
 }
 
-#show{
+#show {
   align-items: center;
   /* background-color: pink; */
 }
-#show >article{
-
+#show > article {
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-  
-  
 }
-#show >article>div>div{
-  
+#show > article > div > div {
   display: flex;
   flex-direction: row;
-  
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
@@ -2158,7 +2100,6 @@ button[id="boutonInscriptionPro"] {
   text-align: center;
 }
 
-
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte membre, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
@@ -2255,7 +2196,8 @@ body[id="body_creation_compte_membre"] ::placeholder {
   text-align: left;
 }
 
-.creation-compte div.ligne1 > label, div.ligne1_1 > label,
+.creation-compte div.ligne1 > label,
+div.ligne1_1 > label,
 div.ligne6 > label {
   display: inline-block;
   width: 408px;

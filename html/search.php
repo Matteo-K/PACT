@@ -327,7 +327,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                     <p class="searchResume"><?php echo $resume;?></p>
                                     
                                     <section class="searchNote">
-                                        <p><?php echo $noteAvg; ?></p>
+                                        <p class="avgNote"><?php echo $noteAvg; ?></p>
                                     
                                         <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
                                             <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
