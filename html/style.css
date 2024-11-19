@@ -1865,11 +1865,9 @@ tbody td:last-child {
   
   
 }
-#show >article>div>div{
-  
-  display: flex;
-  flex-direction: row;
-  
+#show div>div >label+div>input:number+label{
+  background-color: pink;
+
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
