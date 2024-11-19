@@ -1268,7 +1268,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .infoOffre {
-  flex-grow: 2;
+  width: 40%;
 }
 
 .searchTitre {
@@ -1288,12 +1288,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 0.7em;
   margin-right: 5px;
   display: inline-block;
-}
-
-.searchTitreDiv{
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
 }
 
 .searchNote {
