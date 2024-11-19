@@ -15,10 +15,13 @@
             WHERE rows > 0;");
         $stmt->execute([$idOffre, $idOffre, $idOffre, $idOffre, $idOffre]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        print_r($result);
-        if ($result == "_spectacle") {
+        print_r($result["table_name"]);
+        if ($result["table_name"] == "_spectacle") {
             $is_show = 1;
-        } else if ($result === "_restauration" || $result === "_parcattraction" || $result === "_visite" || $result === "_activite") {
+        } else if ($result["table_name"] === "_restauration" 
+        || $result["table_name"] === "_parcattraction" 
+        || $result["table_name"] === "_visite" 
+        || $result["table_name"] === "_activite") {
             $is_show = 0;
         } else {
             $is_show = -1;
