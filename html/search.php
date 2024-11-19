@@ -315,16 +315,12 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                             <div class="infoOffre">
+
                                 <p class="searchTitre"><?php echo $nomOffre; ?></p>
-    
-                                <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText; ?></p></strong>
-    
-                                <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
-    
-                                <strong><?php echo $nomTag; ?></strong>
                                 
+                                <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText . " ⋅ " .$nomTag; ?></p></strong>
+
                                 <div class="searchCategorie">
-                                    <span class="searchTag"><?php echo $nomTag; ?></span>
                                     <?php
                                     foreach ($tag as $value) {
                                         ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
