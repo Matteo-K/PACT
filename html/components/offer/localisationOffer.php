@@ -102,7 +102,7 @@
         const codePostalPattern = /^\d{5}$/g;
         if (!codePostalPattern.test(inputCodePostal.value.trim())) {
           msgCodePostal.textContent = 
-              "Code Postal incorrecte. Exemple 22300";
+              "Incorrecte 22300";
           res = false;
         }
         return res;
