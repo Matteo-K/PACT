@@ -1,9 +1,9 @@
 <?php
 require_once "config.php";
+require_once __DIR__ . "/../.SECURE/cleAPI.php";
 $idOffre = $_GET["idoffre"] ?? null;
 $ouvert = $_GET["ouvert"] ?? null;
 
-$googleMapApi = __DIR__ . "/../.SECURE/google-maps-loader.js";
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
     header("location: index.php");
@@ -476,7 +476,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
 
         <!-- Inclure l'API Google Maps avec votre clé API -->
-        <script src="<?php echo $googleMapApi?>"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $cleAPI?>&callback=initMap" async defer></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
