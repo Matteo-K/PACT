@@ -1,4 +1,5 @@
 <?php
+print(__DIR__);
 require_once __DIR__ . "/../html/vendor";
     // Définir le chemin du fichier .env
 $envPath = __DIR__ ;

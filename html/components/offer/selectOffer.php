@@ -31,7 +31,6 @@ if (!empty($idOffre)) {
   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $options[] = $row["nomoption"];
   }
-  print_r($options);
 }
 
 ?>

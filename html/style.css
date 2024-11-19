@@ -274,6 +274,11 @@ header > div > a > div {
 }
 
 @media (max-width: 756px) {
+
+  #copyrightFooter {
+    display: none;
+  }
+
   header {
     height: 200px;
     flex-direction: column;
@@ -1334,11 +1339,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .searchAvis{
     display: none;
   }
-  .infoOffre{
-    order: -1;
-  }
   .carteOffre{
     flex-direction: column;
+    width: fit-content;
+  }
+  .infoOffre{
+    width: auto;
   }
 }
 
@@ -2617,8 +2623,6 @@ p[id="legendeBoutonLienPro"] {
   }
 
   .connexion-compte input {
-    min-width: 200px;
-    max-width: 280px;
     min-width: 200px;
     max-width: 280px;
   }

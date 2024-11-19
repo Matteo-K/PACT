@@ -1,5 +1,5 @@
  <?php
- require_once __DIR__ . "/../.SECURE/cleAPI.php";
+ 
  // Requête de récupération des données avec l'id de l'offre
   $stmt = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre = ?");
   $stmt->execute([$idOffre]);
