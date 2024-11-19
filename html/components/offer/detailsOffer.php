@@ -46,19 +46,17 @@ $resume = $result["resume"] ?? "";
                 <input type="radio" name="categorie" id="radioVisite" value="visite"> <label for="radioVisite">Visite</label>
             </div>
 
-            <label for="inputTag">Tags supplémentaires </label>
-            <select name="tags" id="tags" multiple>
-                <!-- Tags généraux -->
+            <label for="tags">Tags supplémentaires </label>
+            <select name="tags" id="tags">
+
                 <optgroup label="Général">
                     <option value="local">Local</option>
                     <option value="international">International</option>
                     <option value="insolite">Insolite</option>
                     <option value="populaire">Populaire</option>
-                    <option value="exclusif">Exclusif</option>
                     <option value="authentique">Authentique</option>
                 </optgroup>
 
-                <!-- Ambiance -->
                 <optgroup label="Ambiance">
                     <option value="romantique">Romantique</option>
                     <option value="festif">Festif</option>
@@ -67,9 +65,9 @@ $resume = $result["resume"] ?? "";
                     <option value="traditionnel">Traditionnel</option>
                     <option value="contemporain">Contemporain</option>
                     <option value="convivial">Convivial</option>
+                    <option value="convivial">Chalereux</option>
                 </optgroup>
 
-                <!-- Type de lieu -->
                 <optgroup label="Lieu">
                     <option value="en-exterieur">En extérieur</option>
                     <option value="en-interieur">En intérieur</option>
@@ -80,7 +78,6 @@ $resume = $result["resume"] ?? "";
                     <option value="patrimonial">Patrimonial</option>
                 </optgroup>
 
-                <!-- Thématique ou époque -->
                 <optgroup label="Thématique">
                     <option value="historique">Historique</option>
                     <option value="culturel">Culturel</option>
@@ -91,7 +88,6 @@ $resume = $result["resume"] ?? "";
                     <option value="feerique">Féérique</option>
                 </optgroup>
 
-                <!-- Temps et horaires -->
                 <optgroup label="Temps et horaires">
                     <option value="nocturne">Nocturne</option>
                     <option value="diurne">Diurne</option>
@@ -103,7 +99,6 @@ $resume = $result["resume"] ?? "";
                     <option value="saisonnier">Saisonnier</option>
                 </optgroup>
 
-                <!-- Public -->
                 <optgroup label="Public">
                     <option value="couple">Couple</option>
                     <option value="enfants">Enfants</option>
@@ -115,7 +110,6 @@ $resume = $result["resume"] ?? "";
                     <option value="pmr">Accessible PMR</option>
                 </optgroup>
 
-                <!-- Restauration -->
                 <optgroup label="Restauration">
                     <option value="cuisine-locale">Cuisine locale</option>
                     <option value="cuisine-gastronomique">Cuisine gastronomique</option>
@@ -127,7 +121,6 @@ $resume = $result["resume"] ?? "";
                     <option value="a-theme">À thème</option>
                 </optgroup>
 
-                <!-- Spectacles -->
                 <optgroup label="Spectacles">
                     <option value="theatre">Théâtre</option>
                     <option value="musique-live">Musique live</option>
@@ -138,7 +131,6 @@ $resume = $result["resume"] ?? "";
                     <option value="stand-up">Stand-up</option>
                 </optgroup>
 
-                <!-- Activités -->
                 <optgroup label="Activités">
                     <option value="sport-nautique">Sport nautique</option>
                     <option value="randonnée">Randonnée</option>
@@ -149,7 +141,6 @@ $resume = $result["resume"] ?? "";
                     <option value="decouverte-sportive">Découverte sportive</option>
                 </optgroup>
 
-                <!-- Parcs d'attraction -->
                 <optgroup label="Parcs d'attraction">
                     <option value="sensations-fortes">Sensations fortes</option>
                     <option value="familial">Familial</option>
@@ -160,12 +151,11 @@ $resume = $result["resume"] ?? "";
                     <option value="interactif">Interactif</option>
                 </optgroup>
 
-                <!-- Visites -->
                 <optgroup label="Visites">
                     <option value="guidee">Guidée</option>
                     <option value="autonome">Autonome</option>
                     <option value="musee">Musée</option>
-                    <option value="lieu-insolite">Lieu insolite</option>
+                    <option value="original">Original</option>
                     <option value="monument">Monument</option>
                     <option value="panoramique">Panoramique</option>
                     <option value="educative">Éducative</option>
@@ -181,8 +171,7 @@ $resume = $result["resume"] ?? "";
             </section>
 
             <p>
-                Vous pouvez entrer jusqu'à 6 tags <br>
-                Cliquez sur un tag pour le supprimer
+                Vous pouvez entrer jusqu'à 6 tags
             </p>
 
 
