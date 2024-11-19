@@ -203,6 +203,12 @@ $resume = $result["resume"] ?? "";
         const msgCategorie = document.querySelector("#msgCategorie");
         const msgImage = document.querySelector("#msgImage");
 
+        radBtnRestaurant.addEventListener("click", removeMsgCategorie);
+        radBtnParc.addEventListener("click", removeMsgCategorie);
+        radBtnActivite.addEventListener("click", removeMsgCategorie);
+        radBtnSpectacle.addEventListener("click", removeMsgCategorie);
+        radBtnVisite.addEventListener("click", removeMsgCategorie);
+
         /**
          * Vérifie si les input sont conforme pour être enregistrer
          * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
@@ -226,6 +232,10 @@ $resume = $result["resume"] ?? "";
                 msgCategorie.textContent = "";
             }
             return !res;
+        }
+
+        function removeMsgCategorie() {
+            msgCategorie.textContent = "";
         }
 
         function checkImg() {
