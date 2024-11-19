@@ -47,7 +47,7 @@ $resume = $result["resume"] ?? "";
             </div>
 
             <label for="tagsSelect">Tags supplémentaires </label>
-            <select name="tagsSelect" id="tagsSelect">
+            <!--<select name="tagsSelect" id="tagsSelect">
 
                 <optgroup label="Général">
                     <option value="local">Local</option>
@@ -160,11 +160,11 @@ $resume = $result["resume"] ?? "";
                     <option value="panoramique">Panoramique</option>
                     <option value="educative">Éducative</option>
                 </optgroup>
-            </select>
+            </select>-->
 
             
-            <!-- <input type="text" id="inputTag" name="inputTag" placeholder="Entrez un tag décrivant votre activité / établissement">
-            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
+            <input type="text" id="inputTag" name="inputTag" placeholder="Entrez un tag décrivant votre activité / établissement">
+            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button>
 
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->
