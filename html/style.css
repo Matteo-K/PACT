@@ -1332,6 +1332,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     flex-direction: column;
     width: fit-content;
   }
+  .infoOffre{
+    width: auto;
+  }
 }
 
 /* @media (max-width: 700px){
