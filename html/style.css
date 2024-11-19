@@ -2273,7 +2273,7 @@ div.ligne3 > label {
 
 .creation-compte input {
   font-size: 20px;
-  border: 0;
+  /* border: 0; */
 }
 
 input[id="nomMembre"],

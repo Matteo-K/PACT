@@ -56,7 +56,9 @@
                     $errors[] = "Le numéro de SIREN existe déjà.";
                 }
             }
-        } catch (Exception $e) {
+        } 
+        
+        catch (Exception $e) {
             // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
         }
 
