@@ -70,11 +70,16 @@ if ($result != false) {
 
             <div id="choixCategorie">
                 <label>Catégorie de l'offre*  <span id="msgCategorie" class="msgError"></span></label>   
-                <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required selected> <label for="radioRestaurant">Restaurant</label>
-                <input type="radio" name="categorie" id="radioParc" value="parc"> <label for="radioParc">Parc d'attraction</label>
-                <input type="radio" name="categorie" id="radioActivite" value="activite"> <label for="radioActivite" >Activite</label>
-                <input type="radio" name="categorie" id="radioSpectacle" value="spectacle"> <label for="radioSpectacle">Spectacle</label>
-                <input type="radio" name="categorie" id="radioVisite" value="visite"> <label for="radioVisite">Visite</label>
+                <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required <?php echo $categorie["_restauration"] ? "checked" : "" ?>> 
+                <label for="radioRestaurant">Restaurant</label>
+                <input type="radio" name="categorie" id="radioParc" value="parc" <?php echo $categorie["_parcattraction"] ? "checked" : "" ?>> 
+                <label for="radioParc">Parc d'attraction</label>
+                <input type="radio" name="categorie" id="radioActivite" value="activite" <?php echo $categorie["_activite"] ? "checked" : "" ?>> 
+                <label for="radioActivite" >Activite</label>
+                <input type="radio" name="categorie" id="radioSpectacle" value="spectacle" <?php echo $categorie["_spectacle"] ? "checked" : "" ?>> 
+                <label for="radioSpectacle">Spectacle</label>
+                <input type="radio" name="categorie" id="radioVisite" value="visite" <?php echo $categorie["_visite"] ? "checked" : "" ?>>
+                <label for="radioVisite">Visite</label>
             </div>
 
             <label for="tagsSelect">Tags supplémentaires </label>
