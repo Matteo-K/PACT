@@ -1133,27 +1133,6 @@ header ul + div{
   flex-wrap: wrap;
 }
 
-
-
-/* Style pour la liste de suggestions */
-.autocomplete-list {
-  border: 1px solid #ddd;
-  max-height: 150px;
-  overflow-y: auto;
-  background-color: #fff;
-  position: absolute;
-  z-index: 1000;
-  width: 100%;
-}
-.autocomplete-item {
-  padding: 8px;
-  cursor: pointer;
-}
-.autocomplete-item:hover {
-  background-color: #f0f0f0;
-}
-
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -1277,6 +1256,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .carteOffre {
   display: flex;
+  border-radius: 20px;
   /* border:solid 2px #034d7c; */
   background-color: #FFFFFF;
 }
@@ -1348,7 +1328,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .searchA{
   width: 70%;
-  border-radius: 20px;
 }
 
 @media (max-width: 700px) {
@@ -1371,6 +1350,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .infoOffre{
     width: auto;
     padding: 5px;
+  }
+  .searchImage{
+    margin: 0;
   }
 }
 

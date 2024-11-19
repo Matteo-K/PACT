@@ -1,6 +1,5 @@
 <?php
 require_once "config.php";
-require_once __DIR__ . "/../.SECURE/cleAPI.php";
 $idOffre = $_GET["idoffre"] ?? null;
 $ouvert = $_GET["ouvert"] ?? null;
 
@@ -476,7 +475,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
 
         <!-- Inclure l'API Google Maps avec votre clé API -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $cleAPI?>&callback=initMap" async defer></script>
+        <script src="serve-google-maps-script.php"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
