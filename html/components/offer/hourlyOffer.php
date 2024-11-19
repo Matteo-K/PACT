@@ -15,15 +15,15 @@
             WHERE rows > 0;");
         $stmt->execute([$idOffre, $idOffre, $idOffre, $idOffre, $idOffre]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result["table_name"] == "_spectacle") {
+        if ($result == false) {
+            $is_show = -1;
+        } else if ($result["table_name"] == "_spectacle") {
             $is_show = 1;
         } else if ($result["table_name"] === "_restauration" 
         || $result["table_name"] === "_parcattraction" 
         || $result["table_name"] === "_visite" 
         || $result["table_name"] === "_activite") {
             $is_show = 0;
-        } else {
-            $is_show = -1;
         }
         if ($is_show == 0) {
             $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
