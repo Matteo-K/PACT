@@ -1266,6 +1266,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin: 2px;
 }
 
+.carteOffre a{
+  height: fit-content;
+}
+
 .searchImage {
   object-fit: cover;
   width: 290px;
@@ -1347,6 +1351,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
   .infoOffre{
     width: auto;
+    padding: 5px;
   }
 }
 
