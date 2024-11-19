@@ -1129,7 +1129,7 @@ GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
 .sectionLoca {
-  width: 1400px;
+  width: 1000px;
   font-size: 25px;
   display: flex;
   flex-direction: column;
@@ -1238,7 +1238,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
   /* justify-content: center; */
   padding-top: 30px;
-  gap: 50px;
+  gap: 20px;
 }
 
 .carteOffre {
@@ -1268,7 +1268,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .infoOffre {
+  display: flex;
+  flex-direction: column;
   width: 40%;
+  justify-content: space-around;
 }
 
 .searchTitre {
