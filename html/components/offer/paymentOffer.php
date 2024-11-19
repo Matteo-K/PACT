@@ -9,7 +9,7 @@
               NATURAL JOIN pact._abonnement 
               WHERE idoffre = ?), 0) AS total;"
   );
-  $stmt->execute([$idOffre]);
+  $stmt->execute([$idOffre, $idOffre]);
   // si les options éxistent, on les ajoutent dans la base de donnée
   $montant = 0;
   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
