@@ -1230,8 +1230,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: var(--primary30);
-  backdrop-filter: var(--primary30);
 }
 
 .searchoffre {
