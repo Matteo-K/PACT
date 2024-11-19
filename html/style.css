@@ -1869,10 +1869,7 @@ tbody td:last-child {
   margin: 5px;
   
 }
-#show >article>div>div{
-  display: flex;
-  flex-direction: row;
-}
+
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
