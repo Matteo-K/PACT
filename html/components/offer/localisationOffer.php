@@ -14,6 +14,7 @@
     $ville = "";
   }
  ?>
+  <!-- Construction du formulaire -->
   <form id="localisationOffer" action="enregOffer.php" method="post">
     <section class="map">
       <section class="sectionParent">
@@ -21,15 +22,18 @@
           <div>
             <label for="adresse2">Adresse postale* :</label>
             <input type="text" id="adresse2" name="adresse2" placeholder="Adresse" value="<?php echo $adresse ?>" required/>
+            <span id="msgAdresse"></span>
           </div>
           <section>
             <div class="codeP">
               <label for="codepostal">Code postal* :</label>
               <input type="text" id="codepostal" name="codepostal" placeholder="Code Postal" value="<?php echo $codePostal ?>" required/>
+              <span id="msgCodePostal"></span>
             </div>
             <div class="villeL">
               <label for="ville2">Ville* :</label>
               <input type="text" id="ville2" name="ville2" placeholder="Ville" value="<?php echo $ville ?>" required/>
+              <span id="msgVille"></span>
             </div>
           </section>
         </section>
@@ -41,6 +45,81 @@
     </section>
       
     <script>
+      // Vérificationdes champs conforme
+      const inputAdresse = document.querySelector("#adresse2");
+      const inputCodePostal = document.querySelector("#codepostal");
+      const inputVille = document.querySelector("#ville2");
+
+      const msgAdresse = document.querySelector("#msgAdresse");
+      const msgCodePostal = document.querySelector("#msgCodePostal");
+      const msgVille = document.querySelector("#msgVille");
+
+      // Vérificationdes champs conforme
+      inputAdresse.addEventListener("focus", () => {
+        msgAdresse.textContent = "";
+      });
+      inputCodePostal.addEventListener("focus", () => {
+        msgCodePostal.textContent = "";
+      });
+      inputVille.addEventListener("focus", () => {
+        msgVille.textContent = "";
+      });
+      inputAdresse.addEventListener("blur", checkEmail);
+      inputCodePostal.addEventListener("blur", checkPhoneNumber);
+      inputVille.addEventListener("blur", checkUrlWeb);
+
+      /**
+       * Vérifie si les input sont conforme pour être enregistrer
+       * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
+       */
+      function checkOfferValidity(event) {
+        // test adresse
+        let adresse = checkAdresse();
+        // test code postal
+        let code_postal = checkCodePostal();
+        // test ville
+        let ville = checkVille();
+        return adresse && phone && url;
+      }
+
+      /**
+       * Vérifie si l'adresse mail est correcte
+       * @returns {boolean} - Renvoie true si l'input est conforme. False sinon.
+       */
+      function checkAdresse() {
+        let res = true;
+        const adressePattern = /^\d+\s[A-Z][a-z]+(?:\s[A-z][a-z]+)*$/g;
+        if (!adressePattern.test(inputAdresse.value.trim())) {
+          msgAdresse.textContent = 
+              "Adresse incorrecte. Exemple 123 Rue de la Liberté";
+          res = false;
+        }
+        return res;
+      }
+
+      function checkCodePostal() {
+        let res = true;
+        const codePostalPattern = /^\d{5}$/g;
+        if (!codePostalPattern.test(inputCodePostal.value.trim())) {
+          msgCodePostal.textContent = 
+              "Code Postal incorrecte. Exemple 22300";
+          res = false;
+        }
+        return res;
+      }
+
+      function checkVille() {
+        let res = true;
+        const villePattern = /^[A-Z][a-zA-ZÀ-ÿ '-]+$/g;
+        if (!villePattern.test(inputVille.value.trim())) {
+          msgVille.textContent = 
+              "Nom de ville incorrecte. Exemple Lannion";
+          res = false;
+        }
+        return res;
+      }
+
+      // Carte dynamique avec google map
 let map;
 let geocoder;
 let marker; // Variable pour stocker le marqueur actuel

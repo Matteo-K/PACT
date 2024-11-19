@@ -15,9 +15,11 @@
     $linkWeb = $result["urlsite"] == null ? "https://" : $result["urlsite"];
   }
 ?>
+<!-- Construction du formulaire -->
 <form id="contactOffer" action="enregOffer.php" method="post">
   <label for="mail">Adresse mail de contact pour votre offre*&nbsp;:&nbsp;</label>
   <input type="email" name="mail" id="mail" required="required" placeholder="Adresse mail - (exemple@mail.com)" value="<?php echo $mail; ?>">
+  <span id="msgEmail"></span>
   <label for="phone">Numéro de fixe&nbsp;:&nbsp;</label>
   <div>
     <input type="tel" name="phone" id="phone" placeholder="Numéro fixe" 
@@ -42,34 +44,86 @@
 
   <script>
 
+    const inputEmail = document.querySelector("#mail");
+    const inputTel = document.querySelector("#phone");
+    const inputUrl = document.querySelector("#webSide");
 
-    document.querySelector("#phone").addEventListener("blur", checkOfferValidity);
-    document.querySelector("#webSide").addEventListener("blur", checkOfferValidity);
+    const msgEmail = document.querySelector("#msgEmail");
+    const msgTel = document.querySelector("#msgTel");
+    const msgUrl = document.querySelector("#msgWeb");
+
+    // Vérificationdes champs conforme
+    inputEmail.addEventListener("focus", () => {
+      msgEmail.textContent = "";
+    });
+    inputTel.addEventListener("focus", () => {
+      msgTel.textContent = "";
+    });
+    inputUrl.addEventListener("focus", () => {
+      msgUrl.textContent = "";
+    });
+    inputEmail.addEventListener("blur", checkEmail);
+    inputTel.addEventListener("blur", checkPhoneNumber);
+    inputUrl.addEventListener("blur", checkUrlWeb);
 
     /**
      * Vérifie si les input sont conforme pour être enregistrer
      * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
      */
     function checkOfferValidity(event) {
+      // test email
+      let email = checkEmail();
+      // test téléphone
+      let phone = checkPhoneNumber();
+      // test site web
+      let url = checkUrlWeb();
+      return email && phone && url;
+    }
+
+    /**
+     * Vérifie si l'adresse mail est correcte
+     * @returns {boolean} - Renvoie true si l'input est conforme. False sinon.
+     */
+    function checkEmail() {
+      let res = true;
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/g;
+      if (!emailPattern.test(inputEmail.value.trim())) {
+        msgEmail.textContent = 
+            "Email incorrecte. Exemple ";
+        res = false;
+      }
+      return res;
+    }
+
+    /**
+     * Vérifie si le numéro de téléphone est correcte
+     * @returns {boolean} - Renvoie true si l'input est conforme. False sinon.
+     */
+    function checkPhoneNumber() {
       let res = true;
       const phonePattern = /^(?:(?:\+33[0-9]{9})|(?:0[1-9][0-9]{8})|(?:[0-9]{10})|(?:[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}[\s./]?[0-9]{2}))$/g;
-      const urlPattern = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+)(\/[^\s]*)?$/g;
-
-      // test téléphone
-      let tel = document.querySelector("#phone");
-      if (tel.value.trim() != "") {
-        if (!phonePattern.test(tel.value.trim())) {
-          document.querySelector("#msgTel").textContent =
+      // Vérifie si quelque chose est entré dans le champs
+      if (inputTel.value.trim() != "") {
+        if (!phonePattern.test(inputTel.value.trim())) {
+          msgTel.textContent =
               "Numéro de téléphone incorrecte. Exemple 07.28.39.17.28 ou +33123456789";
           res = false;
         }
       }
+      return res;
+    }
 
-      // test site web
-      let web = document.querySelector("#webSide");
-      if (!(web.value.trim() == "" || web.value.trim() == "https://")) {
-        if (!urlPattern.test(web.value.trim())) {
-          document.querySelector("#msgWeb").textContent =
+    /**
+     * Vérifie si le lien web est correcte
+     * @returns {boolean} - Renvoie true si l'input est conforme. False sinon.
+     */
+    function checkUrlWeb() {
+      let res = true;
+      const urlPattern = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+)(\/[^\s]*)?$/g;
+      // Vérifie si quelque chose est entré dans le champs
+      if (!(inputUrl.value.trim() == "" || web.value.trim() == "https://")) {
+        if (!urlPattern.test(inputUrl.value.trim())) {
+          msgUrl.textContent =
               "Site web incorrecte. Exemple https://www.creperie-le-dundee.fr";
           res = false;
         }
