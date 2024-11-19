@@ -1292,6 +1292,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .searchTitreDiv{
   display: flex;
+  flex-direction: row;
+  background-color: red;
 }
 
 .searchNote {
