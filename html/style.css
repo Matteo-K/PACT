@@ -1247,8 +1247,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Effet d'ombre au focus */
 }
 
-.carteOffre p,
-.searchA p {
+.searchTitre,
+.villesearch,
+.avgNote,
+.searchResume {
   color: #000;
   text-decoration: none;
 }
