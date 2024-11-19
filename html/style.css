@@ -1855,7 +1855,7 @@ tbody td:last-child {
 
 #show{
   align-items: center;
-  background-color: red;
+  /* background-color: pink; */
 }
 #show >article{
 
@@ -1865,10 +1865,11 @@ tbody td:last-child {
   
   
 }
-#show >article>div{
-  margin: 5px;
+#show >article>div>div{
+  
   display: flex;
   flex-direction: row;
+  
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
