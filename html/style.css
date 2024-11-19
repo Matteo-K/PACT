@@ -1315,6 +1315,27 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 12px;
 }
 
+@media (max-width: 700px) {
+  .searchResume{
+    display: none;
+  }
+  .search{
+    margin-top: 220px;
+  }
+  .searchCategorie{
+    display: none;
+  }
+  .searchAvis{
+    display: none;
+  }
+  .infoOffre{
+    order: -1;
+  }
+  .carteOffre{
+    flex-direction: column;
+  }
+}
+
 /* @media (max-width: 700px){
   .search{
     margin-top: 220px;
