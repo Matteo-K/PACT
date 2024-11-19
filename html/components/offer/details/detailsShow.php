@@ -14,7 +14,7 @@ if ($categorie["_spectacle"]) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($result) {
-        $spectacle["agemin"] = $result["agemin"];
+        $spectacle["duree"] = $result["duree"];
         $spectacle["nbplace"] = $result["nbplace"];
         $spectacle["prixminimal"] = $result["prixminimal"];
     }
