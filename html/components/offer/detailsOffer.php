@@ -38,7 +38,7 @@ $resume = $result["resume"] ?? "";
             <div id="afficheImages"></div>
 
             <div id="choixCategorie">
-                <label>Catégorie de l'offre*</label>   
+                <label>Catégorie de l'offre*   <span id="msgCategorie" class="msgError"></span></label>   
                 <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required> <label for="radioRestaurant">Restaurant</label>
                 <input type="radio" name="categorie" id="radioParc" value="parc"> <label for="radioParc">Parc d'attraction</label>
                 <input type="radio" name="categorie" id="radioActivite" value="activite"> <label for="radioActivite" >Activite</label>
@@ -202,6 +202,40 @@ $resume = $result["resume"] ?? "";
     ?>
 
     </article>
+    <script>
+        const radBtnRestaurant = document.querySelector("#radioRestaurant");
+        const radBtnParc = document.querySelector("#radioParc");
+        const radBtnActivite = document.querySelector("#radioActivite");
+        const radBtnSpectacle = document.querySelector("#radioSpectacle");
+        const radBtnVisite = document.querySelector("#radioVisite");
+
+        const msgCategorie = document.querySelector("#msgCategorie");
+
+        /**
+         * Vérifie si les input sont conforme pour être enregistrer
+         * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
+         */
+        function checkOfferValidity(event) {
+            rabBtnCategorie = checkCategorie();
+            return rabBtnCategorie;
+        }
+
+        /**
+         * Vérifie si l'adresse mail est correcte
+         * @returns {boolean} - Renvoie true si l'input est conforme. False sinon.
+         */
+        function checkCategorie() {
+            let res = true;
+            if (!emailPattern.test(inputEmail.value.trim())) {
+                msgCategorie.textContent = 
+                    "Email incorrecte. Exemple ewen@jain-etudiants.univ-rennes1.com";
+                res = false;
+            } else {
+
+            }
+            return res;
+        }
+    </script>
 
 
     
