@@ -1321,7 +1321,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
   .search{
     margin-top: 220px;
-    flex-direction: column;
   }
   .searchCategorie{
     display: none;
@@ -1331,6 +1330,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
   .infoOffre{
     order: 1;
+  }
+  .carteOffre{
+    flex-direction: column;
   }
 }
 
