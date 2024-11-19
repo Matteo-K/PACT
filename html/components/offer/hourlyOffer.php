@@ -1,7 +1,31 @@
 <form id="hourlyOffer" action="enregOffer.php" method="post">
     <?php
+        $stmt = $conn->prepare("SELECT table_name
+            FROM (
+                SELECT '_restauration' AS table_name, COUNT(*) AS rows FROM pact._restauration WHERE idoffre = ?
+                UNION ALL
+                SELECT '_spectacle', COUNT(*) FROM pact._spectacle WHERE idoffre = ?
+                UNION ALL
+                SELECT '_parcattraction', COUNT(*) FROM pact._parcattraction WHERE idoffre = ?
+                UNION ALL
+                SELECT '_visite', COUNT(*) FROM pact._visite WHERE idoffre = ?
+                UNION ALL
+                SELECT '_activite', COUNT(*) FROM pact._activite WHERE idoffre = ?
+            ) AS result
+            WHERE rows > 0;");
+        $stmt->execute([$idOffre, $idOffre, $idOffre, $idOffre, $idOffre]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result === "_spectacle") {
+            print("Est un spectacle \n");
+            $is_show = 1;
+        } else if ($result === "_restauration" || $result === "_parcattraction" || $result === "_visite" || $result === "_activite") {
+            $is_show = 0;
+        } else {
+            $is_show = -1;
+        }
+        print_r($result);
         $is_show = false;
-        if (!$is_show) {
+        if ($is_show == 0) {
             $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
             foreach ($jour_semaine as $value) {
                 $stmt = $conn->prepare("SELECT heureouverture, heurefermeture FROM pact._horairemidi WHERE idoffre=? and jour=?");
@@ -65,7 +89,7 @@
     </div>
     <?php
         }
-    } else {
+    } else if ($is_show == 1) {
     ?>
         <div>
             <h4>Ajouter une date pour le spectacle&nbsp;:&nbsp;</h4>            
@@ -87,5 +111,13 @@
         </div>
         <input type="button" value="Ajouter une date" name="addRep" id="addRep" class="guideSelect" onclick="addDateRep()">
     <?php
+    } else {
+        ?>
+        <div>
+            <h2>Veuillez sélectionner Le type d'offre</h2>
+            <button type="submit" onclick="submitForm(event,2)">Détails de l'offre</button>
+        </div>
+        <?php
     }
     ?>
+    <input type="hidden" name="typeOffre" id="typeOffre" value="<?php echo $result ?>">
