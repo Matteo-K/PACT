@@ -62,7 +62,11 @@
           document.querySelector("#msgTel").textContent =
               "Numéro de téléphone incorrecte. Exemple 07.28.39.17.28 ou +33123456789";
           res = false;
+        } else {
+          document.querySelector("#msgTel").textContent = "";
         }
+      } else {
+        document.querySelector("#msgTel").textContent = "";
       }
 
       // test site web
@@ -72,7 +76,11 @@
           document.querySelector("#msgWeb").textContent =
               "Site web incorrecte. Exemple https://www.creperie-le-dundee.fr";
           res = false;
+        } else {
+          document.querySelector("#msgWeb").textContent = "";
         }
+      } else {
+        document.querySelector("#msgWeb").textContent = "";
       }
       return res;
     }
