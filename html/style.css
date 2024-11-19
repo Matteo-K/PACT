@@ -1268,7 +1268,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .infoOffre {
+  display: flex;
+  flex-direction: column;
   width: 40%;
+  justify-content: space-between;
 }
 
 .searchTitre {

@@ -318,7 +318,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
                                 <p class="searchTitre"><?php echo $nomOffre; ?></p>
                                 
-                                <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText . $nomTag; ?></p></strong>
+                                <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText . " ⋅ " .$nomTag; ?></p></strong>
 
                                 <div class="searchCategorie">
                                     <?php
