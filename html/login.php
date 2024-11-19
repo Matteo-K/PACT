@@ -123,7 +123,7 @@
         
         <div id="lienBouton">
             <div>
-                <a href="" id="boutonLienMembre">Compte membre</a>
+                <a href="accountMember.php" id="boutonLienMembre">Compte membre</a>
                 <p id="legendeBoutonLienMembre">Compte gratuit pour une utilisation classique de la plateforme</p>
             </div>
             
