@@ -64,9 +64,9 @@
       inputVille.addEventListener("focus", () => {
         msgVille.textContent = "";
       });
-      inputAdresse.addEventListener("blur", checkEmail);
-      inputCodePostal.addEventListener("blur", checkPhoneNumber);
-      inputVille.addEventListener("blur", checkUrlWeb);
+      inputAdresse.addEventListener("blur", checkAdresse);
+      inputCodePostal.addEventListener("blur", checkCodePostal);
+      inputVille.addEventListener("blur", checkVille);
 
       /**
        * Vérifie si les input sont conforme pour être enregistrer
@@ -88,7 +88,7 @@
        */
       function checkAdresse() {
         let res = true;
-        const adressePattern = /^\d+\s[A-Z][a-z]+(?:\s[A-z][a-z]+)*$/g;
+        const adressePattern = /^\d+\s[A-Za-zÀ-ÿ]+(?:\s[A-z][a-zÀ-ÿ]+)*$/g;
         if (!adressePattern.test(inputAdresse.value.trim())) {
           msgAdresse.textContent = 
               "Adresse incorrecte. Exemple 123 Rue de la Liberté";
@@ -110,7 +110,7 @@
 
       function checkVille() {
         let res = true;
-        const villePattern = /^[A-Z][a-zA-ZÀ-ÿ '-]+$/g;
+        const villePattern = /^[a-zA-ZÀ-ÿ '-]+$/g;
         if (!villePattern.test(inputVille.value.trim())) {
           msgVille.textContent = 
               "Nom de ville incorrecte. Exemple Lannion";
