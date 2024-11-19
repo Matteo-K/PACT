@@ -231,7 +231,7 @@ $resume = $result["resume"] ?? "";
             } else {
                 msgCategorie.textContent = "";
             }
-            return !res;
+            return res;
         }
 
         function removeMsgCategorie() {
@@ -246,8 +246,7 @@ $resume = $result["resume"] ?? "";
                     "Ajouter une image";
                 res = false;
             } else {
-                msgImage.textContent = 
-                    "";
+                msgImage.textContent = "";
             }
             return res;
         }
