@@ -1329,13 +1329,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     display: none;
   }
   .infoOffre{
-    order: 1;
+    order: 2;
   }
   .carteOffre{
     flex-direction: column;
   }
   .searchImage{
-    order: 2;
+    order: 1;
   }
 }
 
