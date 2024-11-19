@@ -15,7 +15,8 @@
             WHERE rows > 0;");
         $stmt->execute([$idOffre, $idOffre, $idOffre, $idOffre, $idOffre]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result === "_spectacle") {
+        print_r($result);
+        if ($result == "_spectacle") {
             $is_show = 1;
         } else if ($result === "_restauration" || $result === "_parcattraction" || $result === "_visite" || $result === "_activite") {
             $is_show = 0;
