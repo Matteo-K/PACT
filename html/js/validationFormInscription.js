@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     priveRadio.addEventListener("click", updateSirenVisibility);
 });
 
-function validationForm(event) {
+function validationFormPro(event) {
     // Empêche l'envoi du formulaire
     event.preventDefault(); 
 
@@ -64,7 +64,7 @@ function validationForm(event) {
     }
 
     // Vérification du numéro de téléphone
-    const phonePattern = /^0[1-9](?:[.\-/\s]?[0-9]{2}){4}$/;
+    const phonePattern = /^0[1-9]([.\-/]?[0-9]{2}){4}$/;
     if (!phonePattern.test(telephone)) {
         alert('Veuillez entrer un numéro de téléphone valide (sans lettres et avec des séparateurs valides tels que . , / ou -).');
         return;

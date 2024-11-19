@@ -164,10 +164,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
                             <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
 
-                            <strong><p>Catégorie :</p></strong>
+                            <strong><?php echo $nomTag; ?></strong>
 
                             <div class="searchCategorie">
-                                <span class="searchTag"><?php echo $nomTag; ?></span>
                                 <?php
                                 if ($tag!=NULL) {
                                     foreach ($tag as $value) {
@@ -310,21 +309,23 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     }
                     
                     if ($offre['statut'] == 'actif') { ?>
+                        <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                         <div class="carteOffre">
                             <a href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                                 <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
                             </a>
                             <div class="infoOffre">
-                                <p class="searchTitre"><?php echo $nomOffre; ?></p>
-    
+                                <div class="searchTitreDiv">
+                                    <p class="searchTitre"><?php echo $nomOffre; ?></p>
+                                    <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
+                                </div>
+                                
                                 <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText; ?></p></strong>
     
-                                <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
     
-                                <strong><p>Catégorie :</p></strong>
-    
+                                <strong><?php echo $nomTag; ?></strong>
+
                                 <div class="searchCategorie">
-                                    <span class="searchTag"><?php echo $nomTag; ?></span>
                                     <?php
                                     foreach ($tag as $value) {
                                         ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
@@ -357,6 +358,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 <p>Pas d'avis</p>
                             </div>
                         </div>
+                        </a>
                     <?php }
                 } ?>
             <?php } else { ?>
