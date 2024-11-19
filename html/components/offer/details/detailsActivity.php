@@ -1,4 +1,14 @@
 <!-- Activité -->
+<?php
+// Initialisation des données à vide
+
+
+// Si l'activité était déà existante, on récupère les données
+if ($categorie["_activite"]) {
+
+}
+?>
+
 <section id="activity">
     <article> <!-- Article pour le placement des elements de gauche-->
         <p>

@@ -1,5 +1,13 @@
 <!-- Visite -->
+<?php
+// Initialisation des données à vide
 
+
+// Si la visite était déà existante, on récupère les données
+if ($categorie["_visite"]) {
+
+}
+?>
 <section id="visit"> <!-- donne un id a la section pour l'identifier dans le css -->
     <article id="ArtVisit"> <!-- separation en article pour l'alignement -->
         <div>

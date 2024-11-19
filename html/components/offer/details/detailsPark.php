@@ -1,5 +1,13 @@
 <!-- Parc d'attraction -->
+<?php
+// Initialisation des données à vide
 
+
+// Si le parc d'attraction était déà existante, on récupère les données
+if ($categorie["_parcattraction"]) {
+
+}
+?>
 <section id="park">
     <article>
 

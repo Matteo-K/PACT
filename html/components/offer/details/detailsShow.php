@@ -1,5 +1,13 @@
 <!-- Spectacle -->
+<?php
+// Initialisation des données à vide
 
+
+// Si le spectacle était déà existante, on récupère les données
+if ($categorie["_spectacle"]) {
+
+}
+?>
 <section id="show"> <!-- Id pour pouvoir modifer separement dans le css -->
     <article>
 
