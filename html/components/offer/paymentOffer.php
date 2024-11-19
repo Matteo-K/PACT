@@ -1,5 +1,20 @@
 <?php
-  $montant = 99.98;
+  $stmt = $conn->prepare("SELECT 
+    COALESCE((SELECT SUM(prixoffre) 
+              FROM pact._option_offre 
+              NATURAL JOIN pact._option 
+              WHERE idoffre = ?), 0) + 
+    COALESCE((SELECT tarif 
+              FROM pact._abonner 
+              NATURAL JOIN pact._abonnement 
+              WHERE idoffre = ?), 0) AS total;"
+  );
+  $stmt->execute([$idOffre]);
+  // si les options éxistent, on les ajoutent dans la base de donnée
+  $montant = 0;
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $montant = $row["total"];
+  }
 ?>
 <form id="paymentOffer" action="enregOffer.php" method="post">
   <section>

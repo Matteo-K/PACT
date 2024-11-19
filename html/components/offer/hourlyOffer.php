@@ -16,14 +16,12 @@
         $stmt->execute([$idOffre, $idOffre, $idOffre, $idOffre, $idOffre]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result === "_spectacle") {
-            print("Est un spectacle \n");
             $is_show = 1;
         } else if ($result === "_restauration" || $result === "_parcattraction" || $result === "_visite" || $result === "_activite") {
             $is_show = 0;
         } else {
             $is_show = -1;
         }
-        print_r($result);
         $is_show = false;
         if ($is_show == 0) {
             $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
