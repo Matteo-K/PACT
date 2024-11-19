@@ -38,7 +38,7 @@ $resume = $result["resume"] ?? "";
             <div id="afficheImages"></div>
 
             <div id="choixCategorie">
-                <label>Catégorie de l'offre*</label>   
+                <label>Catégorie de l'offre*   <span id="msgCategorie" class="msgError"></span></label>   
                 <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required> <label for="radioRestaurant">Restaurant</label>
                 <input type="radio" name="categorie" id="radioParc" value="parc"> <label for="radioParc">Parc d'attraction</label>
                 <input type="radio" name="categorie" id="radioActivite" value="activite"> <label for="radioActivite" >Activite</label>
@@ -46,8 +46,8 @@ $resume = $result["resume"] ?? "";
                 <input type="radio" name="categorie" id="radioVisite" value="visite"> <label for="radioVisite">Visite</label>
             </div>
 
-            <label for="tags">Tags supplémentaires </label>
-            <select name="tags" id="tags">
+            <label for="tagsSelect">Tags supplémentaires </label>
+            <select name="tagsSelect" id="tagsSelect">
 
                 <optgroup label="Général">
                     <option value="local">Local</option>
@@ -163,8 +163,8 @@ $resume = $result["resume"] ?? "";
             </select>
 
             
-            <input type="text" id="inputTag" name="inputTag" placeholder="Entrez un tag décrivant votre activité / établissement">
-            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button>
+            <!-- <input type="text" id="inputTag" name="inputTag" placeholder="Entrez un tag décrivant votre activité / établissement">
+            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
 
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->
@@ -191,6 +191,39 @@ $resume = $result["resume"] ?? "";
     ?>
 
     </article>
+    <script>
+        const radBtnRestaurant = document.querySelector("#radioRestaurant");
+        const radBtnParc = document.querySelector("#radioParc");
+        const radBtnActivite = document.querySelector("#radioActivite");
+        const radBtnSpectacle = document.querySelector("#radioSpectacle");
+        const radBtnVisite = document.querySelector("#radioVisite");
+
+        const msgCategorie = document.querySelector("#msgCategorie");
+
+        /**
+         * Vérifie si les input sont conforme pour être enregistrer
+         * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
+         */
+        function checkOfferValidity(event) {
+            rabBtnCategorie = checkCategorie();
+            return rabBtnCategorie;
+        }
+
+        /**
+         * Vérifie si une catégorie à été 
+         * @returns {boolean} - Renvoie true si l'input est conforme. False sinon.
+         */
+        function checkCategorie() {
+            let res = radBtnRestaurant.checked || radBtnParc.checked || radBtnActivite.checked || radBtnSpectacle.checked || radBtnVisite.checked;
+            if (res) {
+                msgCategorie.textContent = 
+                    "Sélectionner une catégorie";
+            } else {
+                msgCategorie.textContent = "";
+            }
+            return res;
+        }
+    </script>
 
 
     

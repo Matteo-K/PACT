@@ -18,6 +18,6 @@
   </div>
   <div>
     <a href="planDuSite.php">Plan du site</a>
-    <p>Copyright&nbsp;&copy;&nbsp;2024 TripEnArvor</p>
+    <p id="copyrightFooter">Copyright&nbsp;&copy;&nbsp;2024 TripEnArvor</p>
   </div>
 </footer>
