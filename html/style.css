@@ -147,6 +147,7 @@ footer div+div {
 
 footer div+div p {
   flex: 3;
+  text-wrap: nowrap;
 }
 
 footer div+div a {
@@ -161,11 +162,16 @@ footer div+div a {
 
   address {
     border-left: none;
+    margin-bottom: 10px;
   }
 
   footer img {
     width: 10%;
     border-radius: 50%;
+  }
+
+  footer div+div p {
+    margin-left: 50px;
   }
 }
 
