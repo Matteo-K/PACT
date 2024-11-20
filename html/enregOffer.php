@@ -21,21 +21,22 @@ if (isset($_POST['pageBefore'])) {
         $stmt = $conn->prepare("SELECT o.idoffre FROM pact._offre o ORDER BY idoffre DESC LIMIT 1");
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $idOffre = intval($result["idoffre"])+1;
+        $idOffre = intval($result["idoffre"]) + 1;
       } catch (PDOException $e) {
-          echo "Une erreur s'est produite lors de la récupération de l'offre: \n" . $e->getMessage() . "\n";
+        echo "Une erreur s'est produite lors de la récupération de l'offre: \n" . $e->getMessage() . "\n";
       }
-    
+
       /* Obtention de la date current */
       $currentDateTime = new DateTime();
       $date = $currentDateTime->format('Y-m-d H:i:s.u');
-    
+
       /* création d'une offre avec la nouvelle id */
       try {
         $stmt = $conn->prepare("INSERT INTO pact._offre (idu, statut, idoffre, nom, description, mail, telephone, affiche, urlsite, resume, datecrea) VALUES (?, ?, ?, null, null, null, null, null, null, null, ?)");
         $stmt->execute([$idUser, 'inactif', $idOffre, $date]);
-      } catch (PDOException $e) {}
-      
+      } catch (PDOException $e) {
+      }
+
       // ##### Abonnement à propos de l'offre #####
       /* Obtention du type de l'abonnement */
       $typeOffre;
@@ -43,7 +44,7 @@ if (isset($_POST['pageBefore'])) {
         case 'premium':
           $typeOffre = 'Premium';
           break;
-        
+
         case 'standard':
           $typeOffre = 'Basique';
           break;
@@ -60,7 +61,8 @@ if (isset($_POST['pageBefore'])) {
       try {
         $stmt = $conn->prepare("INSERT INTO pact._abonner (idoffre, nomabonnement) VALUES (?, ?)");
         $stmt->execute([$idOffre, $typeOffre]);
-      } catch (PDOException $e) {}
+      } catch (PDOException $e) {
+      }
     } else {
       switch ($pageBefore) {
         case 1:
@@ -80,10 +82,10 @@ if (isset($_POST['pageBefore'])) {
             $stmt->execute([$idOffre]);
           }
           break;
-        
+
         case 2:
           // Détails offre update
-          
+
           // Informations obligatoires (Titre, Description) + résumé
           $titre = $_POST["nom"];
           $description = $_POST["description"];
@@ -105,15 +107,15 @@ if (isset($_POST['pageBefore'])) {
             $fileName = $_FILES['ajoutPhoto']['name'][$i];
             $fileError = $_FILES['ajoutPhoto']['error'][$i];
 
-          // Vérifie si l'image a été uploadée sans erreur
+            // Vérifie si l'image a été uploadée sans erreur
             if ($fileError === UPLOAD_ERR_OK) {
               // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
               $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
               $dossierImgNom = $dossierImg . $fileName;
 
-            // Déplace l'image vers le dossier cible
-            move_uploaded_file($fileTmpPath, $dossierImgNom);
-            $imageCounter++;
+              // Déplace l'image vers le dossier cible
+              move_uploaded_file($fileTmpPath, $dossierImgNom);
+              $imageCounter++;
 
               try {
                 $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
@@ -121,11 +123,12 @@ if (isset($_POST['pageBefore'])) {
 
                 $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
                 $stmt->execute([$idOffre, $dossierImgNom]);
-              } catch (PDOException $e) {}
-            } 
+              } catch (PDOException $e) {
+              }
+            }
           }
 
-          
+
           // Ajout des informations suivant la catégorie de l'offre
           switch ($categorie) {
             case 'restaurant':
@@ -168,34 +171,35 @@ if (isset($_POST['pageBefore'])) {
               // Gestion des images
               $dossierImg = "img/imageOffre/";
               $imageCounter = 0;  // Compteur pour renommer les images
-      
+
               $nbImages = count($_FILES['image1Park']['name']); //nb d'images uploadé
-      
+
               // Boucle à travers chaque fichier uploadé
               for ($i = 0; $i < $nbImages; $i++) {
                 $fileTmpPath = $_FILES['image1Park']['tmp_name'][$i];
                 $fileName = $_FILES['image1Park']['name'][$i];
                 $fileError = $_FILES['image1Park']['error'][$i];
-      
+
                 // Vérifie si l'image a été uploadée sans erreur
                 if ($fileError === UPLOAD_ERR_OK) {
                   // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
                   $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
                   $dossierImgNom = $dossierImg . $fileName;
-      
+
                   // Déplace l'image vers le dossier cible
                   if (move_uploaded_file($fileTmpPath, $dossierImgNom)) {
                     $imageCounter++;
-                  } 
-                  
+                  }
+
                   try {
                     $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
                     $stmt->execute([$dossierImgNom, $fileName]);
-      
+
                     $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
                     $stmt->execute([$idOffre, $dossierImgNom]);
-                  } catch (PDOException $e) {}
-                } 
+                  } catch (PDOException $e) {
+                  }
+                }
               }
               break;
             case 'activite':
@@ -239,24 +243,24 @@ if (isset($_POST['pageBefore'])) {
               }
               break;
             case 'visite':
-            // Obtention des données
-            $guide = null; // Modifier si ajouter dans html
-            $duree = $_POST["numberHVisit"] ?? null;
-            $prixMinimale = null; // Modifier si ajouter dans html
-            $accessibilite = $_POST["Accessibilité"] == "access" ? true : null;
-            // Création/Modification d'une offre de parc d'attraction
-            $stmt = $conn->prepare("SELECT * from pact._visite where idoffre=?");
-            $stmt->execute([$idOffre]);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            // Si pas de donnée, on créer
-            if ($result === false) {
-              $stmt = $conn->prepare("INSERT INTO pact._visite (idoffre, guide, duree, prixminimal, accessibilite) VALUES (?, ?, ?, ?, ?)");
-              $stmt->execute([$idOffre, $guide, $duree, $prixMinimale, $accessibilite]);
-            } else {
-              // sinon modifie
-              $stmt = $conn->prepare("UPDATE pact._visite SET guide=?, duree=?, prixminimal=?, accessibilite=? WHERE idoffre=?");
-              $stmt->execute([$guide, $duree, $prixMinimale, $accessibilite, $idOffre]);
-            }
+              // Obtention des données
+              $guide = null; // Modifier si ajouter dans html
+              $duree = $_POST["numberHVisit"] ?? null;
+              $prixMinimale = null; // Modifier si ajouter dans html
+              $accessibilite = $_POST["Accessibilité"] == "access" ? true : null;
+              // Création/Modification d'une offre de parc d'attraction
+              $stmt = $conn->prepare("SELECT * from pact._visite where idoffre=?");
+              $stmt->execute([$idOffre]);
+              $result = $stmt->fetch(PDO::FETCH_ASSOC);
+              // Si pas de donnée, on créer
+              if ($result === false) {
+                $stmt = $conn->prepare("INSERT INTO pact._visite (idoffre, guide, duree, prixminimal, accessibilite) VALUES (?, ?, ?, ?, ?)");
+                $stmt->execute([$idOffre, $guide, $duree, $prixMinimale, $accessibilite]);
+              } else {
+                // sinon modifie
+                $stmt = $conn->prepare("UPDATE pact._visite SET guide=?, duree=?, prixminimal=?, accessibilite=? WHERE idoffre=?");
+                $stmt->execute([$guide, $duree, $prixMinimale, $accessibilite, $idOffre]);
+              }
 
               // Ajout des langues
               $langues = $_POST["texteLangueVisit"] ?? "";
@@ -277,7 +281,7 @@ if (isset($_POST['pageBefore'])) {
                   $stmt->execute([$idoffre, $langue]);
                 } else {
                   $stmt = $conn->prepare("SELECT * from pact._visite_langue WHERE idoffre=? AND langue=?");
-                  $stmt->execute([$idOffre,$langue]);
+                  $stmt->execute([$idOffre, $langue]);
                   $result = $stmt->fetch(PDO::FETCH_ASSOC);
                   // Si pas dans la table visite_lang, on rajoute
                   if ($result === false) {
@@ -287,13 +291,13 @@ if (isset($_POST['pageBefore'])) {
                 }
               }
               break;
-            
+
             default:
               # code...
               break;
           }
 
-                  
+
           // Traitement des tags
           $tags = $_POST["tags"] ?? [];
 
@@ -303,41 +307,41 @@ if (isset($_POST['pageBefore'])) {
             $stmt->execute([$tag]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-          //Si il n'existe pas on l'ajoute a la table _tag
-          if ($result == false) {
-            $stmt = $conn->prepare("INSERT INTO pact._tag (nomtag) VALUES (?)");
-            $stmt->execute([$tag]);
-          }
+            //Si il n'existe pas on l'ajoute a la table _tag
+            if ($result == false) {
+              $stmt = $conn->prepare("INSERT INTO pact._tag (nomtag) VALUES (?)");
+              $stmt->execute([$tag]);
+            }
 
-          // et dans tous les cas on ajoute la relation tag <-> offre (différentes tables selon la catégorie)
-          switch ($categorie) {
-            case 'restaurant':
-              $stmt = $conn->prepare("INSERT INTO pact._tag_restaurant (idoffre, nomtag) VALUES (?, ?)");
-              $stmt->execute([$idOffre, $tag]);
-              break;
-            case 'parc':
-              $stmt = $conn->prepare("INSERT INTO pact._tag_parc (idoffre, nomtag) VALUES (?, ?)");
-              $stmt->execute([$idOffre, $tag]);
-              break;
-            case 'activite':
-              $stmt = $conn->prepare("INSERT INTO pact._tag_act (idoffre, nomtag) VALUES (?, ?)");
-              $stmt->execute([$idOffre, $tag]);
-              break;
-            case 'spectacle':
-              $stmt = $conn->prepare("INSERT INTO pact._tag_spec (idoffre, nomtag) VALUES (?, ?)");
-              $stmt->execute([$idOffre, $tag]);
-              break;
-            case 'visite':
-              $stmt = $conn->prepare("INSERT INTO pact._tag_visite (idoffre, nomtag) VALUES (?, ?)");
-              $stmt->execute([$idOffre, $tag]);
-              break;
-            default:
-              break;
+            // et dans tous les cas on ajoute la relation tag <-> offre (différentes tables selon la catégorie)
+            switch ($categorie) {
+              case 'restaurant':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_restaurant (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                break;
+              case 'parc':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_parc (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                break;
+              case 'activite':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_act (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                break;
+              case 'spectacle':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_spec (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                break;
+              case 'visite':
+                $stmt = $conn->prepare("INSERT INTO pact._tag_visite (idoffre, nomtag) VALUES (?, ?)");
+                $stmt->execute([$idOffre, $tag]);
+                break;
+              default:
+                break;
+            }
           }
-        }
 
           break;
-        
+
         case 3:
           // Détails Localisation update
           // insertion dans adresse
@@ -391,55 +395,55 @@ if (isset($_POST['pageBefore'])) {
 
         case 5:
           // Détails Horaires update
-          $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
-          
+          $jour_semaine = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+
           // Ajoute dans la base de donnée les heures pour chaque jour
           // Si fermé ou les champs son vides, on ajoute pas dans la base de donnée
           foreach ($jour_semaine as $jour) {
-              // Vérifier si le jour est fermé
-              if (!isset($_POST["check$jour"])) {
-                  // Récupérer les horaires
-                  $horairesOuv1 = $_POST["horairesOuv1$jour"] ?? null;
-                  $horairesF1 = $_POST["horairesF1$jour"] ?? null;
-                  $horairesOuv2 = $_POST["horairesOuv2$jour"] ?? null;
-                  $horairesF2 = $_POST["horairesF2$jour"] ?? null;
+            // Vérifier si le jour est fermé
+            if (!isset($_POST["check$jour"])) {
+              // Récupérer les horaires
+              $horairesOuv1 = $_POST["horairesOuv1$jour"] ?? null;
+              $horairesF1 = $_POST["horairesF1$jour"] ?? null;
+              $horairesOuv2 = $_POST["horairesOuv2$jour"] ?? null;
+              $horairesF2 = $_POST["horairesF2$jour"] ?? null;
 
-                  // Ajouter les horaires au Midi
-                  if ($horairesOuv1 && $horairesF1) {
-                      // Vérifier que l'horaire d'ouverture est avant l'horaire de fermeture
-                      if ($horairesOuv1 < $horairesF1) {
-                          // Requête ajout dans la base de donnée midi
-                          $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=? AND jour=?");
-                          $stmt->execute([$idOffre, $jour]);
-                          $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                          if ($result !== false) {
-                            // si existe déjà, on modifie
-                            $stmt = $conn->prepare("UPDATE pact._horairemidi SET heureouverture=?, heurefermeture=? where idoffre=? and jour=?");
-                            $stmt->execute([$horairesOuv1, $horairesF1, $idOffre, $jour]);
-                          } else {
-                            // sinon ajoute
-                            $stmt = $conn->prepare("INSERT INTO pact._horairemidi (idoffre, jour, heureouverture, heurefermeture) VALUES (?, ?, ?, ?)");
-                            $stmt->execute([$idOffre, $jour, $horairesOuv1, $horairesF1]);
-                          }
-                          // Ajout du soir si les horaires du midi sont correctes
-                          if (($horairesOuv2 && $horairesF2) && ($horairesF1 < $horairesOuv2)) {
-                            // Requête ajout dans la base de donnée Soir
-                            $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=? AND jour=?");
-                            $stmt->execute([$idOffre, $jour]);
-                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                            if ($result !== false) {
-                              // si existe déjà, on modifie
-                              $stmt = $conn->prepare("UPDATE pact._horairesoir SET heureouverture=?, heurefermeture=? where idoffre=? and jour=?");
-                              $stmt->execute([$horairesOuv2, $horairesF2, $idOffre, $jour]);
-                            } else {
-                              // sinon ajoute
-                              $stmt = $conn->prepare("INSERT INTO pact._horairesoir (idoffre, jour, heureouverture, heurefermeture) VALUES (?, ?, ?, ?)");
-                              $stmt->execute([$idOffre, $jour, $horairesOuv2, $horairesF2]);
-                            }
-                          }
-                      }
+              // Ajouter les horaires au Midi
+              if ($horairesOuv1 && $horairesF1) {
+                // Vérifier que l'horaire d'ouverture est avant l'horaire de fermeture
+                if ($horairesOuv1 < $horairesF1) {
+                  // Requête ajout dans la base de donnée midi
+                  $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=? AND jour=?");
+                  $stmt->execute([$idOffre, $jour]);
+                  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                  if ($result !== false) {
+                    // si existe déjà, on modifie
+                    $stmt = $conn->prepare("UPDATE pact._horairemidi SET heureouverture=?, heurefermeture=? where idoffre=? and jour=?");
+                    $stmt->execute([$horairesOuv1, $horairesF1, $idOffre, $jour]);
+                  } else {
+                    // sinon ajoute
+                    $stmt = $conn->prepare("INSERT INTO pact._horairemidi (idoffre, jour, heureouverture, heurefermeture) VALUES (?, ?, ?, ?)");
+                    $stmt->execute([$idOffre, $jour, $horairesOuv1, $horairesF1]);
                   }
+                  // Ajout du soir si les horaires du midi sont correctes
+                  if (($horairesOuv2 && $horairesF2) && ($horairesF1 < $horairesOuv2)) {
+                    // Requête ajout dans la base de donnée Soir
+                    $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=? AND jour=?");
+                    $stmt->execute([$idOffre, $jour]);
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                    if ($result !== false) {
+                      // si existe déjà, on modifie
+                      $stmt = $conn->prepare("UPDATE pact._horairesoir SET heureouverture=?, heurefermeture=? where idoffre=? and jour=?");
+                      $stmt->execute([$horairesOuv2, $horairesF2, $idOffre, $jour]);
+                    } else {
+                      // sinon ajoute
+                      $stmt = $conn->prepare("INSERT INTO pact._horairesoir (idoffre, jour, heureouverture, heurefermeture) VALUES (?, ?, ?, ?)");
+                      $stmt->execute([$idOffre, $jour, $horairesOuv2, $horairesF2]);
+                    }
+                  }
+                }
               }
+            }
           }
           break;
 
@@ -472,5 +476,5 @@ if ($pageDirection >= 1) {
 }
 ?>
 <script>
-    document.getElementById('myForm').submit();
+  document.getElementById('myForm').submit();
 </script>

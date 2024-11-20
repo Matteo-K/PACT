@@ -104,6 +104,7 @@ try {
 
 
 
+<<<<<<< HEAD
   
   const tagsGeneraux = [
     "Local", "International", "Insolite", "Populaire", "Exclusif", "Authentique",
@@ -135,11 +136,29 @@ try {
   const tagsVisite = [
     "Guidée", "Autonome", "Musée", "Lieu insolite", "Monument", "Panoramique", "Éducative"
   ];
+=======
+>>>>>>> 34999a1 (modfis)
 
-    // Récupération des éléments HTML
-    const inputTag = document.getElementById("inputTag");
-    const autocompleteList = document.getElementById("autocomplete-list");
+  // Liste des tags proposés
+  const tabTags = [
+    "Local", "International", "Insolite", "Populaire", "Exclusif", "Authentique",
+    "Romantique", "Festif", "Familial", "Calme", "Intimiste", "Ludique",
+    "Traditionnel", "Contemporain", "Convivial", "En extérieur", "En intérieur",
+    "Urbain", "Rural", "En bord de mer", "Montagne", "Patrimonial",
+    "Historique", "Culturel", "Moderne", "Médiéval", "Naturel", "Industriel",
+    "Féérique", "Nocturne", "Diurne", "Week-end", "Vacances scolaires",
+    "Estival", "Hivernal", "Saisonnier", "Couple", "Enfants", "Adolescents",
+    "Seniors", "Groupes", "Solo", "Amateurs de sensations", "Cuisine locale",
+    "Cuisine gastronomique", "Street food", "Brunch", "Végétarien", "Vegan",
+    "Bistronomique", "À thème", "Théâtre", "Musique live", "Cirque", "Comédie",
+    "Danse", "Magie", "Stand-up", "Sport nautique", "Randonnée", "Atelier créatif",
+    "Activité immersive", "Escape game", "Jeux d’équipe", "Découverte sportive",
+    "Sensations fortes", "Familial", "Animaux", "Spectacles inclus", "Thématique",
+    "Aquatique", "Interactif", "Guidée", "Autonome", "Musée", "Lieu insolite",
+    "Monument", "Panoramique", "Éducative"
+  ];
 
+<<<<<<< HEAD
     // Fonction pour filtrer et afficher les suggestions
     function updateSuggestions(value) {
       // Nettoyer les suggestions précédentes
@@ -212,83 +231,194 @@ try {
 
     /*
   // Variables de sélection des éléments
+=======
+  // Récupération des éléments HTML
+>>>>>>> 34999a1 (modfis)
   const inputTag = document.getElementById("inputTag");
-  const buttonTag = document.getElementById("ajoutTag");
-  const sectionTag = document.getElementById("sectionTag");
-  const pTag = document.querySelector("#sectionTag + p");
-  let tags = []; // Tableau pour stocker les tags
-  let compteurTags = 0; // Compteur pour limiter à 6 tags
+  const autocompleteList = document.getElementById("autocomplete-list");
 
-  // Fonction pour ajouter un tag
-  buttonTag.addEventListener("click", ajoutTag);
-  inputTag.addEventListener("keypress", ajoutTagKeyboard);
+  // Fonction pour filtrer et afficher les suggestions
+  function updateSuggestions(value) {
+    // Nettoyer les suggestions précédentes
+    autocompleteList.innerText = "";
 
-  // Détection de l'appui sur la touche "Entrée"
-  function ajoutTagKeyboard(e) {
-    if (e.code === "Enter") {
-      e.preventDefault(); // Empêche la soumission du formulaire si "Enter" est appuyé
-      ajoutTag();
-    }
-  }
+    // Si la saisie est vide, on n'affiche rien
+    if (!value) return;
 
-  function ajoutTag() {
-    const valeurTag = inputTag.value.trim().toLowerCase(); // Récupère la valeur de l'input sans espaces ni les majuscules
+    // Filtrer les tags correspondant à la saisie
+    const suggestions = tabTags.filter(tag =>
+      tag.toLowerCase().includes(value.toLowerCase())
+    );
 
-    if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
-      compteurTags++;
-      tags.push(valeurTag); // Ajoute le tag dans le tableau
+    // Ajouter les suggestions dans la liste
+    suggestions.forEach(tag => {
+      const item = document.createElement("div");
+      item.classList.add("autocomplete-item");
+      item.textContent = tag;
 
-      // Crée l'élément visuel pour afficher le tag
-      const elementTag = document.createElement("span");
-      elementTag.classList.add("tag");
-      elementTag.textContent = valeurTag;
-
-      // Crée l'input caché pour soumettre le tag avec le formulaire
-      const hiddenInputTag = document.createElement("input");
-      hiddenInputTag.type = "hidden";
-      hiddenInputTag.value = valeurTag;
-      hiddenInputTag.name = "tags[]"; // Utilise un tableau pour les tags
-
-      // Ajoute un événement pour supprimer le tag au clic
-      elementTag.addEventListener("click", function () {
-        tags.splice(tags.indexOf(valeurTag), 1); // Retire le tag du tableau
-        sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
-        sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
-        pTag.style.color = "black"; // Remet la couleur par défaut si besoin
-        compteurTags--; // Décrémente le compteur de tags
+      // Quand un utilisateur clique sur une suggestion
+      item.addEventListener("click", () => {
+        inputTag.value = tag; // Met le tag sélectionné dans l'input
+        autocompleteList.innerText = ""; // Vide les suggestions
       });
 
-      // Ajoute l'élément visuel et l'input caché au DOM
-      sectionTag.appendChild(elementTag); 
-      sectionTag.appendChild(hiddenInputTag);
+      autocompleteList.appendChild(item);
+    });
+  }
 
-      // Réinitialise l'input
-      inputTag.value = "";
-    } else if (tags.length >= 6) {
-      pTag.style.color = "red"; // Change la couleur du texte pour signaler la limite atteinte
-    } else if (tags.includes(valeurTag)) {
-      alert("Ce tag a déjà été ajouté !");
+  // Écouteur d'événement sur l'input
+  inputTag.addEventListener("input", (event) => {
+    updateSuggestions(event.target.value);
+  });
+
+  // Cacher les suggestions si on clique ailleurs
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest("#autocomplete-list") && event.target !== inputTag) {
+      autocompleteList.innerHTML = "";
+    }
+  });
+
+
+
+
+
+
+
+  /*
+// Variables de sélection des éléments
+const inputTag = document.getElementById("inputTag");
+const buttonTag = document.getElementById("ajoutTag");
+const sectionTag = document.getElementById("sectionTag");
+const pTag = document.querySelector("#sectionTag + p");
+let tags = []; // Tableau pour stocker les tags
+let compteurTags = 0; // Compteur pour limiter à 6 tags
+
+// Fonction pour ajouter un tag
+buttonTag.addEventListener("click", ajoutTag);
+inputTag.addEventListener("keypress", ajoutTagKeyboard);
+
+// Détection de l'appui sur la touche "Entrée"
+function ajoutTagKeyboard(e) {
+  if (e.code === "Enter") {
+    e.preventDefault(); // Empêche la soumission du formulaire si "Enter" est appuyé
+    ajoutTag();
+  }
+}
+
+function ajoutTag() {
+  const valeurTag = inputTag.value.trim().toLowerCase(); // Récupère la valeur de l'input sans espaces ni les majuscules
+
+  if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
+    compteurTags++;
+    tags.push(valeurTag); // Ajoute le tag dans le tableau
+
+    // Crée l'élément visuel pour afficher le tag
+    const elementTag = document.createElement("span");
+    elementTag.classList.add("tag");
+    elementTag.textContent = valeurTag;
+
+    // Crée l'input caché pour soumettre le tag avec le formulaire
+    const hiddenInputTag = document.createElement("input");
+    hiddenInputTag.type = "hidden";
+    hiddenInputTag.value = valeurTag;
+    hiddenInputTag.name = "tags[]"; // Utilise un tableau pour les tags
+
+    // Ajoute un événement pour supprimer le tag au clic
+    elementTag.addEventListener("click", function () {
+      tags.splice(tags.indexOf(valeurTag), 1); // Retire le tag du tableau
+      sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
+      sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
+      pTag.style.color = "black"; // Remet la couleur par défaut si besoin
+      compteurTags--; // Décrémente le compteur de tags
+    });
+
+    // Ajoute l'élément visuel et l'input caché au DOM
+    sectionTag.appendChild(elementTag); 
+    sectionTag.appendChild(hiddenInputTag);
+
+    // Réinitialise l'input
+    inputTag.value = "";
+  } else if (tags.length >= 6) {
+    pTag.style.color = "red"; // Change la couleur du texte pour signaler la limite atteinte
+  } else if (tags.includes(valeurTag)) {
+    alert("Ce tag a déjà été ajouté !");
+  }
+}
+
+*/
+
+} catch (error) { }
+
+
+
+
+
+
+<<<<<<< HEAD
+=======
+try {
+  /* Affichage pour un type d'offre particulier */
+  // Sélection des éléments du formulaire et des radios
+  const radioRestaurant = document.getElementById("radioRestaurant");
+  const radioPark = document.getElementById("radioParc");
+  const radioActivite = document.getElementById("radioActivite");
+  const radioSpectacle = document.getElementById("radioSpectacle");
+  const radioVisite = document.getElementById("radioVisite");
+
+  const RestaurantOffer = document.getElementById("restaurant");
+  const ParkOffer = document.getElementById("park");
+  const ActiviteOffer = document.getElementById("activity");
+  const SpectacleOffer = document.getElementById("show");
+  const VisiteOffer = document.getElementById("visit");
+
+  function hidenOffer() {
+    RestaurantOffer.style.display = "none";
+    ParkOffer.style.display = "none";
+    ActiviteOffer.style.display = "none";
+    SpectacleOffer.style.display = "none";
+    VisiteOffer.style.display = "none";
+  }
+
+  // Fonction pour afficher ou masquer la div des require_once
+  hidenOffer();
+  function toggleSpecialOffer() {
+    hidenOffer();
+    if (radioPark.checked) {
+      ParkOffer.style.display = "block";
+    } else if (radioActivite.checked) {
+      ActiviteOffer.style.display = "block";
+    } else if (radioSpectacle.checked) {
+      SpectacleOffer.style.display = "block";
+    } else if (radioVisite.checked) {
+      VisiteOffer.style.display = "block";
+    } else if (radioRestaurant.checked) {
+      RestaurantOffer.style.display = "block";
     }
   }
 
-  */
- 
-} catch (error) {}
+  // Associe la fonction de toggle au clic sur tous les boutons radio
+  radioRestaurant.addEventListener("input", toggleSpecialOffer);
+  radioPark.addEventListener("input", toggleSpecialOffer);
+  radioActivite.addEventListener("input", toggleSpecialOffer);
+  radioSpectacle.addEventListener("input", toggleSpecialOffer);
+  radioVisite.addEventListener("input", toggleSpecialOffer);
 
+  // autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
 
+  // Appel initial de la fonction pour vérifier l'état initial
+  toggleSpecialOffer();
+} catch (error) { }
 
-
-
-
+>>>>>>> 34999a1 (modfis)
 /* Intéraction horaire */
 let counterRep = 1;
 let date_ = new Date();
 let current_date = String(
   date_.getUTCFullYear() +
-    "-" +
-    (date_.getUTCMonth() + 1) +
-    "-" +
-    date_.getUTCDate()
+  "-" +
+  (date_.getUTCMonth() + 1) +
+  "-" +
+  date_.getUTCDate()
 );
 /**
  * @brief Ajout d'un div représentation à chaque click du bouton ajouter bloc
@@ -377,7 +507,7 @@ try {
       span.previousElementSibling.classList.remove("hourlyHide");
     });
   });
-} catch (error) {}
+} catch (error) { }
 
 /* gestion des payments */
 
@@ -416,7 +546,7 @@ try {
   radBtnPaypal.addEventListener("input", updateForms);
 
   updateForms();
-} catch (error) {}
+} catch (error) { }
 
 
 // Js détails Park 
@@ -457,4 +587,4 @@ try {
       reader.readAsDataURL(file);
     });
   }
-} catch (error) {}
+} catch (error) { }
