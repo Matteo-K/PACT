@@ -379,7 +379,10 @@ if (isset($_POST['pageBefore'])) {
         case 4:
           // Détails Contact update
           $mail = $_POST["mail"];
-          $telephone = empty($_POST["phone"]) ? null : $_POST["phone"];
+          $telephone = empty($_POST["phone"]) ? null : preg_replace('/[^\d]/', '', $_POST["phone"]);
+          if (strlen($telephone) == 11 && substr($telephone, 0, 2) == "33") {
+            $telephone = "0" . substr($telephone, 2);
+          }
           $affiche = $_POST['DisplayNumber'] == "Oui" ? true : null;
           $site = empty($_POST["webSide"]) || $_POST["webSide"] == "https://" ? null : $_POST["webSide"];
           $stmt = $conn->prepare("UPDATE pact._offre SET mail=?, telephone=?, affiche=?, urlsite=? WHERE idoffre= ?");

@@ -10,6 +10,40 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $titre = $result["nom"] ?? "";
 $description = $result["description"] ?? "";
 $resume = $result["resume"] ?? "";
+
+// Récupération du type d'offre si il existe
+
+$stmt = $conn->prepare("SELECT table_name
+    FROM (
+        SELECT '_restauration' AS table_name, COUNT(*) AS rows FROM pact._restauration WHERE idoffre = ?
+        UNION ALL
+        SELECT '_spectacle', COUNT(*) FROM pact._spectacle WHERE idoffre = ?
+        UNION ALL
+        SELECT '_parcattraction', COUNT(*) FROM pact._parcattraction WHERE idoffre = ?
+        UNION ALL
+        SELECT '_visite', COUNT(*) FROM pact._visite WHERE idoffre = ?
+        UNION ALL
+        SELECT '_activite', COUNT(*) FROM pact._activite WHERE idoffre = ?
+    ) AS result
+    WHERE rows > 0;");
+$stmt->execute([$idOffre, $idOffre, $idOffre, $idOffre, $idOffre]);
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$categorie = [
+    "_restauration" => false,
+    "_spectacle" => false,
+    "_parcattraction" => false,
+    "_visite" => false,
+    "_activite" => false,
+];
+
+$disableCategorie = false;
+
+if ($result != false) {
+    $categorie[$result["table_name"]] = true;
+    $disableCategorie = true;
+}
+
 ?>
 <form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
@@ -27,7 +61,7 @@ $resume = $result["resume"] ?? "";
 
         <div>
             <div id="choixImage">
-                <label>Photos de votre offre*</label>
+                <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
                 <p>
                     Vous pouvez insérer jusqu'à 10 photos<br>
                     Cliquez sur une image pour la supprimer
@@ -38,12 +72,32 @@ $resume = $result["resume"] ?? "";
             <div id="afficheImages"></div>
 
             <div id="choixCategorie">
-                <label>Catégorie de l'offre*   <span id="msgCategorie" class="msgError"></span></label>   
-                <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required> <label for="radioRestaurant">Restaurant</label>
-                <input type="radio" name="categorie" id="radioParc" value="parc"> <label for="radioParc">Parc d'attraction</label>
-                <input type="radio" name="categorie" id="radioActivite" value="activite"> <label for="radioActivite" >Activite</label>
-                <input type="radio" name="categorie" id="radioSpectacle" value="spectacle"> <label for="radioSpectacle">Spectacle</label>
-                <input type="radio" name="categorie" id="radioVisite" value="visite"> <label for="radioVisite">Visite</label>
+                <label>Catégorie de l'offre*  <span id="msgCategorie" class="msgError"></span></label>   
+
+                <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required 
+                <?php echo $categorie["_restauration"] ? "checked" : "" ?> 
+                <?php echo $disableCategorie && !$categorie["_restauration"] ? "disabled" : "" ?>> 
+                <label for="radioRestaurant">Restaurant</label>
+
+                <input type="radio" name="categorie" id="radioParc" value="parc" 
+                <?php echo $categorie["_parcattraction"] ? "checked" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_parcattraction"] ? "disabled" : "" ?>> 
+                <label for="radioParc">Parc d'attraction</label>
+
+                <input type="radio" name="categorie" id="radioActivite" value="activite" 
+                <?php echo $categorie["_activite"] ? "checked" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_activite"] ? "disabled" : "" ?>> 
+                <label for="radioActivite" >Activite</label>
+
+                <input type="radio" name="categorie" id="radioSpectacle" value="spectacle" 
+                <?php echo $categorie["_spectacle"] ? "checked" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_spectacle"] ? "disabled" : "" ?>> 
+                <label for="radioSpectacle">Spectacle</label>
+
+                <input type="radio" name="categorie" id="radioVisite" value="visite" 
+                <?php echo $categorie["_visite"] ? "checked" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_visite"] ? "disabled" : "" ?>>
+                <label for="radioVisite">Visite</label>
             </div>
 
             <label for="inputTag">Tags supplémentaires </label>
@@ -202,15 +256,22 @@ $resume = $result["resume"] ?? "";
         const divImg = document.querySelector("#afficheImages");
 
         const msgCategorie = document.querySelector("#msgCategorie");
+        const msgImage = document.querySelector("#msgImage");
+
+        radBtnRestaurant.addEventListener("click", removeMsgCategorie);
+        radBtnParc.addEventListener("click", removeMsgCategorie);
+        radBtnActivite.addEventListener("click", removeMsgCategorie);
+        radBtnSpectacle.addEventListener("click", removeMsgCategorie);
+        radBtnVisite.addEventListener("click", removeMsgCategorie);
 
         /**
          * Vérifie si les input sont conforme pour être enregistrer
          * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
          */
         function checkOfferValidity(event) {
-            rabBtnCategorie = checkCategorie();
-            checkImg();
-            return rabBtnCategorie;
+            let rabBtnCategorie = checkCategorie();
+            let img = checkImg();
+            return rabBtnCategorie && img;
         }
 
         /**
@@ -225,11 +286,24 @@ $resume = $result["resume"] ?? "";
             } else {
                 msgCategorie.textContent = "";
             }
-            return !res;
+            return res;
+        }
+
+        function removeMsgCategorie() {
+            msgCategorie.textContent = "";
         }
 
         function checkImg() {
-            console.log(divImg);
+            let res = true;
+            console.log(divImg.childElementCount);
+            if (divImg.childElementCount == 0) {
+                msgImage.textContent = 
+                    "Ajouter une image";
+                res = false;
+            } else {
+                msgImage.textContent = "";
+            }
+            return res;
         }
     </script>
 
