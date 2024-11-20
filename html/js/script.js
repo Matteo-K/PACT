@@ -117,23 +117,23 @@ try {
   ];
 
   const tagsRestaurant = [
-    "Cuisine locale", "Cuisine gastronomique", "Street food", "Brunch", "Végétarien", "Vegan", "Bistronomique", "À thème"
+    "Cuisine locale", "Cuisine gastronomique", "Street food", "Brunch", "Végétarien", "Vegan", "À thème", "Fruit de mer", "Cuisine asiatique", "Cuisine africaine", "Cuisine americaine", "Cuisine orientale", "Cuisine francaise", "Cuisine mediteranéenne"
   ];
 
   const tagsSpectacle = [
-    "Théâtre", "Musique live", "Cirque", "Comédie", "Danse", "Magie", "Stand-up"
+    "Théâtre", "Concert", "Opéra", "Cirque", "Comédie musicale", "Danse", "Magie", "Stand-up"
   ];
 
   const tagsActivites = [
-    "Sport nautique", "Randonnée", "Atelier créatif", "Activité immersive", "Escape game", "Jeux d’équipe", "Découverte sportive"
+    "Sport nautique", "Randonnée", "Atelier créatif", "Activité immersive", "Escape game", "Jeux d’équipe", "Découverte sportive", "Detente", "Bien-être"
   ];
 
   const tagsParc = [
-    "Sensations fortes", "Familial", "Animaux", "Spectacles inclus", "Thématique", "Aquatique", "Interactif"
+    "Sensations fortes", "Familial", "Animaux", "Spectacles inclus", "Thématique", "Aquatique", "Interactif", 
   ];
 
   const tagsVisite = [
-    "Guidée", "Autonome", "Musée", "Lieu insolite", "Monument", "Panoramique", "Éducative"
+    "Musée", "Lieu insolite", "Monument", "Panoramique", "Éducative", "Immersive", "Paranormale"
   ];
 
     // Variables de sélection des éléments

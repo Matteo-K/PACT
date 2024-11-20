@@ -45,6 +45,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <h2>Trier</h2>
                 <div class="blcTriFiltre">
                     <div>
+                        <label for="">Mise en avant</label>
+                        <input type="radio" name="" id="">
+                    </div>
+                    <div>
                         <h3>Par note&nbsp;:&nbsp;</h3>
                         <label for="">Ordre croissant</label>
                         <input type="radio" name="" id="">
@@ -60,13 +64,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     </div>
                     <div>
                         <h3>Par date&nbsp;:&nbsp;</h3>
-                        <label for="">Ordre croissant</label>
+                        <label for="">Plus récent</label>
                         <input type="radio" name="" id="">
-                        <label for="">Ordre décroissant</label>
-                        <input type="radio" name="" id="">
-                    </div>
-                    <div>
-                        <label for="">Mise en avant</label>
+                        <label for="">Plus ancien</label>
                         <input type="radio" name="" id="">
                     </div>
                 </div>
@@ -108,9 +108,45 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     </div>
                     <div>
                         <h3>Par prix</h3>
+                        <div>
+                            <label for="">De</label>
+                            <select name="" id="">
+                                <option value="0" default>0€</option>
+                                <option value="25">25€</option>
+                                <option value="50">50€</option>
+                                <option value="75">75€</option>
+                                <option value="100">100€</option>
+                                <option value="125">125€</option>
+                                <option value="150">150€</option>
+                                <option value="175">175€</option>
+                                <option value="200">200€ et +</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="">à</label>
+                            <select name="" id="">
+                            <option value="0">0€</option>
+                                <option value="25">25€</option>
+                                <option value="50">50€</option>
+                                <option value="75">75€</option>
+                                <option value="100" default>100€</option>
+                                <option value="125">125€</option>
+                                <option value="150">150€</option>
+                                <option value="175">175€</option>
+                                <option value="200">200€ et +</option>
+                            </select>
+                        </div>
                     </div>
                     <div>
                         <h3>Par Statut</h3>
+                        <div>
+                            <label for="">Ouvert</label>
+                            <input type="radio" name="" id="">
+                        </div>
+                        <div>
+                            <label for="">Fermé</label>
+                            <input type="radio" name="" id="">
+                        </div>
                     </div>
                     <div>
                         <h3>Par catégorie</h3>
@@ -303,12 +339,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $nomOffre = $offre['nom'];
                     $resume= $offre['resume'];
                     $noteAvg = "Non noté";
-                    print_r($offre['listimage']);
-    
-                    // Requête pour récupérer l'image de l'offre
-                    $img = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = $idOffre ORDER BY url ASC");
-                    $img->execute();
-                    $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
+                    $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
     
                     // Requête pour récupérer les horaires du soir
                     $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre");
@@ -389,7 +420,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     if ($offre['statut'] == 'actif') { ?>
                         <a class="searchA" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                             <div class="carteOffre">
-                                <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
+                                <img class="searchImage" src="<?php echo $urlImg; ?>" alt="photo principal de l'offre">
                                 <div class="infoOffre">
 
                                     <p class="searchTitre"><?php echo $nomOffre; ?></p>
