@@ -2101,7 +2101,7 @@ button[id="boutonInscriptionPro"] {
 }
 
 
-.errorMessages {
+.messageErreur {
   color: red;
   margin-bottom: 20px;
 }

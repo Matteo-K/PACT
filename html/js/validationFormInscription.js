@@ -39,16 +39,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Fonction pour afficher les messages d'erreur
 function displayError(message) {
-    const errorMessagesDiv = document.getElementById('errorMessages');
-    errorMessagesDiv.innerHTML = message;  // Affiche le message d'erreur
+    const messageErreurDiv = document.getElementById('messageErreur');
+    messageErreurDiv.innerHTML = message;  // Affiche le message d'erreur
 }
 
 // Fonction pour valider un champ
-function validateField(inputElement, pattern, errorMessage) {
+function validateField(inputElement, pattern, messageErreur) {
     if (!pattern.test(inputElement.value.trim())) {
         inputElement.classList.add('error');
         inputElement.classList.remove('valid');
-        displayError(errorMessage);
+        displayError(messageErreur);
         return false;
     } else {
         inputElement.classList.add('valid');
