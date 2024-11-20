@@ -2004,16 +2004,11 @@ button[id="boutonInscriptionPro"] {
 /* Centrage du message d'erreur sous le titre */
 .messageErreur {
   color: red;
-  margin-bottom: 100px;
   font-size: 20px;
   text-align: center;
-  width: 100%; /* Occupe toute la largeur disponible */
-  display: block; /* Pour que le message occupe une ligne complète */
-  margin-top: 20px; /* Espace au-dessus du message */
-  position: absolute;
-  top: 120px; /* Place le message d'erreur un peu sous le titre */
-  left: 50%;
-  transform: translateX(-50%); /* Centre horizontalement */
+  width: 100%; /* Occupe toute la largeur */
+  margin-top: 20px; /* Espace entre le titre et le message d'erreur */
+  margin-bottom: 20px; /* Espacement entre le message d'erreur et le formulaire */
 }
 
 /* Optionnel: Si vous voulez que les messages d'erreur aient plus d'espace */
@@ -2023,7 +2018,7 @@ button[id="boutonInscriptionPro"] {
 
 /* Assurez-vous que les éléments contenant des erreurs soient visibles et bien disposés */
 .creation-compte input.error + .error-message {
-  display: block; /* S'assurer que le message d'erreur est bien affiché */
+  display: block; /* Affiche le message d'erreur */
 }
 
 .creation-compte input.valid + .error-message {
