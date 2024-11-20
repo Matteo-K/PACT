@@ -242,7 +242,7 @@ header div > a > img,
 }
 
 #formHeader img {
-  width: 2em;
+  width: 100%;
 }
 
 #auth2 {
