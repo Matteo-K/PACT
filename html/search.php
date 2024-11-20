@@ -303,7 +303,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $nomOffre = $offre['nom'];
                     $resume= $offre['resume'];
                     $noteAvg = "Non noté";
-                    print_r($offre['listeimages']);
+                    print_r($offre['listimage']);
     
                     // Requête pour récupérer l'image de l'offre
                     $img = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = $idOffre ORDER BY url ASC");
