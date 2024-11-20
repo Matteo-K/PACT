@@ -43,9 +43,8 @@ if ($categorie["_visite"]) {
     <article id="ArtVisit"> <!-- separation en article pour l'alignement -->
         <div>
             <label>Visite Guidée</label>
-            <br>
-            <input type="checkbox" id="checkVisiteGuidee"name="checkVisiteGuidee">
-                </div>
+            <input type="checkbox" id="checkVisiteGuidee" name="checkVisiteGuidee">
+        </div>
         <div>
             <label>Durée :</label> <!-- Label durée -->
             <br>
@@ -54,26 +53,32 @@ if ($categorie["_visite"]) {
             <input type="number" id="numberHVisit" name="numberHVisit" placeholder="0" />
             <!-- zone de texte ou seul un chiffre/nombre est accepte -->
             <label>H</label> <!-- Label H (pour heure) -->
-            
+
         </div>
         <div>
             <label>Accessibilité</label> <!-- Label Accessibilité -->
             <br>
 
 
-            <input type="radio" id="access" name="Accessibilité" value="access"
-                checked>
+            <input type="radio" id="access" name="Accessibilité" value="access" checked>
             <!-- Bouton radio pour le choix de l'accesibilite PMR il est lier avec le 2eme et est selectionner par defaut -->
             <label for="access"> Accès personne handicapées</label>
             <!-- Label associé au bouton radio -->
             <br>
-            <input type="radio" id="pasAcces" name="Accessibilité"
-                value="pasAcces"> <!-- 2eme bouton radio liés au 1er via l'id -->
+            <input type="radio" id="pasAcces" name="Accessibilité" value="pasAcces">
+            <!-- 2eme bouton radio liés au 1er via l'id -->
             <label for="pasAcces"> Pas d’accès personne handicapées </label>
             <!-- Label du 2eme bouton radio -->
             <br>
         </div>
+        <div>
+            <label>Prix minimum</label>
+            <br>
 
+            <input type="number" id="PrixMinVisit" name="PrixMinVisit">
+            <br>
+
+        </div>
         <div>
             <label>Langue proposée(s) :</label> <!-- Label langue proposée -->
             <br>
