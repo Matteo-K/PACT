@@ -380,9 +380,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             // Ajout des clés supplémentaires
                             $resultsMidi[] = [
                                 'jour' => $decodedItem['jour'],
-                                'idOffre' => $idOffre,
-                                'heureOuverture' => $decodedItem['heureOuverture'],
-                                'heureFermeture' => $decodedItem['heureFermeture']
+                                'idoffre' => $idOffre,
+                                'heureouverture' => $decodedItem['heureOuverture'],
+                                'heurefermeture' => $decodedItem['heureFermeture']
                             ];
                         }                    
                     }else{
@@ -401,9 +401,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             // Ajout des clés supplémentaires
                             $resultsSoir[] = [
                                 'jour' => $decodedItem['jour'],
-                                'idOffre' => $idOffre,
-                                'heureOuverture' => $decodedItem['heureOuverture'],
-                                'heureFermeture' => $decodedItem['heureFermeture']
+                                'idoffre' => $idOffre,
+                                'heureouverture' => $decodedItem['heureOuverture'],
+                                'heurefermeture' => $decodedItem['heureFermeture']
                             ];
                         } 
                     }else {
@@ -411,17 +411,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     }
                     print_r($resultsMidi);
                     ?><br><?php
-                    
-                    // Requête pour récupérer les horaires du soir
-                    $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre");
-                    $stmt->execute();
-                    $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    
-                    // Requête pour récupérer les horaires du midi
-                    $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre = $idOffre");
-                    $stmt->execute();
-                    $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    print_r($resultsMidi);
                     
                     // Fusionner les horaires midi et soir
                     $horaires = array_merge($resultsSoir, $resultsMidi);
