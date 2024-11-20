@@ -2003,7 +2003,7 @@ button[id="boutonInscriptionPro"] {
 /* Centrage du message d'erreur sous le titre */
 .messageErreur {
   color: red;
-  margin-bottom: 20px;
+  margin-bottom: 100px;
   font-size: 20px;
   text-align: center;
   width: 100%; /* Occupe toute la largeur disponible */
