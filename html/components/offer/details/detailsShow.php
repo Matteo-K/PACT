@@ -64,6 +64,13 @@ if ($categorie["_spectacle"]) {
                 <!-- Pour entrer un prix minimum -->
             </div>
         </div>
+
+        <label>Prix minimum</label>
+            <br>
+
+            <input type="number" id="PrixMinShow" name="PrixMinShow">
+            <br>
+
     </article>
 
 
