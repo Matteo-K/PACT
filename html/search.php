@@ -408,10 +408,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         } 
                     }else {
                         $resultsSoir = [];
-                    }
-                    print_r($resultsMidi);
-                    ?><br><?php
-                    
+                    }                    
                     // Fusionner les horaires midi et soir
                     $horaires = array_merge($resultsSoir, $resultsMidi);
                     $restaurantOuvert = "EstFermé"; // Par défaut, le restaurant est fermé
