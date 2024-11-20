@@ -159,9 +159,8 @@ header {
   border-bottom: var(--bloc) 2px solid;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  gap: 120em;
   position: fixed;
   top: 0;
   left: 0;
