@@ -155,13 +155,13 @@ footer div+div p {
 /* Général */
 header {
   top:0;
-  margin: 1em 0;
+  padding: 1em 0;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #1e3a5f; /* Couleur principale */
+  background-color: var(--background); /* Couleur principale */
   color: #ffffff;
 }
 
