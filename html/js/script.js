@@ -142,12 +142,9 @@ try {
 
     // Fonction pour filtrer et afficher les suggestions
     function updateSuggestions(value) {
+
       // Nettoyer les suggestions précédentes
-      autocompleteList.innerText = "";
-
-      // Si la saisie est vide, on n'affiche rien
-      if (!value) return;
-
+      autocompleteList.innerText = "";      
       let suggestions
 
       if (radioPark.checked) {
@@ -164,6 +161,7 @@ try {
         suggestions = tagsGeneraux;
       }
 
+
       // Filtrer les tags correspondant à la saisie
       suggestions = suggestions.filter(tag =>
         tag.toLowerCase().includes(value.toLowerCase())
@@ -179,7 +177,6 @@ try {
         item.addEventListener("click", () => {
           ajoutTag(tag);
           autocompleteList.innerText = ""; // Vide les suggestions
-          console.log("clic detecte");
         });
 
         autocompleteList.appendChild(item);
