@@ -362,6 +362,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre = $idOffre");
                     $stmt->execute();
                     $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    print_r($resultsMidi);
     
                     // Fusionner les horaires midi et soir
                     $horaires = array_merge($resultsSoir, $resultsMidi);
