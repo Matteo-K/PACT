@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Validation lors de la perte de focus sur un champ (événement blur)
     const fieldsToValidate = [
         { id: 'denomination', pattern: /^.+$/, message: 'La dénomination est obligatoire.' },
-        { id: 'telephone', pattern: /^0[1-9]([.\-/]?[0-9]{2}){4}$/, message: 'Veuillez entrer un numéro de téléphone valide.' },
+        { id: 'telephone', pattern: /^0[1-9]([.\-/]?[0-9]{2}){4}(\s?[0-9]{2})*$/, message: 'Veuillez entrer un numéro de téléphone valide.' },
         { id: 'email', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Veuillez entrer une adresse e-mail valide.' },
         { id: 'adresse', pattern: /^\d+\s+(bis\s+)?[A-Za-z\s]+/i, message: 'Veuillez entrer une adresse postale valide.' },
         { id: 'code', pattern: /^[0-9]{5}$/, message: 'Veuillez entrer un code postal valide.' },
