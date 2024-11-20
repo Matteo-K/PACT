@@ -288,8 +288,7 @@ header > div > a > div {
     padding: 1em;
   }
 
-  #auth {
-    display: none;
+  #auth{
     justify-content: flex-end;
   }
 
