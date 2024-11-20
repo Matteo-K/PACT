@@ -189,6 +189,9 @@ header h1 {
   font-size: 48px;
   color: var(--bloc);
 }
+header h3{
+  font-size: 16px;
+}
 
 #auth{
   justify-content: flex-end;
@@ -201,6 +204,8 @@ header div > a > img,
   margin-right: 0.5em;
   /* Espace entre le logo et le texte */
 }
+
+
 
 /* Formulaire de recherche */
 #formHeader {
@@ -274,6 +279,7 @@ header div > a > img,
 header > div > a > div {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
 }
 
 @media (max-width: 756px) {
