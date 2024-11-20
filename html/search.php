@@ -369,7 +369,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
                     if (($offre['listhorairemidi'])!="") {
                         $horaireMidi=$offre['listhorairemidi'];
-                        print_r(explode($horaireMidi,';'));
+                        print_r(explode(';',$horaireMidi));
                         $jsonArray = json_decode("[$horaireMidi]", true); // Ajout de crochets pour le rendre valide
 
                         // Tableau final
