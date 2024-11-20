@@ -2136,12 +2136,10 @@ button[id="boutonInscriptionPro"] {
 
 
 /* Messages d'erreurs */
-.messageErreur {
+body > div[id="messageErreur"] {
   color: red;
   font-size: 20px;
   text-align: center;
-  align-items: center;
-  align-content: center;
   justify-content: center;
   margin: 20px 0;
 }
