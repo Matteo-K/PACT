@@ -86,15 +86,17 @@
         
         <h1 id="inscriptionTitre">Inscription membre</h1>
 
+        <div id="messageErreur" class="messageErreur"></div>
+
         <?php
-            if (!empty($errors)) {
+            //if (!empty($errors)) {
                 // Afficher les erreurs à l'utilisateur
-                echo "<div class='messageErreur'>";
-                foreach ($errors as $error) {
-                    echo "<li>" . htmlspecialchars($error) . "</li>";
-                }
-                echo "</div>";
-            }
+                //echo "<div class='messageErreur'>";
+                //foreach ($errors as $error) {
+                    //echo "<li>" . htmlspecialchars($error) . "</li>";
+                //}
+                //echo "</div>";
+            //}
         ?>
 
         <form id = "formMember" action="accountMember.php" method="post" enctype="multipart/form-data">
