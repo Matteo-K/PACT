@@ -152,383 +152,183 @@ footer div+div p {
 /* ##### Components ##### */
 
 /* ### Header ### */
-
+/* Général */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: var(--bloc) 2px solid;
-  
-  flex-direction: row;
-  
-  
-  gap: 12em;
-  position: fixed;
-  top: 0;
-  left: 0;
+  top:0;
+  padding: 1em 0;
   width: 100%;
-  height: var(--header-size);
-  z-index: 10;
-  background-color: var(--background);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--background); /* Couleur principale */
+  color: #ffffff;
+  border-bottom: 2px var(--bloc) solid;
 }
 
-header > div,
-header > form,
-header > div#auth {
-    flex: 1;
-}
-
-header div {
+header div{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  margin: 0.5em 0.8em;
-  height: 3em;
 }
 
-header div>a {
-  display: flex;
-  flex-direction: row;
-  text-decoration: none;
-  align-items: center;
-  /* Alignement vertical de l'image et du texte */
-}
-
-header h1 {
-  font-size: 48px;
-  color: var(--bloc);
-}
-
-header div>a>img,
-#auth>img {
+/* Logo et titre */
+#logo {
   width: 5em;
   height: 5em;
-  margin-right: 0.5em;
-  cursor: pointer;
+  margin-right: 10px;
 }
 
-#auth {
-  display: flex;
-  justify-content: flex-end;
+#logoText {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  display: inline-block;
   align-items: center;
+}
+
+#pro {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--accent); /* Couleur spéciale pour PRO */
+  margin-left: 10px;
 }
 
 /* Formulaire de recherche */
 #formHeader {
   display: flex;
-  justify-content: center;
   align-items: center;
-  border: var(--bloc) solid 3px;
-  border-radius: 2em;
-  height: 3em;
-  width: 35em;
-  border-radius: 2em;
-  /* Largeur du formulaire */
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 5px 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
 }
 
-#formHeader input[type="text"],
-#formHeader button,
-#formHeader img {
-  margin: 0;
-  padding: 0;
+#formHeader input {
   border: none;
   outline: none;
-}
-
-#formHeader input[type="text"] {
-  width: 85%;
-  padding-left: 1em;
-  height: 100%;
-  height: 100%;
-  font-size: 16px;
-  border-radius: 2em 0 0 2em;
+  padding: 5px;
+  font-size: 14px;
+  width: 200px;
 }
 
 #formHeader button {
-  flex: 1;
-  padding: 0 1.7em;
-  background-color: var(--primary);
-  border-radius: 0 2em 2em 0;
-  height: 100%;
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
 }
 
-#formHeader img {
-  width: 2em;
+#formHeader button img {
+  width: 20px;
+  height: 20px;
 }
 
-#auth2 {
-  display: none;
-}
-
-#menuBurger {
-  display: none;
-}
-
-#logoText {
-  font-size: 48px;
-  color: var(--bloc);
-  text-align: center;
-  /* Centrer le texte horizontalement */
-}
-
-#pro {
-  font-family: "Lato";
-  font-size: 16px;
-  /* Ajuste la taille du texte "PRO" */
-  color: var(--text-dark);
-  text-align: center;
-  /* Centrer le texte horizontalement */
-  margin-top: -10px;
-  /* Ajuste l'espacement entre "PACT" et "PRO" */
-}
-
-header>div>a>div {
+/* Authentification */
+#auth {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
-@media (max-width: 756px) {
-  #copyrightFooter {
-    display: none;
-  }
-
-  header {
-    height: 200px;
-    flex-direction: column;
-    /* Passer les éléments en colonne */
-    align-items: center;
-    gap: 1em;
-    padding: 1em;
-  }
-
-  #auth {
-    display: none;
-  }
-
-  /* Afficher le menu burger */
-  #menuBurger {
-    display: block;
-    /* Montrer l'icône du menu burger */
-    position: absolute;
-    left: 1em;
-    top: 1em;
-  }
-
-  /* Placer le bouton de connexion à droite */
-  #auth2 {
-    display: block;
-    position: absolute;
-    right: 1em;
-    top: 1em;
-  }
-
-  /* La barre de recherche se place sous le logo */
-  #formHeader {
-    width: 90%;
-    /* Largeur à 90% de l'écran */
-    margin-top: 1em;
-    margin-bottom: 25px;
-  }
-
-  #profilePicture {
-    width: 5em;
-    /* Taille légèrement réduite pour mobile */
-    height: 5em;
-  }
+#profilePic, #profilePicture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  object-fit: cover;
 }
 
-#btnConn {
-  display: flex;
-  color: #000;
-  font-size: 25px;
-  border-radius: 10px;
-  height: 2em;
-  width: 200px;
-  background-color: var(--accent);
-  text-align: center;
-  justify-content: center;
-}
-
-/* Style général du menu de profil */
+/* Menu de profil */
 #profileMenu {
-  color: #fff;
-  /* Couleur du texte */
-  margin: 0;
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 60px;
   right: 0;
-  height: 100%;
-  /* Prend toute la hauteur de la page */
-  width: 300px;
-  /* Largeur du menu */
-  background: linear-gradient(to bottom,
-      #034d7c,
-      #1ca4ed);
-  /* Dégradé du haut vers le bas */
-  display: flex;
-  flex-direction: column;
-  /* Aligne les éléments verticalement */
-  transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease;
-  /* Transition pour le mouvement */
-  transform: translateX(100%);
-  /* Commence en dehors de l'écran à droite */
-  visibility: hidden;
-  /* Caché par défaut */
-  opacity: 0;
-  /* Invisible par défaut */
+  width: 200px;
+  background-color: #ffffff;
+  color: #1e3a5f;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  display: none;
+  z-index: 10;
 }
 
 #profileMenu.show {
-  visibility: visible;
-  /* Rendre l'élément visible */
-  opacity: 1;
-  /* Complètement opaque */
-  transform: translateX(0);
-  /* Ramène le menu dans la vue */
+  display: block;
 }
 
-#profileMenu.hide {
-  visibility: visible;
-  /* Garder visible pendant la sortie */
-  opacity: 0;
-  /* Rendre invisible */
-  transform: translateX(100%);
-  /* Retourne à la position initiale */
-}
-
-/* Conteneur pour l'image et le pseudo */
-#imagProfil {
-  margin-top: 4em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-/* Styles pour l'image de profil dans le menu */
-#imagProfil img {
-  margin: 0;
-  width: 10em;
-  border-radius: 50%;
-}
-
-/* Styles pour le pseudo ou le nom */
-#imagProfil figcaption {
-  text-shadow: black -2px 2px;
-  text-align: center;
-  /* Centre le texte sous l'image */
-  font-size: 20px;
-  /* Taille de la police */
-  font-weight: bold;
-  /* Texte en gras */
-  margin: 0;
-  /* Supprime la marge par défaut */
-  color: #fff;
-  /* Couleur du texte pour meilleure visibilité */
-}
-
-#backButton {
-  margin: 0;
-  font-size: 20px;
+#profileMenu #backButton {
+  font-size: 14px;
+  color: #1e3a5f;
   cursor: pointer;
-  /* Pointeur pour indiquer un élément cliquable */
-  margin-bottom: 2em;
-  /* Espacement en bas */
-  position: absolute;
-  /* Position absolue pour le placer dans le coin */
-  left: 10px;
-  top: 0;
+  margin-bottom: 10px;
+  display: block;
 }
 
-/* Styles pour les liens du menu */
+#profileMenu figure {
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+#profileMenu img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#profileMenu figcaption {
+  margin-top: 5px;
+  font-weight: bold;
+}
+
 #profileMenu ul {
-  list-style-type: none;
-  /* Supprime les puces */
+  list-style: none;
   padding: 0;
-  /* Supprime le padding */
-  flex-grow: 1;
-  /* Permet à la liste de s'étendre */
-  display: flex;
-  flex-direction: column;
-  /* Aligne les éléments verticalement */
-  justify-content: center;
-  /* Centre les éléments verticalement */
-  gap: 20px;
+  margin: 0 0 10px;
 }
 
 #profileMenu ul li {
-  margin: 20px 0;
-  /* Espacement entre les éléments */
-  font-size: 30px;
-  font-family: "Belanosima", sans-serif;
+  margin: 5px 0;
+}
+
+#profileMenu ul li a {
+  text-decoration: none;
+  color: #1e3a5f;
+  font-size: 14px;
+}
+
+#profileMenu .buttonMenu {
+  display: block;
+  text-align: center;
+  padding: 8px 10px;
+  border-radius: 5px;
+  background-color: #ff6b6b;
+  color: #ffffff;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+#profileMenu .buttonMenu:hover {
+  background-color: #e05555;
+}
+
+/* Connexion bouton */
+#btnConn {
+  background-color: #ff6b6b;
+  color: #ffffff;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
   font-weight: bold;
 }
 
-#profileMenu a {
-  color: #fff;
-  /* Couleur des liens */
-  text-decoration: none;
-  /* Supprime le soulignement */
-  transition: color 0.5s;
-  /* Animation de couleur */
-  padding: 10px;
-  /* Ajoute du padding */
-  text-align: center;
-  /* Centre le texte */
-  border-radius: 10px;
-  /* Coins arrondis */
-}
-
-#profileMenu ul a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  /* Couleur de fond au survol */
-}
-
-header ul+div {
-  width: 100%;
-  flex-direction: column;
-  margin-bottom: 3em;
-  /* Espacement en bas */
-  gap: 10px;
-}
-
-.buttonMenu {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Centre horizontalement et verticalement */
-  width: 75%;
-  /* Largeur des boutons */
-  padding: 10px;
-  /* Ajoute un peu de padding */
-  border-radius: 0.5em;
-  text-align: center;
-  margin: 0 auto;
-  /* Centre le bouton horizontalement dans son conteneur */
-  text-decoration: none;
-  /* Supprime le soulignement */
-  font-size: 20 px;
-}
-
-#changeAccount {
-  background-color: #034d7ccc;
-}
-
-#changeAccount:hover {
-  background-color: #034d7c;
-}
-
-#logoutButton {
-  background-color: #ff0000cc;
-  margin-bottom: 2em;
-  /* Espacement en bas */
-}
-
-#logoutButton:hover {
-  background-color: #ff0000;
+#btnConn:hover {
+  background-color: #e05555;
 }
 
 /* ### Offer ### */
@@ -1938,8 +1738,10 @@ tbody td:last-child {
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
-#restaurant {
-  background-color: lime;
+#restaurant >section{
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
 }
 
 #show {
@@ -2188,7 +1990,7 @@ button[id="boutonInscriptionPro"] {
   background-color: var(--accent);
 }
 
-.messageErreur {
+/* .messageErreur {
   color: red;
   margin-bottom: 20px;
   font-size: 20px;
@@ -2196,14 +1998,54 @@ button[id="boutonInscriptionPro"] {
 }
 
 
-.messageErreur {
+.error-message {
   color: red;
-  margin-bottom: 20px;
+  font-size: 0.85rem;
+  margin-top: 0.5em;
 }
 
 input.error {
   border: 3px solid red;
 }
+
+input.valid {
+  border: 3px solid var(--accent)
+} */
+
+
+input.valid {
+  border: 3px solid var(--accent); /* Bordure verte ou la couleur accent pour un champ valide */
+}
+
+/* Messages d'erreur pour les champs */
+/* .error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.5em;
+  text-align: left;
+} */
+
+.messageErreur {
+  color: red;
+  margin-bottom: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Optionnel: Si vous voulez que les messages d'erreur aient plus d'espace */
+.creation-compte .error-message {
+  margin-top: 10px;
+}
+
+/* Assurez-vous que les éléments contenant des erreurs soient visibles et bien disposés */
+.creation-compte input.error + .error-message {
+  display: block; /* S'assurer que le message d'erreur est bien affiché */
+}
+
+.creation-compte input.valid + .error-message {
+  display: none; /* Cache le message d'erreur pour les champs valides */
+}
+
 
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/

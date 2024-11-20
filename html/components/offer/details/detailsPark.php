@@ -27,17 +27,17 @@ if ($categorie["_parcattraction"]) {
     <article>
         <div>
             <label>Age minimum</label>
-            <input type="number" id="agePark" name="AgePark">
+            <input type="number" id="agePark" name="AgePark" min="0"  placeholder="0">
         </div>
 
         <div>
             <label>Nombre d'attraction</label>
-            <input type="number" id="nbAttrac" name="nbAttrac">
+            <input type="number" id="nbAttrac" name="nbAttrac"min="0"placeholder="0">
         </div>
 
         <div>
             <label>Prix Minimum</label>
-            <input type="number" id="prixMinPark" name="prixMinPark">
+            <input type="number" id="prixMinPark" name="prixMinPark" min="0" placeholder="0">
         </div>
 
 
@@ -47,12 +47,10 @@ if ($categorie["_parcattraction"]) {
 
     <article>
 
-
-        <br>
         <div id="choixImage2">
-            <label>Plan : </label>
+            <h3>Plan : </h3>
             <p>
-                Vous pouvez insérer jusqu'à 1 photo<br>
+                Vous pouvez insérer jusqu'à 1 photo
 
             </p>
         </div>
@@ -60,10 +58,7 @@ if ($categorie["_parcattraction"]) {
         <input type="file" id="ajoutPhoto2" name="ajoutPhoto2[]"
             accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>
         <div id="afficheImages2"></div>
-        <br>
 
-
-        <br>
 
     </article>
 </section>

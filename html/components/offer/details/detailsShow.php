@@ -28,14 +28,14 @@ if ($categorie["_spectacle"]) {
             <label class="ligne1">Nombre de places : </label> <!-- Label nombre de place -->
 
             <div>
-                <input type="number" 2class="nb" name="nbPlaceShow" placeholder="0"> <!-- Pour le nombre de place -->
+                <input type="number" 2class="nb" name="nbPlaceShow" min="0" placeholder="0"> <!-- Pour le nombre de place -->
                 <?php echo "places" ?>
             </div>
 
             <label class="ligne1">Prix minimum : </label>
 
             <div>
-                <input type="number" class="nb" name="PrixMinShow" placeholder="0"> <!-- Pour entrer un prix minimum -->
+                <input type="number" class="nb" name="PrixMinShow" min="0" placeholder="0"> <!-- Pour entrer un prix minimum -->
                 <?php echo "€" ?>
             </div>
         </div>
@@ -46,30 +46,16 @@ if ($categorie["_spectacle"]) {
     <article>
 
         <label class="ligne1">Durée du Spectacle : </label>
-        <br>
-
-
         <div>
             <label class="ligne1">En minutes : </label>
-
             <div>
-                <input type="time" class="nb" name="nbHeures" placeholder="0"> <!-- Pour entrer un prix minimum -->
-
-
-
+                <input type="number" class="nb" name="nbHeures" min="0" placeholder="0">
+                <!-- Pour entrer un prix minimum -->
                 <label class="ligne1">En heures : </label>
-
-
                 <input type="time" class="nb" name="nbMinutesHeure" placeholder="0">
                 <!-- Pour entrer un prix minimum -->
             </div>
         </div>
-
-        <label>Prix minimum</label>
-        <br>
-
-        <input type="number" id="PrixMinShow" name="PrixMinShow">
-        <br>
 
     </article>
 
