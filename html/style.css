@@ -152,11 +152,175 @@ footer div+div p {
 /* ##### Components ##### */
 
 /* ### Header ### */
-header{
+/* Général */
+header {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  background-color: #1e3a5f; /* Couleur principale */
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+/* Logo et titre */
+#logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+#logoText {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#pro {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ff6b6b; /* Couleur spéciale pour PRO */
+  margin-left: 10px;
+}
+
+/* Formulaire de recherche */
+#formHeader {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 5px 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+}
+
+#formHeader input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  font-size: 14px;
+  width: 200px;
+}
+
+#formHeader button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+#formHeader button img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Authentification */
+#auth {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#profilePic, #profilePicture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  object-fit: cover;
+}
+
+/* Menu de profil */
+#profileMenu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 200px;
+  background-color: #ffffff;
+  color: #1e3a5f;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  display: none;
+  z-index: 10;
+}
+
+#profileMenu.show {
+  display: block;
+}
+
+#profileMenu #backButton {
+  font-size: 14px;
+  color: #1e3a5f;
+  cursor: pointer;
+  margin-bottom: 10px;
+  display: block;
+}
+
+#profileMenu figure {
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+#profileMenu img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#profileMenu figcaption {
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+#profileMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+}
+
+#profileMenu ul li {
+  margin: 5px 0;
+}
+
+#profileMenu ul li a {
+  text-decoration: none;
+  color: #1e3a5f;
+  font-size: 14px;
+}
+
+#profileMenu .buttonMenu {
+  display: block;
+  text-align: center;
+  padding: 8px 10px;
+  border-radius: 5px;
+  background-color: #ff6b6b;
+  color: #ffffff;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+#profileMenu .buttonMenu:hover {
+  background-color: #e05555;
+}
+
+/* Connexion bouton */
+#btnConn {
+  background-color: #ff6b6b;
+  color: #ffffff;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#btnConn:hover {
+  background-color: #e05555;
 }
 
 /* ### Offer ### */
