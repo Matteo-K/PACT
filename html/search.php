@@ -341,9 +341,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $noteAvg = "Non noté";
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
                     if (($offre['listhorairemidi'])!="") {
-                        $jsonString=$offre['listhorairemidi'];
+                        $jsonString="[".$offre['listhorairemidi']."]";
                         $jsonArray = json_decode("[$jsonString]", true); // Encapsuler dans des crochets pour simuler un tableau
-
+print_r($jsonString);
 if ($jsonArray === null) {
     die('Erreur : JSON invalide.');
 }
