@@ -192,15 +192,15 @@ header h1 {
   color: var(--bloc);
 }
 
-header div > a > img,
 #auth{
   justify-content: flex-end;
 }
+
+header div > a > img,
 #auth > img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
-
   /* Espace entre le logo et le texte */
 }
 
@@ -291,6 +291,7 @@ header > div > a > div {
     gap: 1em;
     padding: 1em;
   }
+
 
   #auth {
     display: none;
