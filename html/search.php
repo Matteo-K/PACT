@@ -168,11 +168,16 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
             </aside>
         </section>
         <?php 
+
+        $stmt = $conn->prepare("SELECT * FROM pact.offres");
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        print_r($results[0]);
+
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
             $idutilisateur=$_SESSION["idUser"];
-            $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idu=$idutilisateur ORDER BY dateCrea DESC");
-            $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
             
             ?>
             <section class="searchoffre">
@@ -325,9 +330,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
             </section>
         <?php
         }else {
-            $stmt = $conn->prepare("SELECT * FROM pact._offre ORDER BY dateCrea DESC");
-            $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             <section class="searchoffre">
             <?php if ($results){ ?>
@@ -337,11 +339,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $nomOffre = $offre['nom'];
                     $resume= $offre['resume'];
                     $noteAvg = "Non noté";
-    
-                    // Requête pour récupérer l'image de l'offre
-                    $img = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = $idOffre ORDER BY url ASC");
-                    $img->execute();
-                    $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
+                    $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
     
                     // Requête pour récupérer les horaires du soir
                     $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre");
@@ -422,7 +420,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     if ($offre['statut'] == 'actif') { ?>
                         <a class="searchA" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                             <div class="carteOffre">
-                                <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
+                                <img class="searchImage" src="<?php echo $urlImg; ?>" alt="photo principal de l'offre">
                                 <div class="infoOffre">
 
                                     <p class="searchTitre"><?php echo $nomOffre; ?></p>
