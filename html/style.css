@@ -189,6 +189,9 @@ header h1 {
   font-size: 48px;
   color: var(--bloc);
 }
+header h3{
+  font-size: 16px;
+}
 
 #auth{
   justify-content: flex-end;
@@ -201,6 +204,8 @@ header div > a > img,
   margin-right: 0.5em;
   /* Espace entre le logo et le texte */
 }
+
+
 
 /* Formulaire de recherche */
 #formHeader {
@@ -274,58 +279,8 @@ header div > a > img,
 header > div > a > div {
   display: flex;
   flex-direction: column;
-}
-
-@media (max-width: 756px) {
-  #copyrightFooter {
-    display: none;
-  }
-
-  header {
-    height: 200px;
-    flex-direction: column;
-    /* Passer les éléments en colonne */
-    align-items: center;
-    gap: 1em;
-    padding: 1em;
-  }
-
-
-  #auth {
-    display: none;
-    
-  }
-
-  /* Afficher le menu burger */
-  #menuBurger {
-    display: block;
-    /* Montrer l'icône du menu burger */
-    position: absolute;
-    left: 1em;
-    top: 1em;
-  }
-
-  /* Placer le bouton de connexion à droite */
-  #auth2 {
-    display: block;
-    position: absolute;
-    right: 1em;
-    top: 1em;
-  }
-
-  /* La barre de recherche se place sous le logo */
-  #formHeader {
-    width: 90%;
-    /* Largeur à 90% de l'écran */
-    margin-top: 1em;
-    margin-bottom: 25px;
-  }
-
-  #profilePicture {
-    width: 5em;
-    /* Taille légèrement réduite pour mobile */
-    height: 5em;
-  }
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 #btnConn {
@@ -1117,11 +1072,7 @@ header ul + div {
 }
 
 #inputTag {
-  width: 70%;
-}
-
-#ajoutTag {
-  background-color: var(--primary);
+  width: 100%;
 }
 
 #artDetailOffer .tag {
@@ -2143,22 +2094,25 @@ button[id="boutonInscription"] {
 
 /* Messages d'erreurs */
 div[id="messageErreur"] {
-  width: 100%;
-  text-align: center;
+  display: block; /* S'assurer que l'élément prend toute la largeur disponible */
+  width: 100%; /* Largeur 100% de son conteneur */
+  text-align: center; /* Centrer le texte à l'intérieur */
   color: red;
   font-size: 20px;
-  margin: 30px auto;
   padding: 10px;
+  margin: 30px auto; /* Marge pour l'espacement, centré automatiquement */
 }
+
+
 
 
 .creation-compte .error-message {
   margin-top: 10px;
 }
 
-.creation-compte input.error + .error-message {
+/* .creation-compte input.error + .error-message {
   display: flex;
-}
+} */
 
 .creation-compte input.valid + .error-message {
   display: none;
