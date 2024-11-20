@@ -45,6 +45,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <h2>Trier</h2>
                 <div class="blcTriFiltre">
                     <div>
+                        <label for="">Mise en avant</label>
+                        <input type="radio" name="" id="">
+                    </div>
+                    <div>
                         <h3>Par note&nbsp;:&nbsp;</h3>
                         <label for="">Ordre croissant</label>
                         <input type="radio" name="" id="">
@@ -60,13 +64,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     </div>
                     <div>
                         <h3>Par date&nbsp;:&nbsp;</h3>
-                        <label for="">Ordre croissant</label>
+                        <label for="">Plus récent</label>
                         <input type="radio" name="" id="">
-                        <label for="">Ordre décroissant</label>
-                        <input type="radio" name="" id="">
-                    </div>
-                    <div>
-                        <label for="">Mise en avant</label>
+                        <label for="">Plus ancien</label>
                         <input type="radio" name="" id="">
                     </div>
                 </div>
@@ -108,9 +108,45 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     </div>
                     <div>
                         <h3>Par prix</h3>
+                        <div>
+                            <label for="">De</label>
+                            <select name="" id="">
+                                <option value="0" default>0€</option>
+                                <option value="25">25€</option>
+                                <option value="50">50€</option>
+                                <option value="75">75€</option>
+                                <option value="100">100€</option>
+                                <option value="125">125€</option>
+                                <option value="150">150€</option>
+                                <option value="175">175€</option>
+                                <option value="200">200€ et +</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="">à</label>
+                            <select name="" id="">
+                            <option value="0">0€</option>
+                                <option value="25">25€</option>
+                                <option value="50">50€</option>
+                                <option value="75">75€</option>
+                                <option value="100" default>100€</option>
+                                <option value="125">125€</option>
+                                <option value="150">150€</option>
+                                <option value="175">175€</option>
+                                <option value="200">200€ et +</option>
+                            </select>
+                        </div>
                     </div>
                     <div>
                         <h3>Par Statut</h3>
+                        <div>
+                            <label for="">Ouvert</label>
+                            <input type="radio" name="" id="">
+                        </div>
+                        <div>
+                            <label for="">Fermé</label>
+                            <input type="radio" name="" id="">
+                        </div>
                     </div>
                     <div>
                         <h3>Par catégorie</h3>
