@@ -91,7 +91,8 @@ footer {
 footer>div:first-child {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  justify-content: flex-end;
+  gap: 10%;
 }
 
 /* logo Tripenarvor et son titre */
