@@ -68,7 +68,7 @@ if ($categorie["_spectacle"]) {
         <label>Prix minimum</label>
         <br>
 
-        <input type="number" id="PrixMinShow" name="PrixMinShow">
+        <input type="number" id="PrixMinShow" name="PrixMinShow" min="0" placeholder="0">
         <br>
 
     </article>

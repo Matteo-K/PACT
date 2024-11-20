@@ -29,7 +29,7 @@ if ($categorie["_activite"]) {
 
         <div>
             <label class="labAgeAct" name="labAgeAct"> Age: </label>
-            <input type="number" id="numberAct" name="ageAct" placeholder="1" />
+            <input type="number" id="numberAct" name="ageAct" min="0" placeholder="0" />
             <label class="labAnsAct" name="labAgeAct"> Ans </label>
         </div>
         <div>

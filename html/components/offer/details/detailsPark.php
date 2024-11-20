@@ -32,7 +32,7 @@ if ($categorie["_parcattraction"]) {
 
         <div>
             <label>Nombre d'attraction</label>
-            <input type="number" id="nbAttrac" name="nbAttrac">
+            <input type="number" id="nbAttrac" name="nbAttrac"min="0"placeholder="0">
         </div>
 
         <div>
