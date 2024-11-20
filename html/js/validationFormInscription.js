@@ -76,19 +76,39 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Validation lors de la perte de focus sur un champ (événement blur)
-    const fieldsToValidate = [
-        { id: 'denomination', pattern: /^.+$/, message: 'La dénomination est obligatoire.' },
-        { id: 'telephone', pattern: /^0[1-9]([.\-/]?[0-9]{2}|\s?[0-9]{2}){4}$/, message: 'Veuillez entrer un numéro de téléphone valide (avec espaces, sans espaces, points, tirets ou slashs).' },
-        { id: 'email', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Veuillez entrer une adresse e-mail valide.' },
-        { id: 'adresse', pattern: /^\d+\s+(bis\s+)?[A-Za-z\s]+/i, message: 'Veuillez entrer une adresse postale valide.' },
-        { id: 'code', pattern: /^[0-9]{5}$/, message: 'Veuillez entrer un code postal valide.' },
-        { id: 'ville', pattern: /^[A-Za-z\s\-]+$/, message: 'Veuillez entrer une ville valide.' },
-        { id: 'siren', pattern: /^(?:\d{3} \d{3} \d{3}|\d{9})$/, message: 'Veuillez entrer un numéro de SIREN valide.' },
-        { id: 'motdepasse', pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/, message: 'Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule et un chiffre.' },
-    ];
+    // Récupérer le nom du fichier actuel
+    const currentFile = window.location.pathname.split('/').pop();
 
-    // Ajouter l'événement "blur" pour chaque champ de validation
+    // Définir le tableau fieldsToValidate en fonction du fichier
+    let fieldsToValidate;
+
+    if (currentFile === 'accountPro.php') {
+        fieldsToValidate = [
+            { id: 'denomination', pattern: /^.+$/, message: 'La dénomination est obligatoire.' },
+            { id: 'telephone', pattern: /^0[1-9]([.\-/]?[0-9]{2}|\s?[0-9]{2}){4}$/, message: 'Veuillez entrer un numéro de téléphone valide (avec espaces, sans espaces, points, tirets ou slashs).' },
+            { id: 'email', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Veuillez entrer une adresse e-mail valide (avec un @ et un point, ex: exemple@gmail.com).' },
+            { id: 'adresse', pattern: /^\d+\s+(bis\s+)?[A-Za-z\s]+/i, message: 'Veuillez entrer une adresse postale valide (avec un numéro de rue et le nom de la rue, ex: 123 Rue de Brest).' },
+            { id: 'code', pattern: /^(?:[0-9]{5}|\d{2} \d{3})$/, message: 'Veuillez entrer un code postal valide (ex: 29000 ou 29 000).' },
+            { id: 'ville', pattern: /^[A-Za-z\s\-]+$/, message: 'Veuillez entrer une ville valide.' },
+            { id: 'siren', pattern: /^(?:\d{3}[\s.\-/]?\d{3}[\s.\-/]?\d{3})$/, message: 'Veuillez entrer un numéro de SIREN valide (avec espaces, sans espaces, points, tirets ou slashs).' },
+            { id: 'motdepasse', pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\d\s]).{10,}$/, message: 'Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial.' },
+        ];
+    } 
+    
+    else if (currentFile === 'accountMember.php') {
+        fieldsToValidate = [
+            { id: 'denomination', pattern: /^.+$/, message: 'La dénomination est obligatoire.' },
+            { id: 'telephone', pattern: /^0[1-9]([.\-/]?[0-9]{2}|\s?[0-9]{2}){4}$/, message: 'Veuillez entrer un numéro de téléphone valide (avec espaces, sans espaces, points, tirets ou slashs).' },
+            { id: 'email', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Veuillez entrer une adresse e-mail valide (avec un @ et un point, ex: exemple@gmail.com).' },
+            { id: 'adresse', pattern: /^\d+\s+(bis\s+)?[A-Za-z\s]+/i, message: 'Veuillez entrer une adresse postale valide (avec un numéro de rue et le nom de la rue, ex: 123 Rue de Brest).' },
+            { id: 'code', pattern: /^(?:[0-9]{5}|\d{2} \d{3})$/, message: 'Veuillez entrer un code postal valide (ex: 29000 ou 29 000).' },
+            { id: 'ville', pattern: /^[A-Za-z\s\-]+$/, message: 'Veuillez entrer une ville valide.' },
+            { id: 'siren', pattern: /^(?:\d{3}[\s.\-/]?\d{3}[\s.\-/]?\d{3})$/, message: 'Veuillez entrer un numéro de SIREN valide (avec espaces, sans espaces, points, tirets ou slashs).' },
+            { id: 'motdepasse', pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\d\s]).{10,}$/, message: 'Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial.' },
+        ];
+    }
+
+    // Ajouter l'événement "blur"
     fieldsToValidate.forEach(field => {
         const inputElement = document.getElementById(field.id);
         if (inputElement) {

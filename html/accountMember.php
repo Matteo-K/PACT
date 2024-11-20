@@ -133,7 +133,7 @@
             <div class="ligne3">
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
-                <input type="text" placeholder = "123 Rue de Paris" id="adresse" name="adresse" required>
+                <input type="text" placeholder = "123 Rue de Brest" id="adresse" name="adresse" required>
                 <br>
             </div>
 
@@ -144,10 +144,10 @@
                 <label for="ville">Ville*:</label>
                 
                 <!-- Saisi du code postale -->
-                <input type="text" placeholder = "75000" id="code" name="code" required>
+                <input type="text" placeholder = "29000" id="code" name="code" required>
 
                 <!-- Saisi de la ville -->
-                <input type="text" placeholder = "Paris" id="ville" name="ville" required>
+                <input type="text" placeholder = "Brest" id="ville" name="ville" required>
             </div>
 
 

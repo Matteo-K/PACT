@@ -33,6 +33,20 @@ if (!empty($idOffre)) {
   }
 }
 
+$abonnement = [];
+$stmt = $conn->prepare("SELECT nomabonnement, tarif FROM pact._abonnement");
+$stmt->execute();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $abonnement[] = ["nomabonnement" => $row["nomabonnement"], "tarif" => $row["tarif"]];
+}
+
+$prixOption = [];
+$stmt = $conn->prepare("SELECT nomoption, prixoffre FROM pact._option");
+$stmt->execute();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $prixOption[] = ["nomoption" => $row["nomoption"], "tarif" => $row["prixoffre"]];
+}
+
 ?>
 <form id="selectOffer" action="enregOffer.php" method="post">
   <div>
@@ -41,7 +55,16 @@ if (!empty($idOffre)) {
     ?>
     <div>
       <h2>Offre Gratuit</h2>
-      <h3>0&euro;&nbsp;/&nbsp;mois</h3>
+      <?php
+      foreach ($abonnement as $ab) {
+        if ($ab['nomabonnement'] === "Gratuit") {
+            ?>
+            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
+            <?php
+            break;
+        }
+      }
+      ?>
       <ul>
         <li>Réservée au public</li>
       </ul>
@@ -52,12 +75,6 @@ if (!empty($idOffre)) {
     </div>
     <?php
     } else {
-      $abonnement = [];
-      $stmt = $conn->prepare("SELECT nomabonnement, tarif FROM pact._abonnement");
-      $stmt->execute();
-      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-          $abonnement[] = ["nomabonnement" => $row["nomabonnement"], "tarif" => $row["tarif"]];
-      }
     ?>
     <div>
       <h2>Offre Premium</h2>
@@ -65,7 +82,7 @@ if (!empty($idOffre)) {
       foreach ($abonnement as $ab) {
         if ($ab['nomabonnement'] === "Premium") {
             ?>
-            <h3> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
+            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
             <?php
             break;
         }
@@ -87,7 +104,7 @@ if (!empty($idOffre)) {
       foreach ($abonnement as $ab) {
         if ($ab['nomabonnement'] === "Basique") {
             ?>
-            <h3> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
+            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
             <?php
             break;
         }
@@ -108,13 +125,74 @@ if (!empty($idOffre)) {
   </div>
   <div>
     <div>
-      <span>(&nbsp;+14.99&euro;&nbsp;)</span>
+      <?php
+      foreach ($prixOption as $opt) {
+        if ($opt['nomoption'] === "EnRelief") {
+            ?>
+            <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
+              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;&nbsp;)
+            </span>
+            <?php
+            break;
+        }
+      }
+      ?>
       <input type="checkbox" name="enRelief" id="enRelief" <?php echo in_array('ALaUne',$options)?"checked":"" ?>>
       <label for="enRelief"><span>En relief</span> : met votre offre en exergue lors de son affichage dans la liste d’offres</label></div>
     <div>
-      <span>(&nbsp;+19.99&euro;&nbsp;)</span>
+      <?php
+      foreach ($prixOption as $opt) {
+        if ($opt['nomoption'] === "ALaUne") {
+            ?>
+            <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
+              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;&nbsp;)
+            </span>
+            <?php
+            break;
+        }
+      }
+      ?>
       <input type="checkbox" name="aLaUne" id="aLaUne" <?php echo in_array('EnRelief',$options)?"checked":"" ?>>
       <label for="aLaUne"><span>À la une</span> : met votre offre sur la page d’accueil du site</label>
     </div>
     <p>Attention ! Vous ne pouvez pas changer d’offre une fois séléctionée.</p>
+    <div>Montant actuelle : <span id="prixPrevisionel"></span>&euro;</div>
   </div>
+
+  <script>
+    const prixPrevisionnel = document.querySelector("#prixPrevisionel");
+    const radio = document.querySelectorAll("[type='radio']");
+    const option = document.querySelectorAll('[type="checkbox"]');
+
+    function updatePrix() {
+      let prix = 0;
+
+      radio.forEach(element => {
+        if (element.checked) {
+          const tarifOffre = element.closest('div').querySelector('h3').getAttribute('prix');
+          prix += parseFloat(tarifOffre);
+        }
+      });
+
+      option.forEach(element => {
+        if (element.checked) {
+          const tarifOption = element.closest('div').querySelector('span').getAttribute('prix');
+          prix += parseFloat(tarifOption);
+        }
+      });
+
+      prixPrevisionnel.innerText = prix.toFixed(2);
+    }
+
+    radio.forEach(element => {
+      element.addEventListener("click", updatePrix);
+    });
+
+    option.forEach(element => {
+      element.addEventListener("click", updatePrix);
+    });
+
+    updatePrix();
+
+  </script>
+  
