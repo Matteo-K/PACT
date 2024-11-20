@@ -2158,9 +2158,9 @@ div[id="messageErreur"] {
   margin-top: 10px;
 }
 
-.creation-compte input.error + .error-message {
+/* .creation-compte input.error + .error-message {
   display: flex;
-}
+} */
 
 .creation-compte input.valid + .error-message {
   display: none;
