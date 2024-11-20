@@ -174,7 +174,6 @@ header div {
   width: 100%;
   display: flex;
   flex-direction: row;
-
   align-items: center;
   margin: 0.5em 0.8em;
   height: 3em;
@@ -291,6 +290,7 @@ header > div > a > div {
 
   #auth {
     display: none;
+    justify-content: flex-end;
   }
 
   /* Afficher le menu burger */
