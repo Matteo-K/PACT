@@ -53,7 +53,7 @@ VALUES ('actif'),
 
 -- Peuplement de la table _tag
 INSERT INTO _tag (nomTag) 
-VALUES ('famille'), 
+VALUES ('familial'), 
        ('aventure'),
        ('culturel'), 
        ('romantique'),
@@ -61,7 +61,9 @@ VALUES ('famille'),
        ('local'),
        ('rapide'),
        ('breton'),
-       ('vegetarien');
+       ('vegetarien'),
+       ('animaux');
+        -------------------------------------------------------------------------------------
 
 -- Peuplement de la table _jour
 INSERT INTO _jour (jour) 
@@ -198,16 +200,16 @@ VALUES ('Lundi', 1, '10:00', '18:00'),
 
 -- Peuplement de la table _tag_parc
 INSERT INTO _tag_parc (idOffre, nomTag) 
-VALUES (1, 'famille'), 
-       (1, 'aventure');
-
+VALUES (1, 'familial'), 
+       (1, 'animaux');
+--"Sensations fortes", , "animaux", "Spectacles inclus", "Thématique", "Aquatique", "Interactif", 
 -- Peuplement de la table _tag_spec
 INSERT INTO _tag_spec (idOffre, nomTag) 
 VALUES (2, 'romantique');
 
 -- Peuplement de la table _tag_restaurant
 INSERT INTO _tag_restaurant (idOffre, nomTag) 
-VALUES (3, 'famille'),
+VALUES (3, 'familial'),
        (3, 'breton'),
        (3, 'local'),
        (3, 'vegetarien'),
