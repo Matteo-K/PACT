@@ -165,6 +165,12 @@ header {
   position: relative;
 }
 
+header div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 /* Logo et titre */
 #logo {
   width: 50px;
