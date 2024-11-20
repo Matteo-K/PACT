@@ -42,6 +42,11 @@ if ($categorie["_visite"]) {
 <section id="visit"> <!-- donne un id a la section pour l'identifier dans le css -->
     <article id="ArtVisit"> <!-- separation en article pour l'alignement -->
         <div>
+            <label>Visite Guidée</label>
+            <br>
+            <input type="checkbox" id="checkVisiteGuidee"name="checkVisiteGuidee">
+                </div>
+        <div>
             <label>Durée :</label> <!-- Label durée -->
             <br>
 
