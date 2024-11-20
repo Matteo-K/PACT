@@ -137,7 +137,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        print_r($results);
+        print_r($results[0]);
 
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
             $idutilisateur=$_SESSION["idUser"];
