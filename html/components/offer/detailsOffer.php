@@ -10,6 +10,40 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $titre = $result["nom"] ?? "";
 $description = $result["description"] ?? "";
 $resume = $result["resume"] ?? "";
+
+// Récupération du type d'offre si il existe
+
+$stmt = $conn->prepare("SELECT table_name
+    FROM (
+        SELECT '_restauration' AS table_name, COUNT(*) AS rows FROM pact._restauration WHERE idoffre = ?
+        UNION ALL
+        SELECT '_spectacle', COUNT(*) FROM pact._spectacle WHERE idoffre = ?
+        UNION ALL
+        SELECT '_parcattraction', COUNT(*) FROM pact._parcattraction WHERE idoffre = ?
+        UNION ALL
+        SELECT '_visite', COUNT(*) FROM pact._visite WHERE idoffre = ?
+        UNION ALL
+        SELECT '_activite', COUNT(*) FROM pact._activite WHERE idoffre = ?
+    ) AS result
+    WHERE rows > 0;");
+$stmt->execute([$idOffre, $idOffre, $idOffre, $idOffre, $idOffre]);
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$categorie = [
+    "_restauration" => false,
+    "_spectacle" => false,
+    "_parcattraction" => false,
+    "_visite" => false,
+    "_activite" => false,
+];
+
+$disableCategorie = false;
+
+if ($result != false) {
+    $categorie[$result["table_name"]] = true;
+    $disableCategorie = true;
+}
+
 ?>
 <form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
@@ -39,133 +73,39 @@ $resume = $result["resume"] ?? "";
 
             <div id="choixCategorie">
                 <label>Catégorie de l'offre*  <span id="msgCategorie" class="msgError"></span></label>   
-                <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required> <label for="radioRestaurant">Restaurant</label>
-                <input type="radio" name="categorie" id="radioParc" value="parc"> <label for="radioParc">Parc d'attraction</label>
-                <input type="radio" name="categorie" id="radioActivite" value="activite"> <label for="radioActivite" >Activite</label>
-                <input type="radio" name="categorie" id="radioSpectacle" value="spectacle"> <label for="radioSpectacle">Spectacle</label>
-                <input type="radio" name="categorie" id="radioVisite" value="visite"> <label for="radioVisite">Visite</label>
+
+                <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required 
+                <?php echo $categorie["_restauration"] ? "checked" : "" ?> 
+                <?php echo $disableCategorie && !$categorie["_restauration"] ? "disabled" : "" ?>> 
+                <label for="radioRestaurant">Restaurant</label>
+
+                <input type="radio" name="categorie" id="radioParc" value="parc" 
+                <?php echo $categorie["_parcattraction"] ? "checked" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_parcattraction"] ? "disabled" : "" ?>> 
+                <label for="radioParc">Parc d'attraction</label>
+
+                <input type="radio" name="categorie" id="radioActivite" value="activite" 
+                <?php echo $categorie["_activite"] ? "checked" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_activite"] ? "disabled" : "" ?>> 
+                <label for="radioActivite" >Activite</label>
+
+                <input type="radio" name="categorie" id="radioSpectacle" value="spectacle" 
+                <?php echo $categorie["_spectacle"] ? "checked" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_spectacle"] ? "disabled" : "" ?>> 
+                <label for="radioSpectacle">Spectacle</label>
+
+                <input type="radio" name="categorie" id="radioVisite" value="visite" 
+                <?php echo $categorie["_visite"] ? "checked" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_visite"] ? "disabled" : "" ?>>
+                <label for="radioVisite">Visite</label>
             </div>
 
-            <label for="tagsSelect">Tags supplémentaires </label>
-            <!--<select name="tagsSelect" id="tagsSelect">
-
-                <optgroup label="Général">
-                    <option value="local">Local</option>
-                    <option value="international">International</option>
-                    <option value="insolite">Insolite</option>
-                    <option value="populaire">Populaire</option>
-                    <option value="authentique">Authentique</option>
-                </optgroup>
-
-                <optgroup label="Ambiance">
-                    <option value="romantique">Romantique</option>
-                    <option value="festif">Festif</option>
-                    <option value="familial">Familial</option>
-                    <option value="calme">Calme</option>
-                    <option value="traditionnel">Traditionnel</option>
-                    <option value="contemporain">Contemporain</option>
-                    <option value="convivial">Convivial</option>
-                    <option value="convivial">Chalereux</option>
-                </optgroup>
-
-                <optgroup label="Lieu">
-                    <option value="en-exterieur">En extérieur</option>
-                    <option value="en-interieur">En intérieur</option>
-                    <option value="urbain">Urbain</option>
-                    <option value="rural">Rural</option>
-                    <option value="bord-de-mer">En bord de mer</option>
-                    <option value="montagne">Montagne</option>
-                    <option value="patrimonial">Patrimonial</option>
-                </optgroup>
-
-                <optgroup label="Thématique">
-                    <option value="historique">Historique</option>
-                    <option value="culturel">Culturel</option>
-                    <option value="moderne">Moderne</option>
-                    <option value="medieval">Médiéval</option>
-                    <option value="naturel">Naturel</option>
-                    <option value="industriel">Industriel</option>
-                    <option value="feerique">Féérique</option>
-                </optgroup>
-
-                <optgroup label="Temps et horaires">
-                    <option value="nocturne">Nocturne</option>
-                    <option value="diurne">Diurne</option>
-                    <option value="weekend">En continu</option>
-                    <option value="weekend">Week-end</option>
-                    <option value="vacances-scolaires">Vacances scolaires</option>
-                    <option value="estival">Estival</option>
-                    <option value="hivernal">Hivernal</option>
-                    <option value="saisonnier">Saisonnier</option>
-                </optgroup>
-
-                <optgroup label="Public">
-                    <option value="couple">Couple</option>
-                    <option value="enfants">Enfants</option>
-                    <option value="adolescents">Adolescents</option>
-                    <option value="seniors">Seniors</option>
-                    <option value="groupes">Groupes</option>
-                    <option value="solo">Solo</option>
-                    <option value="sensations">Amateurs de sensations</option>
-                    <option value="pmr">Accessible PMR</option>
-                </optgroup>
-
-                <optgroup label="Restauration">
-                    <option value="cuisine-locale">Cuisine locale</option>
-                    <option value="cuisine-gastronomique">Cuisine gastronomique</option>
-                    <option value="street-food">Street food</option>
-                    <option value="brunch">Brunch</option>
-                    <option value="vegetarien">Végétarien</option>
-                    <option value="vegan">Vegan</option>
-                    <option value="bistronomique">Bistronomique</option>
-                    <option value="a-theme">À thème</option>
-                </optgroup>
-
-                <optgroup label="Spectacles">
-                    <option value="theatre">Théâtre</option>
-                    <option value="musique-live">Musique live</option>
-                    <option value="cirque">Cirque</option>
-                    <option value="comedie">Comédie</option>
-                    <option value="danse">Danse</option>
-                    <option value="magie">Magie</option>
-                    <option value="stand-up">Stand-up</option>
-                </optgroup>
-
-                <optgroup label="Activités">
-                    <option value="sport-nautique">Sport nautique</option>
-                    <option value="randonnée">Randonnée</option>
-                    <option value="atelier-creatif">Atelier créatif</option>
-                    <option value="activite-immersive">Activité immersive</option>
-                    <option value="escape-game">Escape game</option>
-                    <option value="jeux-equipe">Jeux d’équipe</option>
-                    <option value="decouverte-sportive">Découverte sportive</option>
-                </optgroup>
-
-                <optgroup label="Parcs d'attraction">
-                    <option value="sensations-fortes">Sensations fortes</option>
-                    <option value="familial">Familial</option>
-                    <option value="animaux">Animaux</option>
-                    <option value="spectacles-inclus">Spectacles inclus</option>
-                    <option value="thematique">Thématique</option>
-                    <option value="aquatique">Aquatique</option>
-                    <option value="interactif">Interactif</option>
-                </optgroup>
-
-                <optgroup label="Visites">
-                    <option value="guidee">Guidée</option>
-                    <option value="autonome">Autonome</option>
-                    <option value="musee">Musée</option>
-                    <option value="original">Original</option>
-                    <option value="monument">Monument</option>
-                    <option value="panoramique">Panoramique</option>
-                    <option value="educative">Éducative</option>
-                </optgroup>
-            </select>-->
-
+            <label for="inputTag">Tags supplémentaires </label>
             
-            <input type="text" id="inputTag" name="inputTag" placeholder="Entrez un tag décrivant votre activité / établissement">
+            <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
             <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button>
-
+            <div id="autocomplete-list" class="autocomplete-list"></div>
+            
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->
             </section>

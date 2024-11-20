@@ -15,16 +15,16 @@
             WHERE rows > 0;");
         $stmt->execute([$idOffre, $idOffre, $idOffre, $idOffre, $idOffre]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result === "_spectacle") {
-            print("Est un spectacle \n");
-            $is_show = 1;
-        } else if ($result === "_restauration" || $result === "_parcattraction" || $result === "_visite" || $result === "_activite") {
-            $is_show = 0;
-        } else {
+        if ($result == false) {
             $is_show = -1;
+        } else if ($result["table_name"] == "_spectacle") {
+            $is_show = 1;
+        } else if ($result["table_name"] === "_restauration" 
+        || $result["table_name"] === "_parcattraction" 
+        || $result["table_name"] === "_visite" 
+        || $result["table_name"] === "_activite") {
+            $is_show = 0;
         }
-        print_r($result);
-        $is_show = false;
         if ($is_show == 0) {
             $jour_semaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
             foreach ($jour_semaine as $value) {
@@ -114,7 +114,7 @@
     } else {
         ?>
         <div>
-            <h2>Veuillez sélectionner Le type d'offre</h2>
+            <h3>Veuillez sélectionner Le type d'offre</h3>
             <button type="submit" onclick="submitForm(event,2)">Détails de l'offre</button>
         </div>
         <?php

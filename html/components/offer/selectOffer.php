@@ -52,13 +52,25 @@ if (!empty($idOffre)) {
     </div>
     <?php
     } else {
-      $stmt = $conn->prepare("SELECT o.idoffre FROM pact._offre o ORDER BY idoffre DESC LIMIT 1");
+      $abonnement = [];
+      $stmt = $conn->prepare("SELECT nomabonnement, tarif FROM pact._abonnement");
       $stmt->execute();
-      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          $abonnement[] = ["nomabonnement" => $row["nomabonnement"], "tarif" => $row["tarif"]];
+      }
     ?>
     <div>
       <h2>Offre Premium</h2>
-      <h3>119,99&euro;&nbsp;/&nbsp;mois</h3>
+      <?php
+      foreach ($abonnement as $ab) {
+        if ($ab['nomabonnement'] === "Premium") {
+            ?>
+            <h3> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
+            <?php
+            break;
+        }
+      }
+      ?>
       <ul>
         <li>Réservée au privé</li>
         <li>Saisie d’une grille tarifaire</li>
@@ -71,7 +83,16 @@ if (!empty($idOffre)) {
     </div>
     <div>
       <h2>Offre Standard</h2>
-      <h3>79,99&euro;&nbsp;/&nbsp;mois</h3>
+      <?php
+      foreach ($abonnement as $ab) {
+        if ($ab['nomabonnement'] === "Basique") {
+            ?>
+            <h3> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
+            <?php
+            break;
+        }
+      }
+      ?>
       <ul>
         <li>Réservée au privé</li>
         <li>Saisie d’une grille tarifaire</li>
