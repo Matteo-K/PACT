@@ -91,7 +91,7 @@ footer {
 footer>div:first-child {
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 10%;
 }
 
@@ -147,10 +147,19 @@ footer div+div {
 }
 
 footer div+div p {
-  flex: 5;
+  flex: 3;
+}
+
+footer div+div a {
+  flex: 2;
 }
 
 @media screen and (max-width : 1310px) {
+  footer figure {
+    margin-left: 0;
+    justify-content: center;
+  }
+
   address {
     border-left: none;
   }
