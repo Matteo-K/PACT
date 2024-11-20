@@ -1488,7 +1488,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 /* ##### Aside Filtre & tri ##### */
 
 #trifiltre {
-  position: absolute;
+  position: fixed;
   background: linear-gradient(0.45turn, var(--primary), #113);
   width: 400px;
 }
