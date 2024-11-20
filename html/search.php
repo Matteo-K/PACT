@@ -96,10 +96,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $villes = $loca->fetchAll(PDO::FETCH_ASSOC);
                     $ville = ($villes)?$villes[0]['ville']:"Pas de localisation entrée";
     
-                    $user = $conn->prepare("SELECT * FROM pact._pro WHERE idu = $iduser");
-                    $user->execute();
-                    $denomination = ($user->fetchAll(PDO::FETCH_ASSOC))[0]['denomination'];
-    
                     // Requête pour la gamme de prix
                     $prix = $conn->prepare("SELECT * FROM pact.restaurants WHERE idOffre = $idOffre");
                     $prix->execute();
@@ -158,11 +154,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             <div class="infoOffre">
                                 <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
 
-                                <strong><p class="villesearch"><?php echo $ville . $gammeText; ?></p></strong>
-
-                                <strong><p class="searchUser"><?php echo"créer par ".$denomination ;?></p></strong>
-
-                                <strong><?php echo $nomTag; ?></strong>
+                                <strong><p class="villesearch"><?php echo $ville . $gammeText . " ⋅ " . $nomTag; ?></p></strong>
 
                                 <div class="searchCategorie">
                                     <?php
