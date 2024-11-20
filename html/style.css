@@ -272,7 +272,7 @@ header div > a > img,
   color: var(--text-dark);
   text-align: center;
   /* Centrer le texte horizontalement */
-  margin-top: -10px;
+  margin-top: -100px;
   /* Ajuste l'espacement entre "PACT" et "PRO" */
 }
 
