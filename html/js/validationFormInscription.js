@@ -1,6 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    const messageErreurDiv = document.getElementById('messageErreur');
+    const form = document.getElementById('formPro');
+
     // Gestion du bouton retour
-    document.getElementById('retour').addEventListener('click', function() {
+    document.getElementById('retour').addEventListener('click', function () {
         window.history.back();
     });
 
@@ -27,98 +30,114 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ajouter des écouteurs d'événements sur les boutons radio
     publicRadio.addEventListener("click", updateSirenVisibility);
     priveRadio.addEventListener("click", updateSirenVisibility);
-});
 
-// Fonction pour afficher les messages d'erreur à côté de chaque champ
-function displayFieldError(inputElement, messageErreur) {
-    const errorElement = inputElement.nextElementSibling; // Supposons qu'un élément d'erreur est placé après le champ
-    if (!errorElement || !errorElement.classList.contains('error-message')) {
-        // Si l'élément d'erreur n'existe pas, on le crée
-        const errorDiv = document.createElement('div');
-        errorDiv.classList.add('error-message');
-        inputElement.parentNode.appendChild(errorDiv);
+     // Fonction pour afficher les erreurs globales
+     function displayGlobalErrors(errors) {
+        messageErreurDiv.innerHTML = ''; // Efface les erreurs précédentes
+        if (errors.length > 0) {
+            messageErreurDiv.style.display = 'block'; // Assure que la div est visible
+            const errorList = document.createElement('ul'); // Crée une liste des erreurs
+            errors.forEach(error => {
+                const li = document.createElement('li');
+                li.textContent = error;
+                errorList.appendChild(li);
+            });
+            messageErreurDiv.appendChild(errorList);
+        } else {
+            messageErreurDiv.style.display = 'none'; // Cache la div si pas d'erreurs
+        }
     }
-    inputElement.classList.add('error');
-    inputElement.classList.remove('valid');
-    errorElement.innerHTML = messageErreur;  // Affiche l'erreur
-}
 
-// Fonction pour supprimer les messages d'erreur et rétablir les styles
-function clearFieldError(inputElement) {
-    const errorElement = inputElement.nextElementSibling;
-    if (errorElement && errorElement.classList.contains('error-message')) {
-        errorElement.innerHTML = '';  // Effacer le message
+    // Fonction pour afficher un message d'erreur à côté d'un champ
+    function displayFieldError(inputElement, messageErreur) {
+        let errorElement = inputElement.nextElementSibling; // Rechercher un élément d'erreur existant
+        if (!errorElement || !errorElement.classList.contains('error-message')) {
+            errorElement = document.createElement('div');
+            errorElement.classList.add('error-message');
+            inputElement.parentNode.appendChild(errorElement); // Ajout après le champ
+        }
+        errorElement.textContent = messageErreur; // Ajoute le texte d'erreur
+        inputElement.classList.add('error');
+        inputElement.classList.remove('valid');
+    }
+
+    // Fonction pour effacer un message d'erreur
+    function clearFieldError(inputElement) {
+        const errorElement = inputElement.nextElementSibling; // Rechercher l'élément d'erreur
+        if (errorElement && errorElement.classList.contains('error-message')) {
+            errorElement.remove(); // Supprime le message
+        }
         inputElement.classList.remove('error');
         inputElement.classList.add('valid');
     }
-}
 
-// Fonction pour valider un champ
-function validateField(inputElement, pattern, messageErreur) {
-    if (!pattern.test(inputElement.value.trim())) {
-        displayFieldError(inputElement, messageErreur);
-        return false;
-    } else {
-        clearFieldError(inputElement);
-        return true;
+    // Fonction pour valider un champ
+    function validateField(inputElement, pattern, messageErreur) {
+        if (!pattern.test(inputElement.value.trim())) {
+            displayFieldError(inputElement, messageErreur);
+            return false;
+        } else {
+            clearFieldError(inputElement);
+            return true;
+        }
     }
-}
 
-// Validation lors du "blur" de chaque champ
-document.getElementById('denomination').addEventListener('blur', function() {
-    const pattern = /^.+$/;  // Vérifier que le champ n'est pas vide
-    validateField(this, pattern, 'La dénomination est obligatoire.');
-});
+    // Validation complète au moment de la soumission
+    form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Empêche l'envoi par défaut
+        const errors = []; // Tableau pour stocker les erreurs globales
 
-document.getElementById('telephone').addEventListener('blur', function() {
-    const phonePattern = /^0[1-9]([.\-/]?[0-9]{2}){4}$/;
-    validateField(this, phonePattern, 'Veuillez entrer un numéro de téléphone valide.');
-});
+        // Valider chaque champ
+        if (!validateField(document.getElementById('denomination'), /^.+$/, 'La dénomination est obligatoire.')) {
+            errors.push('La dénomination est obligatoire.');
+        }
 
-document.getElementById('email').addEventListener('blur', function() {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    validateField(this, emailPattern, 'Veuillez entrer une adresse e-mail valide.');
-});
+        if (!validateField(document.getElementById('telephone'), /^0[1-9]([.\-/]?[0-9]{2}){4}$/, 'Veuillez entrer un numéro de téléphone valide.')) {
+            errors.push('Veuillez entrer un numéro de téléphone valide.');
+        }
 
-document.getElementById('adresse').addEventListener('blur', function() {
-    const adressePattern = /^\d+\s+(bis\s+)?[A-Za-z\s]+/i;
-    validateField(this, adressePattern, 'Veuillez entrer une adresse postale valide (ex : 123 Rue de Paris).');
-});
+        if (!validateField(document.getElementById('email'), /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Veuillez entrer une adresse e-mail valide.')) {
+            errors.push('Veuillez entrer une adresse e-mail valide.');
+        }
 
-document.getElementById('code').addEventListener('blur', function() {
-    const codePattern = /^[0-9]{5}$/;
-    validateField(this, codePattern, 'Veuillez entrer un code postal valide (5 chiffres).');
-});
+        if (!validateField(document.getElementById('adresse'), /^\d+\s+(bis\s+)?[A-Za-z\s]+/i, 'Veuillez entrer une adresse postale valide.')) {
+            errors.push('Veuillez entrer une adresse postale valide.');
+        }
 
-document.getElementById('ville').addEventListener('blur', function() {
-    const villePattern = /^[A-Za-z\s\-]+$/;
-    validateField(this, villePattern, 'Veuillez entrer une ville valide (lettres et espaces seulement).');
-});
+        if (!validateField(document.getElementById('code'), /^[0-9]{5}$/, 'Veuillez entrer un code postal valide.')) {
+            errors.push('Veuillez entrer un code postal valide.');
+        }
 
-document.getElementById('siren').addEventListener('blur', function() {
-    const sirenPattern = /^(?:\d{3} \d{3} \d{3}|\d{9})$/;
-    validateField(this, sirenPattern, 'Veuillez entrer un numéro de SIREN valide (ex : 123 456 789).');
-});
+        if (!validateField(document.getElementById('ville'), /^[A-Za-z\s\-]+$/, 'Veuillez entrer une ville valide.')) {
+            errors.push('Veuillez entrer une ville valide.');
+        }
 
-document.getElementById('motdepasse').addEventListener('blur', function() {
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/;
-    validateField(this, passwordPattern, 'Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule et un chiffre.');
-});
+        const sirenInput = document.getElementById('siren');
+        if (sirenInput && sirenInput.style.display !== 'none' && !validateField(sirenInput, /^(?:\d{3} \d{3} \d{3}|\d{9})$/, 'Veuillez entrer un numéro de SIREN valide.')) {
+            errors.push('Veuillez entrer un numéro de SIREN valide.');
+        }
 
-document.getElementById('confirmer').addEventListener('blur', function() {
-    const motdepasse = document.getElementById('motdepasse').value;
-    if (this.value !== motdepasse) {
-        displayFieldError(this, 'Les mots de passe ne correspondent pas.');
-    } else {
-        clearFieldError(this);
-    }
-});
+        const motdepasse = document.getElementById('motdepasse').value;
+        if (!validateField(document.getElementById('motdepasse'), /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/, 'Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule et un chiffre.')) {
+            errors.push('Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule et un chiffre.');
+        }
 
-document.getElementById('cgu').addEventListener('change', function() {
-    const cguChecked = this.checked;
-    if (!cguChecked) {
-        displayFieldError(this, 'Vous devez accepter les conditions générales d\'utilisation.');
-    } else {
-        clearFieldError(this);
-    }
+        const confirmer = document.getElementById('confirmer').value;
+        if (motdepasse !== confirmer) {
+            displayFieldError(document.getElementById('confirmer'), 'Les mots de passe ne correspondent pas.');
+            errors.push('Les mots de passe ne correspondent pas.');
+        }
+
+        if (!document.getElementById('cgu').checked) {
+            errors.push('Vous devez accepter les conditions générales d\'utilisation.');
+        }
+
+        // Afficher les erreurs globales
+        displayGlobalErrors(errors);
+
+        // Si aucune erreur, envoyer le formulaire
+        if (errors.length === 0) {
+            form.submit();
+        }
+    });
 });
