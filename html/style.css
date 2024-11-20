@@ -432,6 +432,21 @@ header ul + div {
 #logoutButton:hover {
   background-color: #ff0000;
 }
+
+@media screen and (max-width: 768px) {
+  #formHeader {
+      width: 80%; /* Réduit la largeur du formulaire */
+  }
+  #profileMenu {
+      width: 100%; /* Prend toute la largeur sur mobile */
+  }
+  header h1 {
+      font-size: 32px; /* Diminue la taille de la police */
+  }
+}
+
+
+
 /* ### Offer ### */
 
 /* Gestion de l'offre */
