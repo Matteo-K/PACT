@@ -1980,7 +1980,7 @@ button[id="boutonInscriptionPro"] {
   background-color: var(--accent);
 }
 
-.messageErreur {
+/* .messageErreur {
   color: red;
   margin-bottom: 20px;
   font-size: 20px;
@@ -2000,7 +2000,47 @@ input.error {
 
 input.valid {
   border: 3px solid var(--accent)
+} */
+
+
+/* Couleur du fond et des bordures */
+input.error {
+  border: 3px solid red; /* Bordure rouge pour un champ invalide */
 }
+
+input.valid {
+  border: 3px solid var(--accent); /* Bordure verte ou la couleur accent pour un champ valide */
+}
+
+/* Messages d'erreur pour les champs */
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.5em;
+  text-align: left; /* Alignement à gauche pour une meilleure lisibilité */
+}
+
+.messageErreur {
+  color: red;
+  margin-bottom: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Optionnel: Si vous voulez que les messages d'erreur aient plus d'espace */
+.creation-compte .error-message {
+  margin-top: 10px;
+}
+
+/* Assurez-vous que les éléments contenant des erreurs soient visibles et bien disposés */
+.creation-compte input.error + .error-message {
+  display: block; /* S'assurer que le message d'erreur est bien affiché */
+}
+
+.creation-compte input.valid + .error-message {
+  display: none; /* Cache le message d'erreur pour les champs valides */
+}
+
 
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
