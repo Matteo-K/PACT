@@ -1,3 +1,5 @@
+<?php require_once __DIR__ . "/../config.php";?>
+
 <style>
     header {
     display: flex;
