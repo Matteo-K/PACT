@@ -132,11 +132,16 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
             </aside>
         </section>
         <?php 
+
+        $stmt = $conn->prepare("SELECT * FROM pact.offres");
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        print_r($results);
+
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
             $idutilisateur=$_SESSION["idUser"];
-            $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idu=$idutilisateur ORDER BY dateCrea DESC");
-            $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
             
             ?>
             <section class="searchoffre">
