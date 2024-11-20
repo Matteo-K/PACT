@@ -45,29 +45,29 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <h2>Trier</h2>
                 <div class="blcTriFiltre">
                     <div>
-                        <label for="">Mise en avant</label>
-                        <input type="radio" name="" id="">
+                        <label for="miseEnAvant">Mise en avant</label>
+                        <input type="radio" name="miseEnAvant" id="miseEnAvant">
                     </div>
                     <div>
                         <h3>Par note&nbsp;:&nbsp;</h3>
-                        <label for="">Ordre croissant</label>
-                        <input type="radio" name="" id="">
-                        <label for="">Ordre décroissant</label>
-                        <input type="radio" name="" id="">
+                        <label for="noteCroissant">Ordre croissant</label>
+                        <input type="radio" name="noteCroissant" id="noteCroissant">
+                        <label for="noteDecroissant">Ordre décroissant</label>
+                        <input type="radio" name="noteDecroissant" id="noteDecroissant">
                     </div>
                     <div>
                         <h3>Par prix&nbsp;:&nbsp;</h3>
-                        <label for="">Ordre croissant</label>
-                        <input type="radio" name="" id="">
-                        <label for="">Ordre décroissant</label>
-                        <input type="radio" name="" id="">
+                        <label for="prixCroissant">Ordre croissant</label>
+                        <input type="radio" name="prixCroissant" id="prixCroissant">
+                        <label for="prixDecroissant">Ordre décroissant</label>
+                        <input type="radio" name="prixDecroissant" id="prixDecroissant">
                     </div>
                     <div>
                         <h3>Par date&nbsp;:&nbsp;</h3>
-                        <label for="">Plus récent</label>
-                        <input type="radio" name="" id="">
-                        <label for="">Plus ancien</label>
-                        <input type="radio" name="" id="">
+                        <label for="dateRecent">Plus récent</label>
+                        <input type="radio" name="dateRecent" id="dateRecent">
+                        <label for="dateAncien">Plus ancien</label>
+                        <input type="radio" name="dateAncien" id="dateAncien">
                     </div>
                 </div>
             </aside>
@@ -76,41 +76,46 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <div class="blcTriFiltre">
                     <div>
                         <h3>Par note</h3>
-                        <label for="">
+                        <label for="1star">
+                            <div class="star"></div>
+                            ou +
+                        </label>
+                        <input type="radio" name="1star" id="1star" checked>
+                        <label for="2star">
                             <div class="star"></div>
                             <div class="star"></div>
                             ou +
                         </label>
-                        <input type="radio" name="" id="">
-                        <label for="">
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            ou +
-                        </label>
-                        <input type="radio" name="" id="">
-                        <label for="">
-                            <div class="star"></div>
+                        <input type="radio" name="2star" id="2star">
+                        <label for="3star">
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
                             ou +
                         </label>
-                        <input type="radio" name="" id="">
-                        <label for="">
+                        <input type="radio" name="3star" id="3star">
+                        <label for="4star">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            ou +
+                        </label>
+                        <input type="radio" name="4star" id="4star">
+                        <label for="5star">
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
                         </label>
-                        <input type="radio" name="" id="">
+                        <input type="radio" name="5star" id="5star">
                     </div>
                     <div>
                         <h3>Par prix</h3>
                         <div>
-                            <label for="">De</label>
-                            <select name="" id="">
+                            <label for="prixMin">De</label>
+                            <select name="prixMin" id="prixMin">
                                 <option value="0" default>0€</option>
                                 <option value="25">25€</option>
                                 <option value="50">50€</option>
@@ -123,8 +128,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             </select>
                         </div>
                         <div>
-                            <label for="">à</label>
-                            <select name="" id="">
+                            <label for="prixMax">à</label>
+                            <select name="prixMax" id="prixMax">
                             <option value="0">0€</option>
                                 <option value="25">25€</option>
                                 <option value="50">50€</option>
@@ -140,28 +145,50 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     <div>
                         <h3>Par Statut</h3>
                         <div>
-                            <label for="">Ouvert</label>
-                            <input type="radio" name="" id="">
+                            <label for="ouvert">Ouvert</label>
+                            <input type="checkbox" name="statut" id="ouvert" checked>
                         </div>
                         <div>
-                            <label for="">Fermé</label>
-                            <input type="radio" name="" id="">
+                            <label for="ferme">Fermé</label>
+                            <input type="checkbox" name="statut" id="ferme" checked>
                         </div>
                     </div>
                     <div>
                         <h3>Par catégorie</h3>
+                        <ul>
+                            <li>
+                                <label for="Restauration">Restauration</label>
+                                <input type="checkbox" name="categorie" id="Restauration">
+                            </li>
+                            <li>
+                                <label for="Activité">Activité</label>
+                                <input type="checkbox" name="categorie" id="Activité">
+                            </li>
+                            <li>
+                                <label for="Parc">Parc d’attractions</label>
+                                <input type="checkbox" name="categorie" id="Parc">
+                            </li>
+                            <li>
+                                <label for="Visite">Visite</label>
+                                <input type="checkbox" name="categorie" id="Visite">
+                            </li>
+                            <li>
+                                <label for="Spectacle">Spectacle</label>
+                                <input type="checkbox" name="categorie" id="Spectacle">
+                            </li>
+                        </ul>
                     </div>
                     <div>
                         <h3>Par date</h3>
                         <div>
                             <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
                             <input type="date" name="dateDepart" id="dateDepart" value="" min="">
-                            <input type="time" name="" id="">
+                            <input type="time" name="heureDebut" id="heureDebut">
                         </div>
                         <div>
                             <label for="dateDepart">Fin&nbsp;:&nbsp;</label>
                             <input type="date" name="dateFin" id="dateFin" value="" min="">
-                            <input type="time" name="" id="">
+                            <input type="time" name="heureFin" id="heureFin">
                         </div>
                     </div>
                 </div>
@@ -341,34 +368,26 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $noteAvg = "Non noté";
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
                     if (($offre['listhorairemidi'])!="") {
-                        $jsonString="[".$offre['listhorairemidi']."]";
-                        $jsonArray = json_decode("[$jsonString]", true); // Encapsuler dans des crochets pour simuler un tableau
-print_r($jsonString[0]);
-if ($jsonArray === null) {
-    die('Erreur : JSON invalide.');
-}
+                        $horaireMidi=$offre['listhorairemidi'];
+                        print_r($horaireMidi);
+                        $jsonArray = json_decode("[$horaireMidi]", true); // Ajout de crochets pour le rendre valide
 
-// Créer le tableau final
-$result = [];
-foreach ($jsonArray as $item) {
-    // Décoder chaque chaîne JSON
-    $decodedItem = json_decode($item, true);
-
-    if ($decodedItem === null) {
-        die('Erreur : Un élément JSON est invalide.');
-    }
-
-    // Ajouter les données au tableau
-    $result[] = [
-        'jour' => $decodedItem['jour'],
-        'idoffre' => 1,
-        'heureouverture' => $decodedItem['heureOuverture'],
-        'heurefermeture' => $decodedItem['heureFermeture']
-    ];
-}
-
-// Afficher le tableau final
-print_r($result);                
+                        // Tableau final
+                        $resultsMidi = [];
+                        
+                        // Parcours et transformation des données
+                        foreach ($jsonArray as $item) {
+                            // Décodage du JSON interne
+                            $decodedItem = json_decode($item, true);
+                            
+                            // Ajout des clés supplémentaires
+                            $resultsMidi[] = [
+                                'jour' => $decodedItem['jour'],
+                                'idOffre' => $idOffre,
+                                'heureOuverture' => $decodedItem['heureOuverture'],
+                                'heureFermeture' => $decodedItem['heureFermeture']
+                            ];
+                        }                    
                     }else{
                         $resultsMidi = [];
                     }
