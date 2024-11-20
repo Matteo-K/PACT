@@ -138,7 +138,7 @@ try {
 
     // Variables de sélection des éléments
     const inputTag = document.getElementById("inputTag");
-    const autocompleteList = document.getElementById("autocomplete-list");
+    const autocompleteList = document.getElementById("autocompletion");
 
     // Fonction pour filtrer et afficher les suggestions
     function updateSuggestions(value) {
@@ -194,7 +194,7 @@ try {
 
     // Cacher les suggestions si on clique ailleurs
     document.addEventListener("click", (event) => {
-      if (!event.target.closest("#autocomplete-list") && event.target !== inputTag) {
+      if (!event.target.closest("#autocompletion") && event.target !== inputTag) {
         autocompleteList.innerText = "";
       }
     });
