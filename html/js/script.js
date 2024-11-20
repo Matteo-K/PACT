@@ -77,7 +77,7 @@ try {
     // Fonction pour filtrer et afficher les suggestions
     function updateSuggestions(value) {
       // Nettoyer les suggestions précédentes
-      autocompleteList.innerHTML = "";
+      autocompleteList.innerText = "";
 
       // Si la saisie est vide, on n'affiche rien
       if (!value) return;
@@ -96,7 +96,7 @@ try {
         // Quand un utilisateur clique sur une suggestion
         item.addEventListener("click", () => {
           inputTag.value = tag; // Met le tag sélectionné dans l'input
-          autocompleteList.innerHTML = ""; // Vide les suggestions
+          autocompleteList.innerText = ""; // Vide les suggestions
         });
 
         autocompleteList.appendChild(item);
