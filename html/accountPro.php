@@ -94,7 +94,7 @@
         <link rel="icon" href="img/logo.png" type="image/x-icon">
         <title>Créer un compte</title>
     </head>
-    <body id ="body_creation_compte_pro" class="creation-compte">
+    <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
             <button id="retour">
                 <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
@@ -204,7 +204,7 @@
             
             
             <!-- <button onclick = "validationFormPro()" id="boutonInscriptionPro">S'inscrire</button> -->
-            <button type="submit" id="boutonInscriptionPro">S'inscrire</button>
+            <button type="submit" id="boutonInscription">S'inscrire</button>
 
             <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="login.php">Se connecter</a></h2>
         </form>
