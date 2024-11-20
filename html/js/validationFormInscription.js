@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 'denomination', pattern: /^.+$/, message: 'La dénomination est obligatoire.' },
         { id: 'telephone', pattern: /^0[1-9]([.\-/]?[0-9]{2}|\s?[0-9]{2}){4}$/, message: 'Veuillez entrer un numéro de téléphone valide (avec espaces, sans espaces, points, tirets ou slashs).' },
         { id: 'email', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Veuillez entrer une adresse e-mail valide (avec un @ et un point, ex: exemple@gmail.com).' },
-        { id: 'adresse', pattern: /^\d+\s+(bis\s+)?[A-Za-z\s]+/i, message: 'Veuillez entrer une adresse postale valide (avec un numéro de rue et le nom de la rue, ex: 123 Rue de Paris).' },
+        { id: 'adresse', pattern: /^\d+\s+(bis\s+)?[A-Za-z\s]+/i, message: 'Veuillez entrer une adresse postale valide (avec un numéro de rue et le nom de la rue, ex: 123 Rue de Brest).' },
         { id: 'code', pattern: /^(?:[0-9]{5}|\d{2} \d{3})$/, message: 'Veuillez entrer un code postal valide (ex: 29000 ou 29 000).' },
         { id: 'ville', pattern: /^[A-Za-z\s\-]+$/, message: 'Veuillez entrer une ville valide.' },
         { id: 'siren', pattern: /^(?:\d{3}[\s.\-/]?\d{3}[\s.\-/]?\d{3})$/, message: 'Veuillez entrer un numéro de SIREN valide (avec espaces, sans espaces, points, tirets ou slashs).' },
