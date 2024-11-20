@@ -134,5 +134,5 @@
         </div>
     </main>
 </body>
-<script src = "js/validationFormConnexion.js"></script>
+<script src = "js/validationFormInscription.js"></script>
 </html>
