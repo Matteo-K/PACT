@@ -1117,11 +1117,7 @@ header ul + div {
 }
 
 #inputTag {
-  width: 70%;
-}
-
-#ajoutTag {
-  background-color: var(--primary);
+  width: 100%;
 }
 
 #artDetailOffer .tag {

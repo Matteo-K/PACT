@@ -103,7 +103,7 @@ if ($result != false) {
             <label for="inputTag">Tags supplémentaires </label>
             
             <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
-            <button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button>
+            <!--v<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
             <div id="autocomplete-list" class="autocomplete-list"></div>
             
             <section id="sectionTag">

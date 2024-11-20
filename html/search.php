@@ -340,11 +340,18 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $resume= $offre['resume'];
                     $noteAvg = "Non noté";
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
-                    $horaireMidi=explode(',',trim($offre['listhorairemidi'],'{}'));
-                    $horaireSoir=explode(',',trim($offre['listhorairesoir'],'{}'));
-                    print_r(trim($offre['listhorairesoir'],'{}'));
-                    echo "  xw wx  ";
-                    print_r(trim($offre['listhorairemidi'],'{}'));
+                    if (($offre['listhorairemidi'])!="") {
+                        $horaireMidi = explode(',',trim($offre['listhorairemidi'],'{}'));    
+                    }else{
+                        $horaireMidi = [];
+                    }
+                    if (($offre['listhorairesoir'])!="") {
+                        $horaireSoir = explode(',',trim($offre['listhorairesoir'],'{}'));
+                    }else {
+                        $horaireSoir = [];
+                    }
+                    print_r($horaireMidi);
+                    print_r($horaireSoir);
 
                     // Requête pour récupérer les horaires du soir
                     $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre");
