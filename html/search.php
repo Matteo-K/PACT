@@ -116,7 +116,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <div>
                             <label for="prixMin">De</label>
                             <select name="prixMin" id="prixMin">
-                                <option value="0" default>0€</option>
+                                <option value="0" selected>0€</option>
                                 <option value="25">25€</option>
                                 <option value="50">50€</option>
                                 <option value="75">75€</option>
@@ -134,7 +134,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 <option value="25">25€</option>
                                 <option value="50">50€</option>
                                 <option value="75">75€</option>
-                                <option value="100" default>100€</option>
+                                <option value="100" selected>100€</option>
                                 <option value="125">125€</option>
                                 <option value="150">150€</option>
                                 <option value="175">175€</option>
@@ -158,23 +158,23 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <ul>
                             <li>
                                 <label for="Restauration">Restauration</label>
-                                <input type="checkbox" name="categorie" id="Restauration">
+                                <input type="checkbox" name="categorie" id="Restauration" checked>
                             </li>
                             <li>
                                 <label for="Activité">Activité</label>
-                                <input type="checkbox" name="categorie" id="Activité">
+                                <input type="checkbox" name="categorie" id="Activité" checked>
                             </li>
                             <li>
                                 <label for="Parc">Parc d’attractions</label>
-                                <input type="checkbox" name="categorie" id="Parc">
+                                <input type="checkbox" name="categorie" id="Parc" checked>
                             </li>
                             <li>
                                 <label for="Visite">Visite</label>
-                                <input type="checkbox" name="categorie" id="Visite">
+                                <input type="checkbox" name="categorie" id="Visite" checked>
                             </li>
                             <li>
                                 <label for="Spectacle">Spectacle</label>
-                                <input type="checkbox" name="categorie" id="Spectacle">
+                                <input type="checkbox" name="categorie" id="Spectacle" checked>
                             </li>
                         </ul>
                     </div>
@@ -182,12 +182,12 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <h3>Par date</h3>
                         <div>
                             <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
-                            <input type="date" name="dateDepart" id="dateDepart" value="" min="">
+                            <input type="date" name="dateDepart" id="dateDepart" value="<?php echo date("Y-m-j"); ?>" min="<?php echo date("Y-m-j"); ?>">
                             <input type="time" name="heureDebut" id="heureDebut">
                         </div>
                         <div>
                             <label for="dateDepart">Fin&nbsp;:&nbsp;</label>
-                            <input type="date" name="dateFin" id="dateFin" value="" min="">
+                            <input type="date" name="dateFin" id="dateFin" value="<?php echo date('Y-m-d', strtotime('+1 month')); ?>" min="<input type="date" name="dateFin" id="dateFin" value="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>">
                             <input type="time" name="heureFin" id="heureFin">
                         </div>
                     </div>
