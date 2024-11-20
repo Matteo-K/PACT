@@ -30,6 +30,16 @@ if ($categorie["_parcattraction"]) {
             <input type="number" id="agePark"name="AgePark">
         </div>
 
+        <div>
+            <label>Nombre d'attraction</label>
+            <input type="number" id="nbAttrac"name="nbAttrac">
+        </div>
+
+        <div>
+            <label>Prix Minimum</label>
+            <input type="range" id="prixMinPark"name="prixMinPark">
+        </div>
+
 
 
     </article>
