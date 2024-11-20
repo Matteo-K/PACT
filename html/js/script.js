@@ -136,25 +136,6 @@ try {
     "Guidée", "Autonome", "Musée", "Lieu insolite", "Monument", "Panoramique", "Éducative"
   ];
 
-  // Liste des tags proposés
-  const tabTags = [
-    "Local", "International", "Insolite", "Populaire", "Exclusif", "Authentique",
-    "Romantique", "Festif", "Familial", "Calme", "Intimiste", "Ludique",
-    "Traditionnel", "Contemporain", "Convivial", "En extérieur", "En intérieur",
-    "Urbain", "Rural", "En bord de mer", "Montagne", "Patrimonial",
-    "Historique", "Culturel", "Moderne", "Médiéval", "Naturel", "Industriel",
-    "Féérique", "Nocturne", "Diurne", "Week-end", "Vacances scolaires",
-    "Estival", "Hivernal", "Saisonnier", "Couple", "Enfants", "Adolescents",
-    "Seniors", "Groupes", "Solo", "Amateurs de sensations", "Cuisine locale",
-    "Cuisine gastronomique", "Street food", "Brunch", "Végétarien", "Vegan",
-    "Bistronomique", "À thème", "Théâtre", "Musique live", "Cirque", "Comédie",
-    "Danse", "Magie", "Stand-up", "Sport nautique", "Randonnée", "Atelier créatif",
-    "Activité immersive", "Escape game", "Jeux d’équipe", "Découverte sportive",
-    "Sensations fortes", "Familial", "Animaux", "Spectacles inclus", "Thématique",
-    "Aquatique", "Interactif", "Guidée", "Autonome", "Musée", "Lieu insolite",
-    "Monument", "Panoramique", "Éducative"
-  ];
-
     // Variables de sélection des éléments
     const inputTag = document.getElementById("inputTag");
     const autocompleteList = document.getElementById("autocomplete-list");
@@ -202,7 +183,7 @@ try {
 
         // Quand un utilisateur clique sur une suggestion
         item.addEventListener("click", () => {
-          inputTag.value = tag; // Met le tag sélectionné dans l'input
+          ajoutTag(tag);
           autocompleteList.innerText = ""; // Vide les suggestions
         });
 
@@ -226,6 +207,56 @@ try {
         autocompleteList.innerText = "";
       }
     });
+
+
+
+// Variables de sélection des éléments
+const sectionTag = document.getElementById("sectionTag");
+const pTag = document.querySelector("#sectionTag + p");
+let tags = []; // Tableau pour stocker les tags
+let compteurTags = 0; // Compteur pour limiter à 6 tags
+
+
+
+function ajoutTag(valeurTag) {
+
+  if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
+    compteurTags++;
+    tags.push(valeurTag); // Ajoute le tag dans le tableau
+
+    // Crée l'élément visuel pour afficher le tag
+    const elementTag = document.createElement("span");
+    elementTag.classList.add("tag");
+    elementTag.textContent = valeurTag;
+
+    // Crée l'input caché pour soumettre le tag avec le formulaire
+    const hiddenInputTag = document.createElement("input");
+    hiddenInputTag.type = "hidden";
+    hiddenInputTag.value = valeurTag;
+    hiddenInputTag.name = "tags[]"; // Utilise un tableau pour les tags
+
+    // Ajoute un événement pour supprimer le tag au clic
+    elementTag.addEventListener("click", function () {
+      tags.splice(tags.indexOf(valeurTag), 1); // Retire le tag du tableau
+      sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
+      sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
+      pTag.style.color = "black"; // Remet la couleur par défaut si besoin
+      compteurTags--; // Décrémente le compteur de tags
+    });
+
+    // Ajoute l'élément visuel et l'input caché au DOM
+    sectionTag.appendChild(elementTag); 
+    sectionTag.appendChild(hiddenInputTag);
+
+    // Réinitialise l'input
+    inputTag.value = "";
+  } else if (tags.length >= 6) {
+    pTag.style.color = "red"; // Change la couleur du texte pour signaler la limite atteinte
+  } else if (tags.includes(valeurTag)) {
+    alert("Ce tag a déjà été ajouté !");
+  }
+}
+
 
     
 
