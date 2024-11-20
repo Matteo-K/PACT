@@ -9,6 +9,60 @@ searchBar.addEventListener("input", (e) => {
 
 //Page DetailsOffer by EWEN
 try {
+
+  /* Affichage pour un type d'offre particulier */
+  // Sélection des éléments du formulaire et des radios
+  const radioRestaurant = document.getElementById("radioRestaurant");
+  const radioPark = document.getElementById("radioParc");
+  const radioActivite = document.getElementById("radioActivite");
+  const radioSpectacle = document.getElementById("radioSpectacle");
+  const radioVisite = document.getElementById("radioVisite");
+
+  const RestaurantOffer = document.getElementById("restaurant");
+  const ParkOffer = document.getElementById("park");
+  const ActiviteOffer = document.getElementById("activity");
+  const SpectacleOffer = document.getElementById("show");
+  const VisiteOffer = document.getElementById("visit");
+
+  function hidenOffer() {
+    RestaurantOffer.style.display = "none";
+    ParkOffer.style.display = "none";
+    ActiviteOffer.style.display = "none";
+    SpectacleOffer.style.display = "none";
+    VisiteOffer.style.display = "none";
+  }
+
+  // Fonction pour afficher ou masquer la div des require_once
+  hidenOffer();
+  function toggleSpecialOffer() {
+    hidenOffer();
+    if (radioPark.checked) {
+      ParkOffer.style.display = "block";
+    } else if (radioActivite.checked) {
+      ActiviteOffer.style.display = "block";
+    } else if (radioSpectacle.checked) {
+      SpectacleOffer.style.display = "block";
+    } else if (radioVisite.checked) {
+      VisiteOffer.style.display = "block";
+    } else if (radioRestaurant.checked) {
+      RestaurantOffer.style.display = "block";
+    }
+  }
+
+  // Associe la fonction de toggle au clic sur tous les boutons radio
+  radioRestaurant.addEventListener("input", toggleSpecialOffer);
+  radioPark.addEventListener("input", toggleSpecialOffer);
+  radioActivite.addEventListener("input", toggleSpecialOffer);
+  radioSpectacle.addEventListener("input", toggleSpecialOffer);
+  radioVisite.addEventListener("input", toggleSpecialOffer);
+
+  // autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
+
+  // Appel initial de la fonction pour vérifier l'état initial
+  toggleSpecialOffer();
+
+
+
   //Affichage des images a leur selection
   let compteurImages = 0;
   const pImage = document.querySelector("#choixImage > p");
@@ -51,24 +105,36 @@ try {
 
 
   
-    // Liste des tags proposés
-    const tabTags = [
-      "Local", "International", "Insolite", "Populaire", "Exclusif", "Authentique",
-      "Romantique", "Festif", "Familial", "Calme", "Intimiste", "Ludique",
-      "Traditionnel", "Contemporain", "Convivial", "En extérieur", "En intérieur",
-      "Urbain", "Rural", "En bord de mer", "Montagne", "Patrimonial",
-      "Historique", "Culturel", "Moderne", "Médiéval", "Naturel", "Industriel",
-      "Féérique", "Nocturne", "Diurne", "Week-end", "Vacances scolaires",
-      "Estival", "Hivernal", "Saisonnier", "Couple", "Enfants", "Adolescents",
-      "Seniors", "Groupes", "Solo", "Amateurs de sensations", "Cuisine locale",
-      "Cuisine gastronomique", "Street food", "Brunch", "Végétarien", "Vegan",
-      "Bistronomique", "À thème", "Théâtre", "Musique live", "Cirque", "Comédie",
-      "Danse", "Magie", "Stand-up", "Sport nautique", "Randonnée", "Atelier créatif",
-      "Activité immersive", "Escape game", "Jeux d’équipe", "Découverte sportive",
-      "Sensations fortes", "Familial", "Animaux", "Spectacles inclus", "Thématique",
-      "Aquatique", "Interactif", "Guidée", "Autonome", "Musée", "Lieu insolite",
-      "Monument", "Panoramique", "Éducative"
-    ];
+  const tagsGeneraux = [
+    "Local", "International", "Insolite", "Populaire", "Exclusif", "Authentique",
+    "Romantique", "Festif", "Familial", "Calme", "Intimiste", "Ludique",
+    "Traditionnel", "Contemporain", "Convivial", "En extérieur", "En intérieur",
+    "Urbain", "Rural", "En bord de mer", "Montagne", "Patrimonial",
+    "Historique", "Culturel", "Moderne", "Médiéval", "Naturel", "Industriel",
+    "Féérique", "Nocturne", "Diurne", "Week-end", "Vacances scolaires",
+    "Estival", "Hivernal", "Saisonnier", "Couple", "Enfants", "Adolescents",
+    "Seniors", "Groupes", "Solo", "Amateurs de sensations"
+  ];
+
+  const tagsRestaurant = [
+    "Cuisine locale", "Cuisine gastronomique", "Street food", "Brunch", "Végétarien", "Vegan", "Bistronomique", "À thème"
+  ];
+
+  const tagsSpectacle = [
+    "Théâtre", "Musique live", "Cirque", "Comédie", "Danse", "Magie", "Stand-up"
+  ];
+
+  const tagsActivites = [
+    "Sport nautique", "Randonnée", "Atelier créatif", "Activité immersive", "Escape game", "Jeux d’équipe", "Découverte sportive"
+  ];
+
+  const tagsParc = [
+    "Sensations fortes", "Familial", "Animaux", "Spectacles inclus", "Thématique", "Aquatique", "Interactif"
+  ];
+
+  const tagsVisite = [
+    "Guidée", "Autonome", "Musée", "Lieu insolite", "Monument", "Panoramique", "Éducative"
+  ];
 
     // Récupération des éléments HTML
     const inputTag = document.getElementById("inputTag");
@@ -82,8 +148,22 @@ try {
       // Si la saisie est vide, on n'affiche rien
       if (!value) return;
 
+      if (radioPark.checked) {
+        let suggestions = [...tagsGeneraux, ...tagsParc];
+      } else if (radioActivite.checked) {
+        let suggestions = [...tagsGeneraux, ...tagsActivites];
+      } else if (radioSpectacle.checked) {
+        let suggestions = [...tagsGeneraux, ...tagsSpectacle];
+      } else if (radioVisite.checked) {
+        let suggestions = [...tagsGeneraux, ...tagsVisite];
+      } else if (radioRestaurant.checked) {
+        let suggestions = [...tagsGeneraux, ...tagsRestaurant];
+      } else {
+        let suggestions = tagsGeneraux;
+      }
+
       // Filtrer les tags correspondant à la saisie
-      const suggestions = tabTags.filter(tag =>
+      let suggestions = [...tagsGeneraux].filter(tag =>
         tag.toLowerCase().includes(value.toLowerCase())
       );
 
@@ -190,59 +270,6 @@ try {
 
 
 
-
-try {
-  /* Affichage pour un type d'offre particulier */
-  // Sélection des éléments du formulaire et des radios
-  const radioRestaurant = document.getElementById("radioRestaurant");
-  const radioPark = document.getElementById("radioParc");
-  const radioActivite = document.getElementById("radioActivite");
-  const radioSpectacle = document.getElementById("radioSpectacle");
-  const radioVisite = document.getElementById("radioVisite");
-
-  const RestaurantOffer = document.getElementById("restaurant");
-  const ParkOffer = document.getElementById("park");
-  const ActiviteOffer = document.getElementById("activity");
-  const SpectacleOffer = document.getElementById("show");
-  const VisiteOffer = document.getElementById("visit");
-
-  function hidenOffer() {
-    RestaurantOffer.style.display = "none";
-    ParkOffer.style.display = "none";
-    ActiviteOffer.style.display = "none";
-    SpectacleOffer.style.display = "none";
-    VisiteOffer.style.display = "none";
-  }
-
-  // Fonction pour afficher ou masquer la div des require_once
-  hidenOffer();
-  function toggleSpecialOffer() {
-    hidenOffer();
-    if (radioPark.checked) {
-      ParkOffer.style.display = "block";
-    } else if (radioActivite.checked) {
-      ActiviteOffer.style.display = "block";
-    } else if (radioSpectacle.checked) {
-      SpectacleOffer.style.display = "block";
-    } else if (radioVisite.checked) {
-      VisiteOffer.style.display = "block";
-    } else if (radioRestaurant.checked) {
-      RestaurantOffer.style.display = "block";
-    }
-  }
-
-  // Associe la fonction de toggle au clic sur tous les boutons radio
-  radioRestaurant.addEventListener("input", toggleSpecialOffer);
-  radioPark.addEventListener("input", toggleSpecialOffer);
-  radioActivite.addEventListener("input", toggleSpecialOffer);
-  radioSpectacle.addEventListener("input", toggleSpecialOffer);
-  radioVisite.addEventListener("input", toggleSpecialOffer);
-
-  // autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
-
-  // Appel initial de la fonction pour vérifier l'état initial
-  toggleSpecialOffer();
-} catch (error) {}
 
 /* Intéraction horaire */
 let counterRep = 1;
