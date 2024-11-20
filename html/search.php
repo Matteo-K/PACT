@@ -294,9 +294,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
             </section>
         <?php
         }else {
-            $stmt = $conn->prepare("SELECT * FROM pact._offre ORDER BY dateCrea DESC");
-            $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             <section class="searchoffre">
             <?php if ($results){ ?>
