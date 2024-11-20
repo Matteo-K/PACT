@@ -1170,12 +1170,13 @@ header ul + div {
   margin: 0;
   background-color: #fff;
   border: 2px solid black;
-  width: calc(70% + 141.625px);
+  width: calc(70% + 151.625px);
+  position: absolute;
 }
 
 #autocomplete-list li{
   border-top: 1px solid var(--secondary);
-}
+} 
 
 
 
