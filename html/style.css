@@ -154,12 +154,15 @@ footer div + div p {
 /* ### Header ### */
 
 header {
-  border-bottom: var(--bloc) 2px solid;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  gap: 120em;
+  border-bottom: var(--bloc) 2px solid;
+  
+  flex-direction: row;
+  
+  
+  gap: 12em;
   position: fixed;
   top: 0;
   left: 0;
@@ -167,6 +170,12 @@ header {
   height: var(--header-size);
   z-index: 10;
   background-color: var(--background);
+}
+
+header > div,
+header > form,
+header > div#auth {
+    flex: 1;
 }
 
 header div {
@@ -196,12 +205,19 @@ header div > a > img,
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
-  /* Espace entre le logo et le texte */
+  cursor: pointer;
+}
+
+#auth {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 /* Formulaire de recherche */
 #formHeader {
   display: flex;
+  justify-content: center;
   align-items: center;
   border: var(--bloc) solid 3px;
   border-radius: 2em;
