@@ -153,7 +153,7 @@
                 <label for="ville">Ville*:</label>
                 
                 <!-- Saisi du code postale -->
-                <input type="text" placeholder = "75000" id="code" name="code" required>
+                <input type="text" placeholder = "29000" id="code" name="code" required>
 
                 <!-- Saisi de la ville -->
                 <input type="text" placeholder = "Paris" id="ville" name="ville" required>
