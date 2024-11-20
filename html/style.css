@@ -190,7 +190,7 @@ header div{
 #pro {
   font-size: 14px;
   font-weight: bold;
-  color: #ff6b6b; /* Couleur spéciale pour PRO */
+  color: var(--accent); /* Couleur spéciale pour PRO */
   margin-left: 10px;
 }
 
