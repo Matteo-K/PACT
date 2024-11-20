@@ -31,8 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
     publicRadio.addEventListener("click", updateSirenVisibility);
     priveRadio.addEventListener("click", updateSirenVisibility);
 
-     // Fonction pour afficher les erreurs globales
-     function displayGlobalErrors(errors) {
+
+
+    // Fonction pour afficher les erreurs globales dans la div messageErreur
+    function displayGlobalErrors(errors) {
         messageErreurDiv.innerHTML = ''; // Efface les erreurs précédentes
         if (errors.length > 0) {
             messageErreurDiv.style.display = 'block'; // Assure que la div est visible
@@ -48,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Fonction pour afficher un message d'erreur à côté d'un champ
+    // Fonction pour afficher un message d'erreur pour un champ
     function displayFieldError(inputElement, messageErreur) {
         let errorElement = inputElement.nextElementSibling; // Rechercher un élément d'erreur existant
         if (!errorElement || !errorElement.classList.contains('error-message')) {
@@ -57,18 +59,16 @@ document.addEventListener('DOMContentLoaded', function () {
             inputElement.parentNode.appendChild(errorElement); // Ajout après le champ
         }
         errorElement.textContent = messageErreur; // Ajoute le texte d'erreur
-        inputElement.classList.add('error');
-        inputElement.classList.remove('valid');
+        inputElement.style.borderColor = 'red'; // Met la bordure en rouge
     }
 
-    // Fonction pour effacer un message d'erreur
+    // Fonction pour effacer un message d'erreur pour un champ
     function clearFieldError(inputElement) {
         const errorElement = inputElement.nextElementSibling; // Rechercher l'élément d'erreur
         if (errorElement && errorElement.classList.contains('error-message')) {
             errorElement.remove(); // Supprime le message
         }
-        inputElement.classList.remove('error');
-        inputElement.classList.add('valid');
+        inputElement.style.borderColor = ''; // Réinitialise la bordure à son état par défaut
     }
 
     // Fonction pour valider un champ
