@@ -8,7 +8,6 @@ $activite = [
 ];
 // Une activité peut avoir plusieurs prestations (Voir avec BDD)
 
-
 // Si l'activité était déà existante, on récupère les données
 if ($categorie["_activite"]) {
     $stmt = $conn->prepare("SELECT * from pact._activite where idoffre=?");
@@ -34,11 +33,11 @@ if ($categorie["_activite"]) {
         </div>
         <div>
             <label>Prestation(s)</label>
-            <br>
+
             <textarea name="textPrestationsAct" id="textePrestation" placeholder="Entrer une prestation "></textarea>
-            <br>
+
             <input type="button" id="buttonAjoutPresta" name="BtnAjoutPresta" value="Ajouter des presations">
-            <br>
+
 
         </div>
 
@@ -48,27 +47,27 @@ if ($categorie["_activite"]) {
 
         <div>
             <label>Prix minimum</label>
-            <br>
+
 
             <input type="number" id="PrixMinAct" name="PrixMinAct" min="0" placeholder="0">
-            <br>
+
 
         </div>
         <div>
             <label id="labAccess">Accessibilité</label> <!-- Label Accessibilité -->
-            <br>
+
 
 
             <input type="radio" id="Acces" name="Accessibilite" value="Acces" checked>
             <!-- Bouton radio pour le choix de l'accesibilite PMR il est lier avec le 2eme et est selectionner par defaut -->
             <label for="Acces"> Accès personne handicapées</label>
             <!-- Label associé au bouton radio -->
-            <br>
+
             <input type="radio" id="pasAcces" name="Accessibilite" value="pasAcces">
             <!-- 2eme bouton radio liés au 1er via l'id -->
             <label for="pasAcces"> Pas d’accès personne handicapées </label>
             <!-- Label du 2eme bouton radio -->
-            <br>
+
         </div>
 
 
@@ -78,7 +77,7 @@ if ($categorie["_activite"]) {
             <label class="labDuréeAct" name="labDuréeAct"> Durée: </label>
             <input type="number" id="numberAct" name="duréeAct" placeholder="0" />
             <label class="labHAct" name="labHAct"> H </label>
-            <br>
+
         </div>
     </article>
 </section>
