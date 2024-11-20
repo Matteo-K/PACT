@@ -169,14 +169,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
       radio.forEach(element => {
         if (element.checked) {
-          const tarifOffre = element.closest('div').querySelector('h3').getAttribute('prix');
+          const tarifOffre = element.parentElement.parentElement.querySelector('h3').getAttribute('prix');
           prix += parseFloat(tarifOffre);
         }
       });
 
       option.forEach(element => {
         if (element.checked) {
-          const tarifOption = element.closest('div').querySelector('span').getAttribute('prix');
+          const tarifOption = element.parentElement.querySelector('span').getAttribute('prix');
           prix += parseFloat(tarifOption);
         }
       });
