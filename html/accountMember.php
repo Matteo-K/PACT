@@ -173,7 +173,7 @@
             </div>
             
             
-            <button onclick = "validationForm()" id="boutonInscriptionMembre">S'inscrire</button>
+            <!-- <button onclick = "validationForm()" id="boutonInscriptionMembre">S'inscrire</button> -->
 
             <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="login.php">Se connecter</a></h2>
         </form>
