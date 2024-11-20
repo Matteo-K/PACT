@@ -166,6 +166,10 @@ header div{
   align-items: center;
 }
 
+header img{
+  width: 5em;
+  height: 5em;
+}
 /* ### Offer ### */
 
 /* Gestion de l'offre */
