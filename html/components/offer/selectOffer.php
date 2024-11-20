@@ -156,13 +156,33 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       <label for="aLaUne"><span>À la une</span> : met votre offre sur la page d’accueil du site</label>
     </div>
     <p>Attention ! Vous ne pouvez pas changer d’offre une fois séléctionée.</p>
-    <p>Montant actuelle : <span id="prixPrevisionel"></span>&euro;</p>
+    <div>Montant actuelle : <span id="prixPrevisionel"></span>&euro;</div>
   </div>
 
   <script>
-    const prix = document.querySelector("#prixPrevisionel");
+    const prixPrevisionnel = document.querySelector("#prixPrevisionel");
     const radio = document.querySelectorAll("[type='radio']");
     const option = document.querySelectorAll('[type="checkbox"]');
+
+    function updatePrix() {
+      let prix = 0;
+
+      radio.forEach(element => {
+        if (element.checked) {
+          const tarifOffre = element.closest('div').querySelector('h3').getAttribute('prix');
+          prix += parseFloat(tarifOffre);
+        }
+      });
+
+      option.forEach(element => {
+        if (element.checked) {
+          const tarifOption = element.closest('div').querySelector('span').getAttribute('prix');
+          prix += parseFloat(tarifOption);
+        }
+      });
+
+      prixPrevisionnel.innerText = prix.toFixed(2);
+    }
 
     radio.forEach(element => {
       element.addEventListener("click", updatePrix);
@@ -172,11 +192,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       element.addEventListener("click", updatePrix);
     });
 
-    function updatePrix() {
-      let prix = 0;
-      prix.innerText = "";
-    }
-
     updatePrix();
+
   </script>
   
