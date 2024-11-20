@@ -210,4 +210,5 @@
         </form>
     </body>
     <script src="js/validationFormInscription.js"></script>
-</html>
+</html><!-- <button onclick = "validationFormPro()" id="boutonInscriptionPro">S'inscrire</button> -->
+<button type="submit" id="boutonInscription">S'inscrire</button>

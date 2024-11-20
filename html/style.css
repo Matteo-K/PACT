@@ -432,6 +432,29 @@ header ul + div {
 #logoutButton:hover {
   background-color: #ff0000;
 }
+
+@media screen and (max-width: 768px) {
+  header{
+    flex-wrap: wrap;
+  }
+
+  #auth{
+    order: 2;
+  }
+  #formHeader {
+      order: 10;
+      width: 80%; /* Réduit la largeur du formulaire */
+  }
+  #profileMenu {
+      width: 100%; /* Prend toute la largeur sur mobile */
+  }
+  header h1 {
+      font-size: 32px; /* Diminue la taille de la police */
+  }
+}
+
+
+
 /* ### Offer ### */
 
 /* Gestion de l'offre */
@@ -1096,6 +1119,19 @@ header ul + div {
   display: flex;
   flex-wrap: wrap;
 }
+
+/* 
+#autocomplete-list{
+  padding: 10px 0 0 0;
+  margin: 0;
+  background-color: #fff;
+  border: 2px solid black;
+  width: calc(70% + 151.625px);
+}
+
+#autocomplete-list li{
+  border-top: 1px solid var(--secondary);
+} */
 
 
 
