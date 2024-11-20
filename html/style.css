@@ -163,6 +163,7 @@ header {
   align-items: center;
   background-color: var(--background); /* Couleur principale */
   color: #ffffff;
+  border-bottom: 2px var(--bloc) solid;
 }
 
 header div{
@@ -173,8 +174,8 @@ header div{
 
 /* Logo et titre */
 #logo {
-  width: 1em;
-  height: 1em;
+  width: 5em;
+  height: 5em;
   margin-right: 10px;
 }
 
@@ -183,7 +184,7 @@ header div{
   font-weight: bold;
   margin: 0;
   display: inline-block;
-  vertical-align: middle;
+  align-items: center;
 }
 
 #pro {
@@ -1737,8 +1738,10 @@ tbody td:last-child {
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
-#restaurant {
-  background-color: lime;
+#restaurant >section{
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
 }
 
 #show {

@@ -79,12 +79,6 @@
         ?>
     </div>
 
-    <div id="auth2">
-        <a href="./profile.php">
-            <img id="profilePicture" src="./img/profile_picture/default.svg" alt="Photo de profil">
-        </a>
-    </div>
-
 </header>
 
 
