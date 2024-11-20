@@ -1142,6 +1142,13 @@ header ul + div {
   width: calc(70% + 141.625px);
 }
 
+
+#inputTag:focus {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 #artDetailOffer .tag {
   box-shadow: none;
   background-color: var(--secondary);
@@ -1165,19 +1172,23 @@ header ul + div {
 }
 
 
-#autocomplete-list{
+#autocompletion{
   padding: 10px 5px 0;
   margin: 0;
   background-color: #fff;
   border: 2px solid var(--bloc);
-  width: calc(70% + 141.625px);
-  height: 300px;
+  border-top: none;
+  border-radius: 2px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  max-width: calc(70% + 141.625px);
+  height: 200px;
   position: absolute;
   overflow: hidden;
 }
 
-#autocomplete-list li{
-  border-top: 0.5px solid var(--secondary);
+#autocompletion li{
+  border-bottom: 0.5px solid var(--secondary);
 } 
 
 

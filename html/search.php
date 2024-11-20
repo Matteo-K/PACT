@@ -46,28 +46,28 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <div class="blcTriFiltre">
                     <div>
                         <label for="miseEnAvant">Mise en avant</label>
-                        <input type="radio" name="miseEnAvant" id="miseEnAvant">
+                        <input type="radio" name="tri" id="miseEnAvant" checked>
                     </div>
                     <div>
                         <h3>Par note&nbsp;:&nbsp;</h3>
                         <label for="noteCroissant">Ordre croissant</label>
-                        <input type="radio" name="noteCroissant" id="noteCroissant">
+                        <input type="radio" name="tri" id="noteCroissant">
                         <label for="noteDecroissant">Ordre décroissant</label>
-                        <input type="radio" name="noteDecroissant" id="noteDecroissant">
+                        <input type="radio" name="tri" id="noteDecroissant">
                     </div>
                     <div>
                         <h3>Par prix&nbsp;:&nbsp;</h3>
                         <label for="prixCroissant">Ordre croissant</label>
-                        <input type="radio" name="prixCroissant" id="prixCroissant">
+                        <input type="radio" name="tri" id="prixCroissant">
                         <label for="prixDecroissant">Ordre décroissant</label>
-                        <input type="radio" name="prixDecroissant" id="prixDecroissant">
+                        <input type="radio" name="tri" id="prixDecroissant">
                     </div>
                     <div>
                         <h3>Par date&nbsp;:&nbsp;</h3>
                         <label for="dateRecent">Plus récent</label>
-                        <input type="radio" name="dateRecent" id="dateRecent">
+                        <input type="radio" name="tri" id="dateRecent">
                         <label for="dateAncien">Plus ancien</label>
-                        <input type="radio" name="dateAncien" id="dateAncien">
+                        <input type="radio" name="tri" id="dateAncien">
                     </div>
                 </div>
             </aside>
@@ -183,12 +183,12 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <div>
                             <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
                             <input type="date" name="dateDepart" id="dateDepart" value="<?php echo date("Y-m-j"); ?>" min="<?php echo date("Y-m-j"); ?>">
-                            <input type="time" name="heureDebut" id="heureDebut">
+                            <input type="time" name="heureDebut" id="heureDebut" >
                         </div>
                         <div>
                             <label for="dateDepart">Fin&nbsp;:&nbsp;</label>
-                            <input type="date" name="dateFin" id="dateFin" value="<?php echo date('Y-m-d', strtotime('+1 month')); ?>" min="<input type="date" name="dateFin" id="dateFin" value="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>">
-                            <input type="time" name="heureFin" id="heureFin">
+                            <input type="date" name="dateFin" id="dateFin" value="<?php echo date('Y-m-d', strtotime('+1 month')); ?>" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>">
+                            <input type="time" name="heureFin" id="heureFin" value="">
                         </div>
                     </div>
                 </div>
@@ -380,9 +380,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             // Ajout des clés supplémentaires
                             $resultsMidi[] = [
                                 'jour' => $decodedItem['jour'],
-                                'idOffre' => $idOffre,
-                                'heureOuverture' => $decodedItem['heureOuverture'],
-                                'heureFermeture' => $decodedItem['heureFermeture']
+                                'idoffre' => $idOffre,
+                                'heureouverture' => $decodedItem['heureOuverture'],
+                                'heurefermeture' => $decodedItem['heureFermeture']
                             ];
                         }                    
                     }else{
@@ -408,21 +408,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         } 
                     }else {
                         $resultsSoir = [];
-                    }
-                    print_r($resultsMidi);
-                    ?><br><?php
-                    
-                    // Requête pour récupérer les horaires du soir
-                    $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre ORDER BY jour");
-                    $stmt->execute();
-                    $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    
-                    // Requête pour récupérer les horaires du midi
-                    $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre = $idOffre ORDER BY jour");
-                    $stmt->execute();
-                    $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    print_r($resultsMidi);
-                    
+                    }                    
                     // Fusionner les horaires midi et soir
                     $horaires = array_merge($resultsSoir, $resultsMidi);
                     $restaurantOuvert = "EstFermé"; // Par défaut, le restaurant est fermé
@@ -547,4 +533,12 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     </main>
     <?php require_once "components/footer.php"; ?>
 </body>
+<script>
+        const now = new Date();
+        let hours = now.getHours().toString().padStart(2, '0');
+        let minutes = now.getMinutes().toString().padStart(2, '0');
+        let timeString = `${hours}:${minutes}`;
+        document.getElementById('heureFin').value = timeString;
+        document.getElementById('heureDebut').value = timeString;
+    </script>
 </html>

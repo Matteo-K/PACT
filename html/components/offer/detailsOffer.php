@@ -104,7 +104,7 @@ if ($result != false) {
             
             <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
             <!--v<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
-            <ul id="autocomplete-list"></ul>
+            <div id=divListeComplete> <ul id="autocompletion"></ul> </div>
             
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->
