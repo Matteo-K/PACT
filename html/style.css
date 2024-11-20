@@ -116,7 +116,6 @@ footer figcaption span {
 }
 
 footer img {
-  height: 5%;
   width: 5%;
   border-radius: 50%;
 }
@@ -162,6 +161,11 @@ footer div+div a {
 
   address {
     border-left: none;
+  }
+
+  footer img {
+    width: 10%;
+    border-radius: 50%;
   }
 }
 
