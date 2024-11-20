@@ -18,8 +18,8 @@
             </div>
         </a>
     </div>
-    <div id="formHeader">
-        <form method="post" action="search.php">
+    <div id="divFormHeader">
+        <form method="post" action="search.php" id="formHeader">
             <input type="text" placeholder="Rechercher :">
             <button type="submit"><img src="../img/icone/loupe.png" title="icone de recherche"></button>
         </form>

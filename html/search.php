@@ -46,28 +46,28 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <div class="blcTriFiltre">
                     <div>
                         <label for="miseEnAvant">Mise en avant</label>
-                        <input type="radio" name="miseEnAvant" id="miseEnAvant">
+                        <input type="radio" name="tri" id="miseEnAvant" checked>
                     </div>
                     <div>
                         <h3>Par note&nbsp;:&nbsp;</h3>
                         <label for="noteCroissant">Ordre croissant</label>
-                        <input type="radio" name="noteCroissant" id="noteCroissant">
+                        <input type="radio" name="tri" id="noteCroissant">
                         <label for="noteDecroissant">Ordre décroissant</label>
-                        <input type="radio" name="noteDecroissant" id="noteDecroissant">
+                        <input type="radio" name="tri" id="noteDecroissant">
                     </div>
                     <div>
                         <h3>Par prix&nbsp;:&nbsp;</h3>
                         <label for="prixCroissant">Ordre croissant</label>
-                        <input type="radio" name="prixCroissant" id="prixCroissant">
+                        <input type="radio" name="tri" id="prixCroissant">
                         <label for="prixDecroissant">Ordre décroissant</label>
-                        <input type="radio" name="prixDecroissant" id="prixDecroissant">
+                        <input type="radio" name="tri" id="prixDecroissant">
                     </div>
                     <div>
                         <h3>Par date&nbsp;:&nbsp;</h3>
                         <label for="dateRecent">Plus récent</label>
-                        <input type="radio" name="dateRecent" id="dateRecent">
+                        <input type="radio" name="tri" id="dateRecent">
                         <label for="dateAncien">Plus ancien</label>
-                        <input type="radio" name="dateAncien" id="dateAncien">
+                        <input type="radio" name="tri" id="dateAncien">
                     </div>
                 </div>
             </aside>
@@ -116,7 +116,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <div>
                             <label for="prixMin">De</label>
                             <select name="prixMin" id="prixMin">
-                                <option value="0" default>0€</option>
+                                <option value="0" selected>0€</option>
                                 <option value="25">25€</option>
                                 <option value="50">50€</option>
                                 <option value="75">75€</option>
@@ -134,7 +134,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 <option value="25">25€</option>
                                 <option value="50">50€</option>
                                 <option value="75">75€</option>
-                                <option value="100" default>100€</option>
+                                <option value="100" selected>100€</option>
                                 <option value="125">125€</option>
                                 <option value="150">150€</option>
                                 <option value="175">175€</option>
@@ -158,23 +158,23 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <ul>
                             <li>
                                 <label for="Restauration">Restauration</label>
-                                <input type="checkbox" name="categorie" id="Restauration">
+                                <input type="checkbox" name="categorie" id="Restauration" checked>
                             </li>
                             <li>
                                 <label for="Activité">Activité</label>
-                                <input type="checkbox" name="categorie" id="Activité">
+                                <input type="checkbox" name="categorie" id="Activité" checked>
                             </li>
                             <li>
                                 <label for="Parc">Parc d’attractions</label>
-                                <input type="checkbox" name="categorie" id="Parc">
+                                <input type="checkbox" name="categorie" id="Parc" checked>
                             </li>
                             <li>
                                 <label for="Visite">Visite</label>
-                                <input type="checkbox" name="categorie" id="Visite">
+                                <input type="checkbox" name="categorie" id="Visite" checked>
                             </li>
                             <li>
                                 <label for="Spectacle">Spectacle</label>
-                                <input type="checkbox" name="categorie" id="Spectacle">
+                                <input type="checkbox" name="categorie" id="Spectacle" checked>
                             </li>
                         </ul>
                     </div>
@@ -182,13 +182,13 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <h3>Par date</h3>
                         <div>
                             <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
-                            <input type="date" name="dateDepart" id="dateDepart" value="" min="">
-                            <input type="time" name="heureDebut" id="heureDebut">
+                            <input type="date" name="dateDepart" id="dateDepart" value="<?php echo date("Y-m-j"); ?>" min="<?php echo date("Y-m-j"); ?>">
+                            <input type="time" name="heureDebut" id="heureDebut" >
                         </div>
                         <div>
                             <label for="dateDepart">Fin&nbsp;:&nbsp;</label>
-                            <input type="date" name="dateFin" id="dateFin" value="" min="">
-                            <input type="time" name="heureFin" id="heureFin">
+                            <input type="date" name="dateFin" id="dateFin" value="<?php echo date('Y-m-d', strtotime('+1 month')); ?>" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>">
+                            <input type="time" name="heureFin" id="heureFin" value="">
                         </div>
                     </div>
                 </div>
@@ -368,66 +368,50 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $noteAvg = "Non noté";
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
                     if (($offre['listhorairemidi'])!="") {
-                        $horaireMidi=$offre['listhorairemidi'];
-                        print_r(explode(';',$horaireMidi));
-                        $jsonArray = json_decode("[$horaireMidi]", true); // Ajout de crochets pour le rendre valide
-
+                        $horaireMidi=explode(';',$offre['listhorairemidi']);                        
                         // Tableau final
                         $resultsMidi = [];
                         
                         // Parcours et transformation des données
-                        foreach ($jsonArray as $item) {
+                        foreach ($horaireMidi as $item) {
                             // Décodage du JSON interne
                             $decodedItem = json_decode($item, true);
                             
                             // Ajout des clés supplémentaires
                             $resultsMidi[] = [
                                 'jour' => $decodedItem['jour'],
-                                'idOffre' => $idOffre,
-                                'heureOuverture' => $decodedItem['heureOuverture'],
-                                'heureFermeture' => $decodedItem['heureFermeture']
+                                'idoffre' => $idOffre,
+                                'heureouverture' => $decodedItem['heureOuverture'],
+                                'heurefermeture' => $decodedItem['heureFermeture']
                             ];
                         }                    
                     }else{
                         $resultsMidi = [];
                     }
                     if (($offre['listhorairesoir'])!="") {
-                        $horairesoir=$offre['listhorairesoir'];
-                        $jsonArray = json_decode("[$horairesoir]", true); // Ajout de crochets pour le rendre valide
-
+                        $horaireSoir=explode(';',$offre['listhorairesoir']);                        
                         // Tableau final
                         $resultsSoir = [];
                         
                         // Parcours et transformation des données
-                        foreach ($jsonArray as $item) {
+                        foreach ($horaireSoir as $item) {
                             // Décodage du JSON interne
                             $decodedItem = json_decode($item, true);
                             
                             // Ajout des clés supplémentaires
                             $resultsSoir[] = [
                                 'jour' => $decodedItem['jour'],
-                                'idOffre' => $idOffre,
-                                'heureOuverture' => $decodedItem['heureOuverture'],
-                                'heureFermeture' => $decodedItem['heureFermeture']
+                                'idoffre' => $idOffre,
+                                'heureouverture' => $decodedItem['heureOuverture'],
+                                'heurefermeture' => $decodedItem['heureFermeture']
                             ];
-                        }
+                        } 
                     }else {
                         $resultsSoir = [];
                     }
                     print_r($resultsMidi);
-                    print_r($resultsSoir);
-
-                    // Requête pour récupérer les horaires du soir
-                    $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre");
-                    $stmt->execute();
-                    $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-                    // Requête pour récupérer les horaires du midi
-                    $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre = $idOffre");
-                    $stmt->execute();
-                    $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    print_r($resultsMidi);
-    
+                    ?><br><?php
+                    
                     // Fusionner les horaires midi et soir
                     $horaires = array_merge($resultsSoir, $resultsMidi);
                     $restaurantOuvert = "EstFermé"; // Par défaut, le restaurant est fermé
@@ -552,4 +536,12 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     </main>
     <?php require_once "components/footer.php"; ?>
 </body>
+<script>
+        const now = new Date();
+        let hours = now.getHours().toString().padStart(2, '0');
+        let minutes = now.getMinutes().toString().padStart(2, '0');
+        let timeString = `${hours}:${minutes}`;
+        document.getElementById('heureFin').value = timeString;
+        document.getElementById('heureDebut').value = timeString;
+    </script>
 </html>
