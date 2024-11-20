@@ -1172,17 +1172,21 @@ header ul + div {
   flex-wrap: wrap;
 }
 
+#divListsComplete{
+  position: relative;
+  width: calc(70% + 141.625px) ;
+}
 
 #autocompletion{
   padding: 10px 5px 0;
   margin: 0;
+  width: 100%;
   background-color: #fff;
   border: 2px solid var(--bloc);
   border-top: none;
   border-radius: 2px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  max-width: calc(70% + 141.625px);
   height: 200px;
   position: absolute;
   overflow: hidden;
