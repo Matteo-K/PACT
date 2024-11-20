@@ -437,6 +437,10 @@ header ul + div {
   header{
     flex-wrap: wrap;
   }
+
+  #auth{
+    order: 2;
+  }
   #formHeader {
       order: 10;
       width: 80%; /* Réduit la largeur du formulaire */
