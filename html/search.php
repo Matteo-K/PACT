@@ -78,30 +78,26 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <h3>Par note</h3>
                         <label for="1star">
                             <div class="star"></div>
-                            ou +
                         </label>
-                        <input type="radio" name="1star" id="1star" checked>
+                        <input type="checkbox" name="1star" id="1star" checked>
                         <label for="2star">
                             <div class="star"></div>
                             <div class="star"></div>
-                            ou +
                         </label>
-                        <input type="radio" name="2star" id="2star">
+                        <input type="checkbox" name="2star" id="2star" checked>
                         <label for="3star">
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
-                            ou +
                         </label>
-                        <input type="radio" name="3star" id="3star">
+                        <input type="checkbox" name="3star" id="3star" checked>
                         <label for="4star">
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
-                            ou +
                         </label>
-                        <input type="radio" name="4star" id="4star">
+                        <input type="checkbox" name="4star" id="4star" checked>
                         <label for="5star">
                             <div class="star"></div>
                             <div class="star"></div>
@@ -109,7 +105,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             <div class="star"></div>
                             <div class="star"></div>
                         </label>
-                        <input type="radio" name="5star" id="5star">
+                        <input type="checkbox" name="5star" id="5star" checked>
                     </div>
                     <div>
                         <h3>Par prix</h3>
@@ -408,10 +404,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         } 
                     }else {
                         $resultsSoir = [];
-                    }
-                    print_r($resultsMidi);
-                    ?><br><?php
-                    
+                    }                    
                     // Fusionner les horaires midi et soir
                     $horaires = array_merge($resultsSoir, $resultsMidi);
                     $restaurantOuvert = "EstFermé"; // Par défaut, le restaurant est fermé

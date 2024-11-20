@@ -446,9 +446,8 @@ header ul + div {
     order:10;
   }
   #formHeader {
-   
-      margin-top: 10px;
       width: 100%;
+      margin-top: 10px;
       justify-content: center;
       margin-inline: 10px;
   }
@@ -484,17 +483,6 @@ header ul + div {
 
   #profileMenu.show {
       display: block;
-  }
-}
-
-/* For smaller screens */
-@media (max-width: 480px) {
-  #formHeader input {
-      width: 160px;
-  }
-
-  #formHeader button {
-      padding: 6px;
   }
 }
 
