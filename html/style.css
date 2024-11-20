@@ -193,10 +193,14 @@ header h1 {
 }
 
 header div > a > img,
+#auth{
+  justify-content: flex-end;
+}
 #auth > img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
+
   /* Espace entre le logo et le texte */
 }
 
@@ -288,8 +292,9 @@ header > div > a > div {
     padding: 1em;
   }
 
-  #auth{
-    justify-content: flex-end;
+  #auth {
+    display: none;
+    
   }
 
   /* Afficher le menu burger */
