@@ -1906,7 +1906,7 @@ tbody td:last-child {
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
-body[id="body_creation_compte_pro"] {
+body[id="body_creation_compte"] {
   background-image: url("img/fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -1940,7 +1940,7 @@ h1[id="inscriptionTitre"] {
   font-size: 65px;
 }
 
-body[id="body_creation_compte_pro"] h2 {
+body[id="body_creation_compte"] h2 {
   font-weight: 100;
   font-size: 2rem;
 }
@@ -1983,7 +1983,7 @@ aside[id="asideRetour"]>button[id="retour"]>img {
   color: white;
 }
 
-body[id="body_creation_compte_pro"] ::placeholder {
+body[id="body_creation_compte"] ::placeholder {
   font-size: 20px;
 }
 
@@ -2070,6 +2070,10 @@ div.ligne3>label {
 
 input[id="denomination"],
 input[id="telephone"],
+input[id="nomMembre"],
+input[id="prenomMembre"],
+input[id="pseudoMembre"],
+input[id="telephoneMembre"],
 input[id="motdepasse"],
 input[id="confirmer"] {
   width: 403px;
@@ -2122,7 +2126,7 @@ input[type="checkbox"] {
   margin: 0 5px;
 }
 
-button[id="boutonInscriptionPro"] {
+button[id="boutonInscription"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
@@ -2158,225 +2162,21 @@ div[id="messageErreur"] {
 }
 
 
-
-
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte membre, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
-body[id="body_creation_compte_membre"] {
-  background-image: url("img/fond.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
-a[id="lienCGU"] {
-  color: white;
-  text-decoration: underline;
-}
-
-a[id="lienCGU"]:hover {
-  color: var(--accent);
-}
-
-a[id="lienConnexion"] {
-  color: white;
-  text-decoration: underline;
-  font-family: "Belanosima", sans-serif;
-}
-
-a[id="lienConnexion"]:hover {
-  color: var(--accent);
-}
-
-h1[id="inscriptionTitre"] {
-  text-align: center;
-  margin: 30px 10px;
-  color: var(--bloc);
-  font-weight: 100;
-  font-size: 65px;
-}
-
-body[id="body_creation_compte_membre"] h2 {
-  font-weight: 100;
-  font-size: 2rem;
-}
-
-aside[id="asideRetour"] {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-}
-
-button[id="retour"] {
-  background: none;
-  border: none;
-  color: var(--bloc);
-  text-decoration: underline;
-  font: inherit;
-  cursor: pointer;
-  padding: 0;
-}
-
-aside[id="asideRetour"]>button[id="retour"]>img {
-  vertical-align: middle;
-  width: 70px;
-  height: 65px;
-  margin-right: 5px;
-}
-
-.creation-compte form {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  border-radius: 20px;
-  padding: 15px;
-  margin: 30px auto;
-  width: 900px;
-  height: auto;
-  background-color: var(--bloc);
-  color: white;
-}
-
-body[id="body_creation_compte_membre"] ::placeholder {
-  font-size: 20px;
-}
-
-.creation-compte label {
-  font-size: 25px;
-  margin: 5px;
-  text-align: left;
-}
-
-.creation-compte div.ligne1>label,
-div.ligne1_1>label,
-div.ligne6>label {
+.creation-compte div.ligne1>label, div.ligne1_1>label, div.ligne6>label {
   display: inline-block;
   width: 408px;
 }
 
-.creation-compte div.ligne2>label,
-div.ligne3>label {
-  display: flex;
-  justify-content: left;
-  width: 823px;
-  margin: 5px auto;
-}
-
-.creation-compte div.ligne4>label {
-  display: inline-block;
-  width: 215px;
-}
-
-.creation-compte div.ligne4>label[for="ville"] {
-  width: 601px;
-}
-
-.creation-compte .ligne5 {
-  display: flex;
-  align-items: center;
-  margin: 10px 26px;
-  text-align: left;
-  justify-content: space-between;
-}
-
-.creation-compte .ligne5_1,
-.creation-compte .ligne5_2 {
-  display: flex;
-  height: 68px;
-  width: auto;
-  align-items: center;
-  justify-content: center;
-}
-
-.creation-compte .ligne5 input[type="radio"] {
-  margin-right: 5px;
-  margin-left: 10px;
-}
-
-.creation-compte .ligne5 label {
-  margin-right: 20px;
-  margin-left: 5px;
-  font-size: 25px;
-}
-
-.creation-compte .ligne5_2 label {
-  margin: 0;
-  font-size: 25px;
-}
-
-.creation-compte .ligne7 {
-  display: flex;
-  align-items: center;
-  margin: 0 5px 20px;
-  text-align: left;
-  justify-content: center;
-}
-
-.creation-compte input {
-  font-size: 20px;
-  /* border: 0; */
-}
-
-input[id="nomMembre"],
-input[id="prenomMembre"],
-input[id="pseudoMembre"],
-input[id="telephoneMembre"],
-input[id="motdepasse"],
-input[id="confirmer"] {
-  width: 403px;
-  height: 40px;
-  margin: 0 5px;
-  border: 3px solid var(--accent);
-}
-
-input[id="email"],
-input[id="adresse"] {
-  width: 823px;
-  height: 40px;
-  margin: 0 5px;
-  border: 3px solid var(--accent);
-}
-
-input[id="code"] {
-  width: 210px;
-  height: 40px;
-  margin: 0 5px;
-  border: 3px solid var(--accent);
-}
-
-input[id="ville"] {
-  width: 596px;
-  height: 40px;
-  margin: 0 5px;
-  border: 3px solid var(--accent);
-}
-
-input[type="checkbox"] {
-  width: 25px;
-  height: 25px;
-  margin: 0 5px;
-}
-
-button[id="boutonInscriptionMembre"] {
-  width: 200px;
-  font-size: 25px;
-  height: 60px;
-  border-radius: 15px;
-  margin: 5px auto;
-  border: none;
-  box-shadow: inset -4px -4px 4px var(--accent-border);
-  background-color: var(--accent);
-}
-
-.messageErreur {
+/* .messageErreur {
   color: red;
   margin-bottom: 20px;
   font-size: 20px;
   text-align: center;
-}
+  justify-content: center;
+} */
 
 /*+++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
