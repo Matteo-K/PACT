@@ -2100,6 +2100,17 @@ button[id="boutonInscriptionPro"] {
   text-align: center;
 }
 
+
+.messageErreur {
+  color: red;
+  margin-bottom: 20px;
+}
+
+input.error {
+  border: 3px solid red;
+}
+
+
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte membre, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/

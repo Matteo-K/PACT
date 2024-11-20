@@ -47,8 +47,8 @@ if ($categorie["_activite"]) {
     <article>
 
         <div>
-            <label>Prix minimum(s)</label>
-
+            <label>Prix minimum</label>
+            <br>
         
             <input type="number" id="PrixMinAct" name="PrixMinAct">
             <br>

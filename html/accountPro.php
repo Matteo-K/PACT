@@ -30,6 +30,7 @@
         // Hashage du mot de passe
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
 
+
         // Vérifier si la dénomination existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE denomination = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE denomination = ?");
@@ -64,24 +65,6 @@
 
 
 
-        // Vérifier si l'adresse existe déjà dans la base de données
-        // try {
-        //     $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE numeroRue = ? AND rue = ? AND codePostal = ? AND ville = ? 
-        //                             UNION SELECT COUNT(*) FROM pact.proPrive WHERE numeroRue = ? AND rue = ? AND codePostal = ? AND ville = ?");
-        //     $stmt->execute([$numeroRue, $rue, $code, $ville, $numeroRue, $rue, $code, $ville]);
-        //     $addressCount = $stmt->fetchColumn();
-
-        //     if ($addressCount > 0) {
-        //         $errors[] = "L'adresse postale existe déjà.";
-        //     }
-        // } 
-        
-        // catch (Exception $e) {
-            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
-        // }
-
-
-
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if(empty($errors)) {
             // Préparer la requête d'insertion en fonction du secteur
@@ -99,12 +82,8 @@
             header('Location: login.php');
             exit;
         }
-
-
-        
     }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -125,15 +104,17 @@
         
         <h1 id="inscriptionTitre">Inscription professionnel</h1>
 
+        <div id="messageErreur" class="messageErreur"></div>
+
         <?php
-            if (!empty($errors)) {
+            //if (!empty($errors)) {
                 // Afficher les erreurs à l'utilisateur
-                echo "<div class='messageErreur'>";
-                foreach ($errors as $error) {
-                    echo "<li>" . htmlspecialchars($error) . "</li>";
-                }
-                echo "</div>";
-            }
+                //echo "<div class='messageErreur'>";
+                //foreach ($errors as $error) {
+                    //echo "<li>" . htmlspecialchars($error) . "</li>";
+                //}
+                //echo "</div>";
+            //}
         ?>
 
         <form id = "formPro" action="accountPro.php" method="post" enctype="multipart/form-data">
@@ -222,7 +203,8 @@
             </div>
             
             
-            <button onclick = "validationFormPro()" id="boutonInscriptionPro">S'inscrire</button>
+            <!-- <button onclick = "validationFormPro()" id="boutonInscriptionPro">S'inscrire</button> -->
+            <button type="submit" id="boutonInscriptionPro">S'inscrire</button>
 
             <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="login.php">Se connecter</a></h2>
         </form>
