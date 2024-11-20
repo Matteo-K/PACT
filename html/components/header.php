@@ -18,11 +18,13 @@
             </div>
         </a>
     </div>
-                
-    <form method="post" action="search.php" id="formHeader">
-        <input type="text" placeholder="Rechercher :">
-        <button type="submit"><img src="../img/icone/loupe.png" title="icone de recherche"></button>
-    </form>
+    <div>
+        <form method="post" action="search.php" id="formHeader">
+            <input type="text" placeholder="Rechercher :">
+            <button type="submit"><img src="../img/icone/loupe.png" title="icone de recherche"></button>
+        </form>
+    </div>            
+    
 
     <div id="auth">
         <?php
