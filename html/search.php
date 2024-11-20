@@ -249,10 +249,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $loca->execute();
                     $ville = $loca->fetchAll(PDO::FETCH_ASSOC);
     
-                    $user = $conn->prepare("SELECT * FROM pact._pro WHERE idu = $iduser");
-                    $user->execute();
-                    $denomination = ($user->fetchAll(PDO::FETCH_ASSOC))[0]['denomination'];
-    
                     // Requête pour la gamme de prix
                     $prix = $conn->prepare("SELECT * FROM pact.restaurants WHERE idOffre = $idOffre");
                     $prix->execute();
