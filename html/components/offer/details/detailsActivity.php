@@ -11,33 +11,48 @@ $activite = [
 
 // Si l'activité était déà existante, on récupère les données
 if ($categorie["_activite"]) {
-  $stmt = $conn->prepare("SELECT * from pact._activite where idoffre=?");
-  $stmt->execute([$idOffre]);
-  $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  if ($result) {
-    $activite["duree"] = $result["duree"];
-    $activite["agemin"] = $result["agemin"];
-    $activite["prixminimal"] = $result["prixminimal"];
-  }
+    $stmt = $conn->prepare("SELECT * from pact._activite where idoffre=?");
+    $stmt->execute([$idOffre]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($result) {
+        $activite["duree"] = $result["duree"];
+        $activite["agemin"] = $result["agemin"];
+        $activite["prixminimal"] = $result["prixminimal"];
+    }
 }
 // Il reste à initialisé les valeurs dans les input
 ?>
 
 <section id="activity">
     <article> <!-- Article pour le placement des elements de gauche-->
-        <p>
-            <label class="labDuréeAct" name="labDuréeAct"> Durée: </label>
-            <input type="number" id="numberAct" name="duréeAct" placeholder="0" />
-            <label class="labHAct" name="labHAct"> H </label>
-            <br>
-        </p>
 
-        <p>
+
+        <div>
             <label class="labAgeAct" name="labAgeAct"> Age: </label>
             <input type="number" id="numberAct" name="ageAct" placeholder="1" />
             <label class="labAnsAct" name="labAgeAct"> Ans </label>
-        </p>
+        </div>
+        <div>
+            <label>Prestation(s)</label>
 
+            <textarea name="textPrestationsAct" id="textePrestation" placeholder="Entrer une prestation "></textarea>
+            <input type="button" id="buttonAjoutPresta" name="BtnAjoutPresta" value="Ajouter des presations">
+            <br>
+
+        </div>
+
+    </article>
+
+    <article>
+
+        <div>
+            <label>Prix minimum(s)</label>
+
+        
+            <input type="number" id="PrixMinAct" name="PrixMinAct">
+            <br>
+
+        </div>
         <div>
             <label id="labAccess">Accessibilité</label> <!-- Label Accessibilité -->
             <br>
@@ -54,27 +69,15 @@ if ($categorie["_activite"]) {
             <!-- Label du 2eme bouton radio -->
             <br>
         </div>
-    </article>
 
+
+    </article>
     <article>
-        <p>
-            <label>Prestation(s)</label>
-            
-            <textarea name="textPrestationsAct" id="textePrestation" placeholder="Entrer une prestation "></textarea>
-            <input type="button" id="buttonAjoutPresta" name="BtnAjoutPresta" value="Ajouter des presations">
+        <div>
+            <label class="labDuréeAct" name="labDuréeAct"> Durée: </label>
+            <input type="number" id="numberAct" name="duréeAct" placeholder="0" />
+            <label class="labHAct" name="labHAct"> H </label>
             <br>
-
-        </p>
-        <p>
-            <label>Prestation(s) non proposée(s)</label>
-            <textarea name="textPrestationsNPAct" id="textePrestation" placeholder="Entrer une prestation "></textarea>
-            <input type="button" id="buttonAjoutPrestaNp" name="BtnAjoutPrestaNp"
-                value="Ajouter des presation(s) non proposée(s)">
-
-        </p>
-        
-
-
+        </div>
     </article>
-
 </section>

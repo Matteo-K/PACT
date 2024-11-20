@@ -37,7 +37,7 @@ if ($categorie["_parcattraction"]) {
 
         <div>
             <label>Prix Minimum</label>
-            <input type="number" id="prixMinPark"name="prixMinPark" readonly>
+            <input type="number" id="prixMinPark"name="prixMinPark" >
         </div>
 
 
