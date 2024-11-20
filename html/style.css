@@ -1127,6 +1127,7 @@ header ul + div {
   background-color: #fff;
   border: 2px solid black;
   width: calc(70% + 151.625px);
+  position: absolute;
 }
 
 #autocomplete-list li{
