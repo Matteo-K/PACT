@@ -142,7 +142,7 @@ footer div+div {
   align-items: center;
   justify-content: center;
   padding: 0 10px;
-  width: max-content;
+  width: 100%;
 }
 
 footer div+div p {
@@ -1327,6 +1327,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 
 .search {
+  position: relative;
   margin-top: 110px;
   padding-bottom: 20px;
   padding-top: 20px;
@@ -1482,6 +1483,23 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
+
+/* ##### Aside Filtre & tri ##### */
+
+#trifiltre {
+  position: absolute;
+  background: linear-gradient(0.45turn, var(--primary), #113);
+}
+#tri, #filtre {
+  color: var(--text-light);
+}
+
+.star {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  background-color: #EDAE14;
+  border-radius: 2%;
+}
+
 
 /*  ***************************************************************************************
      **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************

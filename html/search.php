@@ -40,7 +40,17 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <script src="js/setColor.js"></script>
     <?php require_once "components/header.php"; ?>
     <main class="search">
-        <section id="tri&filtre" class="asdTriFiltre">
+        <section id="trifiltre" class="asdTriFiltre">
+            <div>
+                <figure>
+                    <figcaption>Filtrer</figcaption>
+                    <img src="img/icone/burger-bar.png" alt="filtre">
+                </figure>
+                <figure>
+                    <figcaption>Trier</figcaption>
+                    <img src="img/icone/burger-bar.png" alt="tri">
+                </figure>
+            </div>
             <aside id="tri">
                 <h2>Trier</h2>
                 <div class="blcTriFiltre">
