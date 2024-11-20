@@ -413,12 +413,12 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     ?><br><?php
                     
                     // Requête pour récupérer les horaires du soir
-                    $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre");
+                    $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre ORDER BY jour");
                     $stmt->execute();
                     $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
                     // Requête pour récupérer les horaires du midi
-                    $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre = $idOffre");
+                    $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre = $idOffre ORDER BY jour");
                     $stmt->execute();
                     $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     print_r($resultsMidi);
