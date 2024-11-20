@@ -181,7 +181,11 @@ try {
         let suggestions = tagsGeneraux;
       }
 
-      console.log(suggestions);
+      suggestions.forEach(eltS => {
+        console.log(eltS);
+      });
+
+      
 
       // Filtrer les tags correspondant à la saisie
       suggestions = suggestions.filter(tag =>
@@ -217,7 +221,7 @@ try {
     // Cacher les suggestions si on clique ailleurs
     document.addEventListener("click", (event) => {
       if (!event.target.closest("#autocomplete-list") && event.target !== inputTag) {
-        autocompleteList.innerHTML = "";
+        autocompleteList.innerText = "";
       }
     });
 
