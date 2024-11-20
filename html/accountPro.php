@@ -104,7 +104,7 @@
         
         <h1 id="inscriptionTitre">Inscription professionnel</h1>
 
-        <div id="messageErreur" class="messageErreur"></div>
+        <div id="messageErreur" class="messageErreur" style="display:none;"></div>
 
         <?php
             //if (!empty($errors)) {
