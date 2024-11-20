@@ -486,17 +486,6 @@ header ul + div {
   }
 }
 
-/* For smaller screens */
-@media (max-width: 480px) {
-  #formHeader input {
-      width: 100%;
-  }
-
-  #formHeader button {
-      padding: 15%;
-  }
-}
-
 
 
 /* ### Offer ### */
