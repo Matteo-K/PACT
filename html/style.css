@@ -154,18 +154,7 @@ footer div+div p {
 /* ### Header ### */
 
 header {
-  display: flex;
-  justify-content: space-between; /* Sépare les éléments */
-  align-items: center; /* Aligne verticalement */
-  border-bottom: var(--bloc) 2px solid;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--header-size);
-  z-index: 10;
-  background-color: var(--background);
-  padding: 0 2em; /* Ajout d'un padding pour éviter que les éléments soient collés */
+
 }
 
 header > div,
@@ -177,7 +166,6 @@ header div {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
   margin: 0.5em 0.8em;
   height: 3em;
 }
