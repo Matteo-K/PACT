@@ -155,14 +155,9 @@ footer div+div p {
 
 header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; /* Sépare les éléments */
+  align-items: center; /* Aligne verticalement */
   border-bottom: var(--bloc) 2px solid;
-  
-  flex-direction: row;
-  
-  
-  gap: 12em;
   position: fixed;
   top: 0;
   left: 0;
@@ -170,12 +165,12 @@ header {
   height: var(--header-size);
   z-index: 10;
   background-color: var(--background);
+  padding: 0 2em; /* Ajout d'un padding pour éviter que les éléments soient collés */
 }
 
 header > div,
-header > form,
-header > div#auth {
-    flex: 1;
+header > form{
+    flex: 0;
 }
 
 header div {
