@@ -173,7 +173,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        print_r($results[0]);
+        print_r($results);
 
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
             $idutilisateur=$_SESSION["idUser"];
@@ -341,17 +341,53 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $noteAvg = "Non noté";
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
                     if (($offre['listhorairemidi'])!="") {
-                        $horaireMidi = explode(',',trim($offre['listhorairemidi'],'{}'));    
+                        $horaireMidi=$offre['listhorairemidi'];
+                        $jsonArray = json_decode("[$horaireMidi]", true); // Ajout de crochets pour le rendre valide
+
+                        // Tableau final
+                        $resultsMidi = [];
+                        
+                        // Parcours et transformation des données
+                        foreach ($jsonArray as $item) {
+                            // Décodage du JSON interne
+                            $decodedItem = json_decode($item, true);
+                            
+                            // Ajout des clés supplémentaires
+                            $resultsMidi[] = [
+                                'jour' => $decodedItem['jour'],
+                                'idOffre' => $idOffre,
+                                'heureOuverture' => $decodedItem['heureOuverture'],
+                                'heureFermeture' => $decodedItem['heureFermeture']
+                            ];
+                        }                    
                     }else{
-                        $horaireMidi = [];
+                        $resultsMidi = [];
                     }
                     if (($offre['listhorairesoir'])!="") {
-                        $horaireSoir = explode(',',trim($offre['listhorairesoir'],'{}'));
+                        $horairesoir=$offre['listhorairesoir'];
+                        $jsonArray = json_decode("[$horairesoir]", true); // Ajout de crochets pour le rendre valide
+
+                        // Tableau final
+                        $resultsSoir = [];
+                        
+                        // Parcours et transformation des données
+                        foreach ($jsonArray as $item) {
+                            // Décodage du JSON interne
+                            $decodedItem = json_decode($item, true);
+                            
+                            // Ajout des clés supplémentaires
+                            $resultsSoir[] = [
+                                'jour' => $decodedItem['jour'],
+                                'idOffre' => $idOffre,
+                                'heureOuverture' => $decodedItem['heureOuverture'],
+                                'heureFermeture' => $decodedItem['heureFermeture']
+                            ];
+                        }
                     }else {
-                        $horaireSoir = [];
+                        $resultsSoir = [];
                     }
-                    print_r($horaireMidi);
-                    print_r($horaireSoir);
+                    print_r($resultsMidi);
+                    print_r($resultsSoir);
 
                     // Requête pour récupérer les horaires du soir
                     $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre");

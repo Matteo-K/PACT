@@ -169,7 +169,7 @@ try {
 
       // Ajouter les suggestions dans la liste
       suggestions.forEach(tag => {
-        const item = document.createElement("div");
+        const item = document.createElement("li");
         item.classList.add("autocomplete-item");
         item.textContent = tag;
 
