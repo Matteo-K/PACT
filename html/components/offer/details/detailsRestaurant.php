@@ -19,7 +19,7 @@ if ($categorie["_restauration"]) {
 }
 
 ?>
-<section >
+<section id="restaurant">
   <h4>Gamme de prix : </h4>
   <input type="radio" name="gamme_prix" id="€" value="€" <?php echo $gamme["€"] ? "checked" : "" ?>>
   <label for="€">&euro; (menu à moins de 25€)</label>
