@@ -1120,7 +1120,7 @@ header ul + div {
   flex-wrap: wrap;
 }
 
-/* 
+
 #autocomplete-list{
   padding: 10px 0 0 0;
   margin: 0;
@@ -1131,7 +1131,7 @@ header ul + div {
 
 #autocomplete-list li{
   border-top: 1px solid var(--secondary);
-} */
+} 
 
 
 

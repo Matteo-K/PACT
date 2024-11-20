@@ -173,12 +173,12 @@ try {
         itemAutoComplete.textContent = tag;
 
         // Quand un utilisateur clique sur une suggestion
-        item.addEventListener("click", () => {
+        itemAutoComplete.addEventListener("click", () => {
           ajoutTag(tag);
           autocompleteList.innerText = ""; // Vide les suggestions
         });
 
-        autocompleteList.appendChild(item);
+        autocompleteList.appendChild(itemAutoComplete);
       });
     }
 
