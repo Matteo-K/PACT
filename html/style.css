@@ -154,7 +154,9 @@ footer div+div p {
 /* ### Header ### */
 
 header {
+  top:0;
   display: flex;
+
   justify-content: space-between; /* Sépare les éléments */
   border-bottom: var(--bloc) 2px solid;
   position: fixed;
