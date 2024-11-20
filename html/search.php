@@ -86,29 +86,29 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <div class="blcTriFiltre">
                     <div>
                         <h3>Par note</h3>
-                        <label for="1star">
+                        <label for="1star" class="blocStar">
                             <div class="star"></div>
                         </label>
                         <input type="checkbox" name="1star" id="1star" checked>
-                        <label for="2star">
+                        <label for="2star" class="blocStar">
                             <div class="star"></div>
                             <div class="star"></div>
                         </label>
                         <input type="checkbox" name="2star" id="2star" checked>
-                        <label for="3star">
+                        <label for="3star" class="blocStar">
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
                         </label>
                         <input type="checkbox" name="3star" id="3star" checked>
-                        <label for="4star">
+                        <label for="4star" class="blocStar">
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
                         </label>
                         <input type="checkbox" name="4star" id="4star" checked>
-                        <label for="5star">
+                        <label for="5star" class="blocStar">
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
