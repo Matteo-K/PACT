@@ -173,10 +173,13 @@ header > form{
     flex: 0;
 }
 
-header div#auth {
+header div {
   display: flex;
-  justify-content: flex-end; /* Garde les éléments à droite */
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  margin: 0.5em 0.8em;
+  height: 3em;
 }
 
 header div>a {
