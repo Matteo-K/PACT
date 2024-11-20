@@ -341,7 +341,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $noteAvg = "Non noté";
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
                     $horaireMidi=explode(',',trim($offre['listhorairemidi'],'{}'));
-                    $horaireSoir=explode(',',trim($offre['listhorairemidi'],'{}'));
+                    $horaireSoir=explode(',',trim($offre['listhorairesoir'],'{}'));
                     print_r($horaireMidi);
                     print_r($horaireSoir);
 
