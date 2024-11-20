@@ -368,15 +368,12 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $noteAvg = "Non noté";
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
                     if (($offre['listhorairemidi'])!="") {
-                        $horaireMidi=$offre['listhorairemidi'];
-                        print_r($horaireMidi);
-                        $jsonArray = json_decode("[$horaireMidi]", true); // Ajout de crochets pour le rendre valide
-
+                        $horaireMidi=explode(';',$offre['listhorairemidi']);                        
                         // Tableau final
                         $resultsMidi = [];
                         
                         // Parcours et transformation des données
-                        foreach ($jsonArray as $item) {
+                        foreach ($horaireMidi as $item) {
                             // Décodage du JSON interne
                             $decodedItem = json_decode($item, true);
                             
@@ -392,14 +389,12 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         $resultsMidi = [];
                     }
                     if (($offre['listhorairesoir'])!="") {
-                        $horairesoir=$offre['listhorairesoir'];
-                        $jsonArray = json_decode("[$horairesoir]", true); // Ajout de crochets pour le rendre valide
-
+                        $horaireSoir=explode(';',$offre['listhorairesoir']);                        
                         // Tableau final
                         $resultsSoir = [];
                         
                         // Parcours et transformation des données
-                        foreach ($jsonArray as $item) {
+                        foreach ($horaireSoir as $item) {
                             // Décodage du JSON interne
                             $decodedItem = json_decode($item, true);
                             
@@ -410,24 +405,24 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 'heureOuverture' => $decodedItem['heureOuverture'],
                                 'heureFermeture' => $decodedItem['heureFermeture']
                             ];
-                        }
+                        } 
                     }else {
                         $resultsSoir = [];
                     }
                     print_r($resultsMidi);
-                    print_r($resultsSoir);
-
+                    ?><br><?php
+                    
                     // Requête pour récupérer les horaires du soir
                     $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre");
                     $stmt->execute();
                     $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+                    
                     // Requête pour récupérer les horaires du midi
                     $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre = $idOffre");
                     $stmt->execute();
                     $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     print_r($resultsMidi);
-    
+                    
                     // Fusionner les horaires midi et soir
                     $horaires = array_merge($resultsSoir, $resultsMidi);
                     $restaurantOuvert = "EstFermé"; // Par défaut, le restaurant est fermé
