@@ -159,11 +159,8 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
   background-color: #1e3a5f; /* Couleur principale */
   color: #ffffff;
-  
-  position: relative;
 }
 
 header div{
