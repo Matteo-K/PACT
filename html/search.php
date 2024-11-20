@@ -368,34 +368,26 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $noteAvg = "Non noté";
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
                     if (($offre['listhorairemidi'])!="") {
-                        $jsonString="[".$offre['listhorairemidi']."]";
-                        $jsonArray = json_decode("[$jsonString]", true); // Encapsuler dans des crochets pour simuler un tableau
-print_r($jsonString[0]);
-if ($jsonArray === null) {
-    die('Erreur : JSON invalide.');
-}
+                        $horaireMidi=$offre['listhorairemidi'];
+                        print_r($horaireMidi);
+                        $jsonArray = json_decode("[$horaireMidi]", true); // Ajout de crochets pour le rendre valide
 
-// Créer le tableau final
-$result = [];
-foreach ($jsonArray as $item) {
-    // Décoder chaque chaîne JSON
-    $decodedItem = json_decode($item, true);
-
-    if ($decodedItem === null) {
-        die('Erreur : Un élément JSON est invalide.');
-    }
-
-    // Ajouter les données au tableau
-    $result[] = [
-        'jour' => $decodedItem['jour'],
-        'idoffre' => 1,
-        'heureouverture' => $decodedItem['heureOuverture'],
-        'heurefermeture' => $decodedItem['heureFermeture']
-    ];
-}
-
-// Afficher le tableau final
-print_r($result);                
+                        // Tableau final
+                        $resultsMidi = [];
+                        
+                        // Parcours et transformation des données
+                        foreach ($jsonArray as $item) {
+                            // Décodage du JSON interne
+                            $decodedItem = json_decode($item, true);
+                            
+                            // Ajout des clés supplémentaires
+                            $resultsMidi[] = [
+                                'jour' => $decodedItem['jour'],
+                                'idOffre' => $idOffre,
+                                'heureOuverture' => $decodedItem['heureOuverture'],
+                                'heureFermeture' => $decodedItem['heureFermeture']
+                            ];
+                        }                    
                     }else{
                         $resultsMidi = [];
                     }
