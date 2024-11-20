@@ -304,12 +304,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $resume= $offre['resume'];
                     $noteAvg = "Non noté";
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
-                    print_r($urlImg);
-    
-                    // Requête pour récupérer l'image de l'offre
-                    $img = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = $idOffre ORDER BY url ASC");
-                    $img->execute();
-                    $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
     
                     // Requête pour récupérer les horaires du soir
                     $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre");
