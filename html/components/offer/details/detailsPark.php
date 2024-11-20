@@ -27,7 +27,7 @@ if ($categorie["_parcattraction"]) {
     <article>
         <div>
             <label>Age minimum</label>
-            <input type="number" id="agePark" name="AgePark" min="0" readonly placeholder="0">
+            <input type="number" id="agePark" name="AgePark" min="0"  placeholder="0">
         </div>
 
         <div>
