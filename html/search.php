@@ -401,9 +401,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             // Ajout des clés supplémentaires
                             $resultsSoir[] = [
                                 'jour' => $decodedItem['jour'],
-                                'idOffre' => $idOffre,
-                                'heureOuverture' => $decodedItem['heureOuverture'],
-                                'heureFermeture' => $decodedItem['heureFermeture']
+                                'idoffre' => $idOffre,
+                                'heureouverture' => $decodedItem['heureOuverture'],
+                                'heurefermeture' => $decodedItem['heureFermeture']
                             ];
                         } 
                     }else {
