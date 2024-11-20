@@ -181,8 +181,10 @@ try {
         let suggestions = tagsGeneraux;
       }
 
+      console.log(suggestions);
+
       // Filtrer les tags correspondant à la saisie
-      let suggestions = [...tagsGeneraux].filter(tag =>
+      suggestions = suggestions.filter(tag =>
         tag.toLowerCase().includes(value.toLowerCase())
       );
 
@@ -202,9 +204,14 @@ try {
       });
     }
 
-    // Écouteur d'événement sur l'input
+    // On detecte chaque saisie de caractère dans l'input
     inputTag.addEventListener("input", (event) => {
       updateSuggestions(event.target.value);
+    });
+
+    // On detecte le focus de l'input
+    inputTag.addEventListener("focus", () => {
+      updateSuggestions(inputTag.value); 
     });
 
     // Cacher les suggestions si on clique ailleurs
@@ -213,6 +220,8 @@ try {
         autocompleteList.innerHTML = "";
       }
     });
+
+    
 
 
 
