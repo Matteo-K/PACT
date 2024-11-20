@@ -153,23 +153,17 @@ footer div+div p {
 
 /* ### Header ### */
 /* Général */
-header {
+header > div {
   top:0;
   padding: 1em 0;
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   background-color: var(--background); /* Couleur principale */
   color: #ffffff;
   border-bottom: 2px var(--bloc) solid;
-}
-
-header div{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 
 /* Logo et titre */
