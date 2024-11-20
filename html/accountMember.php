@@ -1,3 +1,72 @@
+<?php
+    // Démarrer la session
+    session_start();
+    
+    // fichier de connexion à la BDD
+    require_once "db.php";
+    
+    // Initialisation du tableau pour stocker les erreurs
+    $errors = []; 
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les données du formulaire
+        $nom = trim($_POST['nomMembre']);
+        $prenom = trim($_POST['prenomMembre']);
+        $pseudo = trim($_POST['pseudoMembre']);
+        $telephone = trim($_POST['telephoneMembre']);
+        $mail = trim($_POST['email']);
+        $adresse = trim($_POST['adresse']);
+        $code = trim($_POST['code']);
+        $ville = trim($_POST['ville']);
+        $motdepasse = $_POST['motdepasse'];
+
+        // Séparer le numéro et le nom de la rue
+        $adresseExplode = explode(' ', $adresse, 2); 
+        $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
+        $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
+        $pays = "France";
+        $photo = "./img/profile_picture/default.svg";
+
+        // Hashage du mot de passe
+        $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
+
+
+        // Vérifier si le pseudo existe déjà dans la base de données
+        try {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE pseudo = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE denomination = ?");
+            $stmt->execute([$denomination, $denomination]);
+            $count = $stmt->fetchColumn();
+
+            if ($count > 0) {
+                $errors[] = "Le pseudo existe déjà.";
+            }
+        } 
+        
+        catch (Exception $e) {
+            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+        }
+
+
+        // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
+        if(empty($errors)) {
+            // Préparer la requête d'insertion en fonction du secteur
+            if ($secteur == 'public') {
+                $stmt = $conn->prepare("INSERT INTO pact.proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
+                $stmt->execute();
+            } 
+            
+            else { 
+                $stmt = $conn->prepare("INSERT INTO pact.proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$siren', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
+                $stmt->execute();
+            }
+
+            // Redirection vers une page de succès
+            header('Location: login.php');
+            exit;
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head> 

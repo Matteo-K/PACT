@@ -37,93 +37,84 @@ document.addEventListener('DOMContentLoaded', function() {
     priveRadio.addEventListener("click", updateSirenVisibility);
 });
 
-function validationFormPro(event) {
-    // Empêche l'envoi du formulaire
-    event.preventDefault(); 
-
-    // Récupérer les éléments de radio
-    const publicRadio = document.getElementById("radioPublic");
-    const privateRadio = document.getElementById("radioPrive");
-
-    // Récupérer les champs
-    const denomination = document.getElementById('denomination').value.trim();
-    const telephone = document.getElementById('telephone').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const adresse = document.getElementById('adresse').value.trim();
-    const code = document.getElementById('code').value.trim();
-    const ville = document.getElementById('ville').value.trim();
-    const siren = document.getElementById('siren').value.trim();
-    const motdepasse = document.getElementById('motdepasse').value;
-    const confirmer = document.getElementById('confirmer').value;
-    const cgu = document.getElementById('cgu').checked;
-
-    // Vérification des champs
-    if (!denomination || !telephone || !email || !adresse || !code || !ville || (!publicRadio.checked && !privateRadio.checked) || !motdepasse || !confirmer) {
-        alert('Tous les champs marqués d\'un astérisque (*) doivent être remplis.');
-        return;
-    }
-
-    // Vérification du numéro de téléphone
-    const phonePattern = /^0[1-9]([.\-/]?[0-9]{2}){4}$/;
-    if (!phonePattern.test(telephone)) {
-        alert('Veuillez entrer un numéro de téléphone valide (sans lettres et avec des séparateurs valides tels que . , / ou -).');
-        return;
-    }
-
-    // Vérification du format de l'adresse e-mail
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        alert('Veuillez entrer une adresse e-mail valide.');
-        return;
-    }
-
-    // Vérification de l'adresse postale (doit contenir un numéro suivi d'au moins un mot)
-    const adressePattern = /^\d+\s+(bis\s+)?[A-Za-z\s]+/i;
-    if (!adressePattern.test(adresse)) {
-        alert('Veuillez entrer une adresse postale valide (ex : 123 bis Rue de Paris).');
-        return;
-    }
-
-    // Vérification du code postal (5 chiffres)
-    const codePattern = /^[0-9]{5}$/;
-    if (!codePattern.test(code)) {
-        alert('Veuillez entrer un code postal valide (5 chiffres).');
-        return;
-    }
-
-    // Vérification de la ville (lettres et espaces uniquement)
-    const villePattern = /^[A-Za-z\s\-]+$/; // Autorise les lettres, les espaces et les tirets
-    if (!villePattern.test(ville)) {
-        alert('Veuillez entrer une ville valide (lettres et espaces seulement).');
-        return;
-    }
-
-    // Vérification du numéro de SIREN (9 chiffres ou format avec espaces)
-    const sirenPattern = /^(?:\d{3} \d{3} \d{3}|\d{9})$/;
-    if (privateRadio.checked && !sirenPattern.test(siren)) {
-        alert('Veuillez entrer un numéro de SIREN valide (ex : 123 456 789 ou 123456789).');
-        return;
-    }
-
-    // Vérification du mot de passe
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/;
-    if (!passwordPattern.test(motdepasse)) {
-        alert('Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule et un chiffre.');
-        return;
-    }
-
-    // Vérification de la confirmation du mot de passe
-    if (motdepasse !== confirmer) {
-        alert('Les mots de passe ne correspondent pas.');
-        return;
-    }
-
-    // Vérification des CGU
-    if (!cgu) {
-        alert('Vous devez accepter les conditions générales d\'utilisation.');
-        return;
-    }
-
-    // Si toutes les vérifications sont passées, soumettre le formulaire
-    document.getElementById('formPro').submit();
+// Fonction pour afficher les messages d'erreur
+function displayError(message) {
+    const errorMessagesDiv = document.getElementById('errorMessages');
+    errorMessagesDiv.innerHTML = message;  // Affiche le message d'erreur
 }
+
+// Fonction pour valider un champ
+function validateField(inputElement, pattern, errorMessage) {
+    if (!pattern.test(inputElement.value.trim())) {
+        inputElement.classList.add('error');
+        inputElement.classList.remove('valid');
+        displayError(errorMessage);
+        return false;
+    } else {
+        inputElement.classList.add('valid');
+        inputElement.classList.remove('error');
+        return true;
+    }
+}
+
+// Validation lors du "blur" de chaque champ
+document.getElementById('denomination').addEventListener('blur', function() {
+    const pattern = /^.+$/;  // Vérifier que le champ n'est pas vide
+    validateField(this, pattern, 'La dénomination est obligatoire.', validateField);
+});
+
+document.getElementById('telephone').addEventListener('blur', function() {
+    const phonePattern = /^0[1-9]([.\-/]?[0-9]{2}){4}$/;
+    validateField(this, phonePattern, 'Veuillez entrer un numéro de téléphone valide.', validateField);
+});
+
+document.getElementById('email').addEventListener('blur', function() {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    validateField(this, emailPattern, 'Veuillez entrer une adresse e-mail valide.', validateField);
+});
+
+document.getElementById('adresse').addEventListener('blur', function() {
+    const adressePattern = /^\d+\s+(bis\s+)?[A-Za-z\s]+/i;
+    validateField(this, adressePattern, 'Veuillez entrer une adresse postale valide (ex : 123 Rue de Paris).', validateField);
+});
+
+document.getElementById('code').addEventListener('blur', function() {
+    const codePattern = /^[0-9]{5}$/;
+    validateField(this, codePattern, 'Veuillez entrer un code postal valide (5 chiffres).', validateField);
+});
+
+document.getElementById('ville').addEventListener('blur', function() {
+    const villePattern = /^[A-Za-z\s\-]+$/;
+    validateField(this, villePattern, 'Veuillez entrer une ville valide (lettres et espaces seulement).', validateField);
+});
+
+document.getElementById('siren').addEventListener('blur', function() {
+    const sirenPattern = /^(?:\d{3} \d{3} \d{3}|\d{9})$/;
+    validateField(this, sirenPattern, 'Veuillez entrer un numéro de SIREN valide (ex : 123 456 789).', validateField);
+});
+
+document.getElementById('motdepasse').addEventListener('blur', function() {
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/;
+    validateField(this, passwordPattern, 'Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule et un chiffre.', validateField);
+});
+
+document.getElementById('confirmer').addEventListener('blur', function() {
+    const motdepasse = document.getElementById('motdepasse').value;
+    if (this.value !== motdepasse) {
+        this.classList.add('error');
+        this.classList.remove('valid');
+        displayError('Les mots de passe ne correspondent pas.');
+    } else {
+        this.classList.add('valid');
+        this.classList.remove('error');
+    }
+});
+
+document.getElementById('cgu').addEventListener('change', function() {
+    const cguChecked = this.checked;
+    if (!cguChecked) {
+        displayError('Vous devez accepter les conditions générales d\'utilisation.');
+    } else {
+        displayError('');
+    }
+});
