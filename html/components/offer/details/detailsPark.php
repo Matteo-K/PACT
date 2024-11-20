@@ -25,6 +25,17 @@ if ($categorie["_parcattraction"]) {
 ?>
 <section id="park">
     <article>
+        <div>
+            <label>Age minimum</label>
+            <input type="number" id="agePark"name="AgePark">
+        </div>
+
+
+
+    </article>
+
+
+    <article>
 
 
         <br>
