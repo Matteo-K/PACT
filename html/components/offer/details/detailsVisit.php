@@ -75,7 +75,7 @@ if ($categorie["_visite"]) {
             <label>Prix minimum</label>
             <br>
 
-            <input type="number" id="PrixMinVisit" name="PrixMinVisit">
+            <input type="number" id="PrixMinVisit" name="PrixMinVisit" min="0" placeholder="0">
             <br>
 
         </div>
