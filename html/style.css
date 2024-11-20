@@ -1116,18 +1116,18 @@ header ul + div {
   flex-wrap: wrap;
 }
 
-
+/* 
 #autocomplete-list{
   padding: 10px 0 0 0;
   margin: 0;
   background-color: #fff;
   border: 2px solid black;
-  width: calc(70% + 141.625px);
+  width: calc(70% + 151.625px);
 }
 
 #autocomplete-list li{
   border-top: 1px solid var(--secondary);
-}
+} */
 
 
 
