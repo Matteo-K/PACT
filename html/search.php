@@ -384,7 +384,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     if ($offre['statut'] == 'actif') { ?>
                         <a class="searchA" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
                             <div class="carteOffre">
-                                <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt="photo principal de l'offre">
+                                <img class="searchImage" src="<?php echo $urlImg; ?>" alt="photo principal de l'offre">
                                 <div class="infoOffre">
 
                                     <p class="searchTitre"><?php echo $nomOffre; ?></p>
