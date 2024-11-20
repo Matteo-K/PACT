@@ -1072,7 +1072,7 @@ header ul + div {
 }
 
 #inputTag {
-  width: 100%;
+  width: calc(70% + 141.625px);
 }
 
 #artDetailOffer .tag {
@@ -1096,6 +1096,8 @@ header ul + div {
   display: flex;
   flex-wrap: wrap;
 }
+
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2094,25 +2096,18 @@ button[id="boutonInscription"] {
 
 /* Messages d'erreurs */
 div[id="messageErreur"] {
-  display: block; /* S'assurer que l'élément prend toute la largeur disponible */
-  width: 100%; /* Largeur 100% de son conteneur */
-  text-align: center; /* Centrer le texte à l'intérieur */
+  display: block;
+  width: 100%;
+  text-align: center;
   color: red;
   font-size: 20px;
   padding: 10px;
-  margin: 30px auto; /* Marge pour l'espacement, centré automatiquement */
+  margin: 30px auto;
 }
-
-
-
 
 .creation-compte .error-message {
   margin-top: 10px;
 }
-
-/* .creation-compte input.error + .error-message {
-  display: flex;
-} */
 
 .creation-compte input.valid + .error-message {
   display: none;
@@ -2127,13 +2122,6 @@ div[id="messageErreur"] {
   width: 408px;
 }
 
-/* .messageErreur {
-  color: red;
-  margin-bottom: 20px;
-  font-size: 20px;
-  text-align: center;
-  justify-content: center;
-} */
 
 /*+++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
