@@ -40,16 +40,110 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <script src="js/setColor.js"></script>
     <?php require_once "components/header.php"; ?>
     <main class="search">
-
+        <section id="tri&filtre" class="asdTriFiltre">
+            <aside id="tri">
+                <h2>Trier</h2>
+                <div class="blcTriFiltre">
+                    <div>
+                        <h3>Par note&nbsp;:&nbsp;</h3>
+                        <label for="">Ordre croissant</label>
+                        <input type="radio" name="" id="">
+                        <label for="">Ordre décroissant</label>
+                        <input type="radio" name="" id="">
+                    </div>
+                    <div>
+                        <h3>Par prix&nbsp;:&nbsp;</h3>
+                        <label for="">Ordre croissant</label>
+                        <input type="radio" name="" id="">
+                        <label for="">Ordre décroissant</label>
+                        <input type="radio" name="" id="">
+                    </div>
+                    <div>
+                        <h3>Par date&nbsp;:&nbsp;</h3>
+                        <label for="">Ordre croissant</label>
+                        <input type="radio" name="" id="">
+                        <label for="">Ordre décroissant</label>
+                        <input type="radio" name="" id="">
+                    </div>
+                    <div>
+                        <label for="">Mise en avant</label>
+                        <input type="radio" name="" id="">
+                    </div>
+                </div>
+            </aside>
+            <aside id="filtre" class="asdTriFiltre">
+                <h2>Filtres de recherche</h2>
+                <div class="blcTriFiltre">
+                    <div>
+                        <h3>Par note</h3>
+                        <label for="">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            ou +
+                        </label>
+                        <input type="radio" name="" id="">
+                        <label for="">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            ou +
+                        </label>
+                        <input type="radio" name="" id="">
+                        <label for="">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            ou +
+                        </label>
+                        <input type="radio" name="" id="">
+                        <label for="">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                        </label>
+                        <input type="radio" name="" id="">
+                    </div>
+                    <div>
+                        <h3>Par prix</h3>
+                    </div>
+                    <div>
+                        <h3>Par Statut</h3>
+                    </div>
+                    <div>
+                        <h3>Par catégorie</h3>
+                    </div>
+                    <div>
+                        <h3>Par date</h3>
+                        <div>
+                            <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
+                            <input type="date" name="dateDepart" id="dateDepart" value="" min="">
+                            <input type="time" name="" id="">
+                        </div>
+                        <div>
+                            <label for="dateDepart">Fin&nbsp;:&nbsp;</label>
+                            <input type="date" name="dateFin" id="dateFin" value="" min="">
+                            <input type="time" name="" id="">
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </section>
         <?php 
+
+        $stmt = $conn->prepare("SELECT * FROM pact.offres");
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        print_r($results);
+
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
             $idutilisateur=$_SESSION["idUser"];
-            $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idu=$idutilisateur ORDER BY dateCrea DESC");
-            $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
             
             ?>
-            
             <section class="searchoffre">
             <?php if ($results){ ?>
                 <?php foreach ($results as $offre){ 
@@ -197,12 +291,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
             <?php } else { ?>
                 <p>Aucune offre trouvée </p>
             <?php } ?>
-        </section>
+            </section>
         <?php
         }else {
-            $stmt = $conn->prepare("SELECT * FROM pact._offre ORDER BY dateCrea DESC");
-            $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             <section class="searchoffre">
             <?php if ($results){ ?>
@@ -343,7 +434,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
             <?php } else { ?>
                 <p>Aucune offre trouvée </p>
             <?php } ?>
-        </section>  
+            </section>  
         <?php      
         } 
         ?>
