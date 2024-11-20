@@ -167,18 +167,20 @@ try {
       // Si la saisie est vide, on n'affiche rien
       if (!value) return;
 
+      let suggestions
+
       if (radioPark.checked) {
-        let suggestions = [...tagsGeneraux, ...tagsParc];
+        suggestions = [...tagsGeneraux, ...tagsParc];
       } else if (radioActivite.checked) {
-        let suggestions = [...tagsGeneraux, ...tagsActivites];
+        suggestions = [...tagsGeneraux, ...tagsActivites];
       } else if (radioSpectacle.checked) {
-        let suggestions = [...tagsGeneraux, ...tagsSpectacle];
+        suggestions = [...tagsGeneraux, ...tagsSpectacle];
       } else if (radioVisite.checked) {
-        let suggestions = [...tagsGeneraux, ...tagsVisite];
+        suggestions = [...tagsGeneraux, ...tagsVisite];
       } else if (radioRestaurant.checked) {
-        let suggestions = [...tagsGeneraux, ...tagsRestaurant];
+        suggestions = [...tagsGeneraux, ...tagsRestaurant];
       } else {
-        let suggestions = tagsGeneraux;
+        suggestions = tagsGeneraux;
       }
 
       suggestions.forEach(eltS => {
