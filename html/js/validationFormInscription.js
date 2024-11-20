@@ -52,28 +52,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour afficher un message d'erreur pour un champ
     function displayFieldError(inputElement, messageErreur) {
-        // Ajouter ou mettre à jour le message d'erreur
-        let errorElement = inputElement.nextElementSibling;
-        if (!errorElement || !errorElement.classList.contains('error-message')) {
-            errorElement = document.createElement('div');
-            errorElement.classList.add('error-message');
-            inputElement.parentNode.appendChild(errorElement); // Ajout du message après l'input
-        }
+        let errorElement = document.querySelector("#messageErreur");
         errorElement.textContent = messageErreur; // Met le message dans l'élément
-
-        // Mettre la bordure en rouge
-        inputElement.style.borderColor = 'red';
+        inputElement.style.borderColor = 'red'; // Mettre la bordure en rouge
     }
 
     // Fonction pour effacer un message d'erreur pour un champ
     function clearFieldError(inputElement) {
-        const errorElement = inputElement.nextElementSibling;
-        if (errorElement && errorElement.classList.contains('error-message')) {
-            errorElement.remove(); // Supprimer le message d'erreur
-        }
-
-        // Réinitialiser la bordure à son état d'origine
-        inputElement.style.borderColor = '';
+        const errorElement = document.querySelector("#messageErreur");
+        errorElement.innerText = "";
+        
+        inputElement.style.borderColor = ''; // Réinitialiser la bordure à son état d'origine
     }
 
     // Fonction de validation pour chaque champ
@@ -87,51 +76,57 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Validation lors de la soumission du formulaire
+    // Validation lors de la perte de focus sur un champ (événement blur)
+    const fieldsToValidate = [
+        { id: 'denomination', pattern: /^.+$/, message: 'La dénomination est obligatoire.' },
+        { id: 'telephone', pattern: /^0[1-9]([.\-/]?[0-9]{2}){4}(\s?[0-9]{2})*$/, message: 'Veuillez entrer un numéro de téléphone valide.' },
+        { id: 'email', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Veuillez entrer une adresse e-mail valide.' },
+        { id: 'adresse', pattern: /^\d+\s+(bis\s+)?[A-Za-z\s]+/i, message: 'Veuillez entrer une adresse postale valide.' },
+        { id: 'code', pattern: /^[0-9]{5}$/, message: 'Veuillez entrer un code postal valide.' },
+        { id: 'ville', pattern: /^[A-Za-z\s\-]+$/, message: 'Veuillez entrer une ville valide.' },
+        { id: 'siren', pattern: /^(?:\d{3} \d{3} \d{3}|\d{9})$/, message: 'Veuillez entrer un numéro de SIREN valide.' },
+        { id: 'motdepasse', pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/, message: 'Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule et un chiffre.' },
+    ];
+
+    // Ajouter l'événement "blur" pour chaque champ de validation
+    fieldsToValidate.forEach(field => {
+        const inputElement = document.getElementById(field.id);
+        if (inputElement) {
+            inputElement.addEventListener('blur', function () {
+                validateField(inputElement, field.pattern, field.message);
+            });
+        }
+    });
+
+    // Validation pour la confirmation du mot de passe
+    const confirmPasswordField = document.getElementById('confirmer');
+    confirmPasswordField.addEventListener('blur', function () {
+        const motdepasse = document.getElementById('motdepasse').value;
+        const confirmer = confirmPasswordField.value;
+        if (motdepasse !== confirmer) {
+            displayFieldError(confirmPasswordField, 'Les mots de passe ne correspondent pas.');
+        } else {
+            clearFieldError(confirmPasswordField);
+        }
+    });
+
+    // Validation globale lors de la soumission du formulaire
     form.addEventListener('submit', function (event) {
         event.preventDefault(); // Empêche l'envoi du formulaire
 
         const errors = []; // Tableau pour stocker les erreurs globales
 
-        // Validation des champs
-        if (!validateField(document.getElementById('denomination'), /^.+$/, 'La dénomination est obligatoire.')) {
-            errors.push('La dénomination est obligatoire.');
-        }
-
-        if (!validateField(document.getElementById('telephone'), /^0[1-9]([.\-/]?[0-9]{2}){4}$/, 'Veuillez entrer un numéro de téléphone valide.')) {
-            errors.push('Veuillez entrer un numéro de téléphone valide.');
-        }
-
-        if (!validateField(document.getElementById('email'), /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Veuillez entrer une adresse e-mail valide.')) {
-            errors.push('Veuillez entrer une adresse e-mail valide.');
-        }
-
-        if (!validateField(document.getElementById('adresse'), /^\d+\s+(bis\s+)?[A-Za-z\s]+/i, 'Veuillez entrer une adresse postale valide.')) {
-            errors.push('Veuillez entrer une adresse postale valide.');
-        }
-
-        if (!validateField(document.getElementById('code'), /^[0-9]{5}$/, 'Veuillez entrer un code postal valide.')) {
-            errors.push('Veuillez entrer un code postal valide.');
-        }
-
-        if (!validateField(document.getElementById('ville'), /^[A-Za-z\s\-]+$/, 'Veuillez entrer une ville valide.')) {
-            errors.push('Veuillez entrer une ville valide.');
-        }
-
-        // Validation pour le SIREN si visible
-        const sirenInput = document.getElementById('siren');
-        if (sirenInput && sirenInput.style.display !== 'none' && !validateField(sirenInput, /^(?:\d{3} \d{3} \d{3}|\d{9})$/, 'Veuillez entrer un numéro de SIREN valide.')) {
-            errors.push('Veuillez entrer un numéro de SIREN valide.');
-        }
+        // Vérifier les champs lors de la soumission
+        fieldsToValidate.forEach(field => {
+            const inputElement = document.getElementById(field.id);
+            if (!validateField(inputElement, field.pattern, field.message)) {
+                errors.push(field.message);
+            }
+        });
 
         const motdepasse = document.getElementById('motdepasse').value;
-        if (!validateField(document.getElementById('motdepasse'), /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/, 'Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule et un chiffre.')) {
-            errors.push('Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule et un chiffre.');
-        }
-
         const confirmer = document.getElementById('confirmer').value;
         if (motdepasse !== confirmer) {
-            displayFieldError(document.getElementById('confirmer'), 'Les mots de passe ne correspondent pas.');
             errors.push('Les mots de passe ne correspondent pas.');
         }
 
