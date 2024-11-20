@@ -164,12 +164,6 @@ try {
         suggestions = tagsGeneraux;
       }
 
-      suggestions.forEach(eltS => {
-        console.log(eltS);
-      });
-
-      
-
       // Filtrer les tags correspondant à la saisie
       suggestions = suggestions.filter(tag =>
         tag.toLowerCase().includes(value.toLowerCase())
@@ -185,6 +179,7 @@ try {
         item.addEventListener("click", () => {
           ajoutTag(tag);
           autocompleteList.innerText = ""; // Vide les suggestions
+          console.log("clic detecte");
         });
 
         autocompleteList.appendChild(item);
