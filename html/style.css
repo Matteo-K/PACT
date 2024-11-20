@@ -434,7 +434,11 @@ header ul + div {
 }
 
 @media screen and (max-width: 768px) {
+  header{
+    flex-wrap: wrap;
+  }
   #formHeader {
+      order: 10;
       width: 80%; /* Réduit la largeur du formulaire */
   }
   #profileMenu {
