@@ -157,7 +157,7 @@ header {
   border-bottom: var(--bloc) 2px solid;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   position: fixed;
@@ -434,8 +434,6 @@ header ul + div {
 }
 
 @media (max-width: 768px) {
-
-
   #logo {
       width: 40px;
       height: 40px;
