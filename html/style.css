@@ -2010,22 +2010,17 @@ input.valid {
 } */
 
 
-/* Couleur du fond et des bordures */
-input.error {
-  border: 3px solid red; /* Bordure rouge pour un champ invalide */
-}
-
 input.valid {
   border: 3px solid var(--accent); /* Bordure verte ou la couleur accent pour un champ valide */
 }
 
 /* Messages d'erreur pour les champs */
-.error-message {
+/* .error-message {
   color: red;
   font-size: 0.85rem;
   margin-top: 0.5em;
-  text-align: left; /* Alignement à gauche pour une meilleure lisibilité */
-}
+  text-align: left;
+} */
 
 .messageErreur {
   color: red;

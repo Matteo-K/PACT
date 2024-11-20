@@ -52,24 +52,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour afficher un message d'erreur pour un champ
     function displayFieldError(inputElement, messageErreur) {
-        let errorElement = inputElement.nextElementSibling;
-        
-        if (!errorElement || !errorElement.classList.contains('error-message')) {
-            errorElement = document.createElement('div');
-            errorElement.classList.add('error-message');
-            inputElement.parentNode.insertBefore(errorElement, inputElement.nextElementSibling);
-        }
-        
+        let errorElement = document.querySelector("#messageErreur");
         errorElement.textContent = messageErreur; // Met le message dans l'élément
         inputElement.style.borderColor = 'red'; // Mettre la bordure en rouge
     }
 
     // Fonction pour effacer un message d'erreur pour un champ
     function clearFieldError(inputElement) {
-        const errorElement = inputElement.nextElementSibling;
-        if (errorElement && errorElement.classList.contains('error-message')) {
-            errorElement.remove(); // Supprimer le message d'erreur
-        }
+        const errorElement = document.querySelector("#messageErreur");
+        errorElement.innerText = "";
+        
         inputElement.style.borderColor = ''; // Réinitialiser la bordure à son état d'origine
     }
 
