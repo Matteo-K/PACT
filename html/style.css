@@ -152,8 +152,6 @@ footer div+div p {
 /* ##### Components ##### */
 
 /* ### Header ### */
-/* Général */
-/* ### Header ### */
 
 header {
   border-bottom: var(--bloc) 2px solid;
@@ -170,7 +168,7 @@ header {
   background-color: var(--background);
 }
 
-header div {
+header > div {
   width: 100%;
   display: flex;
   flex-direction: row;
