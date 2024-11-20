@@ -446,9 +446,8 @@ header ul + div {
     order:10;
   }
   #formHeader {
-   
-      margin-top: 10px;
       width: 100%;
+      margin-top: 10px;
       justify-content: center;
       margin-inline: 10px;
   }
@@ -490,11 +489,11 @@ header ul + div {
 /* For smaller screens */
 @media (max-width: 480px) {
   #formHeader input {
-      width: 160px;
+      width: 100%;
   }
 
   #formHeader button {
-      padding: 6px;
+      padding: 15%;
   }
 }
 
