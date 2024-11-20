@@ -169,9 +169,8 @@ try {
 
       // Ajouter les suggestions dans la liste
       suggestions.forEach(tag => {
-        const item = document.createElement("li");
-        item.classList.add("autocomplete-item");
-        item.textContent = tag;
+        const itemAutoComplete = document.createElement("li");
+        itemAutoComplete.textContent = tag;
 
         // Quand un utilisateur clique sur une suggestion
         item.addEventListener("click", () => {
