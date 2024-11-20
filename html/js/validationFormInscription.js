@@ -31,12 +31,12 @@ document.addEventListener('DOMContentLoaded', function () {
     publicRadio.addEventListener("click", updateSirenVisibility);
     priveRadio.addEventListener("click", updateSirenVisibility);
 
-    // Fonction pour afficher les erreurs globalement dans la div
-    function displayGlobalErrors(errors) {
+     // Fonction pour afficher les erreurs globales
+     function displayGlobalErrors(errors) {
         messageErreurDiv.innerHTML = ''; // Efface les erreurs précédentes
         if (errors.length > 0) {
-            messageErreurDiv.style.display = 'block';
-            const errorList = document.createElement('ul');
+            messageErreurDiv.style.display = 'block'; // Assure que la div est visible
+            const errorList = document.createElement('ul'); // Crée une liste des erreurs
             errors.forEach(error => {
                 const li = document.createElement('li');
                 li.textContent = error;
@@ -44,28 +44,28 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             messageErreurDiv.appendChild(errorList);
         } else {
-            messageErreurDiv.style.display = 'none';
+            messageErreurDiv.style.display = 'none'; // Cache la div si pas d'erreurs
         }
     }
 
     // Fonction pour afficher un message d'erreur à côté d'un champ
     function displayFieldError(inputElement, messageErreur) {
-        let errorElement = inputElement.nextElementSibling;
+        let errorElement = inputElement.nextElementSibling; // Rechercher un élément d'erreur existant
         if (!errorElement || !errorElement.classList.contains('error-message')) {
             errorElement = document.createElement('div');
             errorElement.classList.add('error-message');
-            inputElement.parentNode.appendChild(errorElement);
+            inputElement.parentNode.appendChild(errorElement); // Ajout après le champ
         }
+        errorElement.textContent = messageErreur; // Ajoute le texte d'erreur
         inputElement.classList.add('error');
         inputElement.classList.remove('valid');
-        errorElement.textContent = messageErreur;
     }
 
-    // Fonction pour supprimer un message d'erreur et rétablir les styles
+    // Fonction pour effacer un message d'erreur
     function clearFieldError(inputElement) {
-        const errorElement = inputElement.nextElementSibling;
+        const errorElement = inputElement.nextElementSibling; // Rechercher l'élément d'erreur
         if (errorElement && errorElement.classList.contains('error-message')) {
-            errorElement.remove();
+            errorElement.remove(); // Supprime le message
         }
         inputElement.classList.remove('error');
         inputElement.classList.add('valid');
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Validation complète au moment de la soumission
     form.addEventListener('submit', function (event) {
         event.preventDefault(); // Empêche l'envoi par défaut
-        const errors = [];
+        const errors = []; // Tableau pour stocker les erreurs globales
 
         // Valider chaque champ
         if (!validateField(document.getElementById('denomination'), /^.+$/, 'La dénomination est obligatoire.')) {
@@ -112,7 +112,8 @@ document.addEventListener('DOMContentLoaded', function () {
             errors.push('Veuillez entrer une ville valide.');
         }
 
-        if (priveRadio.checked && !validateField(document.getElementById('siren'), /^(?:\d{3} \d{3} \d{3}|\d{9})$/, 'Veuillez entrer un numéro de SIREN valide.')) {
+        const sirenInput = document.getElementById('siren');
+        if (sirenInput && sirenInput.style.display !== 'none' && !validateField(sirenInput, /^(?:\d{3} \d{3} \d{3}|\d{9})$/, 'Veuillez entrer un numéro de SIREN valide.')) {
             errors.push('Veuillez entrer un numéro de SIREN valide.');
         }
 

@@ -155,6 +155,10 @@ try {
     "Monument", "Panoramique", "Éducative"
   ];
 
+    // Variables de sélection des éléments
+    const inputTag = document.getElementById("inputTag");
+    const autocompleteList = document.getElementById("autocomplete-list");
+
     // Fonction pour filtrer et afficher les suggestions
     function updateSuggestions(value) {
       // Nettoyer les suggestions précédentes
@@ -177,7 +181,11 @@ try {
         let suggestions = tagsGeneraux;
       }
 
-      console.log(suggestions);
+      suggestions.forEach(eltS => {
+        console.log(eltS);
+      });
+
+      
 
       // Filtrer les tags correspondant à la saisie
       suggestions = suggestions.filter(tag =>
@@ -213,132 +221,11 @@ try {
     // Cacher les suggestions si on clique ailleurs
     document.addEventListener("click", (event) => {
       if (!event.target.closest("#autocomplete-list") && event.target !== inputTag) {
-        autocompleteList.innerHTML = "";
+        autocompleteList.innerText = "";
       }
     });
 
     
-
-
-
-
-
-    
-
-    /*
-  // Variables de sélection des éléments
-  const inputTag = document.getElementById("inputTag");
-  const autocompleteList = document.getElementById("autocomplete-list");
-
-  // Fonction pour filtrer et afficher les suggestions
-  function updateSuggestions(value) {
-    // Nettoyer les suggestions précédentes
-    autocompleteList.innerText = "";
-
-    // Si la saisie est vide, on n'affiche rien
-    if (!value) return;
-
-    // Filtrer les tags correspondant à la saisie
-    const suggestions = tabTags.filter(tag =>
-      tag.toLowerCase().includes(value.toLowerCase())
-    );
-
-    // Ajouter les suggestions dans la liste
-    suggestions.forEach(tag => {
-      const item = document.createElement("div");
-      item.classList.add("autocomplete-item");
-      item.textContent = tag;
-
-      // Quand un utilisateur clique sur une suggestion
-      item.addEventListener("click", () => {
-        inputTag.value = tag; // Met le tag sélectionné dans l'input
-        autocompleteList.innerText = ""; // Vide les suggestions
-      });
-
-      autocompleteList.appendChild(item);
-    });
-  }
-
-  // Écouteur d'événement sur l'input
-  inputTag.addEventListener("input", (event) => {
-    updateSuggestions(event.target.value);
-  });
-
-  // Cacher les suggestions si on clique ailleurs
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest("#autocomplete-list") && event.target !== inputTag) {
-      autocompleteList.innerHTML = "";
-    }
-  });
-
-
-
-
-
-
-
-  /*
-// Variables de sélection des éléments
-const inputTag = document.getElementById("inputTag");
-const buttonTag = document.getElementById("ajoutTag");
-const sectionTag = document.getElementById("sectionTag");
-const pTag = document.querySelector("#sectionTag + p");
-let tags = []; // Tableau pour stocker les tags
-let compteurTags = 0; // Compteur pour limiter à 6 tags
-
-// Fonction pour ajouter un tag
-buttonTag.addEventListener("click", ajoutTag);
-inputTag.addEventListener("keypress", ajoutTagKeyboard);
-
-// Détection de l'appui sur la touche "Entrée"
-function ajoutTagKeyboard(e) {
-  if (e.code === "Enter") {
-    e.preventDefault(); // Empêche la soumission du formulaire si "Enter" est appuyé
-    ajoutTag();
-  }
-}
-
-function ajoutTag() {
-  const valeurTag = inputTag.value.trim().toLowerCase(); // Récupère la valeur de l'input sans espaces ni les majuscules
-
-  if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
-    compteurTags++;
-    tags.push(valeurTag); // Ajoute le tag dans le tableau
-
-    // Crée l'élément visuel pour afficher le tag
-    const elementTag = document.createElement("span");
-    elementTag.classList.add("tag");
-    elementTag.textContent = valeurTag;
-
-    // Crée l'input caché pour soumettre le tag avec le formulaire
-    const hiddenInputTag = document.createElement("input");
-    hiddenInputTag.type = "hidden";
-    hiddenInputTag.value = valeurTag;
-    hiddenInputTag.name = "tags[]"; // Utilise un tableau pour les tags
-
-    // Ajoute un événement pour supprimer le tag au clic
-    elementTag.addEventListener("click", function () {
-      tags.splice(tags.indexOf(valeurTag), 1); // Retire le tag du tableau
-      sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
-      sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
-      pTag.style.color = "black"; // Remet la couleur par défaut si besoin
-      compteurTags--; // Décrémente le compteur de tags
-    });
-
-    // Ajoute l'élément visuel et l'input caché au DOM
-    sectionTag.appendChild(elementTag); 
-    sectionTag.appendChild(hiddenInputTag);
-
-    // Réinitialise l'input
-    inputTag.value = "";
-  } else if (tags.length >= 6) {
-    pTag.style.color = "red"; // Change la couleur du texte pour signaler la limite atteinte
-  } else if (tags.includes(valeurTag)) {
-    alert("Ce tag a déjà été ajouté !");
-  }
-}
-
-*/
 
 } catch (error) { }
 

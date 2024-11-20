@@ -50,7 +50,7 @@ if ($categorie["_visite"]) {
             <br>
 
 
-            <input type="number" id="numberHVisit" name="numberHVisit" placeholder="0" />
+            <input type="number" id="numberHVisit" name="numberHVisit"min="0" placeholder="0" />
             <!-- zone de texte ou seul un chiffre/nombre est accepte -->
             <label>H</label> <!-- Label H (pour heure) -->
 
@@ -75,7 +75,7 @@ if ($categorie["_visite"]) {
             <label>Prix minimum</label>
             <br>
 
-            <input type="number" id="PrixMinVisit" name="PrixMinVisit">
+            <input type="number" id="PrixMinVisit" name="PrixMinVisit" min="0" placeholder="0">
             <br>
 
         </div>

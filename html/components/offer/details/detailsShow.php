@@ -53,7 +53,7 @@ if ($categorie["_spectacle"]) {
             <label class="ligne1">En minutes : </label>
 
             <div>
-                <input type="time" class="nb" name="nbHeures" placeholder="0"> <!-- Pour entrer un prix minimum -->
+                <input type="number" class="nb" name="nbHeures" min="0" placeholder="0"> <!-- Pour entrer un prix minimum -->
 
 
 
@@ -68,7 +68,7 @@ if ($categorie["_spectacle"]) {
         <label>Prix minimum</label>
         <br>
 
-        <input type="number" id="PrixMinShow" name="PrixMinShow">
+        <input type="number" id="PrixMinShow" name="PrixMinShow" min="0" placeholder="0">
         <br>
 
     </article>
