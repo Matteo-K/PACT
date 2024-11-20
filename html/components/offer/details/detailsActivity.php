@@ -34,8 +34,9 @@ if ($categorie["_activite"]) {
         </div>
         <div>
             <label>Prestation(s)</label>
-
+            <br>
             <textarea name="textPrestationsAct" id="textePrestation" placeholder="Entrer une prestation "></textarea>
+            <br>
             <input type="button" id="buttonAjoutPresta" name="BtnAjoutPresta" value="Ajouter des presations">
             <br>
 
