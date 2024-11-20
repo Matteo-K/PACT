@@ -2144,13 +2144,10 @@ button[id="boutonInscription"] {
 /* Messages d'erreurs */
 div[id="messageErreur"] {
   position: absolute; /* Permet de positionner par rapport à la fenêtre */
-  top: 50%; /* Positionner verticalement au centre de la page */
-  left: 50%; /* Positionner horizontalement au centre de la page */
-  transform: translate(-50%, -50%); /* Centrer parfaitement l'élément */
   width: auto; /* Ajuster la largeur automatiquement */
   text-align: center;
   color: red;
-  font-size: 20px;
+  font-size: 30px;
   padding: 10px;
   margin: 0; /* Retirer la marge, car nous utilisons le positionnement absolu */
 }
