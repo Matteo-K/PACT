@@ -1122,16 +1122,18 @@ header ul + div {
 
 
 #autocomplete-list{
-  padding: 10px 0 0 0;
+  padding: 10px 5px 0;
   margin: 0;
   background-color: #fff;
-  border: 2px solid black;
-  width: calc(70% + 151.625px);
+  border: 2px solid var(--bloc);
+  width: calc(70% + 141.625px);
+  height: 300px;
   position: absolute;
+  overflow: hidden;
 }
 
 #autocomplete-list li{
-  border-top: 1px solid var(--secondary);
+  border-top: 0.5px solid var(--secondary);
 } 
 
 
