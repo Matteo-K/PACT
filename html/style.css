@@ -153,7 +153,7 @@ footer div+div p {
 
 /* ### Header ### */
 /* Général */
-header > div {
+header div {
   top:0;
   padding: 1em 0;
   width: 100%;
@@ -165,6 +165,8 @@ header > div {
   color: #ffffff;
   border-bottom: 2px var(--bloc) solid;
 }
+
+
 
 /* Logo et titre */
 #logo {
