@@ -2258,12 +2258,6 @@ body[id="body_creation_compte_membre"] ::placeholder {
   font-size: 20px;
 }
 
-.creation-compte div {
-  display: inline;
-  justify-content: center;
-  margin: 10px;
-}
-
 .creation-compte label {
   font-size: 25px;
   margin: 5px;
