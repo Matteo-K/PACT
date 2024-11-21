@@ -1175,7 +1175,7 @@ header ul + div {
   flex-wrap: wrap;
 }
 
-#inputAutocomplete{
+#inputAutoComplete{
   position: relative;
   width: calc(70% + 141.625px);
 }

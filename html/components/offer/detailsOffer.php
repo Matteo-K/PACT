@@ -77,8 +77,9 @@ if ($result != false) {
 
 else{    
     $liste_tags = [];
-    print_r($liste_tags);
 }
+
+print_r($liste_tags);
 
 
 
