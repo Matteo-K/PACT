@@ -60,16 +60,6 @@ if ($result != false) {
         </div>
 
         <div>
-            <div id="choixImage">
-                <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
-                <p>
-                    Vous pouvez insérer jusqu'à 10 photos<br>
-                    Cliquez sur une image pour la supprimer
-                </p>
-            </div>
-            <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
-            <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple required>
-            <div id="afficheImages"></div>
 
             <div id="choixCategorie">
                 <label>Catégorie de l'offre*  <span id="msgCategorie" class="msgError"></span></label>   
@@ -100,15 +90,15 @@ if ($result != false) {
                 <label for="radioVisite">Visite</label>
             </div>
 
+
+            
+
             <div id="inputAutocomplete">
                 <label for="inputTag">Tags supplémentaires </label>
                 <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
                 <!--v<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
                 <ul id="autocompletion"></ul>
             </div>
-            
-            
-            
             
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->
@@ -117,6 +107,19 @@ if ($result != false) {
             <p>
                 Vous pouvez entrer jusqu'à 6 tags
             </p>
+
+
+
+            <div id="choixImage">
+                <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
+                <p>
+                    Vous pouvez insérer jusqu'à 10 photos<br>
+                    Cliquez sur une image pour la supprimer
+                </p>
+            </div>
+            <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+            <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple required>
+            <div id="afficheImages"></div>
 
 
         </div>
