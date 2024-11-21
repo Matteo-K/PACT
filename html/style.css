@@ -1492,7 +1492,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   padding-top: var(--header-size);
 }
 
-#trifiltre h3, #trifiltre h4 {
+#trifiltre h3, #trifiltre h2 {
   margin: 10px;
 }
 
