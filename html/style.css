@@ -2613,11 +2613,15 @@ p[id="legendeBoutonLienPro"] {
   }
 
   /* Ajustement des boutons et des labels de création de compte */
-  a[id="boutonLienMembre"],
   a[id="boutonLienPro"],
-  p[id="legendeBoutonLienMembre"],
   p[id="legendeBoutonLienPro"] {
     display: none;
+  }
+
+  a[id="boutonLienMembre"],
+  p[id="legendeBoutonLienMembre"] {
+    display: flex;
+    flex-direction: column;
   }
 }
 
