@@ -2145,6 +2145,7 @@ tbody td:last-child {
   flex-direction: row;
 }
 
+
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
@@ -2415,6 +2416,13 @@ div[id="messageErreur"] {
     font-size: 45px;
     margin-top: 15vh;
   }
+
+  body[id="body_creation_compte"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
 
   .creation-compte form {
     justify-content: center;
