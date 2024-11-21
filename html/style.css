@@ -2494,10 +2494,6 @@ div[id="messageErreur"] {
     margin-top: 5vh;
   }
 
-  aside[id="asideRetour"] {
-    position: relative;
-  }
-
   .creation-compte form {
     display: flex;
     flex-direction: column;
@@ -2538,7 +2534,7 @@ div[id="messageErreur"] {
   }
 
   .creation-compte input {
-    max-width: 280px;
+    width: 280px;
     height: 40px;
     margin-bottom: 15px;
     padding: 5px;
