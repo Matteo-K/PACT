@@ -491,8 +491,8 @@ header ul + div {
   }
 
   #auth > img {
-    width: clamp(2em,35vw,5em);
-    height: clamp(2em,35vw,5em);
+    width: clamp(2em,10vw,5em);
+    height: clamp(2em,10vw,5em);
   
   }
 }
