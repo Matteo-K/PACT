@@ -430,6 +430,69 @@ BEFORE DELETE ON _visite_langue
 FOR EACH ROW
 EXECUTE FUNCTION compte_langue();
 
+CREATE TABLE _commentaire(
+  idU INT NOT NULL,
+  idC SERIAL PRIMARY KEY,
+  content VARCHAR(1000) NOT NULL,
+  datePublie DATE NOT NULL,
+  CONSTRAINT _commentaire_fk_idU
+      FOREIGN KEY (idU)
+      REFERENCES _nonAdmin(idU)
+);
+
+CREATE TABLE _avis(
+  idC INT NOT NULL,
+  idOffre INT NOT NULL,
+  PRIMARY KEY (idC,idOffre),
+  CONSTRAINT _avis_fk_idC
+      FOREIGN KEY (idC)
+      REFERENCES _commentaire(idC),
+  CONSTRAINT _offre_fk_idOffre
+      FOREIGN KEY (idOffre)
+      REFERENCES _offre(idOffre)
+);
+
+CREATE TABLE _reponse(
+  idC INT NOT NULL,
+  idOffre INT NOT NULL,
+  ref INT NOT NULL,
+  PRIMARY KEY (idC,ref),
+  CONSTRAINT _reponse_fk_idC
+      FOREIGN KEY (idC)
+      REFERENCES _commentaire(idC),
+  CONSTRAINT _reponse_fk_avis
+      FOREIGN KEY (ref,idOffre)
+      REFERENCES _avis(idC,idOffre)
+);
+
+CREATE TABLE _avisImage(
+  idC INT NOT NULL,
+  idOffre INT NOT NULL,
+  url VARCHAR(255) NOT NULL,
+  PRIMARY KEY (idC,url),
+  CONSTRAINT _avisImage_fk_image
+      FOREIGN KEY (url)
+      REFERENCES _image(url),
+  CONSTRAINT _avisImage_fk_avis
+      FOREIGN KEY (idC,idOffre)
+      REFERENCES _avis(idC,idOffre)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- Création des vues pour chaque catégorie d'offres
 
 CREATE VIEW admin AS
@@ -553,7 +616,7 @@ SELECT
         WHEN EXISTS (SELECT 1 FROM _tag_restaurant tr WHERE tr.idOffre = o.idOffre) THEN 'Restaurant'
         WHEN EXISTS (SELECT 1 FROM _tag_visite tv WHERE tv.idOffre = o.idOffre) THEN 'Visite'
         WHEN EXISTS (SELECT 1 FROM _tag_act ta WHERE ta.idOffre = o.idOffre) THEN 'Activité'
-        WHEN EXISTS (SELECT 1 FROM _tag_parc tp WHERE tp.idOffre = o.idOffre) THEN 'Parc'
+        WHEN EXISTS (SELECT 1 FROM _tag_parc tp WHERE tp.idOffre = o.idOffre) THEN 'Parc Attraction'
         ELSE 'Autre'
     END AS categorie
 FROM 

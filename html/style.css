@@ -1966,7 +1966,7 @@ tbody td:last-child {
   .mainOffer .tag,
   .ouvert,
   .ferme {
-    font-size: clamp(8px, 10vw,22px);
+    font-size: 10px;
   }
 }
 
@@ -2275,14 +2275,12 @@ body[id="body_creation_compte"] ::placeholder {
   text-align: left;
 }
 
-.creation-compte div.ligne1>label,
-div.ligne6>label {
+.creation-compte div.ligne1>label, div.ligne6>label {
   display: inline-block;
   width: 408px;
 }
 
-.creation-compte div.ligne2>label,
-div.ligne3>label {
+.creation-compte div.ligne2>label, div.ligne3>label {
   display: flex;
   justify-content: left;
   width: 823px;
@@ -2452,6 +2450,7 @@ div[id="messageErreur"] {
     min-height: 100vh;
     margin: 0;
     padding: 0;
+    width: 100%;
   }
 
   h1[id="inscriptionTitre"] {
@@ -2472,7 +2471,7 @@ div[id="messageErreur"] {
   }
 
   .creation-compte div {
-    display: inline;
+    display: grid;
     justify-content: center;
     margin: 10px;
     width: 90%;
