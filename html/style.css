@@ -490,7 +490,7 @@ header ul + div {
       
   }
 
-  #auth > img {
+  #auth img {
     width: clamp(2em,10vw,5em);
     height: clamp(2em,10vw,5em);
   
