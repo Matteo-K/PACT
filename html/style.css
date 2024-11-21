@@ -2493,17 +2493,13 @@ div[id="messageErreur"] {
     font-size: 45px;
     margin-top: 5vh;
   }
-  
-  button[id="retour"] {
-    position: relative;
-    background: none;
-    border: none;
-    color: var(--bloc);
-    text-decoration: underline;
-    font: inherit;
-    cursor: pointer;
-    padding: 0;
+
+  aside[id="asideRetour"] {
+    position: static;
+    top: 10px;
+    left: 10px;
   }
+
 
   .creation-compte form {
     display: flex;
