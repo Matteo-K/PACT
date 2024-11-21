@@ -469,7 +469,8 @@ header ul + div {
   }
 
   #logoText {
-      font-size: 10px;
+      margin-top: 1em;
+      font-size: 10vw;
   }
 
   #divFormHeader{
