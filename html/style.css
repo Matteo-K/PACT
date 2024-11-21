@@ -1186,9 +1186,10 @@ header ul + div {
   flex-wrap: wrap;
 }
 
-#divListsComplete{
+#divListeComplet{
   position: relative;
   width: calc(70% + 141.625px) ;
+  border: 5px solid red;
 }
 
 #autocompletion{
