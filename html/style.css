@@ -311,7 +311,7 @@ header > div > a > div {
   display: flex;
   color: #000;
   font-size: 25px;
-  border-radius: 10px;
+  border-radius: 2em;
   height: 2em;
   width: 200px;
   background-color: var(--accent);
@@ -497,9 +497,9 @@ header ul + div {
   }
 
   #btnConn {
-      width: 10em;
+      width: 15em;
       height: 3em;
-      font-size: 12px;
+      font-size: 16px;
       margin-top: 10px;
       
   }
@@ -1075,7 +1075,8 @@ header ul + div {
 #artDetailOffer>div>label:not(.buttonDetailOffer),
 #choixCategorie label:first-of-type,
 #choixImage label,
-#choixImage2 label {
+#choixImage2 label
+#inputTag {
   display: inline-block;
   font-size: 25px;
   width: 90%;
