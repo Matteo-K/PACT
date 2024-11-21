@@ -342,23 +342,24 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         <?php $arrayOffer = ["Pomme", "Banane", "Fraise", "Poire", "Abricot", "Autre fruit"]; ?>
         let arrayOffer = <?php echo json_encode($arrayOffer); ?>;
         
+        // Acualise l'heure actuelle
         const now = new Date();
         let hours = now.getHours().toString().padStart(2, '0');
         let minutes = now.getMinutes().toString().padStart(2, '0');
         let timeString = `${hours}:${minutes}`;
-        document.getElementById('heureFin').value = timeString;
-        document.getElementById('heureDebut').value = timeString;
+        document.querySelector('#heureFin').value = timeString;
+        document.querySelector('#heureDebut').value = timeString;
 
         
-        document.getElementById('prixMin').addEventListener('change', inverseValuesPrix);
-        document.getElementById('prixMax').addEventListener('change', inverseValuesPrix);
+        document.querySelector('#prixMin').addEventListener('change', inverseValuesPrix);
+        document.querySelector('#prixMax').addEventListener('change', inverseValuesPrix);
 
         /**
          * Switch les valeurs des prix maximum et minimum si prix maximum < prix minimum
          */
         function inverseValuesPrix () {
-            const selectMin = document.getElementById('prixMin');
-            const selectMax = document.getElementById('prixMax');
+            const selectMin = document.querySelector('#prixMin');
+            const selectMax = document.querySelector('#prixMax');
             const valueMin = parseInt(selectMin.value);
             const valueMax = parseInt(selectMax.value);
             

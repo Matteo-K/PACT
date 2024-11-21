@@ -10,48 +10,48 @@ document.addEventListener("DOMContentLoaded", () => {
   // La liste des offres est stocké dans la variable "arrayOffer";
 
   /// Input de Tri ///
-  const radBtnEnAvant = document.getElementById("miseEnAvant");
+  const radBtnEnAvant = document.querySelector("#miseEnAvant");
 
   // note
-  const radBtnNoteCroissant = document.getElementById("noteCroissant");
-  const radBtnNoteDecroissant = document.getElementById("noteDecroissant");
+  const radBtnNoteCroissant = document.querySelector("#noteCroissant");
+  const radBtnNoteDecroissant = document.querySelector("#noteDecroissant");
 
   // prix
-  const radBtnprixCroissant = document.getElementById("prixCroissant");
-  const radBtnPrixDecroissant = document.getElementById("prixDecroissant");
+  const radBtnprixCroissant = document.querySelector("#prixCroissant");
+  const radBtnPrixDecroissant = document.querySelector("#prixDecroissant");
 
   // date
-  const radBtnDateRecent = document.getElementById("dateRecent");
-  const radBtnDateAncien = document.getElementById("dateAncien");
+  const radBtnDateRecent = document.querySelector("#dateRecent");
+  const radBtnDateAncien = document.querySelector("#dateAncien");
 
   /// Input de Filtre ///
   // note
-  const chkBxNote1 = document.getElementById("1star");
-  const chkBxNote2 = document.getElementById("2star");
-  const chkBxNote3 = document.getElementById("3star");
-  const chkBxNote4 = document.getElementById("4star");
-  const chkBxNote5 = document.getElementById("5star");
+  const chkBxNote1 = document.querySelector("#1star");
+  const chkBxNote2 = document.querySelector("#2star");
+  const chkBxNote3 = document.querySelector("#3star");
+  const chkBxNote4 = document.querySelector("#4star");
+  const chkBxNote5 = document.querySelector("#5star");
 
   // prix
-  const selectPrixMin = document.getElementById("prixMin");
-  const selectPrixMax = document.getElementById("prixMax");
+  const selectPrixMin = document.querySelector("#prixMin");
+  const selectPrixMax = document.querySelector("#prixMax");
 
   // statut
-  const chkBxOuvert = document.getElementById("ouvert");
-  const chkBxFerme = document.getElementById("ferme");
+  const chkBxOuvert = document.querySelector("#ouvert");
+  const chkBxFerme = document.querySelector("#ferme");
 
   // catégorie
-  const chkBxVisite = document.getElementById("Visite");
-  const chkBxActivite = document.getElementById("Activite");
-  const chkBxSpectacle = document.getElementById("Spectacle");
-  const chkBxRestauration = document.getElementById("Restauration");
-  const chkBxParc = document.getElementById("Parc");
+  const chkBxVisite = document.querySelector("#Visite");
+  const chkBxActivite = document.querySelector("#Activite");
+  const chkBxSpectacle = document.querySelector("#Spectacle");
+  const chkBxRestauration = document.querySelector("#Restauration");
+  const chkBxParc = document.querySelector("#Parc");
 
   // date
-  const dateDepart = document.getElementById("dateDepart");
-  const heureDebut = document.getElementById("heureDebut");
-  const dateFin = document.getElementById("dateFin");
-  const heureFin = document.getElementById("heureFin");
+  const dateDepart = document.querySelector("#dateDepart");
+  const heureDebut = document.querySelector("#heureDebut");
+  const dateFin = document.querySelector("#dateFin");
+  const heureFin = document.querySelector("#heureFin");
 
 
   /* ### Fonction ### */
