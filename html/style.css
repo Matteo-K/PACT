@@ -1491,20 +1491,42 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   left: 0;
   padding: calc(var(--header-size) + 10px) 10px 10px 10px;
   border-radius: 0 0 45px 0;
-  padding: 10px;
 }
 
 #trifiltre h3, #trifiltre h2 {
   margin: 10px;
 }
 
-#trifiltre [type="checkbox"] {
-  border: var(--accent) 1px solid;
+#trifiltre input[type="checkbox"] {
+  display: none;
 }
 
-#trifiltre [type="checkbox"]:checked {
-  accent-color: var(--accent);
+#trifiltre .checkmark {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: var(--background);
+  border: 2px var(--accent) solid;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+
+#trifiltre input[type="checkbox"]:checked + .checkmark {
+  background-color: var(--background);
+}
+
+#trifiltre input[type="checkbox"]:checked + .checkmark::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent);
+  border-radius: 50%;
+}
+
 
 /* bloc de bouton menu téléphone*/
 #trifiltre > div {

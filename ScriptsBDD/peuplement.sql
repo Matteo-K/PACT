@@ -284,13 +284,7 @@ VALUES ('Lundi', 1, '10:00', '18:00'),
 
 -- Peuplement de la table _tag_parc
 INSERT INTO _tag_parc (idOffre, nomTag) 
-VALUES (1, 'familial'), 
-       (1, 'animaux'),
-       (1,'thématique'),
-       (1,'aquatique'),
-       (1,'interactif'),
-       (1,'spectacles inclus'),
-       (1,'sensations fortes');
+VALUES (1, 'familial');
 --(sensations fortes",
 -- Peuplement de la table _tag_spec
 INSERT INTO _tag_spec (idOffre, nomTag) 
@@ -299,23 +293,10 @@ VALUES (2, 'romantique');
 -- Peuplement de la table _tag_restaurant
 INSERT INTO _tag_restaurant (idOffre, nomTag) 
 VALUES (3, 'cuisine locale'),
-       (3, 'cuisine gastronomique'),
-       (3, 'street food'),
-       (3, 'brunch'),
-       (3, 'végétarien'),
-       (3,'vegan'),
-       (3,'à thème'),
-       (3,'fruit de mer'),
-       (3,'cuisine asiatique'),
-       (3,'cuisine africaine'),
-       (3,'cuisine americaine'),
-       (3,'cuisine orientale'),
-       (3,'cuisine francaise'),
-       (3,'cuisine mediteranéenne');
+       (3, 'cuisine gastronomique');
 
-       /*  const tagsRestaurant = [
-    ", "", "", "", "", "", ", "", "", ", "
-  ];*/
+
+ 
 
 -- Peuplement de la table _tag_Act
 INSERT INTO _tag_Act (idOffre, nomTag) 
