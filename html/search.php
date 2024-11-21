@@ -84,33 +84,33 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     <div id="note">
                         <h3>Par note</h3>
                         <div>
-                            <input type="checkbox" name="1star" id="1star" checked>
-                            <span class="checkmark"></span>
                             <label for="1star" class="blocStar">
+                                <input type="checkbox" name="1star" id="1star" checked>
+                                <span class="checkmark"></span>
                                 <div class="star"></div>
                             </label>
                         </div>
                         <div>
-                            <input type="checkbox" name="2star" id="2star" checked>
-                            <span class="checkmark"></span>
                             <label for="2star" class="blocStar">
+                                <input type="checkbox" name="2star" id="2star" checked>
+                                <span class="checkmark"></span>
                                 <div class="star"></div>
                                 <div class="star"></div>
                             </label>
                         </div>
                         <div>    
-                            <input type="checkbox" name="3star" id="3star" checked>
-                            <span class="checkmark"></span>
                             <label for="3star" class="blocStar">
+                                <input type="checkbox" name="3star" id="3star" checked>
+                                <span class="checkmark"></span>
                                 <div class="star"></div>
                                 <div class="star"></div>
                                 <div class="star"></div>
                             </label>
                         </div>
                         <div>
-                            <input type="checkbox" name="4star" id="4star" checked>
-                            <span class="checkmark"></span>
                             <label for="4star" class="blocStar">
+                                <input type="checkbox" name="4star" id="4star" checked>
+                                <span class="checkmark"></span>
                                 <div class="star"></div>
                                 <div class="star"></div>
                                 <div class="star"></div>
@@ -118,9 +118,9 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             </label>
                         </div>
                         <div>
-                            <input type="checkbox" name="5star" id="5star" checked>
-                            <span class="checkmark"></span>
                             <label for="5star" class="blocStar">
+                                <input type="checkbox" name="5star" id="5star" checked>
+                                <span class="checkmark"></span>
                                 <div class="star"></div>
                                 <div class="star"></div>
                                 <div class="star"></div>
@@ -164,14 +164,18 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <div id="statut">
                             <h3>Par Statut</h3>
                             <div>
-                                <label for="ouvert">Ouvert</label>
-                                <input type="checkbox" name="statut" id="ouvert" checked>
-                                <span class="checkmark"></span>
+                                <label for="ouvert">
+                                    Ouvert
+                                    <input type="checkbox" name="statut" id="ouvert" checked>
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                             <div>
-                                <label for="ferme">Fermé</label>
-                                <input type="checkbox" name="statut" id="ferme" checked>
-                                <span class="checkmark"></span>
+                                <label for="ferme">
+                                    Fermé
+                                    <input type="checkbox" name="statut" id="ferme" checked>
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -179,29 +183,39 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <h3>Par catégorie</h3>
                         <ul>
                             <li>
-                                <label for="Restauration">Restauration</label>
-                                <input type="checkbox" name="categorie" id="Restauration" checked>
-                                <span class="checkmark"></span>
+                                <label for="Restauration">
+                                    Restauration
+                                    <input type="checkbox" name="categorie" id="Restauration" checked>
+                                    <span class="checkmark"></span>
+                                </label>
                             </li>
                             <li>
-                                <label for="Activité">Activité</label>
-                                <input type="checkbox" name="categorie" id="Activité" checked>
-                                <span class="checkmark"></span>
+                                <label for="Activité">
+                                    Activité
+                                    <input type="checkbox" name="categorie" id="Activité" checked>
+                                    <span class="checkmark"></span>
+                                </label>
                             </li>
                             <li>
-                                <label for="Parc">Parc d’attractions</label>
-                                <input type="checkbox" name="categorie" id="Parc" checked>
-                                <span class="checkmark"></span>
+                                <label for="Parc">
+                                    Parc d’attractions
+                                    <input type="checkbox" name="categorie" id="Parc" checked>
+                                    <span class="checkmark"></span>
+                                </label>
                             </li>
                             <li>
-                                <label for="Visite">Visite</label>
-                                <input type="checkbox" name="categorie" id="Visite" checked>
-                                <span class="checkmark"></span>
+                                <label for="Visite">
+                                    Visite
+                                    <input type="checkbox" name="categorie" id="Visite" checked>
+                                    <span class="checkmark"></span>
+                                </label>
                             </li>
                             <li>
-                                <label for="Spectacle">Spectacle</label>
-                                <input type="checkbox" name="categorie" id="Spectacle" checked>
-                                <span class="checkmark"></span>
+                                <label for="Spectacle">
+                                    Spectacle
+                                    <input type="checkbox" name="categorie" id="Spectacle" checked>
+                                    <span class="checkmark"></span>
+                                </label>
                             </li>
                         </ul>
                     </div>
