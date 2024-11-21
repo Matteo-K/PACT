@@ -1490,12 +1490,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 400px;
   top: 0;
   left: 0;
-  padding-top: var(--header-size);
+  padding: calc(var(--header-size) + 10px) 10px 10px 10px;
   border-radius: 0 0 45px 0;
+  padding: 10px;
 }
 
 #trifiltre h3, #trifiltre h2 {
   margin: 10px;
+}
+
+#trifiltre [type="checkbox"] {
+  border: var(--accent) 1px solid;
+}
+
+#trifiltre [type="checkbox"]:checked {
+  accent-color: var(--accent);
 }
 
 /* bloc de bouton menu téléphone*/
