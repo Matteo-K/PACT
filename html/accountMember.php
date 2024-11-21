@@ -91,10 +91,10 @@
         <form id = "formMember" action="accountMember.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
                 <label for="nomMembre">Nom*:</label>
-                <input type="text" placeholder = "Jean" id="nomMembre" name="nomMembre" required>
                 <label for="prenomMembre">Prénom*:</label>
                 
                 <!-- Saisi du nom -->
+                <input type="text" placeholder = "Jean" id="nomMembre" name="nomMembre" required>
 
                 <!-- Saisi du prénom -->
                 <input type="text" placeholder = "Dupont" id = "prenomMembre" name="prenomMembre" required>
@@ -163,6 +163,8 @@
                 <label for="cgu">J’accepte les <a id="lienCGU" href= "cgu.html">conditions générales d’utilisation</a> de la PACT</label>
             </div>
             
+            
+            <!-- <button onclick = "validationFormPro()" id="boutonInscriptionPro">S'inscrire</button> -->
             <button type="submit" id="boutonInscription">S'inscrire</button>
 
             <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="login.php">Se connecter</a></h2>
