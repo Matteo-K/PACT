@@ -2261,7 +2261,7 @@ body[id="body_creation_compte"] ::placeholder {
 }
 
 .creation-compte div {
-  display: grid;
+  display: inline;
   justify-content: center;
   margin: 10px;
 }
