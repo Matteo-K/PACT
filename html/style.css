@@ -1489,7 +1489,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 380px;
   top: 0;
   left: 0;
-  padding: calc(var(--header-size) + 10px) 10px 10px 10px;
+  padding: 10px;
   border-radius: 0 0 45px 0;
 }
 
@@ -1553,13 +1553,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #trifiltre select {
-  width: 200px;
-  padding: 10px;
+  padding: 5px 10px;
   border: 2px solid #ccc;
   border-radius: 5px;
   background-color: white;
-  color: #333;
-  font-size: 16px;
+  color: var(--text-dark);
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -1570,14 +1568,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   cursor: pointer;
 }
 
-#trifiltre select:hover {
-  border-color: #4caf50;
-}
-
 #trifiltre select:focus {
   outline: none;
-  border-color: #4caf50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  border-color: var(--accent);
+  box-shadow: 0 0 5px var(--accent-border);
 }
 
 /* bloc de bouton menu téléphone*/
@@ -1610,6 +1604,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-start;
+}
+
+#prix div, #statut div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-left: 10px;
 }
 
 .star {
