@@ -84,40 +84,50 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
             <aside id="filtre" class="asdTriFiltre">
                 <h2>Filtres de recherche</h2>
                 <div class="blcTriFiltre">
-                    <div>
+                    <div id="note">
                         <h3>Par note</h3>
-                        <label for="1star" class="blocStar">
-                            <div class="star"></div>
-                        </label>
-                        <input type="checkbox" name="1star" id="1star" checked>
-                        <label for="2star" class="blocStar">
-                            <div class="star"></div>
-                            <div class="star"></div>
-                        </label>
-                        <input type="checkbox" name="2star" id="2star" checked>
-                        <label for="3star" class="blocStar">
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                        </label>
-                        <input type="checkbox" name="3star" id="3star" checked>
-                        <label for="4star" class="blocStar">
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                        </label>
-                        <input type="checkbox" name="4star" id="4star" checked>
-                        <label for="5star" class="blocStar">
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                        </label>
-                        <input type="checkbox" name="5star" id="5star" checked>
+                        <div>
+                            <label for="1star" class="blocStar">
+                                <div class="star"></div>
+                            </label>
+                            <input type="checkbox" name="1star" id="1star" checked>
+                        </div>
+                        <div>
+                            <label for="2star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                            <input type="checkbox" name="2star" id="2star" checked>
+                        </div>
+                        <div>    
+                            <label for="3star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                            <input type="checkbox" name="3star" id="3star" checked>
+                        </div>
+                        <div>
+                            <label for="4star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                            <input type="checkbox" name="4star" id="4star" checked>
+                        </div>
+                        <div>
+                            <label for="5star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                            <input type="checkbox" name="5star" id="5star" checked>
+                        </div>
                     </div>
-                    <div>
+                    <div id="prix">
                         <h3>Par prix</h3>
                         <div>
                             <label for="prixMin">De</label>
@@ -148,7 +158,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             </select>
                         </div>
                     </div>
-                    <div>
+                    <div id="statut">
                         <h3>Par Statut</h3>
                         <div>
                             <label for="ouvert">Ouvert</label>
@@ -159,7 +169,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             <input type="checkbox" name="statut" id="ferme" checked>
                         </div>
                     </div>
-                    <div>
+                    <div id="categorie">
                         <h3>Par catégorie</h3>
                         <ul>
                             <li>
@@ -184,7 +194,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             </li>
                         </ul>
                     </div>
-                    <div>
+                    <div id="date">
                         <h3>Par date</h3>
                         <div>
                             <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
@@ -205,8 +215,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         $stmt = $conn->prepare("SELECT * FROM pact.offres");
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        print_r($results[0]);
 
         ?>
         <section class="searchoffre">
@@ -281,12 +289,12 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     }
                     if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                         $idutilisateur=$_SESSION["idUser"];
-                        if ($offre['idU']==$idutilisateur) {
-                            require_once "components/cardOffer.php"; 
+                        if ($offre['idu']==$idutilisateur) {
+                            require "components/cardOffer.php"; 
                         }
                     }else {
                         if ($offre['statut']=='actif') {
-                            require_once "components/cardOffer.php";
+                            require "components/cardOffer.php";
                         }
                     }
                     

@@ -460,7 +460,7 @@ header ul + div {
 
 @media (max-width: 768px) {
   :root{
-    --header-size: clamp(100px, 22vh, 150px);
+    --header-size: clamp(100px, 25vh, 150px);
   }
 
   #logo {
@@ -469,21 +469,22 @@ header ul + div {
   }
 
   #logoText {
-      font-size: 10px;
+      margin-top: 1em;
+      font-size: 10vw;
   }
 
   #divFormHeader{
     order:10;
   }
   #formHeader {
-      width: 100vw;
-      margin-top: 10px;
+      width: 87vw;
       justify-content: center;
       align-items:center;
-      margin-inline: 10px;
+      margin-inline: 1em;
   }
 
   #auth {
+      width: 10vw;
       order:2;
       margin-top: 15px;
       flex-direction: column;
@@ -1508,6 +1509,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   color: var(--text-light);
 }
 
+#note > div {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 .star {
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   background-color: #EDAE14;
@@ -1523,7 +1529,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 @media (max-width : 1079px) {
   .search {
-    position: static;
+    position: block;
   }
 
   .searchoffre {
@@ -1535,7 +1541,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   #trifiltre {
-    position: block;
+    position: static;
     background: pink;
     width: 100%;
   }
