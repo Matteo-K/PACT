@@ -1490,6 +1490,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   top: 0;
   left: 0;
   padding-top: var(--header-size);
+  border-radius: 0 0 45px 0;
 }
 
 #trifiltre h3, #trifiltre h2 {
@@ -1526,7 +1527,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-start;
-  margin-inline: 20%;
 }
 
 .star {

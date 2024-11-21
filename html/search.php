@@ -79,7 +79,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 </div>
             </aside>
             <aside id="filtre" class="asdTriFiltre">
-                <h2>Filtres de recherche</h2>
+                <h2>Filtrer</h2>
                 <div class="blcTriFiltre">
                     <div id="note">
                         <h3>Par note</h3>
