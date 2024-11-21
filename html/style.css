@@ -1075,7 +1075,8 @@ header ul + div {
 #artDetailOffer>div>label:not(.buttonDetailOffer),
 #choixCategorie label:first-of-type,
 #choixImage label,
-#choixImage2 label {
+#choixImage2 label
+#inputTag {
   display: inline-block;
   font-size: 25px;
   width: 90%;
