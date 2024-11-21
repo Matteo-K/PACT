@@ -97,9 +97,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
     else if (currentFile === 'accountMember.php') {
         fieldsToValidate = [
-            { id: 'nom', pattern: /^.+$/, message: 'Le nom est obligatoire.' },
-            { id: 'prenom', pattern: /^.+$/, message: 'Le prenom est obligatoire.' },
-            { id: 'pseudo', pattern: /^.+$/, message: 'Le pseudo est obligatoire.' },
+            { id: 'nomMembre', pattern: /^.+$/, message: 'Le nom est obligatoire.' },
+            { id: 'prenomMembre', pattern: /^.+$/, message: 'Le prenom est obligatoire.' },
+            { id: 'pseudoMembre', pattern: /^.+$/, message: 'Le pseudo est obligatoire.' },
 
             { id: 'telephoneMembre', pattern: /^0[1-9]([.\-/]?[0-9]{2}|\s?[0-9]{2}){4}$/, message: 'Veuillez entrer un numéro de téléphone valide (avec espaces, sans espaces, points, tirets ou slashs).' },
             { id: 'email', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Veuillez entrer une adresse e-mail valide (avec un @ et un point, ex: exemple@gmail.com).' },
