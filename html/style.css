@@ -1555,7 +1555,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #trifiltre select {
   padding: 5px 10px;
-  border: 2px solid var(--secondary);
+  border: 2px solid white;
   border-radius: 5px;
   background-color: var(--secondary);
   color: var(--text-dark);
