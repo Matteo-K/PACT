@@ -458,11 +458,6 @@ header ul + div {
     --header-size: clamp(100px, 25vh, 150px);
   }
 
-  #logo {
-      width: 10vw;
-      height: 10vw;
-  }
-
   #logoText {
 
       margin-top: 1em;
@@ -487,17 +482,18 @@ header ul + div {
       align-items: flex-start;
   }
 
-  #profilePic {
-      margin-right: 0;
-      margin-bottom: 10px;
-  }
-
   #btnConn {
       width: 10em;
       height: 2.2em;
       font-size: 18px;
       margin-top: 10px;
       
+  }
+
+  #auth img, #logo {
+    width: clamp(2em,10vw,5em);
+    height: clamp(2em,10vw,5em);
+  
   }
 }
 
