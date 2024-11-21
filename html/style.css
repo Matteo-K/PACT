@@ -458,11 +458,6 @@ header ul + div {
     --header-size: clamp(100px, 25vh, 150px);
   }
 
-  #logo {
-      width: 10vw;
-      height: 10vw;
-  }
-
   #logoText {
 
       margin-top: 1em;
