@@ -1196,9 +1196,12 @@ header ul + div {
 }
 
 #autocompletion li{
-  border-bottom: 0.2px solid var(--secondary);
-  padding: 0px;
+  padding: 1px 0;
 } 
+
+#autocompletion li:nth-child(even) {
+  background-color: var(--secondary60);
+}
 
 
 
