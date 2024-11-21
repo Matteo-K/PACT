@@ -91,10 +91,10 @@
         <form id = "formMember" action="accountMember.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
                 <label for="nomMembre">Nom*:</label>
+                <input type="text" placeholder = "Jean" id="nomMembre" name="nomMembre" required>
                 <label for="prenomMembre">Prénom*:</label>
                 
                 <!-- Saisi du nom -->
-                <input type="text" placeholder = "Jean" id="nomMembre" name="nomMembre" required>
 
                 <!-- Saisi du prénom -->
                 <input type="text" placeholder = "Dupont" id = "prenomMembre" name="prenomMembre" required>
