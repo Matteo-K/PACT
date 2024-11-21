@@ -473,7 +473,7 @@ header ul + div {
       width: 87vw;
       justify-content: center;
       align-items:center;
-      margin-inline: 1em;
+      margin:0 2em;
   }
 
   #auth {
