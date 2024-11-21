@@ -1503,6 +1503,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   position: fixed;
   background: linear-gradient(0.45turn, var(--primary), #113);
   width: 400px;
+  top: 0;
+  left: 0;
+  padding-top: var(--header-size);
 }
 
 #trifiltre h3 {
