@@ -2489,6 +2489,11 @@ div[id="messageErreur"] {
 
 /* Média query pour passer au format téléphone */
 @media (max-width: 375px) {
+  main[id="mainCreation"] {
+    justify-content: center;
+  }
+
+
   h1[id="inscriptionTitre"] {
     font-size: 45px;
     margin-top: 5vh;
