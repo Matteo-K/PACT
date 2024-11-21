@@ -2193,14 +2193,18 @@ tbody td:last-child {
   margin-bottom: 15px;
 }
 
+
+
+
 #restaurant label {
-  display: flex; /* Utilisation de flex pour aligner le bouton radio et le texte */
-  align-items: center; /* Aligne verticalement le texte et le bouton radio */
-  margin-bottom: 10px; /* Espacement entre les lignes */
+  display: inline-block; /* Garantit que chaque bouton radio et son texte restent alignés */
+  width: 100%; /* Chaque option occupe toute la largeur */
+  margin-bottom: 10px; /* Espacement entre les options */
 }
 
 #restaurant input[type="radio"] {
-  margin-right: 10px; /* Espacement entre le bouton radio et le texte */
+  margin-right: 10px; /* Espace entre le bouton radio et le texte */
+  vertical-align: middle; /* Aligne verticalement le bouton radio avec le texte */
 }
 
 
