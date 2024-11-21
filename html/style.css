@@ -1929,7 +1929,7 @@ tbody td:last-child {
   .mainOffer .tag,
   .ouvert,
   .ferme {
-    font-size: clamp(8px, 10vw,22px);
+    font-size: 10px;
   }
 }
 
