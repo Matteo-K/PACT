@@ -476,11 +476,10 @@ header ul + div {
     order:10;
   }
   #formHeader {
-      width: 75vw;
-      margin-top: 10px;
+      width: 95vw;
       justify-content: center;
       align-items:center;
-      margin-inline: 10px;
+      margin-inline: 1em;
   }
 
   #auth {
