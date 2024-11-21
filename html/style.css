@@ -311,7 +311,7 @@ header > div > a > div {
   font-size: 25px;
   border-radius: 2em;
   height: 2em;
-  width: 175px;
+  width: 10em;
   background-color: var(--accent);
   text-align: center;
   justify-content: center;
@@ -485,7 +485,7 @@ header ul + div {
   }
 
   #btnConn {
-      width: 10em;
+      width: 9em;
       height: 2.2em;
       font-size: 18px;
       margin-top: 10px;
@@ -1196,9 +1196,12 @@ header ul + div {
 }
 
 #autocompletion li{
-  border-bottom: 0.2px solid var(--secondary);
-  padding: 0px;
+  padding: 1px 0;
 } 
+
+#autocompletion li:nth-child(even) {
+  background-color: var(--secondary60);
+}
 
 
 
