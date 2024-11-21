@@ -321,5 +321,21 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     btnFiltre.addEventListener("click", () => {
         element.classList.togle("openFiltreTri");
     });
+
+    function inverseValues() {
+    const selectMin = document.getElementById('prixMin');
+    const selectMax = document.getElementById('prixMax');
+    
+    const valueMin = parseInt(selectMin.value);
+    const valueMax = parseInt(selectMax.value);
+    
+    // Comparer les valeurs
+    if (valueMin > valueMax) {
+        // Inverser les valeurs sélectionnées
+        selectMin.value = valueMax;
+        selectMax.value = valueMin;
+    }
+}
+
 </script>
 </html>
