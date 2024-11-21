@@ -1053,8 +1053,8 @@ header ul + div {
 #artDetailOffer>div>label:not(.buttonDetailOffer),
 #choixCategorie label:first-of-type,
 #choixImage label,
-#choixImage2 label
-#inputTag {
+#choixImage2 label,
+#inputAutoComplete label {
   display: inline-block;
   font-size: 25px;
   width: 90%;
@@ -1182,26 +1182,25 @@ header ul + div {
 
 #autocompletion{
   display: none;
-  padding: 2px 10px 0;
+  padding: 2px 0;
   margin: 0;
   width: 100%;
   background-color: #fff;
   border: 2px solid var(--bloc);
   border-top: none;
   border-radius: 2px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
   max-height: 200px;
   position: absolute;
   overflow-y: scroll;
 }
 
 #autocompletion li{
-  padding: 1px 0;
+  padding: 1px 0 1px 10px;
 } 
 
 #autocompletion li:nth-child(even) {
-  background-color: var(--secondary60);
+  background-color: var(--accent30);
+  background: linear-gradient(90deg, var(--accent30)0%, var(--accent30) 80%, #fff 100%);
 }
 
 
@@ -1639,6 +1638,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #titleOffer {
+  text-align: center;
   font-size: 5em;
   margin-top: 0;
   color: var(--bloc);
@@ -1900,6 +1900,12 @@ tbody td:last-child {
 .contact-info a {
   color: var(--text-dark);
   text-decoration: none;
+}
+
+@media screen and (max-width : 768px) {
+  #titleOffer{
+    font-size: clamp(1em,10vw,3em);
+  }
 }
 
 /* ========================= */
