@@ -2,10 +2,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const messageErreurDiv = document.getElementById('messageErreur');
     const form = document.getElementById('formPro') || document.getElementById('formMember');
 
+    
     // Gestion du bouton retour
     document.getElementById('retour').addEventListener('click', function () {
         window.history.back();
     });
+
 
     // Récupérer les éléments nécessaires pour le SIREN
     const sirenLabel = document.querySelector("label[for='siren']");
@@ -26,20 +28,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Initialiser l'affichage
-    //updateSirenVisibility();
-
-    // Ajouter des écouteurs d'événements sur les boutons radio
-    //publicRadio.addEventListener("click", updateSirenVisibility);
-    //priveRadio.addEventListener("click", updateSirenVisibility);
-
     // Initialiser l'affichage si on est dans accountPro.php
     if (sirenInput && sirenLabel) {
         updateSirenVisibility();
         publicRadio?.addEventListener("click", updateSirenVisibility);
         priveRadio?.addEventListener("click", updateSirenVisibility);
     }
-
 
 
     // Fonction pour afficher les erreurs globales dans la div messageErreur
@@ -59,12 +53,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+
     // Fonction pour afficher un message d'erreur pour un champ
     function displayFieldError(inputElement, messageErreur) {
         let errorElement = document.querySelector("#messageErreur");
         errorElement.textContent = messageErreur; // Met le message dans l'élément
         inputElement.style.borderColor = 'red'; // Mettre la bordure en rouge
     }
+
 
     // Fonction pour effacer un message d'erreur pour un champ
     function clearFieldError(inputElement) {
@@ -73,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         inputElement.style.borderColor = ''; // Réinitialiser la bordure à son état d'origine
     }
+
 
     // Fonction de validation pour chaque champ
     function validateField(inputElement, pattern, messageErreur) {
@@ -85,8 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Récupérer le nom du fichier actuel
-    //const currentFile = window.location.pathname.split('/').pop();
 
     // Récupérer le nom du fichier actuel
     let currentFile;
@@ -131,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ];
     }
 
+
     // Ajouter l'événement "blur"
     fieldsToValidate.forEach(field => {
         const inputElement = document.getElementById(field.id);
@@ -140,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     });
+
 
     // Validation pour la confirmation du mot de passe
     const confirmPasswordField = document.getElementById('confirmer');
@@ -152,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
             clearFieldError(confirmPasswordField);
         }
     });
+
 
     // Validation globale lors de la soumission du formulaire
     form.addEventListener('submit', function (event) {
