@@ -1518,17 +1518,24 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 @media (max-width : 1079px) {
+  .search {
+    position: block;
+  }
+
+
   #trifiltre > div {
     display: block;
   }
 
   #trifiltre {
-    position: absolute;
+    position: block;
     background: pink;
     width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
+  }
+
+  #tri, #filtre {
+    display: none;
+    color: var(--text-light);
   }
 }
 
