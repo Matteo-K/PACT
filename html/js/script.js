@@ -145,7 +145,7 @@ try {
 
       // Nettoyer les suggestions précédentes
       autocompleteList.innerText = "";  
-      autocompleteList.style.display = "block";    
+      autocompleteList.style.display = "static";    
       let suggestions
 
       if (radioPark.checked) {
