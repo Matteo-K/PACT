@@ -2544,13 +2544,7 @@ div[id="messageErreur"] {
   }
 
   .creation-compte .ligne7 > input {
-    max-width: 280px;
-    height: 40px;
-    margin-bottom: 15px;
-    padding: 5px;
-    border: 2px solid var(--accent);
-    border-radius: 5px;
-    font-size: 16px;
+    width: auto;
 }
 
   button[id="boutonInscription"] {
