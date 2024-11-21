@@ -2495,7 +2495,6 @@ div[id="messageErreur"] {
   }
 
   aside[id="asideRetour"] {
-    position: absolute;
     top: 10px;
     left: 10px;
   }
