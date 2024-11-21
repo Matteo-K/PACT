@@ -2493,14 +2493,9 @@ div[id="messageErreur"] {
     font-size: 45px;
     margin-top: 5vh;
   }
-
-  aside[id="asideRetour"] {
-    position: relative;
-    top: 10px;
-    left: 10px;
-  }
   
   button[id="retour"] {
+    position: relative;
     background: none;
     border: none;
     color: var(--bloc);
