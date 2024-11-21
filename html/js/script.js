@@ -144,7 +144,8 @@ try {
     function updateSuggestions(value) {
 
       // Nettoyer les suggestions précédentes
-      autocompleteList.innerText = "";      
+      autocompleteList.innerText = "";  
+      autocompleteList.style.display = "static";    
       let suggestions
 
       if (radioPark.checked) {
@@ -176,6 +177,7 @@ try {
         itemAutoComplete.addEventListener("click", () => {
           ajoutTag(tag);
           autocompleteList.innerText = ""; // Vide les suggestions
+          autocompleteList.style.display = "none"; 
         });
 
         autocompleteList.appendChild(itemAutoComplete);
@@ -196,6 +198,7 @@ try {
     document.addEventListener("click", (event) => {
       if (!event.target.closest("#autocompletion") && event.target !== inputTag) {
         autocompleteList.innerText = "";
+        autocompleteList.style.display = "none"; 
       }
     });
 

@@ -42,11 +42,11 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <main class="search">
         <section id="trifiltre" class="asdTriFiltre">
             <div>
-                <figure>
+                <figure id="btnFiltre">
                     <figcaption>Filtrer</figcaption>
                     <img src="img/icone/burger-bar.png" alt="filtre">
                 </figure>
-                <figure>
+                <figure id="btnTri">
                     <figcaption>Trier</figcaption>
                     <img src="img/icone/burger-bar.png" alt="tri">
                 </figure>
@@ -55,69 +55,76 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <h2>Trier</h2>
                 <div class="blcTriFiltre">
                     <div>
-                        <label for="miseEnAvant">Mise en avant</label>
                         <input type="radio" name="tri" id="miseEnAvant" checked>
+                        <label for="miseEnAvant">Mise en avant</label>
                     </div>
                     <div>
-                        <h3>Par note&nbsp;:&nbsp;</h3>
-                        <label for="noteCroissant">Ordre croissant</label>
                         <input type="radio" name="tri" id="noteCroissant">
-                        <label for="noteDecroissant">Ordre décroissant</label>
+                        <label for="noteCroissant">Note croissant</label>
                         <input type="radio" name="tri" id="noteDecroissant">
+                        <label for="noteDecroissant">Note décroissant</label>
                     </div>
                     <div>
-                        <h3>Par prix&nbsp;:&nbsp;</h3>
-                        <label for="prixCroissant">Ordre croissant</label>
                         <input type="radio" name="tri" id="prixCroissant">
-                        <label for="prixDecroissant">Ordre décroissant</label>
+                        <label for="prixCroissant">Prix croissant</label>
                         <input type="radio" name="tri" id="prixDecroissant">
+                        <label for="prixDecroissant">Prix décroissant</label>
                     </div>
                     <div>
-                        <h3>Par date&nbsp;:&nbsp;</h3>
-                        <label for="dateRecent">Plus récent</label>
                         <input type="radio" name="tri" id="dateRecent">
-                        <label for="dateAncien">Plus ancien</label>
+                        <label for="dateRecent">Plus récent</label>
                         <input type="radio" name="tri" id="dateAncien">
+                        <label for="dateAncien">Plus ancien</label>
                     </div>
                 </div>
             </aside>
             <aside id="filtre" class="asdTriFiltre">
                 <h2>Filtres de recherche</h2>
                 <div class="blcTriFiltre">
-                    <div>
+                    <div id="note">
                         <h3>Par note</h3>
-                        <label for="1star" class="blocStar">
-                            <div class="star"></div>
-                        </label>
-                        <input type="checkbox" name="1star" id="1star" checked>
-                        <label for="2star" class="blocStar">
-                            <div class="star"></div>
-                            <div class="star"></div>
-                        </label>
-                        <input type="checkbox" name="2star" id="2star" checked>
-                        <label for="3star" class="blocStar">
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                        </label>
-                        <input type="checkbox" name="3star" id="3star" checked>
-                        <label for="4star" class="blocStar">
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                        </label>
-                        <input type="checkbox" name="4star" id="4star" checked>
-                        <label for="5star" class="blocStar">
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                        </label>
-                        <input type="checkbox" name="5star" id="5star" checked>
+                        <div>
+                            <label for="5star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                            <input type="checkbox" name="5star" id="5star" checked>
+                        </div>
+                        <div>
+                            <label for="4star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                            <input type="checkbox" name="4star" id="4star" checked>
+                        </div>
+                        <div>    
+                            <label for="3star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                            <input type="checkbox" name="3star" id="3star" checked>
+                        </div>
+                        <div>
+                            <label for="2star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                            <input type="checkbox" name="2star" id="2star" checked>
+                        </div>
+                        <div>
+                            <label for="1star" class="blocStar">
+                                <div class="star"></div>
+                            </label>
+                            <input type="checkbox" name="1star" id="1star" checked>
+                        </div>
                     </div>
-                    <div>
+                    <div id="prix">
                         <h3>Par prix</h3>
                         <div>
                             <label for="prixMin">De</label>
@@ -148,7 +155,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             </select>
                         </div>
                     </div>
-                    <div>
+                    <div id="statut">
                         <h3>Par Statut</h3>
                         <div>
                             <label for="ouvert">Ouvert</label>
@@ -159,7 +166,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             <input type="checkbox" name="statut" id="ferme" checked>
                         </div>
                     </div>
-                    <div>
+                    <div id="categorie">
                         <h3>Par catégorie</h3>
                         <ul>
                             <li>
@@ -184,7 +191,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             </li>
                         </ul>
                     </div>
-                    <div>
+                    <div id="date">
                         <h3>Par date</h3>
                         <div>
                             <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
@@ -206,14 +213,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        print_r($results[0]);
-
-        if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-            $idutilisateur=$_SESSION["idUser"];
-            
-            
-            ?>
-            <section class="searchoffre">
+        ?>
+        <section class="searchoffre">
             <?php if ($results){ ?>
                 <?php foreach ($results as $offre){ 
                     $idOffre = $offre['idoffre'];
@@ -224,7 +225,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
                     $ville=($offre['ville'])?$offre['ville']:"Pas de localisation entrée";;
                     $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
-                    $nomTag=($offre['categorie'])?$offre['categorie']:"Pas de catégorie";
+                    $nomTag=($offre['categorie']!="Autre")?$offre['categorie']:"Pas de catégorie";
                     $tag = $offre['all_tags']?explode(',',trim($offre['all_tags'],'{}')):"";
                     if (($offre['listhorairemidi'])!="") {
                         $horaireMidi=explode(';',$offre['listhorairemidi']);                        
@@ -283,199 +284,42 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             }
                         }
                     }
-
-                     ?>
-                    <a class="searchA" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
-                        <div class="carteOffre">
-                                <?php 
-                                $alt = isset($urlImg[0]['url']) && $urlImg ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";
-                                ?>
-                                <img class="searchImage" src="<?php echo $urlImg; ?>" alt=<?php echo $alt; ?>>
-                            <div class="infoOffre">
-                                <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
-
-                                <strong><p class="villesearch"><?php echo $ville . $gammeText . " ⋅ " . $nomTag; ?></p></strong>
-
-                                <div class="searchCategorie">
-                                    <?php
-                                    if ($tag!="") {
-                                        foreach ($tag as $value) {
-                                            ?><span class="searchTag"><?php echo $value." " ?></span><?php
-                                        }
-                                    }
-                                    ?>
-                                </div>
-
-                                <p class="searchResume"><?php echo ($resume)?$resume:"Pas de resume saisie";?></p>
-
-                                <section class="searchNote">
-                                    <p><?php echo $noteAvg; ?></p>
-                                
-                                    <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
-                                        <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
-                                    </p>
-                                </section>
-
-
-                                <script>
-                                    let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
-                                    if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
-                                        st_<?php echo $idOffre; ?>.classList.add("searchStatutO");
-                                    } else {
-                                        st_<?php echo $idOffre; ?>.classList.add("searchStatutF");
-                                    }
-                                </script>
-                            </div>
-                            <div class="searchAvis">
-                                <p class="avisSearch">Les avis les plus récent :</p>
-                                <p>Pas d'avis</p>
-                            </div>
-                        </div>
-                    </a>
-                <?php 
-                } ?>
-            <?php } else { ?>
-                <p>Aucune offre trouvée </p>
-            <?php } ?>
-            </section>
-        <?php
-        }else {
-            ?>
-            <section class="searchoffre">
-            <?php if ($results){ ?>
-                <?php foreach ($results as $offre){ 
-                    $idOffre = $offre['idoffre'];
-                    $iduser= $offre['idu'];
-                    $nomOffre = $offre['nom'];
-                    $resume= $offre['resume'];
-                    $noteAvg = "Non noté";
-                    $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
-                    $ville=$offre['ville'];
-                    $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
-                    $nomTag=$offre['categorie'];
-                    $tag = explode(',',trim($offre['all_tags'],'{}'));
-                    if (($offre['listhorairemidi'])!="") {
-                        $horaireMidi=explode(';',$offre['listhorairemidi']);                        
-                        // Tableau final
-                        $resultsMidi = [];
-                        
-                        // Parcours et transformation des données
-                        foreach ($horaireMidi as $item) {
-                            // Décodage du JSON interne
-                            $decodedItem = json_decode($item, true);
-                            
-                            // Ajout des clés supplémentaires
-                            $resultsMidi[] = [
-                                'jour' => $decodedItem['jour'],
-                                'idoffre' => $idOffre,
-                                'heureouverture' => $decodedItem['heureOuverture'],
-                                'heurefermeture' => $decodedItem['heureFermeture']
-                            ];
-                        }                    
-                    }else{
-                        $resultsMidi = [];
-                    }
-                    if (($offre['listhorairesoir'])!="") {
-                        $horaireSoir=explode(';',$offre['listhorairesoir']);                        
-                        // Tableau final
-                        $resultsSoir = [];
-                        
-                        // Parcours et transformation des données
-                        foreach ($horaireSoir as $item) {
-                            // Décodage du JSON interne
-                            $decodedItem = json_decode($item, true);
-                            
-                            // Ajout des clés supplémentaires
-                            $resultsSoir[] = [
-                                'jour' => $decodedItem['jour'],
-                                'idoffre' => $idOffre,
-                                'heureouverture' => $decodedItem['heureOuverture'],
-                                'heurefermeture' => $decodedItem['heureFermeture']
-                            ];
-                        } 
+                    if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
+                        $idutilisateur=$_SESSION["idUser"];
+                        if ($offre['idu']==$idutilisateur) {
+                            require "components/cardOffer.php"; 
+                        }
                     }else {
-                        $resultsSoir = [];
-                    }                    
-                    // Fusionner les horaires midi et soir
-                    $horaires = array_merge($resultsSoir, $resultsMidi);
-                    $restaurantOuvert = "EstFermé"; // Par défaut, le restaurant est fermé
-    
-                    // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
-                    foreach ($horaires as $horaire) {
-                        if ($horaire['jour'] == $currentDay) {
-                            $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
-                            $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
-                            if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
-                                $restaurantOuvert = "EstOuvert";
-                                break;
-                            }
+                        if ($offre['statut']=='actif') {
+                            require "components/cardOffer.php";
                         }
                     }
                     
-                    if ($offre['statut'] == 'actif') { ?>
-                        <a class="searchA" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
-                            <div class="carteOffre">
-                                <img class="searchImage" src="<?php echo $urlImg; ?>" alt="photo principal de l'offre">
-                                <div class="infoOffre">
-
-                                    <p class="searchTitre"><?php echo $nomOffre; ?></p>
-
-                                    <strong><p class="villesearch"><?php echo $ville . $gammeText . " ⋅ " .$nomTag; ?></p></strong>
-
-                                    <div class="searchCategorie">
-                                        <?php
-                                        foreach ($tag as $value) {
-                                            ?><span class="searchTag"><?php echo $value." " ?></span><?php
-                                        }
-                                        ?>
-                                    </div>
-                                    
-                                    <p class="searchResume"><?php echo $resume;?></p>
-                                    
-                                    <section class="searchNote">
-                                        <p class="avgNote"><?php echo $noteAvg; ?></p>
-                                    
-                                        <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
-                                            <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
-                                        </p>
-                                    </section>
-                                    
-                                    
-                                    <script>
-                                        let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
-                                        if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
-                                            st_<?php echo $idOffre; ?>.classList.add("searchStatutO");
-                                        } else {
-                                            st_<?php echo $idOffre; ?>.classList.add("searchStatutF");
-                                        }
-                                    </script>
-                                </div>
-                                <div class="searchAvis">
-                                    <p class="avisSearch">Les avis les plus récent :</p>
-                                    <p>Pas d'avis</p>
-                                </div>
-                            </div>
-                        </a>
-                    <?php }
                 } ?>
             <?php } else { ?>
                 <p>Aucune offre trouvée </p>
             <?php } ?>
-            </section>  
-        <?php      
-        } 
-        ?>
-        
-
+        </section>
     </main>
     <?php require_once "components/footer.php"; ?>
 </body>
 <script>
-        const now = new Date();
-        let hours = now.getHours().toString().padStart(2, '0');
-        let minutes = now.getMinutes().toString().padStart(2, '0');
-        let timeString = `${hours}:${minutes}`;
-        document.getElementById('heureFin').value = timeString;
-        document.getElementById('heureDebut').value = timeString;
-    </script>
+    const now = new Date();
+    let hours = now.getHours().toString().padStart(2, '0');
+    let minutes = now.getMinutes().toString().padStart(2, '0');
+    let timeString = `${hours}:${minutes}`;
+    document.getElementById('heureFin').value = timeString;
+    document.getElementById('heureDebut').value = timeString;
+
+    const btnFiltre = document.querySelector("#btnFiltre");
+    const btnTri = document.querySelector("#btnTri");
+
+    btnFiltre.addEventListener("click", () => {
+        element.classList.add("openFiltreTri");
+    });
+
+    btnFiltre.addEventListener("click", () => {
+        element.classList.togle("openFiltreTri");
+    });
+</script>
 </html>
