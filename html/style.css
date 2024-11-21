@@ -220,7 +220,9 @@ header h3{
 }
 
 #auth{
-  justify-content: flex-end;
+
+  align-items: center;
+  justify-content: center;
 }
 
 header div > a > img,
@@ -275,9 +277,6 @@ header div > a > img,
   width: 2em;
 }
 
-#auth2 {
-  display: none;
-}
 
 #menuBurger {
   display: none;
@@ -318,6 +317,7 @@ header > div > a > div {
   background-color: var(--accent);
   text-align: center;
   justify-content: center;
+  align-items: center;
 }
 
 /* Style général du menu de profil */
@@ -484,7 +484,7 @@ header ul + div {
   }
 
   #auth {
-      text-align: center;
+      
       order:2;
       margin-top: 15px;
       flex-direction: column;
@@ -497,7 +497,11 @@ header ul + div {
   }
 
   #btnConn {
+      width: 10em;
+      height: 3em;
+      font-size: 12px;
       margin-top: 10px;
+      
   }
 
   /* Adjust menu layout */
