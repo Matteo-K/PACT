@@ -460,12 +460,12 @@ header ul + div {
 
 @media (max-width: 768px) {
   :root{
-    --header-size: clamp(100px, 20vh, 150px);
+    --header-size: clamp(100px, 22vh, 150px);
   }
-  
+
   #logo {
-      width: 40px;
-      height: 40px;
+      width: 10vw;
+      height: 10vw;
   }
 
   #logoText {
@@ -476,7 +476,7 @@ header ul + div {
     order:10;
   }
   #formHeader {
-      width: 35vw;
+      width: 100vw;
       margin-top: 10px;
       justify-content: center;
       align-items:center;
