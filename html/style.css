@@ -2495,11 +2495,8 @@ div[id="messageErreur"] {
   }
 
   aside[id="asideRetour"] {
-    position: fixed;
-    top: 10px;
-    left: 10px;
+    position: relative;
   }
-
 
   .creation-compte form {
     display: flex;
