@@ -279,7 +279,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     }
                     if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                         $idutilisateur=$_SESSION["idUser"];
-                        if ($offre['idU']==$idutilisateur) {
+                        if ($offre['idu']==$idutilisateur) {
                             require "components/cardOffer.php"; 
                         }
                     }else {
