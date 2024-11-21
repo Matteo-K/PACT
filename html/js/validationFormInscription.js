@@ -18,7 +18,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (priveRadio.checked) {
             sirenLabel.style.display = "block"; // Affiche le label
             sirenInput.style.display = "block"; // Affiche le champ
-        } else {
+        } 
+        
+        else {
             sirenLabel.style.display = "none"; // Cache le label
             sirenInput.style.display = "none"; // Cache le champ
         }
@@ -84,7 +86,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Récupérer le nom du fichier actuel
-    const currentFile = window.location.pathname.split('/').pop();
+    //const currentFile = window.location.pathname.split('/').pop();
+
+    // Récupérer le nom du fichier actuel
+    let currentFile;
+
+    if (sirenInput && sirenLabel) {
+        currentFile = 'accountPro.php';
+    } 
+    
+    else {
+        currentFile = 'accountMember.php';
+    }
+
 
     // Définir le tableau fieldsToValidate en fonction du fichier
     let fieldsToValidate;
