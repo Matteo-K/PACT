@@ -1612,7 +1612,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
+  margin: 5px;
   margin-left: 10px;
+}
+
+#categorie h3, #categorie ul {
+  margin: 0;
+}
+
+#categorie ul {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
 }
 
 .star {

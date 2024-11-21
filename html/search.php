@@ -184,37 +184,37 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <ul>
                             <li>
                                 <label for="Restauration">
-                                    Restauration
                                     <input type="checkbox" name="categorie" id="Restauration" checked>
                                     <span class="checkmark"></span>
+                                    Restauration
                                 </label>
                             </li>
                             <li>
                                 <label for="Activité">
-                                    Activité
                                     <input type="checkbox" name="categorie" id="Activité" checked>
                                     <span class="checkmark"></span>
+                                    Activité
                                 </label>
                             </li>
                             <li>
                                 <label for="Parc">
-                                    Parc d’attractions
                                     <input type="checkbox" name="categorie" id="Parc" checked>
                                     <span class="checkmark"></span>
+                                    Parc d’attractions
                                 </label>
                             </li>
                             <li>
                                 <label for="Visite">
-                                    Visite
                                     <input type="checkbox" name="categorie" id="Visite" checked>
                                     <span class="checkmark"></span>
+                                    Visite
                                 </label>
                             </li>
                             <li>
                                 <label for="Spectacle">
-                                    Spectacle
                                     <input type="checkbox" name="categorie" id="Spectacle" checked>
                                     <span class="checkmark"></span>
+                                    Spectacle
                                 </label>
                             </li>
                         </ul>
