@@ -585,30 +585,30 @@ SELECT
     o.nom,
     o.resume,
     ARRAY_AGG(DISTINCT i.url) AS listImage,
-    STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
+    ARRAY_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'jour', hm.jour,
         'heureOuverture', hm.heureOuverture,
         'heureFermeture', hm.heureFermeture
-    )::TEXT, ';') FILTER (WHERE hm.jour IS NOT NULL AND hm.heureOuverture IS NOT NULL AND hm.heureFermeture IS NOT NULL) AS listHoraireMidi,
-    STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
+    )) FILTER (WHERE hm.jour IS NOT NULL AND hm.heureOuverture IS NOT NULL AND hm.heureFermeture IS NOT NULL) AS listHoraireMidi,
+    ARRAY_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'jour', hs.jour,
         'heureOuverture', hs.heureOuverture,
         'heureFermeture', hs.heureFermeture
-    )::TEXT, ';') FILTER (WHERE hs.jour IS NOT NULL AND hs.heureOuverture IS NOT NULL AND hs.heureFermeture IS NOT NULL) AS listHoraireSoir,
+    )) FILTER (WHERE hs.jour IS NOT NULL AND hs.heureOuverture IS NOT NULL AND hs.heureFermeture IS NOT NULL) AS listHoraireSoir,
     l.ville,
     r.gammeDePrix,
     ARRAY_CAT(
         ARRAY_CAT(
             ARRAY_CAT(
                 ARRAY_CAT(
-                    ARRAY_AGG(DISTINCT ts.nomTag) FILTER (WHERE ts.nomTag IS NOT NULL),
-                    ARRAY_AGG(DISTINCT tr.nomTag) FILTER (WHERE tr.nomTag IS NOT NULL)
+                    ARRAY_AGG(DISTINCT REPLACE(ts.nomTag, '"', '')) FILTER (WHERE ts.nomTag IS NOT NULL),
+                    ARRAY_AGG(DISTINCT REPLACE(tr.nomTag, '"', '')) FILTER (WHERE tr.nomTag IS NOT NULL)
                 ),
-                ARRAY_AGG(DISTINCT tv.nomTag) FILTER (WHERE tv.nomTag IS NOT NULL)
+                ARRAY_AGG(DISTINCT REPLACE(tv.nomTag, '"', '')) FILTER (WHERE tv.nomTag IS NOT NULL)
             ),
-            ARRAY_AGG(DISTINCT ta.nomTag) FILTER (WHERE ta.nomTag IS NOT NULL)
+            ARRAY_AGG(DISTINCT REPLACE(ta.nomTag, '"', '')) FILTER (WHERE ta.nomTag IS NOT NULL)
         ),
-        ARRAY_AGG(DISTINCT tp.nomTag) FILTER (WHERE tp.nomTag IS NOT NULL)
+        ARRAY_AGG(DISTINCT REPLACE(tp.nomTag, '"', '')) FILTER (WHERE tp.nomTag IS NOT NULL)
     ) AS all_tags,
     o.statut,
     CASE
@@ -616,7 +616,7 @@ SELECT
         WHEN EXISTS (SELECT 1 FROM _tag_restaurant tr WHERE tr.idOffre = o.idOffre) THEN 'Restaurant'
         WHEN EXISTS (SELECT 1 FROM _tag_visite tv WHERE tv.idOffre = o.idOffre) THEN 'Visite'
         WHEN EXISTS (SELECT 1 FROM _tag_act ta WHERE ta.idOffre = o.idOffre) THEN 'Activité'
-        WHEN EXISTS (SELECT 1 FROM _tag_parc tp WHERE tp.idOffre = o.idOffre) THEN 'Parc Attraction'
+        WHEN EXISTS (SELECT 1 FROM _tag_parc tp WHERE tp.idOffre = o.idOffre) THEN 'Parc'
         ELSE 'Autre'
     END AS categorie
 FROM 
@@ -627,7 +627,7 @@ LEFT JOIN
     _horaireSoir hs ON o.idOffre = hs.idOffre
 LEFT JOIN 
     _horaireMidi hm ON o.idOffre = hm.idOffre
-LEFT JOIN 
+JOIN 
     _localisation l ON o.idOffre = l.idOffre
 LEFT JOIN 
     _restauration r ON o.idOffre = r.idOffre
@@ -643,7 +643,8 @@ LEFT JOIN
     _tag_parc tp ON o.idOffre = tp.idOffre
 GROUP BY 
     o.idOffre, l.ville, r.gammeDePrix
-ORDER BY o.dateCrea DESC;
+ORDER BY o.dateCrea;
+
 
 
 
