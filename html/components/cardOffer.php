@@ -6,7 +6,7 @@
             <img class="searchImage" src="<?php echo $urlImg; ?>" alt=<?php echo $alt; ?>>
         <div class="infoOffre">
             <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?>
-            <strong><p class="villesearch"><?php echo $ville . $gammeText . " ⋅ " . $nomTag; ?></p></str
+            <strong><p class="villesearch"><?php echo $ville . $gammeText . " ⋅ " . $nomTag; ?></p></strong>
             <div class="searchCategorie">
                 <?php
                 if ($tag!="") {
