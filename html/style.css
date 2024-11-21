@@ -193,7 +193,7 @@ header {
   height: var(--header-size);
   z-index: 10;
   background-color: var(--background);
-  padding:0.5em 1em ;
+  padding:0.5em 0 ;
 }
 
 header > div {
@@ -305,6 +305,7 @@ header > div > a > div {
 }
 
 #btnConn {
+  margin-right: 1em;
   display: flex;
   color: #000;
   font-size: 25px;
