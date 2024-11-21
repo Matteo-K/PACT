@@ -484,6 +484,7 @@ header ul + div {
   }
 
   #auth {
+      width: 10vw;
       order:2;
       margin-top: 15px;
       flex-direction: column;
