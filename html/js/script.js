@@ -167,7 +167,7 @@ try {
 
       // Filtrer les tags correspondant à la saisie
       suggestions = suggestions.filter(tag =>
-        supprAccents(tag.toLowerCase().includes(texte.toLowerCase()))
+        supprAccents(tag.toLowerCase()).includes(texte.toLowerCase())
       );
 
       // Ajouter les suggestions dans la liste
@@ -204,8 +204,8 @@ try {
       }
     });
 
-    function supprAccents(str) {
-      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    function supprAccents(txt) {
+      return txt.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
 
 
