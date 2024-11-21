@@ -522,16 +522,16 @@ SELECT
     o.nom,
     o.resume,
     ARRAY_AGG(DISTINCT i.url) AS listImage,
-    ARRAY_AGG(DISTINCT JSONB_BUILD_OBJECT(
+    STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'jour', hm.jour,
         'heureOuverture', hm.heureOuverture,
         'heureFermeture', hm.heureFermeture
-    )) AS listHoraireMidi,
-    ARRAY_AGG(DISTINCT JSONB_BUILD_OBJECT(
+    )::TEXT, ';') FILTER (WHERE hm.jour IS NOT NULL AND hm.heureOuverture IS NOT NULL AND hm.heureFermeture IS NOT NULL) AS listHoraireMidi,
+    STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'jour', hs.jour,
         'heureOuverture', hs.heureOuverture,
         'heureFermeture', hs.heureFermeture
-    )) AS listHoraireSoir,
+    )::TEXT, ';') FILTER (WHERE hs.jour IS NOT NULL AND hs.heureOuverture IS NOT NULL AND hs.heureFermeture IS NOT NULL) AS listHoraireSoir,
     l.ville,
     r.gammeDePrix,
     ARRAY_CAT(
@@ -564,7 +564,7 @@ LEFT JOIN
     _horaireSoir hs ON o.idOffre = hs.idOffre
 LEFT JOIN 
     _horaireMidi hm ON o.idOffre = hm.idOffre
-JOIN 
+LEFT JOIN 
     _localisation l ON o.idOffre = l.idOffre
 LEFT JOIN 
     _restauration r ON o.idOffre = r.idOffre
@@ -580,7 +580,7 @@ LEFT JOIN
     _tag_parc tp ON o.idOffre = tp.idOffre
 GROUP BY 
     o.idOffre, l.ville, r.gammeDePrix
-ORDER BY o.dateCrea;
+ORDER BY o.dateCrea DESC;
 
 
 
