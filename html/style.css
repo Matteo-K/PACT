@@ -1651,7 +1651,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .ferme {
   background-color: var(--accent);
   box-shadow: none;
-  margin-bottom: 2em;
+  text-align: center;
 }
 
 .mainOffer>div {
