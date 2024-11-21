@@ -40,7 +40,17 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <script src="js/setColor.js"></script>
     <?php require_once "components/header.php"; ?>
     <main class="search">
-        <section id="tri&filtre" class="asdTriFiltre">
+        <section id="trifiltre" class="asdTriFiltre">
+            <div>
+                <figure>
+                    <figcaption>Filtrer</figcaption>
+                    <img src="img/icone/burger-bar.png" alt="filtre">
+                </figure>
+                <figure>
+                    <figcaption>Trier</figcaption>
+                    <img src="img/icone/burger-bar.png" alt="tri">
+                </figure>
+            </div>
             <aside id="tri">
                 <h2>Trier</h2>
                 <div class="blcTriFiltre">
@@ -76,40 +86,36 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <div class="blcTriFiltre">
                     <div>
                         <h3>Par note</h3>
-                        <label for="1star">
+                        <label for="1star" class="blocStar">
                             <div class="star"></div>
-                            ou +
                         </label>
-                        <input type="radio" name="1star" id="1star" checked>
-                        <label for="2star">
+                        <input type="checkbox" name="1star" id="1star" checked>
+                        <label for="2star" class="blocStar">
                             <div class="star"></div>
                             <div class="star"></div>
-                            ou +
                         </label>
-                        <input type="radio" name="2star" id="2star">
-                        <label for="3star">
+                        <input type="checkbox" name="2star" id="2star" checked>
+                        <label for="3star" class="blocStar">
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
-                            ou +
                         </label>
-                        <input type="radio" name="3star" id="3star">
-                        <label for="4star">
+                        <input type="checkbox" name="3star" id="3star" checked>
+                        <label for="4star" class="blocStar">
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
-                            ou +
                         </label>
-                        <input type="radio" name="4star" id="4star">
-                        <label for="5star">
+                        <input type="checkbox" name="4star" id="4star" checked>
+                        <label for="5star" class="blocStar">
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
                             <div class="star"></div>
                         </label>
-                        <input type="radio" name="5star" id="5star">
+                        <input type="checkbox" name="5star" id="5star" checked>
                     </div>
                     <div>
                         <h3>Par prix</h3>
@@ -202,163 +208,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
         print_r($results[0]);
 
-        if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-            $idutilisateur=$_SESSION["idUser"];
-            
-            
-            ?>
-            <section class="searchoffre">
-            <?php if ($results){ ?>
-                <?php foreach ($results as $offre){ 
-                    $idOffre = $offre['idoffre'];
-                    $iduser= $offre['idu'];
-                    $nomOffre = $offre['nom'];
-                    $resume= $offre['resume'];
-                    $noteAvg = "Non noté";
-    
-                    // Requête pour récupérer l'image de l'offre
-                    $img = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = $idOffre ORDER BY url ASC");
-                    $img->execute();
-                    $urlImg = $img->fetchAll(PDO::FETCH_ASSOC);
-    
-                    // Requête pour récupérer les horaires du soir
-                    $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre = $idOffre");
-                    $stmt->execute();
-                    $resultsSoir = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-                    // Requête pour récupérer les horaires du midi
-                    $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre = $idOffre");
-                    $stmt->execute();
-                    $resultsMidi = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-                    // Fusionner les horaires midi et soir
-                    $horaires = array_merge($resultsSoir, $resultsMidi);
-                    $restaurantOuvert = "EstFermé"; // Par défaut, le restaurant est fermé
-    
-                    // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
-                    foreach ($horaires as $horaire) {
-                        if ($horaire['jour'] == $currentDay) {
-                            $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
-                            $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
-                            if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
-                                $restaurantOuvert = "EstOuvert";
-                                break;
-                            }
-                        }
-                    }
-    
-                    // Requête pour la localisation
-                    $loca = $conn->prepare("SELECT * FROM pact._localisation WHERE idOffre = $idOffre");
-                    $loca->execute();
-                    $villes = $loca->fetchAll(PDO::FETCH_ASSOC);
-                    $ville = ($villes)?$villes[0]['ville']:"Pas de localisation entrée";
-    
-                    // Requête pour la gamme de prix
-                    $prix = $conn->prepare("SELECT * FROM pact.restaurants WHERE idOffre = $idOffre");
-                    $prix->execute();
-                    $gamme = $prix->fetchAll(PDO::FETCH_ASSOC);
-                    $gammeText = ($gamme) ? " ⋅ " . $gamme[0]['gammedeprix'] : "";
-    
-                    // recuperation des tag pour chaque offre
-    
-                    $tagR = $conn->prepare("SELECT * FROM pact._tag_restaurant WHERE idoffre=$idOffre");
-                    $tagR->execute();
-                    $idTagR = $tagR->fetchAll(PDO::FETCH_ASSOC);
-    
-                    $tagV = $conn->prepare("SELECT * FROM pact._tag_visite WHERE idoffre=$idOffre");
-                    $tagV->execute();
-                    $idTagV = $tagV->fetchAll(PDO::FETCH_ASSOC);
-    
-                    $tagP = $conn->prepare("SELECT * FROM pact._tag_parc WHERE idoffre=$idOffre");
-                    $tagP->execute();
-                    $idTagP = $tagP->fetchAll(PDO::FETCH_ASSOC);
-    
-                    $tagA = $conn->prepare("SELECT * FROM pact._tag_act WHERE idoffre=$idOffre");
-                    $tagA->execute();
-                    $idTagA = $tagA->fetchAll(PDO::FETCH_ASSOC);
-                    
-                    $tagS = $conn->prepare("SELECT * FROM pact._tag_spec WHERE idoffre=$idOffre");
-                    $tagS->execute();
-                    $idTagS = $tagS->fetchAll(PDO::FETCH_ASSOC);
-    
-                    if ($idTagR) {
-                        $tag=$idTagR;
-                        $nomTag="Restaurant";
-                    }elseif ($idTagV) {
-                        $tag=$idTagV;
-                        $nomTag="Visite";
-                    }elseif ($idTagP) {
-                        $tag=$idTagP;
-                        $nomTag="Parc d'Attraction";
-                    }elseif ($idTagA) {
-                        $tag=$idTagA;
-                        $nomTag="Activite";
-                    }elseif ($idTagS) {
-                        $tag=$idTagS;
-                        $nomTag="Spectacle";
-                    } else {
-                        $tag=NULL;
-                        $nomTag="Pas de categorie";
-                    }
-
-                     ?>
-                    <a class="searchA" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
-                        <div class="carteOffre">
-                                <?php 
-                                $alt = isset($urlImg[0]['url']) && $urlImg[0]['url'] ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";
-                                ?>
-                                <img class="searchImage" src="<?php echo $urlImg[0]['url']; ?>" alt=<?php echo $alt; ?>>
-                            <div class="infoOffre">
-                                <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
-
-                                <strong><p class="villesearch"><?php echo $ville . $gammeText . " ⋅ " . $nomTag; ?></p></strong>
-
-                                <div class="searchCategorie">
-                                    <?php
-                                    if ($tag!=NULL) {
-                                        foreach ($tag as $value) {
-                                            ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
-                                        }
-                                    }
-                                    ?>
-                                </div>
-
-                                <p class="searchResume"><?php echo $resume!=NULL?$resume:"Pas de resume saisie";?></p>
-
-                                <section class="searchNote">
-                                    <p><?php echo $noteAvg; ?></p>
-                                
-                                    <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
-                                        <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
-                                    </p>
-                                </section>
-
-
-                                <script>
-                                    let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
-                                    if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
-                                        st_<?php echo $idOffre; ?>.classList.add("searchStatutO");
-                                    } else {
-                                        st_<?php echo $idOffre; ?>.classList.add("searchStatutF");
-                                    }
-                                </script>
-                            </div>
-                            <div class="searchAvis">
-                                <p class="avisSearch">Les avis les plus récent :</p>
-                                <p>Pas d'avis</p>
-                            </div>
-                        </div>
-                    </a>
-                <?php 
-                } ?>
-            <?php } else { ?>
-                <p>Aucune offre trouvée </p>
-            <?php } ?>
-            </section>
-        <?php
-        }else {
-            ?>
-            <section class="searchoffre">
+        ?>
+        <section class="searchoffre">
             <?php if ($results){ ?>
                 <?php foreach ($results as $offre){ 
                     $idOffre = $offre['idoffre'];
@@ -367,6 +218,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $resume= $offre['resume'];
                     $noteAvg = "Non noté";
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
+                    $ville=($offre['ville'])?$offre['ville']:"Pas de localisation entrée";;
+                    $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
+                    $nomTag=($offre['categorie']!="Autre")?$offre['categorie']:"Pas de catégorie";
+                    $tag = $offre['all_tags']?explode(',',trim($offre['all_tags'],'{}')):"";
                     if (($offre['listhorairemidi'])!="") {
                         $horaireMidi=explode(';',$offre['listhorairemidi']);                        
                         // Tableau final
@@ -424,112 +279,22 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             }
                         }
                     }
-    
-                    // Requête pour la localisation
-                    $loca = $conn->prepare("SELECT * FROM pact._localisation WHERE idOffre = $idOffre");
-                    $loca->execute();
-                    $ville = $loca->fetchAll(PDO::FETCH_ASSOC);
-    
-                    // Requête pour la gamme de prix
-                    $prix = $conn->prepare("SELECT * FROM pact.restaurants WHERE idOffre = $idOffre");
-                    $prix->execute();
-                    $gamme = $prix->fetchAll(PDO::FETCH_ASSOC);
-                    $gammeText = ($gamme) ? " ⋅ " . $gamme[0]['gammedeprix'] : "";
-    
-                    // recuperation des tag pour chaque offre
-    
-                    $tagR = $conn->prepare("SELECT * FROM pact._tag_restaurant WHERE idoffre=$idOffre");
-                    $tagR->execute();
-                    $idTagR = $tagR->fetchAll(PDO::FETCH_ASSOC);
-    
-                    $tagV = $conn->prepare("SELECT * FROM pact._tag_visite WHERE idoffre=$idOffre");
-                    $tagV->execute();
-                    $idTagV = $tagV->fetchAll(PDO::FETCH_ASSOC);
-    
-                    $tagP = $conn->prepare("SELECT * FROM pact._tag_parc WHERE idoffre=$idOffre");
-                    $tagP->execute();
-                    $idTagP = $tagP->fetchAll(PDO::FETCH_ASSOC);
-    
-                    $tagA = $conn->prepare("SELECT * FROM pact._tag_act WHERE idoffre=$idOffre");
-                    $tagA->execute();
-                    $idTagA = $tagA->fetchAll(PDO::FETCH_ASSOC);
-                    
-                    $tagS = $conn->prepare("SELECT * FROM pact._tag_spec WHERE idoffre=$idOffre");
-                    $tagS->execute();
-                    $idTagS = $tagS->fetchAll(PDO::FETCH_ASSOC);
-    
-                    if ($idTagR) {
-                        $tag=$idTagR;
-                        $nomTag="Restaurant";
-                    }elseif ($idTagV) {
-                        $tag=$idTagV;
-                        $nomTag="Visite";
-                    }elseif ($idTagP) {
-                        $tag=$idTagP;
-                        $nomTag="Parc d'Attraction";
-                    }elseif ($idTagA) {
-                        $tag=$idTagA;
-                        $nomTag="Activite";
+                    if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
+                        $idutilisateur=$_SESSION["idUser"];
+                        if ($offre['idU']==$idutilisateur) {
+                            require_once "components/cardOffer.php"; 
+                        }
                     }else {
-                        $tag=$idTagS;
-                        $nomTag="Spectacle";
+                        if ($offre['statut']=='actif') {
+                            require_once "components/cardOffer.php";
+                        }
                     }
                     
-                    if ($offre['statut'] == 'actif') { ?>
-                        <a class="searchA" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
-                            <div class="carteOffre">
-                                <img class="searchImage" src="<?php echo $urlImg; ?>" alt="photo principal de l'offre">
-                                <div class="infoOffre">
-
-                                    <p class="searchTitre"><?php echo $nomOffre; ?></p>
-
-                                    <strong><p class="villesearch"><?php echo $ville[0]['ville'] . $gammeText . " ⋅ " .$nomTag; ?></p></strong>
-
-                                    <div class="searchCategorie">
-                                        <?php
-                                        foreach ($tag as $value) {
-                                            ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
-                                        }
-                                        ?>
-                                    </div>
-                                    
-                                    <p class="searchResume"><?php echo $resume;?></p>
-                                    
-                                    <section class="searchNote">
-                                        <p class="avgNote"><?php echo $noteAvg; ?></p>
-                                    
-                                        <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
-                                            <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
-                                        </p>
-                                    </section>
-                                    
-                                    
-                                    <script>
-                                        let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
-                                        if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
-                                            st_<?php echo $idOffre; ?>.classList.add("searchStatutO");
-                                        } else {
-                                            st_<?php echo $idOffre; ?>.classList.add("searchStatutF");
-                                        }
-                                    </script>
-                                </div>
-                                <div class="searchAvis">
-                                    <p class="avisSearch">Les avis les plus récent :</p>
-                                    <p>Pas d'avis</p>
-                                </div>
-                            </div>
-                        </a>
-                    <?php }
                 } ?>
             <?php } else { ?>
                 <p>Aucune offre trouvée </p>
             <?php } ?>
-            </section>  
-        <?php      
-        } 
-        ?>
-        
-
+        </section>
     </main>
     <?php require_once "components/footer.php"; ?>
 </body>
