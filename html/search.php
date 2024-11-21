@@ -87,25 +87,14 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     <div id="note">
                         <h3>Par note</h3>
                         <div>
-                            <label for="1star" class="blocStar">
-                                <div class="star"></div>
-                            </label>
-                            <input type="checkbox" name="1star" id="1star" checked>
-                        </div>
-                        <div>
-                            <label for="2star" class="blocStar">
+                            <label for="5star" class="blocStar">
                                 <div class="star"></div>
                                 <div class="star"></div>
-                            </label>
-                            <input type="checkbox" name="2star" id="2star" checked>
-                        </div>
-                        <div>    
-                            <label for="3star" class="blocStar">
                                 <div class="star"></div>
                                 <div class="star"></div>
                                 <div class="star"></div>
                             </label>
-                            <input type="checkbox" name="3star" id="3star" checked>
+                            <input type="checkbox" name="5star" id="5star" checked>
                         </div>
                         <div>
                             <label for="4star" class="blocStar">
@@ -116,15 +105,26 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             </label>
                             <input type="checkbox" name="4star" id="4star" checked>
                         </div>
-                        <div>
-                            <label for="5star" class="blocStar">
-                                <div class="star"></div>
-                                <div class="star"></div>
+                        <div>    
+                            <label for="3star" class="blocStar">
                                 <div class="star"></div>
                                 <div class="star"></div>
                                 <div class="star"></div>
                             </label>
-                            <input type="checkbox" name="5star" id="5star" checked>
+                            <input type="checkbox" name="3star" id="3star" checked>
+                        </div>
+                        <div>
+                            <label for="2star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                            <input type="checkbox" name="2star" id="2star" checked>
+                        </div>
+                        <div>
+                            <label for="1star" class="blocStar">
+                                <div class="star"></div>
+                            </label>
+                            <input type="checkbox" name="1star" id="1star" checked>
                         </div>
                     </div>
                     <div id="prix">
