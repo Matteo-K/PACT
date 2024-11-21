@@ -1671,7 +1671,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     justify-content: space-evenly;
   }
 }
-
+.mainOffer .tag,
+.ouvert,
+.ferme {
+  background-color: var(--accent);
+  box-shadow: none;
+  margin-bottom: 2em;
+}
 /*  ***************************************************************************************
      **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
      *************************************************************************************** */
@@ -1964,6 +1970,11 @@ tbody td:last-child {
   .ouvert,
   .ferme {
     font-size: 10px;
+    padding-inline: 15px;
+  }
+
+  .mainOffer>div {
+    gap: 0.5em;
   }
 }
 
