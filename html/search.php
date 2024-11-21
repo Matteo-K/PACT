@@ -79,11 +79,42 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 </div>
             </aside>
             <aside id="filtre" class="asdTriFiltre">
-                <h2>Filtres de recherche</h2>
+                <h2>Filtrer</h2>
                 <div class="blcTriFiltre">
                     <div id="note">
                         <h3>Par note</h3>
                         <div>
+                            <input type="checkbox" name="1star" id="1star" checked>
+                            <label for="1star" class="blocStar">
+                                <div class="star"></div>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="2star" id="2star" checked>
+                            <label for="2star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                        </div>
+                        <div>    
+                            <input type="checkbox" name="3star" id="3star" checked>
+                            <label for="3star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="4star" id="4star" checked>
+                            <label for="4star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="5star" id="5star" checked>
                             <label for="5star" class="blocStar">
                                 <div class="star"></div>
                                 <div class="star"></div>
@@ -91,79 +122,50 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 <div class="star"></div>
                                 <div class="star"></div>
                             </label>
-                            <input type="checkbox" name="5star" id="5star" checked>
-                        </div>
-                        <div>
-                            <label for="4star" class="blocStar">
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                            </label>
-                            <input type="checkbox" name="4star" id="4star" checked>
-                        </div>
-                        <div>    
-                            <label for="3star" class="blocStar">
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                            </label>
-                            <input type="checkbox" name="3star" id="3star" checked>
-                        </div>
-                        <div>
-                            <label for="2star" class="blocStar">
-                                <div class="star"></div>
-                                <div class="star"></div>
-                            </label>
-                            <input type="checkbox" name="2star" id="2star" checked>
-                        </div>
-                        <div>
-                            <label for="1star" class="blocStar">
-                                <div class="star"></div>
-                            </label>
-                            <input type="checkbox" name="1star" id="1star" checked>
                         </div>
                     </div>
-                    <div id="prix">
-                        <h3>Par prix</h3>
-                        <div>
-                            <label for="prixMin">De</label>
-                            <select name="prixMin" id="prixMin">
-                                <option value="0" selected>0€</option>
-                                <option value="25">25€</option>
-                                <option value="50">50€</option>
-                                <option value="75">75€</option>
-                                <option value="100">100€</option>
-                                <option value="125">125€</option>
-                                <option value="150">150€</option>
-                                <option value="175">175€</option>
-                                <option value="200">200€ et +</option>
-                            </select>
+                    <div id="blcPrixStatut">
+                        <div id="prix">
+                            <h3>Par prix</h3>
+                            <div>
+                                <label for="prixMin">De</label>
+                                <select name="prixMin" id="prixMin">
+                                    <option value="0" selected>0€</option>
+                                    <option value="25">25€</option>
+                                    <option value="50">50€</option>
+                                    <option value="75">75€</option>
+                                    <option value="100">100€</option>
+                                    <option value="125">125€</option>
+                                    <option value="150">150€</option>
+                                    <option value="175">175€</option>
+                                    <option value="200">200€ et +</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="prixMax">à</label>
+                                <select name="prixMax" id="prixMax">
+                                <option value="0">0€</option>
+                                    <option value="25">25€</option>
+                                    <option value="50">50€</option>
+                                    <option value="75">75€</option>
+                                    <option value="100" selected>100€</option>
+                                    <option value="125">125€</option>
+                                    <option value="150">150€</option>
+                                    <option value="175">175€</option>
+                                    <option value="200">200€ et +</option>
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <label for="prixMax">à</label>
-                            <select name="prixMax" id="prixMax">
-                            <option value="0">0€</option>
-                                <option value="25">25€</option>
-                                <option value="50">50€</option>
-                                <option value="75">75€</option>
-                                <option value="100" selected>100€</option>
-                                <option value="125">125€</option>
-                                <option value="150">150€</option>
-                                <option value="175">175€</option>
-                                <option value="200">200€ et +</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div id="statut">
-                        <h3>Par Statut</h3>
-                        <div>
-                            <label for="ouvert">Ouvert</label>
-                            <input type="checkbox" name="statut" id="ouvert" checked>
-                        </div>
-                        <div>
-                            <label for="ferme">Fermé</label>
-                            <input type="checkbox" name="statut" id="ferme" checked>
+                        <div id="statut">
+                            <h3>Par Statut</h3>
+                            <div>
+                                <label for="ouvert">Ouvert</label>
+                                <input type="checkbox" name="statut" id="ouvert" checked>
+                            </div>
+                            <div>
+                                <label for="ferme">Fermé</label>
+                                <input type="checkbox" name="statut" id="ferme" checked>
+                            </div>
                         </div>
                     </div>
                     <div id="categorie">
@@ -321,5 +323,25 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     btnFiltre.addEventListener("click", () => {
         element.classList.togle("openFiltreTri");
     });
+
+    document.getElementById('prixMin').addEventListener('change', inverseValuesPrix);
+    document.getElementById('prixMax').addEventListener('change', inverseValuesPrix);
+
+
+    function inverseValuesPrix () {
+        const selectMin = document.getElementById('prixMin');
+        const selectMax = document.getElementById('prixMax');
+        
+        const valueMin = parseInt(selectMin.value);
+        const valueMax = parseInt(selectMax.value);
+        
+        // Comparer les valeurs
+        if (valueMin > valueMax) {
+            // Inverser les valeurs sélectionnées
+            selectMin.value = valueMax;
+            selectMax.value = valueMin;
+        }
+    }
+
 </script>
 </html>

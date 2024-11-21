@@ -59,7 +59,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       foreach ($abonnement as $ab) {
         if ($ab['nomabonnement'] === "Gratuit") {
             ?>
-            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
+            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;jour</h3>
             <?php
             break;
         }
@@ -82,7 +82,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       foreach ($abonnement as $ab) {
         if ($ab['nomabonnement'] === "Premium") {
             ?>
-            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
+            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;jour</h3>
             <?php
             break;
         }
@@ -104,7 +104,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       foreach ($abonnement as $ab) {
         if ($ab['nomabonnement'] === "Basique") {
             ?>
-            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
+            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;jour</h3>
             <?php
             break;
         }
@@ -130,7 +130,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if ($opt['nomoption'] === "EnRelief") {
             ?>
             <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
-              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;&nbsp;)
+              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
             </span>
             <?php
             break;
@@ -145,7 +145,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if ($opt['nomoption'] === "ALaUne") {
             ?>
             <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
-              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;&nbsp;)
+              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
             </span>
             <?php
             break;
