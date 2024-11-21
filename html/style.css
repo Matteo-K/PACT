@@ -1495,6 +1495,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #trifiltre h3, #trifiltre h2 {
   margin: 10px;
+  margin-bottom: 0;
 }
 
 /* Tout les input */
@@ -1554,9 +1555,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #trifiltre select {
   padding: 5px 10px;
-  border: 2px solid #ccc;
+  border: 2px solid var(--secondary);
   border-radius: 5px;
-  background-color: white;
+  background-color: var(--secondary);
   color: var(--text-dark);
   appearance: none;
   -webkit-appearance: none;
@@ -1604,6 +1605,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-start;
+}
+
+#trifiltre label {
+  font-weight: bold;
 }
 
 #prix div, #statut div {
