@@ -1625,7 +1625,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
      *************************************************************************************** */
 
 .mainOffer {
-  margin-top: 1em;<
+  margin-top: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2613,16 +2613,16 @@ p[id="legendeBoutonLienPro"] {
   }
 
   /* Ajustement des boutons et des labels de création de compte */
+  a[id="boutonLienMembre"],
+  p[id="legendeBoutonLienMembre"] {
+    display: block;
+  }
+
   a[id="boutonLienPro"],
   p[id="legendeBoutonLienPro"] {
     display: none;
   }
 
-  a[id="boutonLienMembre"],
-  p[id="legendeBoutonLienMembre"] {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 @media (max-width: 600px) {
