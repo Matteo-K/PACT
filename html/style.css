@@ -2406,6 +2406,29 @@ div[id="messageErreur"] {
 }
 
 
+/* Média query pour passer au format téléphone */
+@media (max-width: 375px) {
+  body[id="body_creation_compte"] > input {
+    min-width: 200px;
+    max-width: 280px;
+    width: 230px;
+  }
+
+  h1[id="inscriptionTitre"] {
+    font-size: 45px;
+    margin-top: 15vh;
+  }
+
+  .creation-compte form {
+    justify-content: center;
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+
+
 /*+++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
 /*+++++++++++++++++++++++++++++*/
