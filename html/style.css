@@ -472,8 +472,6 @@ header ul + div {
     order:10;
   }
   #formHeader {
-      min-width: 15vw;
-      width: 15vw;
       margin-top: 10px;
       justify-content: center;
       margin-inline: 10px;
