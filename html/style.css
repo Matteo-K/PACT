@@ -11,7 +11,7 @@
   --accent-border: #bb880e;
   --text-dark: #000;
   --text-light: #eaeaea;
-  --header-size: clamp(100px, 13vh, 150px);
+  --header-size: clamp(100px, 13vh + 0.5em, 150px);
 }
 
 * {
@@ -456,7 +456,7 @@ header ul + div {
 
 @media (max-width: 768px) {
   :root{
-    --header-size: clamp(100px, 25vh, 150px);
+    --header-size: clamp(100px, 25vh + 0.5em, 150px);
   }
 
   #logoText {
