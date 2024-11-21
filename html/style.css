@@ -2387,7 +2387,6 @@ input[id="radioPrive"] {
 input[id="siren"] {
   width: 408px;
   height: 40px;
-  /* margin: 0 5px; */
   margin-right: 0;
   margin-left: 10px;
   border: 3px solid var(--accent);
@@ -2467,6 +2466,14 @@ div[id="messageErreur"] {
     padding: 20px;
     background-color: var(--bloc);
     border-radius: 15px;
+  }
+
+  .creation-compte div {
+    display: inline;
+    justify-content: center;
+    margin: 10px;
+    width: 90%;
+    max-width: 380px;
   }
 
   .creation-compte label {
