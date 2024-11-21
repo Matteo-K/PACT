@@ -2272,14 +2272,12 @@ body[id="body_creation_compte"] ::placeholder {
   text-align: left;
 }
 
-.creation-compte div.ligne1>label,
-div.ligne6>label {
+.creation-compte div.ligne1>label, div.ligne6>label {
   display: inline-block;
   width: 408px;
 }
 
-.creation-compte div.ligne2>label,
-div.ligne3>label {
+.creation-compte div.ligne2>label, div.ligne3>label {
   display: flex;
   justify-content: left;
   width: 823px;
@@ -2469,7 +2467,7 @@ div[id="messageErreur"] {
   }
 
   .creation-compte div {
-    display: inline;
+    display: grid;
     justify-content: center;
     margin: 10px;
     width: 90%;
