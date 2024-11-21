@@ -2618,11 +2618,11 @@ p[id="legendeBoutonLienPro"] {
     display: none;
   }
 
-  a[id="boutonLienMembre"],
+  /* a[id="boutonLienMembre"],
   p[id="legendeBoutonLienMembre"] {
     display: flex;
     flex-direction: column;
-  }
+  } */
 }
 
 @media (max-width: 600px) {
