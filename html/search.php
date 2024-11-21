@@ -338,7 +338,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
 <script>
     // Liste des offres pour la manipuler
     $arrayOffer = [1,2,3,4,5,6,7,8,9];
-    let arrayOffer = <?php echo json_encode($arrayOffer); ?>
+    let arrayOffer = <?php echo json_encode($arrayOffer); ?>;
 
     const now = new Date();
     let hours = now.getHours().toString().padStart(2, '0');
