@@ -468,6 +468,7 @@ header ul + div {
 
   #divFormHeader{
     order:10;
+    width: 100%;
   }
   #formHeader {
       width: 85%;
