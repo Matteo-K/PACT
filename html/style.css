@@ -1511,6 +1511,27 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
 }
 
+@media (max-width : 1079px) {
+  .search {
+    position: block;
+  }
+
+
+  #trifiltre > div {
+    display: block;
+  }
+
+  #trifiltre {
+    position: block;
+    background: pink;
+    width: 100%;
+  }
+
+  #tri, #filtre {
+    display: none;
+    color: var(--text-light);
+  }
+}
 
 /*  ***************************************************************************************
      **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
