@@ -162,10 +162,12 @@ try {
         suggestions = tagsGeneraux;
       }
 
+      //On remplace les caractères accentués par leur version sans accents
+      let texte = removeAccents(input.value.toLowerCase());
 
       // Filtrer les tags correspondant à la saisie
       suggestions = suggestions.filter(tag =>
-        tag.toLowerCase().includes(value.toLowerCase())
+        removeAccents(tag.toLowerCase().includes(value.toLowerCase()))
       );
 
       // Ajouter les suggestions dans la liste
