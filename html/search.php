@@ -448,7 +448,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                     <div class="searchCategorie">
                                         <?php
                                         foreach ($tag as $value) {
-                                            ?><span class="searchTag"><?php echo $value['nomtag']." " ?></span><?php
+                                            ?><span class="searchTag"><?php echo $value." " ?></span><?php
                                         }
                                         ?>
                                     </div>
