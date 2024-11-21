@@ -2482,7 +2482,8 @@ div[id="messageErreur"] {
   }
 
   .creation-compte div {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     margin: 10px;
     width: 90%;
@@ -2490,15 +2491,12 @@ div[id="messageErreur"] {
   }
 
   .creation-compte label {
-    display: block;
     text-align: left;
     margin-bottom: 5px;
     font-size: 18px;
-    width: 100%;
   }
 
   .creation-compte input {
-    width: 100%;
     max-width: 280px;
     height: 40px;
     margin-bottom: 15px;
