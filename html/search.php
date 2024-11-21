@@ -225,7 +225,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $ville=($offre['ville'])?$offre['ville']:"Pas de localisation entrée";;
                     $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
                     $nomTag=($offre['categorie'])?$offre['categorie']:"Pas de catégorie";
-                    $tag = explode(',',trim($offre['all_tags'],'{}'));
+                    $tag = $offre['all_tags']?explode(',',trim($offre['all_tags'],'{}')):"";
                     if (($offre['listhorairemidi'])!="") {
                         $horaireMidi=explode(';',$offre['listhorairemidi']);                        
                         // Tableau final
@@ -298,7 +298,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
                                 <div class="searchCategorie">
                                     <?php
-                                    if ($tag!=NULL) {
+                                    if ($tag!="") {
                                         foreach ($tag as $value) {
                                             ?><span class="searchTag"><?php echo $value." " ?></span><?php
                                         }
