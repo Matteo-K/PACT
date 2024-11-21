@@ -311,7 +311,7 @@ header > div > a > div {
   display: flex;
   color: #000;
   font-size: 25px;
-  border-radius: 10px;
+  border-radius: 2em;
   height: 2em;
   width: 200px;
   background-color: var(--accent);
@@ -469,8 +469,9 @@ header ul + div {
   }
 
   #logoText {
+
       margin-top: 1em;
-      font-size: 10vw;
+      font-size: clamp(16px, 10vw, 48px);
   }
 
   #divFormHeader{
@@ -499,7 +500,8 @@ header ul + div {
   #btnConn {
       width: 10em;
       height: 3em;
-      font-size: 12px;
+      font-size: 18px;
+      font-weight: 400;
       margin-top: 10px;
       
   }
@@ -1473,6 +1475,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   .searchA {
     text-decoration: none;
+    width: fit-content;
   }
 }
 
@@ -1513,6 +1516,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: none;
 }
 
+#trifiltre > div figure {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
 #tri, #filtre {
   color: var(--text-light);
 }
@@ -1537,6 +1547,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
 }
 
+.openFiltreTri {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
 @media (max-width : 1079px) {
   .search {
     position: block;
@@ -1558,7 +1574,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   #tri, #filtre {
     display: none;
+    opacity: 0;
     color: var(--text-light);
+  }
+
+  #tri {
+    transform: translateX(-100%);
+  }
+  
+   #filtre {
+    transform: translateX(100%);
   }
 
   #trifiltre > div {

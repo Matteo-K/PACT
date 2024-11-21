@@ -42,11 +42,11 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <main class="search">
         <section id="trifiltre" class="asdTriFiltre">
             <div>
-                <figure>
+                <figure id="btnFiltre">
                     <figcaption>Filtrer</figcaption>
                     <img src="img/icone/burger-bar.png" alt="filtre">
                 </figure>
-                <figure>
+                <figure id="btnTri">
                     <figcaption>Trier</figcaption>
                     <img src="img/icone/burger-bar.png" alt="tri">
                 </figure>
@@ -55,29 +55,26 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <h2>Trier</h2>
                 <div class="blcTriFiltre">
                     <div>
-                        <label for="miseEnAvant">Mise en avant</label>
                         <input type="radio" name="tri" id="miseEnAvant" checked>
+                        <label for="miseEnAvant">Mise en avant</label>
                     </div>
                     <div>
-                        <h3>Par note&nbsp;:&nbsp;</h3>
-                        <label for="noteCroissant">Ordre croissant</label>
                         <input type="radio" name="tri" id="noteCroissant">
-                        <label for="noteDecroissant">Ordre décroissant</label>
+                        <label for="noteCroissant">Note croissant</label>
                         <input type="radio" name="tri" id="noteDecroissant">
+                        <label for="noteDecroissant">Note décroissant</label>
                     </div>
                     <div>
-                        <h3>Par prix&nbsp;:&nbsp;</h3>
-                        <label for="prixCroissant">Ordre croissant</label>
                         <input type="radio" name="tri" id="prixCroissant">
-                        <label for="prixDecroissant">Ordre décroissant</label>
+                        <label for="prixCroissant">Prix croissant</label>
                         <input type="radio" name="tri" id="prixDecroissant">
+                        <label for="prixDecroissant">Prix décroissant</label>
                     </div>
                     <div>
-                        <h3>Par date&nbsp;:&nbsp;</h3>
-                        <label for="dateRecent">Plus récent</label>
                         <input type="radio" name="tri" id="dateRecent">
-                        <label for="dateAncien">Plus ancien</label>
+                        <label for="dateRecent">Plus récent</label>
                         <input type="radio" name="tri" id="dateAncien">
+                        <label for="dateAncien">Plus ancien</label>
                     </div>
                 </div>
             </aside>
@@ -307,11 +304,27 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <?php require_once "components/footer.php"; ?>
 </body>
 <script>
-        const now = new Date();
-        let hours = now.getHours().toString().padStart(2, '0');
-        let minutes = now.getMinutes().toString().padStart(2, '0');
-        let timeString = `${hours}:${minutes}`;
-        document.getElementById('heureFin').value = timeString;
-        document.getElementById('heureDebut').value = timeString;
-    </script>
+    const now = new Date();
+    let hours = now.getHours().toString().padStart(2, '0');
+    let minutes = now.getMinutes().toString().padStart(2, '0');
+    let timeString = `${hours}:${minutes}`;
+    document.getElementById('heureFin').value = timeString;
+    document.getElementById('heureDebut').value = timeString;
+
+    const btnFiltre = document.querySelector("#btnFiltre");
+    const btnTri = document.querySelector("#btnTri");
+
+    btnFiltre.addEventListener("click", () => {
+
+    });
+
+
+    function openPop-up(element) {
+        element.classList.add("openFiltreTri");
+    }
+    
+    function closePop-up(element) {
+        element.classList.remove("openFiltreTri");
+    }
+</script>
 </html>
