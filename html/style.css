@@ -2626,7 +2626,6 @@ p[id="legendeBoutonLienPro"] {
 }
 
 @media (max-width: 600px) {
-
   /* Réduire la taille des titres */
   h1[id="connexionTitre"] {
     font-size: 45px;
@@ -2672,8 +2671,11 @@ p[id="legendeBoutonLienPro"] {
 
   /* Ajustement des boutons et des labels de création de compte */
   a[id="boutonLienMembre"],
+  p[id="legendeBoutonLienMembre"] {
+    display: block;
+  }
+
   a[id="boutonLienPro"],
-  p[id="legendeBoutonLienMembre"],
   p[id="legendeBoutonLienPro"] {
     display: none;
   }
