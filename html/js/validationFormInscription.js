@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Récupérer le nom du fichier actuel
     //const currentFile = window.location.pathname.split('/').pop();
 
+    // Récupérer le nom du fichier actuel
     let currentFile;
 
     if (sirenInput && sirenLabel) {
