@@ -1625,6 +1625,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
      *************************************************************************************** */
 
 .mainOffer {
+  margin-top: 1em;<
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1640,7 +1641,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #titleOffer {
   text-align: center;
   font-size: 5em;
-  margin-top: 1em;
+  
   color: var(--bloc);
   margin-bottom: 0.5em;
 }
@@ -1905,6 +1906,13 @@ tbody td:last-child {
 @media screen and (max-width : 768px) {
   #titleOffer{
     font-size: clamp(1em,10vw,3em);
+  }
+
+  .mainOffer .tag,
+  .ouvert,
+  .ferme {
+    height: 0.1em;
+    font-size: clamp(8px, 10vw,22px);
   }
 }
 
