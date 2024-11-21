@@ -616,7 +616,7 @@ SELECT
         WHEN EXISTS (SELECT 1 FROM _tag_restaurant tr WHERE tr.idOffre = o.idOffre) THEN 'Restaurant'
         WHEN EXISTS (SELECT 1 FROM _tag_visite tv WHERE tv.idOffre = o.idOffre) THEN 'Visite'
         WHEN EXISTS (SELECT 1 FROM _tag_act ta WHERE ta.idOffre = o.idOffre) THEN 'Activité'
-        WHEN EXISTS (SELECT 1 FROM _tag_parc tp WHERE tp.idOffre = o.idOffre) THEN 'Parc'
+        WHEN EXISTS (SELECT 1 FROM _tag_parc tp WHERE tp.idOffre = o.idOffre) THEN 'Parc Attraction'
         ELSE 'Autre'
     END AS categorie
 FROM 
