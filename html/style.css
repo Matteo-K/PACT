@@ -1141,7 +1141,7 @@ header ul + div {
 }
 
 #choixCategorie {
-  width: calc(33.6% + 141.625px);
+  width: calc(70% + 141.625px);
   /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
 }
 
@@ -1189,7 +1189,7 @@ header ul + div {
 #autocompletion{
   padding: 10px 5px 0;
   margin: 0;
-  width: 100%;
+  width: (33.6% + 141.625px);
   background-color: #fff;
   border: 2px solid var(--bloc);
   border-top: none;
@@ -1323,7 +1323,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .search {
   position: relative;
-  margin-top: clamp(23%, 350px, 400px);
+  margin-top: 110px;
   padding-bottom: 20px;
   padding-top: 20px;
   background-attachment: fixed;
@@ -1485,19 +1485,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #trifiltre {
   position: fixed;
   background: linear-gradient(0.45turn, var(--primary), #113);
-  width: 23%;
-  min-width: 350px;
-  top: var(--header-size);
-  left: 0;
+  width: 400px;
 }
 
 /* bloc de bouton menu téléphone*/
 #trifiltre > div {
   display: none;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-  align-items: center;
 }
 
 #tri, #filtre {
@@ -1517,20 +1510,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
 }
 
-@media (max-width : 1079px) {
-  #trifiltre > div {
-    display: block;
-  }
-
-  #trifiltre {
-    position: absolute;
-    background: pink;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-  }
-}
 
 /*  ***************************************************************************************
      **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
