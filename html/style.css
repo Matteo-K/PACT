@@ -487,17 +487,18 @@ header ul + div {
       align-items: flex-start;
   }
 
-  #profilePic {
-      margin-right: 0;
-      margin-bottom: 10px;
-  }
-
   #btnConn {
       width: 10em;
       height: 2.2em;
       font-size: 18px;
       margin-top: 10px;
       
+  }
+
+  #auth > img {
+    width: clamp(2em,35vw,5em);
+    height: clamp(2em,35vw,5em);
+  
   }
 }
 
