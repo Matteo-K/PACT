@@ -84,49 +84,51 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     <div id="note">
                         <h3>Par note</h3>
                         <div>
-                            <label for="1star" class="blocStar">
-                                <input type="checkbox" name="1star" id="1star" checked>
-                                <span class="checkmark"></span>
-                                <div class="star"></div>
-                            </label>
-                        </div>
-                        <div>
-                            <label for="2star" class="blocStar">
-                                <input type="checkbox" name="2star" id="2star" checked>
-                                <span class="checkmark"></span>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                            </label>
-                        </div>
-                        <div>    
-                            <label for="3star" class="blocStar">
-                                <input type="checkbox" name="3star" id="3star" checked>
-                                <span class="checkmark"></span>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                            </label>
-                        </div>
-                        <div>
-                            <label for="4star" class="blocStar">
-                                <input type="checkbox" name="4star" id="4star" checked>
-                                <span class="checkmark"></span>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                            </label>
-                        </div>
-                        <div>
-                            <label for="5star" class="blocStar">
-                                <input type="checkbox" name="5star" id="5star" checked>
-                                <span class="checkmark"></span>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                            </label>
+                            <div>
+                                <label for="1star" class="blocStar">
+                                    <input type="checkbox" name="1star" id="1star" checked>
+                                    <span class="checkmark"></span>
+                                    <div class="star"></div>
+                                </label>
+                            </div>
+                            <div>
+                                <label for="2star" class="blocStar">
+                                    <input type="checkbox" name="2star" id="2star" checked>
+                                    <span class="checkmark"></span>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </label>
+                            </div>
+                            <div>    
+                                <label for="3star" class="blocStar">
+                                    <input type="checkbox" name="3star" id="3star" checked>
+                                    <span class="checkmark"></span>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </label>
+                            </div>
+                            <div>
+                                <label for="4star" class="blocStar">
+                                    <input type="checkbox" name="4star" id="4star" checked>
+                                    <span class="checkmark"></span>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </label>
+                            </div>
+                            <div>
+                                <label for="5star" class="blocStar">
+                                    <input type="checkbox" name="5star" id="5star" checked>
+                                    <span class="checkmark"></span>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div id="blcPrixStatut">
@@ -190,8 +192,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 </label>
                             </li>
                             <li>
-                                <label for="Activité">
-                                    <input type="checkbox" name="categorie" id="Activité" checked>
+                                <label for="Activite">
+                                    <input type="checkbox" name="categorie" id="Activite" checked>
                                     <span class="checkmark"></span>
                                     Activité
                                 </label>
@@ -229,7 +231,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <div>
                             <label for="dateDepart">Fin&nbsp;:&nbsp;</label>
                             <input type="date" name="dateFin" id="dateFin" value="<?php echo date('Y-m-d', strtotime('+1 month')); ?>" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>">
-                            <input type="time" name="heureFin" id="heureFin" value="">
+                            <input type="time" name="heureFin" id="heureFin">
                         </div>
                     </div>
                 </div>
@@ -334,6 +336,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <?php require_once "components/footer.php"; ?>
 </body>
 <script>
+    // Liste des offres pour la manipuler
+    $arrayOffer = [1,2,3,4,5,6,7,8,9];
+    let arrayOffer = <?php echo json_encode($arrayOffer); ?>
+
     const now = new Date();
     let hours = now.getHours().toString().padStart(2, '0');
     let minutes = now.getMinutes().toString().padStart(2, '0');
@@ -341,35 +347,54 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     document.getElementById('heureFin').value = timeString;
     document.getElementById('heureDebut').value = timeString;
 
-    const btnFiltre = document.querySelector("#btnFiltre");
-    const btnTri = document.querySelector("#btnTri");
-
-    btnFiltre.addEventListener("click", () => {
-        element.classList.add("openFiltreTri");
-    });
-
-    btnFiltre.addEventListener("click", () => {
-        element.classList.togle("openFiltreTri");
-    });
-
+    
     document.getElementById('prixMin').addEventListener('change', inverseValuesPrix);
     document.getElementById('prixMax').addEventListener('change', inverseValuesPrix);
 
-
+    /**
+     * Switch les valeurs des prix maximum et minimum si prix maximum < prix minimum
+     */
     function inverseValuesPrix () {
         const selectMin = document.getElementById('prixMin');
         const selectMax = document.getElementById('prixMax');
-        
         const valueMin = parseInt(selectMin.value);
         const valueMax = parseInt(selectMax.value);
         
-        // Comparer les valeurs
         if (valueMin > valueMax) {
-            // Inverser les valeurs sélectionnées
             selectMin.value = valueMax;
             selectMax.value = valueMin;
         }
     }
 
+    // Ouvre et ferme le pop-up tri et filtre pour la partie mobile
+    const btnFiltre = document.querySelector("#btnFiltre");
+    const btnTri = document.querySelector("#btnTri");
+    const asideTri = document.querySelector("#tri");
+    const asideFiltre = document.querySelector("#filtre");
+    
+    btnTri.addEventListener("click", () => {
+        asideTri.classList.add("openFiltreTri");
+        console.log("ouvert Tri");
+        console.log(btnFiltre);
+    });
+    
+    btnTri.addEventListener("click", () => {
+        asideTri.classList.togle("openFiltreTri");
+        console.log("ferme Filtre");
+        console.log(btnFiltre);
+    });
+
+    btnFiltre.addEventListener("click", () => {
+        asideFiltre.classList.add("openFiltreTri");
+        console.log("ouvert Filtre");
+        console.log(btnFiltre);
+    });
+
+    btnFiltre.addEventListener("click", () => {
+        asideFiltre.classList.togle("openFiltreTri");
+        console.log("ferme Filtre");
+        console.log(btnFiltre);
+    });
 </script>
+<script src="js/sortAndFilter.js"></script>
 </html>

@@ -1600,8 +1600,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   color: var(--text-light);
 }
 
-
-#note > div {
+/* chaque ligne d'étoile */
+#note > h3 + div > div {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -1626,7 +1626,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin: 0;
 }
 
-#categorie ul {
+#categorie ul, #note > h3 + div {
   display: flex;
   flex-flow: column;
   align-items: flex-start;
