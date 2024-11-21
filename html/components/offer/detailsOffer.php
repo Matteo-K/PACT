@@ -80,6 +80,7 @@ else{
 }
 
 print_r($liste_tags);
+echo "test";
 
 
 
