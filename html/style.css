@@ -1521,7 +1521,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 @media (max-width : 1079px) {
   .search {
-    position: static;
+    position: block;
   }
 
   .searchoffre {
@@ -1533,7 +1533,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   #trifiltre {
-    position: block;
+    position: static;
     background: pink;
     width: 100%;
   }
