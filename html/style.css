@@ -221,7 +221,8 @@ header h3{
 
 #auth{
 
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 header div > a > img,
@@ -500,8 +501,7 @@ header ul + div {
       height: 3em;
       font-size: 12px;
       margin-top: 10px;
-      align-items: center;
-      justify-content: center;
+      
   }
 
   /* Adjust menu layout */
