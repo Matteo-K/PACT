@@ -1486,9 +1486,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   position: fixed;
   background: linear-gradient(0.45turn, var(--primary), #113);
   width: 400px;
+  top: 0;
+  left: 0;
+  padding-top: var(--header-size);
 }
 
-#trifiltre h3 {
+#trifiltre h3, #trifiltre h4 {
   margin: 10px;
 }
 
@@ -1514,6 +1517,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-end;
+  margin-inline: 20%;
 }
 
 .star {
