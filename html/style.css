@@ -499,22 +499,6 @@ header ul + div {
       margin-top: 10px;
       
   }
-
-  #profileMenu {
-      position: absolute;
-      top: 60px;
-      right: 10px;
-      background-color: #fff;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      padding: 15px;
-      width: 200px;
-      display: none;
-  }
-
-  #profileMenu.show {
-      display: block;
-  }
 }
 
 
