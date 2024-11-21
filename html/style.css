@@ -2184,10 +2184,23 @@ tbody td:last-child {
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 #restaurant {
-  background-color: yellow;
-  display: flex;
-  flex-direction: column;
+  background-color: yellow; 
+  padding: 20px;
 }
+
+#restaurant h4 {
+  margin-bottom: 15px;
+}
+
+#restaurant label {
+  display: block;
+  margin: 10px 0;
+}
+
+#restaurant input[type="radio"] {
+  margin-right: 10px;
+}
+
 
 #show {
   align-items: center;
