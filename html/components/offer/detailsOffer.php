@@ -71,8 +71,9 @@ if ($result != false) {
             break;
     }
     $stmt->execute([$idOffre]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $liste_tags = $result["tags"] ?? [];
+    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $liste_tags[] = $result["tags"];
+    }
 }
 
 else{    
