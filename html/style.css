@@ -1193,6 +1193,7 @@ header ul + div {
 }
 
 #inputAutocomplete{
+  position: relative;
   width: calc(70% + 141.625px);
 }
 
@@ -1206,13 +1207,14 @@ header ul + div {
   border-radius: 2px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  height: 200px;
+  max-height: 200px;
   position: absolute;
   overflow: scroll;
 }
 
 #autocompletion li{
   border-bottom: 0.5px solid var(--secondary);
+  padding: 0px 1px;
 } 
 
 
