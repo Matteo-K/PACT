@@ -1575,7 +1575,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   box-shadow: 0 0 5px var(--accent-border);
 }
 
-#blcPrixStatut, #blcCategorieNote {
+#blcPrixStatut {
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
