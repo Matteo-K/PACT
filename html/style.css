@@ -1160,7 +1160,7 @@ header ul + div {
   flex-wrap: wrap;
 }
 
-#divListsComplete{
+#divListeComplete{
   position: relative;
   width: calc(70% + 141.625px) ;
 }
