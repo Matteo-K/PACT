@@ -469,18 +469,18 @@ header ul + div {
   }
 
   #logoText {
-      font-size: 10px;
+      margin-top: 1em;
+      font-size: 10vw;
   }
 
   #divFormHeader{
     order:10;
   }
   #formHeader {
-      width: 75vw;
-      margin-top: 10px;
+      width: 87vw;
       justify-content: center;
       align-items:center;
-      margin-inline: 10px;
+      margin-inline: 1em;
   }
 
   #auth {

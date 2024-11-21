@@ -216,8 +216,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        print_r($results[0]);
-
         ?>
         <section class="searchoffre">
             <?php if ($results){ ?>
@@ -291,7 +289,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     }
                     if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                         $idutilisateur=$_SESSION["idUser"];
-                        if ($offre['idU']==$idutilisateur) {
+                        if ($offre['idu']==$idutilisateur) {
                             require "components/cardOffer.php"; 
                         }
                     }else {

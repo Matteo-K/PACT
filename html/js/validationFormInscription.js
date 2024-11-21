@@ -7,58 +7,29 @@ document.addEventListener('DOMContentLoaded', function () {
         window.history.back();
     });
 
-    if (currentFile === 'accountPro.php') {
-        const sirenLabel = document.querySelector("label[for='siren']");
-        const sirenInput = document.getElementById("siren");
-        const publicRadio = document.getElementById("radioPublic");
-        const priveRadio = document.getElementById("radioPrive");
+    // Récupérer les éléments nécessaires pour le SIREN
+    const sirenLabel = document.querySelector("label[for='siren']");
+    const sirenInput = document.getElementById("siren");
+    const publicRadio = document.getElementById("radioPublic");
+    const priveRadio = document.getElementById("radioPrive");
 
-        function updateSirenVisibility() {
-            if (priveRadio && priveRadio.checked) {
-                sirenLabel.style.display = "block"; // Affiche le label
-                sirenInput.style.display = "block"; // Affiche le champ
-            } else if (publicRadio) {
-                sirenLabel.style.display = "none"; // Cache le label
-                sirenInput.style.display = "none"; // Cache le champ
-            }
-        }
-
-        if (publicRadio) {
-            publicRadio.addEventListener("click", updateSirenVisibility);
-        }
-        if (priveRadio) {
-            priveRadio.addEventListener("click", updateSirenVisibility);
-        }
-
-        // Initialisation
-        if (priveRadio && publicRadio) {
-            updateSirenVisibility();
+    // Fonction pour mettre à jour l'affichage du SIREN
+    function updateSirenVisibility() {
+        if (priveRadio.checked) {
+            sirenLabel.style.display = "block"; // Affiche le label
+            sirenInput.style.display = "block"; // Affiche le champ
+        } else {
+            sirenLabel.style.display = "none"; // Cache le label
+            sirenInput.style.display = "none"; // Cache le champ
         }
     }
 
-    // Récupérer les éléments nécessaires pour le SIREN
-    //const sirenLabel = document.querySelector("label[for='siren']");
-    //const sirenInput = document.getElementById("siren");
-    //const publicRadio = document.getElementById("radioPublic");
-    //const priveRadio = document.getElementById("radioPrive");
-
-    // Fonction pour mettre à jour l'affichage du SIREN
-    //function updateSirenVisibility() {
-        //if (priveRadio.checked) {
-            //sirenLabel.style.display = "block"; // Affiche le label
-            //sirenInput.style.display = "block"; // Affiche le champ
-        //} else {
-            //sirenLabel.style.display = "none"; // Cache le label
-            //sirenInput.style.display = "none"; // Cache le champ
-        //}
-    //}
-
     // Initialiser l'affichage
-    //updateSirenVisibility();
+    updateSirenVisibility();
 
     // Ajouter des écouteurs d'événements sur les boutons radio
-    //publicRadio.addEventListener("click", updateSirenVisibility);
-    //priveRadio.addEventListener("click", updateSirenVisibility);
+    publicRadio.addEventListener("click", updateSirenVisibility);
+    priveRadio.addEventListener("click", updateSirenVisibility);
 
 
 
