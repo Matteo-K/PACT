@@ -460,12 +460,12 @@ header ul + div {
 
 @media (max-width: 768px) {
   :root{
-    --header-size: clamp(100px, 20vh, 150px);
+    --header-size: clamp(100px, 22vh, 150px);
   }
-  
+
   #logo {
-      width: 40px;
-      height: 40px;
+      width: 2vw;
+      height: 2vw;
   }
 
   #logoText {
