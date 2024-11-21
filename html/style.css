@@ -240,7 +240,7 @@ header div > a > img,
   border: var(--bloc) solid 3px;
   border-radius: 2em;
   height: 3em;
-  width: 35em;
+  width: 35vw;
   border-radius: 2em;
   /* Largeur du formulaire */
 }
@@ -472,9 +472,10 @@ header ul + div {
     order:10;
   }
   #formHeader {
-      width: 100%;
+      width: 35vw;
       margin-top: 10px;
       justify-content: center;
+      align-items:center;
       margin-inline: 10px;
   }
 
@@ -1514,6 +1515,27 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
 }
 
+@media (max-width : 1079px) {
+  .search {
+    position: block;
+  }
+
+
+  #trifiltre > div {
+    display: block;
+  }
+
+  #trifiltre {
+    position: block;
+    background: pink;
+    width: 100%;
+  }
+
+  #tri, #filtre {
+    display: none;
+    color: var(--text-light);
+  }
+}
 
 /*  ***************************************************************************************
      **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
