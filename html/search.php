@@ -224,7 +224,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
                     $ville=($offre['ville'])?$offre['ville']:"Pas de localisation entrée";;
                     $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
-                    $nomTag=($offre['categorie'])?$offre['categorie']:"Pas de catégorie";
+                    $nomTag=($offre['categorie']!="Autre")?$offre['categorie']:"Pas de catégorie";
                     $tag = $offre['all_tags']?explode(',',trim($offre['all_tags'],'{}')):"";
                     if (($offre['listhorairemidi'])!="") {
                         $horaireMidi=explode(';',$offre['listhorairemidi']);                        
