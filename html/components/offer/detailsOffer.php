@@ -79,8 +79,7 @@ else{
     $liste_tags = [];
 }
 
-print_r($liste_tags);
-echo "test";
+
 
 
 
@@ -143,6 +142,12 @@ echo "test";
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->
             </section>
+
+
+<?php
+print_r($liste_tags);
+echo "test";
+?>
 
             <p>
                 Vous pouvez entrer jusqu'à 6 tags
