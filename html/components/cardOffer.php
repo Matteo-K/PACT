@@ -23,7 +23,7 @@
                 <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
                     <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
                 </p>
-            </sect
+            </section>
             <script>
                 let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
                 if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
