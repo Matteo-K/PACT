@@ -339,7 +339,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     document.addEventListener("DOMContentLoaded", () => {
 
         // Liste des offres pour la manipuler
-        $arrayOffer = [1,2,3,4,5,6,7,8,9];
+        <?php $arrayOffer = ["Pomme", "Banane", "Fraise", "Poire", "Abricot", "Autre fruit"]; ?>
         let arrayOffer = <?php echo json_encode($arrayOffer); ?>;
         
         const now = new Date();
