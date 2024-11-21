@@ -496,7 +496,9 @@ header ul + div {
   }
 
   #btnConn {
-      width: 10vw;
+      width: 30%;
+      height: 3em;
+      font-size: 12px;
       margin-top: 10px;
   }
 
