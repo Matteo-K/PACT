@@ -2439,10 +2439,15 @@ div[id="messageErreur"] {
 
 /* Média query pour passer au format téléphone */
 @media (max-width: 375px) {
-  main[id="mainCreation"] {
+  body[id="body_creation_compte"] {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    width: 100%;
   }
 
   h1[id="inscriptionTitre"] {
@@ -2463,6 +2468,7 @@ div[id="messageErreur"] {
   }
 
   .creation-compte div {
+    display: grid;
     justify-content: center;
     margin: 10px;
     width: 90%;
