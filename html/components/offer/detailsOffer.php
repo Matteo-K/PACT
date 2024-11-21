@@ -72,7 +72,7 @@ if ($result != false) {
     }
     $stmt->execute([$idOffre]);
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $liste_tags[] = $result["tags"];
+        $liste_tags[] = $result["nomtag"];
     }
 }
 
