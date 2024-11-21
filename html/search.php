@@ -336,64 +336,67 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     <?php require_once "components/footer.php"; ?>
 </body>
 <script>
-    // Liste des offres pour la manipuler
-    $arrayOffer = [1,2,3,4,5,6,7,8,9];
-    let arrayOffer = <?php echo json_encode($arrayOffer); ?>;
+    document.addEventListener("DOMContentLoaded", () => {
 
-    const now = new Date();
-    let hours = now.getHours().toString().padStart(2, '0');
-    let minutes = now.getMinutes().toString().padStart(2, '0');
-    let timeString = `${hours}:${minutes}`;
-    document.getElementById('heureFin').value = timeString;
-    document.getElementById('heureDebut').value = timeString;
-
-    
-    document.getElementById('prixMin').addEventListener('change', inverseValuesPrix);
-    document.getElementById('prixMax').addEventListener('change', inverseValuesPrix);
-
-    /**
-     * Switch les valeurs des prix maximum et minimum si prix maximum < prix minimum
-     */
-    function inverseValuesPrix () {
-        const selectMin = document.getElementById('prixMin');
-        const selectMax = document.getElementById('prixMax');
-        const valueMin = parseInt(selectMin.value);
-        const valueMax = parseInt(selectMax.value);
+        // Liste des offres pour la manipuler
+        $arrayOffer = [1,2,3,4,5,6,7,8,9];
+        let arrayOffer = <?php echo json_encode($arrayOffer); ?>;
         
-        if (valueMin > valueMax) {
-            selectMin.value = valueMax;
-            selectMax.value = valueMin;
+        const now = new Date();
+        let hours = now.getHours().toString().padStart(2, '0');
+        let minutes = now.getMinutes().toString().padStart(2, '0');
+        let timeString = `${hours}:${minutes}`;
+        document.getElementById('heureFin').value = timeString;
+        document.getElementById('heureDebut').value = timeString;
+
+        
+        document.getElementById('prixMin').addEventListener('change', inverseValuesPrix);
+        document.getElementById('prixMax').addEventListener('change', inverseValuesPrix);
+
+        /**
+         * Switch les valeurs des prix maximum et minimum si prix maximum < prix minimum
+         */
+        function inverseValuesPrix () {
+            const selectMin = document.getElementById('prixMin');
+            const selectMax = document.getElementById('prixMax');
+            const valueMin = parseInt(selectMin.value);
+            const valueMax = parseInt(selectMax.value);
+            
+            if (valueMin > valueMax) {
+                selectMin.value = valueMax;
+                selectMax.value = valueMin;
+            }
         }
-    }
 
-    // Ouvre et ferme le pop-up tri et filtre pour la partie mobile
-    const btnFiltre = document.querySelector("#btnFiltre");
-    const btnTri = document.querySelector("#btnTri");
-    const asideTri = document.querySelector("#tri");
-    const asideFiltre = document.querySelector("#filtre");
-    
-    btnTri.addEventListener("click", () => {
-        asideTri.classList.add("openFiltreTri");
-        console.log("ouvert Tri");
-        console.log(btnFiltre);
-    });
-    
-    btnTri.addEventListener("click", () => {
-        asideTri.classList.togle("openFiltreTri");
-        console.log("ferme Filtre");
-        console.log(btnFiltre);
-    });
-
-    btnFiltre.addEventListener("click", () => {
-        asideFiltre.classList.add("openFiltreTri");
-        console.log("ouvert Filtre");
-        console.log(btnFiltre);
-    });
-
-    btnFiltre.addEventListener("click", () => {
-        asideFiltre.classList.togle("openFiltreTri");
-        console.log("ferme Filtre");
-        console.log(btnFiltre);
+        // Ouvre et ferme le pop-up tri et filtre pour la partie mobile
+        const btnFiltre = document.querySelector("#btnFiltre");
+        const btnTri = document.querySelector("#btnTri");
+        const asideTri = document.querySelector("#tri");
+        const asideFiltre = document.querySelector("#filtre");
+        
+        btnTri.addEventListener("click", () => {
+            asideTri.classList.add("openFiltreTri");
+            console.log("ouvert Tri");
+            console.log(btnFiltre);
+        });
+        
+        btnTri.addEventListener("click", () => {
+            asideTri.classList.togle("openFiltreTri");
+            console.log("ferme Filtre");
+            console.log(btnFiltre);
+        });
+        
+        btnFiltre.addEventListener("click", () => {
+            asideFiltre.classList.add("openFiltreTri");
+            console.log("ouvert Filtre");
+            console.log(btnFiltre);
+        });
+        
+        btnFiltre.addEventListener("click", () => {
+            asideFiltre.classList.togle("openFiltreTri");
+            console.log("ferme Filtre");
+            console.log(btnFiltre);
+        });
     });
 </script>
 <script src="js/sortAndFilter.js"></script>
