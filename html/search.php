@@ -206,8 +206,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        print_r($results[0]);
-
         ?>
         <section class="searchoffre">
             <?php if ($results){ ?>
