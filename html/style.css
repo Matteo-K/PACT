@@ -11,7 +11,7 @@
   --accent-border: #bb880e;
   --text-dark: #000;
   --text-light: #eaeaea;
-  --header-size: clamp(100px, 13vh, 150px);
+  --header-size: clamp(100px, 13vh + 0.5em, 150px);
 }
 
 * {
@@ -193,7 +193,7 @@ header {
   height: var(--header-size);
   z-index: 10;
   background-color: var(--background);
-  padding:0.5em 1em ;
+  padding:0.5em 0 ;
 }
 
 header > div {
@@ -305,12 +305,13 @@ header > div > a > div {
 }
 
 #btnConn {
+  margin-right: 0.5em;
   display: flex;
   color: #000;
   font-size: 25px;
   border-radius: 2em;
   height: 2em;
-  width: 200px;
+  width: 175px;
   background-color: var(--accent);
   text-align: center;
   justify-content: center;
@@ -456,7 +457,7 @@ header ul + div {
 
 @media (max-width: 768px) {
   :root{
-    --header-size: clamp(100px, 25vh, 150px);
+    --header-size: clamp(100px, 25vh + 0.5em, 150px);
   }
 
   #logoText {
@@ -1510,6 +1511,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #tri, #filtre {
   color: var(--text-light);
+}
+
+#blcPrixStatut {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
 }
 
 #note > div {
