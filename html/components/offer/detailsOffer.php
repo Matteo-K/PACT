@@ -100,11 +100,15 @@ if ($result != false) {
                 <label for="radioVisite">Visite</label>
             </div>
 
-            <label for="inputTag">Tags supplémentaires </label>
+            <div id="inputAutocomplete">
+                <label for="inputTag">Tags supplémentaires </label>
+                <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
+                <!--v<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
+                <ul id="autocompletion"></ul>
+            </div>
             
-            <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
-            <!--v<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
-            <div id=divListeComplet> <ul id="autocompletion"></ul> </div>
+            
+            
             
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->
