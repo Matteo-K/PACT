@@ -91,7 +91,8 @@ footer {
 footer>div:first-child {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 10%;
 }
 
 /* logo Tripenarvor et son titre */
@@ -115,7 +116,6 @@ footer figcaption span {
 }
 
 footer img {
-  height: 5%;
   width: 5%;
   border-radius: 50%;
 }
@@ -140,13 +140,39 @@ footer div+div {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 0 10px;
-  width: max-content;
+  width: 100%;
 }
 
 footer div+div p {
-  padding: 0 500px;
+  flex: 3;
+  text-wrap: nowrap;
+}
+
+footer div+div a {
+  flex: 2;
+}
+
+@media screen and (max-width : 1310px) {
+  footer figure {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  address {
+    border-left: none;
+    margin-bottom: 10px;
+  }
+
+  footer img {
+    width: 50px;
+    border-radius: 50%;
+  }
+
+  footer div+div p {
+    margin-left: 50px;
+  }
 }
 
 /* ##### Components ##### */
@@ -1301,6 +1327,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 
 .search {
+  position: relative;
   margin-top: 110px;
   padding-bottom: 20px;
   padding-top: 20px;
@@ -1317,6 +1344,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* justify-content: center; */
   padding-top: 30px;
   gap: 20px;
+  margin-left: 400px;
 }
 
 .carteOffre {
@@ -1392,7 +1420,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .searchA {
-  width: 70%;
+  width: 90%;
   text-decoration: none;
   color: #000;
 }
@@ -1456,6 +1484,37 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
+
+/* ##### Aside Filtre & tri ##### */
+
+#trifiltre {
+  position: fixed;
+  background: linear-gradient(0.45turn, var(--primary), #113);
+  width: 400px;
+}
+
+/* bloc de bouton menu téléphone*/
+#trifiltre > div {
+  display: none;
+}
+
+#tri, #filtre {
+  color: var(--text-light);
+}
+
+.star {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  background-color: #EDAE14;
+  border-radius: 2%;
+  width: 40px;
+  height: 40px;
+}
+
+.blocStar {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 
 /*  ***************************************************************************************
      **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
