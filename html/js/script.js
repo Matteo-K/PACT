@@ -141,7 +141,7 @@ try {
     const autocompleteList = document.getElementById("autocompletion");
 
     // Fonction pour filtrer et afficher les suggestions
-    function updateSuggestions(value) {
+    function updateSuggestions(val) {
 
       // Nettoyer les suggestions précédentes
       autocompleteList.innerText = "";  
@@ -163,11 +163,11 @@ try {
       }
 
       //On remplace les caractères accentués par leur version sans accents
-      let texte = removeAccents(input.value.toLowerCase());
+      let texte = supprAccents(input.val.toLowerCase());
 
       // Filtrer les tags correspondant à la saisie
       suggestions = suggestions.filter(tag =>
-        removeAccents(tag.toLowerCase().includes(value.toLowerCase()))
+        supprAccents(tag.toLowerCase().includes(texte.toLowerCase()))
       );
 
       // Ajouter les suggestions dans la liste
@@ -203,6 +203,10 @@ try {
         autocompleteList.style.display = "none"; 
       }
     });
+
+    function supprAccents(str) {
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
 
 
 
