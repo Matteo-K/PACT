@@ -459,6 +459,10 @@ header ul + div {
 }
 
 @media (max-width: 768px) {
+  :root{
+    --header-size: clamp(100px, 20vh, 150px);
+  }
+  
   #logo {
       width: 40px;
       height: 40px;
@@ -1155,7 +1159,7 @@ header ul + div {
 }
 
 #inputTag {
-  width: calc(70% + 141.625px);
+  width: 100%;
 }
 
 
@@ -1187,10 +1191,14 @@ header ul + div {
   flex-wrap: wrap;
 }
 
+#inputAutocomplete{
+  width: calc(70% + 141.625px);
+}
+
 #autocompletion{
   padding: 10px 5px 0;
   margin: 0;
-  width: (33.6% + 141.625px);
+  width: 100%;
   background-color: #fff;
   border: 2px solid var(--bloc);
   border-top: none;
