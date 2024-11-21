@@ -252,8 +252,6 @@ VALUES (1, 'EnRelief'),
 INSERT INTO _visite_langue (idOffre, langue) 
 VALUES (5, 'Français'), 
        (5, 'Anglais');
-       
+   
 INSERT INTO _menu(idOffre, menu)
 VALUES (3,'./img/3-menu.png');
-
-select * from offres;
