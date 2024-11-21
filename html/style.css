@@ -2167,7 +2167,7 @@ tbody td:last-child {
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
-#restaurant >section{
+#restaurant {
   background-color: yellow;
   display: flex;
   flex-direction: column;
@@ -2453,7 +2453,7 @@ div[id="messageErreur"] {
 
 /* Média query pour passer au format téléphone */
 @media (max-width: 375px) {
-  body[id="body_creation_compte"] {
+  /* body[id="body_creation_compte"] {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2462,7 +2462,7 @@ div[id="messageErreur"] {
     margin: 0;
     padding: 0;
     width: 100%;
-  }
+  } */
 
   h1[id="inscriptionTitre"] {
     font-size: 45px;
@@ -2761,7 +2761,6 @@ p[id="legendeBoutonLienPro"] {
   p[id="legendeBoutonLienPro"] {
     display: none;
   }
-
 }
 
 @media (max-width: 600px) {
