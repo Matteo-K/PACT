@@ -85,23 +85,23 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <h3>Par note</h3>
                         <div>
                             <div>
-                                <label for="1star" class="blocStar">
-                                    <input type="checkbox" name="1star" id="1star" checked>
+                                <label for="star1" class="blocStar">
+                                    <input type="checkbox" name="star1" id="star1" checked>
                                     <span class="checkmark"></span>
                                     <div class="star"></div>
                                 </label>
                             </div>
                             <div>
-                                <label for="2star" class="blocStar">
-                                    <input type="checkbox" name="2star" id="2star" checked>
+                                <label for="star2" class="blocStar">
+                                    <input type="checkbox" name="star2" id="star2" checked>
                                     <span class="checkmark"></span>
                                     <div class="star"></div>
                                     <div class="star"></div>
                                 </label>
                             </div>
                             <div>    
-                                <label for="3star" class="blocStar">
-                                    <input type="checkbox" name="3star" id="3star" checked>
+                                <label for="star3" class="blocStar">
+                                    <input type="checkbox" name="star3" id="star3" checked>
                                     <span class="checkmark"></span>
                                     <div class="star"></div>
                                     <div class="star"></div>
@@ -109,8 +109,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 </label>
                             </div>
                             <div>
-                                <label for="4star" class="blocStar">
-                                    <input type="checkbox" name="4star" id="4star" checked>
+                                <label for="star4" class="blocStar">
+                                    <input type="checkbox" name="star4" id="star4" checked>
                                     <span class="checkmark"></span>
                                     <div class="star"></div>
                                     <div class="star"></div>
@@ -119,8 +119,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 </label>
                             </div>
                             <div>
-                                <label for="5star" class="blocStar">
-                                    <input type="checkbox" name="5star" id="5star" checked>
+                                <label for="star5" class="blocStar">
+                                    <input type="checkbox" name="star5" id="star5" checked>
                                     <span class="checkmark"></span>
                                     <div class="star"></div>
                                     <div class="star"></div>

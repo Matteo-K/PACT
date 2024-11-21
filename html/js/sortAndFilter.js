@@ -26,11 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /// Input de Filtre ///
   // note
-  const chkBxNote1 = document.querySelector("#1star");
-  const chkBxNote2 = document.querySelector("#2star");
-  const chkBxNote3 = document.querySelector("#3star");
-  const chkBxNote4 = document.querySelector("#4star");
-  const chkBxNote5 = document.querySelector("#5star");
+  const chkBxNote1 = document.querySelector("#star1");
+  const chkBxNote2 = document.querySelector("#star2");
+  const chkBxNote3 = document.querySelector("#star3");
+  const chkBxNote4 = document.querySelector("#star4");
+  const chkBxNote5 = document.querySelector("#star5");
 
   // prix
   const selectPrixMin = document.querySelector("#prixMin");
