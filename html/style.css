@@ -584,7 +584,7 @@ header ul + div {
   border: none;
   background-color: var(--secondary);
   color: var(--text-dark);
-  cursor: grabbing;
+  cursor: pointer;
 }
 
 #manageOffer aside button:hover {
@@ -1504,6 +1504,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 400px;
 }
 
+#trifiltre h3 {
+  margin: 10px;
+}
+
 /* bloc de bouton menu téléphone*/
 #trifiltre > div {
   display: none;
@@ -1514,6 +1518,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 #tri, #filtre {
