@@ -214,7 +214,7 @@ header div > a > img,
   border: var(--bloc) solid 3px;
   border-radius: 2em;
   height: 3em;
-  width: 35em;
+  width: 35vw;
   border-radius: 2em;
   /* Largeur du formulaire */
 }
