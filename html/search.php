@@ -208,12 +208,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
         print_r($results[0]);
 
-        if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-            $idutilisateur=$_SESSION["idUser"];
-            
-            
-            ?>
-            <section class="searchoffre">
+        ?>
+        <section class="searchoffre">
             <?php if ($results){ ?>
                 <?php foreach ($results as $offre){ 
                     $idOffre = $offre['idoffre'];
@@ -283,190 +279,22 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             }
                         }
                     }
-
-                     ?>
-                    <a class="searchA" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
-                        <div class="carteOffre">
-                                <?php 
-                                $alt = isset($urlImg[0]['url']) && $urlImg ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";
-                                ?>
-                                <img class="searchImage" src="<?php echo $urlImg; ?>" alt=<?php echo $alt; ?>>
-                            <div class="infoOffre">
-                                <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
-
-                                <strong><p class="villesearch"><?php echo $ville . $gammeText . " ⋅ " . $nomTag; ?></p></strong>
-
-                                <div class="searchCategorie">
-                                    <?php
-                                    if ($tag!="") {
-                                        foreach ($tag as $value) {
-                                            ?><span class="searchTag"><?php echo $value." " ?></span><?php
-                                        }
-                                    }
-                                    ?>
-                                </div>
-
-                                <p class="searchResume"><?php echo ($resume)?$resume:"Pas de resume saisie";?></p>
-
-                                <section class="searchNote">
-                                    <p><?php echo $noteAvg; ?></p>
-                                
-                                    <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
-                                        <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
-                                    </p>
-                                </section>
-
-
-                                <script>
-                                    let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
-                                    if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
-                                        st_<?php echo $idOffre; ?>.classList.add("searchStatutO");
-                                    } else {
-                                        st_<?php echo $idOffre; ?>.classList.add("searchStatutF");
-                                    }
-                                </script>
-                            </div>
-                            <div class="searchAvis">
-                                <p class="avisSearch">Les avis les plus récent :</p>
-                                <p>Pas d'avis</p>
-                            </div>
-                        </div>
-                    </a>
-                <?php 
-                } ?>
-            <?php } else { ?>
-                <p>Aucune offre trouvée </p>
-            <?php } ?>
-            </section>
-        <?php
-        }else {
-            ?>
-            <section class="searchoffre">
-            <?php if ($results){ ?>
-                <?php foreach ($results as $offre){ 
-                    $idOffre = $offre['idoffre'];
-                    $iduser= $offre['idu'];
-                    $nomOffre = $offre['nom'];
-                    $resume= $offre['resume'];
-                    $noteAvg = "Non noté";
-                    $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
-                    $ville=$offre['ville'];
-                    $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
-                    $nomTag=$offre['categorie'];
-                    $tag = explode(',',trim($offre['all_tags'],'{}'));
-                    if (($offre['listhorairemidi'])!="") {
-                        $horaireMidi=explode(';',$offre['listhorairemidi']);                        
-                        // Tableau final
-                        $resultsMidi = [];
-                        
-                        // Parcours et transformation des données
-                        foreach ($horaireMidi as $item) {
-                            // Décodage du JSON interne
-                            $decodedItem = json_decode($item, true);
-                            
-                            // Ajout des clés supplémentaires
-                            $resultsMidi[] = [
-                                'jour' => $decodedItem['jour'],
-                                'idoffre' => $idOffre,
-                                'heureouverture' => $decodedItem['heureOuverture'],
-                                'heurefermeture' => $decodedItem['heureFermeture']
-                            ];
-                        }                    
-                    }else{
-                        $resultsMidi = [];
-                    }
-                    if (($offre['listhorairesoir'])!="") {
-                        $horaireSoir=explode(';',$offre['listhorairesoir']);                        
-                        // Tableau final
-                        $resultsSoir = [];
-                        
-                        // Parcours et transformation des données
-                        foreach ($horaireSoir as $item) {
-                            // Décodage du JSON interne
-                            $decodedItem = json_decode($item, true);
-                            
-                            // Ajout des clés supplémentaires
-                            $resultsSoir[] = [
-                                'jour' => $decodedItem['jour'],
-                                'idoffre' => $idOffre,
-                                'heureouverture' => $decodedItem['heureOuverture'],
-                                'heurefermeture' => $decodedItem['heureFermeture']
-                            ];
-                        } 
+                    if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
+                        $idutilisateur=$_SESSION["idUser"];
+                        if ($offre['idU']==$idutilisateur) {
+                            require_once '/components/cardOffer.php'; 
+                        }
                     }else {
-                        $resultsSoir = [];
-                    }                    
-                    // Fusionner les horaires midi et soir
-                    $horaires = array_merge($resultsSoir, $resultsMidi);
-                    $restaurantOuvert = "EstFermé"; // Par défaut, le restaurant est fermé
-    
-                    // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
-                    foreach ($horaires as $horaire) {
-                        if ($horaire['jour'] == $currentDay) {
-                            $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
-                            $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
-                            if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
-                                $restaurantOuvert = "EstOuvert";
-                                break;
-                            }
+                        if ($offre['statut']=='actif') {
+                            require_once '/components/cardOffer.php'; 
                         }
                     }
                     
-                    if ($offre['statut'] == 'actif') { ?>
-                        <a class="searchA" href="/detailsOffer.php?idoffre=<?php echo $idOffre; ?>&ouvert=<?php echo $restaurantOuvert; ?>">
-                            <div class="carteOffre">
-                                <img class="searchImage" src="<?php echo $urlImg; ?>" alt="photo principal de l'offre">
-                                <div class="infoOffre">
-
-                                    <p class="searchTitre"><?php echo $nomOffre; ?></p>
-
-                                    <strong><p class="villesearch"><?php echo $ville . $gammeText . " ⋅ " .$nomTag; ?></p></strong>
-
-                                    <div class="searchCategorie">
-                                        <?php
-                                        foreach ($tag as $value) {
-                                            ?><span class="searchTag"><?php echo $value." " ?></span><?php
-                                        }
-                                        ?>
-                                    </div>
-                                    
-                                    <p class="searchResume"><?php echo $resume;?></p>
-                                    
-                                    <section class="searchNote">
-                                        <p class="avgNote"><?php echo $noteAvg; ?></p>
-                                    
-                                        <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
-                                            <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
-                                        </p>
-                                    </section>
-                                    
-                                    
-                                    <script>
-                                        let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
-                                        if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
-                                            st_<?php echo $idOffre; ?>.classList.add("searchStatutO");
-                                        } else {
-                                            st_<?php echo $idOffre; ?>.classList.add("searchStatutF");
-                                        }
-                                    </script>
-                                </div>
-                                <div class="searchAvis">
-                                    <p class="avisSearch">Les avis les plus récent :</p>
-                                    <p>Pas d'avis</p>
-                                </div>
-                            </div>
-                        </a>
-                    <?php }
                 } ?>
             <?php } else { ?>
                 <p>Aucune offre trouvée </p>
             <?php } ?>
-            </section>  
-        <?php      
-        } 
-        ?>
-        
-
+        </section>
     </main>
     <?php require_once "components/footer.php"; ?>
 </body>
