@@ -11,7 +11,7 @@
   --accent-border: #bb880e;
   --text-dark: #000;
   --text-light: #eaeaea;
-  --header-size: clamp(100px, 13vh + 0.5em, 150px);
+  --header-size: 100px;
 }
 
 * {
@@ -1532,6 +1532,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 #tri [type="radio"] + label {
