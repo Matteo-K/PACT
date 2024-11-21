@@ -469,8 +469,9 @@ header ul + div {
   }
 
   #logoText {
+
       margin-top: 1em;
-      font-size: 10vw;
+      font-size: clamp(16px, 10vw, 48px);
   }
 
   #divFormHeader{
@@ -497,9 +498,10 @@ header ul + div {
   }
 
   #btnConn {
-      width: 15em;
+      width: 10em;
       height: 3em;
-      font-size: 16px;
+      font-size: 18px;
+      font-weight: 400;
       margin-top: 10px;
       
   }
