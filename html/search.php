@@ -373,6 +373,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $resume= $offre['resume'];
                     $noteAvg = "Non noté";
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
+                    $ville=$offre['ville'];
+                    $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
                     if (($offre['listhorairemidi'])!="") {
                         $horaireMidi=explode(';',$offre['listhorairemidi']);                        
                         // Tableau final
@@ -430,19 +432,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                             }
                         }
                     }
-    
-                    // Requête pour la localisation
-                    $loca = $conn->prepare("SELECT * FROM pact._localisation WHERE idOffre = $idOffre");
-                    $loca->execute();
-                    $ville = $loca->fetchAll(PDO::FETCH_ASSOC);
-    
-                    // Requête pour la gamme de prix
-                    $prix = $conn->prepare("SELECT * FROM pact.restaurants WHERE idOffre = $idOffre");
-                    $prix->execute();
-                    $gamme = $prix->fetchAll(PDO::FETCH_ASSOC);
-                    $gammeText = ($gamme) ? " ⋅ " . $gamme[0]['gammedeprix'] : "";
-    
-                    // recuperation des tag pour chaque offre
     
                     $tagR = $conn->prepare("SELECT * FROM pact._tag_restaurant WHERE idoffre=$idOffre");
                     $tagR->execute();
