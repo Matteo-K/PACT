@@ -163,7 +163,7 @@ try {
       }
 
       //On remplace les caractères accentués par leur version sans accents
-      let texte = supprAccents(input.val.toLowerCase());
+      let texte = supprAccents(val.toLowerCase());
 
       // Filtrer les tags correspondant à la saisie
       suggestions = suggestions.filter(tag =>
