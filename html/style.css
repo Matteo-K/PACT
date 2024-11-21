@@ -464,8 +464,8 @@ header ul + div {
   }
 
   #logo {
-      width: 2vw;
-      height: 2vw;
+      width: 10vw;
+      height: 10vw;
   }
 
   #logoText {
@@ -476,7 +476,7 @@ header ul + div {
     order:10;
   }
   #formHeader {
-      width: 35vw;
+      width: 100vw;
       margin-top: 10px;
       justify-content: center;
       align-items:center;
