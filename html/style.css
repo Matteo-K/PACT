@@ -1141,7 +1141,7 @@ header ul + div {
 }
 
 #choixCategorie {
-  width: calc(70% + 141.625px);
+  width: calc(33.6% + 141.625px);
   /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
 }
 
@@ -1186,12 +1186,6 @@ header ul + div {
   flex-wrap: wrap;
 }
 
-#divListeComplet{
-  position: relative;
-  width: calc(70% + 141.625px) ;
-  border: 5px solid red;
-}
-
 #autocompletion{
   padding: 10px 5px 0;
   margin: 0;
@@ -1204,7 +1198,7 @@ header ul + div {
   border-bottom-right-radius: 0;
   height: 200px;
   position: absolute;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 #autocompletion li{
