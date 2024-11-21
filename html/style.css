@@ -1505,15 +1505,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-color: #ccc;
-  border-radius: 4px; /* Pour des bords arrondis */
+  background-color: var(--background);
+  border: 2px var(--accent) solid;
   position: relative;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 #trifiltre input[type="checkbox"]:checked + .checkmark {
-  background-color: #4caf50;
+  background-color: var(--background);
 }
 
 #trifiltre input[type="checkbox"]:checked + .checkmark::after {
@@ -1523,8 +1523,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   left: 4px;
   width: 12px;
   height: 12px;
-  background-color: white;
-  border-radius: 2px;
+  background-color: var(--accent);
+  border-radius: 50%;
 }
 
 
@@ -1640,7 +1640,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #titleOffer {
   text-align: center;
   font-size: 5em;
-  margin-top: 0;
+  margin-top: 1em;
   color: var(--bloc);
   margin-bottom: 0.5em;
 }
