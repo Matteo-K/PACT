@@ -1489,12 +1489,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 380px;
   top: 0;
   left: 0;
-  padding: calc(var(--header-size) + 10px) 10px 10px 10px;
+  padding: 10px;
   border-radius: 0 0 45px 0;
 }
 
 #trifiltre h3, #trifiltre h2 {
   margin: 10px;
+  margin-bottom: 0;
 }
 
 /* Tout les input */
@@ -1553,13 +1554,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #trifiltre select {
-  width: 200px;
-  padding: 10px;
-  border: 2px solid #ccc;
+  padding: 5px 10px;
+  border: 2px solid var(--secondary);
   border-radius: 5px;
-  background-color: white;
-  color: #333;
-  font-size: 16px;
+  background-color: var(--secondary);
+  color: var(--text-dark);
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -1570,14 +1569,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   cursor: pointer;
 }
 
-#trifiltre select:hover {
-  border-color: #4caf50;
-}
-
 #trifiltre select:focus {
   outline: none;
-  border-color: #4caf50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  border-color: var(--accent);
+  box-shadow: 0 0 5px var(--accent-border);
 }
 
 /* bloc de bouton menu téléphone*/
@@ -1610,6 +1605,30 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-start;
+}
+
+#trifiltre label {
+  font-weight: bold;
+}
+
+#prix div, #statut div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin: 5px;
+  margin-left: 10px;
+}
+
+#categorie h3, #categorie ul {
+  margin: 0;
+}
+
+#categorie ul {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
 }
 
 .star {
@@ -1671,7 +1690,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     justify-content: space-evenly;
   }
 }
-
+.mainOffer .tag,
+.ouvert,
+.ferme {
+  background-color: var(--accent);
+  box-shadow: none;
+  margin-bottom: 2em;
+}
 /*  ***************************************************************************************
      **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
      *************************************************************************************** */
@@ -1963,7 +1988,12 @@ tbody td:last-child {
   .mainOffer .tag,
   .ouvert,
   .ferme {
-    font-size: clamp(8px, 10vw,22px);
+    font-size: 13px;
+    padding-inline: 15px;
+  }
+
+  .mainOffer>div {
+    gap: 0.5em;
   }
 }
 
@@ -2153,11 +2183,31 @@ tbody td:last-child {
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
-#restaurant >section{
-  background-color: yellow;
-  display: flex;
-  flex-direction: column;
+#restaurant {
+
+  padding: 20px;
 }
+
+
+#restaurant h4 {
+  margin-bottom: 15px;
+}
+
+
+
+
+#restaurant label {
+  display: inline-block; /* Garantit que chaque bouton radio et son texte restent alignés */
+  width: 100%; /* Chaque option occupe toute la largeur */
+  margin-bottom: 10px; /* Espacement entre les options */
+}
+
+#restaurant input[type="radio"] {
+  margin-right: 10px; /* Espace entre le bouton radio et le texte */
+  vertical-align: middle; /* Aligne verticalement le bouton radio avec le texte */
+}
+
+
 
 #show {
   align-items: center;
@@ -2272,14 +2322,12 @@ body[id="body_creation_compte"] ::placeholder {
   text-align: left;
 }
 
-.creation-compte div.ligne1>label,
-div.ligne6>label {
+.creation-compte div.ligne1>label, div.ligne6>label {
   display: inline-block;
   width: 408px;
 }
 
-.creation-compte div.ligne2>label,
-div.ligne3>label {
+.creation-compte div.ligne2>label, div.ligne3>label {
   display: flex;
   justify-content: left;
   width: 823px;
@@ -2441,7 +2489,7 @@ div[id="messageErreur"] {
 
 /* Média query pour passer au format téléphone */
 @media (max-width: 375px) {
-  body[id="body_creation_compte"] {
+  /* body[id="body_creation_compte"] {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2449,7 +2497,8 @@ div[id="messageErreur"] {
     min-height: 100vh;
     margin: 0;
     padding: 0;
-  }
+    width: 100%;
+  } */
 
   h1[id="inscriptionTitre"] {
     font-size: 45px;
@@ -2469,23 +2518,30 @@ div[id="messageErreur"] {
   }
 
   .creation-compte div {
-    display: inline;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     margin: 10px;
     width: 90%;
     max-width: 380px;
   }
 
+  .creation-compte .ligne7 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+    width: 90%;
+    max-width: 380px;
+}
+
   .creation-compte label {
-    display: block;
     text-align: left;
     margin-bottom: 5px;
     font-size: 18px;
-    width: 100%;
   }
 
   .creation-compte input {
-    width: 100%;
     max-width: 280px;
     height: 40px;
     margin-bottom: 15px;
@@ -2748,7 +2804,6 @@ p[id="legendeBoutonLienPro"] {
   p[id="legendeBoutonLienPro"] {
     display: none;
   }
-
 }
 
 @media (max-width: 600px) {
