@@ -13,6 +13,7 @@
             <?php
             if ($tag!="") {
                 foreach ($tag as $value) {
+                    $value=str_replace($value,'_',' ');
                     ?><span class="searchTag"><?php echo $value." " ?></span><?php
                 }
             }
