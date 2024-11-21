@@ -282,11 +282,11 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                         $idutilisateur=$_SESSION["idUser"];
                         if ($offre['idU']==$idutilisateur) {
-                            require_once '/components/cardOffer.php'; 
+                            require_once "components/cardOffer.php"; 
                         }
                     }else {
                         if ($offre['statut']=='actif') {
-                            require_once '/components/cardOffer.php'; 
+                            require_once "components/cardOffer.php";
                         }
                     }
                     
