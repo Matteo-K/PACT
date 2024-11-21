@@ -25,11 +25,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Initialiser l'affichage
-    updateSirenVisibility();
+    //updateSirenVisibility();
 
     // Ajouter des écouteurs d'événements sur les boutons radio
-    publicRadio.addEventListener("click", updateSirenVisibility);
-    priveRadio.addEventListener("click", updateSirenVisibility);
+    //publicRadio.addEventListener("click", updateSirenVisibility);
+    //priveRadio.addEventListener("click", updateSirenVisibility);
+
+    // Initialiser l'affichage si on est dans accountPro.php
+    if (sirenInput && sirenLabel) {
+        updateSirenVisibility();
+        publicRadio?.addEventListener("click", updateSirenVisibility);
+        priveRadio?.addEventListener("click", updateSirenVisibility);
+    }
 
 
 
