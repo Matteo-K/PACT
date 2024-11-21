@@ -1598,6 +1598,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #tri, #filtre {
   color: var(--text-light);
+  transition: all 0.3s ease-in-out;
 }
 
 /* chaque ligne d'étoile */
@@ -1650,9 +1651,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .openFiltreTri {
-  display: block;
-  opacity: 1;
-  transform: translateX(0);
+  display: block !important;
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
 
 @media (max-width : 1079px) {
