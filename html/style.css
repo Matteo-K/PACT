@@ -1495,6 +1495,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #trifiltre h3, #trifiltre h2 {
   margin: 10px;
+  margin-bottom: 0;
 }
 
 /* Tout les input */
@@ -1554,9 +1555,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #trifiltre select {
   padding: 5px 10px;
-  border: 2px solid #ccc;
+  border: 2px solid var(--secondary);
   border-radius: 5px;
-  background-color: white;
+  background-color: var(--secondary);
   color: var(--text-dark);
   appearance: none;
   -webkit-appearance: none;
@@ -1606,13 +1607,28 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: flex-start;
 }
 
+#trifiltre label {
+  font-weight: bold;
+}
+
 #prix div, #statut div {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
+  margin: 5px;
   margin-left: 10px;
+}
+
+#categorie h3, #categorie ul {
+  margin: 0;
+}
+
+#categorie ul {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
 }
 
 .star {
@@ -1674,7 +1690,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     justify-content: space-evenly;
   }
 }
-
+.mainOffer .tag,
+.ouvert,
+.ferme {
+  background-color: var(--accent);
+  box-shadow: none;
+  margin-bottom: 2em;
+}
 /*  ***************************************************************************************
      **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
      *************************************************************************************** */
@@ -1967,6 +1989,11 @@ tbody td:last-child {
   .ouvert,
   .ferme {
     font-size: 10px;
+    padding-inline: 15px;
+  }
+
+  .mainOffer>div {
+    gap: 0.5em;
   }
 }
 
@@ -2484,23 +2511,30 @@ div[id="messageErreur"] {
   }
 
   .creation-compte div {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     margin: 10px;
     width: 90%;
     max-width: 380px;
   }
 
+  .creation-compte .ligne7 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+    width: 90%;
+    max-width: 380px;
+}
+
   .creation-compte label {
-    display: block;
     text-align: left;
     margin-bottom: 5px;
     font-size: 18px;
-    width: 100%;
   }
 
   .creation-compte input {
-    width: 100%;
     max-width: 280px;
     height: 40px;
     margin-bottom: 15px;
