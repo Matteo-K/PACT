@@ -315,16 +315,11 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     const btnTri = document.querySelector("#btnTri");
 
     btnFiltre.addEventListener("click", () => {
-
+        element.classList.add("openFiltreTri");
     });
 
-
-    function openPop-up(element) {
-        element.classList.add("openFiltreTri");
-    }
-    
-    function closePop-up(element) {
-        element.classList.remove("openFiltreTri");
-    }
+    btnFiltre.addEventListener("click", () => {
+        element.classList.togle("openFiltreTri");
+    });
 </script>
 </html>
