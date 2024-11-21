@@ -293,7 +293,7 @@ VALUES (2, 'romantique');
 -- Peuplement de la table _tag_restaurant
 INSERT INTO _tag_restaurant (idOffre, nomTag) 
 VALUES (3, 'cuisine locale'),
-       (3, 'cuisine gastronomique');
+       (3, 'street food');
 
 
  
