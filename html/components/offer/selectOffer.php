@@ -130,7 +130,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if ($opt['nomoption'] === "EnRelief") {
             ?>
             <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
-              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;)
+              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
             </span>
             <?php
             break;
@@ -145,7 +145,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if ($opt['nomoption'] === "ALaUne") {
             ?>
             <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
-              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;&nbsp;)
+              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
             </span>
             <?php
             break;
@@ -164,7 +164,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     const radio = document.querySelectorAll("[type='radio']");
     const option = document.querySelectorAll('[type="checkbox"]');
 
-    document.getElementById('prixMin').addEventListener('change', () => {
+    function updatePrix() {
       let prix = 0;
 
       radio.forEach(element => {
@@ -182,7 +182,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       });
 
       prixPrevisionnel.innerText = prix.toFixed(2);
-    });
+    }
 
     radio.forEach(element => {
       element.addEventListener("click", updatePrix);
