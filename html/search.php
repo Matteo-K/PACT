@@ -319,6 +319,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         }
                     }else {
                         if ($offre['statut']=='actif') {
+                            print_r($tag);
                             require "components/cardOffer.php";
                         }
                     }
