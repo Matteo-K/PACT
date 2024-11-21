@@ -311,7 +311,7 @@ header > div > a > div {
   font-size: 25px;
   border-radius: 2em;
   height: 2em;
-  width: 175px;
+  width: 10em;
   background-color: var(--accent);
   text-align: center;
   justify-content: center;
@@ -468,12 +468,13 @@ header ul + div {
 
   #divFormHeader{
     order:10;
+    width: 100%;
   }
   #formHeader {
-      width: 87vw;
+      width: 95%;
       justify-content: center;
       align-items:center;
-      margin-inline: 1em;
+      margin:0 2em;
   }
 
   #auth {
@@ -485,7 +486,7 @@ header ul + div {
   }
 
   #btnConn {
-      width: 10em;
+      width: 9em;
       height: 2.2em;
       font-size: 18px;
       margin-top: 10px;
@@ -1488,11 +1489,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 400px;
   top: 0;
   left: 0;
-  padding-top: var(--header-size);
+  padding: calc(var(--header-size) + 10px) 10px 10px 10px;
+  border-radius: 0 0 45px 0;
+  padding: 10px;
 }
 
 #trifiltre h3, #trifiltre h2 {
   margin: 10px;
+}
+
+#trifiltre [type="checkbox"] {
+  border: var(--accent) 1px solid;
+}
+
+#trifiltre [type="checkbox"]:checked {
+  accent-color: var(--accent);
 }
 
 /* bloc de bouton menu téléphone*/
@@ -1516,15 +1527,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  gap: 30px;
 }
 
 #note > div {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  justify-content: flex-end;
-  margin-inline: 20%;
+  justify-content: flex-start;
 }
 
 .star {

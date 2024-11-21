@@ -79,11 +79,42 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 </div>
             </aside>
             <aside id="filtre" class="asdTriFiltre">
-                <h2>Filtres de recherche</h2>
+                <h2>Filtrer</h2>
                 <div class="blcTriFiltre">
                     <div id="note">
                         <h3>Par note</h3>
                         <div>
+                            <input type="checkbox" name="1star" id="1star" checked>
+                            <label for="1star" class="blocStar">
+                                <div class="star"></div>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="2star" id="2star" checked>
+                            <label for="2star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                        </div>
+                        <div>    
+                            <input type="checkbox" name="3star" id="3star" checked>
+                            <label for="3star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="4star" id="4star" checked>
+                            <label for="4star" class="blocStar">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="5star" id="5star" checked>
                             <label for="5star" class="blocStar">
                                 <div class="star"></div>
                                 <div class="star"></div>
@@ -91,37 +122,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 <div class="star"></div>
                                 <div class="star"></div>
                             </label>
-                            <input type="checkbox" name="5star" id="5star" checked>
-                        </div>
-                        <div>
-                            <label for="4star" class="blocStar">
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                            </label>
-                            <input type="checkbox" name="4star" id="4star" checked>
-                        </div>
-                        <div>    
-                            <label for="3star" class="blocStar">
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                            </label>
-                            <input type="checkbox" name="3star" id="3star" checked>
-                        </div>
-                        <div>
-                            <label for="2star" class="blocStar">
-                                <div class="star"></div>
-                                <div class="star"></div>
-                            </label>
-                            <input type="checkbox" name="2star" id="2star" checked>
-                        </div>
-                        <div>
-                            <label for="1star" class="blocStar">
-                                <div class="star"></div>
-                            </label>
-                            <input type="checkbox" name="1star" id="1star" checked>
                         </div>
                     </div>
                     <div id="blcPrixStatut">
