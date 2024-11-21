@@ -305,7 +305,7 @@ header > div > a > div {
 }
 
 #btnConn {
-  margin-right: 1em;
+  margin-right: 0.5em;
   display: flex;
   color: #000;
   font-size: 25px;
