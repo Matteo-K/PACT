@@ -375,6 +375,8 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
                     $ville=$offre['ville'];
                     $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
+                    $nomTag=$offre['categorie'];
+                    $tag = explode(',',trim($offre['all_tags'],'{}'));
                     if (($offre['listhorairemidi'])!="") {
                         $horaireMidi=explode(';',$offre['listhorairemidi']);                        
                         // Tableau final
@@ -431,43 +433,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 break;
                             }
                         }
-                    }
-    
-                    $tagR = $conn->prepare("SELECT * FROM pact._tag_restaurant WHERE idoffre=$idOffre");
-                    $tagR->execute();
-                    $idTagR = $tagR->fetchAll(PDO::FETCH_ASSOC);
-    
-                    $tagV = $conn->prepare("SELECT * FROM pact._tag_visite WHERE idoffre=$idOffre");
-                    $tagV->execute();
-                    $idTagV = $tagV->fetchAll(PDO::FETCH_ASSOC);
-    
-                    $tagP = $conn->prepare("SELECT * FROM pact._tag_parc WHERE idoffre=$idOffre");
-                    $tagP->execute();
-                    $idTagP = $tagP->fetchAll(PDO::FETCH_ASSOC);
-    
-                    $tagA = $conn->prepare("SELECT * FROM pact._tag_act WHERE idoffre=$idOffre");
-                    $tagA->execute();
-                    $idTagA = $tagA->fetchAll(PDO::FETCH_ASSOC);
-                    
-                    $tagS = $conn->prepare("SELECT * FROM pact._tag_spec WHERE idoffre=$idOffre");
-                    $tagS->execute();
-                    $idTagS = $tagS->fetchAll(PDO::FETCH_ASSOC);
-    
-                    if ($idTagR) {
-                        $tag=$idTagR;
-                        $nomTag="Restaurant";
-                    }elseif ($idTagV) {
-                        $tag=$idTagV;
-                        $nomTag="Visite";
-                    }elseif ($idTagP) {
-                        $tag=$idTagP;
-                        $nomTag="Parc d'Attraction";
-                    }elseif ($idTagA) {
-                        $tag=$idTagA;
-                        $nomTag="Activite";
-                    }else {
-                        $tag=$idTagS;
-                        $nomTag="Spectacle";
                     }
                     
                     if ($offre['statut'] == 'actif') { ?>
