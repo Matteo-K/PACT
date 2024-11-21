@@ -1575,6 +1575,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   box-shadow: 0 0 5px var(--accent-border);
 }
 
+#blcPrixStatut, #blcCategorieNote {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 30px;
+}
+
 /* bloc de bouton menu téléphone*/
 #trifiltre > div {
   display: none;
@@ -1592,13 +1600,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   color: var(--text-light);
 }
 
-#blcPrixStatut {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 30px;
-}
 
 #note > div {
   display: flex;
