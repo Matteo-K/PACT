@@ -315,16 +315,27 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     const btnTri = document.querySelector("#btnTri");
 
     btnFiltre.addEventListener("click", () => {
-
+        element.classList.add("openFiltreTri");
     });
 
+    btnFiltre.addEventListener("click", () => {
+        element.classList.togle("openFiltreTri");
+    });
 
-    function openPop-up(element) {
-        element.classList.add("openFiltreTri");
-    }
+    function inverseValues() {
+    const selectMin = document.getElementById('prixMin');
+    const selectMax = document.getElementById('prixMax');
     
-    function closePop-up(element) {
-        element.classList.remove("openFiltreTri");
+    const valueMin = parseInt(selectMin.value);
+    const valueMax = parseInt(selectMax.value);
+    
+    // Comparer les valeurs
+    if (valueMin > valueMax) {
+        // Inverser les valeurs sélectionnées
+        selectMin.value = valueMax;
+        selectMax.value = valueMin;
     }
+}
+
 </script>
 </html>

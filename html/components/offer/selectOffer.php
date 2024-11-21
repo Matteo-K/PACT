@@ -59,7 +59,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       foreach ($abonnement as $ab) {
         if ($ab['nomabonnement'] === "Gratuit") {
             ?>
-            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
+            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;jour</h3>
             <?php
             break;
         }
@@ -82,7 +82,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       foreach ($abonnement as $ab) {
         if ($ab['nomabonnement'] === "Premium") {
             ?>
-            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
+            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;jour</h3>
             <?php
             break;
         }
@@ -104,7 +104,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       foreach ($abonnement as $ab) {
         if ($ab['nomabonnement'] === "Basique") {
             ?>
-            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;mois</h3>
+            <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;jour</h3>
             <?php
             break;
         }
@@ -130,7 +130,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if ($opt['nomoption'] === "EnRelief") {
             ?>
             <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
-              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;&nbsp;)
+              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;)
             </span>
             <?php
             break;
@@ -164,7 +164,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     const radio = document.querySelectorAll("[type='radio']");
     const option = document.querySelectorAll('[type="checkbox"]');
 
-    function updatePrix() {
+    document.getElementById('prixMin').addEventListener('change', () => {
       let prix = 0;
 
       radio.forEach(element => {
@@ -182,7 +182,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       });
 
       prixPrevisionnel.innerText = prix.toFixed(2);
-    }
+    });
 
     radio.forEach(element => {
       element.addEventListener("click", updatePrix);
