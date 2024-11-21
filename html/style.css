@@ -1930,7 +1930,6 @@ tbody td:last-child {
   .mainOffer .tag,
   .ouvert,
   .ferme {
-    height: 0.1em;
     font-size: clamp(8px, 10vw,22px);
   }
 }
