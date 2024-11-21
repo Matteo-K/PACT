@@ -68,7 +68,26 @@ VALUES ('familial'),
        ('interactif'),
        ('spectacles inclus'),
        ('sensations fortes');
+       ('Local'),
+       ('international'),
+       ('insolite'),
+       ('populaire'),
+       ('exclusif'),
+       ('vegetarien'),
+       ('authentique'),
+       ('romantique'),
+       ('festif'),
+       ('calme'),
         -------------------------------------------------------------------------------------
+
+        /*    "", "", "", "", "", "",
+    "", "", "", "", "Intimiste", "Ludique",
+    "Traditionnel", "Contemporain", "Convivial", "En extérieur", "En intérieur",
+    "Urbain", "Rural", "En bord de mer", "Montagne", "Patrimonial",
+    "Historique", "Culturel", "Moderne", "Médiéval", "Naturel", "Industriel",
+    "Féérique", "Nocturne", "Diurne", "Week-end", "Vacances scolaires",
+    "Estival", "Hivernal", "Saisonnier", "Couple", "Enfants", "Adolescents",
+    "Seniors", "Groupes", "Solo", "Amateurs de sensations"*/
 
 -- Peuplement de la table _jour
 INSERT INTO _jour (jour) 
