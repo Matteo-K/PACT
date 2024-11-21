@@ -1618,7 +1618,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #titleOffer {
   text-align: center;
   font-size: 5em;
-  margin-top: 0;
+  margin-top: 1em;
   color: var(--bloc);
   margin-bottom: 0.5em;
 }
