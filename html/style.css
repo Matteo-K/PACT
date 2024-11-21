@@ -2478,9 +2478,9 @@ div[id="messageErreur"] {
 }
 
 
-/*+++++++++++++++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte membre, Antoine */
-/*+++++++++++++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++++++++++++++++*/
 .creation-compte div.ligne1>label, div.ligne1_1>label, div.ligne6>label {
   display: inline-block;
   width: 408px;
@@ -2495,7 +2495,7 @@ div[id="messageErreur"] {
   }
 
   aside[id="asideRetour"] {
-    position: static;
+    position: fixed;
     top: 10px;
     left: 10px;
   }
@@ -2569,9 +2569,9 @@ div[id="messageErreur"] {
 
 
 
-/*+++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
-/*+++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++*/
 body[id="body_connexion"] {
   background-image: url("img/fond.png");
   background-repeat: no-repeat;
