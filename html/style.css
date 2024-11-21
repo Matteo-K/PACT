@@ -208,7 +208,7 @@ header div > a {
   flex-direction: row;
   text-decoration: none;
   align-items: center;
-  /* Alignement vertical de l'image et du texte */
+
 }
 
 header h1 {
@@ -230,10 +230,7 @@ header div > a > img,
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
-  /* Espace entre le logo et le texte */
 }
-
-
 
 /* Formulaire de recherche */
 #formHeader {
@@ -244,7 +241,6 @@ header div > a > img,
   height: 3em;
   width: 35vw;
   border-radius: 2em;
-  /* Largeur du formulaire */
 }
 
 #formHeader input[type="text"],
@@ -286,18 +282,18 @@ header div > a > img,
   font-size: 48px;
   color: var(--bloc);
   text-align: center;
-  /* Centrer le texte horizontalement */
+  
 }
 
 #pro {
   font-family: "Lato";
   font-size: 16px;
-  /* Ajuste la taille du texte "PRO" */
+  
   color: var(--text-dark);
   text-align: center;
-  /* Centrer le texte horizontalement */
+ 
   margin-top: -50px;
-  /* Ajuste l'espacement entre "PACT" et "PRO" */
+  
 }
 
 header > div > a > div {
@@ -322,36 +318,35 @@ header > div > a > div {
 
 /* Style général du menu de profil */
 #profileMenu {
-  color: #fff; /* Couleur du texte */
+  color: #fff; 
   margin: 0;
   position: fixed;
   top: 0;
   right: 0;
-  height: 100%; /* Prend toute la hauteur de la page */
-  width: 300px; /* Largeur du menu */
+  height: 100%; 
+  width: 300px;
   background: linear-gradient(
     to bottom,
     #034d7c,
     #1ca4ed
   ); /* Dégradé du haut vers le bas */
   display: flex;
-  flex-direction: column; /* Aligne les éléments verticalement */
-  transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease; /* Transition pour le mouvement */
-  transform: translateX(100%); /* Commence en dehors de l'écran à droite */
-  visibility: hidden; /* Caché par défaut */
-  opacity: 0; /* Invisible par défaut */
+  flex-direction: column;
+  transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease; 
+  visibility: hidden; 
+  opacity: 0;
 }
 
 #profileMenu.show {
-  visibility: visible; /* Rendre l'élément visible */
-  opacity: 1; /* Complètement opaque */
-  transform: translateX(0); /* Ramène le menu dans la vue */
+  visibility: visible; 
+  opacity: 1;
+  transform: translateX(0);
 }
 
 #profileMenu.hide {
-  visibility: visible; /* Garder visible pendant la sortie */
-  opacity: 0; /* Rendre invisible */
-  transform: translateX(100%); /* Retourne à la position initiale */
+  visibility: visible;
+  opacity: 0;
+  transform: translateX(100%);
 }
 
 /* Conteneur pour l'image et le pseudo */
@@ -374,71 +369,71 @@ header > div > a > div {
 /* Styles pour le pseudo ou le nom */
 #imagProfil figcaption {
   text-shadow: black -2px 2px;
-  text-align: center; /* Centre le texte sous l'image */
-  font-size: 20px; /* Taille de la police */
-  font-weight: bold; /* Texte en gras */
-  margin: 0; /* Supprime la marge par défaut */
-  color: #fff; /* Couleur du texte pour meilleure visibilité */
+  text-align: center; 
+  font-size: 20px; 
+  font-weight: bold; 
+  margin: 0; 
+  color: #fff;
 }
 
 #backButton {
   margin: 0;
   font-size: 20px;
-  cursor: pointer; /* Pointeur pour indiquer un élément cliquable */
-  margin-bottom: 2em; /* Espacement en bas */
-  position: absolute; /* Position absolue pour le placer dans le coin */
+  cursor: pointer;
+  margin-bottom: 2em;
+  position: absolute;
   left: 10px;
   top: 0;
 }
 
 /* Styles pour les liens du menu */
 #profileMenu ul {
-  list-style-type: none; /* Supprime les puces */
-  padding: 0; /* Supprime le padding */
-  flex-grow: 1; /* Permet à la liste de s'étendre */
+  list-style-type: none; 
+  padding: 0; 
+  flex-grow: 1;
   display: flex;
-  flex-direction: column; /* Aligne les éléments verticalement */
-  justify-content: center; /* Centre les éléments verticalement */
+  flex-direction: column;
+  justify-content: center;
   gap: 20px;
 }
 
 #profileMenu ul li {
-  margin: 20px 0; /* Espacement entre les éléments */
+  margin: 20px 0; 
   font-size: 30px;
   font-family: "Belanosima", sans-serif;
   font-weight: bold;
 }
 
 #profileMenu a {
-  color: #fff; /* Couleur des liens */
-  text-decoration: none; /* Supprime le soulignement */
-  transition: color 0.5s; /* Animation de couleur */
-  padding: 10px; /* Ajoute du padding */
-  text-align: center; /* Centre le texte */
-  border-radius: 10px; /* Coins arrondis */
+  color: #fff; 
+  text-decoration: none;
+  transition: color 0.5s;
+  padding: 10px; 
+  text-align: center;
+  border-radius: 10px;
 }
 
 #profileMenu ul a:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Couleur de fond au survol */
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 header ul + div {
   width: 100%;
   flex-direction: column;
-  margin-bottom: 3em; /* Espacement en bas */
+  margin-bottom: 3em;
   gap: 10px;
 }
 
 .buttonMenu {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centre horizontalement et verticalement */
-  width: 75%; /* Largeur des boutons */
-  padding: 10px; /* Ajoute un peu de padding */
+  justify-content: center;
+  width: 75%;
+  padding: 10px;
   border-radius: 0.5em;
   text-align: center;
-  margin: 0 auto; /* Centre le bouton horizontalement dans son conteneur */
-  text-decoration: none; /* Supprime le soulignement */
+  margin: 0 auto;
+  text-decoration: none;
   font-size: 20 px;
 }
 
@@ -451,7 +446,7 @@ header ul + div {
 
 #logoutButton {
   background-color: #ff0000cc;
-  margin-bottom: 2em; /* Espacement en bas */
+  margin-bottom: 2em;
 }
 
 #logoutButton:hover {
@@ -506,7 +501,6 @@ header ul + div {
       
   }
 
-  /* Adjust menu layout */
   #profileMenu {
       position: absolute;
       top: 60px;
