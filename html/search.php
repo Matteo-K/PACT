@@ -376,25 +376,13 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         
         btnTri.addEventListener("click", () => {
             asideTri.classList.add("openFiltreTri");
-            console.log("ouvert Tri");
-            console.log(btnFiltre);
-        });
-        
-        btnTri.addEventListener("click", () => {
-            asideTri.classList.togle("openFiltreTri");
-            console.log("ferme Filtre");
+            console.log("toggle Tri");
             console.log(btnFiltre);
         });
         
         btnFiltre.addEventListener("click", () => {
-            asideFiltre.classList.add("openFiltreTri");
-            console.log("ouvert Filtre");
-            console.log(btnFiltre);
-        });
-        
-        btnFiltre.addEventListener("click", () => {
-            asideFiltre.classList.togle("openFiltreTri");
-            console.log("ferme Filtre");
+            asideFiltre.classList.toggle("openFiltreTri");
+            console.log("toggle Filtre");
             console.log(btnFiltre);
         });
     });
