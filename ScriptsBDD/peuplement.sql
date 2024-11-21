@@ -62,7 +62,12 @@ VALUES ('familial'),
        ('rapide'),
        ('breton'),
        ('vegetarien'),
-       ('animaux');
+       ('animaux'),
+       ('thématique'),
+       ('aquatique'),
+       ('interactif'),
+       ('spectacles inclus'),
+       ('sensations fortes');
         -------------------------------------------------------------------------------------
 
 -- Peuplement de la table _jour
@@ -201,8 +206,13 @@ VALUES ('Lundi', 1, '10:00', '18:00'),
 -- Peuplement de la table _tag_parc
 INSERT INTO _tag_parc (idOffre, nomTag) 
 VALUES (1, 'familial'), 
-       (1, 'animaux');
---"Sensations fortes", , "animaux", "Spectacles inclus", "Thématique", "Aquatique", "Interactif", 
+       (1, 'animaux'),
+       (1,'thématique'),
+       (1,'aquatique'),
+       (1,'interactif'),
+       (1,'spectacles inclus'),
+       (1,'sensations fortes');
+--(sensations fortes",
 -- Peuplement de la table _tag_spec
 INSERT INTO _tag_spec (idOffre, nomTag) 
 VALUES (2, 'romantique');
