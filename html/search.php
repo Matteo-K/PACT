@@ -183,10 +183,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                         <h3>Par catégorie</h3>
                         <ul>
                             <li>
-                                <label for="Restauration">
-                                    <input type="checkbox" name="categorie" id="Restauration" checked>
+                                <label for="Visite">
+                                    <input type="checkbox" name="categorie" id="Visite" checked>
                                     <span class="checkmark"></span>
-                                    Restauration
+                                    Visite
                                 </label>
                             </li>
                             <li>
@@ -197,24 +197,24 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                                 </label>
                             </li>
                             <li>
-                                <label for="Parc">
-                                    <input type="checkbox" name="categorie" id="Parc" checked>
-                                    <span class="checkmark"></span>
-                                    Parc d’attractions
-                                </label>
-                            </li>
-                            <li>
-                                <label for="Visite">
-                                    <input type="checkbox" name="categorie" id="Visite" checked>
-                                    <span class="checkmark"></span>
-                                    Visite
-                                </label>
-                            </li>
-                            <li>
                                 <label for="Spectacle">
                                     <input type="checkbox" name="categorie" id="Spectacle" checked>
                                     <span class="checkmark"></span>
                                     Spectacle
+                                </label>
+                            </li>
+                            <li>
+                                <label for="Restauration">
+                                    <input type="checkbox" name="categorie" id="Restauration" checked>
+                                    <span class="checkmark"></span>
+                                    Restauration
+                                </label>
+                            </li>
+                            <li>
+                                <label for="Parc">
+                                    <input type="checkbox" name="categorie" id="Parc" checked>
+                                    <span class="checkmark"></span>
+                                    Parc d’attractions
                                 </label>
                             </li>
                         </ul>
