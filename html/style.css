@@ -1338,7 +1338,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* justify-content: center; */
   padding-top: 30px;
   gap: 20px;
-  margin-left: 400px;
+  margin-left: clamp(23%, 350px, 400px);
 }
 
 .carteOffre {
@@ -1511,9 +1511,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 @media (max-width : 1079px) {
   .search {
-    position: block;
+    position: static;
   }
 
+  .searchoffre {
+    margin-left: 0;
+  }
 
   #trifiltre > div {
     display: block;
@@ -1528,6 +1531,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   #tri, #filtre {
     display: none;
     color: var(--text-light);
+  }
+
+  #trifiltre > div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
 
