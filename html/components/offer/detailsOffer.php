@@ -230,7 +230,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         function ajoutTag(valeurTag) {
 
             if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
-                
+
                 compteurTags++;
                 tags.push(valeurTag); // Ajoute le tag dans le tableau
 
@@ -241,7 +241,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                 //On créé une image pour guider l'utilisateur sur le suppression du tag
                 const imgCroix = document.createElement("img");
-                imgCroix.setAttribute.src="../img/icone/croix.png";
+                imgCroix.setAttribute("src", "../img/icone/croix.png");
 
                 // Crée l'input caché pour soumettre le tag avec le formulaire
                 const hiddenInputTag = document.createElement("input");
