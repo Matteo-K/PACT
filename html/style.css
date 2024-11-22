@@ -146,12 +146,14 @@ footer div+div {
 }
 
 footer div+div p {
-  flex: 3;
+  width: fit-content;
   text-wrap: nowrap;
 }
 
 footer div+div a {
-  flex: 2;
+  width: fit-content;
+  margin: 0;
+  margin-right: 10%;
 }
 
 @media screen and (max-width : 1310px) {
@@ -240,7 +242,7 @@ header div > a > img,
   border: var(--bloc) solid 3px;
   border-radius: 2em;
   height: 3em;
-  width: 35vw;
+  width: 34vw;
   border-radius: 2em;
 }
 
@@ -1579,6 +1581,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #trifiltre [type="date"], #trifiltre [type="time"] {
   height: 17px;
   padding: 5px 10px;
+  margin-bottom: 8px;
   border: 2px solid var(--secondary);
   border-radius: 5px;
   background-color: white;
