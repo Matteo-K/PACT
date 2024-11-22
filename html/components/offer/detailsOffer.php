@@ -38,6 +38,14 @@ $categorie = [
 ];
 
 
+//Récupération de tous les tags pour leur sélection dans l'input
+$stmt = $conn->prepare("SELECT * FROM pact._tag");
+$stmt->execute();
+
+while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $listeTags[] = str_replace("_", " ",$result["nomtag"]);
+}
+
 
 $disableCategorie = false;
 
@@ -72,16 +80,13 @@ if ($result != false) {
     }
     $stmt->execute([$idOffre]);
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $liste_tags[] = $result["nomtag"];
+        $loadedTags[] = $result["nomtag"];
     }
 }
 
 else{    
-    $liste_tags = [];
+    $loadedTags = [];
 }
-
-
-
 
 
 ?>
@@ -145,11 +150,6 @@ else{
             </section>
 
 
-<?php
-print_r($liste_tags);
-echo "test";
-?>
-
             <p>
                 Vous pouvez entrer jusqu'à 6 tags
             </p>
@@ -186,13 +186,39 @@ echo "test";
     </article>
     <script>
 
-        let tags = <?php echo json_encode($liste_tags) ?>;
+        //On récupère en JS la liste des tags pour le script 
+        const listeTags = <?php echo json_encode($listeTags) ?>;
 
-        
+        //Récupération des tags déjà présents sur l'offre puis affichage (semblable a la fonction ajouTag())
+        const loadedTags = <?php echo json_encode($loadedTags) ?>;
 
+        loadedTags.forEach(valeurTag => {
+            if (valeurTag) {
 
+                const elementTag = document.createElement("span");
+                elementTag.classList.add("tag");
+                elementTag.textContent = valeurTag;
 
+                const imgCroix = document.createElement("img");
+                imgCroix.setAttribute.src="../img/icone/croix.png";
 
+                const hiddenInputTag = document.createElement("input");
+                hiddenInputTag.type = "hidden";
+                hiddenInputTag.value = valeurTag;
+                hiddenInputTag.name = "tags[]"; 
+
+                elementTag.addEventListener("click", function () {
+                    tags.splice(tags.indexOf(valeurTag), 1); 
+                    sectionTag.removeChild(hiddenInputTag); 
+                    sectionTag.removeChild(elementTag); 
+                    pTag.style.color = "black"; 
+                });
+
+                sectionTag.appendChild(elementTag); 
+                sectionTag.appendChild(hiddenInputTag);
+                elementTag.appendChild(imgCroix);
+            }
+        });
 
 
         const radBtnRestaurant = document.querySelector("#radioRestaurant");
