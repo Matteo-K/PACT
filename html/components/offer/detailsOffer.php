@@ -240,7 +240,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 elementTag.textContent = valeurTag;
 
                 //On créé une image pour guider l'utilisateur sur le suppression du tag
-                const imgCroix = document.createElement("img");
+                let imgCroix = document.createElement("img");
                 imgCroix.setAttribute("src", "../img/icone/croix.png");
 
                 // Crée l'input caché pour soumettre le tag avec le formulaire
@@ -259,9 +259,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 });
 
                 // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel
+                elementTag.appendChild(imgCroix);
                 sectionTag.appendChild(elementTag); 
                 sectionTag.appendChild(hiddenInputTag);
-                elementTag.appendChild(imgCroix);
 
                 // Réinitialise l'input
                 inputTag.value = "";
