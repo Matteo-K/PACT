@@ -2035,7 +2035,7 @@ tbody td:last-child {
     padding-inline: 15px;
     font-weight: 600;
   }
-
+x
   .mainOffer>div {
     gap: 0.5em;
   }
@@ -2064,7 +2064,6 @@ tbody td:last-child {
   #descriptionOffre{
     flex-direction: column;
     width: 95%;
-    padding:0.5em 10px
   }
 
   table{
