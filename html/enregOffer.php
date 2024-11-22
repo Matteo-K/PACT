@@ -100,7 +100,7 @@ if (isset($_POST['pageBefore'])) {
           // Update optionoffre
       }
 
-
+      /*
       // ajout dans à la une si coché
       if (isset($_POST["aLaUne"])) {
         $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'ALaUne')");
@@ -110,7 +110,7 @@ if (isset($_POST['pageBefore'])) {
       if (isset($_POST["enRelief"])) {
         $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoption, idoffre, nomoption) VALUES (?, ?, 'EnRelief')");
         $stmt->execute([$idOffre]);
-      }
+      }*/
       break;
 
     case 2:
