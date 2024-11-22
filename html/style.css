@@ -2598,7 +2598,7 @@ div.ligne6>label {
 
 
 /* Média query pour passer au format téléphone */
-@media (max-width: 375px) {
+/* @media (max-width: 375px) {
   h1[id="inscriptionTitre"] {
     font-size: 45px;
     margin-top: 5vh;
@@ -2761,7 +2761,7 @@ div.ligne3>label {
   #conditionMotdepasse {
     order: 19;
   }
-}
+} */
 
 
 @media (max-width: 600px) {
