@@ -66,10 +66,8 @@ if (isset($_POST['pageBefore'])) {
   }
   switch ($pageBefore) {
     case 1:
-      // Supprime tout
-      $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ?");
-      $stmt->execute([$idOffre]);
-      // Ajoute les données
+      // Gestion des options d'offre
+      
 
       // ajout dans à la une si coché
       if (isset($_POST["aLaUne"])) {
@@ -298,15 +296,37 @@ if (isset($_POST['pageBefore'])) {
       }
 
 
+
       // Traitement des tags
       $tags = $_POST["tags"] ?? [];
 
+      //On supprime tous les anciens tags et on rajoute les tags actuellement sélectionnés
+      switch ($categorie) {
+        case 'restaurant':
+          $stmt = $conn->prepare("DELETE * FROM pact._tag_restaurant WHERE idoffre = ?");
+          break;
+        case 'parc':
+          $stmt = $conn->prepare("DELETE * FROM pact._tag_parc WHERE idoffre = ?");
+          break;
+        case 'activite':
+          $stmt = $conn->prepare("DELETE * FROM pact._tag_act  WHERE idoffre = ?");
+          break;
+        case 'spectacle':
+          $stmt = $conn->prepare("DELETE * FROM pact._tag_spec  WHERE idoffre = ?");
+          break;
+        case 'visite':
+          $stmt = $conn->prepare("DELETE * FROM pact._tag_visite  WHERE idoffre = ?");
+          break;
+        default:
+          break;
+      }
+
       foreach ($tags as $key => $tag) {
 
-        // et dans tous les cas on ajoute la relation tag <-> offre (différentes tables selon la catégorie)
+        //On ajoute donc tous les tags entrés
         switch ($categorie) {
           case 'restaurant':
-            $stmt = $conn->prepare("INSERT INTO pact._tag_restaurant (idoffre, nomtag) VALUES (?, ?)");
+            $stmt = $conn->prepare("INSERT INTO pact._tag_restaurant (idoffre, nomtag) VALUES (?, ?);");
             break;
           case 'parc':
             $stmt = $conn->prepare("INSERT INTO pact._tag_parc (idoffre, nomtag) VALUES (?, ?)");

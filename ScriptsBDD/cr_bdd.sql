@@ -484,6 +484,10 @@ CREATE TABLE _historiqueStatut(
       REFERENCES _offre(idOffre)
 );
 
+CREATE TABLE _facturation(
+  idFacture SERIAL,
+  dateFactue DATE NOT NULL,
+
 
 -- Création des vues pour chaque catégorie d'offres
 
