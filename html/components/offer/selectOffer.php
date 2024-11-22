@@ -35,7 +35,7 @@ $options = [
 ];
 
 if (!empty($idOffre)) {
-  $stmt = $conn->prepare("SELECT * FROM pact._option_offre NATURAL JOIN pact._dateoption WHERE idoffre = 1;");
+  $stmt = $conn->prepare("SELECT * FROM pact._option_offre NATURAL JOIN pact._dateoption WHERE idoffre = ?");
   $stmt->execute([$idOffre]);
   // si les options éxistent, on les ajoutent dans la base de donnée
   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -74,6 +74,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 ?>
 <form id="selectOffer" action="enregOffer.php" method="post">
+  <?php print_r($options); ?>
   <!-- Abonnement -->
   <div>
     <?php

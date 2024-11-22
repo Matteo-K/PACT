@@ -761,7 +761,14 @@ header ul+div {
   color: red;
 }
 
-/* ------------------------- HOURLY OFFER CSS Benji--------------------------------*/
+.blcOption {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ------------------------- HOURLY OFFER CSS --------------------------------*/
 #hourlyOffer {
   padding: 20px;
   padding-bottom: 6%;

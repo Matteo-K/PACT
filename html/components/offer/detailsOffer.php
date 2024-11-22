@@ -186,6 +186,12 @@ else{
     </article>
     <script>
 
+        // Variables de sélection des éléments
+        const sectionTag = document.getElementById("sectionTag");
+        const pTag = document.querySelector("#sectionTag + p");
+        let tags = loadedTags; // Tableau pour stocker les tags, comprenant les tags déjà présents
+        let compteurTags = loadedTags.length; // Compteur pour limiter à 6 tags
+
         //On récupère en JS la liste des tags pour le script 
         const listeTags = <?php echo json_encode($listeTags) ?>;
 
@@ -208,7 +214,6 @@ else{
                 hiddenInputTag.name = "tags[]"; 
 
                 elementTag.addEventListener("click", function () {
-                    tags.splice(tags.indexOf(valeurTag), 1); 
                     sectionTag.removeChild(hiddenInputTag); 
                     sectionTag.removeChild(elementTag); 
                     pTag.style.color = "black"; 

@@ -161,11 +161,7 @@ try {
 
 
 
-  // Variables de sélection des éléments
-  const sectionTag = document.getElementById("sectionTag");
-  const pTag = document.querySelector("#sectionTag + p");
-  let tags = loadedTags; // Tableau pour stocker les tags, comprenant les tags déjà présents
-  let compteurTags = loadedTags.length; // Compteur pour limiter à 6 tags
+
 
 
   function ajoutTag(valeurTag) {
