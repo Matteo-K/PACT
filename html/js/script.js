@@ -102,40 +102,6 @@ try {
 
 
 
-
-
-  
-  const tagsGeneraux = [
-    "Local", "International", "Insolite", "Populaire", "Exclusif", "Authentique",
-    "Romantique", "Festif", "Familial", "Calme", "Intimiste", "Ludique",
-    "Traditionnel", "Contemporain", "Convivial", "En extérieur", "En intérieur",
-    "Urbain", "Rural", "En bord de mer", "Montagne", "Patrimonial",
-    "Historique", "Culturel", "Moderne", "Médiéval", "Naturel", "Industriel",
-    "Féérique", "Nocturne", "Diurne", "Week-end", "Vacances scolaires",
-    "Estival", "Hivernal", "Saisonnier", "Couple", "Enfants", "Adolescents",
-    "Seniors", "Groupes", "Solo", "Amateurs de sensations"
-  ];
-
-  const tagsRestaurant = [
-    "Cuisine locale", "Cuisine gastronomique", "Street food", "Brunch", "Végétarien", "Vegan", "À thème", "Fruit de mer", "Cuisine asiatique", "Cuisine africaine", "Cuisine americaine", "Cuisine orientale", "Cuisine francaise", "Cuisine mediteranéenne"
-  ];
-
-  const tagsSpectacle = [
-    "Théâtre", "Concert", "Opéra", "Cirque", "Comédie musicale", "Danse", "Magie", "Stand-up"
-  ];
-
-  const tagsActivites = [
-    "Sport nautique", "Randonnée", "Atelier créatif", "Activité immersive", "Escape game", "Jeux d’équipe", "Découverte sportive", "Detente", "Bien-être"
-  ];
-
-  const tagsParc = [
-    "Sensations fortes", "Familial", "Animaux", "Spectacles inclus", "Thématique", "Aquatique", "Interactif", 
-  ];
-
-  const tagsVisite = [
-    "Musée", "Lieu insolite", "Monument", "Panoramique", "Éducative", "Immersive", "Paranormale"
-  ];
-
     // Variables de sélection des éléments
     const inputTag = document.getElementById("inputTag");
     const autocompleteList = document.getElementById("autocompletion");
@@ -146,32 +112,17 @@ try {
       // Nettoyer les suggestions précédentes
       autocompleteList.innerText = "";  
       autocompleteList.style.display = "block";    
-      let suggestions
-
-      if (radioPark.checked) {
-        suggestions = [...tagsGeneraux, ...tagsParc];
-      } else if (radioActivite.checked) {
-        suggestions = [...tagsGeneraux, ...tagsActivites];
-      } else if (radioSpectacle.checked) {
-        suggestions = [...tagsGeneraux, ...tagsSpectacle];
-      } else if (radioVisite.checked) {
-        suggestions = [...tagsGeneraux, ...tagsVisite];
-      } else if (radioRestaurant.checked) {
-        suggestions = [...tagsGeneraux, ...tagsRestaurant];
-      } else {
-        suggestions = tagsGeneraux;
-      }
 
       //On remplace les caractères accentués par leur version sans accents
       let texte = supprAccents(val.toLowerCase());
 
       // Filtrer les tags correspondant à la saisie
-      suggestions = suggestions.filter(tag =>
+      listeTags = listeTags.filter(tag =>
         supprAccents(tag.toLowerCase()).includes(texte.toLowerCase())
       );
 
       // Ajouter les suggestions dans la liste
-      suggestions.forEach(tag => {
+      listeTags.forEach(tag => {
         const itemAutoComplete = document.createElement("li");
         itemAutoComplete.textContent = tag;
 

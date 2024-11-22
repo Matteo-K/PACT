@@ -38,6 +38,14 @@ $categorie = [
 ];
 
 
+//Récupération de tous les tags pour leur sélection dans l'input
+$stmt = $conn->prepare("SELECT * FROM pact._tag");
+$stmt->execute();
+
+while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $listeTags[] = $result["nomtag"];
+}
+
 
 $disableCategorie = false;
 
@@ -72,12 +80,12 @@ if ($result != false) {
     }
     $stmt->execute([$idOffre]);
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $liste_tags[] = $result["nomtag"];
+        $loadedTtags[] = $result["nomtag"];
     }
 }
 
 else{    
-    $liste_tags = [];
+    $loadedTtags = [];
 }
 
 
@@ -181,36 +189,34 @@ else{
     </article>
     <script>
 
-        let loadedTags = <?php echo json_encode($liste_tags) ?>;
+        //On récupère en JS la liste des tags pour le script 
+        const listeTags = <?php echo json_encode($listeTags) ?>;
+
+        //Récupération des tags déjà présents sur l'offre puis affichage (semblable a la fonction ajouTag())
+        let loadedTags = <?php echo json_encode($loadedTtags) ?>;
 
         loadedTags.forEach(valeurTag => {
             if (valeurTag) {
 
-                // Crée l'élément visuel pour afficher le tag
                 const elementTag = document.createElement("span");
                 elementTag.classList.add("tag");
                 elementTag.textContent = valeurTag;
 
-                //On créé une image pour guider l'utilisateur sur le suppression du tag
                 const imgCroix = document.createElement("img");
                 imgCroix.setAttribute.src="../img/icone/croix.png";
 
-                // Crée l'input caché pour soumettre le tag avec le formulaire
                 const hiddenInputTag = document.createElement("input");
                 hiddenInputTag.type = "hidden";
                 hiddenInputTag.value = valeurTag;
-                hiddenInputTag.name = "tags[]"; // Utilise un tableau pour les tags
+                hiddenInputTag.name = "tags[]"; 
 
-                // Ajoute un événement pour supprimer le tag au clic
                 elementTag.addEventListener("click", function () {
-                tags.splice(tags.indexOf(valeurTag), 1); // Retire le tag du tableau
-                sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
-                sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
-                pTag.style.color = "black"; // Remet la couleur par défaut si besoin
-                compteurTags--; // Décrémente le compteur de tags
+                    tags.splice(tags.indexOf(valeurTag), 1); 
+                    sectionTag.removeChild(hiddenInputTag); 
+                    sectionTag.removeChild(elementTag); 
+                    pTag.style.color = "black"; 
                 });
 
-                // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel
                 sectionTag.appendChild(elementTag); 
                 sectionTag.appendChild(hiddenInputTag);
                 elementTag.appendChild(imgCroix);
