@@ -1556,9 +1556,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #trifiltre select {
   padding: 5px 10px;
-  border: 2px solid white;
+  border: 2px solid var(--secondary);
   border-radius: 5px;
-  background-color: var(--secondary);
+  background-color: white;
   color: var(--text-dark);
   appearance: none;
   -webkit-appearance: none;
@@ -1570,17 +1570,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   cursor: pointer;
 }
 
-#trifiltre select:focus, #trifiltre [type="date"]:focus, #trifiltre [type="date"]:focus {
+#trifiltre select:focus, #trifiltre [type="date"]:focus, #trifiltre [type="time"]:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 5px var(--accent-border);
 }
 
-#trifiltre [type="date"], #trifiltre [type="date"] {
+#trifiltre [type="date"], #trifiltre [type="time"] {
+  height: 17px;
   padding: 5px 10px;
-  border: 2px solid white;
+  border: 2px solid var(--secondary);
   border-radius: 5px;
-  background-color: var(--background);
+  background-color: white;
   color: var(--text-dark);
   outline: none;
   cursor: pointer;
@@ -2021,6 +2022,26 @@ tbody td:last-child {
   .swiper-button-next,.swiper-button-prev{
     display: none;
   }
+ 
+  #descriptionOffre > p{
+    order: 10;
+    width: 100%;
+  }
+  
+  #descriptionOffre > section{
+    order: 2;
+    width: 100%;
+    padding-top: 2px;
+    margin: 0;
+  }
+
+  #descriptionOffre{
+    flex-direction: column;
+    width: 100%;
+    margin:0.5em 10px
+  }
+
+
 
 
 }

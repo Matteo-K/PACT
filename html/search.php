@@ -256,7 +256,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     $ville=($offre['ville'])?$offre['ville']:"Pas de localisation entrée";;
                     $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
                     $nomTag=($offre['categorie']!="Autre")?$offre['categorie']:"Pas de catégorie";
-                    print_r($offre['all_tags']);
                     $tag = $offre['all_tags']?explode(',',trim($offre['all_tags'],'{}')):"";
                     if (($offre['listhorairemidi'])!="") {
                         $horaireMidi=explode(';',$offre['listhorairemidi']);                        
