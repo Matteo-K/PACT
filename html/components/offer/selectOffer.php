@@ -57,8 +57,6 @@ if (!empty($idOffre)) {
   }
 }
 
-print_r($options);
-
 // Sélection des tarifs et abonnements
 $abonnement = [];
 $stmt = $conn->prepare("SELECT nomabonnement, tarif FROM pact._abonnement");
@@ -76,6 +74,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 ?>
 <form id="selectOffer" action="enregOffer.php" method="post">
+  <?php print_r($options); ?>
   <!-- Abonnement -->
   <div>
     <?php
