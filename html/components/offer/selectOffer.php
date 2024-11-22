@@ -173,10 +173,16 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         </label>
         <div>
           <label for="nbWeekEnRelief">Nombre de semaine&nbsp;:&nbsp;</label>
-          <input type="number" name="nbWeekEnRelief" id="" min="1" max="4" value="<?php echo $options["rlfNbWeek"]?>" <?php echo $options["rlfActif"] ? "disabled" : ""; ?>>
+          <input type="number" name="nbWeekEnRelief" id="nbWeekEnRelief" min="1" max="4" value="<?php echo $options["rlfNbWeek"]?>" <?php echo $options["rlfActif"] ? "disabled" : ""; ?>>
         </div>
       </div>
-      <span class="msgError"><?php echo $options["rlfActif"] ? "Option en relief en cours, modifiable à partir de ". $options['rlfFinOpt']."" : "" ?></span>
+      <?php
+      if ($options["rlfActif"]) {
+        ?>
+        <span class="msgError">Option en relief en cours, modifiable à partir de <?php echo $options['rlfFinOpt'] ?></span>
+      <?php
+      }
+      ?>
       <div id="blcEnRelief" class="blcOption">
         <label for="aLaUne">
           <?php
@@ -191,16 +197,22 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             }
           }
           ?>
-          <input type="checkbox" name="aLaUne" id="aLaUne" <?php echo $options["enRelief"]?"checked":"" ?>>
+          <input type="checkbox" name="aLaUne" id="aLaUne" <?php echo $options["ALaUne"]?"checked":"" ?>>
           <span class="checkmark"></span>
           <span>À la une</span> : met votre offre sur la page d’accueil du site
         </label>
         <div>
-          <label for="nbWeekEnRelief">Nombre de semaine&nbsp;:&nbsp;</label>
-          <input type="number" name="nbWeekEnRelief" id="" min="1" max="4" value="<?php echo $options["aluActif"]?>" <?php echo $options["aluActif"] ? "disabled" : ""; ?>>
+          <label for="nbWeekALaUne">Nombre de semaine&nbsp;:&nbsp;</label>
+          <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="<?php echo $options["aluNbWeek"]?>" <?php echo $options["aluActif"] ? "disabled" : ""; ?>>
         </div>
       </div>
-      <span class="msgError"><?php echo $options["aluActif"] ? "Option à la Une en cours, modifiable à partir de ". $options['aluFinOpt']."" : "" ?></span>
+      <?php
+      if ($options["aluActif"]) {
+        ?>
+        <span class="msgError">Option à la Une en cours, modifiable à partir de <?php echo $options['aluFinOpt'] ?></span>
+        <?php
+      }
+      ?>
     </div>
     <p>Attention ! Vous ne pouvez pas changer d’offre une fois séléctionée.</p>
     <div>Montant actuel (sur 1 mois): <span id="prixPrevisionel"></span>&euro;</div>

@@ -1945,14 +1945,13 @@ tbody td:last-child {
   gap: 10px;
 }
 
-#infoComp h2,
-#descriptionOffre>section>h3 {
+#infoComp h2 {
   color: var(--bloc);
 }
 
 #descriptionOffre>section {
   margin-left: 3em;
-  background-color: var(--accent60);
+  background-color: var(--accent);
   border-radius: 0.5em;
   padding: 10px;
   margin-top: 1em;
@@ -2063,12 +2062,12 @@ x
   #descriptionOffre > p{
     order: 10;
     margin: 0 ;
-    margin: 1em 2em ;
   }
   
   #descriptionOffre > section{
     order: 2;
     width: 100%;
+    margin: 1em 0;
   }
 
   #descriptionOffre{
