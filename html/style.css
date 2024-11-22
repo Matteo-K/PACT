@@ -12,6 +12,7 @@
   --text-dark: #000;
   --text-light: #eaeaea;
   --header-size: 100px;
+  --header-size2: var(--header-size);
 }
 
 * {
@@ -464,7 +465,7 @@ header ul+div {
 
 @media (max-width: 768px) {
   :root {
-    --header-size: 0;
+    --header-size: clamp(100px, 25vh + 0.5em, 150px);
   }
 
   header{
@@ -633,7 +634,7 @@ header ul+div {
 
 #manageOffer aside+section {
   margin-left: 17em;
-  margin-top: var(--header-size);
+  margin-top: var(--header-size2);
   min-height: 70vh;
 }
 
@@ -1760,7 +1761,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .buttonDetails {
   display: flex;
-  margin-top: calc(var(--header-size) + 0.6em);
+  margin-top: calc(var(--header-size2) + 0.6em);
   gap: 10px;
   /* Espacement entre les boutons */
 }
@@ -2030,7 +2031,9 @@ tbody td:last-child {
 }
 
 @media screen and (max-width : 768px) {
-
+  :root{
+    --header-size2:0;
+  }
   .mainOffer{
     margin-top: 0;
   }
