@@ -758,6 +758,13 @@ header ul + div {
   color: red;
 }
 
+.blcOption {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 /* ------------------------- HOURLY OFFER CSS --------------------------------*/
 #hourlyOffer {
   padding: 20px;
@@ -1506,11 +1513,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* Tout les input */
 
-#trifiltre input[type="checkbox"], #trifiltre input[type="radio"] {
+#trifiltre input[type="checkbox"],
+#trifiltre input[type="radio"],
+#selectOffer input[type="checkbox"] {
   display: none;
 }
 
-#trifiltre .checkmark {
+#trifiltre .checkmark, #selectOffer .checkmark{
   display: inline-block;
   width: 18px;
   height: 18px;
@@ -1522,11 +1531,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-inline: 5px;
 }
 
-#trifiltre input[type="checkbox"]:checked + .checkmark {
+#trifiltre input[type="checkbox"]:checked + .checkmark,
+#selectOffer input[type="checkbox"]:checked + .checkmark {
   background-color: var(--background);
 }
 
-#trifiltre input[type="checkbox"]:checked + .checkmark::after {
+#trifiltre input[type="checkbox"]:checked + .checkmark::after,
+#selectOffer input[type="checkbox"]:checked + .checkmark::after {
   content: "";
   position: absolute;
   top: 4px;

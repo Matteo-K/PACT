@@ -127,37 +127,43 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <div>
     <!-- Option -->
     <div>
-      <div>
-        <?php
-        foreach ($prixOption as $opt) {
-          if ($opt['nomoption'] === "EnRelief") {
-              ?>
-              <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
-                (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
-              </span>
-              <?php
-              break;
+      <div id="blcAlaUne" class="blcOption">
+        <label for="enRelief">
+          <?php
+          foreach ($prixOption as $opt) {
+            if ($opt['nomoption'] === "EnRelief") {
+                ?>
+                <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
+                  (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
+                </span>
+                <?php
+                break;
+            }
           }
-        }
-        ?>
-        <input type="checkbox" name="enRelief" id="enRelief" <?php echo in_array('ALaUne',$options)?"checked":"" ?>>
-        <label for="enRelief"><span>En relief</span> : met votre offre en exergue lors de son affichage dans la liste d’offres</label>
+          ?>
+          <input type="checkbox" name="enRelief" id="enRelief" <?php echo in_array('ALaUne',$options)?"checked":"" ?>>
+          <span class="checkmark"></span>
+          <span>En relief</span> : met votre offre en exergue lors de son affichage dans la liste d’offres
+        </label>
       </div>
-      <div>
-        <?php
-        foreach ($prixOption as $opt) {
-          if ($opt['nomoption'] === "ALaUne") {
-              ?>
-              <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
-                (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
-              </span>
-              <?php
-              break;
+      <div id="blcEnRelief" class="blcOption">
+        <label for="aLaUne">
+          <?php
+          foreach ($prixOption as $opt) {
+            if ($opt['nomoption'] === "ALaUne") {
+                ?>
+                <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
+                  (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
+                </span>
+                <?php
+                break;
+            }
           }
-        }
-        ?>
-        <input type="checkbox" name="aLaUne" id="aLaUne" <?php echo in_array('EnRelief',$options)?"checked":"" ?>>
-        <label for="aLaUne"><span>À la une</span> : met votre offre sur la page d’accueil du site</label>
+          ?>
+          <input type="checkbox" name="aLaUne" id="aLaUne" <?php echo in_array('EnRelief',$options)?"checked":"" ?>>
+          <span class="checkmark"></span>
+          <span>À la une</span> : met votre offre sur la page d’accueil du site
+        </label>
       </div>
     </div>
     <p>Attention ! Vous ne pouvez pas changer d’offre une fois séléctionée.</p>
