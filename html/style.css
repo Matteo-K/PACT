@@ -2018,6 +2018,11 @@ tbody td:last-child {
 }
 
 @media screen and (max-width : 768px) {
+
+  .mainOffer{
+    margin-top: 0.5em;
+  }
+  
   #titleOffer {
     font-size: clamp(2em, 13vw, 5em);
     font-weight: 600;
@@ -2028,6 +2033,7 @@ tbody td:last-child {
   .ferme {
     font-size: 13px;
     padding-inline: 15px;
+    font-weight: 400;
   }
 
   .mainOffer>div {
