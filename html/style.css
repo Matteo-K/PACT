@@ -1710,19 +1710,23 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
-  color: white;
+  color: var(--text-dark);
   cursor: pointer;
 }
 
 /* btn fermer onglet aside */
-.img {
+.fermeTriFiltre img {
   width: 30px;
   height: 30px;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 @media (max-width : 1079px) {
   .search {
-    position: block;
+    position: static;
   }
 
   .searchoffre {

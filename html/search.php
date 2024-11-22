@@ -48,7 +48,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 </figure>
                 <figure id="btnTri">
                     <figcaption>Trier</figcaption>
-                    <img src="img/icone/croix.png" alt="Fermer l'onglet tri">
+                    <img src="img/icone/burger-bar.png" alt="tri">
                 </figure>
             </div>
             <aside id="tri">
@@ -56,7 +56,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     <h2>Trier</h2>
                     <figure id="fermeTri" class="fermeTriFiltre">
                         <figcaption>Fermer l'onglet</figcaption>
-                        <div class="close_onglet"></div>
+                        <img src="img/icone/croix.png" alt="Fermer l'onglet tri">
                     </figure>
                 </div>
                 <div class="blcTriFiltre">
@@ -388,22 +388,21 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         const fermeTri = document.querySelector("#fermeTri");
         const fermeFiltre = document.querySelector("#fermeFiltre");
 
-        fermeTri.addEventListener("click", () => {
-            asideTri.classList.remove("openFiltreTri");
-        });
-        
-        fermeFiltre.addEventListener("click", () => {
-            asideFiltre.classList.remove("openFiltreTri");
-        });
+        fermeTri.addEventListener("click", toggleAside(asideTri));
+        fermeFiltre.addEventListener("click", toggleAside(asideFiltre));
+        btnTri.addEventListener("click", toggleAside(asideTri));
+        btnFiltre.addEventListener("click", toggleAside(asideFiltre));
 
-        btnTri.addEventListener("click", () => {
-            asideTri.classList.toggle("openFiltreTri");
-        });
-        
-        btnFiltre.addEventListener("click", () => {
-            asideFiltre.classList.toggle("openFiltreTri");
-        });
-    });
+        function toggleAside(aside) {
+            aside.classList.toggle('openFiltreTri');
+            
+            if (asideTri.classList.contains('openFiltreTri') || asideFiltre.classList.contains('openFiltreTri')) {
+                body.classList.add('no-scroll');
+            } else {
+                body.classList.remove('no-scroll');
+            }
+        }
+});
 </script>
 <script src="js/sortAndFilter.js"></script>
 </html>
