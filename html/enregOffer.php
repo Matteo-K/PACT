@@ -66,10 +66,8 @@ if (isset($_POST['pageBefore'])) {
   }
   switch ($pageBefore) {
     case 1:
-      // Supprime tout
-      $stmt = $conn->prepare("DELETE FROM pact._option_offre WHERE idoffre= ?");
-      $stmt->execute([$idOffre]);
-      // Ajoute les données
+      // Gestion des options d'offre
+      
 
       // ajout dans à la une si coché
       if (isset($_POST["aLaUne"])) {

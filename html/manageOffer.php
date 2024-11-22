@@ -47,7 +47,7 @@
         <!-- Si 0 on enregistre et retourne au menu du professionnel -->
         <li><button type="submit" onclick="submitForm(event,0)" class="guideComplete">Sauvegarder & Quitter</button></li>
         <!-- Si -1 on retourne au menu du professionnel sans enregistrer -->
-        <li><button type="submit" onclick="submitForm(event,-1)" class="guideStartComplete">Annuler</button></li>
+        <li><button type="submit" onclick="submitForm(event,-1)" class="guideStartComplete">Quitter</button></li>
       </ul>
     </aside>
     <section>

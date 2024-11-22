@@ -153,7 +153,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <div>
     <!-- Option -->
     <div>
-      <div id="blcAlaUne" class="blcOption">
+      <div id="blcEnRelief" class="blcOption">
         <label for="enRelief">
           <?php
           foreach ($prixOption as $opt) {
@@ -175,6 +175,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
           <label for="nbWeekEnRelief">Nombre de semaine&nbsp;:&nbsp;</label>
           <input type="number" name="nbWeekEnRelief" id="nbWeekEnRelief" min="1" max="4" value="<?php echo $options["rlfNbWeek"]?>" <?php echo $options["rlfActif"] ? "disabled" : ""; ?>>
         </div>
+        <input type="hidden" name="actifEnRelief" value="<?php echo $options["rlfActif"] ?>">
       </div>
       <?php
       if ($options["rlfActif"]) {
@@ -183,7 +184,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       <?php
       }
       ?>
-      <div id="blcEnRelief" class="blcOption">
+      <div id="blcALaUne" class="blcOption">
         <label for="aLaUne">
           <?php
           foreach ($prixOption as $opt) {
@@ -205,6 +206,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
           <label for="nbWeekALaUne">Nombre de semaine&nbsp;:&nbsp;</label>
           <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="<?php echo $options["aluNbWeek"]?>" <?php echo $options["aluActif"] ? "disabled" : ""; ?>>
         </div>
+        <input type="hidden" name="actifALaUne" value="<?php echo $options["aluActif"] ?>">
       </div>
       <?php
       if ($options["aluActif"]) {

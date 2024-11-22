@@ -375,7 +375,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         const asideFiltre = document.querySelector("#filtre");
         
         btnTri.addEventListener("click", () => {
-            asideTri.classList.add("openFiltreTri");
+            asideTri.classList.toggle("openFiltreTri");
         });
         
         btnFiltre.addEventListener("click", () => {
