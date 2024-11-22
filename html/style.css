@@ -468,7 +468,7 @@ header ul+div {
   }
 
   header{
-    position: relative;
+    position: static;
   }
 
   #logoText {
