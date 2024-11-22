@@ -52,7 +52,13 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 </figure>
             </div>
             <aside id="tri">
-                <h2>Trier</h2>
+                <div>
+                    <h2>Trier</h2>
+                    <figure class="fermeTriFiltre">
+                        <figcaption>Fermer l'onglet</figcaption>
+                        <div class="close_onglet"></div>
+                    </figure>
+                </div>
                 <div class="blcTriFiltre">
                     <div>
                         <input type="radio" name="tri" id="miseEnAvant" checked>
@@ -79,7 +85,13 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 </div>
             </aside>
             <aside id="filtre" class="asdTriFiltre">
-                <h2>Filtrer</h2>
+                <div>
+                    <h2>Filtrer</h2>
+                    <figure class="fermeTriFiltre">
+                        <figcaption>Fermer l'onglet</figcaption>
+                        <img src="img/icone/croix.png" alt="Fermer l'onglet filtre">
+                    </figure>
+                </div>
                 <div class="blcTriFiltre">
                     <div id="note">
                         <h3>Par note</h3>
