@@ -2065,13 +2065,13 @@ x
   
   #descriptionOffre > section{
     order: 2;
-    padding: 0;
+    width: 100%;
   }
 
   #descriptionOffre{
     flex-direction: column;
     width: 95%;
-    padding: 0 2em;
+    margin: 0 2em;
   }
 
   table{
