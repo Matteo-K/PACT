@@ -388,11 +388,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         const fermeTri = document.querySelector("#fermeTri");
         const fermeFiltre = document.querySelector("#fermeFiltre");
 
-        fermeTri.addEventListener("click", toggleAside(asideTri));
-        fermeFiltre.addEventListener("click", toggleAside(asideFiltre));
-        btnTri.addEventListener("click", toggleAside(asideTri));
-        btnFiltre.addEventListener("click", toggleAside(asideFiltre));
-
         function toggleAside(aside) {
             aside.classList.toggle('openFiltreTri');
             
@@ -402,6 +397,12 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 body.classList.remove('no-scroll');
             }
         }
+        
+        fermeTri.addEventListener("click", toggleAside(asideTri));
+        fermeFiltre.addEventListener("click", toggleAside(asideFiltre));
+        btnTri.addEventListener("click", toggleAside(asideTri));
+        btnFiltre.addEventListener("click", toggleAside(asideFiltre));
+
 });
 </script>
 <script src="js/sortAndFilter.js"></script>
