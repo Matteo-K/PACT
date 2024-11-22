@@ -2020,9 +2020,9 @@ tbody td:last-child {
 @media screen and (max-width : 768px) {
 
   .mainOffer{
-    margin-top: 0.5em;
+    margin-top: 0;
   }
-  
+
   #titleOffer {
     font-size: clamp(2em, 13vw, 5em);
     font-weight: 600;
