@@ -317,9 +317,6 @@ header > div > a > div {
     position: sticky;
     top: 0; /* Fixe la barre de recherche en haut dès qu'elle atteint cette position */
     z-index: 10; /* Assurez-vous que la barre de recherche est au-dessus des autres éléments */
-    background-color: var(--background); /* Ajoute un fond pour éviter que l'arrière-plan transparaisse */
-    padding: 0.5em 0; /* Un peu de padding pour un meilleur espacement */
-    box-shadow: 0 4px 2px -2px gray; /* Ombre pour améliorer la visibilité */
     width: 100%; /* Largeur complète */
   }
 
