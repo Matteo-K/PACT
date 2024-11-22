@@ -457,7 +457,7 @@ header ul + div {
 }
 @media (max-width: 804px) {
   #btnConn{
-    width:clamp(8em, 10vw, 10em) ;
+    width:clamp(9em, 10vw, 10em) ;
   }
 }
 
@@ -492,7 +492,7 @@ header ul + div {
   }
 
   #btnConn {
-      width: 8em;
+      width: 9em;
       height: 2.2em;
       font-size: 18px;
       margin-top: 10px;
@@ -2050,7 +2050,7 @@ tbody td:last-child {
   #descriptionOffre{
     flex-direction: column;
     width: 100%;
-    margin:0.5em 10px
+    padding:0.5em 10px
   }
 
 
