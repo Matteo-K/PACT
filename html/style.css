@@ -480,6 +480,7 @@ header ul+div {
   #divFormHeader {
     order: 10;
     width: 100%;
+    position: sticky;
   }
 
   #formHeader {
@@ -487,7 +488,7 @@ header ul+div {
     justify-content: center;
     align-items: center;
     margin: 0 2em;
-    position: sticky;
+    
   }
 
   #auth {
