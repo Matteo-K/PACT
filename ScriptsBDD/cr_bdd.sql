@@ -92,8 +92,7 @@ CREATE TABLE _jour (
 CREATE TABLE _option (
   nomOption VARCHAR(255) PRIMARY KEY,
   prixOffre FLOAT NOT NULL,
-  dureeOption INTEGER NOT NULL,
-  dateLancement DATE NOT NULL
+  dureeOption INTEGER NOT NULL
 );
 
 CREATE TABLE _langue (
@@ -359,18 +358,6 @@ CREATE TABLE _abonner (
       REFERENCES _abonnement(nomAbonnement)
 );
 
-CREATE TABLE _option_offre (
-  idOffre INT,
-  nomOption VARCHAR(255),
-  PRIMARY KEY (idOffre, nomOption),
-  CONSTRAINT _option_offre_fk_offre
-      FOREIGN KEY (idOffre)
-      REFERENCES _offre(idOffre),
-  CONSTRAINT _option_offre_fk_option
-      FOREIGN KEY (nomOption)
-      REFERENCES _option(nomOption)
-);
-
 -- Triggers pour gérer les options et langues des visites --
 
 CREATE OR REPLACE FUNCTION compte_option()
@@ -478,10 +465,48 @@ CREATE TABLE _avisImage(
       REFERENCES _avis(idC,idOffre)
 );
 
+CREATE TABLE _dateOption(
+  idOption SERIAL PRIMARY KEY,
+  dateLancement DATE NOT NULL,
+  dateFin DATE NOT NULL,
+  duree INT NOT NULL,
+  prix NOT NULL
+);
 
+CREATE TABLE _historiqueOption(
+  idOption INT NOT NULL,
+  idOffre INT NOT NULL,
+  nomOption INT NOT NULL,
+  PRIMARY KEY(idOffre, nomOption, idOption),
+  CONSTRAINT _historiqueOption_fk_offre
+      FOREIGN KEY (idOffre)
+      REFERENCES _offre(idOffre),
+  CONSTRAINT _historiqueOption_fk_option
+      FOREIGN KEY (nomOption)
+      REFERENCES _option(nomOption),
+  CONSTRAINT _historiqueOption_fk_date
+      FOREIGN KEY (idOption)
+      REFERENCES _dateOption(idOption)
+);
 
+CREATE TABLE _dateStatut(
+  idStatut SERIAL PRIMARY KEY,
+  dateLancement DATE NOT NULL,
+  dateFin DATE NOT NULL,
+  dureeEnLigne INT NOT NULL
+);
 
-
+CREATE TABLE _option_offre (
+  idOffre INT,
+  nomOption VARCHAR(255),
+  PRIMARY KEY (idOffre, nomOption),
+  CONSTRAINT _option_offre_fk_offre
+      FOREIGN KEY (idOffre)
+      REFERENCES _offre(idOffre),
+  CONSTRAINT _option_offre_fk_option
+      FOREIGN KEY (nomOption)
+      REFERENCES _option(nomOption)
+);
 
 
 
