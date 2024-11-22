@@ -209,8 +209,6 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->bindParam(':idoffre', $idOffre);
             $stmt->execute();
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            array_unshift($tags, ['nomtag' => $typeOffer]);
             
                 foreach ($tags as $tag): 
                     if($tag["nomtag"] != NULL){
