@@ -1511,17 +1511,22 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
   justify-content: center;
   gap: 20px;
+  padding: 0;
+  margin: 10%;
+  border-top: var(--bloc);
 }
 
 #pagination li {
   width: fit-content;
   height: 20px;
   text-align: center;
+  padding: 5px;
 
 }
 
 #pageActuel {
-  border-bottom: 1px solid var(--accent);
+  border-bottom: 3px solid var(--accent);
+  box-sizing: border-box; 
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
