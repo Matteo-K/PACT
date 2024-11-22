@@ -487,7 +487,7 @@ header ul+div {
     position: sticky;
     z-index: 100;
 
-    position: sticky;
+  
     top: 0;  /* La barre de recherche sera fixée en haut de la fenêtre dès qu'elle atteindra cette position */
     z-index: 10; /* Pour s'assurer qu'elle reste au-dessus des autres éléments lorsque l'utilisateur défile */
     background-color: white; /* Optionnel : Ajoutez une couleur de fond pour qu'elle reste lisible */
@@ -499,7 +499,8 @@ header ul+div {
     justify-content: center;
     align-items: center;
     margin: 0 2em;
-    
+    position: sticky;
+    top: 0;
   }
 
   #auth {
