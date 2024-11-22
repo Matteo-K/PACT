@@ -179,7 +179,7 @@ footer div+div a {
 /* ##### Components ##### */
 
 /* ### Header ### */
-
+/* ### Header ### */
 header {
   border-bottom: var(--bloc) 2px solid;
   display: flex;
@@ -187,14 +187,11 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: var(--header-size);
-  z-index: 10;
   background-color: var(--background);
   padding: 0.5em 0;
+  position: relative; /* Position relative ici */
 }
 
 header>div {
@@ -222,7 +219,6 @@ header h3 {
 }
 
 #auth {
-
   align-items: center;
   justify-content: center;
 }
@@ -243,7 +239,6 @@ header div>a>img,
   height: 3em;
   width: 34vw;
   border-radius: 2em;
-  
 }
 
 #formHeader input[type="text"],
@@ -276,7 +271,6 @@ header div>a>img,
   width: 2em;
 }
 
-
 #menuBurger {
   display: none;
 }
@@ -285,18 +279,14 @@ header div>a>img,
   font-size: 48px;
   color: var(--bloc);
   text-align: center;
-
 }
 
 #pro {
   font-family: "Lato";
   font-size: 16px;
-
   color: var(--text-dark);
   text-align: center;
-
   margin-top: -50px;
-
 }
 
 header>div>a>div {
@@ -329,10 +319,7 @@ header>div>a>div {
   right: 0;
   height: 100%;
   width: 300px;
-  background: linear-gradient(to bottom,
-      #034d7c,
-      #1ca4ed);
-  /* Dégradé du haut vers le bas */
+  background: linear-gradient(to bottom, #034d7c, #1ca4ed);
   display: flex;
   flex-direction: column;
   transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease;
@@ -437,7 +424,7 @@ header ul+div {
   text-align: center;
   margin: 0 auto;
   text-decoration: none;
-  font-size: 20 px;
+  font-size: 20px;
 }
 
 #changeAccount {
@@ -456,35 +443,33 @@ header ul+div {
 #logoutButton:hover {
   background-color: #ff0000;
 }
-@media (max-width: 804px) {
-  #btnConn{
-    width:clamp(7em, 10vw, 10em) ;
-  }
-}
 
+/* ### MEDIA QUERIES POUR LES PETITS ÉCRANS ### */
 @media (max-width: 768px) {
+
   :root {
     --header-size: clamp(100px, 25vh + 0.5em, 150px);
   }
 
-  header{
-    position: static;
+  header {
+    position: relative; /* Retirer la position fixe pour éviter l'interférence avec sticky */
   }
 
   #logoText {
-
     margin-top: 1em;
     font-size: clamp(16px, 10vw, 48px);
   }
 
+  /* Barre de recherche sticky pour les petits écrans */
   #divFormHeader {
-    order: 10;
-    width: 100%;
-
     position: sticky;
-    top: 0;  /* La barre de recherche sera fixée en haut de la fenêtre dès qu'elle atteindra cette position */
-    z-index: 10; /* Pour s'assurer qu'elle reste au-dessus des autres éléments lorsque l'utilisateur défile */
-
+    top: 0;  /* Fixe la barre de recherche en haut de la fenêtre */
+    z-index: 20; /* Assure que la barre de recherche reste au-dessus des autres éléments */
+    background-color: white; /* Fond pour éviter toute superposition avec le reste du contenu */
+    padding: 0.5em; /* Optionnel : pour un peu d'espacement */
+    box-shadow: 0 4px 2px -2px gray; /* Ombre pour une meilleure visibilité */
+    width: 100%; /* Largeur complète */
+    box-sizing: border-box; /* S'assurer que padding ne dépasse pas la largeur */
   }
 
   #formHeader {
@@ -492,11 +477,9 @@ header ul+div {
     justify-content: center;
     align-items: center;
     margin: 0 2em;
-    
   }
 
   #auth {
-
     order: 2;
     margin-top: 15px;
     flex-direction: column;
@@ -508,16 +491,15 @@ header ul+div {
     height: 2.2em;
     font-size: 18px;
     margin-top: 10px;
-
   }
 
   #auth img,
   #logo {
     width: clamp(2em, 15vw, 5em);
     height: clamp(2em, 15vw, 5em);
-
   }
 }
+
 
 
 
