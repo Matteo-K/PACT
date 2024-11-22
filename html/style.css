@@ -1498,6 +1498,32 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: inline-block;
 }
 
+/*##### Pagination #####*/
+
+#pagination a {
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+#pagination ul {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+#pagination li {
+  width: fit-content;
+  height: 20px;
+  text-align: center;
+
+}
+
+#pageActuel {
+  border-bottom: 1px solid var(--accent);
+}
+
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */

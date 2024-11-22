@@ -1,8 +1,8 @@
 <?php 
 require_once "config.php";
 
-$recherche = $_GET["search"] ?? "";
-$page = $_GET["page"] ?? 1;
+$recherche = isset($_GET["search"]) ? $_GET["search"]: "";
+$page = isset($_GET["page"]) ? $_GET["page"] :  1;
 $nbElement = 15;
 $countOffer = 0;
 
@@ -383,7 +383,7 @@ $arrayOffer = [];
                 </li>
                 <li>
                     <?php if (($page+1) * $nbElement <= $countOffer) { ?>
-                        <a href="<?php echo $lien."&page=".$page+2?>">
+                        <a href="<?php echo $lien."&page=". $page+2?>">
                             <?php echo $page+2 ?>
                         </a>
                     <?php } ?>
