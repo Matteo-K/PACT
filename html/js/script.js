@@ -117,12 +117,12 @@ try {
       let texte = supprAccents(val.toLowerCase());
 
       // Filtrer les tags correspondant à la saisie
-      listeTags = listeTags.filter(tag =>
+      suggestions = listeTags.filter(tag =>
         supprAccents(tag.toLowerCase()).includes(texte.toLowerCase())
       );
 
       // Ajouter les suggestions dans la liste
-      listeTags.forEach(tag => {
+      suggestions.forEach(tag => {
         const itemAutoComplete = document.createElement("li");
         itemAutoComplete.textContent = tag;
 
