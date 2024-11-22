@@ -49,6 +49,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 ?>
 <form id="selectOffer" action="enregOffer.php" method="post">
+  <!-- Abonnement -->
   <div>
     <?php
     if (!$is_prive) {
@@ -124,6 +125,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     ?>
   </div>
   <div>
+    <!-- Option -->
     <div>
       <div>
         <?php
@@ -139,7 +141,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
         ?>
         <input type="checkbox" name="enRelief" id="enRelief" <?php echo in_array('ALaUne',$options)?"checked":"" ?>>
-        <label for="enRelief"><span>En relief</span> : met votre offre en exergue lors de son affichage dans la liste d’offres</label></div>
+        <label for="enRelief"><span>En relief</span> : met votre offre en exergue lors de son affichage dans la liste d’offres</label>
+      </div>
       <div>
         <?php
         foreach ($prixOption as $opt) {
