@@ -2025,7 +2025,8 @@ tbody td:last-child {
 
 @media screen and (max-width : 768px) {
   #titleOffer {
-    font-size: clamp(1em, 10vw, 3em);
+    font-size: clamp(1em, 10vw, 4em);
+    font-weight: 100;
   }
 
   .mainOffer .tag,
@@ -2057,7 +2058,7 @@ tbody td:last-child {
   
   #descriptionOffre > section{
     order: 2;
-    margin: 0;
+    padding: 0;
   }
 
   #descriptionOffre{
