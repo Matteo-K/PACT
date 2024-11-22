@@ -42,9 +42,9 @@ if (!empty($idOffre)) {
     switch ($row["nomoption"]) {
       case "EnRelief":
         $options["enRelief"] = true;
-        $options["rlfActif"] = $row["datelancement"] != null;
+        $options["rlfActif"] = $row["datelancement"] != "" ? true : false;
         $options["rlfNbWeek"] = $row["duree"];
-        $options["rlfFinOpt"] = $row["datefin"] != null ? $row["datefin"] : "";
+        $options["rlfFinOpt"] = $row["datefin"] != "" ? $row["datefin"] : "";
         break;
 
       case "ALaUne":
@@ -74,7 +74,6 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 ?>
 <form id="selectOffer" action="enregOffer.php" method="post">
-  <?php print_r($options); ?>
   <!-- Abonnement -->
   <div>
     <?php
