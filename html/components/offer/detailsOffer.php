@@ -38,19 +38,6 @@ $categorie = [
 ];
 
 
-//Récupération de tous les tags pour leur sélection dans l'input
-$stmt = $conn->prepare("SELECT * FROM pact._tag");
-$stmt->execute();
-
-$listeTags = [];
-
-
-while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $listeTags[] = str_replace("_", " ",$result["nomtag"]);
-    print_r($result);
-}
-
-
 $disableCategorie = false;
 
 if ($result != false) {
@@ -82,6 +69,7 @@ if ($result != false) {
             # code...
             break;
     }
+    $loadedTags = [];
     $stmt->execute([$idOffre]);
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $loadedTags[] = $result["nomtag"];
@@ -90,6 +78,17 @@ if ($result != false) {
 
 else{    
     $loadedTags = [];
+}
+
+//Récupération de tous les tags pour leur sélection dans l'input
+$stmt = $conn->prepare("SELECT * FROM pact._tag");
+$stmt->execute();
+
+$listeTags = [];
+
+
+while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $listeTags[] = str_replace("_", " ",$result["nomtag"]);
 }
 
 
@@ -152,7 +151,6 @@ else{
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->
             </section>
-
 
             <p>
                 Vous pouvez entrer jusqu'à 6 tags
@@ -228,6 +226,51 @@ else{
                 elementTag.appendChild(imgCroix);
             }
         });
+
+        function ajoutTag(valeurTag) {
+
+            if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
+
+                compteurTags++;
+                tags.push(valeurTag); // Ajoute le tag dans le tableau
+
+                // Crée l'élément visuel pour afficher le tag
+                const elementTag = document.createElement("span");
+                elementTag.classList.add("tag");
+                elementTag.textContent = valeurTag;
+
+                //On créé une image pour guider l'utilisateur sur le suppression du tag
+                const imgCroix = document.createElement("img");
+                imgCroix.setAttribute("src", "../img/icone/croix.png");
+
+                // Crée l'input caché pour soumettre le tag avec le formulaire
+                const hiddenInputTag = document.createElement("input");
+                hiddenInputTag.type = "hidden";
+                hiddenInputTag.value = valeurTag;
+                hiddenInputTag.name = "tags[]"; // Utilise un tableau pour les tags
+
+                // Ajoute un événement pour supprimer le tag au clic
+                elementTag.addEventListener("click", function () {
+                    tags.splice(tags.indexOf(valeurTag), 1); // Retire le tag du tableau
+                    sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
+                    sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
+                    pTag.style.color = "black"; // Remet la couleur par défaut si besoin
+                    compteurTags--; // Décrémente le compteur de tags
+                });
+
+                // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel
+                sectionTag.appendChild(elementTag); 
+                sectionTag.appendChild(hiddenInputTag);
+                elementTag.appendChild(imgCroix);
+
+                // Réinitialise l'input
+                inputTag.value = "";
+            } else if (tags.length >= 6) {
+                pTag.style.color = "red"; // Change la couleur du texte pour signaler la limite atteinte
+            } else if (tags.includes(valeurTag)) {
+                alert("Ce tag a déjà été ajouté !");
+            }
+        }
 
 
         const radBtnRestaurant = document.querySelector("#radioRestaurant");
