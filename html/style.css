@@ -761,7 +761,7 @@ header ul+div {
   color: red;
 }
 
-/* ------------------------- HOURLY OFFER CSS --------------------------------*/
+/* ------------------------- HOURLY OFFER CSS Benji--------------------------------*/
 #hourlyOffer {
   padding: 20px;
   padding-bottom: 6%;
@@ -1511,11 +1511,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 /* Tout les input */
 
 #trifiltre input[type="checkbox"],
-#trifiltre input[type="radio"] {
+#trifiltre input[type="radio"],
+#selectOffer input[type="checkbox"] {
   display: none;
 }
 
-#trifiltre .checkmark {
+#trifiltre .checkmark, #selectOffer .checkmark{
   display: inline-block;
   width: 18px;
   height: 18px;
@@ -1527,11 +1528,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-inline: 5px;
 }
 
-#trifiltre input[type="checkbox"]:checked+.checkmark {
+#trifiltre input[type="checkbox"]:checked + .checkmark,
+#selectOffer input[type="checkbox"]:checked + .checkmark {
   background-color: var(--background);
 }
 
-#trifiltre input[type="checkbox"]:checked+.checkmark::after {
+#trifiltre input[type="checkbox"]:checked + .checkmark::after,
+#selectOffer input[type="checkbox"]:checked + .checkmark::after {
   content: "";
   position: absolute;
   top: 4px;
