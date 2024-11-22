@@ -2009,6 +2009,20 @@ tbody td:last-child {
   .mainOffer>div {
     gap: 0.5em;
   }
+
+  #infoPro{
+    display: none;
+  }
+
+  .mySwiper{
+    height: auto;
+  }
+
+  .swiper-button-next,.swiper-button-prev{
+    display: none;
+  }
+
+
 }
 
 /* ========================= */
@@ -2198,27 +2212,23 @@ tbody td:last-child {
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 #restaurant {
-
+  background-color: yellow; /* test */
   padding: 20px;
 }
-
 
 #restaurant h4 {
   margin-bottom: 15px;
 }
 
-
-
-
 #restaurant label {
-  display: inline-block; /* Garantit que chaque bouton radio et son texte restent alignés */
-  width: 100%; /* Chaque option occupe toute la largeur */
-  margin-bottom: 10px; /* Espacement entre les options */
+  display: inline-block; /* Alignement du bouton radio et du texte*/
+  width: 100%; /* largeur*/
+  margin-bottom: 10px; /* Espacement */
 }
 
 #restaurant input[type="radio"] {
   margin-right: 10px; /* Espace entre le bouton radio et le texte */
-  vertical-align: middle; /* Aligne verticalement le bouton radio avec le texte */
+  /* vertical-align: middle;*//* Aligne verticalement le bouton radio avec le texte */
 }
 
 

@@ -185,6 +185,16 @@ echo "test";
 
     </article>
     <script>
+
+        let tags = <?php echo json_encode($liste_tags) ?>;
+
+        
+
+
+
+
+
+
         const radBtnRestaurant = document.querySelector("#radioRestaurant");
         const radBtnParc = document.querySelector("#radioParc");
         const radBtnActivite = document.querySelector("#radioActivite");
