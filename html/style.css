@@ -480,9 +480,12 @@ header ul+div {
   #divFormHeader {
     order: 10;
     width: 100%;
+
     position: sticky;
-    top: 10;
-    left: 0;
+    top: 0;  /* La barre de recherche sera fixée en haut de la fenêtre dès qu'elle atteindra cette position */
+    z-index: 10; /* Pour s'assurer qu'elle reste au-dessus des autres éléments lorsque l'utilisateur défile */
+    background-color: white; /* Optionnel : Ajoutez une couleur de fond pour qu'elle reste lisible */
+    padding: 10px 0; /* Optionnel : Espacement autour de la barre de recherche */
   }
 
   #formHeader {
