@@ -2810,12 +2810,12 @@ div.ligne3>label {
     text-align: left;
     margin-bottom: 5px;
     font-size: 18px;
-    width: 350px; /* Plus large que pour 375px */
+    width: 350px;
     max-width: 350px;
   }
 
   .creation-compte input {
-    width: 320px; /* Plus large que pour 375px */
+    width: 320px;
     height: 40px;
     margin-bottom: 15px;
     padding: 5px;
@@ -2830,9 +2830,9 @@ div.ligne3>label {
 
   button[id="boutonInscription"] {
     width: 100%;
-    max-width: 200px; /* Plus large que pour 375px */
+    max-width: 200px;
     height: 50px;
-    font-size: 22px; /* Légèrement plus grand */
+    font-size: 22px;
     border-radius: 10px;
     margin-top: 15px;
   }
@@ -2842,6 +2842,10 @@ div.ligne3>label {
     font-size: 16px;
     color: red;
     margin-bottom: 20px;
+  }
+
+  h2[id="dejauncompte"]{
+    max-width: 390px;
   }
 
   /* Gestion de l'ordre des éléments */
