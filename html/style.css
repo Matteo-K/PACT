@@ -2672,6 +2672,24 @@ div.ligne6>label {
     color: red;
     margin-bottom: 20px;
   }
+
+  #labelNom {
+    order: 1;
+  }
+
+  #nomMembre {
+    order: 2;
+  }
+
+  #labelPrenom {
+    order: 3;
+  }
+
+  #prenomMembre {
+    order: 4;
+  }
+
+
 }
 
 
