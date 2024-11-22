@@ -387,6 +387,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         const asideFiltre = document.querySelector("#filtre");
         const fermeTri = document.querySelector("#fermeTri");
         const fermeFiltre = document.querySelector("#fermeFiltre");
+        const body = document.body;
 
         function toggleAside(aside) {
             aside.classList.toggle('openFiltreTri');
@@ -397,7 +398,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 body.classList.remove('no-scroll');
             }
         }
-        
+
         fermeTri.addEventListener("click", toggleAside(asideTri));
         fermeFiltre.addEventListener("click", toggleAside(asideFiltre));
         btnTri.addEventListener("click", toggleAside(asideTri));
