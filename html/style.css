@@ -1710,8 +1710,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
-  color: var(--text-dark);
+  color: var(--text-light);
   cursor: pointer;
+  display: none;
 }
 
 /* btn fermer onglet aside */
@@ -1727,6 +1728,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 @media (max-width : 1079px) {
   .search {
     position: static;
+  }
+
+  .fermeTriFiltre {
+    display: block;
   }
 
   .searchoffre {
