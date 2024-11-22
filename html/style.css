@@ -467,6 +467,10 @@ header ul+div {
     --header-size: clamp(100px, 25vh + 0.5em, 150px);
   }
 
+  header{
+    position: relative;
+  }
+
   #logoText {
 
     margin-top: 1em;
@@ -483,6 +487,7 @@ header ul+div {
     justify-content: center;
     align-items: center;
     margin: 0 2em;
+    position: sticky;
   }
 
   #auth {
@@ -1951,7 +1956,7 @@ tbody td:last-child {
 
 #descriptionOffre>section {
   margin-left: 3em;
-  background-color: var(--accent);
+  background-color: var(--accent80);
   border-radius: 0.5em;
   padding: 10px;
   margin-top: 1em;
