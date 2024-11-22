@@ -38,18 +38,6 @@ $categorie = [
 ];
 
 
-//Récupération de tous les tags pour leur sélection dans l'input
-$stmt = $conn->prepare("SELECT * FROM pact._tag");
-$stmt->execute();
-
-$listeTags = [];
-
-
-while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $listeTags[] = str_replace("_", " ",$result["nomtag"]);
-}
-
-
 $disableCategorie = false;
 
 if ($result != false) {
@@ -90,6 +78,17 @@ if ($result != false) {
 
 else{    
     $loadedTags = [];
+}
+
+//Récupération de tous les tags pour leur sélection dans l'input
+$stmt = $conn->prepare("SELECT * FROM pact._tag");
+$stmt->execute();
+
+$listeTags = [];
+
+
+while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $listeTags[] = str_replace("_", " ",$result["nomtag"]);
 }
 
 
