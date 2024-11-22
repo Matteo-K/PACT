@@ -2960,7 +2960,7 @@ p[id="legendeBoutonLienPro"] {
   }
 
   .connexion-compte input {
-    width: auto;
+    width: 95%;
     max-width: 360px;
   }
 
