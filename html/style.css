@@ -1995,6 +1995,10 @@ tbody td:last-child {
   .mainOffer>div {
     gap: 0.5em;
   }
+
+  #infoPro{
+    display: none;
+  }
 }
 
 /* ========================= */
