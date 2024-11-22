@@ -47,7 +47,6 @@ $listeTags = [];
 
 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $listeTags[] = str_replace("_", " ",$result["nomtag"]);
-    print_r($result);
 }
 
 
@@ -152,6 +151,8 @@ else{
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->
             </section>
+
+            <?php print_r($loadedTags); ?>
 
 
             <p>
