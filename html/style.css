@@ -1511,8 +1511,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
   justify-content: center;
   gap: 20px;
-  padding: 0;
-  margin: 10%;
+  padding-top: 20px;
+  margin-top: 20px;
+  margin-inline: 30%;
   border-top: var(--bloc) solid 2px;
 }
 
@@ -1521,13 +1522,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: fit-content;
   height: 20px;
   text-align: center;
-  padding: 5px;
 }
 
 #pageActuel {
   border-bottom: 3px solid var(--accent);
   box-sizing: border-box; 
-  padding-bottom: 2px !important;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
