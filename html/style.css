@@ -2063,12 +2063,12 @@ x
   #descriptionOffre > p{
     order: 10;
     margin: 0 ;
-    margin: 1em 2em ;
   }
   
   #descriptionOffre > section{
     order: 2;
     width: 100%;
+    margin: 1em 0;
   }
 
   #descriptionOffre{
