@@ -467,7 +467,7 @@ header ul+div {
     --header-size: clamp(100px, 25vh + 0.5em, 150px);
   }
 
-  header > div{
+  header, header > div{
     position: relative;
   }
 
@@ -478,10 +478,9 @@ header ul+div {
   }
 
   #divFormHeader {
+    position: sticky;
     order: 10;
     width: 100%;
-
-    position: sticky;
     top: 0;  /* La barre de recherche sera fixée en haut de la fenêtre dès qu'elle atteindra cette position */
     z-index: 10; /* Pour s'assurer qu'elle reste au-dessus des autres éléments lorsque l'utilisateur défile */
   }
