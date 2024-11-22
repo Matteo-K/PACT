@@ -2775,7 +2775,7 @@ div.ligne3>label {
     flex-direction: column;
     align-items: center;
     width: 90%;
-    max-width: 400px;
+    max-width: 500px; /* Plus large que pour 375px */
     margin: 0 auto;
     padding: 20px;
     background-color: var(--bloc);
@@ -2789,7 +2789,7 @@ div.ligne3>label {
     justify-content: center;
     margin: 10px;
     width: 90%;
-    max-width: 380px;
+    max-width: 480px; /* Plus large que pour 375px */
   }
 
   .creation-compte .ligne7 {
@@ -2798,24 +2798,24 @@ div.ligne3>label {
     justify-content: center;
     margin: 10px;
     width: 90%;
-    max-width: 380px;
+    max-width: 480px;
   }
 
-.creation-compte div.ligne2>label,
-div.ligne3>label {
-  margin: 5px;
-}
+  .creation-compte div.ligne2 > label,
+  div.ligne3 > label {
+    margin: 5px;
+  }
 
   .creation-compte label {
     text-align: left;
     margin-bottom: 5px;
     font-size: 18px;
-    width: 290px;
-    max-width: 290px;
+    width: 350px; /* Plus large que pour 375px */
+    max-width: 350px;
   }
 
   .creation-compte input {
-    width: 280px;
+    width: 320px; /* Plus large que pour 375px */
     height: 40px;
     margin-bottom: 15px;
     padding: 5px;
@@ -2824,15 +2824,15 @@ div.ligne3>label {
     font-size: 16px;
   }
 
-  .creation-compte .ligne7>input {
+  .creation-compte .ligne7 > input {
     width: auto;
   }
 
   button[id="boutonInscription"] {
     width: 100%;
-    max-width: 180px;
+    max-width: 200px; /* Plus large que pour 375px */
     height: 50px;
-    font-size: 20px;
+    font-size: 22px; /* Légèrement plus grand */
     border-radius: 10px;
     margin-top: 15px;
   }
@@ -2844,6 +2844,7 @@ div.ligne3>label {
     margin-bottom: 20px;
   }
 
+  /* Gestion de l'ordre des éléments */
   #labelNom {
     order: 1;
   }
@@ -2851,7 +2852,6 @@ div.ligne3>label {
   #nomMembre {
     order: 2;
   }
-
 
   #labelPrenom {
     order: 3;
@@ -2861,7 +2861,6 @@ div.ligne3>label {
     order: 4;
   }
 
-
   #labelPseudo {
     order: 5;
   }
@@ -2869,7 +2868,6 @@ div.ligne3>label {
   #pseudoMembre {
     order: 6;
   }
-
 
   #labelTelephone {
     order: 7;
@@ -2879,7 +2877,6 @@ div.ligne3>label {
     order: 8;
   }
 
-
   #labelEmail {
     order: 9;
   }
@@ -2887,7 +2884,6 @@ div.ligne3>label {
   #email {
     order: 10;
   }
-
 
   #labelVille {
     order: 11;
@@ -2897,7 +2893,6 @@ div.ligne3>label {
     order: 12;
   }
 
-
   #labelCode {
     order: 13;
   }
@@ -2906,7 +2901,6 @@ div.ligne3>label {
     order: 14;
   }
 
-
   #labelMotdepasse {
     order: 15;
   }
@@ -2914,7 +2908,6 @@ div.ligne3>label {
   #motdepasse {
     order: 16;
   }
-
 
   #labelConfirmer {
     order: 17;
@@ -2928,7 +2921,6 @@ div.ligne3>label {
     order: 19;
   }
 }
-
 
 
 /*++++++++++++++++++++++++++++++*/
