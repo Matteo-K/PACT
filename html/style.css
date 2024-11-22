@@ -1180,7 +1180,15 @@ header ul+div {
   background-color: var(--secondary);
   height: 30px;
   margin: 5px;
+  padding: 5px 15px;
 }
+
+#artDetailOffer .tag img{
+  width: 12px;
+  height: 12px;
+  margin-left: 5px;
+}
+
 
 #artDetailOffer section,
 #afficheImages,
@@ -1951,9 +1959,6 @@ tbody td:last-child {
   gap: 10px;
 }
 
-#infoComp h2 {
-  color: var(--bloc);
-}
 
 #descriptionOffre>section {
   margin-left: 3em;
@@ -2084,11 +2089,18 @@ x
     width: 85%;
   }
 
+  #infoComp > h2{
+    font-size: 1.4rem;
+  }
+
   table{
     width: 95%;
   }
-
-
+  th{
+    font-size: 22px;
+    font-weight: 600;
+  }
+  td{font-size: 16px;}
 
 }
 

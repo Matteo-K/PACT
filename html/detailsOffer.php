@@ -317,7 +317,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </article>
         
 
-        <section id="InfoComp">
+        <section id="infoComp">
             <h2>Informations Complémentaires</h2>
             <table>
                 <thead>
