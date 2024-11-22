@@ -48,13 +48,13 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 </figure>
                 <figure id="btnTri">
                     <figcaption>Trier</figcaption>
-                    <img src="img/icone/burger-bar.png" alt="tri">
+                    <img src="img/icone/croix.png" alt="Fermer l'onglet tri">
                 </figure>
             </div>
             <aside id="tri">
                 <div>
                     <h2>Trier</h2>
-                    <figure class="fermeTriFiltre">
+                    <figure id="fermeTri" class="fermeTriFiltre">
                         <figcaption>Fermer l'onglet</figcaption>
                         <div class="close_onglet"></div>
                     </figure>
@@ -87,7 +87,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
             <aside id="filtre" class="asdTriFiltre">
                 <div>
                     <h2>Filtrer</h2>
-                    <figure class="fermeTriFiltre">
+                    <figure id="fermeFiltre" class="fermeTriFiltre">
                         <figcaption>Fermer l'onglet</figcaption>
                         <img src="img/icone/croix.png" alt="Fermer l'onglet filtre">
                     </figure>
@@ -385,7 +385,17 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         const btnTri = document.querySelector("#btnTri");
         const asideTri = document.querySelector("#tri");
         const asideFiltre = document.querySelector("#filtre");
+        const fermeTri = document.querySelector("#fermeTri");
+        const fermeFiltre = document.querySelector("#fermeFiltre");
+
+        fermeTri.addEventListener("click", () => {
+            asideTri.classList.remove("openFiltreTri");
+        });
         
+        fermeFiltre.addEventListener("click", () => {
+            asideFiltre.classList.remove("openFiltreTri");
+        });
+
         btnTri.addEventListener("click", () => {
             asideTri.classList.toggle("openFiltreTri");
         });

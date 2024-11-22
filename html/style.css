@@ -1715,11 +1715,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* btn fermer onglet aside */
-.close_onglet {
+.img {
   width: 30px;
   height: 30px;
-  clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
-  background-color: white;
 }
 
 @media (max-width : 1079px) {
@@ -1737,7 +1735,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   #trifiltre {
     position: static;
-    background: pink;
+    background: transparent;
     width: 100%;
   }
 
