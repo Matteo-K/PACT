@@ -2025,8 +2025,8 @@ tbody td:last-child {
 
 @media screen and (max-width : 768px) {
   #titleOffer {
-    font-size: clamp(1em, 10vw, 4em);
-    font-weight: 100;
+    font-size: clamp(2em, 10vw, 4em);
+    font-weight: 400;
   }
 
   .mainOffer .tag,
