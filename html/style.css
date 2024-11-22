@@ -2068,13 +2068,12 @@ x
   #descriptionOffre > section{
     order: 2;
     width: 100%;
-    margin: 1em 2em ;
   }
 
   #descriptionOffre{
     margin: 0;
     flex-direction: column;
-    width: 95%;
+    width: 85%;
   }
 
   table{
