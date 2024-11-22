@@ -173,15 +173,15 @@ else{
     
     <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
 
-    <?php
-        $source = "details/";
-        require_once $source . "detailsRestaurant.php";
-        require_once $source . "detailsPark.php";
-        require_once $source . "detailsVisit.php";
-        require_once $source . "detailsShow.php";
-        require_once $source . "detailsActivity.php";
-        
-    ?>
+        <?php
+            $source = "details/";
+            require_once $source . "detailsRestaurant.php";
+            require_once $source . "detailsPark.php";
+            require_once $source . "detailsVisit.php";
+            require_once $source . "detailsShow.php";
+            require_once $source . "detailsActivity.php";
+            
+        ?>
 
     </article>
     <script>
@@ -193,7 +193,7 @@ else{
         let compteurTags = loadedTags.length; // Compteur pour limiter à 6 tags
 
         //On récupère en JS la liste des tags pour le script 
-        const listeTags = <?php echo json_encode($listeTags) ?>;
+        let listeTags = <?php echo json_encode($listeTags) ?>;
 
         //Récupération des tags déjà présents sur l'offre puis affichage (semblable a la fonction ajouTag())
         const loadedTags = <?php echo json_encode($loadedTags) ?>;

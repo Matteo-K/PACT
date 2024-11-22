@@ -302,42 +302,28 @@ if (isset($_POST['pageBefore'])) {
       $tags = $_POST["tags"] ?? [];
 
       foreach ($tags as $key => $tag) {
-        //On verifie si le tag existe dans la BDD
-        $stmt = $conn->prepare("SELECT * FROM pact._tag WHERE nomtag = ?");
-        $stmt->execute([$tag]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        //Si il n'existe pas on l'ajoute a la table _tag
-        if ($result == false) {
-          $stmt = $conn->prepare("INSERT INTO pact._tag (nomtag) VALUES (?)");
-          $stmt->execute([$tag]);
-        }
 
         // et dans tous les cas on ajoute la relation tag <-> offre (différentes tables selon la catégorie)
         switch ($categorie) {
           case 'restaurant':
             $stmt = $conn->prepare("INSERT INTO pact._tag_restaurant (idoffre, nomtag) VALUES (?, ?)");
-            $stmt->execute([$idOffre, $tag]);
             break;
           case 'parc':
             $stmt = $conn->prepare("INSERT INTO pact._tag_parc (idoffre, nomtag) VALUES (?, ?)");
-            $stmt->execute([$idOffre, $tag]);
             break;
           case 'activite':
             $stmt = $conn->prepare("INSERT INTO pact._tag_act (idoffre, nomtag) VALUES (?, ?)");
-            $stmt->execute([$idOffre, $tag]);
             break;
           case 'spectacle':
             $stmt = $conn->prepare("INSERT INTO pact._tag_spec (idoffre, nomtag) VALUES (?, ?)");
-            $stmt->execute([$idOffre, $tag]);
             break;
           case 'visite':
             $stmt = $conn->prepare("INSERT INTO pact._tag_visite (idoffre, nomtag) VALUES (?, ?)");
-            $stmt->execute([$idOffre, $tag]);
             break;
           default:
             break;
         }
+        $stmt->execute([$idOffre, $tag]);
       }
 
       break;
