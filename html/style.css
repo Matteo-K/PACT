@@ -1570,49 +1570,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   cursor: pointer;
 }
 
-#trifiltre select:focus {
+#trifiltre select:focus, #trifiltre [type="date"]:focus, #trifiltre [type="date"]:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 5px var(--accent-border);
 }
 
-/* Style de base */
-[type="date"] {
-  width: 200px;
-  padding: 10px;
-  border: 2px solid #ccc;
+#trifiltre [type="date"], #trifiltre [type="date"] {
+  padding: 5px 10px;
+  border: 2px solid white;
   border-radius: 5px;
-  background-color: white;
-  color: #333;
-  font-size: 16px;
+  background-color: var(--background);
+  color: var(--text-dark);
   outline: none;
   cursor: pointer;
 }
-
-/* Style au survol */
-[type="date"]:hover {
-  border-color: #4caf50;
-}
-
-/* Style au focus */
-[type="date"]:focus {
-  border-color: #4caf50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-}
-
-/* Modifier la flèche du sélecteur (navigateurs modernes) */
-[type="date"]::-webkit-calendar-picker-indicator {
-  background-color: #4caf50;
-  color: white;
-  border-radius: 50%;
-  padding: 5px;
-  cursor: pointer;
-}
-
-[type="date"]::-webkit-calendar-picker-indicator {
-  display: none;
-}
-
 
 #blcPrixStatut {
   display: flex;
@@ -2041,6 +2013,16 @@ tbody td:last-child {
   #infoPro{
     display: none;
   }
+
+  .mySwiper{
+    height: auto;
+  }
+
+  .swiper-button-next,.swiper-button-prev{
+    display: none;
+  }
+
+
 }
 
 /* ========================= */
