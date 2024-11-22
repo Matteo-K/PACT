@@ -2994,6 +2994,7 @@ p[id="legendeBoutonLienPro"] {
   a[id="boutonLienMembre"],
   p[id="legendeBoutonLienMembre"] {
     display: block;
+    width: 350px;
   }
 
   a[id="boutonLienPro"],
