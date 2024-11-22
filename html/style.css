@@ -2635,6 +2635,10 @@ div.ligne6>label {
     max-width: 380px;
   }
 
+  .creation-compte .ligne3, .ligne4 {
+    margin: 5px;
+  }
+
   .creation-compte label {
     text-align: left;
     margin-bottom: 5px;
