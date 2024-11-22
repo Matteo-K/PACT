@@ -377,14 +377,10 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         
         btnTri.addEventListener("click", () => {
             asideTri.classList.add("openFiltreTri");
-            console.log("toggle Tri");
-            console.log(asideTri);
         });
         
         btnFiltre.addEventListener("click", () => {
             asideFiltre.classList.toggle("openFiltreTri");
-            console.log("toggle Filtre");
-            console.log(asideFiltre);
         });
     });
 </script>

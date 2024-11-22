@@ -1513,6 +1513,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   position: relative;
   cursor: pointer;
   transform: translateY(25%);
+  margin-inline: 5px;
 }
 
 #trifiltre input[type="checkbox"]:checked + .checkmark {
@@ -1575,6 +1576,44 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   box-shadow: 0 0 5px var(--accent-border);
 }
 
+/* Style de base */
+[type="date"] {
+  width: 200px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  color: #333;
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Style au survol */
+[type="date"]:hover {
+  border-color: #4caf50;
+}
+
+/* Style au focus */
+[type="date"]:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Modifier la flèche du sélecteur (navigateurs modernes) */
+[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+
 #blcPrixStatut {
   display: flex;
   flex-flow: row nowrap;
@@ -1631,10 +1670,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: flex;
   flex-flow: column;
   align-items: flex-start;
-}
-
-#note > h3 + div {
-  padding: 40px;
+  padding-left: 30px;
 }
 
 .star {
