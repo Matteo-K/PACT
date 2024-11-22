@@ -194,10 +194,10 @@ header {
   height: var(--header-size);
   z-index: 10;
   background-color: var(--background);
-  padding:0.5em 0 ;
+  padding: 0.5em 0;
 }
 
-header > div {
+header>div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -205,7 +205,7 @@ header > div {
   height: 3em;
 }
 
-header div > a {
+header div>a {
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -216,18 +216,19 @@ header h1 {
   font-size: 48px;
   color: var(--bloc);
 }
-header h3{
+
+header h3 {
   font-size: 16px;
 }
 
-#auth{
+#auth {
 
   align-items: center;
   justify-content: center;
 }
 
-header div > a > img,
-#auth > img {
+header div>a>img,
+#auth>img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
@@ -284,21 +285,21 @@ header div > a > img,
   font-size: 48px;
   color: var(--bloc);
   text-align: center;
-  
+
 }
 
 #pro {
   font-family: "Lato";
   font-size: 16px;
-  
+
   color: var(--text-dark);
   text-align: center;
- 
+
   margin-top: -50px;
-  
+
 }
 
-header > div > a > div {
+header>div>a>div {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -321,27 +322,26 @@ header > div > a > div {
 
 /* Style général du menu de profil */
 #profileMenu {
-  color: #fff; 
+  color: #fff;
   margin: 0;
   position: fixed;
   top: 0;
   right: 0;
-  height: 100%; 
+  height: 100%;
   width: 300px;
-  background: linear-gradient(
-    to bottom,
-    #034d7c,
-    #1ca4ed
-  ); /* Dégradé du haut vers le bas */
+  background: linear-gradient(to bottom,
+      #034d7c,
+      #1ca4ed);
+  /* Dégradé du haut vers le bas */
   display: flex;
   flex-direction: column;
-  transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease; 
-  visibility: hidden; 
+  transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease;
+  visibility: hidden;
   opacity: 0;
 }
 
 #profileMenu.show {
-  visibility: visible; 
+  visibility: visible;
   opacity: 1;
   transform: translateX(0);
 }
@@ -372,10 +372,10 @@ header > div > a > div {
 /* Styles pour le pseudo ou le nom */
 #imagProfil figcaption {
   text-shadow: black -2px 2px;
-  text-align: center; 
-  font-size: 20px; 
-  font-weight: bold; 
-  margin: 0; 
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
   color: #fff;
 }
 
@@ -391,8 +391,8 @@ header > div > a > div {
 
 /* Styles pour les liens du menu */
 #profileMenu ul {
-  list-style-type: none; 
-  padding: 0; 
+  list-style-type: none;
+  padding: 0;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -401,17 +401,17 @@ header > div > a > div {
 }
 
 #profileMenu ul li {
-  margin: 20px 0; 
+  margin: 20px 0;
   font-size: 30px;
   font-family: "Belanosima", sans-serif;
   font-weight: bold;
 }
 
 #profileMenu a {
-  color: #fff; 
+  color: #fff;
   text-decoration: none;
   transition: color 0.5s;
-  padding: 10px; 
+  padding: 10px;
   text-align: center;
   border-radius: 10px;
 }
@@ -420,7 +420,7 @@ header > div > a > div {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-header ul + div {
+header ul+div {
   width: 100%;
   flex-direction: column;
   margin-bottom: 3em;
@@ -443,6 +443,7 @@ header ul + div {
 #changeAccount {
   background-color: #034d7ccc;
 }
+
 #changeAccount:hover {
   background-color: #034d7c;
 }
@@ -462,47 +463,49 @@ header ul + div {
 }
 
 @media (max-width: 768px) {
-  :root{
+  :root {
     --header-size: clamp(100px, 25vh + 0.5em, 150px);
   }
 
   #logoText {
 
-      margin-top: 1em;
-      font-size: clamp(16px, 10vw, 48px);
+    margin-top: 1em;
+    font-size: clamp(16px, 10vw, 48px);
   }
 
-  #divFormHeader{
-    order:10;
+  #divFormHeader {
+    order: 10;
     width: 100%;
   }
+
   #formHeader {
-      width: 95%;
-      justify-content: center;
-      align-items:center;
-      margin:0 2em;
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2em;
   }
 
   #auth {
-      
-      order:2;
-      margin-top: 15px;
-      flex-direction: column;
-      align-items: flex-start;
+
+    order: 2;
+    margin-top: 15px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   #btnConn {
-      width: 8em;
-      height: 2.2em;
-      font-size: 18px;
-      margin-top: 10px;
-      
+    width: 9em;
+    height: 2.2em;
+    font-size: 18px;
+    margin-top: 10px;
+
   }
 
-  #auth img, #logo {
-    width: clamp(2em,15vw,5em);
-    height: clamp(2em,15vw,5em);
-  
+  #auth img,
+  #logo {
+    width: clamp(2em, 15vw, 5em);
+    height: clamp(2em, 15vw, 5em);
+
   }
 }
 
@@ -1181,12 +1184,12 @@ header ul + div {
   flex-wrap: wrap;
 }
 
-#inputAutoComplete{
+#inputAutoComplete {
   position: relative;
   width: calc(70% + 141.625px);
 }
 
-#autocompletion{
+#autocompletion {
   display: none;
   padding: 2px 0;
   margin: 0;
@@ -1200,9 +1203,9 @@ header ul + div {
   overflow-y: scroll;
 }
 
-#autocompletion li{
+#autocompletion li {
   padding: 1px 0 1px 10px;
-} 
+}
 
 #autocompletion li:nth-child(even) {
   background-color: var(--accent30);
@@ -1499,14 +1502,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 0 0 45px 0;
 }
 
-#trifiltre h3, #trifiltre h2 {
+#trifiltre h3,
+#trifiltre h2 {
   margin: 10px;
   margin-bottom: 0;
 }
 
 /* Tout les input */
 
-#trifiltre input[type="checkbox"], #trifiltre input[type="radio"] {
+#trifiltre input[type="checkbox"],
+#trifiltre input[type="radio"] {
   display: none;
 }
 
@@ -1522,11 +1527,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-inline: 5px;
 }
 
-#trifiltre input[type="checkbox"]:checked + .checkmark {
+#trifiltre input[type="checkbox"]:checked+.checkmark {
   background-color: var(--background);
 }
 
-#trifiltre input[type="checkbox"]:checked + .checkmark::after {
+#trifiltre input[type="checkbox"]:checked+.checkmark::after {
   content: "";
   position: absolute;
   top: 4px;
@@ -1546,7 +1551,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #tri [type="radio"] + label {
-  background-color: white;
+  background-color: var(--secondary90);
   color: var(--text-dark);
   padding: 5px;
   border-radius: 10px;
@@ -1556,7 +1561,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border: 2px solid var(--secondary);
 }
 
-#tri [type="radio"]:checked + label {
+#tri [type="radio"]:checked+label {
   background-color: var(--accent90);
   color: var(--text-light);
 }
@@ -1608,11 +1613,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* bloc de bouton menu téléphone*/
-#trifiltre > div {
+#trifiltre>div {
   display: none;
 }
 
-#trifiltre > div figure {
+#trifiltre>div figure {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -1620,13 +1625,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   cursor: pointer;
 }
 
-#tri, #filtre {
+#tri,
+#filtre {
   color: var(--text-light);
   transition: all 0.3s ease-in-out;
 }
 
 /* chaque ligne d'étoile */
-#note > h3 + div > div {
+#note>h3+div>div {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -1637,7 +1643,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-weight: bold;
 }
 
-#prix div, #statut div {
+#prix div,
+#statut div {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
@@ -1647,11 +1654,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-left: 10px;
 }
 
-#categorie h3, #categorie ul {
+#categorie h3,
+#categorie ul {
   margin: 0;
 }
 
-#categorie ul, #note > h3 + div {
+#categorie ul,
+#note>h3+div {
   display: flex;
   flex-flow: column;
   align-items: flex-start;
@@ -1686,7 +1695,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     margin-left: 0;
   }
 
-  #trifiltre > div {
+  #trifiltre>div {
     display: block;
   }
 
@@ -1696,7 +1705,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     width: 100%;
   }
 
-  #tri, #filtre {
+  #tri,
+  #filtre {
     display: none;
     opacity: 0;
     color: var(--text-light);
@@ -1705,18 +1715,19 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   #tri {
     transform: translateX(-100%);
   }
-  
-   #filtre {
+
+  #filtre {
     transform: translateX(100%);
   }
 
-  #trifiltre > div {
+  #trifiltre>div {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-evenly;
   }
 }
+
 .mainOffer .tag,
 .ouvert,
 .ferme {
@@ -1724,6 +1735,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   box-shadow: none;
   margin-bottom: 2em;
 }
+
 /*  ***************************************************************************************
      **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
      *************************************************************************************** */
@@ -1745,7 +1757,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #titleOffer {
   text-align: center;
   font-size: 5em;
-  
+
   color: var(--bloc);
   margin-bottom: 0.5em;
 }
@@ -2008,8 +2020,8 @@ tbody td:last-child {
 }
 
 @media screen and (max-width : 768px) {
-  #titleOffer{
-    font-size: clamp(1em,10vw,3em);
+  #titleOffer {
+    font-size: clamp(1em, 10vw, 3em);
   }
 
   .mainOffer .tag,
@@ -2023,7 +2035,7 @@ tbody td:last-child {
     gap: 0.5em;
   }
 
-  #infoPro{
+  #infoPro {
     display: none;
   }
 
@@ -2245,7 +2257,7 @@ tbody td:last-child {
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 #restaurant {
-  background-color: yellow; /* test */
+  
   padding: 20px;
 }
 
@@ -2254,14 +2266,17 @@ tbody td:last-child {
 }
 
 #restaurant label {
-  display: inline-block; /* Alignement du bouton radio et du texte*/
-  width: 100%; /* largeur*/
-  margin-bottom: 10px; /* Espacement */
+  display: inline-block;
+  /* Alignement du bouton radio et du texte*/
+  width: 100%;
+  /* largeur*/
+  margin-bottom: 10px;
+  /* Espacement */
 }
 
 #restaurant input[type="radio"] {
-  margin-right: 10px; /* Espace entre le bouton radio et le texte */
-  /* vertical-align: middle;*//* Aligne verticalement le bouton radio avec le texte */
+  margin-right: 10px;
+  /* Espace entre le bouton radio et le texte */
 }
 
 
@@ -2379,12 +2394,14 @@ body[id="body_creation_compte"] ::placeholder {
   text-align: left;
 }
 
-.creation-compte div.ligne1>label, div.ligne6>label {
+.creation-compte div.ligne1>label,
+div.ligne6>label {
   display: inline-block;
   width: 408px;
 }
 
-.creation-compte div.ligne2>label, div.ligne3>label {
+.creation-compte div.ligne2>label,
+div.ligne3>label {
   display: flex;
   justify-content: left;
   width: 823px;
@@ -2530,7 +2547,7 @@ div[id="messageErreur"] {
   margin-top: 10px;
 }
 
-.creation-compte input.valid + .error-message {
+.creation-compte input.valid+.error-message {
   display: none;
 }
 
@@ -2538,7 +2555,9 @@ div[id="messageErreur"] {
 /*++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte membre, Antoine */
 /*++++++++++++++++++++++++++++++++++++++++++++*/
-.creation-compte div.ligne1>label, div.ligne1_1>label, div.ligne6>label {
+.creation-compte div.ligne1>label,
+div.ligne1_1>label,
+div.ligne6>label {
   display: inline-block;
   width: 408px;
 }
@@ -2580,7 +2599,7 @@ div[id="messageErreur"] {
     margin: 10px;
     width: 90%;
     max-width: 380px;
-}
+  }
 
   .creation-compte label {
     text-align: left;
@@ -2600,9 +2619,9 @@ div[id="messageErreur"] {
     font-size: 16px;
   }
 
-  .creation-compte .ligne7 > input {
+  .creation-compte .ligne7>input {
     width: auto;
-}
+  }
 
   button[id="boutonInscription"] {
     width: 100%;
@@ -2860,6 +2879,7 @@ p[id="legendeBoutonLienPro"] {
 }
 
 @media (max-width: 600px) {
+
   /* Réduire la taille des titres */
   h1[id="connexionTitre"] {
     font-size: 45px;
