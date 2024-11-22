@@ -463,12 +463,16 @@ header ul+div {
 }
 
 @media (max-width: 768px) {
+
+  body{
+    position: static;
+  }
   :root {
     --header-size: clamp(100px, 25vh + 0.5em, 150px);
   }
 
   header{
-    position: relative;
+    position: static;
   }
 
   #logoText {
