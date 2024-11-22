@@ -1314,9 +1314,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #checkAddressBtn:focus,
 .modifierBut:focus {
   outline: none;
-  /* Supprimer le contour bleu au focus */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  /* Effet d'ombre au focus */
 }
 
 .searchTitre,
@@ -1412,10 +1410,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .avisSearch {
   font-size: 0.7em;
 }
-
-/* .createur{
-
-} */
 
 .searchUser {
   font-size: 12px;
@@ -2024,9 +2018,14 @@ tbody td:last-child {
 }
 
 @media screen and (max-width : 768px) {
+
+  .mainOffer{
+    margin-top: 0;
+  }
+
   #titleOffer {
-    font-size: clamp(1em, 10vw, 4em);
-    font-weight: 100;
+    font-size: clamp(2em, 13vw, 5em);
+    font-weight: 600;
   }
 
   .mainOffer .tag,
@@ -2034,6 +2033,7 @@ tbody td:last-child {
   .ferme {
     font-size: 13px;
     padding-inline: 15px;
+    font-weight: 600;
   }
 
   .mainOffer>div {

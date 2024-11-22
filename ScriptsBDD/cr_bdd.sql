@@ -360,21 +360,6 @@ CREATE TABLE _abonner (
 
 -- Triggers pour gérer les options et langues des visites --
 
-CREATE OR REPLACE FUNCTION compte_option()
-RETURNS TRIGGER AS $$
-BEGIN
-    IF (SELECT COUNT(*) FROM pact._option_offre WHERE idOffre = NEW.idOffre) >= 2 THEN
-        RAISE EXCEPTION 'Vous ne pouvez pas avoir plus de 2 options';
-    END IF;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trigger_compte_option
-BEFORE INSERT ON _option_offre
-FOR EACH ROW
-EXECUTE FUNCTION compte_option();
-
 CREATE TABLE _visite_langue (
   idOffre INT,
   langue VARCHAR(255),
@@ -470,13 +455,13 @@ CREATE TABLE _dateOption(
   dateLancement DATE NOT NULL,
   dateFin DATE NOT NULL,
   duree INT NOT NULL,
-  prix NOT NULL
+  prix INT NOT NULL
 );
 
-CREATE TABLE _historiqueOption(
+CREATE TABLE _option_offre(
   idOption INT NOT NULL,
   idOffre INT NOT NULL,
-  nomOption INT NOT NULL,
+  nomOption VARCHAR(255) NOT NULL,
   PRIMARY KEY(idOffre, nomOption, idOption),
   CONSTRAINT _historiqueOption_fk_offre
       FOREIGN KEY (idOffre)
@@ -489,33 +474,15 @@ CREATE TABLE _historiqueOption(
       REFERENCES _dateOption(idOption)
 );
 
-CREATE TABLE _dateStatut(
+CREATE TABLE _historiqueStatut(
+  idOffre INT NOT NULL,
   idStatut SERIAL PRIMARY KEY,
   dateLancement DATE NOT NULL,
-  dateFin DATE NOT NULL,
-  dureeEnLigne INT NOT NULL
-);
-
-CREATE TABLE _option_offre (
-  idOffre INT,
-  nomOption VARCHAR(255),
-  PRIMARY KEY (idOffre, nomOption),
-  CONSTRAINT _option_offre_fk_offre
+  dureeEnLigne INT,
+  CONSTRAINT _historiqueOption_fk_offre
       FOREIGN KEY (idOffre)
-      REFERENCES _offre(idOffre),
-  CONSTRAINT _option_offre_fk_option
-      FOREIGN KEY (nomOption)
-      REFERENCES _option(nomOption)
+      REFERENCES _offre(idOffre)
 );
-
-
-
-
-
-
-
-
-
 
 
 -- Création des vues pour chaque catégorie d'offres
