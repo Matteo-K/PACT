@@ -375,14 +375,14 @@ $arrayOffer = [];
                     </a>
                 </li>
                 <li>
-                    <?php if (($page+1) * $nbElement <= $countOffer) { ?>
+                    <?php if (($page) * $nbElement <= $countOffer) { ?>
                         <a href="<?php echo $lien."&page=".$page+1?>">
                             <?php echo $page+1 ?>
                         </a>
                     <?php } ?>
                 </li>
                 <li>
-                    <?php if (($page+2) * $nbElement <= $countOffer) { ?>
+                    <?php if (($page+1) * $nbElement <= $countOffer) { ?>
                         <a href="<?php echo $lien."&page=".$page+2?>">
                             <?php echo $page+2 ?>
                         </a>
