@@ -216,7 +216,7 @@ const pTag = document.querySelector("#sectionTag + p");
 let tags = []; // Tableau pour stocker les tags
 let compteurTags = querySelectorAll("#sectionTag > input").length; // Compteur pour limiter à 6 tags
 
-console.log(compteurTags);
+alert(compteurTags);
 
 
 
@@ -229,7 +229,11 @@ function ajoutTag(valeurTag) {
     // Crée l'élément visuel pour afficher le tag
     const elementTag = document.createElement("span");
     elementTag.classList.add("tag");
-    elementTag.textContent = valeurTag + '<img src="../img/icone/croix.png">';
+    elementTag.textContent = valeurTag;
+
+    //On créé une image pour guider l'utilisateur sur le suppression du tag
+    const imgCroix = document.createElement("img");
+    imgCroix.setAttribute.src="../img/icone/croix.png";
 
     // Crée l'input caché pour soumettre le tag avec le formulaire
     const hiddenInputTag = document.createElement("input");
@@ -246,9 +250,10 @@ function ajoutTag(valeurTag) {
       compteurTags--; // Décrémente le compteur de tags
     });
 
-    // Ajoute l'élément visuel et l'input caché au DOM
+    // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel
     sectionTag.appendChild(elementTag); 
     sectionTag.appendChild(hiddenInputTag);
+    elementTag.appendChild(imgCroix);
 
     // Réinitialise l'input
     inputTag.value = "";
