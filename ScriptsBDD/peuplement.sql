@@ -160,7 +160,7 @@ VALUES ('Lundi'),
        ('Dimanche');
 
 -- Peuplement de la table _option
-INSERT INTO _option (nomOption, prixOffre, dureeOption,dateLancement) 
+INSERT INTO _option (nomOption, prixOffre, dureeOption) 
 VALUES ('ALaUne', 20, 7), 
        ('EnRelief', 10, 7);
 
@@ -326,11 +326,18 @@ VALUES (1, 'Premium'),
        (3, 'Premium'), 
        (4, 'Basique'), 
        (5, 'Premium');
+       
+
+INSERT INTO _dateOption(dateLancement,dateFin,duree,prix)
+VALUES (CURRENT_DATE,CURRENT_DATE + INTERVAL '1 weeks',1,20),
+       (CURRENT_DATE,CURRENT_DATE + INTERVAL '2 weeks',2,40),
+       (CURRENT_DATE,CURRENT_DATE + INTERVAL '3 weeks',3,30);
 
 -- Peuplement de la table _option_offre
-INSERT INTO _option_offre (idOffre, nomOption) 
-VALUES (1, 'EnRelief'), 
-       (2, 'ALaUne');
+INSERT INTO _historiqueOption (idOption, idOffre, nomOption) 
+VALUES (3, 1, 'EnRelief'), 
+       (2, 2, 'ALaUne'),
+       (1, 3, 'ALaUne');
        
 INSERT INTO _visite_langue (idOffre, langue) 
 VALUES (5, 'Français'), 
