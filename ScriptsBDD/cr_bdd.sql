@@ -458,7 +458,7 @@ CREATE TABLE _dateOption(
   prix INT NOT NULL
 );
 
-CREATE TABLE _historiqueOption(
+CREATE TABLE _option_offre(
   idOption INT NOT NULL,
   idOffre INT NOT NULL,
   nomOption VARCHAR(255) NOT NULL,

@@ -173,8 +173,8 @@ VALUES ('Anglais'),
 -- Peuplement de la table _offre (une offre par catégorie)
 INSERT INTO _offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume, dateCrea) 
 VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attractions de la ville.', 'parc@mail.com', '0123456790', TRUE, 'http://parc.com', 'Divertissement familial', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Thomas angelvy', 'Un spectacle incroyable avec des performances éblouissantes.', 'spectacle@mail.com', '0123456791', TRUE, 'http://spectacle.com', 'Divertissement exceptionnel', CURRENT_TIMESTAMP),
-       (3, 'actif', 'LaPotiniere', 'Découvrez la gastronomie locale.', 'restaurant@mail.com', '0123456793', TRUE, NULL, 'Cuisine raffinée', CURRENT_TIMESTAMP),
+       (4, 'actif', 'Thomas Angelvy', 'Un spectacle incroyable avec des performances éblouissantes.', 'spectacle@mail.com', '0123456791', TRUE, 'http://spectacle.com', 'Divertissement exceptionnel', CURRENT_TIMESTAMP),
+       (3, 'actif', 'La Potinière', 'Découvrez la gastronomie locale.', 'restaurant@mail.com', '0123456793', TRUE, NULL, 'Cuisine raffinée', CURRENT_TIMESTAMP),
        (3, 'actif', 'Activité Culturelle', 'Explorez la culture locale à travers une activité immersive.', 'activite@mail.com', '0123456794', TRUE, 'http://activite.com', 'Immersion culturelle aves la population local', CURRENT_TIMESTAMP),
        (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP);
 
@@ -334,7 +334,7 @@ VALUES (CURRENT_DATE,CURRENT_DATE + INTERVAL '1 weeks',1,20),
        (CURRENT_DATE,CURRENT_DATE + INTERVAL '3 weeks',3,30);
 
 -- Peuplement de la table _option_offre
-INSERT INTO _historiqueOption (idOption, idOffre, nomOption) 
+INSERT INTO _option_offre (idOption, idOffre, nomOption) 
 VALUES (3, 1, 'EnRelief'), 
        (2, 2, 'ALaUne'),
        (1, 3, 'ALaUne');
