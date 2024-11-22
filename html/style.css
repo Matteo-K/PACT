@@ -2775,7 +2775,7 @@ div.ligne3>label {
     flex-direction: column;
     align-items: center;
     width: 90%;
-    max-width: 500px; /* Plus large que pour 375px */
+    max-width: 500px;
     margin: 0 auto;
     padding: 20px;
     background-color: var(--bloc);
@@ -2789,7 +2789,7 @@ div.ligne3>label {
     justify-content: center;
     margin: 10px;
     width: 90%;
-    max-width: 480px; /* Plus large que pour 375px */
+    max-width: 480px;
   }
 
   .creation-compte .ligne7 {
@@ -2815,7 +2815,7 @@ div.ligne3>label {
   }
 
   .creation-compte input {
-    width: 320px;
+    max-width: 320px;
     height: 40px;
     margin-bottom: 15px;
     padding: 5px;
