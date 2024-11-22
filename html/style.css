@@ -1182,6 +1182,12 @@ header ul+div {
   margin: 5px;
 }
 
+#artDetailOffer .tag img{
+  width: 15px;
+  height: 15px;
+}
+
+
 #artDetailOffer section,
 #afficheImages,
 #afficheImages2 {
