@@ -244,6 +244,7 @@ header div > a > img,
   height: 3em;
   width: 34vw;
   border-radius: 2em;
+  
 }
 
 #formHeader input[type="text"],
@@ -455,6 +456,11 @@ header ul + div {
 
 #logoutButton:hover {
   background-color: #ff0000;
+}
+@media (max-width: 804px) {
+  #btnConn{
+    width:clamp(9em, 10vw, 10em) ;
+  }
 }
 
 @media (max-width: 768px) {
