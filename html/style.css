@@ -2230,7 +2230,7 @@ tbody td:last-child {
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 #restaurant {
-
+  background-color: yellow; /* test */
   padding: 20px;
 }
 
@@ -2239,9 +2239,9 @@ tbody td:last-child {
 }
 
 #restaurant label {
-  display: inline-block; /* Garantit que chaque bouton radio et son texte restent alignés */
-  width: 100%; /* Chaque option occupe toute la largeur */
-  margin-bottom: 10px; /* Espacement entre les options */
+  display: inline-block; /* Alignement du bouton radio et du texte*/
+  width: 100%; /* largeur*/
+  margin-bottom: 10px; /* Espacement */
 }
 
 #restaurant input[type="radio"] {
