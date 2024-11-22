@@ -12,6 +12,7 @@
   --text-dark: #000;
   --text-light: #eaeaea;
   --header-size: 100px;
+  --header-size2: var(--header-size);
 }
 
 * {
@@ -467,7 +468,7 @@ header ul+div {
     --header-size: clamp(100px, 25vh + 0.5em, 150px);
   }
 
-  header, header > div{
+  header{
     position: relative;
   }
 
@@ -478,11 +479,8 @@ header ul+div {
   }
 
   #divFormHeader {
-    position: sticky;
     order: 10;
     width: 100%;
-    top: 0;  /* La barre de recherche sera fixée en haut de la fenêtre dès qu'elle atteindra cette position */
-    z-index: 10; /* Pour s'assurer qu'elle reste au-dessus des autres éléments lorsque l'utilisateur défile */
   }
 
   #formHeader {
@@ -636,7 +634,7 @@ header ul+div {
 
 #manageOffer aside+section {
   margin-left: 17em;
-  margin-top: var(--header-size);
+  margin-top: var(--header-size2);
   min-height: 70vh;
 }
 
@@ -1763,7 +1761,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .buttonDetails {
   display: flex;
-  margin-top: calc(var(--header-size) + 0.6em);
+  margin-top: calc(var(--header-size2) + 0.6em);
   gap: 10px;
   /* Espacement entre les boutons */
 }
@@ -2033,7 +2031,9 @@ tbody td:last-child {
 }
 
 @media screen and (max-width : 768px) {
-
+  :root{
+    --header-size2:0;
+  }
   .mainOffer{
     margin-top: 0;
   }
