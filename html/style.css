@@ -2049,6 +2049,20 @@ tbody td:last-child {
   .swiper-button-next,.swiper-button-prev{
     display: none;
   }
+  #descriptionOffre{
+    flex-direction: column;
+  }
+
+  #descriptionOffre > p{
+    order: 10;
+    width: 100%;
+  }
+  
+  #descriptionOffre > section{
+    order: 2;
+    width: 100%;
+  }
+
 
 
 }
