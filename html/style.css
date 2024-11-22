@@ -2937,10 +2937,10 @@ p[id="legendeBoutonLienPro"] {
   width: 520px;
 }
 
+
+
 /* Média query pour passer au format téléphone */
 @media (max-width: 600px) {
-
-  /* Réduire la taille des titres */
   h1[id="connexionTitre"] {
     font-size: 45px;
     margin-top: 20vh;
@@ -2950,7 +2950,6 @@ p[id="legendeBoutonLienPro"] {
     display: none;
   }
 
-  /* Ajustement du formulaire */
   .connexion-compte form {
     justify-content: center;
     width: 90%;
@@ -2960,18 +2959,17 @@ p[id="legendeBoutonLienPro"] {
   }
 
   .connexion-compte input {
-    width: 95%;
+    min-width: 250px;
+    width: auto;
     max-width: 360px;
   }
 
-  /* Réduire la taille du bouton de connexion */
   button[id="boutonConnexion"] {
     width: 180px;
     height: 50px;
     font-size: 22px;
   }
 
-  /* Empiler les boutons de création de compte verticalement */
   div[id="lienBouton"] {
     flex-direction: column;
     justify-content: center;
@@ -2983,7 +2981,6 @@ p[id="legendeBoutonLienPro"] {
     margin: 10px 0;
   }
 
-  /* Ajustement des boutons et des labels de création de compte */
   a[id="boutonLienMembre"],
   p[id="legendeBoutonLienMembre"] {
     display: block;
