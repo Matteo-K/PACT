@@ -141,7 +141,6 @@ footer div+div {
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
-  padding: 0 10px;
   width: 100%;
 }
 
@@ -211,7 +210,6 @@ header div > a {
   flex-direction: row;
   text-decoration: none;
   align-items: center;
-
 }
 
 header h1 {
@@ -1510,7 +1508,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: inline-block;
   width: 18px;
   height: 18px;
-  background-color: var(--background);
+  background-color: white;
   border: 2px var(--accent) solid;
   position: relative;
   cursor: pointer;
@@ -1542,13 +1540,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #tri [type="radio"] + label {
-  background-color: var(--secondary90);
+  background-color: white;
   color: var(--text-dark);
   padding: 5px;
   border-radius: 10px;
   width: 130px;
   text-align: center;
   margin: 5px;
+  border: 2px solid var(--secondary);
 }
 
 #tri [type="radio"]:checked + label {
@@ -1588,6 +1587,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   color: var(--text-dark);
   outline: none;
   cursor: pointer;
+}
+
+#trifiltre [type="time"] {
+  margin-left: 10px;
 }
 
 #blcPrixStatut {
