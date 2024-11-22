@@ -96,7 +96,7 @@ if (isset($_POST['pageBefore'])) {
       $categorie = $_POST["categorie"];
 
       // Traitement des images
-      $dossierImg = "img/imageOffre/";
+      $dossierImg = __DIR__."/img/imageOffre/";
       $imageCounter = 0;  // Compteur pour renommer les images
 
       $nbImages = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
