@@ -2024,6 +2024,7 @@ tbody td:last-child {
   }
   #descriptionOffre{
     flex-direction: column;
+    width: 100%;
   }
 
   #descriptionOffre > p{
@@ -2034,6 +2035,7 @@ tbody td:last-child {
   #descriptionOffre > section{
     order: 2;
     width: 100%;
+    padding-top: 2px;
   }
 
 
