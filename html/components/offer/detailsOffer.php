@@ -81,6 +81,7 @@ if ($result != false) {
             # code...
             break;
     }
+    $loadedTags = [];
     $stmt->execute([$idOffre]);
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $loadedTags[] = $result["nomtag"];
