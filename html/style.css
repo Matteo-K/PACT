@@ -2234,13 +2234,9 @@ tbody td:last-child {
   padding: 20px;
 }
 
-
 #restaurant h4 {
   margin-bottom: 15px;
 }
-
-
-
 
 #restaurant label {
   display: inline-block; /* Garantit que chaque bouton radio et son texte restent alignés */
@@ -2250,7 +2246,7 @@ tbody td:last-child {
 
 #restaurant input[type="radio"] {
   margin-right: 10px; /* Espace entre le bouton radio et le texte */
-  vertical-align: middle; /* Aligne verticalement le bouton radio avec le texte */
+  /* vertical-align: middle;*//* Aligne verticalement le bouton radio avec le texte */
 }
 
 
