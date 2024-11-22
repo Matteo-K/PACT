@@ -1335,6 +1335,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .search {
   position: relative;
+  min-height: 900px;
   margin-top: 110px;
   padding-bottom: 20px;
   padding-top: 20px;
