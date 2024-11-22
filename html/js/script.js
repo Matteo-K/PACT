@@ -229,7 +229,7 @@ function ajoutTag(valeurTag) {
     // Crée l'élément visuel pour afficher le tag
     const elementTag = document.createElement("span");
     elementTag.classList.add("tag");
-    elementTag.textContent = valeurTag;
+    elementTag.textContent = valeurTag + '<img src="../img/icone/croix.png">';
 
     // Crée l'input caché pour soumettre le tag avec le formulaire
     const hiddenInputTag = document.createElement("input");

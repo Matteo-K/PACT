@@ -125,35 +125,37 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   </div>
   <div>
     <div>
-      <?php
-      foreach ($prixOption as $opt) {
-        if ($opt['nomoption'] === "EnRelief") {
-            ?>
-            <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
-              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
-            </span>
-            <?php
-            break;
+      <div>
+        <?php
+        foreach ($prixOption as $opt) {
+          if ($opt['nomoption'] === "EnRelief") {
+              ?>
+              <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
+                (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
+              </span>
+              <?php
+              break;
+          }
         }
-      }
-      ?>
-      <input type="checkbox" name="enRelief" id="enRelief" <?php echo in_array('ALaUne',$options)?"checked":"" ?>>
-      <label for="enRelief"><span>En relief</span> : met votre offre en exergue lors de son affichage dans la liste d’offres</label></div>
-    <div>
-      <?php
-      foreach ($prixOption as $opt) {
-        if ($opt['nomoption'] === "ALaUne") {
-            ?>
-            <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
-              (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
-            </span>
-            <?php
-            break;
+        ?>
+        <input type="checkbox" name="enRelief" id="enRelief" <?php echo in_array('ALaUne',$options)?"checked":"" ?>>
+        <label for="enRelief"><span>En relief</span> : met votre offre en exergue lors de son affichage dans la liste d’offres</label></div>
+      <div>
+        <?php
+        foreach ($prixOption as $opt) {
+          if ($opt['nomoption'] === "ALaUne") {
+              ?>
+              <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
+                (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
+              </span>
+              <?php
+              break;
+          }
         }
-      }
-      ?>
-      <input type="checkbox" name="aLaUne" id="aLaUne" <?php echo in_array('EnRelief',$options)?"checked":"" ?>>
-      <label for="aLaUne"><span>À la une</span> : met votre offre sur la page d’accueil du site</label>
+        ?>
+        <input type="checkbox" name="aLaUne" id="aLaUne" <?php echo in_array('EnRelief',$options)?"checked":"" ?>>
+        <label for="aLaUne"><span>À la une</span> : met votre offre sur la page d’accueil du site</label>
+      </div>
     </div>
     <p>Attention ! Vous ne pouvez pas changer d’offre une fois séléctionée.</p>
     <div>Montant actuelle : <span id="prixPrevisionel"></span>&euro;</div>
@@ -167,17 +169,19 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     function updatePrix() {
       let prix = 0;
 
+      // Abonnement
       radio.forEach(element => {
         if (element.checked) {
           const tarifOffre = element.parentElement.parentElement.querySelector('h3').getAttribute('prix');
-          prix += parseFloat(tarifOffre);
+          prix += parseFloat(tarifOffre)*30;
         }
       });
 
+      // Option
       option.forEach(element => {
         if (element.checked) {
           const tarifOption = element.parentElement.querySelector('span').getAttribute('prix');
-          prix += parseFloat(tarifOption);
+          prix += parseFloat(tarifOption)*4;
         }
       });
 
