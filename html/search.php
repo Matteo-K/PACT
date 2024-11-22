@@ -56,7 +56,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     <h2>Trier</h2>
                     <figure id="fermeTri" class="fermeTriFiltre">
                         <figcaption>Fermer l'onglet</figcaption>
-                        <img src="img/icone/croix.png" alt="Fermer l'onglet tri">
+                        <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet tri">
                     </figure>
                 </div>
                 <div class="blcTriFiltre">
@@ -89,7 +89,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                     <h2>Filtrer</h2>
                     <figure id="fermeFiltre" class="fermeTriFiltre">
                         <figcaption>Fermer l'onglet</figcaption>
-                        <img src="img/icone/croix.png" alt="Fermer l'onglet filtre">
+                        <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet filtre">
                     </figure>
                 </div>
                 <div class="blcTriFiltre">
