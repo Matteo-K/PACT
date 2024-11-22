@@ -62,7 +62,6 @@ li {
 body {
   margin: 0;
   background-color: var(--background);
-  position: relative;
 }
 
 input[type="text"],
@@ -180,6 +179,7 @@ footer div+div a {
 /* ##### Components ##### */
 
 /* ### Header ### */
+
 header {
   border-bottom: var(--bloc) 2px solid;
   display: flex;
@@ -187,15 +187,17 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  position: relative; /* Gardez le header en position relative par défaut */
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: var(--header-size);
+  z-index: 10;
   background-color: var(--background);
   padding: 0.5em 0;
-  z-index: 10;
 }
 
-header > div {
+header>div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -203,7 +205,7 @@ header > div {
   height: 3em;
 }
 
-header div > a {
+header div>a {
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -220,12 +222,13 @@ header h3 {
 }
 
 #auth {
+
   align-items: center;
   justify-content: center;
 }
 
-header div > a > img,
-#auth > img {
+header div>a>img,
+#auth>img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
@@ -239,6 +242,8 @@ header div > a > img,
   border-radius: 2em;
   height: 3em;
   width: 34vw;
+  border-radius: 2em;
+  
 }
 
 #formHeader input[type="text"],
@@ -271,6 +276,7 @@ header div > a > img,
   width: 2em;
 }
 
+
 #menuBurger {
   display: none;
 }
@@ -279,17 +285,21 @@ header div > a > img,
   font-size: 48px;
   color: var(--bloc);
   text-align: center;
+
 }
 
 #pro {
   font-family: "Lato";
   font-size: 16px;
+
   color: var(--text-dark);
   text-align: center;
+
   margin-top: -50px;
+
 }
 
-header > div > a > div {
+header>div>a>div {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -310,43 +320,208 @@ header > div > a > div {
   align-items: center;
 }
 
-/* ### Formulaire de recherche sticky seulement en dessous de 768px ### */
+/* Style général du menu de profil */
+#profileMenu {
+  color: #fff;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 300px;
+  background: linear-gradient(to bottom,
+      #034d7c,
+      #1ca4ed);
+  /* Dégradé du haut vers le bas */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#profileMenu.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#profileMenu.hide {
+  visibility: visible;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+/* Conteneur pour l'image et le pseudo */
+#imagProfil {
+  margin-top: 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Styles pour l'image de profil dans le menu */
+#imagProfil img {
+  margin: 0;
+  width: 10em;
+  border-radius: 50%;
+}
+
+/* Styles pour le pseudo ou le nom */
+#imagProfil figcaption {
+  text-shadow: black -2px 2px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  color: #fff;
+}
+
+#backButton {
+  margin: 0;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 2em;
+  position: absolute;
+  left: 10px;
+  top: 0;
+}
+
+/* Styles pour les liens du menu */
+#profileMenu ul {
+  list-style-type: none;
+  padding: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+#profileMenu ul li {
+  margin: 20px 0;
+  font-size: 30px;
+  font-family: "Belanosima", sans-serif;
+  font-weight: bold;
+}
+
+#profileMenu a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.5s;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#profileMenu ul a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+header ul+div {
+  width: 100%;
+  flex-direction: column;
+  margin-bottom: 3em;
+  gap: 10px;
+}
+
+.buttonMenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  padding: 10px;
+  border-radius: 0.5em;
+  text-align: center;
+  margin: 0 auto;
+  text-decoration: none;
+  font-size: 20 px;
+}
+
+#changeAccount {
+  background-color: #034d7ccc;
+}
+
+#changeAccount:hover {
+  background-color: #034d7c;
+}
+
+#logoutButton {
+  background-color: #ff0000cc;
+  margin-bottom: 2em;
+}
+
+#logoutButton:hover {
+  background-color: #ff0000;
+}
+@media (max-width: 804px) {
+  #btnConn{
+    width:clamp(7em, 10vw, 10em) ;
+  }
+}
+
 @media (max-width: 768px) {
-  /* Appliquer un sticky uniquement pour les petits écrans */
-  #divFormHeader {
-    position: sticky;
-    top: 0; /* Fixe la barre de recherche en haut dès qu'elle atteint cette position */
-    z-index: 10; /* Assurez-vous que la barre de recherche est au-dessus des autres éléments */
-    width: 100%; /* Largeur complète */
+  :root {
+    --header-size: clamp(100px, 25vh + 0.5em, 150px);
   }
 
-  /* Ajustements supplémentaires pour les petits écrans */
+  header{
+    position: relative;
+  }
+
+  #logoText {
+
+    margin-top: 1em;
+    font-size: clamp(16px, 10vw, 48px);
+  }
+
+  #divFormHeader {
+    order: 10;
+    width: 100%;
+    position: sticky;
+    z-index: 100;
+
+    position: sticky;
+    top: 0;  /* La barre de recherche sera fixée en haut de la fenêtre dès qu'elle atteindra cette position */
+    z-index: 10; /* Pour s'assurer qu'elle reste au-dessus des autres éléments lorsque l'utilisateur défile */
+    background-color: white; /* Optionnel : Ajoutez une couleur de fond pour qu'elle reste lisible */
+    padding: 10px 0; /* Optionnel : Espacement autour de la barre de recherche */
+  }
+
   #formHeader {
-    width: 95%; /* Ajuste la largeur du formulaire */
+    width: 95%;
     justify-content: center;
     align-items: center;
-    margin: 0 2em; /* Ajoute des marges */
+    margin: 0 2em;
+    
   }
 
-  /* Ajustement de la taille du texte et des éléments */
-  #logoText {
-    font-size: clamp(16px, 10vw, 48px);
-    margin-top: 1em;
+  #auth {
+
+    order: 2;
+    margin-top: 15px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   #btnConn {
-    width: clamp(7em, 10vw, 10em);
+    width: 7em;
     height: 2.2em;
     font-size: 18px;
     margin-top: 10px;
+
   }
 
   #auth img,
   #logo {
     width: clamp(2em, 15vw, 5em);
     height: clamp(2em, 15vw, 5em);
+
   }
 }
+
 
 
 /* ### Offer ### */
