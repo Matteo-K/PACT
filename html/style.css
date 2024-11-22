@@ -2764,7 +2764,7 @@ div.ligne3>label {
 }
 
 
-@media (max-width: 375px) {
+@media (max-width: 600px) {
   h1[id="inscriptionTitre"] {
     font-size: 45px;
     margin-top: 5vh;
