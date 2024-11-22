@@ -457,7 +457,7 @@ header ul + div {
 }
 @media (max-width: 804px) {
   #btnConn{
-    width:clamp(9em, 10vw, 10em) ;
+    width:clamp(8em, 10vw, 10em) ;
   }
 }
 
@@ -492,7 +492,7 @@ header ul + div {
   }
 
   #btnConn {
-      width: 9em;
+      width: 8em;
       height: 2.2em;
       font-size: 18px;
       margin-top: 10px;
