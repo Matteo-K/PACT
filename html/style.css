@@ -1513,20 +1513,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 20px;
   padding: 0;
   margin: 10%;
-  border-top: var(--bloc);
+  border-top: var(--bloc) solid 2px;
 }
 
 #pagination li {
+  font-weight: bold;
   width: fit-content;
   height: 20px;
   text-align: center;
   padding: 5px;
-
 }
 
 #pageActuel {
   border-bottom: 3px solid var(--accent);
   box-sizing: border-box; 
+  padding-bottom: 2px !important;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
