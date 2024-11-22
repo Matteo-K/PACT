@@ -2439,7 +2439,7 @@ div.ligne3>label {
   display: flex;
   justify-content: left;
   width: 823px;
-  margin: 5px;
+  margin: 5px auto;
 }
 
 .creation-compte div.ligne4>label {
@@ -2634,6 +2634,11 @@ div.ligne6>label {
     width: 90%;
     max-width: 380px;
   }
+
+.creation-compte div.ligne2>label,
+div.ligne3>label {
+  margin: 5px;
+}
 
   .creation-compte label {
     text-align: left;
