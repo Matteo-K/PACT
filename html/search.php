@@ -1,6 +1,9 @@
 <?php 
 require_once "config.php";
 
+$recherche = $_GET["search"] ?? "";
+$page = $_GET["page"] ?? 1;
+$nbElement = 15;
 
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
@@ -24,6 +27,8 @@ $daysOfWeek = [
 // Convertir le jour actuel en français
 $currentDay = $daysOfWeek[$currentDay];
 $currentTime = new DateTime(date('H:i')); // ex: 14:30
+
+$arrayOffer = [];
 
 ?>
 
@@ -255,9 +260,11 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        $arrayOffer = $results;
+        $countOffer = count($results);
+        $results = array_slice($results, ($page-1)*$nbElement, $nbElement);
         ?>
         <section class="searchoffre">
-            <?php print_r($results); ?>
             <?php if ($results){ ?>
                 <?php foreach ($results as $offre){ 
                     $idOffre = $offre['idoffre'];
@@ -344,6 +351,44 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
                 <p>Aucune offre trouvée </p>
             <?php } ?>
         </section>
+        <section id="pagination">
+            <?php $lien = "search.php?" . $recherche != "" ? $recherche : ""?>
+            <ul>
+                <li>
+                    <?php if ($page > 2) { ?>
+                        <a href="<?php echo $lien."&page=".$page-2?>">
+                            <?php echo $page-2 ?>
+                        </a>
+                    <?php } ?>
+                </li>
+                <li>
+                    <?php if ($page > 1) { ?>
+                        <a href="<?php echo $lien."&page=".$page-1?>">
+                            <?php echo $page-1 ?>
+                        </a>
+                    <?php } ?>
+                </li>
+                <li id="pageActuel">
+                    <a href="<?php echo $lien."&page=".$page?>">
+                        <?php echo $page ?>
+                    </a>
+                </li>
+                <li>
+                    <?php if (($page+1) * $nbElement < $countOffer) { ?>
+                        <a href="<?php echo $lien."&page=".$page+1?>">
+                            <?php echo $page+1 ?>
+                        </a>
+                    <?php } ?>
+                </li>
+                <li>
+                    <?php if (($page+2) * $nbElement < $countOffer) { ?>
+                        <a href="<?php echo $lien."&page=".$page+2?>">
+                            <?php echo $page+2 ?>
+                        </a>
+                    <?php } ?>
+                </li>
+            </ul>
+        </section>
     </main>
     <?php require_once "components/footer.php"; ?>
 </body>
@@ -351,7 +396,6 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
     document.addEventListener("DOMContentLoaded", () => {
 
         // Liste des offres pour la manipuler
-        <?php $arrayOffer = ["Pomme", "Banane", "Fraise", "Poire", "Abricot", "Autre fruit"]; ?>
         let arrayOffer = <?php echo json_encode($arrayOffer); ?>;
         
         // Acualise l'heure actuelle
