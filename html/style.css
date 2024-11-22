@@ -1314,9 +1314,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #checkAddressBtn:focus,
 .modifierBut:focus {
   outline: none;
-  /* Supprimer le contour bleu au focus */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  /* Effet d'ombre au focus */
 }
 
 .searchTitre,
@@ -1412,10 +1410,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .avisSearch {
   font-size: 0.7em;
 }
-
-/* .createur{
-
-} */
 
 .searchUser {
   font-size: 12px;
