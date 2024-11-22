@@ -2026,7 +2026,7 @@ tbody td:last-child {
 @media screen and (max-width : 768px) {
   #titleOffer {
     font-size: clamp(2em, 10vw, 5em);
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .mainOffer .tag,
