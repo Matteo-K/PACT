@@ -2022,12 +2022,7 @@ tbody td:last-child {
   .swiper-button-next,.swiper-button-prev{
     display: none;
   }
-  #descriptionOffre{
-    flex-direction: column;
-    width: 100%;
-    margin:0.5em 10px
-  }
-
+ 
   #descriptionOffre > p{
     order: 10;
     width: 100%;
@@ -2039,6 +2034,13 @@ tbody td:last-child {
     padding-top: 2px;
     margin: 0;
   }
+
+  #descriptionOffre{
+    flex-direction: column;
+    width: 100%;
+    margin:0.5em 10px
+  }
+
 
 
 
