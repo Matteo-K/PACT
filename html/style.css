@@ -2041,6 +2041,16 @@ tbody td:last-child {
   #infoPro{
     display: none;
   }
+
+  .mySwiper{
+    height: auto;
+  }
+
+  .swiper-button-next,.swiper-button-prev{
+    display: none;
+  }
+
+
 }
 
 /* ========================= */
