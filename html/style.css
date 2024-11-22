@@ -2087,8 +2087,10 @@ x
   table{
     width: 95%;
   }
-
-
+  th{
+    font-size: 22px;
+  }
+  td{font-size: 16px;}
 
 }
 
