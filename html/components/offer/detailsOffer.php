@@ -42,8 +42,12 @@ $categorie = [
 $stmt = $conn->prepare("SELECT * FROM pact._tag");
 $stmt->execute();
 
+$listeTags = [];
+
+
 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $listeTags[] = str_replace("_", " ",$result["nomtag"]);
+    print_r($result);
 }
 
 
@@ -186,17 +190,17 @@ else{
     </article>
     <script>
 
-        // Variables de sélection des éléments
-        const sectionTag = document.getElementById("sectionTag");
-        const pTag = document.querySelector("#sectionTag + p");
-        let tags = loadedTags; // Tableau pour stocker les tags, comprenant les tags déjà présents
-        let compteurTags = loadedTags.length; // Compteur pour limiter à 6 tags
-
         //On récupère en JS la liste des tags pour le script 
         let listeTags = <?php echo json_encode($listeTags) ?>;
 
         //Récupération des tags déjà présents sur l'offre puis affichage (semblable a la fonction ajouTag())
         const loadedTags = <?php echo json_encode($loadedTags) ?>;
+
+         // Variables de sélection des éléments
+         const sectionTag = document.getElementById("sectionTag");
+        const pTag = document.querySelector("#sectionTag + p");
+        let tags = loadedTags; // Tableau pour stocker les tags, comprenant les tags déjà présents
+        let compteurTags = loadedTags.length; // Compteur pour limiter à 6 tags
 
         loadedTags.forEach(valeurTag => {
             if (valeurTag) {
