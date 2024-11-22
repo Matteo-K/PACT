@@ -153,7 +153,7 @@
                     <!-- Saisi de confirmation du mot de passe -->
                     <input type="password" placeholder="Confirmer le mot de passe" id="confirmer" name="confirmer" required>
     
-                    <p>Le mot de passe doit contenit au moins 10 caractères dont une majuscule, une minuscule et un chiffre.</p>
+                    <p id="conditionMotdepasse">Le mot de passe doit contenit au moins 10 caractères dont une majuscule, une minuscule et un chiffre.</p>
                 </div>
     
                 

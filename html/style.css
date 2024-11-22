@@ -2758,6 +2758,10 @@ div.ligne3>label {
     order: 18;
   }
 
+  #conditionMotdepasse {
+    order: 19;
+  }
+
 }
 
 
