@@ -37,12 +37,52 @@ $categorie = [
     "_activite" => false,
 ];
 
+
+
 $disableCategorie = false;
 
 if ($result != false) {
     $categorie[$result["table_name"]] = true;
     $disableCategorie = true;
+
+    switch ($result["table_name"]) {
+        case '_restauration':
+            $stmt = $conn->prepare("SELECT * FROM pact._tag_restaurant WHERE idoffre=?");
+            break;
+
+        case '_spectacle':
+            $stmt = $conn->prepare("SELECT * FROM pact._tag_spec WHERE idoffre=?");
+            break;
+
+        case '_parcattraction':
+            $stmt = $conn->prepare("SELECT * FROM pact._tag_parc WHERE idoffre=?");
+            break;
+
+        case '_visite':
+            $stmt = $conn->prepare("SELECT * FROM pact._tag_visite WHERE idoffre=?");
+            break;
+
+        case '_activite':
+            $stmt = $conn->prepare("SELECT * FROM pact._tag_act WHERE idoffre=?");
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+    $stmt->execute([$idOffre]);
+    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $liste_tags[] = $result["nomtag"];
+    }
 }
+
+else{    
+    $liste_tags = [];
+}
+
+
+
+
 
 ?>
 <form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
@@ -93,7 +133,7 @@ if ($result != false) {
 
             
 
-            <div id="inputAutocomplete">
+            <div id="inputAutoComplete">
                 <label for="inputTag">Tags supplémentaires </label>
                 <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
                 <!--v<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
@@ -103,6 +143,12 @@ if ($result != false) {
             <section id="sectionTag">
                 <!-- Les tags ajoutés apparaîtront ici -->
             </section>
+
+
+<?php
+print_r($liste_tags);
+echo "test";
+?>
 
             <p>
                 Vous pouvez entrer jusqu'à 6 tags
