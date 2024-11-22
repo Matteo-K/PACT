@@ -145,11 +145,6 @@ else{
             </section>
 
 
-<?php
-print_r($liste_tags);
-echo "test";
-?>
-
             <p>
                 Vous pouvez entrer jusqu'à 6 tags
             </p>
@@ -186,9 +181,43 @@ echo "test";
     </article>
     <script>
 
-        let tags = <?php echo json_encode($liste_tags) ?>;
+        let loadedTags = <?php echo json_encode($liste_tags) ?>;
 
-        
+        loadedTags.forEach(valeurTag => {
+            if (valeurTag) {
+
+                // Crée l'élément visuel pour afficher le tag
+                const elementTag = document.createElement("span");
+                elementTag.classList.add("tag");
+                elementTag.textContent = valeurTag;
+
+                //On créé une image pour guider l'utilisateur sur le suppression du tag
+                const imgCroix = document.createElement("img");
+                imgCroix.setAttribute.src="../img/icone/croix.png";
+
+                // Crée l'input caché pour soumettre le tag avec le formulaire
+                const hiddenInputTag = document.createElement("input");
+                hiddenInputTag.type = "hidden";
+                hiddenInputTag.value = valeurTag;
+                hiddenInputTag.name = "tags[]"; // Utilise un tableau pour les tags
+
+                // Ajoute un événement pour supprimer le tag au clic
+                elementTag.addEventListener("click", function () {
+                tags.splice(tags.indexOf(valeurTag), 1); // Retire le tag du tableau
+                sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
+                sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
+                pTag.style.color = "black"; // Remet la couleur par défaut si besoin
+                compteurTags--; // Décrémente le compteur de tags
+                });
+
+                // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel
+                sectionTag.appendChild(elementTag); 
+                sectionTag.appendChild(hiddenInputTag);
+                elementTag.appendChild(imgCroix);
+            }
+        });
+
+
 
 
 
