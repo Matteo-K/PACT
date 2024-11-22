@@ -216,7 +216,7 @@ const pTag = document.querySelector("#sectionTag + p");
 let tags = []; // Tableau pour stocker les tags
 let compteurTags = querySelectorAll("#sectionTag > input").length; // Compteur pour limiter à 6 tags
 
-console.log(compteurTags);
+alert(compteurTags);
 
 
 
