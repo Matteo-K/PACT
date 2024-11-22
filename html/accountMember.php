@@ -95,15 +95,15 @@
                     <label  id="labelPrenom" for="prenomMembre">Prénom*:</label>
                     
                     <!-- Saisi du nom -->
-                    <input type="text" placeholder = "Jean" id="nomMembre" name="nomMembre" required>
+                    <input type="text" placeholder="Jean" id="nomMembre" name="nomMembre" required>
     
                     <!-- Saisi du prénom -->
                     <input type="text" placeholder="Dupont" id="prenomMembre" name="prenomMembre" required>
                 </div>
     
                 <div class="ligne1_1">
-                    <label for="pseudoMembre">Pseudonyme*:</label>
-                    <label for="telephoneMembre">Téléphone*:</label>
+                    <label id="labelPseudo" for="pseudoMembre">Pseudonyme*:</label>
+                    <label id="labelTelephone" for="telephoneMembre">Téléphone*:</label>
                     
                     <!-- Saisi du pseudo -->
                     <input type="text" placeholder="Jean29" id="pseudoMembre" name="pseudoMembre" required>
@@ -132,8 +132,8 @@
     
                 
                 <div class="ligne4"> 
-                    <label for="code">Code postal*:</label>
-                    <label for="ville">Ville*:</label>
+                    <label id="labelCode" for="code">Code postal*:</label>
+                    <label id="labelVille" for="ville">Ville*:</label>
                     
                     <!-- Saisi du code postale -->
                     <input type="text" placeholder="29200" id="code" name="code" required>
@@ -144,8 +144,8 @@
     
     
                 <div class="ligne6">
-                    <label for="motdepasse">Mot de passe*:</label>
-                    <label for="confirmer">Confirmer le mot de passe*:</label>
+                    <label id="labelMotdepasse" for="motdepasse">Mot de passe*:</label>
+                    <label id="labelConfirmer" for="confirmer">Confirmer le mot de passe*:</label>
                     
                     <!-- Saisi du mot de passe -->
                     <input type="password" placeholder="Mot de passe" id="motdepasse" name="motdepasse" required>

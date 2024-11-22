@@ -2681,6 +2681,7 @@ div.ligne6>label {
     order: 2;
   }
 
+
   #labelPrenom {
     order: 3;
   }
@@ -2689,6 +2690,68 @@ div.ligne6>label {
     order: 4;
   }
 
+
+  #labelPseudo {
+    order: 5;
+  }
+
+  #pseudoMembre {
+    order: 6;
+  }
+
+
+  #labelTelephone {
+    order: 7;
+  }
+
+  #telephoneMembre {
+    order: 8;
+  }
+
+
+  #labelEmail {
+    order: 9;
+  }
+
+  #email {
+    order: 10;
+  }
+
+
+  #labelVille {
+    order: 11;
+  }
+
+  #ville {
+    order: 12;
+  }
+
+
+  #labelCode {
+    order: 13;
+  }
+
+  #code {
+    order: 14;
+  }
+
+
+  #labelMotdepasse {
+    order: 15;
+  }
+
+  #motdepasse {
+    order: 16;
+  }
+
+
+  #labelConfirmer {
+    order: 17;
+  }
+
+  #confirmer {
+    order: 18;
+  }
 
 }
 
