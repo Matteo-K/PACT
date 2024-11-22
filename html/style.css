@@ -761,7 +761,14 @@ header ul+div {
   color: red;
 }
 
-/* ------------------------- HOURLY OFFER CSS Benji--------------------------------*/
+.blcOption {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ------------------------- HOURLY OFFER CSS --------------------------------*/
 #hourlyOffer {
   padding: 20px;
   padding-bottom: 6%;
@@ -1524,7 +1531,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #trifiltre input[type="checkbox"]:checked + .checkmark,
 #selectOffer input[type="checkbox"]:checked + .checkmark {
-  background-color: var(--background);
+  background-color: white;
 }
 
 #trifiltre input[type="checkbox"]:checked + .checkmark::after,
@@ -2035,7 +2042,7 @@ tbody td:last-child {
     padding-inline: 15px;
     font-weight: 600;
   }
-
+x
   .mainOffer>div {
     gap: 0.5em;
   }
@@ -2064,7 +2071,6 @@ tbody td:last-child {
   #descriptionOffre{
     flex-direction: column;
     width: 95%;
-    padding:0.5em 10px
   }
 
   table{
