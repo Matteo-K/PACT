@@ -42,9 +42,9 @@ VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
 
 -- Peuplement de la table _abonnement
 INSERT INTO _abonnement (nomAbonnement, tarif) 
-VALUES ('Basique', 9.99), 
-       ('Premium', 19.99),
-	   ('Gratuit', 0.0);
+VALUES ('Basique', 2), 
+       ('Premium', 4),
+	     ('Gratuit', 0.0);
 
 -- Peuplement de la table _statut
 INSERT INTO _statut (statut) 
@@ -161,8 +161,8 @@ VALUES ('Lundi'),
 
 -- Peuplement de la table _option
 INSERT INTO _option (nomOption, prixOffre, dureeOption,dateLancement) 
-VALUES ('ALaUne', 19.99, 7,CURRENT_DATE), 
-       ('EnRelief', 14.99, 7,CURRENT_DATE);
+VALUES ('ALaUne', 20, 7), 
+       ('EnRelief', 10, 7);
 
 -- Peuplement de la table _langue
 INSERT INTO _langue (langue) 
