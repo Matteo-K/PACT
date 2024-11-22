@@ -1180,11 +1180,12 @@ header ul+div {
   background-color: var(--secondary);
   height: 30px;
   margin: 5px;
+  padding: 5px 15px;
 }
 
 #artDetailOffer .tag img{
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
 }
 
 
