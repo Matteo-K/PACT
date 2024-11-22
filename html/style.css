@@ -481,6 +481,8 @@ header ul+div {
     order: 10;
     width: 100%;
     position: sticky;
+    top: 10;
+    left: 0;
   }
 
   #formHeader {
