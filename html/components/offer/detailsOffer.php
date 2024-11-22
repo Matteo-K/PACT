@@ -43,7 +43,7 @@ $stmt = $conn->prepare("SELECT * FROM pact._tag");
 $stmt->execute();
 
 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $listeTags[] = $result["nomtag"];
+    $listeTags[] = str_replace("_", " ",$result["nomtag"]);
 }
 
 
@@ -80,16 +80,13 @@ if ($result != false) {
     }
     $stmt->execute([$idOffre]);
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $loadedTtags[] = $result["nomtag"];
+        $loadedTags[] = $result["nomtag"];
     }
 }
 
 else{    
-    $loadedTtags = [];
+    $loadedTags = [];
 }
-
-
-
 
 
 ?>
@@ -193,7 +190,7 @@ else{
         const listeTags = <?php echo json_encode($listeTags) ?>;
 
         //Récupération des tags déjà présents sur l'offre puis affichage (semblable a la fonction ajouTag())
-        let loadedTags = <?php echo json_encode($loadedTtags) ?>;
+        const loadedTags = <?php echo json_encode($loadedTags) ?>;
 
         loadedTags.forEach(valeurTag => {
             if (valeurTag) {
@@ -222,12 +219,6 @@ else{
                 elementTag.appendChild(imgCroix);
             }
         });
-
-
-
-
-
-
 
 
         const radBtnRestaurant = document.querySelector("#radioRestaurant");

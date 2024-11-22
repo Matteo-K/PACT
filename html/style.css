@@ -1524,7 +1524,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #trifiltre input[type="checkbox"]:checked + .checkmark,
 #selectOffer input[type="checkbox"]:checked + .checkmark {
-  background-color: var(--background);
+  background-color: white;
 }
 
 #trifiltre input[type="checkbox"]:checked + .checkmark::after,

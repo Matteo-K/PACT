@@ -23,16 +23,41 @@ if ($is_prive) {
 }
   
 // insert les options de l'offre dans un tableau
-$options = [];
+$options = [
+  "enRelief" => false,
+  "rlfActif" => false,
+  "rlfNbWeek" => 1,
+  "rlfFinOpt" => "",
+  "ALaUne" => false,
+  "aluActif" => false,
+  "aluNbWeek" => 1,
+  "aluFinOpt" => "",
+];
+
 if (!empty($idOffre)) {
-  $stmt = $conn->prepare("SELECT nomoption FROM pact._option_offre WHERE idoffre=?");
+  $stmt = $conn->prepare("SELECT * FROM pact._option_offre NATURAL JOIN pact._dateoption WHERE idoffre = 1;");
   $stmt->execute([$idOffre]);
   // si les options éxistent, on les ajoutent dans la base de donnée
   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $options[] = $row["nomoption"];
+    switch ($row["nomoption"]) {
+      case "EnRelief":
+        $options["enRelief"] = true;
+        $options["rlfActif"] = $row["datelancement"] != null;
+        $options["rlfNbWeek"] = $row["duree"];
+        $options["rlfFinOpt"] = $row["datefin"] != null ? $row["datefin"] : "";
+        break;
+
+      case "ALaUne":
+        $options["ALaUne"] = true;
+        $options["aluActif"] = $row["datelancement"] != null;
+        $options["aluNbWeek"] = $row["duree"];
+        $options["aluFinOpt"] = $row["datefin"] != null ? $row["datefin"] : "";
+        break;
+    }
   }
 }
 
+// Sélection des tarifs et abonnements
 $abonnement = [];
 $stmt = $conn->prepare("SELECT nomabonnement, tarif FROM pact._abonnement");
 $stmt->execute();
@@ -141,11 +166,16 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             }
           }
           ?>
-          <input type="checkbox" name="enRelief" id="enRelief" <?php echo in_array('ALaUne',$options)?"checked":"" ?>>
+          <input type="checkbox" name="enRelief" id="enRelief" <?php echo $options["ALaUne"] ?"checked":"" ?>>
           <span class="checkmark"></span>
           <span>En relief</span> : met votre offre en exergue lors de son affichage dans la liste d’offres
         </label>
+        <div>
+          <label for="nbWeekEnRelief">Nombre de semaine&nbsp;:&nbsp;</label>
+          <input type="number" name="nbWeekEnRelief" id="" min="1" max="4" value="<?php echo $options["rlfNbWeek"]?>" <?php echo $options["rlfActif"] ? "disabled" : ""; ?>>
+        </div>
       </div>
+      <span class="msgError"><?php echo $options["rlfActif"] ? "Option en relief en cours, modifiable à partir de ". $options['rlfFinOpt']."" : "" ?></span>
       <div id="blcEnRelief" class="blcOption">
         <label for="aLaUne">
           <?php
@@ -160,14 +190,19 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             }
           }
           ?>
-          <input type="checkbox" name="aLaUne" id="aLaUne" <?php echo in_array('EnRelief',$options)?"checked":"" ?>>
+          <input type="checkbox" name="aLaUne" id="aLaUne" <?php echo $options["enRelief"]?"checked":"" ?>>
           <span class="checkmark"></span>
           <span>À la une</span> : met votre offre sur la page d’accueil du site
         </label>
+        <div>
+          <label for="nbWeekEnRelief">Nombre de semaine&nbsp;:&nbsp;</label>
+          <input type="number" name="nbWeekEnRelief" id="" min="1" max="4" value="<?php echo $options["aluActif"]?>" <?php echo $options["aluActif"] ? "disabled" : ""; ?>>
+        </div>
       </div>
+      <span class="msgError"><?php echo $options["aluActif"] ? "Option à la Une en cours, modifiable à partir de ". $options['aluFinOpt']."" : "" ?></span>
     </div>
     <p>Attention ! Vous ne pouvez pas changer d’offre une fois séléctionée.</p>
-    <div>Montant actuelle : <span id="prixPrevisionel"></span>&euro;</div>
+    <div>Montant actuel (sur 1 mois): <span id="prixPrevisionel"></span>&euro;</div>
   </div>
 
   <script>
