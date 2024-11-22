@@ -2090,11 +2090,16 @@ x
     width: 85%;
   }
 
+  #infoComp > h2{
+    font-size: 1.4rem;
+  }
+
   table{
     width: 95%;
   }
   th{
     font-size: 22px;
+    font-weight: 600;
   }
   td{font-size: 16px;}
 
