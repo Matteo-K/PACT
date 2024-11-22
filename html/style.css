@@ -186,12 +186,8 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: var(--header-size);
-  z-index: 10;
   background-color: var(--background);
   padding: 0.5em 0;
 }
@@ -322,7 +318,6 @@ header>div>a>div {
   height: 100%;
   width: 300px;
   background: linear-gradient(to bottom, #034d7c, #1ca4ed);
-  /* Dégradé du haut vers le bas */
   display: flex;
   flex-direction: column;
   transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease;
@@ -454,8 +449,8 @@ header ul+div {
     --header-size: clamp(100px, 25vh + 0.5em, 150px);
   }
 
-  header, header > div {
-    position: relative; /* Pour revenir à un positionnement normal sur les petits écrans */
+  header {
+    position: relative; /* Retirer la position fixe pour éviter l'interférence avec sticky */
   }
 
   #logoText {
@@ -466,12 +461,11 @@ header ul+div {
   /* Barre de recherche sticky pour les petits écrans */
   #divFormHeader {
     position: sticky;
-    order: 10;
-    top: 0;  /* Fixe la barre de recherche en haut de la page */
+    top: 0;  /* Fixe la barre de recherche en haut de la fenêtre */
     z-index: 20; /* Assure que la barre de recherche reste au-dessus des autres éléments */
     background-color: white; /* Fond pour éviter toute superposition avec le reste du contenu */
-    padding: 0.5em 0; /* Marges pour donner un peu d'espace */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre discrète pour la séparation */
+    padding: 0.5em; /* Optionnel : pour un peu d'espacement */
+    box-shadow: 0 4px 2px -2px gray; /* Ombre pour une meilleure visibilité */
   }
 
   #formHeader {
