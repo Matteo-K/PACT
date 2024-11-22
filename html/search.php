@@ -257,6 +257,7 @@ $currentTime = new DateTime(date('H:i')); // ex: 14:30
 
         ?>
         <section class="searchoffre">
+            <?php print_r($results); ?>
             <?php if ($results){ ?>
                 <?php foreach ($results as $offre){ 
                     $idOffre = $offre['idoffre'];

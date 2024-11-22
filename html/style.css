@@ -1350,7 +1350,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .search {
   position: relative;
   min-height: 900px;
-  margin-top: 110px;
+  margin-top: var(--header-size);
   padding-bottom: 20px;
   padding-top: 20px;
   background-attachment: fixed;
@@ -1446,10 +1446,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 @media (max-width: 700px) {
   .searchResume {
     display: none;
-  }
-
-  .search {
-    margin-top: 220px;
   }
 
   .searchCategorie {
