@@ -2959,9 +2959,7 @@ p[id="legendeBoutonLienPro"] {
   }
 
   .connexion-compte input {
-    min-width: 270px;
-    width: auto;
-    max-width: 360px;
+    width: 270px;
   }
 
   button[id="boutonConnexion"] {
