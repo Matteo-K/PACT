@@ -464,7 +464,7 @@ header ul+div {
 
 @media (max-width: 768px) {
   :root {
-    --header-size: clamp(100px, 25vh + 0.5em, 150px);
+    --header-size: 0;
   }
 
   header{
