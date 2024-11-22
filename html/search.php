@@ -4,6 +4,7 @@ require_once "config.php";
 $recherche = $_GET["search"] ?? "";
 $page = $_GET["page"] ?? 1;
 $nbElement = 15;
+$countOffer = 0;
 
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
