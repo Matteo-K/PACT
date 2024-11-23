@@ -6,9 +6,11 @@ require_once "Visit.php";
 require_once "Activity.php";
 
 class ArrayOffer {
+  // format : [$idOffre -> Objet, ...]
   private $arrayOffer;
   private $nbOffer;
 
+  // TODO
   public function __construct() {
     $this->arrayOffer = [];
 
@@ -19,16 +21,52 @@ class ArrayOffer {
     if ($results) {
       foreach ($results as $offer) {
         switch ($offer['categorie']) {
-          case 'value':
-            # code...
+          case 'Restaurant':
+            $this->arrayOffer[$offre['idoffre']] = new Restaurant();
             break;
           
+          case 'Spectacle':
+            $this->arrayOffer[$offre['idoffre']] = new Show();
+            break;
+
+          case 'Visite':
+            $this->arrayOffer[$offre['idoffre']] = new Visit();
+            break;
+
+          case 'Activité':
+            $this->arrayOffer[$offre['idoffre']] = new Activity();
+            break;
+          
+          case 'Parc Attraction':
+            $this->arrayOffer[$offre['idoffre']] = new Park();
+            break;
+
           // Autre
           default:
-            # code...
+            $this->arrayOffer[$offre['idoffre']] = new Offer("Pas de catégorie");
             break;
         }
+        $this->arrayOffer[$offre['idoffre']]->setData();
       }
+    }
+  }
+
+  public function pagination($idUser_, $elementStart_ , $nbElement_) {
+    $array = array_filter($this->arrayOffer, function($offer) use ($idUser_) {
+      return $offer->filterPagination($idUser_);
+    });
+
+    return array_slice($array, $elementStart_, $nbElement_);
+  }
+
+  public function getArray() {
+    return $this->arrayOffer;
+  }
+
+  // TODO
+  public function displayArray($array) {
+    foreach ($array as $key -> $elem) {
+      $elem->displayCardOffer();
     }
   }
 }

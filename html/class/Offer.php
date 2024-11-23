@@ -1,8 +1,9 @@
 <?php
 class Offer {
-  private $idOffre;
-  private $typeUser;
   private $idUser;
+  private $typeUser;
+  private $idOffre;
+  private $statut;
   private $abonnement;
   private $options;
   private $nomOffre;
@@ -21,7 +22,7 @@ class Offer {
     $this->categorie = $categorie_;
   }
 
-
+  // TODO
   public function setData($idOffre_, $typeUser_, $idUser_, $nomOffre_) {
     $this->idOffre = $idOffre_;
     $this->typeUser = $typeUser_;
@@ -29,16 +30,26 @@ class Offer {
     $this->nomOffre = $nomOffre_;
   }
 
-  /**
+  /** TODO
    * Exemple d'utilisation 
-   * list($idOffre, $type) = $instance->getCardOffer();
+   * list($idOffre, $tag ...) = $instance->getCardOffer();
    */
   public function getCardOffer() {
-    return [$this->idOffre, $this->$typeUser];
+    return [$this->idOffre];
   }
 
+  // 
   public function displayCardOffer() {
+    list($idOffre) = $this->getCardOffer();
+    require_once "../components/cardOffer.php";
+  }
 
+  public function filterPagination($idUser_) {
+    if (($this->typeUser == "pro_public" || $this->typeUser == "pro_prive")) {
+      return $this->idUser == $idUser_;
+    } else {
+      return $this->statut == 'actif';
+    }
   }
 }
 

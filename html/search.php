@@ -278,7 +278,6 @@ $arrayOffer = [];
                     $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
                     $nomTag=($offre['categorie']!="Autre")?$offre['categorie']:"Pas de catégorie";
                     $tag = $offre['all_tags']?explode(',',trim($offre['all_tags'],'{}')):"";
-                    echo $nomTag;
                     if (($offre['listhorairemidi'])!="") {
                         $horaireMidi=explode(';',$offre['listhorairemidi']);                        
                         // Tableau final
@@ -341,7 +340,7 @@ $arrayOffer = [];
                         if ($offre['idu']==$idutilisateur) {
                             require "components/cardOffer.php"; 
                         }
-                    }else {
+                    } else {
                         if ($offre['statut']=='actif') {
                             
                             require "components/cardOffer.php";
