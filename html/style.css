@@ -1518,10 +1518,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .StatutAffiche {
   background-color: white;
   color: var(--primary);
-  border: var(--primary) solid 1px;
+  border: var(--primary) solid 2px;
   padding: 5px 5px;
   border-radius: 10px;
-  font-size: 0.7em;
+  font-size: 2em;
   margin-right: 5px;
 }
 
