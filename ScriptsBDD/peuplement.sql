@@ -191,7 +191,10 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
        ('./img/imageOffre/1-1.png', 'parc1'),
        ('./img/imageOffre/1-2.png', 'parc2'),
        ('./img/imageOffre/2-0.png', 'spectacle0'),
-       ('./img/imageOffre/5-0.png', 'visite0');
+       ('./img/imageOffre/5-0.png', 'visite0'),
+       ('./img/imageAvis/1-0.png','Avis1-0'),
+       ('./img/imageAvis/3-0.png','Avis3-0'),
+       ('./img/imageAvis/7-0.png','Avis7-0');
 
 -- Peuplement de la table _illustre
 INSERT INTO _illustre (idOffre, url) 
@@ -345,3 +348,40 @@ VALUES (5, 'Français'),
    
 INSERT INTO _menu(idOffre, menu)
 VALUES (3,'./img/3-menu.png');
+
+INSERT INTO _commentaire (idU,content,datePublie)
+VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.',CURRENT_DATE),
+       (5,'Je recommande ce parc d’attractions.',CURRENT_DATE),
+       (5,'J’ai adoré cette visite.',CURRENT_DATE),
+       (5,'À faire.',CURRENT_DATE),
+       (5,'Spectacle inoubliable.',CURRENT_DATE),
+       (5,'Mais quelle humoriste donner-lui un oscar !',CURRENT_DATE),
+       (5,'la cuisson de la viande était parfaite.',CURRENT_DATE),
+       (5,'Je recommande.',CURRENT_DATE),
+       (5,'Activité ennuyante.',CURRENT_DATE),
+       (5,'Personnel désagréable.',CURRENT_DATE),
+       (4,'Merci beaucoup, à bientôt.',CURRENT_DATE),
+       (3,'Merci beaucoup, à bientôt.',CURRENT_DATE),
+       (3,'Avec des personnes comme vous, compliqué de la rendre intéressante.',CURRENT_DATE);
+       
+INSERT INTO _avis(idC,idOffre,note)
+VALUES (1,1,5),
+       (2,1,4),
+       (3,5,5),
+       (4,5,4),
+       (5,2,5),
+       (6,2,4),
+       (7,3,5),
+       (8,3,4),
+       (9,4,2),
+       (10,4,1);
+       
+INSERT INTO _reponse(idC,ref)
+VALUES (11,3),
+       (12,5),
+       (13,9);
+       
+INSERT INTO _avisImage(idC,url)
+VALUES (1,'./img/imageAvis/1-0.png'),
+       (3,'./img/imageAvis/3-0.png'),
+       (7,'./img/imageAvis/7-0.png');
