@@ -43,13 +43,10 @@ if ($nouveauStatut=='actif') {
     if ($dateLancementObjFormatted >= $currentDateFormatted) {
         $ajst = $conn->prepare("UPDATE pact._historiqueStatut SET dureeenligne = NULL WHERE idstatut = $idstatut");
         $ajst->execute();
-        echo "et toc";
 
     }else {
         $ajst = $conn->prepare("INSERT INTO pact._historiqueStatut(idoffre,datelancement,dureeenligne) VALUES ($offreId,CURRENT_DATE,NULL)");
         $ajst->execute();
-        echo "pas toc";
-        echo $dateLancementObjFormatted . " " . $currentDateFormatted;
     }
 }else {
     $ajst = $conn->prepare("UPDATE pact._historiqueStatut SET dureeenligne = (CURRENT_DATE - datelancement)+1 WHERE idoffre = $offreId AND dureeenligne IS NULL");
