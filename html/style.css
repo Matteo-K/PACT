@@ -1863,7 +1863,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 5em;
 
   color: var(--bloc);
-  /* margin-bottom: 0.5em;  deso kylian je test*/
+  margin-bottom: 0;
 }
 
 .mainOffer .tag,
