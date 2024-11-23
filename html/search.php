@@ -356,6 +356,13 @@ $arrayOffer = [];
         <?php $lien = "search.php?" . ($recherche != "" ? $recherche : ""); ?>
         <ul>
             <li>
+                <?php if ($page > 5) { ?>
+                    <a href="<?php echo $lien . "&page=" . ($page - 5); ?>">
+                        <?php echo $page - 5; ?>
+                    </a>
+                <?php } ?>
+            </li>
+            <li>
                 <?php if ($page > 2) { ?>
                     <a href="<?php echo $lien . "&page=" . ($page - 2); ?>">
                         <?php echo $page - 2; ?>
@@ -385,6 +392,13 @@ $arrayOffer = [];
                 <?php if (($page + 1) * $nbElement <= $countOffer) { ?>
                     <a href="<?php echo $lien . "&page=" . ($page + 2); ?>">
                         <?php echo $page + 2; ?>
+                    </a>
+                <?php } ?>
+            </li>
+            <li>
+                <?php if (($page + 4) * $nbElement <= $countOffer) { ?>
+                    <a href="<?php echo $lien . "&page=" . ($page + 5); ?>">
+                        <?php echo $page + 5; ?>
                     </a>
                 <?php } ?>
             </li>
