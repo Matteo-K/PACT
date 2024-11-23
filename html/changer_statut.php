@@ -40,7 +40,7 @@ if ($nouveauStatut=='actif') {
     $dateLancementObjFormatted = $dateLancementObj->format('Y-m-d');  // Formater la date de lancement modifiée
     
     // Comparer les deux dates formatées
-    if ($dateLancementObjFormatted == $currentDateFormatted) {
+    if ($dateLancementObjFormatted >= $currentDateFormatted) {
         $ajst = $conn->prepare("UPDATE pact._historiqueStatut SET dureeenligne = NULL WHERE idstatut = $idstatut");
         $ajst->execute();
         echo "et toc";
