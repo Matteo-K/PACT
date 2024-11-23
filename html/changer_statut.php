@@ -13,6 +13,13 @@ $stmt->bindParam(':statut', $nouveauStatut);
 $stmt->bindParam(':id', $offreId);
 $stmt->execute();
 
+if ($nouveauStatut=='actif') {
+    $ajst = $conn->prepare("INSERT INTO pact._historiqueStatut(idoffre,datelancement,dureeenligne) VALUES ($offreId,CURRENT_DATE,NULL)");
+    $ajst->execute();
+}else {
+    $ajst = $conn->prepare("UPDATE pact._historiqueStatut SET dureeenligne = (CURRENT_DATE - datelancement) WHERE idoffre = $offreId");
+    $ajst->execute();
+}
 
 // Rediriger vers la page précédente ou une autre page
 header("Location: detailsOffer.php?idoffre=$offreId&ouvert=$ouvert");
