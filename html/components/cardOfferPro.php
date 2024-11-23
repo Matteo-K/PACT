@@ -7,7 +7,7 @@
         <div class="infoOffre">
             <div class="ProStatut">
                 <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
-                <span class="StatutAffiche"><?php echo $offre['statut']!='actif'?"En-Ligne":"Hors-Ligne";?></span>
+                <span class="StatutAffiche"><?php echo $offre['statut']=='actif'?"En-Ligne":"Hors-Ligne";?></span>
             </div>
 
             <strong><p class="villesearch"><?php echo $ville . $gammeText . " ⋅ " . $nomTag; ?></p></strong>
