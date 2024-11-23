@@ -20,6 +20,9 @@ if ($nouveauStatut=='actif') {
 
     $idstatut=$resultat[0]['idstatut'];
 
+    $dateLancement = $resultat[0]['datelancement'];
+    $dureeEnLigne = $resultat[0]['dureeenligne'];
+
     if (!$dateLancement instanceof DateTime) {
         $dateLancementObj = new DateTime($dateLancement);  // Créer un objet DateTime à partir de la chaîne
     } else {
