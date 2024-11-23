@@ -29,8 +29,8 @@ if ($nouveauStatut=='actif') {
 
     $currentDate = new DateTime();
 
-    print_r($dateLancement);
-    print_r($currentDate);
+    print_r($dateLancement->format('Y-m-d'));
+    print_r($currentDate->format('Y-m-d'));
 
     if ($dateLancementObj->format('Y-m-d') == $currentDate->format('Y-m-d')) {
         $ajst = $conn->prepare("UPDATE pact._historiqueStatut SET dureeenligne = NULL WHERE idstatut = $idstatut");
