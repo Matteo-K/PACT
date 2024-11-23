@@ -29,6 +29,9 @@ if ($nouveauStatut=='actif') {
 
     $currentDate = new DateTime();
 
+    print_r($dateLancement);
+    print_r($currentDate);
+
     if ($dateLancementObj->format('Y-m-d') == $currentDate->format('Y-m-d')) {
         $ajst = $conn->prepare("UPDATE pact._historiqueStatut SET dureeenligne = NULL WHERE idstatut = $idstatut");
         $ajst->execute();
@@ -43,6 +46,6 @@ if ($nouveauStatut=='actif') {
 }
 
 // Rediriger vers la page précédente ou une autre page
-header("Location: detailsOffer.php?idoffre=$offreId&ouvert=$ouvert");
+// header("Location: detailsOffer.php?idoffre=$offreId&ouvert=$ouvert");
 exit;
 ?>
