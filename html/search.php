@@ -278,6 +278,7 @@ $arrayOffer = [];
                     $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
                     $nomTag=($offre['categorie']!="Autre")?$offre['categorie']:"Pas de catégorie";
                     $tag = $offre['all_tags']?explode(',',trim($offre['all_tags'],'{}')):"";
+                    echo $nomTag;
                     if (($offre['listhorairemidi'])!="") {
                         $horaireMidi=explode(';',$offre['listhorairemidi']);                        
                         // Tableau final
@@ -353,57 +354,57 @@ $arrayOffer = [];
             <?php } ?>
         </section>
         <section id="pagination">
-        <?php $lien = "search.php?" . ($recherche != "" ? $recherche : ""); ?>
-        <ul>
-            <li>
-                <?php if ($page > 5) { ?>
-                    <a href="<?php echo $lien . "&page=" . ($page - 5); ?>">
-                        <?php echo $page - 5; ?>
+            <?php $lien = "search.php?" . ($recherche != "" ? $recherche : ""); ?>
+            <ul>
+                <li>
+                    <?php if ($page > 5) { ?>
+                        <a href="<?php echo $lien . "&page=" . ($page - 5); ?>">
+                            <?php echo $page - 5; ?>
+                        </a>
+                    <?php } ?>
+                </li>
+                <li>
+                    <?php if ($page > 2) { ?>
+                        <a href="<?php echo $lien . "&page=" . ($page - 2); ?>">
+                            <?php echo $page - 2; ?>
+                        </a>
+                    <?php } ?>
+                </li>
+                <li>
+                    <?php if ($page > 1) { ?>
+                        <a href="<?php echo $lien . "&page=" . ($page - 1); ?>">
+                            <?php echo $page - 1; ?>
+                        </a>
+                    <?php } ?>
+                </li>
+                <li id="pageActuel">
+                    <a href="<?php echo $lien . "&page=" . $page; ?>">
+                        <?php echo $page; ?>
                     </a>
-                <?php } ?>
-            </li>
-            <li>
-                <?php if ($page > 2) { ?>
-                    <a href="<?php echo $lien . "&page=" . ($page - 2); ?>">
-                        <?php echo $page - 2; ?>
-                    </a>
-                <?php } ?>
-            </li>
-            <li>
-                <?php if ($page > 1) { ?>
-                    <a href="<?php echo $lien . "&page=" . ($page - 1); ?>">
-                        <?php echo $page - 1; ?>
-                    </a>
-                <?php } ?>
-            </li>
-            <li id="pageActuel">
-                <a href="<?php echo $lien . "&page=" . $page; ?>">
-                    <?php echo $page; ?>
-                </a>
-            </li>
-            <li>
-                <?php if (($page) * $nbElement <= $countOffer) { ?>
-                    <a href="<?php echo $lien . "&page=" . ($page + 1); ?>">
-                        <?php echo $page + 1; ?>
-                    </a>
-                <?php } ?>
-            </li>
-            <li>
-                <?php if (($page + 1) * $nbElement <= $countOffer) { ?>
-                    <a href="<?php echo $lien . "&page=" . ($page + 2); ?>">
-                        <?php echo $page + 2; ?>
-                    </a>
-                <?php } ?>
-            </li>
-            <li>
-                <?php if (($page + 4) * $nbElement <= $countOffer) { ?>
-                    <a href="<?php echo $lien . "&page=" . ($page + 5); ?>">
-                        <?php echo $page + 5; ?>
-                    </a>
-                <?php } ?>
-            </li>
-        </ul>
-    </section>
+                </li>
+                <li>
+                    <?php if (($page) * $nbElement <= $countOffer) { ?>
+                        <a href="<?php echo $lien . "&page=" . ($page + 1); ?>">
+                            <?php echo $page + 1; ?>
+                        </a>
+                    <?php } ?>
+                </li>
+                <li>
+                    <?php if (($page + 1) * $nbElement <= $countOffer) { ?>
+                        <a href="<?php echo $lien . "&page=" . ($page + 2); ?>">
+                            <?php echo $page + 2; ?>
+                        </a>
+                    <?php } ?>
+                </li>
+                <li>
+                    <?php if (($page + 4) * $nbElement <= $countOffer) { ?>
+                        <a href="<?php echo $lien . "&page=" . ($page + 5); ?>">
+                            <?php echo $page + 5; ?>
+                        </a>
+                    <?php } ?>
+                </li>
+            </ul>
+        </section>
 
     </main>
     <?php require_once "components/footer.php"; ?>
