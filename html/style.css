@@ -1537,7 +1537,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color:var(--primary);
   padding: 10px 20px;
   font-size: 2rem;
-  border-radius: 10%;
+  border-radius: 5px;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
@@ -1863,7 +1863,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 5em;
 
   color: var(--bloc);
-  margin-bottom: 0.5em;
+  /* margin-bottom: 0.5em;  deso kylian je test*/
 }
 
 .mainOffer .tag,
