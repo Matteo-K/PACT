@@ -1532,8 +1532,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .DetailsStatut{
   color: black;
-  margin-bottom: 10px;
-  margin-top: 0;
+  margin-bottom: 0.2em;
+  margin-top: 0.2em;
   background-color:var(--primary);
   padding: 10px 20px;
   font-size: 2rem;
