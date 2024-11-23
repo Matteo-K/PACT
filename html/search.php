@@ -338,7 +338,7 @@ $arrayOffer = [];
                     if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                         $idutilisateur=$_SESSION["idUser"];
                         if ($offre['idu']==$idutilisateur) {
-                            require "components/cardOffer.php"; 
+                            require "components/cardOfferPro.php"; 
                         }
                     } else {
                         if ($offre['statut']=='actif') {
