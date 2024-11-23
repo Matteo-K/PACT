@@ -47,5 +47,5 @@ if ($nouveauStatut=='actif') {
 
 // Rediriger vers la page précédente ou une autre page
 // header("Location: detailsOffer.php?idoffre=$offreId&ouvert=$ouvert");
-exit;
+// exit;
 ?>
