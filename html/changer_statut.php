@@ -20,19 +20,24 @@ if ($nouveauStatut=='actif') {
 
     $idstatut=$resultat[0]['idstatut'];
 
-    $dateLancement = $resultat[0]['datelancement'];
-    $dureeEnLigne = $resultat[0]['dureeenligne'];
-
-    $dateLancementObj = new DateTime($dateLancement);
-
+    if (!$dateLancement instanceof DateTime) {
+        $dateLancementObj = new DateTime($dateLancement);  // Créer un objet DateTime à partir de la chaîne
+    } else {
+        $dateLancementObj = $dateLancement;  // Si c'est déjà un objet DateTime, l'utiliser tel quel
+    }
+    
+    // Ajouter la durée (dureeEnLigne) à la date de lancement
     $dateLancementObj->modify("+$dureeEnLigne days");
-
+    
+    // Obtenir la date actuelle (actuelle sans l'heure)
     $currentDate = new DateTime();
-
-    print_r($dateLancement->format('Y-m-d')." ");
-    print_r($currentDate->format('Y-m-d'));
-
-    if ($dateLancementObj->format('Y-m-d') == $currentDate->format('Y-m-d')) {
+    $currentDateFormatted = $currentDate->format('Y-m-d');  // Formater la date actuelle au format 'YYYY-MM-DD'
+    
+    // Formater la date de lancement modifiée au même format
+    $dateLancementObjFormatted = $dateLancementObj->format('Y-m-d');  // Formater la date de lancement modifiée
+    
+    // Comparer les deux dates formatées
+    if ($dateLancementObjFormatted == $currentDateFormatted) {
         $ajst = $conn->prepare("UPDATE pact._historiqueStatut SET dureeenligne = NULL WHERE idstatut = $idstatut");
         $ajst->execute();
 
