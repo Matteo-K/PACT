@@ -485,8 +485,13 @@ CREATE TABLE _historiqueStatut(
 );
 
 CREATE TABLE _facturation(
-  idFacture SERIAL,
+  idFacture SERIAL PRIMARY KEY,
   dateFactue DATE NOT NULL,
+  idOffre int NOT NULL,
+  CONSTRAINT _facturation_fk_offre
+      FOREIGN KEY (idOffre)
+      REFERENCES _offre(idOffre)
+);
 
 
 -- Création des vues pour chaque catégorie d'offres
@@ -641,8 +646,85 @@ GROUP BY
     o.idOffre, l.ville, r.gammeDePrix
 ORDER BY o.dateCrea DESC;
 
+-- Vue pour tous les avis avec offres
+CREATE VIEW avis AS
+    SELECT  
+    m.pseudo,
+    c.idC,
+    c.content,
+    c.datePublie,
+    a.idOffre,
+    ARRAY_AGG(DISTINCT ai.url) AS listImage
+    FROM _avis a 
+    JOIN _commentaire c ON a.idC = c.idC
+    JOIN _avisImage ai ON a.idC = ai.idC
+    JOIN _membre m ON c.idU = m.idU
+    GROUP BY 
+    m.pseudo, 
+    c.idC, 
+    c.content, 
+    c.datePublie, 
+    a.idOffre;
 
+CREATE VIEW reponse AS
+    SELECT  
+    p.denomination,
+    c1.idC as idC_reponse,
+    c1.content as contenuReponse,
+    c1.datePublie as reponseDate,
+    r.ref as idC_avis,
+    c2.content as contenuAvis,
+    c2.datePublie as avisDate
+    FROM _reponse r 
+    JOIN _commentaire c1 ON r.idC = c1.idC
+    JOIN _pro p ON c1.idU = p.idU
+    JOIN _avis a ON r.ref = a.idC
+    JOIN _commentaire c2 ON a.idC = c2.idC;
 
+CREATE VIEW facture AS
+    SELECT
+    f.idFacture,
+    f.dateFactue,
+    o.nom,
+    p.denomination,
+    h.numeroRue,
+    h.rue,
+    h.ville,
+    h.codePostal,
+    h.pays,
+    STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
+        'ID', ht.idStatut,
+        'Lancement', ht.dateLancement,
+        'Duree', ht.dureeEnLigne
+    )::TEXT, ';') AS historiqueStatut,
+    STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
+        'ID', da.idOption,
+        'lancement', da.dateLancement,
+        'fin', da.dateFin,
+        'duree', da.duree,
+        'prix', da.prix,
+        'option', op.nomOption,
+        'prixBase', op.prixOffre,
+        'dureeBase', op.dureeOption
+    )::TEXT, ';') AS historiqueOption
+    FROM _facturation f
+    JOIN _offre o ON f.idOffre = o.idOffre
+    JOIN _pro p ON o.idU = p.idU
+    JOIN _habite h ON p.idU = h.idU
+    JOIN _historiqueStatut ht ON o.idOffre = ht.idOffre
+    JOIN _option_offre oo ON o.idOffre = oo.idOffre
+    JOIN _dateOption da ON oo.idOption = da.idOption
+    JOIN _option op ON oo.nomOption = op.nomOption
+    GROUP BY 
+    f.idFacture,
+    f.dateFactue,
+    o.nom,
+    p.denomination,
+    h.numeroRue,
+    h.rue,
+    h.ville,
+    h.codePostal,
+    h.pays;
 
 CREATE OR REPLACE FUNCTION ajout_pro_prive()
 RETURNS TRIGGER AS $$
