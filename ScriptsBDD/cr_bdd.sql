@@ -654,10 +654,10 @@ CREATE VIEW avis AS
     c.datePublie,
     a.idOffre,
     a.note,
-    ARRAY_AGG(DISTINCT ai.url) AS listImage
+    ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage
     FROM _avis a 
     JOIN _commentaire c ON a.idC = c.idC
-    JOIN _avisImage ai ON a.idC = ai.idC
+    LEFT JOIN _avisImage ai ON a.idC = ai.idC
     JOIN _membre m ON c.idU = m.idU
     GROUP BY 
     m.pseudo, 
@@ -698,7 +698,9 @@ CREATE VIEW facture AS
         'ID', ht.idStatut,
         'Lancement', ht.dateLancement,
         'Duree', ht.dureeEnLigne
-    )::TEXT, ';') AS historiqueStatut,
+    )::TEXT, ';') FILTER (WHERE ht.idStatut IS NOT NULL 
+      AND ht.dateLancement IS NOT NULL) 
+      AS historiqueStatut,
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'ID', da.idOption,
         'lancement', da.dateLancement,
@@ -708,15 +710,23 @@ CREATE VIEW facture AS
         'option', op.nomOption,
         'prixBase', op.prixOffre,
         'dureeBase', op.dureeOption
-    )::TEXT, ';') AS historiqueOption
+    )::TEXT, ';') FILTER (WHERE da.idOption IS NOT NULL 
+      AND da.dateLancement IS NOT NULL 
+      AND da.dateFin IS NOT NULL 
+      AND da.duree IS NOT NULL 
+      AND da.prix IS NOT NULL 
+      AND op.nomOption IS NOT NULL 
+      AND op.prixOffre IS NOT NULL 
+      AND op.dureeOption IS NOT NULL) 
+      AS historiqueOption
     FROM _facturation f
-    JOIN _offre o ON f.idOffre = o.idOffre
-    JOIN _pro p ON o.idU = p.idU
-    JOIN _habite h ON p.idU = h.idU
-    JOIN _historiqueStatut ht ON o.idOffre = ht.idOffre
-    JOIN _option_offre oo ON o.idOffre = oo.idOffre
-    JOIN _dateOption da ON oo.idOption = da.idOption
-    JOIN _option op ON oo.nomOption = op.nomOption
+    LEFT JOIN _offre o ON f.idOffre = o.idOffre
+    LEFT JOIN _pro p ON o.idU = p.idU
+    LEFT JOIN _habite h ON p.idU = h.idU
+    LEFT JOIN _historiqueStatut ht ON o.idOffre = ht.idOffre
+    LEFT JOIN _option_offre oo ON o.idOffre = oo.idOffre
+    LEFT JOIN _dateOption da ON oo.idOption = da.idOption
+    LEFT JOIN _option op ON oo.nomOption = op.nomOption
     GROUP BY 
     f.idFacture,
     f.dateFactue,

@@ -195,7 +195,7 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
        ('./img/imageAvis/1-0.png','Avis1-0'),
        ('./img/imageAvis/3-0.png','Avis3-0'),
        ('./img/imageAvis/7-0.png','Avis7-0');
-
+  
 -- Peuplement de la table _illustre
 INSERT INTO _illustre (idOffre, url) 
 VALUES (3, './img/imageOffre/3-0.png'),
@@ -334,12 +334,14 @@ VALUES (1, 'Premium'),
 INSERT INTO _dateOption(dateLancement,dateFin,duree,prix)
 VALUES (CURRENT_DATE,CURRENT_DATE + INTERVAL '1 weeks',1,20),
        (CURRENT_DATE,CURRENT_DATE + INTERVAL '2 weeks',2,40),
+       (CURRENT_DATE,CURRENT_DATE + INTERVAL '2 weeks',2,20),
        (CURRENT_DATE,CURRENT_DATE + INTERVAL '3 weeks',3,30);
 
 -- Peuplement de la table _option_offre
 INSERT INTO _option_offre (idOption, idOffre, nomOption) 
 VALUES (3, 1, 'EnRelief'), 
        (2, 2, 'ALaUne'),
+       (2, 2, 'EnRelief'),
        (1, 3, 'ALaUne');
        
 INSERT INTO _visite_langue (idOffre, langue) 
@@ -385,3 +387,19 @@ INSERT INTO _avisImage(idC,url)
 VALUES (1,'./img/imageAvis/1-0.png'),
        (3,'./img/imageAvis/3-0.png'),
        (7,'./img/imageAvis/7-0.png');
+       
+INSERT INTO _historiqueStatut(idOffre,dateLancement,dureeEnLigne)
+VALUES (1,'2024-11-01',6),
+       (1,'2024-11-15',NULL),
+       (2,'2024-11-01',4),
+       (2,'2024-11-15',NULL),
+       (3,'2024-11-10',NULL),
+       (4,'2024-11-01',NULL),
+       (5,'2024-11-01',NULL);
+       
+INSERT INTO _facturation(dateFactue,idOffre)
+VALUES ('2024-11-01',1),
+       ('2024-11-01',2),
+       ('2024-11-01',3),
+       ('2024-11-01',4),
+       ('2024-11-01',5);
