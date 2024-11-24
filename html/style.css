@@ -1159,6 +1159,8 @@ header ul + div {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: red;
+  z-index: 2;
 }
 
 
