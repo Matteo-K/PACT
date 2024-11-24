@@ -1468,7 +1468,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .ProStatut {
-    flex-direction: column;
+    flex-direction: column !important;
   }
 }
 
@@ -1527,6 +1527,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   padding: 5px;
   font-size: 1.2em;
   margin-right: 10px;
+  width: fit-content;
 }
 
 .StatutAffiche::after {
@@ -1537,7 +1538,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   clip-path: circle(50% at 50% 50%);
   position: absolute;
   top: 0;
-  right: 10px;
+  right: -8px;
 }
 
 .horslgnOffre::after {
