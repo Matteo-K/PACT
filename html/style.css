@@ -1142,9 +1142,13 @@ header ul + div {
   position: relative;
 }
 
-#detailsOffer img::after {
+#detailsOffer img:hover {
+  filter: brightness(50%);
+}
+
+#detailsOffer img:hover::after {
+  display: static;
   content: "";
-  display: none;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1155,14 +1159,6 @@ header ul + div {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-#detailsOffer img:hover {
-  filter: brightness(50%);
-}
-
-#detailsOffer img:hover::after {
-  display: static;
 }
 
 
