@@ -1139,11 +1139,15 @@ header ul + div {
   width: 100%;
   height: auto;
   border-radius: 3px;
+  position: relative;
 }
 
 #detailsOffer img::after {
   content: "";
   display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: auto;
   background-image: url('img/icone/croix_blanche.png');
