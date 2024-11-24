@@ -1702,8 +1702,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transition: transform 0.3s linear;
 }
 
-#tri > div,
-#filtre > div {
+#tri > div:nth-child(1),
+#filtre > div:nth-child(1) {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -1722,8 +1722,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-weight: bold;
 }
 
-#prix div:nth-child(1),
-#statut div:nth-child(1) {
+#prix div,
+#statut div {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
