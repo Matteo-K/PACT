@@ -1142,13 +1142,8 @@ header ul + div {
   position: relative;
 }
 
-#detailsOffer img:hover {
-  filter: brightness(50%);
-}
-
-#detailsOffer img:hover::after {
-  display: static;
-  content: "";
+#detailsOffer img::after {
+  content: "Test";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1161,6 +1156,10 @@ header ul + div {
   background-repeat: no-repeat;
   background-color: red;
   z-index: 2;
+}
+
+#detailsOffer img:hover {
+  filter: brightness(50%);
 }
 
 
