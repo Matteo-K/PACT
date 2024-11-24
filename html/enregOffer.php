@@ -70,47 +70,11 @@ if (isset($_POST['pageBefore'])) {
       $options = [];
       if (isset($_POST["aLaUne"])) {
         $options[] = "ALaUne";
-      } else if ($_POST["actifALaUne"] == false) {
-        $stmt = $conn->prepare("DELETE FROM pact._dateoption where idoffre = ? and nomoption = 'ALaUne'");
-        $stmt->execute([$idOffre]);
       }
-
       if (isset($_POST["enRelief"])) {
         $options[] = "EnRelief";
-      } else if ($_POST["actifEnRelief"] == false) {
-        $stmt = $conn->prepare("DELETE FROM pact._dateoption where idoffre = ? and nomoption = 'EnRelief'");
-        $stmt->execute([$idOffre]);
       }
 
-      foreach ($options as $option) {
-        // SELECT dateopt optoffre where idoffre option
-        // Si false || !Actif || dateFin < Today
-          // Si false || fin < Today
-            // Insert into dateoption
-            // Select new IdOption
-            // Si false
-              // Insert option_offre
-            // Sinon (fin < Today)
-              // Update option_offre
-          // Sinon
-            // Update option_offre
-        // Sinon
-          // Select idoption where idoffre nomoption
-          // Update dateoption
-          // Update optionoffre
-      }
-
-      /*
-      // ajout dans à la une si coché
-      if (isset($_POST["aLaUne"])) {
-        $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'ALaUne')");
-        $stmt->execute([$idOffre]);
-      }
-      // ajout dans enRelief si coché
-      if (isset($_POST["enRelief"])) {
-        $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoption, idoffre, nomoption) VALUES (?, ?, 'EnRelief')");
-        $stmt->execute([$idOffre]);
-      }*/
       break;
 
     case 2:
