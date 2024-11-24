@@ -1525,19 +1525,23 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .StatutAffiche {
   position: relative;
   padding: 5px;
-  font-size: 1.3em;
-  margin-right: 5px;
+  font-size: 1.2em;
+  margin-right: 10px;
 }
 
 .StatutAffiche::after {
   content: "";
-  width: 5px;
-  height: 5px;
+  width: 10px;
+  height: 10px;
   background-color: #008000;
   clip-path: circle(50% at 50% 50%);
   position: absolute;
   top: 0;
   right: 10px;
+}
+
+.horslgnOffre::after {
+  background-color: red !important;
 }
 
 .ProStatut {
