@@ -1561,8 +1561,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #trifiltre h3,
 #trifiltre h2 {
-  margin: 10px;
-  margin-bottom: 0;
+  margin: 0 10px;
 }
 
 /* Tout les input */
@@ -1723,8 +1722,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-weight: bold;
 }
 
-#prix div,
-#statut div {
+#prix div:nth-child(1),
+#statut div:nth-child(1) {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
