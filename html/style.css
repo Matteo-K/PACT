@@ -1162,7 +1162,7 @@ header ul + div {
 }
 
 #detailsOffer img:hover::after {
-  display: block;
+  display: static;
 }
 
 
