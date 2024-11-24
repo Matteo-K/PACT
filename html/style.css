@@ -1466,6 +1466,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     text-decoration: none;
     width: fit-content;
   }
+
+  .ProStatut {
+    flex-direction: column;
+  }
 }
 
 .searchStatutO {
@@ -1519,17 +1523,26 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   box-sizing: border-box;
 }
 .StatutAffiche {
-  background-color: white;
-  color: var(--primary);
-  border: var(--primary) solid 2px;
-  padding: 5px 5px;
-  border-radius: 10px;
-  font-size: 1.4em;
+  position: relative;
+  padding: 5px;
+  font-size: 1.3em;
   margin-right: 5px;
 }
 
-.ProStatut{
+.StatutAffiche::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background-color: #008000;
+  clip-path: circle(50% at 50% 50%);
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+
+.ProStatut {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
