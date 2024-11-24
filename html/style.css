@@ -462,7 +462,7 @@ header ul + div {
   }
 
   .search {
-    margin-top: 0;
+    margin-top: 0 !important;
   }
 
   header {
@@ -1679,6 +1679,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 /* bloc de bouton menu téléphone*/
 #trifiltre > div {
   display: none;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 #trifiltre > div figure {
@@ -1687,6 +1690,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  font-size: 1.5rem;
+}
+
+#trifiltre > div figure img {
+  width: 3rem;
 }
 
 #tri,
@@ -1762,13 +1770,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .fermeTriFiltre {
-  display: flex;
+  display: none;
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
   color: var(--text-light);
   cursor: pointer;
-  display: none;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
 /* btn fermer onglet aside */
@@ -1787,21 +1797,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .fermeTriFiltre {
-    display: block;
+    display: flex;
   }
 
   .searchoffre {
     margin-left: 0;
   }
 
-  #trifiltre > div {
-    display: block;
-  }
-
   #trifiltre {
     position: static;
     background: transparent;
     width: 100%;
+    padding: 0;
   }
 
   #tri,
@@ -1816,6 +1823,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     width: 100%;
     height: 100vh;
     z-index: 15;
+    padding-top: 1rem;
   }
 
   #tri {
@@ -1828,13 +1836,25 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   #trifiltre > div {
     display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-evenly;
+  }
+
+  /* bloc btn tri */
+  #tri .blcTriFiltre div {
+    gap: 0;
+    margin-top: 2rem;
+    flex-direction: column;
+  }
+
+  /* btn tri */
+  #tri [type="radio"] + label {
+    width: 50%;
+    padding: 0.8rem;
+    font-size: 1.1rem;
   }
 
   #pagination ul {
     margin-inline: 30%;
+    border-width: 5px;
   }
 }
 

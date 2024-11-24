@@ -59,11 +59,11 @@ $arrayOffer = [];
             </div>
             <aside id="tri">
                 <div>
-                    <h2>Trier</h2>
                     <figure id="fermeTri" class="fermeTriFiltre">
                         <figcaption>Fermer l'onglet</figcaption>
                         <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet tri">
                     </figure>
+                    <h2>Trier</h2>
                 </div>
                 <div class="blcTriFiltre">
                     <div>
@@ -92,11 +92,11 @@ $arrayOffer = [];
             </aside>
             <aside id="filtre" class="asdTriFiltre">
                 <div>
-                    <h2>Filtrer</h2>
                     <figure id="fermeFiltre" class="fermeTriFiltre">
                         <figcaption>Fermer l'onglet</figcaption>
                         <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet filtre">
                     </figure>
+                    <h2>Filtrer</h2>
                 </div>
                 <div class="blcTriFiltre">
                     <div id="note">
@@ -450,8 +450,11 @@ $arrayOffer = [];
         const fermeFiltre = document.querySelector("#fermeFiltre");
         const body = document.body;
 
+        /**
+         * Ouvre et ferme le aside au format mobile
+         * Empêche le scroll
+         */
         function toggleAside(aside) {
-            console.log(aside);
             aside.classList.toggle('openFiltreTri');
             
             if (asideTri.classList.contains('openFiltreTri') || asideFiltre.classList.contains('openFiltreTri')) {
