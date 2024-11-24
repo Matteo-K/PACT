@@ -1141,6 +1141,25 @@ header ul + div {
   border-radius: 3px;
 }
 
+#detailsOffer img::after {
+  content: "";
+  display: none;
+  width: 100%;
+  height: auto;
+  background-image: url('img/icone/croix_blanche.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#detailsOffer img:hover {
+  filter: brightness(50%);
+}
+
+#detailsOffer img:hover::after {
+  display: static;
+}
+
 #choixCategorie {
   width: calc(70% + 141.625px);
   /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
