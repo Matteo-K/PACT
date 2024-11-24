@@ -451,6 +451,7 @@ $arrayOffer = [];
         const body = document.body;
 
         function toggleAside(aside) {
+            console.log(aside);
             aside.classList.toggle('openFiltreTri');
             
             if (asideTri.classList.contains('openFiltreTri') || asideFiltre.classList.contains('openFiltreTri')) {

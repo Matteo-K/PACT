@@ -1499,8 +1499,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 20px;
   padding: 0;
   padding-top: 20px;
-  margin-top: 20px;
-  margin-inline: 30%;
+  margin: 20px 10% 0 55%;
   border-top: var(--bloc) solid 2px;
 }
 
@@ -1828,6 +1827,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-evenly;
+  }
+
+  #pagination ul {
+    margin-inline: 30%;
   }
 }
 

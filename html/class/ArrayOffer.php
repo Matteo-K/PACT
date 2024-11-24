@@ -19,10 +19,11 @@ class ArrayOffer {
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if ($results) {
-      foreach ($results as $offer) {
-        switch ($offer['categorie']) {
+      foreach ($results as $offre) {
+        switch ($offre['categorie']) {
           case 'Restaurant':
             $this->arrayOffer[$offre['idoffre']] = new Restaurant();
+            $this->arrayOffer[$offre['idoffre']]->setDataRestaurant($offre['gammedeprix']);
             break;
           
           case 'Spectacle':
@@ -46,14 +47,23 @@ class ArrayOffer {
             $this->arrayOffer[$offre['idoffre']] = new Offer("Pas de catégorie");
             break;
         }
-        $this->arrayOffer[$offre['idoffre']]->setData();
+        $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
+          $offre['idu'], $offre['nom'], $offre['resume'],
+          explode(",", trim($offre['listimage'], "{}")),
+          explode(",", trim($offre['all_tags'], "{}")),
+          $offre['ville'],
+          $offre['statut']
+        );
       }
     }
   }
 
-  public function pagination($idUser_, $elementStart_ , $nbElement_) {
+  /**
+   * Set 
+   */
+  public function pagination($idUser_, $typeUser_, $elementStart_ , $nbElement_) {
     $array = array_filter($this->arrayOffer, function($offer) use ($idUser_) {
-      return $offer->filterPagination($idUser_);
+      return $offer->filterPagination($idUser_, $typeUser_);
     });
 
     return array_slice($array, $elementStart_, $nbElement_);
@@ -64,7 +74,8 @@ class ArrayOffer {
   }
 
   // TODO
-  public function displayArray($array) {
+  public function displayArray($idUser_, $typeUser_, $elementStart_ , $nbElement_) {
+    $array = $this->pagination($idUser_, $typeUser_, $elementStart_ , $nbElement_);
     foreach ($array as $key -> $elem) {
       $elem->displayCardOffer();
     }
