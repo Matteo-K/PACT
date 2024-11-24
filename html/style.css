@@ -461,6 +461,10 @@ header ul + div {
     --header-size: clamp(100px, 25vh + 0.5em, 150px);
   }
 
+  .search {
+    margin-top: 0;
+  }
+
   header {
     position: relative;
   }
