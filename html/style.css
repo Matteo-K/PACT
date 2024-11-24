@@ -1146,12 +1146,13 @@ header ul + div {
   content: "";
   display: none;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
   background-image: url('img/icone/croix_blanche.png');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -1161,8 +1162,9 @@ header ul + div {
 }
 
 #detailsOffer img:hover::after {
-  display: static;
+  display: block;
 }
+
 
 #choixCategorie {
   width: calc(70% + 141.625px);
