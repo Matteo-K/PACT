@@ -1703,6 +1703,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transition: transform 0.3s linear;
 }
 
+#tri > div,
+#filtre > div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* chaque ligne d'étoile */
 #note > h3 + div > div {
   display: flex;
