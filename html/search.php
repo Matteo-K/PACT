@@ -461,10 +461,10 @@ $arrayOffer = [];
             }
         }
 
-        fermeTri.addEventListener("click", toggleAside(asideTri));
-        fermeFiltre.addEventListener("click", toggleAside(asideFiltre));
-        btnTri.addEventListener("click", toggleAside(asideTri));
-        btnFiltre.addEventListener("click", toggleAside(asideFiltre));
+        fermeTri.addEventListener("click", () => toggleAside(asideTri));
+        fermeFiltre.addEventListener("click", () => toggleAside(asideFiltre));
+        btnTri.addEventListener("click", () => toggleAside(asideTri));
+        btnFiltre.addEventListener("click", () => toggleAside(asideFiltre));
 
 });
 </script>
