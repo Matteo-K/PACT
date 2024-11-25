@@ -45,14 +45,14 @@ if ($categorie["_visite"]) {
             <label>Visite Guidée </label> 
 
             <input type="radio" id="guidee" name="VisiteGuidee" value="pasGuidee" checked>
-            <!-- Bouton radio pour le choix de l'accesibilite PMR il est lier avec le 2eme et est selectionner par defaut -->
-            <label for="access"> Accès personne handicapées</label>
-            <!-- Label associé au bouton radio -->
+           
+            <label for="access"> Oui</label>
+            
 
             <input type="radio" id="pasGuidee" name="VisiteGuidee" value="pasGuidee">
-            <!-- 2eme bouton radio liés au 1er via l'id -->
-            <label for="pasAcces"> Pas d’accès personne handicapées </label>
-            <!-- Label du 2eme bouton radio -->
+            
+            <label for="pasAcces"> Non </label>
+            
         </div>
         <div>
             <label>Durée :</label> <!-- Label durée -->
