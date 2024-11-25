@@ -27,9 +27,10 @@ $currentTime = new DateTime(date('H:i'));
  * suivant les horaires déterminés et l'horaire actuelle
  */
 function statutOuverture($soir, $midi) {
+  global $currentDay, $currentTime;
   $horaires = array_merge($soir, $midi);
   $ouverture = "EstFermé";
-  global $currentTime;
+  
   // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
   foreach ($horaires as $horaire) {
       if ($horaire['jour'] == $currentDay) {
@@ -38,11 +39,12 @@ function statutOuverture($soir, $midi) {
           if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
               $ouverture = "EstOuvert";
               break;
+          }
       }
-    }
   }
   return $ouverture;
 }
+
 
 class Offer {
   private $idUser;
