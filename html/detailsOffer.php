@@ -230,13 +230,12 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if($typeOffer == "restaurant"){
-                $tags[] = ['gammedeprix' => $result['gammedeprix']];
+                array_push($tags, ['nomtag' => $result['gammedeprix']]);
             }
 
             foreach ($tags as $tag):
                 if ($tag["nomtag"] != NULL) {
             ?>
-
                     <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
                 <?php }
             endforeach;
