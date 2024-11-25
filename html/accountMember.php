@@ -1,15 +1,6 @@
 <?php
     // Démarrer la session
     session_start();
-
-    // if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
-    //     echo '<script>';
-    //     echo 'document.getElementById("messageErreur").innerHTML = "' . implode('<br>', $_SESSION['errors']) . '";';
-    //     echo 'document.getElementById("messageErreur").classList.add("show");'; 
-    //     echo '</script>';
-    
-    //     unset($_SESSION['errors']);
-    // }
     
     // fichier de connexion à la BDD
     require_once "db.php";
@@ -44,15 +35,14 @@
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.membre WHERE pseudo = ?");
             $stmt->execute([$pseudo]);
-            $count = $stmt->fetchColumn();
 
-            if ($count > 0) {
+            if ($stmt->fetchColumn() > 0) {
                 $errors[] = "Le pseudo existe déjà.";
             }
         } 
         
         catch (Exception $e) {
-            // $errors[] = "Erreur lors de la vérification du pseudo: " . htmlspecialchars($e->getMessage());
+            // $errors[] = "Erreur lors de la vérification du pseudo : " . htmlspecialchars($e->getMessage());
         }
 
 
@@ -61,15 +51,24 @@
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.membre WHERE mail = ?");
             $stmt->execute([$mail]);
-            $count = $stmt->fetchColumn();
 
-            if ($count > 0) {
+            if ($stmt->fetchColumn() > 0) {
                 $errors[] = "L'adresse mail existe déjà.";
             }
         } 
         
         catch (Exception $e) {
-            // $errors[] = "Erreur lors de la vérification de l'adresse mail: " . htmlspecialchars($e->getMessage());
+            // $errors[] = "Erreur lors de la vérification de l'adresse mail : " . htmlspecialchars($e->getMessage());
+        }
+
+
+
+
+        // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
+        if (!empty($errors)) {
+            $_SESSION['errors'] = $errors;
+            header('Location: accountPro.php');
+            exit;
         }
 
 
@@ -86,11 +85,6 @@
             header('Location: login.php');
             exit;
         }
-
-        // if(!empty($errors)) {
-        //     $_SESSION['errors'] = $errors;
-        //     header('Location: accountMember.php');
-        // }
     }
 ?>
 
@@ -114,6 +108,19 @@
         <h1 id="inscriptionTitre">Inscription membre</h1>
 
         <div id="messageErreur" class="messageErreur"></div>
+
+        <?php
+            if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
+                echo '<div id="messageErreur" class="messageErreur">';
+                
+                foreach ($_SESSION['errors'] as $error) {
+                    echo "<p>$error</p>";
+                }
+                
+                echo '</div>';
+                unset($_SESSION['errors']);
+            }
+        ?>
 
         <form id = "formMember" action="accountMember.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">

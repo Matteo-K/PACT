@@ -429,13 +429,16 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php
         if ($typeOffer == "parcs_attractions") {
         ?>
-            <!--<img src="<?php echo $result["urlplan"] ?>">!-->
+            <img src="<?php echo $result["urlplan"] ?>">
         <?php
         }
+        
+        if($typeUser === "pro_prive" || $typeUser ==="pro_public"){
+            require_once __DIR__ . "/components/avis/avisPro.php";
+        }else{
+            require_once __DIR__ . "/components/avis/avisMembre.php";
+        }
         ?>
-
-
-
     </main>
     <?php
     require_once "./components/footer.php";

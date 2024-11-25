@@ -186,6 +186,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         ?>
 
     </article>
+    
     <script>
         const maxTags = 6;
 
