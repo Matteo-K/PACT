@@ -128,7 +128,7 @@ footer{
         <section>
             <strong>
                 <p>Numéeo de facture : <?php echo $idFacture ?></p>
-                <p>Date de facture : <?php echo($dateFacture->format('d/m/Y'))  ?></p>
+                <p>Date de facture : <?php echo($dateFacture)  ?></p>
                 <p>Numéeo Client : <?php echo $idU ?></p>
             </strong>
         </section>
