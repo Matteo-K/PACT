@@ -1914,16 +1914,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #titleOffer {
   text-align: center;
   font-size: 5em;
-
   color: var(--bloc);
   margin-bottom: 0;
 }
 
 #typeOffer{
   margin: 0;
-  color: var(--bloc);
-  text-align: left;
-  justify-content: flex-start;
+  text-align: center;
+  color: var(--bloc80);
 }
 
 .mainOffer .tag,
