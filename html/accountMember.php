@@ -52,11 +52,12 @@
         try {
             $stmt = $conn->prepare("SELECT * FROM pact._nonadmin WHERE mail = ?");
             $stmt->execute([$mail]);
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
             echo $mail ;
-            print_r($stmt->fetchAll(PDO::FETCH_ASSOC));
-            // if ($stmt->fetchColumn() > 0) {
-            //     $errors[] = "L'adresse mail existe déjà.";
-            // }
+            print_r($result);
+            if ($result) {
+                $errors[] = "L'adresse mail existe déjà.";
+            }
         } 
         
         catch (Exception $e) {
