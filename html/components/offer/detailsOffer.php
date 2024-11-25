@@ -198,7 +198,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
          // Variables de sélection des éléments
          const sectionTag = document.getElementById("sectionTag");
         const pTag = document.querySelector("#sectionTag + p");
-        let tags = loadedTags; // Tableau pour stocker les tags, comprenant les tags déjà présents
+        let tags = []; // Tableau pour stocker les tags, comprenant les tags déjà présents
 
         loadedTags.forEach(valeurTag => {
             ajoutTag(valeurTag);
