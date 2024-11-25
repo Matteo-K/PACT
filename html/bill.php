@@ -11,7 +11,6 @@ $stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idoffre =$idOffre");
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-print_r($results[0]);
 
 $denomination = $results[0]['denomination'];
 $rue = $results[0]['rue'];
