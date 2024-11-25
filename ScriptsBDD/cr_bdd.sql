@@ -416,6 +416,9 @@ CREATE TABLE _avis(
   idC INT NOT NULL,
   idOffre INT NOT NULL,
   note INT NOT NULL,
+  companie VARCHAR(255) NOT NULL,
+  mois VARCHAR (20) NOT NULL,
+  annee VARCHAR(4) NOT NULL,
   PRIMARY KEY (idC),
   CONSTRAINT _avis_fk_idC
       FOREIGN KEY (idC)
@@ -659,6 +662,9 @@ CREATE VIEW avis AS
     c.datePublie,
     a.idOffre,
     a.note,
+    a.companie,
+    a.mois,
+    a.annee,
     ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage
     FROM _avis a 
     JOIN _commentaire c ON a.idC = c.idC
@@ -670,7 +676,10 @@ CREATE VIEW avis AS
     c.content, 
     c.datePublie, 
     a.idOffre,
-    a.note;
+    a.note,
+    a.companie,
+    a.mois,
+    a.annee;
 
 CREATE VIEW reponse AS
     SELECT  
@@ -694,14 +703,11 @@ CREATE VIEW facture AS
     f.dateFactue,
     o.nom,
     p.denomination,
-    l.numeroRue,
-    l.rue,
-    l.ville,
-    l.codePostal,
-    l.pays,
-    o.idU,
-    a.nomAbonnement,
-    a.tarif,
+    h.numeroRue,
+    h.rue,
+    h.ville,
+    h.codePostal,
+    h.pays,
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'ID', ht.idStatut,
         'Lancement', ht.dateLancement,
@@ -730,41 +736,42 @@ CREATE VIEW facture AS
     FROM _facturation f
     LEFT JOIN _offre o ON f.idOffre = o.idOffre
     LEFT JOIN _pro p ON o.idU = p.idU
-    LEFT JOIN _localisation l ON o.idOffre = l.idOffre
+    LEFT JOIN _habite h ON p.idU = h.idU
     LEFT JOIN _historiqueStatut ht ON o.idOffre = ht.idOffre
     LEFT JOIN _option_offre oo ON o.idOffre = oo.idOffre
     LEFT JOIN _dateOption da ON oo.idOption = da.idOption
     LEFT JOIN _option op ON oo.nomOption = op.nomOption
-    LEFT JOIN _abonner ab ON o.idOffre = ab.idOffre
-    LEFT JOIN _abonnement a ON ab.nomAbonnement = a.nomAbonnement
     GROUP BY 
     f.idFacture,
     f.dateFactue,
     o.nom,
-    a.nomAbonnement,
-    a.tarif,
-    o.idU,
     p.denomination,
-    l.numeroRue,
-    l.rue,
-    l.ville,
-    l.codePostal,
-    l.pays;
+    h.numeroRue,
+    h.rue,
+    h.ville,
+    h.codePostal,
+    h.pays;
 
 CREATE OR REPLACE FUNCTION ajout_pro_prive()
 RETURNS TRIGGER AS $$
 DECLARE
   iduser INT;
 BEGIN
-    IF (SELECT siren FROM pact.proPrive WHERE denomination=NEW.denomination) = NEW.siren THEN
-        RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnel privée ayant la même dénomination et le même SIREN';
+    IF EXISTS (SELECT 1 FROM pact._pro WHERE denomination = NEW.denomination)THEN
+        RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnel privée ayant la même dénomination';
+    END IF;
+    IF EXISTS (SELECT 1 FROM pact._nonAdmin WHERE mail = NEW.mail)THEN
+        RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnel privée ayant le même mail';
+    END IF;
+    IF EXISTS (SELECT 1 FROM pact._privee WHERE siren = NEW.siren)THEN
+        RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnel privée ayant le même siren';
     END IF;
     INSERT INTO pact._utilisateur (password) VALUES (NEW.password) RETURNING idU into iduser;
     INSERT INTO pact._nonAdmin (idU, telephone, mail) VALUES (iduser,NEW.telephone,NEW.mail);
     INSERT INTO pact._pro (idU, denomination) VALUES (iduser,NEW.denomination);
     INSERT INTO pact._privee (idU, siren) VALUES (iduser,NEW.siren);
     INSERT INTO pact._photo_profil(idU,url) VALUES (iduser,NEW.url);
-    IF (NEW.numeroRue IS NOT NULL) THEN
+    IF NOT EXISTS (SELECT 1 FROM pact._adresse WHERE numeroRue = NEW.numeroRue AND rue = NEW.rue AND ville = NEW.ville AND pays = NEW.pays AND codePostal = NEW.codePostal) THEN
         INSERT INTO pact._adresse (numeroRue, rue, ville, pays, codePostal) VALUES (NEW.numeroRue, NEW.rue, NEW.ville, NEW.pays, NEW.codePostal);
     END IF;
     INSERT INTO pact._habite (idU, codePostal, ville, pays, rue, numeroRue) VALUES (iduser, NEW.codePostal, NEW.ville, NEW.pays, NEW.rue, NEW.numeroRue);
@@ -782,15 +789,18 @@ RETURNS TRIGGER AS $$
 DECLARE
   iduser INT;
 BEGIN
-    IF (SELECT denomination FROM pact.proPublic WHERE denomination=NEW.denomination) = NEW.denomination THEN
-        RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnel privée ayant la même dénomination et le même SIREN';
+    IF EXISTS (SELECT 1 FROM pact._pro WHERE denomination = NEW.denomination)THEN
+        RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnel privée ayant la même dénomination';
+    END IF;
+    IF EXISTS (SELECT 1 FROM pact._nonAdmin WHERE mail = NEW.mail)THEN
+        RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnel privée ayant le même mail';
     END IF;
     INSERT INTO pact._utilisateur (password) VALUES (NEW.password) RETURNING idU into iduser;
     INSERT INTO pact._nonAdmin (idU, telephone, mail) VALUES (iduser,NEW.telephone,NEW.mail);
     INSERT INTO pact._pro (idU, denomination) VALUES (iduser,NEW.denomination);
     INSERT INTO pact._public (idU) VALUES (iduser);
     INSERT INTO pact._photo_profil(idU,url) VALUES (iduser,NEW.url);
-    IF (NEW.numeroRue IS NOT NULL) THEN
+    IF NOT EXISTS (SELECT 1 FROM pact._adresse WHERE numeroRue = NEW.numeroRue AND rue = NEW.rue AND ville = NEW.ville AND pays = NEW.pays AND codePostal = NEW.codePostal) THEN
         INSERT INTO pact._adresse (numeroRue, rue, ville, pays, codePostal) VALUES (NEW.numeroRue, NEW.rue, NEW.ville, NEW.pays, NEW.codePostal);
     END IF;
     INSERT INTO pact._habite (idU, codePostal, ville, pays, rue, numeroRue) VALUES (iduser, NEW.codePostal, NEW.ville, NEW.pays, NEW.rue, NEW.numeroRue);
