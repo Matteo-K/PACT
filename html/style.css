@@ -1921,7 +1921,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #typeOffer{
   margin: 0;
   text-align: center;
-  color: var(--bloc80);
+  color: var(--bloc);
+  font-family: Lato;
+  font-weight: bold;
+  font-size: 2em;
 }
 
 .mainOffer .tag,

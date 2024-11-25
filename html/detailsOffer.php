@@ -51,7 +51,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$result) {
     // Recherche dans les restaurants, activités, spectacles, et visites
-    $types = ['restaurants', 'activites', 'spectacles', 'visites'];
+    $types = ['restaurant', 'activite', 'spectacle', 'visite'];
     foreach ($types as $type) {
         $stmt = $conn->prepare("SELECT * FROM pact.$type WHERE idoffre = :idoffre");
         $stmt->bindParam(':idoffre', $idOffre);
@@ -63,7 +63,7 @@ if (!$result) {
         }
     }
 } else {
-    $typeOffer = "parcs_attractions";
+    $typeOffer = "parc_attraction";
 }
 
 if (!$result) {
@@ -204,7 +204,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
         </div>
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
-        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?></h3>
+        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville']?></h3>
         <?php
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
         ?>
