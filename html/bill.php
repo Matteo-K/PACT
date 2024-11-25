@@ -31,7 +31,7 @@ if ($results[0]['historiqueoption']) {
 
 // "duree": 1, "option": "ALaUne", "prixBase": 20, "dureeBase": 7, "lancement": "2024-11-25"}
 
-$tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>$results[0]['tarif']];
+$tarif=['option'=>intval($results[0]['nomabonnement']),'prixBase'=>intval($results[0]['tarif'])];
 
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
 $abonnement = explode(';',$results[0]['historiquestatut']);
@@ -151,11 +151,13 @@ footer{
             </thead>
             <tbody>
                 <?php
-                    $total=intval($tarif['option'])*intval($tarif['prixBase']);
+                    $total=$tarif['option']*$tarif['prixBase'];
                     if ($results[0]['historiqueoption']) {
                         
                         foreach ($option as $key => $value) {
-                            $total += $value[3]*$value[1];
+                            $v1 = intval($value['duree']);
+                            $v2 = intval($value['prixBase']);
+                            $total += $v1 * $v2;
                             ?>
                                 <tr>
                                     <td><?php echo $value['option'] ?></td>
@@ -163,15 +165,15 @@ footer{
                                     <td>Semaine</td>
                                     <td><?php echo $value['prixBase'] ?></td>
                                     <td><?php echo $tva ?> %</td>
-                                    <td><?php echo intval($value['duree'])*intval($value['prixBase']) ?> €</td>
-                                    <td><?php echo round($value['duree']*$value['prixBase']+($value['duree']*$value['prixBase']*20/100),2) ?> €</td>
+                                    <td><?php echo $v1 * $v2 ?> €</td>
+                                    <td><?php echo round($v1*$v2+($v1*$v2*20/100),2) ?> €</td>
                                 </tr>
                             <?php
                         }
                     }
                 ?>
                 <tr>
-                    <td><?php echo $tarif['option'] ?></td>
+                    <td>Abonnement <?php echo $tarif['option'] ?></td>
                     <td><?php echo $nbEnLigne ?></td>
                     <td>Jour</td>
                     <td><?php echo $tarif['tarif'] ?></td>
