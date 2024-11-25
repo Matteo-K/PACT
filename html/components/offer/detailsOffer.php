@@ -69,11 +69,23 @@ if ($result != false) {
             # code...
             break;
     }
+
+    //Si une offre existe, on lui charge ses tags pour les afficher et qu'on puisse les supprimer et en ajouter d'autres
     $loadedTags = [];
     $stmt->execute([$idOffre]);
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $loadedTags[] = $result["nomtag"];
     }
+
+    //On lui charge également ses images pour la même raison
+    $loadedImg = [];
+    $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre=?");
+    $stmt->execute([$idOffre]);
+
+    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $loadedImg[] = $result["url"];
+    }
+
 }
 
 else{    
@@ -189,6 +201,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     
     <script>
         const maxTags = 6;
+        const maxImages = 10;
 
         //On récupère en JS la liste des tags pour le script 
         let listeTags = <?php echo json_encode($listeTags) ?>;
@@ -197,7 +210,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         const loadedTags = <?php echo json_encode($loadedTags) ?>;
 
          // Variables de sélection des éléments
-         const sectionTag = document.getElementById("sectionTag");
+        const sectionTag = document.getElementById("sectionTag");
         const pTag = document.querySelector("#sectionTag + p");
         let tags = []; // Tableau pour stocker les tags, comprenant les tags déjà présents
 
@@ -248,6 +261,66 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 alert("Ce tag a déjà été ajouté !");
             }
         }
+
+
+        
+
+        //Affichage des images a leur selection
+        const pImage = document.querySelector("#choixImage > p");
+        const conteneur = document.getElementById("afficheImages");
+        document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
+        
+        const loadedImg = <?php echo json_encode($loadedImg) ?>;
+
+        loadedImg.forEach(img => {
+            loadImage(img);
+        });
+
+        function loadImage(url){
+            const reader = new FileReader();
+            reader.onload = configImage(url);
+            reader.readAsDataURL(file);
+        }
+
+        function afficheImage(event) {
+            const images = event.target.files;
+
+            Array.from(images).forEach((file) => {
+                const reader = new FileReader();
+                reader.onload = configImage("");
+                reader.readAsDataURL(file);
+            });
+        }
+
+
+        function configImage(e, url){
+            if (images.length < maxImages) {
+                const figureImg = document.createElement("figure");
+                figureImg.classList.add("imageOffre");
+                if(url != ""){
+                    figureImg.innerHTML = `<img src="${url}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`
+                    const hiddenInputImg = document.createElement("input");
+                    hiddenInputImg.type = "hidden";
+                    hiddenInputImg.value = url;
+                    hiddenInputImg.name = "imageExistante[]"; 
+                    figureImg.appendChild(hiddenInputImg);
+                }else{
+                    figureImg.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
+                }
+                conteneur.appendChild(figureImg);
+
+                figureImg.addEventListener("click", function () {
+                    if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
+                        figureImg.remove(); // Supprime l'élément image et son conteneur
+                        pImage.style.color = "black"; //on remet la couleur par défaut au cas où c'etait en rouge
+                    }
+                });
+            } else {
+                pImage.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
+            }
+        }
+
+
 
 
         const radBtnRestaurant = document.querySelector("#radioRestaurant");
