@@ -3083,6 +3083,7 @@ p[id="legendeBoutonLienPro"] {
 
 @media (max-width: 600px) {
   h1[id="connexionTitre"] {
+    display: block;
     font-size: 45px;
     margin-top: 20vh;
   }
