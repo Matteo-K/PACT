@@ -163,7 +163,7 @@ footer{
                                     <td>Semaine</td>
                                     <td><?php echo $value['prixBase'] ?></td>
                                     <td><?php echo $tva ?> %</td>
-                                    <td><?php echo $value['duree']*$value['prixBase'] ?> €</td>
+                                    <td><?php echo intval($value['duree'])*intval($value['prixBase']) ?> €</td>
                                     <td><?php echo round($value['duree']*$value['prixBase']+($value['duree']*$value['prixBase']*20/100),2) ?> €</td>
                                 </tr>
                             <?php
