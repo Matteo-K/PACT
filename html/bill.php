@@ -34,7 +34,7 @@ if ($results[0]['historiqueoption']) {
 $tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>$results[0]['tarif']];
 
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
-$abonnement = explode(';',$resultat[0]['historiquestatut']);
+$abonnement = explode(';',$results[0]['historiquestatut']);
 
 $nbEnLigne = 0 ;
 
