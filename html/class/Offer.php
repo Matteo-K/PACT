@@ -15,11 +15,15 @@ class Offer {
   private $ville;
   private $adresse;
   private $codePostal;
+  private $horaireMidi;
+  private $horaireSoir;
 
   public function __construct($categorie_) {
     $this->options = [];
     $this->images = [];
     $this->tags = [];
+    $this->horaireMidi = [];
+    $this->horaireSoir = [];
     $this->categorie = $categorie_;
   }
 
@@ -64,7 +68,7 @@ class Offer {
   }
 
   // TODO
-  public function setData($idOffre_, $idUser_, $nomOffre_, $resume_, $images_, $tags_, $ville_, $statut_) {
+  public function setData($idOffre_, $idUser_, $nomOffre_, $resume_, $images_, $tags_, $ville_, $statut_, $horaireMidi_, $horaireSoir_) {
     $this->idOffre = $idOffre_;
     $this->statut = $statut_;
     $this->idUser = $idUser_;
@@ -73,6 +77,8 @@ class Offer {
     $this->images = $images_;
     $this->tags = $tags_;
     $this->ville = $ville_;
+    $this->horaireMidi = $horaireMidi_;
+    $this->horaireSoir = $horaireSoir_;
   }
 
   public function getData() {

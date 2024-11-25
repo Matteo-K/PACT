@@ -321,8 +321,6 @@ $arrayOffer = [];
                     }else {
                         $resultsSoir = [];
                     }
-                    print_r($resultsMidi);
-                    print_r($resultsSoir);
                     // Fusionner les horaires midi et soir
                     $horaires = array_merge($resultsSoir, $resultsMidi);
                     $restaurantOuvert = "EstFermé"; // Par défaut, le restaurant est fermé

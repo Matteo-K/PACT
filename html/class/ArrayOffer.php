@@ -11,15 +11,28 @@ class ArrayOffer {
   private $nbOffer;
 
   // TODO
-  public function __construct() {
+  public function __construct($idoffres_ = "") {
     $this->arrayOffer = [];
+    $this->nbOffer = 0;
 
-    $stmt = $conn->prepare("SELECT * FROM pact.offres");
-    $stmt->execute();
+    if (empty($idoffres_)) {
+        $stmt = $conn->prepare("SELECT * FROM pact.offres");
+        $stmt->execute();
+    } else {
+        if (is_array($idoffres_)) {
+            $placeholders = rtrim(str_repeat('?,', count($idoffres_)), ',');
+            $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre IN ($placeholders)");
+            $stmt->execute($idoffres_);
+        } else {
+            $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = ?");
+            $stmt->execute([$idoffres_]);
+        }
+    }
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if ($results) {
       foreach ($results as $offre) {
+        $this->nbOffer ++;
         switch ($offre['categorie']) {
           case 'Restaurant':
             $this->arrayOffer[$offre['idoffre']] = new Restaurant();
@@ -52,10 +65,34 @@ class ArrayOffer {
           explode(",", trim($offre['listimage'], "{}")),
           explode(",", trim($offre['all_tags'], "{}")),
           $offre['ville'],
-          $offre['statut']
+          $offre['statut'],
+          transformerHoraires($offre['listhorairemidi']),
+          transformerHoraires($offre['listhorairesoir'])
         );
       }
     }
+  }
+
+  public function transformerHoraires($horaires) {
+    if (empty($horaires)) {
+      return [];
+    }
+
+    $resultats = [];
+    $horairesArray = explode(';', $horaires);
+
+    foreach ($horairesArray as $item) {
+      $decodedItem = json_decode($item, true);
+      if (json_last_error() === JSON_ERROR_NONE) {
+        $resultats[] = [
+          'jour' => $decodedItem['jour'],
+          'idoffre' => $GLOBALS['idOffre'],
+          'heureouverture' => $decodedItem['heureOuverture'],
+          'heurefermeture' => $decodedItem['heureFermeture']
+        ];
+      }
+    }
+    return $resultats;
   }
 
   /**
