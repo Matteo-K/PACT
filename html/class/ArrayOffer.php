@@ -107,7 +107,7 @@ class ArrayOffer {
    * Set 
    */
   public function filtre($idUser_, $typeUser_) {
-    return array_filter($this->arrayOffer, function($offer) use ($idUser_) {
+    return array_filter($this->arrayOffer, function($offer) use ($idUser_, $typeUser_) {
       return $offer->filterPagination($idUser_, $typeUser_);
     });
   }
