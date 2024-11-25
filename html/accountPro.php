@@ -66,8 +66,7 @@
         // PAS OK
         // Vérifier si l'adresse mail existe déjà dans la base de données
         try {
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact._nonadmin WHERE mail = ?");
-            // $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE mail = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE mail = ?");
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE mail = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE mail = ?");
             $stmt->execute([$mail, $mail]);
 
             if ($stmt->fetchColumn() > 0) {
