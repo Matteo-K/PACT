@@ -2568,6 +2568,10 @@ tbody td:last-child {
   margin-right: 5px;
 }
 
+#visit > div[class="visGuideeEtDuree"]> label[class="labH"]{
+  background-color: yellow;
+  margin-left: 5px;
+}
 
 
 

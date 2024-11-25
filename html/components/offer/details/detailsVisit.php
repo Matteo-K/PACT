@@ -58,7 +58,7 @@ if ($categorie["_visite"]) {
 
             <input type="number" id="numberHVisit" name="numberHVisit" min="0" placeholder="0" />
             <!-- zone de texte ou seul un chiffre/nombre est accepte -->
-            <label>h</label> <!-- Label H (pour heure) -->
+            <label class="labH">h</label> <!-- Label H (pour heure) -->
 
         </div>
         <div class="divAccessibliteVisit">
