@@ -87,9 +87,9 @@
             exit;
         }
 
-        // else {
-        //     $_SESSION['errors'] = $errors;
-        // }
+        else {
+            $_SESSION['errors'] = $errors;
+        }
     }
 ?>
 
