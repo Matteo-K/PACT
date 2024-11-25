@@ -1,4 +1,5 @@
 <?php
+require_once "Offer.php";
 require_once "Park.php";
 require_once "Restaurant.php";
 require_once "Show.php";
