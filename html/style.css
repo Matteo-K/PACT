@@ -2534,17 +2534,17 @@ tbody td:last-child {
 }
 
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"] {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne2"] {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 #show>div[class="classDivShow1"]>label {
-  margin-top: 10px;
+  margin-top: 5px;
 
 }
 
