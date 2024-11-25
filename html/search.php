@@ -49,101 +49,10 @@ $arrayOffer = [];
         <?php 
         require_once "components/asideTriFiltre.php";
 
-        $stmt = $conn->prepare("SELECT * FROM pact.offres");
-        $stmt->execute();
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $arrayOffer = $results;
-        $countOffer = count($results);
-        $results = array_slice($results, ($page-1)*$nbElement, $nbElement);
+        $offres = new ArrayOffer();
         ?>
         <section class="searchoffre">
-            <?php if ($results){ ?>
-                <?php foreach ($results as $offre){ 
-                    $idOffre = $offre['idoffre'];
-                    $iduser= $offre['idu'];
-                    $nomOffre = $offre['nom'];
-                    $resume= $offre['resume'];
-                    $noteAvg = "Non noté";
-                    $urlImg=(explode(',',trim($offre['listimage'],'{}')))[0];
-                    $ville=($offre['ville'])?$offre['ville']:"Pas de localisation entrée";;
-                    $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
-                    $nomTag=($offre['categorie']!="Autre")?$offre['categorie']:"Pas de catégorie";
-                    $tag = $offre['all_tags']?explode(',',trim($offre['all_tags'],'{}')):"";
-                    $statut = isset($offre['statut']) ? $offre['statut'] : "" ;
-                    if (($offre['listhorairemidi'])!="") {
-                        $horaireMidi=explode(';',$offre['listhorairemidi']);                        
-                        // Tableau final
-                        $resultsMidi = [];
-                        
-                        // Parcours et transformation des données
-                        foreach ($horaireMidi as $item) {
-                            // Décodage du JSON interne
-                            $decodedItem = json_decode($item, true);
-                            
-                            // Ajout des clés supplémentaires
-                            $resultsMidi[] = [
-                                'jour' => $decodedItem['jour'],
-                                'idoffre' => $idOffre,
-                                'heureouverture' => $decodedItem['heureOuverture'],
-                                'heurefermeture' => $decodedItem['heureFermeture']
-                            ];
-                        }                    
-                    }else{
-                        $resultsMidi = [];
-                    }
-                    if (($offre['listhorairesoir'])!="") {
-                        $horaireSoir=explode(';',$offre['listhorairesoir']);                        
-                        // Tableau final
-                        $resultsSoir = [];
-                        
-                        // Parcours et transformation des données
-                        foreach ($horaireSoir as $item) {
-                            // Décodage du JSON interne
-                            $decodedItem = json_decode($item, true);
-                            
-                            // Ajout des clés supplémentaires
-                            $resultsSoir[] = [
-                                'jour' => $decodedItem['jour'],
-                                'idoffre' => $idOffre,
-                                'heureouverture' => $decodedItem['heureOuverture'],
-                                'heurefermeture' => $decodedItem['heureFermeture']
-                            ];
-                        } 
-                    }else {
-                        $resultsSoir = [];
-                    }
-                    // Fusionner les horaires midi et soir
-                    $horaires = array_merge($resultsSoir, $resultsMidi);
-                    $restaurantOuvert = "EstFermé"; // Par défaut, le restaurant est fermé
-    
-                    // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
-                    foreach ($horaires as $horaire) {
-                        if ($horaire['jour'] == $currentDay) {
-                            $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
-                            $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
-                            if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
-                                $restaurantOuvert = "EstOuvert";
-                                break;
-                            }
-                        }
-                    }
-                    if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-                        $idutilisateur=$_SESSION["idUser"];
-                        if ($offre['idu']==$idutilisateur) {
-                            require "components/cardOfferPro.php"; 
-                        }
-                    } else {
-                        if ($offre['statut']=='actif') {
-                            
-                            require "components/cardOffer.php";
-                        }
-                    }
-                    
-                } ?>
-            <?php } else { ?>
-                <p>Aucune offre trouvée </p>
-            <?php } ?>
+            <?php $countOffer = $offres->displayArrayCard($_SESSION["idUser"], $typeUser, ($page-1)*$nbElement, $nbElement); ?>
         </section>
         <section id="pagination">
             <?php $lien = "search.php?" . ($recherche != "" ? $recherche : ""); ?>

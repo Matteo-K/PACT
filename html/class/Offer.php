@@ -107,7 +107,7 @@ class Offer {
     $noteAvg = $this->noteAvg;
     $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi);
     $statut = $this->statut;
-    require_once __DIR__."/../components/cardOfferPro.php";
+    require __DIR__."/../components/cardOfferPro.php";
   }
 
   public function filterPagination($idUser_, $typeUser_) {
