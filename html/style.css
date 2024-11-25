@@ -2246,9 +2246,11 @@ tbody td:last-child {
   #carte{
     width: 100%;
     height: 20em;
+    flex:none;
   }
   #afficheLoc{
     flex-direction: column;
+    width: 95%;
   }
 
   #contact-info{
@@ -2259,6 +2261,7 @@ tbody td:last-child {
   #contact-info img {
     width: 22px;
     height: 22px;
+    
   }
 }
 /* ========================= */
