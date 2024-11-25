@@ -236,7 +236,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($tags as $tag):
                 if ($tag["nomtag"] != NULL) {
             ?>
-                    <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
+                    <a class="tag" href="search.php"><?php echo htmlspecialchars(str_replace("_"," ",ucfirst(strtolower($tag["nomtag"])))); ?></a>
                 <?php }
             endforeach;
 
