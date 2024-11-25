@@ -94,13 +94,15 @@
         }
 
 
-
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
             header('Location: accountPro.php');
             exit;
         }
+
+
+
 
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if(empty($errors)) {
@@ -140,6 +142,19 @@
         </aside>
         
         <h1 id="inscriptionTitre">Inscription professionnel</h1>
+
+        <?php
+            if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
+                echo '<div id="messageErreur" class="messageErreur">';
+                
+                foreach ($_SESSION['errors'] as $error) {
+                    echo "<p>$error</p>";
+                }
+                
+                echo '</div>';
+                unset($_SESSION['errors']);
+            }
+        ?>
 
         <div id="messageErreur" class="messageErreur"></div>
 
