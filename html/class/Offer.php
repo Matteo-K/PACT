@@ -105,7 +105,7 @@ class Offer {
     $tag = $this->tags;
     $resume = $this->resume;
     $noteAvg = $this->noteAvg;
-    $restaurantOuvert = statutOuverture($resultsSoir, $resultsMidi);
+    $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi);
     $statut = $this->statut;
     require_once __DIR__."/../components/cardOfferPro.php";
   }
