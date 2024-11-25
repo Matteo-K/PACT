@@ -46,7 +46,7 @@
             // $errors[] = "Erreur lors de la vérification de la dénomination : " . htmlspecialchars($e->getMessage());
         }
 
-
+        print_r($stmt);
         // OK
         // Vérifier si le numéro de Siren existe déjà dans la base de données
         try {
@@ -62,7 +62,7 @@
             // $errors[] = "Erreur lors de la vérification du SIREN.";
         }
 
-        
+        print_r($stmt);
         // PAS OK
         // Vérifier si l'adresse mail existe déjà dans la base de données
         try {
@@ -78,7 +78,7 @@
             // $errors[] = "Erreur lors de la vérification de l'adresse mail : " . htmlspecialchars($e->getMessage());
         }
 
-
+        print_r($stmt);
 
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if (!empty($errors)) {
