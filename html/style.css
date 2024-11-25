@@ -1919,6 +1919,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-bottom: 0;
 }
 
+#typeOffer{
+  margin: 0;
+  color: var(--bloc);
+  text-align: left;
+  justify-content: flex-start;
+}
+
 .mainOffer .tag,
 .ouvert,
 .ferme {

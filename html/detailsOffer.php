@@ -201,7 +201,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
         </div>
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
-        <h3 id="typeOffer">(<?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer)))?>) </h3>
+        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer)))?></h3>
         <?php 
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
             ?>
