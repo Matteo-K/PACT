@@ -293,7 +293,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
 
 
-        function configImage(e, url){
+        function configImage(url){
             if (images.length < maxImages) {
                 const figureImg = document.createElement("figure");
                 figureImg.classList.add("imageOffre");
