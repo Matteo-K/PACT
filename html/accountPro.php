@@ -31,6 +31,7 @@
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
 
 
+        // PAS OK
         // Vérifier si la dénomination existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE denomination = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE denomination = ?");
@@ -46,7 +47,7 @@
         }
 
 
-
+        // OK
         // Vérifier si le numéro de Siren existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
@@ -62,7 +63,7 @@
         }
 
         
-
+        // PAS OK
         // Vérifier si l'adresse mail existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE mail = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE mail = ?");

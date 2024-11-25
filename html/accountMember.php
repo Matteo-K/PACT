@@ -31,6 +31,7 @@
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
 
 
+        // OK
         // Vérifier si le pseudo existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.membre WHERE pseudo = ?");
@@ -46,7 +47,7 @@
         }
 
 
-
+        // OK
         // Vérifier si l'adresse mail existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.membre WHERE mail = ?");
