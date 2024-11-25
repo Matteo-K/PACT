@@ -40,7 +40,7 @@ class Offer {
     $nomTag = $this->categorie;
     $tag = $this->tags;
     $resume = $this->resume;
-    $noteAvg->$this->noteAvg;
+    $noteAvg = $this->noteAvg;
     $restaurantOuvert;
     require_once "../components/cardOffer.php";
   }
@@ -54,7 +54,7 @@ class Offer {
     $nomTag = $this->categorie;
     $tag = $this->tags;
     $resume = $this->resume;
-    $noteAvg->$this->noteAvg;
+    $noteAvg = $this->noteAvg;
     $restaurantOuvert ;
     $statut = $this->statut;
     require_once "../components/cardOfferPro.php";

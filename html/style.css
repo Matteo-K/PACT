@@ -2493,26 +2493,26 @@ tbody td:last-child {
 }
 
 #show > div {
-  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
 
 }
 
-#show >div >label[class="ligne"]{
+#show >div >label[class="labelShow1"]{
   margin-left: 20px;
-}
-
-
-#show >div>label{
   margin-right: 10px;
 }
+
 
 #show > article > div > div {
   display: flex;
   flex-direction: row;
-  
-}
+  }
+
+  #show > div[class="classDivShow1"]{
+    background-color: pink;
+  }
+
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
