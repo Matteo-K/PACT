@@ -178,9 +178,16 @@ document.addEventListener('DOMContentLoaded', function () {
         // Afficher les erreurs globales
         displayGlobalErrors(errors);
 
+        
+        if (document.getElementById("messageErreur").innerHTML.trim() !== "") {
+            document.getElementById("messageErreur").classList.add('show');
+        }
+
         // Si aucune erreur, envoyer le formulaire
         if (errors.length === 0) {
             form.submit();
         }
     });
+
+    
 });
