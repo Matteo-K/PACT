@@ -7,7 +7,7 @@ require_once "config.php";
 
 $idOffre =5;
 
-$stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idOffre =$idOffre");
+$stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idoffre =$idOffre");
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
