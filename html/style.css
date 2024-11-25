@@ -3085,11 +3085,11 @@ p[id="legendeBoutonLienPro"] {
   h1[id="connexionTitre"] {
     display: block;
     font-size: 45px;
-    margin-top: 20vh;
+    margin-top: 5vh;
   }
 
   h1[id="pasDeCompteTitre"] {
-    margin: 50px 10px;
+    margin: 40px 10px;
     font-size: 45px;
   }
 
@@ -3126,6 +3126,7 @@ p[id="legendeBoutonLienPro"] {
   p[id="legendeBoutonLienMembre"] {
     display: block;
     max-width: 350px;
+    margin-top: 20px;
   }
 
   a[id="boutonLienPro"],
