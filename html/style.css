@@ -2486,19 +2486,29 @@ tbody td:last-child {
 
 #show {
   align-items: center;
-   background-color: pink; 
+  /* background-color: yellow;  */
 }
 
 #show > div {
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-  padding: 10px;
+
+}
+
+#show >div >label[class="ligne"]{
+  margin-left: 20px;
+}
+
+
+#show >div>label{
+  margin-right: 10px;
 }
 
 #show > article > div > div {
   display: flex;
   flex-direction: row;
+  
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/

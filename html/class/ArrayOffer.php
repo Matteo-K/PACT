@@ -7,7 +7,7 @@ require_once "Show.php";
 require_once "Visit.php";
 require_once "Activity.php";
 
-function transformerHoraires($horaires) {
+function transformerHoraires($idOffre_, $horaires) {
   if (empty($horaires)) {
     return [];
   }
@@ -20,7 +20,7 @@ function transformerHoraires($horaires) {
     if (json_last_error() === JSON_ERROR_NONE) {
       $resultats[] = [
         'jour' => $decodedItem['jour'],
-        'idoffre' => $GLOBALS['idOffre'],
+        'idoffre' => $idOffre_,
         'heureouverture' => $decodedItem['heureOuverture'],
         'heurefermeture' => $decodedItem['heureFermeture']
       ];
@@ -95,8 +95,8 @@ class ArrayOffer {
           explode(",", trim(isset($offre['all_tags']) ? $offre['all_tags'] : '', "{}")),
           $offre['ville'],
           $offre['statut'],
-          transformerHoraires($offre['listhorairemidi']),
-          transformerHoraires($offre['listhorairesoir'])
+          transformerHoraires($offre['idoffre'], $offre['listhorairemidi']),
+          transformerHoraires($offre['idoffre'], $offre['listhorairesoir'])
         );
       }
     }
@@ -121,7 +121,7 @@ class ArrayOffer {
   }
 
   // TODO
-  public function displayArray($idUser_, $typeUser_, $elementStart_ , $nbElement_) {
+  public function displayArrayCard($idUser_, $typeUser_, $elementStart_ , $nbElement_) {
     $array = $this->pagination($idUser_, $typeUser_, $elementStart_ , $nbElement_);
     if (($typeUser_ == "pro_public" || $typeUser_ == "pro_prive")) {
       foreach ($array as $key -> $elem) {
