@@ -2850,19 +2850,20 @@ div.ligne6 > label {
   }
 
   /* Gestion de l'ordre des éléments */
-  #labelNom {
+  
+  #labelPrenom {
     order: 1;
   }
-
-  #nomMembre {
+  
+  #prenomMembre {
     order: 2;
   }
-
-  #labelPrenom {
+  
+  #labelNom {
     order: 3;
   }
 
-  #prenomMembre {
+  #nomMembre {
     order: 4;
   }
 
