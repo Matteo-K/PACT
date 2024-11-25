@@ -62,7 +62,7 @@ if ($categorie["_visite"]) {
 
         </div>
 
-        
+
         <div class="divAccessibliteVisit">
             <label>Accessibilité</label> <!-- Label Accessibilité -->
 
@@ -77,12 +77,14 @@ if ($categorie["_visite"]) {
             <!-- Label du 2eme bouton radio -->
 
         </div>
-        <div>
+
+
+        <div class="divPrixMin">
             <label>Prix minimum</label>
 
 
             <input type="number" id="PrixMinVisit" name="PrixMinVisit" min="0" placeholder="0">
-
+            <label class="labEuro">€</label>
         </div>
         <div>
             <label>Langue proposée(s) :</label> <!-- Label langue proposée -->
