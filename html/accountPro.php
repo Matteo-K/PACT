@@ -82,7 +82,7 @@
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
-            header('Location: accountPro.php');
+            $_SESSION['formData'] = $_POST;
             exit;
         }
 
@@ -137,6 +137,7 @@
                 
                 echo '</div>';
                 unset($_SESSION['errors']);
+                unset($_SESSION['formData']);
             }
         ?>
 
