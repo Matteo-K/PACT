@@ -3067,7 +3067,7 @@ p[id="legendeBoutonLienPro"] {
 }
 
 /* Média query pour passer au format téléphone */
-@media (max-width: 375px) {
+@media (max-width: 600px) {
 
   /* Réduire la taille des titres */
   h1[id="connexionTitre"] {
