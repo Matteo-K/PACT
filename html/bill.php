@@ -32,6 +32,7 @@ if ($results[0]['historiqueoption']) {
 // "duree": 1, "option": "ALaUne", "prixBase": 20, "dureeBase": 7, "lancement": "2024-11-25"}
 
 $tarif=['option'=>intval($results[0]['nomabonnement']),'prixBase'=>intval($results[0]['tarif'])];
+$v3=$tarif['prixBase'];
 
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
 $abonnement = explode(';',$results[0]['historiquestatut']);
@@ -176,10 +177,10 @@ footer{
                     <td>Abonnement <?php echo $tarif['option'] ?></td>
                     <td><?php echo $nbEnLigne ?></td>
                     <td>Jour</td>
-                    <td><?php echo $tarif['prixBase'] ?></td>
+                    <td><?php echo $v3 ?></td>
                     <td><?php echo $tva ?> %</td>
-                    <td><?php echo $tarif['option']*$tarif['prixBase'] ?> €</td>
-                    <td><?php echo round($tarif['option']*$tarif['prixBase']+($tarif['option']*$tarif['prixBase']*20/100),2) ?> €</td>
+                    <td><?php echo $nbEnLigne*$v3 ?> €</td>
+                    <td><?php echo round($nbEnLigne*$v3+($nbEnLigne*$v3*20/100),2) ?> €</td>
                 </tr>
                 <tr>
                     <td></td>
