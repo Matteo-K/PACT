@@ -2560,8 +2560,25 @@ tbody td:last-child {
 
 /* CSS de details visit */
 #visit > div[class="visGuideeEtDuree"]{
-  background-color: yellow;
+  margin-bottom: 15px;
 }
+
+#visit > div[class="visGuideeEtDuree"] >label[class="labDureeVis"]{
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+#visit > div[class="visGuideeEtDuree"]> label[class="labH"]{
+  margin-left: 5px;
+}
+
+#visit >div[class="divAccessibliteVisit"]{
+  background-color: yellow;
+  margin-bottom: 15px;
+}
+
+
+
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
