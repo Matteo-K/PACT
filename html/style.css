@@ -2749,6 +2749,7 @@ div.ligne6 > label {
 
   aside[id="asideRetour"] {
     position: static !important;
+    background-color: #b01111;
   }
 
   .creation-compte div {
