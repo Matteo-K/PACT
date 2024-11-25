@@ -3074,27 +3074,10 @@ p[id="legendeBoutonLienPro"] {
 
 /* Média query pour passer au format téléphone */
 @media (max-width: 375px) {
-  /* Les champs de saisie restent inchangés */
   .connexion-compte input {
     min-width: 200px;
     max-width: 280px;
     width: 230px;
-  }
-
-  div[id="lienBouton"]>div {
-    width: 100%;
-    margin: 10px 0;
-  }
-
-  /* Ajustement des boutons et des labels de création de compte */
-  a[id="boutonLienMembre"],
-  p[id="legendeBoutonLienMembre"] {
-    display: block;
-  }
-
-  a[id="boutonLienPro"],
-  p[id="legendeBoutonLienPro"] {
-    display: none;
   }
 }
 
