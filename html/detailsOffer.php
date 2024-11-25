@@ -230,7 +230,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if($typeOffer == "restaurant"){
-                $tags[] = $result['gammedeprix'];
+                $tags[] = ['gammedeprix' => $result['gammedeprix']];
             }
 
             foreach ($tags as $tag):
