@@ -2460,15 +2460,15 @@ tbody td:last-child {
   margin-bottom: 15px;
 }
 
-/*#restaurant label {
- /* display: flex;
-  flex-direction: column;*/
+#restaurant label {
+  display: flex;
+  flex-direction: column;
   /* Alignement du bouton radio et du texte*/
- /* width: 100%;
-  /* largeur*//*
-  margin-bottom: 10px;*/
+  width: 100%;
+  /* largeur*/
+  margin-bottom: 10px;
   /* Espacement */
-/*}*/
+}
 
 #restaurant input[type="radio"] {
   margin-right: 10px;
