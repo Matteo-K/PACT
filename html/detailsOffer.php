@@ -109,7 +109,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
 
-    <title><?php echo htmlspecialchars($offre["nom"]); ?></title>
+    <title><?php echo htmlspecialchars($result["nom"]); ?></title>
 </head>
 
 <body>
