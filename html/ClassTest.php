@@ -5,7 +5,6 @@ require_once "class/ArrayOffer.php";
 $arTout = new ArrayOffer();
 
 $arTout->displayArrayCard(18, 'passeur', 0, 20);
-print_r($arTout->getArray());
 ?>
 
 
