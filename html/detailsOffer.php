@@ -10,6 +10,14 @@ if (!$idOffre) {
     exit();
 }
 
+$monOffre = new ArrayOffer($idOffre);
+
+$stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = :idoffre");
+$stmt->bindParam(':idoffre', $idOffre);
+$stmt->execute();
+$offre = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 // Fonction pour récupérer les horaires
 function getSchedules($conn, $idOffre) {
     $schedules = [
@@ -99,7 +107,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
 
-    <title><?php echo htmlspecialchars($result["nom_offre"]); ?></title>
+    <title><?php echo htmlspecialchars($offre["nom"]); ?></title>
 </head>
 <body>
     <?php require_once "components/header.php"; ?>
@@ -193,6 +201,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
         </div>
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
+        <h3 id="typeOffer">(<?php echo $test?>) </h3>
         <?php 
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
             ?>
