@@ -40,12 +40,12 @@ if ($categorie["_visite"]) {
 // Il reste à initialisé les valeurs dans les input
 ?>
 <section id="visit"> <!-- donne un id a la section pour l'identifier dans le css -->
-    <article id="ArtVisit"> <!-- separation en article pour l'alignement -->
-        <div>
+    
+        <div class="visGuideeEtDuree">
             <label>Visite Guidée </label> 
 
             <input type="radio" id="guidee" name="VisiteGuidee" value="pasGuidee" checked>
-           
+
             <label for="access"> Oui</label>
             
 
@@ -53,15 +53,16 @@ if ($categorie["_visite"]) {
             
             <label for="pasAcces"> Non </label>
             
-        </div>
-        <div>
-            <label>Durée :</label> <!-- Label durée -->
+        
+            <label class="labDureeVis">Durée :</label> <!-- Label durée -->
 
             <input type="number" id="numberHVisit" name="numberHVisit" min="0" placeholder="0" />
             <!-- zone de texte ou seul un chiffre/nombre est accepte -->
-            <label>h</label> <!-- Label H (pour heure) -->
+            <label class="labH">h</label> <!-- Label H (pour heure) -->
 
         </div>
+
+
         <div class="divAccessibliteVisit">
             <label>Accessibilité</label> <!-- Label Accessibilité -->
 
@@ -76,14 +77,18 @@ if ($categorie["_visite"]) {
             <!-- Label du 2eme bouton radio -->
 
         </div>
-        <div>
+
+
+        <div class="divPrixMin">
             <label>Prix minimum</label>
 
 
             <input type="number" id="PrixMinVisit" name="PrixMinVisit" min="0" placeholder="0">
-
+            <label class="labEuro">€</label>
         </div>
-        <div>
+
+
+        <div class="languesProp">
             <label>Langue proposée(s) :</label> <!-- Label langue proposée -->
             <input type="text" id="inputTag" name="inputTag"
                 placeholder="Entrez & selectionnez les langue proposée pour votre visite">
@@ -95,5 +100,5 @@ if ($categorie["_visite"]) {
 
         </div>
 
-    </article>
+    
 </section>

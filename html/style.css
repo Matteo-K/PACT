@@ -1507,7 +1507,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 20px;
   padding: 0;
   padding-top: 20px;
-  margin: 20px 10% 0 55%;
+  margin: 20px 10% 0 30%;
   border-top: var(--bloc) solid 2px;
 }
 
@@ -1878,7 +1878,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   #pagination ul {
     margin-inline: 30%;
-    border-width: 5px;
+    border-width: 3px;
   }
 }
 
@@ -2466,6 +2466,8 @@ tbody td:last-child {
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
+
+/* CSS pour le détails d'une offre de type restaurant */
 #restaurant {
   display: flex;
   flex-direction: column;
@@ -2493,7 +2495,7 @@ tbody td:last-child {
   flex-direction: column
     /* Espace entre le bouton radio et le texte */
 }
-
+/* CSS pour le détails d'une offre de type spectacle */
 #show {
   align-items: center;
   /* background-color: yellow;  */
@@ -2558,6 +2560,43 @@ tbody td:last-child {
 
 }
 
+/* CSS pour le détails d'une offre de type Visite */
+#visit > div[class="visGuideeEtDuree"]{
+  margin-bottom: 15px;
+}
+
+#visit > div[class="visGuideeEtDuree"] >label[class="labDureeVis"]{
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+#visit > div[class="visGuideeEtDuree"]> label[class="labH"]{
+  margin-left: 5px;
+}
+
+#visit >div[class="divAccessibliteVisit"]{
+  margin-bottom: 15px;
+}
+
+#visit >div[class="divPrixMin"]{
+  margin-bottom: 15px;
+
+}
+
+#visit >div[class="divPrixMin"]>label[class="labEuro"]{
+  margin-left: 5px;
+}
+
+#visit >div[class="languesProp"] >input[type="text"]{
+  width: 500px;
+  height: 35px;
+  margin-top: 5px;
+}
+
+#visit >div[class="languesProp"]{
+  display: flex;
+  flex-direction: column;
+}
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
