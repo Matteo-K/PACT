@@ -2756,7 +2756,7 @@ div.ligne6 > label {
 @media (max-width: 600px) {
   h1[id="inscriptionTitre"] {
     font-size: 45px;
-    margin-top: 10vh;
+    margin-top: 5vh;
   }
 
   .creation-compte form {
