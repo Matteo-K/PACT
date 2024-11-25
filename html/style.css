@@ -764,7 +764,7 @@ header ul + div {
   justify-content: flex-start;
 }
 
-/* ------------------------- HOURLY OFFER CSS --------------------------------*/
+/* ------------------------- HOURLY OFFER CSS BENJAMIN--------------------------------*/
 #hourlyOffer {
   padding: 20px;
   padding-bottom: 6%;
@@ -2460,7 +2460,8 @@ tbody td:last-child {
 }
 
 #restaurant label {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   /* Alignement du bouton radio et du texte*/
   width: 100%;
   /* largeur*/
