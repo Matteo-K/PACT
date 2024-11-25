@@ -583,6 +583,7 @@ SELECT
     o.idOffre,
     o.idU,
     o.nom,
+    o.description,
     o.resume,
     ARRAY_AGG(DISTINCT i.url) AS listImage,
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
@@ -596,6 +597,10 @@ SELECT
         'heureFermeture', hs.heureFermeture
     )::TEXT, ';') FILTER (WHERE hs.jour IS NOT NULL AND hs.heureOuverture IS NOT NULL AND hs.heureFermeture IS NOT NULL) AS listHoraireSoir,
     l.ville,
+    l.numeroRue,
+    l.rue,
+    l.pays,
+    l.codePostal,
     r.gammeDePrix,
     ARRAY_CAT(
         ARRAY_CAT(
@@ -642,7 +647,7 @@ LEFT JOIN
 LEFT JOIN 
     _tag_parc tp ON o.idOffre = tp.idOffre
 GROUP BY 
-    o.idOffre, l.ville, r.gammeDePrix
+    o.idOffre, l.ville, l.numeroRue, l.rue, l.pays, l.codePostal, r.gammeDePrix
 ORDER BY o.dateCrea DESC;
 
 -- Vue pour tous les avis avec offres
@@ -890,3 +895,31 @@ CREATE TRIGGER trigger_ajout_offre_parcs_visite
 INSTEAD OF INSERT ON visites
 FOR EACH ROW
 EXECUTE FUNCTION ajout_offre_parcs_visite();
+
+
+
+CREATE OR REPLACE FUNCTION ajout_membre()
+RETURNS TRIGGER AS $$
+DECLARE
+  iduser INT;
+BEGIN
+    IF EXISTS (SELECT 1 FROM membre WHERE pseudo = NEW.pseudo) THEN
+        RAISE EXCEPTION 'Vous ne pouvez pas avoir deux membre ayant le même pseudo';
+    END IF;
+    INSERT INTO _utilisateur (password) VALUES (NEW.password) RETURNING idU into iduser;
+    INSERT INTO _nonAdmin (idU, telephone, mail) VALUES (iduser, NEW.telephone, NEW.mail);
+    INSERT INTO _membre (idU,pseudo,nom,prenom) VALUES (iduser, NEW.pseudo, NEW.nom, NEW.prenom);
+    INSERT INTO _photo_profil(idU,url) VALUES (iduser,NEW.url);
+    IF NOT EXISTS (SELECT 1 FROM _adresse WHERE numeroRue = NEW.numeroRue AND rue = NEW.rue AND ville = NEW.ville AND pays = NEW.pays AND codePostal = NEW.codePostal) THEN
+        INSERT INTO _adresse (numeroRue, rue, ville, pays, codePostal) VALUES (NEW.numeroRue, NEW.rue, NEW.ville, NEW.pays, NEW.codePostal);
+    END IF;
+    INSERT INTO _habite (idU, codePostal, ville, pays, rue, numeroRue) VALUES (iduser, NEW.codePostal, NEW.ville, NEW.pays, NEW.rue, NEW.numeroRue);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_ajout_membre
+INSTEAD OF INSERT ON membre
+FOR EACH ROW
+EXECUTE FUNCTION ajout_membre();
+
