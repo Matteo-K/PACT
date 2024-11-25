@@ -76,7 +76,7 @@ if ($categorie["_visite"]) {
         </div>
         <div>
             <label>Langue proposée(s) :</label> <!-- Label langue proposée -->
-            winput type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez les langue proposée pour votre visite">
+            <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez les langue proposée pour votre visite">
 
             <section id="sectionLangue">
                 <!-- Les tags ajoutés apparaîtront ici -->
