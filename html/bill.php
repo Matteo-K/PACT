@@ -21,13 +21,15 @@ $idFacture = $results[0]['idfacture'];
 $dateFacture = $results[0]['datefactue'];
 $idU = $results[0]['idu'];
 $tva = 20;
-$option = explode(';',$results[0]['historiqueoption']);
-
-$resultat=[];
-// "duree": 1, "option": "ALaUne", "prixBase": 20, "dureeBase": 7, "lancement": "2024-11-25"}
-foreach ($option as $key => $value) {
-    $resultat[] = json_decode($value,true);
+if ($results[0]['historiqueoption']) {
+    $option = explode(';',$results[0]['historiqueoption']);
+    $resultat=[];
+    foreach ($option as $key => $value) {
+        $resultat[] = json_decode($value,true);
+    }
 }
+
+// "duree": 1, "option": "ALaUne", "prixBase": 20, "dureeBase": 7, "lancement": "2024-11-25"}
 
 $tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>$results[0]['tarif']];
 
@@ -150,19 +152,22 @@ footer{
             <tbody>
                 <?php
                     $total=$tarif['option']*$tarif['tarif'];
-                    foreach ($option as $key => $value) {
-                        $total += $value[3]*$value[1];
-                        ?>
-                            <tr>
-                                <td><?php echo $value['option'] ?></td>
-                                <td><?php echo $value['duree'] ?></td>
-                                <td>Semaine</td>
-                                <td><?php echo $value['prixBase'] ?></td>
-                                <td><?php echo $tva ?> %</td>
-                                <td><?php echo $value['duree']*$value['prixBase'] ?> €</td>
-                                <td><?php echo round($value['duree']*$value['prixBase']+($value['duree']*$value['prixBase']*20/100),2) ?> €</td>
-                            </tr>
-                        <?php
+                    if ($results[0]['historiqueoption']) {
+                        
+                        foreach ($option as $key => $value) {
+                            $total += $value[3]*$value[1];
+                            ?>
+                                <tr>
+                                    <td><?php echo $value['option'] ?></td>
+                                    <td><?php echo $value['duree'] ?></td>
+                                    <td>Semaine</td>
+                                    <td><?php echo $value['prixBase'] ?></td>
+                                    <td><?php echo $tva ?> %</td>
+                                    <td><?php echo $value['duree']*$value['prixBase'] ?> €</td>
+                                    <td><?php echo round($value['duree']*$value['prixBase']+($value['duree']*$value['prixBase']*20/100),2) ?> €</td>
+                                </tr>
+                            <?php
+                        }
                     }
                 ?>
                 <tr>
