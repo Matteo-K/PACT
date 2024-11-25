@@ -50,7 +50,7 @@
         // OK
         // Vérifier si le numéro de Siren existe déjà dans la base de données
         try {
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
+            $stmt = $conn->prepare("SELECT * FROM pact.proPrive WHERE siren = ?");
             $stmt->execute([$siren]);
             $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
             
