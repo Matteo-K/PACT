@@ -109,7 +109,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
 
-    <title><?php echo htmlspecialchars($result["nom"]); ?></title>
+    <title><?php echo htmlspecialchars($result["nom_offre"]); ?></title>
 </head>
 
 <body>
@@ -272,7 +272,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($result["telephone"] && $tel["affiche"] == TRUE) {
             ?>
                 <div>
-                    <img src="./img/icone/tel.png">
+                    <img src="./sult = $stmt->fetch(PDO::Fimg/icone/tel.png">
                     <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
                 </div>
             <?php
