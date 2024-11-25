@@ -22,7 +22,7 @@ if ($categorie["_spectacle"]) {
 // Il reste à initialisé les valeurs dans les input
 ?>
 <section id="show"> <!-- Id pour pouvoir modifer separement dans le css -->
-    <article>
+    
 
         <div>
             <label class="ligne1">Nombre de places : </label> <!-- Label nombre de place -->
@@ -40,7 +40,7 @@ if ($categorie["_spectacle"]) {
             </div>
         </div>
 
-    </article>
+    
 
 
     <article>
