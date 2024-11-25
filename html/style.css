@@ -2504,7 +2504,7 @@ tbody td:last-child {
 #show > article > div > div {
   display: flex;
   flex-direction: row;
-  margin-left: 10px;
+  margin-right: 10px;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
