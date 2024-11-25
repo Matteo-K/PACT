@@ -92,7 +92,7 @@ class Offer {
 
     // Récupération ouvert Fermé
     $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi);
-    require_once __DIR__."/../components/cardOffer.php";
+    require __DIR__."/../components/cardOffer.php";
   }
 
   public function displayCardOfferPro() {
