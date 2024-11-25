@@ -22,43 +22,45 @@ if ($categorie["_spectacle"]) {
 // Il reste à initialisé les valeurs dans les input
 ?>
 <section id="show"> <!-- Id pour pouvoir modifer separement dans le css -->
-    
+
+
+    <div>
+        <label class="ligne1">Nombre de places : </label> <!-- Label nombre de place -->
 
         <div>
-            <label class="ligne1">Nombre de places : </label> <!-- Label nombre de place -->
-
-            <div>
-                <input type="number" 2class="nb" name="nbPlaceShow" min="0" placeholder="0"> <!-- Pour le nombre de place -->
-                <?php echo "places" ?>
-            </div>
-
-            <label class="labelShow1">Prix minimum : </label>
-
-            <div>
-                <input type="number" class="nb" name="PrixMinShow" min="0" placeholder="0"> <!-- Pour entrer un prix minimum -->
-                <?php echo "€" ?>
-            </div>
+            <input type="number" 2class="nb" name="nbPlaceShow" min="0" placeholder="0">
+            <!-- Pour le nombre de place -->
+            <?php echo "places" ?>
         </div>
 
-    
+        <label class="labelShow1">Prix minimum : </label>
+
+        <div>
+            <input type="number" class="nb" name="PrixMinShow" min="0" placeholder="0">
+            <!-- Pour entrer un prix minimum -->
+            <?php echo "€" ?>
+        </div>
+    </div>
+
+
 
 
     <div class="classDivShow1">
 
         <label class="ligne1">Durée du Spectacle : </label>
+
         <div>
             <label class="ligne1">En minutes : </label>
             <div>
                 <input type="number" class="nb" name="nbHeures" min="0" placeholder="0">
                 <!-- Pour entrer un prix minimum -->
+            </div>
+            <div>
                 <label class="ligne1">En heures : </label>
                 <input type="time" class="nb" name="nbMinutesHeure" placeholder="0">
                 <!-- Pour entrer un prix minimum -->
             </div>
         </div>
-
-    </div
-
-
+    </div>
 
 </section>
