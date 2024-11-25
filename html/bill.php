@@ -156,7 +156,7 @@ footer{
                     if ($results[0]['historiqueoption']) {
                         
                         foreach ($option as $key => $value) {
-                            print_r($value['duree']. gettype($value['duree']));
+                            print_r($value);
                             $v1 = intval($value['duree']);
                             $v2 = intval($value['prixBase']);
                             $total += $v1 * $v2;
