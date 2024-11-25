@@ -1,6 +1,16 @@
 <?php
     // Démarrer la session
     session_start();
+
+    if (isset($_SESSION['errors'])) {
+        // Récupérer et afficher les erreurs
+        echo '<script>';
+        echo 'document.getElementById("messageErreur").innerHTML = "' . implode('<br>', $_SESSION['errors']) . '";';
+        echo '</script>';
+        
+        // Supprimer les erreurs après les avoir affichées
+        unset($_SESSION['errors']);
+    }
     
     // fichier de connexion à la BDD
     require_once "db.php";
@@ -44,6 +54,7 @@
         
         catch (Exception $e) {
             // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+            $errors[] = "Erreur lors de la vérification du pseudo: " . htmlspecialchars($e->getMessage());
         }
 
 
@@ -61,6 +72,7 @@
         
         catch (Exception $e) {
             // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+            $errors[] = "Erreur lors de la vérification du pseudo: " . htmlspecialchars($e->getMessage());
         }
 
 
@@ -76,6 +88,11 @@
             // Redirection vers une page de succès
             header('Location: login.php');
             exit;
+        }
+
+        else {
+            // Stocker les erreurs dans la session pour les afficher
+            $_SESSION['errors'] = $errors;
         }
     }
 ?>
@@ -108,7 +125,7 @@
                     
                 <!-- Saisi du prénom -->
                 <input type="text" placeholder="Jean" id="prenomMembre" name="prenomMembre" required>
-                
+
                 <!-- Saisi du nom -->
                 <input type="text" placeholder="Dupont" id="nomMembre" name="nomMembre" required>
     
