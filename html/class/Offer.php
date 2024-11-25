@@ -69,12 +69,13 @@ class Offer {
   }
 
   // TODO
-  public function setData($idOffre_, $idUser_, $nomOffre_, $resume_, $images_, $tags_, $ville_, $statut_, $horaireMidi_, $horaireSoir_) {
+  public function setData($idOffre_, $idUser_, $nomOffre_, $description_, $resume_, $images_, $tags_, $ville_, $statut_, $horaireMidi_, $horaireSoir_) {
     $this->idOffre = $idOffre_;
     $this->statut = $statut_;
     $this->idUser = $idUser_;
     $this->nomOffre = $nomOffre_;
     $this->resume = $resume_;
+    $this->description = $description_;
     $this->images = $images_;
     $this->tags = $tags_;
     $this->ville = $ville_;
@@ -84,14 +85,14 @@ class Offer {
 
   public function getData() {
     return [$this->idUser, $this->idOffre,
-    $this->statut, $this->abonnement,
-    $this->options, $this->nomOffre,
-    $this->resume, $this->description,
-    $this->categorie, $this->noteAvg,
-    $this->images, $this->tags,
-    $this->ville, $this->adresse,
-    $this->codePostal
-  ];
+      $this->statut, $this->abonnement,
+      $this->options, $this->nomOffre,
+      $this->resume, $this->description,
+      $this->categorie, $this->noteAvg,
+      $this->images, $this->tags,
+      $this->ville, $this->adresse,
+      $this->codePostal
+    ];
   }
 }
 
