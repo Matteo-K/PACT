@@ -2486,11 +2486,10 @@ tbody td:last-child {
 
 #show {
   align-items: center;
-  background-color: yellow; 
+  background-color: yellowgreen; 
 }
 
 #show > div {
-  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
 
