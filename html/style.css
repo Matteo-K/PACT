@@ -2453,6 +2453,7 @@ tbody td:last-child {
 ---------------------------------------------------------------------------------------------------*/
 #restaurant {
   padding: 20px;
+  background-color: yellow;
 }
 
 #restaurant h4 {
