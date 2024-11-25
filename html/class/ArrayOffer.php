@@ -112,6 +112,10 @@ class ArrayOffer {
     });
   }
 
+  /**
+   * Renvoie le nombre d'élément dela liste
+   * Et la liste avec les éléments suivant le nombre d'élément sélectionner
+   */
   public function pagination($idUser_, $typeUser_, $elementStart_ , $nbElement_) {
     return array_slice($this->filtre($idUser_, $typeUser_), $elementStart_, $nbElement_); 
   }
@@ -126,14 +130,19 @@ class ArrayOffer {
   }
 
   public function displayArrayCard($idUser_, $typeUser_, $elementStart_, $nbElement_) {
-    $array = $this->pagination($idUser_, $typeUser_, $elementStart_, $nbElement_);  
-    foreach ($array as $key => $elem) {
-      if ($typeUser_ == "pro_public" || $typeUser_ == "pro_prive") {
-        $elem->displayCardOfferPro();
-      } else {
-        $elem->displayCardOffer();
+    $array = $this->pagination($idUser_, $typeUser_, $elementStart_, $nbElement_);
+    if (count($array > 0)) {
+      foreach ($array as $key => $elem) {
+        if ($typeUser_ == "pro_public" || $typeUser_ == "pro_prive") {
+          $elem->displayCardOfferPro();
+        } else {
+          $elem->displayCardOffer();
+        }
       }
+    } else {
+      echo "<p>Aucune offre trouvée </p>";
     }
+    return count($this->filtre($idUser_, $typeUser_));
   }
 }
 
