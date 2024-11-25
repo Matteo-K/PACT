@@ -193,7 +193,13 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
         </div>
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
-        <h3 class="DetailsStatut"><?php echo $statutActuel=='actif'?"En-Ligne":"Hors-Ligne";?></h3>
+        <?php 
+        if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
+            ?>
+            <h3 class="DetailsStatut"><?php echo $statutActuel=='actif'?"En-Ligne":"Hors-Ligne";?></h3>
+            <?php
+        }
+        ?>
         <div>
             <?php 
             // Fetch tags associated with the offer
