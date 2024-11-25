@@ -34,17 +34,17 @@
         // OK
         // Vérifier si le pseudo existe déjà dans la base de données
         try {
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.membre WHERE pseudo = ?");
+            $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE pseudo = ?");
             $stmt->execute([$pseudo]);
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if ($stmt->fetchColumn() > 0) {
+            if ($result) {
                 $errors[] = "Le pseudo existe déjà.";
             }
         } 
         catch (Exception $e) {
             // $errors[] = "Erreur lors de la vérification du pseudo : " . htmlspecialchars($e->getMessage());
         }
-        print_r($stmt->fetchColumn());
         
 
         // OK
@@ -53,8 +53,7 @@
             $stmt = $conn->prepare("SELECT * FROM pact._nonadmin WHERE mail = ?");
             $stmt->execute([$mail]);
             $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
-            echo $mail ;
-            print_r($result);
+            
             if ($result) {
                 $errors[] = "L'adresse mail existe déjà.";
             }

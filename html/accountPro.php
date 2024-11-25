@@ -34,10 +34,11 @@
         // PAS OK
         // Vérifier si la dénomination existe déjà dans la base de données
         try {
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE denomination = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE denomination = ?");
-            $stmt->execute([$denomination, $denomination]);
-
-            if ($stmt->fetchColumn() > 0) {
+            $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE denomination = ?");
+            $stmt->execute([$denomination]);
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            if ($result) {
                 $errors[] = "La dénomination existe déjà.";
             }
         } 
@@ -46,14 +47,14 @@
             // $errors[] = "Erreur lors de la vérification de la dénomination : " . htmlspecialchars($e->getMessage());
         }
 
-        print_r($stmt->fetchColumn());
         // OK
         // Vérifier si le numéro de Siren existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
             $stmt->execute([$siren]);
-
-            if ($stmt->fetchColumn() > 0) {
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            if ($result) {
                 $errors[] = "Le numéro de SIREN existe déjà.";
             }
         } 
@@ -62,14 +63,14 @@
             // $errors[] = "Erreur lors de la vérification du SIREN.";
         }
 
-        print_r($stmt->fetchColumn());
         // PAS OK
         // Vérifier si l'adresse mail existe déjà dans la base de données
         try {
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE mail = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE mail = ?");
-            $stmt->execute([$mail, $mail]);
-
-            if ($stmt->fetchColumn() > 0) {
+            $stmt = $conn->prepare("SELECT * FROM pact._nonadmin WHERE mail = ?");
+            $stmt->execute([$mail]);
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            if ($result) {
                 $errors[] = "L'adresse mail existe déjà.";
             }
         } 
