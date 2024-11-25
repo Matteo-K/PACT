@@ -107,10 +107,10 @@
                 <label  id="labelPrenom" for="prenomMembre">Prénom*:</label>
                     
                 <!-- Saisi du nom -->
-                <input type="text" placeholder="Jean" id="nomMembre" name="nomMembre" required>
+                <input type="text" placeholder="Dupont" id="nomMembre" name="nomMembre" required>
     
                 <!-- Saisi du prénom -->
-                <input type="text" placeholder="Dupont" id="prenomMembre" name="prenomMembre" required>
+                <input type="text" placeholder="Jean" id="prenomMembre" name="prenomMembre" required>
             </div>
     
             <div class="ligne1_1">
