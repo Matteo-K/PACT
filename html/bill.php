@@ -155,8 +155,7 @@ footer{
                     $total=$nbEnLigne*$v3;
                     if ($results[0]['historiqueoption']) {
                         
-                        foreach ($option as $key => $value) {
-                            print_r($value);
+                        foreach ($resultat as $key => $value) {
                             $v1 = intval($value['duree']);
                             $v2 = intval($value['prixBase']);
                             $total += $v1 * $v2;
