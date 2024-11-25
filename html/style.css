@@ -1914,6 +1914,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 5em;
   color: var(--bloc);
   margin-bottom: 0;
+  font-weight: 600;
 }
 
 #typeOffer {
