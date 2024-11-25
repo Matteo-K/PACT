@@ -89,13 +89,67 @@ if (isset($_POST['pageBefore'])) {
 
       $categorie = $_POST["categorie"];
 
+
+
       // Traitement des images
-      $dossierImg = __DIR__."/img/imageOffre/";
-      $imageCounter = 0;  // Compteur pour renommer les images
+      $dossierTemp = __DIR__ . "/img/tempImage/";
+      $dossierImg = __DIR__ . "/img/imageOffre/";
+      
+      mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
 
-      $nbImages = count($_FILES['ajoutPhoto']['name']); //nb d'images uploadé
+      $stmt = $conn->prepare("SELECT url FROM pact._illustre WHERE idoffre = ?");
+      $stmt->execute([$idOffre]);
+      $anciennesImagesTotal = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-      // Boucle à travers chaque fichier uploadé
+      $anciennesImagesRestantes = $_POST["imageExistante"] ?? [];
+
+      //On déplace les anciennes images conservées vers un dossier temporaire
+      foreach ($anciennesImagesRestantes as $num => $lien) {
+        move_uploaded_file($lien, $dossierTemp.$num);
+        $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
+      }
+
+      foreach ($anciennesImagesTotal as $imgA) {
+        // Supprime l'image du dossier
+        if (file_exists($imgA['url'])) {
+            unlink($imgA['url']);
+        }
+      }
+
+      // Supprime les relations dans la BDD
+      $stmt = $conn->prepare("DELETE FROM pact._illustre WHERE idoffre = ?");
+      $stmt->execute([$idOffre]);
+
+      $stmt = $conn->prepare("DELETE FROM pact._image WHERE url IN (?)");
+      $stmt->execute([$ancienneImages]);
+
+      $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
+      $nbAnciennesImages = count($anciennesImagesRestantes);
+      $nbTotalImages = $nbNouvellesImages + $nbAnciennesImages;
+      $imageCounter = $nbAnciennesImages;  // Compteur pour renommer les images
+
+      //On remet les anciennes images gardées dans la BDD et sur le serveur 
+      foreach ($anciennesImagesRestantes as $num => $lien) {
+        move_uploaded_file($lien, $dossierTemp.$num);
+        $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
+
+        $fileExtension = strtolower(pathinfo($lien)['extension']);
+        $newFileName = $idOffre . '-' . $num . '.' . $fileExtension;
+        $dossierImgNom = $dossierImg . $newFileName;
+
+        try {
+          $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
+          $stmt->execute([$dossierImgNom, $newFileName]);
+
+          $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
+          $stmt->execute([$idOffre, $dossierImgNom]);
+        } catch (PDOException $e) {
+            error_log("Erreur BDD : " . $e->getMessage());
+        }
+      }
+
+
+      // Boucle à travers chaque NOUVEAU fichier uploadé
       for ($i = 0; $i < $nbImages; $i++) {
         $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
         $fileName = $_FILES['ajoutPhoto']['name'][$i];
@@ -103,9 +157,10 @@ if (isset($_POST['pageBefore'])) {
 
         // Vérifie si l'image a été uploadée sans erreur
         if ($fileError === UPLOAD_ERR_OK) {
-          // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
-          $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-          $dossierImgNom = $dossierImg . $fileName;
+          // Renommage de l'image (idOffre3image0 -> 3-0.png, idOffre3image1 -> 3-1.png, etc.)
+          $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+          $newFileName = $idOffre . '-' . $imageCounter . '.' . $fileExtension;
+          $dossierImgNom = $dossierImg . $newFileName;
 
           // Déplace l'image vers le dossier cible
           move_uploaded_file($fileTmpPath, $dossierImgNom);
@@ -113,11 +168,12 @@ if (isset($_POST['pageBefore'])) {
 
           try {
             $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
-            $stmt->execute([$dossierImgNom, $fileName]);
+            $stmt->execute([$dossierImgNom, $newFileName]);
 
             $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
             $stmt->execute([$idOffre, $dossierImgNom]);
           } catch (PDOException $e) {
+              error_log("Erreur BDD : " . $e->getMessage());
           }
         }
       }
