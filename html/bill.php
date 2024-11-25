@@ -40,7 +40,7 @@ $nbEnLigne = 0 ;
 
 foreach ($abonnement as $key => $value) {
     $result = json_decode($value);
-    $nbEnLigne = $nbEnLigne + $result['Duree'];
+    $nbEnLigne = $nbEnLigne + intval($result['Duree']);
 }
 
 $css = "
