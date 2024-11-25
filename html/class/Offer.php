@@ -2,7 +2,7 @@
 
 // Convertir le jour actuel en français
 $currentDay = $daysOfWeek[$currentDay];
-$currentTime = new DateTime(date('H:i')); // ex: 14:30
+$currentTime = new DateTime(date('H:i'));
 
 /**
  * Détermine le statut ouvert/fermé 
