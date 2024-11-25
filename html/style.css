@@ -2516,7 +2516,7 @@ tbody td:last-child {
     flex-direction: column;
   }
 
-  #show > div[class="classDivShow1"]> div[class="classDivLigne"]{
+  #show > div[class="classDivShow1"]> div> div[class="classDivLigne"]{
     background-color: blueviolet;
     display: flex;
     flex-direction: row;
