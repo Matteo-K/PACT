@@ -2558,6 +2558,10 @@ tbody td:last-child {
 
 }
 
+/* CSS de details visit */
+#visit > div[class="visGuideeEtDuree"]{
+  background-color: yellow;
+}
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/

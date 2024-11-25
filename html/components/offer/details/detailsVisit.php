@@ -40,8 +40,8 @@ if ($categorie["_visite"]) {
 // Il reste à initialisé les valeurs dans les input
 ?>
 <section id="visit"> <!-- donne un id a la section pour l'identifier dans le css -->
-    <article id="ArtVisit"> <!-- separation en article pour l'alignement -->
-        <div>
+    
+        <div class="visGuideeEtDuree">
             <label>Visite Guidée </label> 
 
             <input type="radio" id="guidee" name="VisiteGuidee" value="pasGuidee" checked>
@@ -53,8 +53,7 @@ if ($categorie["_visite"]) {
             
             <label for="pasAcces"> Non </label>
             
-        </div>
-        <div>
+        
             <label>Durée :</label> <!-- Label durée -->
 
             <input type="number" id="numberHVisit" name="numberHVisit" min="0" placeholder="0" />
@@ -95,5 +94,5 @@ if ($categorie["_visite"]) {
 
         </div>
 
-    </article>
+    
 </section>
