@@ -23,21 +23,36 @@ class Offer {
     $this->categorie = $categorie_;
   }
 
-  /** TODO 
-   * Récupère les informations nécessaires pour afficher les cartes d'offres
-   * Exemple d'utilisation 
-   * list($idOffre, $tag ...) = $instance->getCardOffer();
-   */
-  public function getCardOffer() {
-    return [$this->idOffre];
-  }
-
   /** TODO
    * 
    */
   public function displayCardOffer() {
-    list($idOffre) = $this->getCardOffer();
+    $idOffre = $this->idOffre;
+    $nomOffre = $this->nomOffre;
+    $urlImg = $this->images[0];
+    $gammeText = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
+    $ville = $this->ville;
+    $nomTag = $this->categorie;
+    $tag = $this->tags;
+    $resume = $this->resume;
+    $noteAvg->$this->noteAvg;
+    $restaurantOuvert;
     require_once "../components/cardOffer.php";
+  }
+
+  public function displayCardOfferPro() {
+    $idOffre = $this->idOffre;
+    $nomOffre = $this->nomOffre;
+    $urlImg = $this->images[0];
+    $gammeText = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
+    $ville = $this->ville;
+    $nomTag = $this->categorie;
+    $tag = $this->tags;
+    $resume = $this->resume;
+    $noteAvg->$this->noteAvg;
+    $restaurantOuvert ;
+    $statut = $this->statut;
+    require_once "../components/cardOfferPro.php";
   }
 
   public function filterPagination($idUser_, $typeUser_) {

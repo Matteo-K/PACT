@@ -61,12 +61,14 @@ class ArrayOffer {
   /**
    * Set 
    */
-  public function pagination($idUser_, $typeUser_, $elementStart_ , $nbElement_) {
-    $array = array_filter($this->arrayOffer, function($offer) use ($idUser_) {
+  public function filtre($idUser_, $typeUser_) {
+    return array_filter($this->arrayOffer, function($offer) use ($idUser_) {
       return $offer->filterPagination($idUser_, $typeUser_);
     });
+  }
 
-    return array_slice($array, $elementStart_, $nbElement_);
+  public function pagination($idUser_, $typeUser_, $elementStart_ , $nbElement_) {
+    return array_slice($this->filtre($idUser_, $typeUser_), $elementStart_, $nbElement_); 
   }
 
   public function getArray() {
@@ -76,8 +78,14 @@ class ArrayOffer {
   // TODO
   public function displayArray($idUser_, $typeUser_, $elementStart_ , $nbElement_) {
     $array = $this->pagination($idUser_, $typeUser_, $elementStart_ , $nbElement_);
-    foreach ($array as $key -> $elem) {
-      $elem->displayCardOffer();
+    if (($typeUser_ == "pro_public" || $typeUser_ == "pro_prive")) {
+      foreach ($array as $key -> $elem) {
+        $elem->displayCardOffer();
+      }
+    } else {
+      foreach ($array as $key -> $elem) {
+        $elem->displayCardOfferPro();
+      }
     }
   }
 }

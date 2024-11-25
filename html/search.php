@@ -278,6 +278,7 @@ $arrayOffer = [];
                     $gammeText = ($offre['gammedeprix']) ? " ⋅ " . $offre['gammedeprix'] : "";
                     $nomTag=($offre['categorie']!="Autre")?$offre['categorie']:"Pas de catégorie";
                     $tag = $offre['all_tags']?explode(',',trim($offre['all_tags'],'{}')):"";
+                    $statut = isset($offre['statut']) ? $offre['statut'] : "" ;
                     if (($offre['listhorairemidi'])!="") {
                         $horaireMidi=explode(';',$offre['listhorairemidi']);                        
                         // Tableau final
@@ -319,7 +320,9 @@ $arrayOffer = [];
                         } 
                     }else {
                         $resultsSoir = [];
-                    }                    
+                    }
+                    print_r($resultsMidi);
+                    print_r($resultsSoir);
                     // Fusionner les horaires midi et soir
                     $horaires = array_merge($resultsSoir, $resultsMidi);
                     $restaurantOuvert = "EstFermé"; // Par défaut, le restaurant est fermé

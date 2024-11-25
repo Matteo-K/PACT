@@ -1570,7 +1570,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #trifiltre {
   position: absolute;
-  background: var(--primary);
+  background: var(--bloc);
   width: 380px;
   top: 0;
   left: 0;
@@ -1632,12 +1632,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #tri [type="radio"] + label {
   background-color: var(--secondary90);
   color: var(--text-dark);
-  padding: 5px;
+  padding: 9px;
   border-radius: 10px;
   width: 130px;
   text-align: center;
   margin: 5px;
-  border: 2px solid var(--secondary);
 }
 
 #tri [type="radio"]:checked + label {
