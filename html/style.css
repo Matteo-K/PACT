@@ -2536,7 +2536,7 @@ tbody td:last-child {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-#show>div[class="classDivShow1"]>div >label[class="ligne4"]{
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne4"] {
   margin-left: 15px;
 
 }
