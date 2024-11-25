@@ -1,5 +1,27 @@
 <?php
 
+// Récupérer l'heure actuelle et le jour actuel
+setlocale(LC_TIME, 'fr_FR.UTF-8');
+date_default_timezone_set('Europe/Paris');
+
+// Récupérer le jour actuel en français avec la classe DateTime
+$currentDay = (new DateTime())->format('l'); // Récupère le jour en anglais
+
+// Tableau pour convertir les jours de la semaine de l'anglais au français
+$daysOfWeek = [
+    'Monday'    => 'Lundi',
+    'Tuesday'   => 'Mardi',
+    'Wednesday' => 'Mercredi',
+    'Thursday'  => 'Jeudi',
+    'Friday'    => 'Vendredi',
+    'Saturday'  => 'Samedi',
+    'Sunday'    => 'Dimanche'
+];
+
+// Convertir le jour actuel en français
+$currentDay = $daysOfWeek[$currentDay];
+$currentTime = new DateTime(date('H:i'));
+
 /**
  * Détermine le statut ouvert/fermé 
  * suivant les horaires déterminés et l'horaire actuelle
@@ -7,7 +29,7 @@
 function statutOuverture($soir, $midi) {
   $horaires = array_merge($soir, $midi);
   $ouverture = "EstFermé";
-  
+  global $currentTime;
   // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
   foreach ($horaires as $horaire) {
       if ($horaire['jour'] == $currentDay) {
@@ -67,7 +89,7 @@ class Offer {
     $noteAvg = $this->noteAvg;
 
     // Récupération ouvert Fermé
-
+    $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi);
     require_once __DIR__."/../components/cardOffer.php";
   }
 
@@ -81,7 +103,7 @@ class Offer {
     $tag = $this->tags;
     $resume = $this->resume;
     $noteAvg = $this->noteAvg;
-    $restaurantOuvert ;
+    $restaurantOuvert = statutOuverture($resultsSoir, $resultsMidi);
     $statut = $this->statut;
     require_once __DIR__."/../components/cardOfferPro.php";
   }
