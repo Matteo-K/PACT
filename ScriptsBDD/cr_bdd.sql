@@ -700,6 +700,8 @@ CREATE VIEW facture AS
     l.codePostal,
     l.pays,
     o.idU,
+    a.nomAbonnement,
+    a.tarif,
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'ID', ht.idStatut,
         'Lancement', ht.dateLancement,
@@ -733,10 +735,14 @@ CREATE VIEW facture AS
     LEFT JOIN _option_offre oo ON o.idOffre = oo.idOffre
     LEFT JOIN _dateOption da ON oo.idOption = da.idOption
     LEFT JOIN _option op ON oo.nomOption = op.nomOption
+    LEFT JOIN _abonner ab ON o.idOffre = ab.idOffre
+    LEFT JOIN _abonnement a ON ab.nomAbonnement = a.nomAbonnement
     GROUP BY 
     f.idFacture,
     f.dateFactue,
     o.nom,
+    a.nomAbonnement,
+    a.tarif,
     o.idU,
     p.denomination,
     l.numeroRue,
