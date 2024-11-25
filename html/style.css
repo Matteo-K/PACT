@@ -2226,13 +2226,16 @@ tbody td:last-child {
     flex-direction: column;
     width: 85%;
   }
+  #infoComp{
+    width: 90%;
+  }
 
   #infoComp > h2 {
     font-size: 1.4rem;
   }
 
   table {
-    width: 95%;
+    width: 100%;
   }
   th {
     font-size: 22px;
@@ -2249,7 +2252,7 @@ tbody td:last-child {
   }
   #afficheLoc{
     flex-direction: column;
-    width: 95%;
+    width: 90%;
   }
 
   #contact-info{
