@@ -201,30 +201,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         let tags = loadedTags; // Tableau pour stocker les tags, comprenant les tags déjà présents
 
         loadedTags.forEach(valeurTag => {
-            if (valeurTag) {
-
-                const elementTag = document.createElement("span");
-                elementTag.classList.add("tag");
-                elementTag.textContent = valeurTag;
-
-                const imgCroix = document.createElement("img");
-                imgCroix.setAttribute.src="../img/icone/croix.png";
-
-                const hiddenInputTag = document.createElement("input");
-                hiddenInputTag.type = "hidden";
-                hiddenInputTag.value = valeurTag;
-                hiddenInputTag.name = "tags[]"; 
-
-                elementTag.addEventListener("click", function () {
-                    sectionTag.removeChild(hiddenInputTag); 
-                    sectionTag.removeChild(elementTag); 
-                    pTag.style.color = "black"; 
-                });
-
-                sectionTag.appendChild(elementTag); 
-                sectionTag.appendChild(hiddenInputTag);
-                elementTag.appendChild(imgCroix);
-            }
+            ajoutTag(valeurTag);
         });
 
         function ajoutTag(valeurTag) {
