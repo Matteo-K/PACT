@@ -2462,7 +2462,7 @@ tbody td:last-child {
 
 #restaurant label {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   /* Alignement du bouton radio et du texte*/
   width: 100%;
   /* largeur*/
@@ -2472,6 +2472,8 @@ tbody td:last-child {
 
 #restaurant input[type="radio"] {
   margin-right: 10px;
+  display: flex;
+  flex-direction: column;
   /* Espace entre le bouton radio et le texte */
 }
 
