@@ -278,7 +278,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         function loadImage(url){
             const reader = new FileReader();
-            reader.onload = configImage(url);
+            reader.onload = configImage(url, []);
             reader.readAsDataURL(file);
         }
 
@@ -287,13 +287,13 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
             Array.from(images).forEach((file) => {
                 const reader = new FileReader();
-                reader.onload = configImage("");
+                reader.onload = configImage("", images);
                 reader.readAsDataURL(file);
             });
         }
 
 
-        /*function configImage(url){
+        function configImage(url, images){
             if (images.length < maxImages) {
                 const figureImg = document.createElement("figure");
                 figureImg.classList.add("imageOffre");
@@ -318,7 +318,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             } else {
                 pImage.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
             }
-        }*/
+        }
 
 
 
