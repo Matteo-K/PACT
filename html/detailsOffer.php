@@ -229,6 +229,10 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->execute();
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            if($typeOffer == "restaurant"){
+                $tags[] = $result['gammedeprix'];
+            }
+
             foreach ($tags as $tag):
                 if ($tag["nomtag"] != NULL) {
             ?>
