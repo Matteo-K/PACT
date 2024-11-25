@@ -43,7 +43,7 @@ if ($categorie["_spectacle"]) {
     
 
 
-    <article>
+    <div class="classDivShow1">
 
         <label class="ligne1">Durée du Spectacle : </label>
         <div>
@@ -57,7 +57,7 @@ if ($categorie["_spectacle"]) {
             </div>
         </div>
 
-    </article>
+    </div
 
 
 
