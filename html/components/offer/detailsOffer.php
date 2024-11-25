@@ -293,7 +293,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
 
 
-        function configImage(url){
+        /*function configImage(url){
             if (images.length < maxImages) {
                 const figureImg = document.createElement("figure");
                 figureImg.classList.add("imageOffre");
@@ -318,7 +318,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             } else {
                 pImage.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
             }
-        }
+        }*/
 
 
 
