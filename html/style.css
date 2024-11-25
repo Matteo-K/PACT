@@ -2583,7 +2583,10 @@ tbody td:last-child {
 
 #visit >div[class="divPrixMin"]>label[class="labEuro"]{
   margin-left: 5px;
+}
 
+#visit >div[class="languesProp"] >input[type="text"]{
+  margin-top: 50px;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
