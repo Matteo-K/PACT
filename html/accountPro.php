@@ -82,7 +82,6 @@
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
-            $_SESSION['formData'] = $_POST;
             exit;
         }
 
@@ -137,7 +136,6 @@
                 
                 echo '</div>';
                 unset($_SESSION['errors']);
-                unset($_SESSION['formData']);
             }
         ?>
 
@@ -149,8 +147,7 @@
                 <label for="telephone">Numéro de téléphone*:</label>
                 
                 <!-- Saisi de la dénomination -->
-                <input type="text" placeholder = "MonEntreprise" id="denomination" name="denomination" 
-                value="<?= isset($_SESSION['formData']['denomination']) ? htmlspecialchars($_SESSION['formData']['denomination']) : '' ?>" required>
+                <input type="text" placeholder = "MonEntreprise" id="denomination" name="denomination" required>
 
                 <!-- Saisi du numéro de téléphone -->
                 <input type="tel" placeholder = "06 01 02 03 04" id = "telephone" name="telephone" required>
