@@ -217,7 +217,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       ?>
     </div>
     <p>Attention ! Vous ne pouvez pas changer d’offre une fois séléctionée.</p>
-    <div>Montant actuel (sur 1 mois): <span id="prixPrevisionel"></span>&euro;</div>
+    <div>Montant actuel (abonnement sur 1 mois): <span id="prixPrevisionel"></span>&euro;</div>
   </div>
 
   <script>
@@ -240,8 +240,15 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       // Option
       for (let index = 0; index < option.length; index++) {
         if (option[index].checked) {
-          const tarifOption = option[index].parentElement.querySelector('span').getAttribute('prix');
-          prix += parseFloat(tarifOption)*nbSemaines[index];
+          const tarifOption = option[index].parentElement.querySelector('span').getAttribute('prix');        
+          if (tarifOption && nbSemaines[index].value) {
+            const tarifValue = parseFloat(tarifOption);
+            const nbSemainesValue = parseInt(nbSemaines[index].value, 10);
+
+            if (!isNaN(tarifValue) && !isNaN(nbSemainesValue)) {
+              prix += tarifValue * nbSemainesValue;
+            }
+          }
         }
       }
 
@@ -254,6 +261,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
     option.forEach(element => {
       element.addEventListener("click", updatePrix);
+    });
+
+    nbSemaines.forEach(element => {
+      element.addEventListener("change", updatePrix);
     });
 
     updatePrix();
