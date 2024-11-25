@@ -187,6 +187,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
     </article>
     <script>
+        const maxTags = 6;
 
         //On récupère en JS la liste des tags pour le script 
         let listeTags = <?php echo json_encode($listeTags) ?>;
@@ -228,7 +229,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         function ajoutTag(valeurTag) {
 
-            if (valeurTag && !tags.includes(valeurTag) && tags.length < 6) {
+            if (valeurTag && !tags.includes(valeurTag) && tags.length < maxTags) {
 
                 tags.push(valeurTag); // Ajoute le tag dans le tableau
 
@@ -253,6 +254,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
                     sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
                     pTag.style.color = "black"; // Remet la couleur par défaut si besoin
+                    alert(tags.length);
                 });
 
                 // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel
@@ -262,7 +264,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                 // Réinitialise l'input
                 inputTag.value = "";
-            } else if (tags.length >= 6) {
+            } else if (tags.length >= maxTags) {
                 pTag.style.color = "red"; // Change la couleur du texte pour signaler la limite atteinte
             } else if (tags.includes(valeurTag)) {
                 alert("Ce tag a déjà été ajouté !");
