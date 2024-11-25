@@ -1,5 +1,27 @@
 <?php
 
+/**
+ * Détermine le statut ouvert/fermé 
+ * suivant les horaires déterminés et l'horaire actuelle
+ */
+function statutOuverture($soir, $midi) {
+  $horaires = array_merge($soir, $midi);
+  $ouverture = "EstFermé";
+  
+  // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
+  foreach ($horaires as $horaire) {
+      if ($horaire['jour'] == $currentDay) {
+          $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
+          $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
+          if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
+              $ouverture = "EstOuvert";
+              break;
+      }
+    }
+  }
+  return $ouverture;
+}
+
 class Offer {
   private $idUser;
   private $idOffre;
@@ -14,7 +36,9 @@ class Offer {
   private $images;
   private $tags;
   private $ville;
-  private $adresse;
+  private $pays;
+  private $numerorue;
+  private $rue;
   private $codePostal;
   private $horaireMidi;
   private $horaireSoir;
@@ -41,7 +65,9 @@ class Offer {
     $tag = $this->tags;
     $resume = $this->resume;
     $noteAvg = $this->noteAvg;
-    $restaurantOuvert;
+
+    // Récupération ouvert Fermé
+
     require_once "../components/cardOffer.php";
   }
 
@@ -69,7 +95,7 @@ class Offer {
   }
 
   // TODO
-  public function setData($idOffre_, $idUser_, $nomOffre_, $description_, $resume_, $images_, $tags_, $ville_, $statut_, $horaireMidi_, $horaireSoir_) {
+  public function setData($idOffre_, $idUser_, $nomOffre_, $description_, $resume_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $horaireMidi_, $horaireSoir_) {
     $this->idOffre = $idOffre_;
     $this->statut = $statut_;
     $this->idUser = $idUser_;
@@ -79,19 +105,35 @@ class Offer {
     $this->images = $images_;
     $this->tags = $tags_;
     $this->ville = $ville_;
+    $this->pays = $pays_;
+    $this->numerorue = $numerorue_;
+    $this->rue = $rue_;
+    $this->codePostal = $codePostal_;
     $this->horaireMidi = $horaireMidi_;
     $this->horaireSoir = $horaireSoir_;
   }
 
   public function getData() {
-    return [$this->idUser, $this->idOffre,
-      $this->statut, $this->abonnement,
-      $this->options, $this->nomOffre,
-      $this->resume, $this->description,
-      $this->categorie, $this->noteAvg,
-      $this->images, $this->tags,
-      $this->ville, $this->adresse,
-      $this->codePostal
+    return [
+      "idU" => $this->idUser, 
+      "idOffre" => $this->idOffre,
+      "statut" => $this->statut, 
+      "abonnement" => $this->abonnement,
+      "option" => $this->options, 
+      "nomOffre" => $this->nomOffre,
+      "resume" => $this->resume, 
+      "description" => $this->description,
+      "categorie" => $this->categorie, 
+      "noteAvg" => $this->noteAvg,
+      "images" => $this->images, 
+      "tags" => $this->tags,
+      "ville" => $this->ville,
+      "pays" => $this->pays,
+      "numeroRue" => $this->numerorue,
+      "rue" => $this->rue,
+      "codePostal" => $this->codePostal,
+      "horaireMidi" => $this->horaireMidi,
+      "horaireSoir" => $this->horaireSoir
     ];
   }
 }

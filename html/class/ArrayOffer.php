@@ -94,6 +94,10 @@ class ArrayOffer {
           explode(",", trim($offre['listimage'], "{}")),
           explode(",", trim(isset($offre['all_tags']) ? $offre['all_tags'] : '', "{}")),
           $offre['ville'],
+          $offre['pays'],
+          $offre['numerorue'],
+          $offre['rue'],
+          $offre['codepostal'],
           $offre['statut'],
           transformerHoraires($offre['idoffre'], $offre['listhorairemidi']),
           transformerHoraires($offre['idoffre'], $offre['listhorairesoir'])
@@ -117,8 +121,14 @@ class ArrayOffer {
   }
 
   public function getArray() {
-    return $this->arrayOffer;
-  }
+    $arrayWithData = [];
+    foreach ($this->arrayOffer as $idOffre => $objet) {
+      $arrayWithData[$idOffre] = $objet->getData();
+    }
+    
+    return $arrayWithData;
+}
+
 
   // TODO
   public function displayArrayCard($idUser_, $typeUser_, $elementStart_ , $nbElement_) {
