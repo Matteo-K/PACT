@@ -2490,7 +2490,6 @@ tbody td:last-child {
 }
 
 #show > div {
-  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
 
