@@ -198,7 +198,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
          const sectionTag = document.getElementById("sectionTag");
         const pTag = document.querySelector("#sectionTag + p");
         let tags = loadedTags; // Tableau pour stocker les tags, comprenant les tags déjà présents
-        let compteurTags = loadedTags.length; // Compteur pour limiter à 6 tags
 
         loadedTags.forEach(valeurTag => {
             if (valeurTag) {
@@ -229,9 +228,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         function ajoutTag(valeurTag) {
 
-            if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
+            if (valeurTag && !tags.includes(valeurTag) && tags.length < 6) {
 
-                compteurTags++;
                 tags.push(valeurTag); // Ajoute le tag dans le tableau
 
                 // Crée l'élément visuel pour afficher le tag
@@ -255,7 +253,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
                     sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
                     pTag.style.color = "black"; // Remet la couleur par défaut si besoin
-                    compteurTags--; // Décrémente le compteur de tags
                 });
 
                 // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel

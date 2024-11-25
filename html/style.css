@@ -1149,6 +1149,7 @@ header ul+div {
   width: 100%;
   height: auto;
   border-radius: 3px;
+  position: static;
 }
 
 #choixCategorie {
