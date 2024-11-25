@@ -2794,6 +2794,10 @@ div.ligne6 > label {
     max-width: 480px;
   }
 
+  a[id="lienCGU"] {
+    font-size: 20px;
+  }
+
   .creation-compte div.ligne2 > label,
   div.ligne3 > label {
     margin: 5px;
