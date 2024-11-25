@@ -2766,9 +2766,9 @@ div[id="messageErreur"] {
 }
 
 /* test */
-.messageErreur.show {
+/* .messageErreur.show {
   display: block;
-}
+} */
 
 .creation-compte .error-message {
   margin-top: 10px;
