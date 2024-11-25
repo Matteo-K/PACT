@@ -12,11 +12,33 @@ class ArrayOffer {
   private $arrayOffer;
   private $nbOffer;
 
+  public function transformerHoraires($horaires) {
+    if (empty($horaires)) {
+      return [];
+    }
+
+    $resultats = [];
+    $horairesArray = explode(';', $horaires);
+
+    foreach ($horairesArray as $item) {
+      $decodedItem = json_decode($item, true);
+      if (json_last_error() === JSON_ERROR_NONE) {
+        $resultats[] = [
+          'jour' => $decodedItem['jour'],
+          'idoffre' => $GLOBALS['idOffre'],
+          'heureouverture' => $decodedItem['heureOuverture'],
+          'heurefermeture' => $decodedItem['heureFermeture']
+        ];
+      }
+    }
+    return $resultats;
+  }
+  
   // TODO
   public function __construct($idoffres_ = "") {
     $this->arrayOffer = [];
     $this->nbOffer = 0;
-    
+
     global $conn;
 
     if (empty($idoffres_)) {
@@ -77,27 +99,6 @@ class ArrayOffer {
     }
   }
 
-  public function transformerHoraires($horaires) {
-    if (empty($horaires)) {
-      return [];
-    }
-
-    $resultats = [];
-    $horairesArray = explode(';', $horaires);
-
-    foreach ($horairesArray as $item) {
-      $decodedItem = json_decode($item, true);
-      if (json_last_error() === JSON_ERROR_NONE) {
-        $resultats[] = [
-          'jour' => $decodedItem['jour'],
-          'idoffre' => $GLOBALS['idOffre'],
-          'heureouverture' => $decodedItem['heureOuverture'],
-          'heurefermeture' => $decodedItem['heureFermeture']
-        ];
-      }
-    }
-    return $resultats;
-  }
 
   /**
    * Set 
