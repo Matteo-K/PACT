@@ -84,7 +84,7 @@ if ($categorie["_visite"]) {
 
 
             <input type="number" id="PrixMinVisit" name="PrixMinVisit" min="0" placeholder="0">
-
+            <label class="labEuro">€</label>
         </div>
         <div>
             <label>Langue proposée(s) :</label> <!-- Label langue proposée -->

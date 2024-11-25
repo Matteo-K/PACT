@@ -2581,6 +2581,10 @@ tbody td:last-child {
 
 }
 
+#visit >div[class="divPrixMin"]>label[class="labEuro"]{
+  margin-left: 5px;
+
+}
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
