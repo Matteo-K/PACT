@@ -273,12 +273,10 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         const loadedImg = <?php echo json_encode($loadedImg) ?>;
 
         loadedImg.forEach(img => {
-            loadImage(img);
+            configImage(img, [], "");
         });
 
-        function loadImage(url){
-            configImage(url, [], "");
-        }
+
 
         function afficheImage(event) {
             const images = event.target.files;
