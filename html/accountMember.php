@@ -52,17 +52,18 @@
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.membre WHERE mail = ?");
             $stmt->execute([$mail]);
-
-            if ($stmt->fetchColumn() > 0) {
-                $errors[] = "L'adresse mail existe déjà.";
-            }
+            echo $mail ;
+            print_r($stmt->fetchAll(PDO::FETCH_ASSOC));
+            
+            // if ($stmt->fetchColumn() > 0) {
+            //     $errors[] = "L'adresse mail existe déjà.";
+            // }
         } 
         
         catch (Exception $e) {
             // $errors[] = "Erreur lors de la vérification de l'adresse mail : " . htmlspecialchars($e->getMessage());
         }
 
-        print_r($stmt->fetchColumn());
 
 
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
