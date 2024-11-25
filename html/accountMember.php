@@ -68,11 +68,8 @@
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if(empty($errors)) {
             // Préparer la requête d'insertion
-            if ($secteur == 'public') {
-                $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo]);
-
-            } 
+            $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo]);
 
             // Redirection vers une page de succès
             header('Location: login.php');
