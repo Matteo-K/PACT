@@ -89,7 +89,7 @@ footer {
 }
 
 /* Bloc principale + mention légale*/
-footer > div:first-child {
+footer>div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -106,7 +106,7 @@ footer figure {
 }
 
 /* paragraphe principale */
-footer figure + p {
+footer figure+p {
   margin-left: 2%;
 }
 
@@ -137,7 +137,7 @@ footer h4 {
   text-decoration: underline;
 }
 
-footer div + div {
+footer div+div {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -145,12 +145,12 @@ footer div + div {
   width: 100%;
 }
 
-footer div + div p {
+footer div+div p {
   width: fit-content;
   text-wrap: nowrap;
 }
 
-footer div + div a {
+footer div+div a {
   width: fit-content;
   margin: 0;
   margin-right: 10%;
@@ -172,7 +172,7 @@ footer div + div a {
     border-radius: 50%;
   }
 
-  footer div + div p {
+  footer div+div p {
     margin-left: 50px;
   }
 }
@@ -198,7 +198,7 @@ header {
   padding: 0.5em 0;
 }
 
-header > div {
+header>div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -206,7 +206,7 @@ header > div {
   height: 3em;
 }
 
-header div > a {
+header div>a {
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -227,8 +227,8 @@ header h3 {
   justify-content: center;
 }
 
-header div > a > img,
-#auth > img {
+header div>a>img,
+#auth>img {
   width: 5em;
   height: 5em;
   margin-right: 0.5em;
@@ -295,7 +295,7 @@ header div > a > img,
   margin-top: -50px;
 }
 
-header > div > a > div {
+header>div>a>div {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -414,7 +414,7 @@ header > div > a > div {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-header ul + div {
+header ul+div {
   width: 100%;
   flex-direction: column;
   margin-bottom: 3em;
@@ -450,6 +450,7 @@ header ul + div {
 #logoutButton:hover {
   background-color: #ff0000;
 }
+
 @media (max-width: 804px) {
   #btnConn {
     width: clamp(7em, 10vw, 10em);
@@ -524,7 +525,7 @@ header ul + div {
   border-radius: 0 0 50px 0;
 }
 
-#manageOffer aside > h3,
+#manageOffer aside>h3,
 #manageOffer aside li a {
   font-family: "Belanosima", sans-serif;
   text-decoration: none;
@@ -554,13 +555,13 @@ header ul + div {
   justify-content: space-evenly;
 }
 
-#manageOffer aside > :nth-child(2) {
+#manageOffer aside> :nth-child(2) {
   height: clamp(340px, 35vh, 400px);
   padding-bottom: 1vh;
   border-bottom: var(--text-light) 2px solid;
 }
 
-#manageOffer aside > :nth-child(3) {
+#manageOffer aside> :nth-child(3) {
   gap: 10px;
 }
 
@@ -622,14 +623,14 @@ header ul + div {
     inset 4px 4px 4px #b01111 !important;
 }
 
-#manageOffer aside + section {
+#manageOffer aside+section {
   margin-left: 17em;
   margin-top: var(--header-size2);
   min-height: 70vh;
 }
 
 /* Bouton suivant précédent */
-#manageOffer aside + section + div {
+#manageOffer aside+section+div {
   position: absolute;
   bottom: 5px;
   right: 3%;
@@ -638,7 +639,7 @@ header ul + div {
   gap: 3%;
 }
 
-#manageOffer aside + section + div button {
+#manageOffer aside+section+div button {
   text-align: center;
   width: 150px;
   padding: 10px;
@@ -654,14 +655,14 @@ header ul + div {
 /* # selection de l'offre # */
 
 /* Bloc de chaque type d'offre*/
-#selectOffer > div:first-child {
+#selectOffer>div:first-child {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
 }
 
 /* Toute les type d'offre */
-#selectOffer > div:first-child > div {
+#selectOffer>div:first-child>div {
   position: relative;
   height: clamp(400px, 50vh, 450px);
   width: 20em;
@@ -679,37 +680,37 @@ header ul + div {
 }
 
 /* Prix par mois */
-#selectOffer > div:first-child > div h3 {
+#selectOffer>div:first-child>div h3 {
   margin-top: -20px;
 }
 
 /* Bouton séletionner */
-#selectOffer > div:first-child > div ul + div {
+#selectOffer>div:first-child>div ul+div {
   position: absolute;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-#selectOffer > div:first-child > div ul {
+#selectOffer>div:first-child>div ul {
   display: flex;
   flex-flow: column nowrap;
   gap: clamp(10px, 2vh, 25px);
 }
 
-#selectOffer > div:first-child > div li {
+#selectOffer>div:first-child>div li {
   list-style: disc;
 }
 
 /* offre premium */
-#selectOffer > div:first-child > div:nth-child(2) {
+#selectOffer>div:first-child>div:nth-child(2) {
   background-color: var(--accent20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--accent60);
 }
 
 /* offre standard */
-#selectOffer > div:first-child > div:nth-child(3) {
+#selectOffer>div:first-child>div:nth-child(3) {
   background-color: var(--primary20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--primary60);
@@ -720,8 +721,8 @@ header ul + div {
   display: none;
 }
 
-#selectOffer input[type="radio"] + label,
-#detailsOffer #artDetailOffer input[type="radio"] + label {
+#selectOffer input[type="radio"]+label,
+#detailsOffer #artDetailOffer input[type="radio"]+label {
   display: inline-block;
   padding: 5px 30px;
   border-radius: 50px;
@@ -736,24 +737,24 @@ header ul + div {
   cursor: pointer;
 }
 
-#selectOffer input[type="radio"]:checked + label,
-#detailsOffer #artDetailOffer input[type="radio"]:checked + label {
+#selectOffer input[type="radio"]:checked+label,
+#detailsOffer #artDetailOffer input[type="radio"]:checked+label {
   background-color: var(--accent);
   box-shadow: inset -4px -4px 4px var(--accent-border);
 }
 
-#selectOffer input[disabled] + label {
+#selectOffer input[disabled]+label {
   color: rgba(20, 20, 20, 0.5);
   border-color: rgba(20, 20, 20, 0.5);
 }
 
-#selectOffer > div:first-child + div {
+#selectOffer>div:first-child+div {
   margin-top: 4vh;
   margin-left: 6%;
 }
 
 /* Message de prévention */
-#selectOffer > div:first-child + div p {
+#selectOffer>div:first-child+div p {
   color: red;
 }
 
@@ -764,7 +765,7 @@ header ul + div {
   justify-content: flex-start;
 }
 
-/* ------------------------- HOURLY OFFER CSS --------------------------------*/
+/* ------------------------- HOURLY OFFER CSS BENJAMIN--------------------------------*/
 #hourlyOffer {
   padding: 20px;
   padding-bottom: 6%;
@@ -777,14 +778,14 @@ header ul + div {
   margin-bottom: -7px;
 }
 
-#hourlyOffer div > div {
+#hourlyOffer div>div {
   display: flex;
   flex-flow: nowrap row;
   align-items: center;
 }
 
 /* div de saisie */
-#hourlyOffer div > div + div:not(#Representation div) {
+#hourlyOffer div>div+div:not(#Representation div) {
   margin-left: 50px;
 }
 
@@ -792,7 +793,7 @@ header ul + div {
   margin-left: 10px;
 }
 
-#hourlyOffer div > div {
+#hourlyOffer div>div {
   display: flex;
 }
 
@@ -854,12 +855,12 @@ header ul + div {
 }
 
 /* bloc consentement afficher numéro */
-#contactOffer input[type="tel"] + div {
+#contactOffer input[type="tel"]+div {
   margin-bottom: 50px;
 }
 
 /* bloc de chaque radio button */
-#contactOffer div > div {
+#contactOffer div>div {
   display: flex;
   flex-flow: row wrap;
 }
@@ -941,7 +942,7 @@ header ul + div {
 }
 
 /* logo paypal */
-#paypal + label img {
+#paypal+label img {
   width: 10vh;
   height: 10vh;
 }
@@ -960,7 +961,7 @@ header ul + div {
   gap: 5px;
 }
 
-#paymentOffer article:nth-child(2) div > div:not(div > div > div) {
+#paymentOffer article:nth-child(2) div>div:not(div > div > div) {
   display: flex;
   flex-flow: row;
 }
@@ -1057,12 +1058,12 @@ header ul + div {
   flex-wrap: nowrap;
 }
 
-#artDetailOffer > div {
+#artDetailOffer>div {
   width: 48%;
   margin: 1%;
 }
 
-#artDetailOffer > div > label:not(.buttonDetailOffer),
+#artDetailOffer>div>label:not(.buttonDetailOffer),
 #choixCategorie label:first-of-type,
 #choixImage label,
 #choixImage2 label,
@@ -1219,12 +1220,10 @@ header ul + div {
 
 #autocompletion li:nth-child(even) {
   background-color: var(--accent30);
-  background: linear-gradient(
-    90deg,
-    var(--accent30) 0%,
-    var(--accent30) 80%,
-    #fff 100%
-  );
+  background: linear-gradient(90deg,
+      var(--accent30) 0%,
+      var(--accent30) 80%,
+      #fff 100%);
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1508,7 +1507,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 20px;
   padding: 0;
   padding-top: 20px;
-  margin: 20px 10% 0 55%;
+  margin: 20px 10% 0 30%;
   border-top: var(--bloc) solid 2px;
 }
 
@@ -1523,6 +1522,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-bottom: 3px solid var(--accent);
   box-sizing: border-box;
 }
+
 .StatutAffiche {
   position: relative;
   padding: 5px;
@@ -1552,11 +1552,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: space-between;
 }
 
-.DetailsStatut{
+.DetailsStatut {
   color: black;
   margin-bottom: 0.4em;
   margin-top: 0.4em;
-  background-color:var(--primary);
+  background-color: var(--primary);
   padding: 10px 20px;
   font-size: 2rem;
   border-radius: 5px;
@@ -1575,6 +1575,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   top: 0;
   left: 0;
   padding: 10px;
+  padding-top: 2rem;
   border-radius: 0 0 45px 0;
 }
 
@@ -1604,13 +1605,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-inline: 5px;
 }
 
-#trifiltre input[type="checkbox"]:checked + .checkmark,
-#selectOffer input[type="checkbox"]:checked + .checkmark {
+#trifiltre input[type="checkbox"]:checked+.checkmark,
+#selectOffer input[type="checkbox"]:checked+.checkmark {
   background-color: white;
 }
 
-#trifiltre input[type="checkbox"]:checked + .checkmark::after,
-#selectOffer input[type="checkbox"]:checked + .checkmark::after {
+#trifiltre input[type="checkbox"]:checked+.checkmark::after,
+#selectOffer input[type="checkbox"]:checked+.checkmark::after {
   content: "";
   position: absolute;
   top: 4px;
@@ -1629,7 +1630,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 10px;
 }
 
-#tri [type="radio"] + label {
+#tri [type="radio"]+label {
   background-color: var(--secondary90);
   color: var(--text-dark);
   padding: 9px;
@@ -1639,7 +1640,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin: 5px;
 }
 
-#tri [type="radio"]:checked + label {
+#tri [type="radio"]:checked+label {
   background-color: var(--accent90);
   color: var(--text-light);
 }
@@ -1694,14 +1695,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* bloc de bouton menu téléphone*/
-#trifiltre > div {
+#trifiltre>div {
   display: none;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-evenly;
 }
 
-#trifiltre > div figure {
+#trifiltre>div figure {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -1710,7 +1711,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 1.5rem;
 }
 
-#trifiltre > div figure img {
+#trifiltre>div figure img {
   width: 3rem;
 }
 
@@ -1720,8 +1721,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transition: transform 0.3s linear;
 }
 
-#tri > div:nth-child(1),
-#filtre > div:nth-child(1) {
+#tri>div:nth-child(1),
+#filtre>div:nth-child(1) {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -1729,7 +1730,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* chaque ligne d'étoile */
-#note > h3 + div > div {
+#note>h3+div>div {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -1757,7 +1758,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #categorie ul,
-#note > h3 + div {
+#note>h3+div {
   display: flex;
   flex-flow: column;
   align-items: flex-start;
@@ -1765,18 +1766,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .star {
-  clip-path: polygon(
-    50% 0%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
-    39% 35%
-  );
+  clip-path: polygon(50% 0%,
+      61% 35%,
+      98% 35%,
+      68% 57%,
+      79% 91%,
+      50% 70%,
+      21% 91%,
+      32% 57%,
+      2% 35%,
+      39% 35%);
   background-color: #edae14;
   border-radius: 2%;
   width: 30px;
@@ -1859,7 +1858,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     transform: translateX(100%);
   }
 
-  #trifiltre > div {
+  #trifiltre>div {
     display: flex;
   }
 
@@ -1871,7 +1870,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   /* btn tri */
-  #tri [type="radio"] + label {
+  #tri [type="radio"]+label {
     width: 50%;
     padding: 0.8rem;
     font-size: 1.1rem;
@@ -1879,7 +1878,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   #pagination ul {
     margin-inline: 30%;
-    border-width: 5px;
+    border-width: 3px;
   }
 }
 
@@ -1913,9 +1912,19 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #titleOffer {
   text-align: center;
   font-size: 5em;
-
   color: var(--bloc);
   margin-bottom: 0;
+  font-weight: 600;
+}
+
+#typeOffer {
+  margin: 0;
+  text-align: center;
+  color: var(--bloc);
+  font-family: Lato;
+  font-weight: bold;
+  font-size: 2em;
+  margin-bottom: 1em;
 }
 
 .mainOffer .tag,
@@ -1926,7 +1935,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   text-align: center;
 }
 
-.mainOffer > div {
+.mainOffer>div {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
@@ -1989,8 +1998,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* border-radius: 15px; */
-  transition: transform 0.2s ease;
 }
 
 .swiper-slide:hover img {
@@ -2085,17 +2092,17 @@ tbody td:last-child {
   color: var(--background);
 }
 
-.myThumbSlider + article,
+.myThumbSlider+article,
 #infoPro,
-#infoPro > div,
+#infoPro>div,
 #afficheLoc,
-#afficheLoc > .carte + div {
+#afficheLoc>.carte+div {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-#descriptionOffre > section {
+#descriptionOffre>section {
   margin-left: 3em;
   background-color: var(--accent80);
   border-radius: 0.5em;
@@ -2103,7 +2110,7 @@ tbody td:last-child {
   margin-top: 1em;
 }
 
-#descriptionOffre > section > p {
+#descriptionOffre>section>p {
   text-indent: 20px;
 }
 
@@ -2143,7 +2150,7 @@ tbody td:last-child {
   border-radius: 8px;
 }
 
-#afficheLoc{
+#afficheLoc {
   margin-bottom: 2em;
 }
 
@@ -2177,6 +2184,7 @@ tbody td:last-child {
   :root {
     --header-size2: 0;
   }
+
   .mainOffer {
     margin-top: 0;
   }
@@ -2193,7 +2201,8 @@ tbody td:last-child {
     padding-inline: 15px;
     font-weight: 600;
   }
-  x .mainOffer > div {
+
+  x .mainOffer>div {
     gap: 0.5em;
   }
 
@@ -2210,12 +2219,12 @@ tbody td:last-child {
     display: none;
   }
 
-  #descriptionOffre > p {
+  #descriptionOffre>p {
     order: 10;
     margin: 0;
   }
 
-  #descriptionOffre > section {
+  #descriptionOffre>section {
     order: 2;
     width: 100%;
     margin: 1em 0;
@@ -2226,36 +2235,40 @@ tbody td:last-child {
     flex-direction: column;
     width: 85%;
   }
-  #infoComp{
+
+  #infoComp {
     width: 90%;
   }
 
-  #infoComp > h2 {
+  #infoComp>h2 {
     font-size: 1.4rem;
   }
 
   table {
     width: 100%;
   }
+
   th {
     font-size: 22px;
     font-weight: 600;
   }
+
   td {
     font-size: 16px;
   }
 
-  #carte{
+  #carte {
     width: 100%;
     height: 20em;
-    flex:none;
+    flex: none;
   }
-  #afficheLoc{
+
+  #afficheLoc {
     flex-direction: column;
     width: 90%;
   }
 
-  #contact-info{
+  #contact-info {
     justify-content: flex-start;
     gap: 10px;
   }
@@ -2263,9 +2276,10 @@ tbody td:last-child {
   #contact-info img {
     width: 22px;
     height: 22px;
-    
+
   }
 }
+
 /* ========================= */
 /* Styles pour previewOffer.php */
 /* ========================= */
@@ -2452,44 +2466,137 @@ tbody td:last-child {
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
+
+/* CSS pour le détails d'une offre de type restaurant */
 #restaurant {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
+
 }
 
 #restaurant h4 {
   margin-bottom: 15px;
 }
 
-#restaurant label {
-  display: inline-block;
+#restaurant>div {
+  display: flex;
+  flex-direction: row;
   /* Alignement du bouton radio et du texte*/
   width: 100%;
   /* largeur*/
   margin-bottom: 10px;
-  /* Espacement */
+  margin-left: 20px;
 }
 
 #restaurant input[type="radio"] {
   margin-right: 10px;
-  /* Espace entre le bouton radio et le texte */
+  display: flex;
+  flex-direction: column
+    /* Espace entre le bouton radio et le texte */
 }
-
+/* CSS pour le détails d'une offre de type spectacle */
 #show {
   align-items: center;
-  /* background-color: pink; */
+  /* background-color: yellow;  */
 }
 
-#show > article {
-  margin-bottom: 10px;
+#show>div {
+  display: flex;
+  flex-direction: row;
+
+}
+
+#show>div>label[class="labelShow1"] {
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+
+#show>article>div>div {
   display: flex;
   flex-direction: row;
 }
 
-#show > article > div > div {
+#show>div[class="classDivShow1"] {
+
+  display: flex;
+  flex-direction: column;
+}
+
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"] {
+  /* background-color: blueviolet; */
   display: flex;
   flex-direction: row;
 }
 
+#show>div>label[class="labelNbPlace"] {
+  margin-right: 5px;
+}
+
+#show>div[class="classDivShow1"]>div {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne4"] {
+  margin-left: 15px;
+
+}
+
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
+  margin-right: 5px;
+}
+
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"] {
+  margin-left: 5px;
+}
+
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne2"] {
+  margin-left: 5px;
+}
+
+#show>div[class="classDivShow1"]>label {
+  margin-top: 5px;
+
+}
+
+/* CSS pour le détails d'une offre de type Visite */
+#visit > div[class="visGuideeEtDuree"]{
+  margin-bottom: 15px;
+}
+
+#visit > div[class="visGuideeEtDuree"] >label[class="labDureeVis"]{
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+#visit > div[class="visGuideeEtDuree"]> label[class="labH"]{
+  margin-left: 5px;
+}
+
+#visit >div[class="divAccessibliteVisit"]{
+  margin-bottom: 15px;
+}
+
+#visit >div[class="divPrixMin"]{
+  margin-bottom: 15px;
+
+}
+
+#visit >div[class="divPrixMin"]>label[class="labEuro"]{
+  margin-left: 5px;
+}
+
+#visit >div[class="languesProp"] >input[type="text"]{
+  width: 500px;
+  height: 35px;
+  margin-top: 5px;
+}
+
+#visit >div[class="languesProp"]{
+  display: flex;
+  flex-direction: column;
+}
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
@@ -2548,7 +2655,7 @@ button[id="retour"] {
   padding: 0;
 }
 
-aside[id="asideRetour"] > button[id="retour"] > img {
+aside[id="asideRetour"]>button[id="retour"]>img {
   vertical-align: middle;
   width: 70px;
   height: 65px;
@@ -2586,26 +2693,26 @@ body[id="body_creation_compte"] ::placeholder {
   text-align: left;
 }
 
-.creation-compte div.ligne1 > label,
-div.ligne6 > label {
+.creation-compte div.ligne1>label,
+div.ligne6>label {
   display: inline-block;
   width: 408px;
 }
 
-.creation-compte div.ligne2 > label,
-div.ligne3 > label {
+.creation-compte div.ligne2>label,
+div.ligne3>label {
   display: flex;
   justify-content: left;
   width: 823px;
   margin: 5px auto;
 }
 
-.creation-compte div.ligne4 > label {
+.creation-compte div.ligne4>label {
   display: inline-block;
   width: 215px;
 }
 
-.creation-compte div.ligne4 > label[for="ville"] {
+.creation-compte div.ligne4>label[for="ville"] {
   width: 601px;
 }
 
@@ -2730,24 +2837,29 @@ div[id="messageErreur"] {
   text-align: center;
   color: red;
   font-size: 20px;
-  padding: 10px;
+  padding: 10px 0;
   margin: 30px auto;
 }
+
+/* test */
+/* .messageErreur.show {
+  display: block;
+} */
 
 .creation-compte .error-message {
   margin-top: 10px;
 }
 
-.creation-compte input.valid + .error-message {
+.creation-compte input.valid+.error-message {
   display: none;
 }
 
 /*++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte membre, Antoine */
 /*++++++++++++++++++++++++++++++++++++++++++++*/
-.creation-compte div.ligne1 > label,
-div.ligne1_1 > label,
-div.ligne6 > label {
+.creation-compte div.ligne1>label,
+div.ligne1_1>label,
+div.ligne6>label {
   display: inline-block;
   width: 408px;
 }
@@ -2794,17 +2906,17 @@ div.ligne6 > label {
     max-width: 480px;
   }
 
-  .creation-compte .ligne7 > label {
+  .creation-compte .ligne7>label {
     font-size: 20px;
   }
 
-  .creation-compte .ligne7 > input {
+  .creation-compte .ligne7>input {
     width: 40px;
-    height: auto;
+    margin: 0 15px;
   }
 
-  .creation-compte div.ligne2 > label,
-  div.ligne3 > label {
+  .creation-compte div.ligne2>label,
+  div.ligne3>label {
     margin: 5px;
   }
 
@@ -2824,10 +2936,6 @@ div.ligne6 > label {
     border: 2px solid var(--accent);
     border-radius: 5px;
     font-size: 16px;
-  }
-
-  .creation-compte .ligne7 > input {
-    width: auto;
   }
 
   button[id="boutonInscription"] {
@@ -2850,20 +2958,21 @@ div.ligne6 > label {
     max-width: 390px;
   }
 
+
   /* Gestion de l'ordre des éléments */
-  #labelNom {
+  #labelPrenom {
     order: 1;
   }
 
-  #nomMembre {
+  #prenomMembre {
     order: 2;
   }
 
-  #labelPrenom {
+  #labelNom {
     order: 3;
   }
 
-  #prenomMembre {
+  #nomMembre {
     order: 4;
   }
 
@@ -3008,7 +3117,7 @@ div[id="lienBouton"] {
   text-align: center;
 }
 
-div[id="lienBouton"] > div {
+div[id="lienBouton"]>div {
   display: flex;
   flex-direction: column;
   width: 600px;
@@ -3021,7 +3130,7 @@ div[id="lienBouton"] > div {
   text-align: left;
 }
 
-div.ligne1 > label {
+div.ligne1>label {
   display: inline-block;
   width: 408px;
 }
@@ -3126,7 +3235,7 @@ p[id="legendeBoutonLienPro"] {
     align-items: center;
   }
 
-  div[id="lienBouton"] > div {
+  div[id="lienBouton"]>div {
     width: 100%;
     margin: 10px 0;
   }

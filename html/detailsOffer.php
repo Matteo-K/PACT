@@ -10,8 +10,17 @@ if (!$idOffre) {
     exit();
 }
 
+$monOffre = new ArrayOffer($idOffre);
+
+$stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = :idoffre");
+$stmt->bindParam(':idoffre', $idOffre);
+$stmt->execute();
+$offre = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 // Fonction pour récupérer les horaires
-function getSchedules($conn, $idOffre) {
+function getSchedules($conn, $idOffre)
+{
     $schedules = [
         'midi' => [],
         'soir' => []
@@ -42,19 +51,19 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$result) {
     // Recherche dans les restaurants, activités, spectacles, et visites
-    $types = ['restaurants', 'activites', 'spectacles', 'visites'];
-    foreach ($types as $type) {
+    $types = ['restaurants' => 'restaurant', 'activites' => 'activité', 'spectacles' => 'spectacle', 'visites' => 'visite'];
+    foreach ($types as $type => $key) {
         $stmt = $conn->prepare("SELECT * FROM pact.$type WHERE idoffre = :idoffre");
         $stmt->bindParam(':idoffre', $idOffre);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
-            $typeOffer = $type;
+            $typeOffer = $key;
             break; // Sortir de la boucle si une offre est trouvée
         }
     }
-} else{
-    $typeOffer = "parcs_attractions";
+} else {
+    $typeOffer = "parc_attraction";
 }
 
 if (!$result) {
@@ -62,16 +71,16 @@ if (!$result) {
     $stmt->bindParam(':idoffre', $idOffre);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($result){
-        ?>
-        <form id="manageOfferAuto" action="manageOffer.php" method="post" >
-            <input type="hidden" name="idOffre" value="<?php echo $idOffre?>">
+    if ($result) {
+?>
+        <form id="manageOfferAuto" action="manageOffer.php" method="post">
+            <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
         </form>
         <script>
             document.getElementById("manageOfferAuto").submit();
         </script>
-        <?php
-        
+<?php
+
     }
 
     echo "Aucune offre trouvée avec cet id.<br>";
@@ -93,6 +102,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,72 +111,73 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <title><?php echo htmlspecialchars($result["nom_offre"]); ?></title>
 </head>
+
 <body>
     <?php require_once "components/header.php"; ?>
 
     <main class="mainOffer">
         <div class="buttonDetails">
-        <?php 
-        if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-            $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
-            $cook->execute();
-            $offre = $cook->fetchAll(PDO::FETCH_ASSOC);
-            $affiche=false;
-            foreach ($offre[0] as $key => $value) {
-              if ($value == NULL) {
-                $affiche=true;
-              }
-            }
-            if ($affiche) {
-              $resto = $conn->prepare("SELECT * FROM pact._restauration WHERE idoffre=$idOffre");
-              $resto->execute();
-              $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
-          
-              $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=$idOffre");
-              $spec->execute();
-              $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
-          
-              $visi = $conn->prepare("SELECT * FROM pact._visite WHERE idoffre=$idOffre");
-              $visi->execute();
-              $visit = $visi->fetchAll(PDO::FETCH_ASSOC);
-          
-              $act = $conn->prepare("SELECT * FROM pact._activite WHERE idoffre=$idOffre");
-              $act->execute();
-              $acti = $act->fetchAll(PDO::FETCH_ASSOC);
-          
-              $parc = $conn->prepare("SELECT * FROM pact._parcattraction WHERE idoffre=$idOffre");
-              $parc->execute();
-              $parca = $parc->fetchAll(PDO::FETCH_ASSOC);
-              
-              if ($restau) {
-                $tema=$restau;
-              }elseif ($spect) {
-                $tema=$spect;
-              }elseif ($visit) {
-                $tema=$visit;
-              }elseif ($acti) {
-                $tema=$acti;
-              }else {
-                $tema=$parca;
-              }
-
-              foreach ($tema[0] as $key => $value) {
-                if ($value==NULL) {
-                  $affiche=true;
+            <?php
+            if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
+                $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
+                $cook->execute();
+                $offre = $cook->fetchAll(PDO::FETCH_ASSOC);
+                $affiche = false;
+                foreach ($offre[0] as $key => $value) {
+                    if ($value == NULL) {
+                        $affiche = true;
+                    }
                 }
-              }
-              $adr = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre=$idOffre");
-              $adr->execute();
-              $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
-          
-              if (!$loca) {
-                $affiche=true;
-              }
-            }
-            if (!$affiche) {
-                $statutActuel = $offre[0]['statut'];
-                ?>
-                    
+                if ($affiche) {
+                    $resto = $conn->prepare("SELECT * FROM pact._restauration WHERE idoffre=$idOffre");
+                    $resto->execute();
+                    $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
+
+                    $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=$idOffre");
+                    $spec->execute();
+                    $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
+
+                    $visi = $conn->prepare("SELECT * FROM pact._visite WHERE idoffre=$idOffre");
+                    $visi->execute();
+                    $visit = $visi->fetchAll(PDO::FETCH_ASSOC);
+
+                    $act = $conn->prepare("SELECT * FROM pact._activite WHERE idoffre=$idOffre");
+                    $act->execute();
+                    $acti = $act->fetchAll(PDO::FETCH_ASSOC);
+
+                    $parc = $conn->prepare("SELECT * FROM pact._parcattraction WHERE idoffre=$idOffre");
+                    $parc->execute();
+                    $parca = $parc->fetchAll(PDO::FETCH_ASSOC);
+
+                    if ($restau) {
+                        $tema = $restau;
+                    } elseif ($spect) {
+                        $tema = $spect;
+                    } elseif ($visit) {
+                        $tema = $visit;
+                    } elseif ($acti) {
+                        $tema = $acti;
+                    } else {
+                        $tema = $parca;
+                    }
+
+                    foreach ($tema[0] as $key => $value) {
+                        if ($value == NULL) {
+                            $affiche = true;
+                        }
+                    }
+                    $adr = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre=$idOffre");
+                    $adr->execute();
+                    $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
+
+                    if (!$loca) {
+                        $affiche = true;
+                    }
+                }
+                if (!$affiche) {
+                    $statutActuel = $offre[0]['statut'];
+            ?>
+
                     <form method="post" action="changer_statut.php">
                         <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
                         <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
@@ -176,32 +187,33 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
                         </button>
                     </form>
-                <?php          
-            }
+                <?php
+                }
                 ?>
-                    
-                    <form method="post" action="manageOffer.php">
-                        <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
-                        <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
-                        <button class="modifierBut" type="submit">
-                            <?php echo "Modifier offre"; ?>
-                        </button>
-                    </form>
-                <?php  
-        }
-        
-        ?>
+
+                <form method="post" action="manageOffer.php">
+                    <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
+                    <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
+                    <button class="modifierBut" type="submit">
+                        <?php echo "Modifier offre"; ?>
+                    </button>
+                </form>
+            <?php
+            }
+
+            ?>
         </div>
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
-        <?php 
+        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville']?></h3>
+        <?php
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-            ?>
-            <h3 class="DetailsStatut"><?php echo $statutActuel=='actif'?"En-Ligne":"Hors-Ligne";?></h3>
-            <?php
+        ?>
+            <h3 class="DetailsStatut"><?php echo $statutActuel == 'actif' ? "En-Ligne" : "Hors-Ligne"; ?></h3>
+        <?php
         }
         ?>
         <div>
-            <?php 
+            <?php
             // Fetch tags associated with the offer
             $stmt = $conn->prepare("
                 SELECT t.nomTag FROM pact._offre o
@@ -216,19 +228,23 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->bindParam(':idoffre', $idOffre);
             $stmt->execute();
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
-                foreach ($tags as $tag): 
-                    if($tag["nomtag"] != NULL){
-                        ?>
-                    
-                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>   
-                <?php } endforeach;
-            
-            if($ouvert == "EstOuvert"){
+
+            if($typeOffer == "restaurant"){
+                array_push($tags, ['nomtag' => $result['gammedeprix']]);
+            }
+
+            foreach ($tags as $tag):
+                if ($tag["nomtag"] != NULL) {
             ?>
+                    <a class="tag" href="search.php"><?php echo htmlspecialchars(str_replace("_"," ",ucfirst(strtolower($tag["nomtag"])))); ?></a>
+                <?php }
+            endforeach;
+
+            if ($ouvert == "EstOuvert") {
+                ?>
                 <a class="ouvert" href="search.php">Ouvert</a>
             <?php
-            } else if($ouvert == "EstFermé"){
+            } else if ($ouvert == "EstFermé") {
             ?>
                 <a class="ferme" href="search.php">Fermé</a>
             <?php
@@ -239,80 +255,80 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div id="infoPro">
             <?php
-            $stmt = $conn -> prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
-            $stmt -> execute();
-            $tel = $stmt -> fetch(PDO::FETCH_ASSOC);
+            $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
+            $stmt->execute();
+            $tel = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            
-            if($lieu){
+
+            if ($lieu) {
             ?>
-            <div>
-                <img src="./img/icone/lieu.png">
-                <a href="https://www.google.com/maps?q=<?php echo urlencode($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></a>
-            </div>
-                
+                <div>
+                    <img src="./img/icone/lieu.png">
+                    <a href="https://www.google.com/maps?q=<?php echo urlencode($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></a>
+                </div>
+
             <?php
-                }
-            if($result["telephone"] && $tel["affiche"] == TRUE){
-            ?>
-            <div>
-                <img src="./img/icone/tel.png">
-                <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
-            </div>
-                <?php
             }
-            if($result["mail"]){
-                ?>
+            if ($result["telephone"] && $tel["affiche"] == TRUE) {
+            ?>
+                <div>
+                    <img src="./img/icone/tel.png">
+                    <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
+                </div>
+            <?php
+            }
+            if ($result["mail"]) {
+            ?>
                 <div>
                     <img src="./img/icone/mail.png">
                     <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
                 </div>
-                
-                <?php
+
+            <?php
             }
-            if($result["urlsite"]){
-                ?>
+            if ($result["urlsite"]) {
+            ?>
                 <div>
                     <img src="./img/icone/globe.png">
                     <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
                 </div>
-                
-                <?php
+
+            <?php
             }
             ?>
-           
+
         </div>
 
         <div class="swiper-container">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                <?php
+                    <?php
                     foreach ($photos as $picture) {
-                ?>
+                    ?>
                         <div class="swiper-slide">
                             <img src="<?php echo $picture['url']; ?>" />
                         </div>
-                <?php
+                    <?php
                     }
-                ?>
+                    ?>
                 </div>
             </div>
 
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
 
         <div thumbsSlider="" class="swiper myThumbSlider">
             <div class="swiper-wrapper">
-            <?php
+                <?php
                 foreach ($photos as $picture) {
-            ?>
+                ?>
                     <div class="swiper-slide">
                         <img src="<?php echo $picture['url']; ?>" />
                     </div>
-            <?php
+                <?php
                 }
-            ?>
+                ?>
             </div>
         </div>
         <article id="descriptionOffre">
@@ -322,7 +338,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <p><?php echo htmlspecialchars($result["description"]); ?></p>
             </section>
         </article>
-        
+
 
         <section id="infoComp">
             <h2>Informations Complémentaires</h2>
@@ -350,11 +366,11 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 $horairesAffichage = [];
                                 if (!empty($horaireMidi)) {
                                     $horairesAffichage[] = htmlspecialchars(current($horaireMidi)['heureouverture']) . " à " . htmlspecialchars(current($horaireMidi)['heurefermeture']);
-                                } 
+                                }
                                 if (!empty($horaireSoir)) {
                                     $horairesAffichage[] = htmlspecialchars(current($horaireSoir)['heureouverture']) . " à " . htmlspecialchars(current($horaireSoir)['heurefermeture']);
                                 }
-                                if(empty($horaireMidi) && empty($horaireSoir)){
+                                if (empty($horaireMidi) && empty($horaireSoir)) {
                                     $horairesAffichage[] = "Fermé";
                                 }
                                 echo implode(' et ', $horairesAffichage);
@@ -369,65 +385,76 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div id="afficheLoc">
             <div id="carte"></div>
             <div id="contact-info">
-            <?php
-                if($lieu){
-                ?>
-                <div>
-                    <img src="./img/icone/lieu.png">
-                    <a href="https://www.google.com/maps?q=<?php echo urlencode($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></a>
-                </div>
-                    
                 <?php
-                    }
-                if($result["telephone"] && $tel["affiche"] == TRUE){
+                if ($lieu) {
                 ?>
-                <div>
-                    <img src="./img/icone/tel.png">
-                    <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
-                </div>
-                    <?php
+                    <div>
+                        <img src="./img/icone/lieu.png">
+                        <a href="https://www.google.com/maps?q=<?php echo urlencode($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></a>
+                    </div>
+
+                <?php
                 }
-                if($result["mail"]){
-                    ?>
+                if ($result["telephone"] && $tel["affiche"] == TRUE) {
+                ?>
+                    <div>
+                        <img src="./img/icone/tel.png">
+                        <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
+                    </div>
+                <?php
+                }
+                if ($result["mail"]) {
+                ?>
                     <div>
                         <img src="./img/icone/mail.png">
                         <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
                     </div>
-                    
-                    <?php
+
+                <?php
                 }
-                if($result["urlsite"]){
-                    ?>
+                if ($result["urlsite"]) {
+                ?>
                     <div>
                         <img src="./img/icone/globe.png">
                         <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
                     </div>
-                    
-                    <?php
+
+                <?php
                 }
                 ?>
             </div>
         </div>
-        
+
 
         <?php
-            if($typeOffer == "parcs_attractions" ){
+        if ($typeOffer == "parcs_attractions") {
         ?>
-              <!--<img src="<?php echo $result["urlplan"]?>">!-->
+            <img src="<?php echo $result["urlplan"] ?>">
         <?php
-            }
-        ?>
-
+        }
         
-
+        if($typeUser === "pro_prive" || $typeUser ==="pro_public"){
+            require_once __DIR__ . "/components/avis/avisPro.php";
+        }else{
+        ?>
+        <div class="avis">
+            <nav>
+                <h3>Avis</h3>
+                <h3>Publiez un avis</h3>
+            </nav>
+            
+        <?php
+            require_once __DIR__ . "/components/avis/avisMembre.php";
+        }
+        ?>
+        </div>
     </main>
     <?php
-        require_once "./components/footer.php";
+    require_once "./components/footer.php";
     ?>
 
-    
-    <script>
 
+    <script>
         let map;
         let geocoder;
         let marker; // Variable pour stocker le marqueur actuel
@@ -435,7 +462,10 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Initialisation de la carte Google
         function initMap() {
             map = new google.maps.Map(document.getElementById("carte"), {
-                center: { lat: 48.8566, lng: 2.3522 }, // Paris comme point de départ
+                center: {
+                    lat: 48.8566,
+                    lng: 2.3522
+                }, // Paris comme point de départ
                 zoom: 8,
             });
             geocoder = new google.maps.Geocoder();
@@ -456,7 +486,9 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         function geocodeadresse(fulladresse) {
             console.log("Adresse envoyée pour géocodage : ", fulladresse);
-            geocoder.geocode({ 'address': fulladresse }, function(results, status) {
+            geocoder.geocode({
+                'address': fulladresse
+            }, function(results, status) {
                 if (status === google.maps.GeocoderStatus.OK && results[0]) {
                     console.log("Résultat du géocodage : ", results[0]);
 
@@ -477,11 +509,10 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
             });
         }
-
     </script>
 
-        <!-- Inclure l'API Google Maps avec votre clé API -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $cleAPI?>&callback=initMap" async defer></script>
+    <!-- Inclure l'API Google Maps avec votre clé API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $cleAPI ?>&callback=initMap" async defer></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -501,14 +532,15 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             },
             spaceBetween: 10,
             navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
             },
             thumbs: {
-            swiper: swiper,
+                swiper: swiper,
             },
         });
     </script>
     <script src="js/setColor.js"></script>
 </body>
+
 </html>

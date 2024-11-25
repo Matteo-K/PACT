@@ -13,7 +13,11 @@ class Restaurant extends Offer {
   }
 
   public function getData() {
-    return [$this->gammeDePrix, parent::getData()];
+    $parentData = parent::getData();
+
+    return array_merge($parentData, [
+      "gammeDePrix" => $this->gammeDePrix
+    ]);
   }
 }
 ?>

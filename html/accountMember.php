@@ -31,34 +31,56 @@
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
 
 
+        // OK
         // Vérifier si le pseudo existe déjà dans la base de données
         try {
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE pseudo = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE denomination = ?");
-            $stmt->execute([$denomination, $denomination]);
-            $count = $stmt->fetchColumn();
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.membre WHERE pseudo = ?");
+            $stmt->execute([$pseudo]);
 
-            if ($count > 0) {
+            if ($stmt->fetchColumn() > 0) {
                 $errors[] = "Le pseudo existe déjà.";
             }
         } 
         
         catch (Exception $e) {
-            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+            // $errors[] = "Erreur lors de la vérification du pseudo : " . htmlspecialchars($e->getMessage());
         }
+
+
+        // OK
+        // Vérifier si l'adresse mail existe déjà dans la base de données
+        try {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.membre WHERE mail = ?");
+            $stmt->execute([$mail]);
+
+            if ($stmt->fetchColumn() > 0) {
+                $errors[] = "L'adresse mail existe déjà.";
+            }
+        } 
+        
+        catch (Exception $e) {
+            // $errors[] = "Erreur lors de la vérification de l'adresse mail : " . htmlspecialchars($e->getMessage());
+        }
+
+
+
+
+        // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
+        if (!empty($errors)) {
+            $_SESSION['errors'] = $errors;
+            header('Location: accountMember.php');
+            exit;
+        }
+
 
 
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if(empty($errors)) {
-            // Préparer la requête d'insertion en fonction du secteur
-            if ($secteur == 'public') {
-                $stmt = $conn->prepare("INSERT INTO pact.proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
-                $stmt->execute();
-            } 
-            
-            else { 
-                $stmt = $conn->prepare("INSERT INTO pact.proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$siren', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
-                $stmt->execute();
-            }
+            // Préparer la requête d'insertion
+            $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            // Exécuter la requête en passant les paramètres
+            $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo]);
 
             // Redirection vers une page de succès
             header('Location: login.php');
@@ -88,16 +110,30 @@
 
         <div id="messageErreur" class="messageErreur"></div>
 
+        <?php
+            if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
+                echo '<div id="messageErreur" class="messageErreur">';
+                
+                foreach ($_SESSION['errors'] as $error) {
+                    echo "<p>$error</p>";
+                }
+                
+                echo '</div>';
+                unset($_SESSION['errors']);
+            }
+        ?>
+
         <form id = "formMember" action="accountMember.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
                 <label id="labelNom" for="nomMembre">Nom*:</label>
                 <label  id="labelPrenom" for="prenomMembre">Prénom*:</label>
                     
-                <!-- Saisi du nom -->
-                <input type="text" placeholder="Jean" id="nomMembre" name="nomMembre" required>
-    
                 <!-- Saisi du prénom -->
-                <input type="text" placeholder="Dupont" id="prenomMembre" name="prenomMembre" required>
+                <input type="text" placeholder="Jean" id="prenomMembre" name="prenomMembre" required>
+
+                <!-- Saisi du nom -->
+                <input type="text" placeholder="Dupont" id="nomMembre" name="nomMembre" required>
+    
             </div>
     
             <div class="ligne1_1">

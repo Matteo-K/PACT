@@ -217,13 +217,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       ?>
     </div>
     <p>Attention ! Vous ne pouvez pas changer d’offre une fois séléctionée.</p>
-    <div>Montant actuel (sur 1 mois): <span id="prixPrevisionel"></span>&euro;</div>
+    <div>Montant actuel (abonnement sur 1 mois): <span id="prixPrevisionel"></span>&euro;</div>
   </div>
 
   <script>
     const prixPrevisionnel = document.querySelector("#prixPrevisionel");
     const radio = document.querySelectorAll("[type='radio']");
     const option = document.querySelectorAll('[type="checkbox"]');
+    const nbSemaines = document.querySelectorAll('[type="number"]');
 
     function updatePrix() {
       let prix = 0;
@@ -237,12 +238,19 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       });
 
       // Option
-      option.forEach(element => {
-        if (element.checked) {
-          const tarifOption = element.parentElement.querySelector('span').getAttribute('prix');
-          prix += parseFloat(tarifOption)*4;
+      for (let index = 0; index < option.length; index++) {
+        if (option[index].checked) {
+          const tarifOption = option[index].parentElement.querySelector('span').getAttribute('prix');        
+          if (tarifOption && nbSemaines[index].value) {
+            const tarifValue = parseFloat(tarifOption);
+            const nbSemainesValue = parseInt(nbSemaines[index].value, 10);
+
+            if (!isNaN(tarifValue) && !isNaN(nbSemainesValue)) {
+              prix += tarifValue * nbSemainesValue;
+            }
+          }
         }
-      });
+      }
 
       prixPrevisionnel.innerText = prix.toFixed(2);
     }
@@ -253,6 +261,17 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
     option.forEach(element => {
       element.addEventListener("click", updatePrix);
+    });
+
+    nbSemaines.forEach(element => {
+      element.addEventListener("change", () => {
+        if (element.value < 1) {
+          element.value = 1;
+        } else if (element.value > 4) {
+          element.value = 4;
+        }
+      });
+      element.addEventListener("change", updatePrix);
     });
 
     updatePrix();
