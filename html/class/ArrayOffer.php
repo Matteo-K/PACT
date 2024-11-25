@@ -131,7 +131,7 @@ class ArrayOffer {
 
   public function displayArrayCard($idUser_, $typeUser_, $elementStart_, $nbElement_) {
     $array = $this->pagination($idUser_, $typeUser_, $elementStart_, $nbElement_);
-    if (count($array > 0)) {
+    if (count($array) > 0) {
       foreach ($array as $key => $elem) {
         if ($typeUser_ == "pro_public" || $typeUser_ == "pro_prive") {
           $elem->displayCardOfferPro();
