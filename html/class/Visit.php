@@ -2,7 +2,7 @@
 require_once "Offer.php";
 
 // TODO
-class Show extends Offer {
+class Visit extends Offer {
   public function __construct() {
     parent::__construct("Visite");
   }
