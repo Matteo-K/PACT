@@ -2562,6 +2562,17 @@ tbody td:last-child {
 #visit > div[class="visGuideeEtDuree"]{
   background-color: yellow;
 }
+
+#visit > div[class="visGuideeEtDuree"] >label[class="labDureeVis"]{
+  background-color: green;
+  margin-left: 15px;
+}
+
+
+
+
+
+
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
