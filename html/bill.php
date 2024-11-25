@@ -176,9 +176,9 @@ footer{
                     <td>Abonnement <?php echo $tarif['option'] ?></td>
                     <td><?php echo $nbEnLigne ?></td>
                     <td>Jour</td>
-                    <td><?php echo $tarif['tarif'] ?></td>
+                    <td><?php echo $tarif['prixBase'] ?></td>
                     <td><?php echo $tva ?> %</td>
-                    <td><?php echo $tarif['option']*$tarif['tarif'] ?> €</td>
+                    <td><?php echo $tarif['option']*$tarif['prixBase'] ?> €</td>
                     <td><?php echo round($tarif['option']*$tarif['prixBase']+($tarif['option']*$tarif['prixBase']*20/100),2) ?> €</td>
                 </tr>
                 <tr>
