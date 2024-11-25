@@ -40,6 +40,12 @@ $nbEnLigne = 0 ;
 
 foreach ($abonnement as $key => $value) {
     $result = json_decode($value);
+    if (is_int($result['Duree'])) {
+        print_r(gettype($result['Duree']));
+    }else {
+        echo "what";
+    }
+    // $nbEnLigne = $nbEnLigne + intval($result['Duree']);
 }
 
 $css = "
