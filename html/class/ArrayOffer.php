@@ -57,8 +57,11 @@ class ArrayOffer {
     }
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    echo "Effectue";
+
     if ($results) {
       foreach ($results as $offre) {
+        echo " boucle ++ ";
         $this->nbOffer ++;
         switch ($offre['categorie']) {
           case 'Restaurant':
