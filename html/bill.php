@@ -152,7 +152,7 @@ footer{
             </thead>
             <tbody>
                 <?php
-                    $total=$tarif['option']*$tarif['prixBase'];
+                    $total=$nbEnLigne*$v3;
                     if ($results[0]['historiqueoption']) {
                         
                         foreach ($option as $key => $value) {
