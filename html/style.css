@@ -2488,16 +2488,19 @@ tbody td:last-child {
 
 #show {
   align-items: center;
-   background-color: pink; 
+  background-color: pink; 
 }
 
 #show > div {
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-  padding: 10px;
+
 }
 
+#show >div >label{
+  margin-left: 10px;
+}
 #show > article > div > div {
   display: flex;
   flex-direction: row;
