@@ -35,34 +35,19 @@
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE denomination = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE denomination = ?");
             $stmt->execute([$denomination, $denomination]);
-            $count = $stmt->fetchColumn();
 
-            if ($count > 0) {
+            if ($stmt->fetchColumn() > 0) {
                 $errors[] = "La dénomination existe déjà.";
             }
         } 
         
         catch (Exception $e) {
-            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+            // $errors[] = "Erreur lors de la vérification de la dénomination : " . htmlspecialchars($e->getMessage());
         }
 
 
 
-        // Vérifier si le numéro de SIREN existe déjà dans la base de données
-        // try {
-        //     if ($secteur == 'prive') {
-        //         $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
-        //         $stmt->execute([$siren]);
-        //         if ($stmt->fetchColumn() > 0) {
-        //             $errors[] = "Le numéro de SIREN existe déjà.";
-        //         }
-        //     }
-        // } 
-        
-        // catch (Exception $e) {
-            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
-        // }
-
+        // Vérifier si le numéro de Siren existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
             $stmt->execute([$siren]);
@@ -73,7 +58,7 @@
         } 
         
         catch (Exception $e) {
-            $errors[] = "Erreur lors de la vérification du SIREN.";
+            // $errors[] = "Erreur lors de la vérification du SIREN.";
         }
 
         
@@ -81,17 +66,17 @@
         // Vérifier si l'adresse mail existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE mail = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE mail = ?");
-            $stmt->execute([$mail]);
-            $count = $stmt->fetchColumn();
+            $stmt->execute([$mail, $mail]);
 
-            if ($count > 0) {
+            if ($stmt->fetchColumn() > 0) {
                 $errors[] = "L'adresse mail existe déjà.";
             }
         } 
         
         catch (Exception $e) {
-            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+            // $errors[] = "Erreur lors de la vérification de l'adresse mail : " . htmlspecialchars($e->getMessage());
         }
+
 
 
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
@@ -100,7 +85,6 @@
             header('Location: accountPro.php');
             exit;
         }
-
 
 
 
