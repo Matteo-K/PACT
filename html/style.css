@@ -1921,7 +1921,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #typeOffer{
   margin: 0;
   text-align: center;
-  color: var(--bloc80);
+  color: var(--bloc);
+  font-family: Lato;
+  font-weight: bold;
+  font-size: 2em;
+  margin-bottom: 1em;
 }
 
 .mainOffer .tag,
@@ -2486,7 +2490,7 @@ tbody td:last-child {
 
 #show {
   align-items: center;
-  background-color: yellowgreen; 
+  /* background-color: yellow;  */
 }
 
 #show > div {
@@ -2497,19 +2501,36 @@ tbody td:last-child {
 
 #show >div >label[class="labelShow1"]{
   margin-left: 20px;
-}
-
-
-#show >div>label{
   margin-right: 10px;
 }
+
 
 #show > article > div > div {
   display: flex;
   flex-direction: row;
-  
+  }
+
+  #show > div[class="classDivShow1"]{
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  #show > div[class="classDivShow1"]> div> div[class="classDivLigne"]{
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-direction: row;
+  }
+
+#show >div[class="classDivShow1"]>div{
+  background-color: lightblue;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
+#show >div[class="classDivShow1"]> label{
+  margin-top: 10px;
+}
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
@@ -2754,6 +2775,11 @@ div[id="messageErreur"] {
   margin: 30px auto;
 }
 
+/* test */
+/* .messageErreur.show {
+  display: block;
+} */
+
 .creation-compte .error-message {
   margin-top: 10px;
 }
@@ -2866,8 +2892,8 @@ div.ligne6 > label {
     max-width: 390px;
   }
 
+
   /* Gestion de l'ordre des éléments */
-  
   #labelPrenom {
     order: 1;
   }

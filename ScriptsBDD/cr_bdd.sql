@@ -694,11 +694,12 @@ CREATE VIEW facture AS
     f.dateFactue,
     o.nom,
     p.denomination,
-    h.numeroRue,
-    h.rue,
-    h.ville,
-    h.codePostal,
-    h.pays,
+    l.numeroRue,
+    l.rue,
+    l.ville,
+    l.codePostal,
+    l.pays,
+    o.idU,
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'ID', ht.idStatut,
         'Lancement', ht.dateLancement,
@@ -727,7 +728,7 @@ CREATE VIEW facture AS
     FROM _facturation f
     LEFT JOIN _offre o ON f.idOffre = o.idOffre
     LEFT JOIN _pro p ON o.idU = p.idU
-    LEFT JOIN _habite h ON p.idU = h.idU
+    LEFT JOIN _localisation l ON o.idOffre = l.idOffre
     LEFT JOIN _historiqueStatut ht ON o.idOffre = ht.idOffre
     LEFT JOIN _option_offre oo ON o.idOffre = oo.idOffre
     LEFT JOIN _dateOption da ON oo.idOption = da.idOption
@@ -736,12 +737,13 @@ CREATE VIEW facture AS
     f.idFacture,
     f.dateFactue,
     o.nom,
+    o.idU,
     p.denomination,
-    h.numeroRue,
-    h.rue,
-    h.ville,
-    h.codePostal,
-    h.pays;
+    l.numeroRue,
+    l.rue,
+    l.ville,
+    l.codePostal,
+    l.pays;
 
 CREATE OR REPLACE FUNCTION ajout_pro_prive()
 RETURNS TRIGGER AS $$

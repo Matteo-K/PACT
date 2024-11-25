@@ -58,12 +58,12 @@ if (!$result) {
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
-            $typeOffer = $type;
+            $typeOffer = substr($type, 0, -1);
             break; // Sortir de la boucle si une offre est trouvée
         }
     }
 } else {
-    $typeOffer = "parcs_attractions";
+    $typeOffer = "parc_attraction";
 }
 
 if (!$result) {
@@ -204,7 +204,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
         </div>
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
-        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?></h3>
+        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville']?></h3>
         <?php
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
         ?>
@@ -228,6 +228,10 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->bindParam(':idoffre', $idOffre);
             $stmt->execute();
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if($typeOffer == "restaurant"){
+                $tags[] = ['gammedeprix' => $result['gammedeprix']];
+            }
 
             foreach ($tags as $tag):
                 if ($tag["nomtag"] != NULL) {
