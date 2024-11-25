@@ -2801,6 +2801,7 @@ div.ligne6 > label {
   .creation-compte .ligne7 > input {
     width: 40px;
     height: auto;
+    margin: 0 5px;
   }
 
   .creation-compte div.ligne2 > label,
@@ -2824,10 +2825,6 @@ div.ligne6 > label {
     border: 2px solid var(--accent);
     border-radius: 5px;
     font-size: 16px;
-  }
-
-  .creation-compte .ligne7 > input {
-    width: auto;
   }
 
   button[id="boutonInscription"] {
