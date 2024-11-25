@@ -2488,7 +2488,7 @@ tbody td:last-child {
 
 #show {
   align-items: center;
-  background-color: lime; 
+  /* background-color: yellow;  */
 }
 
 #show > div {
@@ -2504,7 +2504,7 @@ tbody td:last-child {
 #show > article > div > div {
   display: flex;
   flex-direction: row;
-  margin-right: 10px;
+  
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
