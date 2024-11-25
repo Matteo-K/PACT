@@ -1,5 +1,9 @@
 <?php
 
+// Convertir le jour actuel en français
+$currentDay = $daysOfWeek[$currentDay];
+$currentTime = new DateTime(date('H:i')); // ex: 14:30
+
 /**
  * Détermine le statut ouvert/fermé 
  * suivant les horaires déterminés et l'horaire actuelle
