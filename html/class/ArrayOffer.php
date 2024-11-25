@@ -7,33 +7,34 @@ require_once "Show.php";
 require_once "Visit.php";
 require_once "Activity.php";
 
+function transformerHoraires($horaires) {
+  if (empty($horaires)) {
+    return [];
+  }
+
+  $resultats = [];
+  $horairesArray = explode(';', $horaires);
+
+  foreach ($horairesArray as $item) {
+    $decodedItem = json_decode($item, true);
+    if (json_last_error() === JSON_ERROR_NONE) {
+      $resultats[] = [
+        'jour' => $decodedItem['jour'],
+        'idoffre' => $GLOBALS['idOffre'],
+        'heureouverture' => $decodedItem['heureOuverture'],
+        'heurefermeture' => $decodedItem['heureFermeture']
+      ];
+    }
+  }
+  return $resultats;
+}
+
 class ArrayOffer {
   // format : [$idOffre -> Objet, ...]
   private $arrayOffer;
   private $nbOffer;
 
-  public function transformerHoraires($horaires) {
-    if (empty($horaires)) {
-      return [];
-    }
 
-    $resultats = [];
-    $horairesArray = explode(';', $horaires);
-
-    foreach ($horairesArray as $item) {
-      $decodedItem = json_decode($item, true);
-      if (json_last_error() === JSON_ERROR_NONE) {
-        $resultats[] = [
-          'jour' => $decodedItem['jour'],
-          'idoffre' => $GLOBALS['idOffre'],
-          'heureouverture' => $decodedItem['heureOuverture'],
-          'heurefermeture' => $decodedItem['heureFermeture']
-        ];
-      }
-    }
-    return $resultats;
-  }
-  
   // TODO
   public function __construct($idoffres_ = "") {
     $this->arrayOffer = [];
