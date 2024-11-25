@@ -67,7 +67,7 @@ class Offer {
     $noteAvg = $this->noteAvg;
 
     // Récupération ouvert Fermé
-
+    $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi);
     require_once __DIR__."/../components/cardOffer.php";
   }
 
@@ -81,7 +81,7 @@ class Offer {
     $tag = $this->tags;
     $resume = $this->resume;
     $noteAvg = $this->noteAvg;
-    $restaurantOuvert ;
+    $restaurantOuvert = statutOuverture($resultsSoir, $resultsMidi);
     $statut = $this->statut;
     require_once __DIR__."/../components/cardOfferPro.php";
   }
