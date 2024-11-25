@@ -157,8 +157,8 @@ footer{
                         
                         foreach ($option as $key => $value) {
                             print_r($value);
-                            $v1 = intval($value['duree']);
-                            $v2 = intval($value['prixBase']);
+                            $v1 = $value['duree'];
+                            $v2 = $value['prixBase'];
                             $total += $v1 * $v2;
                             ?>
                                 <tr>
