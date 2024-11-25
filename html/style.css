@@ -2523,14 +2523,16 @@ tbody td:last-child {
   }
 
 #show >div[class="classDivShow1"]>div{
-  background-color: lightblue;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
+#show > div[class="classDivShow1"]> div> div[class="classDivLigne"]> label{
+  margin-right: 10px;
+  background-color: yellow;
+}
 #show >div[class="classDivShow1"]> label{
   margin-top: 10px;
-  margin-right: 10px;
+
 }
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
