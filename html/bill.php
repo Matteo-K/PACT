@@ -29,7 +29,7 @@ foreach ($option as $key => $value) {
     $resultat[] = json_decode($value,true);
 }
 
-$tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>$results[0]['tarif']];
+$tarif=['option'=>$results[0]['nomAbonnement'],'prixBase'=>$results[0]['tarif']];
 
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
 $abonnement = explode(';',$resultat[0]['historiquestatut']);
