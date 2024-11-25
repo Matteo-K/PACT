@@ -50,7 +50,7 @@
         // OK
         // Vérifier si l'adresse mail existe déjà dans la base de données
         try {
-            $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE mail = ?");
+            $stmt = $conn->prepare("SELECT * FROM pact.membre");
             $stmt->execute([$mail]);
             "<pre>";
             echo $mail ;
@@ -70,8 +70,8 @@
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
-            header('Location: accountMember.php');
-            exit;
+            //header('Location: accountMember.php');
+            //exit;
         }
 
 
