@@ -2511,16 +2511,22 @@ tbody td:last-child {
   }
 
   #show > div[class="classDivShow1"]{
-    /* background-color: pink; */
+
     display: flex;
     flex-direction: column;
   }
 
   #show > div[class="classDivShow1"]> div> div[class="classDivLigne"]{
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     display: flex;
     flex-direction: row;
   }
+
+#show >div[class="classDivShow1"]>div{
+  background-color: lightblue;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
