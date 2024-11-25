@@ -2498,7 +2498,7 @@ tbody td:last-child {
 
 }
 
-#show >div >label[class=ligne]{
+#show >div >label[class="ligne"]{
   margin-left: 20px;
 }
 
