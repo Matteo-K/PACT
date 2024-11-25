@@ -39,7 +39,7 @@ $abonnement = explode(';',$results[0]['historiquestatut']);
 $nbEnLigne = 0 ;
 
 foreach ($abonnement as $key => $value) {
-    $result = json_decode($value);
+    $result = json_decode($value,true);
     if (is_int($result['Duree'])) {
         print_r(gettype($result['Duree']));
     }else {
