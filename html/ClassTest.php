@@ -4,7 +4,7 @@ require_once "class/ArrayOffer.php";
 
 $arTout = new ArrayOffer();
 
-$arTout->displayArrayCard(4, 'passeur', 0, 20);
+$arTout->displayArrayCard(18, 'passeur', 0, 20);
 ?>
 
 
