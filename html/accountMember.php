@@ -50,11 +50,12 @@
         // OK
         // Vérifier si l'adresse mail existe déjà dans la base de données
         try {
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.membre WHERE mail = ?");
+            $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE mail = ?");
             $stmt->execute([$mail]);
+            "<pre>";
             echo $mail ;
             print_r($stmt->fetchAll(PDO::FETCH_ASSOC));
-            
+            "</pre";
             // if ($stmt->fetchColumn() > 0) {
             //     $errors[] = "L'adresse mail existe déjà.";
             // }
