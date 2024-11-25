@@ -32,7 +32,7 @@ if ($categorie["_spectacle"]) {
                 <?php echo "places" ?>
             </div>
 
-            <label class="ligne1">Prix minimum : </label>
+            <label class="labelShow1">Prix minimum : </label>
 
             <div>
                 <input type="number" class="nb" name="PrixMinShow" min="0" placeholder="0"> <!-- Pour entrer un prix minimum -->
