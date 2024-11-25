@@ -2484,7 +2484,7 @@ tbody td:last-child {
   /* background-color: pink; */
 }
 
-#show > article {
+#show > div {
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
