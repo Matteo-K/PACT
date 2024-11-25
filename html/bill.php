@@ -5,7 +5,7 @@
 require_once "config.php";
 
 
-$idOffre =5;
+$idOffre =2;
 
 $stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idoffre =$idOffre");
 $stmt->execute();
@@ -202,8 +202,8 @@ footer{
                 </tr>
                 <tr>
                     <th colspan="5">Total</th>
-                    <th>HT : <?php echo $total ?></th>
-                    <th>TTC : <?php echo round($total*20/100+$total,2) ?></th>
+                    <th>HT : <?php echo $total ?> €</th>
+                    <th>TTC : <?php echo round($total*20/100+$total,2) ?> €</th>
                 </tr>
             </tbody>
         </table>
