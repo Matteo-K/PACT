@@ -2455,7 +2455,7 @@ tbody td:last-child {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  background-color: greenyellow;
+
 }
 
 #restaurant h4 {
@@ -2469,7 +2469,7 @@ tbody td:last-child {
   width: 100%;
   /* largeur*/
   margin-bottom: 10px;
-  /* Espacement */
+  margin-left: 20px;
 }
 
 #restaurant input[type="radio"] {
