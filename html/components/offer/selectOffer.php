@@ -224,6 +224,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     const prixPrevisionnel = document.querySelector("#prixPrevisionel");
     const radio = document.querySelectorAll("[type='radio']");
     const option = document.querySelectorAll('[type="checkbox"]');
+    const nbSemaines = document.querySelectorAll('[type="number"]');
 
     function updatePrix() {
       let prix = 0;
@@ -237,12 +238,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       });
 
       // Option
-      option.forEach(element => {
-        if (element.checked) {
-          const tarifOption = element.parentElement.querySelector('span').getAttribute('prix');
-          prix += parseFloat(tarifOption)*4;
+      for (let index = 0; index < option.length; index++) {
+        if (option[index].checked) {
+          const tarifOption = option[index].parentElement.querySelector('span').getAttribute('prix');
+          prix += parseFloat(tarifOption)*nbSemaines[index];
         }
-      });
+      }
 
       prixPrevisionnel.innerText = prix.toFixed(2);
     }

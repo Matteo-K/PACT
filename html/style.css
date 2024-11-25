@@ -1507,7 +1507,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 20px;
   padding: 0;
   padding-top: 20px;
-  margin: 20px 10% 0 55%;
+  margin: 20px 10% 0 30%;
   border-top: var(--bloc) solid 2px;
 }
 
@@ -1878,7 +1878,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   #pagination ul {
     margin-inline: 30%;
-    border-width: 5px;
+    border-width: 3px;
   }
 }
 
