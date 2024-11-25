@@ -68,7 +68,7 @@ class Offer {
 
     // Récupération ouvert Fermé
 
-    require_once "../components/cardOffer.php";
+    require_once __DIR__."/../components/cardOffer.php";
   }
 
   public function displayCardOfferPro() {
@@ -83,7 +83,7 @@ class Offer {
     $noteAvg = $this->noteAvg;
     $restaurantOuvert ;
     $statut = $this->statut;
-    require_once "../components/cardOfferPro.php";
+    require_once __DIR__."/../components/cardOfferPro.php";
   }
 
   public function filterPagination($idUser_, $typeUser_) {
