@@ -2466,6 +2466,8 @@ tbody td:last-child {
 /*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
+
+/* CSS pour le détails d'une offre de type restaurant */
 #restaurant {
   display: flex;
   flex-direction: column;
@@ -2493,7 +2495,7 @@ tbody td:last-child {
   flex-direction: column
     /* Espace entre le bouton radio et le texte */
 }
-
+/* CSS pour le détails d'une offre de type spectacle */
 #show {
   align-items: center;
   /* background-color: yellow;  */
@@ -2558,7 +2560,7 @@ tbody td:last-child {
 
 }
 
-/* CSS de details visit */
+/* CSS pour le détails d'une offre de type Visite */
 #visit > div[class="visGuideeEtDuree"]{
   margin-bottom: 15px;
 }
@@ -2586,7 +2588,8 @@ tbody td:last-child {
 }
 
 #visit >div[class="languesProp"] >input[type="text"]{
-  margin-top: 50px;
+  width: 100px;
+  height: 50px;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
