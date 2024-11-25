@@ -5,8 +5,9 @@
     if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
         echo '<script>';
         echo 'document.getElementById("messageErreur").innerHTML = "' . implode('<br>', $_SESSION['errors']) . '";';
+        echo 'document.getElementById("messageErreur").classList.add("show");'; 
         echo '</script>';
-
+    
         unset($_SESSION['errors']);
     }
 
@@ -87,8 +88,9 @@
             exit;
         }
 
-        else {
+        if(!empty($errors)) {
             $_SESSION['errors'] = $errors;
+            header('Location: accountMember.php');
         }
     }
 ?>

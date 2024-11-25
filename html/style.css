@@ -2765,6 +2765,11 @@ div[id="messageErreur"] {
   margin: 30px auto;
 }
 
+/* test */
+.messageErreur.show {
+  display: block;
+}
+
 .creation-compte .error-message {
   margin-top: 10px;
 }
@@ -2877,8 +2882,8 @@ div.ligne6 > label {
     max-width: 390px;
   }
 
+
   /* Gestion de l'ordre des éléments */
-  
   #labelPrenom {
     order: 1;
   }
