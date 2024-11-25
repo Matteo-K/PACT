@@ -42,8 +42,17 @@ if ($categorie["_visite"]) {
 <section id="visit"> <!-- donne un id a la section pour l'identifier dans le css -->
     <article id="ArtVisit"> <!-- separation en article pour l'alignement -->
         <div>
-            <label>Visite Guidée</label>
-            <input type="checkbox" id="checkVisiteGuidee" name="checkVisiteGuidee">
+            <label>Visite Guidée </label> 
+
+            <input type="radio" id="guidee" name="VisiteGuidee" value="pasGuidee" checked>
+           
+            <label for="access"> Oui</label>
+            
+
+            <input type="radio" id="pasGuidee" name="VisiteGuidee" value="pasGuidee">
+            
+            <label for="pasAcces"> Non </label>
+            
         </div>
         <div>
             <label>Durée :</label> <!-- Label durée -->
@@ -53,7 +62,7 @@ if ($categorie["_visite"]) {
             <label>h</label> <!-- Label H (pour heure) -->
 
         </div>
-        <div>
+        <div class="divAccessibliteVisit">
             <label>Accessibilité</label> <!-- Label Accessibilité -->
 
             <input type="radio" id="access" name="Accessibilité" value="access" checked>
@@ -76,15 +85,13 @@ if ($categorie["_visite"]) {
         </div>
         <div>
             <label>Langue proposée(s) :</label> <!-- Label langue proposée -->
-            <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez les langue proposée pour votre visite">
+            <input type="text" id="inputTag" name="inputTag"
+                placeholder="Entrez & selectionnez les langue proposée pour votre visite">
 
             <section id="sectionLangue">
-                <!-- Les tags ajoutés apparaîtront ici -->
+                <!-- Les langues ajoutées apparaîtront ici -->
             </section>
-<!--
-            <textarea name="texteLangueVisit" id="texteLangueVisit"
-                placeholder="Entrer les langues proposées pour la visite"></textarea>-->
-            <!-- Zone de texte avec les langues de la visite avec un affichage (griser) par default-->
+
 
         </div>
 

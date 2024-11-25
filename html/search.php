@@ -52,7 +52,7 @@ $arrayOffer = [];
         $offres = new ArrayOffer();
         ?>
         <section class="searchoffre">
-            <?php $countOffer = $offres->displayArrayCard($_SESSION["idUser"], $typeUser, ($page-1)*$nbElement, $nbElement); ?>
+            <?php $countOffer = $offres->displayArrayCard($idUser, $typeUser, ($page-1)*$nbElement, $nbElement); ?>
         </section>
         <section id="pagination">
             <?php $lien = "search.php?" . ($recherche != "" ? $recherche : ""); ?>
