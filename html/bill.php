@@ -31,7 +31,7 @@ if ($results[0]['historiqueoption']) {
 
 // "duree": 1, "option": "ALaUne", "prixBase": 20, "dureeBase": 7, "lancement": "2024-11-25"}
 
-$tarif=['option'=>intval($results[0]['nomabonnement']),'prixBase'=>intval($results[0]['tarif'])];
+$tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>intval($results[0]['tarif'])];
 $v3=$tarif['prixBase'];
 
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
