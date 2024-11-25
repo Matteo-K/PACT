@@ -2572,7 +2572,10 @@ tbody td:last-child {
   margin-left: 5px;
 }
 
-
+#visit >div[class="divAccessibliteVisit"]{
+  background-color: yellow;
+  margin-bottom: 15px;
+}
 
 
 

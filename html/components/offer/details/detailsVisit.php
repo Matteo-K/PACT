@@ -61,6 +61,8 @@ if ($categorie["_visite"]) {
             <label class="labH">h</label> <!-- Label H (pour heure) -->
 
         </div>
+
+        
         <div class="divAccessibliteVisit">
             <label>Accessibilité</label> <!-- Label Accessibilité -->
 
