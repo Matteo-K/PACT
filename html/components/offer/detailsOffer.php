@@ -187,6 +187,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
     </article>
     <script>
+        const maxTags = 6;
 
         //On récupère en JS la liste des tags pour le script 
         let listeTags = <?php echo json_encode($listeTags) ?>;
@@ -197,41 +198,16 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
          // Variables de sélection des éléments
          const sectionTag = document.getElementById("sectionTag");
         const pTag = document.querySelector("#sectionTag + p");
-        let tags = loadedTags; // Tableau pour stocker les tags, comprenant les tags déjà présents
-        let compteurTags = loadedTags.length; // Compteur pour limiter à 6 tags
+        let tags = []; // Tableau pour stocker les tags, comprenant les tags déjà présents
 
         loadedTags.forEach(valeurTag => {
-            if (valeurTag) {
-
-                const elementTag = document.createElement("span");
-                elementTag.classList.add("tag");
-                elementTag.textContent = valeurTag;
-
-                const imgCroix = document.createElement("img");
-                imgCroix.setAttribute.src="../img/icone/croix.png";
-
-                const hiddenInputTag = document.createElement("input");
-                hiddenInputTag.type = "hidden";
-                hiddenInputTag.value = valeurTag;
-                hiddenInputTag.name = "tags[]"; 
-
-                elementTag.addEventListener("click", function () {
-                    sectionTag.removeChild(hiddenInputTag); 
-                    sectionTag.removeChild(elementTag); 
-                    pTag.style.color = "black"; 
-                });
-
-                sectionTag.appendChild(elementTag); 
-                sectionTag.appendChild(hiddenInputTag);
-                elementTag.appendChild(imgCroix);
-            }
+            ajoutTag(valeurTag);
         });
 
         function ajoutTag(valeurTag) {
 
-            if (valeurTag && !tags.includes(valeurTag) && compteurTags < 6) {
+            if (valeurTag && !tags.includes(valeurTag) && tags.length < maxTags) {
 
-                compteurTags++;
                 tags.push(valeurTag); // Ajoute le tag dans le tableau
 
                 // Crée l'élément visuel pour afficher le tag
@@ -255,7 +231,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
                     sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
                     pTag.style.color = "black"; // Remet la couleur par défaut si besoin
-                    compteurTags--; // Décrémente le compteur de tags
+                    alert(tags.length);
                 });
 
                 // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel
@@ -265,7 +241,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                 // Réinitialise l'input
                 inputTag.value = "";
-            } else if (tags.length >= 6) {
+            } else if (tags.length >= maxTags) {
                 pTag.style.color = "red"; // Change la couleur du texte pour signaler la limite atteinte
             } else if (tags.includes(valeurTag)) {
                 alert("Ce tag a déjà été ajouté !");

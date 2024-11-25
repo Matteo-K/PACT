@@ -1139,7 +1139,7 @@ header ul + div {
   width: 100%;
   height: auto;
   border-radius: 3px;
-  position: relative;
+  position: static;
 }
 
 #choixCategorie {
@@ -2227,13 +2227,16 @@ tbody td:last-child {
     flex-direction: column;
     width: 85%;
   }
+  #infoComp{
+    width: 90%;
+  }
 
   #infoComp > h2 {
     font-size: 1.4rem;
   }
 
   table {
-    width: 95%;
+    width: 100%;
   }
   th {
     font-size: 22px;
@@ -2246,9 +2249,11 @@ tbody td:last-child {
   #carte{
     width: 100%;
     height: 20em;
+    flex:none;
   }
   #afficheLoc{
     flex-direction: column;
+    width: 90%;
   }
 
   #contact-info{
@@ -2259,6 +2264,7 @@ tbody td:last-child {
   #contact-info img {
     width: 22px;
     height: 22px;
+    
   }
 }
 /* ========================= */
@@ -2751,7 +2757,7 @@ div.ligne6 > label {
 @media (max-width: 600px) {
   h1[id="inscriptionTitre"] {
     font-size: 45px;
-    margin-top: 10vh;
+    margin-top: 5vh;
   }
 
   .creation-compte form {
@@ -2789,6 +2795,15 @@ div.ligne6 > label {
     max-width: 480px;
   }
 
+  .creation-compte .ligne7 > label {
+    font-size: 20px;
+  }
+
+  .creation-compte .ligne7 > input {
+    width: 40px;
+    margin: 0 15px;
+  }
+
   .creation-compte div.ligne2 > label,
   div.ligne3 > label {
     margin: 5px;
@@ -2810,10 +2825,6 @@ div.ligne6 > label {
     border: 2px solid var(--accent);
     border-radius: 5px;
     font-size: 16px;
-  }
-
-  .creation-compte .ligne7 > input {
-    width: auto;
   }
 
   button[id="boutonInscription"] {
@@ -2963,23 +2974,6 @@ h1[id="pasDeCompteTitre"] {
   font-size: 50px;
 }
 
-button[id="retour"] {
-  background: none;
-  border: none;
-  color: var(--bloc);
-  text-decoration: underline;
-  font: inherit;
-  cursor: pointer;
-  padding: 0;
-}
-
-aside[id="asideRetour"] > button[id="retour"] > img {
-  vertical-align: middle;
-  width: 70px;
-  height: 65px;
-  margin-right: 5px;
-}
-
 .connexion-compte form {
   display: grid;
   justify-content: center;
@@ -3086,73 +3080,22 @@ p[id="legendeBoutonLienPro"] {
 
 /* Média query pour passer au format téléphone */
 @media (max-width: 375px) {
-
-  /* Réduire la taille des titres */
-  h1[id="connexionTitre"] {
-    font-size: 45px;
-    margin-top: 15vh;
-  }
-
-  h1[id="pasDeCompteTitre"] {
-    margin: 50px 10px;
-    font-size: 45px;
-  }
-
-  /* Ajustement du formulaire */
-  .connexion-compte form {
-    justify-content: center;
-    width: 90%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 10px;
-  }
-
-  /* Les champs de saisie restent inchangés */
   .connexion-compte input {
     min-width: 200px;
     max-width: 280px;
     width: 230px;
   }
-
-  /* Réduire la taille du bouton de connexion */
-  button[id="boutonConnexion"] {
-    width: 180px;
-    height: 50px;
-    font-size: 22px;
-  }
-
-  /* Empiler les boutons de création de compte verticalement */
-  div[id="lienBouton"] {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  div[id="lienBouton"]>div {
-    width: 100%;
-    margin: 10px 0;
-  }
-
-  /* Ajustement des boutons et des labels de création de compte */
-  a[id="boutonLienMembre"],
-  p[id="legendeBoutonLienMembre"] {
-    display: block;
-  }
-
-  a[id="boutonLienPro"],
-  p[id="legendeBoutonLienPro"] {
-    display: none;
-  }
 }
 
 @media (max-width: 600px) {
   h1[id="connexionTitre"] {
+    display: block;
     font-size: 45px;
-    margin-top: 20vh;
+    margin-top: 5vh;
   }
 
   h1[id="pasDeCompteTitre"] {
-    margin: 50px 10px;
+    margin: 40px 10px;
     font-size: 45px;
   }
 
@@ -3189,6 +3132,7 @@ p[id="legendeBoutonLienPro"] {
   p[id="legendeBoutonLienMembre"] {
     display: block;
     max-width: 350px;
+    margin-top: 20px;
   }
 
   a[id="boutonLienPro"],
