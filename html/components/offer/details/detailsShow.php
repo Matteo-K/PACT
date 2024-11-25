@@ -25,7 +25,7 @@ if ($categorie["_spectacle"]) {
 
 
     <div>
-        <label class="ligne1">Nombre de places : </label> <!-- Label nombre de place -->
+        <label class="labelNbPlace">Nombre de places : </label> <!-- Label nombre de place -->
 
         <div>
             <input type="number" 2class="nb" name="nbPlaceShow" min="0" placeholder="0">
@@ -54,12 +54,12 @@ if ($categorie["_spectacle"]) {
             <label class="ligne1">En minutes : </label>
             
                 <input type="number" class="nb" name="nbHeures" min="0" placeholder="0">
-                <!-- Pour entrer un prix minimum -->
+                
             
 
-                <label class="ligne2">En heures : </label>
+                <label class="ligne4">En heures : </label>
                 <input type="time" class="nb" name="nbMinutesHeure" placeholder="0">
-                <!-- Pour entrer un prix minimum -->
+                <label class="ligne3">h</label>
             </div>
         </div>
     </div>

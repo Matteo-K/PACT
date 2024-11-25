@@ -2506,8 +2506,8 @@ tbody td:last-child {
 }
 
 #show>div>label[class="labelShow1"] {
-  margin-left: 20px;
-  margin-right: 10px;
+  margin-left: 15px;
+  margin-right: 5px;
 }
 
 
@@ -2528,23 +2528,33 @@ tbody td:last-child {
   flex-direction: row;
 }
 
+#show>div>label[class="labelNbPlace"] {
+  margin-right: 5px;
+}
+
 #show>div[class="classDivShow1"]>div {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne4"] {
+  margin-left: 15px;
+
 }
 
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
-  margin-right: 10px;
+  margin-right: 5px;
+}
+
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"] {
+  margin-left: 5px;
 }
 
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne2"] {
-  margin-right: 10px;
-  background-color: yellow;
-
+  margin-left: 5px;
 }
 
 #show>div[class="classDivShow1"]>label {
-  margin-top: 10px;
+  margin-top: 5px;
 
 }
 

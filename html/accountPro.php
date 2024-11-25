@@ -49,18 +49,31 @@
 
 
         // Vérifier si le numéro de SIREN existe déjà dans la base de données
+        // try {
+        //     if ($secteur == 'prive') {
+        //         $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
+        //         $stmt->execute([$siren]);
+        //         if ($stmt->fetchColumn() > 0) {
+        //             $errors[] = "Le numéro de SIREN existe déjà.";
+        //         }
+        //     }
+        // } 
+        
+        // catch (Exception $e) {
+            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+        // }
+
         try {
-            if ($secteur == 'prive') {
-                $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
-                $stmt->execute([$siren]);
-                if ($stmt->fetchColumn() > 0) {
-                    $errors[] = "Le numéro de SIREN existe déjà.";
-                }
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
+            $stmt->execute([$siren]);
+
+            if ($stmt->fetchColumn() > 0) {
+                $errors[] = "Le numéro de SIREN existe déjà.";
             }
         } 
         
         catch (Exception $e) {
-            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+            $errors[] = "Erreur lors de la vérification du SIREN.";
         }
 
         
@@ -79,6 +92,15 @@
         catch (Exception $e) {
             // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
         }
+
+
+        // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
+        if (!empty($errors)) {
+            $_SESSION['errors'] = $errors;
+            header('Location: accountPro.php');
+            exit;
+        }
+
 
 
 
@@ -120,6 +142,19 @@
         </aside>
         
         <h1 id="inscriptionTitre">Inscription professionnel</h1>
+
+        <?php
+            if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
+                echo '<div id="messageErreur" class="messageErreur">';
+                
+                foreach ($_SESSION['errors'] as $error) {
+                    echo "<p>$error</p>";
+                }
+                
+                echo '</div>';
+                unset($_SESSION['errors']);
+            }
+        ?>
 
         <div id="messageErreur" class="messageErreur"></div>
 

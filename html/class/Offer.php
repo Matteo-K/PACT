@@ -27,9 +27,10 @@ $currentTime = new DateTime(date('H:i'));
  * suivant les horaires déterminés et l'horaire actuelle
  */
 function statutOuverture($soir, $midi) {
+  global $currentDay, $currentTime;
   $horaires = array_merge($soir, $midi);
   $ouverture = "EstFermé";
-  global $currentTime;
+  
   // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
   foreach ($horaires as $horaire) {
       if ($horaire['jour'] == $currentDay) {
@@ -38,11 +39,12 @@ function statutOuverture($soir, $midi) {
           if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
               $ouverture = "EstOuvert";
               break;
+          }
       }
-    }
   }
   return $ouverture;
 }
+
 
 class Offer {
   private $idUser;
@@ -90,7 +92,7 @@ class Offer {
 
     // Récupération ouvert Fermé
     $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi);
-    require_once __DIR__."/../components/cardOffer.php";
+    require __DIR__."/../components/cardOffer.php";
   }
 
   public function displayCardOfferPro() {
@@ -103,7 +105,7 @@ class Offer {
     $tag = $this->tags;
     $resume = $this->resume;
     $noteAvg = $this->noteAvg;
-    $restaurantOuvert = statutOuverture($resultsSoir, $resultsMidi);
+    $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi);
     $statut = $this->statut;
     require_once __DIR__."/../components/cardOfferPro.php";
   }
