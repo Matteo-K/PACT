@@ -62,7 +62,7 @@ if ($categorie["_visite"]) {
 
         </div>
 
-        
+
         <div class="divAccessibliteVisit">
             <label>Accessibilité</label> <!-- Label Accessibilité -->
 
@@ -77,7 +77,9 @@ if ($categorie["_visite"]) {
             <!-- Label du 2eme bouton radio -->
 
         </div>
-        <div>
+
+
+        <div class="divPrixMin">
             <label>Prix minimum</label>
 
 

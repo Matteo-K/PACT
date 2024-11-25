@@ -2573,10 +2573,13 @@ tbody td:last-child {
 }
 
 #visit >div[class="divAccessibliteVisit"]{
-  background-color: yellow;
   margin-bottom: 15px;
 }
 
+#visit >div[class="divPrixMin"]{
+  margin-bottom: 15px;
+
+}
 
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
