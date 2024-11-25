@@ -2522,10 +2522,14 @@ tbody td:last-child {
   flex-direction: column;
 }
 
-#show>div[class="classDivShow1"]>div> div[class="classDivLigne"] {
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"] {
   /* background-color: blueviolet; */
   display: flex;
   flex-direction: row;
+}
+
+#show>div>label[class="labelNbPlace"] {
+  margin-right: 5px;
 }
 
 #show>div[class="classDivShow1"]>div {
@@ -2536,9 +2540,11 @@ tbody td:last-child {
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
   margin-right: 5px;
 }
+
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"] {
   margin-left: 5px;
 }
+
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne2"] {
   margin-left: 5px;
 }
