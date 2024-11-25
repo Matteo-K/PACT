@@ -748,24 +748,24 @@ RETURNS TRIGGER AS $$
 DECLARE
   iduser INT;
 BEGIN
-    IF (SELECT siren FROM proPrive WHERE denomination=NEW.denomination) = NEW.siren THEN
+    IF (SELECT siren FROM pact.proPrive WHERE denomination=NEW.denomination) = NEW.siren THEN
         RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnel privée ayant la même dénomination et le même SIREN';
     END IF;
-    INSERT INTO _utilisateur (password) VALUES (NEW.password) RETURNING idU into iduser;
-    INSERT INTO _nonAdmin (idU, telephone, mail) VALUES (iduser,NEW.telephone,NEW.mail);
-    INSERT INTO _pro (idU, denomination) VALUES (iduser,NEW.denomination);
-    INSERT INTO _privee (idU, siren) VALUES (iduser,NEW.siren);
-    INSERT INTO _photo_profil(idU,url) VALUES (iduser,NEW.url);
+    INSERT INTO pact._utilisateur (password) VALUES (NEW.password) RETURNING idU into iduser;
+    INSERT INTO pact._nonAdmin (idU, telephone, mail) VALUES (iduser,NEW.telephone,NEW.mail);
+    INSERT INTO pact._pro (idU, denomination) VALUES (iduser,NEW.denomination);
+    INSERT INTO pact._privee (idU, siren) VALUES (iduser,NEW.siren);
+    INSERT INTO pact._photo_profil(idU,url) VALUES (iduser,NEW.url);
     IF (NEW.numeroRue IS NOT NULL) THEN
-        INSERT INTO _adresse (numeroRue, rue, ville, pays, codePostal) VALUES (NEW.numeroRue, NEW.rue, NEW.ville, NEW.pays, NEW.codePostal);
+        INSERT INTO pact._adresse (numeroRue, rue, ville, pays, codePostal) VALUES (NEW.numeroRue, NEW.rue, NEW.ville, NEW.pays, NEW.codePostal);
     END IF;
-    INSERT INTO _habite (idU, codePostal, ville, pays, rue, numeroRue) VALUES (iduser, NEW.codePostal, NEW.ville, NEW.pays, NEW.rue, NEW.numeroRue);
+    INSERT INTO pact._habite (idU, codePostal, ville, pays, rue, numeroRue) VALUES (iduser, NEW.codePostal, NEW.ville, NEW.pays, NEW.rue, NEW.numeroRue);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trigger_ajout_pro_prive
-INSTEAD OF INSERT ON proprive
+INSTEAD OF INSERT ON pact.proprive
 FOR EACH ROW
 EXECUTE FUNCTION ajout_pro_prive();
 
@@ -774,25 +774,25 @@ RETURNS TRIGGER AS $$
 DECLARE
   iduser INT;
 BEGIN
-    IF (SELECT denomination FROM proPublic WHERE denomination=NEW.denomination) = NEW.denomination THEN
+    IF (SELECT denomination FROM pact.proPublic WHERE denomination=NEW.denomination) = NEW.denomination THEN
         RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnel privée ayant la même dénomination et le même SIREN';
     END IF;
-    INSERT INTO _utilisateur (password) VALUES (NEW.password) RETURNING idU into iduser;
-    INSERT INTO _nonAdmin (idU, telephone, mail) VALUES (iduser,NEW.telephone,NEW.mail);
-    INSERT INTO _pro (idU, denomination) VALUES (iduser,NEW.denomination);
-    INSERT INTO _public (idU) VALUES (iduser);
-    INSERT INTO _photo_profil(idU,url) VALUES (iduser,NEW.url);
+    INSERT INTO pact._utilisateur (password) VALUES (NEW.password) RETURNING idU into iduser;
+    INSERT INTO pact._nonAdmin (idU, telephone, mail) VALUES (iduser,NEW.telephone,NEW.mail);
+    INSERT INTO pact._pro (idU, denomination) VALUES (iduser,NEW.denomination);
+    INSERT INTO pact._public (idU) VALUES (iduser);
+    INSERT INTO pact._photo_profil(idU,url) VALUES (iduser,NEW.url);
     IF (NEW.numeroRue IS NOT NULL) THEN
-        INSERT INTO _adresse (numeroRue, rue, ville, pays, codePostal) VALUES (NEW.numeroRue, NEW.rue, NEW.ville, NEW.pays, NEW.codePostal);
+        INSERT INTO pact._adresse (numeroRue, rue, ville, pays, codePostal) VALUES (NEW.numeroRue, NEW.rue, NEW.ville, NEW.pays, NEW.codePostal);
     END IF;
-    INSERT INTO _habite (idU, codePostal, ville, pays, rue, numeroRue) VALUES (iduser, NEW.codePostal, NEW.ville, NEW.pays, NEW.rue, NEW.numeroRue);
+    INSERT INTO pact._habite (idU, codePostal, ville, pays, rue, numeroRue) VALUES (iduser, NEW.codePostal, NEW.ville, NEW.pays, NEW.rue, NEW.numeroRue);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 
 CREATE TRIGGER trigger_ajout_pro_public
-INSTEAD OF INSERT ON proPublic
+INSTEAD OF INSERT ON pact.proPublic
 FOR EACH ROW
 EXECUTE FUNCTION ajout_pro_public();
 
@@ -801,18 +801,18 @@ RETURNS TRIGGER AS $$
 DECLARE
   id_offre INT;
 BEGIN
-    IF (SELECT nom_offre FROM restaurants WHERE idU=NEW.idU) = NEW.nom_offre THEN
+    IF (SELECT nom_offre FROM pact.restaurants WHERE idU=NEW.idU) = NEW.nom_offre THEN
         RAISE EXCEPTION 'Vous ne pouvez pas avoir deux offre ayant le même nom';
     END IF;
-    INSERT INTO _offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume) VALUES (NEW.idU, NEW.statut, NEW.nom_offre, NEW.description, NEW.mail, NEW.telephone, NEW.affiche, NEW.urlSite, NEW.resume)RETURNING idOffre INTO id_offre;
-    INSERT INTO _restauration (idOffre, gammeDePrix, urlMenu) VALUES (id_offre, NEW.gammeDePrix, NEW.urlMenu);
-    INSERT INTO _abonner (idOffre, nomAbonnement) VALUES (id_offre, NEW.abonnement);
+    INSERT INTO pact._offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume) VALUES (NEW.idU, NEW.statut, NEW.nom_offre, NEW.description, NEW.mail, NEW.telephone, NEW.affiche, NEW.urlSite, NEW.resume)RETURNING idOffre INTO id_offre;
+    INSERT INTO pact._restauration (idOffre, gammeDePrix, urlMenu) VALUES (id_offre, NEW.gammeDePrix, NEW.urlMenu);
+    INSERT INTO pact._abonner (idOffre, nomAbonnement) VALUES (id_offre, NEW.abonnement);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trigger_ajout_offre_restaurant
-INSTEAD OF INSERT ON restaurants
+INSTEAD OF INSERT ON pact.restaurants
 FOR EACH ROW
 EXECUTE FUNCTION ajout_offre_restaurant();
 
@@ -821,18 +821,18 @@ RETURNS TRIGGER AS $$
 DECLARE
   id_offre INT;
 BEGIN
-    IF (SELECT nom_offre FROM activites WHERE idU=NEW.idU) = NEW.nom_offre THEN
+    IF (SELECT nom_offre FROM pact.activites WHERE idU=NEW.idU) = NEW.nom_offre THEN
         RAISE EXCEPTION 'Vous ne pouvez pas avoir deux offre ayant le même nom';
     END IF;
-    INSERT INTO _offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume) VALUES (NEW.idU, NEW.statut, NEW.nom_offre, NEW.description, NEW.mail, NEW.telephone, NEW.affiche, NEW.urlSite, NEW.resume)RETURNING idOffre INTO id_offre;
-    INSERT INTO _activite (idOffre, duree, ageMin, prixMinimal, prestation) VALUES (id_offre, NEW.duree, NEW.ageMin, NEW.prixMinimal,NEW.prestation);
-    INSERT INTO _abonner (idOffre, nomAbonnement) VALUES (id_offre, NEW.abonnement);
+    INSERT INTO pact._offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume) VALUES (NEW.idU, NEW.statut, NEW.nom_offre, NEW.description, NEW.mail, NEW.telephone, NEW.affiche, NEW.urlSite, NEW.resume)RETURNING idOffre INTO id_offre;
+    INSERT INTO pact._activite (idOffre, duree, ageMin, prixMinimal, prestation) VALUES (id_offre, NEW.duree, NEW.ageMin, NEW.prixMinimal,NEW.prestation);
+    INSERT INTO pact._abonner (idOffre, nomAbonnement) VALUES (id_offre, NEW.abonnement);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trigger_ajout_offre_activites
-INSTEAD OF INSERT ON activites
+INSTEAD OF INSERT ON pact.activites
 FOR EACH ROW
 EXECUTE FUNCTION ajout_offre_activites();
 
@@ -841,18 +841,18 @@ RETURNS TRIGGER AS $$
 DECLARE
   id_offre INT;
 BEGIN
-    IF (SELECT nom_offre FROM parcs_attractions WHERE idU=NEW.idU) = NEW.nom_offre THEN
+    IF (SELECT nom_offre FROM pact.parcs_attractions WHERE idU=NEW.idU) = NEW.nom_offre THEN
         RAISE EXCEPTION 'Vous ne pouvez pas avoir deux offre ayant le même nom';
     END IF;
-    INSERT INTO _offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume) VALUES (NEW.idU, NEW.statut, NEW.nom_offre, NEW.description, NEW.mail, NEW.telephone, NEW.affiche, NEW.urlSite, NEW.resume)RETURNING idOffre INTO id_offre;
-    INSERT INTO _parcAttraction (idOffre, ageMin, nbAttraction, prixMinimal, urlPlan) VALUES (id_offre, NEW.ageMin, NEW.nbAttraction, NEW.prixMinimal, NEW.urlPlan);
-    INSERT INTO _abonner (idOffre, nomAbonnement) VALUES (id_offre, NEW.abonnement);
+    INSERT INTO pact._offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume) VALUES (NEW.idU, NEW.statut, NEW.nom_offre, NEW.description, NEW.mail, NEW.telephone, NEW.affiche, NEW.urlSite, NEW.resume)RETURNING idOffre INTO id_offre;
+    INSERT INTO pact._parcAttraction (idOffre, ageMin, nbAttraction, prixMinimal, urlPlan) VALUES (id_offre, NEW.ageMin, NEW.nbAttraction, NEW.prixMinimal, NEW.urlPlan);
+    INSERT INTO pact._abonner (idOffre, nomAbonnement) VALUES (id_offre, NEW.abonnement);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trigger_ajout_offre_parcs_attraction
-INSTEAD OF INSERT ON parcs_attractions
+INSTEAD OF INSERT ON pact.parcs_attractions
 FOR EACH ROW
 EXECUTE FUNCTION ajout_offre_parcs_attraction();
 
@@ -861,18 +861,18 @@ RETURNS TRIGGER AS $$
 DECLARE
   id_offre INT;
 BEGIN
-    IF (SELECT nom_offre FROM spectacles WHERE idU=NEW.idU) = NEW.nom_offre THEN
+    IF (SELECT nom_offre FROM pact.spectacles WHERE idU=NEW.idU) = NEW.nom_offre THEN
         RAISE EXCEPTION 'Vous ne pouvez pas avoir deux offre ayant le même nom';
     END IF;
-    INSERT INTO _offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume) VALUES (NEW.idU, NEW.statut, NEW.nom_offre, NEW.description, NEW.mail, NEW.telephone, NEW.affiche, NEW.urlSite, NEW.resume)RETURNING idOffre INTO id_offre;
-    INSERT INTO _spectacle (idOffre, duree, nbPlace, prixMinimal) VALUES (id_offre, NEW.duree, NEW.nbPlace, NEW.prixMinimal);
-    INSERT INTO _abonner (idOffre, nomAbonnement) VALUES (id_offre, NEW.abonnement);
+    INSERT INTO pact._offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume) VALUES (NEW.idU, NEW.statut, NEW.nom_offre, NEW.description, NEW.mail, NEW.telephone, NEW.affiche, NEW.urlSite, NEW.resume)RETURNING idOffre INTO id_offre;
+    INSERT INTO pact._spectacle (idOffre, duree, nbPlace, prixMinimal) VALUES (id_offre, NEW.duree, NEW.nbPlace, NEW.prixMinimal);
+    INSERT INTO pact._abonner (idOffre, nomAbonnement) VALUES (id_offre, NEW.abonnement);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trigger_ajout_offre_parcs_spectacle
-INSTEAD OF INSERT ON spectacles
+INSTEAD OF INSERT ON pact.spectacles
 FOR EACH ROW
 EXECUTE FUNCTION ajout_offre_parcs_spectacle();
 
@@ -881,18 +881,18 @@ RETURNS TRIGGER AS $$
 DECLARE
   id_offre INT;
 BEGIN
-    IF (SELECT nom_offre FROM visites WHERE idU=NEW.idU) = NEW.nom_offre THEN
+    IF (SELECT nom_offre FROM pact.visites WHERE idU=NEW.idU) = NEW.nom_offre THEN
         RAISE EXCEPTION 'Vous ne pouvez pas avoir deux offre ayant le même nom';
     END IF;
-    INSERT INTO _offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume) VALUES (NEW.idU, NEW.statut, NEW.nom_offre, NEW.description, NEW.mail, NEW.telephone, NEW.affiche, NEW.urlSite, NEW.resume)RETURNING idOffre INTO id_offre;
-    INSERT INTO _visite (idOffre, guide, duree, prixMinimal, accessibilite) VALUES (id_offre, NEW.guide, NEW.duree, NEW.prixMinimal, NEW.accessibilite);
-    INSERT INTO _abonner (idOffre, nomAbonnement) VALUES (id_offre, NEW.abonnement);
+    INSERT INTO pact._offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume) VALUES (NEW.idU, NEW.statut, NEW.nom_offre, NEW.description, NEW.mail, NEW.telephone, NEW.affiche, NEW.urlSite, NEW.resume)RETURNING idOffre INTO id_offre;
+    INSERT INTO pact._visite (idOffre, guide, duree, prixMinimal, accessibilite) VALUES (id_offre, NEW.guide, NEW.duree, NEW.prixMinimal, NEW.accessibilite);
+    INSERT INTO pact._abonner (idOffre, nomAbonnement) VALUES (id_offre, NEW.abonnement);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trigger_ajout_offre_parcs_visite
-INSTEAD OF INSERT ON visites
+INSTEAD OF INSERT ON pact.visites
 FOR EACH ROW
 EXECUTE FUNCTION ajout_offre_parcs_visite();
 
@@ -903,23 +903,23 @@ RETURNS TRIGGER AS $$
 DECLARE
   iduser INT;
 BEGIN
-    IF EXISTS (SELECT 1 FROM membre WHERE pseudo = NEW.pseudo) THEN
+    IF EXISTS (SELECT 1 FROM pact.membre WHERE pseudo = NEW.pseudo) THEN
         RAISE EXCEPTION 'Vous ne pouvez pas avoir deux membre ayant le même pseudo';
     END IF;
-    INSERT INTO _utilisateur (password) VALUES (NEW.password) RETURNING idU into iduser;
-    INSERT INTO _nonAdmin (idU, telephone, mail) VALUES (iduser, NEW.telephone, NEW.mail);
-    INSERT INTO _membre (idU,pseudo,nom,prenom) VALUES (iduser, NEW.pseudo, NEW.nom, NEW.prenom);
-    INSERT INTO _photo_profil(idU,url) VALUES (iduser,NEW.url);
-    IF NOT EXISTS (SELECT 1 FROM _adresse WHERE numeroRue = NEW.numeroRue AND rue = NEW.rue AND ville = NEW.ville AND pays = NEW.pays AND codePostal = NEW.codePostal) THEN
-        INSERT INTO _adresse (numeroRue, rue, ville, pays, codePostal) VALUES (NEW.numeroRue, NEW.rue, NEW.ville, NEW.pays, NEW.codePostal);
+    INSERT INTO pact._utilisateur (password) VALUES (NEW.password) RETURNING idU into iduser;
+    INSERT INTO pact._nonAdmin (idU, telephone, mail) VALUES (iduser, NEW.telephone, NEW.mail);
+    INSERT INTO pact._membre (idU,pseudo,nom,prenom) VALUES (iduser, NEW.pseudo, NEW.nom, NEW.prenom);
+    INSERT INTO pact._photo_profil(idU,url) VALUES (iduser,NEW.url);
+    IF NOT EXISTS (SELECT 1 FROM pact._adresse WHERE numeroRue = NEW.numeroRue AND rue = NEW.rue AND ville = NEW.ville AND pays = NEW.pays AND codePostal = NEW.codePostal) THEN
+        INSERT INTO pact._adresse (numeroRue, rue, ville, pays, codePostal) VALUES (NEW.numeroRue, NEW.rue, NEW.ville, NEW.pays, NEW.codePostal);
     END IF;
-    INSERT INTO _habite (idU, codePostal, ville, pays, rue, numeroRue) VALUES (iduser, NEW.codePostal, NEW.ville, NEW.pays, NEW.rue, NEW.numeroRue);
+    INSERT INTO pact._habite (idU, codePostal, ville, pays, rue, numeroRue) VALUES (iduser, NEW.codePostal, NEW.ville, NEW.pays, NEW.rue, NEW.numeroRue);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trigger_ajout_membre
-INSTEAD OF INSERT ON membre
+INSTEAD OF INSERT ON pact.membre
 FOR EACH ROW
 EXECUTE FUNCTION ajout_membre();
 

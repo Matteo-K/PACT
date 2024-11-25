@@ -106,11 +106,12 @@
                 <label id="labelNom" for="nomMembre">Nom*:</label>
                 <label  id="labelPrenom" for="prenomMembre">Prénom*:</label>
                     
+                <!-- Saisi du prénom -->
+                <input type="text" placeholder="Jean" id="prenomMembre" name="prenomMembre" required>
+                
                 <!-- Saisi du nom -->
                 <input type="text" placeholder="Dupont" id="nomMembre" name="nomMembre" required>
     
-                <!-- Saisi du prénom -->
-                <input type="text" placeholder="Jean" id="prenomMembre" name="prenomMembre" required>
             </div>
     
             <div class="ligne1_1">

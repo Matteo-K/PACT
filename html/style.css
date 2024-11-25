@@ -2452,28 +2452,30 @@ tbody td:last-child {
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 #restaurant {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
-  background-color: yellow;
+
 }
 
 #restaurant h4 {
   margin-bottom: 15px;
 }
 
-#restaurant label {
+#restaurant > div {
   display: flex;
   flex-direction: row;
   /* Alignement du bouton radio et du texte*/
   width: 100%;
   /* largeur*/
   margin-bottom: 10px;
-  /* Espacement */
+  margin-left: 20px;
 }
 
 #restaurant input[type="radio"] {
   margin-right: 10px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column
   /* Espace entre le bouton radio et le texte */
 }
 
@@ -2850,19 +2852,20 @@ div.ligne6 > label {
   }
 
   /* Gestion de l'ordre des éléments */
-  #labelNom {
+  
+  #labelPrenom {
     order: 1;
   }
-
-  #nomMembre {
+  
+  #prenomMembre {
     order: 2;
   }
-
-  #labelPrenom {
+  
+  #labelNom {
     order: 3;
   }
 
-  #prenomMembre {
+  #nomMembre {
     order: 4;
   }
 

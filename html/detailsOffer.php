@@ -1,7 +1,6 @@
 <?php
 require_once "config.php";
 require_once __DIR__ . "/../.SECURE/cleAPI.php";
-require_once "class/ArrayOffer.php";
 $idOffre = $_GET["idoffre"] ?? null;
 $ouvert = $_GET["ouvert"] ?? null;
 
@@ -202,7 +201,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
         </div>
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
-        <h3 id="typeOffer">(<?php echo $test?>) </h3>
+        <h3 id="typeOffer">(<?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer)))?>) </h3>
         <?php 
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
             ?>
