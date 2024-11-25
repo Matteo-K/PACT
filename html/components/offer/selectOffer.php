@@ -264,8 +264,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     });
 
     nbSemaines.forEach(element => {
-      element.addEventListener("blur", () => {
-        console.log(element);
+      element.addEventListener("change", () => {
+        if (element.value < 1) {
+          element.value = 1;
+        } elseif (element.value > 4) {
+          element.value = 4;
+        }
       });
       element.addEventListener("change", updatePrix);
     });
