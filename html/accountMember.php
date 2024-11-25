@@ -2,14 +2,14 @@
     // Démarrer la session
     session_start();
 
-    if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
-        echo '<script>';
-        echo 'document.getElementById("messageErreur").innerHTML = "' . implode('<br>', $_SESSION['errors']) . '";';
-        echo '</script>';
-
-        unset($_SESSION['errors']);
-    }
-
+    // if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
+    //     echo '<script>';
+    //     echo 'document.getElementById("messageErreur").innerHTML = "' . implode('<br>', $_SESSION['errors']) . '";';
+    //     echo 'document.getElementById("messageErreur").classList.add("show");'; 
+    //     echo '</script>';
+    
+    //     unset($_SESSION['errors']);
+    // }
     
     // fichier de connexion à la BDD
     require_once "db.php";
@@ -52,7 +52,7 @@
         } 
         
         catch (Exception $e) {
-            $errors[] = "Erreur lors de la vérification du pseudo: " . htmlspecialchars($e->getMessage());
+            // $errors[] = "Erreur lors de la vérification du pseudo: " . htmlspecialchars($e->getMessage());
         }
 
 
@@ -69,7 +69,7 @@
         } 
         
         catch (Exception $e) {
-            $errors[] = "Erreur lors de la vérification de l'adresse mail: " . htmlspecialchars($e->getMessage());
+            // $errors[] = "Erreur lors de la vérification de l'adresse mail: " . htmlspecialchars($e->getMessage());
         }
 
 
@@ -87,9 +87,10 @@
             exit;
         }
 
-        else {
-            $_SESSION['errors'] = $errors;
-        }
+        // if(!empty($errors)) {
+        //     $_SESSION['errors'] = $errors;
+        //     header('Location: accountMember.php');
+        // }
     }
 ?>
 

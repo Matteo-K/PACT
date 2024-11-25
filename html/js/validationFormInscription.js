@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Vérifier si des erreurs ont été passées du côté serveur et les afficher
-    if (messageErreurDiv.innerHTML.trim() !== "") {
-        messageErreurDiv.classList.add('show');
-    }
+    // if (messageErreurDiv.innerHTML.trim() !== "") {
+    //     messageErreurDiv.classList.add('show');
+    // }
 
     // Récupérer les éléments nécessaires pour le SIREN
     const sirenLabel = document.querySelector("label[for='siren']");
