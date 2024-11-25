@@ -151,7 +151,7 @@ footer{
             </thead>
             <tbody>
                 <?php
-                    $total=$tarif['option']*$tarif['tarif'];
+                    $total=$tarif['option']*$tarif['prixBase'];
                     if ($results[0]['historiqueoption']) {
                         
                         foreach ($option as $key => $value) {
@@ -177,7 +177,7 @@ footer{
                     <td><?php echo $tarif['tarif'] ?></td>
                     <td><?php echo $tva ?> %</td>
                     <td><?php echo $tarif['option']*$tarif['tarif'] ?> €</td>
-                    <td><?php echo round($tarif['option']*$tarif['tarif']+($tarif['option']*$tarif['tarif']*20/100),2) ?> €</td>
+                    <td><?php echo round($tarif['option']*$tarif['prixBase']+($tarif['option']*$tarif['prixBase']*20/100),2) ?> €</td>
                 </tr>
                 <tr>
                     <td></td>
