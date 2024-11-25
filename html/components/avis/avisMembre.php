@@ -9,11 +9,13 @@
 
     foreach($avis as $a){
         ?>
-        <div>
+        <div class="messageAvis"> 
+            <article class="user">
+                <img src="<?= $a['url']?>">
+                <p><?= $a['pseudo']?> </p>
+            </article>
         <?php
-        if($a['listimage'] == null){
             
-        }
         ?>
         </div>
         <?php
