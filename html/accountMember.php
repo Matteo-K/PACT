@@ -47,14 +47,29 @@
         }
 
 
+
+        // Vérifier si l'adresse mail existe déjà dans la base de données
+        try {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.membre WHERE mail = ?");
+            $stmt->execute([$mail]);
+            $count = $stmt->fetchColumn();
+
+            if ($count > 0) {
+                $errors[] = "L'adresse mail existe déjà.";
+            }
+        } 
+        
+        catch (Exception $e) {
+            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+        }
+
+
+
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if(empty($errors)) {
             // Préparer la requête d'insertion
-            if ($secteur == 'public') {
-                $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo]);
-
-            } 
+            $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo]);
 
             // Redirection vers une page de succès
             header('Location: login.php');
