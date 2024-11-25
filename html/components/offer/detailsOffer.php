@@ -278,7 +278,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         function loadImage(url){
             const reader = new FileReader();
-            reader.onload = configImage(url, []);
+            reader.onload = configImage(url, [], "");
             reader.readAsDataURL(file);
         }
 
@@ -287,13 +287,13 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
             Array.from(images).forEach((file) => {
                 const reader = new FileReader();
-                reader.onload = configImage("", images);
+                reader.onload = configImage("", images, file);
                 reader.readAsDataURL(file);
             });
         }
 
 
-        function configImage(url, images){
+        function configImage(url, images,file){
             if (images.length < maxImages) {
                 const figureImg = document.createElement("figure");
                 figureImg.classList.add("imageOffre");
@@ -305,7 +305,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     hiddenInputImg.name = "imageExistante[]"; 
                     figureImg.appendChild(hiddenInputImg);
                 }else{
-                    figureImg.innerHTML = `<img src="${e.target.result}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
+                    figureImg.innerHTML = `<img src="${file}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
                 }
                 conteneur.appendChild(figureImg);
 
