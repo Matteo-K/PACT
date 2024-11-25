@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__. "/../db.php";
 require_once __DIR__. "/../config.php";
 require_once "Offer.php";
 require_once "Park.php";
@@ -17,6 +16,8 @@ class ArrayOffer {
   public function __construct($idoffres_ = "") {
     $this->arrayOffer = [];
     $this->nbOffer = 0;
+    
+    global $conn;
 
     if (empty($idoffres_)) {
         $stmt = $conn->prepare("SELECT * FROM pact.offres");
