@@ -2590,6 +2590,7 @@ tbody td:last-child {
 #visit >div[class="languesProp"] >input[type="text"]{
   width: 500px;
   height: 30px;
+  margin-top: 5px;
 }
 
 #visit >div[class="languesProp"]{
