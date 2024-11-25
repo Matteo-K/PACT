@@ -176,7 +176,7 @@ VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attracti
        (4, 'actif', 'Thomas Angelvy', 'Un spectacle incroyable avec des performances éblouissantes.', 'spectacle@mail.com', '0123456791', TRUE, 'http://spectacle.com', 'Divertissement exceptionnel', CURRENT_TIMESTAMP),
        (3, 'actif', 'La Potinière', 'Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. ', 'restaurant@mail.com', '0123456793', TRUE, NULL, 'Cuisine raffinée', CURRENT_TIMESTAMP),
        (3, 'actif', 'Activité Culturelle', 'Explorez la culture locale à travers une activité immersive.', 'activite@mail.com', '0123456794', TRUE, 'http://activite.com', 'Immersion culturelle aves la population local', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP);
+       (4, 'inactif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP);
 
 -- Peuplement de la table _image
 INSERT INTO _image (url, nomImage) 
@@ -191,8 +191,11 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
        ('./img/imageOffre/1-1.png', 'parc1'),
        ('./img/imageOffre/1-2.png', 'parc2'),
        ('./img/imageOffre/2-0.png', 'spectacle0'),
-       ('./img/imageOffre/5-0.png', 'visite0');
-
+       ('./img/imageOffre/5-0.png', 'visite0'),
+       ('./img/imageAvis/1-0.png','Avis1-0'),
+       ('./img/imageAvis/3-0.png','Avis3-0'),
+       ('./img/imageAvis/7-0.png','Avis7-0');
+  
 -- Peuplement de la table _illustre
 INSERT INTO _illustre (idOffre, url) 
 VALUES (3, './img/imageOffre/3-0.png'),
@@ -331,12 +334,14 @@ VALUES (1, 'Premium'),
 INSERT INTO _dateOption(dateLancement,dateFin,duree,prix)
 VALUES (CURRENT_DATE,CURRENT_DATE + INTERVAL '1 weeks',1,20),
        (CURRENT_DATE,CURRENT_DATE + INTERVAL '2 weeks',2,40),
+       (CURRENT_DATE,CURRENT_DATE + INTERVAL '2 weeks',2,20),
        (CURRENT_DATE,CURRENT_DATE + INTERVAL '3 weeks',3,30);
 
 -- Peuplement de la table _option_offre
 INSERT INTO _option_offre (idOption, idOffre, nomOption) 
 VALUES (3, 1, 'EnRelief'), 
        (2, 2, 'ALaUne'),
+       (2, 2, 'EnRelief'),
        (1, 3, 'ALaUne');
        
 INSERT INTO _visite_langue (idOffre, langue) 
@@ -345,3 +350,56 @@ VALUES (5, 'Français'),
    
 INSERT INTO _menu(idOffre, menu)
 VALUES (3,'./img/3-menu.png');
+
+INSERT INTO _commentaire (idU,content,datePublie)
+VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.',CURRENT_DATE),
+       (5,'Je recommande ce parc d’attractions.',CURRENT_DATE),
+       (5,'J’ai adoré cette visite.',CURRENT_DATE),
+       (5,'À faire.',CURRENT_DATE),
+       (5,'Spectacle inoubliable.',CURRENT_DATE),
+       (5,'Mais quelle humoriste donner-lui un oscar !',CURRENT_DATE),
+       (5,'la cuisson de la viande était parfaite.',CURRENT_DATE),
+       (5,'Je recommande.',CURRENT_DATE),
+       (5,'Activité ennuyante.',CURRENT_DATE),
+       (5,'Personnel désagréable.',CURRENT_DATE),
+       (4,'Merci beaucoup, à bientôt.',CURRENT_DATE),
+       (3,'Merci beaucoup, à bientôt.',CURRENT_DATE),
+       (3,'Avec des personnes comme vous, compliqué de la rendre intéressante.',CURRENT_DATE);
+       
+INSERT INTO _avis(idC,idOffre,note)
+VALUES (1,1,5),
+       (2,1,4),
+       (3,5,5),
+       (4,5,4),
+       (5,2,5),
+       (6,2,4),
+       (7,3,5),
+       (8,3,4),
+       (9,4,2),
+       (10,4,1);
+       
+INSERT INTO _reponse(idC,ref)
+VALUES (11,3),
+       (12,5),
+       (13,9);
+       
+INSERT INTO _avisImage(idC,url)
+VALUES (1,'./img/imageAvis/1-0.png'),
+       (3,'./img/imageAvis/3-0.png'),
+       (7,'./img/imageAvis/7-0.png');
+       
+INSERT INTO _historiqueStatut(idOffre,dateLancement,dureeEnLigne)
+VALUES (1,'2024-11-01',6),
+       (1,'2024-11-15',NULL),
+       (2,'2024-11-01',4),
+       (2,'2024-11-15',NULL),
+       (3,'2024-11-10',NULL),
+       (4,'2024-11-01',NULL),
+       (5,'2024-11-01',6);
+       
+INSERT INTO _facturation(dateFactue,idOffre)
+VALUES ('2024-11-01',1),
+       ('2024-11-01',2),
+       ('2024-11-01',3),
+       ('2024-11-01',4),
+       ('2024-11-01',5);

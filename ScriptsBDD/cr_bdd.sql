@@ -415,7 +415,8 @@ CREATE TABLE _commentaire(
 CREATE TABLE _avis(
   idC INT NOT NULL,
   idOffre INT NOT NULL,
-  PRIMARY KEY (idC,idOffre),
+  note INT NOT NULL,
+  PRIMARY KEY (idC),
   CONSTRAINT _avis_fk_idC
       FOREIGN KEY (idC)
       REFERENCES _commentaire(idC),
@@ -426,28 +427,26 @@ CREATE TABLE _avis(
 
 CREATE TABLE _reponse(
   idC INT NOT NULL,
-  idOffre INT NOT NULL,
   ref INT NOT NULL,
   PRIMARY KEY (idC,ref),
   CONSTRAINT _reponse_fk_idC
       FOREIGN KEY (idC)
       REFERENCES _commentaire(idC),
   CONSTRAINT _reponse_fk_avis
-      FOREIGN KEY (ref,idOffre)
-      REFERENCES _avis(idC,idOffre)
+      FOREIGN KEY (ref)
+      REFERENCES _avis(idC)
 );
 
 CREATE TABLE _avisImage(
   idC INT NOT NULL,
-  idOffre INT NOT NULL,
   url VARCHAR(255) NOT NULL,
   PRIMARY KEY (idC,url),
   CONSTRAINT _avisImage_fk_image
       FOREIGN KEY (url)
       REFERENCES _image(url),
   CONSTRAINT _avisImage_fk_avis
-      FOREIGN KEY (idC,idOffre)
-      REFERENCES _avis(idC,idOffre)
+      FOREIGN KEY (idC)
+      REFERENCES _avis(idC)
 );
 
 CREATE TABLE _dateOption(
@@ -485,8 +484,13 @@ CREATE TABLE _historiqueStatut(
 );
 
 CREATE TABLE _facturation(
-  idFacture SERIAL,
+  idFacture SERIAL PRIMARY KEY,
   dateFactue DATE NOT NULL,
+  idOffre int NOT NULL,
+  CONSTRAINT _facturation_fk_offre
+      FOREIGN KEY (idOffre)
+      REFERENCES _offre(idOffre)
+);
 
 
 -- Création des vues pour chaque catégorie d'offres
@@ -641,8 +645,98 @@ GROUP BY
     o.idOffre, l.ville, r.gammeDePrix
 ORDER BY o.dateCrea DESC;
 
+-- Vue pour tous les avis avec offres
+CREATE VIEW avis AS
+    SELECT  
+    m.pseudo,
+    c.idC,
+    c.content,
+    c.datePublie,
+    a.idOffre,
+    a.note,
+    ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage
+    FROM _avis a 
+    JOIN _commentaire c ON a.idC = c.idC
+    LEFT JOIN _avisImage ai ON a.idC = ai.idC
+    JOIN _membre m ON c.idU = m.idU
+    GROUP BY 
+    m.pseudo, 
+    c.idC, 
+    c.content, 
+    c.datePublie, 
+    a.idOffre,
+    a.note;
 
+CREATE VIEW reponse AS
+    SELECT  
+    p.denomination,
+    c1.idC as idC_reponse,
+    c1.content as contenuReponse,
+    c1.datePublie as reponseDate,
+    r.ref as idC_avis,
+    c2.content as contenuAvis,
+    c2.datePublie as avisDate,
+    a.note
+    FROM _reponse r 
+    JOIN _commentaire c1 ON r.idC = c1.idC
+    JOIN _pro p ON c1.idU = p.idU
+    JOIN _avis a ON r.ref = a.idC
+    JOIN _commentaire c2 ON a.idC = c2.idC;
 
+CREATE VIEW facture AS
+    SELECT
+    f.idFacture,
+    f.dateFactue,
+    o.nom,
+    p.denomination,
+    h.numeroRue,
+    h.rue,
+    h.ville,
+    h.codePostal,
+    h.pays,
+    STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
+        'ID', ht.idStatut,
+        'Lancement', ht.dateLancement,
+        'Duree', ht.dureeEnLigne
+    )::TEXT, ';') FILTER (WHERE ht.idStatut IS NOT NULL 
+      AND ht.dateLancement IS NOT NULL) 
+      AS historiqueStatut,
+    STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
+        'ID', da.idOption,
+        'lancement', da.dateLancement,
+        'fin', da.dateFin,
+        'duree', da.duree,
+        'prix', da.prix,
+        'option', op.nomOption,
+        'prixBase', op.prixOffre,
+        'dureeBase', op.dureeOption
+    )::TEXT, ';') FILTER (WHERE da.idOption IS NOT NULL 
+      AND da.dateLancement IS NOT NULL 
+      AND da.dateFin IS NOT NULL 
+      AND da.duree IS NOT NULL 
+      AND da.prix IS NOT NULL 
+      AND op.nomOption IS NOT NULL 
+      AND op.prixOffre IS NOT NULL 
+      AND op.dureeOption IS NOT NULL) 
+      AS historiqueOption
+    FROM _facturation f
+    LEFT JOIN _offre o ON f.idOffre = o.idOffre
+    LEFT JOIN _pro p ON o.idU = p.idU
+    LEFT JOIN _habite h ON p.idU = h.idU
+    LEFT JOIN _historiqueStatut ht ON o.idOffre = ht.idOffre
+    LEFT JOIN _option_offre oo ON o.idOffre = oo.idOffre
+    LEFT JOIN _dateOption da ON oo.idOption = da.idOption
+    LEFT JOIN _option op ON oo.nomOption = op.nomOption
+    GROUP BY 
+    f.idFacture,
+    f.dateFactue,
+    o.nom,
+    p.denomination,
+    h.numeroRue,
+    h.rue,
+    h.ville,
+    h.codePostal,
+    h.pays;
 
 CREATE OR REPLACE FUNCTION ajout_pro_prive()
 RETURNS TRIGGER AS $$

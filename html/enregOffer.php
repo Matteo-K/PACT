@@ -67,18 +67,14 @@ if (isset($_POST['pageBefore'])) {
   switch ($pageBefore) {
     case 1:
       // Gestion des options d'offre
-      
-
-      // ajout dans à la une si coché
+      $options = [];
       if (isset($_POST["aLaUne"])) {
-        $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'ALaUne')");
-        $stmt->execute([$idOffre]);
+        $options[] = "ALaUne";
       }
-      // ajout dans enRelief si coché
       if (isset($_POST["enRelief"])) {
-        $stmt = $conn->prepare("INSERT INTO pact._option_offre (idoffre, nomoption) VALUES (?, 'EnRelief')");
-        $stmt->execute([$idOffre]);
+        $options[] = "EnRelief";
       }
+
       break;
 
     case 2:
