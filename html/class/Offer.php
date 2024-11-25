@@ -1,4 +1,6 @@
 <?php
+require_once "../config.php";
+
 class Offer {
   private $idUser;
   private $idOffre;

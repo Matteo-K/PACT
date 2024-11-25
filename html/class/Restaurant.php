@@ -1,4 +1,5 @@
 <?php
+require_once "../config.php";
 require_once "Offer.php";
 
 class Restaurant extends Offer {
