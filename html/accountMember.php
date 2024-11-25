@@ -44,7 +44,7 @@
         catch (Exception $e) {
             // $errors[] = "Erreur lors de la vérification du pseudo : " . htmlspecialchars($e->getMessage());
         }
-        print_r($stmt);
+        print_r($stmt->fetchColumn());
         
 
         // OK
@@ -62,7 +62,7 @@
             // $errors[] = "Erreur lors de la vérification de l'adresse mail : " . htmlspecialchars($e->getMessage());
         }
 
-        print_r($stmt);
+        print_r($stmt->fetchColumn());
 
 
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
