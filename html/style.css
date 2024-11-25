@@ -2798,6 +2798,10 @@ div.ligne6 > label {
     font-size: 20px;
   }
 
+  .creation-compte .ligne7 > input {
+    width: 40px;
+    height: auto;
+  }
 
   .creation-compte div.ligne2 > label,
   div.ligne3 > label {
