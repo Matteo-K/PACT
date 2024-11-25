@@ -1,5 +1,23 @@
 <?php
 
+// Récupérer l'heure actuelle et le jour actuel
+setlocale(LC_TIME, 'fr_FR.UTF-8');
+date_default_timezone_set('Europe/Paris');
+
+// Récupérer le jour actuel en français avec la classe DateTime
+$currentDay = (new DateTime())->format('l'); // Récupère le jour en anglais
+
+// Tableau pour convertir les jours de la semaine de l'anglais au français
+$daysOfWeek = [
+    'Monday'    => 'Lundi',
+    'Tuesday'   => 'Mardi',
+    'Wednesday' => 'Mercredi',
+    'Thursday'  => 'Jeudi',
+    'Friday'    => 'Vendredi',
+    'Saturday'  => 'Samedi',
+    'Sunday'    => 'Dimanche'
+];
+
 // Convertir le jour actuel en français
 $currentDay = $daysOfWeek[$currentDay];
 $currentTime = new DateTime(date('H:i'));
