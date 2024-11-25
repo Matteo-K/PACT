@@ -130,7 +130,7 @@ if (isset($_POST['pageBefore'])) {
 
       //On remet les anciennes images gardées dans la BDD et sur le serveur 
       foreach ($anciennesImagesRestantes as $num => $lien) {
-        move_uploaded_file($lien, $dossierTemp.$num);
+        rename($lien, $dossierTemp.$num);
         $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
 
         $fileExtension = strtolower(pathinfo($lien)['extension']);
