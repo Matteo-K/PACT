@@ -59,7 +59,7 @@ if ($categorie["_spectacle"]) {
 
                 <label class="ligne2">En heures : </label>
                 <input type="time" class="nb" name="nbMinutesHeure" placeholder="0">
-                <label>h</label>
+                <label class="ligne3">h</label>
             </div>
         </div>
     </div>
