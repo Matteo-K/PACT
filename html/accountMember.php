@@ -68,8 +68,10 @@
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if(empty($errors)) {
             // Préparer la requête d'insertion
-            $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url) VALUES ($pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo)");
-            $stmt->execute();
+            $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            // Exécuter la requête en passant les paramètres
+            $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo]);
 
             // Redirection vers une page de succès
             header('Location: login.php');
