@@ -267,7 +267,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
       element.addEventListener("change", () => {
         if (element.value < 1) {
           element.value = 1;
-        } elseif (element.value > 4) {
+        } else if (element.value > 4) {
           element.value = 4;
         }
       });
