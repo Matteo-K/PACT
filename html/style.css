@@ -2527,6 +2527,10 @@ tbody td:last-child {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+#show >div[class="classDivShow1"]> label{
+  margin-top: 10px;
+}
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
