@@ -52,10 +52,8 @@
         try {
             $stmt = $conn->prepare("SELECT * FROM pact.membre");
             $stmt->execute([$mail]);
-            "<pre>";
             echo $mail ;
             print_r($stmt->fetchAll(PDO::FETCH_ASSOC));
-            "</pre";
             // if ($stmt->fetchColumn() > 0) {
             //     $errors[] = "L'adresse mail existe déjà.";
             // }
