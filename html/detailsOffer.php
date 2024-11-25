@@ -51,14 +51,14 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$result) {
     // Recherche dans les restaurants, activités, spectacles, et visites
-    $types = ['restaurants', 'activites', 'spectacles', 'visites'];
-    foreach ($types as $type) {
+    $types = ['restaurants' => 'restaurant', 'activites' => 'activité', 'spectacles' => 'spectacle', 'visites' => 'visite'];
+    foreach ($types as $type => $key) {
         $stmt = $conn->prepare("SELECT * FROM pact.$type WHERE idoffre = :idoffre");
         $stmt->bindParam(':idoffre', $idOffre);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
-            $typeOffer = substr($type, 0, -1);
+            $typeOffer = $key;
             break; // Sortir de la boucle si une offre est trouvée
         }
     }
