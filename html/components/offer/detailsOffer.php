@@ -277,9 +277,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         });
 
         function loadImage(url){
-            const reader = new FileReader();
-            reader.onload = configImage(url, [], "");
-            reader.readAsDataURL(file);
+            configImage(url, [], "");
         }
 
         function afficheImage(event) {
