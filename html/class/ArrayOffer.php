@@ -89,9 +89,10 @@ class ArrayOffer {
             break;
         }
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
-          $offre['idu'], $offre['nom'], $offre['resume'],
+          $offre['idu'], $offre['nom'], 
+          $offre['description'], $offre['resume'],
           explode(",", trim($offre['listimage'], "{}")),
-          explode(",", trim($offre['all_tags'], "{}")),
+          explode(",", trim(isset($offre['all_tags']) ? $offre['all_tags'] : '', "{}")),
           $offre['ville'],
           $offre['statut'],
           transformerHoraires($offre['listhorairemidi']),
