@@ -49,18 +49,31 @@
 
 
         // Vérifier si le numéro de SIREN existe déjà dans la base de données
+        // try {
+        //     if ($secteur == 'prive') {
+        //         $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
+        //         $stmt->execute([$siren]);
+        //         if ($stmt->fetchColumn() > 0) {
+        //             $errors[] = "Le numéro de SIREN existe déjà.";
+        //         }
+        //     }
+        // } 
+        
+        // catch (Exception $e) {
+            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+        // }
+
         try {
-            if ($secteur == 'prive') {
-                $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
-                $stmt->execute([$siren]);
-                if ($stmt->fetchColumn() > 0) {
-                    $errors[] = "Le numéro de SIREN existe déjà.";
-                }
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPrive WHERE siren = ?");
+            $stmt->execute([$siren]);
+
+            if ($stmt->fetchColumn() > 0) {
+                $errors[] = "Le numéro de SIREN existe déjà.";
             }
         } 
         
         catch (Exception $e) {
-            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+            $errors[] = "Erreur lors de la vérification du SIREN.";
         }
 
         
@@ -81,6 +94,13 @@
         }
 
 
+
+        // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
+        if (!empty($errors)) {
+            $_SESSION['errors'] = $errors;
+            header('Location: accountPro.php');
+            exit;
+        }
 
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if(empty($errors)) {
