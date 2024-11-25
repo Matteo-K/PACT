@@ -63,6 +63,23 @@
             // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
         }
 
+        
+
+        // Vérifier si l'adresse mail existe déjà dans la base de données
+        try {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact.proPublic WHERE mail = ? UNION SELECT COUNT(*) FROM pact.proPrive WHERE mail = ?");
+            $stmt->execute([$mail]);
+            $count = $stmt->fetchColumn();
+
+            if ($count > 0) {
+                $errors[] = "L'adresse mail existe déjà.";
+            }
+        } 
+        
+        catch (Exception $e) {
+            // $errors[] = "Erreur lors de la vérification: " . htmlspecialchars($e->getMessage());
+        }
+
 
 
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion

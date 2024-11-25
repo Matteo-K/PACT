@@ -59,6 +59,7 @@ class ArrayOffer {
 
     if ($results) {
       foreach ($results as $offre) {
+
         $this->nbOffer ++;
         switch ($offre['categorie']) {
           case 'Restaurant':
