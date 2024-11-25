@@ -2506,8 +2506,8 @@ tbody td:last-child {
 }
 
 #show>div>label[class="labelShow1"] {
-  margin-left: 20px;
-  margin-right: 10px;
+  margin-left: 15px;
+  margin-right: 5px;
 }
 
 
@@ -2535,6 +2535,10 @@ tbody td:last-child {
 #show>div[class="classDivShow1"]>div {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+#show>div[class="classDivShow1"]>div >label[class="ligne4"]{
+  margin-left: 15px;
+
 }
 
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
