@@ -151,7 +151,7 @@ footer{
             </thead>
             <tbody>
                 <?php
-                    $total=$tarif['option']*$tarif['prixBase'];
+                    $total=intval($tarif['option'])*intval($tarif['prixBase']);
                     if ($results[0]['historiqueoption']) {
                         
                         foreach ($option as $key => $value) {
