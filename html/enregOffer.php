@@ -126,13 +126,13 @@ if (isset($_POST['pageBefore'])) {
           $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
         }
 
-        var_dump($anciennesImagesRestantes);
+        var_dump($anciennesImagesTotal);
 
 
         foreach ($anciennesImagesTotal as $imgA) {
           // Supprime l'image du dossier
-          if (file_exists($imgA['url'])) {
-              unlink($imgA['url']);
+          if (file_exists($imgA)) {
+              unlink($imgA);
           }
         }
 
