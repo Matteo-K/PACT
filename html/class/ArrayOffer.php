@@ -117,12 +117,18 @@ class ArrayOffer {
   public function recherche($idUser_, $typeUser_, $recherche) {
     $array = $this->filtre($idUser_, $typeUser_);
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
-      return $this->offreContientTag($item->getData()["tags"], $recherche)                     // tag
-        || strpos(strtolower($item->getData()["categorie"]), strtolower($recherche)) !== false // catégorie
-        || strpos(strtolower($item->getData()["nomOffre"]), strtolower($recherche)) !== false // nom Offre
-        || strpos(strtolower($item->formaterAdresse()), strtolower($recherche)) !== false;     // localisation
+
+        $categorie = $item->getData()["categorie"] ?? '';
+        $nomOffre = $item->getData()["nomOffre"] ?? '';
+        $adresse = $item->formaterAdresse() ?? '';
+
+        return $this->offreContientTag($item->getData()["tags"], $recherche) // tag
+            || strpos(strtolower($categorie), strtolower($recherche)) !== false // catégorie
+            || strpos(strtolower($nomOffre), strtolower($recherche)) !== false  // nom Offre
+            || strpos(strtolower($adresse), strtolower($recherche)) !== false;  // localisation
     });
-  }
+}
+
 
   public function offreContientTag($tags, $recherche) {
     foreach ($tags as $tag) {
