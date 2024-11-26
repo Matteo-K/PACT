@@ -316,6 +316,10 @@ header>div>a>div {
   align-items: center;
 }
 
+.menuHeader{
+  display: flex;
+}
+
 /* Style général du menu de profil */
 #profileMenu {
   color: #fff;
