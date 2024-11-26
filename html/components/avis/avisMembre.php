@@ -4,8 +4,8 @@ $stmt = $conn->prepare("
     FROM pact.avis a
     JOIN pact.membre m ON m.pseudo = a.pseudo
     LEFT JOIN pact.reponse r ON r.idc_avis = a.idc
-    LEFT JOIN pact.propublic ppub ON ppub.idU = r.idPro
-    LEFT JOIN pact.proprive ppriv ON ppriv.idU = r.idPro
+    LEFT JOIN pact.propublic ppub ON ppub.idu = r.idPro
+    LEFT JOIN pact.proprive ppriv ON ppriv.idu = r.idPro
     WHERE a.idoffre = ? 
     ORDER BY a.datepublie ASC
 ");
