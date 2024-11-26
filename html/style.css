@@ -2231,7 +2231,10 @@ tbody td:last-child {
   width: 30%;
 }
 
-
+.infoUser > p{
+  margin-left: 0.3em;
+  font-weight: bold;
+}
 
 .user >div> img{
   width:2.2em;
@@ -2249,13 +2252,14 @@ tbody td:last-child {
   justify-content: center;
 }
 .noteEtoile > p{
-  margin-left: 1em;
+  font-size: 0.8em;
+  margin-left: 0.5em;
 }
 
 
 .noteEtoile > .star {
-  width: 1.5em;
-  height:1.5em;
+  width: 1.2em;
+  height:1.2em;
 }
 
 .starAvisIncolore{
