@@ -325,7 +325,7 @@ header>div>a>div {
   top: 0;
   right: 0;
   height: 100%;
-  width: 100%;
+  width: auto;
   /* Dégradé du haut vers le bas */
   transform: translateX(100%);
   transition: transform 1s ease-in-out;
@@ -337,12 +337,13 @@ header>div>a>div {
 .menuHeader{
   background: linear-gradient(to bottom, #034d7c, #1ca4ed);
   display: flex;
+  width: 276px;
   flex-direction: column;
 }
 
 .factue{
   height: 100%;
-  width: 100%;
+  width: calc(100vw - 286px);
   background-color: var(--background) ;
 }
 
@@ -1443,6 +1444,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
   text-decoration: none;
   color: #000;
+  cursor: pointer;
 }
 
 @media (max-width: 700px) {

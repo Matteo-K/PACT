@@ -90,6 +90,8 @@ class ArrayOffer {
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
           $offre['idu'], $offre['nom'], 
           $offre['description'], $offre['resume'],
+          $offre['mail'], $offre['telephone'],
+          $offre['urlsite'], $offre['datecrea'],
           explode(",", trim($offre['listimage'], "{}")),
           explode(",", trim(isset($offre['all_tags']) ? $offre['all_tags'] : '', "{}")),
           $offre['ville'],
@@ -120,12 +122,14 @@ class ArrayOffer {
 
         $categorie = $item->getData()["categorie"] ?? '';
         $nomOffre = $item->getData()["nomOffre"] ?? '';
+        $gammeDePrix = $item->getData()["gammeDePrix"] ?? '';
         $adresse = $item->formaterAdresse() ?? '';
 
         return $this->offreContientTag($item->getData()["tags"], $recherche) // tag
             || strpos(strtolower($categorie), strtolower($recherche)) !== false // catégorie
             || strpos(strtolower($nomOffre), strtolower($recherche)) !== false  // nom Offre
-            || strpos(strtolower($adresse), strtolower($recherche)) !== false;  // localisation
+            || strpos(strtolower($adresse), strtolower($recherche)) !== false  // localisation
+            || $gammeDePrix === $recherche;  // gamme de prix
     });
 }
 

@@ -56,14 +56,14 @@
                 <div>
                     <div>
                         <label for="star1" class="blocStar">
-                            <input type="checkbox" name="star1" id="star1" checked>
+                            <input type="checkbox" name="star1" id="star1">
                             <span class="checkmark"></span>
                             <div class="star"></div>
                         </label>
                     </div>
                     <div>
                         <label for="star2" class="blocStar">
-                            <input type="checkbox" name="star2" id="star2" checked>
+                            <input type="checkbox" name="star2" id="star2">
                             <span class="checkmark"></span>
                             <div class="star"></div>
                             <div class="star"></div>
@@ -71,7 +71,7 @@
                     </div>
                     <div>    
                         <label for="star3" class="blocStar">
-                            <input type="checkbox" name="star3" id="star3" checked>
+                            <input type="checkbox" name="star3" id="star3">
                             <span class="checkmark"></span>
                             <div class="star"></div>
                             <div class="star"></div>
@@ -80,7 +80,7 @@
                     </div>
                     <div>
                         <label for="star4" class="blocStar">
-                            <input type="checkbox" name="star4" id="star4" checked>
+                            <input type="checkbox" name="star4" id="star4">
                             <span class="checkmark"></span>
                             <div class="star"></div>
                             <div class="star"></div>
@@ -90,7 +90,7 @@
                     </div>
                     <div>
                         <label for="star5" class="blocStar">
-                            <input type="checkbox" name="star5" id="star5" checked>
+                            <input type="checkbox" name="star5" id="star5">
                             <span class="checkmark"></span>
                             <div class="star"></div>
                             <div class="star"></div>
@@ -138,14 +138,14 @@
                     <div>
                         <label for="ouvert">
                             Ouvert
-                            <input type="checkbox" name="statut" id="ouvert" checked>
+                            <input type="checkbox" name="statut" id="ouvert">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div>
                         <label for="ferme">
                             Fermé
-                            <input type="checkbox" name="statut" id="ferme" checked>
+                            <input type="checkbox" name="statut" id="ferme">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -156,35 +156,35 @@
                 <ul>
                     <li>
                         <label for="Visite">
-                            <input type="checkbox" name="categorie" id="Visite" checked>
+                            <input type="checkbox" name="categorie" id="Visite">
                             <span class="checkmark"></span>
                             Visite
                         </label>
                     </li>
                     <li>
                         <label for="Activite">
-                            <input type="checkbox" name="categorie" id="Activite" checked>
+                            <input type="checkbox" name="categorie" id="Activite">
                             <span class="checkmark"></span>
                             Activité
                         </label>
                     </li>
                     <li>
                         <label for="Spectacle">
-                            <input type="checkbox" name="categorie" id="Spectacle" checked>
+                            <input type="checkbox" name="categorie" id="Spectacle">
                             <span class="checkmark"></span>
                             Spectacle
                         </label>
                     </li>
                     <li>
                         <label for="Restauration">
-                            <input type="checkbox" name="categorie" id="Restauration" checked>
+                            <input type="checkbox" name="categorie" id="Restauration">
                             <span class="checkmark"></span>
                             Restauration
                         </label>
                     </li>
                     <li>
                         <label for="Parc">
-                            <input type="checkbox" name="categorie" id="Parc" checked>
+                            <input type="checkbox" name="categorie" id="Parc">
                             <span class="checkmark"></span>
                             Parc d’attractions
                         </label>

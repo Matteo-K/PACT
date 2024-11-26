@@ -52,12 +52,6 @@ $arrayOffer = [];
         $offres = new ArrayOffer();
         ?>
         <section class="searchoffre">
-            <?php if (empty($search)) {
-                $countOffer = $offres->displayArrayCard($offres->filtre($idUser, $typeUser), $typeUser, ($page-1)*$nbElement, $nbElement); 
-            } else {
-                $countOffer = $offres->displayArrayCard($offres->recherche($idUser, $typeUser, $search), $typeUser, ($page-1)*$nbElement, $nbElement); 
-            }
-            ?>
         </section>
         <section id="pagination">
             <?php $lien = "search.php?" . ($recherche != "" ? $recherche : ""); ?>
@@ -120,9 +114,9 @@ $arrayOffer = [];
     <?php } else { ?>
         <div id="offers-data" data-offers='<?php echo json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>'></div>
     <?php } ?>
+    <div id="user-data" data-user='<?php echo $typeUser ?>'></div>
     <script src="js/sortAndFilter.js"></script>
     <script>
-        
         document.addEventListener("DOMContentLoaded", () => {
             
             // Acualise l'heure actuelle

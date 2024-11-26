@@ -5,11 +5,34 @@
  * afin de trier et filtrer les offres de la page de recherche
  */
 
-
+let userType, arrayOffer;
 document.addEventListener('DOMContentLoaded', function() {
   const offersDataElement = document.getElementById('offers-data');
-  const arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
-  console.log(arrayOffer);
+  const userDataElement = document.getElementById('user-data');
+  arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
+  arrayOffer = Object.values(arrayOffer);
+
+  userType = userDataElement.getAttribute('data-user');
+
+  // Optention des pages avec le get
+  let page;
+  let nbElement = 15;
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.has('page') && params.get('page').trim() !== '') {
+      page = params.get('page');
+  } else {
+      page = 0;
+  }
+
+  displayOffers(arrayOffer, (nbElement-1) * page, nbElement);
+
+  document.querySelectorAll(".searchoffre form").forEach(form => {
+    form.addEventListener("click", (event) => {
+      event.preventDefault();
+      form.submit();
+    });
+  });
 });
 
 
@@ -63,7 +86,54 @@ const heureFin = document.querySelector("#heureFin");
 /* ### Fonction ### */
 
 // Tris
+function selectSort(array) {
+  const sortFunctions = {
+    "radBtnEnAvant": sortEnAvant,
+    "radBtnNoteCroissant": sortNoteCroissant,
+    "radBtnNoteDecroissant": sortNoteDecroissant,
+    "radBtnprixCroissant": sortprixCroissant,
+    "radBtnPrixDecroissant": sortPrixDecroissant,
+    "radBtnDateRecent": sortDateRecent,
+    "radBtnDateAncien": sortDateAncien
+  };
 
+  for (let key in sortFunctions) {
+    if (document.getElementById(key).checked) {
+      array = sortFunctions[key](array);
+      break;
+    }
+  }
+
+  return array;
+}
+
+function sortEnAvant(array) {
+  return array;
+}
+
+function sortNoteCroissant(array) {
+  return array;
+}
+
+function sortNoteDecroissant(array) {
+  return array;
+}
+
+function sortprixCroissant(array) {
+  return array;
+}
+
+function sortPrixDecroissant(array) {
+  return array;
+}
+
+function sortDateRecent(array) {
+  return array;
+}
+
+function sortDateAncien(array) {
+  return array;
+}
 
 // Filtres
 
@@ -98,49 +168,186 @@ function filtrerParNotes(offers) {
   return offers.filter(offer => notesSelection.includes(offer.note));
 }
 
+function sortAndFilter(array, elementStart, nbElement) {
+  // Filtre
 
-// Fonction de filtre par prix
-function filtrerParPrix(offers) {
-  return offers.filter(offer => {
-    const prix = offer.prix;
-    return prix >= parseInt(selectPrixMin.value) && prix <= parseInt(selectPrixMax.value);
+  // Tri
+  array = selectSort(array);
+
+  // Affiche
+  displayOffers(array, (nbElement-1) * page, nbElement);
+}
+
+/* ### Affichage des offres ### */
+
+function displayOffers(array, elementStart, nbElement) {
+  if (array.length != 0) {
+    let offers = array.slice(elementStart, nbElement);
+    offers.forEach(element => {displayOffer(element)});
+  } else {
+    const bloc = document.querySelector(".searchoffre");
+
+    let pasOffre = document.createElement("p");
+    pasOffre.textContent = "Aucune offre trouvée";
+    bloc.appendChild(pasOffre);
+  }
+}
+
+function displayOffer(offer) {
+  const bloc = document.querySelector(".searchoffre");
+
+  let form = document.createElement("form");
+  form.classList.add("searchA");
+  form.setAttribute("action", "/detailsOffer.php");
+  form.setAttribute("method", "post");
+
+  let input = document.createElement("input");
+  input.setAttribute("type", "hidden");
+  input.setAttribute("name", "idoffre");
+  input.setAttribute("value", offer.idOffre);
+
+  form.appendChild(input);
+  form.appendChild(createCard(offer));
+
+  bloc.appendChild(form);
+}
+
+function createCard(offer) {
+  let card = document.createElement("div");
+  card.classList.add("carteOffre");
+
+  // Image principale
+  let img = document.createElement("img");
+  img.classList.add("searchImage");
+  if (offer.images.length == 0) {
+    img.setAttribute("alt", "Pas_de_photo_attribué_à_l'offre");
+  } else {
+    img.setAttribute("alt", "photo_principal_de_l'offre");
+    img.setAttribute("src", offer.images[0]);
+  }
+  card.appendChild(img);
+
+  let infoOffre = document.createElement("div");
+  infoOffre.classList.add("infoOffre");
+
+  infoOffre.appendChild(proStatut(offer));
+  infoOffre.appendChild(localisation(offer));
+  infoOffre.appendChild(ajouterTag(offer));
+
+  let resume = document.createElement("p");
+  resume.classList.add("searchResume");
+  if (offer.resume != "") {
+    resume.textContent = offer.resume;
+  } else {
+    resume.textContent = "Pas de resume saisie";
+  }
+
+  infoOffre.appendChild(resume);
+  infoOffre.appendChild(note(offer));
+
+  card.appendChild(infoOffre);
+  card.appendChild(avisSearch(offer));
+
+  return card;
+}
+
+function proStatut(offer) {
+  let proStatut = document.createElement("div");
+  proStatut.classList.add("ProStatut");
+
+  // Titre de l'offre
+  let titre = document.createElement("p");
+  titre.classList.add("searchTitre");
+  titre.textContent = offer.nomOffre;
+
+  proStatut.appendChild(titre);
+
+  // statut de l'offre si professionnel
+  if (userType == "pro_public" || userType == "pro_prive") {
+
+    let span = document.createElement("span");
+    span.classList.add("StatutAffiche");
+    if (offer.statut != 'actif') {
+      span.classList.add("horslgnOffre");
+      span.textContent = "Hors-Ligne";
+    } else {
+      span.textContent = "En-Ligne";
+    }
+
+    proStatut.appendChild(span);
+  }
+  return proStatut;
+}
+
+function localisation(offer) {
+  let gras = document.createElement("strong");
+
+  let gammeDePrix = "";
+  if (typeof offer.gammeDePrix !== 'undefined') {
+    gammeDePrix = offer.gammeDePrix;
+  }
+
+  let p = document.createElement("p");
+  p.textContent = offer.ville + " " + gammeDePrix + " ⋅ " + offer.categorie;
+
+  gras.appendChild(p);
+
+  return gras;
+}
+
+function ajouterTag(offer) {
+  let tags = document.createElement("div");
+  tags.classList.add("searchCategorie");
+
+  offer.tags.forEach(element => {
+
+    let tag = document.createElement("span");
+    tag.classList.add("searchTag");
+    tag.textContent = element.replace("_", " ");
+    tags.appendChild(tag);
   });
+
+  return tags;
 }
 
+function note(offer) {
+  let section = document.createElement("section");
+  section.classList.add("searchNote");
 
-
-// Fonction de filtre par lieux
-function filtrerParLieux(offers) {
-  const lieuxSelection = [];
-}
-
-
-// Fonction de filtre par statuts
-function filtrerParStatuts(offers) {
-  const statutsSelection = [];
-
-  if (chkBxOuvert.checked) statutsSelection.push("Ouvert");
-  if (chkBxFerme.checked) statutsSelection.push("Ferme");
-
-  return offers.filter(offer => statusSelection.includes(offer.note));
-}
-
-
-// Fonction de filtre par période
-function filtrerParPeriode(offers) {
-  const periodeSelection = [];
-}
-
-
-// Fonction d'affichage des offres filtrées
-function displayOffers($array) {
+  let note = document.createElement("p");
+  note.textContent = offer.noteAvg;
+  section.appendChild(note);
   
+  let ouverture = document.createElement("p");
+  ouverture.id = "couleur-" + offer.idOffre;
+  if (offer.ouverture == "EstOuvert") {
+    ouverture.classList.add("searchStatutO");
+    ouverture.textContent = "Ouvert";
+  } else {
+    ouverture.classList.add("searchStatutF");
+    ouverture.textContent = "Fermé";
+  }
+  section.appendChild(ouverture);
+
+  return section;
 }
 
-function displayOffer($offer) {
-  document.createElement("a");
-}
+function avisSearch(offer) {
+  let div = document.createElement("div");
+  div.classList.add("searchAvis");
 
+  let titre = document.createElement("p");
+  titre.classList.add("avisSearch");
+  titre.textContent = "Les avis les plus récent :";
+
+  let tempPasAvis = document.createElement("p");
+  tempPasAvis.textContent = "Pas d'avis";
+
+  div.appendChild(titre);
+  div.appendChild(tempPasAvis);
+
+  return div;
+}
 
 
 /* ### Evènements ### */
@@ -148,9 +355,8 @@ function displayOffer($offer) {
 // Tris
 
 
-// Filtres
-chkBxVisite.addEventListener()
-chkBxActivite.addEventListener()
-chkBxSpectacle.addEventListener()
-chkBxRestauration.addEventListener()
-chkBxParc.addEventListener()
+chkBxVisite.addEventListener("click", () => {});
+chkBxActivite.addEventListener("click", () => {});
+chkBxSpectacle.addEventListener("click", () => {});
+chkBxRestauration.addEventListener("click", () => {});
+chkBxParc.addEventListener("click", () => {});

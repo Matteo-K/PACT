@@ -56,6 +56,10 @@ class Offer {
   private $resume;
   private $description;
   private $categorie;
+  private $mail;
+  private $telephone;
+  private $urlSite;
+  private $dateCreation;
   private $noteAvg;
   private $images;
   private $tags;
@@ -118,23 +122,27 @@ class Offer {
     }
   }
 
-  // TODO
-  public function setData($idOffre_, $idUser_, $nomOffre_, $description_, $resume_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $horaireMidi_, $horaireSoir_) {
+  public function setData($idOffre_, $idUser_, $nomOffre_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $horaireMidi_, $horaireSoir_) {
     $this->idOffre = $idOffre_;
     $this->statut = $statut_;
     $this->idUser = $idUser_;
-    $this->nomOffre = $nomOffre_;
-    $this->resume = $resume_;
-    $this->description = $description_;
+    $this->nomOffre = empty($nomOffre_) ? "Pas de nom" : $nomOffre_;
+    $this->resume = empty($resume_) ? "Résumé" : $resume_;
+    $this->description = empty($description_) ? "description de l'offre" : $description_;
     $this->images = $images_;
     $this->tags = $tags_;
-    $this->ville = $ville_;
-    $this->pays = $pays_;
+    echo $ville_;
+    $this->ville = empty($ville_) ? "ville" : $ville_;
+    $this->pays = empty($pays_) ? "Pays" : $pays_;
     $this->numerorue = $numerorue_;
     $this->rue = $rue_;
     $this->codePostal = $codePostal_;
     $this->horaireMidi = $horaireMidi_;
     $this->horaireSoir = $horaireSoir_;
+    $this->mail = empty($mail_) ? "adresse@mail.com" : $mail_;
+    $this->telephone = $telephone_;
+    //$this->urlsite = $urlsite_;
+    $this->dateCreation = $dateCreation_;
   }
 
   public function getData() {
@@ -147,6 +155,10 @@ class Offer {
       "nomOffre" => $this->nomOffre,
       "resume" => $this->resume, 
       "description" => $this->description,
+      "mail" => $this->mail,
+      "telephone" => $this->telephone,
+      "urlSite" => $this->urlsite,
+      "dateCreation" => $this->dateCreation,
       "categorie" => $this->categorie, 
       "noteAvg" => $this->noteAvg,
       "images" => $this->images, 
@@ -157,7 +169,8 @@ class Offer {
       "rue" => $this->rue,
       "codePostal" => $this->codePostal,
       "horaireMidi" => $this->horaireMidi,
-      "horaireSoir" => $this->horaireSoir
+      "horaireSoir" => $this->horaireSoir,
+      "ouverture" => statutOuverture($this->horaireSoir, $this->horaireMidi)
     ];
   }
 
