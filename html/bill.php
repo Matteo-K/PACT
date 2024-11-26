@@ -6,7 +6,7 @@ require_once "config.php";
 
 
 $idOffre =2;
-$date = NEW DateTime('2024-10-01');
+$date ='2024-10-01';
 
 $stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idoffre = $idOffre AND datefactue = $date");
 $stmt->execute();
