@@ -140,7 +140,7 @@ class Offer {
     $this->horaireSoir = $horaireSoir_;
     $this->mail = empty($mail_) ? "adresse@mail.com" : $mail_;
     $this->telephone = $telephone_;
-    $this->urlsite = empty($urlsite_) ? "Pas de site" : $urlsite_;
+    //$this->urlsite = $urlsite_;
     $this->dateCreation = $dateCreation_;
   }
 
@@ -156,7 +156,7 @@ class Offer {
       "description" => $this->description,
       "mail" => $this->mail,
       "telephone" => $this->telephone,
-      "urlSite" => $this->urlsite,
+      //"urlSite" => $this->urlsite,
       "dateCreation" => $this->dateCreation,
       "categorie" => $this->categorie, 
       "noteAvg" => $this->noteAvg,
