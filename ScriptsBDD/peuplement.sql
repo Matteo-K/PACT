@@ -372,19 +372,19 @@ INSERT INTO _menu(idOffre, menu)
 VALUES (3,'./img/3-menu.png');
 
 INSERT INTO _commentaire (idU,content,datePublie)
-VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.',CURRENT_DATE),
-       (5,'Je recommande ce parc d’attractions.',CURRENT_DATE),
-       (5,'J’ai adoré cette visite.',CURRENT_DATE),
-       (5,'À faire.',CURRENT_DATE),
-       (5,'Spectacle inoubliable.',CURRENT_DATE),
-       (5,'Mais quelle humoriste donner-lui un oscar !',CURRENT_DATE),
-       (5,'la cuisson de la viande était parfaite.',CURRENT_DATE),
-       (5,'Je recommande.',CURRENT_DATE),
-       (5,'Activité ennuyante.',CURRENT_DATE),
-       (5,'Personnel désagréable.',CURRENT_DATE),
-       (4,'Merci beaucoup, à bientôt.',CURRENT_DATE),
-       (3,'Merci beaucoup, à bientôt.',CURRENT_DATE),
-       (3,'Avec des personnes comme vous, compliqué de la rendre intéressante.',CURRENT_DATE);
+VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.',CURRENT_TIMESTAMP),
+       (5,'Je recommande ce parc d’attractions.',CURRENT_TIMESTAMP),
+       (5,'J’ai adoré cette visite.',CURRENT_TIMESTAMP),
+       (5,'À faire.',CURRENT_TIMESTAMP),
+       (5,'Spectacle inoubliable.',CURRENT_TIMESTAMP),
+       (5,'Mais quelle humoriste donner-lui un oscar !',CURRENT_TIMESTAMP),
+       (5,'la cuisson de la viande était parfaite.',CURRENT_TIMESTAMP),
+       (5,'Je recommande.',CURRENT_TIMESTAMP),
+       (5,'Activité ennuyante.',CURRENT_TIMESTAMP),
+       (5,'Personnel désagréable.',CURRENT_TIMESTAMP),
+       (4,'Merci beaucoup, à bientôt.',CURRENT_TIMESTAMP),
+       (3,'Merci beaucoup, à bientôt.',CURRENT_TIMESTAMP),
+       (3,'Avec des personnes comme vous, compliqué de la rendre intéressante.',CURRENT_TIMESTAMP);
        
 INSERT INTO _avis(idC,idOffre,note,companie,mois,annee,titre)
 VALUES (1,1,5,'solo','novembre','2024','ouai pas mal'),
@@ -415,7 +415,7 @@ VALUES (1,'2024-11-01',6),
        (2,'2024-11-15',NULL),
        (3,'2024-11-10',NULL),
        (4,'2024-11-01',NULL),
-       (5,'2024-11-01',6),
+       (5,'2024-11-01',NULL),
        (1,'2024-10-01',6),
        (1,'2024-10-15',17),
        (2,'2024-10-01',4),

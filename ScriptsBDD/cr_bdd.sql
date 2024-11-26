@@ -420,7 +420,7 @@ CREATE TABLE _commentaire(
   idU INT NOT NULL,
   idC SERIAL PRIMARY KEY,
   content VARCHAR(1000) NOT NULL,
-  datePublie DATE NOT NULL,
+  datePublie TIMESTAMP NOT NULL,
   CONSTRAINT _commentaire_fk_idU
       FOREIGN KEY (idU)
       REFERENCES _nonAdmin(idU)
@@ -741,7 +741,8 @@ CREATE VIEW facture AS
         'Lancement', ht.dateLancement,
         'Duree', ht.dureeEnLigne
     )::TEXT, ';') FILTER (WHERE ht.idStatut IS NOT NULL 
-      AND ht.dateLancement IS NOT NULL) 
+      AND ht.dateLancement IS NOT NULL
+      AND ht.dureeEnLigne IS NOT NULL) 
       AS historiqueStatut,
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'ID', da.idOption,

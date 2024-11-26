@@ -112,19 +112,27 @@ if (isset($_POST['pageBefore'])) {
 
       if ($anciennesImagesRestantes != []) {
 
+        if (file_exists($dossierTemp)) {
+          rmdir($dossierTemp);
+        }
+
         mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
 
-        
+        var_dump($anciennesImagesRestantes);
+
         //On déplace les anciennes images conservées vers un dossier temporaire
         foreach ($anciennesImagesRestantes as $num => $lien) {
           move_uploaded_file($lien, $dossierTemp . $num . pathinfo($lien)['extension']);
           $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
         }
 
+        var_dump($anciennesImagesTotal);
+
+
         foreach ($anciennesImagesTotal as $imgA) {
           // Supprime l'image du dossier
-          if (file_exists($imgA['url'])) {
-              unlink($imgA['url']);
+          if (file_exists($imgA)) {
+              unlink($imgA);
           }
         }
 
