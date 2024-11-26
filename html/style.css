@@ -2599,7 +2599,7 @@ tbody td:last-child {
 }
 
 #park{
-  background-color: pink;
+  margin-bottom: 20px;
 }
 
 #park >div[class="ageMinP"]{
@@ -2608,11 +2608,18 @@ tbody td:last-child {
 }
 
 #park > div[class="ageMinP"]> input[type="number"]{
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 #park > div[class="NbEtPrixPark"]{
   display: flex;
   flex-direction: row;
+}
+#park > div[class="NbEtPrixPark"]>input[class="nbAttrac"]{
+  margin-right: 15px;
+}
+#park > div[class="ageMinP"]>label[class="labelGauche"], #park>div[class="NbEtPrixPark"]>label[class="labelGauche"]{
+  margin-right: 10px
+  ;
 }
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */

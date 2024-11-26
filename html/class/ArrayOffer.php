@@ -117,21 +117,17 @@ class ArrayOffer {
   public function recherche($idUser_, $typeUser_, $recherche) {
     $array = $this->filtre($idUser_, $typeUser_);
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
-      print_r($item->getData()["tags"]);
       return $this->offreContientTag($item->getData()["tags"], $recherche);
     });
   }
 
   public function offreContientTag($tags, $recherche) {
-    $res = false;
     foreach ($tags as $tag) {
-      echo $tag;
       if (strpos($tag, $recherche) !== false) {
-        $res = true;
-        break;
+        return true;
       }
     }
-    return $res;
+    return false;
   }
 
   /**
