@@ -163,7 +163,7 @@
             <div class="ligne2">
                 <!-- Saisi de l'adresse mail -->
                 <label for="email">Adresse mail*:</label>
-                <input type="email" placeholder = "exemple@gmail.com" id="email" name="email" required>
+                <input type="email" placeholder = "exemple@gmail.com" id="email" name="email" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>" required>
             </div>
 
 
@@ -171,7 +171,7 @@
             <div class="ligne3">
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
-                <input type="text" placeholder = "123 Rue de Brest" id="adresse" name="adresse" required>
+                <input type="text" placeholder = "123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($_POST['adresse']) ? htmlspecialchars($_POST['adresse']) : '' ?>" required>
                 <br>
             </div>
 
@@ -182,10 +182,10 @@
                 <label for="ville">Ville*:</label>
                 
                 <!-- Saisi du code postale -->
-                <input type="text" placeholder = "29200" id="code" name="code" required>
+                <input type="text" placeholder = "29200" id="code" name="code" value="<?= isset($_POST['code']) ? htmlspecialchars($_POST['code']) : '' ?>" required>
 
                 <!-- Saisi de la ville -->
-                <input type="text" placeholder = "Brest" id="ville" name="ville" required>
+                <input type="text" placeholder = "Brest" id="ville" name="ville" value="<?= isset($_POST['ville']) ? htmlspecialchars($_POST['ville']) : '' ?>" required>
             </div>
 
             
@@ -204,7 +204,7 @@
                 <div class="ligne5_2">
                     <!-- Saisi du numéro de SIREN -->
                     <label for="siren">N° SIREN*:</label>
-                    <input type="text" placeholder = "123 456 789" id="siren" name="siren" required>
+                    <input type="text" placeholder = "123 456 789" id="siren" name="siren" value="<?= isset($_POST['siren']) ? htmlspecialchars($_POST['siren']) : '' ?>" required>
                 </div>
             </div>
 
@@ -215,10 +215,10 @@
                 <label for="confirmer">Confirmer le mot de passe*:</label>
                 
                 <!-- Saisi du mot de passe -->
-                <input type="password" placeholder = "Mot de passe" id="motdepasse" name="motdepasse" required>
+                <input type="password" placeholder = "Mot de passe" id="motdepasse" name="motdepasse" value="<?= isset($_POST['motdepasse']) ? htmlspecialchars($_POST['motdepasse']) : '' ?>" required>
 
                 <!-- Saisi de confirmation du mot de passe -->
-                <input type="password" placeholder = "Confirmer le mot de passe" id="confirmer" name="confirmer" required>
+                <input type="password" placeholder = "Confirmer le mot de passe" id="confirmer" name="confirmer" value="<?= isset($_POST['confirmer']) ? htmlspecialchars($_POST['confirmer']) : '' ?>"required>
 
                 <p>Le mot de passe doit contenit au moins 10 caractères dont une majuscule, une minuscule et un chiffre.</p>
             </div>
