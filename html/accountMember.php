@@ -69,6 +69,11 @@
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
+            ?>
+            <script>
+                window.scrollTo(0);
+            </script>
+            <?php
         }
 
 
