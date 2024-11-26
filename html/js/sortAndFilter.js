@@ -9,7 +9,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   const offersDataElement = document.getElementById('offers-data');
   const arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
-  console.log(arrayOffer);
+  console.log(arrayOffer.idOffre);
 });
 
 
@@ -75,7 +75,7 @@ function filtrerParCategorie(offers) {
   if (chkBxSpectacle.checked) categoriesSelection.push("Spectacle");
   if (chkBxRestauration.checked) categoriesSelection.push("Restauration");
 
-  if (categoriesSelection == []) {
+  if (categoriesSelection.length == 0) {
     categoriesSelection = ["Parc", "Visite", "Activite", "Spectacle", "Restauration"];
   }
 
