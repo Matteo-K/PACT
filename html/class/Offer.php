@@ -131,7 +131,6 @@ class Offer {
     $this->description = empty($description_) ? "description de l'offre" : $description_;
     $this->images = $images_;
     $this->tags = $tags_;
-    echo $ville_;
     $this->ville = empty($ville_) ? "ville" : $ville_;
     $this->pays = empty($pays_) ? "Pays" : $pays_;
     $this->numerorue = $numerorue_;
@@ -141,7 +140,7 @@ class Offer {
     $this->horaireSoir = $horaireSoir_;
     $this->mail = empty($mail_) ? "adresse@mail.com" : $mail_;
     $this->telephone = $telephone_;
-    //$this->urlsite = $urlsite_;
+    $this->urlsite = $urlsite_;
     $this->dateCreation = $dateCreation_;
   }
 
