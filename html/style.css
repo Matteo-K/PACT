@@ -2615,7 +2615,7 @@ tbody td:last-child {
   flex-direction: row;
 }
 #park > div[class="NbEtPrixPark"]>input[class="nbAttrac"]{
-  margin-left: 15px;
+  margin-right: 15px;
 }
 #park > div[class="ageMinP"]>label[class="labelGauche"], #park>div[class="NbEtPrixPark"]>label[class="labelGauche"]{
   margin-right: 10px
