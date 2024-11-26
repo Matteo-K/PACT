@@ -9,12 +9,15 @@ let userType, arrayOffer;
 document.addEventListener('DOMContentLoaded', function() {
   const offersDataElement = document.getElementById('offers-data');
   const userDataElement = document.getElementById('user-data');
-  arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
+  
+  const offersData = offersDataElement.getAttribute('data-offers');
+  console.log(offersData); // Vérifiez ce que contient offersData
+
+  arrayOffer = JSON.parse(offersData);
   arrayOffer = Object.values(arrayOffer);
 
   userType = userDataElement.getAttribute('data-user');
 
-  // Optention des pages avec le get
   let page;
   let nbElement = 15;
   const params = new URLSearchParams(window.location.search);
@@ -34,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
 
 
 
