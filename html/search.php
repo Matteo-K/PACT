@@ -114,16 +114,13 @@ $arrayOffer = [];
 
     </main>
     <?php require_once "components/footer.php"; ?>
-    <script>
-        let arrayOffer = [];
-        
-        // Liste des offres pour la manipuler
-        <?php if (empty($search)) { ?>
-            arrayOffer = <?php echo json_encode($offres->getArray($offres->filtre($idUser, $typeUser))); ?>; 
+    <!-- Récupération de la liste des offres -->
+    <?php if (empty($search)) { ?>
+        <div id="offers-data" data-offers='<?php echo json_encode($offres->getArray($offres->filtre($idUser, $typeUser))); ?>'></div>
         <?php } else { ?>
-            arrayOffer = <?php echo json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>; 
+            <div id="offers-data" data-offers='<?php echo json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>'></div>
         <?php } ?>
-        console.log(arrayOffer);
+    <script>
         
         document.addEventListener("DOMContentLoaded", () => {
             

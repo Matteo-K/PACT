@@ -160,7 +160,6 @@
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
                 <input type="text" placeholder="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($_POST['adresse']) ? htmlspecialchars($_POST['adresse']) : '' ?>" required>
-                <br>
             </div>
 
 
