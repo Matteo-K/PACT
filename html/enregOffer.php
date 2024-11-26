@@ -61,8 +61,7 @@ if (isset($_POST['pageBefore'])) {
       try {
         $stmt = $conn->prepare("INSERT INTO pact._abonner (idoffre, nomabonnement) VALUES (?, ?)");
         $stmt->execute([$idOffre, $typeOffre]);
-      } catch (PDOException $e) {
-      }
+      } catch (PDOException $e) {}
   }
   switch ($pageBefore) {
     case 1:
@@ -73,6 +72,14 @@ if (isset($_POST['pageBefore'])) {
       }
       if (isset($_POST["enRelief"])) {
         $options[] = "EnRelief";
+      }
+      
+      $stmt = $conn->prepare("SELECT * FROM pact._option_offre o LEFT JOIN pact._dateoption d ON d.idoption = o.idoption WHERE o.idoffre = ? ORDER BY o.idoption DESC ;");
+      $stmt->execute([$idOffre]);
+
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if ($row["datefin"] < date('Y-m-d')) {
+        }
       }
 
       break;

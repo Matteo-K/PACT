@@ -703,12 +703,15 @@ CREATE VIEW facture AS
     f.dateFactue,
     o.nom,
     o.idOffre,
+    o.idU,
     p.denomination,
     h.numeroRue,
     h.rue,
     h.ville,
     h.codePostal,
     h.pays,
+    a.nomAbonnement,
+    a.tarif,
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'ID', ht.idStatut,
         'Lancement', ht.dateLancement,
@@ -736,6 +739,8 @@ CREATE VIEW facture AS
       AS historiqueOption
     FROM _facturation f
     LEFT JOIN _offre o ON f.idOffre = o.idOffre
+    LEFT JOIN _abonner ab ON o.idOffre = ab.idOffre
+    LEFT JOIN _abonnement a ON ab.nomAbonnement=a.nomAbonnement
     LEFT JOIN _pro p ON o.idU = p.idU
     LEFT JOIN _habite h ON p.idU = h.idU
     LEFT JOIN _historiqueStatut ht ON o.idOffre = ht.idOffre
@@ -751,6 +756,8 @@ CREATE VIEW facture AS
     h.numeroRue,
     h.rue,
     h.ville,
+    a.nomAbonnement,
+    a.tarif,
     h.codePostal,
     h.pays;
 
