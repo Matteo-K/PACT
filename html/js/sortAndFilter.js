@@ -132,7 +132,6 @@ function displayOffer(offer) {
 
   form.appendChild(input);
   form.appendChild(createCard(offer));
-  form.appendChild(avisSearch(offer));
 
   bloc.appendChild(form);
 }
@@ -170,6 +169,7 @@ function createCard(offer) {
   infoOffre.appendChild(note(offer));
 
   card.appendChild(infoOffre);
+  card.appendChild(avisSearch(offer));
 
   return card;
 }
