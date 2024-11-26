@@ -340,6 +340,7 @@ header>div>a>div {
 
 .factue{
   height: 100%;
+  width: 100%;
   background-color: var(--background) ;
 }
 
