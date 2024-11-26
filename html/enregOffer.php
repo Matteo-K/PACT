@@ -112,18 +112,17 @@ if (isset($_POST['pageBefore'])) {
 
       if ($anciennesImagesRestantes != []) {
 
-        if (file_exists($dossierTemp)) {
-          rmdir($dossierTemp);
+        if (!file_exists($dossierTemp)) {
+          mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
         }
 
-        mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
 
         var_dump($anciennesImagesRestantes);
 
         //On déplace les anciennes images conservées vers un dossier temporaire
         foreach ($anciennesImagesRestantes as $num => &$lien) {
           move_uploaded_file($lien, $dossierTemp . $num . "." . pathinfo($lien)['extension']);
-          $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
+          $lien = $dossierTemp . $num . "." . pathinfo($lien)['extension'];
         }
 
         var_dump($anciennesImagesTotal);
@@ -146,7 +145,8 @@ if (isset($_POST['pageBefore'])) {
           $newFileName = $idOffre . '-' . $num . '.' . $fileExtension;
           $dossierImgNom = $dossierImg . $newFileName;
 
-          rename($lien, $dossierImgNom);
+          rename($lien, 
+                 $dossierImgNom);
 
           try {
             $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
@@ -158,10 +158,6 @@ if (isset($_POST['pageBefore'])) {
               error_log("Erreur BDD : " . $e->getMessage());
           }
         }
-      }
-
-      if (file_exists($dossierTemp)) {
-        rmdir($dossierTemp);
       }
 
       $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
