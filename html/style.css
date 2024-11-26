@@ -2219,7 +2219,12 @@ tbody td:last-child {
 
 .messageAvis{
   background-color: var(--background-avis);
+  border-radius: 50px;
 }
+
+.user > img{
+  width:2em;
+} 
 
 .user, .noteEtoile{
   display: flex;
@@ -2228,7 +2233,7 @@ tbody td:last-child {
 
 
 
-.noteEtoile.star {
+.noteEtoile > .star {
   width: 1.5em;
   height:1.5em;
 }
