@@ -132,11 +132,11 @@ function sortPrixDecroissant(array) {
 }
 
 function sortDateRecent(array) {
-  return array;
+  return array.sort((offre1, offre2) => offre2.dateCreation - offre1.dateCreation);
 }
 
 function sortDateAncien(array) {
-  return array;
+  return array.sort((offre1, offre2) => offre1.dateCreation - offre2.dateCreation);
 }
 
 // Filtres
