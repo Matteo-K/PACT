@@ -52,12 +52,6 @@ $arrayOffer = [];
         $offres = new ArrayOffer();
         ?>
         <section class="searchoffre">
-            <?php if (empty($search)) {
-                $countOffer = $offres->displayArrayCard($offres->filtre($idUser, $typeUser), $typeUser, ($page-1)*$nbElement, $nbElement); 
-            } else {
-                $countOffer = $offres->displayArrayCard($offres->recherche($idUser, $typeUser, $search), $typeUser, ($page-1)*$nbElement, $nbElement); 
-            }
-            ?>
         </section>
         <section id="pagination">
             <?php $lien = "search.php?" . ($recherche != "" ? $recherche : ""); ?>
