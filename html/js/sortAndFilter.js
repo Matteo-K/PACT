@@ -131,6 +131,9 @@ function sortPrixDecroissant(array) {
 }
 
 function sortDateRecent(array) {
+  array.forEach(element => {
+    console.log("element"+element.idOffre +" "+ element.dateCreation+"\t");
+  });
   return array.sort((offre1, offre2) => offre2.dateCreation - offre1.dateCreation);
 }
 
