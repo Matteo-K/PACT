@@ -5,6 +5,7 @@ $recherche = isset($_GET["search"]) ? $_GET["search"]: "";
 $page = isset($_GET["page"]) ? $_GET["page"] :  1;
 $nbElement = 15;
 $countOffer = 0;
+$search = isset($_GET["search"]) ? $_GET["search"] : "";
 
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
@@ -52,7 +53,12 @@ $arrayOffer = [];
         $offres = new ArrayOffer();
         ?>
         <section class="searchoffre">
-            <?php $countOffer = $offres->displayArrayCard($offres->filtre($idUser, $typeUser), $typeUser, ($page-1)*$nbElement, $nbElement); ?>
+            <?php if (empty($search)) {
+                $countOffer = $offres->displayArrayCard($offres->filtre($idUser, $typeUser), $typeUser, ($page-1)*$nbElement, $nbElement); 
+            } else {
+                $countOffer = $offres->displayArrayCard($offres->recherche($idUser, $typeUser, $search), $typeUser, ($page-1)*$nbElement, $nbElement); 
+            }
+            ?>
         </section>
         <section id="pagination">
             <?php $lien = "search.php?" . ($recherche != "" ? $recherche : ""); ?>
