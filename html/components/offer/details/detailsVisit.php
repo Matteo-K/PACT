@@ -100,5 +100,5 @@ if ($categorie["_visite"]) {
 
         </div>
 
-    
+    <!-- BALISE SELECT EN HTML -->
 </section>

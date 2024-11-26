@@ -316,22 +316,26 @@ header>div>a>div {
   align-items: center;
 }
 
-/* Style général du menu de profil */
-#profileMenu {
+#profileMenu{
+  display: flex;
   color: #fff;
   margin: 0;
   position: fixed;
   top: 0;
   right: 0;
   height: 100%;
-  width: 300px;
+  max-width: 80%;
   background: linear-gradient(to bottom, #034d7c, #1ca4ed);
   /* Dégradé du haut vers le bas */
-  display: flex;
-  flex-direction: column;
   transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease;
   visibility: hidden;
   opacity: 0;
+}
+
+/* Style général du menu de profil */
+.menuHeader{
+  display: flex;
+  flex-direction: column;
 }
 
 #profileMenu.show {
@@ -1890,6 +1894,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-bottom: 2em;
 }
 
+.factue{
+  width: 450px;
+  height: 100%;
+}
+
 /*  ***************************************************************************************
      **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
      *************************************************************************************** */
@@ -2631,9 +2640,11 @@ tbody td:last-child {
 
 #park>div[class="ageMinP"]>label[class="labelGauche"],
 #park>div[class="NbEtPrixPark"]>label[class="labelGauche"] {
-  margin-right: 10px;
+  margin-right: 5px;
 }
-
+#park>div[class="NbEtPrixPark"]>label[class="labelEuro"] {
+  margin-left: 5px;
+}
 #park >div[class="afficheImages2"]{
   width: 300px;
 }
@@ -2964,7 +2975,7 @@ div.ligne6>label {
     text-align: left;
     margin-bottom: 5px;
     font-size: 18px;
-    width: 350px;
+    width: 200px;
     max-width: 350px;
   }
 

@@ -346,7 +346,7 @@ VALUES ('2024-11-01','2024-09-08',1,20),
        ('2024-10-01','2024-10-08',1,20),
        ('2024-10-01','2024-10-15',2,40),
        ('2024-10-01','2024-10-15',2,20),
-       ('2024-10-01','2024-10-22',3,30);
+       ('2024-11-01','2024-11-22',3,30);
 
 -- Peuplement de la table _option_offre
 INSERT INTO _option_offre (idOption, idOffre, nomOption) 
@@ -361,7 +361,8 @@ VALUES (3, 1, 'EnRelief'),
        (8, 4, 'EnRelief'), 
        (9, 4, 'ALaUne'),
        (10, 2, 'EnRelief'),
-       (11, 5, 'ALaUne');
+       (11, 5, 'ALaUne'),
+       (12, 3, 'ALaUne');
        
 INSERT INTO _visite_langue (idOffre, langue) 
 VALUES (5, 'Français'), 
@@ -385,17 +386,17 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.',CURRENT_DATE),
        (3,'Merci beaucoup, à bientôt.',CURRENT_DATE),
        (3,'Avec des personnes comme vous, compliqué de la rendre intéressante.',CURRENT_DATE);
        
-INSERT INTO _avis(idC,idOffre,note,companie,mois,annee)
-VALUES (1,1,5,'solo','novembre','2024'),
-       (2,1,4,'solo','novembre','2024'),
-       (3,5,5,'solo','novembre','2024'),
-       (4,5,4,'solo','novembre','2024'),
-       (5,2,5,'solo','novembre','2024'),
-       (6,2,4,'solo','novembre','2024'),
-       (7,3,5,'solo','novembre','2024'),
-       (8,3,4,'solo','novembre','2024'),
-       (9,4,2,'solo','novembre','2024'),
-       (10,4,1,'solo','novembre','2024');
+INSERT INTO _avis(idC,idOffre,note,companie,mois,annee,titre)
+VALUES (1,1,5,'solo','novembre','2024','ouai pas mal'),
+       (2,1,4,'solo','novembre','2024','ouai pas mal'),
+       (3,5,5,'solo','novembre','2024','ouai pas mal'),
+       (4,5,4,'solo','novembre','2024','ouai pas mal'),
+       (5,2,5,'solo','novembre','2024','ouai pas mal'),
+       (6,2,4,'solo','novembre','2024','ouai pas mal'),
+       (7,3,5,'solo','novembre','2024','ouai pas mal'),
+       (8,3,4,'solo','novembre','2024','ouai pas mal'),
+       (9,4,2,'solo','novembre','2024','ouai nan!!'),
+       (10,4,1,'solo','novembre','2024','ouai nan!!');
        
 INSERT INTO _reponse(idC,ref)
 VALUES (11,3),

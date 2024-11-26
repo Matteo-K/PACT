@@ -27,7 +27,38 @@
                 </div>
                 <img src="./img/icone/trois-points.png" alt="icone de parametre">
             </article>
-            <
+            <article>
+                <p>Visité en <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee']?></p>
+                <p> • </p>
+                <p class="tag"><?= $a['companie']?></p>
+            </article>
+            <article>
+                <p><?= $a['titre']?></p>
+                <p><?=$a['content']?></p>
+                <?php if($a['listimage'] != null){
+                    $pictures = json_decode($a['listimage'], true);
+                    print_r($pictures);
+                    ?>
+                    
+                    <div class="swiper-container">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <?php
+                            foreach ($pictures as $picture) {
+                            ?>
+                                <div class="swiper-slide">
+                                    <img src="<?php echo $picture; ?>" />
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                }
+                ?>
+            </article>
             
         <?php
             

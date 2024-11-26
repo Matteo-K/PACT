@@ -433,6 +433,7 @@ CREATE TABLE _avis(
   companie VARCHAR(255) NOT NULL,
   mois VARCHAR (20) NOT NULL,
   annee VARCHAR(4) NOT NULL,
+  titre VARCHAR(255) NOT NULL,
   PRIMARY KEY (idC),
   CONSTRAINT _avis_fk_idC
       FOREIGN KEY (idC)
@@ -686,6 +687,7 @@ CREATE VIEW avis AS
     a.companie,
     a.mois,
     a.annee,
+    a.titre,
     ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage
     FROM _avis a 
     JOIN _commentaire c ON a.idC = c.idC
@@ -700,7 +702,8 @@ CREATE VIEW avis AS
     a.note,
     a.companie,
     a.mois,
-    a.annee;
+    a.annee,
+    a.titre;
 
 CREATE VIEW reponse AS
     SELECT  
@@ -756,7 +759,9 @@ CREATE VIEW facture AS
       AND da.prix IS NOT NULL 
       AND op.nomOption IS NOT NULL 
       AND op.prixOffre IS NOT NULL 
-      AND op.dureeOption IS NOT NULL) 
+      AND op.dureeOption IS NOT NULL
+      AND da.dateFin >= date_trunc('month', f.dateFactue) - INTERVAL '1 month' 
+      AND da.dateFin < date_trunc('month', f.dateFactue)) 
       AS historiqueOption
     FROM _facturation f
     LEFT JOIN _offre o ON f.idOffre = o.idOffre

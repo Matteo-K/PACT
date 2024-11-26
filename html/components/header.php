@@ -46,12 +46,12 @@
 
             <!-- Menu caché intégré dans le header -->
             <div id="profileMenu" class="hidden">
-                <span id="backButton">
-                    < Retour</span>
-                        <figure id="imagProfil">
-                            <img src="<?php echo $user["url"] ?>" title="photo de profil utilisateur" id="menuProfilePic">
-                            <figcaption>
-                                <?php
+                <div class="menuHeader">
+                    <span id="backButton">< Retour</span>
+                    <figure id="imagProfil">
+                        <img src="<?php echo $user["url"] ?>" title="photo de profil utilisateur" id="menuProfilePic">
+                        <figcaption>
+                            <?php
                                 if ($typeUser === "admin") {
                                     echo $user["login"];
                                 } else if ($typeUser === "pro_public" || $typeUser === "pro_prive") {
@@ -59,19 +59,23 @@
                                 } else if ($typeUser === "membre") {
                                     echo $user["pseudo"];
                                 }
-                                ?>
-                            </figcaption>
-                        </figure>
-                        <ul>
-                            <?php if ($typeUser === "pro_public" || $typeUser === "pro_prive") {?>
+                            ?>
+                        </figcaption>
+                    </figure>
+                    <ul>
+                        <?php if ($typeUser === "pro_public" || $typeUser === "pro_prive") {?>
                             <li><a href="search.php">Mes offres</a></li>
                             <li><a href="manageOffer.php">Créer une offre</a></li>
-                            <?php } ?>
-                        </ul>
-                        <div>
-                            <a id="changeAccount" class="buttonMenu" href="logout.php?change=true">Changer de compte</a>
-                            <a id="logoutButton" class="buttonMenu" href="logout.php">Déconnexion</a>
-                        </div>
+                        <?php } ?>
+                    </ul>
+                    <div>
+                        <a id="changeAccount" class="buttonMenu" href="logout.php?change=true">Changer de compte</a>
+                        <a id="logoutButton" class="buttonMenu" href="logout.php">Déconnexion</a>
+                    </div>
+                </div>
+                <div class="factue">
+
+                </div>
             </div>
 
         <?php

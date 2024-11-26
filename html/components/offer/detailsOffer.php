@@ -294,10 +294,10 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 const figureImg = document.createElement("figure");
                 figureImg.classList.add("imageOffre");
                 if(urlAncien != ""){
-                    figureImg.innerHTML = `<img src="${url}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`
+                    figureImg.innerHTML = `<img src="${urlAncien}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`
                     const hiddenInputImg = document.createElement("input");
                     hiddenInputImg.type = "hidden";
-                    hiddenInputImg.value = url;
+                    hiddenInputImg.value = urlAncien;
                     hiddenInputImg.name = "imageExistante[]"; 
                     figureImg.appendChild(hiddenInputImg);
                     alert(urlAncien);
