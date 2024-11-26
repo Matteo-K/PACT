@@ -2626,7 +2626,7 @@ tbody td:last-child {
 }
 
 #park >div[class="choixImage2"]>input[class="zoneImages"]{
-  margin-bottom: 20px;
+  width: 200px;
 }
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
