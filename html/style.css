@@ -2180,6 +2180,15 @@ tbody td:last-child {
   text-decoration: none;
 }
 
+.starAvis,.starAvisIncolore{
+  width: 1.5em;
+  height:1.5em;
+}
+
+.starAvisIncolore{
+  background-color: #fff;
+}
+
 @media screen and (max-width: 768px) {
   :root {
     --header-size2: 0;
@@ -2625,7 +2634,7 @@ tbody td:last-child {
   margin-right: 10px;
 }
 
-#park >input[class="zoneImages"]{
+#park >div[class="afficheImages2"]{
   width: 200px;
 }
 /*+++++++++++++++++++++++++++++++++++++++++++*/

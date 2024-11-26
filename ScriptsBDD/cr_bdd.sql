@@ -252,6 +252,20 @@ CREATE TABLE _horaireMidi (
       REFERENCES _offre(idOffre)
 );
 
+CREATE TABLE _horairePrecise (
+  jour VARCHAR(255) NOT NULL,
+  idOffre INT NOT NULL,
+  heureDebut VARCHAR(255) NOT NULL,
+  DateRepresentation DATE NOT NULL,
+  PRIMARY KEY(jour,idOffre,heureDebut),
+  CONSTRAINT _horairePrecise_fk_jour
+      FOREIGN KEY (jour)
+      REFERENCES _jour(jour),
+  CONSTRAINT _horairePrecise_fk_offre
+      FOREIGN KEY (idOffre)
+      REFERENCES _offre(idOffre)
+);
+
 CREATE TABLE _tag_parc (
   idOffre INTEGER,
   nomTag VARCHAR(255),
@@ -599,6 +613,11 @@ SELECT
         'heureOuverture', hs.heureOuverture,
         'heureFermeture', hs.heureFermeture
     )::TEXT, ';') FILTER (WHERE hs.jour IS NOT NULL AND hs.heureOuverture IS NOT NULL AND hs.heureFermeture IS NOT NULL) AS listHoraireSoir,
+    STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
+        'jour', hp.jour,
+        'heureOuverture', hp.heureDebut,
+        'heureFermeture', hp.dateRepresentation
+    )::TEXT, ';') FILTER (WHERE hp.jour IS NOT NULL AND hp.heureDebut IS NOT NULL AND hp.dateRepresentation IS NOT NULL) AS listeHorairePrecise,
     l.ville,
     l.numeroRue,
     l.rue,
@@ -649,6 +668,8 @@ LEFT JOIN
     _tag_act ta ON o.idOffre = ta.idOffre
 LEFT JOIN 
     _tag_parc tp ON o.idOffre = tp.idOffre
+LEFT JOIN
+    _horairePrecise hp ON o.idOffre = hp.idOffre
 GROUP BY 
     o.idOffre, l.ville, l.numeroRue, l.rue, l.pays, l.codePostal, r.gammeDePrix
 ORDER BY o.dateCrea DESC;

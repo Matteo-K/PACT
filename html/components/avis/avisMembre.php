@@ -20,7 +20,7 @@
                         }
                         if(5-$a['note'] != 0){
                             for($i=0; $i < 5-$a['note']; $i++){
-                                echo "<div class='star starAvis'></div>";
+                                echo "<div class='star starAvisIncolore'></div>";
                             }
                         }
                     ?>

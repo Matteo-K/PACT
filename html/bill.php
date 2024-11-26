@@ -6,8 +6,9 @@ require_once "config.php";
 
 
 $idOffre =2;
+$date = '2024-10-01';
 
-$stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idoffre =$idOffre");
+$stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idoffre = $idOffre AND datefactue = $date");
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
