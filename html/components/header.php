@@ -46,6 +46,9 @@
 
             <!-- Menu caché intégré dans le header -->
             <div id="profileMenu">
+                <div class="factue">
+
+                </div>
                 <span id="backButton">
                     < Retour</span>
                         <figure id="imagProfil">
@@ -72,9 +75,6 @@
                             <a id="changeAccount" class="buttonMenu" href="logout.php?change=true">Changer de compte</a>
                             <a id="logoutButton" class="buttonMenu" href="logout.php">Déconnexion</a>
                         </div>
-            </div>
-            <div class="facture">
-
             </div>
 
         <?php
