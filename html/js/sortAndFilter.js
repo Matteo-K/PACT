@@ -9,8 +9,7 @@
 const offersDataElement = document.getElementById('offers-data');
 const arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
 
-// Utilisez arrayOffer ici dans votre fichier JS
-console.log(arrayOffer);  // Vérifiez que vous récupérez bien les données
+alert(arrayOffer);
 
 
 /// Input de Tri ///
