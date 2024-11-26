@@ -59,8 +59,7 @@
                 }
                 if (isset($a['datepublie'])) {
                     // Créer des objets DateTime et fixer l'heure à minuit
-                    $dateDB = new DateTime();
-                    $dateDB->setTimestamp($a['datepublie']);
+                    $dateDB = new DateTime($a['datepublie']);
             
                     $dateNow = new DateTime();
 
