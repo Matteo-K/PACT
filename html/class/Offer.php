@@ -58,7 +58,7 @@ class Offer {
   private $categorie;
   private $mail;
   private $telephone;
-  private $urlSite;
+  private $urlSite;   // Déclaration explicite de la propriété
   private $dateCreation;
   private $noteAvg;
   private $images;
@@ -80,9 +80,27 @@ class Offer {
     $this->categorie = $categorie_;
   }
 
-  /** TODO
-   * 
-   */
+  public function setData($idOffre_, $idUser_, $nomOffre_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $horaireMidi_, $horaireSoir_) {
+    $this->idOffre = $idOffre_;
+    $this->statut = $statut_;
+    $this->idUser = $idUser_;
+    $this->nomOffre = empty($nomOffre_) ? "Pas de nom" : $nomOffre_;
+    $this->resume = empty($resume_) ? "Résumé" : $resume_;
+    $this->description = empty($description_) ? "description de l'offre" : $description_;
+    $this->images = $images_;
+    $this->tags = $tags_;
+    $this->ville = empty($ville_) ? "ville" : $ville_;
+    $this->pays = empty($pays_) ? "Pays" : $pays_;
+    $this->numerorue = $numerorue_;
+    $this->rue = $rue_;
+    $this->codePostal = $codePostal_;
+    $this->horaireMidi = $horaireMidi_;
+    $this->horaireSoir = $horaireSoir_;
+    $this->mail = empty($mail_) ? "adresse@mail.com" : $mail_;      $this->telephone = $telephone_;
+    $this->urlsite = empty($urlsite_) ? "Pas de site" : $urlsite_;
+    $this->dateCreation = $dateCreation_;
+  }
+
   public function displayCardOffer() {
     $idOffre = $this->idOffre;
     $nomOffre = $this->nomOffre;
@@ -120,28 +138,6 @@ class Offer {
     } else {
       return $this->statut == 'actif';
     }
-  }
-
-  public function setData($idOffre_, $idUser_, $nomOffre_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $horaireMidi_, $horaireSoir_) {
-    $this->idOffre = $idOffre_;
-    $this->statut = $statut_;
-    $this->idUser = $idUser_;
-    $this->nomOffre = empty($nomOffre_) ? "Pas de nom" : $nomOffre_;
-    $this->resume = empty($resume_) ? "Résumé" : $resume_;
-    $this->description = empty($description_) ? "description de l'offre" : $description_;
-    $this->images = $images_;
-    $this->tags = $tags_;
-    $this->ville = empty($ville_) ? "ville" : $ville_;
-    $this->pays = empty($pays_) ? "Pays" : $pays_;
-    $this->numerorue = $numerorue_;
-    $this->rue = $rue_;
-    $this->codePostal = $codePostal_;
-    $this->horaireMidi = $horaireMidi_;
-    $this->horaireSoir = $horaireSoir_;
-    $this->mail = empty($mail_) ? "adresse@mail.com" : $mail_;
-    $this->telephone = $telephone_;
-    $this->urlsite = empty($urlsite_) ? "Pas de site" : $urlsite_;
-    $this->dateCreation = $dateCreation_;
   }
 
   public function getData() {
