@@ -141,7 +141,7 @@ class Offer {
     $this->horaireSoir = $horaireSoir_;
     $this->mail = empty($mail_) ? "adresse@mail.com" : $mail_;
     $this->telephone = $telephone_;
-    $this->urlsite = $urlsite_;
+    //$this->urlsite = $urlsite_;
     $this->dateCreation = $dateCreation_;
   }
 
