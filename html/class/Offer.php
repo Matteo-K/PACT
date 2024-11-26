@@ -160,6 +160,10 @@ class Offer {
       "horaireSoir" => $this->horaireSoir
     ];
   }
+
+  public function formaterAdresse() {
+    return $this->numerorue . ' ' . $this->rue . ', ' . $this->codePostal . ' ' . $this->ville . ', ' . $this->pays;
+  }
 }
 
 ?>
