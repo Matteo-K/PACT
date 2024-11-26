@@ -27,6 +27,7 @@ class Visit extends Offer {
     $this->langue = $langue_;
   }
 
+  /*
   public function getData() {
     $parentData = parent::getData();
 
@@ -38,7 +39,7 @@ class Visit extends Offer {
       "handicap" => $this->handicap,
       "langue" => $this->langue
     ]);
-  }
+  }*/
 }
 
 ?>

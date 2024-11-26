@@ -22,6 +22,7 @@ class Activity extends Offer {
     $this->prestation = $prestation_;
   }
 
+  /*
   public function getData() {
     $parentData = parent::getData();
 
@@ -31,7 +32,7 @@ class Activity extends Offer {
       "prixMinimal" => $this->prixMinimal,
       "prestation" => $this->prestation
     ]);
-  }
+  }*/
 }
 
 ?>
