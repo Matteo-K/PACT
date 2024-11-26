@@ -8,7 +8,11 @@ require_once "config.php";
 $idOffre =2;
 $date ='2024-10-01';
 
-$stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idoffre = $idOffre AND datefactue = $date");
+$stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idoffre = :idOffre AND datefactue = :datefactue");
+
+// Bind the parameters to the placeholders
+$stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+$stmt->bindParam(':datefactue', $date, PDO::PARAM_STR);
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
