@@ -236,17 +236,17 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($tags as $tag):
                 if ($tag["nomtag"] != NULL) {
             ?>
-                    <a class="tag" href="search.php"><?php echo htmlspecialchars(str_replace("_"," ",ucfirst(strtolower($tag["nomtag"])))); ?></a>
+                    <a class="tag" href="search.php?search=<?= $tag["nomtag"]?>"><?php echo htmlspecialchars(str_replace("_"," ",ucfirst(strtolower($tag["nomtag"])))); ?></a>
                 <?php }
             endforeach;
 
             if ($ouvert == "EstOuvert") {
                 ?>
-                <a class="ouvert" href="search.php">Ouvert</a>
+                <a class="ouvert" href="search.php?search=ouvert">Ouvert</a>
             <?php
             } else if ($ouvert == "EstFermé") {
             ?>
-                <a class="ferme" href="search.php">Fermé</a>
+                <a class="ferme" href="search.php?search=ferme">Fermé</a>
             <?php
             }
             ?>

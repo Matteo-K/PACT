@@ -1,10 +1,10 @@
 <?php 
-    $stmt = $conn -> prepare("SELECT a.*, m.url, r.denomination, r.contenureponse, r.reponsedate FROM pact.avis a LEFT JOIN pact.membre m ON m.pseudo = a.pseudo LEFT JOIN pact.reponse r on r.idc_avis = a.idc where idoffre = ?");
+    $stmt = $conn -> prepare("SELECT a.*, m.url, r.denomination, r.contenureponse, r.reponsedate FROM pact.avis a JOIN pact.membre m ON m.pseudo = a.pseudo LEFT JOIN pact.reponse r on r.idc_avis = a.idc where idoffre = ?");
     $stmt -> execute([$idOffre]);
     $avis = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
 
-    print_r($avis[0]['note']);
+    print_r($avis);
 
 
     foreach($avis as $a){
@@ -25,7 +25,9 @@
                         }
                     ?>
                 </div>
+                <img src="./img/icone/trois-points.png" alt="icone de parametre">
             </article>
+            <
             
         <?php
             
