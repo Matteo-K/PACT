@@ -123,11 +123,13 @@ foreach ($avis as $a) {
         </div>
         <?php
         if($a['idc_reponse']){
+            print_r($result);
         ?>
             <div>
                 <img src="./img/icone/reponse.png" alt="icone de reponse">
                 <div class="reponseAvis">
                 <div class="infoProReponse">
+                    print_r['']
                     <img src="<?=$result[0]['url'] ?>" alt="image de profile du pro">
                     <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
                 </div>
