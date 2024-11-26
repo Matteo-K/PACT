@@ -35,7 +35,7 @@ if ($categorie["_parcattraction"]) {
 
             <label class="labelGauche">Prix Minimum :</label>
             <input type="number" id="prixMinPark" name="prixMinPark" min="0" placeholder="0">
-            <label class="labelGauche">€</label>
+            <label class="labelEuro">€</label>
         </div>
 
     
