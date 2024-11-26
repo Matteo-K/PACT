@@ -135,11 +135,7 @@ if (isset($_POST['pageBefore'])) {
         $test_urls = implode(',', array_fill(0, count($anciennesImagesTotal), '?'));
         $stmt = $conn->prepare("DELETE FROM pact._image WHERE url IN ($test_urls)");
         $stmt->execute([$anciennesImagesTotal]);
-
-        $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
-        $nbAnciennesImages = count($anciennesImagesRestantes);
-        $nbTotalImages = $nbNouvellesImages + $nbAnciennesImages;
-        $imageCounter = $nbAnciennesImages;  // Compteur pour renommer les images
+        
 
         //On remet les anciennes images gardées dans la BDD et sur le serveur 
         foreach ($anciennesImagesRestantes as $num => $lien) {
@@ -162,6 +158,11 @@ if (isset($_POST['pageBefore'])) {
 
         rmdir($dossierTemp);
       }
+
+      $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
+      $nbAnciennesImages = count($anciennesImagesRestantes);
+      $nbTotalImages = $nbNouvellesImages + $nbAnciennesImages;
+      $imageCounter = $nbAnciennesImages;  // Compteur pour renommer les images
 
       // Boucle à travers chaque NOUVEAU fichier uploadé
       for ($i = 0; $i < $nbNouvellesImages; $i++) {
