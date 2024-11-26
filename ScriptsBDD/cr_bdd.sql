@@ -533,7 +533,7 @@ CREATE VIEW proPublic AS
     JOIN _public pu ON p.idU = pu.idU 
     JOIN _utilisateur u ON p.idU = u.idU 
     JOIN _nonAdmin n ON p.idU = n.idU 
-    JOIN _habite h ON p.idU = h.idU
+    LEFT JOIN _habite h ON p.idU = h.idU
     JOIN _photo_profil ph on u.idU=ph.idU;
 
 CREATE VIEW proPrive AS
@@ -541,7 +541,7 @@ CREATE VIEW proPrive AS
     FROM _pro p 
     JOIN _privee pr ON p.idU = pr.idU 
     JOIN _utilisateur u ON p.idU = u.idU 
-    JOIN _nonAdmin n ON p.idU = n.idU 
+    LEFT JOIN _nonAdmin n ON p.idU = n.idU 
     JOIN _habite h ON p.idU = h.idU
     JOIN _photo_profil ph on u.idU=ph.idU;
 
