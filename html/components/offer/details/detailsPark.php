@@ -21,31 +21,26 @@ if ($categorie["_parcattraction"]) {
         $parc["urlplan"] = $result["urlplan"];
     }
 }
-// Il reste à initialisé les valeurs dans les input
 ?>
+
 <section id="park">
-    <article>
-        <div>
+        <div class="ageMinP">
             <label>Age minimum</label>
             <input type="number" id="agePark" name="AgePark" min="0"  placeholder="0">
         </div>
 
-        <div>
+        <div class="NbEtPrixPark">
             <label>Nombre d'attraction</label>
             <input type="number" id="nbAttrac" name="nbAttrac"min="0"placeholder="0">
-        </div>
 
-        <div>
             <label>Prix Minimum</label>
             <input type="number" id="prixMinPark" name="prixMinPark" min="0" placeholder="0">
         </div>
 
 
 
-    </article>
 
-
-    <article>
+    
 
         <div id="choixImage2">
             <h3>Plan : </h3>
@@ -60,5 +55,5 @@ if ($categorie["_parcattraction"]) {
         <div id="afficheImages2"></div>
 
 
-    </article>
+
 </section>
