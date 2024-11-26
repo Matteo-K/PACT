@@ -2194,13 +2194,13 @@ tbody td:last-child {
 
 /** AVIS **/
 
-.avis{
+.avis {
   width: 95%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1em;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -2209,6 +2209,7 @@ tbody td:last-child {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 1em;
 }
 
 .avis > nav > h3 {
@@ -2219,18 +2220,37 @@ tbody td:last-child {
 
 .messageAvis{
   background-color: var(--background-avis);
-  border-radius: 50px;
+  border-radius: 1em;
+  padding: 1em;
 }
 
-.user > img{
-  width:2em;
+.messageAvis:nth-child(even){
+  width: 40%;
+}
+.messageAvis:nth-child(odd){
+  width: 30%;
+}
+
+
+
+.user >div> img{
+  width:2.2em;
+  height:2.2em;
 } 
 
-.user, .noteEtoile{
+.user, .noteEtoile, .infoUser, .autreInfoAvis{
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.noteEtoile{
+  justify-content: center;
+}
+.noteEtoile > p{
+  margin-left: 1em;
+}
 
 
 .noteEtoile > .star {
