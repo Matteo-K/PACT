@@ -134,8 +134,8 @@ class ArrayOffer {
    * Renvoie le nombre d'élément dela liste
    * Et la liste avec les éléments suivant le nombre d'élément sélectionner
    */
-  public function pagination($idUser_, $typeUser_, $elementStart_ , $nbElement_) {
-    return array_slice($this->filtre($idUser_, $typeUser_), $elementStart_, $nbElement_); 
+  public function pagination($array_, $elementStart_ , $nbElement_) {
+    return array_slice($array_, $elementStart_, $nbElement_); 
   }
 
   public function getArray() {
@@ -147,8 +147,8 @@ class ArrayOffer {
     return $arrayWithData;
   }
 
-  public function displayArrayCard($idUser_, $typeUser_, $elementStart_, $nbElement_) {
-    $array = $this->pagination($idUser_, $typeUser_, $elementStart_, $nbElement_);
+  public function displayArrayCard($array_, $idUser_, $typeUser_, $elementStart_, $nbElement_) {
+    $array = $this->pagination($array_, $elementStart_, $nbElement_);
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
         if ($typeUser_ == "pro_public" || $typeUser_ == "pro_prive") {
