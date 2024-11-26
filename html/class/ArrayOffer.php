@@ -90,6 +90,8 @@ class ArrayOffer {
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
           $offre['idu'], $offre['nom'], 
           $offre['description'], $offre['resume'],
+          $offre['mail'], $offre['telephone'],
+          $offre['urlsite'], $offre['datecrea'],
           explode(",", trim($offre['listimage'], "{}")),
           explode(",", trim(isset($offre['all_tags']) ? $offre['all_tags'] : '', "{}")),
           $offre['ville'],

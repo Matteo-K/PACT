@@ -86,7 +86,54 @@ const heureFin = document.querySelector("#heureFin");
 /* ### Fonction ### */
 
 // Tris
+function selectSort(array) {
+  const sortFunctions = {
+    "radBtnEnAvant": sortEnAvant,
+    "radBtnNoteCroissant": sortNoteCroissant,
+    "radBtnNoteDecroissant": sortNoteDecroissant,
+    "radBtnprixCroissant": sortprixCroissant,
+    "radBtnPrixDecroissant": sortPrixDecroissant,
+    "radBtnDateRecent": sortDateRecent,
+    "radBtnDateAncien": sortDateAncien
+  };
 
+  for (let key in sortFunctions) {
+    if (document.getElementById(key).checked) {
+      array = sortFunctions[key](array);
+      break;
+    }
+  }
+
+  return array;
+}
+
+function sortEnAvant(array) {
+  return array;
+}
+
+function sortNoteCroissant(array) {
+  return array;
+}
+
+function sortNoteDecroissant(array) {
+  return array;
+}
+
+function sortprixCroissant(array) {
+  return array;
+}
+
+function sortPrixDecroissant(array) {
+  return array;
+}
+
+function sortDateRecent(array) {
+  return array;
+}
+
+function sortDateAncien(array) {
+  return array;
+}
 
 // Filtres
 
@@ -121,6 +168,17 @@ function filtrerParNotes(offers) {
   return offers.filter(offer => notesSelection.includes(offer.note));
 }
 
+function sortAndFilter(array, elementStart, nbElement) {
+  // Filtre
+
+  // Tri
+  array = selectSort(array);
+
+  // Affiche
+  displayOffers(array, (nbElement-1) * page, nbElement);
+}
+
+/* ### Affichage des offres ### */
 
 function displayOffers(array, elementStart, nbElement) {
   if (array.length != 0) {
@@ -184,6 +242,7 @@ function createCard(offer) {
     resume.textContent = "Pas de resume saisie";
   }
 
+  infoOffre.appendChild(resume);
   infoOffre.appendChild(note(offer));
 
   card.appendChild(infoOffre);
