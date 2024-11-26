@@ -59,9 +59,11 @@ const dateFin = document.querySelector("#dateFin");
 const heureFin = document.querySelector("#heureFin");
 
 
+
 /* ### Fonction ### */
 
 // Tris
+
 
 // Filtres
 
@@ -97,6 +99,33 @@ function filtrerParNotes(offers) {
 }
 
 
+// Fonction de filtre par prix
+function filtrerParPrix(offers) {
+  const prixSelection = [];
+  
+}
+
+
+
+// Fonction de filtre par lieux
+function filtrerParLieux(offers) {
+  const lieuxSelection = [];
+}
+
+
+// Fonction de filtre par statuts
+function filtrerParStatuts(offers) {
+  const statutsSelection = [];
+}
+
+
+// Fonction de filtre par période
+function filtrerParPeriode(offers) {
+  const periodeSelection = [];
+}
+
+
+// Fonction d'affichage des offres filtrées
 function displayOffers($array) {
   
 }
@@ -106,12 +135,13 @@ function displayOffer($offer) {
 }
 
 
+
 /* ### Evènements ### */
 
 // Tris
 
-// Filtre
 
+// Filtres
 chkBxVisite.addEventListener()
 chkBxActivite.addEventListener()
 chkBxSpectacle.addEventListener()
