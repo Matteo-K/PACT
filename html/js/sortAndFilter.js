@@ -14,7 +14,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
   userType = userDataElement.getAttribute('data-user');
 
-  displayOffers(arrayOffer, 0, 15);
+  // Optention des pages avec le get
+  let page;
+  let nbElement = 15;
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.has('page') && params.get('page').trim() !== '') {
+      page = params.get('page');
+  } else {
+      page = 0;
+  }
+
+  displayOffers(arrayOffer, (nbElement-1) * page, nbElement);
 
   document.querySelectorAll(".searchoffre form").forEach(form => {
     form.addEventListener("click", (event) => {
@@ -112,8 +123,16 @@ function filtrerParNotes(offers) {
 
 
 function displayOffers(array, elementStart, nbElement) {
-  let offers = array.slice(elementStart, nbElement);
-  offers.forEach(element => {displayOffer(element)});
+  if (array.length != 0) {
+    let offers = array.slice(elementStart, nbElement);
+    offers.forEach(element => {displayOffer(element)});
+  } else {
+    const bloc = document.querySelector(".searchoffre");
+
+    let pasOffre = document.createElement("p");
+    pasOffre.textContent = "Aucune offre trouvée";
+    bloc.appendChild(pasOffre);
+  }
 }
 
 function displayOffer(offer) {
