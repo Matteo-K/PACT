@@ -11,7 +11,7 @@ $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $stmt =$conn->prepare("SELECT * from pact.proprive where idu = ?");
-$stmt->execute([$offre['idu']]);
+$stmt->execute([$offre[0]['idu']]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($avis as $a) {
