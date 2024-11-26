@@ -2251,8 +2251,16 @@ tbody td:last-child {
 .user + article{
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+}
+
+.user + article + article{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   gap: 1em;
 }
 
