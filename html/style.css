@@ -2625,7 +2625,7 @@ tbody td:last-child {
   margin-right: 10px;
 }
 
-#park >input[class="zoneImages"]{
+#park >div[class="afficheImages2"]{
   width: 200px;
 }
 /*+++++++++++++++++++++++++++++++++++++++++++*/
