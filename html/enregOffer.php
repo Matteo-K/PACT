@@ -112,6 +112,10 @@ if (isset($_POST['pageBefore'])) {
 
       if ($anciennesImagesRestantes != []) {
 
+        if (file_exists($dossierTemp)) {
+          rmdir($dossierTemp);
+        }
+
         mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
 
         
