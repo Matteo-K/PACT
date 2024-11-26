@@ -142,7 +142,7 @@ function createCard(offer) {
   // Image principale
   let img = document.createElement("img");
   img.classList.add("searchImage");
-  if (offer.images.length = 0) {
+  if (offer.images.length == 0) {
     img.setAttribute("alt", "Pas_de_photo_attribué_à_l'offre");
   } else {
     console.log(offer.images);
