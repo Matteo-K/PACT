@@ -114,7 +114,7 @@ $arrayOffer = [];
     document.addEventListener("DOMContentLoaded", () => {
 
         // Liste des offres pour la manipuler
-        let arrayOffer = <?php echo json_encode($arrayOffer); ?>;
+        let arrayOffer = <?php echo json_encode($offres->filtre($idUser, $typeUser)); ?>;
         
         // Acualise l'heure actuelle
         const now = new Date();

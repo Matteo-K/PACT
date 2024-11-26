@@ -35,7 +35,6 @@ class ArrayOffer {
   private $nbOffer;
 
 
-  // TODO
   public function __construct($idoffres_ = "") {
     $this->arrayOffer = [];
     $this->nbOffer = 0;
@@ -106,10 +105,32 @@ class ArrayOffer {
     }
   }
 
+  /**
+   * Prend les bonnes offres suivant l'utilisateur
+   */
   public function filtre($idUser_, $typeUser_) {
     return array_filter($this->arrayOffer, function($offer) use ($idUser_, $typeUser_) {
       return $offer->filterPagination($idUser_, $typeUser_);
     });
+  }
+
+  public function recherche($idUser_, $typeUser_, $recherche) {
+    $array = $this->filtre($idUser_, $typeUser_);
+    return array_filter($liste, function($item) use ($recherche) {
+      var_dump($item->getData()["tags"]);
+      return offreContientTag($item->getData()["tags"], $recherche);
+    });
+  }
+
+  public function offreContientTag($tags, $recherche) {
+    $res = false;
+    foreach ($tags as $tag) {
+      if (strpos($tag, $recherche) !== false) {
+        $res = true;
+        break;
+      }
+    }
+    return $res;
   }
 
   /**
