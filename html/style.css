@@ -2180,6 +2180,10 @@ tbody td:last-child {
   text-decoration: none;
 }
 
+.starAvis,.starAvisIncolore{
+  width: ;
+}
+
 @media screen and (max-width: 768px) {
   :root {
     --header-size2: 0;
