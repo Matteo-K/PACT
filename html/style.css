@@ -2224,7 +2224,7 @@ tbody td:last-child {
   background-color: var(--background-avis);
   border-radius: 1em;
   padding: 1em;
-  width: 50%;
+  width: 45%;
 }
 
 .infoUser > p{
@@ -2286,8 +2286,10 @@ tbody td:last-child {
   margin-left: 0.5em;
 }
 
-.mySwiperAvis{
+.mySwiperAvis {
   border-radius: 10px;
+  width: 75%;
+  height: 10em;
 }
 
 
