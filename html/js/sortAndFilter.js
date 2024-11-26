@@ -101,8 +101,10 @@ function filtrerParNotes(offers) {
 
 // Fonction de filtre par prix
 function filtrerParPrix(offers) {
-  const prixSelection = [];
-  
+  return offers.filter(offer => {
+    const prix = offer.prix;
+    return prix >= parseInt(selectPrixMin.value) && prix <= parseInt(selectPrixMax.value);
+  });
 }
 
 
@@ -116,6 +118,11 @@ function filtrerParLieux(offers) {
 // Fonction de filtre par statuts
 function filtrerParStatuts(offers) {
   const statutsSelection = [];
+
+  if (chkBxOuvert.checked) statutsSelection.push("Ouvert");
+  if (chkBxFerme.checked) statutsSelection.push("Ferme");
+
+  return offers.filter(offer => statusSelection.includes(offer.note));
 }
 
 

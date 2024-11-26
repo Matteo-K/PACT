@@ -124,8 +124,8 @@
 
         <form id = "formMember" action="accountMember.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
-                <label id="labelNom" for="nomMembre">Nom*:</label>
                 <label  id="labelPrenom" for="prenomMembre">Prénom*:</label>
+                <label id="labelNom" for="nomMembre">Nom*:</label>
                     
                 <!-- Saisi du prénom -->
                 <input type="text" placeholder="Jean" id="prenomMembre" name="prenomMembre" value="<?= isset($_POST['prenomMembre']) ? htmlspecialchars($_POST['prenomMembre']) : '' ?>" required>
