@@ -21,6 +21,7 @@ class Park extends Offer {
     $this->urlPlan = $urlPlan_;
   }
 
+  /*
   public function getData() {
     $parentData = parent::getData();
 
@@ -30,7 +31,7 @@ class Park extends Offer {
       "prixMinimal" => $this->prixMinimal,
       "urlPlan" => $this->urlPlan
     ]);
-  }
+  }*/
   
 }
 

@@ -18,6 +18,7 @@ class Show extends Offer {
     $this->prixMinimal = $prixMinimal_;
   }
 
+  /*
   public function getData() {
     $parentData = parent::getData();
 
@@ -26,7 +27,7 @@ class Show extends Offer {
       "nbPlace" => $this->nbPlace,
       "prixMinimal" => $this->prixMinimal
     ]);
-  }
+  }*/
 }
 
 ?>

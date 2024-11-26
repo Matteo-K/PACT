@@ -16,6 +16,7 @@ class Restaurant extends Offer {
     $this->urlMenu = "";
   }
 
+  /*
   public function getData() {
     $parentData = parent::getData();
 
@@ -23,6 +24,6 @@ class Restaurant extends Offer {
       "gammeDePrix" => $this->gammeDePrix,
       "UrlMenu" => $this->urlMenu
     ]);
-  }
+  }*/
 }
 ?>
