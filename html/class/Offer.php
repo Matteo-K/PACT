@@ -128,7 +128,7 @@ class Offer {
     $this->idUser = $idUser_;
     $this->nomOffre = empty($nomOffre_) ? "Pas de nom" : $nomOffre_;
     $this->resume = empty($resume_) ? "Résumé" : $resume_;
-    $this->description = empty($description_) ? "description de l'offre" : $description_;
+    $this->description = empty($description_) ? "description de loffre" : $description_;
     $this->images = $images_;
     $this->tags = $tags_;
     $this->ville = empty($ville_) ? "ville" : $ville_;

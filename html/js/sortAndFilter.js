@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const userDataElement = document.getElementById('user-data');
   
   const offersData = offersDataElement.getAttribute('data-offers');
-  console.log(offersData); // Vérifiez ce que contient offersData
+  //console.log(offersData); // Débugger
 
   arrayOffer = JSON.parse(offersData);
   arrayOffer = Object.values(arrayOffer);
