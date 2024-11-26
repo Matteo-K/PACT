@@ -19,7 +19,7 @@
                             echo "<div class='star starAvis'></div>";
                         }
                         if(5-$a['note'] != 0){
-                            for($i=0; $i < 5-5-$a['note']; i++ ){
+                            for($i=0; $i < 5-$a['note']; $i++){
                                 echo "<div class='star starAvis'></div>";
                             }
                         }
