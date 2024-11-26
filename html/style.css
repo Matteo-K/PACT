@@ -2209,6 +2209,7 @@ tbody td:last-child {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 1em;
 }
 
 .avis > nav > h3 {
@@ -2234,14 +2235,22 @@ tbody td:last-child {
 
 .user > img{
   width:2.2em;
+  height:2.2em;
 } 
 
 .user, .noteEtoile{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
 }
 
+.noteEtoile{
+  justify-content: center;
+
+}
+.noteEtoile > p{
+  margin-left: 1em;
+}
 
 
 .noteEtoile > .star {
