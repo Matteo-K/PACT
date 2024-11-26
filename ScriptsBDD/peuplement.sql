@@ -346,7 +346,7 @@ VALUES ('2024-11-01','2024-09-08',1,20),
        ('2024-10-01','2024-10-08',1,20),
        ('2024-10-01','2024-10-15',2,40),
        ('2024-10-01','2024-10-15',2,20),
-       ('2024-10-01','2024-10-22',3,30);
+       ('2024-11-01','2024-11-22',3,30);
 
 -- Peuplement de la table _option_offre
 INSERT INTO _option_offre (idOption, idOffre, nomOption) 
@@ -361,7 +361,8 @@ VALUES (3, 1, 'EnRelief'),
        (8, 4, 'EnRelief'), 
        (9, 4, 'ALaUne'),
        (10, 2, 'EnRelief'),
-       (11, 5, 'ALaUne');
+       (11, 5, 'ALaUne'),
+       (12, 3, 'ALaUne');
        
 INSERT INTO _visite_langue (idOffre, langue) 
 VALUES (5, 'Français'), 
