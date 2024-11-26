@@ -118,7 +118,7 @@ class ArrayOffer {
     $array = $this->filtre($idUser_, $typeUser_);
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
       var_dump($item->getData()["tags"]);
-      return offreContientTag($item->getData()["tags"], $recherche);
+      return $this->offreContientTag($item->getData()["tags"], $recherche);
     });
   }
 
