@@ -117,9 +117,9 @@ $arrayOffer = [];
     <!-- Récupération de la liste des offres -->
     <?php if (empty($search)) { ?>
         <div id="offers-data" data-offers='<?php echo json_encode($offres->getArray($offres->filtre($idUser, $typeUser))); ?>'></div>
-        <?php } else { ?>
-            <div id="offers-data" data-offers='<?php echo json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>'></div>
-        <?php } ?>
+    <?php } else { ?>
+        <div id="offers-data" data-offers='<?php echo json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>'></div>
+    <?php } ?>
     <script>
         
         document.addEventListener("DOMContentLoaded", () => {

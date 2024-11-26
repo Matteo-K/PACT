@@ -6,10 +6,12 @@
  */
 
 
-const offersDataElement = document.getElementById('offers-data');
-const arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
+document.addEventListener('DOMContentLoaded', function() {
+  const offersDataElement = document.getElementById('offers-data');
+  const arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
+  alert(arrayOffer);
+});
 
-alert(arrayOffer);
 
 
 /// Input de Tri ///
