@@ -112,7 +112,7 @@ if (isset($_POST['pageBefore'])) {
 
       //On déplace les anciennes images conservées vers un dossier temporaire
       foreach ($anciennesImagesRestantes as $num => $lien) {
-        move_uploaded_file($lien, $dossierTemp.$num);
+        move_uploaded_file($lien, $dossierTemp . $num . pathinfo($lien)['extension']);
         $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
       }
 
@@ -128,7 +128,7 @@ if (isset($_POST['pageBefore'])) {
       $stmt->execute([$idOffre]);
 
       $stmt = $conn->prepare("DELETE FROM pact._image WHERE url IN (?)");
-      $stmt->execute([$ancienneImages]);
+      $stmt->execute([$anciennesImagesTotal]);
 
       $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
       $nbAnciennesImages = count($anciennesImagesRestantes);
@@ -137,12 +137,11 @@ if (isset($_POST['pageBefore'])) {
 
       //On remet les anciennes images gardées dans la BDD et sur le serveur 
       foreach ($anciennesImagesRestantes as $num => $lien) {
-        rename($lien, $dossierTemp.$num);
-        $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
-
         $fileExtension = strtolower(pathinfo($lien)['extension']);
         $newFileName = $idOffre . '-' . $num . '.' . $fileExtension;
         $dossierImgNom = $dossierImg . $newFileName;
+
+        rename($lien, $dossierImgNom);
 
         try {
           $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
@@ -155,9 +154,11 @@ if (isset($_POST['pageBefore'])) {
         }
       }
 
+      rmdir($dossierTemp);
+
 
       // Boucle à travers chaque NOUVEAU fichier uploadé
-      for ($i = 0; $i < $nbImages; $i++) {
+      for ($i = 0; $i < $nbNouvellesImages; $i++) {
         $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
         $fileName = $_FILES['ajoutPhoto']['name'][$i];
         $fileError = $_FILES['ajoutPhoto']['error'][$i];
