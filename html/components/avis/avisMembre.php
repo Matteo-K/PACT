@@ -1,52 +1,52 @@
-<?php 
-    $stmt = $conn -> prepare("SELECT a.*, m.url, r.denomination, r.contenureponse, r.reponsedate FROM pact.avis a JOIN pact.membre m ON m.pseudo = a.pseudo LEFT JOIN pact.reponse r on r.idc_avis = a.idc where idoffre = ? order by a.datepublie asc");
-    $stmt -> execute([$idOffre]);
-    $avis = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+<?php
+$stmt = $conn->prepare("SELECT a.*, m.url, r.denomination, r.contenureponse, r.reponsedate FROM pact.avis a JOIN pact.membre m ON m.pseudo = a.pseudo LEFT JOIN pact.reponse r on r.idc_avis = a.idc where idoffre = ? order by a.datepublie asc");
+$stmt->execute([$idOffre]);
+$avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-    print_r($avis);
+print_r($avis);
 
 
-    foreach($avis as $a){
-        ?>
-        <div class="messageAvis"> 
-            <article class="user">
-                <div class="infoUser">
-                    <img src="<?= $a['url']?>">
-                    <p><?= ucfirst(strtolower($a['pseudo']))?> </p>
-                </div>
-                <div class="autreInfoAvis">
-                    <div class="noteEtoile">
-                        <?php
-                            for($i=0; $i < $a['note']; $i++){
-                                echo "<div class='star'></div>";
-                            }
-                            if(5-$a['note'] != 0){
-                                for($i=0; $i < 5-$a['note']; $i++){
-                                    echo "<div class='star starAvisIncolore'></div>";
-                                }
-                            }
-                        ?>
-                        <p><?=$a['note']?> / 5</p>
-                    </div>
-                    <img src="./img/icone/trois-points.png" alt="icone de parametre">
-                <div></div>
-            </article>
-            <article>
-                <p><strong>Visité en</strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee']?></p>
-                <p> • </p>
-                <p class="tag"><?= $a['companie']?></p>
-            </article>
-            <article>
-                <p><strong><?= ucfirst($a['titre'])?></strong></p>
-                <p><?=$a['content']?></p>
-                <?php if($a['listimage'] != null){
-                    $listimage = trim($a['listimage'], '{}');
-                    $pictures = explode(',', $listimage);
+foreach ($avis as $a) {
+?>
+    <div class="messageAvis">
+        <article class="user">
+            <div class="infoUser">
+                <img src="<?= $a['url'] ?>">
+                <p><?= ucfirst(strtolower($a['pseudo'])) ?> </p>
+            </div>
+            <div class="autreInfoAvis">
+                <div class="noteEtoile">
+                    <?php
+                    for ($i = 0; $i < $a['note']; $i++) {
+                        echo "<div class='star'></div>";
+                    }
+                    if (5 - $a['note'] != 0) {
+                        for ($i = 0; $i < 5 - $a['note']; $i++) {
+                            echo "<div class='star starAvisIncolore'></div>";
+                        }
+                    }
                     ?>
-                    
+                    <p><?= $a['note'] ?> / 5</p>
+                </div>
+                <img src="./img/icone/trois-points.png" alt="icone de parametre">
+                <div></div>
+        </article>
+        <article>
+            <p><strong>Visité en</strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
+            <p> • </p>
+            <p class="tag"><?= $a['companie'] ?></p>
+        </article>
+        <article>
+            <p><strong><?= ucfirst($a['titre']) ?></strong></p>
+            <p><?= $a['content'] ?></p>
+            <?php if ($a['listimage'] != null) {
+                $listimage = trim($a['listimage'], '{}');
+                $pictures = explode(',', $listimage);
+            ?>
+
                 <div class="swiper-container">
-                    <div class="swiper mySwiper">
+                    <div class="swiper mySwiperAvis">
                         <div class="swiper-wrapper">
                             <?php
                             foreach ($pictures as $picture) {
@@ -61,58 +61,75 @@
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-                <?php
-                }
-                if (isset($a['datepublie'])) {
-                    // Créer des objets DateTime et fixer l'heure à minuit
-                    $dateDB = new DateTime($a['datepublie']);
-            
-                    $dateNow = new DateTime();
+            <?php
+            }
+            if (isset($a['datepublie'])) {
+                // Créer des objets DateTime et fixer l'heure à minuit
+                $dateDB = new DateTime($a['datepublie']);
 
-                    // Fixer les objets DateTime à minuit pour la différence en jours
-                    $dateDBMidnight = clone $dateDB;
-                    $dateDBMidnight->setTime(0, 0, 0);
+                $dateNow = new DateTime();
 
-                    $dateNowMidnight = clone $dateNow;
-                    $dateNowMidnight->setTime(0, 0, 0);
-            
-                    // Calculer la différence en jours (à partir de minuit)
-                    $intervalDays = $dateDBMidnight->diff($dateNowMidnight);
-                    $diffInDays = (int)$intervalDays->format('%r%a');
+                // Fixer les objets DateTime à minuit pour la différence en jours
+                $dateDBMidnight = clone $dateDB;
+                $dateDBMidnight->setTime(0, 0, 0);
 
-                    // Calculer la différence en heures pour le jour même
-                    $intervalHours = $dateDB->diff($dateNow);
-                    $diffInHours = $intervalHours->h; // Différence en heures
-                    $diffInMinutes = $intervalHours->i; // Différence en minutes
+                $dateNowMidnight = clone $dateNow;
+                $dateNowMidnight->setTime(0, 0, 0);
 
-                    // Déterminer le message à afficher
-                    if ($diffInDays === 0) {
-                        // La date est aujourd'hui, afficher la différence en heures
-                        if ($diffInHours > 0) {
-                            echo "Rédigé il y a $diffInHours heure" . ($diffInHours > 1 ? 's' : '') . "</p>";
-                        } elseif ($diffInMinutes > 0) {
-                            echo "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '') . "</p>";
-                        } else {
-                            echo "Rédigé à l'instant </p>";
-                        }
-                    } elseif ($diffInDays === -1) {
-                        // La date est hier
-                        echo "Rédigé hier </p>";
-                    } elseif ($diffInDays >= -7 && $diffInDays < -1) {
-                        // La date est dans les 7 derniers jours
-                        echo "Rédigé il y a " . abs($diffInDays) . " jour" . (abs($diffInDays) > 1 ? 's' : '') . "</p>";
+                // Calculer la différence en jours (à partir de minuit)
+                $intervalDays = $dateDBMidnight->diff($dateNowMidnight);
+                $diffInDays = (int)$intervalDays->format('%r%a');
+
+                // Calculer la différence en heures pour le jour même
+                $intervalHours = $dateDB->diff($dateNow);
+                $diffInHours = $intervalHours->h; // Différence en heures
+                $diffInMinutes = $intervalHours->i; // Différence en minutes
+
+                // Déterminer le message à afficher
+                if ($diffInDays === 0) {
+                    // La date est aujourd'hui, afficher la différence en heures
+                    if ($diffInHours > 0) {
+                        echo "Rédigé il y a $diffInHours heure" . ($diffInHours > 1 ? 's' : '') . "</p>";
+                    } elseif ($diffInMinutes > 0) {
+                        echo "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '') . "</p>";
                     } else {
-                        // La date est plus ancienne que 7 jours ou dans le futur
-                        echo "<p>Rédigé le " . $dateDB->format("d/m/Y à H:i")."</p>";
+                        echo "Rédigé à l'instant </p>";
                     }
+                } elseif ($diffInDays === -1) {
+                    // La date est hier
+                    echo "Rédigé hier </p>";
+                } elseif ($diffInDays >= -7 && $diffInDays < -1) {
+                    // La date est dans les 7 derniers jours
+                    echo "Rédigé il y a " . abs($diffInDays) . " jour" . (abs($diffInDays) > 1 ? 's' : '') . "</p>";
+                } else {
+                    // La date est plus ancienne que 7 jours ou dans le futur
+                    echo "<p>Rédigé le " . $dateDB->format("d/m/Y à H:i") . "</p>";
                 }
-                ?>
-            </article>
-            
+            }
+            ?>
+        </article>
+
         <?php
-            
+
         ?>
-        </div>
-    <?php 
-    }
+    </div>
+<?php
+}
 ?>
+
+<script>
+    var swiper3 = new Swiper(".mySwiperAvis", {
+        loop: true,
+        autoplay: {
+            delay: 5000,
+        },
+        spaceBetween: 10,
+        pagination: {
+            el: ".swiper-pagination",
+            dynamicBullets: true,
+        },
+        thumbs: {
+            swiper: swiper,
+        },
+    });
+</script>
