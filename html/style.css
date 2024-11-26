@@ -2248,6 +2248,21 @@ tbody td:last-child {
   align-items: center;
 }
 
+.user + article{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1em;
+}
+
+.user + article > .tag {
+  background-color: #fff;
+  text-align: center;
+  font-size: 0.9em;
+  margin:0;
+}
+
 .noteEtoile{
   justify-content: center;
 }
