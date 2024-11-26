@@ -47,7 +47,7 @@
             // $errors[] = "Erreur lors de la vérification du pseudo : " . htmlspecialchars($e->getMessage());
         }
         
-        // test commit
+
 
         // Vérifier si l'adresse mail existe déjà dans la base de données
         try {
