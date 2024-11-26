@@ -2233,20 +2233,20 @@ tbody td:last-child {
 
 
 
-.user > img{
+.user >div> img{
   width:2.2em;
   height:2.2em;
 } 
 
-.user, .noteEtoile{
+.user, .noteEtoile, .infoUser, .autreInfoAvis{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .noteEtoile{
   justify-content: center;
-
 }
 .noteEtoile > p{
   margin-left: 1em;
