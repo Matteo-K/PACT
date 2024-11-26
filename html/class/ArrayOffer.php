@@ -147,7 +147,7 @@ class ArrayOffer {
     return $arrayWithData;
   }
 
-  public function displayArrayCard($array_, $idUser_, $typeUser_, $elementStart_, $nbElement_) {
+  public function displayArrayCard($array_, $elementStart_, $nbElement_) {
     $array = $this->pagination($array_, $elementStart_, $nbElement_);
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
