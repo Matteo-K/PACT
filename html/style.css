@@ -2597,6 +2597,23 @@ tbody td:last-child {
   display: flex;
   flex-direction: column;
 }
+
+#park{
+  background-color: pink;
+}
+
+#park >div[class="ageMinP"]{
+  display: flex;
+  flex-direction: row;
+}
+
+#park > div[class="ageMinP"]> input[type="number"]{
+  margin-bottom: 15px;
+}
+#park > div[class="NbEtPrixPark"]{
+  display: flex;
+  flex-direction: row;
+}
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
