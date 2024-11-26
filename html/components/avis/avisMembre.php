@@ -36,6 +36,7 @@
                 <p><?= $a['titre']?></p>
                 <p><?=$a['content']?></p>
                 <?php if($a['listimage'] != null){
+                    print_r($a['listimage']);
                     $pictures = json_decode($a['listimage'], true);
                     print_r($pictures);
                     ?>
