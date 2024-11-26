@@ -337,12 +337,13 @@ header>div>a>div {
 .menuHeader{
   background: linear-gradient(to bottom, #034d7c, #1ca4ed);
   display: flex;
+  width: 276px;
   flex-direction: column;
 }
 
 .factue{
   height: 100%;
-  width: 40vw;
+  width: calc(100vw - 286px);
   background-color: var(--background) ;
 }
 
