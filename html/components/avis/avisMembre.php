@@ -1,6 +1,6 @@
 <?php
 $stmt = $conn->prepare("
-    SELECT a.*, m.url AS membre_url,r.idc_reponse, r.denomination AS reponse_denomination, ppub.denomination AS pub_denomination, ppriv.denomination AS prive_denomination, COALESCE(ppub.url, ppriv.url) AS entreprise_url,ppub.url AS url_publique,ppriv.url AS url_privee
+    SELECT a.*, m.url AS membre_url,r.idc_reponse, r.idPro,r.denomination AS reponse_denomination, coalesce(ppub.idu, ppriv.idu) as entreprise_url
     FROM pact.avis a
     JOIN pact.membre m ON m.pseudo = a.pseudo
     LEFT JOIN pact.reponse r ON r.idc_avis = a.idc
