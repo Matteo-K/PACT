@@ -112,19 +112,27 @@ if (isset($_POST['pageBefore'])) {
 
       if ($anciennesImagesRestantes != []) {
 
+        if (file_exists($dossierTemp)) {
+          rmdir($dossierTemp);
+        }
+
         mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
 
-        
+        var_dump($anciennesImagesRestantes);
+
         //On déplace les anciennes images conservées vers un dossier temporaire
         foreach ($anciennesImagesRestantes as $num => $lien) {
           move_uploaded_file($lien, $dossierTemp . $num . pathinfo($lien)['extension']);
           $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
         }
 
+        var_dump($anciennesImagesTotal);
+
+
         foreach ($anciennesImagesTotal as $imgA) {
           // Supprime l'image du dossier
-          if (file_exists($imgA['url'])) {
-              unlink($imgA['url']);
+          if (file_exists($imgA)) {
+              unlink($imgA);
           }
         }
 
@@ -135,11 +143,7 @@ if (isset($_POST['pageBefore'])) {
         $test_urls = implode(',', array_fill(0, count($anciennesImagesTotal), '?'));
         $stmt = $conn->prepare("DELETE FROM pact._image WHERE url IN ($test_urls)");
         $stmt->execute([$anciennesImagesTotal]);
-
-        $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
-        $nbAnciennesImages = count($anciennesImagesRestantes);
-        $nbTotalImages = $nbNouvellesImages + $nbAnciennesImages;
-        $imageCounter = $nbAnciennesImages;  // Compteur pour renommer les images
+        
 
         //On remet les anciennes images gardées dans la BDD et sur le serveur 
         foreach ($anciennesImagesRestantes as $num => $lien) {
@@ -159,9 +163,16 @@ if (isset($_POST['pageBefore'])) {
               error_log("Erreur BDD : " . $e->getMessage());
           }
         }
+      }
 
+      if (file_exists($dossierTemp)) {
         rmdir($dossierTemp);
       }
+
+      $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
+      $nbAnciennesImages = count($anciennesImagesRestantes);
+      $nbTotalImages = $nbNouvellesImages + $nbAnciennesImages;
+      $imageCounter = $nbAnciennesImages;  // Compteur pour renommer les images
 
       // Boucle à travers chaque NOUVEAU fichier uploadé
       for ($i = 0; $i < $nbNouvellesImages; $i++) {

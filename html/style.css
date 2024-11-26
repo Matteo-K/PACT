@@ -324,18 +324,25 @@ header>div>a>div {
   top: 0;
   right: 0;
   height: 100%;
-  max-width: 80%;
-  background: linear-gradient(to bottom, #034d7c, #1ca4ed);
+  width: 100%;
   /* Dégradé du haut vers le bas */
-  transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease;
+  transform: translateX(0);
+  transition: transform 0.7s ease-in-out, visibility 0.7s linear, opacity 0.7s linear;
   visibility: hidden;
   opacity: 0;
 }
 
 /* Style général du menu de profil */
 .menuHeader{
+  background: linear-gradient(to bottom, #034d7c, #1ca4ed);
   display: flex;
   flex-direction: column;
+}
+
+.factue{
+  height: 100%;
+  width: 100%;
+  background-color: var(--background) ;
 }
 
 #profileMenu.show {
@@ -1892,11 +1899,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color: var(--accent);
   box-shadow: none;
   margin-bottom: 2em;
-}
-
-.factue{
-  width: 450px;
-  height: 100%;
 }
 
 /*  ***************************************************************************************
