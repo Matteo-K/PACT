@@ -117,13 +117,14 @@ class ArrayOffer {
   public function recherche($idUser_, $typeUser_, $recherche) {
     $array = $this->filtre($idUser_, $typeUser_);
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
-      return $this->offreContientTag($item->getData()["tags"], $recherche);
+      return $this->offreContientTag($item->getData()["tags"], $recherche) 
+        || strpos(strtolower($item->getData()["categorie"]), strtolower($recherche)) !== false;
     });
   }
 
   public function offreContientTag($tags, $recherche) {
     foreach ($tags as $tag) {
-      if (strpos($tag, $recherche) !== false) {
+      if (strpos(strtolower($tag), strtolower($recherche)) !== false) {
         return true;
       }
     }
@@ -134,8 +135,8 @@ class ArrayOffer {
    * Renvoie le nombre d'élément dela liste
    * Et la liste avec les éléments suivant le nombre d'élément sélectionner
    */
-  public function pagination($idUser_, $typeUser_, $elementStart_ , $nbElement_) {
-    return array_slice($this->filtre($idUser_, $typeUser_), $elementStart_, $nbElement_); 
+  public function pagination($array_, $elementStart_ , $nbElement_) {
+    return array_slice($array_, $elementStart_, $nbElement_); 
   }
 
   public function getArray() {
@@ -147,8 +148,8 @@ class ArrayOffer {
     return $arrayWithData;
   }
 
-  public function displayArrayCard($idUser_, $typeUser_, $elementStart_, $nbElement_) {
-    $array = $this->pagination($idUser_, $typeUser_, $elementStart_, $nbElement_);
+  public function displayArrayCard($array_, $typeUser_, $elementStart_, $nbElement_) {
+    $array = $this->pagination($array_, $elementStart_, $nbElement_);
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
         if ($typeUser_ == "pro_public" || $typeUser_ == "pro_prive") {
@@ -160,7 +161,7 @@ class ArrayOffer {
     } else {
       echo "<p>Aucune offre trouvée </p>";
     }
-    return count($this->filtre($idUser_, $typeUser_));
+    return count($array_);
   }
 }
 

@@ -31,7 +31,7 @@
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
 
 
-        // PAS OK
+
         // Vérifier si la dénomination existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE denomination = ?");
@@ -47,7 +47,8 @@
             // $errors[] = "Erreur lors de la vérification de la dénomination : " . htmlspecialchars($e->getMessage());
         }
 
-        // OK
+
+
         // Vérifier si le numéro de Siren existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT * FROM pact.proPrive WHERE siren = ?");
@@ -63,7 +64,8 @@
             // $errors[] = "Erreur lors de la vérification du SIREN.";
         }
 
-        // PAS OK
+
+
         // Vérifier si l'adresse mail existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT * FROM pact._nonadmin WHERE mail = ?");
@@ -79,13 +81,13 @@
             // $errors[] = "Erreur lors de la vérification de l'adresse mail : " . htmlspecialchars($e->getMessage());
         }
 
-        print_r($stmt->fetchColumn());
+
 
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
-            header('Location: accountPro.php');
-            exit;
+            // header('Location: accountPro.php');
+            // exit;
         }
 
 
@@ -150,10 +152,10 @@
                 <label for="telephone">Numéro de téléphone*:</label>
                 
                 <!-- Saisi de la dénomination -->
-                <input type="text" placeholder = "MonEntreprise" id="denomination" name="denomination" required>
+                <input type="text" placeholder = "MonEntreprise" id="denomination" name="denomination" value="<?= isset($_POST['denomination']) ? htmlspecialchars($_POST['denomination']) : '' ?>" required>
 
                 <!-- Saisi du numéro de téléphone -->
-                <input type="tel" placeholder = "06 01 02 03 04" id = "telephone" name="telephone" required>
+                <input type="tel" placeholder = "06 01 02 03 04" id = "telephone" name="telephone" value="<?= isset($_POST['telephone']) ? htmlspecialchars($_POST['telephone']) : '' ?>" required>
             </div>
 
 

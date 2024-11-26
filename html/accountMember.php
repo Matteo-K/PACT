@@ -31,7 +31,7 @@
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
 
 
-        // OK
+
         // Vérifier si le pseudo existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE pseudo = ?");
@@ -41,13 +41,14 @@
             if ($result) {
                 $errors[] = "Le pseudo existe déjà.";
             }
-        } 
+        }
+        
         catch (Exception $e) {
             // $errors[] = "Erreur lors de la vérification du pseudo : " . htmlspecialchars($e->getMessage());
         }
         
 
-        // OK
+
         // Vérifier si l'adresse mail existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT * FROM pact._nonadmin WHERE mail = ?");
@@ -68,8 +69,6 @@
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
-            //header('Location: accountMember.php');
-            //exit;
         }
 
 

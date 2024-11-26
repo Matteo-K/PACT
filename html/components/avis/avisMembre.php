@@ -4,7 +4,7 @@
     $avis = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
 
-    print_r($avis);
+    print_r($avis[0]['note']);
 
 
     foreach($avis as $a){
@@ -13,8 +13,20 @@
             <article class="user">
                 <img src="<?= $a['url']?>">
                 <p><?= $a['pseudo']?> </p>
+                <div class="noteEtoile">
+                    <?php
+                        for($i=0; $i < $a['note']; $i++){
+                            echo "<div class='star starAvis'></div>";
+                        }
+                        if(5-$a['note'] != 0){
+                            for($i=0; $i < 5-$a['note']; $i++){
+                                echo "<div class='star starAvisIncolore'></div>";
+                            }
+                        }
+                    ?>
+                </div>
             </article>
-            <
+            
         <?php
             
         ?>
