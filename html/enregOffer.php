@@ -118,12 +118,16 @@ if (isset($_POST['pageBefore'])) {
 
         mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
 
-        
+        var_dump($anciennesImagesRestantes);
+
         //On déplace les anciennes images conservées vers un dossier temporaire
         foreach ($anciennesImagesRestantes as $num => $lien) {
           move_uploaded_file($lien, $dossierTemp . $num . pathinfo($lien)['extension']);
           $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
         }
+
+        var_dump($anciennesImagesRestantes);
+
 
         foreach ($anciennesImagesTotal as $imgA) {
           // Supprime l'image du dossier
