@@ -28,9 +28,13 @@
                 <img src="./img/icone/trois-points.png" alt="icone de parametre">
             </article>
             <article>
-                <p> Visité en <?= $a['mois'] . " " . $a['annee']?></p>
+                <p>Visité en <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee']?></p>
                 <p> • </p>
                 <p class="tag"><?= $a['companie']?></p>
+            </article>
+            <article>
+                <p><?= $a['titre']?></p>
+                <p><?=$a['content']?></p>
             </article>
             
         <?php
