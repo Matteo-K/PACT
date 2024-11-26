@@ -121,28 +121,30 @@ $arrayOffer = [];
     // Liste des offres pour la manipuler
     <?php if (empty($search)) { ?>
         arrayOffer = <?php echo json_encode($offres->filtre($idUser, $typeUser)); ?>; 
-        <?php } else { ?>
-            arrayOffer = <?php echo json_encode($offres->recherche($idUser, $typeUser, $search)); ?>; 
-            <?php } ?>
-            document.addEventListener("DOMContentLoaded", () => {
+    <?php } else { ?>
+        arrayOffer = <?php echo json_encode($offres->recherche($idUser, $typeUser, $search)); ?>; 
+    <?php } ?>
+    console.log(arrayOffer);
+    
+    document.addEventListener("DOMContentLoaded", () => {
+        
+        
+        // Acualise l'heure actuelle
+        const now = new Date();
+        let hours = now.getHours().toString().padStart(2, '0');
+        let minutes = now.getMinutes().toString().padStart(2, '0');
+        let timeString = `${hours}:${minutes}`;
+        document.querySelector('#heureFin').value = timeString;
+        document.querySelector('#heureDebut').value = timeString;
+        
+        
+        document.querySelector('#prixMin').addEventListener('change', inverseValuesPrix);
+        document.querySelector('#prixMax').addEventListener('change', inverseValuesPrix);
                 
-                
-                // Acualise l'heure actuelle
-                const now = new Date();
-                let hours = now.getHours().toString().padStart(2, '0');
-                let minutes = now.getMinutes().toString().padStart(2, '0');
-                let timeString = `${hours}:${minutes}`;
-                document.querySelector('#heureFin').value = timeString;
-                document.querySelector('#heureDebut').value = timeString;
-                
-                
-                document.querySelector('#prixMin').addEventListener('change', inverseValuesPrix);
-                document.querySelector('#prixMax').addEventListener('change', inverseValuesPrix);
-                
-                /**
-                 * Switch les valeurs des prix maximum et minimum si prix maximum < prix minimum
-                 */
-                function inverseValuesPrix () {
+        /**
+         * Switch les valeurs des prix maximum et minimum si prix maximum < prix minimum
+         */
+        function inverseValuesPrix () {
             const selectMin = document.querySelector('#prixMin');
             const selectMax = document.querySelector('#prixMax');
             const valueMin = parseInt(selectMin.value);
