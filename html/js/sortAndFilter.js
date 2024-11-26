@@ -59,12 +59,52 @@ const heureFin = document.querySelector("#heureFin");
 
 /* ### Fonction ### */
 
-/// Tri
+  // Tris
 
-/// Filtre
+  // Filtres
+
+  // Fonction de filtre par catégorie
+  function filtrerParCategorie(offers) {
+    const categoriesSelection = [];
+    
+    if (chkBxParc.checked) categoriesSelection.push("Parc");
+    if (chkBxVisite.checked) categoriesSelection.push("Visite");
+    if (chkBxActivite.checked) categoriesSelection.push("Activite");
+    if (chkBxSpectacle.checked) categoriesSelection.push("Spectacle");
+    if (chkBxRestauration.checked) categoriesSelection.push("Restauration");
+
+    if (categoriesSelection == []) {
+      categoriesSelection = ["Parc", "Visite", "Activite", "Spectacle", "Restauration"];
+    }
+
+    return offers.filter(offer => categoriesSelection.includes(offer.categorie));
+  }
+
+
+  // Fonction de filtre par notes
+  function filtrerParNotes(offers) {
+    const notesSelection = [];
+
+    if (chkBxNote1.checked) notesSelection.push(1);
+    if (chkBxNote2.checked) notesSelection.push(2);
+    if (chkBxNote3.checked) notesSelection.push(3);
+    if (chkBxNote4.checked) notesSelection.push(4);
+    if (chkBxNote5.checked) notesSelection.push(5);
+
+    return offers.filter(offer => notesSelection.includes(offer.note));
+  }
+
+
 
 /* ### Evènements ### */
 
-/// Tri
+  // Tris
 
-/// Fonction
+  // Filtre
+
+  chkBxVisite.addEventListener()
+  chkBxActivite.addEventListener()
+  chkBxSpectacle.addEventListener()
+  chkBxRestauration.addEventListener()
+  chkBxParc.addEventListener()
+});
