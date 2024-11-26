@@ -1,5 +1,8 @@
 <?php
-$stmt = $conn->prepare("SELECT a.*, m.url, r.denomination, r.contenureponse, r.reponsedate FROM pact.avis a JOIN pact.membre m ON m.pseudo = a.pseudo LEFT JOIN pact.reponse r on r.idc_avis = a.idc where idoffre = ? order by a.datepublie asc");
+$stmt = $conn->prepare("SELECT a.*, m.url, r.denomination, r.contenureponse, r.reponsedate, ppub.url as urlpub, ppriv.url as urlpriv FROM pact.avis a 
+                        JOIN pact.membre m ON m.pseudo = a.pseudo LEFT JOIN pact.reponse r ON r.idc_avis = a.idc 
+                        LEFT JOIN pact.propublic ppub ON ppub.denomination = r.denomination LEFT JOIN pact.proprive ppriv ON ppriv.denomination = r.denomination 
+                        where idoffre = ? order by a.datepublie asc");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -9,61 +12,62 @@ print_r($avis);
 
 foreach ($avis as $a) {
 ?>
-    <div class="messageAvis">
-        <article class="user">
-            <div class="infoUser">
-                <img src="<?= $a['url'] ?>">
-                <p><?= ucfirst(strtolower($a['pseudo'])) ?> </p>
-            </div>
-            <div class="autreInfoAvis">
-                <div class="noteEtoile">
-                    <?php
-                    for ($i = 0; $i < $a['note']; $i++) {
-                        echo "<div class='star'></div>";
-                    }
-                    if (5 - $a['note'] != 0) {
-                        for ($i = 0; $i < 5 - $a['note']; $i++) {
-                            echo "<div class='star starAvisIncolore'></div>";
+    <div class="messageReponseAvis">
+        <div class="messageAvis">
+            <article class="user">
+                <div class="infoUser">
+                    <img src="<?= $a['url'] ?>">
+                    <p><?= ucfirst(strtolower($a['pseudo'])) ?> </p>
+                </div>
+                <div class="autreInfoAvis">
+                    <div class="noteEtoile">
+                        <?php
+                        for ($i = 0; $i < $a['note']; $i++) {
+                            echo "<div class='star'></div>";
                         }
-                    }
-                    ?>
-                    <p><?= $a['note'] ?> / 5</p>
-                </div>
-                <img src="./img/icone/trois-points.png" alt="icone de parametre">
-                <div></div>
-        </article>
-        <article>
-            <p><strong>Visité en</strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
-            <p> • </p>
-            <p class="tag"><?= $a['companie'] ?></p>
-        </article>
-        <article>
-            <p><strong><?= ucfirst($a['titre']) ?></strong></p>
-            <p><?= $a['content'] ?></p>
-            <?php if ($a['listimage'] != null) {
-                $listimage = trim($a['listimage'], '{}');
-                $pictures = explode(',', $listimage);
-            ?>
-
-                <div class="swiper-container">
-                    <div class="swiper mySwiperAvis">
-                        <div class="swiper-wrapper">
-                            <?php
-                            foreach ($pictures as $picture) {
-                            ?>
-                                <div class="swiper-slide">
-                                    <img src="<?php echo $picture; ?>" />
-                                </div>
-                            <?php
+                        if (5 - $a['note'] != 0) {
+                            for ($i = 0; $i < 5 - $a['note']; $i++) {
+                                echo "<div class='star starAvisIncolore'></div>";
                             }
-                            ?>
-                        </div>
+                        }
+                        ?>
+                        <p><?= $a['note'] ?> / 5</p>
                     </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            <?php
-            }
-            ?>
+                    <img src="./img/icone/trois-points.png" alt="icone de parametre">
+                    <div></div>
+            </article>
+            <article>
+                <p><strong>Visité en</strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
+                <p> • </p>
+                <p class="tag"><?= $a['companie'] ?></p>
+            </article>
+            <article>
+                <p><strong><?= ucfirst($a['titre']) ?></strong></p>
+                <p><?= $a['content'] ?></p>
+                <?php if ($a['listimage'] != null) {
+                    $listimage = trim($a['listimage'], '{}');
+                    $pictures = explode(',', $listimage);
+                ?>
+
+                    <div class="swiper-container">
+                        <div class="swiper mySwiperAvis">
+                            <div class="swiper-wrapper">
+                                <?php
+                                foreach ($pictures as $picture) {
+                                ?>
+                                    <div class="swiper-slide">
+                                        <img src="<?php echo $picture; ?>" />
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                <?php
+                }
+                ?>
             </article>
             <?php
             if (isset($a['datepublie'])) {
@@ -109,8 +113,31 @@ foreach ($avis as $a) {
                     echo "<p>Rédigé le " . $dateDB->format("d/m/Y à H:i") . "</p>";
                 }
             }
+            ?>
+        </div>
+        <?php
+        if($a['idc_reponse']){
         ?>
+            <div>
+                <img src="./img/icone/reponse.png" alt="icone de reponse">
+                <div class="reponseAvis">
+                <div class="infoProReponse">
+                    <?php if($a['urlpub']){
+                        echo "<img src=" . $a['urlpub'] . ">";
+                    } else{
+                        echo "<img src=" . $a['urlpriv'] . ">";
+                    }
+                    ?>
+                    <p><?= ucfirst(strtolower($a['denomination'])) ?> </p>
+                </div>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
+
     </div>
+
 <?php
 }
 ?>
