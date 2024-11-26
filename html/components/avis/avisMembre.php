@@ -36,7 +36,8 @@
                 <p><?= $a['titre']?></p>
                 <p><?=$a['content']?></p>
                 <?php if($a['listimage'] != null){
-                    $pictures = json_decode($a['listimage'])
+                    $pictures = json_decode($a['listimage']);
+                    print_r($pictures);
                     ?>
                     
                     <div class="swiper-container">
