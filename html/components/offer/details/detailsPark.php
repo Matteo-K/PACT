@@ -25,16 +25,17 @@ if ($categorie["_parcattraction"]) {
 
 <section id="park">
         <div class="ageMinP">
-            <label>Age minimum</label>
+            <label class="labelGauche">Age minimum :</label>
             <input type="number" id="agePark" name="AgePark" min="0"  placeholder="0">
         </div>
 
         <div class="NbEtPrixPark">
-            <label>Nombre d'attraction</label>
+            <label class="labelGauche">Nombre d'attractions :</label>
             <input type="number" id="nbAttrac" name="nbAttrac"min="0"placeholder="0">
 
-            <label>Prix Minimum</label>
+            <label class="labelGauche">Prix Minimum :</label>
             <input type="number" id="prixMinPark" name="prixMinPark" min="0" placeholder="0">
+            <label>€</label>
         </div>
 
 
