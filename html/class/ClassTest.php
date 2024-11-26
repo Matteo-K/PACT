@@ -5,6 +5,6 @@ $ar = new ArrayOffer();
 
 $array = $ar->recherche(15,"paster","culturel");
 
-$ar->displayArrayCard($array, 0 , 100);
+$ar->displayArrayCard($array, "paster", 0 , 100);
 
 ?>
