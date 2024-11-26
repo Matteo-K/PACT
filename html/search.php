@@ -5,7 +5,6 @@ $recherche = isset($_GET["search"]) ? $_GET["search"]: "";
 $page = isset($_GET["page"]) ? $_GET["page"] :  1;
 $nbElement = 15;
 $countOffer = 0;
-$search = isset($_GET["search"]) ? $_GET["search"] : "";
 
     // Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');

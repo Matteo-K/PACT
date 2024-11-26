@@ -1,5 +1,5 @@
 <header>
-
+    <?php $search = isset($_GET["search"]) ? $_GET["search"] : ""; ?>
     <div>
         <a href="../index.php">
             <img id="logo" src="../img/logo.png" title="logo du site">
@@ -19,7 +19,7 @@
     </div>
     <div id="divFormHeader">
         <form method="get" action="search.php" id="formHeader">
-            <input type="text" placeholder="Rechercher :" name="search">
+            <input type="text" placeholder="Rechercher :" name="search" value="<?php echo $search ?>">
             <button type="submit"><img src="../img/icone/loupe.png" title="icone de recherche"></button>
         </form>
     </div>
