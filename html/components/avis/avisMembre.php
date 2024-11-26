@@ -4,7 +4,7 @@
     $avis = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
 
-    print_r($avis);
+    print_r($avis[0]);
 
 
     foreach($avis as $a){
