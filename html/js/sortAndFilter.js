@@ -258,6 +258,7 @@ function avisSearch(offer) {
   return div;
 }
 
+console.log(arrayOffer);
 displayOffers(arrayOffer, 0, 15);
 
 
