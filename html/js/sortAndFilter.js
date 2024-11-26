@@ -102,6 +102,7 @@ function selectSort(array) {
 
   for (let key in sortFunctions) {
     if (key.checked) {
+      console.log("tri avec " + key);
       array = sortFunctions[key](array);
       break;
     }
@@ -131,9 +132,6 @@ function sortPrixDecroissant(array) {
 }
 
 function sortDateRecent(array) {
-  array.forEach(element => {
-    console.log("element"+element.idOffre +" "+ element.dateCreation+"\t");
-  });
   return array.sort((offre1, offre2) => offre2.dateCreation - offre1.dateCreation);
 }
 
@@ -187,12 +185,12 @@ function sortAndFilter(array, elementStart, nbElement) {
 /* ### Affichage des offres ### */
 
 function displayOffers(array, elementStart, nbElement) {
+  const bloc = document.querySelector(".searchoffre");
   if (array.length != 0) {
+    bloc.innerHTML = "";
     let offers = array.slice(elementStart, nbElement);
     offers.forEach(element => {displayOffer(element)});
   } else {
-    const bloc = document.querySelector(".searchoffre");
-
     let pasOffre = document.createElement("p");
     pasOffre.textContent = "Aucune offre trouvée";
     bloc.appendChild(pasOffre);
