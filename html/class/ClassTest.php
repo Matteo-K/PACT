@@ -3,6 +3,6 @@ require_once __DIR__."/../config.php";
 
 $ar = new ArrayOffer();
 
-echo $ar->recherche(15,"paster","culturel")
+print_r($ar->recherche(15,"paster","culturel"));
 
 ?>
