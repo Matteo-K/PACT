@@ -326,7 +326,8 @@ header>div>a>div {
   height: 100%;
   width: 100%;
   /* Dégradé du haut vers le bas */
-  transition: transform 0.7s linear, visibility 0.7s linear, opacity 0.7s linear;
+  transform: translateX(0);
+  transition: transform 0.7s ease-in-out, visibility 0.7s linear, opacity 0.7s linear;
   visibility: hidden;
   opacity: 0;
 }
@@ -347,7 +348,7 @@ header>div>a>div {
 #profileMenu.show {
   visibility: visible;
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(-250px);
 }
 
 #profileMenu.hide {
