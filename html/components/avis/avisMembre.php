@@ -89,18 +89,18 @@ foreach ($avis as $a) {
                 if ($diffInDays === 0) {
                     // La date est aujourd'hui, afficher la différence en heures
                     if ($diffInHours > 0) {
-                        echo "Rédigé il y a $diffInHours heure" . ($diffInHours > 1 ? 's' : '') . "</p>";
+                        echo "<p>Rédigé il y a $diffInHours heure" . ($diffInHours > 1 ? 's' : '') . "</p>";
                     } elseif ($diffInMinutes > 0) {
-                        echo "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '') . "</p>";
+                        echo "<p>Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '') . "</p>";
                     } else {
-                        echo "Rédigé à l'instant </p>";
+                        echo "<p>Rédigé à l'instant </p>";
                     }
                 } elseif ($diffInDays === -1) {
                     // La date est hier
-                    echo "Rédigé hier </p>";
+                    echo "<p>Rédigé hier </p>";
                 } elseif ($diffInDays >= -7 && $diffInDays < -1) {
                     // La date est dans les 7 derniers jours
-                    echo "Rédigé il y a " . abs($diffInDays) . " jour" . (abs($diffInDays) > 1 ? 's' : '') . "</p>";
+                    echo "<p>Rédigé il y a " . abs($diffInDays) . " jour" . (abs($diffInDays) > 1 ? 's' : '') . "</p>";
                 } else {
                     // La date est plus ancienne que 7 jours ou dans le futur
                     echo "<p>Rédigé le " . $dateDB->format("d/m/Y à H:i") . "</p>";
