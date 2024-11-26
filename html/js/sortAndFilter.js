@@ -5,11 +5,12 @@
  * afin de trier et filtrer les offres de la page de recherche
  */
 
-
+let userType, arrayOffer;
 document.addEventListener('DOMContentLoaded', function() {
   const offersDataElement = document.getElementById('offers-data');
-  const arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
-  console.log(arrayOffer);
+  const userDataElement = document.getElementById('user-data');
+  arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
+  userType = userDataElement.getAttribute('data-user');
 });
 
 
@@ -97,14 +98,165 @@ function filtrerParNotes(offers) {
 }
 
 
-function displayOffers($array) {
+function displayOffers(array, elementStart, nbElement) {
+  let offers = array.slice(elementStart, nbElement);
+  offers.forEach(element => {displayOffer(element)});
+}
+
+function displayOffer(offer) {
+  const bloc = document.querySelector(".searchoffre");
+
+  let form = document.createElement("form");
+  form.classList.add("searchA");
+  form.setAttribute("action", "/detailsOffer.php?&ouvert=");
+  form.setAttribute("method", "post");
+
+  let input = document.createElement("input");
+  input.setAttribute("type", "hidden");
+  input.setAttribute("name", "idoffre");
+  input.setAttribute("value", offer.idOffre);
+
+  form.appendChild(input);
+  form.appendChild(createCard(offer));
+  form.appendChild(avisSearch(offer));
+
+  bloc.appendChild(form);
+}
+
+function createCard(offer) {
+  let card = document.createElement("div");
+  card.classList.add("carteOffre");
+
+  // Image principale
+  let img = document.createElement("img");
+  img.classList.add("searchImage");
+  if (offer.length = 0) {
+    img.setAttribute("alt", "Pas_de_photo_attribué_à_l'offre");
+  } else {
+    img.setAttribute("alt", "photo_principal_de_l'offre");
+    img.setAttribute("src", offer.images[0]);
+  }
+  card.appendChild(img);photo_principal_de_l
+
+  let infoOffre = document.createElement("div");
+  infoOffre.classList.add("infoOffre");
+
+  infoOffre.appendChild(proStatut(offer));
+  infoOffre.appendChild(localisation(offer));
+  infoOffre.appendChild(ajouterTag(offer));
+
+  let resume = document.createElement("p");
+  resume.classList.add("searchResume");
+  if (offer.resume != "") {
+    resume.textContent = "Pas de resume saisie";
+  } else {
+    resume.textContent = offer.resume;
+  }
+
+  infoOffre.appendChild(note(offer));
+
+  return card;
+}
+
+function proStatut(offer) {
+  let proStatut = document.createElement("div");
+  proStatut.classList.add("ProStatut");
+
+  // Titre de l'offre
+  let titre = document.createElement("p");
+  titre.classList.add("searchTitre");
+  titre.textContent = offer.nomOffre;
+
+  proStatut.appendChild(titre);
+
+  // statut de l'offre si professionnel
+  if (userType == "pro_public" || userType == "pro_prive") {
+
+    let span = document.createElement("span");
+    span.classList.add("StatutAffiche");
+    if (offer.statut != 'actif') {
+      span.classList.add("horslgnOffre");
+      span.textContent = "Hors-Ligne";
+    } else {
+      span.textContent = "En-Ligne";
+    }
+
+    proStatut.appendChild(span);
+  }
+  return proStatut;
+}
+
+function localisation(offer) {
+  let gras = document.createElement("strong");
+
+  let gammeDePrix = "";
+  if (typeof offer.gammeDePrix !== 'undefined') {
+    gammeDePrix = offer.gammeDePrix;
+  }
+
+  let p = document.createElement("p");
+  p.textContent = offer.ville + " " + gammeDePrix + " ⋅ " + offer.categorie;
+
+  gras.appendChild(p);
+
+  return gras;
+}
+
+function ajouterTag(offer) {
+  let tags = document.createElement("div");
+  tags.classList.add("searchCategorie");
+
+  offer.tags.forEach(element => {
+
+    let tag = document.createElement("span");
+    tag.classList.add("searchTag");
+    tag.textContent = element.replace("_", " ");
+    parent.appendChild(tag);
+  });
+
+  return tags;
+}
+
+function note(offer) {
+  let section = document.createElement("section");
+  section.classList.add("searchNote");
+
+  let note = document.createElement("p");
+  note.textContent = offer.noteAvg;
+  section.appendChild(note);
   
+  let ouverture = document.createElement("p");
+  ouverture.id = "couleur-" + offer.idOffre;
+  if (offer.ouverture == "EstOuvert") {
+    ouverture.classList.add("searchStatutO");
+    ouverture.textContent = "Ouvert";
+  } else {
+    ouverture.classList.add("searchStatutF");
+    ouverture.textContent = "Fermé";
+  }
+  section.appendChild(ouverture);
+
+  return section;
 }
 
-function displayOffer($offer) {
-  document.createElement("a");
+function avisSearch(offer) {
+  let div = document.createElement("div");
+  div.classList.add("searchAvis");
+
+  let titre = document.createElement("p");
+  titre.classList.add("avisSearch");
+  titre.textContent = "Les avis les plus récent :";
+
+  let tempPasAvis = document.createElement("p");
+  tempPasAvis.textContent = "Pas d'avis";
+
+  div.appendChild(titre);
+  div.appendChild(tempPasAvis);
+
+  return div;
 }
 
+displayOffers(arrayOffer, 0, 15);
 
 /* ### Evènements ### */
 
@@ -112,8 +264,8 @@ function displayOffer($offer) {
 
 // Filtre
 
-chkBxVisite.addEventListener()
-chkBxActivite.addEventListener()
-chkBxSpectacle.addEventListener()
-chkBxRestauration.addEventListener()
-chkBxParc.addEventListener()
+chkBxVisite.addEventListener();
+chkBxActivite.addEventListener();
+chkBxSpectacle.addEventListener();
+chkBxRestauration.addEventListener();
+chkBxParc.addEventListener();

@@ -120,9 +120,9 @@ $arrayOffer = [];
     <?php } else { ?>
         <div id="offers-data" data-offers='<?php echo json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>'></div>
     <?php } ?>
+    <div id="user-data" data-user='<?php echo $typeUser ?>'></div>
     <script src="js/sortAndFilter.js"></script>
     <script>
-        
         document.addEventListener("DOMContentLoaded", () => {
             
             // Acualise l'heure actuelle

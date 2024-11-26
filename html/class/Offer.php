@@ -157,7 +157,8 @@ class Offer {
       "rue" => $this->rue,
       "codePostal" => $this->codePostal,
       "horaireMidi" => $this->horaireMidi,
-      "horaireSoir" => $this->horaireSoir
+      "horaireSoir" => $this->horaireSoir,
+      "ouverture" => statutOuverture($this->horaireSoir, $this->horaireMidi)
     ];
   }
 
