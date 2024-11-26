@@ -45,7 +45,7 @@
                     $pictures = explode(',', $listimage);
                     ?>
                     
-                    <div class="swiper-container">
+                <div class="swiper-container">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             <?php
@@ -59,6 +59,7 @@
                             ?>
                         </div>
                     </div>
+                    <div class="swiper-pagination"></div>
                 </div>
                 <?php
                 }
