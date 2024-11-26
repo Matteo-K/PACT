@@ -1,5 +1,5 @@
 <?php
-$stmt = $conn->prepare("SELECT a.*, m.url,r.idc_reponse, r.denomination, r.contenureponse, r.reponsedate, ppub.url as urlpub, ppriv.url as urlpriv FROM pact.avis a 
+$stmt = $conn->prepare("SELECT a.*, m.url,r.idc_reponse, r.denomination, r.contenureponse, r.reponsedate, COALESCE(ppub.url, ppriv.url) AS entreprise_url FROM pact.avis a 
                         JOIN pact.membre m ON m.pseudo = a.pseudo LEFT JOIN pact.reponse r ON r.idc_avis = a.idc 
                         LEFT JOIN pact.propublic ppub ON ppub.denomination = r.denomination LEFT JOIN pact.proprive ppriv ON ppriv.denomination = r.denomination 
                         where idoffre = ? order by a.datepublie asc");
@@ -122,12 +122,8 @@ foreach ($avis as $a) {
                 <img src="./img/icone/reponse.png" alt="icone de reponse">
                 <div class="reponseAvis">
                 <div class="infoProReponse">
-                    <?php if($a['urlpub']){
-                        echo "<img src=" . $a['urlpub'] . ">";
-                    } else{
-                        echo "<img src=" . $a['urlpriv'] . ">";
-                    }
-                    ?>
+                    <img src=<?=$a['entreprise_url'] ?>">;
+                    
                     <p><?= ucfirst(strtolower($a['denomination'])) ?> </p>
                 </div>
                 </div>
