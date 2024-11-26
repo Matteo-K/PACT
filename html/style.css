@@ -2625,7 +2625,7 @@ tbody td:last-child {
   margin-right: 10px;
 }
 
-#park >div[class="choixImage2"]>input[class="zoneImages"]{
+#park >input[class="zoneImages"]{
   width: 200px;
 }
 /*+++++++++++++++++++++++++++++++++++++++++++*/
