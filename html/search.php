@@ -116,33 +116,33 @@ $arrayOffer = [];
     <?php require_once "components/footer.php"; ?>
 </body>
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        
-        let arrayOffer = [];
-
-        // Liste des offres pour la manipuler
-        <?php if (empty($search)) { ?>
-            arrayOffer = <?php echo json_encode($offres->filtre($idUser, $typeUser)); ?>; 
+    let arrayOffer = [];
+    
+    // Liste des offres pour la manipuler
+    <?php if (empty($search)) { ?>
+        arrayOffer = <?php echo json_encode($offres->filtre($idUser, $typeUser)); ?>; 
         <?php } else { ?>
             arrayOffer = <?php echo json_encode($offres->recherche($idUser, $typeUser, $search)); ?>; 
-        <?php } ?>
-        
-        // Acualise l'heure actuelle
-        const now = new Date();
-        let hours = now.getHours().toString().padStart(2, '0');
-        let minutes = now.getMinutes().toString().padStart(2, '0');
-        let timeString = `${hours}:${minutes}`;
-        document.querySelector('#heureFin').value = timeString;
-        document.querySelector('#heureDebut').value = timeString;
-
-        
-        document.querySelector('#prixMin').addEventListener('change', inverseValuesPrix);
-        document.querySelector('#prixMax').addEventListener('change', inverseValuesPrix);
-
-        /**
-         * Switch les valeurs des prix maximum et minimum si prix maximum < prix minimum
-         */
-        function inverseValuesPrix () {
+            <?php } ?>
+            document.addEventListener("DOMContentLoaded", () => {
+                
+                
+                // Acualise l'heure actuelle
+                const now = new Date();
+                let hours = now.getHours().toString().padStart(2, '0');
+                let minutes = now.getMinutes().toString().padStart(2, '0');
+                let timeString = `${hours}:${minutes}`;
+                document.querySelector('#heureFin').value = timeString;
+                document.querySelector('#heureDebut').value = timeString;
+                
+                
+                document.querySelector('#prixMin').addEventListener('change', inverseValuesPrix);
+                document.querySelector('#prixMax').addEventListener('change', inverseValuesPrix);
+                
+                /**
+                 * Switch les valeurs des prix maximum et minimum si prix maximum < prix minimum
+                 */
+                function inverseValuesPrix () {
             const selectMin = document.querySelector('#prixMin');
             const selectMax = document.querySelector('#prixMax');
             const valueMin = parseInt(selectMin.value);
@@ -153,7 +153,7 @@ $arrayOffer = [];
                 selectMax.value = valueMin;
             }
         }
-
+        
         // Ouvre et ferme le pop-up tri et filtre pour la partie mobile
         const btnFiltre = document.querySelector("#btnFiltre");
         const btnTri = document.querySelector("#btnTri");
@@ -162,7 +162,7 @@ $arrayOffer = [];
         const fermeTri = document.querySelector("#fermeTri");
         const fermeFiltre = document.querySelector("#fermeFiltre");
         const body = document.body;
-
+        
         /**
          * Ouvre et ferme le aside au format mobile
          * Empêche le scroll
@@ -176,13 +176,13 @@ $arrayOffer = [];
                 body.classList.remove('no-scroll');
             }
         }
-
+        
         fermeTri.addEventListener("click", () => toggleAside(asideTri));
         fermeFiltre.addEventListener("click", () => toggleAside(asideFiltre));
         btnTri.addEventListener("click", () => toggleAside(asideTri));
         btnFiltre.addEventListener("click", () => toggleAside(asideFiltre));
-
-});
+        
+    });
 </script>
 <script src="js/sortAndFilter.js"></script>
 </html>
