@@ -99,7 +99,7 @@
         <h1 id="connexionTitre">Connectez-vous à votre compte</h1>
 
         <?php if (!empty($error)): ?>
-            <div class="messageErreur"><?php echo htmlspecialchars($error); ?></div>
+            <div id="messageErreur" class="messageErreur"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
 
         <form id = "formConnexion" action="login.php" method="post" enctype="multipart/form-data">
