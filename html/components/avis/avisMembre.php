@@ -63,6 +63,9 @@ foreach ($avis as $a) {
                 </div>
             <?php
             }
+            ?>
+            </article>
+            <?php
             if (isset($a['datepublie'])) {
                 // Créer des objets DateTime et fixer l'heure à minuit
                 $dateDB = new DateTime($a['datepublie']);
@@ -89,7 +92,7 @@ foreach ($avis as $a) {
                 if ($diffInDays === 0) {
                     // La date est aujourd'hui, afficher la différence en heures
                     if ($diffInHours > 0) {
-                        echo "<p>Rédigé il y a $diffInHours heure" . ($diffInHours > 1 ? 's' : '') . "</p>";
+                        echo "Rédigé il y a $diffInHours heure" . ($diffInHours > 1 ? 's' : '') . "</p>";
                     } elseif ($diffInMinutes > 0) {
                         echo "<p>Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '') . "</p>";
                     } else {
@@ -106,11 +109,6 @@ foreach ($avis as $a) {
                     echo "<p>Rédigé le " . $dateDB->format("d/m/Y à H:i") . "</p>";
                 }
             }
-            ?>
-        </article>
-
-        <?php
-
         ?>
     </div>
 <?php

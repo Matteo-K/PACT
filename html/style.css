@@ -2268,7 +2268,10 @@ tbody td:last-child {
 .user+article+article>p {
   margin-bottom: 0.4em;
 }
-
+.user+article+article+p{
+  width: 100%;
+  text-align: center;
+}
 .user + article > .tag {
   background-color: #fff;
   text-align: center;
