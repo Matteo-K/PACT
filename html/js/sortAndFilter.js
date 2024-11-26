@@ -107,4 +107,3 @@ const heureFin = document.querySelector("#heureFin");
   chkBxSpectacle.addEventListener()
   chkBxRestauration.addEventListener()
   chkBxParc.addEventListener()
-});
