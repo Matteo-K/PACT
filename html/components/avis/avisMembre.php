@@ -129,7 +129,7 @@ foreach ($avis as $a) {
                 <div class="reponseAvis">
                 <div class="infoProReponse">
                     <img src=<?=$a['entreprise_url'] ?>">
-                    <p><?= ucfirst(strtolower($a['denomination'])) ?> </p>
+                    <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
                 </div>
                 </div>
             </div>
