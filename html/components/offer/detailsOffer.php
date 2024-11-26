@@ -204,7 +204,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         const maxImages = 10;
 
         //On récupère en JS la liste des tags pour le script 
-        let listeTags = <?php echo json_encode($listeTags) ?>;
+        const listeTags = <?php echo json_encode($listeTags) ?>;
 
         //Récupération des tags déjà présents sur l'offre puis affichage (semblable a la fonction ajouTag())
         const loadedTags = <?php echo json_encode($loadedTags) ?>;
