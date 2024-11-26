@@ -155,7 +155,7 @@
                 <input type="text" placeholder = "MonEntreprise" id="denomination" name="denomination" value="<?= isset($_POST['denomination']) ? htmlspecialchars($_POST['denomination']) : '' ?>" required>
 
                 <!-- Saisi du numéro de téléphone -->
-                <input type="tel" placeholder = "06 01 02 03 04" id = "telephone" name="telephone" required>
+                <input type="tel" placeholder = "06 01 02 03 04" id = "telephone" name="telephone" value="<?= isset($_POST['telephone']) ? htmlspecialchars($_POST['telephone']) : '' ?>" required>
             </div>
 
 
