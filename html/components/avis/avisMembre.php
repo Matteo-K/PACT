@@ -59,28 +59,48 @@
                 }
                 if (isset($a['datepublie'])) {
                     // Créer des objets DateTime et fixer l'heure à minuit
-                    $dateDB = new DateTime($a['datepublie']);
-                    $dateDB->setTime(0, 0, 0);
+                    $dateDB = new DateTime();
+                    $dateDB->setTimestamp($a['datepublie']);
             
                     $dateNow = new DateTime();
-                    $dateNow->setTime(0, 0, 0);
+
+                    // Fixer les objets DateTime à minuit pour la différence en jours
+                    $dateDBMidnight = clone $dateDB;
+                    $dateDBMidnight->setTime(0, 0, 0);
+
+                    $dateNowMidnight = clone $dateNow;
+                    $dateNowMidnight->setTime(0, 0, 0);
             
-                    // Calcul de la différence
-                    $interval = $dateDB->diff($dateNow);
-                    $diffInDays = (int)$interval->format('%r%a');
-            
+                    // Calculer la différence en jours (à partir de minuit)
+                    $intervalDays = $dateDBMidnight->diff($dateNowMidnight);
+                    $diffInDays = (int)$intervalDays->format('%r%a');
+
+                    // Calculer la différence en heures pour le jour même
+                    $intervalHours = $dateDB->diff($dateNow);
+                    $diffInHours = $intervalHours->h; // Différence en heures
+                    $diffInMinutes = $intervalHours->i; // Différence en minutes
+
                     // Déterminer le message à afficher
-                    if($diffInDays > -1){
-                        echo "<p>Rédigé aujourd'hui</p>";
-                    } else if ($diffInDays === -1) {
-                        echo "<p>Rédigé hier</p>";
+                    if ($diffInDays === 0) {
+                        // La date est aujourd'hui, afficher la différence en heures
+                        if ($diffInHours > 0) {
+                            echo "Rédigé il y a $diffInHours heure" . ($diffInHours > 1 ? 's' : '');
+                        } elseif ($diffInMinutes > 0) {
+                            echo "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '');
+                        } else {
+                            echo "Rédigé à l'instant";
+                        }
+                    } elseif ($diffInDays === -1) {
+                        // La date est hier
+                        echo "Rédigé hier";
                     } elseif ($diffInDays >= -7 && $diffInDays < -1) {
-                        echo "<p>Rédigé il y a " . abs($diffInDays) . " jour" . (abs($diffInDays) > 1 ? 's' : '') . "</p>";
+                        // La date est dans les 7 derniers jours
+                        echo "Rédigé il y a " . abs($diffInDays) . " jour" . (abs($diffInDays) > 1 ? 's' : '');
                     } else {
-                        echo "<p>Rédigé le " . $dateDB->format("d/m/Y") . "</p>";
+                        // La date est plus ancienne que 7 jours ou dans le futur
+                        echo "Rédigé le " . $dateDB->format("d/m/Y à H:i");
                     }
-                }
-                ?>
+                    ?>
             </article>
             
         <?php
