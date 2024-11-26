@@ -120,9 +120,9 @@ $arrayOffer = [];
     
     // Liste des offres pour la manipuler
     <?php if (empty($search)) { ?>
-        arrayOffer = <?php echo json_encode($offres->filtre($idUser, $typeUser)); ?>; 
+        arrayOffer = <?php echo json_encode($offres->getArray($offres->filtre($idUser, $typeUser))); ?>; 
     <?php } else { ?>
-        arrayOffer = <?php echo json_encode($offres->recherche($idUser, $typeUser, $search)); ?>; 
+        arrayOffer = <?php echo json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>; 
     <?php } ?>
     console.log(arrayOffer);
     
