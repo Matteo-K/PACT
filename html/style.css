@@ -316,6 +316,10 @@ header>div>a>div {
   align-items: center;
 }
 
+.menuHeader{
+  display: flex;
+}
+
 /* Style général du menu de profil */
 #profileMenu {
   color: #fff;
@@ -2638,7 +2642,9 @@ tbody td:last-child {
 #park>div[class="NbEtPrixPark"]>label[class="labelGauche"] {
   margin-right: 10px;
 }
-
+#park>div[class="NbEtPrixPark"]>label[class="labelGauche"] {
+  margin-left: 10px;
+}
 #park >div[class="afficheImages2"]{
   width: 300px;
 }
