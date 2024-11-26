@@ -79,17 +79,44 @@
                         $idu = $_SESSION["idUser"];
                         $stmt = $conn->prepare("SELECT nom,idoffre,ARRAY_AGG(DISTINCT datefactue) AS datefactue FROM pact.facture WHERE idU = $idu GROUP BY nom,idOffre");
                         $stmt->execute();
-                        $factures = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $factures = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         
-                        print_r($factures);
                         foreach ($factures as $key => $value) {
                             ?>
                                 <details>
-                                <summary><?php echo $value['nom'] ?></summary>
+                                    <summary><?php echo $value['nom'] ?></summary>
                                     <?php
                                         $date = explode(',',trim($value['datefactue'],'{}'));
                                         foreach ($date as $key => $value2) {
-                                            echo gettype($value2);
+                                            $moisEnFrancais = [
+                                                1 => 'janvier',
+                                                2 => 'février',
+                                                3 => 'mars',
+                                                4 => 'avril',
+                                                5 => 'mai',
+                                                6 => 'juin',
+                                                7 => 'juillet',
+                                                8 => 'août',
+                                                9 => 'septembre',
+                                                10 => 'octobre',
+                                                11 => 'novembre',
+                                                12 => 'décembre'
+                                            ];
+                                            
+                                            // Initialiser la date à partir de $value2
+                                            $dateFacture = new DateTime($value2);
+                                            
+                                            // Soustraire un mois
+                                            $dateFacture->modify('-1 month');
+                                            
+                                            // Obtenir le numéro du mois
+                                            $numMois = (int)$dateFacture->format('n'); // 'n' donne le mois en entier sans zéro initial
+                                            
+                                            // Récupérer le mois en français
+                                            $moisFrancais = $moisEnFrancais[$numMois];
+                                            ?>
+                                                <a href=""><?php echo "Facture du mois de " . $moisFrancais ?></a>
+                                            <?php
                                         }
                                     ?>
                                 </details>
