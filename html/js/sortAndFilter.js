@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const offersDataElement = document.getElementById('offers-data');
   const userDataElement = document.getElementById('user-data');
   arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
+  arrayOffer = Object.values(arrayOffer);
+
   userType = userDataElement.getAttribute('data-user');
 
   console.log(arrayOffer);
