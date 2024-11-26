@@ -24,6 +24,7 @@
                             }
                         }
                     ?>
+                    <p><?=$a['note']?> / 5</p>
                 </div>
                 <img src="./img/icone/trois-points.png" alt="icone de parametre">
             </article>
