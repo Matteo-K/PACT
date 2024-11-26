@@ -102,7 +102,7 @@ function selectSort(array) {
   };
 
   for (let key in sortFunctions) {
-    if (document.getElementById(key).checked) {
+    if (key.checked) {
       array = sortFunctions[key](array);
       break;
     }
