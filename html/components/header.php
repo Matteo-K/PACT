@@ -81,9 +81,9 @@
                         $factures = $stmt->fetch(PDO::FETCH_ASSOC);
                         
                         foreach ($factures as $key => $value) {
+                            print_r($value);
                             ?>
                                 <details>
-                                    <summary><?php echo $value['nom'] ?></summary>
                                     
                                 </details>
                             <?php
