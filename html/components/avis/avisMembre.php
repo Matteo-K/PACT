@@ -14,6 +14,7 @@
                 <img src="<?= $a['url']?>">
                 <p><?= $a['pseudo']?> </p>
             </article>
+            <
         <?php
             
         ?>
