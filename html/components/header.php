@@ -83,8 +83,9 @@
                         
                         foreach ($factures as $key => $value) {
                             ?>
-                                <details>
+                                <details class="details-style">
                                     <summary><?php echo $value['nom'] ?></summary>
+                                    <div class="details-content">
                                     <?php
                                         $date = explode(',',trim($value['datefactue'],'{}'));
                                         foreach ($date as $key => $value2) {
@@ -119,8 +120,10 @@
                                             ?>
                                                 <a href=""><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></a>
                                             <?php
+                                            
                                         }
                                     ?>
+                                    </div>
                                 </details>
                             <?php
                         }
