@@ -1890,6 +1890,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-bottom: 2em;
 }
 
+.facture{
+  width: 450px;
+  height: 100%;
+}
+
 /*  ***************************************************************************************
      **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
      *************************************************************************************** */
