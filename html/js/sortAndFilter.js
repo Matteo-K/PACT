@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
       page = 0;
   }
 
-  displayOffers(arrayOffer, (nbElement-1) * page, nbElement);
+  sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement);
 
   document.querySelectorAll(".searchoffre form").forEach(form => {
     form.addEventListener("click", (event) => {
@@ -179,7 +179,7 @@ function sortAndFilter(array, elementStart, nbElement) {
   array = selectSort(array);
 
   // Affiche
-  displayOffers(array, (nbElement-1) * page, nbElement);
+  displayOffers(array, elementStart, nbElement);
 }
 
 /* ### Affichage des offres ### */
@@ -364,3 +364,6 @@ chkBxActivite.addEventListener("click", () => {});
 chkBxSpectacle.addEventListener("click", () => {});
 chkBxRestauration.addEventListener("click", () => {});
 chkBxParc.addEventListener("click", () => {});
+
+radBtnDateRecent.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
+radBtnDateAncien.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
