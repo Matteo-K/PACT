@@ -2181,7 +2181,12 @@ tbody td:last-child {
 }
 
 .starAvis,.starAvisIncolore{
-  width: ;
+  width: 1.5em;
+  height:1.5em;
+}
+
+.starAvisIncolore{
+  background-color: #fff;
 }
 
 @media screen and (max-width: 768px) {
