@@ -8,7 +8,7 @@ $array = $ar->recherche(15,"paster","culturel");
 print_r($array);
 
 foreach ($array as $value) {
-  $value->getData()["nomOffre"];
+  print_r($value);
 }
 
 ?>
