@@ -122,7 +122,7 @@ if (isset($_POST['pageBefore'])) {
 
         //On déplace les anciennes images conservées vers un dossier temporaire
         foreach ($anciennesImagesRestantes as $num => &$lien) {
-          move_uploaded_file($lien, $dossierTemp . $num . pathinfo($lien)['extension']);
+          move_uploaded_file($lien, $dossierTemp . $num . "." . pathinfo($lien)['extension']);
           $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
         }
 
