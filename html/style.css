@@ -2191,6 +2191,17 @@ tbody td:last-child {
   text-decoration: none;
 }
 
+/** AVIS **/
+
+.avis{
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+}
 .starAvis,.starAvisIncolore{
   width: 1.5em;
   height:1.5em;
