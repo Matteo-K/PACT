@@ -14,7 +14,7 @@ $stmt =$conn->prepare("SELECT * from pact.proprive where idu = ?");
 $stmt->execute([$avis[0]['idpro']]);
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-print_r($avis);
+print_r($result);
 
 foreach ($avis as $a) {
 ?>
@@ -123,7 +123,6 @@ foreach ($avis as $a) {
         </div>
         <?php
         if($a['idc_reponse']){
-            print_r($result);
         ?>
             <div>
                 <img src="./img/icone/reponse.png" alt="icone de reponse">
