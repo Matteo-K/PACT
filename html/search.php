@@ -111,16 +111,17 @@ $arrayOffer = [];
                 </li>
             </ul>
         </section>
-
+        
     </main>
     <?php require_once "components/footer.php"; ?>
     <!-- Récupération de la liste des offres -->
     <?php if (empty($search)) { ?>
         <div id="offers-data" data-offers='<?php echo json_encode($offres->getArray($offres->filtre($idUser, $typeUser))); ?>'></div>
-        <?php } else { ?>
-            <div id="offers-data" data-offers='<?php echo json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>'></div>
-        <?php } ?>
-    <script>
+    <?php } else { ?>
+        <div id="offers-data" data-offers='<?php echo json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>'></div>
+    <?php } ?>
+    <script src="js/sortAndFilter.js"></script>
+    <!-- <script>
         
         document.addEventListener("DOMContentLoaded", () => {
             
@@ -180,7 +181,6 @@ $arrayOffer = [];
             btnFiltre.addEventListener("click", () => toggleAside(asideFiltre));
             
         });
-    </script>
-    <script src="js/sortAndFilter.js"></script>
+    </script> -->
 </body>
 </html>
