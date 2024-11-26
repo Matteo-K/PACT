@@ -245,7 +245,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
                     sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
                     pTag.style.color = "black"; // Remet la couleur par défaut si besoin
-                    alert(tags.length);
                 });
 
                 // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel

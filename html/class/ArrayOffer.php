@@ -118,7 +118,7 @@ class ArrayOffer {
     $array = $this->filtre($idUser_, $typeUser_);
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
       return $this->offreContientTag($item->getData()["tags"], $recherche) 
-        || strpos(strtolower($item->getData()["categorie"]), strtolower($recherche));
+        || strpos(strtolower($item->getData()["categorie"]), strtolower($recherche)) !== false;
     });
   }
 
