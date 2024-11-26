@@ -10,7 +10,7 @@
 
 let ok = "blue";
 
-console.log(ok)
+console.log(ok);
 
 /// Input de Tri ///
 const radBtnEnAvant = document.querySelector("#miseEnAvant");
