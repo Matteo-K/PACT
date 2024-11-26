@@ -1,30 +1,17 @@
 <?php
 $stmt = $conn->prepare("
-SELECT 
-    a.*, 
-    m.url AS membre_url,
-    r.idc_reponse, 
-    r.denomination AS reponse_denomination, 
-    COALESCE(ppub.url, ppriv.url) AS entreprise_url, 
-    ppub.url AS url_propublic,
-    ppriv.url AS url_proprive
-FROM 
-    pact.avis a
-JOIN 
-    pact.membre m ON m.pseudo = a.pseudo
-LEFT JOIN 
-    pact.reponse r ON r.idc_avis = a.idc
-JOIN 
-    pact.propublic ppub ON ppub.denomination = r.denomination
-JOIN 
-    pact.proprive ppriv ON ppriv.denomination = r.denomination
-WHERE 
-    a.idoffre = ? 
-ORDER BY 
-    a.datepublie ASC
+    SELECT a.*, m.url AS membre_url,r.idc_reponse, r.denomination AS reponse_denomination, ppub.denomination AS pub_denomination, ppriv.denomination AS prive_denomination, COALESCE(ppub.url, ppriv.url) AS entreprise_url,ppub.url AS url_publique,ppriv.url AS url_privee
+    FROM pact.avis a
+    JOIN pact.membre m ON m.pseudo = a.pseudo
+    LEFT JOIN pact.reponse r ON r.idc_avis = a.idc
+    LEFT JOIN pact.propublic ppub ON ppub.denomination = r.denomination
+    LEFT JOIN pact.proprive ppriv ON ppriv.denomination = r.denomination
+    WHERE a.idoffre = ? 
+    ORDER BY a.datepublie ASC
 ");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 print_r($avis);
 
@@ -35,7 +22,7 @@ foreach ($avis as $a) {
         <div class="messageAvis">
             <article class="user">
                 <div class="infoUser">
-                    <img src="<?= $a['url'] ?>">
+                    <img src="<?= $a['membre_url'] ?>">
                     <p><?= ucfirst(strtolower($a['pseudo'])) ?> </p>
                 </div>
                 <div class="autreInfoAvis">
