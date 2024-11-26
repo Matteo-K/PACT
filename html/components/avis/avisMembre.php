@@ -1,5 +1,5 @@
 <?php
-$stmt = $conn->prepare("SELECT a.*, m.url, r.denomination, r.contenureponse, r.reponsedate, ppub.url as urlpub, ppriv.url as urlpriv FROM pact.avis a 
+$stmt = $conn->prepare("SELECT a.*, m.url,r.idc_reponse, r.denomination, r.contenureponse, r.reponsedate, ppub.url as urlpub, ppriv.url as urlpriv FROM pact.avis a 
                         JOIN pact.membre m ON m.pseudo = a.pseudo LEFT JOIN pact.reponse r ON r.idc_avis = a.idc 
                         LEFT JOIN pact.propublic ppub ON ppub.denomination = r.denomination LEFT JOIN pact.proprive ppriv ON ppriv.denomination = r.denomination 
                         where idoffre = ? order by a.datepublie asc");
