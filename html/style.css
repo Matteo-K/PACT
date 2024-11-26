@@ -345,6 +345,7 @@ header>div>a>div {
   height: 100%;
   width: calc(100vw - 286px);
   background-color: var(--background) ;
+  color: #000;
 }
 
 #profileMenu.show {
