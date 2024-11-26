@@ -121,7 +121,7 @@ $arrayOffer = [];
         <div id="offers-data" data-offers='<?php echo json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>'></div>
     <?php } ?>
     <script src="js/sortAndFilter.js"></script>
-    <!-- <script>
+    <script>
         
         document.addEventListener("DOMContentLoaded", () => {
             
@@ -181,6 +181,6 @@ $arrayOffer = [];
             btnFiltre.addEventListener("click", () => toggleAside(asideFiltre));
             
         });
-    </script> -->
+    </script>
 </body>
 </html>

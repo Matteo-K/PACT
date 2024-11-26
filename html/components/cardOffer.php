@@ -19,26 +19,14 @@
             }
             ?>
         </div>
-
         <p class="searchResume"><?php echo ($resume)?$resume:"Pas de resume saisie";?></p>
-
         <section class="searchNote">
             <p><?php echo $noteAvg; ?></p>
         
-            <p id="couleur-<?php echo $idOffre; ?>" class="searchStatutO">
+            <p id="couleur-<?php echo $idOffre; ?>" class="<?php echo $restaurantOuvert == "EstOuvert" ? "searchStatutO" : "searchStatutF"; ?>">
                 <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
             </p>
         </section>
-
-
-            <script>
-                let st_<?php echo $idOffre; ?> = document.getElementById("couleur-<?php echo $idOffre; ?>");
-                if ("<?php echo $restaurantOuvert; ?>" === "EstOuvert") {
-                    st_<?php echo $idOffre; ?>.classList.add("searchStatutO");
-                } else {
-                    st_<?php echo $idOffre; ?>.classList.add("searchStatutF");
-                }
-            </script>
         </div>
         <div class="searchAvis">
             <p class="avisSearch">Les avis les plus récent :</p>
