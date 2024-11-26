@@ -102,6 +102,7 @@ function selectSort(array) {
 
   for (let key in sortFunctions) {
     if (key.checked) {
+      console.log("tri avec " + key);
       array = sortFunctions[key](array);
       break;
     }
