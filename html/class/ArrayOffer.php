@@ -147,9 +147,9 @@ class ArrayOffer {
     return array_slice($array_, $elementStart_, $nbElement_); 
   }
 
-  public function getArray() {
+  public function getArray($array_) {
     $arrayWithData = [];
-    foreach ($this->arrayOffer as $idOffre => $objet) {
+    foreach ($array_ as $idOffre => $objet) {
       $arrayWithData[$idOffre] = $objet->getData();
     }
     
