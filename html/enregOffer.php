@@ -98,8 +98,8 @@ if (isset($_POST['pageBefore'])) {
 
 
       // Traitement des images
-      $dossierTemp = __DIR__ . "/img/tempImage/";
-      $dossierImg = __DIR__ . "/img/imageOffre/";
+      $dossierTemp = "./img/tempImage/";
+      $dossierImg = "./img/imageOffre/";
 
       $anciennesImagesTotal = [];
       $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = ?");
@@ -112,38 +112,39 @@ if (isset($_POST['pageBefore'])) {
 
       if ($anciennesImagesRestantes != []) {
 
-        if (file_exists($dossierTemp)) {
-          rmdir($dossierTemp);
+        if (!file_exists($dossierTemp)) {
+          mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
         }
 
-        mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
 
         var_dump($anciennesImagesRestantes);
 
         //On déplace les anciennes images conservées vers un dossier temporaire
-        foreach ($anciennesImagesRestantes as $num => $lien) {
-          move_uploaded_file($lien, $dossierTemp . $num . pathinfo($lien)['extension']);
-          $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
+        foreach ($anciennesImagesRestantes as $num => &$lien) {
+          rename($lien, $dossierTemp . $num . "." . pathinfo($lien)['extension']);
+          $lien = $dossierTemp . $num . "." . pathinfo($lien)['extension'];
         }
 
         var_dump($anciennesImagesTotal);
 
+        $fichiers = glob($dossierTemp."*");
 
-        foreach ($anciennesImagesTotal as $imgA) {
-          // Supprime l'image du dossier
-          if (file_exists($imgA)) {
-              unlink($imgA);
-          }
+        echo "-------\n";
+        foreach ($fichiers as $fichier) {
+            echo (is_dir($fichier) ? "[Dossier]" : "[Fichier]") . " $fichier\n";
         }
 
-        // Supprime les relations dans la BDD
-        $stmt = $conn->prepare("DELETE FROM pact._illustre WHERE idoffre = ?");
-        $stmt->execute([$idOffre]);
 
-        $test_urls = implode(',', array_fill(0, count($anciennesImagesTotal), '?'));
-        $stmt = $conn->prepare("DELETE FROM pact._image WHERE url IN ($test_urls)");
-        $stmt->execute([$anciennesImagesTotal]);
-        
+        foreach ($anciennesImagesTotal as $imgA) {
+          // Supprime l'image du serveur et de la BDD
+          if (file_exists($imgA)) {
+              unlink($imgA);
+              $stmt = $conn->prepare("DELETE FROM pact._illustre WHERE idoffre = ?");
+              $stmt->execute([$idOffre]);
+              $stmt = $conn->prepare("DELETE FROM pact._image WHERE url = ?");
+              $stmt->execute([$imgA]);
+          }
+        }        
 
         //On remet les anciennes images gardées dans la BDD et sur le serveur 
         foreach ($anciennesImagesRestantes as $num => $lien) {
@@ -151,7 +152,8 @@ if (isset($_POST['pageBefore'])) {
           $newFileName = $idOffre . '-' . $num . '.' . $fileExtension;
           $dossierImgNom = $dossierImg . $newFileName;
 
-          rename($lien, $dossierImgNom);
+          rename($lien, 
+                 $dossierImgNom);
 
           try {
             $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
@@ -163,10 +165,6 @@ if (isset($_POST['pageBefore'])) {
               error_log("Erreur BDD : " . $e->getMessage());
           }
         }
-      }
-
-      if (file_exists($dossierTemp)) {
-        rmdir($dossierTemp);
       }
 
       $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);

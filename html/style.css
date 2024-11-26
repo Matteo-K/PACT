@@ -325,7 +325,7 @@ header>div>a>div {
   top: 0;
   right: 0;
   height: 100%;
-  width: 100%;
+  width: auto;
   /* Dégradé du haut vers le bas */
   transform: translateX(100%);
   transition: transform 1s ease-in-out;
@@ -337,12 +337,13 @@ header>div>a>div {
 .menuHeader{
   background: linear-gradient(to bottom, #034d7c, #1ca4ed);
   display: flex;
+  width: 276px;
   flex-direction: column;
 }
 
 .factue{
   height: 100%;
-  width: 100%;
+  width: calc(100vw - 286px);
   background-color: var(--background) ;
 }
 
@@ -2248,6 +2249,32 @@ tbody td:last-child {
   align-items: center;
 }
 
+.user + article{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+}
+
+.user + article + article{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.user+article+article>p {
+  margin-bottom: 0.4em;
+}
+
+.user + article > .tag {
+  background-color: #fff;
+  text-align: center;
+  font-size: 0.9em;
+  margin:0;
+}
+
 .noteEtoile{
   justify-content: center;
 }
@@ -2716,6 +2743,8 @@ tbody td:last-child {
 #park >div[class="afficheImages2"]{
   width: 300px;
 }
+
+
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/

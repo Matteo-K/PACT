@@ -300,10 +300,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     hiddenInputImg.value = urlAncien;
                     hiddenInputImg.name = "imageExistante[]"; 
                     figureImg.appendChild(hiddenInputImg);
-                    alert(urlAncien);
                 }else{
                     figureImg.innerHTML = `<img src="${urlNouveau}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
-                    alert(urlNouveau);
                 }
                 conteneur.appendChild(figureImg);
 

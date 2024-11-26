@@ -60,9 +60,11 @@ const dateFin = document.querySelector("#dateFin");
 const heureFin = document.querySelector("#heureFin");
 
 
+
 /* ### Fonction ### */
 
 // Tris
+
 
 // Filtres
 
@@ -258,11 +260,11 @@ function avisSearch(offer) {
 
 displayOffers(arrayOffer, 0, 15);
 
+
 /* ### Evènements ### */
 
 // Tris
 
-// Filtre
 
 chkBxVisite.addEventListener();
 chkBxActivite.addEventListener();
