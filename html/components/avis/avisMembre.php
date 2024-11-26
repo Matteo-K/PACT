@@ -14,7 +14,7 @@ $stmt =$conn->prepare("SELECT * from pact.proprive where idu = ?");
 $stmt->execute([$avis[0]['idpro']]);
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-print_r($result);
+print_r($result[0]);
 
 foreach ($avis as $a) {
 ?>
