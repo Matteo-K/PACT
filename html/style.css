@@ -2599,16 +2599,17 @@ tbody td:last-child {
 }
 
 #park{
-  background-color: yellow; /* test*/
+  background-color: pink;
 }
 
 #park >div[class="ageMinP"]{
   display: flex;
   flex-direction: row;
-  margin-bottom: 15px;
-
 }
 
+#park > div[class="ageMinP"]> input[type="number"]{
+  margin-bottom: 15px;
+}
 #park > div[class="NbEtPrixPark"]{
   display: flex;
   flex-direction: row;
