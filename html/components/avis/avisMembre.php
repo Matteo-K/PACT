@@ -15,12 +15,12 @@
                 <p><?= $a['pseudo']?> </p>
                 <div class="noteEtoile">
                     <?php
-                        for($i=0; $i < $a['note']; $i++){
+                        for($i=1; $i < $a['note']; $i++){
                             echo "<div class='star starAvis'></div>";
                         }
                         if(5-$a['note'] != 0){
-                            for($i=0; $i < 5-$a['note']; $i++){
-                                echo "<div class='star starAvis'></div>";
+                            for($i=1; $i < 5-$a['note']; $i++){
+                                echo "<div class='star starAvisIncolore'></div>";
                             }
                         }
                     ?>
