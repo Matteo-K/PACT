@@ -2599,7 +2599,7 @@ tbody td:last-child {
 }
 
 #park{
-  background-color: pink;
+  background-color: yellow;
 }
 
 #park >div[class="ageMinP"]{
@@ -2613,6 +2613,11 @@ tbody td:last-child {
 #park > div[class="NbEtPrixPark"]{
   display: flex;
   flex-direction: row;
+}
+
+#park > div[class="ageMinP"]>label[class="labelGauche"], #park>div[class="NbEtPrixPark"]>label[class="labelGauche"]{
+  margin-right: 10px
+  ;
 }
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
