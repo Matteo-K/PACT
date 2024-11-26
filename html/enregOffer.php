@@ -155,7 +155,9 @@ if (isset($_POST['pageBefore'])) {
               error_log("Erreur BDD : " . $e->getMessage());
           }
         }
+      }
 
+      if (file_exists($dossierTemp)) {
         rmdir($dossierTemp);
       }
 
