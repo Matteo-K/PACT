@@ -87,6 +87,7 @@ class ArrayOffer {
             $this->arrayOffer[$offre['idoffre']] = new Offer("Pas de catégorie");
             break;
         }
+        print_r($offre['all_tags']);
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
           $offre['idu'], $offre['nom'], 
           $offre['description'], $offre['resume'],
