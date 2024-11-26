@@ -114,8 +114,10 @@
                                             
                                             // Récupérer le mois en français
                                             $moisFrancais = $moisEnFrancais[$numMois];
+
+                                            $annee = $dateFacture->format('Y');
                                             ?>
-                                                <a href=""><?php echo "Facture du mois de " . $moisFrancais ?></a>
+                                                <a href=""><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></a>
                                             <?php
                                         }
                                     ?>
