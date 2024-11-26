@@ -98,8 +98,8 @@ if (isset($_POST['pageBefore'])) {
 
 
       // Traitement des images
-      $dossierTemp = __DIR__ . "/img/tempImage/";
-      $dossierImg = __DIR__ . "/img/imageOffre/";
+      $dossierTemp = "./img/tempImage/";
+      $dossierImg = "./img/imageOffre/";
 
       $anciennesImagesTotal = [];
       $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = ?");
@@ -130,20 +130,15 @@ if (isset($_POST['pageBefore'])) {
 
 
         foreach ($anciennesImagesTotal as $imgA) {
-          // Supprime l'image du dossier
+          // Supprime l'image du serveur et de la BDD
           if (file_exists($imgA)) {
               unlink($imgA);
+              $stmt = $conn->prepare("DELETE FROM pact._illustre WHERE idoffre = ?");
+              $stmt->execute([$idOffre]);
+              $stmt = $conn->prepare("DELETE FROM pact._image WHERE url = ?");
+              $stmt->execute([$imgA]);
           }
-        }
-
-        // Supprime les relations dans la BDD
-        $stmt = $conn->prepare("DELETE FROM pact._illustre WHERE idoffre = ?");
-        $stmt->execute([$idOffre]);
-
-        $test_urls = implode(',', array_fill(0, count($anciennesImagesTotal), '?'));
-        $stmt = $conn->prepare("DELETE FROM pact._image WHERE url IN ($test_urls)");
-        $stmt->execute([$anciennesImagesTotal]);
-        
+        }        
 
         //On remet les anciennes images gardées dans la BDD et sur le serveur 
         foreach ($anciennesImagesRestantes as $num => $lien) {
