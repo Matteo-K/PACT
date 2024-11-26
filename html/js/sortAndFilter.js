@@ -5,7 +5,8 @@
  * afin de trier et filtrer les offres de la page de recherche
  */
 
-let userType, arrayOffer;
+let nbElement = 15;
+let userType, arrayOffer, page;
 document.addEventListener('DOMContentLoaded', function() {
   const offersDataElement = document.getElementById('offers-data');
   const userDataElement = document.getElementById('user-data');
@@ -18,8 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   userType = userDataElement.getAttribute('data-user');
 
-  let page;
-  let nbElement = 15;
   const params = new URLSearchParams(window.location.search);
 
   if (params.has('page') && params.get('page').trim() !== '') {
@@ -28,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
       page = 0;
   }
 
-  displayOffers(arrayOffer, (nbElement-1) * page, nbElement);
+  sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement);
 
   document.querySelectorAll(".searchoffre form").forEach(form => {
     form.addEventListener("click", (event) => {
@@ -102,7 +101,7 @@ function selectSort(array) {
   };
 
   for (let key in sortFunctions) {
-    if (document.getElementById(key).checked) {
+    if (key.checked) {
       array = sortFunctions[key](array);
       break;
     }
@@ -132,11 +131,11 @@ function sortPrixDecroissant(array) {
 }
 
 function sortDateRecent(array) {
-  return array;
+  return array.sort((offre1, offre2) => offre2.dateCreation - offre1.dateCreation);
 }
 
 function sortDateAncien(array) {
-  return array;
+  return array.sort((offre1, offre2) => offre1.dateCreation - offre2.dateCreation);
 }
 
 // Filtres
@@ -179,7 +178,7 @@ function sortAndFilter(array, elementStart, nbElement) {
   array = selectSort(array);
 
   // Affiche
-  displayOffers(array, (nbElement-1) * page, nbElement);
+  displayOffers(array, elementStart, nbElement);
 }
 
 /* ### Affichage des offres ### */
@@ -364,3 +363,6 @@ chkBxActivite.addEventListener("click", () => {});
 chkBxSpectacle.addEventListener("click", () => {});
 chkBxRestauration.addEventListener("click", () => {});
 chkBxParc.addEventListener("click", () => {});
+
+radBtnDateRecent.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
+radBtnDateAncien.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
