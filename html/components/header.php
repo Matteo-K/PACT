@@ -127,9 +127,11 @@
 
             // Écouteur pour fermer le menu en cliquant en dehors
             document.addEventListener("click", function(event) {
-                if (!profileMenu.contains(event.target) && !profilePic.contains(event.target)) {
-                    if (profileMenu.classList.contains("show")) {
-                        toggleMenu();
+                if (typeof profileMenu !== "undefined") {   
+                    if (!profileMenu.contains(event.target) && !profilePic.contains(event.target)) {
+                        if (profileMenu.classList.contains("show")) {
+                            toggleMenu();
+                        }
                     }
                 }
             });
