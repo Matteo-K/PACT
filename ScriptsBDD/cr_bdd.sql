@@ -420,7 +420,7 @@ CREATE TABLE _commentaire(
   idU INT NOT NULL,
   idC SERIAL PRIMARY KEY,
   content VARCHAR(1000) NOT NULL,
-  datePublie DATE NOT NULL,
+  datePublie TIMESTAMP NOT NULL,
   CONSTRAINT _commentaire_fk_idU
       FOREIGN KEY (idU)
       REFERENCES _nonAdmin(idU)
