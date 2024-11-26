@@ -152,7 +152,7 @@
                 <label for="telephone">Numéro de téléphone*:</label>
                 
                 <!-- Saisi de la dénomination -->
-                <input type="text" placeholder = "MonEntreprise" id="denomination" name="denomination" required>
+                <input type="text" placeholder = "MonEntreprise" id="denomination" name="denomination" value="<?= isset($_POST['denomination']) ? htmlspecialchars($_POST['denomination']) : '' ?>" required>
 
                 <!-- Saisi du numéro de téléphone -->
                 <input type="tel" placeholder = "06 01 02 03 04" id = "telephone" name="telephone" required>
