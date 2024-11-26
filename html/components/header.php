@@ -88,7 +88,14 @@
                                     <?php
                                         $date = explode(',',trim($value['datefactue'],'{}'));
                                         foreach ($date as $key => $value2) {
-                                            echo gettype($value2);
+                                            $dateFactue = NEW DateTime($value2);
+                                            $dateFacture->modify('-1 month');
+                                            $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+                                            $formatter->setPattern('MMMM'); // Affiche le mois complet
+                                            $moisFrancais = ucfirst($formatter->format($dateFacture));
+                                            ?>
+                                                <a href=""><?php echo "Facture du mois de " . $moisFrancais ?></a>
+                                            <?php
                                         }
                                     ?>
                                 </details>
