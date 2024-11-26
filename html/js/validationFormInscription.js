@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let errorElement = document.querySelector("#messageErreur");
         errorElement.textContent = messageErreur; // Met le message dans l'élément
         inputElement.style.borderColor = 'red'; // Mettre la bordure en rouge
+        window.scrollTo(0);
     }
 
 
