@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   userType = userDataElement.getAttribute('data-user');
 
-  console.log(arrayOffer);
   displayOffers(arrayOffer, 0, 15);
 
   document.querySelectorAll(".searchoffre form").forEach(form => {
@@ -146,6 +145,7 @@ function createCard(offer) {
   if (offer.images.length = 0) {
     img.setAttribute("alt", "Pas_de_photo_attribué_à_l'offre");
   } else {
+    console.log(offer.images);
     img.setAttribute("alt", "photo_principal_de_l'offre");
     img.setAttribute("src", offer.images[0]);
   }
