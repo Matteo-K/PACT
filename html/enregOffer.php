@@ -127,7 +127,8 @@ if (isset($_POST['pageBefore'])) {
       $stmt = $conn->prepare("DELETE FROM pact._illustre WHERE idoffre = ?");
       $stmt->execute([$idOffre]);
 
-      $stmt = $conn->prepare("DELETE FROM pact._image WHERE url IN (?)");
+      $test_urls = implode(',', array_fill(0, count($anciennesImagesTotal), '?'));
+      $stmt = $conn->prepare("DELETE FROM pact._image WHERE url IN ($test_urls)");
       $stmt->execute([$anciennesImagesTotal]);
 
       $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
