@@ -16,6 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   console.log(arrayOffer);
   displayOffers(arrayOffer, 0, 15);
+
+  document.querySelectorAll(".searchoffre form").forEach(form => {
+    form.addEventListener("click", (event) => {
+      event.preventDefault();
+      form.submit();
+    });
+  });
 });
 
 
