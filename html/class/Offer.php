@@ -135,7 +135,6 @@ class Offer {
     $this->codePostal = $codePostal_;
     $this->horaireMidi = $horaireMidi_;
     $this->horaireSoir = $horaireSoir_;
-    print_r($this->tags);
   }
 
   public function getData() {

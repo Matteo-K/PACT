@@ -87,7 +87,6 @@ class ArrayOffer {
             $this->arrayOffer[$offre['idoffre']] = new Offer("Pas de catégorie");
             break;
         }
-        print_r($offre['all_tags']);
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
           $offre['idu'], $offre['nom'], 
           $offre['description'], $offre['resume'],
@@ -118,7 +117,7 @@ class ArrayOffer {
   public function recherche($idUser_, $typeUser_, $recherche) {
     $array = $this->filtre($idUser_, $typeUser_);
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
-      var_dump($item->getData()["tags"]);
+      print_r($item->getData()["tags"]);
       return $this->offreContientTag($item->getData()["tags"], $recherche);
     });
   }
