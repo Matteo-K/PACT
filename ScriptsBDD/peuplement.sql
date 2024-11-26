@@ -366,17 +366,17 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.',CURRENT_DATE),
        (3,'Merci beaucoup, à bientôt.',CURRENT_DATE),
        (3,'Avec des personnes comme vous, compliqué de la rendre intéressante.',CURRENT_DATE);
        
-INSERT INTO _avis(idC,idOffre,note)
-VALUES (1,1,5),
-       (2,1,4),
-       (3,5,5),
-       (4,5,4),
-       (5,2,5),
-       (6,2,4),
-       (7,3,5),
-       (8,3,4),
-       (9,4,2),
-       (10,4,1);
+INSERT INTO _avis(idC,idOffre,note,companie,mois,annee)
+VALUES (1,1,5,'solo','novembre','2024'),
+       (2,1,4,'solo','novembre','2024'),
+       (3,5,5,'solo','novembre','2024'),
+       (4,5,4,'solo','novembre','2024'),
+       (5,2,5,'solo','novembre','2024'),
+       (6,2,4,'solo','novembre','2024'),
+       (7,3,5,'solo','novembre','2024'),
+       (8,3,4,'solo','novembre','2024'),
+       (9,4,2,'solo','novembre','2024'),
+       (10,4,1,'solo','novembre','2024');
        
 INSERT INTO _reponse(idC,ref)
 VALUES (11,3),

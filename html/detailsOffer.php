@@ -272,7 +272,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($result["telephone"] && $tel["affiche"] == TRUE) {
             ?>
                 <div>
-                    <img src="./sult = $stmt->fetch(PDO::Fimg/icone/tel.png">
+                    <img src="./img/icone/tel.png">
                     <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
                 </div>
             <?php
@@ -436,9 +436,18 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if($typeUser === "pro_prive" || $typeUser ==="pro_public"){
             require_once __DIR__ . "/components/avis/avisPro.php";
         }else{
+        ?>
+        <div class="avis">
+            <nav>
+                <h3>Avis</h3>
+                <h3>Publiez un avis</h3>
+            </nav>
+            
+        <?php
             require_once __DIR__ . "/components/avis/avisMembre.php";
         }
         ?>
+        </div>
     </main>
     <?php
     require_once "./components/footer.php";

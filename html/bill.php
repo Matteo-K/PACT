@@ -2,11 +2,15 @@
 
 
 
-$idOffre =5;
+require_once "config.php";
 
-$stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idOffre =$idOffre");
+
+$idOffre =2;
+
+$stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idoffre =$idOffre");
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 $denomination = $results[0]['denomination'];
 $rue = $results[0]['rue'];
@@ -16,24 +20,27 @@ $idFacture = $results[0]['idfacture'];
 $dateFacture = $results[0]['datefactue'];
 $idU = $results[0]['idu'];
 $tva = 20;
-$option = explode(';',$results[0]['historiqueoption']);
-
-$resultat=[];
-// "duree": 1, "option": "ALaUne", "prixBase": 20, "dureeBase": 7, "lancement": "2024-11-25"}
-foreach ($option as $key => $value) {
-    $resultat[] = json_decode($value,true);
+if ($results[0]['historiqueoption']) {
+    $option = explode(';',$results[0]['historiqueoption']);
+    $resultat=[];
+    foreach ($option as $key => $value) {
+        $resultat[] = json_decode($value,true);
+    }
 }
 
-$tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>$results[0]['tarif']];
+// "duree": 1, "option": "ALaUne", "prixBase": 20, "dureeBase": 7, "lancement": "2024-11-25"}
+
+$tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>intval($results[0]['tarif'])];
+$v3=$tarif['prixBase'];
 
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
-$abonnement = explode(';',$resultat[0]['historiquestatut']);
+$abonnement = explode(';',$results[0]['historiquestatut']);
 
 $nbEnLigne = 0 ;
 
 foreach ($abonnement as $key => $value) {
-    $result = json_decode($value);
-    $nbEnLigne = $nbEnLigne + $result['Duree'];
+    $result = json_decode($value,true);
+    $nbEnLigne = $nbEnLigne + intval($result['Duree']);
 }
 
 $css = "
@@ -121,7 +128,7 @@ footer{
         <section>
             <strong>
                 <p>Numéeo de facture : <?php echo $idFacture ?></p>
-                <p>Date de facture : <?php echo($dateFacture->format('d/m/Y'))  ?></p>
+                <p>Date de facture : <?php echo($dateFacture)  ?></p>
                 <p>Numéeo Client : <?php echo $idU ?></p>
             </strong>
         </section>
@@ -144,30 +151,35 @@ footer{
             </thead>
             <tbody>
                 <?php
-                    $total=$tarif['option']*$tarif['tarif'];
-                    foreach ($option as $key => $value) {
-                        $total += $value[3]*$value[1];
-                        ?>
-                            <tr>
-                                <td><?php echo $value['option'] ?></td>
-                                <td><?php echo $value['duree'] ?></td>
-                                <td>Semaine</td>
-                                <td><?php echo $value['prixBase'] ?></td>
-                                <td><?php echo $tva ?> %</td>
-                                <td><?php echo $value['duree']*$value['prixBase'] ?> €</td>
-                                <td><?php echo round($value['duree']*$value['prixBase']+($value['duree']*$value['prixBase']*20/100),2) ?> €</td>
-                            </tr>
-                        <?php
+                    $total=$nbEnLigne*$v3;
+                    if ($results[0]['historiqueoption']) {
+                        
+                        foreach ($resultat as $key => $value) {
+                            $v1 = intval($value['duree']);
+                            $v2 = intval($value['prixBase']);
+                            $total += $v1 * $v2;
+                            ?>
+                                <tr>
+                                    <td><?php echo $value['option'] ?></td>
+                                    <td><?php echo $value['duree'] ?></td>
+                                    <td>Semaine</td>
+                                    <td><?php echo $value['prixBase'] ?></td>
+                                    <td><?php echo $tva ?> %</td>
+                                    <td><?php echo $v1 * $v2 ?> €</td>
+                                    <td><?php echo round($v1*$v2+($v1*$v2*20/100),2) ?> €</td>
+                                </tr>
+                            <?php
+                        }
                     }
                 ?>
                 <tr>
-                    <td><?php echo $tarif['option'] ?></td>
+                    <td>Abonnement <?php echo $tarif['option'] ?></td>
                     <td><?php echo $nbEnLigne ?></td>
                     <td>Jour</td>
-                    <td><?php echo $tarif['tarif'] ?></td>
+                    <td><?php echo $v3 ?></td>
                     <td><?php echo $tva ?> %</td>
-                    <td><?php echo $tarif['option']*$tarif['tarif'] ?> €</td>
-                    <td><?php echo round($tarif['option']*$tarif['tarif']+($tarif['option']*$tarif['tarif']*20/100),2) ?> €</td>
+                    <td><?php echo $nbEnLigne*$v3 ?> €</td>
+                    <td><?php echo round($nbEnLigne*$v3+($nbEnLigne*$v3*20/100),2) ?> €</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -189,8 +201,8 @@ footer{
                 </tr>
                 <tr>
                     <th colspan="5">Total</th>
-                    <th>HT : <?php echo $total ?></th>
-                    <th>TTC : <?php echo round($total*20/100+$total,2) ?></th>
+                    <th>HT : <?php echo $total ?> €</th>
+                    <th>TTC : <?php echo round($total*20/100+$total,2) ?> €</th>
                 </tr>
             </tbody>
         </table>
