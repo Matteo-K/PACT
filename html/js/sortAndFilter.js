@@ -5,7 +5,8 @@
  * afin de trier et filtrer les offres de la page de recherche
  */
 
-let userType, arrayOffer;
+let nbElement = 15;
+let userType, arrayOffer, page;
 document.addEventListener('DOMContentLoaded', function() {
   const offersDataElement = document.getElementById('offers-data');
   const userDataElement = document.getElementById('user-data');
@@ -18,8 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   userType = userDataElement.getAttribute('data-user');
 
-  let page;
-  let nbElement = 15;
   const params = new URLSearchParams(window.location.search);
 
   if (params.has('page') && params.get('page').trim() !== '') {
