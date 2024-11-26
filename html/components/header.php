@@ -45,7 +45,7 @@
             <img id="profilePic" src="<?php echo $user["url"] ?>" title="Photo de profil utilisateur">
 
             <!-- Menu caché intégré dans le header -->
-            <div id="profileMenu">
+            <div id="profileMenu" class="hidden">
                 <div class="menuHeader">
                     <span id="backButton">< Retour</span>
                     <figure id="imagProfil">
