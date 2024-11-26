@@ -120,12 +120,14 @@ class ArrayOffer {
 
         $categorie = $item->getData()["categorie"] ?? '';
         $nomOffre = $item->getData()["nomOffre"] ?? '';
+        $gammeDePrix = $item->getData()["gammeDePrix"] ?? '';
         $adresse = $item->formaterAdresse() ?? '';
 
         return $this->offreContientTag($item->getData()["tags"], $recherche) // tag
             || strpos(strtolower($categorie), strtolower($recherche)) !== false // catégorie
             || strpos(strtolower($nomOffre), strtolower($recherche)) !== false  // nom Offre
-            || strpos(strtolower($adresse), strtolower($recherche)) !== false;  // localisation
+            || strpos(strtolower($adresse), strtolower($recherche)) !== false  // localisation
+            || $gammeDePrix === $recherche;  // gamme de prix
     });
 }
 
