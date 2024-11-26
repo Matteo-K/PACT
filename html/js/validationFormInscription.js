@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const publicRadio = document.getElementById("radioPublic");
     const priveRadio = document.getElementById("radioPrive");
 
+
+    
     // Fonction pour mettre à jour l'affichage du SIREN
     function updateSirenVisibility() {
         if (priveRadio.checked) {
@@ -33,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+
+
     // Initialiser l'affichage si on est dans accountPro.php
     if (sirenInput && sirenLabel) {
         updateSirenVisibility();
@@ -41,22 +45,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
+
     // Fonction pour afficher les erreurs globales dans la div messageErreur
     function displayGlobalErrors(errors) {
         messageErreurDiv.innerHTML = ''; // Efface les erreurs précédentes
         if (errors.length > 0) {
             messageErreurDiv.style.display = 'block'; // Affiche la div
             const errorList = document.createElement('ul'); // Crée une liste des erreurs
+
             errors.forEach(error => {
                 const li = document.createElement('li');
                 li.textContent = error;
                 errorList.appendChild(li);
             });
+
             messageErreurDiv.appendChild(errorList);
-        } else {
+        } 
+        
+        else {
             messageErreurDiv.style.display = 'none'; // Cache la div si pas d'erreurs
         }
     }
+
 
 
     // Fonction pour afficher un message d'erreur pour un champ
@@ -68,13 +78,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
+
     // Fonction pour effacer un message d'erreur pour un champ
     function clearFieldError(inputElement) {
         const errorElement = document.querySelector("#messageErreur");
         errorElement.innerText = "";
-        
         inputElement.style.borderColor = ''; // Réinitialiser la bordure à son état d'origine
     }
+
 
 
     // Fonction de validation pour chaque champ
@@ -82,7 +93,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!pattern.test(inputElement.value.trim())) {
             displayFieldError(inputElement, messageErreur);
             return false;
-        } else {
+        } 
+        
+        else {
             clearFieldError(inputElement);
             return true;
         }
@@ -133,9 +146,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
+
     // Ajouter l'événement "blur"
     fieldsToValidate.forEach(field => {
         const inputElement = document.getElementById(field.id);
+
         if (inputElement) {
             inputElement.addEventListener('blur', function () {
                 validateField(inputElement, field.pattern, field.message);
@@ -144,17 +159,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
+
     // Validation pour la confirmation du mot de passe
     const confirmPasswordField = document.getElementById('confirmer');
+
     confirmPasswordField.addEventListener('blur', function () {
         const motdepasse = document.getElementById('motdepasse').value;
         const confirmer = confirmPasswordField.value;
+
         if (motdepasse !== confirmer) {
             displayFieldError(confirmPasswordField, 'Les mots de passe ne correspondent pas.');
-        } else {
+        } 
+        
+        else {
             clearFieldError(confirmPasswordField);
         }
     });
+
 
 
     // Validation globale lors de la soumission du formulaire
@@ -166,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Vérifier les champs lors de la soumission
         fieldsToValidate.forEach(field => {
             const inputElement = document.getElementById(field.id);
+
             if (!validateField(inputElement, field.pattern, field.message)) {
                 errors.push(field.message);
             }
@@ -173,6 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const motdepasse = document.getElementById('motdepasse').value;
         const confirmer = document.getElementById('confirmer').value;
+
         if (motdepasse !== confirmer) {
             errors.push('Les mots de passe ne correspondent pas.');
         }
