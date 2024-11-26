@@ -35,6 +35,31 @@
             <article>
                 <p><?= $a['titre']?></p>
                 <p><?=$a['content']?></p>
+                <?php if($a['listimage'] != null){
+                    $pictures = json_decode($a['listimage'])
+                    ?>
+                    
+                    <div class="swiper-container">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <?php
+                            foreach ($pictures as $picture) {
+                            ?>
+                                <div class="swiper-slide">
+                                    <img src="<?php echo $picture; ?>" />
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+        
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <?php
+                }
+                ?>
             </article>
             
         <?php
