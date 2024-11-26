@@ -127,6 +127,13 @@ if (isset($_POST['pageBefore'])) {
 
         var_dump($anciennesImagesTotal);
 
+        $fichiers = glob($dossierTemp."*");
+
+        echo "-------\n";
+        foreach ($fichiers as $fichier) {
+            echo (is_dir($fichier) ? "[Dossier]" : "[Fichier]") . " $fichier\n";
+        }
+
 
         foreach ($anciennesImagesTotal as $imgA) {
           // Supprime l'image du serveur et de la BDD
