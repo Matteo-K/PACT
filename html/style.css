@@ -2640,10 +2640,10 @@ tbody td:last-child {
 
 #park>div[class="ageMinP"]>label[class="labelGauche"],
 #park>div[class="NbEtPrixPark"]>label[class="labelGauche"] {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 #park>div[class="NbEtPrixPark"]>label[class="labelEuro"] {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 #park >div[class="afficheImages2"]{
   width: 300px;
