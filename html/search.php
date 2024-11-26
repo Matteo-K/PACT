@@ -128,7 +128,6 @@ $arrayOffer = [];
     
     document.addEventListener("DOMContentLoaded", () => {
         
-        
         // Acualise l'heure actuelle
         const now = new Date();
         let hours = now.getHours().toString().padStart(2, '0');

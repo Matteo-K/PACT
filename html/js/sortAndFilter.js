@@ -8,7 +8,7 @@
 
 // La liste des offres est stocké dans la variable "arrayOffer";
 
-console.log(arrayOffer);
+console.log("ok");
 
 /// Input de Tri ///
 const radBtnEnAvant = document.querySelector("#miseEnAvant");
