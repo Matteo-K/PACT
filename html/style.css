@@ -2196,9 +2196,16 @@ tbody td:last-child {
 .avis{
   width: 95%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 1em;
+  align-items: center;
+  justify-content: center;
+}
+
+.avis > nav{
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 }

@@ -1,5 +1,5 @@
 <?php 
-    $stmt = $conn -> prepare("SELECT a.*, m.url, r.denomination, r.contenureponse, r.reponsedate FROM pact.avis a JOIN pact.membre m ON m.pseudo = a.pseudo LEFT JOIN pact.reponse r on r.idc_avis = a.idc where idoffre = ?");
+    $stmt = $conn -> prepare("SELECT a.*, m.url, r.denomination, r.contenureponse, r.reponsedate FROM pact.avis a JOIN pact.membre m ON m.pseudo = a.pseudo LEFT JOIN pact.reponse r on r.idc_avis = a.idc where idoffre = ? order by a.datepublie asc");
     $stmt -> execute([$idOffre]);
     $avis = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
