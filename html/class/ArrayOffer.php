@@ -147,7 +147,7 @@ class ArrayOffer {
     return $arrayWithData;
   }
 
-  public function displayArrayCard($array_, $elementStart_, $nbElement_) {
+  public function displayArrayCard($array_, $typeUser_, $elementStart_, $nbElement_) {
     $array = $this->pagination($array_, $elementStart_, $nbElement_);
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
@@ -160,7 +160,7 @@ class ArrayOffer {
     } else {
       echo "<p>Aucune offre trouvée </p>";
     }
-    return count($this->filtre($idUser_, $typeUser_));
+    return count($array_);
   }
 }
 
