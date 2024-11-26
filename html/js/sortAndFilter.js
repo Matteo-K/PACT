@@ -122,7 +122,7 @@ function displayOffer(offer) {
 
   let form = document.createElement("form");
   form.classList.add("searchA");
-  form.setAttribute("action", "/detailsOffer.php?&ouvert=");
+  form.setAttribute("action", "/detailsOffer.php");
   form.setAttribute("method", "post");
 
   let input = document.createElement("input");
@@ -168,6 +168,8 @@ function createCard(offer) {
   }
 
   infoOffre.appendChild(note(offer));
+
+  card.appendChild(infoOffre);
 
   return card;
 }
