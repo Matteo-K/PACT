@@ -117,8 +117,9 @@ class ArrayOffer {
   public function recherche($idUser_, $typeUser_, $recherche) {
     $array = $this->filtre($idUser_, $typeUser_);
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
-      return $this->offreContientTag($item->getData()["tags"], $recherche) 
-        || strpos(strtolower($item->getData()["categorie"]), strtolower($recherche)) !== false;
+      return $this->offreContientTag($item->getData()["tags"], $recherche)                     // tag
+        || strpos(strtolower($item->getData()["categorie"]), strtolower($recherche)) !== false // catégorie
+        || strpos(strtolower($item->formaterAdresse()), strtolower($recherche)) !== false;     // localisation
     });
   }
 
