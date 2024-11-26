@@ -2221,11 +2221,20 @@ tbody td:last-child {
   font-weight: 600;
 }
 
+.messageAvisReponse{
+  width: 45%;
+}
+
+.messageAvisReponse:nth-child(even){
+  margin-right: 2em;
+  margin-left: -2em;
+}
+
 .messageAvis{
   background-color: var(--background-avis);
   border-radius: 1em;
   padding: 1em;
-  width: 45%;
+  width: 100%;
 }
 
 .infoUser > p{

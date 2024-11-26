@@ -12,7 +12,7 @@ print_r($avis);
 
 foreach ($avis as $a) {
 ?>
-    <div class="messageReponseAvis">
+    <div class="messageAvisReponse">
         <div class="messageAvis">
             <article class="user">
                 <div class="infoUser">
