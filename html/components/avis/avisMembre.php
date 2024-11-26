@@ -1,20 +1,20 @@
 <?php
 $stmt = $conn->prepare("
-    SELECT a.*, m.url AS membre_url,r.idc_reponse, r.idPro,r.denomination AS reponse_denomination, coalesce(ppub.idu, ppriv.idu) as entreprise_url
+    SELECT a.*, m.url AS membre_url,r.idc_reponse,r.denomination AS reponse_denomination, r.contenureponse, r.reponsedate, r.idpro
     FROM pact.avis a
     JOIN pact.membre m ON m.pseudo = a.pseudo
     LEFT JOIN pact.reponse r ON r.idc_avis = a.idc
-    LEFT JOIN pact.propublic ppub ON ppub.idu = r.idPro
-    LEFT JOIN pact.proprive ppriv ON ppriv.idu = r.idPro
     WHERE a.idoffre = ? 
     ORDER BY a.datepublie ASC
 ");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$stmt =$conn->prepare("SELECT * from pact.pro where idu = ?");
+$stmt->execute([$avis[0]['idpro']]);
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 print_r($avis);
-
 
 foreach ($avis as $a) {
 ?>
@@ -128,7 +128,7 @@ foreach ($avis as $a) {
                 <img src="./img/icone/reponse.png" alt="icone de reponse">
                 <div class="reponseAvis">
                 <div class="infoProReponse">
-                    <img src="<?=$a['entreprise_url'] ?>" alt="image de profile du pro">
+                    <img src="<?=$result['url'] ?>" alt="image de profile du pro">
                     <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
                 </div>
                 </div>
