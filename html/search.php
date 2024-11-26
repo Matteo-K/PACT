@@ -114,77 +114,76 @@ $arrayOffer = [];
 
     </main>
     <?php require_once "components/footer.php"; ?>
-</body>
-<script>
-    let arrayOffer = [];
-    
-    // Liste des offres pour la manipuler
-    <?php if (empty($search)) { ?>
-        arrayOffer = <?php echo json_encode($offres->getArray($offres->filtre($idUser, $typeUser))); ?>; 
-    <?php } else { ?>
-        arrayOffer = <?php echo json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>; 
-    <?php } ?>
-    console.log(arrayOffer);
-    
-    document.addEventListener("DOMContentLoaded", () => {
+    <script>
+        let arrayOffer = [];
         
+        // Liste des offres pour la manipuler
+        <?php if (empty($search)) { ?>
+            arrayOffer = <?php echo json_encode($offres->getArray($offres->filtre($idUser, $typeUser))); ?>; 
+        <?php } else { ?>
+            arrayOffer = <?php echo json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>; 
+        <?php } ?>
+        console.log(arrayOffer);
         
-        // Acualise l'heure actuelle
-        const now = new Date();
-        let hours = now.getHours().toString().padStart(2, '0');
-        let minutes = now.getMinutes().toString().padStart(2, '0');
-        let timeString = `${hours}:${minutes}`;
-        document.querySelector('#heureFin').value = timeString;
-        document.querySelector('#heureDebut').value = timeString;
-        
-        
-        document.querySelector('#prixMin').addEventListener('change', inverseValuesPrix);
-        document.querySelector('#prixMax').addEventListener('change', inverseValuesPrix);
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // Acualise l'heure actuelle
+            const now = new Date();
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let timeString = `${hours}:${minutes}`;
+            document.querySelector('#heureFin').value = timeString;
+            document.querySelector('#heureDebut').value = timeString;
+            
+            
+            document.querySelector('#prixMin').addEventListener('change', inverseValuesPrix);
+            document.querySelector('#prixMax').addEventListener('change', inverseValuesPrix);
+                    
+            /**
+             * Switch les valeurs des prix maximum et minimum si prix maximum < prix minimum
+             */
+            function inverseValuesPrix () {
+                const selectMin = document.querySelector('#prixMin');
+                const selectMax = document.querySelector('#prixMax');
+                const valueMin = parseInt(selectMin.value);
+                const valueMax = parseInt(selectMax.value);
                 
-        /**
-         * Switch les valeurs des prix maximum et minimum si prix maximum < prix minimum
-         */
-        function inverseValuesPrix () {
-            const selectMin = document.querySelector('#prixMin');
-            const selectMax = document.querySelector('#prixMax');
-            const valueMin = parseInt(selectMin.value);
-            const valueMax = parseInt(selectMax.value);
-            
-            if (valueMin > valueMax) {
-                selectMin.value = valueMax;
-                selectMax.value = valueMin;
+                if (valueMin > valueMax) {
+                    selectMin.value = valueMax;
+                    selectMax.value = valueMin;
+                }
             }
-        }
-        
-        // Ouvre et ferme le pop-up tri et filtre pour la partie mobile
-        const btnFiltre = document.querySelector("#btnFiltre");
-        const btnTri = document.querySelector("#btnTri");
-        const asideTri = document.querySelector("#tri");
-        const asideFiltre = document.querySelector("#filtre");
-        const fermeTri = document.querySelector("#fermeTri");
-        const fermeFiltre = document.querySelector("#fermeFiltre");
-        const body = document.body;
-        
-        /**
-         * Ouvre et ferme le aside au format mobile
-         * Empêche le scroll
-         */
-        function toggleAside(aside) {
-            aside.classList.toggle('openFiltreTri');
             
-            if (asideTri.classList.contains('openFiltreTri') || asideFiltre.classList.contains('openFiltreTri')) {
-                body.classList.add('no-scroll');
-            } else {
-                body.classList.remove('no-scroll');
+            // Ouvre et ferme le pop-up tri et filtre pour la partie mobile
+            const btnFiltre = document.querySelector("#btnFiltre");
+            const btnTri = document.querySelector("#btnTri");
+            const asideTri = document.querySelector("#tri");
+            const asideFiltre = document.querySelector("#filtre");
+            const fermeTri = document.querySelector("#fermeTri");
+            const fermeFiltre = document.querySelector("#fermeFiltre");
+            const body = document.body;
+            
+            /**
+             * Ouvre et ferme le aside au format mobile
+             * Empêche le scroll
+             */
+            function toggleAside(aside) {
+                aside.classList.toggle('openFiltreTri');
+                
+                if (asideTri.classList.contains('openFiltreTri') || asideFiltre.classList.contains('openFiltreTri')) {
+                    body.classList.add('no-scroll');
+                } else {
+                    body.classList.remove('no-scroll');
+                }
             }
-        }
-        
-        fermeTri.addEventListener("click", () => toggleAside(asideTri));
-        fermeFiltre.addEventListener("click", () => toggleAside(asideFiltre));
-        btnTri.addEventListener("click", () => toggleAside(asideTri));
-        btnFiltre.addEventListener("click", () => toggleAside(asideFiltre));
-        
-    });
-</script>
-<script src="js/sortAndFilter.js"></script>
+            
+            fermeTri.addEventListener("click", () => toggleAside(asideTri));
+            fermeFiltre.addEventListener("click", () => toggleAside(asideFiltre));
+            btnTri.addEventListener("click", () => toggleAside(asideTri));
+            btnFiltre.addEventListener("click", () => toggleAside(asideFiltre));
+            
+        });
+    </script>
+    <script src="js/sortAndFilter.js"></script>
+</body>
 </html>
