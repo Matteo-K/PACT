@@ -38,7 +38,7 @@
                 <p class="tag"><?= $a['companie']?></p>
             </article>
             <article>
-                <p><?= $a['titre']?></p>
+                <p><strong><?= ucfirst($a['titre'])?></strong></p>
                 <p><?=$a['content']?></p>
                 <?php if($a['listimage'] != null){
                     $listimage = trim($a['listimage'], '{}');
