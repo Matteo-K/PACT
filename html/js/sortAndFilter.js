@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const userDataElement = document.getElementById('user-data');
   arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
   userType = userDataElement.getAttribute('data-user');
+
+  console.log(arrayOffer);
+  displayOffers(arrayOffer, 0, 15);
 });
 
 
@@ -257,9 +260,6 @@ function avisSearch(offer) {
 
   return div;
 }
-
-console.log(arrayOffer);
-displayOffers(arrayOffer, 0, 15);
 
 
 /* ### Evènements ### */
