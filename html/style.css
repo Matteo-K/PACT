@@ -2284,6 +2284,10 @@ tbody td:last-child {
   margin-left: 0.5em;
 }
 
+.mySwiperAvis{
+  border-radius: 10px;
+}
+
 
 .noteEtoile > .star {
   width: 1.2em;
