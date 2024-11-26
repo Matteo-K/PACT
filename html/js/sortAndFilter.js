@@ -9,7 +9,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   const offersDataElement = document.getElementById('offers-data');
   const arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
-  console.log(arrayOffer[0].idOffre);
+  console.log(arrayOffer);
 });
 
 
