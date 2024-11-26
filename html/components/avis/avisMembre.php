@@ -100,14 +100,14 @@
                         // La date est plus ancienne que 7 jours ou dans le futur
                         echo "Rédigé le " . $dateDB->format("d/m/Y à H:i");
                     }
-                    ?>
+                }
+                ?>
             </article>
             
         <?php
             
         ?>
         </div>
-        <?php
+    <?php 
     }
 ?>
-</div>
