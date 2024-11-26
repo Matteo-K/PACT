@@ -88,7 +88,7 @@
                                     <?php
                                         $date = explode(',',trim($value['datefactue'],'{}'));
                                         foreach ($date as $key => $value2) {
-                                            $dateFactue = NEW DateTime($value2);
+                                            $dateFacture = NEW DateTime($value2);
                                             $dateFacture->modify('-1 month');
                                             $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
                                             $formatter->setPattern('MMMM'); // Affiche le mois complet
