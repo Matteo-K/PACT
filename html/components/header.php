@@ -45,7 +45,7 @@
             <img id="profilePic" src="<?php echo $user["url"] ?>" title="Photo de profil utilisateur">
 
             <!-- Menu caché intégré dans le header -->
-            <div id="profileMenu" class="hidden">
+            <div id="profileMenu">
                 <span id="backButton">
                     < Retour</span>
                         <figure id="imagProfil">
@@ -63,13 +63,18 @@
                             </figcaption>
                         </figure>
                         <ul>
+                            <?php if ($typeUser === "pro_public" || $typeUser === "pro_prive") {?>
                             <li><a href="search.php">Mes offres</a></li>
                             <li><a href="manageOffer.php">Créer une offre</a></li>
+                            <?php } ?>
                         </ul>
                         <div>
                             <a id="changeAccount" class="buttonMenu" href="logout.php?change=true">Changer de compte</a>
                             <a id="logoutButton" class="buttonMenu" href="logout.php">Déconnexion</a>
                         </div>
+            </div>
+            <div class="facture">
+
             </div>
 
         <?php

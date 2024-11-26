@@ -27,7 +27,11 @@
                 </div>
                 <img src="./img/icone/trois-points.png" alt="icone de parametre">
             </article>
-            <
+            <article>
+                <p> Visité en <?= $a['mois'] . " " . $a['annee']?></p>
+                <p> • </p>
+                <p class="tag"><?= $a['companie']?></p>
+            </article>
             
         <?php
             
