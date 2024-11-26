@@ -119,7 +119,11 @@ $arrayOffer = [];
     document.addEventListener("DOMContentLoaded", () => {
 
         // Liste des offres pour la manipuler
-        let arrayOffer = <?php echo json_encode($offres->filtre($idUser, $typeUser)); ?>;
+        <?php if (empty($search)) { ?>
+            let arrayOffer = <?php echo json_encode($offres->filtre($idUser, $typeUser)); ?>; 
+        <?php } else { ?>
+            let arrayOffer = <?php echo json_encode($offres->recherche($idUser, $typeUser, $search)); ?>; 
+        <?php } ?>
         
         // Acualise l'heure actuelle
         const now = new Date();
