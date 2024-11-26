@@ -135,13 +135,13 @@ function createCard(offer) {
   // Image principale
   let img = document.createElement("img");
   img.classList.add("searchImage");
-  if (offer.length = 0) {
+  if (offer.images.length = 0) {
     img.setAttribute("alt", "Pas_de_photo_attribué_à_l'offre");
   } else {
     img.setAttribute("alt", "photo_principal_de_l'offre");
     img.setAttribute("src", offer.images[0]);
   }
-  card.appendChild(img);photo_principal_de_l
+  card.appendChild(img);
 
   let infoOffre = document.createElement("div");
   infoOffre.classList.add("infoOffre");
@@ -153,9 +153,9 @@ function createCard(offer) {
   let resume = document.createElement("p");
   resume.classList.add("searchResume");
   if (offer.resume != "") {
-    resume.textContent = "Pas de resume saisie";
-  } else {
     resume.textContent = offer.resume;
+  } else {
+    resume.textContent = "Pas de resume saisie";
   }
 
   infoOffre.appendChild(note(offer));
@@ -216,7 +216,7 @@ function ajouterTag(offer) {
     let tag = document.createElement("span");
     tag.classList.add("searchTag");
     tag.textContent = element.replace("_", " ");
-    parent.appendChild(tag);
+    tags.appendChild(tag);
   });
 
   return tags;
@@ -267,8 +267,8 @@ function avisSearch(offer) {
 // Tris
 
 
-chkBxVisite.addEventListener();
-chkBxActivite.addEventListener();
-chkBxSpectacle.addEventListener();
-chkBxRestauration.addEventListener();
-chkBxParc.addEventListener();
+chkBxVisite.addEventListener("click", () => {});
+chkBxActivite.addEventListener("click", () => {});
+chkBxSpectacle.addEventListener("click", () => {});
+chkBxRestauration.addEventListener("click", () => {});
+chkBxParc.addEventListener("click", () => {});
