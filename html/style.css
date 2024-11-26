@@ -319,7 +319,6 @@ header>div>a>div {
 
 #profileMenu{
   display: flex;
-  color: #fff;
   margin: 0;
   position: fixed;
   top: 0;
@@ -331,6 +330,7 @@ header>div>a>div {
   transition: transform 1s ease-in-out;
   visibility: hidden;
   opacity: 0;
+  color: #fff;
 }
 
 /* Style général du menu de profil */
@@ -346,7 +346,68 @@ header>div>a>div {
   width: calc(100vw - 286px);
   background-color: var(--background) ;
   color: #000;
+  display: flex;
+  flex-wrap: wrap;
 }
+
+
+.details-style {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Pour que les bordures soient nettes */
+  font-family: Arial, sans-serif;
+}
+
+/* Style pour <summary> */
+.details-style summary {
+  background-color: #f5f5f5;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  list-style: none;
+}
+
+/* Conteneur des liens */
+.details-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style pour chaque lien (ligne de tableau) */
+.details-content a {
+  display: block;
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Dernière ligne sans bordure */
+.details-content a:last-child {
+  border-bottom: none;
+}
+
+/* Interaction sur les liens */
+.details-content a:hover {
+  background-color: #f0f0f0;
+  color: #007BFF;
+}
+
+/* Animation pour l'ouverture et fermeture */
+.details-style[open] summary {
+  background-color: #e8e8e8;
+}
+
+
+
 
 #profileMenu.show {
   visibility: visible;
@@ -415,7 +476,7 @@ header>div>a>div {
   font-weight: bold;
 }
 
-#profileMenu a {
+.menuHeader a {
   color: #fff;
   text-decoration: none;
   transition: color 0.5s;

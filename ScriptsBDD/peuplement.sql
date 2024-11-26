@@ -254,19 +254,19 @@ VALUES ('Lundi', 3, '19:00', '21:00'),
        ('Samedi', 3, '19:00', '21:00');
        
 --peuplement horaire precise
-INSERT INTO _horairePrecise (jour, idOffre, heureDebut, DateRepresentation) 
-VALUES ('Lundi', 2, '19:00', '2024-12-02'),
-       ('Mardi', 2, '19:00', '2024-12-03'), 
-       ('Mercredi', 2, '19:00', '2024-12-04'),
-       ('Jeudi', 2, '19:00', '2024-12-05'), 
-       ('Vendredi', 2, '19:00', '2024-12-06'),
-       ('Samedi', 2, '19:00', '2024-12-07'),
-       ('Lundi', 4, '19:00', '2024-12-09'),
-       ('Mardi', 4, '19:00', '2024-12-10'), 
-       ('Mercredi', 4, '19:00', '2024-12-11'),
-       ('Jeudi', 4, '19:00', '2024-12-12'), 
-       ('Vendredi', 4, '19:00', '2024-12-13'),
-       ('Samedi', 4, '19:00', '2024-12-14');
+INSERT INTO _horairePrecise (jour, idOffre, heureDebut, heureFin, DateRepresentation) 
+VALUES ('Lundi', 2, '19:00', '21:00', '2024-12-02'),
+       ('Mardi', 2, '19:00', '21:00', '2024-12-03'), 
+       ('Mercredi', 2, '19:00', '21:00', '2024-12-04'),
+       ('Jeudi', 2, '19:00', '21:00', '2024-12-05'), 
+       ('Vendredi', 2, '19:00', '21:00', '2024-12-06'),
+       ('Samedi', 2, '19:00', '21:00', '2024-12-07'),
+       ('Lundi', 4, '19:00', '21:00', '2024-12-09'),
+       ('Mardi', 4, '19:00', '21:00', '2024-12-10'), 
+       ('Mercredi', 4, '19:00', '21:00', '2024-12-11'),
+       ('Jeudi', 4, '19:00', '21:00', '2024-12-12'), 
+       ('Vendredi', 4, '19:00', '21:00', '2024-12-13'),
+       ('Samedi', 4, '19:00', '21:00', '2024-12-14');
 
 -- Peuplement de la table _horaireMidi
 INSERT INTO _horaireMidi (jour, idOffre, heureOuverture, heureFermeture) 
