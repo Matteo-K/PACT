@@ -12,7 +12,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $stmt =$conn->prepare("SELECT * from pact.proprive where idu = ?");
 $stmt->execute([$avis[0]['idpro']]);
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 print_r($result[0]);
 
