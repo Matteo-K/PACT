@@ -176,7 +176,7 @@ VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attracti
        (4, 'actif', 'Thomas Angelvy', 'Un spectacle incroyable avec des performances éblouissantes.', 'spectacle@mail.com', '0123456791', TRUE, 'http://spectacle.com', 'Divertissement exceptionnel', CURRENT_TIMESTAMP),
        (3, 'actif', 'La Potinière', 'Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. ', 'restaurant@mail.com', '0123456793', TRUE, NULL, 'Cuisine raffinée', CURRENT_TIMESTAMP),
        (3, 'actif', 'Activité Culturelle', 'Explorez la culture locale à travers une activité immersive.', 'activite@mail.com', '0123456794', TRUE, 'http://activite.com', 'Immersion culturelle aves la population local', CURRENT_TIMESTAMP),
-       (4, 'inactif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP);
+       (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP);
 
 -- Peuplement de la table _image
 INSERT INTO _image (url, nomImage) 
@@ -252,6 +252,21 @@ VALUES ('Lundi', 3, '19:00', '21:00'),
        ('Jeudi', 3, '19:00', '21:00'), 
        ('Vendredi', 3, '19:00', '21:00'),
        ('Samedi', 3, '19:00', '21:00');
+       
+--peuplement horaire precise
+INSERT INTO _horairePrecise (jour, idOffre, heureDebut, DateRepresentation) 
+VALUES ('Lundi', 2, '19:00', '2024-12-02'),
+       ('Mardi', 2, '19:00', '2024-12-03'), 
+       ('Mercredi', 2, '19:00', '2024-12-04'),
+       ('Jeudi', 2, '19:00', '2024-12-05'), 
+       ('Vendredi', 2, '19:00', '2024-12-06'),
+       ('Samedi', 2, '19:00', '2024-12-07'),
+       ('Lundi', 4, '19:00', '2024-12-09'),
+       ('Mardi', 4, '19:00', '2024-12-10'), 
+       ('Mercredi', 4, '19:00', '2024-12-11'),
+       ('Jeudi', 4, '19:00', '2024-12-12'), 
+       ('Vendredi', 4, '19:00', '2024-12-13'),
+       ('Samedi', 4, '19:00', '2024-12-14');
 
 -- Peuplement de la table _horaireMidi
 INSERT INTO _horaireMidi (jour, idOffre, heureOuverture, heureFermeture) 
@@ -261,24 +276,12 @@ VALUES ('Lundi', 1, '10:00', '18:00'),
        ('Jeudi', 1, '10:00', '18:00'), 
        ('Vendredi', 1, '10:00', '18:00'),
        ('Samedi', 1, '10:00', '17:00'),
-       ('Lundi', 2, '10:00', '12:00'), 
-       ('Mardi', 2, '10:00', '12:00'), 
-       ('Mercredi', 2, '10:00', '12:00'),
-       ('Jeudi', 2, '10:00', '12:00'), 
-       ('Vendredi', 2, '10:00', '12:00'),
-       ('Samedi', 2, '10:00', '12:00'),
        ('Lundi', 3, '12:00', '15:00'), 
        ('Mardi', 3, '12:00', '15:00'), 
        ('Mercredi', 3, '12:00', '15:00'),
        ('Jeudi', 3, '12:00', '15:00'), 
        ('Vendredi', 3, '12:00', '15:00'),
        ('Samedi', 3, '12:00', '15:00'),
-       ('Lundi', 4, '09:00', '12:00'), 
-       ('Mardi', 4, '14:00', '17:00'), 
-       ('Mercredi', 4, '16:00', '19:00'),
-       ('Jeudi', 4, '14:00', '17:00'), 
-       ('Vendredi', 4, '08:00', '11:00'),
-       ('Samedi', 4, '14:00', '17:00'),
        ('Lundi', 5, '10:00', '18:00'), 
        ('Mardi', 5, '10:00', '18:00'), 
        ('Mercredi', 5, '10:00', '18:00'),
@@ -332,17 +335,33 @@ VALUES (1, 'Premium'),
        
 
 INSERT INTO _dateOption(dateLancement,dateFin,duree,prix)
-VALUES (CURRENT_DATE,CURRENT_DATE + INTERVAL '1 weeks',1,20),
-       (CURRENT_DATE,CURRENT_DATE + INTERVAL '2 weeks',2,40),
-       (CURRENT_DATE,CURRENT_DATE + INTERVAL '2 weeks',2,20),
-       (CURRENT_DATE,CURRENT_DATE + INTERVAL '3 weeks',3,30);
+VALUES ('2024-11-01','2024-09-08',1,20),
+       ('2024-11-01','2024-09-15',2,40),
+       ('2024-11-01','2024-09-15',2,20),
+       ('2024-11-01','2024-09-22',3,30),
+       ('2024-09-01','2024-09-08',1,20),
+       ('2024-09-01','2024-09-15',2,40),
+       ('2024-09-01','2024-09-15',2,20),
+       ('2024-09-01','2024-09-22',3,30),
+       ('2024-10-01','2024-10-08',1,20),
+       ('2024-10-01','2024-10-15',2,40),
+       ('2024-10-01','2024-10-15',2,20),
+       ('2024-10-01','2024-10-22',3,30);
 
 -- Peuplement de la table _option_offre
 INSERT INTO _option_offre (idOption, idOffre, nomOption) 
 VALUES (3, 1, 'EnRelief'), 
        (2, 2, 'ALaUne'),
        (2, 2, 'EnRelief'),
-       (1, 3, 'ALaUne');
+       (1, 3, 'ALaUne'),
+       (4, 5, 'EnRelief'), 
+       (5, 4, 'ALaUne'),
+       (6, 3, 'EnRelief'),
+       (7, 1, 'ALaUne'),
+       (8, 4, 'EnRelief'), 
+       (9, 4, 'ALaUne'),
+       (10, 2, 'EnRelief'),
+       (11, 5, 'ALaUne');
        
 INSERT INTO _visite_langue (idOffre, langue) 
 VALUES (5, 'Français'), 
@@ -395,11 +414,35 @@ VALUES (1,'2024-11-01',6),
        (2,'2024-11-15',NULL),
        (3,'2024-11-10',NULL),
        (4,'2024-11-01',NULL),
-       (5,'2024-11-01',6);
+       (5,'2024-11-01',6),
+       (1,'2024-10-01',6),
+       (1,'2024-10-15',17),
+       (2,'2024-10-01',4),
+       (2,'2024-10-15',17),
+       (3,'2024-10-10',22),
+       (4,'2024-10-01',31),
+       (5,'2024-10-01',31),
+       (1,'2024-09-01',6),
+       (1,'2024-09-15',10),
+       (2,'2024-09-01',4),
+       (2,'2024-09-15',10),
+       (3,'2024-09-10',20),
+       (4,'2024-09-01',30),
+       (5,'2024-09-01',30);
        
 INSERT INTO _facturation(dateFactue,idOffre)
-VALUES ('2024-11-01',1),
+VALUES ('2024-12-01',1),
+       ('2024-12-01',2),
+       ('2024-12-01',3),
+       ('2024-12-01',4),
+       ('2024-12-01',5),
+       ('2024-11-01',1),
        ('2024-11-01',2),
        ('2024-11-01',3),
        ('2024-11-01',4),
-       ('2024-11-01',5);
+       ('2024-11-01',5),
+       ('2024-10-01',1),
+       ('2024-10-01',2),
+       ('2024-10-01',3),
+       ('2024-10-01',4),
+       ('2024-10-01',5);
