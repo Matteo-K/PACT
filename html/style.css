@@ -348,7 +348,7 @@ header>div>a>div {
 #profileMenu.show {
   visibility: visible;
   opacity: 1;
-  transform: translateX(-100vh);
+  transform: translateX(0);
 }
 
 #profileMenu.hide {
