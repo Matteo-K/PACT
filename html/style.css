@@ -319,7 +319,6 @@ header>div>a>div {
 
 #profileMenu{
   display: flex;
-  color: #fff;
   margin: 0;
   position: fixed;
   top: 0;
@@ -331,6 +330,7 @@ header>div>a>div {
   transition: transform 1s ease-in-out;
   visibility: hidden;
   opacity: 0;
+  color: #fff;
 }
 
 /* Style général du menu de profil */
@@ -476,7 +476,7 @@ header>div>a>div {
   font-weight: bold;
 }
 
-#profileMenu a {
+.menuHeader a {
   color: #fff;
   text-decoration: none;
   transition: color 0.5s;
