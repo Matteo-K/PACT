@@ -63,8 +63,10 @@
                             </figcaption>
                         </figure>
                         <ul>
+                            <?php if ($typeUser === "pro_public" || $typeUser === "pro_prive") {?>
                             <li><a href="search.php">Mes offres</a></li>
                             <li><a href="manageOffer.php">Créer une offre</a></li>
+                            <?php } ?>
                         </ul>
                         <div>
                             <a id="changeAccount" class="buttonMenu" href="logout.php?change=true">Changer de compte</a>
