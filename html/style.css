@@ -316,7 +316,7 @@ header>div>a>div {
   align-items: center;
 }
 
-.menuHeader{
+#profileMenu{
   display: flex;
   color: #fff;
   margin: 0;
@@ -333,7 +333,7 @@ header>div>a>div {
 }
 
 /* Style général du menu de profil */
-#profileMenu {
+.menuHeader{
   display: flex;
   flex-direction: column;
 }
