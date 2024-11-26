@@ -1,8 +1,14 @@
 <?php
-$stmt = $conn->prepare("SELECT a.*, m.url,r.idc_reponse, r.denomination, r.contenureponse, r.reponsedate, COALESCE(ppub.url, ppriv.url) AS entreprise_url FROM pact.avis a 
-                        JOIN pact.membre m ON m.pseudo = a.pseudo LEFT JOIN pact.reponse r ON r.idc_avis = a.idc 
-                        LEFT JOIN pact.propublic ppub ON ppub.denomination = r.denomination LEFT JOIN pact.proprive ppriv ON ppriv.denomination = r.denomination 
-                        where idoffre = ? order by a.datepublie asc");
+$stmt = $conn->prepare("
+    SELECT a.*, m.url AS membre_url,r.idc_reponse, r.denomination AS reponse_denomination, ppub.denomination AS pub_denomination, ppriv.denomination AS prive_denomination, COALESCE(ppub.url, ppriv.url) AS entreprise_url,ppub.url AS url_publique,ppriv.url AS url_privee
+    FROM pact.avis a
+    JOIN pact.membre m ON m.pseudo = a.pseudo
+    LEFT JOIN pact.reponse r ON r.idc_avis = a.idc
+    LEFT JOIN pact.propublic ppub ON ppub.denomination = r.denomination
+    LEFT JOIN pact.proprive ppriv ON ppriv.denomination = r.denomination
+    WHERE a.idoffre = ? 
+    ORDER BY a.datepublie ASC
+");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -122,8 +128,7 @@ foreach ($avis as $a) {
                 <img src="./img/icone/reponse.png" alt="icone de reponse">
                 <div class="reponseAvis">
                 <div class="infoProReponse">
-                    <img src=<?=$a['entreprise_url'] ?>">;
-                    
+                    <img src=<?=$a['entreprise_url'] ?>">
                     <p><?= ucfirst(strtolower($a['denomination'])) ?> </p>
                 </div>
                 </div>
