@@ -57,6 +57,29 @@
                 </div>
                 <?php
                 }
+                if (isset($a['datepublie'])) {
+                    // Créer des objets DateTime et fixer l'heure à minuit
+                    $dateDB = new DateTime($a['datepublie']);
+                    $dateDB->setTime(0, 0, 0);
+            
+                    $dateNow = new DateTime();
+                    $dateNow->setTime(0, 0, 0);
+            
+                    // Calcul de la différence
+                    $interval = $dateDB->diff($dateNow);
+                    $diffInDays = (int)$interval->format('%r%a');
+            
+                    // Déterminer le message à afficher
+                    if($diffInDays > -1){
+                        echo "<p>Rédigé aujourd'hui</p>";
+                    } else if ($diffInDays === -1) {
+                        echo "<p>Rédigé hier</p>";
+                    } elseif ($diffInDays >= -7 && $diffInDays < -1) {
+                        echo "<p>Rédigé il y a " . abs($diffInDays) . " jour" . (abs($diffInDays) > 1 ? 's' : '') . "</p>";
+                    } else {
+                        echo "<p>Rédigé le " . $dateDB->format("d/m/Y") . "</p>";
+                    }
+                }
                 ?>
             </article>
             
