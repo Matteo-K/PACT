@@ -96,7 +96,7 @@
     try {
         document.addEventListener("DOMContentLoaded", function() {
             const profilePic = document.getElementById("profilePic");
-            const profileMenu = document.getElementById("profileMenu");
+            const profileMenu = document.getElementsByClassName("menuHeader");
             const backButton = document.getElementById("backButton");
 
             // Fonction pour afficher/cacher le menu
