@@ -316,26 +316,26 @@ header>div>a>div {
   align-items: center;
 }
 
-.menuHeader{
+#profileMenu{
   display: flex;
-}
-
-/* Style général du menu de profil */
-#profileMenu {
   color: #fff;
   margin: 0;
   position: fixed;
   top: 0;
   right: 0;
   height: 100%;
-  width: 300px;
+  max-width: 80%;
   background: linear-gradient(to bottom, #034d7c, #1ca4ed);
   /* Dégradé du haut vers le bas */
-  display: flex;
-  flex-direction: column;
   transition: transform 0.7s ease, visibility 0.7s ease, opacity 0.7s ease;
   visibility: hidden;
   opacity: 0;
+}
+
+/* Style général du menu de profil */
+.menuHeader{
+  display: flex;
+  flex-direction: column;
 }
 
 #profileMenu.show {
@@ -2640,10 +2640,10 @@ tbody td:last-child {
 
 #park>div[class="ageMinP"]>label[class="labelGauche"],
 #park>div[class="NbEtPrixPark"]>label[class="labelGauche"] {
-  margin-right: 10px;
+  margin-right: 5px;
 }
-#park>div[class="NbEtPrixPark"]>label[class="labelGauche"] {
-  margin-left: 10px;
+#park>div[class="NbEtPrixPark"]>label[class="labelEuro"] {
+  margin-left: 5px;
 }
 #park >div[class="afficheImages2"]{
   width: 300px;
