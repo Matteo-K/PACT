@@ -97,66 +97,71 @@ if (isset($_POST['pageBefore'])) {
       $categorie = $_POST["categorie"];
 
 
-
       // Traitement des images
       $dossierTemp = __DIR__ . "/img/tempImage/";
       $dossierImg = __DIR__ . "/img/imageOffre/";
-      
-      mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
 
-      $stmt = $conn->prepare("SELECT url FROM pact._illustre WHERE idoffre = ?");
+      $anciennesImagesTotal = [];
+      $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = ?");
       $stmt->execute([$idOffre]);
-      $anciennesImagesTotal = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          $anciennesImagesTotal[] = $result["url"];
+      }
 
       $anciennesImagesRestantes = $_POST["imageExistante"] ?? [];
 
-      //On déplace les anciennes images conservées vers un dossier temporaire
-      foreach ($anciennesImagesRestantes as $num => $lien) {
-        move_uploaded_file($lien, $dossierTemp . $num . pathinfo($lien)['extension']);
-        $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
-      }
+      if ($anciennesImagesRestantes != []) {
 
-      foreach ($anciennesImagesTotal as $imgA) {
-        // Supprime l'image du dossier
-        if (file_exists($imgA['url'])) {
-            unlink($imgA['url']);
+        mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
+
+        
+        //On déplace les anciennes images conservées vers un dossier temporaire
+        foreach ($anciennesImagesRestantes as $num => $lien) {
+          move_uploaded_file($lien, $dossierTemp . $num . pathinfo($lien)['extension']);
+          $lien = $dossierTemp . $num . '.' . pathinfo($lien)['extension'];
         }
-      }
 
-      // Supprime les relations dans la BDD
-      $stmt = $conn->prepare("DELETE FROM pact._illustre WHERE idoffre = ?");
-      $stmt->execute([$idOffre]);
-
-      $test_urls = implode(',', array_fill(0, count($anciennesImagesTotal), '?'));
-      $stmt = $conn->prepare("DELETE FROM pact._image WHERE url IN ($test_urls)");
-      $stmt->execute([$anciennesImagesTotal]);
-
-      $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
-      $nbAnciennesImages = count($anciennesImagesRestantes);
-      $nbTotalImages = $nbNouvellesImages + $nbAnciennesImages;
-      $imageCounter = $nbAnciennesImages;  // Compteur pour renommer les images
-
-      //On remet les anciennes images gardées dans la BDD et sur le serveur 
-      foreach ($anciennesImagesRestantes as $num => $lien) {
-        $fileExtension = strtolower(pathinfo($lien)['extension']);
-        $newFileName = $idOffre . '-' . $num . '.' . $fileExtension;
-        $dossierImgNom = $dossierImg . $newFileName;
-
-        rename($lien, $dossierImgNom);
-
-        try {
-          $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
-          $stmt->execute([$dossierImgNom, $newFileName]);
-
-          $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
-          $stmt->execute([$idOffre, $dossierImgNom]);
-        } catch (PDOException $e) {
-            error_log("Erreur BDD : " . $e->getMessage());
+        foreach ($anciennesImagesTotal as $imgA) {
+          // Supprime l'image du dossier
+          if (file_exists($imgA['url'])) {
+              unlink($imgA['url']);
+          }
         }
+
+        // Supprime les relations dans la BDD
+        $stmt = $conn->prepare("DELETE FROM pact._illustre WHERE idoffre = ?");
+        $stmt->execute([$idOffre]);
+
+        $test_urls = implode(',', array_fill(0, count($anciennesImagesTotal), '?'));
+        $stmt = $conn->prepare("DELETE FROM pact._image WHERE url IN ($test_urls)");
+        $stmt->execute([$anciennesImagesTotal]);
+
+        $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
+        $nbAnciennesImages = count($anciennesImagesRestantes);
+        $nbTotalImages = $nbNouvellesImages + $nbAnciennesImages;
+        $imageCounter = $nbAnciennesImages;  // Compteur pour renommer les images
+
+        //On remet les anciennes images gardées dans la BDD et sur le serveur 
+        foreach ($anciennesImagesRestantes as $num => $lien) {
+          $fileExtension = strtolower(pathinfo($lien)['extension']);
+          $newFileName = $idOffre . '-' . $num . '.' . $fileExtension;
+          $dossierImgNom = $dossierImg . $newFileName;
+
+          rename($lien, $dossierImgNom);
+
+          try {
+            $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
+            $stmt->execute([$dossierImgNom, $newFileName]);
+
+            $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
+            $stmt->execute([$idOffre, $dossierImgNom]);
+          } catch (PDOException $e) {
+              error_log("Erreur BDD : " . $e->getMessage());
+          }
+        }
+
+        rmdir($dossierTemp);
       }
-
-      rmdir($dossierTemp);
-
 
       // Boucle à travers chaque NOUVEAU fichier uploadé
       for ($i = 0; $i < $nbNouvellesImages; $i++) {
