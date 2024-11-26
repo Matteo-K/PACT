@@ -25,20 +25,18 @@ if ($categorie["_parcattraction"]) {
 
 <section id="park">
         <div class="ageMinP">
-            <label>Age minimum</label>
+            <label class="labelGauche">Age minimum :</label>
             <input type="number" id="agePark" name="AgePark" min="0"  placeholder="0">
         </div>
 
         <div class="NbEtPrixPark">
-            <label>Nombre d'attraction</label>
-            <input type="number" id="nbAttrac" name="nbAttrac"min="0"placeholder="0">
+            <label class="labelGauche">Nombre d'attractions :</label>
+            <input type="number" id="nbAttrac" name="nbAttrac"min="0"placeholder="0"  class="nbAttrac">
 
-            <label>Prix Minimum</label>
+            <label class="labelGauche">Prix Minimum :</label>
             <input type="number" id="prixMinPark" name="prixMinPark" min="0" placeholder="0">
+            <label class="labelGauche">€</label>
         </div>
-
-
-
 
     
 
@@ -51,7 +49,7 @@ if ($categorie["_parcattraction"]) {
         </div>
         <label for="ajoutPhoto2" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
         <input type="file" id="ajoutPhoto2" name="ajoutPhoto2[]"
-            accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>
+            accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple class="zoneImages">
         <div id="afficheImages2"></div>
 
 

@@ -2495,6 +2495,7 @@ tbody td:last-child {
   flex-direction: column
     /* Espace entre le bouton radio et le texte */
 }
+
 /* CSS pour le détails d'une offre de type spectacle */
 #show {
   align-items: center;
@@ -2538,6 +2539,7 @@ tbody td:last-child {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne4"] {
   margin-left: 15px;
 
@@ -2561,58 +2563,70 @@ tbody td:last-child {
 }
 
 /* CSS pour le détails d'une offre de type Visite */
-#visit > div[class="visGuideeEtDuree"]{
+#visit>div[class="visGuideeEtDuree"] {
   margin-bottom: 15px;
 }
 
-#visit > div[class="visGuideeEtDuree"] >label[class="labDureeVis"]{
+#visit>div[class="visGuideeEtDuree"]>label[class="labDureeVis"] {
   margin-left: 15px;
   margin-right: 5px;
 }
 
-#visit > div[class="visGuideeEtDuree"]> label[class="labH"]{
+#visit>div[class="visGuideeEtDuree"]>label[class="labH"] {
   margin-left: 5px;
 }
 
-#visit >div[class="divAccessibliteVisit"]{
+#visit>div[class="divAccessibliteVisit"] {
   margin-bottom: 15px;
 }
 
-#visit >div[class="divPrixMin"]{
+#visit>div[class="divPrixMin"] {
   margin-bottom: 15px;
 
 }
 
-#visit >div[class="divPrixMin"]>label[class="labEuro"]{
+#visit>div[class="divPrixMin"]>label[class="labEuro"] {
   margin-left: 5px;
 }
 
-#visit >div[class="languesProp"] >input[type="text"]{
+#visit>div[class="languesProp"]>input[type="text"] {
   width: 500px;
   height: 35px;
   margin-top: 5px;
 }
 
-#visit >div[class="languesProp"]{
+#visit>div[class="languesProp"] {
   display: flex;
   flex-direction: column;
 }
 
-#park{
-  background-color: pink;
-}
 
-#park >div[class="ageMinP"]{
+
+#park>div[class="ageMinP"] {
   display: flex;
   flex-direction: row;
 }
 
-#park > div[class="ageMinP"]> input[type="number"]{
-  margin-bottom: 15px;
+#park>div[class="ageMinP"]>input[type="number"] {
+  margin-bottom: 20px;
 }
-#park > div[class="NbEtPrixPark"]{
+
+#park>div[class="NbEtPrixPark"] {
   display: flex;
   flex-direction: row;
+}
+
+#park>div[class="NbEtPrixPark"]>input[class="nbAttrac"] {
+  margin-right: 15px;
+}
+
+#park>div[class="ageMinP"]>label[class="labelGauche"],
+#park>div[class="NbEtPrixPark"]>label[class="labelGauche"] {
+  margin-right: 10px;
+}
+
+#park >input[class="zoneImages"]{
+  width: 200px;
 }
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
