@@ -6,7 +6,12 @@
  */
 
 
-// La liste des offres est stocké dans la variable "arrayOffer";
+const offersDataElement = document.getElementById('offers-data');
+const arrayOffer = JSON.parse(offersDataElement.getAttribute('data-offers'));
+
+// Utilisez arrayOffer ici dans votre fichier JS
+console.log(arrayOffer);  // Vérifiez que vous récupérez bien les données
+
 
 /// Input de Tri ///
 const radBtnEnAvant = document.querySelector("#miseEnAvant");
