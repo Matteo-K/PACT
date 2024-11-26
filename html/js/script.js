@@ -1,20 +1,22 @@
 //Page DetailsOffer by EWEN
 try {
 
-  /* Affichage pour un type d'offre particulier */
-  // Sélection des éléments du formulaire et des radios
-  const radioRestaurant = document.getElementById("radioRestaurant");
-  const radioPark = document.getElementById("radioParc");
-  const radioActivite = document.getElementById("radioActivite");
+  document.addEventListener("DOMContentLoaded", () => {
+    
+    /* Affichage pour un type d'offre particulier */
+    // Sélection des éléments du formulaire et des radios
+    const radioRestaurant = document.getElementById("radioRestaurant");
+    const radioPark = document.getElementById("radioParc");
+    const radioActivite = document.getElementById("radioActivite");
   const radioSpectacle = document.getElementById("radioSpectacle");
   const radioVisite = document.getElementById("radioVisite");
-
+  
   const RestaurantOffer = document.getElementById("restaurant");
   const ParkOffer = document.getElementById("park");
   const ActiviteOffer = document.getElementById("activity");
   const SpectacleOffer = document.getElementById("show");
   const VisiteOffer = document.getElementById("visit");
-
+  
   function hidenOffer() {
     RestaurantOffer.style.display = "none";
     ParkOffer.style.display = "none";
@@ -22,7 +24,7 @@ try {
     SpectacleOffer.style.display = "none";
     VisiteOffer.style.display = "none";
   }
-
+  
   // Fonction pour afficher ou masquer la div des require_once
   hidenOffer();
   function toggleSpecialOffer() {
@@ -39,7 +41,7 @@ try {
       RestaurantOffer.style.display = "block";
     }
   }
-
+  
   // Associe la fonction de toggle au clic sur tous les boutons radio
   radioRestaurant.addEventListener("input", toggleSpecialOffer);
   radioPark.addEventListener("input", toggleSpecialOffer);
@@ -48,22 +50,22 @@ try {
   radioVisite.addEventListener("input", toggleSpecialOffer);
 
   // autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
-
+  
   // Appel initial de la fonction pour vérifier l'état initial
   toggleSpecialOffer();
-
-
-
-
-
-
-
-    // Variables de sélection des éléments
-    const inputTag = document.getElementById("inputTag");
-    const autocompleteList = document.getElementById("autocompletion");
-
-    // Fonction pour filtrer et afficher les suggestions
-    function updateSuggestions(val) {
+  
+  
+  
+  
+  
+  
+  
+  // Variables de sélection des éléments
+  const inputTag = document.getElementById("inputTag");
+  const autocompleteList = document.getElementById("autocompletion");
+  
+  // Fonction pour filtrer et afficher les suggestions
+  function updateSuggestions(val) {
 
       // Nettoyer les suggestions précédentes
       autocompleteList.innerText = "";  
@@ -71,7 +73,7 @@ try {
 
       //On remplace les caractères accentués par leur version sans accents
       let texte = supprAccents(val.toLowerCase());
-
+      
       // Filtrer les tags correspondant à la saisie
       suggestions = listeTags.filter(tag =>
         supprAccents(tag.toLowerCase()).includes(texte.toLowerCase())
@@ -81,28 +83,28 @@ try {
       suggestions.forEach(tag => {
         const itemAutoComplete = document.createElement("li");
         itemAutoComplete.textContent = tag;
-
+        
         // Quand un utilisateur clique sur une suggestion
         itemAutoComplete.addEventListener("click", () => {
           ajoutTag(tag);
           autocompleteList.innerText = ""; // Vide les suggestions
           autocompleteList.style.display = "none"; 
         });
-
+        
         autocompleteList.appendChild(itemAutoComplete);
       });
     }
-
+    
     // On detecte chaque saisie de caractère dans l'input
     inputTag.addEventListener("input", (event) => {
       updateSuggestions(event.target.value);
     });
-
+    
     // On detecte le focus de l'input
     inputTag.addEventListener("focus", () => {
       updateSuggestions(inputTag.value); 
     });
-
+    
     // Cacher les suggestions si on clique ailleurs
     document.addEventListener("click", (event) => {
       if (!event.target.closest("#autocompletion") && event.target !== inputTag) {
@@ -114,11 +116,12 @@ try {
     function supprAccents(txt) {
       return txt.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
-
-
-
-} catch (error) { }
-
+    
+    
+  });
+    
+  } catch (error) { }
+  
 
 
 
