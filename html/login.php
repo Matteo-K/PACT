@@ -28,8 +28,9 @@
             header("Location: index.php");
             // Rediriger vers une page protégée
             exit();
-
-        } else {
+        } 
+        
+        else {
             // Vérification proprive
             $stmt = $conn->prepare('SELECT * FROM pact.proprive WHERE mail = ?');
             $stmt->execute([$login]);
@@ -41,9 +42,9 @@
                 $_SESSION['typeUser'] = 'pro_prive'; // Détermine le type
                 header("Location: index.php");
                 exit();
-
-            } else {
-
+            } 
+            
+            else {
                 // Vérification propublic
                 $stmt = $conn->prepare('SELECT * FROM pact.propublic WHERE mail = ?');
                 $stmt->execute([$login]);
@@ -55,21 +56,24 @@
                     $_SESSION['typeUser'] = 'pro_public'; // Détermine le type
                     header("Location: index.php");
                     exit();
-                } else{
-
+                } 
+                
+                else {
                     // Vérification membre
                     $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE pseudo = ? OR mail = ?");
                     $stmt->execute([$login, $login]);
                     $member = $stmt->fetch(PDO::FETCH_ASSOC);
         
-                    if ($member && $password === $member['password']) {
+                    if ($member && password_verify($password, $member['password'])) {
                         // Connexion réussie
                         $_SESSION['idUser'] = $member['idu'];
                         $_SESSION['typeUser'] = 'membre';
                         header("Location: index.php");
 
                         exit();
-                    } else {
+                    } 
+                    
+                    else {
                         $error = "Identifiant ou mot de passe incorrect.";
                     }
                 }

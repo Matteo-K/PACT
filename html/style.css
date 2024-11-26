@@ -325,7 +325,7 @@ header>div>a>div {
   top: 0;
   right: 0;
   height: 100%;
-  width: 100%;
+  width: auto;
   /* Dégradé du haut vers le bas */
   transform: translateX(100%);
   transition: transform 1s ease-in-out;
@@ -342,7 +342,7 @@ header>div>a>div {
 
 .factue{
   height: 100%;
-  width: 100%;
+  width: 40vw;
   background-color: var(--background) ;
 }
 
