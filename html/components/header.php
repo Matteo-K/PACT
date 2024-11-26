@@ -80,19 +80,7 @@
                         $stmt->execute([$_SESSION["idUser"]]);
                         $factures = $stmt->fetch(PDO::FETCH_ASSOC);
                         
-                        // foreach ($factures as $key => $value) {
-                        //     ?>
-                        //         <details>
-                        //             <summary><?php echo $value['nom'] ?></summary>
-                        //             <?php
-                        //                 $date = explode(',',trim($value['datefactue'],'{}'));
-                        //                 foreach ($date as $key => $value2) {
-                        //                     echo gettype($value2);
-                        //                 }
-                        //             ?>
-                        //         </details>
-                        //     <?php
-                        // }
+                        
                     ?>
                 </div>
             </div>
