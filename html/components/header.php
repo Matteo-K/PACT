@@ -80,8 +80,8 @@
                         $stmt->execute([$_SESSION["idUser"]]);
                         $factures = $stmt->fetch(PDO::FETCH_ASSOC);
                         
+                        print_r($factures);
                         foreach ($factures as $key => $value) {
-                            print_r($value);
                             ?>
                                 <details>
                                     
