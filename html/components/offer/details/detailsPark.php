@@ -38,9 +38,6 @@ if ($categorie["_parcattraction"]) {
             <label class="labelGauche">€</label>
         </div>
 
-
-
-
     
 
         <div id="choixImage2">
@@ -52,7 +49,7 @@ if ($categorie["_parcattraction"]) {
         </div>
         <label for="ajoutPhoto2" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
         <input type="file" id="ajoutPhoto2" name="ajoutPhoto2[]"
-            accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>
+            accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple class="zoneImages">
         <div id="afficheImages2"></div>
 
 
