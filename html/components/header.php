@@ -77,7 +77,7 @@
                     <h1>Mes Factures</h1>
                     <?php 
                         $idu = $_SESSION["idUser"];
-                        $stmt = $conn->prepare("SELECT nom,idoffre,ARRAY_AGG(DISTINCT datefactue) AS datefactue FROM pact.facture WHERE idU = $idu GROUP BY nom,idOffre");
+                        $stmt = $conn->prepare("SELECT nom,idoffre,ARRAY_AGG(DISTINCT datefactue ORDER BY datefactue DESC) AS datefactue FROM pact.facture WHERE idU = $idu GROUP BY nom,idOffre");
                         $stmt->execute();
                         $factures = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         
