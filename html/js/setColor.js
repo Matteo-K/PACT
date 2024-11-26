@@ -1,3 +1,4 @@
+let ok = "blue";
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.documentElement;
   let style = getComputedStyle(document.body);
