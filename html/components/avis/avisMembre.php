@@ -37,7 +37,7 @@
                 <p><?=$a['content']?></p>
                 <?php if($a['listimage'] != null){
                     $pictures = json_decode($a['listimage']);
-                    print_r($pictures);
+                    print($pictures);
                     ?>
                     
                     <div class="swiper-container">
@@ -54,9 +54,6 @@
                             ?>
                         </div>
                     </div>
-        
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
                 </div>
                 <?php
                 }
