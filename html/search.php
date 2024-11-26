@@ -109,7 +109,7 @@ $arrayOffer = [];
     </main>
     <?php require_once "components/footer.php"; ?>
     <!-- Récupération de la liste des offres -->
-     <?php print_r($offres->filtre($idUser, $typeUser)); ?>
+     <?php print_r($offres->getArray($offres->filtre($idUser, $typeUser))); ?>
     <?php if (empty($search)) { ?>
         <div id="offers-data" data-offers='<?php echo json_encode($offres->getArray($offres->filtre($idUser, $typeUser))); ?>'></div>
     <?php } else { ?>
