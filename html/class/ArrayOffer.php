@@ -125,6 +125,7 @@ class ArrayOffer {
   public function offreContientTag($tags, $recherche) {
     $res = false;
     foreach ($tags as $tag) {
+      echo $tag;
       if (strpos($tag, $recherche) !== false) {
         $res = true;
         break;
