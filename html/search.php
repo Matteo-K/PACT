@@ -117,12 +117,14 @@ $arrayOffer = [];
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+        
+        let arrayOffer = [];
 
         // Liste des offres pour la manipuler
         <?php if (empty($search)) { ?>
-            let arrayOffer = <?php echo json_encode($offres->filtre($idUser, $typeUser)); ?>; 
+            arrayOffer = <?php echo json_encode($offres->filtre($idUser, $typeUser)); ?>; 
         <?php } else { ?>
-            let arrayOffer = <?php echo json_encode($offres->recherche($idUser, $typeUser, $search)); ?>; 
+            arrayOffer = <?php echo json_encode($offres->recherche($idUser, $typeUser, $search)); ?>; 
         <?php } ?>
         
         // Acualise l'heure actuelle
