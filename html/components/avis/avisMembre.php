@@ -12,11 +12,11 @@
         <div class="messageAvis"> 
             <article class="user">
                 <img src="<?= $a['url']?>">
-                <p><?= $a['pseudo']?> </p>
+                <p><?= ucfirst(strtolower($a['pseudo']))?> </p>
                 <div class="noteEtoile">
                     <?php
                         for($i=0; $i < $a['note']; $i++){
-                            echo "<div class='star starAvis'></div>";
+                            echo "<div class='star'></div>";
                         }
                         if(5-$a['note'] != 0){
                             for($i=0; $i < 5-$a['note']; $i++){

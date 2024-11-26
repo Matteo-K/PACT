@@ -10,7 +10,8 @@
   --accent: #edae14;
   --accent-border: #bb880e;
   --text-dark: #000;
-  --text-light: #eaeaea;
+  --text-lixght: #eaeaea;
+  --background-avis : #d9d9d9;
   --header-size: 100px;
   --header-size2: var(--header-size);
 }
@@ -2209,7 +2210,25 @@ tbody td:last-child {
   align-items: center;
   justify-content: center;
 }
-.starAvis,.starAvisIncolore{
+
+.avis > nav > h3 {
+  font-size: 2.5em;
+  color: var(--bloc);
+  font-weight: 600;
+}
+
+.messageAvis{
+  background-color: var(--background-avis);
+}
+
+.user, .noteEtoile{
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.noteEtoile.star {
   width: 1.5em;
   height:1.5em;
 }
