@@ -11,26 +11,22 @@
         ?>
         <div class="messageAvis"> 
             <article class="user">
-                <div>
-                    <img src="<?= $a['url']?>">
-                    <p><?= ucfirst(strtolower($a['pseudo']))?> </p>
+                <img src="<?= $a['url']?>">
+                <p><?= ucfirst(strtolower($a['pseudo']))?> </p>
+                <div class="noteEtoile">
+                    <?php
+                        for($i=0; $i < $a['note']; $i++){
+                            echo "<div class='star'></div>";
+                        }
+                        if(5-$a['note'] != 0){
+                            for($i=0; $i < 5-$a['note']; $i++){
+                                echo "<div class='star starAvisIncolore'></div>";
+                            }
+                        }
+                    ?>
+                    <p><?=$a['note']?> / 5</p>
                 </div>
-                <div>
-                    <div class="noteEtoile">
-                        <?php
-                            for($i=0; $i < $a['note']; $i++){
-                                echo "<div class='star'></div>";
-                            }
-                            if(5-$a['note'] != 0){
-                                for($i=0; $i < 5-$a['note']; $i++){
-                                    echo "<div class='star starAvisIncolore'></div>";
-                                }
-                            }
-                        ?>
-                        <p><?=$a['note']?> / 5</p>
-                    </div>
-                    <img src="./img/icone/trois-points.png" alt="icone de parametre">
-                <div></div>
+                <img src="./img/icone/trois-points.png" alt="icone de parametre">
             </article>
             <article>
                 <p>Visité en <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee']?></p>

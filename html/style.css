@@ -2225,13 +2225,15 @@ tbody td:last-child {
 }
 
 .messageAvis:nth-child(even){
-  width: 35%;
+  width: 40%;
 }
 .messageAvis:nth-child(odd){
   width: 30%;
 }
 
-.user > div > img{
+
+
+.user > img{
   width:2.2em;
   height:2.2em;
 } 
