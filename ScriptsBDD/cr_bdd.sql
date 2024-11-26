@@ -756,7 +756,9 @@ CREATE VIEW facture AS
       AND da.prix IS NOT NULL 
       AND op.nomOption IS NOT NULL 
       AND op.prixOffre IS NOT NULL 
-      AND op.dureeOption IS NOT NULL) 
+      AND op.dureeOption IS NOT NULL
+      AND da.dateFin >= date_trunc('month', f.dateFactue) - INTERVAL '1 month' 
+      AND da.dateFin < date_trunc('month', f.dateFactue)) 
       AS historiqueOption
     FROM _facturation f
     LEFT JOIN _offre o ON f.idOffre = o.idOffre
