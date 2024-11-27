@@ -343,8 +343,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
         <article id="descriptionOffre">
-
-    
             <?php
             print_r($avis['moynote']);
             if($avis['nbnote'] === 0){
@@ -371,7 +369,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                     <p><?php echo number_format($avis[], 1); ?> / 5 (<?php echo $avis['nbnote']; ?> avis)</p>
                 </div>
-                <?php
             <section>
                 <h3>Description</h3>
                 <p><?php echo htmlspecialchars($result["description"]); ?></p>
