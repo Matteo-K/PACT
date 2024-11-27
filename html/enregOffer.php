@@ -62,7 +62,7 @@ if (isset($_POST['pageBefore'])) {
         $stmt = $conn->prepare("INSERT INTO pact._abonner (idoffre, nomabonnement) VALUES (?, ?)");
         $stmt->execute([$idOffre, $typeOffre]);
       } catch (PDOException $e) {}
-      }
+    }
     switch ($pageBefore) {
       case 1:
         // Gestion des options d'offre
