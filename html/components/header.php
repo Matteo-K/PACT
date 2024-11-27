@@ -179,9 +179,17 @@
 
             function toggleFacture() {
                 if (DivFactue.style.display === "none") {
-                    DivFactue.style.display = "flex"; // Affiche la div
+                    DivFactue.style.display = "flex"
+                    setTimeout(function() {
+                        currentDiv.style.opacity = 1;      // Rendre la div visible (opacité 1)
+                        currentDiv.style.height = "auto";  // Restaure la hauteur
+                    }, 10);
                 } else {
-                    DivFactue.style.display = "none"; // Cache la div
+                    currentDiv.style.opacity = 0;          // Rendre la div invisible (opacité 0)
+                    currentDiv.style.height = "0";         // Réduire la hauteur à 0
+                    setTimeout(function() {
+                        DivFactue.style.display = "none"; // Cache la div
+                    }, 500);
                 }
             }
             
