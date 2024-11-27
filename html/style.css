@@ -2296,11 +2296,15 @@ tbody td:last-child {
   width: 45%;
 }
 
-.messageAvis{
+.messageAvis, .reponseAvis{
   background-color: var(--background-avis);
   border-radius: 1em;
   padding: 1em;
   width: 100%;
+}
+
+.reponseAvis{
+  width: 90%;
 }
 
 .infoUser > p{
@@ -2377,6 +2381,15 @@ tbody td:last-child {
 .starAvisIncolore{
   background-color: #fff;
 }
+
+.messageAvisReponse > div + div{
+  margin: 1em;
+}
+
+.messageAvisReponse > div + div > img{
+  width:10%;
+}
+/** Fin Avis **/
 
 @media screen and (max-width: 768px) {
   :root {
