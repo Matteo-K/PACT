@@ -632,6 +632,7 @@ header ul+div {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   margin: 20px;
   width: 30%;
+  height: 304px;
 }
 
 #ALaUne > div {
@@ -649,6 +650,7 @@ header ul+div {
 #index figure {
   margin: 0;
   position: relative;
+  height: 304px;
 }
 
 #index img {
@@ -734,6 +736,10 @@ header ul+div {
   padding: 6px 12px;
   border-radius: 4px;
   font-size: 0.875em;
+  background-color: var(--accent);
+}
+
+.carteIndexPro a {
   background-color: var(--secondary);
 }
 
