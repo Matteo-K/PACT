@@ -100,7 +100,7 @@ $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $stmt = $conn->prepare("
-    SELECT a.*, AVG(a.note) OVER() AS moyNote,SUM(a.note) OVER() AS sommeNote, m.url AS membre_url,r.idc_reponse,r.denomination AS reponse_denomination, r.contenureponse, r.reponsedate, r.idpro
+    SELECT a.*, AVG(a.note) OVER() AS moynote,COUNT(a.note) OVER() AS nbnote, m.url AS membre_url,r.idc_reponse,r.denomination AS reponse_denomination, r.contenureponse, r.reponsedate, r.idpro
     FROM pact.avis a
     JOIN pact.membre m ON m.pseudo = a.pseudo
     LEFT JOIN pact.reponse r ON r.idc_avis = a.idc
@@ -346,17 +346,32 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     
             <?php
-            print_r($avis);
-            if($avis['sommeNote'] === 0){
+            print_r($avis['moynote']);
+            if($avis['nbnote'] === 0){
                 echo '<p>Pas de note pour le moment</p>';
             } else{
-            ?>
-            <div class="notation">
-                <div
-            </div>
-            <?php
-            }
-            ?>
+                $etoilesPleines = floor($moyenne); // Nombre entier d'étoiles pleines
+                $reste = $moyenne - $etoilesPleines; // Reste pour la demi-étoile
+                ?>
+                <div class="notation">
+                    <?php
+                    // Étoiles pleines
+                    for ($i = 1; $i <= $etoilesPleines; $i++) {
+                        echo '<div class="star pleine"></div>';
+                    }
+                    // Étoile partielle
+                    if ($reste > 0) {
+                        $pourcentageRempli = $reste * 100; // Pourcentage rempli
+                        echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
+                    }
+                    // Étoiles vides
+                    for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
+                        echo '<div class="star vide"></div>';
+                    }
+                    ?>
+                    <p><?php echo number_format($avis[], 1); ?> / 5 (<?php echo $avis['nbnote']; ?> avis)</p>
+                </div>
+                <?php
             <section>
                 <h3>Description</h3>
                 <p><?php echo htmlspecialchars($result["description"]); ?></p>
