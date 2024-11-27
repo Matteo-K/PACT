@@ -13,9 +13,6 @@ require_once "config.php";
   <script src="js/setColor.js"></script>
   <?php require_once "components/header.php"; ?>
   <main id="index">
-    <div id="proposeRecherche">
-      <h2>Commencer par une recherche</h2>
-    </div>
     <div id="ALaUne">
       <h2>À la une</h2>
       <div>

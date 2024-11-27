@@ -18,7 +18,7 @@ $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-$denomination = $results[0]['denomination'];
+$denomination = $results[0]['nom'];
 $rue = $results[0]['rue'];
 $codePostal = $results[0]['codepostal'];
 $ville = $results[0]['ville'];
