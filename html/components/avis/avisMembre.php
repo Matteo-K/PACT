@@ -20,19 +20,19 @@ function formatDateDiff($date)
     $intervalDays = $dateDBMidnight->diff($dateNowMidnight);
     $diffInDays = (int)$intervalDays->format('%r%a'); // %r pour prendre en compte les jours négatifs
 
-    // Calculer la différence en heures pour le jour même
-    $intervalHours = $dateDB->diff($dateNow);
-    $diffInHours = $intervalHours->h; // Différence en heures
-    $diffInMinutes = $intervalHours->i; // Différence en minutes
+    // Calculer la différence en heures et minutes
+    $interval = $dateDB->diff($dateNow);
+    $diffInHours = $interval->h + ($interval->days * 24) ; // Ajouter les heures des jours entiers
+    $diffInMinutes = $interval->i;
 
     // Déterminer le message à afficher
     if ($diffInDays === 0) {
-        if($diffInMinutes === 0){
+        if ($diffInMinutes === 0) {
             return "Rédigé à l'instant";
-        }else if ($diffInMinutes > 0) {
+        } elseif ($diffInHours > 1) {
+            return "Rédigé il y a" . $diffInHours-1 ." heure" . ($diffInHours > 1 ? 's' : '');
+        } else {
             return "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '');
-        }else if ($diffInHours > 0) {
-            return "Rédigé il y a $diffInHours heure" . ($diffInHours > 1 ? 's' : '');
         }
     } elseif ($diffInDays === 1) {
         // La date est hier
@@ -45,6 +45,7 @@ function formatDateDiff($date)
         return "Rédigé le " . $dateDB->format("d/m/Y à H:i");
     }
 }
+
 
 
 foreach ($avis as $a) {
@@ -74,9 +75,12 @@ foreach ($avis as $a) {
                 </div>
             </article>
             <article>
-                <p><strong>Visité en</strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
-                <p> • </p>
-                <p class="tag"><?= $a['companie'] ?></p>
+                <div>
+                    <p><strong>Visité en</strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
+                    <p> • </p>
+                    <p class="tag"><?= $a['companie'] ?></p>
+                </div>
+                <p><?php if (isset($a['datepublie'])) {echo "<p>" . formatDateDiff($a["datepublie"]) . "</p>";}?>
             </article>
             <article>
                 <p><strong><?= ucfirst($a['titre']) ?></strong></p>
@@ -106,11 +110,7 @@ foreach ($avis as $a) {
                 }
                 ?>
             </article>
-            <?php
-            if (isset($a['datepublie'])) {
-                echo "<p>" . formatDateDiff($a["datepublie"]) . "</p>";
-            }
-            ?>
+            
         </div>
         <?php
         if ($a['idc_reponse']) {

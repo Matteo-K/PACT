@@ -147,11 +147,11 @@ function sortDateAncien(array) {
 function filtrerParCategorie(offers) {
   const categoriesSelection = [];
   
-  if (chkBxParc.checked) categoriesSelection.push("Parc");
+  if (chkBxParc.checked) categoriesSelection.push("Parc Attraction");
   if (chkBxVisite.checked) categoriesSelection.push("Visite");
-  if (chkBxActivite.checked) categoriesSelection.push("Activite");
+  if (chkBxActivite.checked) categoriesSelection.push("Activité");
   if (chkBxSpectacle.checked) categoriesSelection.push("Spectacle");
-  if (chkBxRestauration.checked) categoriesSelection.push("Restauration");
+  if (chkBxRestauration.checked) categoriesSelection.push("Restaurant");
 
   if (categoriesSelection.length == 0) {
     // categoriesSelection = ["Parc", "Visite", "Activite", "Spectacle", "Restauration"];
@@ -200,15 +200,15 @@ function filtrerParPrix(offers) {
 function filtrerParStatuts(offers) {
   const statutsSelection = [];
 
-  if (chkBxOuvert.checked) statutsSelection.push("ouvert");
-  if (chkBxFerme.checked) statutsSelection.push("ferme");
+  if (chkBxOuvert.checked) statutsSelection.push("EstOuvert");
+  if (chkBxFerme.checked) statutsSelection.push("EstFermé");
 
   if (statutsSelection.length == 0) {
     // statutsSelection = ["ouvert", "ferme"];
     return offers;
   }
 
-  return offers.filter(offer => statutsSelection.includes(offer.statut));
+  return offers.filter(offer => statutsSelection.includes(offer.ouverture));
 }
 
 
@@ -247,12 +247,17 @@ function filtrerParPeriode(offers) {
 
 // Fonction global
 function sortAndFilter(array, elementStart, nbElement) {
-  // Filtre
+  // Filtres
+  array = filtrerParCategorie(array);
+  // array = filtrerParNotes(array);
+  // array = filtrerParPrix(array);
+  array = filtrerParStatuts(array);
+  // array = filtrerParPeriode(array);
 
-  // Tri
+  // Tris
   array = selectSort(array);
 
-  // Affiche
+  // Affichage
   displayOffers(array, elementStart, nbElement);
 }
 
