@@ -361,7 +361,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <article id="descriptionOffre">
             <?php
-            print_r($avis[0]['moynote']);
             if ($avis[0]['nbnote'] === 0) {
                 echo '<p>Pas de note pour le moment</p>';
             } else {
