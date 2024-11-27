@@ -2437,14 +2437,13 @@ tbody td:last-child {
 .user+article+article>p {
   margin-bottom: 0.4em;
 }
-.user+article+article+p, .user+article+p{
+.user+article+article+p, .user+article>p{
   text-align: center;
   width: 35%;
   margin-inline: auto;
   font-style: italic;
   font-weight: 300;
   font-size: 0.8em;
-  border-top: solid 1px #00000070;
 }
 .user + article>div > .tag {
   background-color: #fff;
