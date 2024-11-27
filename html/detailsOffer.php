@@ -122,7 +122,7 @@ LEFT JOIN
 WHERE 
     a.idoffre = ?
 ORDER BY 
-    a.datepublie ASC
+    a.datepublie desc
 ");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
