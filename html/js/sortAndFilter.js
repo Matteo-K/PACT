@@ -463,14 +463,17 @@ function displayStar(offer) {
   }
   
   if (reste > 0) {
-    let pourcentageRempli = reste * 100; // Pourcentage rempli
+    let pourcentageRempli = reste * 100;
     let starPartielle = document.createElement('div');
     starPartielle.classList.add('star', 'partielle');
     starPartielle.style.setProperty('--pourcentage', `${pourcentageRempli}%`);
     container.appendChild(starPartielle);
   }
   
-  for (let i = etoilesPleines + (reste > 0 ? 1 : 0); i < 5; i++) {
+  let totalEtoiles = 5;
+  let etoilesRestantes = totalEtoiles - etoilesPleines - (reste > 0 ? 1 : 0);
+  
+  for (let i = 0; i < etoilesRestantes; i++) {
     let star = document.createElement('div');
     star.classList.add('star', 'vide');
     container.appendChild(star);
