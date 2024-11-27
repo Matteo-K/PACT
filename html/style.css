@@ -1711,9 +1711,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 0 0 45px 0;
 }
 
-#trifiltre h3,
+#trifiltre h3 {
+  margin: 5px 0
+}
+
 #trifiltre h2 {
-  margin: 0 10px;
+  margin: 10px 0;
 }
 
 /* Tout les input */
