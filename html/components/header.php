@@ -118,6 +118,7 @@
                                             $moisFrancais = $moisEnFrancais[$numMois];
 
                                             $annee = $dateFacture->format('Y');
+
                                             ?>
                                                 <div class="details-form">
                                                     <p><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></p>
@@ -127,7 +128,7 @@
                                                         </form>
                                                         <form action="bill/download.php" method="post">
                                                             <input type="hidden" name="idOffre" value="<?php echo $value['idoffre']; ?>">
-                                                            <input type="hidden" name="mois" value=<?php echo $moisEnFrancais; ?>>
+                                                            <input type="hidden" name="mois" value="<?php echo $moisFrancais; ?>">
                                                             <input type="hidden" name="date" value="<?php echo $value2; ?>">
                                                             <button class="modifierBut" type="submit">Télécharger</button>
                                                         </form>
