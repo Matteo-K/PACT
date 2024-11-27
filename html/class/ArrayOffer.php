@@ -92,6 +92,7 @@ class ArrayOffer {
         $stmt = $conn->prepare("SELECT * FROM pact._option_offre WHERE idoffre = ? AND idoption = (SELECT MAX(idoption) FROM pact._option_offre WHERE idoffre = ?)");
         $stmt->execute([$offre['idoffre'], $offre['idoffre']]);
         while ($results = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+          print_r($results);
           $options[] = $results["nomoption"];
         }
         
