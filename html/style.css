@@ -503,7 +503,10 @@ header>div>a>div {
   padding: 10px;
   text-align: center;
   border-radius: 10px;
-  width: 100%;
+}
+
+.liFact{
+  width: fit-content;
 }
 
 #profileMenu ul a:hover,.liFact:hover {
