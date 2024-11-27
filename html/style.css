@@ -649,6 +649,7 @@ header ul+div {
 .hrlBlocIndex, .information {
   display: flex;
   flex-flow: row nowrap;
+  padding: 0 20px;
 }
 
 #index figure {
@@ -743,6 +744,14 @@ header ul+div {
   padding-left: 20px;
 }
 
+.localisationCard h4 {
+  padding: 0;
+}
+
+.localisationCard {
+  flex: 1.5;
+}
+
 .tagsCard {
   display: flex;
   flex-flow: row wrap;
@@ -784,6 +793,15 @@ header ul+div {
 
 #voirPlus a:hover {
   background-color: var(--primary60);
+}
+
+.blcTag, .information {
+  display: none;
+}
+
+#index form:hover .information,
+#index form:hover .blcTag {
+  display: block !important;
 }
 
 /* Responsiveness */
