@@ -267,36 +267,15 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         //Affichage des images a leur selection
         const pImage = document.querySelector("#choixImage > p");
         const conteneur = document.getElementById("afficheImages");
-        document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
 
         
         const loadedImg = <?php echo json_encode($loadedImg) ?>;
 
         const photosSelect = []; // Stocker les fichiers sélectionnés
 
-
         loadedImg.forEach(img => {
             configImage(img, "", "");
         });
-
-
-        function afficheImage(event) {
-            const images = event.target.files;
-
-            Array.from(images).forEach((file) => {
-                if (conteneur.childElementCount >= maxImages) {
-                    pImage.style.color = "red";
-                    return; // Ignorer les fichiers supplémentaires
-                }
-                const reader = new FileReader();
-                reader.onload = function(e){
-                    selectedFiles.push(file);
-                    configImage("", e.target.result, file);
-                }
-                reader.readAsDataURL(file);
-            });
-        }
-
 
         function configImage(urlAncien, urlNouveau, file) {
             if (conteneur.childElementCount < maxImages) {
@@ -317,7 +296,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 figureImg.addEventListener("click", function () {
                     if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
                         figureImg.remove();
-                        selectedFiles.splice(selectedFiles.indexOf(file), 1); // Supprimer le fichier de la liste
+                        photosSelect.splice(photosSelect.indexOf(file), 1); // Supprimer le fichier de la liste
                         pImage.style.color = "black"; // Remettre la couleur par défaut
                     }
                 });
