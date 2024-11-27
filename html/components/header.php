@@ -66,7 +66,7 @@
                         <?php if ($typeUser === "pro_public" || $typeUser === "pro_prive") {?>
                             <li><a href="search.php">Mes offres</a></li>
                             <li><a href="manageOffer.php">Créer une offre</a></li>
-                            <li class="liFact"><a href="">Mes Factures</a></li>
+                            <li class="liFact">Mes Factures</li>
                         <?php } ?>
                     </ul>
                     <div>

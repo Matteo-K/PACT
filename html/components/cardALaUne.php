@@ -8,13 +8,25 @@
       <div>
         <div id="detailsCardOffer">
           <div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
+            <?php
+              $etoilesPleines = floor($noteAvg); // Nombre entier d'étoiles pleines
+              $reste = $noteAvg - $etoilesPleines;
+              // Étoiles pleines
+              for ($i = 1; $i <= $etoilesPleines; $i++) {
+                  echo '<div class="star pleine"></div>';
+              }
+              // Étoile partielle
+              if ($reste > 0) {
+                  $pourcentageRempli = $reste * 100; // Pourcentage rempli
+                  echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
+              }
+              // Étoiles vides
+              for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
+                  echo '<div class="star vide"></div>';
+              }
+            ?>
             <span><?php echo $noteAvg ?>/5</span>
-            <span>(<?php echo $nbNote ?>avis)</span>
+            <span>(<?php echo $nbNote ?> avis)</span>
             <?php if ($categorie == "Restaurant") { ?>
               <span> ⋅ <?php echo $gammeDePrix ?></span>
             <?php } ?>
