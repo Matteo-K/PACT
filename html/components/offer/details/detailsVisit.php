@@ -93,12 +93,58 @@ if ($categorie["_visite"]) {
         <input type="text" id="inputTag" name="inputTag"
             placeholder="Entrez & selectionnez les langue proposée pour votre visite">
 
-
+        <!--
         <select name="langue" id="selectionLangue">
             <option value="Français">Français</option>
             <option value="Anglais">Anglais</option>
             <option value="Espagnol">Espagnol</option>
-        </select>
+        </select>-->
+
+
+        <?php
+        // Connexion à la base de données (MySQL avec PDO)
+        $host = 'localhost';
+        $dbname = 'nom_de_votre_base_de_donnees'; // Remplacez par le nom de votre base de données
+        $username = 'votre_utilisateur'; // Remplacez par votre utilisateur
+        $password = 'votre_mot_de_passe'; // Remplacez par votre mot de passe
+        
+        try {
+            // Créer une connexion PDO
+            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Changer de schéma vers 'pact'
+            $pdo->exec("SET SCHEMA 'pact'");
+
+            // Récupérer les langues depuis la table '_langue'
+            $stmt = $pdo->query("SELECT id, langue FROM _langue");
+            $langues = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            echo "Erreur de connexion : " . $e->getMessage();
+        }
+        ?>
+
+        <form action="votre_script.php" method="POST">
+            <label for="langue">Choisissez une langue :</label>
+            <select name="langue" id="langue">
+                <?php
+                // Vérifier si des langues ont été récupérées
+                if ($langues) {
+                    // Parcourir les langues et générer les options
+                    foreach ($langues as $langue) {
+                        echo "<option value=\"" . htmlspecialchars($langue['id']) . "\">" . htmlspecialchars($langue['langue']) . "</option>";
+                    }
+                } else {
+                    echo "<option>Aucune langue disponible</option>";
+                }
+                ?>
+            </select>
+            <input type="submit" value="Envoyer">
+        </form>
+
+
+
 
         <section id="sectionLangue">
             <!-- Les langues ajoutées apparaîtront ici -->
