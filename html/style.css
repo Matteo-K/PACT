@@ -1695,7 +1695,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-weight: bold;
   position: absolute; /* Permet de sortir du flux normal */
   top: 100%; /* Place le message sous le bouton */
-  left: 0; /* Aligne le message avec le bouton */
+  left: -50%; /* Aligne le message avec le bouton */
   margin-top: 5px; /* Un léger espace */
   white-space: nowrap; /* Empêche les retours à la ligne */
   z-index: 10; /* Gère les superpositions */
