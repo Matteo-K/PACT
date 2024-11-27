@@ -395,7 +395,7 @@ header>div>a>div {
 }
 
 /* Style pour chaque lien (ligne de tableau) */
-.details-content a {
+.details-form {
   display: block;
   padding: 10px 15px;
   font-size: 1rem;
@@ -407,18 +407,25 @@ header>div>a>div {
 }
 
 /* Dernière ligne sans bordure */
-.details-content a:last-child {
+.details-form:last-child {
   border-bottom: none;
 }
 
 /* Interaction sur les liens */
-.details-content a:hover {
+.details-form:hover {
   background-color: #f0f0f0;
   color: #007BFF;
 }
 
+.details-form{
+  display: flex;
+  justify-content: space-between;
+}
 
-
+.details-form > div {
+  display: flex;
+  align-items: center;
+}
 
 #profileMenu.show {
   visibility: visible;
@@ -2307,11 +2314,15 @@ tbody td:last-child {
   width: 45%;
 }
 
-.messageAvis{
+.messageAvis, .reponseAvis{
   background-color: var(--background-avis);
   border-radius: 1em;
   padding: 1em;
   width: 100%;
+}
+
+.reponseAvis{
+  width: 90%;
 }
 
 .infoUser > p{
@@ -2388,6 +2399,15 @@ tbody td:last-child {
 .starAvisIncolore{
   background-color: #fff;
 }
+
+.messageAvisReponse > div + div{
+  margin: 1em;
+}
+
+.messageAvisReponse > div + div > img{
+  width:10%;
+}
+/** Fin Avis **/
 
 @media screen and (max-width: 768px) {
   :root {
