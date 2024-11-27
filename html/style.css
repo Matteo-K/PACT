@@ -420,10 +420,12 @@ header>div>a>div {
 .details-form{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .details-form div{
   display: flex;
+  gap: 20px;
 }
 
 #profileMenu.show {
