@@ -128,7 +128,8 @@ if (isset($_POST['pageBefore'])) {
 
         //On déplace les anciennes images conservées vers un dossier temporaire
         foreach ($anciennesImagesRestantes as $num => &$lien) {
-          rename($lien, $dossierTemp . $num . "." . pathinfo($lien)['extension']);
+          copy($lien, 
+                 $dossierTemp . $num . "." . pathinfo($lien)['extension']);
           $lien = $dossierTemp . $num . "." . pathinfo($lien)['extension'];
         }
 
@@ -152,7 +153,7 @@ if (isset($_POST['pageBefore'])) {
           $newFileName = $idOffre . '-' . $num . '.' . $fileExtension;
           $dossierImgNom = $dossierImg . $newFileName;
 
-          rename($lien, 
+          copy($lien, 
                  $dossierImgNom);
 
           try {
