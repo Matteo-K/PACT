@@ -346,10 +346,12 @@ header>div>a>div {
   width: calc(100vw - 276px);
   background-color: var(--background) ;
   color: #000;
-  display: flex;
+  display: none;
   overflow-y: auto;
   overflow-x: hidden;
   flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
 }
 
 .details{
@@ -2472,7 +2474,7 @@ tbody td:last-child {
 }
 
 .notedetaille .barreDeNotationJaune {
-  background-color: #ffd700;
+  background-color: var(--accent);
   height: 100%;
   border-radius: 5px 0 0 5px;
 }
@@ -2485,16 +2487,14 @@ tbody td:last-child {
   background-size: contain;
 }
 
-.star.pleine {
-  background-image: url('star-full.png'); /* Icône étoile pleine */
-}
+
 
 .star.partielle {
-  background: linear-gradient(to right, #ffd700 var(--pourcentage), #ccc var(--pourcentage));
+  background: linear-gradient(to right, var(--accent) var(--pourcentage), #ccc var(--pourcentage));
 }
 
 .star.vide {
-  background-image: url('star-empty.png'); /* Icône étoile vide */
+  background-color: #fff; /* Icône étoile vide */
 }
 
 

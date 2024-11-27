@@ -99,14 +99,14 @@ $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $conn->prepare("SELECT a.pseudo,a.content, a.datepublie,a.companie, a.mois, a.annee, a.titre, a.listimage, -- Ajoutez ici toutes les colonnes de a que vous voulez inclure
-    AVG(a.note) AS moynote,
-    COUNT(a.note) AS nbnote,
-    COUNT(CASE WHEN a.note = 1 THEN 1 END) AS note_1,
-    COUNT(CASE WHEN a.note = 2 THEN 1 END) AS note_2,
-    COUNT(CASE WHEN a.note = 3 THEN 1 END) AS note_3,
-    COUNT(CASE WHEN a.note = 4 THEN 1 END) AS note_4,
-    COUNT(CASE WHEN a.note = 5 THEN 1 END) AS note_5,
+$stmt = $conn->prepare(" SELECT a.*,
+    AVG(a.note) OVER() AS moynote,
+    COUNT(a.note) OVER() AS nbnote,
+    SUM(CASE WHEN a.note = 1 THEN 1 ELSE 0 END) OVER() AS note_1,
+    SUM(CASE WHEN a.note = 2 THEN 1 ELSE 0 END) OVER() AS note_2,
+    SUM(CASE WHEN a.note = 3 THEN 1 ELSE 0 END) OVER() AS note_3,
+    SUM(CASE WHEN a.note = 4 THEN 1 ELSE 0 END) OVER() AS note_4,
+    SUM(CASE WHEN a.note = 5 THEN 1 ELSE 0 END) OVER() AS note_5,
     m.url AS membre_url,
     r.idc_reponse,
     r.denomination AS reponse_denomination,
@@ -121,10 +121,8 @@ LEFT JOIN
     pact.reponse r ON r.idc_avis = a.idc
 WHERE 
     a.idoffre = ?
-GROUP BY 
-    a.pseudo,a.content, a.datepublie,a.companie, a.mois, a.annee, a.titre, a.listimage, m.url, r.idc_reponse, r.denomination, r.contenureponse, r.reponsedate, r.idpro
 ORDER BY 
-    a.datepublie ASC;
+    a.datepublie ASC
 ");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -363,7 +361,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <article id="descriptionOffre">
             <?php
-            print_r($avis);
+            print_r($avis[0]['moynote']);
             if ($avis[0]['nbnote'] === 0) {
                 echo '<p>Pas de note pour le moment</p>';
             } else {
@@ -393,23 +391,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php
                         // Adjectifs pour les notes
                         $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
-
-                        // Trouver le nombre maximum de notes
-                        $maxNoteCount = max($avis[0]["note_1"], $avis[0]["note_2"], $avis[0]["note_3"], $avis[0]["note_4"], $avis[0]["note_5"]);
-
-                        // Affichage des barres de notation
                         for ($i = 5; $i >= 1; $i--) {
-                            // Calculer le pourcentage en fonction du nombre d'avis pour cette note
-                            $noteCount = isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0;
-                            // Calculer la largeur de la barre, en fonction du nombre d'avis de cette note par rapport à la note la plus populaire
-                            $pourcentageParNote = ($maxNoteCount > 0) ? ($noteCount / $maxNoteCount) * 100 : 0;
+                            // Largeur simulée pour chaque barre en fonction de vos données
+                            $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
                         ?>
                             <div class="ligneNotation">
-                                <span><?= $listNoteAdjectif[$i - 1]; ?></span>
+                                <span><?= $listNoteAdjectif[5 - $i]; ?></span>
                                 <div class="barreDeNotationBlanche">
                                     <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
                                 </div>
-                                <span>(<?= $noteCount ?>)</span>
+                                <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?>)</span>
                             </div>
                         <?php
                         }
