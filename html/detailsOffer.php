@@ -230,13 +230,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         >
                             <?php echo "Modifier offre"; ?>
                         </button>
+                        <?php if ($offre[0]['statut'] === 'actif') { ?>
+                            <span class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</span>
+                        <?php } ?>
                     </form>
-                            
-                    <!-- Message affiché si le bouton est désactivé -->
-                    <?php if ($offre[0]['statut'] === 'actif') { ?>
-                        <div class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</div>
-                    <?php } ?>
                 </div>
+
             <?php
             }
 
