@@ -26,7 +26,8 @@
 
     <script>
         const form = document.getElementById("divFormHeader");
-        form.addEventListener("blur", (event) => {
+        const input = form.querySelector("input");
+        input.addEventListener("blur", (event) => {
             event.preventDefault();
             form.submit();
         })
