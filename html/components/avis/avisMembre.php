@@ -14,7 +14,8 @@ $stmt = $conn->prepare("SELECT * from pact.proprive where idu = ?");
 $stmt->execute([$offre[0]['idu']]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-function formatDateDiff($date) {
+function formatDateDiff($date)
+{
     // Créer des objets DateTime à partir de la date passée en paramètre
     $dateDB = new DateTime($date);
     $dateNow = new DateTime();
@@ -134,17 +135,17 @@ foreach ($avis as $a) {
                             <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
                             <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
                         </div>
-                        <img src="./img/icone/trois-points.png" alt="icone de parametre">   
+                        <img src="./img/icone/trois-points.png" alt="icone de parametre">
                     </div>
+                    <article>
+                        <p><?= $a['contenureponse'] ?></p>
+                    </article>
+                    <?php
+                    if (isset($a['reponsedate'])) {
+                        echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
+                    }
+                    ?>
                 </div>
-                <article>
-                    <p><?= $a['contenureponse'] ?></p>
-                </article>
-                <?php
-                if (isset($a['reponsedate'])) {
-                    echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
-                }
-                ?>
             </div>
         <?php
         }
