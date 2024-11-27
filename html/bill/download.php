@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 
 
 
-if ($_POST['idOffre'] ) {
+if ($_POST['idOffre']=="") {
     header("Location: ../index.php");
 }
 
