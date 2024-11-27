@@ -2456,14 +2456,25 @@ tbody td:last-child {
 }
 /** Fin Avis **/
 
+.notation{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .notedetaille .ligneNotation {
   display: flex;
   align-items: center;
   margin: 5px 0;
 }
 
+.ligneNotation > span {
+  width: 10em;
+}
+
 .notedetaille .barreDeNotationBlanche {
-  background-color: #f0f0f0;
+  background-color: var(--background-avis);
   width: 100%;
   height: 10px;
   position: relative;
@@ -2474,17 +2485,8 @@ tbody td:last-child {
 .notedetaille .barreDeNotationJaune {
   background-color: var(--accent);
   height: 100%;
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px;
 }
-
-.star {
-  width: 25px;
-  height: 25px;
-  margin: 2px;
-  display: inline-block;
-  background-size: contain;
-}
-
 
 
 .star.partielle {
