@@ -256,6 +256,7 @@ CREATE TABLE _horairePrecise (
   jour VARCHAR(255) NOT NULL,
   idOffre INT NOT NULL,
   heureDebut VARCHAR(255) NOT NULL,
+  heureFin VARCHAR(255) NOT NULL,
   DateRepresentation DATE NOT NULL,
   PRIMARY KEY(jour,idOffre,heureDebut),
   CONSTRAINT _horairePrecise_fk_jour
@@ -532,7 +533,7 @@ CREATE VIEW proPublic AS
     JOIN _public pu ON p.idU = pu.idU 
     JOIN _utilisateur u ON p.idU = u.idU 
     JOIN _nonAdmin n ON p.idU = n.idU 
-    JOIN _habite h ON p.idU = h.idU
+    LEFT JOIN _habite h ON p.idU = h.idU
     JOIN _photo_profil ph on u.idU=ph.idU;
 
 CREATE VIEW proPrive AS
@@ -540,7 +541,7 @@ CREATE VIEW proPrive AS
     FROM _pro p 
     JOIN _privee pr ON p.idU = pr.idU 
     JOIN _utilisateur u ON p.idU = u.idU 
-    JOIN _nonAdmin n ON p.idU = n.idU 
+    LEFT JOIN _nonAdmin n ON p.idU = n.idU 
     JOIN _habite h ON p.idU = h.idU
     JOIN _photo_profil ph on u.idU=ph.idU;
 
@@ -603,6 +604,10 @@ SELECT
     o.nom,
     o.description,
     o.resume,
+	o.mail,
+	o.telephone,
+	o.urlsite,
+	o.datecrea,
     ARRAY_AGG(DISTINCT i.url) AS listImage,
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'jour', hm.jour,
@@ -617,7 +622,8 @@ SELECT
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'jour', hp.jour,
         'heureOuverture', hp.heureDebut,
-        'heureFermeture', hp.dateRepresentation
+        'heureFin', hp.heureFin,
+        'dateRepresentation', hp.dateRepresentation
     )::TEXT, ';') FILTER (WHERE hp.jour IS NOT NULL AND hp.heureDebut IS NOT NULL AND hp.dateRepresentation IS NOT NULL) AS listeHorairePrecise,
     l.ville,
     l.numeroRue,
@@ -707,6 +713,7 @@ CREATE VIEW avis AS
 
 CREATE VIEW reponse AS
     SELECT  
+	p.idu as idPro,
     p.denomination,
     c1.idC as idC_reponse,
     c1.content as contenuReponse,

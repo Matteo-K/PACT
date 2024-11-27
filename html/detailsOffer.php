@@ -444,7 +444,9 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </nav>
             
         <?php
+            echo "<div>";
             require_once __DIR__ . "/components/avis/avisMembre.php";
+            echo "</div";  
         }
         ?>
         </div>

@@ -174,7 +174,7 @@ VALUES ('Anglais'),
 INSERT INTO _offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume, dateCrea) 
 VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attractions de la ville.', 'parc@mail.com', '0123456790', TRUE, 'http://parc.com', 'Divertissement familial', CURRENT_TIMESTAMP),
        (4, 'actif', 'Thomas Angelvy', 'Un spectacle incroyable avec des performances éblouissantes.', 'spectacle@mail.com', '0123456791', TRUE, 'http://spectacle.com', 'Divertissement exceptionnel', CURRENT_TIMESTAMP),
-       (3, 'actif', 'La Potinière', 'Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. ', 'restaurant@mail.com', '0123456793', TRUE, NULL, 'Cuisine raffinée', CURRENT_TIMESTAMP),
+       (4, 'actif', 'La Potinière', 'Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. ', 'restaurant@mail.com', '0123456793', TRUE, NULL, 'Cuisine raffinée', CURRENT_TIMESTAMP),
        (3, 'actif', 'Activité Culturelle', 'Explorez la culture locale à travers une activité immersive.', 'activite@mail.com', '0123456794', TRUE, 'http://activite.com', 'Immersion culturelle aves la population local', CURRENT_TIMESTAMP),
        (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP);
 
@@ -254,19 +254,19 @@ VALUES ('Lundi', 3, '19:00', '21:00'),
        ('Samedi', 3, '19:00', '21:00');
        
 --peuplement horaire precise
-INSERT INTO _horairePrecise (jour, idOffre, heureDebut, DateRepresentation) 
-VALUES ('Lundi', 2, '19:00', '2024-12-02'),
-       ('Mardi', 2, '19:00', '2024-12-03'), 
-       ('Mercredi', 2, '19:00', '2024-12-04'),
-       ('Jeudi', 2, '19:00', '2024-12-05'), 
-       ('Vendredi', 2, '19:00', '2024-12-06'),
-       ('Samedi', 2, '19:00', '2024-12-07'),
-       ('Lundi', 4, '19:00', '2024-12-09'),
-       ('Mardi', 4, '19:00', '2024-12-10'), 
-       ('Mercredi', 4, '19:00', '2024-12-11'),
-       ('Jeudi', 4, '19:00', '2024-12-12'), 
-       ('Vendredi', 4, '19:00', '2024-12-13'),
-       ('Samedi', 4, '19:00', '2024-12-14');
+INSERT INTO _horairePrecise (jour, idOffre, heureDebut, heureFin, DateRepresentation) 
+VALUES ('Lundi', 2, '19:00', '21:00', '2024-12-02'),
+       ('Mardi', 2, '19:00', '21:00', '2024-12-03'), 
+       ('Mercredi', 2, '19:00', '21:00', '2024-12-04'),
+       ('Jeudi', 2, '19:00', '21:00', '2024-12-05'), 
+       ('Vendredi', 2, '19:00', '21:00', '2024-12-06'),
+       ('Samedi', 2, '19:00', '21:00', '2024-12-07'),
+       ('Lundi', 4, '19:00', '21:00', '2024-12-09'),
+       ('Mardi', 4, '19:00', '21:00', '2024-12-10'), 
+       ('Mercredi', 4, '19:00', '21:00', '2024-12-11'),
+       ('Jeudi', 4, '19:00', '21:00', '2024-12-12'), 
+       ('Vendredi', 4, '19:00', '21:00', '2024-12-13'),
+       ('Samedi', 4, '19:00', '21:00', '2024-12-14');
 
 -- Peuplement de la table _horaireMidi
 INSERT INTO _horaireMidi (jour, idOffre, heureOuverture, heureFermeture) 
