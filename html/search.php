@@ -6,7 +6,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] :  1;
 $nbElement = 15;
 $countOffer = 0;
 
-    // Récupérer l'heure actuelle et le jour actuel
+// Récupérer l'heure actuelle et le jour actuel
 setlocale(LC_TIME, 'fr_FR.UTF-8');
 
 date_default_timezone_set('Europe/Paris');
