@@ -1692,6 +1692,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   padding: 10px 20px;
   border: 2px solid red;
   border-radius: 8px;
+  margin: 10px auto;
   z-index: 1000; /* Toujours au-dessus */
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optionnel */
