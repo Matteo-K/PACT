@@ -1711,9 +1711,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 0 0 45px 0;
 }
 
-#trifiltre h3,
+#trifiltre h3 {
+  margin: 10px 0
+}
+
 #trifiltre h2 {
-  margin: 0 10px;
+  margin: 5px 0;
 }
 
 /* Tout les input */
@@ -2451,6 +2454,48 @@ tbody td:last-child {
   rotate: -90deg;
 }
 /** Fin Avis **/
+
+.notedetaille .ligneNotation {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.notedetaille .barreDeNotationBlanche {
+  background-color: #f0f0f0;
+  width: 100%;
+  height: 10px;
+  position: relative;
+  margin: 0 10px;
+  border-radius: 5px;
+}
+
+.notedetaille .barreDeNotationJaune {
+  background-color: #ffd700;
+  height: 100%;
+  border-radius: 5px 0 0 5px;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+  display: inline-block;
+  background-size: contain;
+}
+
+.star.pleine {
+  background-image: url('star-full.png'); /* Icône étoile pleine */
+}
+
+.star.partielle {
+  background: linear-gradient(to right, #ffd700 var(--pourcentage), #ccc var(--pourcentage));
+}
+
+.star.vide {
+  background-image: url('star-empty.png'); /* Icône étoile vide */
+}
+
 
 @media screen and (max-width: 768px) {
   :root {
