@@ -52,7 +52,14 @@ if ($nouveauStatut=='actif') {
     $ajst->execute();
 }
 
-// Rediriger vers la page précédente ou une autre page
-header("Location: detailsOffer.php");
+echo <<<HTML
+<form id="redirectForm" method="POST" action="detailsOffer.php">
+    <input type="hidden" name="offre_id" value="{$offreId}">
+</form>
+<script>
+    document.getElementById('redirectForm').submit();
+</script>
+HTML;
+
 exit;
 ?>
