@@ -191,7 +191,7 @@
                     profileMenu.classList.remove("show");
                     profileMenu.classList.remove("deplace")
                     profileMenu.classList.add("hide");
-                    body.classList.toggle('no-scroll');
+                    body.classList.remove('no-scroll');
 
                 } else {
                     profileMenu.classList.add("show");
