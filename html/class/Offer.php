@@ -124,6 +124,7 @@ class Offer {
     $ville = $this->ville;
     $categorie = $this->categorie;
     $tags = $this->tags;
+    echo gettype($this->noteAvg);
     $noteAvg = $this->noteAvg;
     $nbNote = $this->nbNote;
     $codePostal = $this->codePostal;
