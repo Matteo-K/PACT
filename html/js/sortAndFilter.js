@@ -250,7 +250,7 @@ function sortAndFilter(array, elementStart, nbElement) {
   // Filtres
   array = filtrerParCategorie(array);
   // array = filtrerParNotes(array);
-  // array = filtrerParPrix(array);
+  array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
   // array = filtrerParPeriode(array);
 
