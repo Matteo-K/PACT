@@ -1681,30 +1681,35 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border: solid #ccc 1px;
 }
 
-/* Style du message au survol */
 /* Conteneur pour positionner le message */
 .form-container {
-  position: relative; /* Nécessaire pour le positionnement absolu */
+  position: relative; /* Nécessaire pour les autres styles locaux */
 }
 
 /* Style du message */
 .hover-message {
   display: none; /* Caché par défaut */
   color: red;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
-  position: absolute; /* Permet de sortir du flux normal */
-  top: 100%; /* Place le message sous le bouton */
-  left: -100%; /* Aligne le message avec le bouton */
-  margin-top: 5px; /* Un léger espace */
-  white-space: nowrap; /* Empêche les retours à la ligne */
-  z-index: 10; /* Gère les superpositions */
+  position: fixed; /* Positionné par rapport à la fenêtre, pas au parent */
+  top: 50%; /* Centré verticalement */
+  left: 50%; /* Centré horizontalement */
+  transform: translate(-50%, -50%); /* Ajuste pour un vrai centrage */
+  background: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+  padding: 10px 20px;
+  border: 2px solid red;
+  border-radius: 8px;
+  z-index: 1000; /* S'assure qu'il est au-dessus des autres éléments */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optionnel, pour un effet visuel */
 }
 
-/* Afficher le message lors du survol du bouton désactivé */
-.modifierBut.disabled:hover + .hover-message {
+/* Afficher le message lorsque le bouton est survolé */
+.modifierBut.disabled:hover ~ .hover-message {
   display: block;
 }
+
 
 
 #checkAddressBtn,
