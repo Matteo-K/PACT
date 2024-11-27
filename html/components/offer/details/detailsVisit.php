@@ -10,6 +10,8 @@ $visite = [
 ];
 
 // Si la visite était déà existante, on récupère les données
+
+$langue = [];
 if ($categorie["_visite"]) {
     $stmt = $conn->prepare("SELECT * from pact._visite where idoffre=?");
     $stmt->execute([$idOffre]);
@@ -36,7 +38,6 @@ if ($categorie["_visite"]) {
         $visite["hadicap"][] = $row["hadicap"];
     }*/
 
-    $langue = [];
     $stmt = $conn->prepare("SELECT * from pact._langue");
     $stmt->execute();
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -106,8 +107,6 @@ if ($categorie["_visite"]) {
                 <option value="<?php echo $value ?>"><?php echo $value ?></option>
             <?php } ?>
         </select>
-
-        <?php print_r($langue); ?>
 
         <section id="sectionLangue">
             <!-- Les langues ajoutées apparaîtront ici -->
