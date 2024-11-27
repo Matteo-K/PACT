@@ -179,8 +179,10 @@
 
             function toggleFacture() {
                 if (DivFactue.style.display === "none") {
-                    DivFactue.style.display = "flex"; // Affiche la div
+                    DivFactue.style.display = "flex"
+                    DivFactue.style.transform = "translateX(0)";  // Restaure la hauteur
                 } else {
+                    DivFactue.style.transform = "translateX(100)";         // Réduire la hauteur à 0
                     DivFactue.style.display = "none"; // Cache la div
                 }
             }
