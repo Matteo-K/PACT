@@ -867,8 +867,10 @@ header ul+div {
     font-size: 0.85rem;
   }
 
-  .blcStarALaUne + span + span,
+  .blcStarALaUne + span + span, /* nb avis */
+  .blcStarALaUne + span + span + span, /* gamme de prix */
   .carteIndex p,
+  .localisationCard h4,
   .tagsCard{
     display: none;
   }
