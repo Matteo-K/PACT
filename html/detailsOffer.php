@@ -221,15 +221,17 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <form method="post" action="manageOffer.php">
                     <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
                     <button 
-                         
+                        class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>" 
                         type="submit"
                         <?php if ($offre[0]['statut'] === 'actif') { ?>
-                            disabled
-                            title="Veuillez mettre votre offre hors ligne pour la modifier"
+                            onclick="return false;"
                         <?php } ?>
                     >
                         <?php echo "Modifier offre"; ?>
                     </button>
+                    <?php if ($offre[0]['statut'] === 'actif') { ?>
+                        <div class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</div>
+                    <?php } ?>
                 </form>
             <?php
             }
