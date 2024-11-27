@@ -708,8 +708,12 @@ header ul+div {
   background-color: green;
 }
 
+#index .horslgnOffre {
+  background-color: red !important;
+}
+
 #index .StatutAffiche::after {
-  content: "";
+  content: none;
 }
 
 .abonnement {
