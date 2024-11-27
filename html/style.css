@@ -1864,6 +1864,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: inline-block;
 }
 
+.blcStarSearch {
+  display: flex;
+}
+
+.noteSearch {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
 /*##### Pagination #####*/
 
 #pagination a {

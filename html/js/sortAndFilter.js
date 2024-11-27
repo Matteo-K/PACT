@@ -456,23 +456,22 @@ function displayStar(offer) {
   const etoilesPleines = Math.floor(offer.noteAvg);
   const reste = offer.noteAvg - etoilesPleines;
 
-  for (let i = 0; i < etoilesPleines; i++) {
-    const star = document.createElement('div');
+  for (let i = 1; i <= etoilesPleines; i++) {
+    let star = document.createElement('div');
     star.classList.add('star', 'pleine');
     container.appendChild(star);
   }
-
+  
   if (reste > 0) {
-    const pourcentageRempli = reste * 100; // Pourcentage rempli
-    const starPartielle = document.createElement('div');
+    let pourcentageRempli = reste * 100; // Pourcentage rempli
+    let starPartielle = document.createElement('div');
     starPartielle.classList.add('star', 'partielle');
     starPartielle.style.setProperty('--pourcentage', `${pourcentageRempli}%`);
     container.appendChild(starPartielle);
   }
-
-  const etoilesVides = 5 - etoilesPleines - (reste > 0 ? 1 : 0);
-  for (let i = 0; i < etoilesVides; i++) {
-    const star = document.createElement('div');
+  
+  for (let i = etoilesPleines + (reste > 0 ? 1 : 0); i < 5; i++) {
+    let star = document.createElement('div');
     star.classList.add('star', 'vide');
     container.appendChild(star);
   }
