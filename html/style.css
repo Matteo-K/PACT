@@ -620,6 +620,10 @@ header ul+div {
   min-height: 70vh;
 }
 
+#index figcaption {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 #index h2 {
   text-align: center;
 }
@@ -655,6 +659,10 @@ header ul+div {
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
+}
+
+.tagIndex {
+  background-color: var(--accent);
 }
 
 @media (max-width: 768px) {
