@@ -344,12 +344,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <article id="descriptionOffre">
             <?php
-            print_r($avis['moynote']);
-            if($avis['nbnote'] === 0){
+            print_r($avis[0]['moynote']);
+            if($avis[0]['nbnote'] === 0){
                 echo '<p>Pas de note pour le moment</p>';
             } else{
-                $etoilesPleines = floor($moyenne); // Nombre entier d'étoiles pleines
-                $reste = $moyenne - $etoilesPleines; // Reste pour la demi-étoile
+                $etoilesPleines = floor($$avis[0]['moynote']); // Nombre entier d'étoiles pleines
+                $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour la demi-étoile
                 ?>
                 <div class="notation">
                     <?php
