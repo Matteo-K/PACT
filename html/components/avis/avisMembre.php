@@ -45,10 +45,10 @@ function formatDateDiff($date) {
         } else {
             return "Rédigé à l'instant";
         }
-    } elseif ($diffInDays === -1) {
+    } elseif ($diffInDays === 1) {
         // La date est hier
         return "Rédigé hier";
-    } elseif ($diffInDays < -1 && $diffInDays >= -7) {
+    } elseif ($diffInDays > 1 && $diffInDays <= 7) {
         // La date est dans les 7 derniers jours
         return "Rédigé il y a " . abs($diffInDays) . " jour" . (abs($diffInDays) > 1 ? 's' : '');
     } else {
