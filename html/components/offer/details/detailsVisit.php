@@ -97,9 +97,13 @@ if ($categorie["_visite"]) {
             <option value="Français">Français</option>
             <option value="Anglais">Anglais</option>
             <option value="Espagnol">Espagnol</option>
-        </select>
+        </select>--
 
 
+
+<!-- select * from nom_de_la_table
+ foreach
+            -->
 
 
 
