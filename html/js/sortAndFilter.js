@@ -34,8 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   sortAndFilter(arrayOffer, nbElement * (page-1), nbElement);
 
-  document.querySelectorAll(".searchoffre form").forEach(form => {
+  const forms = document.querySelectorAll(".search form");
+  forms.forEach(form => {
     form.addEventListener("click", (event) => {
+      if (event.target.tagName.toLowerCase() === "a") {
+        return;
+      }
       event.preventDefault();
       form.submit();
     });
@@ -298,6 +302,9 @@ function displayOffer(offer) {
   form.appendChild(createCard(offer));
 
   form.addEventListener("click", (event) => {
+    if (event.target.tagName.toLowerCase() === "a") {
+      return;
+    }
     event.preventDefault();
     form.submit();
   });
@@ -394,9 +401,10 @@ function ajouterTag(offer) {
 
   offer.tags.forEach(element => {
 
-    let tag = document.createElement("span");
+    let tag = document.createElement("a");
     tag.classList.add("searchTag");
     tag.textContent = element.replace("_", " ");
+    tag.setAttribute("href", "search.php?search="+element.replace("_", "+"));
     tags.appendChild(tag);
   });
 
