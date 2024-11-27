@@ -2458,11 +2458,15 @@ tbody td:last-child {
 }
 /** Fin Avis **/
 
-.notation, .notation > div{
+.notation{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.notation > div{
+  display: flex;
 }
 
 .notedetaille .ligneNotation {
