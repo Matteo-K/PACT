@@ -296,8 +296,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         alert(e.target.result)
                         photosSelect.push(file);
                         configImage("", e.target.result, file);
-                        reader.readAsDataURL(file);
                     }
+                    reader.readAsDataURL(file);
                 }
             });
         }
