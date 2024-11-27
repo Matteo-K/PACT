@@ -113,7 +113,7 @@ if ($categorie["_visite"]) {
 
 
 
-        
+        <?php print_r($visite["langue"]) ?>
 
         <!-- BALISE SELECT EN HTML -->
 </section>
