@@ -752,7 +752,9 @@ CREATE VIEW facture AS
         'Duree', ht.dureeEnLigne
     )::TEXT, ';') FILTER (WHERE ht.idStatut IS NOT NULL 
       AND ht.dateLancement IS NOT NULL
-      AND ht.dureeEnLigne IS NOT NULL) 
+      AND ht.dureeEnLigne IS NOT NULL
+      AND ht.dateLancement >= date_trunc('month', f.dateFactue) - INTERVAL '1 month' 
+      AND ht.dateLancement < date_trunc('month', f.dateFactue)) 
       AS historiqueStatut,
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'ID', da.idOption,
