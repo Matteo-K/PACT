@@ -133,8 +133,21 @@ if (isset($_POST['pageBefore'])) {
           $lien = $dossierTemp . $num . "." . pathinfo($lien)['extension'];
         }
 
-        var_dump($anciennesImagesTotal);
 
+
+        $fichiers = glob($dossierTemp . "*"); // TESTTTT
+        foreach ($fichiers as $fichier) {
+          echo($fichier); 
+        }
+
+        echo "\n(Dossier temp)\n\n\n";
+
+        $fichiers = glob($dossierImg . "*"); // TESTTTT
+        foreach ($fichiers as $fichier) {
+          echo($fichier); 
+        }
+
+        echo "\n(Dossier final img avant clear)\n\n\n";
 
         foreach ($anciennesImagesTotal as $imgA) {
           // Supprime l'image du serveur et de la BDD
@@ -145,7 +158,14 @@ if (isset($_POST['pageBefore'])) {
               $stmt = $conn->prepare("DELETE FROM pact._image WHERE url = ?");
               $stmt->execute([$imgA]);
           }
-        }        
+        } 
+        
+        $fichiers = glob($dossierImg . "*"); // TESTTTT
+        foreach ($fichiers as $fichier) {
+          echo($fichier); 
+        }
+
+        echo "\n(Dossier final img après clear)\n\n\n";
 
         //On remet les anciennes images gardées dans la BDD et sur le serveur 
         foreach ($anciennesImagesRestantes as $num => $lien) {
@@ -166,6 +186,13 @@ if (isset($_POST['pageBefore'])) {
               error_log("Erreur BDD : " . $e->getMessage());
           }
         }
+
+        $fichiers = glob($dossierImg . "*"); // TESTTTT
+        foreach ($fichiers as $fichier) {
+          echo($fichier); 
+        }
+
+        echo "\n(Dossier final img après ajout loaded photos)\n\n\n";
       }
 
       $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
@@ -201,6 +228,13 @@ if (isset($_POST['pageBefore'])) {
           }
         }
       }
+
+      $fichiers = glob($dossierImg . "*"); // TESTTTT
+        foreach ($fichiers as $fichier) {
+          echo($fichier); 
+        }
+
+        echo "\n(Dossier final img après ajout nouvelles photos)\n\n\n";
 
 
       // Ajout des informations suivant la catégorie de l'offre

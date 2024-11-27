@@ -111,3 +111,9 @@ if ($categorie["_visite"]) {
             <!-- Les langues ajoutées apparaîtront ici -->
         </section>
 </section>
+
+
+<!-- Script Js --><!--
+<script>
+
+</script>-->
