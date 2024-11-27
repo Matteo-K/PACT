@@ -507,7 +507,7 @@ header>div>a>div {
   border-radius: 10px;
 }
 
-#profileMenu ul a:hover {
+#profileMenu ul a:hover,#profileMenu li:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
