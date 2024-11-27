@@ -347,7 +347,7 @@ header>div>a>div {
   background-color: var(--background) ;
   color: #000;
   display: flex;
-  overflow-y: scroll;
+  overflow-y: auto;
   flex-direction: column;
 }
 
