@@ -217,7 +217,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php
                 }
                 ?>
-                
+
                 <div class="form-container">
                     <form method="post" action="manageOffer.php">
                         <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
@@ -225,7 +225,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>" 
                             type="submit"
                             <?php if ($offre[0]['statut'] === 'actif') { ?>
-                                onclick="return false;" <!-- Empêche le clic -->
+                                onclick="return false;"
                             <?php } ?>
                         >
                             <?php echo "Modifier offre"; ?>
