@@ -503,7 +503,10 @@ header>div>a>div {
   padding: 10px;
   text-align: center;
   border-radius: 10px;
-  width: 100%;
+}
+
+.liFact{
+  width: fit-content;
 }
 
 #profileMenu ul a:hover,.liFact:hover {
@@ -1992,7 +1995,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   #filtre {
     transform: translateX(100%);
-    padding-left: 10px;
+    padding-left: 20px;
   }
 
   #trifiltre>div {
