@@ -22,15 +22,15 @@ function formatDateDiff($date)
 
     // Calculer la différence en heures et minutes
     $interval = $dateDB->diff($dateNow);
-    $diffInHours = $interval->h + ($interval->days * 24); // Ajouter les heures des jours entiers
+    $diffInHours = $interval->h + ($interval->days * 24) ; // Ajouter les heures des jours entiers
     $diffInMinutes = $interval->i;
 
     // Déterminer le message à afficher
     if ($diffInDays === 0) {
         if ($diffInMinutes === 0) {
             return "Rédigé à l'instant";
-        } elseif ($diffInHours > 1) {
-            return "Rédigé il y a $diffInHours heure" . ($diffInHours > 1 ? 's' : '');
+        } elseif ($diffInHours >= 1) {
+            return "Rédigé il y a" . $diffInHours-1 ." heure" . ($diffInHours > 1 ? 's' : '');
         } else {
             return "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '');
         }
