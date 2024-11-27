@@ -129,11 +129,13 @@ foreach ($avis as $a) {
             <div>
                 <img src="./img/icone/reponse.png" alt="icone de reponse">
                 <div class="reponseAvis">
-                    <div class="infoProReponse">
-                        <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
-                        <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
+                    <div class="user">
+                        <div class="infoProReponse">
+                            <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
+                            <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
+                        </div>
+                        <img src="./img/icone/trois-points.png" alt="icone de parametre">   
                     </div>
-                    <img src="./img/icone/trois-points.png" alt="icone de parametre">
                 </div>
                 <article>
                     <p><?= $a['contenureponse'] ?></p>

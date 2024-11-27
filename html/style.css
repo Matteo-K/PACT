@@ -2318,7 +2318,7 @@ tbody td:last-child {
 
 .reponseAvis{
   width: 90%;
-  background-color: var(--);
+  background-color: var(--primary20);
 }
 
 .infoUser > p, .infoProReponse > p{
