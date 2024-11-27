@@ -30,7 +30,7 @@
             <span><?php echo $noteAvg ?>/5</span>
             <span>(<?php echo $nbNote ?> avis)</span>
             <?php if ($categorie == "Restaurant") { ?>
-              <span> ⋅ <?php echo $gammeDePrix ?></span>
+              <span><?php echo $gammeDePrix ?></span>
             <?php } ?>
           </div>
           <p><?php echo $resume ?></p>

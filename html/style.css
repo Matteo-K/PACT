@@ -690,6 +690,7 @@ header ul+div {
   align-items: center;
   gap: 10px;
   font-size: 0.875em;
+  flex-flow: row wrap;
 }
 
 .blcStarALaUne {
