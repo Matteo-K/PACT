@@ -176,7 +176,7 @@ class ArrayOffer {
     $array = $this->pagination($array_, $elementStart_, $nbElement_);
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
-        if (in_array("EnRelief", $elem->getData()["option"])) {
+        if (in_array("ALaUne", $elem->getData()["option"])) {
           $elem->displayCardALaUne();
         }
       }

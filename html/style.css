@@ -607,7 +607,15 @@ header ul+div {
 
 #index {
   padding-top: var(--header-size);
-  min-height: 60vh;
+  min-height: 70vh;
+}
+
+#index > div {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {

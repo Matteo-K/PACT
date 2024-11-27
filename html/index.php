@@ -17,6 +17,7 @@ require_once "config.php";
       <h2>Commencer par une recherche</h2>
     </div>
     <div id="ALaUne">
+      <h2>À la une</h2>
       <?php 
         $elementStart = 0;
         $nbElement = 20;
