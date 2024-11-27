@@ -9,6 +9,8 @@
         <div id="detailsCardOffer">
           <div>
             <?php
+              $etoilesPleines = floor($noteAvg); // Nombre entier d'étoiles pleines
+              $reste = $noteAvg - $etoilesPleines;
               // Étoiles pleines
               for ($i = 1; $i <= $etoilesPleines; $i++) {
                   echo '<div class="star pleine"></div>';
