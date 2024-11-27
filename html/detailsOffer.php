@@ -367,7 +367,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         echo '<div class="star vide"></div>';
                     }
                     ?>
-                    <p><?php echo number_format($avis[], 1); ?> / 5 (<?php echo $avis['nbnote']; ?> avis)</p>
+                    <p><?php echo number_format($avis, 1); ?> / 5 (<?php echo $avis['nbnote']; ?> avis)</p>
                 </div>
                 <?php 
                 }
