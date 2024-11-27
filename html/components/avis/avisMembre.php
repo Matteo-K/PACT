@@ -33,8 +33,6 @@ function formatDateDiff($date)
             return "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '');
         }else if ($diffInHours > 0) {
             return "Rédigé il y a $diffInHours heure" . ($diffInHours > 1 ? 's' : '');
-        } else {
-            return "Rédigé à l'instant";
         }
     } elseif ($diffInDays === 1) {
         // La date est hier
