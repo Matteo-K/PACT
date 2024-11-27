@@ -133,9 +133,7 @@ class Offer {
   public function displayCardALaUnePro() {
     $idOffre = $this->idOffre;
     $nomOffre = $this->nomOffre;
-    $resume = $this->resume;
     $urlImg = $this->images[0];
-    $gammeDePrix = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
     $ville = $this->ville;
     $categorie = $this->categorie;
     $tags = $this->tags;
@@ -143,6 +141,8 @@ class Offer {
     $nbNote = $this->nbNote;
     $codePostal = $this->codePostal;
     $statut = $this->statut;
+    $abonnement = $this->abonnement;
+    $options = $this->options;
     require __DIR__."/../components/cardALaUnePro.php";
   }
 

@@ -1,4 +1,4 @@
-<form action="detailsOffer.php" method="post">
+<form action="detailsOffer.php" method="post" class="carteIndexPro">
   <input type="hidden" name="" value="">
   <figure>
   <?php $alt = isset($urlImg['url']) && $urlImg ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";?>
@@ -6,9 +6,9 @@
     <figcaption>
       <h3><?php echo $nomOffre ?></h3>
       <div>
-        <div id="detailsCardOffer">
-          <div id="noteALaUne">
-            <span id="blcStarALaUne">
+        <div class="detailsCardOffer">
+          <div class="noteALaUne">
+            <span class="blcStarALaUne">
               <?php  
               $etoilesPleines = floor($noteAvg); // Nombre entier d'étoiles pleines
               $reste = $noteAvg - $etoilesPleines;
@@ -35,10 +35,10 @@
           </div>
           <p><?php echo $resume ?></p>
         </div>
-        <div id="localisationCard">
+        <div class="localisationCard">
           <adresse><?php echo $ville ?>, <?php echo $codePostal ?></adresse>
           <h4>Catégories&nbsp;:&nbsp;</h4>
-          <div id="tagsCard">
+          <div class="tagsCard">
             <?php foreach ($tags as $key => $tag) { ?>
               <span class="tagIndex"><?php echo $tag ?></span>
             <?php } ?>
