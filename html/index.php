@@ -9,10 +9,10 @@ require_once "config.php";
   <link rel="stylesheet" href="style.css">
   <title>PACT</title>
 </head>
-<body id="index">
+<body>
   <script src="js/setColor.js"></script>
   <?php require_once "components/header.php"; ?>
-  <main>
+  <main id="index">
     <div id="proposeRecherche">
       <h2>Commencer par une recherche</h2>
     </div>
