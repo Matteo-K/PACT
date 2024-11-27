@@ -116,6 +116,26 @@ try {
     function supprAccents(txt) {
       return txt.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
+
+
+    document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
+
+    function afficheImage(event) {
+        const images = event.target.files;
+
+        Array.from(images).forEach((file) => {
+            if (conteneur.childElementCount >= maxImages) {
+                pImage.style.color = "red";
+                return; // Ignorer les fichiers supplémentaires
+            }
+            const reader = new FileReader();
+            reader.onload = function(e){
+                photosSelect.push(file);
+                configImage("", e.target.result, file);
+            }
+            reader.readAsDataURL(file);
+        });
+    }
     
     
   });
