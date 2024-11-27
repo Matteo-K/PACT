@@ -396,7 +396,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
                         ?>
                             <div class="ligneNotation">
-                                <span><?= $listNoteAdjectif[5 - $i]; ?></span>
+                                <span><?= $listNoteAdjectif[$i-1]; ?></span>
                                 <div class="barreDeNotationBlanche">
                                     <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
                                 </div>
