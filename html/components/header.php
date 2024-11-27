@@ -177,8 +177,7 @@
             const factu = document.getElementsByClassName("liFact")
             const DivFactue = document.getElementsByClassName("factue");
 
-            factu.addEventListener("click", toggleFacture);
-
+            
             function toggleFacture() {
                 if (DivFactue.style.display === "none") {
                     DivFactue.style.display = "flex"; // Affiche la div
@@ -186,7 +185,8 @@
                     DivFactue.style.display = "none"; // Cache la div
                 }
             }
-
+            
+            factu.addEventListener("click", toggleFacture);
             // Fonction pour afficher/cacher le menu
             function toggleMenu() {
                 if (profileMenu.classList.contains("show")) {
