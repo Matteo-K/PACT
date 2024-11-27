@@ -379,19 +379,19 @@ if (isset($_POST['pageBefore'])) {
       //On supprime tous les anciens tags et on rajoute les tags actuellement sélectionnés
       switch ($categorie) {
         case 'restaurant':
-          $stmt = $conn->prepare("DELETE * FROM pact._tag_restaurant WHERE idoffre = ?");
+          $stmt = $conn->prepare("DELETE FROM pact._tag_restaurant WHERE idoffre = ?");
           break;
         case 'parc':
-          $stmt = $conn->prepare("DELETE * FROM pact._tag_parc WHERE idoffre = ?");
+          $stmt = $conn->prepare("DELETE FROM pact._tag_parc WHERE idoffre = ?");
           break;
         case 'activite':
-          $stmt = $conn->prepare("DELETE * FROM pact._tag_act  WHERE idoffre = ?");
+          $stmt = $conn->prepare("DELETE FROM pact._tag_act  WHERE idoffre = ?");
           break;
         case 'spectacle':
-          $stmt = $conn->prepare("DELETE * FROM pact._tag_spec  WHERE idoffre = ?");
+          $stmt = $conn->prepare("DELETE FROM pact._tag_spec  WHERE idoffre = ?");
           break;
         case 'visite':
-          $stmt = $conn->prepare("DELETE * FROM pact._tag_visite  WHERE idoffre = ?");
+          $stmt = $conn->prepare("DELETE FROM pact._tag_visite  WHERE idoffre = ?");
           break;
         default:
           break;
