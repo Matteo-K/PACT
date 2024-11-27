@@ -700,11 +700,16 @@ header ul+div {
   margin-top: 20px;
 }
 
-.StatutAffiche {
+#index .StatutAffiche {
   font-size: 0.875em;
   font-weight: bold;
   padding: 4px 10px;
   border-radius: 4px;
+  background-color: green;
+}
+
+#index .StatutAffiche::after {
+  content: "";
 }
 
 .abonnement {
@@ -721,10 +726,11 @@ header ul+div {
   gap: 8px;
 }
 
-.dataOffre span {
+.carteIndexPro a {
   padding: 6px 12px;
   border-radius: 4px;
   font-size: 0.875em;
+  background-color: var(--secondary);
 }
 
 .blcTag h4 {
@@ -739,6 +745,7 @@ header ul+div {
   align-items: center;
   justify-content: space-evenly;
   gap: 8px;
+  margin: 10px;
 }
 
 .tagIndex {

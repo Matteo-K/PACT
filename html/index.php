@@ -36,9 +36,12 @@ require_once "config.php";
     const forms = document.querySelectorAll("#index form");
     forms.forEach(form => {
       form.addEventListener("click", (event) => {
+        if (event.target.tagName.toLowerCase() === "a") {
+          return;
+        }
         event.preventDefault();
         form.submit();
-      }); 
+      });
     });
   </script>
 </body>
