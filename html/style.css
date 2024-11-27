@@ -814,7 +814,11 @@ header ul+div {
 
   .carteIndexPro, .carteIndex {
     height: 200px;
-    min-width: 150px;
+    min-width: 300px;
+  }
+
+  .carteIndexPro h3, .carteIndex h3 {
+    font-size: 1rem;
   }
 
   #index img {
@@ -851,9 +855,8 @@ header ul+div {
     height: 1rem;
   }
 
-  #index form:hover .information,
-  #index form:hover .blcTag {
-    display: none !important;
+  .blcTag, .information {
+    display: flex;
   }
 }
 
