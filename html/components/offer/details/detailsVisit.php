@@ -136,7 +136,7 @@ selectLangue.addEventListener('change', function () {
 
         // Ajouter un bouton de suppression avec une icône
         const removeBtn = document.createElement('button');
-        removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #ff4d4d;">&times;</span>'; // Symbole "×" stylisé
+        removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; // Symbole "×" stylisé
         removeBtn.className = 'remove-btn';
 
         // Action pour retirer la langue lorsqu'on clique sur le bouton
@@ -153,11 +153,11 @@ selectLangue.addEventListener('change', function () {
         langDiv.style.alignItems = 'center';
         langDiv.style.margin = '5px';
         langDiv.style.padding = '8px 12px';
-        langDiv.style.backgroundColor = '#e3f2fd'; // Couleur identique pour les tags
-        langDiv.style.border = '1px solid #90caf9';
+        langDiv.style.backgroundColor = '#c8e6c9'; // Couleur similaire pour les tags ajoutés
+        langDiv.style.border = '1px solid #66bb6a';
         langDiv.style.borderRadius = '20px';
         langDiv.style.fontSize = '0.9em';
-        langDiv.style.color = '#0d47a1'; // Texte de même couleur que les tags
+        langDiv.style.color = '#2e7d32'; // Texte de même couleur que les tags ajoutés
         langDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
         // Ajouter une animation pour l'apparition
@@ -173,6 +173,7 @@ selectLangue.addEventListener('change', function () {
     // Réinitialiser le select après ajout
     this.value = 'selectionLangue';
 });
+
 
 
 
