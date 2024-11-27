@@ -1682,18 +1682,30 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Style du message au survol */
+/* Conteneur pour positionner le message */
+.form-container {
+  position: relative; /* Nécessaire pour positionner le message */
+}
+
+/* Style du message */
 .hover-message {
-  display: none;
+  display: none; /* Caché par défaut */
   color: red;
   font-size: 14px;
-  margin-top: 10px;
   font-weight: bold;
+  position: absolute; /* Permet de sortir du flux normal */
+  top: 100%; /* Positionné juste en dessous du bouton */
+  left: 0; /* Aligné avec le bouton */
+  margin-top: 5px; /* Un léger espace */
+  white-space: nowrap; /* Évite le retour à la ligne si le message est long */
+  z-index: 10; /* S'assurer qu'il reste au-dessus */
 }
 
 /* Afficher le message lorsque le bouton est survolé */
 .modifierBut.disabled:hover + .hover-message {
-  display: block;
+  display: block; /* Afficher le message uniquement au survol */
 }
+
 
 #checkAddressBtn,
 .modifierBut {
