@@ -134,7 +134,7 @@
                     </div>
                 </div>
                 <div id="statut">
-                    <h3>Par Statut</h3>
+                    <h3>Par statut</h3>
                     <div>
                         <label for="ouvert">
                             Ouvert
