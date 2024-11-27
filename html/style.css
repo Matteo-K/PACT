@@ -620,6 +620,10 @@ header ul+div {
   min-height: 70vh;
 }
 
+#index h2 {
+  text-align: center;
+}
+
 .carteIndexPro, .carteIndex {
   display: flex;
   flex-flow: column wrap;
@@ -742,6 +746,17 @@ header ul+div {
 
 .tagIndex:hover {
   background-color: var(--accent);
+}
+
+#voirPlus a {
+  color: var(--text-dark);
+  background-color: var(--primary40);
+  padding: 0.5rem 4rem;
+  border-radius: 0.8rem;
+}
+
+#voirPlus a:hover {
+  background-color: var(--primary60);
 }
 
 /* Responsiveness */
