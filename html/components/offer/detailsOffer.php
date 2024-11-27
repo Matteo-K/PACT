@@ -74,7 +74,7 @@ if ($result != false) {
     $loadedTags = [];
     $stmt->execute([$idOffre]);
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $loadedTags[] = $result["nomtag"];
+        $loadedTags[] = str_replace("_", " ",$result["nomtag"]);
     }
 
     //On lui charge également ses images pour la même raison
