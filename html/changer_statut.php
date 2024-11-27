@@ -54,7 +54,7 @@ if ($nouveauStatut=='actif') {
 
 echo <<<HTML
 <form id="redirectForm" method="POST" action="detailsOffer.php">
-    <input type="hidden" name="offre_id" value="{$offreId}">
+    <input type="hidden" name="idoffre" value="{$offreId}">
 </form>
 <script>
     document.getElementById('redirectForm').submit();
