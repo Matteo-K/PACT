@@ -1823,6 +1823,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: inline-block;
 }
 
+.searchTag:hover {
+  background-color: var(--secondary);
+}
+
 .searchNote {
   display: flex;
   justify-content: space-between;
