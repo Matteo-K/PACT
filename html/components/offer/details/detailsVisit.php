@@ -148,10 +148,26 @@ selectLangue.addEventListener('change', function () {
         langDiv.appendChild(langText);
         langDiv.appendChild(removeBtn);
 
-        // Appliquer un effet de transition à l'ajout
+        // Appliquer un style visuel au conteneur
+        langDiv.style.display = 'inline-flex';
+        langDiv.style.alignItems = 'center';
+        langDiv.style.margin = '5px';
+        langDiv.style.padding = '8px 12px';
+        langDiv.style.backgroundColor = '#e3f2fd';
+        langDiv.style.border = '1px solid #90caf9';
+        langDiv.style.borderRadius = '20px';
+        langDiv.style.fontSize = '0.9em';
+        langDiv.style.color = '#0d47a1';
+        langDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+        // Ajouter une animation pour l'apparition
         langDiv.style.opacity = '0';
+        langDiv.style.transform = 'scale(0.95)';
         sectionLangue.appendChild(langDiv);
-        setTimeout(() => langDiv.style.opacity = '1', 10); // Transition après ajout
+        setTimeout(() => {
+            langDiv.style.opacity = '1';
+            langDiv.style.transform = 'scale(1)';
+        }, 10); // Transition après ajout
     }
 
     // Réinitialiser le select après ajout
