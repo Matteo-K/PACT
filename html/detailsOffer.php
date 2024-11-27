@@ -236,7 +236,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             
                     <!-- Message affiché au survol du bouton désactivé -->
                     <?php if ($offre[0]['statut'] === 'actif') { ?>
-                        <span class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</span>
+                        <div id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</div>
                     <?php } ?>
                 </div>
 
