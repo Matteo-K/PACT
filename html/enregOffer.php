@@ -115,6 +115,15 @@ if (isset($_POST['pageBefore'])) {
         if (!file_exists($dossierTemp)) {
           mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
         }
+        else{
+          $fichiers = glob($dossierTemp . "*"); // Récupère tous les fichiers du dossier temporaire
+          
+          foreach ($fichiers as $fichier) {
+            unlink($fichier); // Supprime le fichier
+          }
+        }
+
+        
 
 
         var_dump($anciennesImagesRestantes);
@@ -126,13 +135,6 @@ if (isset($_POST['pageBefore'])) {
         }
 
         var_dump($anciennesImagesTotal);
-
-        $fichiers = glob($dossierTemp."*");
-
-        echo "-------\n";
-        foreach ($fichiers as $fichier) {
-            echo (is_dir($fichier) ? "[Dossier]" : "[Fichier]") . " $fichier\n";
-        }
 
 
         foreach ($anciennesImagesTotal as $imgA) {
