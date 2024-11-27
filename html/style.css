@@ -370,7 +370,7 @@ header>div>a>div {
 /* Style pour <summary> */
 .details-style summary {
   background-color: #f5f5f5;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: bold;
   cursor: pointer;
   padding: 10px;
@@ -381,14 +381,10 @@ header>div>a>div {
 
 .details-style[open] summary::after {
   content: "▲"; /* Flèche vers le haut si ouvert */
-  font-size: 0.8rem;
-  margin-left: 10px;
 }
 
 .details-style summary::after {
   content: "▼"; /* Flèche vers le bas si fermé */
-  font-size: 0.8rem;
-  margin-left: 10px;
 }
 
 /* Conteneur des liens */
