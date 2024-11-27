@@ -11,7 +11,7 @@
     // Pour envoyer un email HTML, l'en-tête Content-type doit être défini
     $entetes = 'MIME-Version: 1.0' . "\r\n";
     $entetes .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-    $entetes .= "From: $nom <$email>";
+    $entetes .= "From:EWEN JAIN <ewen.jain@etudiant.univ-rennes1.fr>";
 
     // Envoi de l'email
     if (mail($destinataire, $sujet, $contenu, $entetes)) {
