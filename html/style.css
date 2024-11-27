@@ -439,7 +439,7 @@ header>div>a>div {
 #profileMenu.hide {
   visibility: visible;
   opacity: 0;
-  transform: translateX(-100%);
+  transform: translateX(100vw);
 }
 
 #profileMenu.deplace{
@@ -2939,7 +2939,7 @@ tbody td:last-child {
 }
 
 #visit>div[class="languesProp"]>select{
-  width: 350px;
+  width: 500px;
   height: 35px;
 }
 
