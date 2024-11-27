@@ -621,7 +621,16 @@ header ul+div {
 }
 
 #index figure {
+  color: var(--text-light);
   position: relative;
+  width: 33%;
+  height: 300px;
+}
+
+#index img {
+  object-fit: cover;
+  width: max-content;
+  height: max-content;
 }
 
 #index figcaption {
@@ -629,6 +638,7 @@ header ul+div {
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
 }
 
 #index h2 {

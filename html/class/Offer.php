@@ -163,6 +163,9 @@ class Offer {
     $this->description = empty($description_) ? "description de loffre" : $description_;
     $this->images = $images_;
     $this->tags = $tags_;
+    foreach ($this->tags as &$tag) {
+      $tag = str_replace('_', ' ', $tag);
+    }
     $this->ville = empty($ville_) ? "ville" : $ville_;
     $this->pays = empty($pays_) ? "Pays" : $pays_;
     $this->numerorue = $numerorue_;
