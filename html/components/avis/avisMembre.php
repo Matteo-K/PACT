@@ -120,6 +120,7 @@ foreach ($avis as $a) {
             <?php
             if (isset($a['datepublie'])) {
                 echo "<p>" . formatDateDiff($a["datepublie"]) . "</p>";
+            }
             ?>
         </div>
         <?php
@@ -140,6 +141,7 @@ foreach ($avis as $a) {
                 <?php
                 if (isset($a['reponsedate'])) {
                     echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
+                }
                 ?>
             </div>
         <?php
