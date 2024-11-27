@@ -122,15 +122,14 @@
                                                     <p><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></p>
                                                     <div>
                                                         <form action="" method="post">
-                                                            <button type="submit">Visualiser</button>
+                                                            <button class="modifierBut" type="submit">Visualiser</button>
                                                         </form>
                                                         <form action="" method="post">
-                                                            <button type="submit">Télécharger</button>
+                                                            <button class="modifierBut" type="submit">Télécharger</button>
                                                         </form>
                                                     </div>
                                                 </div>
                                             <?php
-                                            
                                         }
                                     ?>
                                     </div>
