@@ -25,7 +25,7 @@
     </div>
 
     <script>
-        const form = document.getElementById("divFormHeader");
+        const form = document.querySelector("#divFormHeader form");
         const input = form.querySelector("input");
         input.addEventListener("blur", (event) => {
             event.preventDefault();
