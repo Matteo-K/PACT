@@ -157,7 +157,7 @@ class Offer {
     //$this->urlsite = $urlsite_;
     $this->dateCreation = $dateCreation_;
     $this->abonnement = $abonnement_;
-    $this->options = $option_;
+    $this->options = $options_;
   }
 
   public function getData() {
