@@ -643,7 +643,12 @@ header ul+div {
 }
 
 .carteIndexPro:hover {
-  transform: translateY(-10px);
+  transform: translateY(-2px);
+}
+
+.hrlBlocIndex {
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 #index figure {
