@@ -224,6 +224,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <button 
                             class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>" 
                             type="submit"
+                            onmouseover="showMessage(event)"
+                            onmouseout="hideMessage(event)"
                             <?php if ($offre[0]['statut'] === 'actif') { ?>
                                 onclick="return false;"
                             <?php } ?>
@@ -631,6 +633,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 swiper: swiper,
             },
         });
+
+
+        function showMessage(event) {
+            const message = document.getElementById('hoverMessage');
+            message.style.display = 'block';
+        }
+
+        // Fonction pour masquer le message
+        function hideMessage(event) {
+            const message = document.getElementById('hoverMessage');
+            message.style.display = 'none';
+        }
     </script>
     <script src="js/setColor.js"></script>
 </body>

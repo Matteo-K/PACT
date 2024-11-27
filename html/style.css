@@ -1681,34 +1681,25 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border: solid #ccc 1px;
 }
 
-/* Conteneur pour positionner le message */
-.form-container {
-  position: relative; /* Nécessaire pour les autres styles locaux */
-}
 
-/* Style du message */
 .hover-message {
   display: none; /* Caché par défaut */
   color: red;
   font-size: 16px;
   font-weight: bold;
-  position: fixed; /* Positionné par rapport à la fenêtre, pas au parent */
+  position: fixed; /* Position par rapport à la fenêtre */
   top: 50%; /* Centré verticalement */
   left: 50%; /* Centré horizontalement */
   transform: translate(-50%, -50%); /* Ajuste pour un vrai centrage */
-  background: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+  background: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
   padding: 10px 20px;
   border: 2px solid red;
   border-radius: 8px;
-  z-index: 1000; /* S'assure qu'il est au-dessus des autres éléments */
+  z-index: 1000; /* Toujours au-dessus */
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optionnel, pour un effet visuel */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optionnel */
 }
 
-/* Afficher le message lorsque le bouton est survolé */
-.modifierBut.disabled:hover ~ .hover-message {
-  display: block;
-}
 
 
 
