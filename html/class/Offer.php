@@ -61,7 +61,7 @@ class Offer {
   private $urlSite;
   private $dateCreation;
   private $noteAvg;
-  private $nbAvis;
+  private $nbNote;
   private $images;
   private $tags;
   private $ville;
@@ -123,7 +123,7 @@ class Offer {
     $gammeDePrix = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
     $ville = $this->ville;
     $categorie = $this->categorie;
-    $tag = $this->tags;
+    $tags = $this->tags;
     $codePostal = $this->codePostal;
     require __DIR__."/../components/cardALaUne.php";
   }
@@ -136,7 +136,7 @@ class Offer {
     }
   }
 
-  public function setData($idOffre_, $idUser_, $nomOffre_, $abonnement_, $options_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $horaireMidi_, $horaireSoir_, $noteAvg_, $nbAvis_) {
+  public function setData($idOffre_, $idUser_, $nomOffre_, $abonnement_, $options_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $horaireMidi_, $horaireSoir_, $noteAvg_, $nbNote_) {
     $this->idOffre = $idOffre_;
     $this->statut = $statut_;
     $this->idUser = $idUser_;
@@ -159,7 +159,7 @@ class Offer {
     $this->abonnement = $abonnement_;
     $this->options = $options_;
     $this->noteAvg = $noteAvg_;
-    $this->nbAvis = $nbAvis_;
+    $this->nbNote = $nbNote_;
   }
 
   public function getData() {
@@ -178,6 +178,7 @@ class Offer {
       "dateCreation" => $this->dateCreation,
       "categorie" => $this->categorie, 
       "noteAvg" => $this->noteAvg,
+      "nbNote" => $this->nbNote,
       "images" => $this->images, 
       "tags" => $this->tags,
       "ville" => $this->ville,

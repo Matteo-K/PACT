@@ -11,11 +11,9 @@
         </div>
         <div id="localisationCard">
           <div id="tagsCard">
-            <?php 
-            foreach ($variable as $key => $value) {
-              
-            }
-            ?>
+            <?php foreach ($tags as $key => $tag) { ?>
+              <span class="tag"><?php echo $tag ?></span>
+            <?php } ?>
           </div>
         </div>
       </div>
