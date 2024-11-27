@@ -279,8 +279,10 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 
         function afficheImage(event) {
-        alert("Appel fonction")
+            alert("Appel fonction")
             const images = event.target.files;
+
+            console.log(images);
 
             Array.from(images).forEach((file) => {
                 alert(conteneur.childElementCount, "     ", maxImages)
