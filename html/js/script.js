@@ -121,6 +121,7 @@ try {
     document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
 
     function afficheImage(event) {
+      alert("Appel fonction")
         const images = event.target.files;
 
         Array.from(images).forEach((file) => {
