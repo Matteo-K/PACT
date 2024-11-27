@@ -1684,7 +1684,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 /* Style du message au survol */
 /* Conteneur pour positionner le message */
 .form-container {
-  position: relative; /* Nécessaire pour positionner le message */
+  position: relative; /* Nécessaire pour le positionnement absolu */
 }
 
 /* Style du message */
@@ -1694,16 +1694,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 14px;
   font-weight: bold;
   position: absolute; /* Permet de sortir du flux normal */
-  top: 100%; /* Positionné juste en dessous du bouton */
-  left: 0; /* Aligné avec le bouton */
+  top: 100%; /* Place le message sous le bouton */
+  left: 0; /* Aligne le message avec le bouton */
   margin-top: 5px; /* Un léger espace */
-  white-space: nowrap; /* Évite le retour à la ligne si le message est long */
-  z-index: 10; /* S'assurer qu'il reste au-dessus */
+  white-space: nowrap; /* Empêche les retours à la ligne */
+  z-index: 10; /* Gère les superpositions */
 }
 
-/* Afficher le message lorsque le bouton est survolé */
+/* Afficher le message lors du survol du bouton désactivé */
 .modifierBut.disabled:hover + .hover-message {
-  display: block; /* Afficher le message uniquement au survol */
+  display: block;
 }
 
 
