@@ -180,14 +180,10 @@
             function toggleFacture() {
                 if (DivFactue.style.display === "none") {
                     DivFactue.style.display = "flex"
-                    setTimeout(function() {
-                        DivFactue.style.transform = "translateX(0)";  // Restaure la hauteur
-                    }, 10);
+                    DivFactue.style.transform = "translateX(0)";  // Restaure la hauteur
                 } else {
                     DivFactue.style.transform = "translateX(100)";         // Réduire la hauteur à 0
-                    setTimeout(function() {
-                        DivFactue.style.display = "none"; // Cache la div
-                    }, 500);
+                    DivFactue.style.display = "none"; // Cache la div
                 }
             }
             
