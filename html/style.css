@@ -417,6 +417,11 @@ header>div>a>div {
   color: #007BFF;
 }
 
+.details-form{
+  display: flex;
+  justify-content: space-between;
+}
+
 #profileMenu.show {
   visibility: visible;
   opacity: 1;
