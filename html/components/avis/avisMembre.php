@@ -78,6 +78,8 @@ foreach ($avis as $a) {
                 <p><strong>Visité en</strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
                 <p> • </p>
                 <p class="tag"><?= $a['companie'] ?></p>
+                <p> • </p>
+                <p><?php if (isset($a['datepublie'])) {echo "<p>" . formatDateDiff($a["datepublie"]) . "</p>";}?>
             </article>
             <article>
                 <p><strong><?= ucfirst($a['titre']) ?></strong></p>
@@ -107,11 +109,7 @@ foreach ($avis as $a) {
                 }
                 ?>
             </article>
-            <?php
-            if (isset($a['datepublie'])) {
-                echo "<p>" . formatDateDiff($a["datepublie"]) . "</p>";
-            }
-            ?>
+            
         </div>
         <?php
         if ($a['idc_reponse']) {
