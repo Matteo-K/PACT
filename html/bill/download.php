@@ -1,10 +1,8 @@
 <?php 
 require 'vendor/autoload.php';
 
-print_r($_POST);
-
 if ($_SERVER['REQUEST_METHOD']!="POST") {
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit;
 }
 
