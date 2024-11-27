@@ -185,6 +185,7 @@
             function toggleMenu() {
                 if (profileMenu.classList.contains("show")) {
                     profileMenu.classList.remove("show");
+                    profileMenu.classList.remove("deplace")
                     profileMenu.classList.add("hide");
                     body.classList.remove('no-scroll');
 
