@@ -110,13 +110,13 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <div>
 
             <label for="nom">Nom de votre offre*</label>
-            <input type="text" id="nom" name="nom" placeholder="Nom" value="<?php echo $titre; ?>" required>
+            <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
 
             <label for="resume">Résumé de l'offre</label>
-            <textarea id="resume" name="resume" placeholder="Courte descrition, 100 caractères maximum" maxlength=99><?php echo $resume;?></textarea>
+            <textarea id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50><?php echo $resume;?></textarea>
 
             <label for="description">Description de votre offre*</label>
-            <textarea id="description" name="description" placeholder="Description détaillée, 1000 caractères maximum" maxlength=999 required><?php echo $description; ?></textarea>
+            <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
         </div>
 
         <div>
