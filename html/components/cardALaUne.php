@@ -13,7 +13,7 @@
             <div class="star"></div>
             <div class="star"></div>
             <div class="star"></div>
-            <span><?php echo number_format($noteAvg) ?>/5</span>
+            <span><?php echo number_format($noteAvg,1) ?>/5</span>
             <span>(<?php echo $nbNote ?>avis)</span>
             <?php if ($categorie == "Restaurant") { ?>
               <span> ⋅ <?php echo $gammeDePrix ?></span>
