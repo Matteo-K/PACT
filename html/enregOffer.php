@@ -216,6 +216,11 @@ if (isset($_POST['pageBefore'])) {
         $nbTotalImages = $nbNouvellesImages + $nbAnciennesImages;
         $imageCounter = $nbAnciennesImages;  // Compteur pour renommer les images
 
+        if($nbTotalImages > 10){
+          $nbNouvellesImages = 10 - $nbAnciennesImages;
+          $nbTotalImages = $nbNouvellesImages + $nbAnciennesImages;
+        }
+
         // Boucle à travers chaque NOUVEAU fichier uploadé
         for ($i = 0; $i < $nbNouvellesImages; $i++) {
           $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
