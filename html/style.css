@@ -347,7 +347,7 @@ header>div>a>div {
   background-color: var(--background) ;
   color: #000;
   display: flex;
-
+  overflow-y: auto;
   flex-direction: column;
 }
 
@@ -420,6 +420,12 @@ header>div>a>div {
 .details-form{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.details-form div{
+  display: flex;
+  gap: 20px;
 }
 
 #profileMenu.show {

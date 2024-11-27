@@ -1,5 +1,7 @@
 <!-- Visite -->
 <?php
+require_once '../../../../ScriptsBDD/cr_bdd.sql';
+require_once '../../../../ScriptsBDD/peuplement.sql';
 // Initialisation des données à vide
 $visite = [
     "guide" => true,
