@@ -104,9 +104,9 @@ if ($categorie["_visite"]) {
         <?php
         // Connexion à la base de données (MySQL avec PDO)
         $host = 'localhost';
-        $dbname = 'nom_de_votre_base_de_donnees'; // Remplacez par le nom de votre base de données
-        $username = 'votre_utilisateur'; // Remplacez par votre utilisateur
-        $password = 'votre_mot_de_passe'; // Remplacez par votre mot de passe
+        $dbname = 'pact'; // Remplacez par le nom de votre base de données
+        $username = 'admin1'; // Remplacez par votre utilisateur
+        $password = 'motdepasse1'; // Remplacez par votre mot de passe
         
         try {
             // Créer une connexion PDO
@@ -125,7 +125,7 @@ if ($categorie["_visite"]) {
         }
         ?>
 
-        <form action="votre_script.php" method="POST">
+        <form action="detailsVisit.php" method="POST">
             <label for="langue">Choisissez une langue :</label>
             <select name="langue" id="langue">
                 <?php
