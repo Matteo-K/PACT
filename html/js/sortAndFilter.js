@@ -139,6 +139,9 @@ function sortDateAncien(array) {
   return array.sort((offre1, offre2) => offre1.dateCreation - offre2.dateCreation);
 }
 
+
+
+
 // Filtres
 
 // Fonction de filtre par catégorie
@@ -169,8 +172,71 @@ function filtrerParNotes(offers) {
   if (chkBxNote4.checked) notesSelection.push(4);
   if (chkBxNote5.checked) notesSelection.push(5);
 
+  if (notesSelection.length == 0) {
+    notesSelection = [1, 2, 3, 4, 5];
+  }
+
   return offers.filter(offer => notesSelection.includes(offer.note));
 }
+
+
+// Fonction de filtre par prix
+function filtrerParPrix(offers) {
+  return offers.filter(offer => {
+    const prixOffre = offer.prix;
+    return prixOffre >= selectPrixMin && prixOffre <= selectPrixMax;
+  });
+}
+
+
+// Fonction de filtre par statuts
+function filtrerParStatuts(offers) {
+  const statutsSelection = [];
+
+  if (chkBxOuvert.checked) statusSelection.push("ouvert");
+  if (chkBxFerme.checked) statutsSelection.push("ferme");
+
+  return offers.filter(offer => statutsSelection.includes(offer.note));
+}
+
+
+// Fonction de filtre par période
+function filtrerParPeriode(offers) {
+  const dateDepart = new Date(dateDepart.value);
+  const dateFin = new Date(dateFin.value);
+  const heureDebut = heureDebut.value;
+  const heureFin = heureFin.value;
+
+  if (isNaN(dateDebut.getTime()) || isNaN(dateFin.getTime())) {
+    return offers;
+  }
+
+  return offers.filter(offer => {
+    const dateOffre = new Date(offer.date);
+    const heureOffre = offer.date.split('T')[1];
+
+    const dateValide = dateOffre >= dateDebut &&  dateOffre <= dateFin;
+
+    const heureValide = (heureDebut && heureFin) ? (heureOffre >= heureDebut && heureOffre <= heureFin) : true;
+
+    return dateValide && heureValide;
+  });
+}
+
+
+
+// Fonction de filtre par lieu
+function filtrerParLieu(offers) {
+  const lieuSelection = [];
+
+
+  return offers.filter(offer => lieuSelection.includes(offer.note));
+}
+
+
+
+
+
 
 function sortAndFilter(array, elementStart, nbElement) {
   // Filtre

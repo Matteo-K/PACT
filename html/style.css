@@ -420,10 +420,12 @@ header>div>a>div {
 .details-form{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .details-form div{
   display: flex;
+  gap: 20px;
 }
 
 #profileMenu.show {
@@ -2330,7 +2332,7 @@ tbody td:last-child {
   font-weight: bold;
 }
 
-.user >div> img{
+.infoUser> img, .infoProReponse > img{
   width:2.2em;
   height:2.2em;
 } 
@@ -2401,7 +2403,7 @@ tbody td:last-child {
 }
 
 .messageAvisReponse > div + div{
-  display: flexx;
+  display: flex;
   margin: 1em;
 }
 
