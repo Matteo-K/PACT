@@ -9,7 +9,7 @@ $idOffre = $_POST['idOffre'];
 $annee = $_POST['annee'];
 $date = $_POST['date'];
 $mois = $_POST['mois'];
-$boole = $_POST['boole'];
+$boole = $_POST['boole']=="true" ? true : false;
 
 $stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idoffre = :idOffre AND datefactue = :datefactue");
 
