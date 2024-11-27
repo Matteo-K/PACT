@@ -200,15 +200,15 @@ function filtrerParPrix(offers) {
 function filtrerParStatuts(offers) {
   const statutsSelection = [];
 
-  if (chkBxOuvert.checked) statutsSelection.push("ouvert");
-  if (chkBxFerme.checked) statutsSelection.push("ferme");
+  if (chkBxOuvert.checked) statutsSelection.push("EstOuvert");
+  if (chkBxFerme.checked) statutsSelection.push("EstFermé");
 
   if (statutsSelection.length == 0) {
     // statutsSelection = ["ouvert", "ferme"];
     return offers;
   }
 
-  return offers.filter(offer => statutsSelection.includes(offer.statut));
+  return offers.filter(offer => statutsSelection.includes(offer.ouverture));
 }
 
 
@@ -251,7 +251,7 @@ function sortAndFilter(array, elementStart, nbElement) {
   array = filtrerParCategorie(array);
   // array = filtrerParNotes(array);
   // array = filtrerParPrix(array);
-  // array = filtrerParStatuts(array);
+  array = filtrerParStatuts(array);
   // array = filtrerParPeriode(array);
 
   // Tris
