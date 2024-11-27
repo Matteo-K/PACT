@@ -11,9 +11,10 @@ $date = NEW DateTime();
 foreach ($results as $key => $value) {
     $dateLancement = NEW DateTime($value['datelancement']);
     $duree = $date->diff($dateLancement);
+    $dureeString = (string) $duree->days;
     $idOffre = $value['idoffre'];
 
-    $stmt = $conn->prepare("UPDATE pact._historiquestatut SET dureeeligne = $duree where dureeenligne is null and idoffre = $idOffre");
+    $stmt = $conn->prepare("UPDATE pact._historiquestatut SET dureeenligne = $dureeString where dureeenligne is null and idoffre = $idOffre");
     $stmt->execute();
 
     $ins = $conn->prepare("INSERT INTO pact._historiquestatut(idoffre,datelancement,dureeenligne) VALUES ($idOffre,$date,NULL)");
