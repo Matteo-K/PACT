@@ -407,10 +407,17 @@ function note(offer) {
   let section = document.createElement("section");
   section.classList.add("searchNote");
 
+  let divStar = document.createElement("div");
+  divStar.classList.add("noteSearch");
+
+  divStar.appendChild(displayStar(offer));
+
   let note = document.createElement("p");
   note.textContent = offer.noteAvg;
-  section.appendChild(note);
+  divStar.appendChild(note);
   
+  section.appendChild(divStar);
+
   let ouverture = document.createElement("p");
   ouverture.id = "couleur-" + offer.idOffre;
   if (offer.ouverture == "EstOuvert") {
@@ -440,6 +447,36 @@ function avisSearch(offer) {
   div.appendChild(tempPasAvis);
 
   return div;
+}
+
+function displayStar(offer) {
+  let container = document.createElement("span");
+  container.classList.add("blcStarSearch");
+
+  const etoilesPleines = Math.floor(offer.noteAvg);
+  const reste = offer.noteAvg - etoilesPleines;
+
+  for (let i = 0; i < etoilesPleines; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star', 'pleine');
+    container.appendChild(star);
+  }
+
+  if (reste > 0) {
+    const pourcentageRempli = reste * 100; // Pourcentage rempli
+    const starPartielle = document.createElement('div');
+    starPartielle.classList.add('star', 'partielle');
+    starPartielle.style.setProperty('--pourcentage', `${pourcentageRempli}%`);
+    container.appendChild(starPartielle);
+  }
+
+  const etoilesVides = 5 - etoilesPleines - (reste > 0 ? 1 : 0);
+  for (let i = 0; i < etoilesVides; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star', 'vide');
+    container.appendChild(star);
+  }
+  return container;
 }
 
 
