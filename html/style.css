@@ -2939,8 +2939,8 @@ tbody td:last-child {
 }
 
 #visit>div[class="languesProp"]>select{
-  width: 250px;
-  height: 50px;
+  width: 350px;
+  height: 35px;
 }
 
 #park>div[class="ageMinP"] {
