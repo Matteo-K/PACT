@@ -753,6 +753,9 @@ header ul+div {
   background-color: var(--primary40);
   padding: 0.5rem 4rem;
   border-radius: 0.8rem;
+  margin-bottom: 30px;
+  margin-left: 50%;
+  transform: translateX(-25%);
 }
 
 #voirPlus a:hover {
