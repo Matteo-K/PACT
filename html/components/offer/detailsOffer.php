@@ -78,7 +78,6 @@ if ($result != false) {
     }
 
     //On lui charge également ses images pour la même raison
-    $loadedImg = [];
     $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre=?");
     $stmt->execute([$idOffre]);
 
@@ -90,6 +89,7 @@ if ($result != false) {
 
 else{    
     $loadedTags = [];
+    $loadedImg = [];
 }
 
 //Récupération de tous les tags pour leur sélection dans l'input
