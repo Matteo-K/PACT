@@ -2337,7 +2337,7 @@ tbody td:last-child {
   height:2.2em;
 } 
 
-.user, .noteEtoile, .infoUser, .autreInfoAvis{
+.user, .noteEtoile, .infoUser,.infoProReponse, .autreInfoAvis{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
