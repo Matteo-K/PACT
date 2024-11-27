@@ -279,21 +279,21 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 
         function afficheImage(event) {
-            alert("Appel fonction")
+            let compteurImgMax = conteneur.childElementCount;
             const images = event.target.files;
 
             console.log(images);
 
             Array.from(images).forEach((file) => {
-                alert(conteneur.childElementCount);
-                if (conteneur.childElementCount >= maxImages) {
+                alert(compteurImgMax);
+                if (compteurImgMax >= maxImages) {
                     pImage.style.color = "red";
                     alert("C'est plein");
                 }
                 else{
+                    compteurImgMax++;
                     const reader = new FileReader();
                     reader.onload = function(e){
-                        alert(e.target.result)
                         photosSelect.push(file);
                         configImage("", e.target.result, file);
                     }
@@ -303,7 +303,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
 
         function configImage(urlAncien, urlNouveau, file) {
-            alert("appel f2");
             if (conteneur.childElementCount < maxImages) {
                 const figureImg = document.createElement("figure");
                 figureImg.classList.add("imageOffre");
