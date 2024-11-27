@@ -27,17 +27,18 @@ class Restaurant extends Offer {
   }*/
 
   public function displayCardALaUne() {
-    $idOffre = $this->idOffre;
-    $nomOffre = $this->nomOffre;
-    $resume = $this->resume;
-    $urlImg = $this->images[0];
+    $offre = parent::getData();
+    $idOffre = $offre["idOffre"];
+    $nomOffre = $offre["nomOffre"];
+    $resume = $offre["resume"];
+    $urlImg = $offre["images"][0];
     $gammeDePrix = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
-    $ville = $this->ville;
-    $categorie = $this->categorie;
-    $tags = $this->tags;
-    $noteAvg = $this->noteAvg;
-    $nbNote = $this->nbNote;
-    $codePostal = $this->codePostal;
+    $ville = $offre["ville"];
+    $categorie = $offre["categorie"];
+    $tags = $offre["tags"];
+    $noteAvg = $offre["noteAvg"];
+    $nbNote = $offre["nbNote"];
+    $codePostal = $offre["codePostal"];
     require __DIR__."/../components/cardALaUne.php";
   }
 }
