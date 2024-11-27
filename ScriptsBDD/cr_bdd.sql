@@ -608,6 +608,7 @@ SELECT
 	o.telephone,
 	o.urlsite,
 	o.datecrea,
+    ab.nomabonnement,
     ARRAY_AGG(DISTINCT i.url) AS listImage,
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'jour', hm.jour,
@@ -677,8 +678,10 @@ LEFT JOIN
     _tag_parc tp ON o.idOffre = tp.idOffre
 LEFT JOIN
     _horairePrecise hp ON o.idOffre = hp.idOffre
+LEFT JOIN
+    _abonner ab ON o.idOffre = ab.idOffre
 GROUP BY 
-    o.idOffre, l.ville, l.numeroRue, l.rue, l.pays, l.codePostal, r.gammeDePrix
+    o.idOffre, l.ville, l.numeroRue, l.rue, l.pays, l.codePostal, r.gammeDePrix, ab.nomabonnement
 ORDER BY o.dateCrea DESC;
 
 -- Vue pour tous les avis avec offres

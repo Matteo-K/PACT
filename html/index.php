@@ -9,20 +9,23 @@ require_once "config.php";
   <link rel="stylesheet" href="style.css">
   <title>PACT</title>
 </head>
-<body id="index">
+<body>
   <script src="js/setColor.js"></script>
   <?php require_once "components/header.php"; ?>
-  <main>
+  <main id="index">
     <div id="proposeRecherche">
       <h2>Commencer par une recherche</h2>
     </div>
     <div id="ALaUne">
-      <?php 
-        $elementStart = 0;
-        $nbElement = 20;
-        $offres = new ArrayOffer();
-        $offres->displayCardALaUne($offres->filtre($idUser, $typeUser), $typeUser, $elementStart, $nbElement);
-      ?>
+      <h2>À la une</h2>
+      <div>
+        <?php 
+          $elementStart = 0;
+          $nbElement = 20;
+          $offres = new ArrayOffer();
+          $offres->displayCardALaUne($offres->filtre($idUser, $typeUser), $typeUser, $elementStart, $nbElement);
+        ?>
+      </div>
     </div>
     <div id="voirPlus">
       <a href="search.php">Voir plus</a>
