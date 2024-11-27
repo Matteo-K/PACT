@@ -376,6 +376,19 @@ header>div>a>div {
   padding: 10px;
   border-bottom: 1px solid #ddd;
   list-style: none;
+  text-align: center;
+}
+
+.details-style[open] summary::after {
+  content: "▲"; /* Flèche vers le haut si ouvert */
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
+
+.details-style summary::after {
+  content: "▼"; /* Flèche vers le bas si fermé */
+  font-size: 0.8rem;
+  margin-left: 10px;
 }
 
 /* Conteneur des liens */
