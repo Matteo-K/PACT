@@ -442,8 +442,10 @@ header>div>a>div {
   transform: translateX(-100%);
 }
 
-.deplace{
-  
+#profileMenu.deplace{
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Conteneur pour l'image et le pseudo */
@@ -2799,7 +2801,7 @@ tbody td:last-child {
   object-fit: cover;
 }
 
-/*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
+/*------------------------ CSS BENJAMIN OFFRE PARTICULIERE ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
@@ -2936,7 +2938,10 @@ tbody td:last-child {
   flex-direction: column;
 }
 
-
+#visit>div[class="languesProp"]>select{
+  width: 350px;
+  height: 35px;
+}
 
 #park>div[class="ageMinP"] {
   display: flex;

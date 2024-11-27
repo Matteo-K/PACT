@@ -177,7 +177,7 @@
             const factu = document.getElementsByClassName("liFact")[0];
 
             function toggleFacture() {
-                
+                profileMenu.classList.toggle("deplace")
             }
             
             factu.addEventListener("click", toggleFacture);
@@ -185,6 +185,7 @@
             function toggleMenu() {
                 if (profileMenu.classList.contains("show")) {
                     profileMenu.classList.remove("show");
+                    profileMenu.classList.remove("deplace")
                     profileMenu.classList.add("hide");
                     body.classList.remove('no-scroll');
 
