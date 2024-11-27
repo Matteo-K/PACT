@@ -177,7 +177,7 @@
             const factu = document.getElementsByClassName("liFact")[0];
 
             function toggleFacture() {
-                
+                profileMenu.classList.toggle("deplace")
             }
             
             factu.addEventListener("click", toggleFacture);
@@ -185,16 +185,13 @@
             function toggleMenu() {
                 if (profileMenu.classList.contains("show")) {
                     profileMenu.classList.remove("show");
+                    profileMenu.classList.remove("deplace")
                     profileMenu.classList.add("hide");
                     body.classList.remove('no-scroll');
 
-                    // Retirer la classe "hide" après la transition
-                    setTimeout(() => {
-                        profileMenu.classList.remove("hide");
-                    }, 300); // Temps de la transition en ms
                 } else {
-                    profileMenu.classList.remove("hide");
                     profileMenu.classList.add("show");
+                    profileMenu.classList.remove("hide");
                     body.classList.add('no-scroll');
                 }
             }
