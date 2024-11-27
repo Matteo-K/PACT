@@ -124,6 +124,8 @@ class Offer {
     $ville = $this->ville;
     $categorie = $this->categorie;
     $tags = $this->tags;
+    $noteAvg = $this->noteAvg;
+    $nbNote = $this->nbNote;
     $codePostal = $this->codePostal;
     require __DIR__."/../components/cardALaUne.php";
   }
@@ -158,7 +160,7 @@ class Offer {
     $this->dateCreation = $dateCreation_;
     $this->abonnement = $abonnement_;
     $this->options = $options_;
-    $this->noteAvg = $noteAvg_;
+    $this->noteAvg = number_format($noteAvg_,1);
     $this->nbNote = $nbNote_;
   }
 
