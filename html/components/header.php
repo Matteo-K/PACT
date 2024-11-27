@@ -180,8 +180,8 @@
             factu.addEventListener("click", toggleFacture);
 
             function toggleFacture() {
-                if (DivFactue.style.display === "none" || currentDiv.style.display === "") {
-                    DivFactue.style.display = "block"; // Affiche la div
+                if (DivFactue.style.display === "none") {
+                    DivFactue.style.display = "flex"; // Affiche la div
                 } else {
                     DivFactue.style.display = "none"; // Cache la div
                 }
