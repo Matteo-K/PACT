@@ -177,7 +177,8 @@
             const factu = document.getElementsByClassName("liFact")
             const DivFactue = document.getElementsByClassName("factue");
 
-            
+            console.log(factu)
+
             function toggleFacture() {
                 if (DivFactue.style.display === "none") {
                     DivFactue.style.display = "flex"; // Affiche la div
