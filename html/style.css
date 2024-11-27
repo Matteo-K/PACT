@@ -620,15 +620,21 @@ header ul+div {
   min-height: 70vh;
 }
 
-.carteIndexPro {
+.carteIndexPro, .carteIndex {
   display: flex;
-  flex-direction: column;
-  background-color: #fff;
+  flex-flow: column wrap;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin: 20px;
-  overflow: hidden;
   transition: transform 0.3s ease;
+  width: 30%;
+}
+
+#ALaUne > div {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .carteIndexPro:hover {
