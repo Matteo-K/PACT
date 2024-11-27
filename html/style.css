@@ -603,6 +603,42 @@ header ul+div {
   }
 }
 
+/* ### Index ### */
+
+#index {
+  padding-top: var(--header-size);
+  min-height: 70vh;
+}
+
+#index h2 {
+  text-align: center;
+}
+
+#ALaUne div, #proposeRecherche, #voirPlus {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+#voirPlus a {
+  color: var(--text-dark);
+  background-color: var(--primary40);
+  padding: 0.5rem 4rem;
+  border-radius: 0.8rem;
+}
+
+#voirPlus a:hover {
+  background-color: var(--primary60);
+}
+
+@media (max-width: 768px) {
+  #index {
+    padding-top: 0;
+  }
+}
+
 /* ### Offer ### */
 
 /* Gestion de l'offre */

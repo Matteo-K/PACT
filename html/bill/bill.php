@@ -5,8 +5,9 @@
 require_once "../config.php";
 
 
-$idOffre =2;
-$date ='2024-10-01';
+$idOffre = $_POST['idOffre'];
+$date = $_POST['date'];
+$mois = $_POST['mois'];
 
 $stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idoffre = :idOffre AND datefactue = :datefactue");
 
@@ -23,6 +24,10 @@ $codePostal = $results[0]['codepostal'];
 $ville = $results[0]['ville'];
 $idFacture = $results[0]['idfacture'];
 $dateFacture = $results[0]['datefactue'];
+
+$newDate = New DateTime($dateFacture);
+$newDate = $newDate->format('d/m/Y');
+
 $idU = $results[0]['idu'];
 $tva = 20;
 if ($results[0]['historiqueoption']) {
@@ -127,13 +132,13 @@ footer{
                 <p><?php echo $codePostal . " " . $ville ?></p>
             </section>
         </strong>
-        <h1>FACTURE</h1>
+        <h1>Facture du mois de <?php echo $mois ?></h1>
     </header>
     <main>
         <section>
             <strong>
-                <p>Numéeo de facture : <?php echo $idFacture ?></p>
-                <p>Date de facture : <?php echo($dateFacture)  ?></p>
+                <p>Numéro de facture : <?php echo $idFacture ?></p>
+                <p>Date de facture : <?php echo($newDate)  ?></p>
                 <p>Numéeo Client : <?php echo $idU ?></p>
             </strong>
         </section>
