@@ -1711,13 +1711,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 0 0 45px 0;
 }
 
-#trifiltre h3 {
-  margin: 10px 0
+#trifiltre h2 {
+  margin: 20px 0 10px 0;
 }
 
-#trifiltre h2 {
-  margin: 5px 0;
+#trifiltre h3 {
+  margin: 15px 0 5px 0;
 }
+
 
 /* Tout les input */
 
