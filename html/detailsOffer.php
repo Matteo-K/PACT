@@ -99,7 +99,7 @@ $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $conn->prepare("SELECT a.pseudo, a.idc, a.datepublie, a.idoffre, a.note, -- Ajoutez ici toutes les colonnes de a que vous voulez inclure
+$stmt = $conn->prepare("SELECT a.pseudo,a.content, a.datepublie,a.companie, a.mois, a.annee, a.titre, a.listimage, a.note, -- Ajoutez ici toutes les colonnes de a que vous voulez inclure
     AVG(a.note) AS moynote,
     COUNT(a.note) AS nbnote,
     COUNT(CASE WHEN a.note = 1 THEN 1 END) AS note_1,
@@ -122,10 +122,9 @@ LEFT JOIN
 WHERE 
     a.idoffre = ?
 GROUP BY 
-    a.pseudo, a.idc, a.datepublie, a.idoffre, a.note, m.url, r.idc_reponse, r.denomination, r.contenureponse, r.reponsedate, r.idpro
+    a.pseudo,a.content, a.datepublie,a.companie, a.mois, a.annee, a.titre, a.listimage, a.note, m.url, r.idc_reponse, r.denomination, r.contenureponse, r.reponsedate, r.idpro
 ORDER BY 
     a.datepublie ASC;
-
 ");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
