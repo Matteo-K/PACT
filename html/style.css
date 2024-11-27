@@ -381,6 +381,7 @@ header>div>a>div {
 
 .details-style[open] summary::after {
   content: "▲"; /* Flèche vers le haut si ouvert */
+  background-color: #f5f5f5;
 }
 
 .details-style summary::after {
@@ -414,11 +415,6 @@ header>div>a>div {
 .details-content a:hover {
   background-color: #f0f0f0;
   color: #007BFF;
-}
-
-/* Animation pour l'ouverture et fermeture */
-.details-style[open] summary {
-  background-color: #f5f5f5;
 }
 
 
