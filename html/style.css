@@ -343,11 +343,12 @@ header>div>a>div {
 
 .factue{
   height: 100%;
-  width: calc(100vw - 286px);
+  width: calc(100vw - 276px);
   background-color: var(--background) ;
   color: #000;
   display: flex;
   overflow-y: auto;
+  overflow-x: hidden;
   flex-direction: column;
 }
 
@@ -398,7 +399,7 @@ header>div>a>div {
 .details-form {
   display: block;
   padding: 10px 15px;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #333;
   text-decoration: none;
   border-bottom: 1px solid #ddd;

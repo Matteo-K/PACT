@@ -91,9 +91,8 @@ class ArrayOffer {
         $options = [];
         $stmt = $conn->prepare("SELECT * FROM pact._option_offre WHERE idoffre = ? AND idoption = (SELECT MAX(idoption) FROM pact._option_offre WHERE idoffre = ?)");
         $stmt->execute([$offre['idoffre'], $offre['idoffre']]);
-        while ($results = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
-          print_r($results);
-          $options[] = $results["nomoption"];
+        while ($resOption = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          $options[] = $resOption["nomoption"];
         }
         
         $stmt = $conn->prepare("SELECT count(note), avg(note) from pact._avis where idoffre = ?");
