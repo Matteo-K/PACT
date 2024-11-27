@@ -493,11 +493,10 @@ header>div>a>div {
 #profileMenu ul li {
   margin: 20px 0;
   font-size: 30px;
-  font-family: "Belanosima", sans-serif;
   font-weight: bold;
 }
 
-.menuHeader a,.menuHeader li {
+.menuHeader a,.liFact {
   color: #fff;
   text-decoration: none;
   transition: color 0.5s;
@@ -506,7 +505,7 @@ header>div>a>div {
   border-radius: 10px;
 }
 
-#profileMenu ul a:hover {
+#profileMenu ul a:hover,.liFact:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -1992,6 +1991,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   #filtre {
     transform: translateX(100%);
+    padding-left: 10px;
   }
 
   #trifiltre>div {
