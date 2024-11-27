@@ -160,7 +160,7 @@ class Offer {
     $this->dateCreation = $dateCreation_;
     $this->abonnement = $abonnement_;
     $this->options = $options_;
-    $this->noteAvg = number_format($noteAvg_,1);
+    $this->noteAvg = $noteAvg_;
     $this->nbNote = $nbNote_;
   }
 
