@@ -75,10 +75,11 @@ foreach ($avis as $a) {
                 </div>
             </article>
             <article>
-                <p><strong>Visité en</strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
-                <p> • </p>
-                <p class="tag"><?= $a['companie'] ?></p>
-                <p> • </p>
+                <div>
+                    <p><strong>Visité en</strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
+                    <p> • </p>
+                    <p class="tag"><?= $a['companie'] ?></p>
+                </div>
                 <p><?php if (isset($a['datepublie'])) {echo "<p>" . formatDateDiff($a["datepublie"]) . "</p>";}?>
             </article>
             <article>
