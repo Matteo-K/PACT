@@ -422,6 +422,10 @@ header>div>a>div {
   justify-content: space-between;
 }
 
+.details-form div{
+  display: flex;
+}
+
 #profileMenu.show {
   visibility: visible;
   opacity: 1;
