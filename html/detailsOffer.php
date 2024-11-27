@@ -361,7 +361,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <article id="descriptionOffre">
             <?php
-            print_r($avis[0]['moynote']);
+            print_r($avis);
             if ($avis[0]['nbnote'] === 0) {
                 echo '<p>Pas de note pour le moment</p>';
             } else {
@@ -391,16 +391,23 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php
                         // Adjectifs pour les notes
                         $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
+
+                        // Trouver le nombre maximum de notes
+                        $maxNoteCount = max($avis[0]["note_1"], $avis[0]["note_2"], $avis[0]["note_3"], $avis[0]["note_4"], $avis[0]["note_5"]);
+
+                        // Affichage des barres de notation
                         for ($i = 5; $i >= 1; $i--) {
-                            // Largeur simulée pour chaque barre en fonction de vos données
-                            $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
+                            // Calculer le pourcentage en fonction du nombre d'avis pour cette note
+                            $noteCount = isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0;
+                            // Calculer la largeur de la barre, en fonction du nombre d'avis de cette note par rapport à la note la plus populaire
+                            $pourcentageParNote = ($maxNoteCount > 0) ? ($noteCount / $maxNoteCount) * 100 : 0;
                         ?>
                             <div class="ligneNotation">
-                                <span><?= $listNoteAdjectif[$i]; ?></span>
+                                <span><?= $listNoteAdjectif[$i - 1]; ?></span>
                                 <div class="barreDeNotationBlanche">
                                     <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
                                 </div>
-                                <span>(<?= $avis[0]["note_$i"]?>)</span>
+                                <span>(<?= $noteCount ?>)</span>
                             </div>
                         <?php
                         }

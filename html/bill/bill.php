@@ -6,6 +6,7 @@ require_once "../config.php";
 
 
 $idOffre = $_POST['idOffre'];
+$annee = $_POST['annee'];
 $date = $_POST['date'];
 $mois = $_POST['mois'];
 
@@ -133,7 +134,7 @@ footer{
                 <p><?php echo $codePostal . " " . $ville ?></p>
             </section>
         </strong>
-        <h1>Facture du mois de <?php echo $mois ?></h1>
+        <h1>Facture du mois de <?php echo $mois . " " . $annee ?></h1>
     </header>
     <main>
         <section>

@@ -12,7 +12,7 @@
         <div id="localisationCard">
           <div id="tagsCard">
             <?php foreach ($tags as $key => $tag) { ?>
-              <span class="tag"><?php echo $tag ?></span>
+              <span class="tagIndex"><?php echo $tag ?></span>
             <?php } ?>
           </div>
         </div>
