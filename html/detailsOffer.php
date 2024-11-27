@@ -99,14 +99,14 @@ $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $conn->prepare(" SELECT a.*,
-    AVG(a.note) OVER() AS moynote,
-    COUNT(a.note) OVER() AS nbnote,
-    COUNT(CASE WHEN a.note = 1 THEN 1 ELSE 0 END) OVER() AS note_1,
-    COUNT(CASE WHEN a.note = 2 THEN 1 ELSE 0 END) OVER() AS note_2,
-    COUNT(CASE WHEN a.note = 3 THEN 1 ELSE 0 END) OVER() AS note_3,
-    COUNT(CASE WHEN a.note = 4 THEN 1 ELSE 0 END) OVER() AS note_4,
-    COUNT(CASE WHEN a.note = 5 THEN 1 ELSE 0 END) OVER() AS note_5,
+$stmt = $conn->prepare("SELECT a.pseudo, a.idc, a.datepublie, a.idoffre, a.note, -- Ajoutez ici toutes les colonnes de a que vous voulez inclure
+    AVG(a.note) AS moynote,
+    COUNT(a.note) AS nbnote,
+    COUNT(CASE WHEN a.note = 1 THEN 1 END) AS note_1,
+    COUNT(CASE WHEN a.note = 2 THEN 1 END) AS note_2,
+    COUNT(CASE WHEN a.note = 3 THEN 1 END) AS note_3,
+    COUNT(CASE WHEN a.note = 4 THEN 1 END) AS note_4,
+    COUNT(CASE WHEN a.note = 5 THEN 1 END) AS note_5,
     m.url AS membre_url,
     r.idc_reponse,
     r.denomination AS reponse_denomination,
@@ -121,8 +121,11 @@ LEFT JOIN
     pact.reponse r ON r.idc_avis = a.idc
 WHERE 
     a.idoffre = ?
+GROUP BY 
+    a.pseudo, a.idc, a.datepublie, a.idoffre, a.note, m.url, r.idc_reponse, r.denomination, r.contenureponse, r.reponsedate, r.idpro
 ORDER BY 
     a.datepublie ASC;
+
 ");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
