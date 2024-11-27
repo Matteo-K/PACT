@@ -107,6 +107,8 @@ if ($categorie["_visite"]) {
             <?php } ?>
         </select>
 
+        <?php print_r($langue); ?>
+
         <section id="sectionLangue">
             <!-- Les langues ajoutées apparaîtront ici -->
         </section>
