@@ -350,6 +350,7 @@ header>div>a>div {
   overflow-y: auto;
   overflow-x: hidden;
   flex-direction: column;
+  transform: translateX(0);
 }
 
 .details{
