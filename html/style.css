@@ -2421,14 +2421,16 @@ tbody td:last-child {
   gap: 1em;
 }
 
-.user + article > div{
-  margin
-}
+
 
 .user + article + article{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
+}
+
+.user+article{
   justify-content: center;
 }
 
