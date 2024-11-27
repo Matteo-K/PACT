@@ -1,6 +1,13 @@
 <?php 
 require 'vendor/autoload.php';
 
+
+
+if ($_POST['idOffre'] == NULL) {
+    header("Location: index.php");
+}
+
+
 use Dompdf\Dompdf;
 
 // Initialisation de Dompdf
