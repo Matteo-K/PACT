@@ -136,7 +136,7 @@ class Offer {
     }
   }
 
-  public function setData($idOffre_, $idUser_, $nomOffre_, $abonnement_, $options_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $horaireMidi_, $horaireSoir_) {
+  public function setData($idOffre_, $idUser_, $nomOffre_, $abonnement_, $options_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $horaireMidi_, $horaireSoir_, $noteAvg_, $nbAvis_) {
     $this->idOffre = $idOffre_;
     $this->statut = $statut_;
     $this->idUser = $idUser_;
@@ -158,6 +158,8 @@ class Offer {
     $this->dateCreation = $dateCreation_;
     $this->abonnement = $abonnement_;
     $this->options = $options_;
+    $this->noteAvg = $noteAvg_;
+    $this->nbAvis = $nbAvis_;
   }
 
   public function getData() {

@@ -96,10 +96,9 @@ if ($categorie["_visite"]) {
 
     <div class="languesProp">
         <label>Langue proposée(s) :</label> <!-- Label langue proposée -->
-        <input type="text" id="inputTag" name="inputTag"
-            placeholder="Entrez & selectionnez les langue proposée pour votre visite">
-
+        <label>Entrez & selectionnez les langue proposée pour votre visite"</label>
         
+
         <select name="langue" id="selectionLangue">
             <option value="selectionLangue">-- Sélectionner une langue --</option>
             <?php foreach ($langue as $key => $value) { ?>

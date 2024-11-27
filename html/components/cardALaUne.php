@@ -5,6 +5,20 @@
     <img src="<?php echo $urlImg; ?>" alt=<?php echo $alt; ?>>
     <figcaption>
       <h3><?php echo $nomOffre ?></h3>
+      <div>
+        <div id="detailsCardOffer">
+
+        </div>
+        <div id="localisationCard">
+          <div id="tagsCard">
+            <?php 
+            foreach ($variable as $key => $value) {
+              
+            }
+            ?>
+          </div>
+        </div>
+      </div>
     </figcaption>
   </figure>
 </form>

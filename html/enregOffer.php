@@ -62,7 +62,7 @@ if (isset($_POST['pageBefore'])) {
         $stmt = $conn->prepare("INSERT INTO pact._abonner (idoffre, nomabonnement) VALUES (?, ?)");
         $stmt->execute([$idOffre, $typeOffre]);
       } catch (PDOException $e) {}
-    }
+      }
     switch ($pageBefore) {
       case 1:
         // Gestion des options d'offre
@@ -106,7 +106,9 @@ if (isset($_POST['pageBefore'])) {
         $stmt->execute([$idOffre]);
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $anciennesImagesTotal[] = $result["url"];
+          echo $result["url"];
         }
+      echo "cbon";
 
         $anciennesImagesRestantes = $_POST["imageExistante"] ?? [];
 
@@ -140,14 +142,14 @@ if (isset($_POST['pageBefore'])) {
             echo($fichier); 
           }
 
-          echo "\n(Dossier temp)\n\n\n";
+          echo ("     (Dossier temp)                         ");
 
           $fichiers = glob($dossierImg . "*"); // TESTTTT
           foreach ($fichiers as $fichier) {
             echo($fichier); 
           }
 
-          echo "\n(Dossier final img avant clear)\n\n\n";
+          echo ("    (Dossier final img avant clear)                         ");
 
           foreach ($anciennesImagesTotal as $imgA) {
             // Supprime l'image du serveur et de la BDD
@@ -162,10 +164,10 @@ if (isset($_POST['pageBefore'])) {
           
           $fichiers = glob($dossierImg . "*"); // TESTTTT
           foreach ($fichiers as $fichier) {
-            echo($fichier); 
+            echo($fichier . "                         "); 
           }
 
-          echo "\n(Dossier final img après clear)\n\n\n";
+          echo ("(Dossier final img après clear)                         ");
 
           //On remet les anciennes images gardées dans la BDD et sur le serveur 
           foreach ($anciennesImagesRestantes as $num => $lien) {
@@ -185,14 +187,24 @@ if (isset($_POST['pageBefore'])) {
             } catch (PDOException $e) {
                 error_log("Erreur BDD : " . $e->getMessage());
             }
-          }
 
-          $fichiers = glob($dossierImg . "*"); // TESTTTT
-          foreach ($fichiers as $fichier) {
-            echo($fichier); 
           }
+      }
 
-          echo "\n(Dossier final img après ajout loaded photos)\n\n\n";
+      $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = ?");
+      $stmt->execute([$idOffre]);
+      while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $anciennesImagesTotal[] = $result["url"];
+        echo ($result["url"] . "        ");
+      }
+      echo ("cbon");
+
+        $fichiers = glob($dossierImg . "*"); // TESTTTT
+        foreach ($fichiers as $fichier) {
+          echo($fichier) .  "       "; 
+        }
+
+          echo ("(Dossier final img après ajout loaded photos)                         ");
         }
 
         $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
@@ -212,15 +224,18 @@ if (isset($_POST['pageBefore'])) {
             $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
             $newFileName = $idOffre . '-' . $imageCounter . '.' . $fileExtension;
             $dossierImgNom = $dossierImg . $newFileName;
+          
 
-            // Déplace l'image vers le dossier cible
-            move_uploaded_file($fileTmpPath, $dossierImgNom);
-            $imageCounter++;
+          try {
+              // Déplace l'image vers le dossier d'images des offres
+              move_uploaded_file($fileTmpPath, $dossierImgNom);
+              $imageCounter++;
 
-            try {
+              //On insère l'url de l'image sur le serveur dans la BDD
               $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
               $stmt->execute([$dossierImgNom, $newFileName]);
 
+            //On insère la relation entre l'image et l'offre
               $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
               $stmt->execute([$idOffre, $dossierImgNom]);
             } catch (PDOException $e) {
@@ -231,10 +246,10 @@ if (isset($_POST['pageBefore'])) {
 
         $fichiers = glob($dossierImg . "*"); // TESTTTT
           foreach ($fichiers as $fichier) {
-            echo($fichier); 
+            echo($fichier) . "      "; 
           }
 
-          echo "\n(Dossier final img après ajout nouvelles photos)\n\n\n";
+          echo ("(Dossier final img après ajout nouvelles photos)                          ");
 
 
         // Ajout des informations suivant la catégorie de l'offre
