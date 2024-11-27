@@ -27,5 +27,5 @@ $dompdf->setPaper('A4', 'portrait'); // Options : A4, Letter, etc.
 $dompdf->render();
 
 // Télécharger le fichier PDF
-$dompdf->stream("document.pdf", ["Attachment" => true]); // "Attachment" => true pour forcer le téléchargement
+$dompdf->stream("Facture". $denomination . $mois . $annee . ".pdf", ["Attachment" => $boole]); // "Attachment" => true pour forcer le téléchargement
 ?>

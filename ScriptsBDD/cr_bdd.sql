@@ -752,7 +752,9 @@ CREATE VIEW facture AS
         'Duree', ht.dureeEnLigne
     )::TEXT, ';') FILTER (WHERE ht.idStatut IS NOT NULL 
       AND ht.dateLancement IS NOT NULL
-      AND ht.dureeEnLigne IS NOT NULL) 
+      AND ht.dureeEnLigne IS NOT NULL
+      AND ht.dateLancement >= date_trunc('month', f.dateFactue) - INTERVAL '1 month'
+      AND ht.dateLancement < date_trunc('month', f.dateFactue)) 
       AS historiqueStatut,
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'ID', da.idOption,
@@ -771,7 +773,7 @@ CREATE VIEW facture AS
       AND op.nomOption IS NOT NULL 
       AND op.prixOffre IS NOT NULL 
       AND op.dureeOption IS NOT NULL
-      AND da.dateFin >= date_trunc('month', f.dateFactue) - INTERVAL '1 month' 
+      AND da.dateFin >= date_trunc('month', f.dateFactue) - INTERVAL '1 month'
       AND da.dateFin < date_trunc('month', f.dateFactue)) 
       AS historiqueOption
     FROM _facturation f
@@ -986,4 +988,3 @@ CREATE TRIGGER trigger_ajout_membre
 INSTEAD OF INSERT ON pact.membre
 FOR EACH ROW
 EXECUTE FUNCTION ajout_membre();
-

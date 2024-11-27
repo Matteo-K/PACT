@@ -6,8 +6,10 @@ require_once "../config.php";
 
 
 $idOffre = $_POST['idOffre'];
+$annee = $_POST['annee'];
 $date = $_POST['date'];
 $mois = $_POST['mois'];
+$boole = $_POST['boole']=="true" ? true : false;
 
 $stmt = $conn->prepare("SELECT * FROM pact.facture WHERE idoffre = :idOffre AND datefactue = :datefactue");
 
@@ -18,7 +20,7 @@ $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-$denomination = $results[0]['denomination'];
+$denomination = $results[0]['nom'];
 $rue = $results[0]['rue'];
 $codePostal = $results[0]['codepostal'];
 $ville = $results[0]['ville'];
@@ -44,14 +46,15 @@ $tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>intval($results[0]['t
 $v3=$tarif['prixBase'];
 
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
-$abonnement = explode(';',$results[0]['historiquestatut']);
-
 $nbEnLigne = 0 ;
-
-foreach ($abonnement as $key => $value) {
-    $result = json_decode($value,true);
+if ($results[0]['historiquestatut']) {
+    $abonnement = explode(';',$results[0]['historiquestatut']);
+    foreach ($abonnement as $key => $value) {
+        $result = json_decode($value,true);
     $nbEnLigne = $nbEnLigne + intval($result['Duree']);
+    }
 }
+
 
 $css = "
 p{
@@ -132,7 +135,7 @@ footer{
                 <p><?php echo $codePostal . " " . $ville ?></p>
             </section>
         </strong>
-        <h1>Facture du mois de <?php echo $mois ?></h1>
+        <h1>Facture du mois de <?php echo $mois . " " . $annee ?></h1>
     </header>
     <main>
         <section>

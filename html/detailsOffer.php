@@ -99,13 +99,32 @@ $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $conn->prepare("
-    SELECT a.*, AVG(a.note) OVER() AS moynote,COUNT(a.note) OVER() AS nbnote, m.url AS membre_url,r.idc_reponse,r.denomination AS reponse_denomination, r.contenureponse, r.reponsedate, r.idpro
-    FROM pact.avis a
-    JOIN pact.membre m ON m.pseudo = a.pseudo
-    LEFT JOIN pact.reponse r ON r.idc_avis = a.idc
-    WHERE a.idoffre = ? 
-    ORDER BY a.datepublie ASC
+$stmt = $conn->prepare("SELECT a.pseudo,a.content, a.datepublie,a.companie, a.mois, a.annee, a.titre, a.listimage, a.note, -- Ajoutez ici toutes les colonnes de a que vous voulez inclure
+    AVG(a.note) AS moynote,
+    COUNT(a.note) AS nbnote,
+    COUNT(CASE WHEN a.note = 1 THEN 1 END) AS note_1,
+    COUNT(CASE WHEN a.note = 2 THEN 1 END) AS note_2,
+    COUNT(CASE WHEN a.note = 3 THEN 1 END) AS note_3,
+    COUNT(CASE WHEN a.note = 4 THEN 1 END) AS note_4,
+    COUNT(CASE WHEN a.note = 5 THEN 1 END) AS note_5,
+    m.url AS membre_url,
+    r.idc_reponse,
+    r.denomination AS reponse_denomination,
+    r.contenureponse,
+    r.reponsedate,
+    r.idpro
+FROM 
+    pact.avis a
+JOIN 
+    pact.membre m ON m.pseudo = a.pseudo
+LEFT JOIN 
+    pact.reponse r ON r.idc_avis = a.idc
+WHERE 
+    a.idoffre = ?
+GROUP BY 
+    a.pseudo,a.content, a.datepublie,a.companie, a.mois, a.annee, a.titre, a.listimage, a.note, m.url, r.idc_reponse, r.denomination, r.contenureponse, r.reponsedate, r.idpro
+ORDER BY 
+    a.datepublie ASC;
 ");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -215,7 +234,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
         </div>
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
-        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville']?></h3>
+        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville'] ?></h3>
         <?php
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
         ?>
@@ -240,14 +259,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->execute();
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if($typeOffer == "restaurant"){
+            if ($typeOffer == "restaurant") {
                 array_push($tags, ['nomtag' => $result['gammedeprix']]);
             }
 
             foreach ($tags as $tag):
                 if ($tag["nomtag"] != NULL) {
             ?>
-                    <a class="tag" href="search.php?search=<?= $tag["nomtag"]?>"><?php echo htmlspecialchars(str_replace("_"," ",ucfirst(strtolower($tag["nomtag"])))); ?></a>
+                    <a class="tag" href="search.php?search=<?= $tag["nomtag"] ?>"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
                 <?php }
             endforeach;
 
@@ -344,39 +363,68 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <article id="descriptionOffre">
             <?php
-            print_r($avis[0]['moynote']);
-            if($avis[0]['nbnote'] === 0){
+            print_r($avis);
+            if ($avis[0]['nbnote'] === 0) {
                 echo '<p>Pas de note pour le moment</p>';
-            } else{
+            } else {
                 $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
-                $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour la demi-étoile
-                ?>
+                $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
+            ?>
                 <div class="notation">
-                    <?php
-                    // Étoiles pleines
-                    for ($i = 1; $i <= $etoilesPleines; $i++) {
-                        echo '<div class="star pleine"></div>';
-                    }
-                    // Étoile partielle
-                    if ($reste > 0) {
-                        $pourcentageRempli = $reste * 100; // Pourcentage rempli
-                        echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
-                    }
-                    // Étoiles vides
-                    for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
-                        echo '<div class="star vide"></div>';
-                    }
-                    ?>
-                    <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['moynote']; ?> avis)</p>
+                    <div>
+                        <?php
+                        // Étoiles pleines
+                        for ($i = 1; $i <= $etoilesPleines; $i++) {
+                            echo '<div class="star pleine"></div>';
+                        }
+                        // Étoile partielle
+                        if ($reste > 0) {
+                            $pourcentageRempli = $reste * 100; // Pourcentage rempli
+                            echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
+                        }
+                        // Étoiles vides
+                        for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
+                            echo '<div class="star vide"></div>';
+                        }
+                        ?>
+                        <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
+                    </div>
+                    <div class="notedetaille">
+                        <?php
+                        // Adjectifs pour les notes
+                        $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
+
+                        // Trouver le nombre maximum de notes
+                        $maxNoteCount = max($avis[0]["note_1"], $avis[0]["note_2"], $avis[0]["note_3"], $avis[0]["note_4"], $avis[0]["note_5"]);
+
+                        // Affichage des barres de notation
+                        for ($i = 5; $i >= 1; $i--) {
+                            // Calculer le pourcentage en fonction du nombre d'avis pour cette note
+                            $noteCount = isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0;
+                            // Calculer la largeur de la barre, en fonction du nombre d'avis de cette note par rapport à la note la plus populaire
+                            $pourcentageParNote = ($maxNoteCount > 0) ? ($noteCount / $maxNoteCount) * 100 : 0;
+                        ?>
+                            <div class="ligneNotation">
+                                <span><?= $listNoteAdjectif[$i - 1]; ?></span>
+                                <div class="barreDeNotationBlanche">
+                                    <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
+                                </div>
+                                <span>(<?= $noteCount ?>)</span>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
                 </div>
-                <?php 
-                }
-                ?>
+            <?php
+            }
+            ?>
             <section>
                 <h3>Description</h3>
                 <p><?php echo htmlspecialchars($result["description"]); ?></p>
             </section>
         </article>
+
 
 
         <section id="infoComp">
@@ -471,24 +519,24 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <img src="<?php echo $result["urlplan"] ?>">
         <?php
         }
-        
-        if($typeUser === "pro_prive" || $typeUser ==="pro_public"){
+
+        if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
             require_once __DIR__ . "/components/avis/avisPro.php";
-        }else{
+        } else {
         ?>
-        <div class="avis">
-            <nav>
-                <h3>Avis</h3>
-                <h3>Publiez un avis</h3>
-            </nav>
-            
-        <?php
+            <div class="avis">
+                <nav>
+                    <h3>Avis</h3>
+                    <h3>Publiez un avis</h3>
+                </nav>
+
+            <?php
             echo "<div>";
             require_once __DIR__ . "/components/avis/avisMembre.php";
-            echo "</div";  
+            echo "</div";
         }
-        ?>
-        </div>
+            ?>
+            </div>
     </main>
     <?php
     require_once "./components/footer.php";
@@ -583,4 +631,5 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
     <script src="js/setColor.js"></script>
 </body>
+
 </html>
