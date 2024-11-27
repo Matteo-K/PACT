@@ -376,7 +376,7 @@ header>div>a>div {
   padding: 10px;
   border-bottom: 1px solid #ddd;
   list-style: none;
-  margin-left: 20px;
+  padding-left: 20px;
 }
 
 .details-style[open] summary::after {
