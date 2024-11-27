@@ -442,8 +442,10 @@ header>div>a>div {
   transform: translateX(-100%);
 }
 
-.deplace{
-  
+#profileMenu.deplace{
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Conteneur pour l'image et le pseudo */

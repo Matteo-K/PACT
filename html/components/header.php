@@ -177,7 +177,7 @@
             const factu = document.getElementsByClassName("liFact")[0];
 
             function toggleFacture() {
-                
+                profileMenu.classList.toggle("deplace")
             }
             
             factu.addEventListener("click", toggleFacture);
