@@ -2938,7 +2938,7 @@ tbody td:last-child {
   flex-direction: column;
 }
 
-#visit>div[class="languesProp"]>select>option{
+#visit>div[class="languesProp"]>select{
   width: 250px;
   height: 50px;
 }
