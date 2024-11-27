@@ -1,6 +1,5 @@
 <!-- Visite -->
 <?php
-// Initialisation des données à vide
 $visite = [
     "guide" => true,
     "duree" => "",

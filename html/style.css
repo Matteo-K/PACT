@@ -347,7 +347,7 @@ header>div>a>div {
   background-color: var(--background) ;
   color: #000;
   display: flex;
-
+  overflow-y: auto;
   flex-direction: column;
 }
 
@@ -2332,7 +2332,7 @@ tbody td:last-child {
   font-weight: bold;
 }
 
-.infoUser> img, .infoProReponse > img{
+.user >div> img{
   width:2.2em;
   height:2.2em;
 } 
