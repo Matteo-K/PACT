@@ -1,5 +1,5 @@
 <form action="detailsOffer.php" method="post" class="carteIndexPro">
-  <input type="hidden" name="" value="">
+  <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
   <figure>
   <?php $alt = isset($urlImg['url']) && $urlImg ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";?>
     <img src="<?php echo $urlImg; ?>" alt=<?php echo $alt; ?>>
