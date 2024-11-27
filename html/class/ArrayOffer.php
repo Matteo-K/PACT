@@ -95,8 +95,13 @@ class ArrayOffer {
           $options[] = $resOption["nomoption"];
         }
         
-        $stmt = $conn->prepare("SELECT count(note), avg(note) from pact._avis where idoffre = ?");
-        
+        $stmt = $conn->prepare("SELECT avg(note) as moyenne, count(note) as total from pact._avis where idoffre = ? group by idoffre;");
+        $stmt->execute([$offre['idoffre']]);
+        $resNote = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($resNote) {
+          $moyenne = $resNote["moyenne"];
+          $total = $resNote["total"];
+        }
 
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
           $offre['idu'], $offre['nom'],
@@ -113,7 +118,9 @@ class ArrayOffer {
           $offre['codepostal'],
           $offre['statut'],
           transformerHoraires($offre['idoffre'], $offre['listhorairemidi']),
-          transformerHoraires($offre['idoffre'], $offre['listhorairesoir'])
+          transformerHoraires($offre['idoffre'], $offre['listhorairesoir']),
+          $moyenne,
+          $total
         );
       }
     }
