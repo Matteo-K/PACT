@@ -2458,7 +2458,7 @@ tbody td:last-child {
 }
 /** Fin Avis **/
 
-.notation{
+.notation, .notation > div{
   display: flex;
   flex-direction: column;
   justify-content: center;
