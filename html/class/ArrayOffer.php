@@ -87,8 +87,17 @@ class ArrayOffer {
             $this->arrayOffer[$offre['idoffre']] = new Offer("Pas de catégorie");
             break;
         }
+
+        $options = [];
+        $stmt = $conn->prepare("SELECT * FROM pact._option_offre where idoffre = ?");
+        $stmt->execute([$offre['idoffre']]);
+        while ($results = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+          $options[] = $results["nomoption"];
+        }
+
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
-          $offre['idu'], $offre['nom'], 
+          $offre['idu'], $offre['nom'],
+          $offre['nomabonnement'], $options, 
           $offre['description'], $offre['resume'],
           $offre['mail'], $offre['telephone'],
           $offre['urlsite'], $offre['datecrea'],
@@ -158,6 +167,19 @@ class ArrayOffer {
     }
     
     return $arrayWithData;
+  }
+
+  public function displayCardALaUne($array_, $typeUser_, $elementStart_, $nbElement_) {
+    $array = $this->pagination($array_, $elementStart_, $nbElement_);
+    if (count($array) > 0) {
+      foreach ($array as $key => $elem) {
+        if (in_array("EnRelief", $elem->getData()["option"])) {
+          $elem->displayCardALaUne();
+        }
+      }
+    } else {
+      echo "<p>Aucune offre trouvée </p>";
+    }
   }
 
   public function displayArrayCard($array_, $typeUser_, $elementStart_, $nbElement_) {

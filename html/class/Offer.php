@@ -61,6 +61,7 @@ class Offer {
   private $urlSite;
   private $dateCreation;
   private $noteAvg;
+  private $nbAvis;
   private $images;
   private $tags;
   private $ville;
@@ -114,6 +115,19 @@ class Offer {
     require __DIR__."/../components/cardOfferPro.php";
   }
 
+  public function displayCardALaUne() {
+    $idOffre = $this->idOffre;
+    $nomOffre = $this->nomOffre;
+    $resume = $this->resume;
+    $urlImg = $this->images[0];
+    $gammeDePrix = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
+    $ville = $this->ville;
+    $categorie = $this->categorie;
+    $tag = $this->tags;
+    $codePostal = $this->codePostal;
+    require __DIR__."/../components/cardALaUne.php";
+  }
+
   public function filterPagination($idUser_, $typeUser_) {
     if (($typeUser_ == "pro_public" || $typeUser_ == "pro_prive")) {
       return $this->idUser == $idUser_;
@@ -122,7 +136,7 @@ class Offer {
     }
   }
 
-  public function setData($idOffre_, $idUser_, $nomOffre_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $horaireMidi_, $horaireSoir_) {
+  public function setData($idOffre_, $idUser_, $abonnement_, $options_, $nomOffre_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $horaireMidi_, $horaireSoir_) {
     $this->idOffre = $idOffre_;
     $this->statut = $statut_;
     $this->idUser = $idUser_;
@@ -142,6 +156,8 @@ class Offer {
     $this->telephone = $telephone_;
     //$this->urlsite = $urlsite_;
     $this->dateCreation = $dateCreation_;
+    $this->abonnement = $abonnement_;
+    $this->options = $option_;
   }
 
   public function getData() {
