@@ -343,7 +343,7 @@ header>div>a>div {
 
 .factue{
   height: 100%;
-  width: calc(100vw - 286px);
+  width: calc(100vw - 276px);
   background-color: var(--background) ;
   color: #000;
   display: flex;
