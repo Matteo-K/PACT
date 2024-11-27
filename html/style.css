@@ -620,7 +620,7 @@ header ul+div {
   min-height: 70vh;
 }
 
-#index figure {
+#index form {
   color: var(--text-light);
   position: relative;
   width: 33%;
