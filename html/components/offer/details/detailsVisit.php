@@ -103,8 +103,7 @@ if ($categorie["_visite"]) {
 
         <?php
         // Connexion à la base de données (MySQL avec PDO)
-        $host = 'localhost';
-        $dbname = 'pact'; // Remplacez par le nom de votre base de données
+        $dbname = 'plpgsql'; // Remplacez par le nom de votre base de données
         $username = 'admin1'; // Remplacez par votre utilisateur
         $password = 'motdepasse1'; // Remplacez par votre mot de passe
         
