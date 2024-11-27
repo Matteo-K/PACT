@@ -1666,6 +1666,34 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
+.modifierBut.disabled {
+  background-color: #ccc;
+  color: #666;
+  border: solid #ccc 1px;
+  cursor: not-allowed;
+}
+
+/* Supprimer l'effet hover pour les boutons désactivés */
+.modifierBut.disabled:hover {
+  background-color: #ccc;
+  color: #666;
+  border: solid #ccc 1px;
+}
+
+/* Style du message au survol */
+.hover-message {
+  display: none;
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Afficher le message lorsque le bouton est survolé */
+.modifierBut.disabled:hover + .hover-message {
+  display: block;
+}
+
 #checkAddressBtn,
 .modifierBut {
   background-color: #1ca4ed;
@@ -1690,15 +1718,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   color: #1ca4ed;
 }
 
-#checkAddressBtn:active {
-  background-color: #034d7c;
-}
 
 #checkAddressBtn:focus,
 .modifierBut:focus {
   outline: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
+
+#checkAddressBtn:active {
+  background-color: #034d7c;
+}
+
 
 .searchTitre,
 .villesearch,
