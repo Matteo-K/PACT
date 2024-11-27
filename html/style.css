@@ -812,8 +812,13 @@ header ul+div {
     padding-top: 0;
   }
 
+  .carteIndexPro, .carteIndex {
+    height: 200px;
+    min-width: 150px;
+  }
+
   #index img {
-    height: 300px;
+    height: 200px;
   }
 
   .carteIndexPro {
@@ -846,8 +851,9 @@ header ul+div {
     height: 1rem;
   }
 
-  .StatutAffiche {
-    display: none;
+  #index form:hover .information,
+  #index form:hover .blcTag {
+    display: none !important;
   }
 }
 
