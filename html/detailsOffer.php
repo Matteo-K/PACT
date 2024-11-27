@@ -98,6 +98,17 @@ $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = :idoffre OR
 $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt = $conn->prepare("
+    SELECT a.*, AVG(a.note) OVER() AS moyNote,SUM(a.note) OVER() AS sommeNote, m.url AS membre_url,r.idc_reponse,r.denomination AS reponse_denomination, r.contenureponse, r.reponsedate, r.idpro
+    FROM pact.avis a
+    JOIN pact.membre m ON m.pseudo = a.pseudo
+    LEFT JOIN pact.reponse r ON r.idc_avis = a.idc
+    WHERE a.idoffre = ? 
+    ORDER BY a.datepublie ASC
+");
+$stmt->execute([$idOffre]);
+$avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -332,7 +343,20 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
         <article id="descriptionOffre">
-            <p>Pas de note pour le moment</p>
+
+    
+            <?php
+            print_r($avis);
+            if($avis['sommeNote'] === 0){
+                echo '<p>Pas de note pour le moment</p>';
+            } else{
+            ?>
+            <div class="notation">
+                <div
+            </div>
+            <?php
+            }
+            ?>
             <section>
                 <h3>Description</h3>
                 <p><?php echo htmlspecialchars($result["description"]); ?></p>

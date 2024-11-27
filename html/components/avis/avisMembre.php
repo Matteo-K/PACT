@@ -1,15 +1,4 @@
 <?php
-$stmt = $conn->prepare("
-    SELECT a.*, m.url AS membre_url,r.idc_reponse,r.denomination AS reponse_denomination, r.contenureponse, r.reponsedate, r.idpro
-    FROM pact.avis a
-    JOIN pact.membre m ON m.pseudo = a.pseudo
-    LEFT JOIN pact.reponse r ON r.idc_avis = a.idc
-    WHERE a.idoffre = ? 
-    ORDER BY a.datepublie ASC
-");
-$stmt->execute([$idOffre]);
-$avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 $stmt = $conn->prepare("SELECT * from pact.proprive where idu = ?");
 $stmt->execute([$offre[0]['idu']]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
