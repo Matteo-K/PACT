@@ -7,6 +7,7 @@ $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $date = NEW DateTime();
+$dateString = $date->format('Y-m-d');
 
 foreach ($results as $key => $value) {
     $dateLancement = NEW DateTime($value['datelancement']);
