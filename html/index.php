@@ -1,7 +1,5 @@
 <?php
 require_once "config.php";
-header("Location: search.php");
-exit();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
