@@ -231,12 +231,12 @@ function filtrerParPeriode(offers) {
 
 
 // Fonction de filtre par lieu
-function filtrerParLieu(offers) {
-  const lieuSelection = [];
+// function filtrerParLieu(offers) {
+//   const lieuSelection = [];
 
 
-  return offers.filter(offer => lieuSelection.includes(offer.note));
-}
+//   return offers.filter(offer => lieuSelection.includes(offer.note));
+// }
 
 
 // Fonction global
@@ -432,7 +432,7 @@ function avisSearch(offer) {
 // Événements des tris
 radBtnEnAvant.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 
-// note
+// notes
 radBtnNoteCroissant.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 radBtnNoteDecroissant.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 
@@ -440,7 +440,7 @@ radBtnNoteDecroissant.addEventListener("click", () => sortAndFilter(arrayOffer, 
 radBtnprixCroissant.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 radBtnPrixDecroissant.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 
-// date
+// dates
 radBtnDateRecent.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 radBtnDateAncien.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 
@@ -458,7 +458,7 @@ chkBxNote5.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-
 selectPrixMin.addEventListener("change", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 selectPrixMax.addEventListener("change", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 
-// statut
+// statuts
 chkBxOuvert.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 chkBxFerme .addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 
@@ -469,7 +469,7 @@ chkBxActivite.addEventListener("click", () => sortAndFilter(arrayOffer, (nbEleme
 chkBxSpectacle.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 chkBxRestauration.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 
-// date
+// dates
 dateDepart.addEventListener("change", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 heureDebut.addEventListener("change", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 dateFin.addEventListener("change", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
