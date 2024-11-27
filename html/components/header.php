@@ -66,6 +66,7 @@
                         <?php if ($typeUser === "pro_public" || $typeUser === "pro_prive") {?>
                             <li><a href="search.php">Mes offres</a></li>
                             <li><a href="manageOffer.php">Créer une offre</a></li>
+                            <li class="liFact">Mes Factures</li>
                         <?php } ?>
                     </ul>
                     <div>
@@ -157,6 +158,7 @@
 
 <script>
     try {
+        const body = document.body;
         document.addEventListener("DOMContentLoaded", function() {
             const profilePic = document.getElementById("profilePic");
             const profileMenu = document.getElementById("profileMenu");
@@ -167,6 +169,7 @@
                 if (profileMenu.classList.contains("show")) {
                     profileMenu.classList.remove("show");
                     profileMenu.classList.add("hide");
+                    body.classList.remove('no-scroll');
 
                     // Retirer la classe "hide" après la transition
                     setTimeout(() => {
@@ -175,6 +178,7 @@
                 } else {
                     profileMenu.classList.remove("hide");
                     profileMenu.classList.add("show");
+                    body.classList.add('no-scroll');
                 }
             }
 

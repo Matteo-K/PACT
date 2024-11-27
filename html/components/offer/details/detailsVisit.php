@@ -1,5 +1,6 @@
 <!-- Visite -->
 <?php
+$langue = [];
 $visite = [
     "guide" => true,
     "duree" => "",
@@ -8,6 +9,12 @@ $visite = [
     "hadicap" => [],
     "langue" => []
 ];
+
+$stmt = $conn->prepare("SELECT * from pact._langue");
+$stmt->execute();
+while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $langue[] = $result["langue"];
+}
 
 // Si la visite était déà existante, on récupère les données
 if ($categorie["_visite"]) {
@@ -92,24 +99,21 @@ if ($categorie["_visite"]) {
         <input type="text" id="inputTag" name="inputTag"
             placeholder="Entrez & selectionnez les langue proposée pour votre visite">
 
-        <!--
+        
         <select name="langue" id="selectionLangue">
-            <option value="Français">Français</option>
-            <option value="Anglais">Anglais</option>
-            <option value="Espagnol">Espagnol</option>
-        </select>-->
-
-
-
-
+            <option value="selectionLangue">-- Sélectionner une langue --</option>
+            <?php foreach ($langue as $key => $value) { ?>
+                <option value="<?php echo $value ?>"><?php echo $value ?></option>
+            <?php } ?>
+        </select>
 
         <section id="sectionLangue">
             <!-- Les langues ajoutées apparaîtront ici -->
         </section>
-
-
-
-        
-
-        <!-- BALISE SELECT EN HTML -->
 </section>
+
+
+<!-- Script Js --><!--
+<script>
+
+</script>-->
