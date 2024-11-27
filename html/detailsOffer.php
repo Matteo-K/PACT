@@ -369,6 +369,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                     <p><?php echo number_format($avis[], 1); ?> / 5 (<?php echo $avis['nbnote']; ?> avis)</p>
                 </div>
+                <?php 
+                }
+                ?>
             <section>
                 <h3>Description</h3>
                 <p><?php echo htmlspecialchars($result["description"]); ?></p>
@@ -580,5 +583,4 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
     <script src="js/setColor.js"></script>
 </body>
-
 </html>
