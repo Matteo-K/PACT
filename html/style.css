@@ -615,7 +615,7 @@ header ul+div {
   text-align: center;
 }
 
-#ALaUne div, #proposeRecherche, #voirPlus {
+#ALaUne > div, #proposeRecherche, #voirPlus {
   display: flex;
   flex-flow: row wrap;
   margin-bottom: 20px;

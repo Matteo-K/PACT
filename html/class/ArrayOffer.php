@@ -121,7 +121,7 @@ class ArrayOffer {
           $offre['statut'],
           transformerHoraires($offre['idoffre'], $offre['listhorairemidi']),
           transformerHoraires($offre['idoffre'], $offre['listhorairesoir']),
-          $moyenne,
+          floatval($moyenne),
           $total
         );
       }
