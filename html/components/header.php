@@ -74,7 +74,7 @@
                         <a id="logoutButton" class="buttonMenu" href="logout.php">Déconnexion</a>
                     </div>
                 </div>
-                <div class="factue hidden">
+                <div class="factue">
                     <h1>Mes Factures</h1>
                     <div class="details">
                     <?php 
@@ -169,12 +169,23 @@
 
 <script>
     try {
-        const body = document.body;
         document.addEventListener("DOMContentLoaded", function() {
+            const body = document.body;
             const profilePic = document.getElementById("profilePic");
             const profileMenu = document.getElementById("profileMenu");
             const backButton = document.getElementById("backButton");
+            const factu = document.getElementsByClassName("liFact")[0];
+            const DivFactue = document.getElementsByClassName("factue")[0];
 
+            function toggleFacture() {
+                if (DivFactue.style.display === "none") {
+                    DivFactue.style.display = "flex"; // Affiche la div
+                } else {
+                    DivFactue.style.display = "none"; // Cache la div
+                }
+            }
+            
+            factu.addEventListener("click", toggleFacture);
             // Fonction pour afficher/cacher le menu
             function toggleMenu() {
                 if (profileMenu.classList.contains("show")) {

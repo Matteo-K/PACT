@@ -104,11 +104,12 @@ if (isset($_POST['pageBefore'])) {
         $anciennesImagesTotal = [];
         $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = ?");
         $stmt->execute([$idOffre]);
+        echo "<pre>";
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
           $anciennesImagesTotal[] = $result["url"];
           echo $result["url"];
         }
-        echo "cbon";
+        echo "affiche   select * from illustre where idoffre = *        </pre>";
 
         $anciennesImagesRestantes = $_POST["imageExistante"] ?? [];
 
@@ -138,18 +139,19 @@ if (isset($_POST['pageBefore'])) {
 
 
           $fichiers = glob($dossierTemp . "*"); // TESTTTT
+          echo "<pre>";
           foreach ($fichiers as $fichier) {
-            echo $fichier; 
+            echo $fichier . "     "; 
           }
 
-          echo "     (Dossier temp)                         ";
+          echo "     (Dossier temp)                   ";
 
           $fichiers = glob($dossierImg . "*"); // TESTTTT
           foreach ($fichiers as $fichier) {
-            echo $fichier ; 
+            echo $fichier . "     " ; 
           }
 
-          echo "    (Dossier final img avant clear)                         ";
+          echo "    (Dossier final img avant clear)                        </pre>";
 
           foreach ($anciennesImagesTotal as $imgA) {
             // Supprime l'image du serveur et de la BDD
@@ -162,12 +164,13 @@ if (isset($_POST['pageBefore'])) {
             }
           } 
           
+          echo "<pre>";
           $fichiers = glob($dossierImg . "*"); // TESTTTT
           foreach ($fichiers as $fichier) {
-            echo $fichier . "                         "; 
+            echo $fichier . "     "; 
           }
 
-          echo "(Dossier final img après clear)                         ";
+          echo "(Dossier final img après clear)                         </pre>";
 
           //On remet les anciennes images gardées dans la BDD et sur le serveur 
           foreach ($anciennesImagesRestantes as $num => $lien) {
@@ -191,20 +194,22 @@ if (isset($_POST['pageBefore'])) {
           }
         }
 
+          echo "<pre>";
+
           $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = ?");
           $stmt->execute([$idOffre]);
           while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $anciennesImagesTotal[] = $result["url"];
             echo $result["url"] . "        ";
           }
-            echo "cbon";
+            echo " SELECT * FROM pact._illustre WHERE idoffre = ?                        " ;
 
         $fichiers = glob($dossierImg . "*"); // TESTTTT
         foreach ($fichiers as $fichier) {
           echo $fichier .  "       "; 
         }
 
-          echo "(Dossier final img après ajout loaded photos)                         ";
+          echo "(Dossier final img après ajout loaded photos)                         </pre>";
 
         $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
         $nbAnciennesImages = count($anciennesImagesRestantes);
@@ -242,12 +247,13 @@ if (isset($_POST['pageBefore'])) {
           }
         }
 
+        echo "<pre>";
         $fichiers = glob($dossierImg . "*"); // TESTTTT
           foreach ($fichiers as $fichier) {
             echo $fichier . "      "; 
           }
 
-          echo "(Dossier final img après ajout nouvelles photos)                          ";
+          echo "(Dossier final img après ajout nouvelles photos)                          </pre>";
 
 
         // Ajout des informations suivant la catégorie de l'offre
