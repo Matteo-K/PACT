@@ -852,6 +852,7 @@ header ul+div {
     text-wrap: nowrap;
     font-size: 0.8rem;
     font-weight: bold;
+    text-align: center;
   }
 
   #index .star {
@@ -861,6 +862,7 @@ header ul+div {
 
   .blcTag, .information {
     display: flex;
+    padding: 0 10px;
   }
 
   .blcStarALaUne + span {
@@ -3814,8 +3816,8 @@ p[id="legendeBoutonLienPro"] {
   }
 
   h1[id="pasDeCompteTitre"] {
-    margin: 40px 10px;
-    font-size: 45px;
+    margin: 40px 10px 0;
+    font-size: 35px;
   }
 
   .connexion-compte form {
