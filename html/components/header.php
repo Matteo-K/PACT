@@ -174,10 +174,8 @@
             const profilePic = document.getElementById("profilePic");
             const profileMenu = document.getElementById("profileMenu");
             const backButton = document.getElementById("backButton");
-            const factu = document.getElementsByClassName("liFact")
-            const DivFactue = document.getElementsByClassName("factue");
-
-            console.log(factu)
+            const factu = document.getElementsByClassName("liFact")[0];
+            const DivFactue = document.getElementsByClassName("factue")[0];
 
             function toggleFacture() {
                 if (DivFactue.style.display === "none") {
