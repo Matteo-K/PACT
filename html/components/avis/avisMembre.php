@@ -27,13 +27,12 @@ function formatDateDiff($date)
 
     // Déterminer le message à afficher
     if ($diffInDays === 0) {
-        // La date est aujourd'hui, afficher la différence en heures
-        if ($diffInHours > 0) {
-            return "Rédigé il y a $diffInHours heure" . ($diffInHours > 1 ? 's' : '');
-        } elseif ($diffInMinutes > 0) {
-            return "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '');
-        } else {
+        if($diffInMinutes === 0){
             return "Rédigé à l'instant";
+        }else if ($diffInMinutes > 0) {
+            return "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '');
+        }else if ($diffInHours > 0) {
+            return "Rédigé il y a $diffInHours heure" . ($diffInHours > 1 ? 's' : '');
         }
     } elseif ($diffInDays === 1) {
         // La date est hier
