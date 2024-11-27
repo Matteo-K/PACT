@@ -71,11 +71,11 @@ const chkBxOuvert = document.querySelector("#ouvert");
 const chkBxFerme = document.querySelector("#ferme");
 
 // catégories
+const chkBxParc = document.querySelector("#Parc");
 const chkBxVisite = document.querySelector("#Visite");
 const chkBxActivite = document.querySelector("#Activite");
 const chkBxSpectacle = document.querySelector("#Spectacle");
 const chkBxRestauration = document.querySelector("#Restauration");
-const chkBxParc = document.querySelector("#Parc");
 
 // dates
 const dateDepart = document.querySelector("#dateDepart");
@@ -181,9 +181,12 @@ function filtrerParNotes(offers) {
 
 // Fonction de filtre par prix
 function filtrerParPrix(offers) {
+  const prixMin = parseInt(selectPrixMin.value);
+  const prixMax = parseInt(selectPrixMax.value);
+
   return offers.filter(offer => {
     const prixOffre = offer.prix;
-    return prixOffre >= selectPrixMin && prixOffre <= selectPrixMax;
+    return prixOffre >= prixMin && prixOffre <= prixMax;
   });
 }
 
@@ -194,6 +197,10 @@ function filtrerParStatuts(offers) {
 
   if (chkBxOuvert.checked) statusSelection.push("ouvert");
   if (chkBxFerme.checked) statutsSelection.push("ferme");
+
+  if (statutsSelection.length == 0) {
+    statutsSelection = ["ouvert", "ferme"];
+  }
 
   return offers.filter(offer => statutsSelection.includes(offer.note));
 }
@@ -448,22 +455,24 @@ chkBxNote4.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-
 chkBxNote5.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 
 // prix
-selectPrixMin.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
-selectPrixMax.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
+selectPrixMin.addEventListener("change", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
+selectPrixMax.addEventListener("change", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 
 // statut
 chkBxOuvert.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 chkBxFerme .addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 
 // catégories
+chkBxParc.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 chkBxVisite.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 chkBxActivite.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 chkBxSpectacle.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 chkBxRestauration.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
-chkBxParc.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
 
 // date
-dateDepart.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
-heureDebut.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
-dateFin.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
-heureFin.addEventListener("click", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
+dateDepart.addEventListener("change", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
+heureDebut.addEventListener("change", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
+dateFin.addEventListener("change", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
+heureFin.addEventListener("change", () => sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement));
+
+// sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement);
