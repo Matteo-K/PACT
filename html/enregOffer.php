@@ -205,7 +205,6 @@ if (isset($_POST['pageBefore'])) {
         }
 
           echo "(Dossier final img après ajout loaded photos)                         ";
-        }
 
         $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
         $nbAnciennesImages = count($anciennesImagesRestantes);
