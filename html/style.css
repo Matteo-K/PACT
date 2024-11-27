@@ -2799,7 +2799,7 @@ tbody td:last-child {
   object-fit: cover;
 }
 
-/*------------------------ CSS BENJAMIN MEME PAGE QUE EWEN ------------------------------------------
+/*------------------------ CSS BENJAMIN OFFRE PARTICULIERE ------------------------------------------
 -----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------*/
 
@@ -2936,7 +2936,10 @@ tbody td:last-child {
   flex-direction: column;
 }
 
-
+#visit>div[class="languesProp"]>select>option{
+  width: 250px;
+  height: 50px;
+}
 
 #park>div[class="ageMinP"] {
   display: flex;
