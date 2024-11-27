@@ -224,7 +224,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>" 
                         type="submit"
                         <?php if ($offre[0]['statut'] === 'actif') { ?>
-                            onclick="return false;" <!-- Empêcher le clic -->
+                            onclick="return false;"
                         <?php } ?>
                     >
                         <?php echo "Modifier offre"; ?>
