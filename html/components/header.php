@@ -189,10 +189,6 @@
                     profileMenu.classList.add("hide");
                     body.classList.remove('no-scroll');
 
-                    // Retirer la classe "hide" après la transition
-                    setTimeout(() => {
-                        profileMenu.classList.remove("hide");
-                    }, 300); // Temps de la transition en ms
                 } else {
                     profileMenu.classList.add("show");
                     profileMenu.classList.remove("hide");

@@ -1,14 +1,14 @@
-<form action="detailsOffer.php" method="post">
+<form action="detailsOffer.php" method="post" class="carteIndexPro">
   <input type="hidden" name="" value="">
   <figure>
   <?php $alt = isset($urlImg['url']) && $urlImg ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";?>
     <img src="<?php echo $urlImg; ?>" alt=<?php echo $alt; ?>>
     <figcaption>
-      <h3><?php echo $nomOffre ?></h3>
       <div>
-        <div id="detailsCardOffer">
-          <div id="noteALaUne">
-            <span id="blcStarALaUne">
+        <div class="detailsCardOffer">
+          <h3><?php echo $nomOffre ?></h3>
+          <div class="noteALaUne">
+            <span class="blcStarALaUne">
               <?php  
               $etoilesPleines = floor($noteAvg); // Nombre entier d'étoiles pleines
               $reste = $noteAvg - $etoilesPleines;
@@ -29,22 +29,30 @@
             </span>
             <span><?php echo $noteAvg ?>/5</span>
             <span>(<?php echo $nbNote ?> avis)</span>
-            <?php if ($categorie == "Restaurant") { ?>
-              <span> ⋅ <?php echo $gammeDePrix ?></span>
+          </div>
+          <adresse><?php echo $ville ?>, <?php echo $codePostal ?></adresse>
+        </div>
+        <div class="dataOffre">
+          <span class="StatutAffiche <?php echo $statut=='actif'?"":"horslgnOffre";?>">
+              <?php echo $statut=='actif'?"En-Ligne":"Hors-Ligne";?>
+          </span>
+          <span class="abonnement">
+              <?php echo $abonnement ?>
+          </span>
+          <div>
+            <?php foreach ($options as $option) { ?>
+              <span><?php echo $option ?></span>
             <?php } ?>
           </div>
-          <p><?php echo $resume ?></p>
         </div>
-        <div id="localisationCard">
-          <adresse><?php echo $ville ?>, <?php echo $codePostal ?></adresse>
+        <div class="blcTag">
           <h4>Catégories&nbsp;:&nbsp;</h4>
-          <div id="tagsCard">
+          <div class="tagsCard">
             <?php foreach ($tags as $key => $tag) { ?>
               <span class="tagIndex"><?php echo $tag ?></span>
             <?php } ?>
           </div>
         </div>
-      </div>
     </figcaption>
   </figure>
 </form>
