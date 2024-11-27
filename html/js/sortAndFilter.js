@@ -34,8 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   sortAndFilter(arrayOffer, nbElement * (page-1), nbElement);
 
-  document.querySelectorAll(".searchoffre form").forEach(form => {
+  const forms = document.querySelectorAll(".search form");
+  forms.forEach(form => {
     form.addEventListener("click", (event) => {
+      if (event.target.tagName.toLowerCase() === "a") {
+        return;
+      }
       event.preventDefault();
       form.submit();
     });
@@ -298,6 +302,9 @@ function displayOffer(offer) {
   form.appendChild(createCard(offer));
 
   form.addEventListener("click", (event) => {
+    if (event.target.tagName.toLowerCase() === "a") {
+      return;
+    }
     event.preventDefault();
     form.submit();
   });
@@ -394,9 +401,10 @@ function ajouterTag(offer) {
 
   offer.tags.forEach(element => {
 
-    let tag = document.createElement("span");
+    let tag = document.createElement("a");
     tag.classList.add("searchTag");
     tag.textContent = element.replace("_", " ");
+    tag.setAttribute("href", "search.php?search="+element.replace("_", "+"));
     tags.appendChild(tag);
   });
 
@@ -456,23 +464,25 @@ function displayStar(offer) {
   const etoilesPleines = Math.floor(offer.noteAvg);
   const reste = offer.noteAvg - etoilesPleines;
 
-  for (let i = 0; i < etoilesPleines; i++) {
-    const star = document.createElement('div');
+  for (let i = 1; i <= etoilesPleines; i++) {
+    let star = document.createElement('div');
     star.classList.add('star', 'pleine');
     container.appendChild(star);
   }
-
+  
   if (reste > 0) {
-    const pourcentageRempli = reste * 100; // Pourcentage rempli
-    const starPartielle = document.createElement('div');
+    let pourcentageRempli = reste * 100;
+    let starPartielle = document.createElement('div');
     starPartielle.classList.add('star', 'partielle');
     starPartielle.style.setProperty('--pourcentage', `${pourcentageRempli}%`);
     container.appendChild(starPartielle);
   }
-
-  const etoilesVides = 5 - etoilesPleines - (reste > 0 ? 1 : 0);
-  for (let i = 0; i < etoilesVides; i++) {
-    const star = document.createElement('div');
+  
+  let totalEtoiles = 5;
+  let etoilesRestantes = totalEtoiles - etoilesPleines - (reste > 0 ? 1 : 0);
+  
+  for (let i = 0; i < etoilesRestantes; i++) {
+    let star = document.createElement('div');
     star.classList.add('star', 'vide');
     container.appendChild(star);
   }

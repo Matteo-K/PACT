@@ -690,6 +690,7 @@ header ul+div {
   align-items: center;
   gap: 10px;
   font-size: 0.875em;
+  flex-flow: row wrap;
 }
 
 .blcStarALaUne {
@@ -1666,6 +1667,46 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
+.modifierBut.disabled {
+  background-color: #ccc;
+  color: #666;
+  border: solid #ccc 1px;
+  cursor: not-allowed;
+}
+
+/* Supprimer l'effet hover pour les boutons désactivés */
+.modifierBut.disabled:hover {
+  background-color: #ccc;
+  color: #666;
+  border: solid #ccc 1px;
+}
+
+/* Style du message au survol */
+/* Conteneur pour positionner le message */
+.form-container {
+  position: relative; /* Nécessaire pour le positionnement absolu */
+}
+
+/* Style du message */
+.hover-message {
+  display: none; /* Caché par défaut */
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute; /* Permet de sortir du flux normal */
+  top: 100%; /* Place le message sous le bouton */
+  left: 0; /* Aligne le message avec le bouton */
+  margin-top: 5px; /* Un léger espace */
+  white-space: nowrap; /* Empêche les retours à la ligne */
+  z-index: 10; /* Gère les superpositions */
+}
+
+/* Afficher le message lors du survol du bouton désactivé */
+.modifierBut.disabled:hover + .hover-message {
+  display: block;
+}
+
+
 #checkAddressBtn,
 .modifierBut {
   background-color: #1ca4ed;
@@ -1690,15 +1731,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   color: #1ca4ed;
 }
 
-#checkAddressBtn:active {
-  background-color: #034d7c;
-}
 
 #checkAddressBtn:focus,
 .modifierBut:focus {
   outline: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
+
+#checkAddressBtn:active {
+  background-color: #034d7c;
+}
+
 
 .searchTitre,
 .villesearch,
@@ -1778,6 +1821,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 0.7em;
   margin-right: 5px;
   display: inline-block;
+}
+
+.searchTag:hover {
+  background-color: var(--secondary);
 }
 
 .searchNote {
@@ -1862,6 +1909,20 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 1em;
   margin-right: 5px;
   display: inline-block;
+}
+
+.blcStarSearch {
+  display: flex;
+}
+
+.noteSearch {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.search .star.vide {
+  background-color: var(--secondary);
 }
 
 /*##### Pagination #####*/
