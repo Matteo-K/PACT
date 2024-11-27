@@ -622,9 +622,12 @@ header ul+div {
 
 #index form {
   color: var(--text-light);
-  position: relative;
   width: 33%;
   height: 300px;
+}
+
+#index figure {
+  position: relative;
 }
 
 #index img {
