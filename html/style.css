@@ -625,6 +625,10 @@ header ul+div {
   text-align: center;
 }
 
+.carteIndex figcaption > h3 {
+  text-align: center;
+}
+
 .carteIndexPro, .carteIndex {
   display: flex;
   flex-flow: column wrap;
@@ -732,21 +736,11 @@ header ul+div {
   gap: 8px;
 }
 
-.carteIndexPro a {
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.875em;
-  background-color: var(--accent);
-}
-
-.carteIndexPro a {
-  background-color: var(--secondary);
-}
-
-.blcTag h4 {
+.blcTag h4, .localisationCard h4 {
   font-size: 1em;
   font-weight: bold;
   margin-bottom: 10px;
+  padding-left: 20px;
 }
 
 .tagsCard {
@@ -769,7 +763,7 @@ header ul+div {
 }
 
 .tagIndex:hover {
-  background-color: var(--text-light);
+  background-color: var(--secondary);
 }
 
 #voirPlus {
