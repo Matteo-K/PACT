@@ -175,14 +175,9 @@
             const profileMenu = document.getElementById("profileMenu");
             const backButton = document.getElementById("backButton");
             const factu = document.getElementsByClassName("liFact")[0];
-            const DivFactue = document.getElementsByClassName("factue")[0];
 
             function toggleFacture() {
-                if (DivFactue.style.display === "none") {
-                    DivFactue.style.display = "flex"
-                } else {
-                    DivFactue.style.display = "none"; // Cache la div
-                }
+                
             }
             
             factu.addEventListener("click", toggleFacture);

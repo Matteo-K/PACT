@@ -130,6 +130,22 @@ class Offer {
     require __DIR__."/../components/cardALaUne.php";
   }
 
+  public function displayCardALaUnePro() {
+    $idOffre = $this->idOffre;
+    $nomOffre = $this->nomOffre;
+    $resume = $this->resume;
+    $urlImg = $this->images[0];
+    $gammeDePrix = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
+    $ville = $this->ville;
+    $categorie = $this->categorie;
+    $tags = $this->tags;
+    $noteAvg = $this->noteAvg;
+    $nbNote = $this->nbNote;
+    $codePostal = $this->codePostal;
+    $statut = $this->statut;
+    require __DIR__."/../components/cardALaUnePro.php";
+  }
+
   public function filterPagination($idUser_, $typeUser_) {
     if (($typeUser_ == "pro_public" || $typeUser_ == "pro_prive")) {
       return $this->idUser == $idUser_;
