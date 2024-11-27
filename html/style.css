@@ -2326,7 +2326,7 @@ tbody td:last-child {
   font-weight: bold;
 }
 
-.user >div> img{
+.infoUser> img, .infoProReponse > img{
   width:2.2em;
   height:2.2em;
 } 
@@ -2397,7 +2397,7 @@ tbody td:last-child {
 }
 
 .messageAvisReponse > div + div{
-  display: flexx;
+  display: flex;
   margin: 1em;
 }
 
