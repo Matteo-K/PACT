@@ -438,7 +438,7 @@ header>div>a>div {
 
 #profileMenu.hide {
   visibility: visible;
-  opacity: 0;
+  opacity: 1;
   transform: translateX(100vw);
 }
 
