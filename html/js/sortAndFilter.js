@@ -174,8 +174,11 @@ function filtrerParNotes(offers) {
   if (notesSelection.length == 0) {
     notesSelection = [1, 2, 3, 4, 5];
   }
-
-  return offers.filter(offer => notesSelection.includes(offer.note));
+  
+  return offers.filter(offer => {
+    const noteArrondie = Math.ceil(offer.noteAvg);
+    return notesSelection.includes(noteArrondie);
+  });
 }
 
 
@@ -195,14 +198,14 @@ function filtrerParPrix(offers) {
 function filtrerParStatuts(offers) {
   const statutsSelection = [];
 
-  if (chkBxOuvert.checked) statusSelection.push("ouvert");
+  if (chkBxOuvert.checked) statutsSelection.push("ouvert");
   if (chkBxFerme.checked) statutsSelection.push("ferme");
 
   if (statutsSelection.length == 0) {
     statutsSelection = ["ouvert", "ferme"];
   }
 
-  return offers.filter(offer => statutsSelection.includes(offer.note));
+  return offers.filter(offer => statutsSelection.includes(offer.statut));
 }
 
 
