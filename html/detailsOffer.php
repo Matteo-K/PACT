@@ -343,15 +343,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
         <article id="descriptionOffre">
-
-    
             <?php
-            print_r($avis['moynote']);
-            if($avis['nbnote'] === 0){
+            print_r($avis[0]['moynote']);
+            if($avis[0]['nbnote'] === 0){
                 echo '<p>Pas de note pour le moment</p>';
             } else{
-                $etoilesPleines = floor($moyenne); // Nombre entier d'étoiles pleines
-                $reste = $moyenne - $etoilesPleines; // Reste pour la demi-étoile
+                $etoilesPleines = floor($$avis[0]['moynote']); // Nombre entier d'étoiles pleines
+                $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour la demi-étoile
                 ?>
                 <div class="notation">
                     <?php
@@ -369,9 +367,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         echo '<div class="star vide"></div>';
                     }
                     ?>
-                    <p><?php echo number_format($avis[], 1); ?> / 5 (<?php echo $avis['nbnote']; ?> avis)</p>
+                    <p><?php echo number_format($avis, 1); ?> / 5 (<?php echo $avis[0]['moynote']; ?> avis)</p>
                 </div>
-                <?php
+                <?php 
+                }
+                ?>
             <section>
                 <h3>Description</h3>
                 <p><?php echo htmlspecialchars($result["description"]); ?></p>
@@ -583,5 +583,4 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
     <script src="js/setColor.js"></script>
 </body>
-
 </html>
