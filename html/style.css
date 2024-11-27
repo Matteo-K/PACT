@@ -348,6 +348,7 @@ header>div>a>div {
   color: #000;
   display: flex;
   overflow-y: auto;
+  overflow-x: hidden;
   flex-direction: column;
 }
 
