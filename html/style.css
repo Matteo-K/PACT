@@ -808,6 +808,14 @@ header ul+div {
 
 /* Responsiveness */
 @media (max-width: 768px) {
+  #index {
+    padding-top: 0;
+  }
+
+  #index img {
+    height: 300px;
+  }
+
   .carteIndexPro {
     margin: 10px;
   }
@@ -831,6 +839,15 @@ header ul+div {
 
   .StatutAffiche {
     margin-bottom: 10px;
+  }
+
+  #index .star {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .StatutAffiche {
+    display: none;
   }
 }
 
