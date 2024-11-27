@@ -25,5 +25,21 @@ class Restaurant extends Offer {
       "UrlMenu" => $this->urlMenu
     ]);
   }*/
+
+  public function displayCardALaUne() {
+    $offre = parent::getData();
+    $idOffre = $offre["idOffre"];
+    $nomOffre = $offre["nomOffre"];
+    $resume = $offre["resume"];
+    $urlImg = $offre["images"][0];
+    $gammeDePrix = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
+    $ville = $offre["ville"];
+    $categorie = $offre["categorie"];
+    $tags = $offre["tags"];
+    $noteAvg = $offre["noteAvg"];
+    $nbNote = $offre["nbNote"];
+    $codePostal = $offre["codePostal"];
+    require __DIR__."/../components/cardALaUne.php";
+  }
 }
 ?>

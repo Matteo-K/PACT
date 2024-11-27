@@ -350,6 +350,7 @@ header>div>a>div {
   overflow-y: auto;
   overflow-x: hidden;
   flex-direction: column;
+  transition: opacity 0.5s ease, height 0.5s ease;
 }
 
 .details{
@@ -492,11 +493,10 @@ header>div>a>div {
 #profileMenu ul li {
   margin: 20px 0;
   font-size: 30px;
-  font-family: "Belanosima", sans-serif;
   font-weight: bold;
 }
 
-.menuHeader a {
+.menuHeader a,.liFact {
   color: #fff;
   text-decoration: none;
   transition: color 0.5s;
@@ -505,7 +505,11 @@ header>div>a>div {
   border-radius: 10px;
 }
 
-#profileMenu ul a:hover {
+.liFact{
+  width: fit-content;
+}
+
+#profileMenu ul a:hover,.liFact:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -614,7 +618,7 @@ header ul+div {
   text-align: center;
 }
 
-#ALaUne div, #proposeRecherche, #voirPlus {
+#ALaUne > div, #proposeRecherche, #voirPlus {
   display: flex;
   flex-flow: row wrap;
   margin-bottom: 20px;
@@ -1991,6 +1995,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   #filtre {
     transform: translateX(100%);
+    padding-left: 20px;
   }
 
   #trifiltre>div {
@@ -2456,14 +2461,32 @@ tbody td:last-child {
 }
 /** Fin Avis **/
 
+
+.notation > div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notation, .notedetaille {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .notedetaille .ligneNotation {
   display: flex;
   align-items: center;
   margin: 5px 0;
 }
 
+.ligneNotation > span {
+  width: 10em;
+}
+
 .notedetaille .barreDeNotationBlanche {
-  background-color: #f0f0f0;
+  background-color: var(--background-avis);
   width: 100%;
   height: 10px;
   position: relative;
@@ -2472,32 +2495,19 @@ tbody td:last-child {
 }
 
 .notedetaille .barreDeNotationJaune {
-  background-color: #ffd700;
+  background-color: var(--accent);
   height: 100%;
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px;
 }
 
-.star {
-  width: 25px;
-  height: 25px;
-  margin: 2px;
-  display: inline-block;
-  background-size: contain;
-}
-
-.star.pleine {
-  background-image: url('star-full.png'); /* Icône étoile pleine */
-}
 
 .star.partielle {
-  background: linear-gradient(to right, #ffd700 var(--pourcentage), #ccc var(--pourcentage));
+  background: linear-gradient(to right, var(--accent) var(--pourcentage), #ccc var(--pourcentage));
 }
 
 .star.vide {
-  background-image: url('star-empty.png'); /* Icône étoile vide */
+  background-color: #fff; /* Icône étoile vide */
 }
-
-
 @media screen and (max-width: 768px) {
   :root {
     --header-size2: 0;

@@ -174,19 +174,18 @@
             const profilePic = document.getElementById("profilePic");
             const profileMenu = document.getElementById("profileMenu");
             const backButton = document.getElementById("backButton");
-            const factu = document.getElementsByClassName("liFact")
-            const DivFactue = document.getElementsByClassName("factue");
-
-            factu.addEventListener("click", toggleFacture);
+            const factu = document.getElementsByClassName("liFact")[0];
+            const DivFactue = document.getElementsByClassName("factue")[0];
 
             function toggleFacture() {
                 if (DivFactue.style.display === "none") {
-                    DivFactue.style.display = "flex"; // Affiche la div
+                    DivFactue.style.display = "flex"
                 } else {
                     DivFactue.style.display = "none"; // Cache la div
                 }
             }
-
+            
+            factu.addEventListener("click", toggleFacture);
             // Fonction pour afficher/cacher le menu
             function toggleMenu() {
                 if (profileMenu.classList.contains("show")) {
