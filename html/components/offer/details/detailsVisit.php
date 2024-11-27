@@ -122,59 +122,62 @@ const sectionLangue = document.getElementById('sectionLangue');
 selectLangue.addEventListener('change', function () {
     const selectedValue = this.value; // Récupère la valeur sélectionnée
 
-    // Vérifier si une langue a été sélectionnée et qu'elle n'est pas déjà ajoutée
-    if (selectedValue !== 'selectionLangue' && !document.getElementById(`lang-${selectedValue}`)) {
-        // Créer un conteneur pour la langue sélectionnée
-        const langDiv = document.createElement('div');
-        langDiv.className = 'lang-item';
-        langDiv.id = `lang-${selectedValue}`; // ID unique pour éviter les doublons
+    // Vérifier si une langue a été sélectionnée
+    if (selectedValue !== 'selectionLangue') {
+        // Vérifier si la langue est déjà ajoutée
+        if (document.getElementById(`lang-${selectedValue}`)) {
+            alert(`La langue "${selectedValue}" est déjà ajoutée !`);
+        } else {
+            // Créer un conteneur pour la langue sélectionnée
+            const langDiv = document.createElement('div');
+            langDiv.className = 'lang-item';
+            langDiv.id = `lang-${selectedValue}`; // ID unique pour éviter les doublons
 
-        // Ajouter le nom de la langue dans un élément stylisé
-        const langText = document.createElement('span');
-        langText.textContent = selectedValue;
-        langText.className = 'lang-text';
+            // Ajouter le nom de la langue dans un élément stylisé
+            const langText = document.createElement('span');
+            langText.textContent = selectedValue;
+            langText.className = 'lang-text';
 
-        // Ajouter un bouton de suppression avec une icône
-        const removeBtn = document.createElement('button');
-        removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; // Symbole "×" stylisé
-        removeBtn.className = 'remove-btn';
+            // Ajouter un bouton de suppression avec une icône
+            const removeBtn = document.createElement('button');
+            removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; // Symbole "×" stylisé
+            removeBtn.className = 'remove-btn';
 
-        // Action pour retirer la langue lorsqu'on clique sur le bouton
-        removeBtn.addEventListener('click', function () {
-            sectionLangue.removeChild(langDiv);
-        });
+            // Action pour retirer la langue lorsqu'on clique sur le bouton
+            removeBtn.addEventListener('click', function () {
+                sectionLangue.removeChild(langDiv);
+            });
 
-        // Ajouter le texte et le bouton au conteneur de langue
-        langDiv.appendChild(langText);
-        langDiv.appendChild(removeBtn);
+            // Ajouter le texte et le bouton au conteneur de langue
+            langDiv.appendChild(langText);
+            langDiv.appendChild(removeBtn);
 
-        // Appliquer un style visuel au conteneur
-        langDiv.style.display = 'inline-flex';
-        langDiv.style.alignItems = 'center';
-        langDiv.style.margin = '5px';
-        langDiv.style.padding = '8px 12px';
-        langDiv.style.backgroundColor = '#c8e6c9'; // Couleur similaire pour les tags ajoutés
-        langDiv.style.border = '1px solid #66bb6a';
-        langDiv.style.borderRadius = '20px';
-        langDiv.style.fontSize = '0.9em';
-        langDiv.style.color = '#2e7d32'; // Texte de même couleur que les tags ajoutés
-        langDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            // Appliquer un style visuel au conteneur
+            langDiv.style.display = 'inline-flex';
+            langDiv.style.alignItems = 'center';
+            langDiv.style.margin = '5px';
+            langDiv.style.padding = '8px 12px';
+            langDiv.style.backgroundColor = '#c8e6c9'; // Couleur similaire pour les tags ajoutés
+            langDiv.style.border = '1px solid #66bb6a';
+            langDiv.style.borderRadius = '20px';
+            langDiv.style.fontSize = '0.9em';
+            langDiv.style.color = '#2e7d32'; // Texte de même couleur que les tags ajoutés
+            langDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
-        // Ajouter une animation pour l'apparition
-        langDiv.style.opacity = '0';
-        langDiv.style.transform = 'scale(0.95)';
-        sectionLangue.appendChild(langDiv);
-        setTimeout(() => {
-            langDiv.style.opacity = '1';
-            langDiv.style.transform = 'scale(1)';
-        }, 10); // Transition après ajout
+            // Ajouter une animation pour l'apparition
+            langDiv.style.opacity = '0';
+            langDiv.style.transform = 'scale(0.95)';
+            sectionLangue.appendChild(langDiv);
+            setTimeout(() => {
+                langDiv.style.opacity = '1';
+                langDiv.style.transform = 'scale(1)';
+            }, 10); // Transition après ajout
+        }
     }
 
     // Réinitialiser le select après ajout
     this.value = 'selectionLangue';
 });
-
-
 
 
 </script>
