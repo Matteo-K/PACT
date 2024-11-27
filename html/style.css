@@ -433,13 +433,16 @@ header>div>a>div {
 #profileMenu.show {
   visibility: visible;
   opacity: 1;
-  transform: translateX(0);
 }
 
 #profileMenu.hide {
   visibility: visible;
   opacity: 0;
-  transform: translateX(50%);
+  
+}
+
+.deplace{
+  transform: translateX(-256px);
 }
 
 /* Conteneur pour l'image et le pseudo */
