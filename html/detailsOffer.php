@@ -204,7 +204,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
                 if (!$affiche) {
                     $statutActuel = $offre[0]['statut'];
-            ?>
+                ?>
 
                     <form method="post" action="changer_statut.php">
                         <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
@@ -219,9 +219,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
 
                 <form method="post" action="manageOffer.php">
-                    <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
                     <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
-                    <button class="modifierBut" type="submit">
+                    <button 
+                        class="modifierBut" 
+                        type="submit"
+                        <?php if ($offre[0]['statut'] === 'actif') { ?>
+                            disabled
+                            title="Veuillez mettre votre offre hors ligne pour la modifier"
+                        <?php } ?>
+                    >
                         <?php echo "Modifier offre"; ?>
                     </button>
                 </form>
