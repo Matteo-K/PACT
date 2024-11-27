@@ -126,6 +126,9 @@
                                                             <button class="modifierBut" type="submit">Visualiser</button>
                                                         </form>
                                                         <form action="" method="post">
+                                                        <input type="hidden" name="idOffre" value="<?php echo $value['idoffre']; ?>">
+                                                        <input type="hidden" name="mois" value="<?php echo $moisEnFrancais; ?>">
+                                                        <input type="hidden" name="date" value="<?php echo $value2; ?>">
                                                             <button class="modifierBut" type="submit">Télécharger</button>
                                                         </form>
                                                     </div>
