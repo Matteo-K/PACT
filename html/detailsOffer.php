@@ -99,13 +99,30 @@ $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $conn->prepare("
-    SELECT a.*, AVG(a.note) OVER() AS moynote,COUNT(a.note) OVER() AS nbnote, m.url AS membre_url,r.idc_reponse,r.denomination AS reponse_denomination, r.contenureponse, r.reponsedate, r.idpro
-    FROM pact.avis a
-    JOIN pact.membre m ON m.pseudo = a.pseudo
-    LEFT JOIN pact.reponse r ON r.idc_avis = a.idc
-    WHERE a.idoffre = ? 
-    ORDER BY a.datepublie ASC
+$stmt = $conn->prepare(" SELECT a.*,
+    AVG(a.note) OVER() AS moynote,
+    COUNT(a.note) OVER() AS nbnote,
+    COUNT(CASE WHEN a.note = 1 THEN 1 ELSE 0 END) OVER() AS note_1,
+    COUNT(CASE WHEN a.note = 2 THEN 1 ELSE 0 END) OVER() AS note_2,
+    COUNT(CASE WHEN a.note = 3 THEN 1 ELSE 0 END) OVER() AS note_3,
+    COUNT(CASE WHEN a.note = 4 THEN 1 ELSE 0 END) OVER() AS note_4,
+    COUNT(CASE WHEN a.note = 5 THEN 1 ELSE 0 END) OVER() AS note_5,
+    m.url AS membre_url,
+    r.idc_reponse,
+    r.denomination AS reponse_denomination,
+    r.contenureponse,
+    r.reponsedate,
+    r.idpro
+FROM 
+    pact.avis a
+JOIN 
+    pact.membre m ON m.pseudo = a.pseudo
+LEFT JOIN 
+    pact.reponse r ON r.idc_avis = a.idc
+WHERE 
+    a.idoffre = ?
+ORDER BY 
+    a.datepublie ASC;
 ");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
