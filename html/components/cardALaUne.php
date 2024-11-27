@@ -5,7 +5,7 @@
     <img src="<?php echo $urlImg; ?>" alt=<?php echo $alt; ?>>
     <figcaption>
       <h3><?php echo $nomOffre ?></h3>
-      <div>
+      <div class="information">
         <div class="detailsCardOffer">
           <div class="noteALaUne">
             <span class="blcStarALaUne">

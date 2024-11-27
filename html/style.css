@@ -620,7 +620,14 @@ header ul+div {
   min-height: 70vh;
 }
 
+#index figure {
+  position: relative;
+}
+
 #index figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 0.3);
 }
 
