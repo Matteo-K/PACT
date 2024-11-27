@@ -175,7 +175,6 @@
             const profileMenu = document.getElementById("profileMenu");
             const backButton = document.getElementById("backButton");
             
-            factu.addEventListener("click", toggleFacture);
             // Fonction pour afficher/cacher le menu
             function toggleMenu() {
                 if (profileMenu.classList.contains("show")) {
