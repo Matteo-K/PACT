@@ -7,7 +7,7 @@
       <h3><?php echo $nomOffre ?></h3>
       <div>
         <div id="detailsCardOffer">
-
+          <p><?php echo $resume ?></p>
         </div>
         <div id="localisationCard">
           <div id="tagsCard">

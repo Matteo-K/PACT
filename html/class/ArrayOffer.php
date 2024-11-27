@@ -95,6 +95,8 @@ class ArrayOffer {
           $options[] = $resOption["nomoption"];
         }
         
+        $moyenne = "";
+        $total = "";
         $stmt = $conn->prepare("SELECT avg(note) as moyenne, count(note) as total from pact._avis where idoffre = ? group by idoffre;");
         $stmt->execute([$offre['idoffre']]);
         $resNote = $stmt->fetch(PDO::FETCH_ASSOC);

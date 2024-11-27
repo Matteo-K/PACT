@@ -112,43 +112,66 @@ if ($categorie["_visite"]) {
 </section>
 
 
-<!-- Script Js -->
+<!-- Script Js de activity -->
 <script>
-    // Récupération des éléments nécessaires
-    const selectLangue = document.getElementById('selectionLangue');
-    const sectionLangue = document.getElementById('sectionLangue');
+// Récupération des éléments nécessaires
+const selectLangue = document.getElementById('selectionLangue');
+const sectionLangue = document.getElementById('sectionLangue');
 
-    // Écouteur d'événement pour détecter un changement dans le select
-    selectLangue.addEventListener('change', function () {
-        const selectedValue = this.value; // Récupère la valeur sélectionnée
+// Écouteur d'événement pour détecter un changement dans le select
+selectLangue.addEventListener('change', function () {
+    const selectedValue = this.value; // Récupère la valeur sélectionnée
 
-        // Vérifier si une langue a été sélectionnée et qu'elle n'est pas déjà ajoutée
-        if (selectedValue !== 'selectionLangue' && !document.getElementById(`lang-${selectedValue}`)) {
-            // Créer un conteneur pour la langue sélectionnée
-            const langDiv = document.createElement('div');
-            langDiv.className = 'lang-item';
-            langDiv.id = `lang-${selectedValue}`; // ID unique pour éviter les doublons
+    // Vérifier si une langue a été sélectionnée et qu'elle n'est pas déjà ajoutée
+    if (selectedValue !== 'selectionLangue' && !document.getElementById(`lang-${selectedValue}`)) {
+        // Créer un conteneur pour la langue sélectionnée
+        const langDiv = document.createElement('div');
+        langDiv.className = 'lang-item';
+        langDiv.id = `lang-${selectedValue}`; // ID unique pour éviter les doublons
 
-            // Ajouter le nom de la langue
-            langDiv.textContent = selectedValue;
+        // Ajouter le nom de la langue dans un élément stylisé
+        const langText = document.createElement('span');
+        langText.textContent = selectedValue;
+        langText.className = 'lang-text';
 
-            // Ajouter un bouton de suppression
-            const removeBtn = document.createElement('button');
-            removeBtn.textContent = 'X'; // Bouton pour retirer la langue
-            removeBtn.className = 'remove-btn';
+        // Ajouter un bouton de suppression avec une icône
+        const removeBtn = document.createElement('button');
+        removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #ff4d4d;">&times;</span>'; // Symbole "×" stylisé
+        removeBtn.className = 'remove-btn';
 
-            // Action pour retirer la langue lorsqu'on clique sur le bouton
-            removeBtn.addEventListener('click', function () {
-                sectionLangue.removeChild(langDiv);
-            });
+        // Action pour retirer la langue lorsqu'on clique sur le bouton
+        removeBtn.addEventListener('click', function () {
+            sectionLangue.removeChild(langDiv);
+        });
 
-            // Ajouter le bouton au conteneur de langue
-            langDiv.appendChild(removeBtn);
+        // Ajouter le texte et le bouton au conteneur de langue
+        langDiv.appendChild(langText);
+        langDiv.appendChild(removeBtn);
 
-            // Ajouter la langue au conteneur global
-            sectionLangue.appendChild(langDiv);
-        }
+        // Appliquer un style visuel au conteneur
+        langDiv.style.display = 'inline-flex';
+        langDiv.style.alignItems = 'center';
+        langDiv.style.margin = '5px';
+        langDiv.style.padding = '8px 12px';
+        langDiv.style.backgroundColor = '#e3f2fd';
+        langDiv.style.border = '1px solid #90caf9';
+        langDiv.style.borderRadius = '20px';
+        langDiv.style.fontSize = '0.9em';
+        langDiv.style.color = '#0d47a1';
+        langDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
-        // Réinitialiser le select après ajout
-        this.value = 'selectionLangue';
-    });
+        // Ajouter une animation pour l'apparition
+        langDiv.style.opacity = '0';
+        langDiv.style.transform = 'scale(0.95)';
+        sectionLangue.appendChild(langDiv);
+        setTimeout(() => {
+            langDiv.style.opacity = '1';
+            langDiv.style.transform = 'scale(1)';
+        }, 10); // Transition après ajout
+    }
+
+    // Réinitialiser le select après ajout
+    this.value = 'selectionLangue';
+});
+
+</script>

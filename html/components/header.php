@@ -169,11 +169,23 @@
 
 <script>
     try {
-        const body = document.body;
         document.addEventListener("DOMContentLoaded", function() {
+            const body = document.body;
             const profilePic = document.getElementById("profilePic");
             const profileMenu = document.getElementById("profileMenu");
             const backButton = document.getElementById("backButton");
+            const factu = document.getElementsByClassName("liFact")
+            const DivFactue = document.getElementsByClassName("factue");
+
+            factu.addEventListener("click", toggleFacture);
+
+            function toggleFacture() {
+                if (DivFactue.style.display === "none") {
+                    DivFactue.style.display = "flex"; // Affiche la div
+                } else {
+                    DivFactue.style.display = "none"; // Cache la div
+                }
+            }
 
             // Fonction pour afficher/cacher le menu
             function toggleMenu() {
