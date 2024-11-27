@@ -424,6 +424,7 @@ header>div>a>div {
 
 .details-form > div {
   display: flex;
+  align-items: center;
 }
 
 #profileMenu.show {
