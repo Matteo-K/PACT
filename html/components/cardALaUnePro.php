@@ -31,7 +31,7 @@
               <span><?php echo $noteAvg ?>/5</span>
               <span>(<?php echo $nbNote ?> avis)</span>
             </div>
-            <adresse><?php echo $ville ?>, <?php echo $codePostal ?></adresse>
+            <address><?php echo $ville ?>, <?php echo $codePostal ?></address>
           </div>
           <div class="dataOffre">
             <span class="StatutAffiche <?php echo $statut=='actif'?"":"horslgnOffre";?>">

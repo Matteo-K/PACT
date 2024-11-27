@@ -812,21 +812,19 @@ header ul+div {
     padding-top: 0;
   }
 
-  .carteIndexPro, .carteIndex {
+  .carteIndex {
     height: 200px;
     min-width: 300px;
   }
 
-  .carteIndexPro h3, .carteIndex h3 {
+  .carteIndex h3 {
     font-size: 1rem;
+    margin: 0;
+    margin-top: 10px;
   }
 
   #index img {
     height: 200px;
-  }
-
-  .carteIndexPro {
-    margin: 10px;
   }
 
   .detailsCardOffer h3 {
@@ -850,13 +848,29 @@ header ul+div {
     margin-bottom: 10px;
   }
 
+  .carteIndex address {
+    text-wrap: nowrap;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
   #index .star {
-    width: 1rem;
-    height: 1rem;
+    width: 1.1rem;
+    height: 1.1rem;
   }
 
   .blcTag, .information {
     display: flex;
+  }
+
+  .blcStarALaUne + span {
+    font-size: 0.85rem;
+  }
+
+  .blcStarALaUne + span + span,
+  .carteIndex p,
+  .tagsCard{
+    display: none;
   }
 }
 
