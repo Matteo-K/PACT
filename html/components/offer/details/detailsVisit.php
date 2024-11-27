@@ -92,24 +92,41 @@ if ($categorie["_visite"]) {
         <input type="text" id="inputTag" name="inputTag"
             placeholder="Entrez & selectionnez les langue proposée pour votre visite">
 
-        
-        <select name="langue" id="selectionLangue">
+
+        <!--     <select name="langue" id="selectionLangue">
             <option value="Français">Français</option>
             <option value="Anglais">Anglais</option>
             <option value="Espagnol">Espagnol</option>
-        </select>
+        </select>-->
+
+
+        <form action="detailsVisit.php" method="POST">
+            <label for="langue">Choisissez une langue :</label>
+            <select name="langue" id="langue">
+                <?php
+
+                if ($langues) {
+
+                    foreach ($langues as $langue) {
+                        echo "<option value=\"" . htmlspecialchars($langue['id']) . "\">" . htmlspecialchars($langue['langue']) . "</option>";
+                    }
+                } else {
+                    echo "<option>Aucune langue disponible</option>";
+                }
+                ?>
+                <!-- select * from nom_de_la_table
+ foreach
+            -->
+
+
+
+                <section id="sectionLangue">
+                    <!-- Les langues ajoutées apparaîtront ici -->
+                </section>
 
 
 
 
 
-        <section id="sectionLangue">
-            <!-- Les langues ajoutées apparaîtront ici -->
-        </section>
-
-
-
-        
-
-        <!-- BALISE SELECT EN HTML -->
+                <!-- BALISE SELECT EN HTML -->
 </section>
