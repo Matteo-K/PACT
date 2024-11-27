@@ -35,6 +35,13 @@ if ($categorie["_visite"]) {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $visite["hadicap"][] = $row["hadicap"];
     }*/
+
+    $langue = [];
+    $stmt = $conn->prepare("SELECT * from pact._langue");
+    $stmt->execute();
+    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $langue[] = $result["langue"];
+    }
 }
 // Il reste à initialisé les valeurs dans les input
 ?>
@@ -94,26 +101,12 @@ if ($categorie["_visite"]) {
 
         
         <select name="langue" id="selectionLangue">
-            <option value="Français">Français</option>
-            <option value="Anglais">Anglais</option>
-            <option value="Espagnol">Espagnol</option>
-        </select>--
-
-
-
-<!-- select * from nom_de_la_table
- foreach
-            -->
-
-
+            <?php foreach ($langue as $key => $value) { ?>
+                <option value="<?php echo $value ?>"><?php echo $value ?></option>
+            <?php } ?>
+        </select>
 
         <section id="sectionLangue">
             <!-- Les langues ajoutées apparaîtront ici -->
         </section>
-
-
-
-        <?php print_r($visite["langue"]) ?>
-
-        <!-- BALISE SELECT EN HTML -->
 </section>
