@@ -433,13 +433,13 @@ header>div>a>div {
 #profileMenu.show {
   visibility: visible;
   opacity: 1;
-  transform: translateX(276px);
+  transform: translateX(calc(100vw - 276px));
 }
 
 #profileMenu.hide {
   visibility: visible;
   opacity: 0;
-  transform: translateX(-276px);
+  transform: translateX(-100%);
 }
 
 .deplace{
