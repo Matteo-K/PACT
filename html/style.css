@@ -350,8 +350,7 @@ header>div>a>div {
   overflow-y: auto;
   overflow-x: hidden;
   flex-direction: column;
-  transform: translateX(100%);
-  transition: transform 0.5s ease;
+  transition: opacity 0.5s ease, height 0.5s ease;
 }
 
 .details{
@@ -507,7 +506,7 @@ header>div>a>div {
   border-radius: 10px;
 }
 
-#profileMenu ul a:hover,#profileMenu li:hover {
+#profileMenu ul a:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -1962,7 +1961,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .searchoffre {
-    margin-left: 5px;
+    margin-left: 0;
   }
 
   #trifiltre {
@@ -2458,31 +2457,14 @@ tbody td:last-child {
 }
 /** Fin Avis **/
 
-.notation > div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.notation, .notedetaille {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-
 .notedetaille .ligneNotation {
   display: flex;
   align-items: center;
   margin: 5px 0;
 }
 
-.ligneNotation > span {
-  width: 10em;
-}
-
 .notedetaille .barreDeNotationBlanche {
-  background-color: var(--background-avis);
+  background-color: #f0f0f0;
   width: 100%;
   height: 10px;
   position: relative;
@@ -2493,8 +2475,17 @@ tbody td:last-child {
 .notedetaille .barreDeNotationJaune {
   background-color: var(--accent);
   height: 100%;
-  border-radius: 5px;
+  border-radius: 5px 0 0 5px;
 }
+
+.star {
+  width: 25px;
+  height: 25px;
+  margin: 2px;
+  display: inline-block;
+  background-size: contain;
+}
+
 
 
 .star.partielle {
