@@ -422,10 +422,6 @@ header>div>a>div {
   justify-content: space-between;
 }
 
-.details-form div{
-  display: flex;
-}
-
 #profileMenu.show {
   visibility: visible;
   opacity: 1;
@@ -2330,7 +2326,7 @@ tbody td:last-child {
   font-weight: bold;
 }
 
-.infoUser> img, .infoProReponse > img{
+.user >div> img{
   width:2.2em;
   height:2.2em;
 } 

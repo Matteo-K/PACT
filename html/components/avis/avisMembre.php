@@ -135,7 +135,10 @@ foreach ($avis as $a) {
                             <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
                             <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
                         </div>
-                        <img src="./img/icone/trois-points.png" alt="icone de parametre">
+                        <div class="autreInfoAvis">
+                            <img src="./img/icone/trois-points.png" alt="icone de parametre">
+                        </div>
+                        
                     </div>
                     <article>
                         <p><?= $a['contenureponse'] ?></p>
