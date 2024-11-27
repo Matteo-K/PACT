@@ -105,10 +105,10 @@ if (isset($_POST['pageBefore'])) {
         $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = ?");
         $stmt->execute([$idOffre]);
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $anciennesImagesTotal[] = $result["url"];
+          $anciennesImagesTotal[] = $result["url"];
           echo $result["url"];
         }
-      echo "cbon";
+        echo "cbon";
 
         $anciennesImagesRestantes = $_POST["imageExistante"] ?? [];
 
@@ -139,17 +139,17 @@ if (isset($_POST['pageBefore'])) {
 
           $fichiers = glob($dossierTemp . "*"); // TESTTTT
           foreach ($fichiers as $fichier) {
-            echo($fichier); 
+            echo $fichier; 
           }
 
-          echo ("     (Dossier temp)                         ");
+          echo "     (Dossier temp)                         ";
 
           $fichiers = glob($dossierImg . "*"); // TESTTTT
           foreach ($fichiers as $fichier) {
-            echo($fichier); 
+            echo $fichier ; 
           }
 
-          echo ("    (Dossier final img avant clear)                         ");
+          echo "    (Dossier final img avant clear)                         ";
 
           foreach ($anciennesImagesTotal as $imgA) {
             // Supprime l'image du serveur et de la BDD
@@ -164,10 +164,10 @@ if (isset($_POST['pageBefore'])) {
           
           $fichiers = glob($dossierImg . "*"); // TESTTTT
           foreach ($fichiers as $fichier) {
-            echo($fichier . "                         "); 
+            echo $fichier . "                         "; 
           }
 
-          echo ("(Dossier final img après clear)                         ");
+          echo "(Dossier final img après clear)                         ";
 
           //On remet les anciennes images gardées dans la BDD et sur le serveur 
           foreach ($anciennesImagesRestantes as $num => $lien) {
@@ -189,22 +189,22 @@ if (isset($_POST['pageBefore'])) {
             }
 
           }
-      }
+        }
 
-      $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = ?");
-      $stmt->execute([$idOffre]);
-      while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $anciennesImagesTotal[] = $result["url"];
-        echo ($result["url"] . "        ");
-      }
-      echo ("cbon");
+          $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = ?");
+          $stmt->execute([$idOffre]);
+          while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $anciennesImagesTotal[] = $result["url"];
+            echo $result["url"] . "        ";
+          }
+            echo "cbon";
 
         $fichiers = glob($dossierImg . "*"); // TESTTTT
         foreach ($fichiers as $fichier) {
-          echo($fichier) .  "       "; 
+          echo $fichier .  "       "; 
         }
 
-          echo ("(Dossier final img après ajout loaded photos)                         ");
+          echo "(Dossier final img après ajout loaded photos)                         ";
         }
 
         $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
@@ -225,8 +225,7 @@ if (isset($_POST['pageBefore'])) {
             $newFileName = $idOffre . '-' . $imageCounter . '.' . $fileExtension;
             $dossierImgNom = $dossierImg . $newFileName;
           
-
-          try {
+            try {
               // Déplace l'image vers le dossier d'images des offres
               move_uploaded_file($fileTmpPath, $dossierImgNom);
               $imageCounter++;
@@ -235,7 +234,7 @@ if (isset($_POST['pageBefore'])) {
               $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
               $stmt->execute([$dossierImgNom, $newFileName]);
 
-            //On insère la relation entre l'image et l'offre
+              //On insère la relation entre l'image et l'offre
               $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
               $stmt->execute([$idOffre, $dossierImgNom]);
             } catch (PDOException $e) {
@@ -246,10 +245,10 @@ if (isset($_POST['pageBefore'])) {
 
         $fichiers = glob($dossierImg . "*"); // TESTTTT
           foreach ($fichiers as $fichier) {
-            echo($fichier) . "      "; 
+            echo $fichier . "      "; 
           }
 
-          echo ("(Dossier final img après ajout nouvelles photos)                          ");
+          echo "(Dossier final img après ajout nouvelles photos)                          ";
 
 
         // Ajout des informations suivant la catégorie de l'offre
@@ -257,7 +256,7 @@ if (isset($_POST['pageBefore'])) {
           case 'restaurant':
             // Obtention des données
             $gammeDePrix = $_POST["gamme_prix"];
-            // Création/Modification d'une offre restaurant
+
             $stmt = $conn->prepare("SELECT * from pact._restauration where idoffre=?");
             $stmt->execute([$idOffre]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -273,11 +272,11 @@ if (isset($_POST['pageBefore'])) {
             break;
           case 'parc':
             // Obtention des données
-            $ageMin = 0; // Modifier si ajouter dans html
-            $nbAttraction = 0; // Modifier si ajouter dans html
-            $prixMinimale = 0; // Modifier si ajouter dans html
-            $urlPlan = null; // Modifier si ajouter dans html
-            // Création/Modification d'une offre de parc d'attraction
+            $ageMin = 0;
+            $nbAttraction = 0;
+            $prixMinimale = 0;
+            $urlPlan = null;
+
             $stmt = $conn->prepare("SELECT * from pact._parcattraction where idoffre=?");
             $stmt->execute([$idOffre]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -293,9 +292,9 @@ if (isset($_POST['pageBefore'])) {
 
             // Gestion des images
             $dossierImg = "img/imageOffre/";
-            $imageCounter = 0;  // Compteur pour renommer les images
+            $imageCounter = 0;
 
-            $nbImages = count($_FILES['image1Park']['name']); //nb d'images uploadé
+            $nbImages = count($_FILES['image1Park']['name']);
 
             // Boucle à travers chaque fichier uploadé
             for ($i = 0; $i < $nbImages; $i++) {
@@ -329,10 +328,10 @@ if (isset($_POST['pageBefore'])) {
             // Obtention des données
             $duree = $_POST["duréeAct"] ?? null;
             $ageMin = $_POST["ageAct"] ?? null;
-            $accessibilite = $_POST["Accessibilite"] == "Acces" ? true : null; // Modifier si ajouter dans BDD
-            $prixMinimale = null; // Modifier si ajouter dans html
-            $prestation = null; // Modifier si ajouter dans html
-            // Création/Modification d'une offre de parc d'attraction
+            $accessibilite = $_POST["Accessibilite"] == "Acces" ? true : null;
+            $prixMinimale = null;
+            $prestation = null;
+
             $stmt = $conn->prepare("SELECT * from pact._activite where idoffre=?");
             $stmt->execute([$idOffre]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -350,8 +349,8 @@ if (isset($_POST['pageBefore'])) {
             // Obtention des données
             $duree = $_POST["DuréeShow"] ?? null;
             $nbPlace = $_POST["nbPlaceShow"] ?? null;
-            $prixMinimale = null; // Modifier si ajouter dans html
-            // Création/Modification d'une offre de parc d'attraction
+            $prixMinimale = null;
+
             $stmt = $conn->prepare("SELECT * from pact._spectacle where idoffre=?");
             $stmt->execute([$idOffre]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -365,11 +364,12 @@ if (isset($_POST['pageBefore'])) {
               $stmt->execute([$duree, $nbPlace, $prixMinimale, $idOffre]);
             }
             break;
+
           case 'visite':
             // Obtention des données
-            $guide = null; // Modifier si ajouter dans html
+            $guide = null;
             $duree = $_POST["numberHVisit"] ?? null;
-            $prixMinimale = null; // Modifier si ajouter dans html
+            $prixMinimale = null;
             $accessibilite = $_POST["Accessibilité"] == "access" ? true : null;
             // Création/Modification d'une offre de parc d'attraction
             $stmt = $conn->prepare("SELECT * from pact._visite where idoffre=?");
@@ -392,26 +392,8 @@ if (isset($_POST['pageBefore'])) {
             $stmt = $conn->prepare("DELETE FROM pact._visite_langue WHERE idoffre= ?");
             $stmt->execute([$idOffre]);
             foreach ($tabLangue as $langue) {
-              // si n'existe pas dans la table Langue alors on ajoute
-              $stmt = $conn->prepare("SELECT * from pact._langue WHERE langue=?");
-              $stmt->execute([$langue]);
-              $result = $stmt->fetch(PDO::FETCH_ASSOC);
-              // si pas dans la table, on ajoute dans langue et visite langue
-              if ($result === false) {
-                $stmt = $conn->prepare("INSERT INTO pact._langue (langue) VALUES (?)");
-                $stmt->execute([$langue]);
-                $stmt = $conn->prepare("INSERT INTO pact._visite_langue (idoffre, langue) VALUES (?,?)");
-                $stmt->execute([$idoffre, $langue]);
-              } else {
-                $stmt = $conn->prepare("SELECT * from pact._visite_langue WHERE idoffre=? AND langue=?");
-                $stmt->execute([$idOffre, $langue]);
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                // Si pas dans la table visite_lang, on rajoute
-                if ($result === false) {
-                  $stmt = $conn->prepare("INSERT INTO pact._visite_langue (idoffre, langue) VALUES (?,?)");
-                  $stmt->execute([$idoffre, $langue]);
-                }
-              }
+              $stmt = $conn->prepare("INSERT INTO pact._visite_langue (idoffre, langue) VALUES (?,?)");
+              $stmt->execute([$idoffre, $langue]);
             }
             break;
 
