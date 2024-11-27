@@ -18,12 +18,14 @@ require_once "config.php";
     </div>
     <div id="ALaUne">
       <h2>À la une</h2>
-      <?php 
-        $elementStart = 0;
-        $nbElement = 20;
-        $offres = new ArrayOffer();
-        $offres->displayCardALaUne($offres->filtre($idUser, $typeUser), $typeUser, $elementStart, $nbElement);
-      ?>
+      <div>
+        <?php 
+          $elementStart = 0;
+          $nbElement = 20;
+          $offres = new ArrayOffer();
+          $offres->displayCardALaUne($offres->filtre($idUser, $typeUser), $typeUser, $elementStart, $nbElement);
+        ?>
+      </div>
     </div>
     <div id="voirPlus">
       <a href="search.php">Voir plus</a>
