@@ -221,7 +221,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <form method="post" action="manageOffer.php">
                     <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
                     <button 
-                        class="modifierBut" 
+                         
                         type="submit"
                         <?php if ($offre[0]['statut'] === 'actif') { ?>
                             disabled
