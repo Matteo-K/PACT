@@ -285,7 +285,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             console.log(images);
 
             Array.from(images).forEach((file) => {
-                alert(conteneur.childElementCount, "     ", maxImages)
+                alert(conteneur.childElementCount);
                 if (conteneur.childElementCount >= maxImages) {
                     pImage.style.color = "red";
                     alert("C'est plein");
