@@ -118,7 +118,15 @@
 
                                             $annee = $dateFacture->format('Y');
                                             ?>
-                                                <a href=""><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></a>
+                                                <div class="details-form">
+                                                    <p><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></p>
+                                                    <form action="" method="post">
+                                                        <button type="submit">Visualiser</button>
+                                                    </form>
+                                                    <form action="" method="post">
+                                                        <button type="submit">Télécharger</button>
+                                                    </form>
+                                                </div>
                                             <?php
                                             
                                         }
