@@ -225,12 +225,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>" 
                             type="submit"
                             <?php if ($offre[0]['statut'] === 'actif') { ?>
-                                onclick="return false;" <!-- Empêche le clic -->
+                                onclick="return false;"
                             <?php } ?>
                         >
                             <?php echo "Modifier offre"; ?>
                         </button>
-                        <!-- Message immédiatement après le bouton pour le hover -->
                         <?php if ($offre[0]['statut'] === 'actif') { ?>
                             <span class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</span>
                         <?php } ?>
