@@ -14,7 +14,9 @@ require_once "config.php";
   <?php require_once "components/header.php"; ?>
   <main id="index">
     <div id="ALaUne">
-      <h2>À la une</h2>
+      <?php if ($typeUser != "pro_public" && $typeUser_ != "pro_prive") { ?>
+        <h2>À la une</h2>
+      <?php } ?>
       <div>
         <?php 
           $elementStart = 0;
@@ -24,10 +26,22 @@ require_once "config.php";
         ?>
       </div>
     </div>
+    <?php if ($typeUser != "pro_public" && $typeUser_ != "pro_prive") { ?>
+      <div></div>
+    <?php } ?>
     <div id="voirPlus">
       <a href="search.php">Voir plus</a>
     </div>
   </main>
   <?php require_once "components/footer.php"; ?>
+  <script>
+    const forms = document.querySelectorAll("#index form");
+    forms.forEach(form => {
+      form.addEventListener("click", (event) => {
+        event.preventDefault();
+        form.submit();
+      }); 
+    });
+  </script>
 </body>
 </html>
