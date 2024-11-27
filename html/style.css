@@ -361,7 +361,6 @@ header>div>a>div {
   border: 1px solid #ddd;
   border-radius: 8px;
   width: 100%;
-  margin: 20px auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden; /* Pour que les bordures soient nettes */
   font-family: Arial, sans-serif;
