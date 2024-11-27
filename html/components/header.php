@@ -75,12 +75,12 @@
                 </div>
                 <div class="factue">
                     <h1>Mes Factures</h1>
+                    <div class="details">
                     <?php 
                         $idu = $_SESSION["idUser"];
                         $stmt = $conn->prepare("SELECT nom,idoffre,ARRAY_AGG(DISTINCT datefactue ORDER BY datefactue DESC) AS datefactue FROM pact.facture WHERE idU = $idu GROUP BY nom,idOffre");
                         $stmt->execute();
                         $factures = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        
                         foreach ($factures as $key => $value) {
                             ?>
                                 <details class="details-style">
@@ -118,7 +118,17 @@
 
                                             $annee = $dateFacture->format('Y');
                                             ?>
-                                                <a href=""><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></a>
+                                                <div class="details-form">
+                                                    <p><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></p>
+                                                    <div>
+                                                        <form action="" method="post">
+                                                            <button type="submit">Visualiser</button>
+                                                        </form>
+                                                        <form action="" method="post">
+                                                            <button type="submit">Télécharger</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             <?php
                                             
                                         }
@@ -128,6 +138,7 @@
                             <?php
                         }
                     ?>
+                    </div>
                 </div>
             </div>
 
