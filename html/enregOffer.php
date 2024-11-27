@@ -1,4 +1,5 @@
 <?php
+print_r($_POST);
 $pageDirection = $_POST['pageCurrent'] ?? 1;
 $idOffre = $_POST["idOffre"];
 $idUser = $_POST["idUser"];
@@ -115,6 +116,13 @@ if (isset($_POST['pageBefore'])) {
         if (!file_exists($dossierTemp)) {
           mkdir($dossierTemp, 0777, true); // Crée le dossier temporaire 
         }
+        else{
+          $fichiers = glob($dossierTemp . "*"); // Récupère tous les fichiers du dossier temporaire
+          
+          foreach ($fichiers as $fichier) {
+            unlink($fichier); // Supprime le fichier
+          }
+        }
 
 
         var_dump($anciennesImagesRestantes);
@@ -126,13 +134,6 @@ if (isset($_POST['pageBefore'])) {
         }
 
         var_dump($anciennesImagesTotal);
-
-        $fichiers = glob($dossierTemp."*");
-
-        echo "-------\n";
-        foreach ($fichiers as $fichier) {
-            echo (is_dir($fichier) ? "[Dossier]" : "[Fichier]") . " $fichier\n";
-        }
 
 
         foreach ($anciennesImagesTotal as $imgA) {
@@ -378,19 +379,19 @@ if (isset($_POST['pageBefore'])) {
       //On supprime tous les anciens tags et on rajoute les tags actuellement sélectionnés
       switch ($categorie) {
         case 'restaurant':
-          $stmt = $conn->prepare("DELETE * FROM pact._tag_restaurant WHERE idoffre = ?");
+          $stmt = $conn->prepare("DELETE FROM pact._tag_restaurant WHERE idoffre = ?");
           break;
         case 'parc':
-          $stmt = $conn->prepare("DELETE * FROM pact._tag_parc WHERE idoffre = ?");
+          $stmt = $conn->prepare("DELETE FROM pact._tag_parc WHERE idoffre = ?");
           break;
         case 'activite':
-          $stmt = $conn->prepare("DELETE * FROM pact._tag_act  WHERE idoffre = ?");
+          $stmt = $conn->prepare("DELETE FROM pact._tag_act  WHERE idoffre = ?");
           break;
         case 'spectacle':
-          $stmt = $conn->prepare("DELETE * FROM pact._tag_spec  WHERE idoffre = ?");
+          $stmt = $conn->prepare("DELETE FROM pact._tag_spec  WHERE idoffre = ?");
           break;
         case 'visite':
-          $stmt = $conn->prepare("DELETE * FROM pact._tag_visite  WHERE idoffre = ?");
+          $stmt = $conn->prepare("DELETE FROM pact._tag_visite  WHERE idoffre = ?");
           break;
         default:
           break;

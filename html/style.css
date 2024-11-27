@@ -395,7 +395,7 @@ header>div>a>div {
 }
 
 /* Style pour chaque lien (ligne de tableau) */
-.details-content a {
+.details-form {
   display: block;
   padding: 10px 15px;
   font-size: 1rem;
@@ -407,18 +407,26 @@ header>div>a>div {
 }
 
 /* Dernière ligne sans bordure */
-.details-content a:last-child {
+.details-form:last-child {
   border-bottom: none;
 }
 
 /* Interaction sur les liens */
-.details-content a:hover {
+.details-form:hover {
   background-color: #f0f0f0;
   color: #007BFF;
 }
 
+.details-form{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-
+.details-form div{
+  display: flex;
+  gap: 20px;
+}
 
 #profileMenu.show {
   visibility: visible;
@@ -2307,19 +2315,24 @@ tbody td:last-child {
   width: 45%;
 }
 
-.messageAvis{
+.messageAvis, .reponseAvis{
   background-color: var(--background-avis);
   border-radius: 1em;
   padding: 1em;
   width: 100%;
 }
 
-.infoUser > p{
+.reponseAvis{
+  width: 90%;
+  background-color: var(--primary20);
+}
+
+.infoUser > p, .infoProReponse > p{
   margin-left: 0.3em;
   font-weight: bold;
 }
 
-.user >div> img{
+.infoUser> img, .infoProReponse > img{
   width:2.2em;
   height:2.2em;
 } 
@@ -2388,6 +2401,20 @@ tbody td:last-child {
 .starAvisIncolore{
   background-color: #fff;
 }
+
+.messageAvisReponse > div + div{
+  display: flex;
+  margin: 1em;
+}
+
+.messageAvisReponse > div + div > img {
+  height: 10%;
+  width: 10%;
+  margin: 0.5em;
+  transform: scaleY(-1);
+  rotate: -90deg;
+}
+/** Fin Avis **/
 
 @media screen and (max-width: 768px) {
   :root {
