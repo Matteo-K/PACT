@@ -29,7 +29,7 @@ function formatDateDiff($date)
     if ($diffInDays === 0) {
         if ($diffInMinutes === 0) {
             return "Rédigé à l'instant";
-        } elseif ($diffInHours >= 1) {
+        } elseif ($diffInHours > 1) {
             return "Rédigé il y a" . $diffInHours-1 ." heure" . ($diffInHours > 1 ? 's' : '');
         } else {
             return "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '');
