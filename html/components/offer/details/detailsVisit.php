@@ -96,7 +96,7 @@ if ($categorie["_visite"]) {
 
     <div class="languesProp">
         <label>Langue proposée(s) :</label> <!-- Label langue proposée -->
-        <label>Entrez & selectionnez les langue proposée pour votre visite"</label>
+        <label>Sélectionner les langue(s) proposée(s) par votre visite."</label>
 
 
         <select name="langue" id="selectionLangue">
