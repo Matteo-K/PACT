@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
   if (params.has('page') && params.get('page').trim() !== '') {
       page = params.get('page');
   } else {
-      page = 0;
+      page = 1;
   }
 
-  sortAndFilter(arrayOffer, (nbElement-1) * page, nbElement);
+  sortAndFilter(arrayOffer, nbElement * (page-1), nbElement);
 
   document.querySelectorAll(".searchoffre form").forEach(form => {
     form.addEventListener("click", (event) => {
@@ -278,6 +278,11 @@ function displayOffer(offer) {
 
   form.appendChild(input);
   form.appendChild(createCard(offer));
+
+  form.addEventListener("click", (event) => {
+    event.preventDefault();
+    form.submit();
+  });
 
   bloc.appendChild(form);
 }

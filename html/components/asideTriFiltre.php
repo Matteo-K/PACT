@@ -200,7 +200,7 @@
                 </div>
                 <div>
                     <label for="dateDepart">Fin&nbsp;:&nbsp;</label>
-                    <input type="date" name="dateFin" id="dateFin" value="<?php echo date('Y-m-d', strtotime('+1 month')); ?>" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>">
+                    <input type="date" name="dateFin" id="dateFin" value="<?php echo date('Y-m-d', strtotime('+7 day')); ?>" min="<?php echo date('Y-m-d'); ?>">
                     <input type="time" name="heureFin" id="heureFin">
                 </div>
             </div>

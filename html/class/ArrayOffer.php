@@ -87,8 +87,21 @@ class ArrayOffer {
             $this->arrayOffer[$offre['idoffre']] = new Offer("Pas de catégorie");
             break;
         }
+
+        $options = [];
+        $stmt = $conn->prepare("SELECT * FROM pact._option_offre WHERE idoffre = ? AND idoption = (SELECT MAX(idoption) FROM pact._option_offre WHERE idoffre = ?)");
+        $stmt->execute([$offre['idoffre'], $offre['idoffre']]);
+        while ($results = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+          print_r($results);
+          $options[] = $results["nomoption"];
+        }
+        
+        $stmt = $conn->prepare("SELECT count(note), avg(note) from pact._avis where idoffre = ?");
+        
+
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
-          $offre['idu'], $offre['nom'], 
+          $offre['idu'], $offre['nom'],
+          $offre['nomabonnement'], $options, 
           $offre['description'], $offre['resume'],
           $offre['mail'], $offre['telephone'],
           $offre['urlsite'], $offre['datecrea'],
@@ -158,6 +171,19 @@ class ArrayOffer {
     }
     
     return $arrayWithData;
+  }
+
+  public function displayCardALaUne($array_, $typeUser_, $elementStart_, $nbElement_) {
+    $array = $this->pagination($array_, $elementStart_, $nbElement_);
+    if (count($array) > 0) {
+      foreach ($array as $key => $elem) {
+        if (in_array("EnRelief", $elem->getData()["option"])) {
+          $elem->displayCardALaUne();
+        }
+      }
+    } else {
+      echo "<p>Aucune offre trouvée </p>";
+    }
   }
 
   public function displayArrayCard($array_, $typeUser_, $elementStart_, $nbElement_) {
