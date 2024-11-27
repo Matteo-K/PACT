@@ -158,6 +158,7 @@
 
 <script>
     try {
+        const body = document.body;
         document.addEventListener("DOMContentLoaded", function() {
             const profilePic = document.getElementById("profilePic");
             const profileMenu = document.getElementById("profileMenu");
