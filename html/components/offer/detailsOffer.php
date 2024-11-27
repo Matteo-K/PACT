@@ -268,8 +268,12 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         const pImage = document.querySelector("#choixImage > p");
         const conteneur = document.getElementById("afficheImages");
         document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
+
         
         const loadedImg = <?php echo json_encode($loadedImg) ?>;
+
+        const photosSelect = []; // Stocker les fichiers sélectionnés
+
 
         loadedImg.forEach(img => {
             configImage(img, "", "");
@@ -280,8 +284,13 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             const images = event.target.files;
 
             Array.from(images).forEach((file) => {
+                if (conteneur.childElementCount >= maxImages) {
+                    pImage.style.color = "red";
+                    return; // Ignorer les fichiers supplémentaires
+                }
                 const reader = new FileReader();
                 reader.onload = function(e){
+                    selectedFiles.push(file);
                     configImage("", e.target.result, file);
                 }
                 reader.readAsDataURL(file);
@@ -289,35 +298,34 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
 
 
-        function configImage(urlAncien, urlNouveau, file){
+        function configImage(urlAncien, urlNouveau, file) {
             if (conteneur.childElementCount < maxImages) {
                 const figureImg = document.createElement("figure");
                 figureImg.classList.add("imageOffre");
-                if(urlAncien != ""){
-                    figureImg.innerHTML = `<img src="${urlAncien}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`
+                if (urlAncien != "") {
+                    figureImg.innerHTML = `<img src="${urlAncien}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
                     const hiddenInputImg = document.createElement("input");
                     hiddenInputImg.type = "hidden";
                     hiddenInputImg.value = urlAncien;
-                    hiddenInputImg.name = "imageExistante[]"; 
+                    hiddenInputImg.name = "imageExistante[]";
                     figureImg.appendChild(hiddenInputImg);
-                }else{
+                } else {
                     figureImg.innerHTML = `<img src="${urlNouveau}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
                 }
                 conteneur.appendChild(figureImg);
 
                 figureImg.addEventListener("click", function () {
                     if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
-                        figureImg.remove(); // Supprime l'élément image et son conteneur
-                        pImage.style.color = "black"; //on remet la couleur par défaut au cas où c'etait en rouge
+                        figureImg.remove();
+                        selectedFiles.splice(selectedFiles.indexOf(file), 1); // Supprimer le fichier de la liste
+                        pImage.style.color = "black"; // Remettre la couleur par défaut
                     }
                 });
             } else {
-                pImage.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
+                pImage.style.color = "red";
             }
         }
-
-
-
+    
 
         const radBtnRestaurant = document.querySelector("#radioRestaurant");
         const radBtnParc = document.querySelector("#radioParc");
