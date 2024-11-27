@@ -124,12 +124,14 @@ try {
         const images = event.target.files;
 
         Array.from(images).forEach((file) => {
+            alert(conteneur.childElementCount, "     ", maxImages)
             if (conteneur.childElementCount >= maxImages) {
                 pImage.style.color = "red";
                 return; // Ignorer les fichiers supplémentaires
             }
             const reader = new FileReader();
             reader.onload = function(e){
+                alert(e.target.result)
                 photosSelect.push(file);
                 configImage("", e.target.result, file);
             }
