@@ -147,11 +147,11 @@ function sortDateAncien(array) {
 function filtrerParCategorie(offers) {
   const categoriesSelection = [];
   
-  if (chkBxParc.checked) categoriesSelection.push("Parc");
+  if (chkBxParc.checked) categoriesSelection.push("Parc Attraction");
   if (chkBxVisite.checked) categoriesSelection.push("Visite");
-  if (chkBxActivite.checked) categoriesSelection.push("Activite");
+  if (chkBxActivite.checked) categoriesSelection.push("Activité");
   if (chkBxSpectacle.checked) categoriesSelection.push("Spectacle");
-  if (chkBxRestauration.checked) categoriesSelection.push("Restauration");
+  if (chkBxRestauration.checked) categoriesSelection.push("Restaurant");
 
   if (categoriesSelection.length == 0) {
     // categoriesSelection = ["Parc", "Visite", "Activite", "Spectacle", "Restauration"];
