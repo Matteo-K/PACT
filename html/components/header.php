@@ -174,7 +174,13 @@
             const profilePic = document.getElementById("profilePic");
             const profileMenu = document.getElementById("profileMenu");
             const backButton = document.getElementById("backButton");
+            const factu = document.getElementsByClassName("liFact")[0];
+
+            function toggleFacture() {
+                
+            }
             
+            factu.addEventListener("click", toggleFacture);
             // Fonction pour afficher/cacher le menu
             function toggleMenu() {
                 if (profileMenu.classList.contains("show")) {
