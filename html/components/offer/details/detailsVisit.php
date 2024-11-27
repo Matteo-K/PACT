@@ -134,14 +134,6 @@ selectLangue.addEventListener('change', function () {
         langText.textContent = selectedValue;
         langText.className = 'lang-text';
 
-        // Appliquer un style visuel cohérent avec les tags ajoutés
-        langText.style.color = '#0d47a1'; // Même couleur que le texte des tags
-        langText.style.backgroundColor = '#e3f2fd'; // Même couleur de fond
-        langText.style.padding = '4px 8px';
-        langText.style.borderRadius = '12px';
-        langText.style.marginRight = '10px';
-        langText.style.fontWeight = 'bold';
-
         // Ajouter un bouton de suppression avec une icône
         const removeBtn = document.createElement('button');
         removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #ff4d4d;">&times;</span>'; // Symbole "×" stylisé
@@ -161,11 +153,11 @@ selectLangue.addEventListener('change', function () {
         langDiv.style.alignItems = 'center';
         langDiv.style.margin = '5px';
         langDiv.style.padding = '8px 12px';
-        langDiv.style.backgroundColor = '#e3f2fd';
+        langDiv.style.backgroundColor = '#e3f2fd'; // Couleur identique pour les tags
         langDiv.style.border = '1px solid #90caf9';
         langDiv.style.borderRadius = '20px';
         langDiv.style.fontSize = '0.9em';
-        langDiv.style.color = '#0d47a1';
+        langDiv.style.color = '#0d47a1'; // Texte de même couleur que les tags
         langDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
         // Ajouter une animation pour l'apparition
@@ -181,6 +173,7 @@ selectLangue.addEventListener('change', function () {
     // Réinitialiser le select après ajout
     this.value = 'selectionLangue';
 });
+
 
 
 </script>
