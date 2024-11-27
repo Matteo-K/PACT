@@ -1874,6 +1874,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
 }
 
+.search .star.vide {
+  background-color: var(--secondary);
+}
+
 /*##### Pagination #####*/
 
 #pagination a {
