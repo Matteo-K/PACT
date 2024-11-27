@@ -1519,7 +1519,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .search {
   position: relative;
-  min-height: 900px;
+  min-height: 1000px;
   margin-top: var(--header-size);
   padding-bottom: 20px;
   padding-top: 20px;
