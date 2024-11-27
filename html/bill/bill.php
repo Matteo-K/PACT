@@ -44,14 +44,15 @@ $tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>intval($results[0]['t
 $v3=$tarif['prixBase'];
 
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
-$abonnement = explode(';',$results[0]['historiquestatut']);
-
 $nbEnLigne = 0 ;
-
-foreach ($abonnement as $key => $value) {
-    $result = json_decode($value,true);
+if ($results[0]['historiquestatut']) {
+    $abonnement = explode(';',$results[0]['historiquestatut']);
+    foreach ($abonnement as $key => $value) {
+        $result = json_decode($value,true);
     $nbEnLigne = $nbEnLigne + intval($result['Duree']);
+    }
 }
+
 
 $css = "
 p{
