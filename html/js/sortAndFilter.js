@@ -153,8 +153,6 @@ function filtrerParCategorie(offers) {
   if (chkBxSpectacle.checked) categoriesSelection.push("Spectacle");
   if (chkBxRestauration.checked) categoriesSelection.push("Restauration");
 
-  console.log('Notes sélectionnées:', notesSelection);
-
   if (categoriesSelection.length == 0) {
     // categoriesSelection = ["Parc", "Visite", "Activite", "Spectacle", "Restauration"];
     return offers;
