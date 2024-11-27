@@ -2362,7 +2362,7 @@ tbody td:last-child {
 .user+article+article>p {
   margin-bottom: 0.4em;
 }
-.user+article+article+p {
+.user+article+article+p, .user+article+p{
   text-align: center;
   width: 35%;
   margin-inline: auto;
