@@ -497,7 +497,7 @@ header>div>a>div {
   font-weight: bold;
 }
 
-.menuHeader a,liFact {
+.menuHeader a,.liFact {
   color: #fff;
   text-decoration: none;
   transition: color 0.5s;
