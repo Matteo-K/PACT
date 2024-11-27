@@ -603,6 +603,19 @@ header ul+div {
   }
 }
 
+/* ### Index ### */
+
+#index main {
+  padding-top: var(--header-size);
+  min-height: 60vh;
+}
+
+@media (max-width: 768px) {
+  #index main {
+    padding-top: 0;
+  }
+}
+
 /* ### Offer ### */
 
 /* Gestion de l'offre */

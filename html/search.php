@@ -105,7 +105,6 @@ $arrayOffer = [];
                 </li>
             </ul>
         </section>
-        
     </main>
     <?php require_once "components/footer.php"; ?>
     <?php if (empty($search)) { ?>
