@@ -433,13 +433,17 @@ header>div>a>div {
 #profileMenu.show {
   visibility: visible;
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(calc(100vw - 276px));
 }
 
 #profileMenu.hide {
   visibility: visible;
   opacity: 0;
-  transform: translateX(100%);
+  transform: translateX(-100%);
+}
+
+.deplace{
+  
 }
 
 /* Conteneur pour l'image et le pseudo */
@@ -1866,7 +1870,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 /* chaque ligne d'étoile */
@@ -1991,7 +1995,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   #tri {
     transform: translateX(-100%);
-    padding-left: 35px;
   }
 
   #tri h2 {

@@ -438,6 +438,8 @@ if (isset($_POST['pageBefore'])) {
             break;
         }
 
+        $stmt->execute([$idOffre]);
+
         foreach ($tags as $key => $tag) {
 
           //On ajoute donc tous les tags entrés
