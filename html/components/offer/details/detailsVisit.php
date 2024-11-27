@@ -101,6 +101,7 @@ if ($categorie["_visite"]) {
 
         
         <select name="langue" id="selectionLangue">
+            <option value="selectionLangue">-- Sélectionner une langue --</option>
             <?php foreach ($langue as $key => $value) { ?>
                 <option value="<?php echo $value ?>"><?php echo $value ?></option>
             <?php } ?>
