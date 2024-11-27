@@ -1,4 +1,5 @@
 <?php
+print_r($_POST);
 $pageDirection = $_POST['pageCurrent'] ?? 1;
 $idOffre = $_POST["idOffre"];
 $idUser = $_POST["idUser"];
@@ -122,8 +123,6 @@ if (isset($_POST['pageBefore'])) {
             unlink($fichier); // Supprime le fichier
           }
         }
-
-        
 
 
         var_dump($anciennesImagesRestantes);
