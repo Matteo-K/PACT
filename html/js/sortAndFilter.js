@@ -247,12 +247,17 @@ function filtrerParPeriode(offers) {
 
 // Fonction global
 function sortAndFilter(array, elementStart, nbElement) {
-  // Filtre
+  // Filtres
+  array = filtrerParCategorie(array);
+  array = filtrerParNotes(array);
+  array = filtrerParPrix(array);
+  array = filtrerParStatuts(array);
+  array = filtrerParPeriode(array);
 
-  // Tri
+  // Tris
   array = selectSort(array);
 
-  // Affiche
+  // Affichage
   displayOffers(array, elementStart, nbElement);
 }
 
