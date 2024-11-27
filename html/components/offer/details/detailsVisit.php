@@ -152,3 +152,4 @@ if ($categorie["_visite"]) {
         // Réinitialiser le select après ajout
         this.value = 'selectionLangue';
     });
+</script>

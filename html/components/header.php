@@ -74,7 +74,7 @@
                         <a id="logoutButton" class="buttonMenu" href="logout.php">Déconnexion</a>
                     </div>
                 </div>
-                <div class="factue">
+                <div class="factue hidden">
                     <h1>Mes Factures</h1>
                     <div class="details">
                     <?php 
