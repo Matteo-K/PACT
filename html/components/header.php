@@ -123,7 +123,7 @@
                                                 <div class="details-form">
                                                     <p><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></p>
                                                     <div>
-                                                        <form action="bill/download.php" method="post">
+                                                        <form id="factureForm" action="bill/download.php" method="post" target="pdfWindow">
                                                             <input type="hidden" name="idOffre" value="<?php echo $value['idoffre']; ?>">
                                                             <input type="hidden" name="mois" value="<?php echo $moisFrancais; ?>">
                                                             <input type="hidden" name="annee" value="<?php echo $annee; ?>">
@@ -166,9 +166,12 @@
 
 </header>
 
-
 <script>
     try {
+        document.getElementById("factureForm").onsubmit = function() {
+            // Créer une nouvelle fenêtre pour afficher le PDF
+            window.open('', 'pdfWindow'); // Ouvre une fenêtre de taille spécifique
+        };
         document.addEventListener("DOMContentLoaded", function() {
             const body = document.body;
             const profilePic = document.getElementById("profilePic");
