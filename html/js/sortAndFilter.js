@@ -12,10 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const userDataElement = document.getElementById('user-data');
   
   const offersData = offersDataElement.getAttribute('data-offers');
-  //console.log(offersData); // Débugger
+  // console.log(offersData); // Débugger
 
-  arrayOffer = JSON.parse(offersData);
-  arrayOffer = Object.values(arrayOffer);
+  try {
+    arrayOffer = JSON.parse(offersData);
+    arrayOffer = Object.values(arrayOffer);
+  } catch (error) {
+    console.error("Erreur de parsing JSON :", error);
+  }
+  
 
   userType = userDataElement.getAttribute('data-user');
 

@@ -625,6 +625,10 @@ header ul+div {
   text-align: center;
 }
 
+.carteIndex figcaption > h3 {
+  text-align: center;
+}
+
 .carteIndexPro, .carteIndex {
   display: flex;
   flex-flow: column wrap;
@@ -632,6 +636,8 @@ header ul+div {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   margin: 20px;
   width: 30%;
+  min-width: 450px;
+  height: 304px;
 }
 
 #ALaUne > div {
@@ -641,14 +647,16 @@ header ul+div {
   justify-content: space-evenly;
 }
 
-.hrlBlocIndex {
+.hrlBlocIndex, .information {
   display: flex;
   flex-flow: row nowrap;
+  padding: 0 20px;
 }
 
 #index figure {
   margin: 0;
   position: relative;
+  height: 304px;
 }
 
 #index img {
@@ -668,6 +676,7 @@ header ul+div {
 
 .detailsCardOffer {
   flex: 2;
+  padding-bottom: 10px;
 }
 
 .detailsCardOffer h3 {
@@ -700,11 +709,20 @@ header ul+div {
   margin-top: 20px;
 }
 
-.StatutAffiche {
+#index .StatutAffiche {
   font-size: 0.875em;
   font-weight: bold;
   padding: 4px 10px;
   border-radius: 4px;
+  background-color: green;
+}
+
+#index .horslgnOffre {
+  background-color: red !important;
+}
+
+#index .StatutAffiche::after {
+  content: none;
 }
 
 .abonnement {
@@ -721,16 +739,19 @@ header ul+div {
   gap: 8px;
 }
 
-.dataOffre span {
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.875em;
-}
-
-.blcTag h4 {
+.blcTag h4, .localisationCard h4 {
   font-size: 1em;
   font-weight: bold;
   margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.localisationCard h4 {
+  padding: 0;
+}
+
+.localisationCard {
+  flex: 1.5;
 }
 
 .tagsCard {
@@ -739,6 +760,7 @@ header ul+div {
   align-items: center;
   justify-content: space-evenly;
   gap: 8px;
+  margin: 10px;
 }
 
 .tagIndex {
@@ -752,7 +774,7 @@ header ul+div {
 }
 
 .tagIndex:hover {
-  background-color: var(--text-light);
+  background-color: var(--secondary);
 }
 
 #voirPlus {
@@ -775,10 +797,34 @@ header ul+div {
   background-color: var(--primary60);
 }
 
+.blcTag, .information {
+  display: none;
+}
+
+#index form:hover .information,
+#index form:hover .blcTag {
+  display: flex !important;
+}
+
 /* Responsiveness */
 @media (max-width: 768px) {
-  .carteIndexPro {
-    margin: 10px;
+  #index {
+    padding-top: 0;
+  }
+
+  .carteIndex {
+    height: 200px;
+    min-width: 300px;
+  }
+
+  .carteIndex h3 {
+    font-size: 1rem;
+    margin: 0;
+    margin-top: 10px;
+  }
+
+  #index img {
+    height: 200px;
   }
 
   .detailsCardOffer h3 {
@@ -800,6 +846,33 @@ header ul+div {
 
   .StatutAffiche {
     margin-bottom: 10px;
+  }
+
+  .carteIndex address {
+    text-wrap: nowrap;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  #index .star {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .blcTag, .information {
+    display: flex;
+  }
+
+  .blcStarALaUne + span {
+    font-size: 0.85rem;
+  }
+
+  .blcStarALaUne + span + span, /* nb avis */
+  .blcStarALaUne + span + span + span, /* gamme de prix */
+  .carteIndex p,
+  .localisationCard h4,
+  .tagsCard{
+    display: none;
   }
 }
 

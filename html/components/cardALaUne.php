@@ -36,7 +36,7 @@
           <p><?php echo $resume ?></p>
         </div>
         <div class="localisationCard">
-          <adresse><?php echo $ville ?>, <?php echo $codePostal ?></adresse>
+          <address><?php echo $ville ?>, <?php echo $codePostal ?></address>
           <h4>Catégories&nbsp;:&nbsp;</h4>
           <div class="tagsCard">
             <?php foreach ($tags as $key => $tag) { ?>
