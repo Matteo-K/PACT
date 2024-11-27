@@ -350,7 +350,8 @@ header>div>a>div {
   overflow-y: auto;
   overflow-x: hidden;
   flex-direction: column;
-  transition: opacity 0.5s ease, height 0.5s ease;
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
 }
 
 .details{
