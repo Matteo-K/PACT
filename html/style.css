@@ -395,7 +395,7 @@ header>div>a>div {
 }
 
 /* Style pour chaque lien (ligne de tableau) */
-.details-content p {
+.details-form {
   display: block;
   padding: 10px 15px;
   font-size: 1rem;
@@ -407,12 +407,12 @@ header>div>a>div {
 }
 
 /* Dernière ligne sans bordure */
-.details-content p:last-child {
+.details-form:last-child {
   border-bottom: none;
 }
 
 /* Interaction sur les liens */
-.details-content p:hover {
+.details-form:hover {
   background-color: #f0f0f0;
   color: #007BFF;
 }
