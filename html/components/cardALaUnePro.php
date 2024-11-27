@@ -51,7 +51,7 @@
           <h4>Catégories&nbsp;:&nbsp;</h4>
           <div class="tagsCard">
             <?php foreach ($tags as $key => $tag) { ?>
-              <span class="tagIndex"><?php echo $tag ?></span>
+              <a href="search.php?search=<?php echo $tag ?>" class="tagIndex"><?php echo $tag ?></a>
             <?php } ?>
           </div>
         </div>

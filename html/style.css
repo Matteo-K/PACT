@@ -629,9 +629,8 @@ header ul+div {
   display: flex;
   flex-flow: column wrap;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   margin: 20px;
-  transition: transform 0.3s ease;
   width: 30%;
 }
 
@@ -640,10 +639,6 @@ header ul+div {
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-evenly;
-}
-
-.carteIndexPro:hover {
-  transform: translateY(-2px);
 }
 
 .hrlBlocIndex {
@@ -671,44 +666,48 @@ header ul+div {
   width: 100%;
 }
 
-#index .detailsCardOffer h3 {
+.detailsCardOffer {
+  flex: 2;
+}
+
+.detailsCardOffer h3 {
   font-size: 1.5em;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-#index .noteALaUne {
+.noteALaUne {
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 0.875em;
 }
 
-#index .blcStarALaUne {
+.blcStarALaUne {
   display: flex;
   gap: 4px;
 }
 
-#index .adresse {
+.adresse {
   font-size: 0.875em;
   margin-top: 8px;
 }
 
-#index .dataOffre {
+.dataOffre {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column nowrap;
   justify-content: space-between;
   margin-top: 20px;
 }
 
-#index .StatutAffiche {
+.StatutAffiche {
   font-size: 0.875em;
   font-weight: bold;
   padding: 4px 10px;
   border-radius: 4px;
 }
 
-#index .abonnement {
+.abonnement {
   font-size: 0.875em;
   font-weight: bold;
   padding: 5px 10px;
@@ -716,13 +715,13 @@ header ul+div {
   text-transform: uppercase;
 }
 
-#index .dataOffre div {
+.dataOffre div {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-#index .dataOffre span {
+.dataOffre span {
   padding: 6px 12px;
   border-radius: 4px;
   font-size: 0.875em;
@@ -736,12 +735,14 @@ header ul+div {
 
 .tagsCard {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
   gap: 8px;
 }
 
 .tagIndex {
-  background-color: var(--accent80);
+  background-color: var(--accent);
   color: var(--text-dark);
   padding: 6px 12px;
   border-radius: 4px;
@@ -751,7 +752,7 @@ header ul+div {
 }
 
 .tagIndex:hover {
-  background-color: var(--accent);
+  background-color: var(--text-light);
 }
 
 #voirPlus {
