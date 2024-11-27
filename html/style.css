@@ -2318,6 +2318,7 @@ tbody td:last-child {
 
 .reponseAvis{
   width: 90%;
+  background-color: var(--primary20);
 }
 
 .infoUser > p{
@@ -2396,11 +2397,16 @@ tbody td:last-child {
 }
 
 .messageAvisReponse > div + div{
+  display: flexx;
   margin: 1em;
 }
 
-.messageAvisReponse > div + div > img{
-  width:10%;
+.messageAvisReponse > div + div > img {
+  height: 10%;
+  width: 10%;
+  margin: 0.5em;
+  transform: scaleY(-1);
+  rotate: -90deg;
 }
 /** Fin Avis **/
 
