@@ -92,12 +92,12 @@ if ($categorie["_visite"]) {
         <input type="text" id="inputTag" name="inputTag"
             placeholder="Entrez & selectionnez les langue proposée pour votre visite">
 
-        <!--
+        
         <select name="langue" id="selectionLangue">
             <option value="Français">Français</option>
             <option value="Anglais">Anglais</option>
             <option value="Espagnol">Espagnol</option>
-        </select>-->
+        </select>
 
 
 
