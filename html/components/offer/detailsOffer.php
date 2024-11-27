@@ -267,7 +267,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         //Affichage des images a leur selection
         const pImage = document.querySelector("#choixImage > p");
         const conteneur = document.getElementById("afficheImages");
-
+        document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
         
         const loadedImg = <?php echo json_encode($loadedImg) ?>;
 
@@ -277,7 +277,33 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             configImage(img, "", "");
         });
 
+
+        function afficheImage(event) {
+            alert("Appel fonction")
+            const images = event.target.files;
+
+            console.log(images);
+
+            Array.from(images).forEach((file) => {
+                alert(conteneur.childElementCount);
+                if (conteneur.childElementCount >= maxImages) {
+                    pImage.style.color = "red";
+                    alert("C'est plein");
+                }
+                else{
+                    const reader = new FileReader();
+                    reader.onload = function(e){
+                        alert(e.target.result)
+                        photosSelect.push(file);
+                        configImage("", e.target.result, file);
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+        }
+
         function configImage(urlAncien, urlNouveau, file) {
+            alert("appel f2");
             if (conteneur.childElementCount < maxImages) {
                 const figureImg = document.createElement("figure");
                 figureImg.classList.add("imageOffre");
