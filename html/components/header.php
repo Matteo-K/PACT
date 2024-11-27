@@ -181,6 +181,7 @@
 
             function toggleFacture() {
                 profileMenu.classList.toggle("deplace")
+                body.classList.toggle('no-scroll');
             }
             
             factu.addEventListener("click", toggleFacture);
@@ -190,6 +191,7 @@
                     profileMenu.classList.remove("show");
                     profileMenu.classList.remove("deplace")
                     profileMenu.classList.add("hide");
+                    body.classList.remove('no-scroll');
 
                 } else {
                     profileMenu.classList.add("show");
