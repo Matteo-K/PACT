@@ -442,6 +442,8 @@ if (isset($_POST['pageBefore'])) {
 
         foreach ($tags as $key => $tag) {
 
+          $tag = str_replace(" ", "_",$tag);
+
           //On ajoute donc tous les tags entrés
           switch ($categorie) {
             case 'restaurant':
