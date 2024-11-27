@@ -1,5 +1,6 @@
 <!-- Visite -->
 <?php
+$langue = [];
 $visite = [
     "guide" => true,
     "duree" => "",
@@ -9,9 +10,13 @@ $visite = [
     "langue" => []
 ];
 
-// Si la visite était déà existante, on récupère les données
+$stmt = $conn->prepare("SELECT * from pact._langue");
+$stmt->execute();
+while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $langue[] = $result["langue"];
+}
 
-$langue = [];
+// Si la visite était déà existante, on récupère les données
 if ($categorie["_visite"]) {
     $stmt = $conn->prepare("SELECT * from pact._visite where idoffre=?");
     $stmt->execute([$idOffre]);
@@ -37,12 +42,6 @@ if ($categorie["_visite"]) {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $visite["hadicap"][] = $row["hadicap"];
     }*/
-
-    $stmt = $conn->prepare("SELECT * from pact._langue");
-    $stmt->execute();
-    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $langue[] = $result["langue"];
-    }
 }
 // Il reste à initialisé les valeurs dans les input
 ?>
