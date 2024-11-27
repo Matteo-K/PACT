@@ -245,7 +245,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
         </div>
         <?php if ($offre[0]['statut'] === 'actif') { ?>
-            <div id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</div>
+            <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
         <?php } ?>
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
         <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville'] ?></h3>
