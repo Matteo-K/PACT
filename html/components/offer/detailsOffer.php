@@ -286,15 +286,16 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 alert(conteneur.childElementCount, "     ", maxImages)
                 if (conteneur.childElementCount >= maxImages) {
                     pImage.style.color = "red";
-                    return; // Ignorer les fichiers supplémentaires
                 }
-                const reader = new FileReader();
-                reader.onload = function(e){
-                    alert(e.target.result)
-                    photosSelect.push(file);
-                    configImage("", e.target.result, file);
+                else{
+                    const reader = new FileReader();
+                    reader.onload = function(e){
+                        alert(e.target.result)
+                        photosSelect.push(file);
+                        configImage("", e.target.result, file);
+                        reader.readAsDataURL(file);
+                    }
                 }
-                reader.readAsDataURL(file);
             });
         }
 
