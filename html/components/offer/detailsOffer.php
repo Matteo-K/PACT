@@ -286,6 +286,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 alert(conteneur.childElementCount, "     ", maxImages)
                 if (conteneur.childElementCount >= maxImages) {
                     pImage.style.color = "red";
+                    alert("C'est plein");
                 }
                 else{
                     const reader = new FileReader();
@@ -300,6 +301,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
 
         function configImage(urlAncien, urlNouveau, file) {
+            alert("appel f2");
             if (conteneur.childElementCount < maxImages) {
                 const figureImg = document.createElement("figure");
                 figureImg.classList.add("imageOffre");
