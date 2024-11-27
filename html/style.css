@@ -346,10 +346,12 @@ header>div>a>div {
   width: calc(100vw - 286px);
   background-color: var(--background) ;
   color: #000;
+}
+
+.details{
   display: flex;
   flex-wrap: wrap;
 }
-
 
 .details-style {
   border: 1px solid #ddd;

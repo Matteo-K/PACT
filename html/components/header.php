@@ -75,12 +75,12 @@
                 </div>
                 <div class="factue">
                     <h1>Mes Factures</h1>
+                    <div class="details">
                     <?php 
                         $idu = $_SESSION["idUser"];
                         $stmt = $conn->prepare("SELECT nom,idoffre,ARRAY_AGG(DISTINCT datefactue ORDER BY datefactue DESC) AS datefactue FROM pact.facture WHERE idU = $idu GROUP BY nom,idOffre");
                         $stmt->execute();
                         $factures = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        
                         foreach ($factures as $key => $value) {
                             ?>
                                 <details class="details-style">
@@ -128,6 +128,7 @@
                             <?php
                         }
                     ?>
+                    </div>
                 </div>
             </div>
 
