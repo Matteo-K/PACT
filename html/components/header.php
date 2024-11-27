@@ -194,8 +194,8 @@
                         profileMenu.classList.remove("hide");
                     }, 300); // Temps de la transition en ms
                 } else {
-                    profileMenu.classList.remove("hide");
                     profileMenu.classList.add("show");
+                    profileMenu.classList.remove("hide");
                     body.classList.add('no-scroll');
                 }
             }
