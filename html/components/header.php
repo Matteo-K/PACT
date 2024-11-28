@@ -49,10 +49,11 @@
             }
             $stmt->execute([$_SESSION["idUser"]]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            print_r($_SESSION["typeUser"]);
         ?>
 
             <img id="profilePic" src="<?php echo $user["url"] ?>" title="Photo de profil utilisateur">
-
+            
             <!-- Menu caché intégré dans le header -->
             <div id="profileMenu" class="hidden">
                 <div class="menuHeader">
@@ -202,7 +203,6 @@
             factu.addEventListener("click", toggleFacture);
             // Fonction pour afficher/cacher le menu
             function toggleMenu() {
-                console.log("event reusi");
                 if (profileMenu.classList.contains("show")) {
                     profileMenu.classList.remove("show");
                     profileMenu.classList.remove("deplace");
