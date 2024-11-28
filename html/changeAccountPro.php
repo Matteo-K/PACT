@@ -14,12 +14,25 @@
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idUser'];
 
+    if ($user) {
+        $_SESSION['idUser'] = $userId;
+        header("Location: changeAccountPro.php");
+        exit();
+    }
+    
+
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
         // Adapter la requête en fonction de votre table et secteur
         $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE id = ?");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+            $_SESSION['idUser'] = $userId;
+            header("Location: changeAccountPro.php");
+            exit();
+        }
 
         // Vérifier si les données sont trouvées
         if (!$user) {
@@ -87,7 +100,7 @@
             <div class="ligne2">
                 <!-- Saisi de l'adresse mail -->
                 <label for="email">Adresse mail*:</label>
-                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?>" required>
+                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($user['mail']) ? htmlspecialchars($user['mail']) : '' ?>" required>
             </div>
 
 
@@ -106,7 +119,7 @@
                 <label for="ville">Ville*:</label>
                 
                 <!-- Saisi du code postale -->
-                <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($user['code']) ? htmlspecialchars($user['code']) : '' ?>" required>
+                <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($user['codePostal']) ? htmlspecialchars($user['codePostal']) : '' ?>" required>
 
                 <!-- Saisi de la ville -->
                 <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($user['ville']) ? htmlspecialchars($user['ville']) : '' ?>" required>
