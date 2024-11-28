@@ -2742,7 +2742,7 @@ tbody td:last-child {
 .user+article,
 .user+article>div {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   width: 100%;
 }
