@@ -1,3 +1,61 @@
+<?php
+    // Démarrer la session
+    session_start();
+
+    // Fichier de connexion à la BDD
+    require_once 'db.php';
+
+    // Vérifier si l'utilisateur est connecté
+    if (!isset($_SESSION['idUser'])) {
+        header("Location: login.php"); // Rediriger vers la page de connexion si non connecté
+        exit();
+    }
+
+    // Récupérer l'ID de l'utilisateur connecté
+    $userId = $_SESSION['idUser'];
+
+    // Initialiser une variable d'erreur vide
+    $error = '';
+
+    // Vérification du formulaire
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les données du formulaire
+        $ancienMDP = $_POST['ancienMDP'];
+        $nouveauMDP = $_POST['nouveauMDP'];
+        $confirmerNouveauMDP = $_POST['confirmerNouveauMDP'];
+
+        // Vérification que le nouveau mot de passe et la confirmation sont identiques
+        if ($nouveauMDP !== $confirmerNouveauMDP) {
+            $error = "Les mots de passe ne correspondent pas.";
+        } 
+        
+        else {
+            // Récupérer le mot de passe actuel de l'utilisateur depuis la base de données
+            $stmt = $conn->prepare("SELECT password FROM pact._utilisateur WHERE idU = ?");
+            $stmt->execute([$userId]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user && password_verify($ancienMDP, $user['password'])) {
+                // L'ancien mot de passe est correct, on peut mettre à jour le mot de passe
+                $newPasswordHash = password_hash($nouveauMDP, PASSWORD_BCRYPT); // Hasher le nouveau mot de passe
+
+                // Mettre à jour le mot de passe dans la base de données
+                $stmt = $conn->prepare("UPDATE pact._utilisateur SET password = ? WHERE idU = ?");
+                $stmt->execute([$newPasswordHash, $userId]);
+
+                // Rediriger l'utilisateur avec un message de succès
+                header("Location: profile.php?success=Mot de passe mis à jour avec succès.");
+                exit();
+            } 
+            
+            else {
+                // Si l'ancien mot de passe ne correspond pas
+                $error = "L'ancien mot de passe est incorrect.";
+            }
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head> 
