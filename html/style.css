@@ -2340,11 +2340,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-top: calc(var(--header-size2) + 0.6em);
   width: calc(96vw - 40px);
   margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .buttonDetails {
   display: flex;
   gap: 10px;
+  width: fit-content;
+  margin-left: auto;
 }
 
 #titleOffer {
