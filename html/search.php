@@ -1,7 +1,6 @@
 <?php 
 require_once "config.php";
 
-$recherche = isset($_GET["search"]) ? $_GET["search"]: "";
 $page = isset($_GET["page"]) ? $_GET["page"] :  1;
 $nbElement = 15;
 $countOffer = 0;
@@ -54,7 +53,7 @@ $arrayOffer = [];
         <section class="searchoffre">
         </section>
         <section id="pagination">
-            <?php $lien = "search.php?" . ($recherche != "" ? $recherche : ""); ?>
+            <?php $lien = "search.php?search=" . ($search != "" ? $search : ""); ?>
             <ul>
                 <li>
                     <?php if ($page > 5) { ?>
@@ -107,11 +106,8 @@ $arrayOffer = [];
         </section>
     </main>
     <?php require_once "components/footer.php"; ?>
-    <?php if (empty($search)) { ?>
-        <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->filtre($idUser, $typeUser)))); ?>'></div>
-    <?php } else { ?>
-        <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search)))); ?>'></div>
-    <?php } ?>
+    <!-- Data -->
+    <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search)))); ?>'></div>
     <div id="user-data" data-user='<?php echo $typeUser ?>'></div>
     <script src="js/sortAndFilter.js"></script>
     <script>

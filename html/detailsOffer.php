@@ -44,47 +44,23 @@ function getSchedules($conn, $idOffre)
 $schedules = getSchedules($conn, $idOffre);
 
 // Rechercher l'offre dans les parcs d'attractions
-$stmt = $conn->prepare("SELECT * FROM pact.parcs_attractions WHERE idoffre = :idoffre");
+$stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
 $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!$result) {
-    // Recherche dans les restaurants, activités, spectacles, et visites
-    $types = ['restaurants' => 'restaurant', 'activites' => 'activité', 'spectacles' => 'spectacle', 'visites' => 'visite'];
-    foreach ($types as $type => $key) {
-        $stmt = $conn->prepare("SELECT * FROM pact.$type WHERE idoffre = :idoffre");
-        $stmt->bindParam(':idoffre', $idOffre);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result) {
-            $typeOffer = $key;
-            break; // Sortir de la boucle si une offre est trouvée
-        }
-    }
-} else {
-    $typeOffer = "parc_attraction";
-}
-
-if (!$result) {
-    $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre = :idoffre");
-    $stmt->bindParam(':idoffre', $idOffre);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($result) {
 ?>
-        <form id="manageOfferAuto" action="manageOffer.php" method="post">
-            <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-        </form>
-        <script>
-            document.getElementById("manageOfferAuto").submit();
-        </script>
+    <form id="manageOfferAuto" action="manageOffer.php" method="post">
+        <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+    </form>
+    <script>
+        document.getElementById("manageOfferAuto").submit();
+    </script>
 <?php
 
-    }
-
-    echo "Aucune offre trouvée avec cet id.<br>";
-    exit();
+} else {
+    $typeOffer = $result[0]['categorie'];
 }
 
 // Récupérer les détails de localisation
@@ -137,111 +113,126 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
 
-    <title><?php echo htmlspecialchars($result["nom_offre"]); ?></title>
+    <title><?php echo htmlspecialchars($result[0]["nom"]); ?></title>
 </head>
 
 <body>
     <?php require_once "components/header.php"; ?>
 
     <main class="mainOffer">
-        <div class="buttonDetails">
+        <fieldset class="info">
+            <legend>Information de l'offre</legend>
+
             <?php
             if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                 $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
                 $cook->execute();
                 $offre = $cook->fetchAll(PDO::FETCH_ASSOC);
-                $affiche = false;
-                foreach ($offre[0] as $key => $value) {
-                    if ($value == NULL) {
-                        $affiche = true;
-                    }
-                }
-                if ($affiche) {
-                    $resto = $conn->prepare("SELECT * FROM pact._restauration WHERE idoffre=$idOffre");
-                    $resto->execute();
-                    $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <h3 class="Enligne"><?php echo $offre[0]['statut'] ?></h3>
 
-                    $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=$idOffre");
-                    $spec->execute();
-                    $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
-
-                    $visi = $conn->prepare("SELECT * FROM pact._visite WHERE idoffre=$idOffre");
-                    $visi->execute();
-                    $visit = $visi->fetchAll(PDO::FETCH_ASSOC);
-
-                    $act = $conn->prepare("SELECT * FROM pact._activite WHERE idoffre=$idOffre");
-                    $act->execute();
-                    $acti = $act->fetchAll(PDO::FETCH_ASSOC);
-
-                    $parc = $conn->prepare("SELECT * FROM pact._parcattraction WHERE idoffre=$idOffre");
-                    $parc->execute();
-                    $parca = $parc->fetchAll(PDO::FETCH_ASSOC);
-
-                    if ($restau) {
-                        $tema = $restau;
-                    } elseif ($spect) {
-                        $tema = $spect;
-                    } elseif ($visit) {
-                        $tema = $visit;
-                    } elseif ($acti) {
-                        $tema = $acti;
-                    } else {
-                        $tema = $parca;
-                    }
-
-                    foreach ($tema[0] as $key => $value) {
+            <div class="buttonDetails">
+                <?php
+                    $affiche = false;
+                    foreach ($offre[0] as $key => $value) {
                         if ($value == NULL) {
                             $affiche = true;
                         }
                     }
-                    $adr = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre=$idOffre");
-                    $adr->execute();
-                    $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
+                    if ($affiche) {
+                        $resto = $conn->prepare("SELECT * FROM pact._restauration WHERE idoffre=$idOffre");
+                        $resto->execute();
+                        $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
 
-                    if (!$loca) {
-                        $affiche = true;
+                        $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=$idOffre");
+                        $spec->execute();
+                        $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
+
+                        $visi = $conn->prepare("SELECT * FROM pact._visite WHERE idoffre=$idOffre");
+                        $visi->execute();
+                        $visit = $visi->fetchAll(PDO::FETCH_ASSOC);
+
+                        $act = $conn->prepare("SELECT * FROM pact._activite WHERE idoffre=$idOffre");
+                        $act->execute();
+                        $acti = $act->fetchAll(PDO::FETCH_ASSOC);
+
+                        $parc = $conn->prepare("SELECT * FROM pact._parcattraction WHERE idoffre=$idOffre");
+                        $parc->execute();
+                        $parca = $parc->fetchAll(PDO::FETCH_ASSOC);
+
+                        if ($restau) {
+                            $tema = $restau;
+                        } elseif ($spect) {
+                            $tema = $spect;
+                        } elseif ($visit) {
+                            $tema = $visit;
+                        } elseif ($acti) {
+                            $tema = $acti;
+                        } else {
+                            $tema = $parca;
+                        }
+
+                        foreach ($tema[0] as $key => $value) {
+                            if ($value == NULL) {
+                                $affiche = true;
+                            }
+                        }
+                        $adr = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre=$idOffre");
+                        $adr->execute();
+                        $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
+
+                        if (!$loca) {
+                            $affiche = true;
+                        }
                     }
-                }
-                if (!$affiche) {
-                    $statutActuel = $offre[0]['statut'];
-                ?>
+                    if (!$affiche) {
+                        $statutActuel = $offre[0]['statut'];
+                    ?>
 
-                    <form method="post" action="changer_statut.php">
-                        <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
-                        <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
-                        <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
-                        <button class="modifierBut" type="submit">
-                            <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
-                        </button>
-                    </form>
+                        <form method="post" action="changer_statut.php">
+                            <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
+                            <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
+                            <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
+                            <button class="modifierBut" type="submit">
+                                <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
+                            </button>
+                        </form>
+                    <?php
+                    }
+                    ?>
+
+                    <div class="form-container">
+                        <form method="post" action="manageOffer.php">
+                            <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
+                            <button 
+                                class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>" 
+                                type="submit"
+                                onmouseover="showMessage(event)"
+                                onmouseout="hideMessage(event)"
+                                <?php if ($offre[0]['statut'] === 'actif') { ?>
+                                    onclick="return false;"
+                                <?php } ?>
+                            >
+                                <?php echo "Modifier offre"; ?>
+                            </button>
+                        </form>
+                                
+                        <!-- Message affiché au survol du bouton désactivé -->
+                                
+                    </div>
+
+
+
                 <?php
                 }
+
                 ?>
-
-                <div class="form-container">
-                    <form method="post" action="manageOffer.php">
-                        <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
-                        <button 
-                            class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>" 
-                            type="submit"
-                            <?php if ($offre[0]['statut'] === 'actif') { ?>
-                                onclick="return false;"
-                            <?php } ?>
-                        >
-                            <?php echo "Modifier offre"; ?>
-                        </button>
-                        <?php if ($offre[0]['statut'] === 'actif') { ?>
-                            <span class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</span>
-                        <?php } ?>
-                    </form>
-                </div>
-
-            <?php
-            }
-
-            ?>
-        </div>
-        <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
+            </div>
+        </fieldset>
+        <?php if ($offre[0]['statut'] === 'actif') { ?>
+            <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
+        <?php } ?>
+        <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
         <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville'] ?></h3>
         <?php
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
@@ -268,7 +259,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if ($typeOffer == "restaurant") {
-                array_push($tags, ['nomtag' => $result['gammedeprix']]);
+                array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
             }
 
             foreach ($tags as $tag):
@@ -307,28 +298,28 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <?php
             }
-            if ($result["telephone"] && $tel["affiche"] == TRUE) {
+            if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
             ?>
                 <div>
                     <img src="./img/icone/tel.png">
-                    <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
+                    <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
                 </div>
             <?php
             }
-            if ($result["mail"]) {
+            if ($result[0]["mail"]) {
             ?>
                 <div>
                     <img src="./img/icone/mail.png">
-                    <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
+                    <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
                 </div>
 
             <?php
             }
-            if ($result["urlsite"]) {
+            if ($result[0]["urlsite"]) {
             ?>
                 <div>
                     <img src="./img/icone/globe.png">
-                    <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
+                    <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
                 </div>
 
             <?php
@@ -421,7 +412,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             <section>
                 <h3>Description</h3>
-                <p><?php echo htmlspecialchars($result["description"]); ?></p>
+                <p><?php echo htmlspecialchars($result[0]["description"]); ?></p>
             </section>
         </article>
 
@@ -482,19 +473,19 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <?php
                 }
-                if ($result["telephone"] && $tel["affiche"] == TRUE) {
+                if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
                 ?>
                     <div>
                         <img src="./img/icone/tel.png">
-                        <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
+                        <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
                     </div>
                 <?php
                 }
-                if ($result["mail"]) {
+                if ($result[0]["mail"]) {
                 ?>
                     <div>
                         <img src="./img/icone/mail.png">
-                        <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
+                        <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
                     </div>
 
                 <?php
@@ -503,7 +494,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                     <div>
                         <img src="./img/icone/globe.png">
-                        <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
+                        <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
                     </div>
 
                 <?php
@@ -516,7 +507,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php
         if ($typeOffer == "parcs_attractions") {
         ?>
-            <img src="<?php echo $result["urlplan"] ?>">
+            <img src="<?php echo $result[0]["urlplan"] ?>">
         <?php
         }
 
@@ -628,6 +619,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 swiper: swiper,
             },
         });
+
+
+        function showMessage(event) {
+            const message = document.getElementById('hoverMessage');
+            message.style.display = 'block';
+        }
+
+        // Fonction pour masquer le message
+        function hideMessage(event) {
+            const message = document.getElementById('hoverMessage');
+            message.style.display = 'none';
+        }
     </script>
     <script src="js/setColor.js"></script>
 </body>

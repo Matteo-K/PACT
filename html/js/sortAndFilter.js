@@ -260,7 +260,7 @@ function sortAndFilter(array, elementStart, nbElement) {
   array = filtrerParCategorie(array);
   // array = filtrerParNotes(array);
   // array = filtrerParPrix(array);
-  array = filtrerParStatuts(array);
+  // array = filtrerParStatuts(array);
   // array = filtrerParPeriode(array);
 
   // Tris
@@ -274,8 +274,8 @@ function sortAndFilter(array, elementStart, nbElement) {
 
 function displayOffers(array, elementStart, nbElement) {
   const bloc = document.querySelector(".searchoffre");
+  bloc.innerHTML = "";
   if (array.length != 0) {
-    bloc.innerHTML = "";
     let offers = array.slice(elementStart, nbElement);
     offers.forEach(element => {displayOffer(element)});
   } else {

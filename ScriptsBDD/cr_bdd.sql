@@ -684,6 +684,100 @@ GROUP BY
     o.idOffre, l.ville, l.numeroRue, l.rue, l.pays, l.codePostal, r.gammeDePrix, ab.nomabonnement
 ORDER BY o.dateCrea DESC;
 
+CREATE VIEW offresComplete AS
+SELECT 
+    o.idOffre,
+    o.idU,
+    o.nom,
+    o.description,
+    o.resume,
+	  o.mail,
+	  o.telephone,
+	  o.urlsite,
+	  o.datecrea,
+    ab.nomabonnement,
+    ARRAY_AGG(DISTINCT i.url) AS listImage,
+    STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
+        'jour', hm.jour,
+        'heureOuverture', hm.heureOuverture,
+        'heureFermeture', hm.heureFermeture
+    )::TEXT, ';') FILTER (WHERE hm.jour IS NOT NULL AND hm.heureOuverture IS NOT NULL AND hm.heureFermeture IS NOT NULL) AS listHoraireMidi,
+    STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
+        'jour', hs.jour,
+        'heureOuverture', hs.heureOuverture,
+        'heureFermeture', hs.heureFermeture
+    )::TEXT, ';') FILTER (WHERE hs.jour IS NOT NULL AND hs.heureOuverture IS NOT NULL AND hs.heureFermeture IS NOT NULL) AS listHoraireSoir,
+    STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
+        'jour', hp.jour,
+        'heureOuverture', hp.heureDebut,
+        'heureFin', hp.heureFin,
+        'dateRepresentation', hp.dateRepresentation
+    )::TEXT, ';') FILTER (WHERE hp.jour IS NOT NULL AND hp.heureDebut IS NOT NULL AND hp.dateRepresentation IS NOT NULL) AS listeHorairePrecise,
+    l.ville,
+    l.numeroRue,
+    l.rue,
+    l.pays,
+    l.codePostal,
+    r.gammeDePrix,
+    ARRAY_CAT(
+        ARRAY_CAT(
+            ARRAY_CAT(
+                ARRAY_CAT(
+                    ARRAY_AGG(DISTINCT ts.nomTag) FILTER (WHERE ts.nomTag IS NOT NULL),
+                    ARRAY_AGG(DISTINCT tr.nomTag) FILTER (WHERE tr.nomTag IS NOT NULL)
+                ),
+                ARRAY_AGG(DISTINCT tv.nomTag) FILTER (WHERE tv.nomTag IS NOT NULL)
+            ),
+            ARRAY_AGG(DISTINCT ta.nomTag) FILTER (WHERE ta.nomTag IS NOT NULL)
+        ),
+        ARRAY_AGG(DISTINCT tp.nomTag) FILTER (WHERE tp.nomTag IS NOT NULL)
+    ) AS all_tags,
+    o.statut,
+    CASE
+        WHEN EXISTS (SELECT 1 FROM _tag_spec ts WHERE ts.idOffre = o.idOffre) THEN 'Spectacle'
+        WHEN EXISTS (SELECT 1 FROM _tag_restaurant tr WHERE tr.idOffre = o.idOffre) THEN 'Restaurant'
+        WHEN EXISTS (SELECT 1 FROM _tag_visite tv WHERE tv.idOffre = o.idOffre) THEN 'Visite'
+        WHEN EXISTS (SELECT 1 FROM _tag_act ta WHERE ta.idOffre = o.idOffre) THEN 'Activité'
+        WHEN EXISTS (SELECT 1 FROM _tag_parc tp WHERE tp.idOffre = o.idOffre) THEN 'Parc Attraction'
+        ELSE 'Autre'
+    END AS categorie
+FROM 
+    _offre o
+LEFT JOIN 
+    _illustre i ON o.idOffre = i.idOffre
+LEFT JOIN 
+    _horaireSoir hs ON o.idOffre = hs.idOffre
+LEFT JOIN 
+    _horaireMidi hm ON o.idOffre = hm.idOffre
+LEFT JOIN 
+    _localisation l ON o.idOffre = l.idOffre
+LEFT JOIN 
+    _restauration r ON o.idOffre = r.idOffre
+LEFT JOIN 
+    _tag_spec ts ON o.idOffre = ts.idOffre
+LEFT JOIN 
+    _tag_restaurant tr ON o.idOffre = tr.idOffre
+LEFT JOIN 
+    _tag_visite tv ON o.idOffre = tv.idOffre
+LEFT JOIN 
+    _tag_act ta ON o.idOffre = ta.idOffre
+LEFT JOIN 
+    _tag_parc tp ON o.idOffre = tp.idOffre
+LEFT JOIN
+    _horairePrecise hp ON o.idOffre = hp.idOffre
+LEFT JOIN
+    _abonner ab ON o.idOffre = ab.idOffre
+WHERE
+    l.ville IS NOT NULL AND
+    l.numeroRue IS NOT NULL AND
+    l.rue IS NOT NULL AND
+    l.pays IS NOT NULL AND
+    l.codePostal IS NOT NULL AND
+    ab.nomabonnement IS NOT NULl
+GROUP BY 
+    o.idOffre, l.ville, l.numeroRue, l.rue, l.pays, l.codePostal, r.gammeDePrix, ab.nomabonnement
+ORDER BY o.dateCrea DESC;
+
 -- Vue pour tous les avis avec offres
 CREATE VIEW avis AS
     SELECT  

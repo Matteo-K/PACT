@@ -138,21 +138,29 @@ class ArrayOffer {
   }
 
   public function recherche($idUser_, $typeUser_, $recherche) {
+    $recherche = trim($recherche);
     $array = $this->filtre($idUser_, $typeUser_);
+
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
 
-        $categorie = $item->getData()["categorie"] ?? '';
-        $nomOffre = $item->getData()["nomOffre"] ?? '';
-        $gammeDePrix = $item->getData()["gammeDePrix"] ?? '';
-        $adresse = $item->formaterAdresse() ?? '';
+      if (empty($recherche)) {
+        return true;
+      }
 
-        return $this->offreContientTag($item->getData()["tags"], $recherche) // tag
-            || strpos(strtolower($categorie), strtolower($recherche)) !== false // catégorie
-            || strpos(strtolower($nomOffre), strtolower($recherche)) !== false  // nom Offre
-            || strpos(strtolower($adresse), strtolower($recherche)) !== false  // localisation
-            || $gammeDePrix === $recherche;  // gamme de prix
+      var_dump($item->getData());
+
+      $categorie = $item->getData()["categorie"] ?? '';
+      $nomOffre = $item->getData()["nomOffre"] ?? '';
+      $gammeDePrix = $item->getData()["gammeDePrix"] ?? '';
+      $adresse = $item->formaterAdresse() ?? '';
+
+      return $this->offreContientTag($item->getData()["tags"], $recherche) // tag
+          || strpos(strtolower($categorie), strtolower($recherche)) !== false // catégorie
+          || strpos(strtolower($nomOffre), strtolower($recherche)) !== false  // nom Offre
+          || strpos(strtolower($adresse), strtolower($recherche)) !== false  // localisation
+          || $gammeDePrix === $recherche;  // gamme de prix
     });
-}
+  }
 
 
   public function offreContientTag($tags, $recherche) {

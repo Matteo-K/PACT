@@ -158,22 +158,22 @@ class Offer {
     $this->idOffre = $idOffre_;
     $this->statut = $statut_;
     $this->idUser = $idUser_;
-    $this->nomOffre = empty($nomOffre_) ? "Pas de nom" : $nomOffre_;
-    $this->resume = empty($resume_) ? "Résumé" : $resume_;
-    $this->description = empty($description_) ? "description de loffre" : $description_;
+    $this->nomOffre = empty($nomOffre_) ? "" : $nomOffre_;
+    $this->resume = empty($resume_) ? "" : $resume_;
+    $this->description = empty($description_) ? "" : $description_;
     $this->images = $images_;
     $this->tags = $tags_;
     foreach ($this->tags as &$tag) {
       $tag = str_replace('_', ' ', $tag);
     }
-    $this->ville = empty($ville_) ? "ville" : $ville_;
-    $this->pays = empty($pays_) ? "Pays" : $pays_;
+    $this->ville = empty($ville_) ? "" : $ville_;
+    $this->pays = empty($pays_) ? "" : $pays_;
     $this->numerorue = $numerorue_;
     $this->rue = $rue_;
     $this->codePostal = $codePostal_;
     $this->horaireMidi = $horaireMidi_;
     $this->horaireSoir = $horaireSoir_;
-    $this->mail = empty($mail_) ? "adresse@mail.com" : $mail_;
+    $this->mail = empty($mail_) ? "" : $mail_;
     $this->telephone = $telephone_;
     //$this->urlsite = $urlsite_;
     $this->dateCreation = $dateCreation_;

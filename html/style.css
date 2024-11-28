@@ -20,6 +20,10 @@
   font-family: "Lato", sans-serif;
 }
 
+main{
+  margin-top: calc(var(--header-size2) + 0.6em);
+}
+
 h1,
 h2,
 h3,
@@ -669,7 +673,7 @@ header ul+div {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.55);
   color: var(--text-light);
   width: 100%;
 }
@@ -757,11 +761,21 @@ header ul+div {
 
 .tagsCard {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row wrap-reverse;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   gap: 8px;
   margin: 10px;
+  width: 80%;
+}
+
+.carteIndex .tagsCard {
+  width: 150%;
+  margin-left: -50%;
+}
+
+.carteIndex .noteALaUne + p {
+  width: 60%;
 }
 
 .tagIndex {
@@ -1681,30 +1695,23 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border: solid #ccc 1px;
 }
 
-/* Style du message au survol */
-/* Conteneur pour positionner le message */
-.form-container {
-  position: relative; /* Nécessaire pour le positionnement absolu */
-}
 
-/* Style du message */
 .hover-message {
   display: none; /* Caché par défaut */
   color: red;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
-  position: absolute; /* Permet de sortir du flux normal */
-  top: 100%; /* Place le message sous le bouton */
-  left: -100%; /* Aligne le message avec le bouton */
-  margin-top: 5px; /* Un léger espace */
-  white-space: nowrap; /* Empêche les retours à la ligne */
-  z-index: 10; /* Gère les superpositions */
+  background: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
+  padding: 10px 20px;
+  border: 2px solid red;
+  border-radius: 8px;
+  margin: 10px auto;
+  z-index: 1000; /* Toujours au-dessus */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optionnel */
 }
 
-/* Afficher le message lors du survol du bouton désactivé */
-.modifierBut.disabled:hover + .hover-message {
-  display: block;
-}
+
 
 
 #checkAddressBtn,
@@ -2323,38 +2330,56 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 }
 
+
+/***********************************************************************************************/
+/***********************                                            ****************************/
+/***********************     DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE     ****************************/
+/***********************                                            ****************************/
+/***********************************************************************************************/
+
 .mainOffer .tag,
 .ouvert,
 .ferme {
   background-color: var(--accent);
   box-shadow: none;
-  margin-bottom: 2em;
 }
 
-/*  ***************************************************************************************
-     **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
-     *************************************************************************************** */
+#typeOffer + div {
+  margin: 1em;
+}
+
 
 .mainOffer {
-  margin-top: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+.info{
+  width: calc(96vw - 40px);
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Enligne{
+  width: fit-content; 
+  margin: 0 auto 0 0;
+}
+
 .buttonDetails {
   display: flex;
-  margin-top: calc(var(--header-size2) + 0.6em);
   gap: 10px;
-  /* Espacement entre les boutons */
+  width: fit-content;
+  margin-left: auto;
 }
 
 #titleOffer {
   text-align: center;
   font-size: 5em;
   color: var(--bloc);
-  margin-bottom: 0;
+  margin: 0.2em;
   font-weight: 600;
 }
 
@@ -2365,7 +2390,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-family: Lato;
   font-weight: bold;
   font-size: 2em;
-  margin-bottom: 1em;
 }
 
 .mainOffer .tag,
@@ -2701,8 +2725,6 @@ tbody td:last-child {
   justify-content: space-between;
   gap: 1em;
 }
-
-
 
 .user + article + article{
   display: flex;
@@ -3126,6 +3148,16 @@ tbody td:last-child {
   flex-direction: column
     /* Espace entre le bouton radio et le texte */
 }
+
+#restaurant >div[class="photosR"]{
+  background-color: greenyellow; /* test des changements */
+  margin-top: 15px;
+  
+
+}
+
+
+
 
 /* CSS pour le détails d'une offre de type spectacle */
 #show {
@@ -3808,7 +3840,6 @@ div.ligne1>label {
 
 .connexion-compte input {
   font-size: 20px;
-  border: 0;
 }
 
 input[id="login"] {
@@ -3819,7 +3850,7 @@ input[id="login"] {
   border: 3px solid var(--accent);
 }
 
-input[id="motdepasseConnexion"] {
+input[id="motdepasseConnexion"], [id="ancienMDP"], input[id="nouveauMDP"], input[id="confirmerNouveauMDP"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
@@ -3827,7 +3858,7 @@ input[id="motdepasseConnexion"] {
   border: 3px solid var(--accent);
 }
 
-button[id="boutonConnexion"] {
+button[id="boutonConnexion"], button[id="boutonChangerMDP"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
@@ -3923,3 +3954,15 @@ p[id="legendeBoutonLienPro"] {
     display: none;
   }
 }
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++*/
+/* Css page changement de mot de passe, Antoine */
+/*+++++++++++++++++++++++++++++++++++++++++++++*/
+main[id="mainChangerMDP"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+}
+
