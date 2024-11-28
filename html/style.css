@@ -1694,10 +1694,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .modifierBut.disabled,#disabledSelect {
-  background-color: #ccc;
-  color: #666;
-  border: solid #ccc 1px;
-  cursor: not-allowed;
+  background-color: #ccc !important;
+  color: #666 !important;
+  border: solid #ccc 1px ;
+  cursor: not-allowed !important;
 }
 
 /* Supprimer l'effet hover pour les boutons désactivés */
