@@ -25,19 +25,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fonction pour mettre à jour l'affichage du SIREN
     function updateSirenVisibility() {
         if (priveRadio.checked) {
-            sirenLabel.style.display = "block"; // Affiche le label
-            sirenInput.style.display = "block"; // Affiche le champ
+            sirenLabel.style.visibility = "visible";
+            sirenInput.style.visibility = "visible";
         } 
         
         else {
-            sirenLabel.style.display = "none"; // Cache le label
-            sirenInput.style.display = "none"; // Cache le champ
+            sirenLabel.style.visibility = "hidden";
+            sirenInput.style.visibility = "hidden";
         }
     }
 
 
 
-    // Initialiser l'affichage si on est dans accountPro.php
+    // Initialiser l'affichage si on est dans accountPro.php ou dans changeAccountPro.php
     if (sirenInput && sirenLabel) {
         updateSirenVisibility();
         publicRadio?.addEventListener("click", updateSirenVisibility);

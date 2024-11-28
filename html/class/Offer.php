@@ -161,6 +161,9 @@ class Offer {
     $this->resume = empty($resume_) ? "" : $resume_;
     $this->description = empty($description_) ? "" : $description_;
     $this->images = $images_;
+    if (empty($this->images) || $this->images[0] == NULL) {
+      $this->images = [];
+    }
     $this->tags = $tags_;
     foreach ($this->tags as &$tag) {
       $tag = str_replace('_', ' ', $tag);
