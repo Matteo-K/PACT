@@ -25,22 +25,22 @@
         <form id = "formConnexion" action="login.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
                 <!-- Saisi du login -->
-                <input type="password" placeholder="ancient mot de passe" id="login" name="login" required>
+                <input type="password" placeholder="Ancien mot de passe" id="ancienMDP" name="ancienMDP" required>
             </div>
     
     
             <div class="ligne2">
                 <!-- Saisi du mot de passe -->
-                <input type="password" placeholder="nouveau mot de passe" id="motdepasseConnexion" name="motdepasseConnexion" required>
+                <input type="password" placeholder="Nouveau mot de passe" id="nouveauMDP" name="nouveauMDP" required>
             </div>
 
 
             <div class="ligne2">
                 <!-- Saisi du mot de passe -->
-                <input type="password" placeholder="Confirmer le nouveau mot de passe" id="motdepasseConnexion" name="motdepasseConnexion" required>
+                <input type="password" placeholder="Confirmer le nouveau mot de passe" id="confimerNouveauMDP" name="confimerNouveauMDP" required>
             </div>
     
-            <button onclick = "validationFormConnexion()" id="boutonConnexion">Changer le mot de passe</button>
+            <button onclick = "validationFormConnexion()" id="boutonChangerMDP">Valider</button>
         </form>
     </main>
 </body>
