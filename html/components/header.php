@@ -182,54 +182,64 @@
 </header>
 
 <script>
-    document.getElementById("factureForm").onsubmit = function() {
-            // Créer une nouvelle fenêtre pour afficher le PDF
-            window.open('', 'pdfWindow'); // Ouvre une fenêtre de taille spécifique
-        };
-        
-    document.addEventListener("DOMContentLoaded", function() {
-        const body = document.body;
-        const profilePic = document.getElementById("profilePic");
-        const profileMenu = document.getElementById("profileMenu");
-        const backButton = document.getElementById("backButton");
-        const factu = document.getElementsByClassName("liFact")[0];
+    document.addEventListener("DOMContentLoaded", function () {
+    const body = document.body;
+
+    // Récupération des éléments (peuvent être absents selon le type d'utilisateur)
+    const profilePic = document.getElementById("profilePic");
+    const profileMenu = document.getElementById("profileMenu");
+    const backButton = document.getElementById("backButton");
+    const factu = document.querySelector(".liFact"); // Peut être null si pas un utilisateur Pro
+
+    // Fonction pour afficher/masquer la section "Factures" (pour Pro uniquement)
+    if (factu) {
         function toggleFacture() {
-            profileMenu.classList.toggle("deplace")
-            body.classList.toggle('no-scroll');
+            profileMenu.classList.toggle("deplace");
+            body.classList.toggle("no-scroll");
         }
-        
         factu.addEventListener("click", toggleFacture);
-        // Fonction pour afficher/cacher le menu
-        function toggleMenu() {
+    }
+
+    // Fonction pour afficher/cacher le menu utilisateur
+    function toggleMenu() {
+        if (profileMenu) {
             if (profileMenu.classList.contains("show")) {
                 profileMenu.classList.remove("show");
                 profileMenu.classList.remove("deplace");
                 profileMenu.classList.add("hide");
-                body.classList.remove('no-scroll');
+                body.classList.remove("no-scroll");
             } else {
                 profileMenu.classList.add("show");
                 profileMenu.classList.remove("hide");
             }
         }
-        // Écouteur pour afficher le menu au clic sur l'image de profil
-        if (profilePic) {
-            profilePic.addEventListener("click", toggleMenu);
-        }
-        // Écouteur pour fermer le menu au clic sur le bouton "Retour"
-        if (backButton) {
-            backButton.addEventListener("click", toggleMenu);
-        }
-        // Écouteur pour fermer le menu en cliquant en dehors
-        document.addEventListener("click", function(event) {
-            if (typeof profileMenu !== "undefined" && profileMenu !== null && typeof profilePic !== "undefined" && profilePic !== null) {
-                if (!profileMenu.contains(event.target) && !profilePic.contains(event.target)) {
-                    if (profileMenu.classList.contains("show")) {
-                        toggleMenu();
-                    }
-                }
+    }
+
+    // Écouteur pour afficher le menu au clic sur l'image de profil
+    if (profilePic) {
+        profilePic.addEventListener("click", toggleMenu);
+    }
+
+    // Écouteur pour fermer le menu au clic sur le bouton "Retour"
+    if (backButton) {
+        backButton.addEventListener("click", toggleMenu);
+    }
+
+    // Écouteur pour fermer le menu en cliquant en dehors
+    document.addEventListener("click", function (event) {
+        if (
+            profileMenu &&
+            profilePic &&
+            !profileMenu.contains(event.target) &&
+            !profilePic.contains(event.target)
+        ) {
+            if (profileMenu.classList.contains("show")) {
+                toggleMenu();
             }
-        });
+        }
     });
+});
+
 
     try {
         
