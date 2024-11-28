@@ -157,6 +157,10 @@ class ArrayOffer {
       echo $gammeDePrix;
       echo $adresse;
 
+      echo "Recherche: " . $recherche . "<br>";
+      echo "Categorie: " . $categorie . "<br>";
+
+
       return $this->offreContientTag($item->getData()["tags"], $recherche) // tag
           || strpos(strtolower($categorie), strtolower($recherche)) !== false // catégorie
           || strpos(strtolower($nomOffre), strtolower($recherche)) !== false  // nom Offre
