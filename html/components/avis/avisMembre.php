@@ -22,7 +22,7 @@ function formatDateDiff($date)
 
     // Calculer la différence en heures et minutes
     $interval = $dateDB->diff($dateNow);
-    $diffInHours = $interval->h + ($interval->days * 24) ; // Ajouter les heures des jours entiers
+    $diffInHours = $interval->h + ($interval->days * 24); // Ajouter les heures des jours entiers
     $diffInMinutes = $interval->i;
 
     // Déterminer le message à afficher
@@ -30,7 +30,7 @@ function formatDateDiff($date)
         if ($diffInMinutes === 0) {
             return "Rédigé à l'instant";
         } elseif ($diffInHours > 1) {
-            return "Rédigé il y a" . $diffInHours-1 ." heure" . ($diffInHours > 1 ? 's' : '');
+            return "Rédigé il y a" . $diffInHours - 1 . " heure" . ($diffInHours > 1 ? 's' : '');
         } else {
             return "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '');
         }
@@ -76,41 +76,48 @@ foreach ($avis as $a) {
             </article>
             <article>
                 <div>
-                    <p><strong>Visité en</strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
-                    <p> • </p>
-                    <p class="tag"><?= $a['companie'] ?></p>
-                </div>
-                <p><?php if (isset($a['datepublie'])) {echo "<p>" . formatDateDiff($a["datepublie"]) . "</p>";}?>
-            </article>
-            <article>
-                <p><strong><?= ucfirst($a['titre']) ?></strong></p>
-                <p><?= $a['content'] ?></p>
-                <?php if ($a['listimage'] != null) {
-                    $listimage = trim($a['listimage'], '{}');
-                    $pictures = explode(',', $listimage);
-                ?>
-
-                    <div class="swiper-container">
-                        <div class="swiper mySwiperAvis">
-                            <div class="swiper-wrapper">
-                                <?php
-                                foreach ($pictures as $picture) {
-                                ?>
-                                    <div class="swiper-slide">
-                                        <img src="<?php echo $picture; ?>" />
-                                    </div>
-                                <?php
-                                }
-                                ?>
-                            </div>
-                        </div>
-                        <div class="swiper-pagination"></div>
+                    <div>
+                        <p><strong><?= ucfirst($a['titre']) ?></strong></p>
+                        <p><?php if (isset($a['datepublie'])) {
+                                echo formatDateDiff($a["datepublie"]);
+                            } ?></p>
                     </div>
-                <?php
-                }
-                ?>
+                    <div>
+                        <p><strong>Visité en</strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
+                        <p> • </p>
+                        <p class="tag"><?= $a['companie'] ?></p>
+                    </div>
+                    <div>
+                        <p><?= $a['content'] ?></p>
+                        <?php if ($a['listimage'] != null) {
+                            $listimage = trim($a['listimage'], '{}');
+                            $pictures = explode(',', $listimage);
+                        ?>
+
+                            <div class="swiper-container">
+                                <div class="swiper mySwiperAvis">
+                                    <div class="swiper-wrapper">
+                                        <?php
+                                        foreach ($pictures as $picture) {
+                                        ?>
+                                            <div class="swiper-slide">
+                                                <img src="<?php echo $picture; ?>" />
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </div>
+
             </article>
-            
+
         </div>
         <?php
         if ($a['idc_reponse']) {
@@ -126,7 +133,7 @@ foreach ($avis as $a) {
                         <div class="autreInfoAvis">
                             <img src="./img/icone/trois-points.png" alt="icone de parametre">
                         </div>
-                        
+
                     </div>
                     <article>
                         <p><?= $a['contenureponse'] ?></p>
