@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const userDataElement = document.getElementById('user-data');
   
   const offersData = offersDataElement.getAttribute('data-offers');
-  console.log(offersData); // Débugger
+  // console.log(offersData); // Débugger
 
   try {
     arrayOffer = JSON.parse(offersData);
@@ -124,11 +124,11 @@ function sortEnAvant(array) {
 }
 
 function sortNoteCroissant(array) {
-  return array.sort((a, b) => attribuerEtoiles(a.noteAvg) - attribuerEtoiles(b.noteAvg));
+  return array.sort((a, b) => attribuerEtoiles(parseFloat(a.noteAvg)) - attribuerEtoiles(parseFloat(b.noteAvg)));
 }
 
 function sortNoteDecroissant(array) {
-  return array.sort((a, b) => attribuerEtoiles(b.noteAvg) - attribuerEtoiles(a.noteAvg));
+  return array.sort((a, b) => attribuerEtoiles(parseFloat(b.noteAvg)) - attribuerEtoiles(parseFloat(a.noteAvg)));
 }
 
 function attribuerEtoiles(note) {
