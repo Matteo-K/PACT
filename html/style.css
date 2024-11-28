@@ -3783,7 +3783,7 @@ a[id="lienMotDePasseOublie"]:hover {
   margin-top: 30px;
 }
 
-h1[id="connexionTitre"], h1[id="changerMDPTitre"] {
+h1[id="connexionTitre"] {
   text-align: center;
   margin: 30px 10px;
   color: var(--bloc);
