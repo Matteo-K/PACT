@@ -49,7 +49,6 @@
             }
             $stmt->execute([$_SESSION["idUser"]]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            print_r($typeUser);
         ?>
 
             <img id="profilePic" src="<?php echo $user["url"] ?>" title="Photo de profil utilisateur">
@@ -237,7 +236,7 @@
             });
 
         });
-    } catch {
-
+    } catch (error) {
+        console.error("Erreur capturée :", error.message);
     }
 </script>
