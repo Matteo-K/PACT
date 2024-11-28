@@ -312,6 +312,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     reader.readAsDataURL(file);
                 }
             });
+            alert("go creer nvl input");
             creeNouvelInput();
         }
 
