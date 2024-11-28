@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fonction pour mettre à jour l'affichage du SIREN
     function updateSirenVisibility() {
         if (priveRadio.checked) {
-            sirenLabel.style.display = "block"; // Affiche le label
-            sirenInput.style.display = "block"; // Affiche le champ
+            sirenLabel.style.visibility = "visible";
+            sirenInput.style.visibility = "visible";
         } 
         
         else {
-            sirenLabel.style.display = "hidden"; // Cache le label
-            sirenInput.style.display = "hidden"; // Cache le champ
+            sirenLabel.style.visibility = "hidden";
+            sirenInput.style.visibility = "hidden";
         }
     }
 
