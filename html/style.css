@@ -2345,7 +2345,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .Enligne{
-  width: fit-content; margin-right: auto;
+  width: fit-content; 
+  margin: 0 0 0 auto;
 }
 
 .buttonDetails {
