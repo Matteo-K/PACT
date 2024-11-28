@@ -13,27 +13,6 @@
 
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idUser'];
-
-     // Récupérer les informations de l'utilisateur depuis la base de données
-     try {
-        // Adapter la requête en fonction de votre table et secteur
-        $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE id = ?");
-        $stmt->execute([$userId]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Vérifier si les données sont trouvées
-        if (!$user) {
-            $_SESSION['errors'][] = "Utilisateur introuvable.";
-            header("Location: login.php");
-            exit();
-        }
-    } 
-    
-    catch (Exception $e) {
-        $_SESSION['errors'][] = "Erreur de connexion à la base de données.";
-        header("Location: login.php");
-        exit();
-    }
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +34,8 @@
         
         <h1 id="changerInfoTitre">Modifier des informations</h1>
 
+        <div id="messageErreur" class="messageErreur"></div>
+
         <?php
             if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
                 echo '<div id="messageErreur" class="messageErreur">';
@@ -68,22 +49,32 @@
             }
         ?>
 
-        <div id="messageErreur" class="messageErreur"></div>
-
-        <form id = "formPro" action="changeAccountPro.php" method="post" enctype="multipart/form-data">
+        <form id = "formMember" action="chnageAccountMember.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
-                <label for="denomination">Dénomination*:</label>
-                <label for="telephone">Numéro de téléphone*:</label>
-                
-                <!-- Saisi de la dénomination -->
-                <input type="text" placeholder="MonEntreprise" id="denomination" name="denomination" value="<?= isset($user['denomination']) ? htmlspecialchars($user['denomination']) : '' ?>" required>
+                <label  id="labelPrenom" for="prenomMembre">Prénom*:</label>
+                <label id="labelNom" for="nomMembre">Nom*:</label>
+                    
+                <!-- Saisi du prénom -->
+                <input type="text" placeholder="Jean" id="prenomMembre" name="prenomMembre" value="<?= isset($user['prenomMembre']) ? htmlspecialchars($user['prenomMembre']) : '' ?>" required>
+
+                <!-- Saisi du nom -->
+                <input type="text" placeholder="Dupont" id="nomMembre" name="nomMembre" value="<?= isset($user['nomMembre']) ? htmlspecialchars($user['nomMembre']) : '' ?>" required>
+    
+            </div>
+    
+            <div class="ligne1_1">
+                <label id="labelPseudo" for="pseudoMembre">Pseudonyme*:</label>
+                <label id="labelTelephone" for="telephoneMembre">Téléphone*:</label>
+                    
+                <!-- Saisi du pseudo -->
+                <input type="text" placeholder="Jean29" id="pseudoMembre" name="pseudoMembre" value="<?= isset($user['pseudoMembre']) ? htmlspecialchars($user['pseudoMembre']) : '' ?>" required>
 
                 <!-- Saisi du numéro de téléphone -->
-                <input type="tel" placeholder="06 01 02 03 04" id="telephone" name="telephone" value="<?= isset($user['telephone']) ? htmlspecialchars($user['telephone']) : '' ?>" required>
+                <input type="tel" placeholder="06 01 02 03 04" id="telephoneMembre" name="telephoneMembre" value="<?= isset($user['telephoneMembre']) ? htmlspecialchars($_POST['telephoneMembre']) : '' ?>" required>
             </div>
-
-
-
+    
+    
+    
             <div class="ligne2">
                 <!-- Saisi de l'adresse mail -->
                 <label for="email">Adresse mail*:</label>
@@ -95,15 +86,14 @@
             <div class="ligne3">
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
-                <input type="text" placeholder ="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['adresse']) ? htmlspecialchars($user['adresse']) : '' ?>" required>
-                <br>
+                <input type="text" placeholder="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['adresse']) ? htmlspecialchars($user['adresse']) : '' ?>" required>
             </div>
 
 
             
             <div class="ligne4"> 
-                <label for="code">Code postal*:</label>
-                <label for="ville">Ville*:</label>
+                <label id="labelCode" for="code">Code postal*:</label>
+                <label id="labelVille" for="ville">Ville*:</label>
                 
                 <!-- Saisi du code postale -->
                 <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($user['code']) ? htmlspecialchars($user['code']) : '' ?>" required>
@@ -111,9 +101,9 @@
                 <!-- Saisi de la ville -->
                 <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($user['ville']) ? htmlspecialchars($user['ville']) : '' ?>" required>
             </div>
-            
+
             <button type="submit" id="boutonInscription">Valider</button>
-            
+
         </form>
     </body>
     <script src="js/validationFormInscription.js"></script>

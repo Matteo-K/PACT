@@ -140,11 +140,11 @@ class ArrayOffer {
   public function recherche($idUser_, $typeUser_, $recherche) {
     $array = $this->filtre($idUser_, $typeUser_);
 
+    if (empty($recherche)) {
+      return $array;
+    }
+    
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
-
-      if (empty($recherche)) {
-        return true;
-      }
 
       $categorie = $item->getData()["categorie"] ?? '';
       $nomOffre = $item->getData()["nomOffre"] ?? '';

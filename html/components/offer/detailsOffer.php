@@ -285,8 +285,12 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             nouvelInputFile.multiple = true; 
             nouvelInputFile.name = "ajoutPhoto[]";
             nouvelInputFile.accept = "image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF";
+
+            inputFile.removeEventListener("change", afficheImage);
             inputFile.replaceWith(nouvelInputFile); // Remplacer l'ancien input
             inputFile = nouvelInputFile; // Mettre à jour la référence
+            
+            inputFile.addEventListener("change", afficheImage);
             console.log("Nouvel input créé et événement attaché.");
         }
 
@@ -300,6 +304,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 if (compteurImgMax >= maxImages) {
                     pImage.style.color = "red";
                     alert("C'est plein");
+                    return;
                 }
                 else{
                     compteurImgMax++;
@@ -309,7 +314,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         photosSelect.push(file);
                         configImage("", e.target.result, file);
                     };
+                    alert("avant reader");
                     reader.readAsDataURL(file);
+                    alert("apres reader");
                 }
             });
             alert("go creer nvl input");

@@ -87,7 +87,7 @@ class Offer {
   public function displayCardOffer() {
     $idOffre = $this->idOffre;
     $nomOffre = $this->nomOffre;
-    $urlImg = $this->images[0];
+    $urlImg = $this->images[0] ?? "";
     $gammeText = "";
     $ville = $this->ville;
     $nomTag = $this->categorie;
@@ -103,7 +103,7 @@ class Offer {
   public function displayCardOfferPro() {
     $idOffre = $this->idOffre;
     $nomOffre = $this->nomOffre;
-    $urlImg = $this->images[0];
+    $urlImg = $this->images[0] ?? "";
     $gammeText = "";
     $ville = $this->ville;
     $nomTag = $this->categorie;
@@ -161,8 +161,14 @@ class Offer {
     $this->resume = empty($resume_) ? "" : $resume_;
     $this->description = empty($description_) ? "" : $description_;
     $this->images = $images_;
-    if (empty($this->images) || $this->images[0] == NULL) {
-      $this->images = [];
+    $this->images = array_filter($this->images, function($image) {
+      return $image != NULL;
+    });
+    
+    $this->images = array_values($this->images);
+    
+    if (empty($this->images)) {
+        $this->images = [];
     }
     $this->tags = $tags_;
     foreach ($this->tags as &$tag) {

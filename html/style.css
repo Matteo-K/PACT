@@ -1693,11 +1693,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
-.modifierBut.disabled,#disabledSelect {
-  background-color: #ccc !important;
-  color: #666 !important;
-  border: solid #ccc 1px ;
+#disabledSelect{
+  background-color: #666 !important;
+  border: solid #666 1px !important;
   cursor: not-allowed !important;
+}
+
+.modifierBut.disabled,#disabledSelect {
+  background-color: #ccc;
+  color: #666;
+  border: solid #ccc 1px ;
+  cursor: not-allowed;
 }
 
 /* Supprimer l'effet hover pour les boutons désactivés */
@@ -3451,7 +3457,7 @@ div.ligne6>label {
 div.ligne3>label {
   display: flex;
   justify-content: left;
-  width: 823px;
+  width: 830px;
   margin: 5px auto;
 }
 
@@ -3470,6 +3476,7 @@ div.ligne3>label {
   margin: 10px 26px;
   text-align: left;
   justify-content: space-between;
+  width: 860px;
 }
 
 .creation-compte .ligne5_1,
@@ -3507,7 +3514,6 @@ div.ligne3>label {
 
 .creation-compte input {
   font-size: 20px;
-  border: 0;
 }
 
 input[id="denomination"],
@@ -3526,7 +3532,7 @@ input[id="confirmer"] {
 
 input[id="email"],
 input[id="adresse"] {
-  width: 823px;
+  width: 830px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid var(--accent);
