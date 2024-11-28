@@ -1,7 +1,6 @@
 <?php 
 require_once "config.php";
 
-$recherche = isset($_GET["search"]) ? $_GET["search"]: "";
 $page = isset($_GET["page"]) ? $_GET["page"] :  1;
 $nbElement = 15;
 $countOffer = 0;
@@ -54,7 +53,7 @@ $arrayOffer = [];
         <section class="searchoffre">
         </section>
         <section id="pagination">
-            <?php $lien = "search.php?" . ($recherche != "" ? $recherche : ""); ?>
+            <?php $lien = "search.php?" . ($search != "" ? $search : ""); ?>
             <ul>
                 <li>
                     <?php if ($page > 5) { ?>
