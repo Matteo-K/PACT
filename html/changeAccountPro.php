@@ -6,13 +6,13 @@
     require_once 'db.php';
 
     // Vérifier si l'utilisateur est connecté
-    if (!isset($_SESSION['idU'])) {
-        header("Location: login.php"); // Rediriger vers la page de connexion si non connecté
-        exit();
-    }
+    // if (!isset($_SESSION['idU'])) {
+    //     header("Location: login.php");
+    //     exit();
+    // }
 
-    else (isset($_SESSION['idU'])) {
-        header("Location: changeAccountPro.php"); // Redirection si déjà connecté
+    if (isset($_SESSION['idU'])) {
+        header("Location: changeAccountPro.php");
         exit();
     }
 
