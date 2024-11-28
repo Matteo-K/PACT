@@ -2824,7 +2824,26 @@ tbody td:last-child {
   rotate: -90deg;
 }
 
-/** Fin Avis **/
+/** Avis PRO **/
+
+
+/* Ajouter une flèche avant le texte d'un élément */
+.triangle::before {
+  content: "▲";        /* Le contenu à afficher (flèche vers le haut) */
+  font-size: 20px;      /* Taille de la flèche */
+  margin-right: 10px;   /* Espacement entre la flèche et le texte */
+}
+
+/* Vous pouvez aussi l'utiliser après l'élément */
+.triangle::after {
+  content: "▲";        /* Le contenu à afficher après l'élément */
+  font-size: 20px;      /* Taille de la flèche */
+  margin-left: 10px;    /* Espacement entre la flèche et le texte */
+}
+
+
+
+/* Fin avis */
 
 
 .notation>div {
