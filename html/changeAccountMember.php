@@ -34,6 +34,8 @@
         
         <h1 id="changerInfoTitre">Modifier des informations</h1>
 
+        <div id="messageErreur" class="messageErreur"></div>
+
         <?php
             if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
                 echo '<div id="messageErreur" class="messageErreur">';
@@ -47,22 +49,32 @@
             }
         ?>
 
-        <div id="messageErreur" class="messageErreur"></div>
-
-        <form id = "formPro" action="changeAccountPro.php" method="post" enctype="multipart/form-data">
+        <form id = "formMember" action="chnageAccountMember.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
-                <label for="denomination">Dénomination*:</label>
-                <label for="telephone">Numéro de téléphone*:</label>
-                
-                <!-- Saisi de la dénomination -->
-                <input type="text" placeholder="MonEntreprise" id="denomination" name="denomination" value="<?= isset($_POST['denomination']) ? htmlspecialchars($_POST['denomination']) : '' ?>" required>
+                <label  id="labelPrenom" for="prenomMembre">Prénom*:</label>
+                <label id="labelNom" for="nomMembre">Nom*:</label>
+                    
+                <!-- Saisi du prénom -->
+                <input type="text" placeholder="Jean" id="prenomMembre" name="prenomMembre" value="<?= isset($_POST['prenomMembre']) ? htmlspecialchars($_POST['prenomMembre']) : '' ?>" required>
+
+                <!-- Saisi du nom -->
+                <input type="text" placeholder="Dupont" id="nomMembre" name="nomMembre" value="<?= isset($_POST['nomMembre']) ? htmlspecialchars($_POST['nomMembre']) : '' ?>" required>
+    
+            </div>
+    
+            <div class="ligne1_1">
+                <label id="labelPseudo" for="pseudoMembre">Pseudonyme*:</label>
+                <label id="labelTelephone" for="telephoneMembre">Téléphone*:</label>
+                    
+                <!-- Saisi du pseudo -->
+                <input type="text" placeholder="Jean29" id="pseudoMembre" name="pseudoMembre" value="<?= isset($_POST['pseudoMembre']) ? htmlspecialchars($_POST['pseudoMembre']) : '' ?>" required>
 
                 <!-- Saisi du numéro de téléphone -->
-                <input type="tel" placeholder="06 01 02 03 04" id="telephone" name="telephone" value="<?= isset($_POST['telephone']) ? htmlspecialchars($_POST['telephone']) : '' ?>" required>
+                <input type="tel" placeholder="06 01 02 03 04" id="telephoneMembre" name="telephoneMembre" value="<?= isset($_POST['telephoneMembre']) ? htmlspecialchars($_POST['telephoneMembre']) : '' ?>" required>
             </div>
-
-
-
+    
+    
+    
             <div class="ligne2">
                 <!-- Saisi de l'adresse mail -->
                 <label for="email">Adresse mail*:</label>
@@ -74,15 +86,14 @@
             <div class="ligne3">
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
-                <input type="text" placeholder ="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($_POST['adresse']) ? htmlspecialchars($_POST['adresse']) : '' ?>" required>
-                <br>
+                <input type="text" placeholder="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($_POST['adresse']) ? htmlspecialchars($_POST['adresse']) : '' ?>" required>
             </div>
 
 
             
             <div class="ligne4"> 
-                <label for="code">Code postal*:</label>
-                <label for="ville">Ville*:</label>
+                <label id="labelCode" for="code">Code postal*:</label>
+                <label id="labelVille" for="ville">Ville*:</label>
                 
                 <!-- Saisi du code postale -->
                 <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($_POST['code']) ? htmlspecialchars($_POST['code']) : '' ?>" required>
@@ -91,26 +102,6 @@
                 <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($_POST['ville']) ? htmlspecialchars($_POST['ville']) : '' ?>" required>
             </div>
 
-            
-
-            <div class="ligne5">
-                <div class="ligne5_1">
-                    <!-- Radio bouton public -->
-                    <input type="radio" id="radioPublic" name="secteur" value="public">
-                    <label for="public">Public</label>
-            
-                    <!-- Radio bouton privée -->
-                    <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
-                    <label for="prive">Privé</label>
-                </div>
-
-                <div class="ligne5_2">
-                    <!-- Saisi du numéro de SIREN -->
-                    <label for="siren">N° SIREN*:</label>
-                    <input type="text" placeholder="123 456 789" id="siren" name="siren" value="<?= isset($_POST['siren']) ? htmlspecialchars($_POST['siren']) : '' ?>" required>
-                </div>
-            </div>
-            
             <button type="submit" id="boutonInscription">Valider</button>
             
         </form>
