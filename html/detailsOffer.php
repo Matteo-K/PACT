@@ -266,7 +266,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($tags as $tag):
                 if ($tag["nomtag"] != NULL) {
             ?>
-                    <a class="tag" href="search.php?search=<?= $tag["nomtag"] ?>"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
+                    <a class="tag" href="search.php?search=<?= str_replace("_", "+", $tag["nomtag"] )?>"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
                 <?php }
             endforeach;
 
