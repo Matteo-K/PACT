@@ -2316,17 +2316,24 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 }
 
+
+/***********************************************************************************************/
+/***********************                                            ****************************/
+/***********************     DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE     ****************************/
+/***********************                                            ****************************/
+/***********************************************************************************************/
+
 .mainOffer .tag,
 .ouvert,
 .ferme {
   background-color: var(--accent);
   box-shadow: none;
-  margin-bottom: 2em;
 }
 
-/*  ***************************************************************************************
-     **************************DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE***************************
-     *************************************************************************************** */
+#typeOffer + div {
+  margin: 1em;
+}
+
 
 .mainOffer {
   margin-top: 1em;
@@ -2360,7 +2367,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   text-align: center;
   font-size: 5em;
   color: var(--bloc);
-  margin-bottom: 0;
+  margin: 0.2em;
   font-weight: 600;
 }
 
@@ -2371,7 +2378,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-family: Lato;
   font-weight: bold;
   font-size: 2em;
-  margin-bottom: 1em;
 }
 
 .mainOffer .tag,
@@ -2707,8 +2713,6 @@ tbody td:last-child {
   justify-content: space-between;
   gap: 1em;
 }
-
-
 
 .user + article + article{
   display: flex;
@@ -3134,7 +3138,7 @@ tbody td:last-child {
 }
 
 #restaurant >div[class="photosR"]{
-  background-color: yellow; /* test des changements */
+  background-color: pink; /* test des changements */
   margin-top: 15px;
   
 
