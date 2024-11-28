@@ -162,7 +162,7 @@ class Offer {
     $this->description = empty($description_) ? "" : $description_;
     $this->images = $images_;
     $this->images = array_filter($this->images, function($image) {
-      return $image !== NULL;
+      return $image != NULL;
     });
     
     $this->images = array_values($this->images);
@@ -170,7 +170,6 @@ class Offer {
     if (empty($this->images)) {
         $this->images = [];
     }
-    print_r($this->images);
     $this->tags = $tags_;
     foreach ($this->tags as &$tag) {
       $tag = str_replace('_', ' ', $tag);
