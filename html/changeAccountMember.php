@@ -55,10 +55,10 @@
                 <label id="labelNom" for="nomMembre">Nom*:</label>
                     
                 <!-- Saisi du prénom -->
-                <input type="text" placeholder="Jean" id="prenomMembre" name="prenomMembre" value="<?= isset($_POST['prenomMembre']) ? htmlspecialchars($_POST['prenomMembre']) : '' ?>" required>
+                <input type="text" placeholder="Jean" id="prenomMembre" name="prenomMembre" value="<?= isset($user['prenomMembre']) ? htmlspecialchars($user['prenomMembre']) : '' ?>" required>
 
                 <!-- Saisi du nom -->
-                <input type="text" placeholder="Dupont" id="nomMembre" name="nomMembre" value="<?= isset($_POST['nomMembre']) ? htmlspecialchars($_POST['nomMembre']) : '' ?>" required>
+                <input type="text" placeholder="Dupont" id="nomMembre" name="nomMembre" value="<?= isset($user['nomMembre']) ? htmlspecialchars($user['nomMembre']) : '' ?>" required>
     
             </div>
     
@@ -67,10 +67,10 @@
                 <label id="labelTelephone" for="telephoneMembre">Téléphone*:</label>
                     
                 <!-- Saisi du pseudo -->
-                <input type="text" placeholder="Jean29" id="pseudoMembre" name="pseudoMembre" value="<?= isset($_POST['pseudoMembre']) ? htmlspecialchars($_POST['pseudoMembre']) : '' ?>" required>
+                <input type="text" placeholder="Jean29" id="pseudoMembre" name="pseudoMembre" value="<?= isset($user['pseudoMembre']) ? htmlspecialchars($user['pseudoMembre']) : '' ?>" required>
 
                 <!-- Saisi du numéro de téléphone -->
-                <input type="tel" placeholder="06 01 02 03 04" id="telephoneMembre" name="telephoneMembre" value="<?= isset($_POST['telephoneMembre']) ? htmlspecialchars($_POST['telephoneMembre']) : '' ?>" required>
+                <input type="tel" placeholder="06 01 02 03 04" id="telephoneMembre" name="telephoneMembre" value="<?= isset($user['telephoneMembre']) ? htmlspecialchars($_POST['telephoneMembre']) : '' ?>" required>
             </div>
     
     
@@ -78,7 +78,7 @@
             <div class="ligne2">
                 <!-- Saisi de l'adresse mail -->
                 <label for="email">Adresse mail*:</label>
-                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>" required>
+                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?>" required>
             </div>
 
 
@@ -86,7 +86,7 @@
             <div class="ligne3">
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
-                <input type="text" placeholder="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($_POST['adresse']) ? htmlspecialchars($_POST['adresse']) : '' ?>" required>
+                <input type="text" placeholder="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['adresse']) ? htmlspecialchars($user['adresse']) : '' ?>" required>
             </div>
 
 
@@ -96,10 +96,10 @@
                 <label id="labelVille" for="ville">Ville*:</label>
                 
                 <!-- Saisi du code postale -->
-                <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($_POST['code']) ? htmlspecialchars($_POST['code']) : '' ?>" required>
+                <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($user['code']) ? htmlspecialchars($user['code']) : '' ?>" required>
 
                 <!-- Saisi de la ville -->
-                <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($_POST['ville']) ? htmlspecialchars($_POST['ville']) : '' ?>" required>
+                <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($user['ville']) ? htmlspecialchars($user['ville']) : '' ?>" required>
             </div>
 
             <button type="submit" id="boutonInscription">Valider</button>
