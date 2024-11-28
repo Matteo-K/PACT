@@ -11,7 +11,7 @@
         exit();
     }
 
-    else (isset($_SESSION['idU'])) {
+    if (isset($_SESSION['idU'])) {
         header("Location: changeAccountPro.php"); // Redirection si déjà connecté
         exit();
     }
