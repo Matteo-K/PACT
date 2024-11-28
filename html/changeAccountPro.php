@@ -11,6 +11,11 @@
         exit();
     }
 
+    else (isset($_SESSION['idU'])) {
+        header("Location: changeAccountPro.php"); // Redirection si déjà connecté
+        exit();
+    }
+
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idU'];
 
@@ -20,12 +25,6 @@
         $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE id = ?");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // if ($user) {
-        //     $_SESSION['idUser'] = $userId;
-        //     header("Location: changeAccountPro.php");
-        //     exit();
-        // }
 
         // Vérifier si les données sont trouvées
         if (!$user) {
