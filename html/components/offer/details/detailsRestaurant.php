@@ -36,7 +36,7 @@ if ($categorie["_restauration"]) {
 
 
   <div class="photosR">
-    <label class="labelPhotos">Photos du menu* <span id="msgImage" class="msgError"></span></label>
+    <h4></h4>Photos du menu*</h4>
     <label class="labNbPhotos"> Vous pouvez insérer jusqu'à 5 photos </label>
     <label class="labelSuppPhotos"> Cliquez sur une image pour la supprimer</label>
 

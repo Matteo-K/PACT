@@ -3151,10 +3151,20 @@ tbody td:last-child {
 
 #restaurant >div[class="photosR"]{
   background-color: greenyellow; /* test des changements */
-  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
   
 
 }
+#restaurant >div[class="photosR"]>h4{
+  background-color: yellow; /* test des changements */
+  margin-bottom:  15px;
+  
+ 
+}
+
+
 
 
 
