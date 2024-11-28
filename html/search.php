@@ -53,7 +53,7 @@ $arrayOffer = [];
         <section class="searchoffre">
         </section>
         <section id="pagination">
-            <?php $lien = "search.php?search=" . ($recherche != "" ? $recherche : ""); ?>
+            <?php $lien = "search.php?search=" . ($search != "" ? $search : ""); ?>
             <ul>
                 <li>
                     <?php if ($page > 5) { ?>
