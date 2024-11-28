@@ -3825,7 +3825,7 @@ input[id="login"] {
   border: 3px solid var(--accent);
 }
 
-input[id="motdepasseConnexion"], [id=" ancienMDP"], input[id=" nouveauMDP"], input[id="confimerNouveauMDP"] {
+input[id="motdepasseConnexion"], [id="ancienMDP"], input[id="nouveauMDP"], input[id="confirmerNouveauMDP"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
