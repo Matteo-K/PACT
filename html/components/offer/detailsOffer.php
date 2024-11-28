@@ -285,8 +285,10 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             nouvelInputFile.multiple = true; 
             nouvelInputFile.name = "ajoutPhoto[]";
             nouvelInputFile.accept = "image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF";
+
             inputFile.replaceWith(nouvelInputFile); // Remplacer l'ancien input
             inputFile = nouvelInputFile; // Mettre à jour la référence
+            inputFile.addEventListener("change", afficheImage);
             console.log("Nouvel input créé et événement attaché.");
         }
 
