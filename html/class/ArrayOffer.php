@@ -143,9 +143,13 @@ class ArrayOffer {
 
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
 
+      echo $recherche;
       if (empty($recherche)) {
+        echo "Tout <br>";
         return true;
       }
+
+      echo "Rien <br>";
 
       var_dump($item->getData());
 
