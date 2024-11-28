@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const userDataElement = document.getElementById('user-data');
   
   const offersData = offersDataElement.getAttribute('data-offers');
-  // console.log(offersData); // Débugger
+  console.log(offersData); // Débugger
 
   try {
     arrayOffer = JSON.parse(offersData);

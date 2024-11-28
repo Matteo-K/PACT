@@ -88,7 +88,7 @@ class Offer {
     $idOffre = $this->idOffre;
     $nomOffre = $this->nomOffre;
     $urlImg = $this->images[0];
-    $gammeText = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
+    $gammeText = "";
     $ville = $this->ville;
     $nomTag = $this->categorie;
     $tag = $this->tags;
@@ -104,7 +104,7 @@ class Offer {
     $idOffre = $this->idOffre;
     $nomOffre = $this->nomOffre;
     $urlImg = $this->images[0];
-    $gammeText = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
+    $gammeText = "";
     $ville = $this->ville;
     $nomTag = $this->categorie;
     $tag = $this->tags;
@@ -119,8 +119,7 @@ class Offer {
     $idOffre = $this->idOffre;
     $nomOffre = $this->nomOffre;
     $resume = $this->resume;
-    $urlImg = $this->images[0];
-    $gammeDePrix = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
+    $urlImg = $this->images[0] ?? "";
     $ville = $this->ville;
     $categorie = $this->categorie;
     $tags = $this->tags;
@@ -133,7 +132,7 @@ class Offer {
   public function displayCardALaUnePro() {
     $idOffre = $this->idOffre;
     $nomOffre = $this->nomOffre;
-    $urlImg = $this->images[0];
+    $urlImg = $this->images[0] ?? "";
     $ville = $this->ville;
     $categorie = $this->categorie;
     $tags = $this->tags;

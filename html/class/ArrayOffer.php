@@ -146,8 +146,6 @@ class ArrayOffer {
         return true;
       }
 
-      var_dump($item->getData());
-
       $categorie = $item->getData()["categorie"] ?? '';
       $nomOffre = $item->getData()["nomOffre"] ?? '';
       $gammeDePrix = $item->getData()["gammeDePrix"] ?? '';
