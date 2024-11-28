@@ -260,8 +260,8 @@ function sortAndFilter(array, elementStart, nbElement) {
   array = filtrerParCategorie(array);
   // array = filtrerParNotes(array);
   // array = filtrerParPrix(array);
-  // array = filtrerParStatuts(array);
-  // array = filtrerParPeriode(array);
+  array = filtrerParStatuts(array);
+  array = filtrerParPeriode(array);
 
   // Tris
   array = selectSort(array);
