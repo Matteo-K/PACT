@@ -268,7 +268,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         const pImage = document.querySelector("#choixImage > p");
         const conteneur = document.getElementById("afficheImages");
         let inputFile = document.getElementById("ajoutPhoto"); 
-        //document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
+        document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
         const photosSelect = []; // Stocker les fichiers sélectionnés
 
         const loadedImg = <?php echo json_encode($loadedImg) ?>;
