@@ -269,30 +269,14 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         const conteneur = document.getElementById("afficheImages");
         let inputFile = document.getElementById("ajoutPhoto"); 
         inputFile.addEventListener("change", afficheImage);
+
         const photosSelect = []; // Stocker les fichiers sélectionnés
 
         const loadedImg = <?php echo json_encode($loadedImg) ?>;
 
-
         loadedImg.forEach(img => {
             configImage(img, "", null);
         });
-
-        function creeNouvelInput() {
-            const nouvelInputFile = document.createElement("input");
-            nouvelInputFile.type = "file";
-            nouvelInputFile.id = "ajoutPhoto";
-            nouvelInputFile.multiple = true; 
-            nouvelInputFile.name = "ajoutPhoto[]";
-            nouvelInputFile.accept = "image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF";
-
-            inputFile.removeEventListener("change", afficheImage);
-            inputFile.replaceWith(nouvelInputFile); // Remplacer l'ancien input
-            inputFile = nouvelInputFile; // Mettre à jour la référence
-            
-            inputFile.addEventListener("change", afficheImage);
-            console.log("Nouvel input créé et événement attaché.");
-        }
 
 
         function afficheImage(event) {
@@ -310,21 +294,16 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     compteurImgMax++;
                     const reader = new FileReader();
                     reader.onload = function(e){
-                        alert("Onloadddd");
                         photosSelect.push(file);
                         configImage("", e.target.result, file);
                     };
-                    alert("avant reader");
                     reader.readAsDataURL(file);
-                    alert("apres reader");
                 }
+                alert("envoyer Images ----->");
             });
-            alert("go creer nvl input");
-            creeNouvelInput();
         }
 
         function configImage(urlAncien, urlNouveau, file) {
-            alert("entree configImage");
             if (conteneur.childElementCount < maxImages) {
                 //On créé la balise notamment pour l'affichage
                 const figureImg = document.createElement("figure");
@@ -351,12 +330,37 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         figureImg.remove();
                         photosSelect.splice(photosSelect.indexOf(file), 1); // Supprimer le fichier de la liste
                         pImage.style.color = "black"; // Remettre la couleur par défaut
-                        creeNouvelInput();
                     }
                 });
             } else {
                 pImage.style.color = "red";
             }
+        }
+
+
+        function envoyerImages() {
+            const formData = new FormData();
+            photosSelect.forEach((file, index) => {
+                formData.append(`images[${index}]`, file);
+            });
+
+            // Requête AJAX
+            fetch("enregOffer.php", {
+                method: "POST",
+                body: formData,
+            })
+                .then((response) => {
+                    if (!response.ok) throw new Error("Erreur lors de l'envoi.");
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log("Images envoyées avec succès :", data);
+                    alert("Images envoyées !");
+                })
+                .catch((error) => {
+                    console.error("Erreur :", error);
+                    alert("Une erreur s'est produite lors de l'envoi.");
+                });
         }
     
 
