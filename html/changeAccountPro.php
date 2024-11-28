@@ -2,6 +2,10 @@
     // Démarrer la session
     session_start();
 
+    // Affiche la session pour déboguer
+    var_dump($_SESSION);  // Vérifiez que la session contient 'idU'
+    exit();
+
     // Fichier de connexion à la BDD
     require_once 'db.php';
 
@@ -10,7 +14,7 @@
         header("Location: login.php"); // Rediriger vers la page de connexion si non connecté
         exit();
     }
-    
+
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idU'];
 
