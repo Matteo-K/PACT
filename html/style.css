@@ -757,11 +757,12 @@ header ul+div {
 
 .tagsCard {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row wrap-reverse;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   gap: 8px;
   margin: 10px;
+  width: 80%;
 }
 
 .tagIndex {
