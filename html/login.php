@@ -109,13 +109,13 @@
         <form id = "formConnexion" action="login.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
                 <!-- Saisi du login -->
-                <input type="text" placeholder = "Identifiant/adresse mail" id="login" name="login" required>
+                <input type="text" placeholder="Identifiant/adresse mail" id="login" name="login" required>
             </div>
     
     
             <div class="ligne2">
                 <!-- Saisi du mot de passe -->
-                <input type="password" placeholder = "Mot de passe" id="motdepasseConnexion" name="motdepasseConnexion" required>
+                <input type="password" placeholder="Mot de passe" id="motdepasseConnexion" name="motdepasseConnexion" required>
             </div>
     
             <button onclick = "validationFormConnexion()" id="boutonConnexion">Connexion</button>

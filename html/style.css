@@ -1681,34 +1681,22 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border: solid #ccc 1px;
 }
 
-/* Conteneur pour positionner le message */
-.form-container {
-  position: relative; /* Nécessaire pour les autres styles locaux */
-}
 
-/* Style du message */
 .hover-message {
   display: none; /* Caché par défaut */
   color: red;
   font-size: 16px;
   font-weight: bold;
-  position: fixed; /* Positionné par rapport à la fenêtre, pas au parent */
-  top: 50%; /* Centré verticalement */
-  left: 50%; /* Centré horizontalement */
-  transform: translate(-50%, -50%); /* Ajuste pour un vrai centrage */
-  background: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+  background: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
   padding: 10px 20px;
   border: 2px solid red;
   border-radius: 8px;
-  z-index: 1000; /* S'assure qu'il est au-dessus des autres éléments */
+  margin: 10px auto;
+  z-index: 1000; /* Toujours au-dessus */
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optionnel, pour un effet visuel */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optionnel */
 }
 
-/* Afficher le message lorsque le bouton est survolé */
-.modifierBut.disabled:hover ~ .hover-message {
-  display: block;
-}
 
 
 
@@ -2348,11 +2336,24 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: center;
 }
 
+.info{
+  margin-top: calc(var(--header-size2) + 0.6em);
+  width: calc(96vw - 40px);
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Enligne{
+  width: fit-content; 
+  margin: 0 auto 0 0;
+}
+
 .buttonDetails {
   display: flex;
-  margin-top: calc(var(--header-size2) + 0.6em);
   gap: 10px;
-  /* Espacement entre les boutons */
+  width: fit-content;
+  margin-left: auto;
 }
 
 #titleOffer {
@@ -3824,7 +3825,7 @@ input[id="login"] {
   border: 3px solid var(--accent);
 }
 
-input[id="motdepasseConnexion"] {
+input[id="motdepasseConnexion"], [id=" ancienMDP"], input[id=" nouveauMDP"], input[id="confimerNouveauMDP"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
@@ -3832,7 +3833,7 @@ input[id="motdepasseConnexion"] {
   border: 3px solid var(--accent);
 }
 
-button[id="boutonConnexion"] {
+button[id="boutonConnexion"], button[id="boutonChangerMDP"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
@@ -3928,3 +3929,7 @@ p[id="legendeBoutonLienPro"] {
     display: none;
   }
 }
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++*/
+/* Css page changement de mot de passe, Antoine */
+/*+++++++++++++++++++++++++++++++++++++++++++++*/
