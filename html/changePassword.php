@@ -37,7 +37,7 @@
 
             <div class="ligne2">
                 <!-- Saisi du mot de passe -->
-                <input type="password" placeholder="Confirmer le nouveau mot de passe" id="confirmerNouveauMDP" name="confimerNouveauMDP" required>
+                <input type="password" placeholder="Confirmer le mot de passe" id="confirmerNouveauMDP" name="confimerNouveauMDP" required>
             </div>
     
             <button onclick = "validationFormConnexion()" id="boutonChangerMDP">Valider</button>
