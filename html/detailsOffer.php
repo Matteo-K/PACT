@@ -144,93 +144,118 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php require_once "components/header.php"; ?>
 
     <main class="mainOffer">
-        <div class="buttonDetails">
+        <fieldset class="info">
+            <legend>Information de l'offre</legend>
+
             <?php
             if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                 $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
                 $cook->execute();
                 $offre = $cook->fetchAll(PDO::FETCH_ASSOC);
-                $affiche = false;
-                foreach ($offre[0] as $key => $value) {
-                    if ($value == NULL) {
-                        $affiche = true;
-                    }
-                }
-                if ($affiche) {
-                    $resto = $conn->prepare("SELECT * FROM pact._restauration WHERE idoffre=$idOffre");
-                    $resto->execute();
-                    $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <h3 class="Enligne"><?php echo $offre[0]['statut'] ?></h3>
 
-                    $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=$idOffre");
-                    $spec->execute();
-                    $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
-
-                    $visi = $conn->prepare("SELECT * FROM pact._visite WHERE idoffre=$idOffre");
-                    $visi->execute();
-                    $visit = $visi->fetchAll(PDO::FETCH_ASSOC);
-
-                    $act = $conn->prepare("SELECT * FROM pact._activite WHERE idoffre=$idOffre");
-                    $act->execute();
-                    $acti = $act->fetchAll(PDO::FETCH_ASSOC);
-
-                    $parc = $conn->prepare("SELECT * FROM pact._parcattraction WHERE idoffre=$idOffre");
-                    $parc->execute();
-                    $parca = $parc->fetchAll(PDO::FETCH_ASSOC);
-
-                    if ($restau) {
-                        $tema = $restau;
-                    } elseif ($spect) {
-                        $tema = $spect;
-                    } elseif ($visit) {
-                        $tema = $visit;
-                    } elseif ($acti) {
-                        $tema = $acti;
-                    } else {
-                        $tema = $parca;
-                    }
-
-                    foreach ($tema[0] as $key => $value) {
+            <div class="buttonDetails">
+                <?php
+                    $affiche = false;
+                    foreach ($offre[0] as $key => $value) {
                         if ($value == NULL) {
                             $affiche = true;
                         }
                     }
-                    $adr = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre=$idOffre");
-                    $adr->execute();
-                    $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
+                    if ($affiche) {
+                        $resto = $conn->prepare("SELECT * FROM pact._restauration WHERE idoffre=$idOffre");
+                        $resto->execute();
+                        $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
 
-                    if (!$loca) {
-                        $affiche = true;
+                        $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=$idOffre");
+                        $spec->execute();
+                        $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
+
+                        $visi = $conn->prepare("SELECT * FROM pact._visite WHERE idoffre=$idOffre");
+                        $visi->execute();
+                        $visit = $visi->fetchAll(PDO::FETCH_ASSOC);
+
+                        $act = $conn->prepare("SELECT * FROM pact._activite WHERE idoffre=$idOffre");
+                        $act->execute();
+                        $acti = $act->fetchAll(PDO::FETCH_ASSOC);
+
+                        $parc = $conn->prepare("SELECT * FROM pact._parcattraction WHERE idoffre=$idOffre");
+                        $parc->execute();
+                        $parca = $parc->fetchAll(PDO::FETCH_ASSOC);
+
+                        if ($restau) {
+                            $tema = $restau;
+                        } elseif ($spect) {
+                            $tema = $spect;
+                        } elseif ($visit) {
+                            $tema = $visit;
+                        } elseif ($acti) {
+                            $tema = $acti;
+                        } else {
+                            $tema = $parca;
+                        }
+
+                        foreach ($tema[0] as $key => $value) {
+                            if ($value == NULL) {
+                                $affiche = true;
+                            }
+                        }
+                        $adr = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre=$idOffre");
+                        $adr->execute();
+                        $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
+
+                        if (!$loca) {
+                            $affiche = true;
+                        }
                     }
-                }
-                if (!$affiche) {
-                    $statutActuel = $offre[0]['statut'];
-            ?>
+                    if (!$affiche) {
+                        $statutActuel = $offre[0]['statut'];
+                    ?>
 
-                    <form method="post" action="changer_statut.php">
-                        <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
-                        <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
-                        <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
-                        <input type="hidden" name="ouvert" value="<?php echo $_GET['ouvert']; ?>">
-                        <button class="modifierBut" type="submit">
-                            <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
-                        </button>
-                    </form>
+                        <form method="post" action="changer_statut.php">
+                            <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
+                            <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
+                            <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
+                            <button class="modifierBut" type="submit">
+                                <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
+                            </button>
+                        </form>
+                    <?php
+                    }
+                    ?>
+
+                    <div class="form-container">
+                        <form method="post" action="manageOffer.php">
+                            <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
+                            <button 
+                                class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>" 
+                                type="submit"
+                                onmouseover="showMessage(event)"
+                                onmouseout="hideMessage(event)"
+                                <?php if ($offre[0]['statut'] === 'actif') { ?>
+                                    onclick="return false;"
+                                <?php } ?>
+                            >
+                                <?php echo "Modifier offre"; ?>
+                            </button>
+                        </form>
+                                
+                        <!-- Message affiché au survol du bouton désactivé -->
+                                
+                    </div>
+
+
+
                 <?php
                 }
+
                 ?>
-
-                <form method="post" action="manageOffer.php">
-                    <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
-                    <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
-                    <button class="modifierBut" type="submit">
-                        <?php echo "Modifier offre"; ?>
-                    </button>
-                </form>
-            <?php
-            }
-
-            ?>
-        </div>
+            </div>
+        </fieldset>
+        <?php if ($offre[0]['statut'] === 'actif') { ?>
+            <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
+        <?php } ?>
         <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
         <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville'] ?></h3>
         <?php
@@ -618,6 +643,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 swiper: swiper,
             },
         });
+
+
+        function showMessage(event) {
+            const message = document.getElementById('hoverMessage');
+            message.style.display = 'block';
+        }
+
+        // Fonction pour masquer le message
+        function hideMessage(event) {
+            const message = document.getElementById('hoverMessage');
+            message.style.display = 'none';
+        }
     </script>
     <script src="js/setColor.js"></script>
 </body>

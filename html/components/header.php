@@ -24,6 +24,15 @@
         </form>
     </div>
 
+    <script>
+        const form = document.querySelector("#divFormHeader form");
+        const input = form.querySelector("input");
+        input.addEventListener("blur", (event) => {
+            event.preventDefault();
+            form.submit();
+        })
+    </script>
+
 
     <div id="auth">
         <?php

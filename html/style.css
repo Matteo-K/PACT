@@ -618,22 +618,172 @@ header ul+div {
 #index {
   padding-top: var(--header-size);
   min-height: 70vh;
-}
-
-#index figcaption {
-  background-color: rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
 }
 
 #index h2 {
   text-align: center;
 }
 
-#ALaUne > div, #proposeRecherche, #voirPlus {
+.carteIndex figcaption > h3 {
+  text-align: center;
+}
+
+.carteIndexPro, .carteIndex {
+  display: flex;
+  flex-flow: column wrap;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  margin: 20px;
+  width: 30%;
+  min-width: 450px;
+  height: 304px;
+}
+
+#ALaUne > div {
   display: flex;
   flex-flow: row wrap;
-  margin-bottom: 20px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.hrlBlocIndex, .information {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0 20px;
+}
+
+#index figure {
+  margin: 0;
+  position: relative;
+  height: 304px;
+}
+
+#index img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+#index figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.4);
+  color: var(--text-light);
+  width: 100%;
+}
+
+.detailsCardOffer {
+  flex: 2;
+  padding-bottom: 10px;
+}
+
+.detailsCardOffer h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.noteALaUne {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875em;
+  flex-flow: row wrap;
+}
+
+.blcStarALaUne {
+  display: flex;
+  gap: 4px;
+}
+
+.adresse {
+  font-size: 0.875em;
+  margin-top: 8px;
+}
+
+.dataOffre {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#index .StatutAffiche {
+  font-size: 0.875em;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background-color: green;
+}
+
+#index .horslgnOffre {
+  background-color: red !important;
+}
+
+#index .StatutAffiche::after {
+  content: none;
+}
+
+.abonnement {
+  font-size: 0.875em;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.dataOffre div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.blcTag h4, .localisationCard h4 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.localisationCard h4 {
+  padding: 0;
+}
+
+.localisationCard {
+  flex: 1.5;
+}
+
+.tagsCard {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 8px;
+  margin: 10px;
+}
+
+.tagIndex {
+  background-color: var(--accent);
+  color: var(--text-dark);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.875em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tagIndex:hover {
+  background-color: var(--secondary);
+}
+
+#voirPlus {
+  display: flex;
+  flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
+  margin: 10px;
 }
 
 #voirPlus a {
@@ -641,35 +791,94 @@ header ul+div {
   background-color: var(--primary40);
   padding: 0.5rem 4rem;
   border-radius: 0.8rem;
+  margin-bottom: 30px;
 }
 
 #voirPlus a:hover {
   background-color: var(--primary60);
 }
 
-.noteALaUne {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: left;
+.blcTag, .information {
+  display: none;
 }
 
-.blcStarALaUne {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
+#index form:hover .information,
+#index form:hover .blcTag {
+  display: flex !important;
 }
 
-.tagIndex {
-  background-color: var(--accent);
-}
-
+/* Responsiveness */
 @media (max-width: 768px) {
   #index {
     padding-top: 0;
   }
+
+  .carteIndex {
+    height: 200px;
+    min-width: 300px;
+  }
+
+  .carteIndex h3 {
+    font-size: 1rem;
+    margin: 0;
+    margin-top: 10px;
+  }
+
+  #index img {
+    height: 200px;
+  }
+
+  .detailsCardOffer h3 {
+    font-size: 1.25em;
+  }
+
+  .noteALaUne span {
+    font-size: 0.75em;
+  }
+
+  .dataOffre {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tagsCard {
+    justify-content: flex-start;
+  }
+
+  .StatutAffiche {
+    margin-bottom: 10px;
+  }
+
+  .carteIndex address {
+    text-wrap: nowrap;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  #index .star {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .blcTag, .information {
+    display: flex;
+    padding: 0 10px;
+  }
+
+  .blcStarALaUne + span {
+    font-size: 0.85rem;
+  }
+
+  .blcStarALaUne + span + span, /* nb avis */
+  .blcStarALaUne + span + span + span, /* gamme de prix */
+  .carteIndex p,
+  .localisationCard h4,
+  .tagsCard{
+    display: none;
+  }
 }
+
 
 /* ### Offer ### */
 
@@ -1458,6 +1667,39 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
+.modifierBut.disabled {
+  background-color: #ccc;
+  color: #666;
+  border: solid #ccc 1px;
+  cursor: not-allowed;
+}
+
+/* Supprimer l'effet hover pour les boutons désactivés */
+.modifierBut.disabled:hover {
+  background-color: #ccc;
+  color: #666;
+  border: solid #ccc 1px;
+}
+
+
+.hover-message {
+  display: none; /* Caché par défaut */
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
+  padding: 10px 20px;
+  border: 2px solid red;
+  border-radius: 8px;
+  margin: 10px auto;
+  z-index: 1000; /* Toujours au-dessus */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optionnel */
+}
+
+
+
+
 #checkAddressBtn,
 .modifierBut {
   background-color: #1ca4ed;
@@ -1482,15 +1724,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   color: #1ca4ed;
 }
 
-#checkAddressBtn:active {
-  background-color: #034d7c;
-}
 
 #checkAddressBtn:focus,
 .modifierBut:focus {
   outline: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
+
+#checkAddressBtn:active {
+  background-color: #034d7c;
+}
+
 
 .searchTitre,
 .villesearch,
@@ -1502,7 +1746,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .search {
   position: relative;
-  min-height: 900px;
+  min-height: 1000px;
   margin-top: var(--header-size);
   padding-bottom: 20px;
   padding-top: 20px;
@@ -1570,6 +1814,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 0.7em;
   margin-right: 5px;
   display: inline-block;
+}
+
+.searchTag:hover {
+  background-color: var(--secondary);
 }
 
 .searchNote {
@@ -1654,6 +1902,20 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 1em;
   margin-right: 5px;
   display: inline-block;
+}
+
+.blcStarSearch {
+  display: flex;
+}
+
+.noteSearch {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.search .star.vide {
+  background-color: var(--secondary);
 }
 
 /*##### Pagination #####*/
@@ -2081,11 +2343,24 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: center;
 }
 
+.info{
+  margin-top: calc(var(--header-size2) + 0.6em);
+  width: calc(96vw - 40px);
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Enligne{
+  width: fit-content; 
+  margin: 0 auto 0 0;
+}
+
 .buttonDetails {
   display: flex;
-  margin-top: calc(var(--header-size2) + 0.6em);
   gap: 10px;
-  /* Espacement entre les boutons */
+  width: fit-content;
+  margin-left: auto;
 }
 
 #titleOffer {
@@ -2862,6 +3137,16 @@ tbody td:last-child {
     /* Espace entre le bouton radio et le texte */
 }
 
+#restaurant >div[class="photosR"]{
+  background-color: yellow; /* test des changements */
+  margin-top: 15px;
+  
+
+}
+
+
+
+
 /* CSS pour le détails d'une offre de type spectacle */
 #show {
   align-items: center;
@@ -3313,6 +3598,7 @@ div.ligne6>label {
 
   .creation-compte .ligne7>label {
     font-size: 20px;
+    width: 400px;
   }
 
   .creation-compte .ligne7>input {
@@ -3542,7 +3828,6 @@ div.ligne1>label {
 
 .connexion-compte input {
   font-size: 20px;
-  border: 0;
 }
 
 input[id="login"] {
@@ -3553,7 +3838,7 @@ input[id="login"] {
   border: 3px solid var(--accent);
 }
 
-input[id="motdepasseConnexion"] {
+input[id="motdepasseConnexion"], [id="ancienMDP"], input[id="nouveauMDP"], input[id="confirmerNouveauMDP"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
@@ -3561,7 +3846,7 @@ input[id="motdepasseConnexion"] {
   border: 3px solid var(--accent);
 }
 
-button[id="boutonConnexion"] {
+button[id="boutonConnexion"], button[id="boutonChangerMDP"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
@@ -3612,8 +3897,8 @@ p[id="legendeBoutonLienPro"] {
   }
 
   h1[id="pasDeCompteTitre"] {
-    margin: 40px 10px;
-    font-size: 45px;
+    margin: 40px 10px 0;
+    font-size: 35px;
   }
 
   .connexion-compte form {
@@ -3657,3 +3942,15 @@ p[id="legendeBoutonLienPro"] {
     display: none;
   }
 }
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++*/
+/* Css page changement de mot de passe, Antoine */
+/*+++++++++++++++++++++++++++++++++++++++++++++*/
+main[id="mainChangerMDP"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+}
+

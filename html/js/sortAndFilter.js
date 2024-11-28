@@ -12,10 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const userDataElement = document.getElementById('user-data');
   
   const offersData = offersDataElement.getAttribute('data-offers');
-  //console.log(offersData); // Débugger
+  // console.log(offersData); // Débugger
 
-  arrayOffer = JSON.parse(offersData);
-  arrayOffer = Object.values(arrayOffer);
+  try {
+    arrayOffer = JSON.parse(offersData);
+    arrayOffer = Object.values(arrayOffer);
+  } catch (error) {
+    console.error("Erreur de parsing JSON :", error);
+  }
+  
 
   userType = userDataElement.getAttribute('data-user');
 
@@ -29,8 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   sortAndFilter(arrayOffer, nbElement * (page-1), nbElement);
 
-  document.querySelectorAll(".searchoffre form").forEach(form => {
+  const forms = document.querySelectorAll(".search form");
+  forms.forEach(form => {
     form.addEventListener("click", (event) => {
+      if (event.target.tagName.toLowerCase() === "a") {
+        return;
+      }
       event.preventDefault();
       form.submit();
     });
@@ -265,8 +274,8 @@ function sortAndFilter(array, elementStart, nbElement) {
 
 function displayOffers(array, elementStart, nbElement) {
   const bloc = document.querySelector(".searchoffre");
+  bloc.innerHTML = "";
   if (array.length != 0) {
-    bloc.innerHTML = "";
     let offers = array.slice(elementStart, nbElement);
     offers.forEach(element => {displayOffer(element)});
   } else {
@@ -293,6 +302,9 @@ function displayOffer(offer) {
   form.appendChild(createCard(offer));
 
   form.addEventListener("click", (event) => {
+    if (event.target.tagName.toLowerCase() === "a") {
+      return;
+    }
     event.preventDefault();
     form.submit();
   });
@@ -389,9 +401,10 @@ function ajouterTag(offer) {
 
   offer.tags.forEach(element => {
 
-    let tag = document.createElement("span");
+    let tag = document.createElement("a");
     tag.classList.add("searchTag");
     tag.textContent = element.replace("_", " ");
+    tag.setAttribute("href", "search.php?search="+element.replace("_", "+"));
     tags.appendChild(tag);
   });
 
@@ -402,10 +415,17 @@ function note(offer) {
   let section = document.createElement("section");
   section.classList.add("searchNote");
 
+  let divStar = document.createElement("div");
+  divStar.classList.add("noteSearch");
+
+  divStar.appendChild(displayStar(offer));
+
   let note = document.createElement("p");
   note.textContent = offer.noteAvg;
-  section.appendChild(note);
+  divStar.appendChild(note);
   
+  section.appendChild(divStar);
+
   let ouverture = document.createElement("p");
   ouverture.id = "couleur-" + offer.idOffre;
   if (offer.ouverture == "EstOuvert") {
@@ -435,6 +455,38 @@ function avisSearch(offer) {
   div.appendChild(tempPasAvis);
 
   return div;
+}
+
+function displayStar(offer) {
+  let container = document.createElement("span");
+  container.classList.add("blcStarSearch");
+
+  const etoilesPleines = Math.floor(offer.noteAvg);
+  const reste = offer.noteAvg - etoilesPleines;
+
+  for (let i = 1; i <= etoilesPleines; i++) {
+    let star = document.createElement('div');
+    star.classList.add('star', 'pleine');
+    container.appendChild(star);
+  }
+  
+  if (reste > 0) {
+    let pourcentageRempli = reste * 100;
+    let starPartielle = document.createElement('div');
+    starPartielle.classList.add('star', 'partielle');
+    starPartielle.style.setProperty('--pourcentage', `${pourcentageRempli}%`);
+    container.appendChild(starPartielle);
+  }
+  
+  let totalEtoiles = 5;
+  let etoilesRestantes = totalEtoiles - etoilesPleines - (reste > 0 ? 1 : 0);
+  
+  for (let i = 0; i < etoilesRestantes; i++) {
+    let star = document.createElement('div');
+    star.classList.add('star', 'vide');
+    container.appendChild(star);
+  }
+  return container;
 }
 
 

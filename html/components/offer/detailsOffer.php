@@ -74,11 +74,10 @@ if ($result != false) {
     $loadedTags = [];
     $stmt->execute([$idOffre]);
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $loadedTags[] = $result["nomtag"];
+        $loadedTags[] = str_replace("_", " ",$result["nomtag"]);
     }
 
     //On lui charge également ses images pour la même raison
-    $loadedImg = [];
     $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre=?");
     $stmt->execute([$idOffre]);
 
@@ -90,6 +89,7 @@ if ($result != false) {
 
 else{    
     $loadedTags = [];
+    $loadedImg = [];
 }
 
 //Récupération de tous les tags pour leur sélection dans l'input
@@ -110,13 +110,13 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <div>
 
             <label for="nom">Nom de votre offre*</label>
-            <input type="text" id="nom" name="nom" placeholder="Nom" value="<?php echo $titre; ?>" required>
+            <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
 
             <label for="resume">Résumé de l'offre</label>
-            <textarea id="resume" name="resume" placeholder="Courte descrition, 100 caractères maximum" maxlength=99><?php echo $resume;?></textarea>
+            <textarea id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50><?php echo $resume;?></textarea>
 
             <label for="description">Description de votre offre*</label>
-            <textarea id="description" name="description" placeholder="Description détaillée, 1000 caractères maximum" maxlength=999 required><?php echo $description; ?></textarea>
+            <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
         </div>
 
         <div>
@@ -271,53 +271,65 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         
         const loadedImg = <?php echo json_encode($loadedImg) ?>;
 
+        const photosSelect = []; // Stocker les fichiers sélectionnés
+
         loadedImg.forEach(img => {
             configImage(img, "", "");
         });
 
 
         function afficheImage(event) {
+            let compteurImgMax = conteneur.childElementCount;
             const images = event.target.files;
 
+            console.log(images);
+
             Array.from(images).forEach((file) => {
-                const reader = new FileReader();
-                reader.onload = function(e){
-                    configImage("", e.target.result, file);
+                alert(compteurImgMax);
+                if (compteurImgMax >= maxImages) {
+                    pImage.style.color = "red";
+                    alert("C'est plein");
                 }
-                reader.readAsDataURL(file);
+                else{
+                    compteurImgMax++;
+                    const reader = new FileReader();
+                    reader.onload = function(e){
+                        photosSelect.push(file);
+                        configImage("", e.target.result, file);
+                    }
+                    reader.readAsDataURL(file);
+                }
             });
         }
 
-
-        function configImage(urlAncien, urlNouveau, file){
+        function configImage(urlAncien, urlNouveau, file) {
             if (conteneur.childElementCount < maxImages) {
                 const figureImg = document.createElement("figure");
                 figureImg.classList.add("imageOffre");
-                if(urlAncien != ""){
-                    figureImg.innerHTML = `<img src="${urlAncien}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`
+                if (urlAncien != "") {
+                    figureImg.innerHTML = `<img src="${urlAncien}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
                     const hiddenInputImg = document.createElement("input");
                     hiddenInputImg.type = "hidden";
                     hiddenInputImg.value = urlAncien;
-                    hiddenInputImg.name = "imageExistante[]"; 
+                    hiddenInputImg.name = "imageExistante[]";
                     figureImg.appendChild(hiddenInputImg);
-                }else{
+                } else {
                     figureImg.innerHTML = `<img src="${urlNouveau}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
                 }
                 conteneur.appendChild(figureImg);
 
                 figureImg.addEventListener("click", function () {
                     if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
-                        figureImg.remove(); // Supprime l'élément image et son conteneur
-                        pImage.style.color = "black"; //on remet la couleur par défaut au cas où c'etait en rouge
+                        figureImg.remove();
+                        photosSelect.splice(photosSelect.indexOf(file), 1); // Supprimer le fichier de la liste
+                        pImage.style.color = "black"; // Remettre la couleur par défaut
                     }
                 });
             } else {
-                pImage.style.color = "red"; //On met le txte en rouge pour signaler que la limite des 10 images est atteinte
+                pImage.style.color = "red";
             }
         }
-
-
-
+    
 
         const radBtnRestaurant = document.querySelector("#radioRestaurant");
         const radBtnParc = document.querySelector("#radioParc");

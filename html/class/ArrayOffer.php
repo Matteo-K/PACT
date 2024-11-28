@@ -97,12 +97,12 @@ class ArrayOffer {
         
         $moyenne = "";
         $total = "";
-        $stmt = $conn->prepare("SELECT avg(note) as moyenne, count(note) as total from pact._avis where idoffre = ? group by idoffre;");
+        $stmt = $conn->prepare("SELECT avg(note) as moyenne, count(note) as total from pact._avis where idoffre = ? group by idoffre");
         $stmt->execute([$offre['idoffre']]);
         $resNote = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($resNote) {
-          $moyenne = $resNote["moyenne"];
-          $total = $resNote["total"];
+          $moyenne = $resNote["moyenne"] ?? 0;
+          $total = $resNote["total"] ?? 0;
         }
 
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
@@ -139,6 +139,7 @@ class ArrayOffer {
 
   public function recherche($idUser_, $typeUser_, $recherche) {
     $array = $this->filtre($idUser_, $typeUser_);
+    print_r($this->getArray($array));
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
 
         $categorie = $item->getData()["categorie"] ?? '';

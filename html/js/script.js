@@ -117,7 +117,6 @@ try {
       return txt.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
     
-    
   });
     
   } catch (error) { }

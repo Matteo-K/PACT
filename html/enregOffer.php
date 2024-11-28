@@ -1,6 +1,5 @@
 <?php
 require_once 'config.php';
-print_r($_POST);
 $pageDirection = $_POST['pageCurrent'] ?? 1;
 $idOffre = $_POST["idOffre"];
 $idUser = $_POST["idUser"];
@@ -441,6 +440,8 @@ if (isset($_POST['pageBefore'])) {
         $stmt->execute([$idOffre]);
 
         foreach ($tags as $key => $tag) {
+
+          $tag = str_replace(" ", "_",$tag);
 
           //On ajoute donc tous les tags entrés
           switch ($categorie) {
