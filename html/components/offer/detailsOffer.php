@@ -293,6 +293,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         function afficheImage(event) {
             const images = Array.from(event.target.files); // On convertit la liste des fichiers de l'input en tableau
             let compteurImgMax = conteneur.childElementCount;
+            alert("afficheImages");
 
             images.forEach((file) => {
                 if (compteurImgMax >= maxImages) {
@@ -303,7 +304,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     compteurImgMax++;
                     const reader = new FileReader();
                     reader.onload = function(e){
-                        alert("Onloadddd")
+                        alert("Onloadddd");
                         photosSelect.push(file);
                         configImage("", e.target.result, file);
                     };
