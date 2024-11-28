@@ -47,7 +47,8 @@ $schedules = getSchedules($conn, $idOffre);
 $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
 $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 if (!$result) {
 ?>
     <form id="manageOfferAuto" action="manageOffer.php" method="post">
@@ -112,7 +113,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
 
-    <title><?php echo htmlspecialchars($result["nom_offre"]); ?></title>
+    <title><?php echo htmlspecialchars($result[0]["nom"]); ?></title>
 </head>
 
 <body>
@@ -231,7 +232,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php if ($offre[0]['statut'] === 'actif') { ?>
             <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
         <?php } ?>
-        <h2 id="titleOffer"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
+        <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
         <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville'] ?></h3>
         <?php
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
@@ -258,7 +259,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if ($typeOffer == "restaurant") {
-                array_push($tags, ['nomtag' => $result['gammedeprix']]);
+                array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
             }
 
             foreach ($tags as $tag):
@@ -297,28 +298,28 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <?php
             }
-            if ($result["telephone"] && $tel["affiche"] == TRUE) {
+            if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
             ?>
                 <div>
                     <img src="./img/icone/tel.png">
-                    <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
+                    <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
                 </div>
             <?php
             }
-            if ($result["mail"]) {
+            if ($result[0]["mail"]) {
             ?>
                 <div>
                     <img src="./img/icone/mail.png">
-                    <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
+                    <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
                 </div>
 
             <?php
             }
-            if ($result["urlsite"]) {
+            if ($result[0]["urlsite"]) {
             ?>
                 <div>
                     <img src="./img/icone/globe.png">
-                    <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
+                    <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
                 </div>
 
             <?php
@@ -411,7 +412,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             <section>
                 <h3>Description</h3>
-                <p><?php echo htmlspecialchars($result["description"]); ?></p>
+                <p><?php echo htmlspecialchars($result[0]["description"]); ?></p>
             </section>
         </article>
 
@@ -472,19 +473,19 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <?php
                 }
-                if ($result["telephone"] && $tel["affiche"] == TRUE) {
+                if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
                 ?>
                     <div>
                         <img src="./img/icone/tel.png">
-                        <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
+                        <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
                     </div>
                 <?php
                 }
-                if ($result["mail"]) {
+                if ($result[0]["mail"]) {
                 ?>
                     <div>
                         <img src="./img/icone/mail.png">
-                        <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
+                        <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
                     </div>
 
                 <?php
@@ -493,7 +494,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                     <div>
                         <img src="./img/icone/globe.png">
-                        <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
+                        <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
                     </div>
 
                 <?php
@@ -506,7 +507,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php
         if ($typeOffer == "parcs_attractions") {
         ?>
-            <img src="<?php echo $result["urlplan"] ?>">
+            <img src="<?php echo $result[0]["urlplan"] ?>">
         <?php
         }
 
