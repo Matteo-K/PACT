@@ -446,7 +446,7 @@ header>div>a>div {
 #profileMenu.hide {
   visibility: visible;
   opacity: 1;
-  transform: translateX(100vw);
+  transform: translateX(276px);
 }
 
 #profileMenu.deplace {
