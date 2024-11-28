@@ -2771,7 +2771,7 @@ tbody td:last-child {
   .user +article >div > div + div
 }
 
-.user+article>div>div:nth-child(1)>p+p,  .user +article >div > div + div {
+.user+article>div>div:nth-child(1)>p+p,  .user +article >div > div:nth-child(2) {
   font-style: italic;
   font-weight: 300;
 }
@@ -2793,6 +2793,18 @@ tbody td:last-child {
   text-align: center;
   font-size: 0.9em;
   margin: 0;
+}
+
+.user + article >div>div:nth-child(3){
+  justify-content: space-between;
+}
+
+.user + article >div>div:nth-child(3)>div.swiper-container{
+  width: 35%;
+  margin: 0;
+}
+.user + article >div>div:nth-child(3)>div.swiper-container img{
+  width: 100%;
 }
 
 .noteEtoile {
