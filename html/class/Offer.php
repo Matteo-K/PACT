@@ -146,11 +146,9 @@ class Offer {
   }
 
   public function filterPagination($idUser_, $typeUser_) {
-    echo $typeUser_;
     if (($typeUser_ == "pro_public" || $typeUser_ == "pro_prive")) {
       return $this->idUser == $idUser_;
     } else {
-      echo $this->statut == 'actif';
       return $this->statut == 'actif';
     }
   }
