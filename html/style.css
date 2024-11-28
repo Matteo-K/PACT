@@ -330,10 +330,10 @@ header>div>a>div {
   height: 100%;
   width: auto;
   /* Dégradé du haut vers le bas */
-  transform: translateX(100%);
+  /* transform: translateX(100%); */
   transition: transform 1s ease-in-out;
-  visibility: hidden;
-  opacity: 0;
+  /* visibility: hidden; */
+  /* opacity: 0; */
   color: #fff;
 }
 
