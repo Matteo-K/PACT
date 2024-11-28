@@ -275,16 +275,16 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 
         loadedImg.forEach(img => {
-            configImage(img, "", "");
+            configImage(img, "", null);
         });
 
         function creeNouvelInput() {
             const nouvelInputFile = document.createElement("input");
-            newInputFile.type = "file";
-            newInputFile.id = "ajoutPhoto";
-            newInputFile.multiple = true; // Autoriser plusieurs fichiers
-            inputFile.replaceWith(newInputFile); // Remplacer l'ancien input
-            inputFile = newInputFile; // Mettre à jour la référence
+            nouvelInputFile.type = "file";
+            nouvelInputFile.id = "ajoutPhoto";
+            nouvelInputFile.multiple = true; // Autoriser plusieurs fichiers
+            inputFile.replaceWith(nouvelInputFile); // Remplacer l'ancien input
+            inputFile = nouvelInputFile; // Mettre à jour la référence
             inputFile.addEventListener("change", afficheImage); // Réattacher l'événement
         }
 
