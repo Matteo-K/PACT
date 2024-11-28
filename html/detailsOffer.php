@@ -638,7 +638,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Intercepter l'action de retour
         window.onpopstate = function(event) {
             // Redirige l'utilisateur où vous voulez
-            window.location.href = '/search.php';
+            window.location.href = './search.php';
         };
 
     </script>
