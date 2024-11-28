@@ -202,9 +202,10 @@
             factu.addEventListener("click", toggleFacture);
             // Fonction pour afficher/cacher le menu
             function toggleMenu() {
+                console.log("event reusi");
                 if (profileMenu.classList.contains("show")) {
                     profileMenu.classList.remove("show");
-                    profileMenu.classList.remove("deplace")
+                    profileMenu.classList.remove("deplace");
                     profileMenu.classList.add("hide");
                     body.classList.remove('no-scroll');
 
