@@ -272,6 +272,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         const photosSelect = []; // Stocker les fichiers sélectionnés
 
+        let fichiersDerniereRequete = []; // Stocke uniquement les photos de la dernière requête
+
+
         const loadedImg = <?php echo json_encode($loadedImg) ?>;
 
         loadedImg.forEach(img => {
@@ -299,9 +302,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     };
                     reader.readAsDataURL(file);
                 }
-                alert("envoyer Images ----->");
-                envoyerImages();
             });
+            alert("envoyer Images ----->");
+            envoyerImages();
         }
 
         function configImage(urlAncien, urlNouveau, file) {
@@ -331,6 +334,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         figureImg.remove();
                         photosSelect.splice(photosSelect.indexOf(file), 1); // Supprimer le fichier de la liste
                         pImage.style.color = "black"; // Remettre la couleur par défaut
+                        fichiersDerniereRequete.splice(fichiersDerniereRequete.indexOf(file), 1); // Supprime du tableau temporaire
                     }
                 });
             } else {
@@ -339,31 +343,36 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
 
 
-        function envoyerImages() {
-            const formData = new FormData();
-            photosSelect.forEach((file, index) => {
-                formData.append(`images[${index}]`, file);
-            });
+        function envoyerPhotos() {
+            // Préparer uniquement les photos de la dernière requête
+            fichiersDerniereRequete = photosSelect.filter(
+                (file) => !fichiersDerniereRequete.includes(file)
+            );
 
-            // Requête AJAX
-            fetch("enregOffer.php", {
+            if (fichiersDerniereRequete.length === 0) {
+                alert("Aucune nouvelle photo à envoyer.");
+                return;
+            }
+
+            // Envoyer via AJAX
+            const formData = new FormData();
+            fichiersDerniereRequete.forEach((file) => formData.append("photos[]", file));
+
+            fetch("/url-pour-envoyer-les-photos", {
                 method: "POST",
                 body: formData,
             })
                 .then((response) => {
-                    if (!response.ok) throw new Error("Erreur lors de l'envoi.");
-                    return response.json();
-                })
-                .then((data) => {
-                    console.log("Images envoyées avec succès :", data);
-                    alert("Images envoyées !");
+                    if (response.ok) {
+                        alert("Photos envoyées avec succès !");
+                    } else {
+                        alert("Erreur lors de l'envoi des photos.");
+                    }
                 })
                 .catch((error) => {
-                    console.error("Erreur :", error);
-                    alert("Une erreur s'est produite lors de l'envoi.");
+                    console.error("Erreur lors de l'envoi :", error);
                 });
         }
-    
 
         const radBtnRestaurant = document.querySelector("#radioRestaurant");
         const radBtnParc = document.querySelector("#radioParc");
