@@ -107,7 +107,11 @@ $arrayOffer = [];
         </section>
     </main>
     <?php require_once "components/footer.php"; ?>
-    <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search)))); ?>'></div>
+    <?php if (empty($search)) { ?>
+        <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->filtre($idUser, $typeUser)))); ?>'></div>
+    <?php } else { ?>
+        <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search)))); ?>'></div>
+    <?php } ?>
     <div id="user-data" data-user='<?php echo $typeUser ?>'></div>
     <script src="js/sortAndFilter.js"></script>
     <script>
