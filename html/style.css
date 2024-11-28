@@ -3138,7 +3138,7 @@ tbody td:last-child {
 }
 
 #restaurant >div[class="photosR"]{
-  background-color: yellow; /* test des changements */
+  background-color: pink; /* test des changements */
   margin-top: 15px;
   
 
