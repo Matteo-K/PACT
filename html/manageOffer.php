@@ -35,7 +35,7 @@
       <h3>Gestion de votre offre</h3>
       <ul>
         <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
-        <li><button disabled type="submit" onclick="submitForm(event,1)" class="<?php echo $step == 1 ? "guideSelect" : "" ?>">Sélection de l’abonnement</button></li>
+        <li><button <?php echo empty($idOffre)? "" : "disabled"?> type="submit" onclick="submitForm(event,1)" class="<?php echo $step == 1 ? "guideSelect" : "" ?>">Sélection de l’abonnement</button></li>
         <li><button type="submit" onclick="submitForm(event,2)" class="<?php echo $step == 2 ? "guideSelect" : "" ?>">Détails de l’offre</button></li>
         <li><button type="submit" onclick="submitForm(event,3)" class="<?php echo $step == 3 ? "guideSelect" : "" ?>">Localisation</button></li>
         <li><button type="submit" onclick="submitForm(event,4)" class="<?php echo $step == 4 ? "guideSelect" : "" ?>">Contact</button></li>
@@ -92,7 +92,7 @@
       <!-- Bouton précédent et suivant -->
       <?php
       // Précédent
-      if ($step > 1) {
+      if ($step > 2) {
         ?>
         <button type="submit" onclick="submitForm(event,<?php echo $step-1?>)" class="blueBtnOffer">Précédent</button>
         <?php

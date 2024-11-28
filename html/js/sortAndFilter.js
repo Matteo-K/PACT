@@ -207,6 +207,7 @@ function filtrerParPrix(offers) {
   const prixMax = parseInt(selectPrixMax.value);
 
   return offers.filter(offer => {
+    // changer "prix"
     const prixOffre = offer.prix;
     return prixOffre >= prixMin && prixOffre <= prixMax;
   });
@@ -266,9 +267,9 @@ function filtrerParPeriode(offers) {
 function sortAndFilter(array, elementStart, nbElement) {
   // Filtres
   array = filtrerParCategorie(array);
-  // array = filtrerParNotes(array);
+  array = filtrerParNotes(array);
   // array = filtrerParPrix(array);
-  // array = filtrerParStatuts(array);
+  array = filtrerParStatuts(array);
   // array = filtrerParPeriode(array);
 
   // Tris
