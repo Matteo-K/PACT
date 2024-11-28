@@ -331,7 +331,7 @@ header>div>a>div {
   width: auto;
   /* Dégradé du haut vers le bas */
   /* transform: translateX(100%); */
-  transition: transform 1s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   /* visibility: hidden; */
   /* opacity: 0; */
   color: #fff;
