@@ -47,7 +47,8 @@ $schedules = getSchedules($conn, $idOffre);
 $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
 $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 if (!$result) {
 ?>
     <form id="manageOfferAuto" action="manageOffer.php" method="post">
