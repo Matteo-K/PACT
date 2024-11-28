@@ -2859,11 +2859,11 @@ tbody td:last-child {
 
 
 .star.partielle {
-  background: linear-gradient(to right, var(--accent) var(--pourcentage), #ccc var(--pourcentage));
+  background: linear-gradient(to right, var(--accent) var(--pourcentage), var(--background-avis) var(--pourcentage));
 }
 
 .star.vide {
-  background-color: #fff;
+  background-color:var(--background-avis);
   /* Icône étoile vide */
 }
 
