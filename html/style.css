@@ -3528,7 +3528,7 @@ input[id="confirmer"] {
 
 input[id="email"],
 input[id="adresse"] {
-  width: 823px;
+  width: 830px;
   height: 40px;
   margin: 0 5px;
   border: 3px solid var(--accent);
