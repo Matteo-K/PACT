@@ -1,7 +1,6 @@
 <?php 
 require_once "config.php";
 
-$search = isset($_GET["search"]) ? $_GET["search"] : "";
 $page = isset($_GET["page"]) ? $_GET["page"] :  1;
 $nbElement = 15;
 $countOffer = 0;
