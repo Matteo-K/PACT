@@ -24,14 +24,14 @@
         // Vérifier si les données sont trouvées
         if (!$user) {
             $_SESSION['errors'][] = "Utilisateur introuvable.";
-            header("Location: login.php");
+            header("Location: index.php");
             exit();
         }
     } 
     
     catch (Exception $e) {
         $_SESSION['errors'][] = "Erreur de connexion à la base de données.";
-        header("Location: login.php");
+        header("Location: index.php");
         exit();
     }
 ?>
@@ -76,10 +76,10 @@
                 <label id="labelNom" for="nomMembre">Nom*:</label>
                     
                 <!-- Saisi du prénom -->
-                <input type="text" placeholder="Jean" id="prenomMembre" name="prenomMembre" value="<?= isset($user['prenomMembre']) ? htmlspecialchars($user['prenomMembre']) : '' ?>" required>
+                <input type="text" placeholder="Jean" id="prenomMembre" name="prenomMembre" value="<?= isset($user['prenom']) ? htmlspecialchars($user['prenom']) : '' ?>" required>
 
                 <!-- Saisi du nom -->
-                <input type="text" placeholder="Dupont" id="nomMembre" name="nomMembre" value="<?= isset($user['nomMembre']) ? htmlspecialchars($user['nomMembre']) : '' ?>" required>
+                <input type="text" placeholder="Dupont" id="nomMembre" name="nomMembre" value="<?= isset($user['nom']) ? htmlspecialchars($user['nom']) : '' ?>" required>
     
             </div>
     
@@ -88,10 +88,10 @@
                 <label id="labelTelephone" for="telephoneMembre">Téléphone*:</label>
                     
                 <!-- Saisi du pseudo -->
-                <input type="text" placeholder="Jean29" id="pseudoMembre" name="pseudoMembre" value="<?= isset($user['pseudoMembre']) ? htmlspecialchars($user['pseudoMembre']) : '' ?>" required>
+                <input type="text" placeholder="Jean29" id="pseudoMembre" name="pseudoMembre" value="<?= isset($user['pseudo']) ? htmlspecialchars($user['pseudo']) : '' ?>" required>
 
                 <!-- Saisi du numéro de téléphone -->
-                <input type="tel" placeholder="06 01 02 03 04" id="telephoneMembre" name="telephoneMembre" value="<?= isset($user['telephoneMembre']) ? htmlspecialchars($_POST['telephoneMembre']) : '' ?>" required>
+                <input type="tel" placeholder="06 01 02 03 04" id="telephoneMembre" name="telephone" value="<?= isset($user['telephone']) ? htmlspecialchars($_POST['telephoneMembre']) : '' ?>" required>
             </div>
     
     
@@ -99,7 +99,7 @@
             <div class="ligne2">
                 <!-- Saisi de l'adresse mail -->
                 <label for="email">Adresse mail*:</label>
-                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?>" required>
+                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($user['mail']) ? htmlspecialchars($user['mail']) : '' ?>" required>
             </div>
 
 
