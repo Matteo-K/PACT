@@ -83,10 +83,10 @@
                         <a id="logoutButton" class="buttonMenu" href="logout.php">Déconnexion</a>
                     </div>
                 </div>
-                <?php 
-                if ($typeUser === "pro_public" || $typeUser === "pro_prive") {
-                ?>
-                    <div class="factue">
+                <div class="factue">
+                    <?php 
+                    if ($typeUser === "pro_public" || $typeUser === "pro_prive") {
+                    ?>
                         <h1>Mes Factures</h1>
                         <div class="details">
                         <?php 
@@ -162,10 +162,10 @@
                             }
                         ?>
                         </div>
-                    </div>
-                <?php 
-                }
-                ?>
+                    <?php 
+                    }
+                    ?>
+                </div>
             </div>
 
         <?php
@@ -182,62 +182,16 @@
 </header>
 
 <script>
-    
-    try {
-        document.addEventListener("DOMContentLoaded", function() {
-            const body = document.body;
-            const profilePic = document.getElementById("profilePic");
-            console.log("event ok1");
-            const profileMenu = document.getElementById("profileMenu");
-            console.log("event ok2")
-            const backButton = document.getElementById("backButton");
-
-            // Fonction pour afficher/cacher le menu
-            function toggleMenu() {
-                console.log("event ok3");
-                if (profileMenu.classList.contains("show")) {
-                    profileMenu.classList.remove("show");
-                    profileMenu.classList.remove("deplace");
-                    profileMenu.classList.add("hide");
-                    body.classList.remove('no-scroll');
-
-                } else {
-                    profileMenu.classList.add("show");
-                    profileMenu.classList.remove("hide");
-                }
-            }
-
-            // Écouteur pour afficher le menu au clic sur l'image de profil
-            if (profilePic) {
-                profilePic.addEventListener("click", toggleMenu);
-            }
-            
-            // Écouteur pour fermer le menu au clic sur le bouton "Retour"
-            if (backButton) {
-                backButton.addEventListener("click", toggleMenu);
-            }
-
-            // Écouteur pour fermer le menu en cliquant en dehors
-            document.addEventListener("click", function(event) {
-                if (typeof profileMenu !== "undefined" && profileMenu !== null && typeof profilePic !== "undefined" && profilePic !== null) {
-                    if (!profileMenu.contains(event.target) && !profilePic.contains(event.target)) {
-                        if (profileMenu.classList.contains("show")) {
-                            toggleMenu();
-                        }
-                    }
-                }
-            });
-
-        });
-    } catch (error) {
-        console.error("Erreur capturée :", error.message);
-    }
-
-    try {
-        document.getElementById("factureForm").onsubmit = function() {
+    document.getElementById("factureForm").onsubmit = function() {
             // Créer une nouvelle fenêtre pour afficher le PDF
             window.open('', 'pdfWindow'); // Ouvre une fenêtre de taille spécifique
         };
+        
+    document.addEventListener("DOMContentLoaded", function() {
+        const body = document.body;
+        const profilePic = document.getElementById("profilePic");
+        const profileMenu = document.getElementById("profileMenu");
+        const backButton = document.getElementById("backButton");
         const factu = document.getElementsByClassName("liFact")[0];
         function toggleFacture() {
             profileMenu.classList.toggle("deplace")
@@ -245,8 +199,41 @@
         }
         
         factu.addEventListener("click", toggleFacture);
+        // Fonction pour afficher/cacher le menu
+        function toggleMenu() {
+            if (profileMenu.classList.contains("show")) {
+                profileMenu.classList.remove("show");
+                profileMenu.classList.remove("deplace");
+                profileMenu.classList.add("hide");
+                body.classList.remove('no-scroll');
+            } else {
+                profileMenu.classList.add("show");
+                profileMenu.classList.remove("hide");
+            }
+        }
+        // Écouteur pour afficher le menu au clic sur l'image de profil
+        if (profilePic) {
+            profilePic.addEventListener("click", toggleMenu);
+        }
+        // Écouteur pour fermer le menu au clic sur le bouton "Retour"
+        if (backButton) {
+            backButton.addEventListener("click", toggleMenu);
+        }
+        // Écouteur pour fermer le menu en cliquant en dehors
+        document.addEventListener("click", function(event) {
+            if (typeof profileMenu !== "undefined" && profileMenu !== null && typeof profilePic !== "undefined" && profilePic !== null) {
+                if (!profileMenu.contains(event.target) && !profilePic.contains(event.target)) {
+                    if (profileMenu.classList.contains("show")) {
+                        toggleMenu();
+                    }
+                }
+            }
+        });
+    });
+
+    try {
         
     } catch (error) {
-        
+    console.error("Erreur capturée :", error.message);
     }
 </script>
