@@ -298,6 +298,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     const reader = new FileReader();
                     reader.onload = function(e){
                         photosSelect.push(file);
+                        fichiersDerniereRequete.push(file);
                         configImage("", e.target.result, file);
                     };
                     reader.readAsDataURL(file);
@@ -344,19 +345,16 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 
         function envoyerPhotos() {
-            // Préparer uniquement les photos de la dernière requête
-            fichiersDerniereRequete = photosSelect.filter(
-                (file) => !fichiersDerniereRequete.includes(file)
-            );
-
             if (fichiersDerniereRequete.length === 0) {
                 alert("Aucune nouvelle photo à envoyer.");
                 return;
             }
 
-            // Envoyer via AJAX
+            // Préparer les données à envoyer
             const formData = new FormData();
             fichiersDerniereRequete.forEach((file) => formData.append("images[]", file));
+
+            console.log("Fichiers envoyés :", fichiersDerniereRequete); // Debug
 
             fetch("enregOffer.php", {
                 method: "POST",
@@ -365,6 +363,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 .then((response) => {
                     if (response.ok) {
                         alert("Photos envoyées avec succès !");
+                        fichiersDerniereRequete = []; // Réinitialiser les fichiers envoyés
                     } else {
                         alert("Erreur lors de l'envoi des photos.");
                     }
@@ -373,6 +372,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     console.error("Erreur lors de l'envoi :", error);
                 });
         }
+
 
         const radBtnRestaurant = document.querySelector("#radioRestaurant");
         const radBtnParc = document.querySelector("#radioParc");
