@@ -304,6 +304,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 if (compteurImgMax >= maxImages) {
                     pImage.style.color = "red";
                     alert("C'est plein");
+                    return;
                 }
                 else{
                     compteurImgMax++;
