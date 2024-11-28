@@ -161,9 +161,8 @@ class Offer {
     $this->resume = empty($resume_) ? "" : $resume_;
     $this->description = empty($description_) ? "" : $description_;
     $this->images = $images_;
-    print_r($this->images);
-    if ($this->images[0] == NULL) {
-      $this->images[0] = "";
+    if (empty($this->images) || $this->images[0] == NULL) {
+      $this->images = [];
     }
     $this->tags = $tags_;
     foreach ($this->tags as &$tag) {
