@@ -2344,6 +2344,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-direction: column;
 }
 
+.Enligne{
+  width: fit-content; margin-right: auto;
+}
+
 .buttonDetails {
   display: flex;
   gap: 10px;

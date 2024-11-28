@@ -147,12 +147,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <fieldset class="info">
             <legend>Information de l'offre</legend>
 
+            <?php
+            if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
+                $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
+                $cook->execute();
+                $offre = $cook->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <h3 class="Enligne"><?php echo $offre[0]['statut'] ?></h3>
+
             <div class="buttonDetails">
                 <?php
-                if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-                    $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
-                    $cook->execute();
-                    $offre = $cook->fetchAll(PDO::FETCH_ASSOC);
                     $affiche = false;
                     foreach ($offre[0] as $key => $value) {
                         if ($value == NULL) {
