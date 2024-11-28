@@ -3369,7 +3369,7 @@ a[id="lienConnexion"]:hover {
   color: var(--accent);
 }
 
-h1[id="inscriptionTitre"] {
+h1[id="inscriptionTitre"], h1[id="changerInfoTitre"] {
   text-align: center;
   margin: 30px 10px;
   color: var(--bloc);
