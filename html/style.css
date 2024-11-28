@@ -330,7 +330,7 @@ header>div>a>div {
   height: 100%;
   width: auto;
   /* Dégradé du haut vers le bas */
-  /* transform: translateX(100%); */
+  transform: translateX(100%);
   transition: transform 0.2s ease-in-out;
   /* visibility: hidden; */
   /* opacity: 0; */
@@ -446,7 +446,7 @@ header>div>a>div {
 #profileMenu.hide {
   visibility: visible;
   opacity: 1;
-  transform: translateX(276px);
+  transform: translateX(100%);
 }
 
 #profileMenu.deplace {
