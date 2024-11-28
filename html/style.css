@@ -4003,10 +4003,10 @@ p[id="legendeBoutonLienPro"] {
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page changement de mot de passe, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++*/
-main[id="mainChangerMDP"] {
+/* main[id="mainChangerMDP"] {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 5%;
-}
+} */
