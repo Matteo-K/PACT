@@ -3133,6 +3133,16 @@ tbody td:last-child {
     /* Espace entre le bouton radio et le texte */
 }
 
+#restaurant >div[class="photosR"]{
+  background-color: yellow; /* test des changements */
+  margin-top: 15px;
+  
+
+}
+
+
+
+
 /* CSS pour le détails d'une offre de type spectacle */
 #show {
   align-items: center;
