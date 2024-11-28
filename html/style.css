@@ -2753,6 +2753,13 @@ tbody td:last-child {
   width: 100%;
 }
 
+.user + article > div > div +div{
+  justify-content: flex-start ;
+}
+.user + article > div > div {
+  margin:0;
+}
+
 .user+article>div>div:nth-child(1)>p+p{
   font-style: italic;
   font-weight: 300;
