@@ -287,6 +287,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             inputFile.replaceWith(nouvelInputFile); // Remplacer l'ancien input
             inputFile = nouvelInputFile; // Mettre à jour la référence
             inputFile.addEventListener("change", afficheImage); // Réattacher l'événement
+            console.log("Nouvel input créé et événement attaché.");
         }
 
 
