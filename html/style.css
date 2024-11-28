@@ -765,6 +765,15 @@ header ul+div {
   width: 80%;
 }
 
+.carteIndex .tagsCard {
+  width: 150%;
+  margin-left: -50%;
+}
+
+.carteIndex .noteALaUne + p {
+  width: 60%;
+}
+
 .tagIndex {
   background-color: var(--accent);
   color: var(--text-dark);
