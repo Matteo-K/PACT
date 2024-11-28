@@ -1693,11 +1693,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
-.modifierBut.disabled,#disabledSelect {
+#disabledSelect{
   background-color: #ccc !important;
-  color: #666 !important;
+  color: #444 !important;
   border: solid #ccc 1px ;
   cursor: not-allowed !important;
+}
+
+.modifierBut.disabled,#disabledSelect {
+  background-color: #ccc;
+  color: #666;
+  border: solid #ccc 1px ;
+  cursor: not-allowed;
 }
 
 /* Supprimer l'effet hover pour les boutons désactivés */
