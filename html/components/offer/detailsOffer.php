@@ -309,7 +309,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         photosSelect.push(file);
                         configImage("", e.target.result, file);
                     };
+                    alert("avant reader");
                     reader.readAsDataURL(file);
+                    alert("apres reader");
                 }
             });
             alert("go creer nvl input");
