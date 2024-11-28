@@ -332,8 +332,8 @@ header>div>a>div {
   /* Dégradé du haut vers le bas */
   transform: translateX(100%);
   transition: transform 1s ease-in-out;
-  /* visibility: hidden; */
-  /* opacity: 0; */
+  visibility: hidden;
+  opacity: 0;
   color: #fff;
 }
 
@@ -440,13 +440,13 @@ header>div>a>div {
 #profileMenu.show {
   visibility: visible;
   opacity: 1;
-  transform: translateX(calc(100vw -276px));
+  transform: translateX(calc(100vw - 276px));
 }
 
 #profileMenu.hide {
   visibility: visible;
   opacity: 1;
-  transform: translateX(100%);
+  transform: translateX(100vw);
 }
 
 #profileMenu.deplace {
