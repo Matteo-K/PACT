@@ -139,19 +139,28 @@ class ArrayOffer {
 
   public function recherche($idUser_, $typeUser_, $recherche) {
     $array = $this->filtre($idUser_, $typeUser_);
-    print_r($this->getArray($array));
+
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
 
-        $categorie = $item->getData()["categorie"] ?? '';
-        $nomOffre = $item->getData()["nomOffre"] ?? '';
-        $gammeDePrix = $item->getData()["gammeDePrix"] ?? '';
-        $adresse = $item->formaterAdresse() ?? '';
+      if (empty($recherche)) {
+        return true;
+      }
 
-        return $this->offreContientTag($item->getData()["tags"], $recherche) // tag
-            || strpos(strtolower($categorie), strtolower($recherche)) !== false // catégorie
-            || strpos(strtolower($nomOffre), strtolower($recherche)) !== false  // nom Offre
-            || strpos(strtolower($adresse), strtolower($recherche)) !== false  // localisation
-            || $gammeDePrix === $recherche;  // gamme de prix
+      $categorie = $item->getData()["categorie"] ?? '';
+      $nomOffre = $item->getData()["nomOffre"] ?? '';
+      $gammeDePrix = $item->getData()["gammeDePrix"] ?? '';
+      $adresse = $item->formaterAdresse() ?? '';
+
+      echo $categorie;
+      echo $nomOffre;
+      echo $gammeDePrix;
+      echo $adresse;
+
+      return $this->offreContientTag($item->getData()["tags"], $recherche) // tag
+          || strpos(strtolower($categorie), strtolower($recherche)) !== false // catégorie
+          || strpos(strtolower($nomOffre), strtolower($recherche)) !== false  // nom Offre
+          || strpos(strtolower($adresse), strtolower($recherche)) !== false  // localisation
+          || $gammeDePrix === $recherche;  // gamme de prix
     });
 }
 
