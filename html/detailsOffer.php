@@ -306,7 +306,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             <?php
             }
-            if ($result["mail"]) {
+            if ($result[0]["mail"]) {
             ?>
                 <div>
                     <img src="./img/icone/mail.png">
