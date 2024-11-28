@@ -56,7 +56,32 @@
             <!-- Menu caché intégré dans le header -->
             <div id="profileMenu" class="hidden">
                 <div class="menuHeader">
-                    
+                    <span id="backButton">< Retour</span>
+                    <figure id="imagProfil">
+                        <img src="<?php echo $user["url"] ?>" title="photo de profil utilisateur" id="menuProfilePic">
+                        <figcaption>
+                            <?php
+                                if ($typeUser === "admin") {
+                                    echo $user["login"];
+                                } else if ($typeUser === "pro_public" || $typeUser === "pro_prive") {
+                                    echo $user["denomination"];
+                                } else if ($typeUser === "membre") {
+                                    echo $user["pseudo"];
+                                }
+                            ?>
+                        </figcaption>
+                    </figure>
+                    <ul>
+                        <?php if ($typeUser === "pro_public" || $typeUser === "pro_prive") {?>
+                            <li><a href="search.php">Mes offres</a></li>
+                            <li><a href="manageOffer.php">Créer une offre</a></li>
+                            <li class="liFact">Mes Factures</li>
+                        <?php } ?>
+                    </ul>
+                    <div>
+                        <a id="changeAccount" class="buttonMenu" href="logout.php?change=true">Changer de compte</a>
+                        <a id="logoutButton" class="buttonMenu" href="logout.php">Déconnexion</a>
+                    </div>
                 </div>
                 <?php 
                 if ($typeUser === "pro_public" || $typeUser === "pro_prive") {
@@ -91,21 +116,21 @@
                                                     11 => 'novembre',
                                                     12 => 'décembre'
                                                 ];
-
+                                                
                                                 // Initialiser la date à partir de $value2
                                                 $dateFacture = new DateTime($value2);
-
+                                                
                                                 // Soustraire un mois
                                                 $dateFacture->modify('-1 month');
-
+                                                
                                                 // Obtenir le numéro du mois
                                                 $numMois = (int)$dateFacture->format('n'); // 'n' donne le mois en entier sans zéro initial
-
+                                                
                                                 // Récupérer le mois en français
                                                 $moisFrancais = $moisEnFrancais[$numMois];
-
+                                            
                                                 $annee = $dateFacture->format('Y');
-
+                                            
                                                 ?>
                                                     <div class="details-form">
                                                         <p><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></p>
