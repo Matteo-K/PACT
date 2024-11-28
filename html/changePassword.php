@@ -84,7 +84,7 @@
     </aside>
 
     <main id="mainChangerMDP">
-        <h1 id="changerMDPTitre">Changer de mot de passe</h1>
+        <h1 id="changerMDPTitre">Changer MDP</h1>
 
         <?php if (!empty($error)): ?>
             <div id="messageErreur" class="messageErreur"><?php echo htmlspecialchars($error); ?></div>
