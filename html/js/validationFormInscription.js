@@ -30,14 +30,14 @@ document.addEventListener('DOMContentLoaded', function () {
         } 
         
         else {
-            sirenLabel.style.display = "none"; // Cache le label
-            sirenInput.style.display = "none"; // Cache le champ
+            sirenLabel.style.display = "hidden"; // Cache le label
+            sirenInput.style.display = "hidden"; // Cache le champ
         }
     }
 
 
 
-    // Initialiser l'affichage si on est dans accountPro.php
+    // Initialiser l'affichage si on est dans accountPro.php ou dans changeAccountPro.php
     if (sirenInput && sirenLabel) {
         updateSirenVisibility();
         publicRadio?.addEventListener("click", updateSirenVisibility);
