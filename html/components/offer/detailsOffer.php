@@ -268,7 +268,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         const pImage = document.querySelector("#choixImage > p");
         const conteneur = document.getElementById("afficheImages");
         let inputFile = document.getElementById("ajoutPhoto"); 
-        document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
+        inputFile.addEventListener("change", afficheImage);
         const photosSelect = []; // Stocker les fichiers sélectionnés
 
         const loadedImg = <?php echo json_encode($loadedImg) ?>;
@@ -284,11 +284,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             nouvelInputFile.id = "ajoutPhoto";
             nouvelInputFile.multiple = true; 
             nouvelInputFile.name = "ajoutPhoto[]";
-            nouvelInputFile.method = "post";
             nouvelInputFile.accept = "image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF";
             inputFile.replaceWith(nouvelInputFile); // Remplacer l'ancien input
             inputFile = nouvelInputFile; // Mettre à jour la référence
-            inputFile.addEventListener("change", afficheImage); // Réattacher l'événement
             console.log("Nouvel input créé et événement attaché.");
         }
 
