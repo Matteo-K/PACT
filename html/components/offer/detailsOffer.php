@@ -93,7 +93,7 @@ else{
 }
 
 //Récupération de tous les tags pour leur sélection dans l'input
-$stmt = $conn->prepare("SELECT * FROM pact._tag");
+$stmt = $conn->prepare("SELECT * FROM pact._tag ORDER BY nomtag desc");
 $stmt->execute();
 
 $listeTags = [];
@@ -268,10 +268,10 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         const pImage = document.querySelector("#choixImage > p");
         const conteneur = document.getElementById("afficheImages");
         document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
-        
+        const photosSelect = []; // Stocker les fichiers sélectionnés
+
         const loadedImg = <?php echo json_encode($loadedImg) ?>;
 
-        const photosSelect = []; // Stocker les fichiers sélectionnés
 
         loadedImg.forEach(img => {
             configImage(img, "", "");
@@ -279,13 +279,13 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 
         function afficheImage(event) {
+            const images = Array.from(event.target.files); // On convertit la liste des fichiers de l'input en tableau
+
             let compteurImgMax = conteneur.childElementCount;
-            const images = event.target.files;
 
             console.log(images);
 
-            Array.from(images).forEach((file) => {
-                alert(compteurImgMax);
+            images.forEach((file) => {
                 if (compteurImgMax >= maxImages) {
                     pImage.style.color = "red";
                     alert("C'est plein");
@@ -300,22 +300,28 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     reader.readAsDataURL(file);
                 }
             });
+            event.target.value = ""; // On réinitialise l'input pour la prochaine sélection
         }
 
         function configImage(urlAncien, urlNouveau, file) {
             if (conteneur.childElementCount < maxImages) {
+                //On créé la balise notamment pour l'affichage
                 const figureImg = document.createElement("figure");
                 figureImg.classList.add("imageOffre");
                 if (urlAncien != "") {
+                    //Traitement des anciennes images chargées
                     figureImg.innerHTML = `<img src="${urlAncien}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
-                    const hiddenInputImg = document.createElement("input");
+                    const hiddenInputImg = document.createElement("input"); // L'input caché passe l'url des anciennes images au enregOffer.php
                     hiddenInputImg.type = "hidden";
                     hiddenInputImg.value = urlAncien;
                     hiddenInputImg.name = "imageExistante[]";
                     figureImg.appendChild(hiddenInputImg);
                 } else {
+                    //Traitement des nouvelles images
                     figureImg.innerHTML = `<img src="${urlNouveau}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
                 }
+
+                //On ajoute la balise a la section pour l'affichage
                 conteneur.appendChild(figureImg);
 
                 figureImg.addEventListener("click", function () {
