@@ -80,22 +80,22 @@
             <div id="messageErreur" class="messageErreur"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
 
-        <form id = "formConnexion" action="login.php" method="post" enctype="multipart/form-data">
+        <form id = "formConnexion" action="changePassword.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
-                <!-- Saisi du login -->
+                <!-- Saisi de l'ancien mot de passe -->
                 <input type="password" placeholder="Ancien mot de passe" id="ancienMDP" name="ancienMDP" required>
             </div>
     
     
             <div class="ligne2">
-                <!-- Saisi du mot de passe -->
+                <!-- Saisi du nouveau mot de passe -->
                 <input type="password" placeholder="Nouveau mot de passe" id="nouveauMDP" name="nouveauMDP" required>
             </div>
 
 
             <div class="ligne2">
-                <!-- Saisi du mot de passe -->
-                <input type="password" placeholder="Confirmer le mot de passe" id="confirmerNouveauMDP" name="confimerNouveauMDP" required>
+                <!-- Confirmation du mot de passe -->
+                <input type="password" placeholder="Confirmer le mot de passe" id="confirmerNouveauMDP" name="confirmerNouveauMDP" required>
             </div>
     
             <button onclick = "validationFormConnexion()" id="boutonChangerMDP">Valider</button>
