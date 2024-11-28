@@ -356,9 +356,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
             // Envoyer via AJAX
             const formData = new FormData();
-            fichiersDerniereRequete.forEach((file) => formData.append("photos[]", file));
+            fichiersDerniereRequete.forEach((file) => formData.append("images[]", file));
 
-            fetch("/url-pour-envoyer-les-photos", {
+            fetch("enregOffer.php", {
                 method: "POST",
                 body: formData,
             })
