@@ -3781,10 +3781,6 @@ h1[id="connexionTitre"], h1[id="changerMDPTitre"] {
   font-size: 65px;
 }
 
-h1[id="changerMDPTitre"] {
-  margin-bottom: 5%;
-}
-
 h1[id="pasDeCompteTitre"] {
   text-align: center;
   margin: 50px 10px;
