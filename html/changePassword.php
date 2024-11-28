@@ -27,6 +27,11 @@
         // Vérification que le nouveau mot de passe et la confirmation sont identiques
         if ($nouveauMDP !== $confirmerNouveauMDP) {
             $error = "Les mots de passe ne correspondent pas.";
+        }
+
+        // Vérification du format du nouveau mot de passe
+        if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\d\s]).{10,}$/', $nouveauMDP)) {
+            $error = "Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial.";
         } 
         
         else {
@@ -44,7 +49,7 @@
                 $stmt->execute([$newPasswordHash, $userId]);
 
                 // Rediriger l'utilisateur avec un message de succès
-                header("Location: profile.php?success=Mot de passe mis à jour avec succès.");
+                header("Location: index.php");
                 exit();
             } 
             
