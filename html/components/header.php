@@ -187,11 +187,14 @@
         document.addEventListener("DOMContentLoaded", function() {
             const body = document.body;
             const profilePic = document.getElementById("profilePic");
+            console.log("event ok1");
             const profileMenu = document.getElementById("profileMenu");
+            console.log("event ok2")
             const backButton = document.getElementById("backButton");
 
             // Fonction pour afficher/cacher le menu
             function toggleMenu() {
+                console.log("event ok3");
                 if (profileMenu.classList.contains("show")) {
                     profileMenu.classList.remove("show");
                     profileMenu.classList.remove("deplace");
@@ -229,7 +232,7 @@
     } catch (error) {
         console.error("Erreur capturée :", error.message);
     }
-    
+
     try {
         document.getElementById("factureForm").onsubmit = function() {
             // Créer une nouvelle fenêtre pour afficher le PDF
