@@ -180,15 +180,16 @@ if (isset($_POST['pageBefore'])) {
           }
         }
 
+        $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = ?");
+        $stmt->execute([$idOffre]);
+        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          $anciennesImagesTotal[] = $result["url"];
+        }
 
-          $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = ?");
-          $stmt->execute([$idOffre]);
-          while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $anciennesImagesTotal[] = $result["url"];
-          }
+        
 
 
-        $nbNouvellesImages = count($_FILES['ajoutPhoto']['name']);
+        $nbNouvellesImages = count($_FILES['images']);
         $nbAnciennesImages = count($anciennesImagesRestantes);
         $nbTotalImages = $nbNouvellesImages + $nbAnciennesImages;
         $imageCounter = $nbAnciennesImages;  // Compteur pour renommer les images
@@ -200,9 +201,9 @@ if (isset($_POST['pageBefore'])) {
 
         // Boucle à travers chaque NOUVEAU fichier uploadé
         for ($i = 0; $i < $nbNouvellesImages; $i++) {
-          $fileTmpPath = $_FILES['ajoutPhoto']['tmp_name'][$i];
-          $fileName = $_FILES['ajoutPhoto']['name'][$i];
-          $fileError = $_FILES['ajoutPhoto']['error'][$i];
+          $fileTmpPath = $_FILES['images']['tmp_name'][$i];
+          $fileName = $_FILES['images']['name'][$i];
+          $fileError = $_FILES['images']['error'][$i];
 
           // Vérifie si l'image a été uploadée sans erreur
           if ($fileError === UPLOAD_ERR_OK) {
