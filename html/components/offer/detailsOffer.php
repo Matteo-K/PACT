@@ -93,7 +93,7 @@ else{
 }
 
 //Récupération de tous les tags pour leur sélection dans l'input
-$stmt = $conn->prepare("SELECT * FROM pact._tag ORDER BY nomtag desc");
+$stmt = $conn->prepare("SELECT * FROM pact._tag ORDER BY nomtag asc");
 $stmt->execute();
 
 $listeTags = [];
@@ -267,7 +267,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         //Affichage des images a leur selection
         const pImage = document.querySelector("#choixImage > p");
         const conteneur = document.getElementById("afficheImages");
-        document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
+        let inputFile = document.getElementById("ajoutPhoto"); 
+        //document.getElementById("ajoutPhoto").addEventListener("change", afficheImage);
         const photosSelect = []; // Stocker les fichiers sélectionnés
 
         const loadedImg = <?php echo json_encode($loadedImg) ?>;
@@ -277,13 +278,20 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             configImage(img, "", "");
         });
 
+        function creeNouvelInput() {
+            const nouvelInputFile = document.createElement("input");
+            newInputFile.type = "file";
+            newInputFile.id = "ajoutPhoto";
+            newInputFile.multiple = true; // Autoriser plusieurs fichiers
+            inputFile.replaceWith(newInputFile); // Remplacer l'ancien input
+            inputFile = newInputFile; // Mettre à jour la référence
+            inputFile.addEventListener("change", afficheImage); // Réattacher l'événement
+        }
+
 
         function afficheImage(event) {
             const images = Array.from(event.target.files); // On convertit la liste des fichiers de l'input en tableau
-
             let compteurImgMax = conteneur.childElementCount;
-
-            console.log(images);
 
             images.forEach((file) => {
                 if (compteurImgMax >= maxImages) {
@@ -300,7 +308,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     reader.readAsDataURL(file);
                 }
             });
-            event.target.value = ""; // On réinitialise l'input pour la prochaine sélection
+            creeNouvelInput();
         }
 
         function configImage(urlAncien, urlNouveau, file) {
@@ -308,6 +316,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 //On créé la balise notamment pour l'affichage
                 const figureImg = document.createElement("figure");
                 figureImg.classList.add("imageOffre");
+
                 if (urlAncien != "") {
                     //Traitement des anciennes images chargées
                     figureImg.innerHTML = `<img src="${urlAncien}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
@@ -329,6 +338,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         figureImg.remove();
                         photosSelect.splice(photosSelect.indexOf(file), 1); // Supprimer le fichier de la liste
                         pImage.style.color = "black"; // Remettre la couleur par défaut
+                        creeNouvelInput();
                     }
                 });
             } else {
