@@ -2,7 +2,8 @@
     <input type="hidden" name="idoffre" value="<?php echo $idOffre; ?>">
     <div class="carteOffre">
             <?php 
-            $alt = isset($urlImg[0]['url']) && $urlImg ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";
+            echo $urlImg;
+            $alt = !empty($urlImg) ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";
             ?>
         <img class="searchImage" src="<?php echo $urlImg; ?>" alt=<?php echo $alt; ?>>
         <div class="infoOffre">

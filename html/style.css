@@ -1694,8 +1694,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #disabledSelect{
-  background-color: #444 !important;
-  border: solid #ccc 1px ;
+  background-color: #666 !important;
+  border: solid #666 1px !important;
   cursor: not-allowed !important;
 }
 
@@ -3453,7 +3453,7 @@ div.ligne6>label {
 div.ligne3>label {
   display: flex;
   justify-content: left;
-  width: 823px;
+  width: 830px;
   margin: 5px auto;
 }
 
@@ -3472,6 +3472,7 @@ div.ligne3>label {
   margin: 10px 26px;
   text-align: left;
   justify-content: space-between;
+  width: 860px;
 }
 
 .creation-compte .ligne5_1,
@@ -3509,7 +3510,6 @@ div.ligne3>label {
 
 .creation-compte input {
   font-size: 20px;
-  border: 0;
 }
 
 input[id="denomination"],
