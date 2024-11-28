@@ -1,6 +1,7 @@
 <?php 
 require_once "config.php";
 
+$search = isset($_GET["search"]) ? $_GET["search"] : "";
 $page = isset($_GET["page"]) ? $_GET["page"] :  1;
 $nbElement = 15;
 $countOffer = 0;
@@ -106,6 +107,9 @@ $arrayOffer = [];
         </section>
     </main>
     <?php require_once "components/footer.php"; ?>
+    <?php print_r($_GET); ?>
+    <?php echo $search ?>
+    <?php print_r($offres->getArray($offres->recherche($idUser, $typeUser, $search))); ?>
     <!-- Data -->
     <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search)))); ?>'></div>
     <div id="user-data" data-user='<?php echo $typeUser ?>'></div>

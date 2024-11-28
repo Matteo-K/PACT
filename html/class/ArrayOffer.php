@@ -138,7 +138,6 @@ class ArrayOffer {
   }
 
   public function recherche($idUser_, $typeUser_, $recherche) {
-    $recherche = trim($recherche);
     $array = $this->filtre($idUser_, $typeUser_);
 
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
