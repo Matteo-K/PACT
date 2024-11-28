@@ -22,7 +22,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="img/logo.png" type="image/x-icon">
-        <title>Modifier informations</title>
+        <title>Modifier des informations</title>
     </head>
     <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
@@ -89,26 +89,6 @@
 
                 <!-- Saisi de la ville -->
                 <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($_POST['ville']) ? htmlspecialchars($_POST['ville']) : '' ?>" required>
-            </div>
-
-            
-
-            <div class="ligne5">
-                <div class="ligne5_1">
-                    <!-- Radio bouton public -->
-                    <input type="radio" id="radioPublic" name="secteur" value="public">
-                    <label for="public">Public</label>
-            
-                    <!-- Radio bouton privée -->
-                    <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
-                    <label for="prive">Privé</label>
-                </div>
-
-                <div class="ligne5_2">
-                    <!-- Saisi du numéro de SIREN -->
-                    <label for="siren">N° SIREN*:</label>
-                    <input type="text" placeholder="123 456 789" id="siren" name="siren" value="<?= isset($_POST['siren']) ? htmlspecialchars($_POST['siren']) : '' ?>" required>
-                </div>
             </div>
             
             <button type="submit" id="boutonInscription">Valider</button>

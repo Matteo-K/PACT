@@ -1,11 +1,8 @@
 <form class="searchA" action="/detailsOffer.php?&ouvert=<?php echo $restaurantOuvert; ?>" method="post">
     <input type="hidden" name="idoffre" value="<?php echo $idOffre; ?>">
     <div class="carteOffre">
-            <?php 
-            echo $urlImg;
-            $alt = !empty($urlImg) ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";
-            ?>
-        <img class="searchImage" src="<?php echo $urlImg; ?>" alt=<?php echo $alt; ?>>
+        <?php $alt = !empty($urlImg) ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre"; ?>
+        <img class="searchImage" <?php echo !empty($urlImg) ? "src='$urlImg'" : "" ?> alt=<?php echo $alt; ?>>
         <div class="infoOffre">
             <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
 
