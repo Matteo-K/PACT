@@ -6,20 +6,13 @@
     require_once 'db.php';
 
     // Vérifier si l'utilisateur est connecté
-    if (!isset($_SESSION['idUser'])) {
+    if (!isset($_SESSION['idU'])) {
         header("Location: login.php"); // Rediriger vers la page de connexion si non connecté
         exit();
     }
-
-    // Récupérer l'ID de l'utilisateur connecté
-    $userId = $_SESSION['idUser'];
-
-    if ($user) {
-        $_SESSION['idUser'] = $userId;
-        header("Location: changeAccountPro.php");
-        exit();
-    }
     
+    // Récupérer l'ID de l'utilisateur connecté
+    $userId = $_SESSION['idU'];
 
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
@@ -27,12 +20,6 @@
         $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE id = ?");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user) {
-            $_SESSION['idUser'] = $userId;
-            header("Location: changeAccountPro.php");
-            exit();
-        }
 
         // Vérifier si les données sont trouvées
         if (!$user) {
@@ -108,7 +95,7 @@
             <div class="ligne3">
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
-                <input type="text" placeholder ="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['adresse']) ? htmlspecialchars($user['adresse']) : '' ?>" required>
+                <input type="text" placeholder ="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['numeroRue']) && isset($user['rue']) ? htmlspecialchars($user['numeroRue']) . '' . htmlspecialchars($user['rue']): '' ?>" required>
                 <br>
             </div>
 
