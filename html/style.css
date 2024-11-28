@@ -20,6 +20,10 @@
   font-family: "Lato", sans-serif;
 }
 
+main{
+  margin-top: calc(var(--header-size2) + 0.6em);
+}
+
 h1,
 h2,
 h3,
@@ -2354,7 +2358,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .info{
-  margin-top: calc(var(--header-size2) + 0.6em);
   width: calc(96vw - 40px);
   margin-left: 20px;
   display: flex;
@@ -3148,7 +3151,7 @@ tbody td:last-child {
 }
 
 #restaurant >div[class="photosR"]{
-  background-color: yellow; /* test des changements */
+  background-color: greenyellow; /* test des changements */
   margin-top: 15px;
   
 
