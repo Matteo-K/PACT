@@ -2338,7 +2338,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .info{
   margin-top: calc(var(--header-size2) + 0.6em);
-  width: 100%;
+  width: calc(100vw)-40px;
 }
 
 .buttonDetails {
