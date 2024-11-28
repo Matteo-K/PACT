@@ -2768,7 +2768,9 @@ tbody td:last-child {
 
 .user +article >div > div + div > p {
   margin: 0;
-  .user +article >div > div + div
+}
+.user +article >div > div:nth-child(3)>p{
+  width: 60%;
 }
 
 .user+article>div>div:nth-child(1)>p+p,  .user +article >div > div:nth-child(2) {
