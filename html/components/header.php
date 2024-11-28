@@ -83,83 +83,89 @@
                         <a id="logoutButton" class="buttonMenu" href="logout.php">Déconnexion</a>
                     </div>
                 </div>
-                <div class="factue">
-                    <h1>Mes Factures</h1>
-                    <div class="details">
-                    <?php 
-                        $idu = $_SESSION["idUser"];
-                        $stmt = $conn->prepare("SELECT nom,idoffre,ARRAY_AGG(DISTINCT datefactue ORDER BY datefactue DESC) AS datefactue FROM pact.facture WHERE idU = $idu GROUP BY nom,idOffre");
-                        $stmt->execute();
-                        $factures = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        foreach ($factures as $key => $value) {
-                            ?>
-                                <details class="details-style">
-                                    <summary><?php echo $value['nom'] ?></summary>
-                                    <div class="details-content">
-                                    <?php
-                                        $date = explode(',',trim($value['datefactue'],'{}'));
-                                        foreach ($date as $key => $value2) {
-                                            $moisEnFrancais = [
-                                                1 => 'janvier',
-                                                2 => 'février',
-                                                3 => 'mars',
-                                                4 => 'avril',
-                                                5 => 'mai',
-                                                6 => 'juin',
-                                                7 => 'juillet',
-                                                8 => 'août',
-                                                9 => 'septembre',
-                                                10 => 'octobre',
-                                                11 => 'novembre',
-                                                12 => 'décembre'
-                                            ];
+                <?php 
+                if ($typeUser === "pro_public" || $typeUser === "pro_prive") {
+                ?>
+                    <div class="factue">
+                        <h1>Mes Factures</h1>
+                        <div class="details">
+                        <?php 
+                            $idu = $_SESSION["idUser"];
+                            $stmt = $conn->prepare("SELECT nom,idoffre,ARRAY_AGG(DISTINCT datefactue ORDER BY datefactue DESC) AS datefactue FROM pact.facture WHERE idU = $idu GROUP BY nom,idOffre");
+                            $stmt->execute();
+                            $factures = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($factures as $key => $value) {
+                                ?>
+                                    <details class="details-style">
+                                        <summary><?php echo $value['nom'] ?></summary>
+                                        <div class="details-content">
+                                        <?php
+                                            $date = explode(',',trim($value['datefactue'],'{}'));
+                                            foreach ($date as $key => $value2) {
+                                                $moisEnFrancais = [
+                                                    1 => 'janvier',
+                                                    2 => 'février',
+                                                    3 => 'mars',
+                                                    4 => 'avril',
+                                                    5 => 'mai',
+                                                    6 => 'juin',
+                                                    7 => 'juillet',
+                                                    8 => 'août',
+                                                    9 => 'septembre',
+                                                    10 => 'octobre',
+                                                    11 => 'novembre',
+                                                    12 => 'décembre'
+                                                ];
+                                                
+                                                // Initialiser la date à partir de $value2
+                                                $dateFacture = new DateTime($value2);
+                                                
+                                                // Soustraire un mois
+                                                $dateFacture->modify('-1 month');
+                                                
+                                                // Obtenir le numéro du mois
+                                                $numMois = (int)$dateFacture->format('n'); // 'n' donne le mois en entier sans zéro initial
+                                                
+                                                // Récupérer le mois en français
+                                                $moisFrancais = $moisEnFrancais[$numMois];
                                             
-                                            // Initialiser la date à partir de $value2
-                                            $dateFacture = new DateTime($value2);
+                                                $annee = $dateFacture->format('Y');
                                             
-                                            // Soustraire un mois
-                                            $dateFacture->modify('-1 month');
-                                            
-                                            // Obtenir le numéro du mois
-                                            $numMois = (int)$dateFacture->format('n'); // 'n' donne le mois en entier sans zéro initial
-                                            
-                                            // Récupérer le mois en français
-                                            $moisFrancais = $moisEnFrancais[$numMois];
-
-                                            $annee = $dateFacture->format('Y');
-
-                                            ?>
-                                                <div class="details-form">
-                                                    <p><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></p>
-                                                    <div>
-                                                        <form id="factureForm" action="bill/download.php" method="post" target="pdfWindow">
-                                                            <input type="hidden" name="idOffre" value="<?php echo $value['idoffre']; ?>">
-                                                            <input type="hidden" name="mois" value="<?php echo $moisFrancais; ?>">
-                                                            <input type="hidden" name="annee" value="<?php echo $annee; ?>">
-                                                            <input type="hidden" name="boole" value="false">
-                                                            <input type="hidden" name="date" value="<?php echo $value2; ?>">
-                                                            <button class="modifierBut" type="submit">Visualiser</button>
-                                                        </form>
-                                                        <form action="bill/download.php" method="post">
-                                                            <input type="hidden" name="idOffre" value="<?php echo $value['idoffre']; ?>">
-                                                            <input type="hidden" name="mois" value="<?php echo $moisFrancais; ?>">
-                                                            <input type="hidden" name="annee" value="<?php echo $annee; ?>">
-                                                            <input type="hidden" name="boole" value="true">
-                                                            <input type="hidden" name="date" value="<?php echo $value2; ?>">
-                                                            <button class="modifierBut" type="submit">Télécharger</button>
-                                                        </form>
+                                                ?>
+                                                    <div class="details-form">
+                                                        <p><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></p>
+                                                        <div>
+                                                            <form id="factureForm" action="bill/download.php" method="post" target="pdfWindow">
+                                                                <input type="hidden" name="idOffre" value="<?php echo $value['idoffre']; ?>">
+                                                                <input type="hidden" name="mois" value="<?php echo $moisFrancais; ?>">
+                                                                <input type="hidden" name="annee" value="<?php echo $annee; ?>">
+                                                                <input type="hidden" name="boole" value="false">
+                                                                <input type="hidden" name="date" value="<?php echo $value2; ?>">
+                                                                <button class="modifierBut" type="submit">Visualiser</button>
+                                                            </form>
+                                                            <form action="bill/download.php" method="post">
+                                                                <input type="hidden" name="idOffre" value="<?php echo $value['idoffre']; ?>">
+                                                                <input type="hidden" name="mois" value="<?php echo $moisFrancais; ?>">
+                                                                <input type="hidden" name="annee" value="<?php echo $annee; ?>">
+                                                                <input type="hidden" name="boole" value="true">
+                                                                <input type="hidden" name="date" value="<?php echo $value2; ?>">
+                                                                <button class="modifierBut" type="submit">Télécharger</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            <?php
-                                        }
-                                    ?>
-                                    </div>
-                                </details>
-                            <?php
-                        }
-                    ?>
+                                                <?php
+                                            }
+                                        ?>
+                                        </div>
+                                    </details>
+                                <?php
+                            }
+                        ?>
+                        </div>
                     </div>
-                </div>
+                <?php 
+                }
+                ?>
             </div>
 
         <?php
