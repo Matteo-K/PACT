@@ -22,7 +22,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="img/logo.png" type="image/x-icon">
-        <title>Modifier informations</title>
+        <title>Modifier des informations</title>
     </head>
     <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
@@ -103,7 +103,7 @@
             </div>
 
             <button type="submit" id="boutonInscription">Valider</button>
-            
+
         </form>
     </body>
     <script src="js/validationFormInscription.js"></script>
