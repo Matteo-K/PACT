@@ -2775,6 +2775,14 @@ tbody td:last-child {
   font-weight: 300;
 }
 
+.user +article >div > div + div{
+  margin-bottom: 0.5em;
+}
+
+.autreInfoAvis{
+  gap:12px
+}
+
 .user+article>div>div:nth-child(1)>p>strong {
   font-size: 20px;
 }
