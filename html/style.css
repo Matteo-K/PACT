@@ -2336,11 +2336,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: center;
 }
 
+.info{
+  margin: calc(var(--header-size2) + 0.6em) auto;
+}
+
 .buttonDetails {
   display: flex;
-  margin-top: calc(var(--header-size2) + 0.6em);
   gap: 10px;
-  /* Espacement entre les boutons */
 }
 
 #titleOffer {

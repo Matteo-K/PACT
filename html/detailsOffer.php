@@ -144,7 +144,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php require_once "components/header.php"; ?>
 
     <main class="mainOffer">
-        <fieldset>
+        <fieldset class="info">
             <legend>Information de l'offre</legend>
 
             <div class="buttonDetails">
