@@ -164,7 +164,7 @@ class Offer {
     if (empty($this->images) || $this->images[0] == NULL) {
       $this->images = [];
     }
-    print_r($images);
+    print_r($this->images);
     $this->tags = $tags_;
     foreach ($this->tags as &$tag) {
       $tag = str_replace('_', ' ', $tag);
