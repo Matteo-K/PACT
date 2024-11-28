@@ -2834,19 +2834,32 @@ tbody td:last-child {
 
 /** Avis PRO **/
 
+#avisproS1, #avisproS2{
+  width: 45%;
+}
+
+.triangle{
+  font-size: 20px;
+  margin-left: 10px;
+}
 
 /* Ajouter une flèche avant le texte d'un élément */
 .triangle::before {
   content: "▲";        /* Le contenu à afficher (flèche vers le haut) */
-  font-size: 20px;      /* Taille de la flèche */
-  margin-right: 10px;   /* Espacement entre la flèche et le texte */
 }
 
 /* Vous pouvez aussi l'utiliser après l'élément */
 .triangle::after {
-  content: "▲";        /* Le contenu à afficher après l'élément */
-  font-size: 20px;      /* Taille de la flèche */
-  margin-left: 10px;    /* Espacement entre la flèche et le texte */
+  content: "▼";       /* Le contenu à afficher après l'élément */
+}
+
+#avisproS1{
+  border-right: solid 2px black;
+}
+
+#avisproS2 > div{
+  width: 90%;
+  background-color: var(--primary60);
 }
 
 
