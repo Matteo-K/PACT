@@ -15,7 +15,7 @@
         </button>
     </aside>
 
-    <main id="mainConnexion">
+    <main id="mainChangerMDP">
         <h1 id="connexionTitre">Changer de mot de passe</h1>
 
         <?php if (!empty($error)): ?>

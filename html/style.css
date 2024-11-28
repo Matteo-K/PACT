@@ -3928,3 +3928,13 @@ p[id="legendeBoutonLienPro"] {
     display: none;
   }
 }
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++*/
+/* Css page changement de mot de passe, Antoine */
+/*+++++++++++++++++++++++++++++++++++++++++++++*/
+main[id="mainChangerMDP"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

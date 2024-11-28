@@ -42,7 +42,7 @@ if ($categorie["_restauration"]) {
                     Cliquez sur une image pour la supprimer
                 </p>
             </div>
-            <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
-            <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>
+            <label for="ajoutPhotoMenu" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+            <input type="file" id="ajoutPhotoMenu" name="ajoutPhotoMenu[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>
             <div id="afficheImages"></div>
 </section>
