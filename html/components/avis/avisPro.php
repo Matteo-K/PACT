@@ -4,7 +4,6 @@
 
     <h2 class="triangle">
     
-        <img src="" alt="">
         Avis les plus récents
     </h2>
 
