@@ -2,20 +2,20 @@
     // Démarrer la session
     session_start();
 
-    // Fichier de connexion à la BDD
-    require_once 'db.php';
-
+    
     // Vérifier si l'utilisateur est connecté
-    // if (!isset($_SESSION['idU'])) {
-    //     header("Location: login.php");
-    //     exit();
-    // }
-
+    if (!isset($_SESSION['idU'])) {
+        header("Location: login.php");
+        exit();
+    }
+    
     if (isset($_SESSION['idU'])) {
         header("Location: changeAccountPro.php");
         exit();
     }
-
+    
+    // Fichier de connexion à la BDD
+    require_once 'db.php';
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idU'];
 
