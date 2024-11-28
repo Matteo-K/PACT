@@ -631,6 +631,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             const message = document.getElementById('hoverMessage');
             message.style.display = 'none';
         }
+
+        // Ajouter une entrée personnalisée dans l'historique
+        history.pushState(null, '', window.location.href);
+
+        // Intercepter l'action de retour
+        window.onpopstate = function(event) {
+            // Redirige l'utilisateur où vous voulez
+            window.location.href = '/search.php';
+        };
+
     </script>
     <script src="js/setColor.js"></script>
 </body>

@@ -3750,7 +3750,7 @@ body[id="body_connexion"] {
   background-size: cover;
 }
 
-main[id="mainConnexion"] {
+main[id="mainConnexion"], main[id="mainChangerMDP"] {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3773,12 +3773,16 @@ a[id="lienMotDePasseOublie"]:hover {
   margin-top: 30px;
 }
 
-h1[id="connexionTitre"] {
+h1[id="connexionTitre"], h1[id="changerMDPTitre"] {
   text-align: center;
   margin: 30px 10px;
   color: var(--bloc);
   font-weight: 100;
   font-size: 65px;
+}
+
+h1[id="changerMDPTitre"] {
+  margin-bottom: 5%;
 }
 
 h1[id="pasDeCompteTitre"] {
@@ -3954,15 +3958,3 @@ p[id="legendeBoutonLienPro"] {
     display: none;
   }
 }
-
-/*+++++++++++++++++++++++++++++++++++++++++++++++*/
-/* Css page changement de mot de passe, Antoine */
-/*+++++++++++++++++++++++++++++++++++++++++++++*/
-main[id="mainChangerMDP"] {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5%;
-}
-
