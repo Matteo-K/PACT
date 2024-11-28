@@ -14,8 +14,8 @@
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idUser'];
 
-     // Récupérer les informations de l'utilisateur depuis la base de données
-     try {
+    // Récupérer les informations de l'utilisateur depuis la base de données
+    try {
         // Adapter la requête en fonction de votre table et secteur
         $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE id = ?");
         $stmt->execute([$userId]);
