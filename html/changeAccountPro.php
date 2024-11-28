@@ -6,16 +6,11 @@
     require_once 'db.php';
 
     // Vérifier si l'utilisateur est connecté
-    // if (!isset($_SESSION['idU'])) {
-    //     header("Location: login.php");
-    //     exit();
-    // }
-
-    if (isset($_SESSION['idU'])) {
-        header("Location: changeAccountPro.php");
+    if (!isset($_SESSION['idU'])) {
+        header("Location: login.php"); // Rediriger vers la page de connexion si non connecté
         exit();
     }
-
+    
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idU'];
 
