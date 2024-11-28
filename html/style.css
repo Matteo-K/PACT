@@ -2338,7 +2338,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .info{
   margin-top: calc(var(--header-size2) + 0.6em);
-  width: calc(100vw - 40px);
+  width: calc(-90vw - 40px);
   margin-left: 20px;
 }
 
