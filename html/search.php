@@ -107,6 +107,7 @@ $arrayOffer = [];
     </main>
     <?php require_once "components/footer.php"; ?>
     <?php print_r($_GET); ?>
+    <?php echo $search ?>
     <!-- Data -->
     <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search)))); ?>'></div>
     <div id="user-data" data-user='<?php echo $typeUser ?>'></div>
