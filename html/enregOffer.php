@@ -13,7 +13,7 @@ if (isset($_POST['pageBefore'])) {
     /* Création d'une nouvelle offre */
     if (empty($idOffre)) {
       // Initialisation d'une offre
-
+      $modif = false;
       // ##### Main info de l'offre #####
       /* obtention de la nouvelle id de l'offre */
       try {
@@ -61,25 +61,39 @@ if (isset($_POST['pageBefore'])) {
         $stmt = $conn->prepare("INSERT INTO pact._abonner (idoffre, nomabonnement) VALUES (?, ?)");
         $stmt->execute([$idOffre, $typeOffre]);
       } catch (PDOException $e) {}
+    } else {
+      $modif = true;
+    }
+
+    if ($modif && $pageDirection == 1) {
+        ?>
+            <form id="leftSelectOffer" action="manageOffer.php" method="post">
+                <input type="hidden" name="pageCurrent" value="2">
+                <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+            </form>
+            <script>
+                document.getElementById("leftSelectOffer").submit();
+            </script>
+        <?php
     }
     switch ($pageBefore) {
       case 1:
         // Gestion des options d'offre
-        $options = [];
-        if (isset($_POST["aLaUne"])) {
-          $options[] = "ALaUne";
-        }
-        if (isset($_POST["enRelief"])) {
-          $options[] = "EnRelief";
-        }
-        
-        $stmt = $conn->prepare("SELECT * FROM pact._option_offre o LEFT JOIN pact._dateoption d ON d.idoption = o.idoption WHERE o.idoffre = ? ORDER BY o.idoption DESC ;");
-        $stmt->execute([$idOffre]);
-
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-          if ($row["datefin"] < date('Y-m-d')) {
+          $options = [];
+          if (isset($_POST["aLaUne"])) {
+            $options[] = "ALaUne";
           }
-        }
+          if (isset($_POST["enRelief"])) {
+            $options[] = "EnRelief";
+          }
+          
+          $stmt = $conn->prepare("SELECT * FROM pact._option_offre o LEFT JOIN pact._dateoption d ON d.idoption = o.idoption WHERE o.idoffre = ? ORDER BY o.idoption DESC ;");
+          $stmt->execute([$idOffre]);
+  
+          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($row["datefin"] < date('Y-m-d')) {
+            }
+          }
 
         break;
 
