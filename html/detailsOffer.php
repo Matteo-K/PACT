@@ -315,7 +315,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <?php
             }
-            if ($result["urlsite"]) {
+            if ($result[0]["urlsite"]) {
             ?>
                 <div>
                     <img src="./img/icone/globe.png">
