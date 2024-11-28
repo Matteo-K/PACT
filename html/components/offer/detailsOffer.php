@@ -282,7 +282,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             const nouvelInputFile = document.createElement("input");
             nouvelInputFile.type = "file";
             nouvelInputFile.id = "ajoutPhoto";
-            nouvelInputFile.multiple = true; // Autoriser plusieurs fichiers
+            nouvelInputFile.multiple = true; 
+            nouvelInputFile.name = "ajoutPhoto[]";
             inputFile.replaceWith(nouvelInputFile); // Remplacer l'ancien input
             inputFile = nouvelInputFile; // Mettre à jour la référence
             inputFile.addEventListener("change", afficheImage); // Réattacher l'événement
@@ -304,7 +305,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     reader.onload = function(e){
                         photosSelect.push(file);
                         configImage("", e.target.result, file);
-                    }
+                    };
                     reader.readAsDataURL(file);
                 }
             });

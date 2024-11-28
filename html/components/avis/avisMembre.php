@@ -30,7 +30,7 @@ function formatDateDiff($date)
         if ($diffInMinutes === 0) {
             return "Rédigé à l'instant";
         } elseif ($diffInHours > 1) {
-            return "Rédigé il y a" . $diffInHours - 1 . " heure" . ($diffInHours > 1 ? 's' : '');
+            return "Rédigé il y a " . $diffInHours - 1 . " heure" . ($diffInHours > 1 ? 's' : '');
         } else {
             return "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '');
         }
@@ -83,7 +83,7 @@ foreach ($avis as $a) {
                             } ?></p>
                     </div>
                     <div>
-                        <p><strong>Visité en</strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
+                        <p><strong>Visité en </strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
                         <p> • </p>
                         <p class="tag"><?= $a['companie'] ?></p>
                     </div>
