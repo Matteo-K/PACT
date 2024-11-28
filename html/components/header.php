@@ -1,4 +1,5 @@
 <header>
+    <?php $search = isset($_GET["search"]) ? $_GET["search"] : ""; ?>
     <div>
         <a href="../index.php">
             <img id="logo" src="../img/logo.png" title="logo du site">
