@@ -30,7 +30,7 @@
         }
 
         // Vérification du format du nouveau mot de passe
-        if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\d\s]).{10,}$/', $nouveauMDP)) {
+        else if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\d\s]).{10,}$/', $nouveauMDP)) {
             $error = "Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial.";
         } 
         
