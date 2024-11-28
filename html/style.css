@@ -1693,7 +1693,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
-.modifierBut.disabled {
+.modifierBut.disabled,#disabledSelect {
   background-color: #ccc;
   color: #666;
   border: solid #ccc 1px;
@@ -3369,7 +3369,7 @@ a[id="lienConnexion"]:hover {
   color: var(--accent);
 }
 
-h1[id="inscriptionTitre"] {
+h1[id="inscriptionTitre"], h1[id="changerInfoTitre"] {
   text-align: center;
   margin: 30px 10px;
   color: var(--bloc);
