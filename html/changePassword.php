@@ -29,6 +29,11 @@
             $error = "Les mots de passe ne correspondent pas.";
         }
 
+        // Vérification si l'ancien mot de passe est identique au nouveau mot de passe
+        else if ($ancienMDP === $nouveauMDP) {
+            $error = "L'ancien mot de passe et le nouveau mot de passe ne peuvent pas être identiques.";
+        }
+
         // Vérification du format du nouveau mot de passe
         else if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\d\s]).{10,}$/', $nouveauMDP)) {
             $error = "Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial.";
