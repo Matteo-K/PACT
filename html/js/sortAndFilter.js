@@ -124,11 +124,19 @@ function sortEnAvant(array) {
 }
 
 function sortNoteCroissant(array) {
-  return array;
+  return array.sort((a, b) => attribuerEtoiles(a.noteAvg) - attribuerEtoiles(b.noteAvg));
 }
 
 function sortNoteDecroissant(array) {
-  return array;
+  return array.sort((a, b) => attribuerEtoiles(b.noteAvg) - attribuerEtoiles(a.noteAvg));
+}
+
+function attribuerEtoiles(note) {
+  if (note <= 1) return 1;
+  else if (note <= 2) return 2;
+  else if (note <= 3) return 3;
+  else if (note <= 4) return 4;
+  else return 5;
 }
 
 function sortprixCroissant(array) {
@@ -199,6 +207,7 @@ function filtrerParPrix(offers) {
   const prixMax = parseInt(selectPrixMax.value);
 
   return offers.filter(offer => {
+    // changer "prix"
     const prixOffre = offer.prix;
     return prixOffre >= prixMin && prixOffre <= prixMax;
   });
@@ -258,10 +267,10 @@ function filtrerParPeriode(offers) {
 function sortAndFilter(array, elementStart, nbElement) {
   // Filtres
   array = filtrerParCategorie(array);
-  // array = filtrerParNotes(array);
+  array = filtrerParNotes(array);
   // array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  array = filtrerParPeriode(array);
+  // array = filtrerParPeriode(array);
 
   // Tris
   array = selectSort(array);

@@ -1693,7 +1693,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
-.modifierBut.disabled {
+.modifierBut.disabled,#disabledSelect {
   background-color: #ccc;
   color: #666;
   border: solid #ccc 1px;
@@ -2749,15 +2749,14 @@ tbody td:last-child {
 
 .user + article > div> div {
   justify-content: space-between;
+  align-items: center;
   display: flex;
   width: 100%;
+  margin:0;
 }
 
 .user + article > div > div +div{
   justify-content: flex-start ;
-}
-.user + article > div > div {
-  margin:0;
 }
 
 .user+article>div>div:nth-child(1)>p+p{
