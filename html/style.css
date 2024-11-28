@@ -2699,7 +2699,6 @@ tbody td:last-child {
 
 .infoUser > p, .infoProReponse > p{
   margin-left: 0.3em;
-  font-weight: bold;
 }
 
 .user >div> img{
@@ -2722,26 +2721,26 @@ tbody td:last-child {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  gap: 1em;
+  width: 100%;
 }
 
-.user + article + article{
+.user + article > div> div {
+  justify-content: space-between;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
+  width: 100%;
 }
 
-.user+article+article>p {
-  margin-bottom: 0.4em;
-}
-.user+article+article+p, .user+article>p{
+.user+article>div>div:nth-child(1)>p+p{
   font-style: italic;
   font-weight: 300;
   font-size: 0.8em;
 }
-.user + article>div > .tag {
+
+.user+article>div>div:nth-child(1)>p>strong {
+  font-size: 20px;
+}
+
+.user + article>div> div> .tag {
   background-color: #fff;
   text-align: center;
   font-size: 0.9em;
