@@ -83,7 +83,7 @@ foreach ($avis as $a) {
                             } ?></p>
                     </div>
                     <div>
-                        <p><strong>Visité en </strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
+                        <p>Visité en <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
                         <p> • </p>
                         <p class="tag"><?= $a['companie'] ?></p>
                     </div>

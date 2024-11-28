@@ -98,22 +98,34 @@ const heureFin = document.querySelector("#heureFin");
 
 // Tris
 function selectSort(array) {
-  const sortFunctions = {
-    "radBtnEnAvant": sortEnAvant,
-    "radBtnNoteCroissant": sortNoteCroissant,
-    "radBtnNoteDecroissant": sortNoteDecroissant,
-    "radBtnprixCroissant": sortprixCroissant,
-    "radBtnPrixDecroissant": sortPrixDecroissant,
-    "radBtnDateRecent": sortDateRecent,
-    "radBtnDateAncien": sortDateAncien
-  };
-
-  for (let key in sortFunctions) {
-    if (key.checked) {
-      console.log("tri avec " + key);
-      array = sortFunctions[key](array);
-      break;
-    }
+  
+  if (radBtnEnAvant.checked) {
+    console.log("Tri avec Mise en avant");
+    return array; // Aucun tri, juste mise en avant
+  } 
+  if (radBtnNoteCroissant.checked) {
+    console.log("Tri avec Note Croissant");
+    return sortNoteCroissant(array);
+  } 
+  if (radBtnNoteDecroissant.checked) {
+    console.log("Tri avec Note Décroissant");
+    return sortNoteDecroissant(array);
+  } 
+  if (radBtnprixCroissant.checked) {
+    console.log("Tri avec Prix Croissant");
+    return sortprixCroissant(array);
+  } 
+  if (radBtnPrixDecroissant.checked) {
+    console.log("Tri avec Prix Décroissant");
+    return sortPrixDecroissant(array);
+  } 
+  if (radBtnDateRecent.checked) {
+    console.log("Tri avec Date Récent");
+    return sortDateRecent(array);
+  } 
+  if (radBtnDateAncien.checked) {
+    console.log("Tri avec Date Ancien");
+    return sortDateAncien(array);
   }
 
   return array;
