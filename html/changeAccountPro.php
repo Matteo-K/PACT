@@ -76,10 +76,10 @@
                 <label for="telephone">Numéro de téléphone*:</label>
                 
                 <!-- Saisi de la dénomination -->
-                <input type="text" placeholder="MonEntreprise" id="denomination" name="denomination" value="<?= isset($_user['denomination']) ? htmlspecialchars($_user['denomination']) : '' ?>" required>
+                <input type="text" placeholder="MonEntreprise" id="denomination" name="denomination" value="<?= isset($user['denomination']) ? htmlspecialchars($user['denomination']) : '' ?>" required>
 
                 <!-- Saisi du numéro de téléphone -->
-                <input type="tel" placeholder="06 01 02 03 04" id="telephone" name="telephone" value="<?= isset($_user['telephone']) ? htmlspecialchars($_user['telephone']) : '' ?>" required>
+                <input type="tel" placeholder="06 01 02 03 04" id="telephone" name="telephone" value="<?= isset($user['telephone']) ? htmlspecialchars($user['telephone']) : '' ?>" required>
             </div>
 
 
@@ -87,7 +87,7 @@
             <div class="ligne2">
                 <!-- Saisi de l'adresse mail -->
                 <label for="email">Adresse mail*:</label>
-                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($_user['email']) ? htmlspecialchars($_user['email']) : '' ?>" required>
+                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?>" required>
             </div>
 
 
@@ -95,7 +95,7 @@
             <div class="ligne3">
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
-                <input type="text" placeholder ="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($_user['adresse']) ? htmlspecialchars($_user['adresse']) : '' ?>" required>
+                <input type="text" placeholder ="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['adresse']) ? htmlspecialchars($user['adresse']) : '' ?>" required>
                 <br>
             </div>
 
@@ -106,10 +106,10 @@
                 <label for="ville">Ville*:</label>
                 
                 <!-- Saisi du code postale -->
-                <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($_user['code']) ? htmlspecialchars($_user['code']) : '' ?>" required>
+                <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($user['code']) ? htmlspecialchars($user['code']) : '' ?>" required>
 
                 <!-- Saisi de la ville -->
-                <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($_user['ville']) ? htmlspecialchars($_user['ville']) : '' ?>" required>
+                <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($user['ville']) ? htmlspecialchars($user['ville']) : '' ?>" required>
             </div>
             
             <button type="submit" id="boutonInscription">Valider</button>
