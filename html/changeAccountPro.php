@@ -24,7 +24,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="img/logo.png" type="image/x-icon">
-        <title>Créer un compte</title>
+        <title>Modifier informations</title>
     </head>
     <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
@@ -34,7 +34,7 @@
             </button>
         </aside>
         
-        <h1 id="changerInfoTitre">Modifier Informations</h1>
+        <h1 id="changerInfoTitre">Modifier des informations</h1>
 
         <?php
             if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
