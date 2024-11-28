@@ -100,7 +100,7 @@
             <div class="ligne2">
                 <!-- Saisi de l'adresse mail -->
                 <label for="email">Adresse mail*:</label>
-                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?>" required>
+                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($user['mail']) ? htmlspecialchars($user['mail']) : '' ?>" required>
             </div>
 
 
