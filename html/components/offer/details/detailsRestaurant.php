@@ -35,15 +35,15 @@ if ($categorie["_restauration"]) {
   </div>
 
 
-  <div id="photosR">
-                <label>Photos du menu*  <span id="msgImage" class="msgError"></span></label>
-                <p>
-                    Vous pouvez insérer jusqu'à 5 photos<br>
-                    Cliquez sur une image pour la supprimer
-                </p>
-            </div>
-            <label for="ajoutPhotoMenu" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
-            <input type="file" id="ajoutPhotoMenu" name="ajoutPhotoMenu[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>
-            <div id="afficheImages"></div>
+  <div class="photosR">
+    <label>Photos du menu* <span id="msgImage" class="msgError"></span></label>
+    <p>
+      Vous pouvez insérer jusqu'à 5 photos<br>
+      Cliquez sur une image pour la supprimer
+    </p>
+    <label for="ajoutPhotoMenu" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+    <input type="file" id="ajoutPhotoMenu" name="ajoutPhotoMenu[]"
+      accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>
+    <div id="afficheImages"></div>
+  </div>
 </section>
-
