@@ -13,6 +13,27 @@
 
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idUser'];
+
+     // Récupérer les informations de l'utilisateur depuis la base de données
+     try {
+        // Adapter la requête en fonction de votre table et secteur
+        $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE id = ?");
+        $stmt->execute([$userId]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Vérifier si les données sont trouvées
+        if (!$user) {
+            $_SESSION['errors'][] = "Utilisateur introuvable.";
+            header("Location: login.php");
+            exit();
+        }
+    } 
+    
+    catch (Exception $e) {
+        $_SESSION['errors'][] = "Erreur de connexion à la base de données.";
+        header("Location: login.php");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
