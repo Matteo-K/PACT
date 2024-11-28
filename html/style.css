@@ -673,7 +673,7 @@ header ul+div {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.55);
   color: var(--text-light);
   width: 100%;
 }
@@ -767,6 +767,15 @@ header ul+div {
   gap: 8px;
   margin: 10px;
   width: 80%;
+}
+
+.carteIndex .tagsCard {
+  width: 150%;
+  margin-left: -50%;
+}
+
+.carteIndex .noteALaUne + p {
+  width: 60%;
 }
 
 .tagIndex {
