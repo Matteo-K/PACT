@@ -2761,7 +2761,7 @@ tbody td:last-child {
   margin:0;
 }
 
-.user + article > div > div +div, .user +article >div > div > p+p{
+.user + article > div > div +div, .user +article >div > div + div{
   justify-content: flex-start ;
   gap: 20px;
 }
@@ -2770,7 +2770,7 @@ tbody td:last-child {
   margin: 0;
 }
 
-.user+article>div>div:nth-child(1)>p+p, {
+.user+article>div>div:nth-child(1)>p+p, .user +article >div > div > p+p {
   font-style: italic;
   font-weight: 300;
 }
