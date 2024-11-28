@@ -147,19 +147,12 @@ class ArrayOffer {
         return true;
       }
 
+      var_dump($item->getData());
+
       $categorie = $item->getData()["categorie"] ?? '';
       $nomOffre = $item->getData()["nomOffre"] ?? '';
       $gammeDePrix = $item->getData()["gammeDePrix"] ?? '';
       $adresse = $item->formaterAdresse() ?? '';
-
-      echo $categorie;
-      echo $nomOffre;
-      echo $gammeDePrix;
-      echo $adresse;
-
-      echo "Recherche: " . $recherche . "<br>";
-      echo "Categorie: " . $categorie . "<br>";
-
 
       return $this->offreContientTag($item->getData()["tags"], $recherche) // tag
           || strpos(strtolower($categorie), strtolower($recherche)) !== false // catégorie
