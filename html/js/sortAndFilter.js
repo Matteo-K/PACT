@@ -274,7 +274,7 @@ function sortAndFilter(array, elementStart, nbElement) {
 
 function displayOffers(array, elementStart, nbElement) {
   const bloc = document.querySelector(".searchoffre");
-  bloc.innerHTML = "";
+  //bloc.innerHTML = "";
   if (array.length != 0) {
     let offers = array.slice(elementStart, nbElement);
     offers.forEach(element => {displayOffer(element)});
