@@ -2766,11 +2766,11 @@ tbody td:last-child {
   gap: 20px;
 }
 
-.user +article >div > div > p {
+.user +article >div > div + div > p {
   margin: 0;
 }
 
-.user+article>div>div:nth-child(1)>p+p, .user +article >div > div > p+p,  .user +article >div > div + div {
+.user+article>div>div:nth-child(1)>p+p,  .user +article >div > div + div {
   font-style: italic;
   font-weight: 300;
 }
