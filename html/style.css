@@ -1694,8 +1694,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #disabledSelect{
-  background-color: #ccc !important;
-  color: #444 !important;
+  background-color: #444 !important;
   border: solid #ccc 1px ;
   cursor: not-allowed !important;
 }
