@@ -44,47 +44,22 @@ function getSchedules($conn, $idOffre)
 $schedules = getSchedules($conn, $idOffre);
 
 // Rechercher l'offre dans les parcs d'attractions
-$stmt = $conn->prepare("SELECT * FROM pact.parcs_attractions WHERE idoffre = :idoffre");
+$stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
 $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
 if (!$result) {
-    // Recherche dans les restaurants, activités, spectacles, et visites
-    $types = ['restaurants' => 'restaurant', 'activites' => 'activité', 'spectacles' => 'spectacle', 'visites' => 'visite'];
-    foreach ($types as $type => $key) {
-        $stmt = $conn->prepare("SELECT * FROM pact.$type WHERE idoffre = :idoffre");
-        $stmt->bindParam(':idoffre', $idOffre);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result) {
-            $typeOffer = $key;
-            break; // Sortir de la boucle si une offre est trouvée
-        }
-    }
-} else {
-    $typeOffer = "parc_attraction";
-}
-
-if (!$result) {
-    $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre = :idoffre");
-    $stmt->bindParam(':idoffre', $idOffre);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($result) {
 ?>
-        <form id="manageOfferAuto" action="manageOffer.php" method="post">
-            <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-        </form>
-        <script>
-            document.getElementById("manageOfferAuto").submit();
-        </script>
+    <form id="manageOfferAuto" action="manageOffer.php" method="post">
+        <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+    </form>
+    <script>
+        document.getElementById("manageOfferAuto").submit();
+    </script>
 <?php
 
-    }
-
-    echo "Aucune offre trouvée avec cet id.<br>";
-    exit();
+} else {
+    $typeOffer = $result[0]['categorie'];
 }
 
 // Récupérer les détails de localisation
