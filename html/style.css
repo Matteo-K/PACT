@@ -3357,13 +3357,12 @@ tbody td:last-child {
   margin-right: 5px;
 }
 
-#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"] {
-  margin-left: 5px;
-}
-
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"],
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne2"] {
   margin-left: 5px;
 }
+
+
 
 #show>div[class="classDivShow1"]>label {
   margin-top: 5px;
