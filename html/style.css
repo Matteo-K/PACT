@@ -3145,6 +3145,16 @@ tbody td:last-child {
     height: 22px;
 
   }
+
+  /** Responsive Avis **/
+
+  .avis > div{
+    flex-direction: column;
+  }
+
+  .messageAvisReponse{
+    width: 95%;
+  }
 }
 
 /* ========================= */
