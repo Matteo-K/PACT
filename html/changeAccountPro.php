@@ -1,43 +1,54 @@
 <?php
-    // Démarrer la session
     session_start();
-
-    var_dump($_SESSION['idU']);
 
     // Vérifier si l'utilisateur est connecté
     if (!isset($_SESSION['idU'])) {
-        // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
         header("Location: login.php");
         exit();
     }
 
+    require_once 'db.php';
+
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idU'];
 
-    // Connexion à la base de données
-    require_once 'db.php';
+    // Vérifier si les données ont été envoyées via le formulaire
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer et sécuriser les données du formulaire
+        $denomination = isset($_POST['denomination']) ? htmlspecialchars($_POST['denomination']) : '';
+        $telephone = isset($_POST['telephone']) ? htmlspecialchars($_POST['telephone']) : '';
+        $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
+        $adresse = isset($_POST['adresse']) ? htmlspecialchars($_POST['adresse']) : '';
+        $code = isset($_POST['code']) ? htmlspecialchars($_POST['code']) : '';
+        $ville = isset($_POST['ville']) ? htmlspecialchars($_POST['ville']) : '';
 
-    try {
-        // Tenter de récupérer les informations de l'utilisateur dans la base de données
-        $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE id = ?");
-        $stmt->execute([$userId]);
-        $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // Vérifier si l'utilisateur existe dans la base de données
-        if (!$user) {
-            $_SESSION['errors'][] = "Utilisateur introuvable.";
-            header("Location: login.php");
+        // Vérifier si toutes les informations obligatoires sont présentes
+        if (empty($denomination) || empty($telephone) || empty($email) || empty($adresse) || empty($code) || empty($ville)) {
+            $_SESSION['errors'][] = "Tous les champs sont obligatoires.";
+            header("Location: changeAccountPro.php");
             exit();
         }
-    } 
-    
-    catch (PDOException $e) {
-        // Si une erreur de connexion à la BDD se produit, affichez un message et redirigez
-        $_SESSION['errors'][] = "Erreur de connexion à la base de données: " . $e->getMessage();
-        header("Location: login.php");  // Vous pouvez rediriger vers une autre page de votre choix en cas d'erreur
-        exit();
+
+        try {
+            // Préparer la requête SQL pour mettre à jour les informations de l'utilisateur
+            $stmt = $conn->prepare("UPDATE pact._pro SET denomination = ?, telephone = ?, mail = ?, adresse = ?, codePostal = ?, ville = ? WHERE id = ?");
+            $stmt->execute([$denomination, $telephone, $email, $adresse, $code, $ville, $userId]);
+
+            // Rediriger vers une page de confirmation ou une autre page après succès
+            $_SESSION['success'][] = "Vos informations ont été mises à jour avec succès.";
+            header("Location: profil.php");
+            exit();
+
+        } catch (PDOException $e) {
+            // Si une erreur se produit lors de l'exécution de la requête
+            $_SESSION['errors'][] = "Erreur de mise à jour : " . $e->getMessage();
+            header("Location: changeAccountPro.php");
+            exit();
+        }
     }
+
 ?>
+
 
 
  
