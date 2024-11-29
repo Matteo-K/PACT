@@ -19,7 +19,7 @@
         // Tenter de récupérer les informations de l'utilisateur dans la base de données
         $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE id = ?");
         $stmt->execute([$userId]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Vérifier si l'utilisateur existe dans la base de données
         if (!$user) {
@@ -32,7 +32,7 @@
     catch (PDOException $e) {
         // Si une erreur de connexion à la BDD se produit, affichez un message et redirigez
         $_SESSION['errors'][] = "Erreur de connexion à la base de données: " . $e->getMessage();
-        header("Location: search.php");  // Vous pouvez rediriger vers une autre page de votre choix en cas d'erreur
+        header("Location: login.php");  // Vous pouvez rediriger vers une autre page de votre choix en cas d'erreur
         exit();
     }
 ?>
