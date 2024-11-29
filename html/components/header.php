@@ -52,7 +52,7 @@
         ?>
 
             <img id="profilePic" src="<?php echo $user["url"] ?>" title="Photo de profil utilisateur">
-
+            
             <!-- Menu caché intégré dans le header -->
             <div id="profileMenu" class="hidden">
                 <div class="menuHeader">
@@ -84,81 +84,87 @@
                     </div>
                 </div>
                 <div class="factue">
-                    <h1>Mes Factures</h1>
-                    <div class="details">
                     <?php 
-                        $idu = $_SESSION["idUser"];
-                        $stmt = $conn->prepare("SELECT nom,idoffre,ARRAY_AGG(DISTINCT datefactue ORDER BY datefactue DESC) AS datefactue FROM pact.facture WHERE idU = $idu GROUP BY nom,idOffre");
-                        $stmt->execute();
-                        $factures = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        foreach ($factures as $key => $value) {
-                            ?>
-                                <details class="details-style">
-                                    <summary><?php echo $value['nom'] ?></summary>
-                                    <div class="details-content">
-                                    <?php
-                                        $date = explode(',',trim($value['datefactue'],'{}'));
-                                        foreach ($date as $key => $value2) {
-                                            $moisEnFrancais = [
-                                                1 => 'janvier',
-                                                2 => 'février',
-                                                3 => 'mars',
-                                                4 => 'avril',
-                                                5 => 'mai',
-                                                6 => 'juin',
-                                                7 => 'juillet',
-                                                8 => 'août',
-                                                9 => 'septembre',
-                                                10 => 'octobre',
-                                                11 => 'novembre',
-                                                12 => 'décembre'
-                                            ];
-                                            
-                                            // Initialiser la date à partir de $value2
-                                            $dateFacture = new DateTime($value2);
-                                            
-                                            // Soustraire un mois
-                                            $dateFacture->modify('-1 month');
-                                            
-                                            // Obtenir le numéro du mois
-                                            $numMois = (int)$dateFacture->format('n'); // 'n' donne le mois en entier sans zéro initial
-                                            
-                                            // Récupérer le mois en français
-                                            $moisFrancais = $moisEnFrancais[$numMois];
-
-                                            $annee = $dateFacture->format('Y');
-
-                                            ?>
-                                                <div class="details-form">
-                                                    <p><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></p>
-                                                    <div>
-                                                        <form id="factureForm" action="bill/download.php" method="post" target="pdfWindow">
-                                                            <input type="hidden" name="idOffre" value="<?php echo $value['idoffre']; ?>">
-                                                            <input type="hidden" name="mois" value="<?php echo $moisFrancais; ?>">
-                                                            <input type="hidden" name="annee" value="<?php echo $annee; ?>">
-                                                            <input type="hidden" name="boole" value="false">
-                                                            <input type="hidden" name="date" value="<?php echo $value2; ?>">
-                                                            <button class="modifierBut" type="submit">Visualiser</button>
-                                                        </form>
-                                                        <form action="bill/download.php" method="post">
-                                                            <input type="hidden" name="idOffre" value="<?php echo $value['idoffre']; ?>">
-                                                            <input type="hidden" name="mois" value="<?php echo $moisFrancais; ?>">
-                                                            <input type="hidden" name="annee" value="<?php echo $annee; ?>">
-                                                            <input type="hidden" name="boole" value="true">
-                                                            <input type="hidden" name="date" value="<?php echo $value2; ?>">
-                                                            <button class="modifierBut" type="submit">Télécharger</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            <?php
-                                        }
-                                    ?>
-                                    </div>
-                                </details>
-                            <?php
-                        }
+                    if ($typeUser === "pro_public" || $typeUser === "pro_prive") {
                     ?>
-                    </div>
+                        <h1>Mes Factures</h1>
+                        <div class="details">
+                        <?php 
+                            $idu = $_SESSION["idUser"];
+                            $stmt = $conn->prepare("SELECT nom,idoffre,ARRAY_AGG(DISTINCT datefactue ORDER BY datefactue DESC) AS datefactue FROM pact.facture WHERE idU = $idu GROUP BY nom,idOffre");
+                            $stmt->execute();
+                            $factures = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            foreach ($factures as $key => $value) {
+                                ?>
+                                    <details class="details-style">
+                                        <summary><?php echo $value['nom'] ?></summary>
+                                        <div class="details-content">
+                                        <?php
+                                            $date = explode(',',trim($value['datefactue'],'{}'));
+                                            foreach ($date as $key => $value2) {
+                                                $moisEnFrancais = [
+                                                    1 => 'janvier',
+                                                    2 => 'février',
+                                                    3 => 'mars',
+                                                    4 => 'avril',
+                                                    5 => 'mai',
+                                                    6 => 'juin',
+                                                    7 => 'juillet',
+                                                    8 => 'août',
+                                                    9 => 'septembre',
+                                                    10 => 'octobre',
+                                                    11 => 'novembre',
+                                                    12 => 'décembre'
+                                                ];
+                                                
+                                                // Initialiser la date à partir de $value2
+                                                $dateFacture = new DateTime($value2);
+                                                
+                                                // Soustraire un mois
+                                                $dateFacture->modify('-1 month');
+                                                
+                                                // Obtenir le numéro du mois
+                                                $numMois = (int)$dateFacture->format('n'); // 'n' donne le mois en entier sans zéro initial
+                                                
+                                                // Récupérer le mois en français
+                                                $moisFrancais = $moisEnFrancais[$numMois];
+                                            
+                                                $annee = $dateFacture->format('Y');
+                                            
+                                                ?>
+                                                    <div class="details-form">
+                                                        <p><?php echo "Facture du mois de " . $moisFrancais . " " . $annee ?></p>
+                                                        <div>
+                                                            <form id="factureForm" action="bill/download.php" method="post" target="pdfWindow">
+                                                                <input type="hidden" name="idOffre" value="<?php echo $value['idoffre']; ?>">
+                                                                <input type="hidden" name="mois" value="<?php echo $moisFrancais; ?>">
+                                                                <input type="hidden" name="annee" value="<?php echo $annee; ?>">
+                                                                <input type="hidden" name="boole" value="false">
+                                                                <input type="hidden" name="date" value="<?php echo $value2; ?>">
+                                                                <button class="modifierBut" type="submit">Visualiser</button>
+                                                            </form>
+                                                            <form action="bill/download.php" method="post">
+                                                                <input type="hidden" name="idOffre" value="<?php echo $value['idoffre']; ?>">
+                                                                <input type="hidden" name="mois" value="<?php echo $moisFrancais; ?>">
+                                                                <input type="hidden" name="annee" value="<?php echo $annee; ?>">
+                                                                <input type="hidden" name="boole" value="true">
+                                                                <input type="hidden" name="date" value="<?php echo $value2; ?>">
+                                                                <button class="modifierBut" type="submit">Télécharger</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                <?php
+                                            }
+                                        ?>
+                                        </div>
+                                    </details>
+                                <?php
+                            }
+                        ?>
+                        </div>
+                    <?php 
+                    }
+                    ?>
                 </div>
             </div>
 
@@ -176,61 +182,68 @@
 </header>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const body = document.body;
+
+    // Récupération des éléments (peuvent être absents selon le type d'utilisateur)
+    const profilePic = document.getElementById("profilePic");
+    const profileMenu = document.getElementById("profileMenu");
+    const backButton = document.getElementById("backButton");
+    const factu = document.querySelector(".liFact"); // Peut être null si pas un utilisateur Pro
+
+    // Fonction pour afficher/masquer la section "Factures" (pour Pro uniquement)
+    if (factu) {
+        function toggleFacture() {
+            profileMenu.classList.toggle("deplace");
+            body.classList.toggle("no-scroll");
+        }
+        factu.addEventListener("click", toggleFacture);
+    }
+
+    // Fonction pour afficher/cacher le menu utilisateur
+    function toggleMenu() {
+        if (profileMenu) {
+            if (profileMenu.classList.contains("show")) {
+                profileMenu.classList.remove("show");
+                profileMenu.classList.remove("deplace");
+                profileMenu.classList.add("hide");
+                body.classList.remove("no-scroll");
+            } else {
+                profileMenu.classList.add("show");
+                profileMenu.classList.remove("hide");
+            }
+        }
+    }
+
+    // Écouteur pour afficher le menu au clic sur l'image de profil
+    if (profilePic) {
+        profilePic.addEventListener("click", toggleMenu);
+    }
+
+    // Écouteur pour fermer le menu au clic sur le bouton "Retour"
+    if (backButton) {
+        backButton.addEventListener("click", toggleMenu);
+    }
+
+    // Écouteur pour fermer le menu en cliquant en dehors
+    document.addEventListener("click", function (event) {
+        if (
+            profileMenu &&
+            profilePic &&
+            !profileMenu.contains(event.target) &&
+            !profilePic.contains(event.target)
+        ) {
+            if (profileMenu.classList.contains("show")) {
+                toggleMenu();
+            }
+        }
+    });
+});
+
+
     try {
-        document.getElementById("factureForm").onsubmit = function() {
-            // Créer une nouvelle fenêtre pour afficher le PDF
-            window.open('', 'pdfWindow'); // Ouvre une fenêtre de taille spécifique
-        };
-        document.addEventListener("DOMContentLoaded", function() {
-            const body = document.body;
-            const profilePic = document.getElementById("profilePic");
-            const profileMenu = document.getElementById("profileMenu");
-            const backButton = document.getElementById("backButton");
-            const factu = document.getElementsByClassName("liFact")[0];
-
-            function toggleFacture() {
-                profileMenu.classList.toggle("deplace")
-                body.classList.toggle('no-scroll');
-            }
-            
-            factu.addEventListener("click", toggleFacture);
-            // Fonction pour afficher/cacher le menu
-            function toggleMenu() {
-                if (profileMenu.classList.contains("show")) {
-                    profileMenu.classList.remove("show");
-                    profileMenu.classList.remove("deplace")
-                    profileMenu.classList.add("hide");
-                    body.classList.remove('no-scroll');
-
-                } else {
-                    profileMenu.classList.add("show");
-                    profileMenu.classList.remove("hide");
-                }
-            }
-
-            // Écouteur pour afficher le menu au clic sur l'image de profil
-            if (profilePic) {
-                profilePic.addEventListener("click", toggleMenu);
-            }
-
-            // Écouteur pour fermer le menu au clic sur le bouton "Retour"
-            if (backButton) {
-                backButton.addEventListener("click", toggleMenu);
-            }
-
-            // Écouteur pour fermer le menu en cliquant en dehors
-            document.addEventListener("click", function(event) {
-                if (typeof profileMenu !== "undefined" && profileMenu !== null && typeof profilePic !== "undefined" && profilePic !== null) {
-                    if (!profileMenu.contains(event.target) && !profilePic.contains(event.target)) {
-                        if (profileMenu.classList.contains("show")) {
-                            toggleMenu();
-                        }
-                    }
-                }
-            });
-
-        });
-    } catch {
-
+        
+    } catch (error) {
+    console.error("Erreur capturée :", error.message);
     }
 </script>
