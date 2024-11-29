@@ -3393,32 +3393,23 @@ tbody td:last-child {
 
 
 
-
 /* CSS pour le détails d'une offre de type Visite */
-#visit>div[class="visGuideeEtDuree"] {
-  margin-bottom: 15px;
-}
+
 #visit>div[class="visGuideeEtDuree"]>label[class="labDureeVis"] {
   margin-left: 15px;
   margin-right: 5px;
 }
 
 
-#visit>div[class="visGuideeEtDuree"]>label[class="labH"] {
-  margin-left: 5px;
-}
-
-#visit>div[class="divAccessibliteVisit"] {
-  margin-bottom: 15px;
-}
-
-#visit>div[class="divPrixMin"] {
-  margin-bottom: 15px;
-
-}
-
+#visit>div[class="visGuideeEtDuree"]>label[class="labH"],
 #visit>div[class="divPrixMin"]>label[class="labEuro"] {
   margin-left: 5px;
+}
+
+#visit>div[class="divAccessibliteVisit"] ,
+#visit>div[class="divPrixMin"],
+#visit>div[class="visGuideeEtDuree"]{
+  margin-bottom: 15px;
 }
 
 #visit>div[class="languesProp"]>input[type="text"] {
@@ -3437,7 +3428,8 @@ tbody td:last-child {
   height: 35px;
 }
 
-#park>div[class="ageMinP"] {
+#park>div[class="ageMinP"],
+#park>div[class="NbEtPrixPark"] {
   display: flex;
   flex-direction: row;
 }
@@ -3446,10 +3438,7 @@ tbody td:last-child {
   margin-bottom: 20px;
 }
 
-#park>div[class="NbEtPrixPark"] {
-  display: flex;
-  flex-direction: row;
-}
+
 
 #park>div[class="NbEtPrixPark"]>input[class="nbAttrac"] {
   margin-right: 15px;
