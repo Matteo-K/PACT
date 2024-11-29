@@ -16,7 +16,7 @@
 
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
-        $stmt = $conn->prepare("SELECT *, 'public' AS secteur FROM pact.proPublic WHERE idU = ? UNION SELECT *, 'prive' AS secteur FROM pact.proPrive WHERE idU = ?");
+        $stmt = $conn->prepare("SELECT *, 'public' AS secteur FROM pact.proPublic WHERE idU = ? UNION ALL SELECT *, 'prive' AS secteur FROM pact.proPrive WHERE idU = ?");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
