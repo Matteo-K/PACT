@@ -1,54 +1,6 @@
 <?php
-    session_start();
-
-    // Vérifier si l'utilisateur est connecté
-    if (!isset($_SESSION['idU'])) {
-        header("Location: login.php");
-        exit();
-    }
-
-    require_once 'db.php';
-
-    // Récupérer l'ID de l'utilisateur connecté
-    $userId = $_SESSION['idU'];
-
-    // Vérifier si les données ont été envoyées via le formulaire
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Récupérer et sécuriser les données du formulaire
-        $denomination = isset($_POST['denomination']) ? htmlspecialchars($_POST['denomination']) : '';
-        $telephone = isset($_POST['telephone']) ? htmlspecialchars($_POST['telephone']) : '';
-        $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
-        $adresse = isset($_POST['adresse']) ? htmlspecialchars($_POST['adresse']) : '';
-        $code = isset($_POST['code']) ? htmlspecialchars($_POST['code']) : '';
-        $ville = isset($_POST['ville']) ? htmlspecialchars($_POST['ville']) : '';
-
-        // Vérifier si toutes les informations obligatoires sont présentes
-        if (empty($denomination) || empty($telephone) || empty($email) || empty($adresse) || empty($code) || empty($ville)) {
-            $_SESSION['errors'][] = "Tous les champs sont obligatoires.";
-            header("Location: changeAccountPro.php");
-            exit();
-        }
-
-        try {
-            // Préparer la requête SQL pour mettre à jour les informations de l'utilisateur
-            $stmt = $conn->prepare("UPDATE pact._pro SET denomination = ?, telephone = ?, mail = ?, adresse = ?, codePostal = ?, ville = ? WHERE id = ?");
-            $stmt->execute([$denomination, $telephone, $email, $adresse, $code, $ville, $userId]);
-
-            // Rediriger vers une page de confirmation ou une autre page après succès
-            $_SESSION['success'][] = "Vos informations ont été mises à jour avec succès.";
-            header("Location: profil.php");
-            exit();
-
-        } catch (PDOException $e) {
-            // Si une erreur se produit lors de l'exécution de la requête
-            $_SESSION['errors'][] = "Erreur de mise à jour : " . $e->getMessage();
-            header("Location: changeAccountPro.php");
-            exit();
-        }
-    }
 
 ?>
-
 
 
  
