@@ -1,5 +1,42 @@
 <?php
+    // Démarrer la session
+    session_start();
 
+    //var_dump($_SESSION['idU']);
+
+    // Vérifier si l'utilisateur est connecté
+    if (!isset($_SESSION['idU'])) {
+        // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
+        header("Location: login.php");
+        exit();
+    }
+
+    // Récupérer l'ID de l'utilisateur connecté
+    $userId = $_SESSION['idU'];
+
+    // Connexion à la base de données
+    require_once 'db.php';
+
+    try {
+        // Tenter de récupérer les informations de l'utilisateur dans la base de données
+        $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE idU = ?");
+        $stmt->execute([$userId]);
+        $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Vérifier si l'utilisateur existe dans la base de données
+        if (!$user) {
+            $_SESSION['errors'][] = "Utilisateur introuvable.";
+            header("Location: login.php");
+            exit();
+        }
+    } 
+    
+    catch (PDOException $e) {
+        // Si une erreur de connexion à la BDD se produit, affichez un message et redirigez
+        $_SESSION['errors'][] = "Erreur de connexion à la base de données: " . $e->getMessage();
+        header("Location: login.php");  // Vous pouvez rediriger vers une autre page de votre choix en cas d'erreur
+        exit();
+    }
 ?>
 
 
