@@ -2899,11 +2899,11 @@ tbody td:last-child {
 }
 
 .nonRepondu {
-  width: 10px 8px; 
-  height: 30px; 
-  border: none; 
-  border-radius: 2px; 
-  position: relative; 
+  width: 40px; /* largeur de la bulle */
+  height: 30px; /* hauteur de la bulle */
+  border: 2px solid #333; /* contour de la bulle */
+  border-radius: 10px; /* coins arrondis */
+  position: relative; /* nécessaire pour la pointe */
 }
 
 /* Pointe de la bulle */
@@ -2911,11 +2911,12 @@ tbody td:last-child {
   content: '';
   position: absolute;
   bottom: -8px; /* positionne sous la bulle */
-  left: 10px; 
+  left: 10px; /* ajuste horizontalement */
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 4px 3px 0 3px; /* forme triangulaire */
+  border-width: 8px 6px 0 6px; /* forme triangulaire */
+  border-color: #333 transparent transparent transparent; /* couleur du contour */
 }
 
 
