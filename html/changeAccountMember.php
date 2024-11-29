@@ -29,7 +29,7 @@
     } 
     
     catch (Exception $e) {
-        $_SESSION['errors'][] = "Erreur de connexion à la base de données.";
+        $_SESSION['errors'][] = "Erreur de connexion à la base de données: " . $e->getMessage();
         header("Location: index.php");
         exit();
     }
