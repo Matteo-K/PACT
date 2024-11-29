@@ -7,7 +7,7 @@
 
     // Vérifier si l'utilisateur est connecté
     if (!isset($_SESSION['idUser'])) {
-        header("Location: login.php"); // Rediriger vers la page de connexion si non connecté
+        header("Location: login.php");
         exit();
     }
 
@@ -16,7 +16,6 @@
 
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
-        // Adapter la requête selon votre table et secteur
         $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE id = ?");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
