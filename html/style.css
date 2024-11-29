@@ -2899,23 +2899,24 @@ tbody td:last-child {
 }
 
 .nonRepondu {
-  width: 10px 8px; 
-  height: 30px; 
-  border: none; 
-  border-radius: 2px; 
-  position: relative; 
+  width: 100px; /* largeur de la bulle */
+  height: 60px; /* hauteur de la bulle */
+  border: 3px solid #333; /* contour de la bulle */
+  border-radius: 15px; /* coins arrondis */
+  position: relative; /* nécessaire pour la pointe */
 }
 
 /* Pointe de la bulle */
 .nonRepondu::after {
   content: '';
   position: absolute;
-  bottom: -8px; /* positionne sous la bulle */
-  left: 10px; 
+  bottom: -15px; /* positionne la pointe sous la bulle */
+  left: 20px; /* ajuste horizontalement */
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 4px 3px 0 3px; /* forme triangulaire */
+  border-width: 15px 12px 0 12px; /* dimensions de la pointe */
+  border-color: #333 transparent transparent transparent; /* couleur du contour */
 }
 
 
