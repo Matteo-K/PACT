@@ -160,8 +160,8 @@ VALUES ('Lundi'),
 
 -- Peuplement de la table _option
 INSERT INTO _option (nomOption, prixOffre, dureeOption) 
-VALUES ('ALaUne', 20, 7), 
-       ('EnRelief', 10, 7);
+VALUES ('ALaUne', 20, 1), 
+       ('EnRelief', 10, 1);
 
 -- Peuplement de la table _langue
 INSERT INTO _langue (langue) 

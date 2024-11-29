@@ -87,8 +87,8 @@ if (isset($_POST['pageBefore'])) {
             $options[] = ["EnRelief",$_POST['nbWeekEnRelief'],$_POST['nbWeekEnRelief']*10];
           }
           foreach ($variable as $key => $value) {
-            $stmt = $conn->prepare("INSERT INTO pact._dateOption(dateLancement,dateFin,duree,prix) VALUES (NULL,NULL,,20) RETURNING idoption");
-            $stmt->execute();// Je vais faire autrement, faudrait que je fasse une vue avec trigger et function
+            $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
+            $stmt->execute([$idOffre, $value[1], $value[2], $value[0]]);
           }
   
           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
