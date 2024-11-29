@@ -131,13 +131,13 @@ foreach ($avis as $a) {
                                 <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
                                 <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
                             </div>
+                        </div>
+                        <div class="autreInfoAvis">
                             <?php
                             if (isset($a['reponsedate'])) {
                                 echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
                             }
                             ?>
-                        </div>
-                        <div class="autreInfoAvis">
                             <img src="./img/icone/trois-points.png" alt="icone de parametre">
                         </div>
 

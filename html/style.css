@@ -2711,7 +2711,7 @@ tbody td:last-child {
 .reponseAvis {
   background-color: var(--background-avis);
   border-radius: 1em;
-  padding: 1em;
+  padding-inline: 1em;
   width: 100%;
 }
 
@@ -2721,7 +2721,7 @@ tbody td:last-child {
 }
 
 .infoUser>p,
-.infoProReponse>p {
+.autreInfoAvis>p {
   margin-left: 0.3em;
 }
 
@@ -2749,7 +2749,8 @@ tbody td:last-child {
   justify-content: center;
 }
 
-.user+article {
+.user+article, 
+.user + article > div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -2774,9 +2775,10 @@ tbody td:last-child {
 }
 .user +article >div > div:nth-child(3)>p{
   width: 60%;
+  text-align: justify;
 }
 
-.user+article>div>div:nth-child(1)>p+p, .user +article >div > div:nth-child(2), .infoProReponse>p {
+.user+article>div>div:nth-child(1)>p+p, .user +article >div > div:nth-child(2), .autreInfoAvis>p {
   font-style: italic;
   font-weight: 300;
 }
@@ -3303,20 +3305,13 @@ tbody td:last-child {
 }
 
 
-
-
-
-
 /* CSS pour le détails d'une offre de type spectacle */
-#show {
-  align-items: center;
-  /* background-color: yellow;  */
-}
 
-#show>div {
+#show>div ,
+#show>article>div>div ,
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]{
   display: flex;
   flex-direction: row;
-
 }
 
 #show>div>label[class="labelShow1"] {
@@ -3325,24 +3320,14 @@ tbody td:last-child {
 }
 
 
-#show>article>div>div {
-  display: flex;
-  flex-direction: row;
-}
-
 #show>div[class="classDivShow1"] {
 
   display: flex;
   flex-direction: column;
 }
 
-#show>div[class="classDivShow1"]>div>div[class="classDivLigne"] {
-  /* background-color: blueviolet; */
-  display: flex;
-  flex-direction: row;
-}
-
-#show>div>label[class="labelNbPlace"] {
+#show>div>label[class="labelNbPlace"],
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
   margin-right: 5px;
 }
 
@@ -3356,17 +3341,13 @@ tbody td:last-child {
 
 }
 
-#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
-  margin-right: 5px;
-}
 
-#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"] {
-  margin-left: 5px;
-}
-
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"],
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne2"] {
   margin-left: 5px;
 }
+
+
 
 #show>div[class="classDivShow1"]>label {
   margin-top: 5px;
@@ -3376,10 +3357,10 @@ tbody td:last-child {
 
 /* CSS pour le détails d'une offre de type Activité */
 
-#activity{
+/* #activity{
   background-color: pink;
-}
-#activity>div[class="divAge"]{
+} */
+#activity>div[class="divAge"],#activity >div[class="presta"]>textarea,#activity>div[class="presta"]{
   margin-bottom: 15px;
 }
 
@@ -3393,6 +3374,9 @@ tbody td:last-child {
   width: 350px;
   height: 40px;
 }
+
+
+
 #activity>div[class="access"]{
   display: flex;
   flex-direction: column;
