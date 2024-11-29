@@ -3359,6 +3359,10 @@ tbody td:last-child {
   margin-bottom: 15px;
 }
 
+#activity >div[class="presta"]>textarea,#activity>div[class="presta"]>input[type="button"]{
+  width: 350px;
+  height: 40px;
+}
 #activity>div[class="access"]{
   display: flex;
   flex-direction: column;
@@ -3375,6 +3379,11 @@ tbody td:last-child {
   flex-direction: column;
   margin-bottom: 15px;   
 }
+
+#activity>div[class="divP"]>div[class="divP1"]{
+  display: flex;
+  flex-direction: row;
+}
 #activity>div[class="divD"]{
   display: flex;
   flex-direction: column;
@@ -3384,6 +3393,7 @@ tbody td:last-child {
   display: flex;
   flex-direction: row;
 }
+
 
 
 /* CSS pour le détails d'une offre de type Visite */
