@@ -2,6 +2,8 @@
     // Démarrer la session
     session_start();
 
+    var_dump();
+
     // Connexion à la base de données
     require_once 'db.php';
 
@@ -18,7 +20,7 @@
     try {
         // $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE idU = ?");
         $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE idU = ? UNION SELECT * FROM pact.proPublic");
-        $stmt->execute([$userId]);
+        $stmt->execute([$userId, $userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Vérifier si l'utilisateur existe dans la base de données
