@@ -81,11 +81,12 @@ if (isset($_POST['pageBefore'])) {
         // Gestion des options d'offre
           $options = [];
           if (isset($_POST["aLaUne"])) {
-            $options[] = "ALaUne";
+            $options[] = ["ALaUne",$_POST['nbWeekALaUne']];
           }
           if (isset($_POST["enRelief"])) {
-            $options[] = "EnRelief";
+            $options[] = ["EnRelief",$_POST['nbWeekEnRelief']];
           }
+          print_r($options);
           
           $stmt = $conn->prepare("SELECT * FROM pact._option_offre o LEFT JOIN pact._dateoption d ON d.idoption = o.idoption WHERE o.idoffre = ? ORDER BY o.idoption DESC ;");
           $stmt->execute([$idOffre]);
