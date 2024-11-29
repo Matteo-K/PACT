@@ -2749,7 +2749,8 @@ tbody td:last-child {
   justify-content: center;
 }
 
-.user+article {
+.user+article, 
+.user + article > div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
