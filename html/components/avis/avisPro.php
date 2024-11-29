@@ -93,27 +93,26 @@
             }
             ?>
 
-            <div class="conteneurAvisPro">
-                <div id="detailAvisPro">Cliquez sur un avis pour l'afficher ici.</div>
-            </div>
-            </div>
+        </div> 
 
+        <div class="conteneurAvisPro">
+            <div id="detailAvisPro">Cliquez sur un avis pour l'afficher ici.</div>
         </div>
-
-        <script>
-            function showPreview(element) {
-                // Récupère le contenu depuis l'attribut data-content de l'élément cliqué
-                const content = element.getAttribute('data-content');
-                
-                // Met à jour la zone de prévisualisation
-                const preview = document.getElementById("detailsAvisPro");
-                preview.textContent = content;
-            }
-        </script>
-
-        
-
 
     </section>
 
+
+   
 </div>
+
+
+<script>
+    function showPreview(element) {
+        // Récupère le contenu depuis l'attribut data-content de l'élément cliqué
+        const content = element.getAttribute('data-content');
+        
+        // Met à jour la zone de prévisualisation
+        const preview = document.getElementById("detailsAvisPro");
+        preview.textContent = content;
+    }
+</script>
