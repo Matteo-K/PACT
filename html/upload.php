@@ -1,5 +1,5 @@
 <?php
-$uploadDir = 'uploads/';
+$uploadDir = './img/imageOffre';
 $response = [];
 
 // Vérifiez si l'idOffre est défini
