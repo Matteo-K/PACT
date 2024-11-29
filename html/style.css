@@ -3339,9 +3339,19 @@ tbody td:last-child {
 #visit>div[class="visGuideeEtDuree"] {
   margin-bottom: 15px;
 }
+/* CSS pour le détails d'une offre de type Activité */
 
 #activity{
   background-color: pink;
+}
+#activity>div[class="divAge"]{
+  margin-bottom: 15px;
+}
+
+#activity >div[class="presta"]{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
 }
 
 #activity>div[class="access"]{

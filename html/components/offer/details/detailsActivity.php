@@ -23,15 +23,15 @@ if ($categorie["_activite"]) {
 ?>
 
 <section id="activity">
-    <article> <!-- Article pour le placement des elements de gauche-->
 
 
-        <div>
+
+        <div class="divAge">
             <label class="labAgeAct" name="labAgeAct"> Age: </label>
             <input type="number" id="numberAct" name="ageAct" min="0" placeholder="0" />
             <label class="labAnsAct" name="labAgeAct"> Ans </label>
         </div>
-        <div>
+        <div class="presta">
             <label>Prestation(s)</label>
 
             <textarea name="textPrestationsAct" id="textePrestation" placeholder="Entrer une prestation "></textarea>
@@ -41,18 +41,17 @@ if ($categorie["_activite"]) {
 
         </div>
 
-    </article>
 
-    <article>
 
-        <div>
+        <div class="divP">
             <label>Prix minimum</label>
 
 
             <input type="number" id="PrixMinAct" name="PrixMinAct" min="0" placeholder="0">
-
+            <label>€</label>
 
         </div>
+        <!-- Partie accéssibilité à modifiier avec la bdd a jour -->
         <div class="access">
             <label id="labAccess">Accessibilité</label> <!-- Label Accessibilité -->
 
@@ -72,13 +71,13 @@ if ($categorie["_activite"]) {
         </div>
 
 
-    </article>
-    <article>
+    
+    
         <div>
             <label class="labDuréeAct" name="labDuréeAct"> Durée: </label>
             <input type="number" id="numberAct" name="duréeAct" placeholder="0" />
             <label class="labHAct" name="labHAct"> H </label>
 
         </div>
-    </article>
+    
 </section>
