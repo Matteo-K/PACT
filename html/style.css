@@ -2855,7 +2855,11 @@ tbody td:last-child {
   rotate: -90deg;
 }
 
+
+
 /** Avis PRO **/
+
+
 
 #avisPro {
   display: flex;
@@ -2914,16 +2918,18 @@ tbody td:last-child {
   height: 17px; 
   background-color: var(--accent); 
   border-radius: 50%; 
+  margin-right: 15px;
 }
 
 .nonRepondu {
   display: inline-block;
-  width: 25px; /* largeur de la bulle */
-  height: 20px; /* hauteur de la bulle */
-  border: none; /* pas de contour */
-  border-radius: 2px; /* coins arrondis */
-  position: relative; /* nécessaire pour positionner la pointe */
-  background-color: var(--primary); /* couleur de fond */
+  width: 25px; 
+  height: 20px; 
+  border: none;
+  border-radius: 2px; 
+  position: relative; 
+  background-color: var(--primary);
+  margin-right: 7px;
 }
 
 /* Pointe de la bulle */
