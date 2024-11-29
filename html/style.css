@@ -2848,7 +2848,13 @@ tbody td:last-child {
 
 /** Avis PRO **/
 
-#avisproS1, #avisproS2{
+#avisPro{
+  display: flex;
+  flex-wrap: nowrap;
+  border-bottom: 2px solid black;
+}
+
+#avisPro section{
   width: 45%;
 }
 
