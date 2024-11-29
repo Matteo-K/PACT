@@ -3303,17 +3303,13 @@ tbody td:last-child {
 }
 
 
-
 /* CSS pour le détails d'une offre de type spectacle */
-#show {
-  align-items: center;
-  /* background-color: yellow;  */
-}
 
-#show>div {
+#show>div ,
+#show>article>div>div ,
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]{
   display: flex;
   flex-direction: row;
-
 }
 
 #show>div>label[class="labelShow1"] {
@@ -3322,24 +3318,14 @@ tbody td:last-child {
 }
 
 
-#show>article>div>div {
-  display: flex;
-  flex-direction: row;
-}
-
 #show>div[class="classDivShow1"] {
 
   display: flex;
   flex-direction: column;
 }
 
-#show>div[class="classDivShow1"]>div>div[class="classDivLigne"] {
-  /* background-color: blueviolet; */
-  display: flex;
-  flex-direction: row;
-}
-
-#show>div>label[class="labelNbPlace"] {
+#show>div>label[class="labelNbPlace"],
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
   margin-right: 5px;
 }
 
@@ -3353,9 +3339,6 @@ tbody td:last-child {
 
 }
 
-#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
-  margin-right: 5px;
-}
 
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"],
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne2"] {
