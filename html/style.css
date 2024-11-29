@@ -2725,7 +2725,7 @@ tbody td:last-child {
   margin-left: 0.3em;
 }
 
-.user>div>img {
+.user>div img  {
   width: 2.2em;
   height: 2.2em;
 }
