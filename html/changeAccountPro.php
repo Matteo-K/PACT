@@ -2,7 +2,7 @@
     // Démarrer la session
     session_start();
 
-    //var_dump($_SESSION['idU']);
+    var_dump($_SESSION['idU']);
 
     // Vérifier si l'utilisateur est connecté
     if (!isset($_SESSION['idU'])) {
