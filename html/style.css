@@ -3340,10 +3340,7 @@ tbody td:last-child {
 
 }
 
-/* CSS pour le détails d'une offre de type Visite */
-#visit>div[class="visGuideeEtDuree"] {
-  margin-bottom: 15px;
-}
+
 /* CSS pour le détails d'une offre de type Activité */
 
 #activity{
@@ -3362,6 +3359,7 @@ tbody td:last-child {
 #activity>div[class="access"]{
   display: flex;
   flex-direction: column;
+  margin-bottom: 15px;
 
 }
 #activity >div[class="access"]>div[class="access1"]{
@@ -3369,10 +3367,22 @@ tbody td:last-child {
   flex-direction: row;
 }
 
+#activity >div[class="divP"]{
+  background-color: yellow;
+  margin-bottom: 15px;   
+}
+
+
+
+/* CSS pour le détails d'une offre de type Visite */
+#visit>div[class="visGuideeEtDuree"] {
+  margin-bottom: 15px;
+}
 #visit>div[class="visGuideeEtDuree"]>label[class="labDureeVis"] {
   margin-left: 15px;
   margin-right: 5px;
 }
+
 
 #visit>div[class="visGuideeEtDuree"]>label[class="labH"] {
   margin-left: 5px;
