@@ -2,7 +2,7 @@
     // Démarrer la session
     session_start();
 
-    // Fichier de connexion à la BDD
+    // Connexion à la base de données
     require_once 'db.php';
 
     // Vérifier si l'utilisateur est connecté

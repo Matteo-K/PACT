@@ -20,7 +20,7 @@
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Vérifier si l'utilisateur existe dans la base de données
+        // Vérifier si les données sont trouvées
         if (!$user) {
             $_SESSION['errors'][] = "Utilisateur introuvable.";
             header("Location: login.php");
