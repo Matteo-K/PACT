@@ -16,6 +16,12 @@
             <li data-content="Voici le contenu complet du message 3" onclick="showPreview(this)">Message 3</li>
             <li data-content="Voici le contenu complet du message 4" onclick="showPreview(this)">Message 4</li>
             <li data-content="Voici le contenu complet du message 5" onclick="showPreview(this)">Message 5</li>
+            <?php
+
+                foreach ($avis as $av) {
+                    echo "<li>" . $a['pseudo'] . " - " . $a['titre'] . "</li>";
+                }
+                ?>
             </ul>
         </div>
 

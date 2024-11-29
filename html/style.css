@@ -2895,14 +2895,12 @@ tbody td:last-child {
   margin-left: 10px;
 }
 
-/* Ajouter une flèche avant le texte d'un élément */
 .triangle::before {
-  content: "▲";        /* Le contenu à afficher (flèche vers le haut) */
+  content: "▲";
 }
 
-/* Vous pouvez aussi l'utiliser après l'élément */
 .triangle::after {
-  content: "▼";       /* Le contenu à afficher après l'élément */
+  content: "▼"; 
 }
 
 #avisproS1{
@@ -2914,6 +2912,7 @@ tbody td:last-child {
   width: 90%;
   background-color: var(--primary60);
   border-radius: 20px;
+  padding: 20px;
 }
 
 .nonLu {
@@ -2940,13 +2939,13 @@ tbody td:last-child {
 .nonRepondu::after {
   content: '';
   position: absolute;
-  bottom: 0; /* aligné avec le bas de la bulle */
-  right: -5px; /* décalé à droite pour coller au bord */
+  bottom: 0; 
+  right: -5px; 
   width: 0;
   height: 0;
   border-style: solid;
   border-width: 7px 0 0 7px; /* dimensions de la pointe */
-  border-color: transparent transparent transparent var(--primary); /* couleur de la pointe */
+  border-color: transparent transparent transparent var(--primary); 
 }
 
 
