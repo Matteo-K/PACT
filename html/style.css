@@ -2742,18 +2742,17 @@ tbody td:last-child {
 }
 
 .user{
-  border-bottom: var(--text-dark80) solid 1px;
+  border-bottom: var(--text-dark40) solid 1px;
 }
 
 .user+article {
   justify-content: center;
 }
 
-.user+article,
-.user+article>div {
+.user+article {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
 }
 
