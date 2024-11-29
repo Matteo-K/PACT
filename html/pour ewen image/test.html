@@ -10,14 +10,14 @@
             margin: 20px;
         }
 
-        #existingPreview {
+        #afficheImages {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             margin-top: 20px;
         }
 
-        #existingPreview img {
+        #afficheImages img {
             width: 100px;
             height: 100px;
             object-fit: cover;
@@ -59,15 +59,15 @@
     <h1>Gestion des Images</h1>
 
     <h2>Images existantes :</h2>
-    <div id="existingPreview"></div>
+    <div id="afficheImages"></div>
     <button id="refreshButton">Rafraîchir la liste</button>
 
     <h2>Ajouter des nouvelles images :</h2>
     <input 
         type="file" 
-        id="imageUpload" 
+        id="ajoutPhoto" 
         name="images[]" 
-        accept="image/*" 
+        accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
         multiple 
         onchange="handleFiles(this)"
     />
@@ -81,8 +81,8 @@ function loadExistingImages() {
     fetch('upload.php')
         .then(response => response.json())
         .then(data => {
-            const existingPreview = document.getElementById('existingPreview');
-            existingPreview.innerHTML = ""; // Réinitialise la liste
+            const afficheImages = document.getElementById('afficheImages');
+            afficheImages.innerHTML = ""; // Réinitialise la liste
             existingImagesCount = data.images.length; // Met à jour le compteur des images existantes
 
             data.images.forEach(image => {
@@ -94,7 +94,7 @@ function loadExistingImages() {
                 // Ajoute un gestionnaire de clic pour supprimer l'image
                 img.onclick = () => deleteImage(image);
 
-                existingPreview.appendChild(img);
+                afficheImages.appendChild(img);
             });
         })
         .catch(error => console.error('Erreur lors du chargement des images existantes:', error));
@@ -183,7 +183,7 @@ window.onload = loadExistingImages;
 document.getElementById('refreshButton').addEventListener('click', loadExistingImages);
 
 // Gestion des fichiers sélectionnés (liaison de l'événement onchange)
-document.getElementById('imageUpload').addEventListener('change', function () {
+document.getElementById('ajoutPhoto').addEventListener('change', function () {
     handleFiles(this);
 });
 
