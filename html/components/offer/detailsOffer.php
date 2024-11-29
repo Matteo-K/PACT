@@ -273,7 +273,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         // js de gabriel pour les images test
 
         let existingImagesCount = 0; // Compteur des images existantes sur le serveur
-        const idOffre = $idOffre; // ID de l'offre, à remplacer par une valeur dynamique si nécessaire
+        const idOffre = <?php echo $idOffre ?>; // ID de l'offre, à remplacer par une valeur dynamique si nécessaire
 
         // Fonction pour charger les images existantes
         // Fonction pour charger les images existantes
