@@ -2865,8 +2865,14 @@ tbody td:last-child {
   margin: 50px 0;
 }
 
-#avisPro h2, #avisPro h3 {
+#avisPro h2{
+  font-weight: 500 ;
+  font-size: 2em;
+}
+
+#avisPro h3 {
   font-weight: 400 ;
+  font-size: 1.7em;
 }
 
 #avisPro section{
@@ -2890,11 +2896,13 @@ tbody td:last-child {
 
 #avisproS1{
   border-right: solid 2px black;
+  text-align: center;
 }
 
 #avisproS2 > div{
   width: 90%;
   background-color: var(--primary60);
+  text-align: center;
 }
 
 .nonLu {
