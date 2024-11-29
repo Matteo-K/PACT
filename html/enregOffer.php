@@ -81,15 +81,15 @@ if (isset($_POST['pageBefore'])) {
         // Gestion des options d'offre
           $options = [];
           if (isset($_POST["aLaUne"])) {
-            $options[] = ["ALaUne",$_POST['nbWeekALaUne']];
+            $options[] = ["ALaUne",$_POST['nbWeekALaUne'],$_POST['nbWeekALaUne']*20];
           }
           if (isset($_POST["enRelief"])) {
-            $options[] = ["EnRelief",$_POST['nbWeekEnRelief']];
+            $options[] = ["EnRelief",$_POST['nbWeekEnRelief'],$_POST['nbWeekEnRelief']*10];
           }
-          print_r($options);
-          
-          $stmt = $conn->prepare("SELECT * FROM pact._option_offre o LEFT JOIN pact._dateoption d ON d.idoption = o.idoption WHERE o.idoffre = ? ORDER BY o.idoption DESC ;");
-          $stmt->execute([$idOffre]);
+          foreach ($variable as $key => $value) {
+            $stmt = $conn->prepare("INSERT INTO pact._dateOption(dateLancement,dateFin,duree,prix) VALUES (NULL,NULL,,20) RETURNING idoption");
+            $stmt->execute();// Je vais faire autrement, faudrait que je fasse une vue avec trigger et function
+          }
   
           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if ($row["datefin"] < date('Y-m-d')) {
