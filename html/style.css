@@ -2912,8 +2912,8 @@ tbody td:last-child {
 .nonRepondu::after {
   content: '';
   position: absolute;
-  bottom: -5px; /* place la pointe juste sous la bulle */
-  right: -5px; /* ajuste la pointe pour qu'elle soit dans le coin inférieur droit */
+  bottom: 0; /* aligné avec le bas de la bulle */
+  right: -5px; /* décalé à droite pour coller au bord */
   width: 0;
   height: 0;
   border-style: solid;
