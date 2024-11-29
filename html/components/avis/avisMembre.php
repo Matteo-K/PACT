@@ -173,4 +173,4 @@ foreach ($avis as $a) {
         },
     });
 </script>
-<script src="../../js/setColor.js"></script>
+<script src="js/setColor.js"></script>

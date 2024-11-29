@@ -2735,7 +2735,10 @@ tbody td:last-child {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+}
+
+.infoUser, .infoProReponse > div{
+  gap: 12PX;
 }
 
 .user{
@@ -2889,7 +2892,7 @@ tbody td:last-child {
 
 
 
-/* Fin avis */
+/** Fin avis **/
 
 
 .notation>div {
