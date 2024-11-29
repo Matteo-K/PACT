@@ -2738,7 +2738,7 @@ tbody td:last-child {
 }
 
 .infoUser, .infoProReponse > div{
-  gap: 12PX;
+  gap: 12px;
 }
 
 .user{
