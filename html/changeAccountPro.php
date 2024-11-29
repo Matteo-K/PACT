@@ -2,6 +2,9 @@
     // Démarrer la session
     session_start();
 
+    // Connexion à la base de données
+    require_once 'db.php';
+    
     var_dump($_SERVER['idU']);
 
     // Vérifier si l'utilisateur est connecté
@@ -14,8 +17,6 @@
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idU'];
 
-    // Connexion à la base de données
-    require_once 'db.php';
 
     try {
         // Tenter de récupérer les informations de l'utilisateur dans la base de données
