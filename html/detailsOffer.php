@@ -290,37 +290,37 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $tel = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-            if ($lieu) {
+            if ($offre[0]['ville'] && $offre[0]['pays'] && $offre[0]['codepostal']) {
             ?>
                 <div>
                     <img src="./img/icone/lieu.png">
-                    <a href="https://www.google.com/maps?q=<?php echo urlencode($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></a>
+                    <a href="https://www.google.com/maps?q=<?php echo urlencode($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?></a>
                 </div>
 
             <?php
             }
-            if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
+            if ($offre[0]["telephone"] && $tel["affiche"] == TRUE) {
             ?>
                 <div>
                     <img src="./img/icone/tel.png">
-                    <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
+                    <a href="tel:<?php echo htmlspecialchars($offre[0]["telephone"]); ?>"><?php echo htmlspecialchars($offre[0]["telephone"]); ?></a>
                 </div>
             <?php
             }
-            if ($result[0]["mail"]) {
+            if ($offre[0]["mail"]) {
             ?>
                 <div>
                     <img src="./img/icone/mail.png">
-                    <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
+                    <a href="mailto:<?php echo htmlspecialchars($offre[0]["mail"]); ?>"><?php echo htmlspecialchars($offre[0]["mail"]); ?></a>
                 </div>
 
             <?php
             }
-            if ($result[0]["urlsite"]) {
+            if ($offre[0]["urlsite"]) {
             ?>
                 <div>
                     <img src="./img/icone/globe.png">
-                    <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
+                    <a href="<?php echo htmlspecialchars($offre[0]["urlsite"]); ?>"><?php echo htmlspecialchars($offre[0]["urlsite"]); ?></a>
                 </div>
 
             <?php
@@ -465,37 +465,37 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div id="carte"></div>
             <div id="contact-info">
                 <?php
-                if ($lieu) {
+                if ($offre[0]['ville'] && $offre['codepostal'] && $offre[0]['pays']) {
                 ?>
                     <div>
                         <img src="./img/icone/lieu.png">
-                        <a href="https://www.google.com/maps?q=<?php echo urlencode($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></a>
+                        <a href="https://www.google.com/maps?q=<?php echo urlencode($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?></a>
                     </div>
 
                 <?php
                 }
-                if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
+                if ($offre[0]["telephone"] && $tel["affiche"] == TRUE) {
                 ?>
                     <div>
                         <img src="./img/icone/tel.png">
-                        <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
+                        <a href="tel:<?php echo htmlspecialchars($offre[0]["telephone"]); ?>"><?php echo htmlspecialchars($offre[0]["telephone"]); ?></a>
                     </div>
                 <?php
                 }
-                if ($result[0]["mail"]) {
+                if ($offre[0]["mail"]) {
                 ?>
                     <div>
                         <img src="./img/icone/mail.png">
-                        <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
+                        <a href="mailto:<?php echo htmlspecialchars($offre[0]["mail"]); ?>"><?php echo htmlspecialchars($offre[0]["mail"]); ?></a>
                     </div>
 
                 <?php
                 }
-                if ($result["urlsite"]) {
+                if ($offre["urlsite"]) {
                 ?>
                     <div>
                         <img src="./img/icone/globe.png">
-                        <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
+                        <a href="<?php echo htmlspecialchars($offre[0]["urlsite"]); ?>"><?php echo htmlspecialchars($offre[0]["urlsite"]); ?></a>
                     </div>
 
                 <?php
