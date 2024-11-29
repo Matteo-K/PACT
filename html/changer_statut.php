@@ -48,8 +48,35 @@ if ($nouveauStatut=='actif') {
             $ajst->execute();
         }
     } else {
+        // première mise en ligne
         $ajst = $conn->prepare("INSERT INTO pact._historiqueStatut(idoffre,datelancement,dureeenligne) VALUES ($offreId,CURRENT_DATE,NULL)");
         $ajst->execute();
+        $ajst = $conn->prepare("SELECT idoffre,idoption,duree_total FROM pact.option WHERE idoffre = $offreId");
+        $ajst->execute();
+        $result = $ajst->fetchAll();
+        if ($result) {
+            foreach ($result as $key => $value) {
+                $duree = $value['duree_total'] * 7;
+                $date = new DateTime();
+                $date->modify("+$duree days"); // Ajout de la durée
+                $formattedDate = $date->format('Y-m-d'); // Conversion de l'objet DateTime en format SQL compatible
+                        
+                $idoption = $value['idoption'];
+                        
+                // Requête SQL sécurisée avec des paramètres
+                $ajst = $conn->prepare("UPDATE pact._dateoption 
+                                        SET datelancement = CURRENT_DATE, 
+                                            datefin = :datefin 
+                                        WHERE idoption = :idoption");
+            
+                // Liaison des paramètres
+                $ajst->bindParam(':datefin', $formattedDate);
+                $ajst->bindParam(':idoption', $idoption, PDO::PARAM_INT);
+                        
+                // Exécution de la requête
+                $ajst->execute();
+            }
+        }
     }
 }else {
     $ajst = $conn->prepare("UPDATE pact._historiqueStatut SET dureeenligne = (CURRENT_DATE - datelancement)+1 WHERE idoffre = $offreId AND dureeenligne IS NULL");
