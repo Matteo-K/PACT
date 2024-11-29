@@ -4,8 +4,8 @@
 
     // Connexion à la base de données
     require_once 'db.php';
-    
-    var_dump($_SERVER['idU']);
+
+    var_dump($_SESSION['idU']);
 
     // Vérifier si l'utilisateur est connecté
     if (!isset($_SESSION['idU'])) {
