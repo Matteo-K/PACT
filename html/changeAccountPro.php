@@ -19,9 +19,9 @@
 
     try {
         // Tenter de récupérer les informations de l'utilisateur dans la base de données
-        $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE idU = ?");
+        $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE denomination = ?");
         $stmt->execute([$userId]);
-        $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Vérifier si l'utilisateur existe dans la base de données
         if (!$user) {
