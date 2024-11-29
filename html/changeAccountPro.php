@@ -17,7 +17,7 @@
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
         // $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE idU = ?");
-        $stmt = $conn->prepare("SELECT * FROM pact.proPublic");
+        $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE idU = ? UNION SELECT * FROM pact.proPublic");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -79,7 +79,7 @@
                 <input type="text" placeholder="MonEntreprise" id="denomination" name="denomination" value="<?= isset($user['denomination']) ? htmlspecialchars($user['denomination']) : '' ?>" required>
 
                 <!-- Saisi du numéro de téléphone -->
-                <input type="tel" placeholder="06 01 02 03 04" id="telephone" name="telephone" value="<?= isset($user['n.telephone']) ? htmlspecialchars($user['n.telephone']) : '' ?>" required>
+                <input type="tel" placeholder="06 01 02 03 04" id="telephone" name="telephone" value="<?= isset($user['telephone']) ? htmlspecialchars($user['telephone']) : '' ?>" required>
             </div>
 
 
@@ -87,7 +87,7 @@
             <div class="ligne2">
                 <!-- Saisi de l'adresse mail -->
                 <label for="email">Adresse mail*:</label>
-                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($user['n.mail']) ? htmlspecialchars($user['n.mail']) : '' ?>" required>
+                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($user['mail']) ? htmlspecialchars($user['mail']) : '' ?>" required>
             </div>
 
 
@@ -95,7 +95,7 @@
             <div class="ligne3">
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
-                <input type="text" placeholder ="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['h.numeroRue']) && isset($user['h.rue']) ? htmlspecialchars($user['h.numeroRue']) . '' . htmlspecialchars($user['rue']): '' ?>" required>
+                <input type="text" placeholder ="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['numeroRue']) && isset($user['rue']) ? htmlspecialchars($user['numeroRue']) . '' . htmlspecialchars($user['rue']): '' ?>" required>
                 <br>
             </div>
 
@@ -106,10 +106,10 @@
                 <label for="ville">Ville*:</label>
                 
                 <!-- Saisi du code postale -->
-                <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($user['h.codePostal']) ? htmlspecialchars($user['h.codePostal']) : '' ?>" required>
+                <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($user['codePostal']) ? htmlspecialchars($user['codePostal']) : '' ?>" required>
 
                 <!-- Saisi de la ville -->
-                <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($user['h.ville']) ? htmlspecialchars($user['h.ville']) : '' ?>" required>
+                <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($user['ville']) ? htmlspecialchars($user['ville']) : '' ?>" required>
             </div>
             
             <button type="submit" id="boutonInscription">Valider</button>
