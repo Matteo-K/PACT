@@ -16,9 +16,8 @@
 
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
-        // $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE idU = ?");
-        $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE idU = ? UNION SELECT * FROM pact.proPublic");
-        $stmt->execute([$userId, $userId]);
+        $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE idU = ?");
+        $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Vérifier si l'utilisateur existe dans la base de données
@@ -31,7 +30,7 @@
     
     catch (Exception $e) {
         $_SESSION['errors'][] = "Erreur de connexion à la base de données: " . $e->getMessage();
-        header("Location: login.php");  // Vous pouvez rediriger vers une autre page de votre choix en cas d'erreur
+        header("Location: login.php");
         exit();
     }
 ?>
