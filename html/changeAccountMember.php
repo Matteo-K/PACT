@@ -16,7 +16,7 @@
 
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
-        $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE idU = ?");
+        $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE idU = ? UNION SELECT * FROM pact.adresse");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -90,7 +90,7 @@
                 <input type="text" placeholder="Jean29" id="pseudoMembre" name="pseudoMembre" value="<?= isset($user['pseudo']) ? htmlspecialchars($user['pseudo']) : '' ?>" required>
 
                 <!-- Saisi du numéro de téléphone -->
-                <input type="tel" placeholder="06 01 02 03 04" id="telephoneMembre" name="telephone" value="<?= isset($user['telephone']) ? htmlspecialchars($_user['telephone']) : '' ?>" required>
+                <input type="tel" placeholder="06 01 02 03 04" id="telephoneMembre" name="telephone" value="<?= isset($user['telephone']) ? htmlspecialchars($user['telephone']) : '' ?>" required>
             </div>
     
     
