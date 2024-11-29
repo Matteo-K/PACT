@@ -471,7 +471,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div id="carte"></div>
         <div id="contact-info">
             <?php
-            if ($result[0]['ville'] && $result['codepostal'] && $result[0]['pays']) {
+            if ($result[0]['ville'] && $result[0]['codepostal'] && $result[0]['pays']) {
             ?>
                 <div>
                     <img src="./img/icone/lieu.png">
