@@ -20,6 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
       var: "--bloc",
       clr: style.getPropertyValue("--bloc").trim(),
     },
+    textDark: {
+      var : "--text-dark",
+      clr: style.getPropertyValue("--text-dark").trim(),
+    }
   };
   
   function hexa_to_rgba(hexa_color, transparency) {
