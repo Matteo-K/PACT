@@ -3319,7 +3319,6 @@ tbody td:last-child {
   margin-right: 5px;
 }
 
-
 #show>div[class="classDivShow1"] {
 
   display: flex;
@@ -3347,11 +3346,8 @@ tbody td:last-child {
   margin-left: 5px;
 }
 
-
-
 #show>div[class="classDivShow1"]>label {
   margin-top: 5px;
-
 }
 
 
@@ -3375,38 +3371,26 @@ tbody td:last-child {
   height: 40px;
 }
 
-
-
-#activity>div[class="access"]{
+#activity>div[class="access"],
+#activity >div[class="divP"]{
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 
 }
-#activity >div[class="access"]>div[class="access1"]{
+#activity >div[class="access"]>div[class="access1"],
+#activity>div[class="divP"]>div[class="divP1"],
+#activity>div[class="divD"]>div[class="divD1"]{
   display: flex;
   flex-direction: row;
 }
 
-#activity >div[class="divP"]{
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;   
-}
 
-#activity>div[class="divP"]>div[class="divP1"]{
-  display: flex;
-  flex-direction: row;
-}
 #activity>div[class="divD"]{
   display: flex;
   flex-direction: column;
 }
 
-#activity>div[class="divD"]>div[class="divD1"]{
-  display: flex;
-  flex-direction: row;
-}
 
 
 
