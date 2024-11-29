@@ -3340,6 +3340,20 @@ tbody td:last-child {
   margin-bottom: 15px;
 }
 
+#activity{
+  background-color: yellow;
+}
+
+#activity>div[class="access"]{
+  display: flex;
+  flex-direction: column;
+
+}
+#activity >div[class="access"]>div[class="access1"]{
+  display: flex;
+  flex-direction: row;
+}
+
 #visit>div[class="visGuideeEtDuree"]>label[class="labDureeVis"] {
   margin-left: 15px;
   margin-right: 5px;
