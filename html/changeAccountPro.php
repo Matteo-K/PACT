@@ -2,6 +2,9 @@
     // Démarrer la session
     session_start();
 
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+
     // Vérifier si l'utilisateur est connecté
     if (!isset($_SESSION['idU'])) {
         // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
@@ -38,7 +41,7 @@
 ?>
 
 
-
+ 
 <!DOCTYPE html>
 <html lang="en">
     <head> 
