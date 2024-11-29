@@ -86,7 +86,7 @@ if (isset($_POST['pageBefore'])) {
           if (isset($_POST["enRelief"])) {
             $options[] = ["EnRelief",$_POST['nbWeekEnRelief'],$_POST['nbWeekEnRelief']*10];
           }
-          foreach ($variable as $key => $value) {
+          foreach ($options as $key => $value) {
             $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
             $stmt->execute([$idOffre, $value[1], $value[2], $value[0]]);
           }

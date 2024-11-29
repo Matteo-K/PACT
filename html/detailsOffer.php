@@ -643,4 +643,4 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="js/setColor.js"></script>
 </body>
 
-</html>
+</html> 
