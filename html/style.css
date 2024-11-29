@@ -3368,10 +3368,19 @@ tbody td:last-child {
 }
 
 #activity >div[class="divP"]{
-  background-color: yellow;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 15px;   
 }
+#activity>div[class="divD"]{
+  display: flex;
+  flex-direction: column;
+}
 
+#activity>div[class="divD"]>div[class="divD1"]{
+  display: flex;
+  flex-direction: row;
+}
 
 
 /* CSS pour le détails d'une offre de type Visite */
