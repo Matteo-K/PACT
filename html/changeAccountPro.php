@@ -2,7 +2,7 @@
     // Démarrer la session
     session_start();
 
-    var_dump($_SESSION['idU']);
+    var_dump($_SERVER['idU']);
 
     // Vérifier si l'utilisateur est connecté
     if (!isset($_SESSION['idU'])) {
@@ -19,7 +19,7 @@
 
     try {
         // Tenter de récupérer les informations de l'utilisateur dans la base de données
-        $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE denomination = ?");
+        $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE idU = ?");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
