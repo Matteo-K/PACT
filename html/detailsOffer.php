@@ -131,14 +131,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                     $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
                     $cook->execute();
-                    $offre = $cook->fetchAll(PDO::FETCH_ASSOC);
+                    $result = $cook->fetchAll(PDO::FETCH_ASSOC);
                 ?>
-                    <h3 class="Enligne"><?php echo $offre[0]['statut'] ?></h3>
+                    <h3 class="Enligne"><?php echo $result[0]['statut'] ?></h3>
 
                     <div class="buttonDetails">
                         <?php
                         $affiche = false;
-                        foreach ($offre[0] as $key => $value) {
+                        foreach ($result[0] as $key => $value) {
                             if ($value == NULL) {
                                 $affiche = true;
                             }
@@ -190,12 +190,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             }
                         }
                         if (!$affiche) {
-                            $statutActuel = $offre[0]['statut'];
+                            $statutActuel = $result[0]['statut'];
                         ?>
 
                             <form method="post" action="changer_statut.php">
                                 <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
-                                <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
+                                <input type="hidden" name="offre_id" value="<?php echo $result[0]['idoffre']; ?>">
                                 <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
                                 <button class="modifierBut" type="submit">
                                     <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
@@ -207,14 +207,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="form-container">
                             <form method="post" action="manageOffer.php">
-                                <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
+                                <input type="hidden" name="idOffre" value="<?php echo $result[0]['idoffre']; ?>">
                                 <input type="hidden" name="page" value="2">
                                 <button
-                                    class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>"
+                                    class="modifierBut <?php echo $result[0]['statut'] === 'actif' ? 'disabled' : ''; ?>"
                                     type="submit"
                                     onmouseover="showMessage(event)"
                                     onmouseout="hideMessage(event)"
-                                    <?php if ($offre[0]['statut'] === 'actif') { ?>
+                                    <?php if ($result[0]['statut'] === 'actif') { ?>
                                     onclick="return false;"
                                     <?php } ?>>
                                     <?php echo "Modifier offre"; ?>
@@ -233,14 +233,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                     </div>
             </fieldset>
-            <?php if ($offre[0]['statut'] === 'actif') { ?>
+            <?php if ($result[0]['statut'] === 'actif') { ?>
                 <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
-        <?php }
+            <?php }
         }
         ?>
         
         <h2 id=" titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
-        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville'] ?></h3>
+        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $result[0]['ville'] ?></h3>
         <?php
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
         ?>
@@ -296,37 +296,37 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $tel = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-        if ($offre[0]['ville'] && $offre[0]['pays'] && $offre[0]['codepostal']) {
+        if ($result[0]['ville'] && $result[0]['pays'] && $result[0]['codepostal']) {
         ?>
             <div>
                 <img src="./img/icone/lieu.png">
-                <a href="https://www.google.com/maps?q=<?php echo urlencode($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?></a>
+                <a href="https://www.google.com/maps?q=<?php echo urlencode($result["numerorue"] . " " . $result["rue"] . ", " . $result["codepostal"] . " " . $result["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result["numerorue"] . " " . $result["rue"] . ", " . $result["codepostal"] . " " . $result["ville"]); ?></a>
             </div>
 
         <?php
         }
-        if ($offre[0]["telephone"] && $tel["affiche"] == TRUE) {
+        if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
         ?>
             <div>
                 <img src="./img/icone/tel.png">
-                <a href="tel:<?php echo htmlspecialchars($offre[0]["telephone"]); ?>"><?php echo htmlspecialchars($offre[0]["telephone"]); ?></a>
+                <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
             </div>
         <?php
         }
-        if ($offre[0]["mail"]) {
+        if ($result[0]["mail"]) {
         ?>
             <div>
                 <img src="./img/icone/mail.png">
-                <a href="mailto:<?php echo htmlspecialchars($offre[0]["mail"]); ?>"><?php echo htmlspecialchars($offre[0]["mail"]); ?></a>
+                <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
             </div>
 
         <?php
         }
-        if ($offre[0]["urlsite"]) {
+        if ($result[0]["urlsite"]) {
         ?>
             <div>
                 <img src="./img/icone/globe.png">
-                <a href="<?php echo htmlspecialchars($offre[0]["urlsite"]); ?>"><?php echo htmlspecialchars($offre[0]["urlsite"]); ?></a>
+                <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
             </div>
 
         <?php
@@ -471,37 +471,37 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div id="carte"></div>
         <div id="contact-info">
             <?php
-            if ($offre[0]['ville'] && $offre['codepostal'] && $offre[0]['pays']) {
+            if ($result[0]['ville'] && $result['codepostal'] && $result[0]['pays']) {
             ?>
                 <div>
                     <img src="./img/icone/lieu.png">
-                    <a href="https://www.google.com/maps?q=<?php echo urlencode($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?></a>
+                    <a href="https://www.google.com/maps?q=<?php echo urlencode($result["numerorue"] . " " . $result["rue"] . ", " . $result["codepostal"] . " " . $result["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result["numerorue"] . " " . $result["rue"] . ", " . $result["codepostal"] . " " . $result["ville"]); ?></a>
                 </div>
 
             <?php
             }
-            if ($offre[0]["telephone"] && $tel["affiche"] == TRUE) {
+            if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
             ?>
                 <div>
                     <img src="./img/icone/tel.png">
-                    <a href="tel:<?php echo htmlspecialchars($offre[0]["telephone"]); ?>"><?php echo htmlspecialchars($offre[0]["telephone"]); ?></a>
+                    <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
                 </div>
             <?php
             }
-            if ($offre[0]["mail"]) {
+            if ($result[0]["mail"]) {
             ?>
                 <div>
                     <img src="./img/icone/mail.png">
-                    <a href="mailto:<?php echo htmlspecialchars($offre[0]["mail"]); ?>"><?php echo htmlspecialchars($offre[0]["mail"]); ?></a>
+                    <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
                 </div>
 
             <?php
             }
-            if ($offre["urlsite"]) {
+            if ($result["urlsite"]) {
             ?>
                 <div>
                     <img src="./img/icone/globe.png">
-                    <a href="<?php echo htmlspecialchars($offre[0]["urlsite"]); ?>"><?php echo htmlspecialchars($offre[0]["urlsite"]); ?></a>
+                    <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
                 </div>
 
             <?php
