@@ -2775,6 +2775,7 @@ tbody td:last-child {
 }
 .user +article >div > div:nth-child(3)>p{
   width: 60%;
+  text-align: justify;
 }
 
 .user+article>div>div:nth-child(1)>p+p, .user +article >div > div:nth-child(2), .infoProReponse>p {
