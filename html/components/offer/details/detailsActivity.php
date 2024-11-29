@@ -46,10 +46,10 @@ if ($categorie["_activite"]) {
     <div class="divP">
         <label>Prix minimum</label>
 
-
-        <input type="number" id="PrixMinAct" name="PrixMinAct" min="0" placeholder="0">
-        <label>€</label>
-
+        <div class="divP1">
+            <input type="number" id="PrixMinAct" name="PrixMinAct" min="0" placeholder="0">
+            <label>€</label>
+        </div>
     </div>
     <!-- Partie accéssibilité à modifiier avec la bdd a jour -->
     <div class="access">

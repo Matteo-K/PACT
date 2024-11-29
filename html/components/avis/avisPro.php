@@ -3,10 +3,10 @@
 
     <section id="avisproS1">
 
-        <h3 class="triangle">
+        <h2 class="triangle">
         
             Avis les plus récents
-        </h3>
+        </h2>
 
         <div>
 
@@ -20,15 +20,17 @@
 
         <div>
 
-            <h3 class="triangle">
+            <h2 class="triangle">
                 Nombre d'avis
-            </h3>
+            </h2>
 
             <h4>
+                <div class="nonLu"></div>
                 Non lus
             </h4>
 
             <h4>
+                <div class="nonRepondu"></div>
                 Non répondus
             </h4>
             

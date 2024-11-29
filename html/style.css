@@ -2860,6 +2860,7 @@ tbody td:last-child {
   display: flex;
   flex-wrap: nowrap;
   border-bottom: 2px solid black;
+  width: 100%;
 }
 
 #avisPro section{
@@ -2888,6 +2889,34 @@ tbody td:last-child {
 #avisproS2 > div{
   width: 90%;
   background-color: var(--primary60);
+}
+
+.nonLu {
+  width: 10px; 
+  height: 10px; 
+  background-color: var(--accent); 
+  border-radius: 50%; 
+}
+
+.nonRepondu {
+  width: 10px 8px; /* largeur de la bulle */
+  height: 30px; /* hauteur de la bulle */
+  border: none; /* contour de la bulle */
+  border-radius: 2px; /* coins arrondis */
+  position: relative; /* nécessaire pour la pointe */
+}
+
+/* Pointe de la bulle */
+.nonRepondu {
+  content: '';
+  position: absolute;
+  bottom: -8px; /* positionne sous la bulle */
+  left: 10px; /* ajuste horizontalement */
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 3px 0 3px; /* forme triangulaire */
+  border-color: none; /* couleur du contour */
 }
 
 
@@ -3359,6 +3388,10 @@ tbody td:last-child {
   margin-bottom: 15px;
 }
 
+#activity >div[class="presta"]>textarea,#activity>div[class="presta"]>input[type="button"]{
+  width: 350px;
+  height: 40px;
+}
 #activity>div[class="access"]{
   display: flex;
   flex-direction: column;
@@ -3375,6 +3408,11 @@ tbody td:last-child {
   flex-direction: column;
   margin-bottom: 15px;   
 }
+
+#activity>div[class="divP"]>div[class="divP1"]{
+  display: flex;
+  flex-direction: row;
+}
 #activity>div[class="divD"]{
   display: flex;
   flex-direction: column;
@@ -3384,6 +3422,7 @@ tbody td:last-child {
   display: flex;
   flex-direction: row;
 }
+
 
 
 /* CSS pour le détails d'une offre de type Visite */
