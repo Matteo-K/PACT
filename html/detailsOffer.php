@@ -401,7 +401,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="barreDeNotationBlanche">
                                     <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
                                 </div>
-                                <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?>)</span>
+                                <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
                             </div>
                         <?php
                         }

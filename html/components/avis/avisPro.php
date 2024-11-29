@@ -8,8 +8,15 @@
             Avis les plus récents
         </h2>
 
-        <div>
 
+        <div>
+            <ul id="listeAvis">
+            <li data-content="Voici le contenu complet du message 1" onclick="showPreview(this)">Message 1</li>
+            <li data-content="Voici le contenu complet du message 2" onclick="showPreview(this)">Message 2</li>
+            <li data-content="Voici le contenu complet du message 3" onclick="showPreview(this)">Message 3</li>
+            <li data-content="Voici le contenu complet du message 4" onclick="showPreview(this)">Message 4</li>
+            <li data-content="Voici le contenu complet du message 5" onclick="showPreview(this)">Message 5</li>
+            </ul>
         </div>
 
 
@@ -75,7 +82,7 @@
                                 <div class="barreDeNotationBlanche">
                                     <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
                                 </div>
-                                <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?>)</span>
+                                <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
                             </div>
                         <?php
                         }
@@ -86,7 +93,25 @@
             }
             ?>
 
+            <div class="conteneurAvisPro">
+                <div id="detailAvisPro">Cliquez sur un avis pour l'afficher ici.</div>
+            </div>
+            </div>
+
         </div>
+
+        <script>
+            function showPreview(element) {
+                // Récupère le contenu depuis l'attribut data-content de l'élément cliqué
+                const content = element.getAttribute('data-content');
+                
+                // Met à jour la zone de prévisualisation
+                const preview = document.getElementById("preview-content");
+                preview.textContent = content;
+            }
+        </script>
+
+        
 
 
     </section>

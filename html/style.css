@@ -2950,6 +2950,44 @@ tbody td:last-child {
 }
 
 
+/* Liste défilable */
+#avisProS1 > div {
+  width: 100%; /* Largeur de la liste */
+  overflow-y: auto; /* Activer le scroll vertical */
+  background-color: #ffd0d0;
+}
+
+#avisPro ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#avisPro li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.2s;
+}
+
+#avisPro li:hover {
+  background-color: #e0e0e0;
+}
+
+/* Panneau de prévisualisation */
+.conteneurAvisPro {
+  width: 100%; /* Prend tout l'espace restant */
+  padding: 20px;
+  background-color: #dee6fa;
+  overflow-y: auto; /* Permet le scroll si le contenu est trop grand */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}
+
 
 
 /** Fin avis **/
