@@ -639,14 +639,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             message.style.display = 'none';
         }
 
-        // Ajouter une entrée personnalisée dans l'historique
-        history.pushState(null, '', window.location.href);
-
-        // Intercepter l'action de retour
-        window.onpopstate = function(event) {
-            console.log('Redirection vers:', window.location.href);
-            window.location.href = './search.php';
-        };
     </script>
     <script src="js/setColor.js"></script>
 </body>
