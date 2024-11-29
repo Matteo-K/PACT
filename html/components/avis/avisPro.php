@@ -112,7 +112,7 @@
         const content = element.getAttribute('data-content');
         
         // Met à jour la zone de prévisualisation
-        const preview = document.getElementById("detailsAvisPro");
+        const preview = document.getElementById("detailAvisPro");
         preview.textContent = content;
     }
 </script>
