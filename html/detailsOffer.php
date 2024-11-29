@@ -240,18 +240,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
         
         <h2 id=" titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
-                    <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville'] ?></h3>
-                    <?php
-                    if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-                    ?>
-                        <h3 class="DetailsStatut"><?php echo $statutActuel == 'actif' ? "En-Ligne" : "Hors-Ligne"; ?></h3>
-                    <?php
-                    }
-                    ?>
-                    <div>
-                        <?php
-                        // Fetch tags associated with the offer
-                        $stmt = $conn->prepare("
+        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville'] ?></h3>
+        <?php
+        if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
+        ?>
+            <h3 class="DetailsStatut"><?php echo $statutActuel == 'actif' ? "En-Ligne" : "Hors-Ligne"; ?></h3>
+        <?php
+        }
+        ?>
+        <div>
+            <?php
+            // Fetch tags associated with the offer
+        $stmt = $conn->prepare("
                 SELECT t.nomTag FROM pact._offre o
                 LEFT JOIN pact._tag_parc tp ON o.idOffre = tp.idOffre
                 LEFT JOIN pact._tag_spec ts ON o.idOffre = ts.idOffre
@@ -261,280 +261,280 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 LEFT JOIN pact._tag t ON t.nomTag = COALESCE(tp.nomTag, ts.nomTag, ta.nomTag, tr.nomTag, tv.nomTag)
                 WHERE o.idOffre = :idoffre
                 ORDER BY o.idOffre");
-                        $stmt->bindParam(':idoffre', $idOffre);
-                        $stmt->execute();
-                        $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->bindParam(':idoffre', $idOffre);
+        $stmt->execute();
+        $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                        if ($typeOffer == "restaurant") {
-                            array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
-                        }
+        if ($typeOffer == "restaurant") {
+            array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
+        }
 
-                        foreach ($tags as $tag):
-                            if ($tag["nomtag"] != NULL) {
-                        ?>
-                                <a class="tag" href="search.php?search=<?= str_replace("_", "+", $tag["nomtag"]) ?>"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
-                            <?php }
-                        endforeach;
+        foreach ($tags as $tag):
+            if ($tag["nomtag"] != NULL) {
+        ?>
+                <a class="tag" href="search.php?search=<?= str_replace("_", "+", $tag["nomtag"]) ?>"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
+            <?php }
+        endforeach;
 
-                        if ($ouvert == "EstOuvert") {
-                            ?>
-                            <a class="ouvert" href="search.php?search=ouvert">Ouvert</a>
-                        <?php
-                        } else if ($ouvert == "EstFermé") {
-                        ?>
-                            <a class="ferme" href="search.php?search=ferme">Fermé</a>
-                        <?php
-                        }
-                        ?>
+        if ($ouvert == "EstOuvert") {
+            ?>
+            <a class="ouvert" href="search.php?search=ouvert">Ouvert</a>
+        <?php
+        } else if ($ouvert == "EstFermé") {
+        ?>
+            <a class="ferme" href="search.php?search=ferme">Fermé</a>
+        <?php
+        }
+        ?>
 
+    </div>
+
+    <div id="infoPro">
+        <?php
+        $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
+        $stmt->execute();
+        $tel = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        if ($offre[0]['ville'] && $offre[0]['pays'] && $offre[0]['codepostal']) {
+        ?>
+            <div>
+                <img src="./img/icone/lieu.png">
+                <a href="https://www.google.com/maps?q=<?php echo urlencode($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?></a>
+            </div>
+
+        <?php
+        }
+        if ($offre[0]["telephone"] && $tel["affiche"] == TRUE) {
+        ?>
+            <div>
+                <img src="./img/icone/tel.png">
+                <a href="tel:<?php echo htmlspecialchars($offre[0]["telephone"]); ?>"><?php echo htmlspecialchars($offre[0]["telephone"]); ?></a>
+            </div>
+        <?php
+        }
+        if ($offre[0]["mail"]) {
+        ?>
+            <div>
+                <img src="./img/icone/mail.png">
+                <a href="mailto:<?php echo htmlspecialchars($offre[0]["mail"]); ?>"><?php echo htmlspecialchars($offre[0]["mail"]); ?></a>
+            </div>
+
+        <?php
+        }
+        if ($offre[0]["urlsite"]) {
+        ?>
+            <div>
+                <img src="./img/icone/globe.png">
+                <a href="<?php echo htmlspecialchars($offre[0]["urlsite"]); ?>"><?php echo htmlspecialchars($offre[0]["urlsite"]); ?></a>
+            </div>
+
+        <?php
+        }
+        ?>
+
+    </div>
+
+    <div class="swiper-container">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <?php
+                foreach ($photos as $picture) {
+                ?>
+                    <div class="swiper-slide">
+                        <img src="<?php echo $picture['url']; ?>" />
                     </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
 
-                    <div id="infoPro">
-                        <?php
-                        $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
-                        $stmt->execute();
-                        $tel = $stmt->fetch(PDO::FETCH_ASSOC);
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
 
-
-                        if ($offre[0]['ville'] && $offre[0]['pays'] && $offre[0]['codepostal']) {
-                        ?>
-                            <div>
-                                <img src="./img/icone/lieu.png">
-                                <a href="https://www.google.com/maps?q=<?php echo urlencode($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?></a>
-                            </div>
-
-                        <?php
-                        }
-                        if ($offre[0]["telephone"] && $tel["affiche"] == TRUE) {
-                        ?>
-                            <div>
-                                <img src="./img/icone/tel.png">
-                                <a href="tel:<?php echo htmlspecialchars($offre[0]["telephone"]); ?>"><?php echo htmlspecialchars($offre[0]["telephone"]); ?></a>
-                            </div>
-                        <?php
-                        }
-                        if ($offre[0]["mail"]) {
-                        ?>
-                            <div>
-                                <img src="./img/icone/mail.png">
-                                <a href="mailto:<?php echo htmlspecialchars($offre[0]["mail"]); ?>"><?php echo htmlspecialchars($offre[0]["mail"]); ?></a>
-                            </div>
-
-                        <?php
-                        }
-                        if ($offre[0]["urlsite"]) {
-                        ?>
-                            <div>
-                                <img src="./img/icone/globe.png">
-                                <a href="<?php echo htmlspecialchars($offre[0]["urlsite"]); ?>"><?php echo htmlspecialchars($offre[0]["urlsite"]); ?></a>
-                            </div>
-
-                        <?php
-                        }
-                        ?>
-
-                    </div>
-
-                    <div class="swiper-container">
-                        <div class="swiper mySwiper">
-                            <div class="swiper-wrapper">
-                                <?php
-                                foreach ($photos as $picture) {
-                                ?>
-                                    <div class="swiper-slide">
-                                        <img src="<?php echo $picture['url']; ?>" />
-                                    </div>
-                                <?php
-                                }
-                                ?>
-                            </div>
-                        </div>
-
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                    </div>
-
-                    <div thumbsSlider="" class="swiper myThumbSlider">
-                        <div class="swiper-wrapper">
-                            <?php
-                            foreach ($photos as $picture) {
-                            ?>
-                                <div class="swiper-slide">
-                                    <img src="<?php echo $picture['url']; ?>" />
-                                </div>
-                            <?php
-                            }
-                            ?>
-                        </div>
-                    </div>
-                    <article id="descriptionOffre">
-                        <?php
-                        if (!$avis) {
-                            echo '<p>Pas de note pour le moment</p>';
-                        } else {
-                            $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
-                            $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
-                        ?>
-                            <div class="notation">
-                                <div>
-                                    <?php
-                                    // Étoiles pleines
-                                    for ($i = 1; $i <= $etoilesPleines; $i++) {
-                                        echo '<div class="star pleine"></div>';
-                                    }
-                                    // Étoile partielle
-                                    if ($reste > 0) {
-                                        $pourcentageRempli = $reste * 100; // Pourcentage rempli
-                                        echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
-                                    }
-                                    // Étoiles vides
-                                    for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
-                                        echo '<div class="star vide"></div>';
-                                    }
-                                    ?>
-                                    <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
-                                </div>
-                                <div class="notedetaille">
-                                    <?php
-                                    // Adjectifs pour les notes
-                                    $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
-                                    for ($i = 5; $i >= 1; $i--) {
-                                        // Largeur simulée pour chaque barre en fonction de vos données
-                                        $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
-                                    ?>
-                                        <div class="ligneNotation">
-                                            <span><?= $listNoteAdjectif[$i - 1]; ?></span>
-                                            <div class="barreDeNotationBlanche">
-                                                <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
-                                            </div>
-                                            <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
-                                        </div>
-                                    <?php
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                        <section>
-                            <h3>Description</h3>
-                            <p><?php echo htmlspecialchars($result[0]["description"]); ?></p>
-                        </section>
-                    </article>
-
-
-
-                    <section id="infoComp">
-                        <h2>Informations Complémentaires</h2>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th colspan="2">Horaires</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                // Tableau de tous les jours de la semaine
-                                $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-
-                                // Afficher les horaires pour chaque jour de la semaine
-                                foreach ($joursSemaine as $jour): ?>
-                                    <tr>
-                                        <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
-                                        <td>
-                                            <?php
-                                            $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
-                                            $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
-
-                                            // Collect hours
-                                            $horairesAffichage = [];
-                                            if (!empty($horaireMidi)) {
-                                                $horairesAffichage[] = htmlspecialchars(current($horaireMidi)['heureouverture']) . " à " . htmlspecialchars(current($horaireMidi)['heurefermeture']);
-                                            }
-                                            if (!empty($horaireSoir)) {
-                                                $horairesAffichage[] = htmlspecialchars(current($horaireSoir)['heureouverture']) . " à " . htmlspecialchars(current($horaireSoir)['heurefermeture']);
-                                            }
-                                            if (empty($horaireMidi) && empty($horaireSoir)) {
-                                                $horairesAffichage[] = "Fermé";
-                                            }
-                                            echo implode(' et ', $horairesAffichage);
-                                            ?>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </section>
-                    <!-- Carte Google Maps -->
-                    <div id="afficheLoc">
-                        <div id="carte"></div>
-                        <div id="contact-info">
-                            <?php
-                            if ($offre[0]['ville'] && $offre['codepostal'] && $offre[0]['pays']) {
-                            ?>
-                                <div>
-                                    <img src="./img/icone/lieu.png">
-                                    <a href="https://www.google.com/maps?q=<?php echo urlencode($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?></a>
-                                </div>
-
-                            <?php
-                            }
-                            if ($offre[0]["telephone"] && $tel["affiche"] == TRUE) {
-                            ?>
-                                <div>
-                                    <img src="./img/icone/tel.png">
-                                    <a href="tel:<?php echo htmlspecialchars($offre[0]["telephone"]); ?>"><?php echo htmlspecialchars($offre[0]["telephone"]); ?></a>
-                                </div>
-                            <?php
-                            }
-                            if ($offre[0]["mail"]) {
-                            ?>
-                                <div>
-                                    <img src="./img/icone/mail.png">
-                                    <a href="mailto:<?php echo htmlspecialchars($offre[0]["mail"]); ?>"><?php echo htmlspecialchars($offre[0]["mail"]); ?></a>
-                                </div>
-
-                            <?php
-                            }
-                            if ($offre["urlsite"]) {
-                            ?>
-                                <div>
-                                    <img src="./img/icone/globe.png">
-                                    <a href="<?php echo htmlspecialchars($offre[0]["urlsite"]); ?>"><?php echo htmlspecialchars($offre[0]["urlsite"]); ?></a>
-                                </div>
-
-                            <?php
-                            }
-                            ?>
-                        </div>
-                    </div>
-
-
+    <div thumbsSlider="" class="swiper myThumbSlider">
+        <div class="swiper-wrapper">
+            <?php
+            foreach ($photos as $picture) {
+            ?>
+                <div class="swiper-slide">
+                    <img src="<?php echo $picture['url']; ?>" />
+                </div>
+            <?php
+            }
+            ?>
+        </div>
+    </div>
+    <article id="descriptionOffre">
+        <?php
+        if (!$avis) {
+            echo '<p>Pas de note pour le moment</p>';
+        } else {
+            $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
+            $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
+        ?>
+            <div class="notation">
+                <div>
                     <?php
-                    if ($typeOffer == "parcs_attractions") {
+                    // Étoiles pleines
+                    for ($i = 1; $i <= $etoilesPleines; $i++) {
+                        echo '<div class="star pleine"></div>';
+                    }
+                    // Étoile partielle
+                    if ($reste > 0) {
+                        $pourcentageRempli = $reste * 100; // Pourcentage rempli
+                        echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
+                    }
+                    // Étoiles vides
+                    for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
+                        echo '<div class="star vide"></div>';
+                    }
                     ?>
-                        <img src="<?php echo $result[0]["urlplan"] ?>">
+                    <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
+                </div>
+                <div class="notedetaille">
+                    <?php
+                    // Adjectifs pour les notes
+                    $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
+                    for ($i = 5; $i >= 1; $i--) {
+                        // Largeur simulée pour chaque barre en fonction de vos données
+                        $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
+                    ?>
+                        <div class="ligneNotation">
+                            <span><?= $listNoteAdjectif[$i - 1]; ?></span>
+                            <div class="barreDeNotationBlanche">
+                                <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
+                            </div>
+                            <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
+                        </div>
                     <?php
                     }
-
-                    if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
-                        require_once __DIR__ . "/components/avis/avisPro.php";
-                    } else {
                     ?>
-                        <div class="avis">
-                            <nav>
-                                <h3>Avis</h3>
-                                <h3>Publiez un avis</h3>
-                            </nav>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
+        <section>
+            <h3>Description</h3>
+            <p><?php echo htmlspecialchars($result[0]["description"]); ?></p>
+        </section>
+    </article>
 
-                        <?php
-                        echo "<div>";
-                        require_once __DIR__ . "/components/avis/avisMembre.php";
-                        echo "</div";
-                    }
-                        ?>
-                        </div>
+
+
+    <section id="infoComp">
+        <h2>Informations Complémentaires</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Horaires</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Tableau de tous les jours de la semaine
+                $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+
+                // Afficher les horaires pour chaque jour de la semaine
+                foreach ($joursSemaine as $jour): ?>
+                    <tr>
+                        <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
+                        <td>
+                            <?php
+                            $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
+                            $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
+
+                            // Collect hours
+                            $horairesAffichage = [];
+                            if (!empty($horaireMidi)) {
+                                $horairesAffichage[] = htmlspecialchars(current($horaireMidi)['heureouverture']) . " à " . htmlspecialchars(current($horaireMidi)['heurefermeture']);
+                            }
+                            if (!empty($horaireSoir)) {
+                                $horairesAffichage[] = htmlspecialchars(current($horaireSoir)['heureouverture']) . " à " . htmlspecialchars(current($horaireSoir)['heurefermeture']);
+                            }
+                            if (empty($horaireMidi) && empty($horaireSoir)) {
+                                $horairesAffichage[] = "Fermé";
+                            }
+                            echo implode(' et ', $horairesAffichage);
+                            ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </section>
+    <!-- Carte Google Maps -->
+    <div id="afficheLoc">
+        <div id="carte"></div>
+        <div id="contact-info">
+            <?php
+            if ($offre[0]['ville'] && $offre['codepostal'] && $offre[0]['pays']) {
+            ?>
+                <div>
+                    <img src="./img/icone/lieu.png">
+                    <a href="https://www.google.com/maps?q=<?php echo urlencode($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($offre["numerorue"] . " " . $offre["rue"] . ", " . $offre["codepostal"] . " " . $offre["ville"]); ?></a>
+                </div>
+
+            <?php
+            }
+            if ($offre[0]["telephone"] && $tel["affiche"] == TRUE) {
+            ?>
+                <div>
+                    <img src="./img/icone/tel.png">
+                    <a href="tel:<?php echo htmlspecialchars($offre[0]["telephone"]); ?>"><?php echo htmlspecialchars($offre[0]["telephone"]); ?></a>
+                </div>
+            <?php
+            }
+            if ($offre[0]["mail"]) {
+            ?>
+                <div>
+                    <img src="./img/icone/mail.png">
+                    <a href="mailto:<?php echo htmlspecialchars($offre[0]["mail"]); ?>"><?php echo htmlspecialchars($offre[0]["mail"]); ?></a>
+                </div>
+
+            <?php
+            }
+            if ($offre["urlsite"]) {
+            ?>
+                <div>
+                    <img src="./img/icone/globe.png">
+                    <a href="<?php echo htmlspecialchars($offre[0]["urlsite"]); ?>"><?php echo htmlspecialchars($offre[0]["urlsite"]); ?></a>
+                </div>
+
+            <?php
+            }
+            ?>
+        </div>
+    </div>
+
+
+    <?php
+    if ($typeOffer == "parcs_attractions") {
+    ?>
+        <img src="<?php echo $result[0]["urlplan"] ?>">
+    <?php
+    }
+
+    if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
+        require_once __DIR__ . "/components/avis/avisPro.php";
+    } else {
+    ?>
+        <div class="avis">
+            <nav>
+                <h3>Avis</h3>
+                <h3>Publiez un avis</h3>
+            </nav>
+
+        <?php
+        echo "<div>";
+        require_once __DIR__ . "/components/avis/avisMembre.php";
+        echo "</div";
+    }
+        ?>
+        </div>
     </main>
     <?php
     require_once "./components/footer.php";
