@@ -186,7 +186,7 @@ if (isset($_POST['pageBefore'])) {
           $anciennesImagesTotal[] = $result["url"];
         }
 
-        
+        print_r($_FILES);
 
 
         $nbNouvellesImages = count($_FILES['images']);

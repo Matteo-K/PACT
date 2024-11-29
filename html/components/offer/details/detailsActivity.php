@@ -23,15 +23,15 @@ if ($categorie["_activite"]) {
 ?>
 
 <section id="activity">
-    <article> <!-- Article pour le placement des elements de gauche-->
 
 
-        <div>
+
+        <div class="divAge">
             <label class="labAgeAct" name="labAgeAct"> Age: </label>
             <input type="number" id="numberAct" name="ageAct" min="0" placeholder="0" />
             <label class="labAnsAct" name="labAgeAct"> Ans </label>
         </div>
-        <div>
+        <div class="presta">
             <label>Prestation(s)</label>
 
             <textarea name="textPrestationsAct" id="textePrestation" placeholder="Entrer une prestation "></textarea>
@@ -41,43 +41,43 @@ if ($categorie["_activite"]) {
 
         </div>
 
-    </article>
 
-    <article>
 
-        <div>
+        <div class="divP">
             <label>Prix minimum</label>
 
 
             <input type="number" id="PrixMinAct" name="PrixMinAct" min="0" placeholder="0">
-
+            <label>€</label>
 
         </div>
-        <div>
+        <!-- Partie accéssibilité à modifiier avec la bdd a jour -->
+        <div class="access">
             <label id="labAccess">Accessibilité</label> <!-- Label Accessibilité -->
 
 
-
-            <input type="radio" id="Acces" name="Accessibilite" value="Acces" checked>
-            <!-- Bouton radio pour le choix de l'accesibilite PMR il est lier avec le 2eme et est selectionner par defaut -->
-            <label for="Acces"> Accès personne handicapées</label>
-            <!-- Label associé au bouton radio -->
-
-            <input type="radio" id="pasAcces" name="Accessibilite" value="pasAcces">
-            <!-- 2eme bouton radio liés au 1er via l'id -->
-            <label for="pasAcces"> Pas d’accès personne handicapées </label>
-            <!-- Label du 2eme bouton radio -->
-
+            <div class="acces1">
+                <input type="radio" id="Acces" name="Accessibilite" value="Acces" checked>
+                <!-- Bouton radio pour le choix de l'accesibilite PMR il est lier avec le 2eme et est selectionner par defaut -->
+                <label for="Acces"> Accès personne handicapées</label>
+                <!-- Label associé au bouton radio -->
+            </div>
+            <div class="access1">
+                <input type="radio" id="pasAcces" name="Accessibilite" value="pasAcces">
+                <!-- 2eme bouton radio liés au 1er via l'id -->
+                <label for="pasAcces"> Pas d’accès personne handicapées </label>
+                <!-- Label du 2eme bouton radio -->
+            </div>
         </div>
 
 
-    </article>
-    <article>
+    
+    
         <div>
             <label class="labDuréeAct" name="labDuréeAct"> Durée: </label>
             <input type="number" id="numberAct" name="duréeAct" placeholder="0" />
             <label class="labHAct" name="labHAct"> H </label>
 
         </div>
-    </article>
+    
 </section>

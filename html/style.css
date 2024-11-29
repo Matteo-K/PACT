@@ -2853,7 +2853,13 @@ tbody td:last-child {
 
 /** Avis PRO **/
 
-#avisproS1, #avisproS2{
+#avisPro{
+  display: flex;
+  flex-wrap: nowrap;
+  border-bottom: 2px solid black;
+}
+
+#avisPro section{
   width: 45%;
 }
 
@@ -3337,6 +3343,30 @@ tbody td:last-child {
 /* CSS pour le détails d'une offre de type Visite */
 #visit>div[class="visGuideeEtDuree"] {
   margin-bottom: 15px;
+}
+/* CSS pour le détails d'une offre de type Activité */
+
+#activity{
+  background-color: pink;
+}
+#activity>div[class="divAge"]{
+  margin-bottom: 15px;
+}
+
+#activity >div[class="presta"]{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+#activity>div[class="access"]{
+  display: flex;
+  flex-direction: column;
+
+}
+#activity >div[class="access"]>div[class="access1"]{
+  display: flex;
+  flex-direction: row;
 }
 
 #visit>div[class="visGuideeEtDuree"]>label[class="labDureeVis"] {
