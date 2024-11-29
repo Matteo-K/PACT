@@ -2879,6 +2879,10 @@ tbody td:last-child {
   width: 45%;
 }
 
+#avisPro section h2{
+  text-align: center;
+}
+
 .triangle{
   font-size: 20px;
   margin-left: 10px;
@@ -2902,10 +2906,10 @@ tbody td:last-child {
 #avisproS2 > div{
   width: 90%;
   background-color: var(--primary60);
-  text-align: center;
 }
 
 .nonLu {
+  display: inline-block;
   width: 17px; 
   height: 17px; 
   background-color: var(--accent); 
@@ -2913,6 +2917,7 @@ tbody td:last-child {
 }
 
 .nonRepondu {
+  display: inline-block;
   width: 25px; /* largeur de la bulle */
   height: 20px; /* hauteur de la bulle */
   border: none; /* pas de contour */
