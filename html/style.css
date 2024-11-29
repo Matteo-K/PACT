@@ -2893,17 +2893,17 @@ tbody td:last-child {
 }
 
 .nonLu {
-  width: 10px; 
-  height: 10px; 
+  width: 15px; 
+  height: 15px; 
   background-color: var(--accent); 
   border-radius: 50%; 
 }
 
 .nonRepondu {
-  width: 20px; /* largeur de la bulle */
-  height: 15px; /* hauteur de la bulle */
+  width: 25px; /* largeur de la bulle */
+  height: 20px; /* hauteur de la bulle */
   border: none; /* pas de contour */
-  border-radius: 3px; /* coins arrondis */
+  border-radius: 2px; /* coins arrondis */
   position: relative; /* nécessaire pour positionner la pointe */
   background-color: var(--primary); /* couleur de fond */
 }
@@ -2917,7 +2917,7 @@ tbody td:last-child {
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 5px 0 0 5px; /* dimensions de la pointe */
+  border-width: 7px 0 0 7px; /* dimensions de la pointe */
   border-color: transparent transparent transparent var(--primary); /* couleur de la pointe */
 }
 
