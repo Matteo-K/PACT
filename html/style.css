@@ -2872,11 +2872,13 @@ tbody td:last-child {
 #avisPro h2{
   font-weight: 600 ;
   font-size: 2.2em;
+  margin: 20px;
 }
 
 #avisPro h3 {
   font-weight: 500 ;
   font-size: 1.7em;
+  margin-top: 10px;
 }
 
 #avisPro section{
@@ -2885,6 +2887,7 @@ tbody td:last-child {
 
 #avisPro section h2{
   text-align: center;
+  margin-top: 0px;
 }
 
 .triangle{
@@ -2910,6 +2913,7 @@ tbody td:last-child {
 #avisproS2 > div{
   width: 90%;
   background-color: var(--primary60);
+  border-radius: 20px;
 }
 
 .nonLu {
@@ -2965,6 +2969,10 @@ tbody td:last-child {
   align-items: center;
 }
 
+.notation > div > p{
+  font-weight: 600;
+}
+
 
 .notedetaille .ligneNotation {
   display: flex;
@@ -2974,6 +2982,7 @@ tbody td:last-child {
 
 .ligneNotation>span {
   width: 10em;
+  font-weight: 600;
 }
 
 .notedetaille .barreDeNotationBlanche {
