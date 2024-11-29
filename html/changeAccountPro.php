@@ -5,17 +5,17 @@
     // Connexion à la base de données
     require_once 'db.php';
 
-    var_dump($_SESSION['idU']);
+    var_dump($_SESSION['idUser']);
 
     // Vérifier si l'utilisateur est connecté
-    if (!isset($_SESSION['idU'])) {
+    if (!isset($_SESSION['idUser'])) {
         // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
         header("Location: login.php");
         exit();
     }
 
     // Récupérer l'ID de l'utilisateur connecté
-    $userId = $_SESSION['idU'];
+    $userId = $_SESSION['idUser'];
 
 
     try {
