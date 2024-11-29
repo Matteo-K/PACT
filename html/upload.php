@@ -1,5 +1,5 @@
 <?php
-$uploadDir = './img/imageOffre/';
+$uploadDir = 'uploads/';
 $response = [];
 
 // Vérifiez si l'idOffre est défini
@@ -18,30 +18,50 @@ if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 
-// Fonction pour réindexer les fichiers dans le dossier
-function reindexFiles($directory) {
+function getMaxIndex($directory) {
     $files = array_values(array_diff(scandir($directory), ['.', '..']));
-    sort($files); // Tri pour garantir un ordre cohérent
-    $index = 0;
+    $maxIndex = 0;
 
     foreach ($files as $file) {
-        $newName = $index . ".jpg";
-        rename($directory . $file, $directory . $newName);
-        $index++;
+        $matches = [];
+        if (preg_match('/^(\d+)\.(jpg|jpeg|png|gif)$/i', $file, $matches)) {
+            $maxIndex = max($maxIndex, (int)$matches[1]);
+        }
     }
+
+    return $maxIndex;
 }
+
+// Vérifier si le dossier existe et récupérer les fichiers existants
+function getExistingFiles($directory) {
+    return array_values(array_diff(scandir($directory), ['.', '..']));
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Action pour l'upload
     if ($_POST['action'] === 'upload') {
+        $existingFiles = getExistingFiles($uploadDir);
+        $imageCount = count($existingFiles);
+
         if (!empty($_FILES['images']['name'][0])) {
             foreach ($_FILES['images']['tmp_name'] as $key => $tmpName) {
-                $fileName = count(scandir($uploadDir)) - 2 . ".jpg"; // Utilise le prochain index disponible
+                if ($imageCount >= 10) {
+                    $response[] = ['error' => "Limite maximale de $imageCount images atteinte."];
+                    break;
+                }
+
+                $maxIndex = getMaxIndex($uploadDir);
+                $newIndex = $maxIndex + 1;
+
+                $extension = pathinfo($_FILES['images']['name'][$key], PATHINFO_EXTENSION);
+                $fileName = $newIndex . '.' . strtolower($extension);
                 $targetFile = $uploadDir . $fileName;
 
                 if (getimagesize($tmpName)) {
                     if (move_uploaded_file($tmpName, $targetFile)) {
                         $response[] = ['success' => "Fichier $fileName téléchargé avec succès."];
+                        $imageCount++;
                     } else {
                         $response[] = ['error' => "Erreur lors du téléchargement de $fileName."];
                     }
@@ -58,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileToDelete = $uploadDir . basename($_POST['fileName']);
         if (file_exists($fileToDelete)) {
             if (unlink($fileToDelete)) {
-                reindexFiles($uploadDir); // Réindexe les fichiers après suppression
+                
                 $response[] = ['success' => "Fichier supprimé : " . $_POST['fileName']];
             } else {
                 $response[] = ['error' => "Erreur lors de la suppression du fichier " . $_POST['fileName']];
@@ -67,15 +87,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $response[] = ['error' => "Fichier non trouvé : " . $_POST['fileName']];
         }
     }    
-} elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Action pour lister les images existantes
+} // Action pour lister les images existantes
+elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (is_dir($uploadDir)) {
         $images = array_values(array_diff(scandir($uploadDir), ['.', '..']));
+        
+        // Applique un tri naturel
+        natsort($images);
+
+        // Réindexe les clés du tableau après le tri
+        $images = array_values($images);
+
         $response = ['images' => $images];
     } else {
         $response = ['images' => []];
     }
 }
+
 
 header('Content-Type: application/json');
 echo json_encode($response);

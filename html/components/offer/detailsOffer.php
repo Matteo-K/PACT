@@ -273,19 +273,19 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         // js de gabriel pour les images test
 
         let existingImagesCount = 0; // Compteur des images existantes sur le serveur
-        const idOffre = <?php echo $idOffre ?>; // ID de l'offre, à remplacer par une valeur dynamique si nécessaire
+        const idOffre = '3'; // ID de l'offre, à remplacer par une valeur dynamique si nécessaire
 
         // Fonction pour charger les images existantes
         // Fonction pour charger les images existantes
         function loadExistingImages() {
-            fetch('./upload.php?idOffre=' + idOffre)
+            fetch('upload.php?idOffre=' + idOffre)
                 .then(response => response.json())
                 .then(data => {
                     const existingPreview = document.getElementById('afficheImages');
                     existingPreview.innerHTML = ""; // Réinitialise la liste
                     data.images.forEach((image, index) => {
                         const img = document.createElement('img');
-                        img.src = `./img/imageOffre/${idOffre}/${image}`;
+                        img.src = `uploads/${idOffre}/${image}`;
                         img.alt = image;
                         img.title = `Cliquez pour supprimer ${image}`;
                         img.style.cursor = 'pointer';
@@ -314,7 +314,7 @@ function deleteImage(fileName, imgElement, index) {
     imgElement.remove();
 
     // Faire la requête de suppression côté serveur
-    fetch('./upload.php', {
+    fetch('upload.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -382,7 +382,7 @@ function deleteImage(fileName, imgElement, index) {
             formData.append('action', 'upload');
             formData.append('idOffre', idOffre);
 
-            fetch('./upload.php', {
+            fetch('upload.php', {
                 method: 'POST',
                 body: formData,
             })
@@ -401,6 +401,8 @@ function deleteImage(fileName, imgElement, index) {
 
         // Charger les images existantes au chargement de la page
         window.onload = loadExistingImages;
+
+        // Rafraîchir la liste manuellement
 
         // Gestion des fichiers sélectionnés (liaison de l'événement onchange)
         document.getElementById('ajoutPhoto').addEventListener('change', function () {
