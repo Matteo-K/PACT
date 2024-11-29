@@ -2730,15 +2730,16 @@ tbody td:last-child {
   height: 2.2em;
 }
 
-.user,
-.noteEtoile,
-.infoUser,
-.infoProReponse,
-.autreInfoAvis {
+.user, .noteEtoile, .infoUser, .infoProReponse > div, .infoProReponse, .autreInfoAvis {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
+}
+
+.user{
+  border-bottom: var(--text-dark80) solid 1px;
 }
 
 .user+article {
@@ -2773,10 +2774,11 @@ tbody td:last-child {
   width: 60%;
 }
 
-.user+article>div>div:nth-child(1)>p+p,  .user +article >div > div:nth-child(2) {
+.user+article>div>div:nth-child(1)>p+p, .user +article >div > div:nth-child(2), .infoProReponse>p {
   font-style: italic;
   font-weight: 300;
 }
+
 
 .user +article >div > div + div{
   margin-bottom: 1.5em;
@@ -2823,6 +2825,9 @@ tbody td:last-child {
   height: 10em;
 }
 
+.infoProReponse {
+  gap: 20px;
+}
 
 .noteEtoile>.star {
   width: 1.2em;
