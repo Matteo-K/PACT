@@ -2848,8 +2848,8 @@ tbody td:last-child {
 }
 
 .messageAvisReponse>div+div>img {
-  height: 10%;
-  width: 10%;
+  height: 5%;
+  width: 5%;
   margin: 0.5em;
   transform: scaleY(-1);
   rotate: -90deg;
