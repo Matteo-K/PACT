@@ -25,7 +25,7 @@ if ($categorie["_activite"]) {
 <section id="activity">
 
 
-
+    
         <div class="divAge">
             <label class="labAgeAct" name="labAgeAct"> Age: </label>
             <input type="number" id="numberAct" name="ageAct" min="0" placeholder="0" />
@@ -41,7 +41,7 @@ if ($categorie["_activite"]) {
 
         </div>
 
-
+    
 
         <div class="divP">
             <label>Prix minimum</label>

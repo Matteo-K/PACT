@@ -3348,6 +3348,8 @@ tbody td:last-child {
 
 #activity{
   background-color: pink;
+  display: flex;
+  flex-direction: row;
 }
 #activity>div[class="divAge"]{
   margin-bottom: 15px;
