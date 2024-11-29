@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ];
     } 
     
-    if (currentFile === 'accountMember.php') {
+    else if (currentFile === 'accountMember.php') {
         fieldsToValidate = [
             { id: 'nomMembre', pattern: /^.+$/, message: 'Le nom est obligatoire.' },
             { id: 'prenomMembre', pattern: /^.+$/, message: 'Le prenom est obligatoire.' },
