@@ -2,8 +2,6 @@
     // Démarrer la session
     session_start();
 
-    var_dump();
-
     // Connexion à la base de données
     require_once 'db.php';
 
