@@ -2742,7 +2742,7 @@ tbody td:last-child {
 }
 
 .user{
-  border-bottom: var(--t) solid 1px;
+  border-bottom: var(--text-dark80) solid 1px;
 }
 
 .user+article {
