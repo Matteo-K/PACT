@@ -2900,25 +2900,27 @@ tbody td:last-child {
 }
 
 .nonRepondu {
-  width: 100px; /* largeur de la bulle */
-  height: 60px; /* hauteur de la bulle */
-  border: 3px solid #333; /* contour de la bulle */
-  border-radius: 15px; /* coins arrondis */
-  position: relative; /* nécessaire pour la pointe */
+  width: 20px; /* largeur de la bulle */
+  height: 15px; /* hauteur de la bulle */
+  border: none; /* pas de contour */
+  border-radius: 3px; /* coins arrondis */
+  position: relative; /* nécessaire pour positionner la pointe */
+  background-color: var(--primary); /* couleur de fond */
 }
 
 /* Pointe de la bulle */
 .nonRepondu::after {
   content: '';
   position: absolute;
-  bottom: -15px; /* positionne la pointe sous la bulle */
-  left: 20px; /* ajuste horizontalement */
+  bottom: -5px; /* place la pointe juste sous la bulle */
+  right: -5px; /* ajuste la pointe pour qu'elle soit dans le coin inférieur droit */
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 15px 12px 0 12px; /* dimensions de la pointe */
-  border-color: #333 transparent transparent transparent; /* couleur du contour */
+  border-width: 5px 0 0 5px; /* dimensions de la pointe */
+  border-color: transparent transparent transparent var(--primary); /* couleur de la pointe */
 }
+
 
 
 
@@ -3303,17 +3305,13 @@ tbody td:last-child {
 }
 
 
-
 /* CSS pour le détails d'une offre de type spectacle */
-#show {
-  align-items: center;
-  /* background-color: yellow;  */
-}
 
-#show>div {
+#show>div ,
+#show>article>div>div ,
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]{
   display: flex;
   flex-direction: row;
-
 }
 
 #show>div>label[class="labelShow1"] {
@@ -3322,24 +3320,14 @@ tbody td:last-child {
 }
 
 
-#show>article>div>div {
-  display: flex;
-  flex-direction: row;
-}
-
 #show>div[class="classDivShow1"] {
 
   display: flex;
   flex-direction: column;
 }
 
-#show>div[class="classDivShow1"]>div>div[class="classDivLigne"] {
-  /* background-color: blueviolet; */
-  display: flex;
-  flex-direction: row;
-}
-
-#show>div>label[class="labelNbPlace"] {
+#show>div>label[class="labelNbPlace"],
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
   margin-right: 5px;
 }
 
@@ -3353,9 +3341,6 @@ tbody td:last-child {
 
 }
 
-#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
-  margin-right: 5px;
-}
 
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"],
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne2"] {
