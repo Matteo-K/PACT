@@ -19,7 +19,7 @@
             <?php
 
                 foreach ($avis as $av) {
-                    echo "<li>" . $a['pseudo'] . " - " . $a['titre'] . "</li>";
+                    echo "<li>" . $av['pseudo'] . " - " . $av['titre'] . "</li>";
                 }
                 ?>
             </ul>
