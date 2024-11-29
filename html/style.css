@@ -2778,7 +2778,7 @@ tbody td:last-child {
   text-align: justify;
 }
 
-.user+article>div>div:nth-child(1)>p+p, .user +article >div > div:nth-child(2), .infoProReponse>p {
+.user+article>div>div:nth-child(1)>p+p, .user +article >div > div:nth-child(2), .autreInfoAvis>p {
   font-style: italic;
   font-weight: 300;
 }
