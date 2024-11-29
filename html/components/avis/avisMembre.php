@@ -127,8 +127,15 @@ foreach ($avis as $a) {
                 <div class="reponseAvis">
                     <div class="user">
                         <div class="infoProReponse">
-                            <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
-                            <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
+                            <div>
+                                <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
+                                <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
+                            </div>
+                            <?php
+                            if (isset($a['reponsedate'])) {
+                                echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
+                            }
+                            ?>
                         </div>
                         <div class="autreInfoAvis">
                             <img src="./img/icone/trois-points.png" alt="icone de parametre">
@@ -138,11 +145,6 @@ foreach ($avis as $a) {
                     <article>
                         <p><?= $a['contenureponse'] ?></p>
                     </article>
-                    <?php
-                    if (isset($a['reponsedate'])) {
-                        echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
-                    }
-                    ?>
                 </div>
             </div>
         <?php
@@ -171,3 +173,4 @@ foreach ($avis as $a) {
         },
     });
 </script>
+<script src="js/setColor.js"></script>

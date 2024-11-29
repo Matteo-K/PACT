@@ -2725,20 +2725,24 @@ tbody td:last-child {
   margin-left: 0.3em;
 }
 
-.user>div>img {
+.user>div img  {
   width: 2.2em;
   height: 2.2em;
 }
 
-.user,
-.noteEtoile,
-.infoUser,
-.infoProReponse,
-.autreInfoAvis {
+.user, .noteEtoile, .infoUser, .infoProReponse > div, .infoProReponse, .autreInfoAvis {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.infoUser, .infoProReponse > div{
+  gap: 12PX;
+}
+
+.user{
+  border-bottom: var(--text-dark80) solid 1px;
 }
 
 .user+article {
@@ -2773,10 +2777,11 @@ tbody td:last-child {
   width: 60%;
 }
 
-.user+article>div>div:nth-child(1)>p+p,  .user +article >div > div:nth-child(2) {
+.user+article>div>div:nth-child(1)>p+p, .user +article >div > div:nth-child(2), .infoProReponse>p {
   font-style: italic;
   font-weight: 300;
 }
+
 
 .user +article >div > div + div{
   margin-bottom: 1.5em;
@@ -2823,6 +2828,9 @@ tbody td:last-child {
   height: 10em;
 }
 
+.infoProReponse {
+  gap: 20px;
+}
 
 .noteEtoile>.star {
   width: 1.2em;
@@ -2913,7 +2921,7 @@ tbody td:last-child {
 
 
 
-/* Fin avis */
+/** Fin avis **/
 
 
 .notation>div {
@@ -3364,15 +3372,68 @@ tbody td:last-child {
 
 }
 
+
+/* CSS pour le détails d'une offre de type Activité */
+
+#activity{
+  background-color: pink;
+}
+#activity>div[class="divAge"]{
+  margin-bottom: 15px;
+}
+
+#activity >div[class="presta"]{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+#activity >div[class="presta"]>textarea,#activity>div[class="presta"]>input[type="button"]{
+  width: 350px;
+  height: 40px;
+}
+#activity>div[class="access"]{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+
+}
+#activity >div[class="access"]>div[class="access1"]{
+  display: flex;
+  flex-direction: row;
+}
+
+#activity >div[class="divP"]{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;   
+}
+
+#activity>div[class="divP"]>div[class="divP1"]{
+  display: flex;
+  flex-direction: row;
+}
+#activity>div[class="divD"]{
+  display: flex;
+  flex-direction: column;
+}
+
+#activity>div[class="divD"]>div[class="divD1"]{
+  display: flex;
+  flex-direction: row;
+}
+
+
+
 /* CSS pour le détails d'une offre de type Visite */
 #visit>div[class="visGuideeEtDuree"] {
   margin-bottom: 15px;
 }
-
 #visit>div[class="visGuideeEtDuree"]>label[class="labDureeVis"] {
   margin-left: 15px;
   margin-right: 5px;
 }
+
 
 #visit>div[class="visGuideeEtDuree"]>label[class="labH"] {
   margin-left: 5px;
