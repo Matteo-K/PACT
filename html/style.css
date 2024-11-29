@@ -3304,9 +3304,6 @@ tbody td:last-child {
 
 
 
-
-
-
 /* CSS pour le détails d'une offre de type spectacle */
 #show {
   align-items: center;
@@ -3360,13 +3357,12 @@ tbody td:last-child {
   margin-right: 5px;
 }
 
-#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"] {
-  margin-left: 5px;
-}
-
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"],
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne2"] {
   margin-left: 5px;
 }
+
+
 
 #show>div[class="classDivShow1"]>label {
   margin-top: 5px;
@@ -3376,10 +3372,10 @@ tbody td:last-child {
 
 /* CSS pour le détails d'une offre de type Activité */
 
-#activity{
+/* #activity{
   background-color: pink;
-}
-#activity>div[class="divAge"]{
+} */
+#activity>div[class="divAge"],#activity >div[class="presta"]>textarea,#activity>div[class="presta"]{
   margin-bottom: 15px;
 }
 
@@ -3393,6 +3389,9 @@ tbody td:last-child {
   width: 350px;
   height: 40px;
 }
+
+
+
 #activity>div[class="access"]{
   display: flex;
   flex-direction: column;
