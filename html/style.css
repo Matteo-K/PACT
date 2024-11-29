@@ -2857,11 +2857,16 @@ tbody td:last-child {
 
 /** Avis PRO **/
 
-#avisPro{
+#avisPro {
   display: flex;
   flex-wrap: nowrap;
   border-bottom: 2px solid black;
   width: 100%;
+  margin: 50px 0;
+}
+
+#avisPro h2, #avisPro h3 {
+  font-weight: 400 ;
 }
 
 #avisPro section{
@@ -2893,8 +2898,8 @@ tbody td:last-child {
 }
 
 .nonLu {
-  width: 15px; 
-  height: 15px; 
+  width: 17px; 
+  height: 17px; 
   background-color: var(--accent); 
   border-radius: 50%; 
 }

@@ -24,15 +24,15 @@
                 Nombre d'avis
             </h2>
 
-            <h4>
+            <h3>
                 <div class="nonLu"></div>
                 Non lus
-            </h4>
+            </h3>
 
-            <h4>
+            <h3>
                 <div class="nonRepondu"></div>
                 Non répondus
-            </h4>
+            </h3>
             
         </div>
 
