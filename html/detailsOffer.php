@@ -300,7 +300,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
             <div>
                 <img src="./img/icone/lieu.png">
-                <a href="https://www.google.com/maps?q=<?php echo urlencode($result["numerorue"] . " " . $result["rue"] . ", " . $result["codepostal"] . " " . $result["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result["numerorue"] . " " . $result["rue"] . ", " . $result["codepostal"] . " " . $result["ville"]); ?></a>
+                <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
             </div>
 
         <?php
@@ -475,7 +475,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
                 <div>
                     <img src="./img/icone/lieu.png">
-                    <a href="https://www.google.com/maps?q=<?php echo urlencode($result["numerorue"] . " " . $result["rue"] . ", " . $result["codepostal"] . " " . $result["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result["numerorue"] . " " . $result["rue"] . ", " . $result["codepostal"] . " " . $result["ville"]); ?></a>
+                    <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
                 </div>
 
             <?php
@@ -497,7 +497,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <?php
             }
-            if ($result["urlsite"]) {
+            if ($result[0]["urlsite"]) {
             ?>
                 <div>
                     <img src="./img/icone/globe.png">
