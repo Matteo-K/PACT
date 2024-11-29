@@ -470,8 +470,8 @@ CREATE TABLE _avisImage(
 
 CREATE TABLE _dateOption(
   idOption SERIAL PRIMARY KEY,
-  dateLancement DATE NOT NULL,
-  dateFin DATE NOT NULL,
+  dateLancement DATE,
+  dateFin DATE,
   duree INT NOT NULL,
   prix INT NOT NULL
 );
