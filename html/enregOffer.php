@@ -111,6 +111,12 @@ if (isset($_POST['pageBefore'])) {
         $categorie = $_POST["categorie"];
 
 
+
+        // Il reste plus qu'a ajoute les images dans la BDD EWEN donc prends les images directement dans le dossier
+        // Les images sont nommer par un nombre unique donc ne changerons jamais ca va etre plus simple avec la bdd pour les supprimer
+        // Et on a plus le probleme des images qui se supprime pas 
+
+
         // Traitement des images
         $dossierTemp = "./img/tempImage/";
         $dossierImg = "./img/imageOffre/";
