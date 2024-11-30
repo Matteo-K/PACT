@@ -368,7 +368,7 @@ VALUES (5, 'Français'),
        (5, 'Anglais');
    
 INSERT INTO _menu(idOffre, menu)
-VALUES (3,'./img/3-menu.png');
+VALUES (3,'./img/imageMenu/3/0.png');
 
 INSERT INTO _commentaire (idU,content,datePublie)
 VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.',CURRENT_TIMESTAMP),
