@@ -186,14 +186,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                     $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
                     $cook->execute();
-                    $result = $cook->fetchAll(PDO::FETCH_ASSOC);
+                    $resultbtn = $cook->fetchAll(PDO::FETCH_ASSOC);
                 ?>
-                    <h3 class="Enligne"><?php echo $result[0]['statut'] ?></h3>
+                    <h3 class="Enligne"><?php echo $resultbtn[0]['statut'] ?></h3>
 
                     <div class="buttonDetails">
                         <?php
                         $affiche = false;
-                        foreach ($result[0] as $key => $value) {
+                        foreach ($resultbtn[0] as $key => $value) {
                             if ($value == NULL) {
                                 $affiche = true;
                             }
@@ -245,12 +245,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             }
                         }
                         if (!$affiche) {
-                            $statutActuel = $result[0]['statut'];
+                            $statutActuel = $resultbtn[0]['statut'];
                         ?>
 
                             <form method="post" action="changer_statut.php">
                                 <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
-                                <input type="hidden" name="offre_id" value="<?php echo $result[0]['idoffre']; ?>">
+                                <input type="hidden" name="offre_id" value="<?php echo $resultbtn[0]['idoffre']; ?>">
                                 <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
                                 <button class="modifierBut" type="submit">
                                     <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
@@ -262,14 +262,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="form-container">
                             <form method="post" action="manageOffer.php">
-                                <input type="hidden" name="idOffre" value="<?php echo $result[0]['idoffre']; ?>">
+                                <input type="hidden" name="idOffre" value="<?php echo $resultbtn[0]['idoffre']; ?>">
                                 <input type="hidden" name="page" value="2">
                                 <button
-                                    class="modifierBut <?php echo $result[0]['statut'] === 'actif' ? 'disabled' : ''; ?>"
+                                    class="modifierBut <?php echo $resultbtn[0]['statut'] === 'actif' ? 'disabled' : ''; ?>"
                                     type="submit"
                                     onmouseover="showMessage(event)"
                                     onmouseout="hideMessage(event)"
-                                    <?php if ($result[0]['statut'] === 'actif') { ?>
+                                    <?php if ($resultbtn[0]['statut'] === 'actif') { ?>
                                     onclick="return false;"
                                     <?php } ?>>
                                     <?php echo "Modifier offre"; ?>
@@ -288,7 +288,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                     </div>
             </fieldset>
-            <?php if ($result[0]['statut'] === 'actif') { ?>
+            <?php if ($resultbtn[0]['statut'] === 'actif') { ?>
                 <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }
         }

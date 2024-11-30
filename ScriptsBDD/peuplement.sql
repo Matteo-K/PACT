@@ -180,34 +180,38 @@ VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attracti
 -- Peuplement de la table _image
 INSERT INTO _image (url, nomImage) 
 VALUES ('./img/profile_picture/default.svg', 'default.svg'), 
-       ('./img/imageOffre/3-0.png', 'laPotiniere0'),
-       ('./img/imageOffre/3-1.png', 'laPotiniere1'),
-       ('./img/imageOffre/3-2.png', 'laPotiniere2'),
-       ('./img/imageOffre/3-3.png', 'laPotiniere3'),
-       ('./img/imageOffre/3-4.png', 'laPotiniere4'),
-       ('./img/imageOffre/4-0.png', 'activite4'),
-       ('./img/imageOffre/1-0.png', 'parc0'),
-       ('./img/imageOffre/1-1.png', 'parc1'),
-       ('./img/imageOffre/1-2.png', 'parc2'),
-       ('./img/imageOffre/2-0.png', 'spectacle0'),
-       ('./img/imageOffre/5-0.png', 'visite0'),
-       ('./img/imageAvis/1-0.png','Avis1-0'),
-       ('./img/imageAvis/3-0.png','Avis3-0'),
-       ('./img/imageAvis/7-0.png','Avis7-0');
+       ('./img/imageOffre/3/0.png', 'laPotiniere0'),
+       ('./img/imageOffre/3/1.png', 'laPotiniere1'),
+       ('./img/imageOffre/3/2.png', 'laPotiniere2'),
+       ('./img/imageOffre/3/3.png', 'laPotiniere3'),
+       ('./img/imageOffre/3/4.png', 'laPotiniere4'),
+       ('./img/imageOffre/4/0.png', 'activite4'),
+       ('./img/imageOffre/1/0.png', 'parc0'),
+       ('./img/imageOffre/1/1.png', 'parc1'),
+       ('./img/imageOffre/1/2.png', 'parc2'),
+       ('./img/imageOffre/2/0.png', 'spectacle0'),
+       ('./img/imageOffre/5/0.png', 'visite0'),
+       ('./img/imageOffre/5/1.png', 'visite0'),
+       ('./img/imageOffre/5/2.png', 'visite0'),
+       ('./img/imageAvis/1/0.png','Avis1-0'),
+       ('./img/imageAvis/3/0.png','Avis3-0'),
+       ('./img/imageAvis/7/0.png','Avis7-0');
   
 -- Peuplement de la table _illustre
 INSERT INTO _illustre (idOffre, url) 
-VALUES (3, './img/imageOffre/3-0.png'),
-       (3, './img/imageOffre/3-1.png'),
-       (3, './img/imageOffre/3-2.png'),
-       (3, './img/imageOffre/3-3.png'),
-       (3, './img/imageOffre/3-4.png'),
-       (1, './img/imageOffre/1-0.png'),
-       (1, './img/imageOffre/1-1.png'),
-       (1, './img/imageOffre/1-2.png'),
-       (2, './img/imageOffre/2-0.png'),
-       (4, './img/imageOffre/4-0.png'),
-       (5, './img/imageOffre/5-0.png');
+VALUES (3, './img/imageOffre/3/0.png'),
+       (3, './img/imageOffre/3/1.png'),
+       (3, './img/imageOffre/3/2.png'),
+       (3, './img/imageOffre/3/3.png'),
+       (3, './img/imageOffre/3/4.png'),
+       (1, './img/imageOffre/1/0.png'),
+       (1, './img/imageOffre/1/1.png'),
+       (1, './img/imageOffre/1/2.png'),
+       (2, './img/imageOffre/2/0.png'),
+       (4, './img/imageOffre/4/0.png'),
+       (5, './img/imageOffre/5/0.png'),
+       (5,'./img/imageOffre/5/1.png'),
+       (5,'./img/imageOffre/5/2.png');
 
 -- Peuplement de la table _photo_profil
 INSERT INTO _photo_profil (idU, url) 
@@ -368,7 +372,7 @@ VALUES (5, 'Français'),
        (5, 'Anglais');
    
 INSERT INTO _menu(idOffre, menu)
-VALUES (3,'./img/3-menu.png');
+VALUES (3,'./img/imageMenu/3/0.png');
 
 INSERT INTO _commentaire (idU,content,datePublie)
 VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.',CURRENT_TIMESTAMP),
@@ -403,9 +407,9 @@ VALUES (11,3),
        (13,9);
        
 INSERT INTO _avisImage(idC,url)
-VALUES (1,'./img/imageAvis/1-0.png'),
-       (3,'./img/imageAvis/3-0.png'),
-       (7,'./img/imageAvis/7-0.png');
+VALUES (1,'./img/imageAvis/1/0.png'),
+       (3,'./img/imageAvis/3/0.png'),
+       (7,'./img/imageAvis/7/0.png');
        
 INSERT INTO _historiqueStatut(idOffre,dateLancement,dureeEnLigne)
 VALUES (1,'2024-11-01',6),

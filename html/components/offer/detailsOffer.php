@@ -314,7 +314,7 @@ function deleteImage(fileName, imgElement, index) {
     imgElement.remove();
 
     // Faire la requête de suppression côté serveur
-    fetch('upload.php', {
+    fetch('./upload.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -382,7 +382,7 @@ function deleteImage(fileName, imgElement, index) {
             formData.append('action', 'upload');
             formData.append('idOffre', idOffre);
 
-            fetch('upload.php', {
+            fetch('./upload.php', {
                 method: 'POST',
                 body: formData,
             })
