@@ -444,10 +444,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
                         <td>
                             <?php
-                            // Horaires midi et soir pour chaque jour
-                            $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
-                            $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
-                            $horaireSpectacle = array_filter($schedules['spectacle'], fn($h) => $h['jour'] === $jour);
+                            // Vérifier si les horaires sont bien des tableaux, sinon initialiser des tableaux vides
+                            $horaireMidi = isset($schedules['midi']) ? array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour) : [];
+                            $horaireSoir = isset($schedules['soir']) ? array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour) : [];
+                            $horaireSpectacle = isset($schedules['spectacle']) ? array_filter($schedules['spectacle'], fn($h) => $h['jour'] === $jour) : [];
 
                             // Collecter les horaires à afficher
                             $horairesAffichage = [];
@@ -480,6 +480,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </tbody>
         </table>
+
 
     </section>
     <!-- Carte Google Maps -->
