@@ -18,26 +18,25 @@ $stmt->execute();
 $offre = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
+// Rechercher l'offre dans les parcs d'attractions
+$stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
+$stmt->bindParam(':idoffre', $idOffre);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 // Fonction pour récupérer les horaires
 function getSchedules($conn, $idOffre)
 {
+    global $result;
     $schedules = [
         'midi' => [],
         'soir' => [],
         'spectacle' => []
     ];
-
-    // Récupérer les horaires du midi, du soir et les spectacles
-    $stmt = $conn->prepare("SELECT horaires_midi, horaires_soir, horaires_spectacle FROM pact.offre WHERE idOffre = :idOffre");
-    $stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
-    $stmt->execute();
-    
-    // Récupérer les résultats sous forme de tableau associatif
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
     
     // Décoder les horaires midi et soir en JSON
-    $schedules['midi'] = json_decode($row['horaires_midi'], true);
-    $schedules['soir'] = json_decode($row['horaires_soir'], true);
+    $schedules['midi'] = json_decode($result[0]['horaires_midi'], true);
+    $schedules['soir'] = json_decode($result[0]['horaires_soir'], true);
 
     // Si l'offre est un spectacle, récupérer et décoder les horaires spécifiques aux spectacles
     if (isset($row['horaires_spectacle']) && !empty($row['horaires_spectacle'])) {
@@ -49,13 +48,6 @@ function getSchedules($conn, $idOffre)
 
 // Récupérer les horaires pour l'offre
 $schedules = getSchedules($conn, $idOffre);
-
-
-// Rechercher l'offre dans les parcs d'attractions
-$stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
-$stmt->bindParam(':idoffre', $idOffre);
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!$result) {
 ?>
