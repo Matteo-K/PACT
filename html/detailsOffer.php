@@ -766,7 +766,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
               closeModal(); // Fermer la fenêtre modale après soumission
             }
         } catch (error) {
-            
+            console.log(error)
         }
 
         let map;
