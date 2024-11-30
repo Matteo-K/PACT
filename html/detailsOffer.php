@@ -23,25 +23,33 @@ function getSchedules($conn, $idOffre)
 {
     $schedules = [
         'midi' => [],
-        'soir' => []
+        'soir' => [],
+        'spectacle' => []
     ];
 
-    // Récupérer les horaires du midi et du soir
-    $stmtMidi = $conn->prepare("SELECT * FROM pact._horaireMidi WHERE idOffre = :idOffre");
-    $stmtMidi->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
-    $stmtMidi->execute();
-    $schedules['midi'] = $stmtMidi->fetchAll(PDO::FETCH_ASSOC);
+    // Récupérer les horaires du midi, du soir et les spectacles
+    $stmt = $conn->prepare("SELECT horaires_midi, horaires_soir, horaires_spectacle FROM pact.offre WHERE idOffre = :idOffre");
+    $stmt->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    // Récupérer les résultats sous forme de tableau associatif
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    // Décoder les horaires midi et soir en JSON
+    $schedules['midi'] = json_decode($row['horaires_midi'], true);
+    $schedules['soir'] = json_decode($row['horaires_soir'], true);
 
-    $stmtSoir = $conn->prepare("SELECT * FROM pact._horaireSoir WHERE idOffre = :idOffre");
-    $stmtSoir->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
-    $stmtSoir->execute();
-    $schedules['soir'] = $stmtSoir->fetchAll(PDO::FETCH_ASSOC);
+    // Si l'offre est un spectacle, récupérer et décoder les horaires spécifiques aux spectacles
+    if (isset($row['horaires_spectacle']) && !empty($row['horaires_spectacle'])) {
+        $schedules['spectacle'] = json_decode($row['horaires_spectacle'], true);
+    }
 
     return $schedules;
 }
 
-// Récupérer les horaires
+// Récupérer les horaires pour l'offre
 $schedules = getSchedules($conn, $idOffre);
+
 
 // Rechercher l'offre dans les parcs d'attractions
 $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
@@ -435,7 +443,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </thead>
             <tbody>
                 <?php
-                // Tableau de tous les jours de la semaine
+                // Tableau des jours de la semaine
                 $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
                 // Afficher les horaires pour chaque jour de la semaine
@@ -444,20 +452,35 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
                         <td>
                             <?php
+                            // Horaires midi et soir pour chaque jour
                             $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
                             $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
+                            $horaireSpectacle = array_filter($schedules['spectacle'], fn($h) => $h['jour'] === $jour);
 
-                            // Collect hours
+                            // Collecter les horaires à afficher
                             $horairesAffichage = [];
+
+                            // Si des horaires midi existent
                             if (!empty($horaireMidi)) {
-                                $horairesAffichage[] = htmlspecialchars(current($horaireMidi)['heureouverture']) . " à " . htmlspecialchars(current($horaireMidi)['heurefermeture']);
+                                $horairesAffichage[] = htmlspecialchars(current($horaireMidi)['heureOuverture']) . " à " . htmlspecialchars(current($horaireMidi)['heureFermeture']);
                             }
+
+                            // Si des horaires soir existent
                             if (!empty($horaireSoir)) {
-                                $horairesAffichage[] = htmlspecialchars(current($horaireSoir)['heureouverture']) . " à " . htmlspecialchars(current($horaireSoir)['heurefermeture']);
+                                $horairesAffichage[] = htmlspecialchars(current($horaireSoir)['heureOuverture']) . " à " . htmlspecialchars(current($horaireSoir)['heureFermeture']);
                             }
-                            if (empty($horaireMidi) && empty($horaireSoir)) {
+
+                            // Si des horaires de spectacle existent
+                            if (!empty($horaireSpectacle)) {
+                                $horairesAffichage[] = "Spectacle de " . htmlspecialchars(current($horaireSpectacle)['heureOuverture']) . " à " . htmlspecialchars(current($horaireSpectacle)['heureFin']);
+                            }
+
+                            // Si aucun horaire trouvé
+                            if (empty($horaireMidi) && empty($horaireSoir) && empty($horaireSpectacle)) {
                                 $horairesAffichage[] = "Fermé";
                             }
+
+                            // Affichage des horaires
                             echo implode(' et ', $horairesAffichage);
                             ?>
                         </td>
@@ -465,6 +488,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </tbody>
         </table>
+
     </section>
     <!-- Carte Google Maps -->
     <div id="afficheLoc">
