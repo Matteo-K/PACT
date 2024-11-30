@@ -144,7 +144,7 @@ if (isset($_POST['pageBefore'])) {
                 $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
                 $stmt->execute([$filePath, $img]);
                 $stmt = $conn->prepare("INSERT INTO pact._illustre (url, idoffre) VALUES (?, ?)");
-                $stmt->execute([$filePath, $idoffre]);
+                $stmt->execute([$filePath, $idOffre]);
             }
         }
 
