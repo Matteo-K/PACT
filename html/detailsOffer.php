@@ -18,36 +18,91 @@ $stmt->execute();
 $offre = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-// Rechercher l'offre dans les parcs d'attractions
-$stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
-$stmt->bindParam(':idoffre', $idOffre);
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 // Fonction pour récupérer les horaires
 function getSchedules($conn, $idOffre)
 {
+
     global $result;
     $schedules = [
         'midi' => [],
         'soir' => [],
         'spectacle' => []
     ];
-    
-    // Décoder les horaires midi et soir en JSON
-    $schedules['midi'] = json_decode($result[0]['listhorairemidi'], true);
-    $schedules['soir'] = json_decode($result[0]['listhorairesoir'], true);
 
-    // Si l'offre est un spectacle, récupérer et décoder les horaires spécifiques aux spectacles
-    if (isset($result[0]['listhoraireprecise']) && !empty($result[0]['listhoraireprecise'])) {
-        $schedules['spectacle'] = json_decode($result[0]['horaires_spectacle'], true);
+
+    // Vérifier si les résultats existent
+    if ($result[0]) {
+        // Traitement des horaires midi
+        if ($result[0]['listhorairemidi']) {
+            // Remplacer les { et } uniquement dans les parties de l'objet qui ne sont pas des horaires
+            $listhorairemidi = $result[0]['listhorairemidi'];
+
+            // Remplacer les { par [ et les } par ] pour le reste
+            $listhorairemidi = str_replace(
+                ['{', '}', ':', ';'], 
+                ['[', ']', '=>', ','], 
+                $listhorairemidi
+            );
+
+            // Encapsuler dans des crochets pour créer un tableau
+            $listhorairemidi = '[' . $listhorairemidi . ']';
+            // Utiliser eval() pour transformer la chaîne en tableau PHP
+            eval('$listhorairemidi = ' . $listhorairemidi . ';');
+        } else {
+            $listhorairemidi = [];
+        }
+
+        // Traitement des horaires soir
+        if ($result[0]['listhorairesoir']) {
+            $listhorairesoir = $result[0]['listhorairesoir'];
+
+            // Remplacer les { par [ et les } par ] pour le reste
+            $listhorairesoir = str_replace(
+                ['{', '}', ':', ';'], 
+                ['[', ']', '=>', ','], 
+                $listhorairesoir
+            );
+
+            // Encapsuler dans des crochets pour créer un tableau
+            $listhorairesoir = '[' . $listhorairesoir . ']';
+            // Utiliser eval() pour transformer la chaîne en tableau PHP
+            eval('$listhorairesoir = ' . $listhorairesoir . ';');
+        } else {
+            $listhorairesoir = [];
+        }
+
+        if($result[0]['listehoraireprecise']){
+            $listhorairespectacle = $result[0]['listehoraireprecise'];
+
+            $listhorairespectacle = str_replace(
+                ['{', '}', ':', ';'], 
+                ['[', ']', '=>', ','], 
+                $listhorairespectacle
+            );
+
+            // Encapsuler dans des crochets pour créer un tableau
+            $listhorairespectacle = '[' . $listhorairespectacle . ']';
+            // Utiliser eval() pour transformer la chaîne en tableau PHP
+            eval('$listhorairespectacle = ' . $listhorairespectacle . ';');
+        } else {
+            $listhorairespectacle = [];
+        }
+
+        // Ajouter les horaires décodés aux tableaux de résultats
+        $schedules['midi'] = $listhorairemidi;
+        $schedules['soir'] = $listhorairesoir;
+        $schedules['spectacle'] = $listhorairespectacle;
     }
 
     return $schedules;
 }
 
-// Récupérer les horaires pour l'offre
-$schedules = getSchedules($conn, $idOffre);
+
+// Rechercher l'offre dans les parcs d'attractions
+$stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
+$stmt->bindParam(':idoffre', $idOffre);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!$result) {
 ?>
@@ -428,65 +483,92 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <section id="infoComp">
         <h2>Informations Complémentaires</h2>
         <table>
-            <thead>
-                <tr>
-                    <th colspan="2">Horaires</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                <?php
-                echo '<pre>';
-                var_dump($schedules['midi']); // Vérifiez les horaires midi
-                var_dump($schedules['soir']); // Vérifiez les horaires soir
-                var_dump($schedules['spectacle']); // Vérifiez les horaires spectacle
-                echo '</pre>';
-                
-                // Tableau des jours de la semaine
-                $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+    <thead>
+        <tr>
+            <th colspan="2">Horaires</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        // Tableau de tous les jours de la semaine
+        $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
-                // Afficher les horaires pour chaque jour de la semaine
-                foreach ($joursSemaine as $jour): ?>
+        // Récupérer les horaires à partir de la fonction getSchedules
+        $schedules = getSchedules($conn, $idOffre); // Assurez-vous que $conn et $idOffre sont définis
+
+        // Afficher les horaires pour chaque jour de la semaine
+        if($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
+            $locale = 'fr_FR';
+            // Créer un objet IntlDateFormatter pour formater la date
+            $formatter = new IntlDateFormatter($locale, IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+            $formatter->setPattern('EEEE dd MMMM yyyy'); // Format de date en français  
+
+            $horaireSpectacle = [];
+            if($schedules['spectacle']){
+                usort($schedules['spectacle'], function($a, $b) {
+                    $dateA = new DateTime($a['dateRepresentation']);
+                    $dateB = new DateTime($b['dateRepresentation']);
+                    return $dateA <=> $dateB; // Trier du plus récent au plus ancien
+                });
+
+                foreach($schedules['spectacle'] as $spec){
+                    $dateSpectacle = new DateTime($spec['dateRepresentation']);
+                    ?>
                     <tr>
-                        <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
+                        <td class="jourSemaine"><?= ucwords($formatter->format($dateSpectacle))?></td>
                         <td>
                             <?php
-                            // Vérifier si les horaires sont bien des tableaux, sinon initialiser des tableaux vides
-                            $horaireMidi = isset($schedules['midi']) ? array_filter($schedules['midi'], fn($h) => $h['jour'] == $jour) : [];
-                            $horaireSoir = isset($schedules['soir']) ? array_filter($schedules['soir'], fn($h) => $h['jour'] == $jour) : [];
-                            $horaireSpectacle = isset($schedules['spectacle']) ? array_filter($schedules['spectacle'], fn($h) => $h['jour'] === $jour) : [];
-
-                            // Collecter les horaires à afficher
-                            $horairesAffichage = [];
-
-                            // Si des horaires midi existent
-                            if (!empty($horaireMidi)) {
-                                $horairesAffichage[] = htmlspecialchars(current($horaireMidi)['heureOuverture']) . " à " . htmlspecialchars(current($horaireMidi)['heureFermeture']);
-                            }
-
-                            // Si des horaires soir existent
-                            if (!empty($horaireSoir)) {
-                                $horairesAffichage[] = htmlspecialchars(current($horaireSoir)['heureOuverture']) . " à " . htmlspecialchars(current($horaireSoir)['heureFermeture']);
-                            }
-
-                            // Si des horaires de spectacle existent
-                            if (!empty($horaireSpectacle)) {
-                                $horairesAffichage[] = "Spectacle de " . htmlspecialchars(current($horaireSpectacle)['heureOuverture']) . " à " . htmlspecialchars(current($horaireSpectacle)['heureFin']);
-                            }
-
-                            // Si aucun horaire trouvé
-                            if (empty($horaireMidi) && empty($horaireSoir) && empty($horaireSpectacle)) {
-                                $horairesAffichage[] = "Fermé";
-                            }
-
-                            // Affichage des horaires
-                            echo implode(' et ', $horairesAffichage);
+                                echo "à " . str_replace("=>",":",$spec['heureOuverture']);
                             ?>
                         </td>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                    <?php
+
+                }
+            }
+        }else{
+            foreach ($joursSemaine as $jour): ?>
+                <tr>
+                    <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
+                    <td>
+                        <?php
+
+                            // Filtrer les horaires pour chaque jour spécifique
+                            $horaireMidi = [];
+                            $horaireSoir = [];
+        
+                            if ($schedules['midi']) {
+                                $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
+                            }
+                            if ($schedules['soir']) {
+                                $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
+                            }
+        
+                            // Collecter les horaires à afficher
+                            $horairesAffichage = [];
+                            if (!empty($horaireMidi)) {
+                                $horaireMidi = current($horaireMidi); // Prendre le premier élément du tableau filtré
+                                $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":",$horaireMidi['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":",$horaireMidi['heureFermeture']));
+                            }
+                            if (!empty($horaireSoir)) {
+                                $horaireSoir = current($horaireSoir); // Prendre le premier élément du tableau filtré
+                                $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":",$horaireSoir['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":",$horaireSoir['heureFermeture']));
+                            }
+                            if (empty($horaireMidi) && empty($horaireSoir)) {
+                                $horairesAffichage[] = "Fermé";
+                            }
+        
+                            // Afficher les horaires ou "Fermé"
+                            echo implode(' et ', $horairesAffichage); 
+                        ?>
+                    </td>
+                </tr>
+            <?php 
+                endforeach;   
+            }
+            ?>
+    </tbody>
+</table>
 
 
     </section>
@@ -663,8 +745,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             message.style.display = 'none';
         }
 
+        // Ajouter une entrée personnalisée dans l'historique
+        history.pushState(null, '', window.location.href);
+
+        // Intercepter l'action de retour
+        window.onpopstate = function(event) {
+            console.log('Redirection vers:', window.location.href);
+            window.location.href = './search.php';
+        };
     </script>
     <script src="js/setColor.js"></script>
 </body>
 
-</html> 
+</html>
