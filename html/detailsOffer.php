@@ -317,15 +317,66 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <!-- Message affiché au survol du bouton désactivé -->
 
                         </div>
+                        
+                        <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
 
-
-
+                        
                     <?php
                 }
 
                     ?>
                     </div>
             </fieldset>
+            <section id="myModal" class="modal">
+              <section class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Gestion des option</h2>
+                    <?php 
+                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null)");
+                        $option->execute([$idOffre]);
+                        $mesOtion = $option->fetchAll(PDO::FETCH_ASSOC);
+                        if ($mesOtion) {
+                            ?>
+                                <strong><p>Mes options : </p></strong>
+                                <ul>
+                                    <?php
+                                        foreach ($mesOtion as $key => $value) {
+                                            ?>
+                                            <li>
+                                                <section class="popUpOption">
+                                                    <?php
+                                                    if ($value['datefin'] != null) {
+                                                        $dateActuelle = NEW DateTime();
+                                                        $dateFin = NEW DateTime($value['datefin']);
+                                                        $dureeRestante = $dateActuelle->diff($dateFin);
+                                                        ?><p><?php echo "Option en cours : " . $value['nomoption'] . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
+                                                        <button class="modifierBut">Arrêter</button>
+                                                        <?php
+                                                    } else {
+                                                        ?><p><?php echo "Option pas commencer : " . $value['nomoption'] . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
+                                                        <button class="modifierBut">Résilier</button>
+                                                        <?php
+                                                    } 
+                                                    ?>
+                                                </section>
+                                            </li>
+                                            <?php
+                                        }
+                                    ?>
+                                </ul>
+                            <?php
+                        } else {
+                            ?>
+                                <strong><p>Aucune option activé</p></strong>
+                            <?php
+                        }
+
+
+                    ?>    
+                <button>Ajouter des option</button>              
+                <button onclick="Comfirmation()">Comfirmer</button>
+              </section>
+            </section>
             <?php if ($resultbtn[0]['statut'] === 'actif') { ?>
                 <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }
@@ -681,6 +732,43 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
     <script>
+        try {
+            const modal = document.getElementById("myModal");
+            const openModalBtn = document.getElementById("openModalBtn");
+            const closeModalBtn = document.querySelector(".close");
+            const popupForm = document.getElementById("popupForm");
+
+            // Fonction pour afficher le modal
+            function openModal() {
+              modal.style.display = "block";
+            }
+        
+            // Fonction pour fermer le modal
+            function closeModal() {
+              modal.style.display = "none";
+            }
+        
+            // Ouvrir le popup lorsque le bouton est cliqué
+            openModalBtn.onclick = openModal;
+        
+            // Fermer le popup lorsqu'on clique sur la croix
+            closeModalBtn.onclick = closeModal;
+        
+            // Fermer le popup lorsqu'on clique en dehors du contenu
+            // window.onclick = function(event) {
+            //   if (event.target === modal) {
+            //     closeModal();
+            //   }
+            // }
+        
+            // Soumettre le formulaire
+            function Comfirmation() {
+              closeModal(); // Fermer la fenêtre modale après soumission
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
         let map;
         let geocoder;
         let marker; // Variable pour stocker le marqueur actuel
