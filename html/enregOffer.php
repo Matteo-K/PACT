@@ -140,9 +140,9 @@ if (isset($_POST['pageBefore'])) {
         $imgs = scandir($dossierImg);
         foreach ($imgs as $img) {
             if ($img !== "." && $img !== "..") {
-                $filePath = $dossierImg . $file;
+                $filePath = $dossierImg . $img;
                 $stmt = $conn->prepare("INSERT INTO pact._image (url, nom) VALUES (?, ?)");
-                $stmt->execute([$filePath, $file]);
+                $stmt->execute([$filePath, $img]);
                 $stmt = $conn->prepare("INSERT INTO pact._illustre (url, idoffre) VALUES (?, ?)");
                 $stmt->execute([$filePath, $idoffre]);
             }
