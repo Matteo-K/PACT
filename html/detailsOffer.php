@@ -320,27 +320,26 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         
                         <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
 
-                        <div id="myModal" class="modal">
-                          <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <h2>Formulaire dans un popup</h2>
-                            <form id="popupForm" class="option">
-                              <label for="name">Nom :</label>
-                              <input type="text" id="name" name="name" placeholder="Entrez votre nom" required>
-
-                              <label for="email">Email :</label>
-                              <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
-
-                              <button type="submit">Envoyer</button>
-                            </form>
-                          </div>
-                        </div>
+                        
                     <?php
                 }
 
                     ?>
                     </div>
             </fieldset>
+            <div id="myModal" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Formulaire dans un popup</h2>
+                <form id="popupForm" class="option">
+                  <label for="name">Nom :</label>
+                  <input type="text" id="name" name="name" placeholder="Entrez votre nom" required>
+                  <label for="email">Email :</label>
+                  <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+                  <button type="submit">Envoyer</button>
+                </form>
+              </div>
+            </div>
             <?php if ($resultbtn[0]['statut'] === 'actif') { ?>
                 <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }
