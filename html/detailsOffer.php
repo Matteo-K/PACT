@@ -331,10 +331,50 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <section class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Gestion des option</h2>
-                <form id="popupForm" class="option">
-                  
-                  <button type="submit">Envoyer</button>
-                </form>
+                    <?php 
+                        $otion = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=?");
+                        $otion->execute([$idOffre]);
+                        $mesOtion = $option->fetchAll(PDO::FETCH_ASSOC);
+                        if ($mesOtion) {
+                            ?>
+                                <strong><p>Mes options : </p></strong>
+                                <ul>
+                                    <?php
+                                        foreach ($mesOtion as $key => $value) {
+                                            ?>
+                                            <li>
+                                                <section class="popUpOption">
+                                                    <?php
+                                                    if ($value['datefin'] != null) {
+                                                        $dateActuelle = NEW DateTime();
+                                                        $dateFin = NEW DateTime($value['datefin']);
+                                                        $dureeRestante = $dateActuelle->diff($dateFin);
+                                                        ?><p><?php echo "Option en cours : " . $value['nomoption'] . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
+                                                        <button class="modifierBut">Arrêter</button>
+                                                        <?php
+                                                    } else {
+                                                        ?><p><?php echo "Option pas commencer : " . $value['nomoption'] . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
+                                                        <button class="modifierBut">Résilier</button>
+                                                        <?php
+                                                    } 
+                                                    ?>
+                                                </section>
+                                            </li>
+                                            <?php
+                                        }
+                                    ?>
+                                </ul>
+                            <?php
+                        } else {
+                            ?>
+                                <strong><p>Aucune option activé</p></strong>
+                            <?php
+                        }
+
+
+                    ?>    
+                <button>Ajouter des option</button>              
+                <button onclick="Comfirmation()">Comfirmer</button>
               </section>
             </section>
             <?php if ($resultbtn[0]['statut'] === 'actif') { ?>
@@ -722,9 +762,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // }
         
             // Soumettre le formulaire
-            popupForm.onsubmit = function(event) {
-              event.preventDefault(); // Empêche l'envoi du formulaire par défaut
-              alert("Formulaire envoyé avec succès !");
+            function Comfirmation() {
               closeModal(); // Fermer la fenêtre modale après soumission
             }
         } catch (error) {
