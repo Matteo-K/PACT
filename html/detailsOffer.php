@@ -332,7 +332,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <span class="close">&times;</span>
                 <h2>Gestion des option</h2>
                     <?php 
-                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=?");
+                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null)");
                         $option->execute([$idOffre]);
                         $mesOtion = $option->fetchAll(PDO::FETCH_ASSOC);
                         if ($mesOtion) {
