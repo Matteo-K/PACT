@@ -2281,7 +2281,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .modal {
-  display: none; /* Masqué par défaut */
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;

@@ -327,8 +327,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                     </div>
             </fieldset>
-            <div id="myModal" class="modal">
-              <div class="modal-content">
+            <section id="myModal" class="modal">
+              <section class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Formulaire dans un popup</h2>
                 <form id="popupForm" class="option">
@@ -338,8 +338,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
                   <button type="submit">Envoyer</button>
                 </form>
-              </div>
-            </div>
+              </section>
+            </section>
             <?php if ($resultbtn[0]['statut'] === 'actif') { ?>
                 <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }
