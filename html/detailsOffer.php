@@ -97,6 +97,44 @@ function getSchedules($conn, $idOffre)
     return $schedules;
 }
 
+function formatDateEnFrancais(DateTime $date) {
+    // Traduction des jours de la semaine
+    $joursSemaine = [
+        'Monday' => 'Lundi',
+        'Tuesday' => 'Mardi',
+        'Wednesday' => 'Mercredi',
+        'Thursday' => 'Jeudi',
+        'Friday' => 'Vendredi',
+        'Saturday' => 'Samedi',
+        'Sunday' => 'Dimanche'
+    ];
+
+    // Traduction des mois
+    $moisAnnee = [
+        'January' => 'Janvier',
+        'February' => 'Février',
+        'March' => 'Mars',
+        'April' => 'Avril',
+        'May' => 'Mai',
+        'June' => 'Juin',
+        'July' => 'Juillet',
+        'August' => 'Août',
+        'September' => 'Septembre',
+        'October' => 'Octobre',
+        'November' => 'Novembre',
+        'December' => 'Décembre'
+    ];
+
+    // Extraire les composants de la date
+    $jour = $joursSemaine[$date->format('l')]; // Jour en français
+    $mois = $moisAnnee[$date->format('F')];   // Mois en français
+    $jourMois = $date->format('d');           // Jour du mois
+    $annee = $date->format('Y');              // Année
+
+    // Retourner la date formatée
+    return "$jour $jourMois $mois $annee";
+}
+
 
 // Rechercher l'offre dans les parcs d'attractions
 $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
@@ -498,11 +536,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Afficher les horaires pour chaque jour de la semaine
         if($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
-            $locale = 'fr_FR';
-            // Créer un objet IntlDateFormatter pour formater la date
-            $formatter = new IntlDateFormatter($locale, IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-            $formatter->setPattern('EEEE dd MMMM yyyy'); // Format de date en français  
-
             $horaireSpectacle = [];
             if($schedules['spectacle']){
                 usort($schedules['spectacle'], function($a, $b) {
@@ -515,7 +548,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $dateSpectacle = new DateTime($spec['dateRepresentation']);
                     ?>
                     <tr>
-                        <td class="jourSemaine"><?= ucwords($formatter->format($dateSpectacle))?></td>
+                        <td class="jourSemaine"><?= ucwords(formatDateEnFrancais($dateSpectacle))?></td>
                         <td>
                             <?php
                                 echo "à " . str_replace("=>",":",$spec['heureOuverture']);
