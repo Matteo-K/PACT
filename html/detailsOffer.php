@@ -434,7 +434,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </thead>
             <tbody>
+                
                 <?php
+                echo '<pre>';
+                var_dump($schedules['midi']); // Vérifiez les horaires midi
+                var_dump($schedules['soir']); // Vérifiez les horaires soir
+                var_dump($schedules['spectacle']); // Vérifiez les horaires spectacle
+                echo '</pre>';
+                
                 // Tableau des jours de la semaine
                 $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
@@ -445,8 +452,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td>
                             <?php
                             // Vérifier si les horaires sont bien des tableaux, sinon initialiser des tableaux vides
-                            $horaireMidi = isset($schedules['midi']) ? array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour) : [];
-                            $horaireSoir = isset($schedules['soir']) ? array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour) : [];
+                            $horaireMidi = isset($schedules['midi']) ? array_filter($schedules['midi'], fn($h) => $h['jour'] == $jour) : [];
+                            $horaireSoir = isset($schedules['soir']) ? array_filter($schedules['soir'], fn($h) => $h['jour'] == $jour) : [];
                             $horaireSpectacle = isset($schedules['spectacle']) ? array_filter($schedules['spectacle'], fn($h) => $h['jour'] === $jour) : [];
 
                             // Collecter les horaires à afficher
