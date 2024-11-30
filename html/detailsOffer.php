@@ -317,6 +317,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <!-- Message affiché au survol du bouton désactivé -->
 
                         </div>
+                        
+                        <button class="modifierBut">Gérer mes options</button>
+
+                        <form method="post" action="changer_statut.php">
+                            <input type="hidden" name="offre_id" value="<?php echo $resultbtn[0]['idoffre']; ?>">
+                            <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
+                            <button class="modifierBut" type="submit">
+                                <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
+                            </button>
+                        </form>
 
 
 
