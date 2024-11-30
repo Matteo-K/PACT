@@ -191,6 +191,8 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
        ('./img/imageOffre/1/2.png', 'parc2'),
        ('./img/imageOffre/2/0.png', 'spectacle0'),
        ('./img/imageOffre/5/0.png', 'visite0'),
+       ('./img/imageOffre/5/1.png', 'visite0'),
+       ('./img/imageOffre/5/2.png', 'visite0'),
        ('./img/imageAvis/1/0.png','Avis1-0'),
        ('./img/imageAvis/3/0.png','Avis3-0'),
        ('./img/imageAvis/7/0.png','Avis7-0');
@@ -207,7 +209,9 @@ VALUES (3, './img/imageOffre/3/0.png'),
        (1, './img/imageOffre/1/2.png'),
        (2, './img/imageOffre/2/0.png'),
        (4, './img/imageOffre/4/0.png'),
-       (5, './img/imageOffre/5/0.png');
+       (5, './img/imageOffre/5/0.png'),
+       (5,'./img/imageOffre/5/1.png'),
+       (5,'./img/imageOffre/5/2.png');
 
 -- Peuplement de la table _photo_profil
 INSERT INTO _photo_profil (idU, url) 
