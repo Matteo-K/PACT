@@ -35,12 +35,12 @@ function getSchedules($conn, $idOffre)
     ];
     
     // Décoder les horaires midi et soir en JSON
-    $schedules['midi'] = json_decode($result[0]['horaires_midi'], true);
-    $schedules['soir'] = json_decode($result[0]['horaires_soir'], true);
+    $schedules['midi'] = json_decode($result[0]['listhorairemidi'], true);
+    $schedules['soir'] = json_decode($result[0]['listhorairesoir'], true);
 
     // Si l'offre est un spectacle, récupérer et décoder les horaires spécifiques aux spectacles
-    if (isset($row['horaires_spectacle']) && !empty($row['horaires_spectacle'])) {
-        $schedules['spectacle'] = json_decode($row['horaires_spectacle'], true);
+    if (isset($result[0]['listhoraireprecise']) && !empty($result[0]['listhoraireprecise'])) {
+        $schedules['spectacle'] = json_decode($result[0]['horaires_spectacle'], true);
     }
 
     return $schedules;
