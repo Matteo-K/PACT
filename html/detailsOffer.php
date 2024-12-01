@@ -133,10 +133,10 @@ function formatDateEnFrancais(DateTime $date) {
     ];
 
     // Extraire les composants de la date
-    $jour = $joursSemaine[$date->format('l')]; // Jour en français
-    $mois = $moisAnnee[$date->format('F')];   // Mois en français
-    $jourMois = $date->format('d');           // Jour du mois
-    $annee = $date->format('Y');              // Année
+    $jour = $joursSemaine[$date->format('l')];  // Jour en français
+    $mois = $moisAnnee[$date->format('F')];     // Mois en français
+    $jourMois = $date->format('d');             // Jour du mois
+    $annee = $date->format('Y');                // Année
 
     // Retourner la date formatée
     return "$jour $jourMois $mois $annee";
