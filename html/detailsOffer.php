@@ -20,6 +20,10 @@ $offre = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 // Fonction pour récupérer les horaires
+
+/**
+ * @return array{midi: array, soir: array, spectacle: array}
+ */
 function getSchedules()
 {
 
