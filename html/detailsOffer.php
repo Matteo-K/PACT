@@ -605,14 +605,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Récupérer les horaires à partir de la fonction getSchedules
         $schedules = getSchedules();
-        print_r($schedules);
         // Afficher les horaires pour chaque jour de la semaine
         if($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
             $horaireSpectacle = [];
             if($schedules['spectacle']){
-                usort($schedules['spectacle'], function($a, $b) {
-                    $dateA = new DateTime($a['dateRepresentation']);
-                    $dateB = new DateTime($b['dateRepresentation']);
+                usort($schedules, function($a, $b) {
+                    $dateA = new DateTime($a['spectacle']['dateRepresentation']);
+                    $dateB = new DateTime($b['spectacle']['dateRepresentation']);
                     return $dateA <=> $dateB; // Trier du plus récent au plus ancien
                 });
 
@@ -643,10 +642,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             $horaireSoir = [];
         
                             if ($schedules['midi']) {
-                                $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
+                                $horaireMidi = array_filter($schedules, fn($h) => $h['midi']['jour'] === $jour);
                             }
                             if ($schedules['soir']) {
-                                $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
+                                $horaireSoir = array_filter($schedules, fn($h) => $h['soir']['jour'] === $jour);
                             }
         
                             // Collecter les horaires à afficher
