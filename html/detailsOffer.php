@@ -642,10 +642,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             $horaireSoir = [];
         
                             if ($schedules['midi']) {
-                                $horaireMidi = array_filter($schedules, fn($h) => $h['midi']['jour'] === $jour);
+                                $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
                             }
                             if ($schedules['soir']) {
-                                $horaireSoir = array_filter($schedules, fn($h) => $h['soir']['jour'] === $jour);
+                                $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
                             }
         
                             // Collecter les horaires à afficher
