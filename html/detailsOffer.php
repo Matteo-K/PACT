@@ -609,9 +609,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
             $horaireSpectacle = [];
             if($schedules['spectacle']){
-                usort($schedules, function($a, $b) {
-                    $dateA = new DateTime($a['spectacle']['dateRepresentation']);
-                    $dateB = new DateTime($b['spectacle']['dateRepresentation']);
+                usort($schedules['spectacle'], function($a, $b) {
+                    $dateA = new DateTime($a['dateRepresentation']);
+                    $dateB = new DateTime($b['dateRepresentation']);
                     return $dateA <=> $dateB; // Trier du plus récent au plus ancien
                 });
 
