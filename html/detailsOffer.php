@@ -138,7 +138,7 @@ function formatDateEnFrancais(DateTime $date) {
     return "$jour $jourMois $mois $annee";
 }
 
-function getOpen($date, $horaire){
+function getOpen($date, $horaires){
     $jourActuel = $date -> $date->format('l');
     $jourActuel = explode(' ', formatDateEnFrancais($date))[0];
     $heureActuelle = $date->format('H:i');
