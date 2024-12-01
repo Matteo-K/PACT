@@ -20,7 +20,7 @@ $offre = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 // Fonction pour récupérer les horaires
-function getSchedules($conn, $idOffre)
+function getSchedules()
 {
 
     global $result;
@@ -98,7 +98,7 @@ function getSchedules($conn, $idOffre)
     return $schedules;
 }
 
-$schedules = getSchedules($conn, $idOffre);
+$schedules = getSchedules();
 
 function formatDateEnFrancais(DateTime $date) {
     // Traduction des jours de la semaine
