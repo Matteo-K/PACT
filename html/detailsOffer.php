@@ -3,6 +3,7 @@ require_once "config.php";
 require_once __DIR__ . "/../.SECURE/cleAPI.php";
 $idOffre = $_POST["idoffre"] ?? null;
 $ouvert = $_GET["ouvert"] ?? null;
+$aujourdhui = new DateTime();
 
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
@@ -97,6 +98,8 @@ function getSchedules($conn, $idOffre)
     return $schedules;
 }
 
+$schedules = getSchedules($conn, $idOffre);
+
 function formatDateEnFrancais(DateTime $date) {
     // Traduction des jours de la semaine
     $joursSemaine = [
@@ -135,6 +138,24 @@ function formatDateEnFrancais(DateTime $date) {
     return "$jour $jourMois $mois $annee";
 }
 
+function getOpen($date, $horaire){
+    $jourActuel = $date -> $date->format('l');
+    $jourActuel = explode(' ', formatDateEnFrancais($date))[0];
+    $heureActuelle = $date->format('H:i');
+
+    $ouvert = false;
+
+    if (isset($horaires[$jourActuel])) {
+        foreach ($horaires[$jourActuel] as $plage) {
+            if ($heureActuelle >= str_replace("=>",":",$plage['ouverture']) && $heureActuelle <= str_replace("=>",":", $plage['fermeture'])) {
+                $ouvert = true;
+                break;
+            }
+        }
+    }
+
+    return $ouvert;
+}
 
 // Rechercher l'offre dans les parcs d'attractions
 $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
@@ -420,11 +441,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php }
         endforeach;
 
-        if ($ouvert == "EstOuvert") {
+        if (getOpen($aujourdhui, $schedules)) {
             ?>
             <a class="ouvert" href="search.php?search=ouvert">Ouvert</a>
         <?php
-        } else if ($ouvert == "EstFermé") {
+        } else{
         ?>
             <a class="ferme" href="search.php?search=ferme">Fermé</a>
         <?php
@@ -583,7 +604,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
         // Récupérer les horaires à partir de la fonction getSchedules
-        $schedules = getSchedules($conn, $idOffre); // Assurez-vous que $conn et $idOffre sont définis
 
         // Afficher les horaires pour chaque jour de la semaine
         if($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
