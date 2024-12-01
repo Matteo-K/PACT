@@ -3129,6 +3129,10 @@ tbody td:last-child {
     font-weight: 600;
   }
 
+  #typeOffer{
+    font-size: clamp(0.5em, 10vw, 2em);
+  }
+
   .mainOffer .tag,
   .ouvert,
   .ferme {
