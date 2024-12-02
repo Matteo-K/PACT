@@ -337,6 +337,7 @@ function deleteImage(fileName, imgElement, index) {
     .catch(error => {
         // En cas de problème avec la requête, restaurer l'image et afficher un message d'erreur
         alert('Erreur lors de la suppression de l\'image. Veuillez réessayer.');
+        console.log(error);
         // Recharger la liste des images pour restaurer l'état
         loadExistingImages();
     });
