@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     currentPage = params.get('page');
   }
 
-  sortAndFilter(arrayOffer, nbElement * (page-1), nbElement);
+  goToPage(currentPage);
 
   const forms = document.querySelectorAll(".search form");
   forms.forEach(form => {
@@ -574,47 +574,47 @@ function displayStar(offer) {
 /* ### Evènements ### */
 
 // Événements des tris
-radBtnEnAvant.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
+radBtnEnAvant.addEventListener("click", () => goToPage(currentPage));
 
 // notes
-radBtnNoteCroissant.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-radBtnNoteDecroissant.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
+radBtnNoteCroissant.addEventListener("click", () => goToPage(currentPage));
+radBtnNoteDecroissant.addEventListener("click", () => goToPage(currentPage));
 
 // prix
-radBtnprixCroissant.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-radBtnPrixDecroissant.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
+radBtnprixCroissant.addEventListener("click", () => goToPage(currentPage));
+radBtnPrixDecroissant.addEventListener("click", () => goToPage(currentPage));
 
 // dates
-radBtnDateRecent.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-radBtnDateAncien.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
+radBtnDateRecent.addEventListener("click", () => goToPage(currentPage));
+radBtnDateAncien.addEventListener("click", () => goToPage(currentPage));
 
 
 
 // Événements des filtres
 // notes
-chkBxNote1.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-chkBxNote2.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-chkBxNote3.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-chkBxNote4.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-chkBxNote5.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
+chkBxNote1.addEventListener("click", () => goToPage(currentPage));
+chkBxNote2.addEventListener("click", () => goToPage(currentPage));
+chkBxNote3.addEventListener("click", () => goToPage(currentPage));
+chkBxNote4.addEventListener("click", () => goToPage(currentPage));
+chkBxNote5.addEventListener("click", () => goToPage(currentPage));
 
 // prix
-selectPrixMin.addEventListener("change", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-selectPrixMax.addEventListener("change", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
+selectPrixMin.addEventListener("change", () => goToPage(currentPage));
+selectPrixMax.addEventListener("change", () => goToPage(currentPage));
 
 // statuts
-chkBxOuvert.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-chkBxFerme .addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
+chkBxOuvert.addEventListener("click", () => goToPage(currentPage));
+chkBxFerme .addEventListener("click", () => goToPage(currentPage));
 
 // catégories
-chkBxParc.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-chkBxVisite.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-chkBxActivite.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-chkBxSpectacle.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-chkBxRestauration.addEventListener("click", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
+chkBxParc.addEventListener("click", () => goToPage(currentPage));
+chkBxVisite.addEventListener("click", () => goToPage(currentPage));
+chkBxActivite.addEventListener("click", () => goToPage(currentPage));
+chkBxSpectacle.addEventListener("click", () => goToPage(currentPage));
+chkBxRestauration.addEventListener("click", () => goToPage(currentPage));
 
 // dates
-dateDepart.addEventListener("change", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-heureDebut.addEventListener("change", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-dateFin.addEventListener("change", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
-heureFin.addEventListener("change", () => sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement));
+dateDepart.addEventListener("change", () => goToPage(currentPage));
+heureDebut.addEventListener("change", () => goToPage(currentPage));
+dateFin.addEventListener("change", () => goToPage(currentPage));
+heureFin.addEventListener("change", () => goToPage(currentPage));
