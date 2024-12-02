@@ -178,9 +178,17 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 </p>
             </div>
             <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
-            <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>
+            <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
+            <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
+            <input 
+                type="file" 
+                id="ajoutPhoto" 
+                name="images[]" 
+                accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
+                multiple 
+                onchange="handleFiles(this)"
+            />
             <div id="afficheImages"></div>
-
 
         </div>
     </article>
@@ -262,103 +270,254 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
 
 
-        
+        // js de gabriel pour les images test
 
-        //Affichage des images a leur selection
-        const pImage = document.querySelector("#choixImage > p");
-        const conteneur = document.getElementById("afficheImages");
-        let inputFile = document.getElementById("ajoutPhoto"); 
-        inputFile.addEventListener("change", afficheImage);
-        const photosSelect = []; // Stocker les fichiers sélectionnés
+        let existingImagesCount = 0; // Compteur des images existantes sur le serveur
+        const idOffre = <?php echo $idOffre ?>; // ID de l'offre, à remplacer par une valeur dynamique si nécessaire
 
-        const loadedImg = <?php echo json_encode($loadedImg) ?>;
-
-
-        loadedImg.forEach(img => {
-            configImage(img, "", null);
-        });
-
-        function creeNouvelInput() {
-            const nouvelInputFile = document.createElement("input");
-            nouvelInputFile.type = "file";
-            nouvelInputFile.id = "ajoutPhoto";
-            nouvelInputFile.multiple = true; 
-            nouvelInputFile.name = "ajoutPhoto[]";
-            nouvelInputFile.accept = "image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF";
-
-            inputFile.removeEventListener("change", afficheImage);
-            inputFile.replaceWith(nouvelInputFile); // Remplacer l'ancien input
-            inputFile = nouvelInputFile; // Mettre à jour la référence
-            
-            inputFile.addEventListener("change", afficheImage);
-            console.log("Nouvel input créé et événement attaché.");
+        // Fonction pour charger les images existantes
+        // Fonction pour charger les images existantes
+        function loadExistingImages() {
+            fetch('./upload.php?idOffre=' + idOffre)
+                .then(response => response.json())
+                .then(data => {
+                    const existingPreview = document.getElementById('afficheImages');
+                    existingPreview.innerHTML = ""; // Réinitialise la liste
+                    data.images.forEach((image, index) => {
+                        const img = document.createElement('img');
+                        img.src = `./img/imageOffre/${idOffre}/${image}`;
+                        img.alt = image;
+                        img.title = `Cliquez pour supprimer ${image}`;
+                        img.style.cursor = 'pointer';
+                    
+                        // Ajouter un attribut data-index pour garder une référence unique de l'image
+                        img.setAttribute('data-index', index);
+                    
+                        // Ajoute un gestionnaire de clic pour supprimer l'image
+                        img.onclick = () => deleteImage(image, img, index); // Passe aussi l'index pour supprimer la bonne image côté client
+                    
+                        existingPreview.appendChild(img);
+                    });
+                    existingImagesCount = data.images.length; // Met à jour le compteur d'images existantes
+                })
+                .catch(error => console.error('Erreur de chargement des images:', error));
         }
 
 
-        function afficheImage(event) {
-            const images = Array.from(event.target.files); // On convertit la liste des fichiers de l'input en tableau
-            let compteurImgMax = conteneur.childElementCount;
-            alert("afficheImages");
+        // Fonction pour supprimer une image existante
+        // Fonction pour supprimer une image existante
+        // Fonction pour supprimer une image existante
+// Fonction pour supprimer une image existante
+// Fonction pour supprimer une image existante
+function deleteImage(fileName, imgElement, index) {
+    // Supprimer l'image du DOM immédiatement
+    imgElement.remove();
 
-            images.forEach((file) => {
-                if (compteurImgMax >= maxImages) {
-                    pImage.style.color = "red";
-                    alert("C'est plein");
-                    return;
-                }
-                else{
-                    compteurImgMax++;
-                    const reader = new FileReader();
-                    reader.onload = function(e){
-                        alert("Onloadddd");
-                        photosSelect.push(file);
-                        configImage("", e.target.result, file);
-                    };
-                    alert("avant reader");
-                    reader.readAsDataURL(file);
-                    alert("apres reader");
+    // Faire la requête de suppression côté serveur
+    fetch('./upload.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `action=delete&fileName=${encodeURIComponent(fileName)}&idOffre=${idOffre}`,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            // En cas d'erreur côté serveur, restaurer l'image dans le DOM et afficher un message
+            alert('Erreur lors de la suppression de l\'image sur le serveur : ' + data.error);
+            // Recharger la liste des images pour restaurer l'état correct
+            loadExistingImages();
+        } else {
+            // Si la suppression a réussi, afficher un message de succès
+            alert('Image supprimée avec succès.');
+            // Recharger la liste des images pour assurer que l'état est mis à jour
+        }
+    })
+    .catch(error => {
+        // En cas de problème avec la requête, restaurer l'image et afficher un message d'erreur
+        alert('Erreur lors de la suppression de l\'image. Veuillez réessayer.');
+        // Recharger la liste des images pour restaurer l'état
+        loadExistingImages();
+    });
+}
+
+
+
+
+
+        // Fonction pour gérer les fichiers sélectionnés
+        function handleFiles(input) {
+            const maxFiles = 10;
+
+            // Vérifie la limite d'images
+            const totalSelected = existingImagesCount + input.files.length;
+
+            if (totalSelected > maxFiles) {
+                alert(
+                    `Erreur : Vous ne pouvez importer que ${maxFiles} photos maximum.\n` +
+                    `${existingImagesCount} sont déjà sur le serveur, et vous avez sélectionné ${input.files.length}.`
+                );
+                input.value = ""; // Réinitialise la sélection
+                return;
+            }
+
+            // Ajoute les nouvelles images sélectionnées
+            Array.from(input.files).forEach(file => {
+                if (existingImagesCount < maxFiles) {
+                    if (file.type.startsWith("image/")) {
+                        // Envoyer directement chaque fichier pour importation
+                        uploadFile(file);
+                    }
                 }
             });
-            alert("go creer nvl input");
-            creeNouvelInput();
+
+            input.value = ""; // Réinitialise l'input
         }
 
-        function configImage(urlAncien, urlNouveau, file) {
-            alert("entree configImage");
-            if (conteneur.childElementCount < maxImages) {
-                //On créé la balise notamment pour l'affichage
-                const figureImg = document.createElement("figure");
-                figureImg.classList.add("imageOffre");
+        // Fonction pour envoyer un fichier au serveur
+        function uploadFile(file) {
+            const formData = new FormData();
+            formData.append('images[]', file);
+            formData.append('action', 'upload');
+            formData.append('idOffre', idOffre);
 
-                if (urlAncien != "") {
-                    //Traitement des anciennes images chargées
-                    figureImg.innerHTML = `<img src="${urlAncien}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
-                    const hiddenInputImg = document.createElement("input"); // L'input caché passe l'url des anciennes images au enregOffer.php
-                    hiddenInputImg.type = "hidden";
-                    hiddenInputImg.value = urlAncien;
-                    hiddenInputImg.name = "imageExistante[]";
-                    figureImg.appendChild(hiddenInputImg);
-                } else {
-                    //Traitement des nouvelles images
-                    figureImg.innerHTML = `<img src="${urlNouveau}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
-                }
-
-                //On ajoute la balise a la section pour l'affichage
-                conteneur.appendChild(figureImg);
-
-                figureImg.addEventListener("click", function () {
-                    if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
-                        figureImg.remove();
-                        photosSelect.splice(photosSelect.indexOf(file), 1); // Supprimer le fichier de la liste
-                        pImage.style.color = "black"; // Remettre la couleur par défaut
-                        creeNouvelInput();
+            fetch('./upload.php', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const errors = data.filter(result => result.error);
+                    if (errors.length > 0) {
+                        alert(`Erreur lors du téléchargement de "${file.name}" :\n${errors.map(e => e.error).join('\n')}`);
+                    } else {
+                        alert(`Fichier "${file.name}" téléchargé avec succès !`);
+                        loadExistingImages(); // Recharge la liste des images existantes
                     }
-                });
-            } else {
-                pImage.style.color = "red";
-            }
+                })
+                .catch(error => console.error('Erreur lors de l\'envoi du fichier:', error));
         }
-    
+
+        // Charger les images existantes au chargement de la page
+        window.onload = loadExistingImages;
+
+        // Rafraîchir la liste manuellement
+
+        // Gestion des fichiers sélectionnés (liaison de l'événement onchange)
+        document.getElementById('ajoutPhoto').addEventListener('change', function () {
+            handleFiles(this);
+        });
+
+        //Affichage des images a leur selection
+        // const pImage = document.querySelector("#choixImage > p");
+        // const conteneur = document.getElementById("afficheImages");
+        // let inputFile = document.getElementById("ajoutPhoto"); 
+        // inputFile.addEventListener("change", afficheImage);
+
+        // const photosSelect = []; // Stocker les fichiers sélectionnés
+
+        // let fichiersDerniereRequete = []; // Stocke uniquement les photos de la dernière requête
+
+
+        // const loadedImg = <?php //echo json_encode($loadedImg) ?>;
+
+        // loadedImg.forEach(img => {
+        //     configImage(img, "", null);
+        // });
+
+
+        // function afficheImage(event) {
+        //     const images = Array.from(event.target.files); // On convertit la liste des fichiers de l'input en tableau
+        //     let compteurImgMax = conteneur.childElementCount;
+        //     alert("afficheImages");
+
+        //     images.forEach((file) => {
+        //         if (compteurImgMax >= maxImages) {
+        //             pImage.style.color = "red";
+        //             alert("C'est plein");
+        //             return;
+        //         }
+        //         else{
+        //             compteurImgMax++;
+        //             const reader = new FileReader();
+        //             reader.onload = function(e){
+        //                 photosSelect.push(file);
+        //                 fichiersDerniereRequete.push(file);
+        //                 configImage("", e.target.result, file);
+        //             };
+        //             reader.readAsDataURL(file);
+        //         }
+        //     });
+        //     alert("envoyer Images ----->");
+        //     envoyerImages();
+        // }
+
+        // function configImage(urlAncien, urlNouveau, file) {
+        //     if (conteneur.childElementCount < maxImages) {
+        //         //On créé la balise notamment pour l'affichage
+        //         const figureImg = document.createElement("figure");
+        //         figureImg.classList.add("imageOffre");
+
+        //         if (urlAncien != "") {
+        //             //Traitement des anciennes images chargées
+        //             figureImg.innerHTML = `<img src="${urlAncien}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
+        //             const hiddenInputImg = document.createElement("input"); // L'input caché passe l'url des anciennes images au enregOffer.php
+        //             hiddenInputImg.type = "hidden";
+        //             hiddenInputImg.value = urlAncien;
+        //             hiddenInputImg.name = "imageExistante[]";
+        //             figureImg.appendChild(hiddenInputImg);
+        //         } else {
+        //             //Traitement des nouvelles images
+        //             figureImg.innerHTML = `<img src="${urlNouveau}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
+        //         }
+
+        //         //On ajoute la balise a la section pour l'affichage
+        //         conteneur.appendChild(figureImg);
+
+        //         figureImg.addEventListener("click", function () {
+        //             if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
+        //                 figureImg.remove();
+        //                 photosSelect.splice(photosSelect.indexOf(file), 1); // Supprimer le fichier de la liste
+        //                 pImage.style.color = "black"; // Remettre la couleur par défaut
+        //                 fichiersDerniereRequete.splice(fichiersDerniereRequete.indexOf(file), 1); // Supprime du tableau temporaire
+        //             }
+        //         });
+        //     } else {
+        //         pImage.style.color = "red";
+        //     }
+        // }
+
+
+        // function envoyerPhotos() {
+        //     if (fichiersDerniereRequete.length === 0) {
+        //         alert("Aucune nouvelle photo à envoyer.");
+        //         return;
+        //     }
+
+        //     // Préparer les données à envoyer
+        //     const formData = new FormData();
+        //     fichiersDerniereRequete.forEach((file) => formData.append("images[]", file));
+
+        //     console.log("Fichiers envoyés :", fichiersDerniereRequete); // Debug
+
+        //     fetch("enregOffer.php", {
+        //         method: "POST",
+        //         body: formData,
+        //     })
+        //         .then((response) => {
+        //             if (response.ok) {
+        //                 alert("Photos envoyées avec succès !");
+        //                 fichiersDerniereRequete = []; // Réinitialiser les fichiers envoyés
+        //             } else {
+        //                 alert("Erreur lors de l'envoi des photos.");
+        //             }
+        //         })
+        //         .catch((error) => {
+        //             console.error("Erreur lors de l'envoi :", error);
+        //         });
+        // }
+
 
         const radBtnRestaurant = document.querySelector("#radioRestaurant");
         const radBtnParc = document.querySelector("#radioParc");

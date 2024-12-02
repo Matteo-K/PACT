@@ -83,7 +83,7 @@ foreach ($avis as $a) {
                             } ?></p>
                     </div>
                     <div>
-                        <p><strong>Visité en </strong> <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
+                        <p>Visité en <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
                         <p> • </p>
                         <p class="tag"><?= $a['companie'] ?></p>
                     </div>
@@ -127,10 +127,17 @@ foreach ($avis as $a) {
                 <div class="reponseAvis">
                     <div class="user">
                         <div class="infoProReponse">
-                            <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
-                            <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
+                            <div>
+                                <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
+                                <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
+                            </div>
                         </div>
                         <div class="autreInfoAvis">
+                            <?php
+                            if (isset($a['reponsedate'])) {
+                                echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
+                            }
+                            ?>
                             <img src="./img/icone/trois-points.png" alt="icone de parametre">
                         </div>
 
@@ -138,11 +145,6 @@ foreach ($avis as $a) {
                     <article>
                         <p><?= $a['contenureponse'] ?></p>
                     </article>
-                    <?php
-                    if (isset($a['reponsedate'])) {
-                        echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
-                    }
-                    ?>
                 </div>
             </div>
         <?php

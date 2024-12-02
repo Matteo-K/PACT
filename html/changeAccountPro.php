@@ -2,12 +2,12 @@
     // Démarrer la session
     session_start();
 
-    // Fichier de connexion à la BDD
+    // Connexion à la base de données
     require_once 'db.php';
 
     // Vérifier si l'utilisateur est connecté
     if (!isset($_SESSION['idUser'])) {
-        header("Location: login.php"); // Rediriger vers la page de connexion si non connecté
+        header("Location: login.php");
         exit();
     }
 
@@ -16,9 +16,30 @@
 
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
-        // Adapter la requête en fonction de votre table et secteur
-        $stmt = $conn->prepare("SELECT * FROM pact._pro WHERE id = ?");
-        $stmt->execute([$userId]);
+        $stmt = $conn->prepare("SELECT 
+            p.idU AS id_utilisateur,
+            p.denomination AS denomination,
+            n.telephone,
+            n.mail,
+            a.numeroRue,
+            a.rue,
+            a.ville,
+            a.pays,
+            a.codePostal,
+            ab.nomAbonnement
+        FROM 
+            _pro p
+        JOIN 
+            _nonAdmin n ON p.idU = n.idU
+        JOIN 
+            _adresse a ON p.idU = a.numeroRue
+        LEFT JOIN 
+            _abonner ab ON p.idU = ab.idOffre
+        WHERE 
+            p.idU IS NOT NULL;
+        ");
+        
+        $stmt->execute([$userId, $userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Vérifier si les données sont trouvées
@@ -30,12 +51,12 @@
     } 
     
     catch (Exception $e) {
-        $_SESSION['errors'][] = "Erreur de connexion à la base de données.";
+        $_SESSION['errors'][] = "Erreur de connexion à la base de données: " . $e->getMessage();
         header("Location: login.php");
         exit();
     }
 ?>
-
+ 
 <!DOCTYPE html>
 <html lang="en">
     <head> 
@@ -87,7 +108,7 @@
             <div class="ligne2">
                 <!-- Saisi de l'adresse mail -->
                 <label for="email">Adresse mail*:</label>
-                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?>" required>
+                <input type="email" placeholder="exemple@gmail.com" id="email" name="email" value="<?= isset($user['mail']) ? htmlspecialchars($user['mail']) : '' ?>" required>
             </div>
 
 
@@ -95,7 +116,7 @@
             <div class="ligne3">
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
-                <input type="text" placeholder ="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['adresse']) ? htmlspecialchars($user['adresse']) : '' ?>" required>
+                <input type="text" placeholder ="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['numerorue']) && isset($user['rue']) ? htmlspecialchars($user['numerorue']) . '' . htmlspecialchars($user['rue']): '' ?>" required>
                 <br>
             </div>
 
@@ -106,7 +127,7 @@
                 <label for="ville">Ville*:</label>
                 
                 <!-- Saisi du code postale -->
-                <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($user['code']) ? htmlspecialchars($user['code']) : '' ?>" required>
+                <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($user['codepostal']) ? htmlspecialchars($user['codepostal']) : '' ?>" required>
 
                 <!-- Saisi de la ville -->
                 <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($user['ville']) ? htmlspecialchars($user['ville']) : '' ?>" required>

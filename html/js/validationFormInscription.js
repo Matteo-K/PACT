@@ -144,8 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
             { id: 'motdepasse', pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\d\s]).{10,}$/, message: 'Le mot de passe doit contenir au moins 10 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial.' },
         ];
     }
-
-
+    
 
     // Ajouter l'événement "blur"
     fieldsToValidate.forEach(field => {

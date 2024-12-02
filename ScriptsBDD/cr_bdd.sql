@@ -435,6 +435,7 @@ CREATE TABLE _avis(
   mois VARCHAR (20) NOT NULL,
   annee VARCHAR(4) NOT NULL,
   titre VARCHAR(255) NOT NULL,
+  lu BOOLEAN NOT NULL,
   PRIMARY KEY (idC),
   CONSTRAINT _avis_fk_idC
       FOREIGN KEY (idC)
@@ -470,8 +471,8 @@ CREATE TABLE _avisImage(
 
 CREATE TABLE _dateOption(
   idOption SERIAL PRIMARY KEY,
-  dateLancement DATE NOT NULL,
-  dateFin DATE NOT NULL,
+  dateLancement DATE,
+  dateFin DATE,
   duree INT NOT NULL,
   prix INT NOT NULL
 );
@@ -791,6 +792,7 @@ CREATE VIEW avis AS
     a.mois,
     a.annee,
     a.titre,
+    a.lu,
     ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage
     FROM _avis a 
     JOIN _commentaire c ON a.idC = c.idC
@@ -806,6 +808,7 @@ CREATE VIEW avis AS
     a.companie,
     a.mois,
     a.annee,
+    a.lu,
     a.titre;
 
 CREATE VIEW reponse AS
@@ -824,6 +827,24 @@ CREATE VIEW reponse AS
     JOIN _pro p ON c1.idU = p.idU
     JOIN _avis a ON r.ref = a.idC
     JOIN _commentaire c2 ON a.idC = c2.idC;
+    
+CREATE VIEW option AS
+    SELECT
+    oo.idOffre,
+    d.idOption,
+    d.dateLancement,
+    d.dateFin,
+    d.duree as duree_total,
+    d.prix as prix_total,
+    o.nomOption,
+    o.prixOffre as prix_base,
+    o.dureeOption as duree_base
+FROM 
+    _dateOption d
+JOIN
+    _option_offre oo ON d.idOption = oo.idOption
+JOIN
+    _option o ON oo.nomOption = o.nomOption;
 
 CREATE VIEW facture AS
     SELECT
@@ -1082,3 +1103,19 @@ CREATE TRIGGER trigger_ajout_membre
 INSTEAD OF INSERT ON pact.membre
 FOR EACH ROW
 EXECUTE FUNCTION ajout_membre();
+
+CREATE OR REPLACE FUNCTION ajout_option()
+RETURNS TRIGGER AS $$
+DECLARE
+  id_option INT;
+BEGIN
+    INSERT INTO pact._dateOption (dateLancement,dateFin,duree,prix) VALUES (NEW.dateLancement,NEW.dateFin, NEW.duree_total, NEW.prix_total) RETURNING idOption into id_option;
+    INSERT INTO pact._option_offre (idOffre, idOption, nomOption) VALUES (NEW.idOffre, id_option, NEW.nomOption);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_ajout_option
+INSTEAD OF INSERT ON pact.option
+FOR EACH ROW
+EXECUTE FUNCTION ajout_option();

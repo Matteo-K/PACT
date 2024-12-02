@@ -2280,6 +2280,71 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   overflow: hidden;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.option label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.option input,
+.option button {
+  width: 100%;
+  margin-right: 15px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.option button {
+  background-color: #007BFF;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.option button:hover {
+  background-color: #0056b3;
+}
+
 @media (max-width: 1079px) {
   .search {
     position: static;
@@ -2351,6 +2416,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     border-width: 3px;
   }
 }
+
+/* css page modal pour les options */
+
 
 
 /***********************************************************************************************/
@@ -2711,7 +2779,7 @@ tbody td:last-child {
 .reponseAvis {
   background-color: var(--background-avis);
   border-radius: 1em;
-  padding: 1em;
+  padding-inline: 1em;
   width: 100%;
 }
 
@@ -2721,35 +2789,39 @@ tbody td:last-child {
 }
 
 .infoUser>p,
-.infoProReponse>p {
+.autreInfoAvis>p {
   margin-left: 0.3em;
 }
 
-.user>div>img {
+.user>div img  {
   width: 2.2em;
   height: 2.2em;
 }
 
-.user,
-.noteEtoile,
-.infoUser,
-.infoProReponse,
-.autreInfoAvis {
+.user, .noteEtoile, .infoUser, .infoProReponse > div, .infoProReponse, .autreInfoAvis {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
+.infoUser, .infoProReponse > div{
+  gap: 12px;
+}
+
+.user{
+  border-bottom: var(--text-dark40) solid 1px;
+}
+
 .user+article {
   justify-content: center;
 }
 
-.user+article,
-.user+article>div {
+.user+article, 
+.user + article > div {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
 }
 
@@ -2758,7 +2830,7 @@ tbody td:last-child {
   align-items: center;
   display: flex;
   width: 100%;
-  margin:0;
+  margin:-0.5em;
 }
 
 .user + article > div > div +div, .user +article >div > div + div{
@@ -2766,13 +2838,26 @@ tbody td:last-child {
   gap: 20px;
 }
 
-.user +article >div > div > p {
+.user +article >div > div + div > p {
   margin: 0;
 }
+.user +article >div > div:nth-child(3)>p{
+  width: 60%;
+  text-align: justify;
+}
 
-.user+article>div>div:nth-child(1)>p+p, .user +article >div > div > p+p,  .user +article >div > div + div {
+.user+article>div>div:nth-child(1)>p+p, .user +article >div > div:nth-child(2), .autreInfoAvis>p {
   font-style: italic;
   font-weight: 300;
+}
+
+
+.user +article >div > div + div{
+  margin-bottom: 1.5em;
+}
+
+.autreInfoAvis{
+  gap:12px
 }
 
 .user+article>div>div:nth-child(1)>p>strong {
@@ -2786,6 +2871,18 @@ tbody td:last-child {
   margin: 0;
 }
 
+.user + article >div>div:nth-child(3){
+  justify-content: space-between;
+}
+
+.user + article >div>div:nth-child(3)>div.swiper-container{
+  width: 35%;
+  margin: 0;
+}
+.user + article >div>div:nth-child(3)>div.swiper-container img{
+  width: 100%;
+}
+
 .noteEtoile {
   justify-content: center;
 }
@@ -2797,10 +2894,12 @@ tbody td:last-child {
 
 .mySwiperAvis {
   border-radius: 10px;
-  width: 75%;
   height: 10em;
 }
 
+.infoProReponse {
+  gap: 20px;
+}
 
 .noteEtoile>.star {
   width: 1.2em;
@@ -2817,14 +2916,148 @@ tbody td:last-child {
 }
 
 .messageAvisReponse>div+div>img {
-  height: 10%;
-  width: 10%;
+  height: 5%;
+  width: 5%;
   margin: 0.5em;
   transform: scaleY(-1);
   rotate: -90deg;
 }
 
-/** Fin Avis **/
+
+
+/** Avis PRO **/
+
+
+
+#avisPro {
+  display: flex;
+  flex-wrap: nowrap;
+  border-bottom: 2px solid black;
+  width: 100%;
+  margin: 50px 0;
+}
+
+#avisPro h2{
+  font-weight: 600 ;
+  font-size: 2.2em;
+  margin: 20px;
+}
+
+#avisPro h3 {
+  font-weight: 500 ;
+  font-size: 1.7em;
+  margin-top: 10px;
+}
+
+#avisPro section{
+  width: 45%;
+}
+
+#avisPro section h2{
+  text-align: center;
+  margin-top: 0px;
+}
+
+.triangle{
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.triangle::before {
+  content: "▲";
+}
+
+.triangle::after {
+  content: "▼"; 
+}
+
+#avisproS1{
+  border-right: solid 2px black;
+  text-align: center;
+}
+
+#avisproS2 > div:first-child{
+  width: 90%;
+  background-color: var(--primary60);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.nonLu {
+  display: inline-block;
+  width: 17px; 
+  height: 17px; 
+  background-color: var(--accent); 
+  border-radius: 50%; 
+  margin-right: 15px;
+}
+
+.nonRepondu {
+  display: inline-block;
+  width: 25px; 
+  height: 20px; 
+  border: none;
+  border-radius: 2px; 
+  position: relative; 
+  background-color: var(--primary);
+  margin-right: 7px;
+}
+
+/* Pointe de la bulle */
+.nonRepondu::after {
+  content: '';
+  position: absolute;
+  bottom: 0; 
+  right: -5px; 
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 0 0 7px; /* dimensions de la pointe */
+  border-color: transparent transparent transparent var(--primary); 
+}
+
+
+/* Liste défilable */
+#avisProS1 > div {
+  width: 100%; /* Largeur de la liste */
+  overflow-y: auto; /* Activer le scroll vertical */
+  background-color: #ffd0d0;
+}
+
+#avisPro ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#avisPro li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.2s;
+}
+
+#avisPro li:hover {
+  background-color: #e0e0e0;
+}
+
+/* Panneau de prévisualisation */
+.conteneurAvisPro {
+  width: 100%; /* Prend tout l'espace restant */
+  padding: 20px;
+  background-color: #dee6fa;
+  overflow-y: auto; /* Permet le scroll si le contenu est trop grand */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}
+
+
+
+/** Fin avis **/
 
 
 .notation>div {
@@ -2841,6 +3074,10 @@ tbody td:last-child {
   align-items: center;
 }
 
+.notation > div > p{
+  font-weight: 600;
+}
+
 
 .notedetaille .ligneNotation {
   display: flex;
@@ -2850,6 +3087,7 @@ tbody td:last-child {
 
 .ligneNotation>span {
   width: 10em;
+  font-weight: 600;
 }
 
 .notedetaille .barreDeNotationBlanche {
@@ -2889,6 +3127,11 @@ tbody td:last-child {
   #titleOffer {
     font-size: clamp(2em, 13vw, 5em);
     font-weight: 600;
+  }
+
+  #typeOffer {
+    font-size: clamp(0.2em, 5vw, 2em);
+    font-weight: 400;
   }
 
   .mainOffer .tag,
@@ -2974,6 +3217,16 @@ tbody td:last-child {
     width: 22px;
     height: 22px;
 
+  }
+
+  /** Responsive Avis **/
+
+  .avis > div{
+    flex-direction: column;
+  }
+
+  .messageAvisReponse{
+    width: 95%;
   }
 }
 
@@ -3204,32 +3457,22 @@ tbody td:last-child {
   margin-bottom: 15px;
 }
 
-
-
-
-
-
-/* CSS pour le détails d'une offre de type spectacle */
-#show {
-  align-items: center;
-  /* background-color: yellow;  */
+#restaurant >div[class="imgRestaurant"]{
+  width: 550px;
+  height: 35px;
 }
+/* CSS pour le détails d'une offre de type spectacle */
 
-#show>div {
+#show>div ,
+#show>article>div>div ,
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]{
   display: flex;
   flex-direction: row;
-
 }
 
 #show>div>label[class="labelShow1"] {
   margin-left: 15px;
   margin-right: 5px;
-}
-
-
-#show>article>div>div {
-  display: flex;
-  flex-direction: row;
 }
 
 #show>div[class="classDivShow1"] {
@@ -3238,13 +3481,8 @@ tbody td:last-child {
   flex-direction: column;
 }
 
-#show>div[class="classDivShow1"]>div>div[class="classDivLigne"] {
-  /* background-color: blueviolet; */
-  display: flex;
-  flex-direction: row;
-}
-
-#show>div>label[class="labelNbPlace"] {
+#show>div>label[class="labelNbPlace"],
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
   margin-right: 5px;
 }
 
@@ -3258,48 +3496,76 @@ tbody td:last-child {
 
 }
 
-#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label {
-  margin-right: 5px;
-}
 
-#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"] {
-  margin-left: 5px;
-}
-
+#show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne3"],
 #show>div[class="classDivShow1"]>div>div[class="classDivLigne"]>label[class="ligne2"] {
   margin-left: 5px;
 }
 
 #show>div[class="classDivShow1"]>label {
   margin-top: 5px;
-
 }
 
-/* CSS pour le détails d'une offre de type Visite */
-#visit>div[class="visGuideeEtDuree"] {
+
+/* CSS pour le détails d'une offre de type Activité */
+
+/* #activity{
+  background-color: pink;
+} */
+#activity>div[class="divAge"],#activity >div[class="presta"]>textarea,#activity>div[class="presta"]{
   margin-bottom: 15px;
 }
+
+#activity >div[class="presta"]{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+#activity >div[class="presta"]>textarea,#activity>div[class="presta"]>input[type="button"]{
+  width: 350px;
+  height: 40px;
+}
+
+#activity>div[class="access"],
+#activity >div[class="divP"]{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+
+}
+#activity >div[class="access"]>div[class="access1"],
+#activity>div[class="divP"]>div[class="divP1"],
+#activity>div[class="divD"]>div[class="divD1"]{
+  display: flex;
+  flex-direction: row;
+}
+
+
+#activity>div[class="divD"]{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+/* CSS pour le détails d'une offre de type Visite */
 
 #visit>div[class="visGuideeEtDuree"]>label[class="labDureeVis"] {
   margin-left: 15px;
   margin-right: 5px;
 }
 
-#visit>div[class="visGuideeEtDuree"]>label[class="labH"] {
-  margin-left: 5px;
-}
 
-#visit>div[class="divAccessibliteVisit"] {
-  margin-bottom: 15px;
-}
-
-#visit>div[class="divPrixMin"] {
-  margin-bottom: 15px;
-
-}
-
+#visit>div[class="visGuideeEtDuree"]>label[class="labH"],
 #visit>div[class="divPrixMin"]>label[class="labEuro"] {
   margin-left: 5px;
+}
+
+#visit>div[class="divAccessibliteVisit"] ,
+#visit>div[class="divPrixMin"],
+#visit>div[class="visGuideeEtDuree"]{
+  margin-bottom: 15px;
 }
 
 #visit>div[class="languesProp"]>input[type="text"] {
@@ -3318,7 +3584,8 @@ tbody td:last-child {
   height: 35px;
 }
 
-#park>div[class="ageMinP"] {
+#park>div[class="ageMinP"],
+#park>div[class="NbEtPrixPark"] {
   display: flex;
   flex-direction: row;
 }
@@ -3327,10 +3594,7 @@ tbody td:last-child {
   margin-bottom: 20px;
 }
 
-#park>div[class="NbEtPrixPark"] {
-  display: flex;
-  flex-direction: row;
-}
+
 
 #park>div[class="NbEtPrixPark"]>input[class="nbAttrac"] {
   margin-right: 15px;

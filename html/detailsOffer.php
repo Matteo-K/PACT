@@ -3,6 +3,7 @@ require_once "config.php";
 require_once __DIR__ . "/../.SECURE/cleAPI.php";
 $idOffre = $_POST["idoffre"] ?? null;
 $ouvert = $_GET["ouvert"] ?? null;
+$aujourdhui = new DateTime();
 
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
@@ -19,29 +20,146 @@ $offre = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 // Fonction pour récupérer les horaires
-function getSchedules($conn, $idOffre)
+
+/**
+ * @return array{midi: array, soir: array, spectacle: array}
+ */
+function getSchedules()
 {
+
+    global $result;
     $schedules = [
         'midi' => [],
-        'soir' => []
+        'soir' => [],
+        'spectacle' => []
     ];
 
-    // Récupérer les horaires du midi et du soir
-    $stmtMidi = $conn->prepare("SELECT * FROM pact._horaireMidi WHERE idOffre = :idOffre");
-    $stmtMidi->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
-    $stmtMidi->execute();
-    $schedules['midi'] = $stmtMidi->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmtSoir = $conn->prepare("SELECT * FROM pact._horaireSoir WHERE idOffre = :idOffre");
-    $stmtSoir->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
-    $stmtSoir->execute();
-    $schedules['soir'] = $stmtSoir->fetchAll(PDO::FETCH_ASSOC);
+    // Vérifier si les résultats existent
+    if ($result[0]) {
+        // Traitement des horaires midi
+        if ($result[0]['listhorairemidi']) {
+            // Remplacer les { et } uniquement dans les parties de l'objet qui ne sont pas des horaires
+            $listhorairemidi = $result[0]['listhorairemidi'];
+
+            // Remplacer les { par [ et les } par ] pour le reste
+            $listhorairemidi = str_replace(
+                ['{', '}', ':', ';'], 
+                ['[', ']', '=>', ','], 
+                $listhorairemidi
+            );
+
+            // Encapsuler dans des crochets pour créer un tableau
+            $listhorairemidi = '[' . $listhorairemidi . ']';
+            // Utiliser eval() pour transformer la chaîne en tableau PHP
+            eval('$listhorairemidi = ' . $listhorairemidi . ';');
+        } else {
+            $listhorairemidi = [];
+        }
+
+        // Traitement des horaires soir
+        if ($result[0]['listhorairesoir']) {
+            $listhorairesoir = $result[0]['listhorairesoir'];
+
+            // Remplacer les { par [ et les } par ] pour le reste
+            $listhorairesoir = str_replace(
+                ['{', '}', ':', ';'], 
+                ['[', ']', '=>', ','], 
+                $listhorairesoir
+            );
+
+            // Encapsuler dans des crochets pour créer un tableau
+            $listhorairesoir = '[' . $listhorairesoir . ']';
+            // Utiliser eval() pour transformer la chaîne en tableau PHP
+            eval('$listhorairesoir = ' . $listhorairesoir . ';');
+        } else {
+            $listhorairesoir = [];
+        }
+
+        if($result[0]['listehoraireprecise']){
+            $listhorairespectacle = $result[0]['listehoraireprecise'];
+
+            $listhorairespectacle = str_replace(
+                ['{', '}', ':', ';'], 
+                ['[', ']', '=>', ','], 
+                $listhorairespectacle
+            );
+
+            // Encapsuler dans des crochets pour créer un tableau
+            $listhorairespectacle = '[' . $listhorairespectacle . ']';
+            // Utiliser eval() pour transformer la chaîne en tableau PHP
+            eval('$listhorairespectacle = ' . $listhorairespectacle . ';');
+        } else {
+            $listhorairespectacle = [];
+        }
+
+        // Ajouter les horaires décodés aux tableaux de résultats
+        $schedules['midi'] = $listhorairemidi;
+        $schedules['soir'] = $listhorairesoir;
+        $schedules['spectacle'] = $listhorairespectacle;
+    }
 
     return $schedules;
 }
 
-// Récupérer les horaires
-$schedules = getSchedules($conn, $idOffre);
+$schedules = getSchedules();
+
+function formatDateEnFrancais(DateTime $date) {
+    // Traduction des jours de la semaine
+    $joursSemaine = [
+        'Monday' => 'Lundi',
+        'Tuesday' => 'Mardi',
+        'Wednesday' => 'Mercredi',
+        'Thursday' => 'Jeudi',
+        'Friday' => 'Vendredi',
+        'Saturday' => 'Samedi',
+        'Sunday' => 'Dimanche'
+    ];
+
+    // Traduction des mois
+    $moisAnnee = [
+        'January' => 'Janvier',
+        'February' => 'Février',
+        'March' => 'Mars',
+        'April' => 'Avril',
+        'May' => 'Mai',
+        'June' => 'Juin',
+        'July' => 'Juillet',
+        'August' => 'Août',
+        'September' => 'Septembre',
+        'October' => 'Octobre',
+        'November' => 'Novembre',
+        'December' => 'Décembre'
+    ];
+
+    // Extraire les composants de la date
+    $jour = $joursSemaine[$date->format('l')];  // Jour en français
+    $mois = $moisAnnee[$date->format('F')];     // Mois en français
+    $jourMois = $date->format('d');             // Jour du mois
+    $annee = $date->format('Y');                // Année
+
+    // Retourner la date formatée
+    return "$jour $jourMois $mois $annee";
+}
+
+function getOpen($date, $horaires){
+    $jourActuel = $date->format('l');
+    $jourActuel = explode(' ', formatDateEnFrancais($date))[0];
+    $heureActuelle = $date->format('H:i');
+
+    $ouvert = false;
+
+    if (isset($horaires[$jourActuel])) {
+        foreach ($horaires[$jourActuel] as $plage) {
+            if ($heureActuelle >= str_replace("=>",":",$plage['ouverture']) && $heureActuelle <= str_replace("=>",":", $plage['fermeture'])) {
+                $ouvert = true;
+                break;
+            }
+        }
+    }
+
+    return $ouvert;
+}
 
 // Rechercher l'offre dans les parcs d'attractions
 $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
@@ -120,121 +238,211 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php require_once "components/header.php"; ?>
 
     <main class="mainOffer">
-        <fieldset class="info">
-            <legend>Information de l'offre</legend>
+        <?php
+        if ($typeUser == "pro_prive" || $typeUser == "pro_public") {
+        ?>
 
-            <?php
-            if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-                $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
-                $cook->execute();
-                $offre = $cook->fetchAll(PDO::FETCH_ASSOC);
-            ?>
-            <h3 class="Enligne"><?php echo $offre[0]['statut'] ?></h3>
+            <fieldset class="info">
+                <legend>Information de l'offre</legend>
 
-            <div class="buttonDetails">
                 <?php
-                    $affiche = false;
-                    foreach ($offre[0] as $key => $value) {
-                        if ($value == NULL) {
-                            $affiche = true;
-                        }
-                    }
-                    if ($affiche) {
-                        $resto = $conn->prepare("SELECT * FROM pact._restauration WHERE idoffre=$idOffre");
-                        $resto->execute();
-                        $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
+                if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
+                    $cook = $conn->prepare("SELECT o.idu,o.idoffre,o.nom,o.statut,o.description,o.mail,o.affiche,o.resume FROM pact._offre o WHERE idoffre=$idOffre");
+                    $cook->execute();
+                    $resultbtn = $cook->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+                    <h3 class="Enligne"><?php echo $resultbtn[0]['statut'] ?></h3>
 
-                        $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=$idOffre");
-                        $spec->execute();
-                        $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
-
-                        $visi = $conn->prepare("SELECT * FROM pact._visite WHERE idoffre=$idOffre");
-                        $visi->execute();
-                        $visit = $visi->fetchAll(PDO::FETCH_ASSOC);
-
-                        $act = $conn->prepare("SELECT * FROM pact._activite WHERE idoffre=$idOffre");
-                        $act->execute();
-                        $acti = $act->fetchAll(PDO::FETCH_ASSOC);
-
-                        $parc = $conn->prepare("SELECT * FROM pact._parcattraction WHERE idoffre=$idOffre");
-                        $parc->execute();
-                        $parca = $parc->fetchAll(PDO::FETCH_ASSOC);
-
-                        if ($restau) {
-                            $tema = $restau;
-                        } elseif ($spect) {
-                            $tema = $spect;
-                        } elseif ($visit) {
-                            $tema = $visit;
-                        } elseif ($acti) {
-                            $tema = $acti;
-                        } else {
-                            $tema = $parca;
-                        }
-
-                        foreach ($tema[0] as $key => $value) {
+                    <div class="buttonDetails">
+                        <?php
+                        $affiche = false;
+                        foreach ($resultbtn[0] as $key => $value) {
                             if ($value == NULL) {
                                 $affiche = true;
                             }
                         }
-                        $adr = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre=$idOffre");
-                        $adr->execute();
-                        $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
+                        if ($affiche) {
+                            $resto = $conn->prepare("SELECT * FROM pact._restauration WHERE idoffre=$idOffre");
+                            $resto->execute();
+                            $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
 
-                        if (!$loca) {
-                            $affiche = true;
+                            $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=$idOffre");
+                            $spec->execute();
+                            $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
+
+                            $visi = $conn->prepare("SELECT * FROM pact._visite WHERE idoffre=$idOffre");
+                            $visi->execute();
+                            $visit = $visi->fetchAll(PDO::FETCH_ASSOC);
+
+                            $act = $conn->prepare("SELECT * FROM pact._activite WHERE idoffre=$idOffre");
+                            $act->execute();
+                            $acti = $act->fetchAll(PDO::FETCH_ASSOC);
+
+                            $parc = $conn->prepare("SELECT * FROM pact._parcattraction WHERE idoffre=$idOffre");
+                            $parc->execute();
+                            $parca = $parc->fetchAll(PDO::FETCH_ASSOC);
+
+                            if ($restau) {
+                                $tema = $restau;
+                            } elseif ($spect) {
+                                $tema = $spect;
+                            } elseif ($visit) {
+                                $tema = $visit;
+                            } elseif ($acti) {
+                                $tema = $acti;
+                            } else {
+                                $tema = $parca;
+                            }
+
+                            foreach ($tema[0] as $key => $value) {
+                                if ($value == NULL) {
+                                    $affiche = true;
+                                }
+                            }
+                            $adr = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre=$idOffre");
+                            $adr->execute();
+                            $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
+
+                            if (!$loca) {
+                                $affiche = true;
+                            }
                         }
-                    }
-                    if (!$affiche) {
-                        $statutActuel = $offre[0]['statut'];
-                    ?>
+                        if (!$affiche) {
+                            $statutActuel = $resultbtn[0]['statut'];
+                        ?>
 
-                        <form method="post" action="changer_statut.php">
-                            <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
-                            <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
-                            <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
-                            <button class="modifierBut" type="submit">
-                                <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
-                            </button>
-                        </form>
-                    <?php
-                    }
-                    ?>
+                            <form method="post" action="changer_statut.php">
+                                <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
+                                <input type="hidden" name="offre_id" value="<?php echo $resultbtn[0]['idoffre']; ?>">
+                                <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
+                                <button class="modifierBut" type="submit">
+                                    <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
+                                </button>
+                            </form>
+                        <?php
+                        }
+                        ?>
 
-                    <div class="form-container">
-                        <form method="post" action="manageOffer.php">
-                            <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
-                            <input type="hidden" name="page" value="2">
-                            <button 
-                                class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>" 
-                                type="submit"
-                                onmouseover="showMessage(event)"
-                                onmouseout="hideMessage(event)"
-                                <?php if ($offre[0]['statut'] === 'actif') { ?>
+                        <div class="form-container">
+                            <form method="post" action="manageOffer.php">
+                                <input type="hidden" name="idOffre" value="<?php echo $resultbtn[0]['idoffre']; ?>">
+                                <input type="hidden" name="page" value="2">
+                                <button
+                                    class="modifierBut <?php echo $resultbtn[0]['statut'] === 'actif' ? 'disabled' : ''; ?>"
+                                    type="submit"
+                                    onmouseover="showMessage(event)"
+                                    onmouseout="hideMessage(event)"
+                                    <?php if ($resultbtn[0]['statut'] === 'actif') { ?>
                                     onclick="return false;"
-                                <?php } ?>
-                            >
-                                <?php echo "Modifier offre"; ?>
-                            </button>
-                        </form>
-                                
-                        <!-- Message affiché au survol du bouton désactivé -->
-                                
-                    </div>
+                                    <?php } ?>>
+                                    <?php echo "Modifier offre"; ?>
+                                </button>
+                            </form>
 
+                            <!-- Message affiché au survol du bouton désactivé -->
 
+                        </div>
 
-                <?php
+                        <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
+
+                        
+                    <?php
                 }
 
-                ?>
-            </div>
-        </fieldset>
-        <?php if ($offre[0]['statut'] === 'actif') { ?>
-            <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
-        <?php } ?>
+                    ?>
+                    </div>
+            </fieldset>
+            <section id="myModal" class="modal">
+              <section class="modal-content">
+                <span class="close">&times;</span>
+                <section class="titre">
+                    <h2>Gestion des option</h2>
+                    <h2>Ajouter une option</h2>
+                </section>
+                <section class="traitBouge"></section>
+                <section class="afficheOption">
+                    <?php 
+                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null)");
+                        $option->execute([$idOffre]);
+                        $mesOtion = $option->fetchAll(PDO::FETCH_ASSOC);
+                        if ($mesOtion) {
+                            ?>
+                                <strong><p>Mes options : </p></strong>
+                                <ul>
+                                    <?php
+                                        foreach ($mesOtion as $key => $value) {
+                                            ?>
+                                            <li>
+                                                <section class="popUpOption">
+                                                    <?php
+                                                    if ($value['datefin'] != null) {
+                                                        $dateActuelle = NEW DateTime();
+                                                        $dateFin = NEW DateTime($value['datefin']);
+                                                        $dureeRestante = $dateActuelle->diff($dateFin);
+                                                        ?><p><?php echo "Option en cours : " . $value['nomoption'] . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
+                                                        <button class="modifierBut">Arrêter</button>
+                                                        <?php
+                                                    } else {
+                                                        ?><p><?php echo "Option pas commencer : " . $value['nomoption'] . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
+                                                        <button class="modifierBut">Résilier</button>
+                                                        <?php
+                                                    } 
+                                                    ?>
+                                                </section>
+                                            </li>
+                                            <?php
+                                        }
+                                    ?>
+                                </ul>
+                            <?php
+                        } else {
+                            ?>
+                                <strong><p>Aucune option activé</p></strong>
+                            <?php
+                        }
+
+
+                    ?>
+                </section>
+                <section class="AjouterOption">
+                    <section class="AlaUne">
+                        <h4>A la Une</h4>
+                        <button class="modifierBut">Ajouter</button>
+                        <aside>
+                            <form action="" method="post">
+                                <input type="hidden" name="nomOption" value="ALaUne">
+                                <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                <input type="checkbox" name="aLaFin" id="aLaFin">
+                            </form>
+                            <p>l'option sera active lors de la prochaine mise en ligne</p>
+                        </aside>
+                    </section>
+                    <section class="EnRelief">
+                        <h4>En Relief</h4>
+                        <button class="modifierBut">Ajouter</button>
+                        <aside>
+                            <form action="" method="post">
+                                <input type="hidden" name="nomOption" value="ALaUne">
+                                <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                <input type="checkbox" name="aLaFin" id="aLaFin">
+                            </form>
+                            <p>l'option sera active lors de la prochaine mise en ligne</p>
+                        </aside>
+                    </section>
+                </section>              
+                <button onclick="Comfirmation()">Comfirmer</button>
+              </section>
+            </section>
+            <?php if ($resultbtn[0]['statut'] === 'actif') { ?>
+                <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
+            <?php }
+        }
+        ?>
+        
         <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
-        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $lieu['ville'] ?></h3>
+        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $result[0]['ville'] ?></h3>
         <?php
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
         ?>
@@ -245,7 +453,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div>
             <?php
             // Fetch tags associated with the offer
-            $stmt = $conn->prepare("
+        $stmt = $conn->prepare("
                 SELECT t.nomTag FROM pact._offre o
                 LEFT JOIN pact._tag_parc tp ON o.idOffre = tp.idOffre
                 LEFT JOIN pact._tag_spec ts ON o.idOffre = ts.idOffre
@@ -255,46 +463,266 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 LEFT JOIN pact._tag t ON t.nomTag = COALESCE(tp.nomTag, ts.nomTag, ta.nomTag, tr.nomTag, tv.nomTag)
                 WHERE o.idOffre = :idoffre
                 ORDER BY o.idOffre");
-            $stmt->bindParam(':idoffre', $idOffre);
-            $stmt->execute();
-            $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->bindParam(':idoffre', $idOffre);
+        $stmt->execute();
+        $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if ($typeOffer == "restaurant") {
-                array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
-            }
+        if ($typeOffer == "restaurant") {
+            array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
+        }
 
-            foreach ($tags as $tag):
-                if ($tag["nomtag"] != NULL) {
+        foreach ($tags as $tag):
+            if ($tag["nomtag"] != NULL) {
+        ?>
+                <a class="tag" href="search.php?search=<?= str_replace("_", "+", $tag["nomtag"]) ?>"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
+            <?php }
+        endforeach;
+
+        if (getOpen($aujourdhui, $schedules)) {
             ?>
-                    <a class="tag" href="search.php?search=<?= str_replace("_", "+", $tag["nomtag"] )?>"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
-                <?php }
-            endforeach;
+            <a class="ouvert" href="search.php?search=ouvert">Ouvert</a>
+        <?php
+        } else{
+        ?>
+            <a class="ferme" href="search.php?search=ferme">Fermé</a>
+        <?php
+        }
+        ?>
 
-            if ($ouvert == "EstOuvert") {
+    </div>
+
+    <div id="infoPro">
+        <?php
+        $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
+        $stmt->execute();
+        $tel = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        if ($result[0]['ville'] && $result[0]['pays'] && $result[0]['codepostal']) {
+        ?>
+            <div>
+                <img src="./img/icone/lieu.png">
+                <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
+            </div>
+
+        <?php
+        }
+        if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
+        ?>
+            <div>
+                <img src="./img/icone/tel.png">
+                <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
+            </div>
+        <?php
+        }
+        if ($result[0]["mail"]) {
+        ?>
+            <div>
+                <img src="./img/icone/mail.png">
+                <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
+            </div>
+
+        <?php
+        }
+        if ($result[0]["urlsite"]) {
+        ?>
+            <div>
+                <img src="./img/icone/globe.png">
+                <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
+            </div>
+
+        <?php
+        }
+        ?>
+
+    </div>
+
+    <div class="swiper-container">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <?php
+                foreach ($photos as $picture) {
                 ?>
-                <a class="ouvert" href="search.php?search=ouvert">Ouvert</a>
-            <?php
-            } else if ($ouvert == "EstFermé") {
-            ?>
-                <a class="ferme" href="search.php?search=ferme">Fermé</a>
-            <?php
-            }
-            ?>
-
+                    <div class="swiper-slide">
+                        <img src="<?php echo $picture['url']; ?>" />
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
         </div>
 
-        <div id="infoPro">
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <div thumbsSlider="" class="swiper myThumbSlider">
+        <div class="swiper-wrapper">
             <?php
-            $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
-            $stmt->execute();
-            $tel = $stmt->fetch(PDO::FETCH_ASSOC);
+            foreach ($photos as $picture) {
+            ?>
+                <div class="swiper-slide">
+                    <img src="<?php echo $picture['url']; ?>" />
+                </div>
+            <?php
+            }
+            ?>
+        </div>
+    </div>
+    <article id="descriptionOffre">
+        <?php
+        if (!$avis) {
+            echo '<p>Pas de note pour le moment</p>';
+        } else {
+            $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
+            $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
+        ?>
+            <div class="notation">
+                <div>
+                    <?php
+                    // Étoiles pleines
+                    for ($i = 1; $i <= $etoilesPleines; $i++) {
+                        echo '<div class="star pleine"></div>';
+                    }
+                    // Étoile partielle
+                    if ($reste > 0) {
+                        $pourcentageRempli = $reste * 100; // Pourcentage rempli
+                        echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
+                    }
+                    // Étoiles vides
+                    for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
+                        echo '<div class="star vide"></div>';
+                    }
+                    ?>
+                    <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
+                </div>
+                <div class="notedetaille">
+                    <?php
+                    // Adjectifs pour les notes
+                    $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
+                    for ($i = 5; $i >= 1; $i--) {
+                        // Largeur simulée pour chaque barre en fonction de vos données
+                        $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
+                    ?>
+                        <div class="ligneNotation">
+                            <span><?= $listNoteAdjectif[$i - 1]; ?></span>
+                            <div class="barreDeNotationBlanche">
+                                <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
+                            </div>
+                            <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
+        <section>
+            <h3>Description</h3>
+            <p><?php echo htmlspecialchars($result[0]["description"]); ?></p>
+        </section>
+    </article>
 
 
-            if ($lieu) {
+
+    <section id="infoComp">
+        <h2>Informations Complémentaires</h2>
+        <table>
+    <thead>
+        <tr>
+            <th colspan="2">Horaires</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        // Tableau de tous les jours de la semaine
+        $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+
+        // Récupérer les horaires à partir de la fonction getSchedules
+        $schedules = getSchedules();
+        // Afficher les horaires pour chaque jour de la semaine
+        if($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
+            $horaireSpectacle = [];
+            if($schedules['spectacle']){
+                usort($schedules['spectacle'], function($a, $b) {
+                    $dateA = new DateTime($a['dateRepresentation']);
+                    $dateB = new DateTime($b['dateRepresentation']);
+                    return $dateA <=> $dateB; // Trier du plus récent au plus ancien
+                });
+
+                foreach($schedules['spectacle'] as $spec){
+                    $dateSpectacle = new DateTime($spec['dateRepresentation']);
+                    ?>
+                    <tr>
+                        <td class="jourSemaine"><?= ucwords(formatDateEnFrancais($dateSpectacle))?></td>
+                        <td>
+                            <?php
+                                echo "à " . str_replace("=>",":",$spec['heureOuverture']);
+                            ?>
+                        </td>
+                    </tr>
+                    <?php
+
+                }
+            }
+        }else{
+            foreach ($joursSemaine as $jour): ?>
+                <tr>
+                    <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
+                    <td>
+                        <?php
+
+                            // Filtrer les horaires pour chaque jour spécifique
+                            $horaireMidi = [];
+                            $horaireSoir = [];
+        
+                            if ($schedules['midi']) {
+                                $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
+                            }
+                            if ($schedules['soir']) {
+                                $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
+                            }
+        
+                            // Collecter les horaires à afficher
+                            $horairesAffichage = [];
+                            if (!empty($horaireMidi)) {
+                                $horaireMidi = current($horaireMidi); // Prendre le premier élément du tableau filtré
+                                $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":",$horaireMidi['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":",$horaireMidi['heureFermeture']));
+                            }
+                            if (!empty($horaireSoir)) {
+                                $horaireSoir = current($horaireSoir); // Prendre le premier élément du tableau filtré
+                                $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":",$horaireSoir['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":",$horaireSoir['heureFermeture']));
+                            }
+                            if (empty($horaireMidi) && empty($horaireSoir)) {
+                                $horairesAffichage[] = "Fermé";
+                            }
+        
+                            // Afficher les horaires ou "Fermé"
+                            echo implode(' et ', $horairesAffichage); 
+                        ?>
+                    </td>
+                </tr>
+            <?php 
+                endforeach;   
+            }
+            ?>
+    </tbody>
+</table>
+
+
+    </section>
+    <!-- Carte Google Maps -->
+    <div id="afficheLoc">
+        <div id="carte"></div>
+        <div id="contact-info">
+            <?php
+            if ($result[0]['ville'] && $result[0]['codepostal'] && $result[0]['pays']) {
             ?>
                 <div>
                     <img src="./img/icone/lieu.png">
-                    <a href="https://www.google.com/maps?q=<?php echo urlencode($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></a>
+                    <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
                 </div>
 
             <?php
@@ -326,209 +754,34 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php
             }
             ?>
-
         </div>
-
-        <div class="swiper-container">
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <?php
-                    foreach ($photos as $picture) {
-                    ?>
-                        <div class="swiper-slide">
-                            <img src="<?php echo $picture['url']; ?>" />
-                        </div>
-                    <?php
-                    }
-                    ?>
-                </div>
-            </div>
-
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-
-        <div thumbsSlider="" class="swiper myThumbSlider">
-            <div class="swiper-wrapper">
-                <?php
-                foreach ($photos as $picture) {
-                ?>
-                    <div class="swiper-slide">
-                        <img src="<?php echo $picture['url']; ?>" />
-                    </div>
-                <?php
-                }
-                ?>
-            </div>
-        </div>
-        <article id="descriptionOffre">
-            <?php
-            if (!$avis) {
-                echo '<p>Pas de note pour le moment</p>';
-            } else {
-                $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
-                $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
-            ?>
-                <div class="notation">
-                    <div>
-                        <?php
-                        // Étoiles pleines
-                        for ($i = 1; $i <= $etoilesPleines; $i++) {
-                            echo '<div class="star pleine"></div>';
-                        }
-                        // Étoile partielle
-                        if ($reste > 0) {
-                            $pourcentageRempli = $reste * 100; // Pourcentage rempli
-                            echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
-                        }
-                        // Étoiles vides
-                        for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
-                            echo '<div class="star vide"></div>';
-                        }
-                        ?>
-                        <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
-                    </div>
-                    <div class="notedetaille">
-                        <?php
-                        // Adjectifs pour les notes
-                        $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
-                        for ($i = 5; $i >= 1; $i--) {
-                            // Largeur simulée pour chaque barre en fonction de vos données
-                            $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
-                        ?>
-                            <div class="ligneNotation">
-                                <span><?= $listNoteAdjectif[$i-1]; ?></span>
-                                <div class="barreDeNotationBlanche">
-                                    <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
-                                </div>
-                                <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?>)</span>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                </div>
-            <?php
-            }
-            ?>
-            <section>
-                <h3>Description</h3>
-                <p><?php echo htmlspecialchars($result[0]["description"]); ?></p>
-            </section>
-        </article>
+    </div>
 
 
+    <?php
+    if ($typeOffer == "parcs_attractions") {
+    ?>
+        <img src="<?php echo $result[0]["urlplan"] ?>">
+    <?php
+    }
 
-        <section id="infoComp">
-            <h2>Informations Complémentaires</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="2">Horaires</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    // Tableau de tous les jours de la semaine
-                    $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-
-                    // Afficher les horaires pour chaque jour de la semaine
-                    foreach ($joursSemaine as $jour): ?>
-                        <tr>
-                            <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
-                            <td>
-                                <?php
-                                $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
-                                $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
-
-                                // Collect hours
-                                $horairesAffichage = [];
-                                if (!empty($horaireMidi)) {
-                                    $horairesAffichage[] = htmlspecialchars(current($horaireMidi)['heureouverture']) . " à " . htmlspecialchars(current($horaireMidi)['heurefermeture']);
-                                }
-                                if (!empty($horaireSoir)) {
-                                    $horairesAffichage[] = htmlspecialchars(current($horaireSoir)['heureouverture']) . " à " . htmlspecialchars(current($horaireSoir)['heurefermeture']);
-                                }
-                                if (empty($horaireMidi) && empty($horaireSoir)) {
-                                    $horairesAffichage[] = "Fermé";
-                                }
-                                echo implode(' et ', $horairesAffichage);
-                                ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </section>
-        <!-- Carte Google Maps -->
-        <div id="afficheLoc">
-            <div id="carte"></div>
-            <div id="contact-info">
-                <?php
-                if ($lieu) {
-                ?>
-                    <div>
-                        <img src="./img/icone/lieu.png">
-                        <a href="https://www.google.com/maps?q=<?php echo urlencode($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($lieu["numerorue"] . " " . $lieu["rue"] . ", " . $lieu["codepostal"] . " " . $lieu["ville"]); ?></a>
-                    </div>
-
-                <?php
-                }
-                if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
-                ?>
-                    <div>
-                        <img src="./img/icone/tel.png">
-                        <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
-                    </div>
-                <?php
-                }
-                if ($result[0]["mail"]) {
-                ?>
-                    <div>
-                        <img src="./img/icone/mail.png">
-                        <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
-                    </div>
-
-                <?php
-                }
-                if ($result["urlsite"]) {
-                ?>
-                    <div>
-                        <img src="./img/icone/globe.png">
-                        <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
-                    </div>
-
-                <?php
-                }
-                ?>
-            </div>
-        </div>
-
+    if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
+        require_once __DIR__ . "/components/avis/avisPro.php";
+    } else {
+    ?>
+        <div class="avis">
+            <nav>
+                <h3>Avis</h3>
+                <h3>Publiez un avis</h3>
+            </nav>
 
         <?php
-        if ($typeOffer == "parcs_attractions") {
+        echo "<div>";
+        require_once __DIR__ . "/components/avis/avisMembre.php";
+        echo "</div";
+    }
         ?>
-            <img src="<?php echo $result[0]["urlplan"] ?>">
-        <?php
-        }
-
-        if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
-            require_once __DIR__ . "/components/avis/avisPro.php";
-        } else {
-        ?>
-            <div class="avis">
-                <nav>
-                    <h3>Avis</h3>
-                    <h3>Publiez un avis</h3>
-                </nav>
-
-            <?php
-            echo "<div>";
-            require_once __DIR__ . "/components/avis/avisMembre.php";
-            echo "</div";
-        }
-            ?>
-            </div>
+        </div>
     </main>
     <?php
     require_once "./components/footer.php";
@@ -536,6 +789,43 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
     <script>
+        try {
+            const modal = document.getElementById("myModal");
+            const openModalBtn = document.getElementById("openModalBtn");
+            const closeModalBtn = document.querySelector(".close");
+            const popupForm = document.getElementById("popupForm");
+
+            // Fonction pour afficher le modal
+            function openModal() {
+              modal.style.display = "block";
+            }
+        
+            // Fonction pour fermer le modal
+            function closeModal() {
+              modal.style.display = "none";
+            }
+        
+            // Ouvrir le popup lorsque le bouton est cliqué
+            openModalBtn.onclick = openModal;
+        
+            // Fermer le popup lorsqu'on clique sur la croix
+            closeModalBtn.onclick = closeModal;
+        
+            // Fermer le popup lorsqu'on clique en dehors du contenu
+            // window.onclick = function(event) {
+            //   if (event.target === modal) {
+            //     closeModal();
+            //   }
+            // }
+        
+            // Soumettre le formulaire
+            function Comfirmation() {
+              closeModal(); // Fermer la fenêtre modale après soumission
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
         let map;
         let geocoder;
         let marker; // Variable pour stocker le marqueur actuel
@@ -641,8 +931,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             console.log('Redirection vers:', window.location.href);
             window.location.href = './search.php';
         };
-
-
     </script>
     <script src="js/setColor.js"></script>
 </body>
