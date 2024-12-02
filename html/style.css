@@ -1400,19 +1400,18 @@ header ul+div {
 }
 
 #removeCB div {
-  background-color: blue;
   position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-25%, -25%);
+  transform: translate(-50%, -50%);
   width: 50%;
-  height: 30vh;
+  height: 50vh;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  background-image: url(img/phare.jpg);
-  background-position: center;
-  background-size: cover;
+  background-color: var(--bloc);
+  color: white;
+  text-shadow: black 2px 2px;
 }
 
 /* ------------------------- END Payment OFFER CSS --------------------------------*/
