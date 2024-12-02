@@ -106,7 +106,7 @@
             <div class="ligne3">
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
-                <input type="text" placeholder="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['numerorue']) && isset($user['rue']) ? htmlspecialchars($user['numerorue']) . '' . htmlspecialchars($user['rue']): '' ?>" required>
+                <input type="text" placeholder="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['numerorue']) && isset($user['rue']) ? htmlspecialchars($user['numerorue']) . ' ' . htmlspecialchars($user['rue']) : '' ?>" required>
             </div>
 
 
