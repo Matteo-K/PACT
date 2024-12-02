@@ -70,8 +70,9 @@ if ($categorie["_visite"]) {
 
 
     <div class="divAccessibliteVisit">
-        <label>Accessibilité</label> <!-- Label Accessibilité -->
 
+        <label>Accessibilité</label> <!-- Label Accessibilité -->
+<div class="divAccessibliteVisit1">
         <input type="radio" id="access" name="Accessibilité" value="access" checked>
         <!-- Bouton radio pour le choix de l'accesibilite PMR il est lier avec le 2eme et est selectionner par defaut -->
         <label for="access"> Accès personne handicapées</label>
@@ -81,7 +82,7 @@ if ($categorie["_visite"]) {
         <!-- 2eme bouton radio liés au 1er via l'id -->
         <label for="pasAcces"> Pas d’accès personne handicapées </label>
         <!-- Label du 2eme bouton radio -->
-
+</div>
     </div>
 
 
