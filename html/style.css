@@ -3577,7 +3577,8 @@ tbody td:last-child {
   margin-top: 5px;
 }
 
-#visit>div[class="languesProp"] {
+#visit>div[class="languesProp"],
+#visit>div[class="divAccessibliteVisit"] {
   display: flex;
   flex-direction: column;
 }

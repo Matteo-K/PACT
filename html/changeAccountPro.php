@@ -16,29 +16,25 @@
 
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
-        $stmt = $conn->prepare("SELECT 
-            p.idU AS id_utilisateur,
-            p.denomination AS denomination,
-            n.telephone,
-            n.mail,
+        $stmt = $conn->prepare("SELECT
+            u.denomination,
+            na.telephone,
+            na.mail,
             a.numeroRue,
             a.rue,
             a.ville,
             a.pays,
-            a.codePostal,
-            ab.nomAbonnement
-        FROM 
-            _pro p
-        JOIN 
-            _nonAdmin n ON p.idU = n.idU
-        JOIN 
-            _adresse a ON p.idU = a.numeroRue
-        LEFT JOIN 
-            _abonner ab ON p.idU = ab.idOffre
-        WHERE 
-            p.idU IS NOT NULL;
+            a.codePostal
+        FROM
+            pact._utilisateur u
+        JOIN
+            pact._nonAdmin na ON u.idU = na.idU
+        JOIN
+            pact._adresse a ON u.idU = a.idU
+        WHERE
+            u.type = 'pro'  -- Assurez-vous que vous filtrez correctement selon le type de profil (privé/public)
+            AND (na.type = 'public' OR na.type = 'prive')  -- Filtre selon le type (public ou privé)
         ");
-        
         $stmt->execute([$userId, $userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
