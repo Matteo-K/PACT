@@ -2087,11 +2087,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 40%; 
 }
 
-.content {
+.contentPop {
   display: none;
 }
 
-.content.active {
+.contentPop.active {
   display: block;
 }
 
