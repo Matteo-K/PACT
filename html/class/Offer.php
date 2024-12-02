@@ -139,7 +139,7 @@ class Offer {
       }
     } else {
       foreach ($soir as $horaire) {
-        if ($horaire['dateRepresentation'] == $currentDate) {
+        if ($horaire['daterepresentation'] == $currentDate) {
           $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
           $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
           if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
