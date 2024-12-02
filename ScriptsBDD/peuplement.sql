@@ -44,7 +44,7 @@ VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
 INSERT INTO _abonnement (nomAbonnement, tarif) 
 VALUES ('Basique', 2), 
        ('Premium', 4),
-	     ('Gratuit', 0.0);
+	('Gratuit', 0.0);
 
 -- Peuplement de la table _statut
 INSERT INTO _statut (statut) 
@@ -330,10 +330,10 @@ VALUES (1, '22300', 'Lannion', 'France', 'Rue Édouard Branly', '1'),
 
 -- Peuplement de la table _abonner
 INSERT INTO _abonner (idOffre, nomAbonnement) 
-VALUES (1, 'Premium'), 
+VALUES (1, 'Gratuite'), 
        (2, 'Basique'), 
        (3, 'Premium'), 
-       (4, 'Basique'), 
+       (4, 'Gratuite'), 
        (5, 'Premium');
        
 
