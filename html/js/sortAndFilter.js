@@ -346,7 +346,7 @@ function updatePagination(totalItems, nbElement) {
 
 function goToPage(page) {
   currentPage = page;
-  scrollTo(0);
+  window.scrollTo(0);
   sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement);
 }
 
