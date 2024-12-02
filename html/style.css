@@ -1413,13 +1413,11 @@ header ul+div {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  height: 50vh;
+  height: fit-content;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   background-color: var(--bloc);
-  color: white;
-  text-shadow: black 2px 2px;
 }
 
 /* ------------------------- END Payment OFFER CSS --------------------------------*/
