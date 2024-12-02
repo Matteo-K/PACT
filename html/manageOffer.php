@@ -128,6 +128,7 @@
   window.onload = () => {
     if (saveAside) {
       setTimeout(function() {
+        document.querySelector("#save-offer img").style.display = 'block';
         document.getElementById('loading-logo').style.display = 'none';
         document.getElementById('valid-logo').style.display = 'flex';
         saveAside.style.borderColor = "#1ca4ed";
