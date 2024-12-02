@@ -111,7 +111,7 @@
 
 <script>
 
-let listeAvis = <?php echo json_encode($avis) ?>
+let listeAvis = <?php echo json_encode($avis) ?>;
 let affichage = document.getElementById("detailAvisPro");
 
 function afficheAvisSelect(numAvis) {
