@@ -760,24 +760,24 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             const openModalBtn = document.getElementById("openModalBtn");
             const closeModalBtn = document.querySelector(".close");
             const popupForm = document.getElementById("popupForm");
-
+            console.log("js1");
             // Fonction pour afficher le modal
             function openModal() {
             console.log("hop");
               modal.style.display = "block";
             }
-        
+            console.log("js2");
             // Fonction pour fermer le modal
             function closeModal() {
               modal.style.display = "none";
             }
-        
+            console.log("js3");
             // Ouvrir le popup lorsque le bouton est cliqué
             openModalBtn.onclick = openModal;
-        
+            console.log("js4");
             // Fermer le popup lorsqu'on clique sur la croix
             closeModalBtn.onclick = closeModal;
-        
+            console.log("js5");
             // Fermer le popup lorsqu'on clique en dehors du contenu
             // window.onclick = function(event) {
             //   if (event.target === modal) {
@@ -789,6 +789,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             function confirmation() {
               closeModal(); // Fermer la fenêtre modale après soumission
             }
+            console.log("js6");
         } catch (error) {
             console.log("tema" + error)
         }
