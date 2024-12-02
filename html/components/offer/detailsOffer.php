@@ -285,7 +285,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     existingPreview.innerHTML = ""; // Réinitialise la liste
                     data.images.forEach((image, index) => {
                         const img = document.createElement('img');
-                        img.src = `./img/imageOffre/${idOffre}/${image}`;
+                        img.src = `img/imageOffre/${idOffre}/${image}`;
                         img.alt = image;
                         img.title = `Cliquez pour supprimer ${image}`;
                         img.style.cursor = 'pointer';
@@ -354,7 +354,7 @@ function deleteImage(fileName, imgElement, index) {
             // Vérifie la limite d'images
             const totalSelected = existingImagesCount + input.files.length;
 
-            if (totalSelected > maxFiles) {
+            if (totalSelected > maxFiles) { 
                 alert(
                     `Erreur : Vous ne pouvez importer que ${maxFiles} photos maximum.\n` +
                     `${existingImagesCount} sont déjà sur le serveur, et vous avez sélectionné ${input.files.length}.`
