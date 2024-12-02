@@ -676,8 +676,29 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         
     } else if($typeOffer == "Restaurant"){
+        $stmt = $conn -> prepare("SELECT * from _menu where idoffre = $idoffre");
+        $stmt -> execute();
+        $menus = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     ?>
-        <div class=""></div>
+         
+        <div class="swiper-container">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <?php
+                    foreach ($menus as $menu) {
+                    ?>
+                        <div class="swiper-slide">
+                            <img src="<?php echo $menu['menu']; ?>" />
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
     <?php
     }
     if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
