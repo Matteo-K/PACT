@@ -342,9 +342,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <!-- Message affiché au survol du bouton désactivé -->
 
                         </div>
-                            <form>
-                                <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
-                            </form>
+
+                        <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
 
                         
                     <?php
