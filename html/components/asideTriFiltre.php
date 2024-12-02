@@ -109,12 +109,12 @@
                         <select name="prixMin" id="prixMin">
                             <option value="0" selected>0€</option>
                             <option value="25">25€</option>
-                            <option value="50">50€</option>
-                            <option value="75">75€</option>
+                            <option value="40">40€</option>
+                            <option value="80">80€</option>
                             <option value="100">100€</option>
-                            <option value="125">125€</option>
+                            <option value="120">120€</option>
                             <option value="150">150€</option>
-                            <option value="175">175€</option>
+                            <option value="170">170€</option>
                             <option value="200">200€ et +</option>
                         </select>
                     </div>
@@ -122,13 +122,13 @@
                         <label for="prixMax">à</label>
                         <select name="prixMax" id="prixMax">
                         <option value="0">0€</option>
-                            <option value="25">25€</option>
-                            <option value="50">50€</option>
-                            <option value="75">75€</option>
+                            <option value="20">20€</option>
+                            <option value="40">40€</option>
+                            <option value="80">80€</option>
                             <option value="100" selected>100€</option>
-                            <option value="125">125€</option>
+                            <option value="120">120€</option>
                             <option value="150">150€</option>
-                            <option value="175">175€</option>
+                            <option value="170">170€</option>
                             <option value="200">200€ et +</option>
                         </select>
                     </div>
