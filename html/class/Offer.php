@@ -6,6 +6,7 @@ date_default_timezone_set('Europe/Paris');
 
 // Récupérer le jour actuel en français avec la classe DateTime
 $currentDay = (new DateTime())->format('l'); // Récupère le jour en anglais
+$currentDate = date("Y-m-d");
 
 // Tableau pour convertir les jours de la semaine de l'anglais au français
 $daysOfWeek = [
@@ -120,12 +121,11 @@ class Offer {
    * Détermine le statut ouvert/fermé 
    * suivant les horaires déterminés et l'horaire actuelle
    */
-  public function statutOuverture($soir, $midi) {
+  public function statutOuverture($soir, $midi = null) {
     global $currentDay, $currentTime;
     $ouverture = "EstFermé";
     if ($this->categorie != "Spectacle") {
       $horaires = array_merge($soir, $midi);
-      
       // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
       foreach ($horaires as $horaire) {
         if ($horaire['jour'] == $currentDay) {
@@ -138,9 +138,18 @@ class Offer {
         }
       }
     } else {
-
+      foreach ($soir as $horaire) {
+        if ($horaire['dateRepresentation'] == $currentDate) {
+          $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
+          $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
+          if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
+            $ouverture = "EstOuvert";
+            break;
+          }
+        }
+      }
     }
-      return $ouverture;
+    return $ouverture;
   }
 
   public function filterPagination($idUser_, $typeUser_) {
