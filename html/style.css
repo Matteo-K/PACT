@@ -3084,7 +3084,7 @@ tbody td:last-child {
   flex-wrap: wrap ;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 20px;
   color: #333;
   text-align: center;
 }
@@ -3117,6 +3117,17 @@ tbody td:last-child {
   height: 50px;
 }
 
+.conteneurAvisPro h3{
+  width: 90%;
+}
+
+#visiteRedaction{
+  font-style: italic;
+  color: var(--secondary);
+  padding: 5px;
+  border-bottom: 1px solid var(--secondary60);
+
+}
 
 
 
