@@ -90,11 +90,17 @@
   </section>
   <section>
     <h4>Montant total à régler : <?php echo $montant; ?>€ (lors de la mise en ligne)</h4>
-    <p onclick="document.getElementById('removeCB').classList.remove('hidenAside')">Retirer mes coordonnées</p>
+    <p onclick="toggleAsidePayment()">Retirer mes coordonnées</p>
   </section>
   <div id="removeCB" class="hidenAside">
     <div>
       <h3>Vos coordonnées bancaires ont bien été effacées</h3>
-      <p onclick="document.getElementById('removeCB').classList.add('hidenAside')">Continuer</p>
+      <p onclick="toggleAsidePayment()">Continuer</p>
     </div>
-</div>
+  </div>
+  <script>
+    const asidePayment = document.querySelector("#removeCB");
+    function toggleAsidePayment() {
+      asidePayment.classList.toggle("hidenAside");
+    }
+  </script>

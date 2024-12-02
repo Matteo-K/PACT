@@ -1395,7 +1395,7 @@ header ul+div {
   backdrop-filter: blur(10px);
 }
 
-#removeCB .hidenAside {
+#paymentOffer .hidenAside {
   display: none;
 }
 
