@@ -768,10 +768,19 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h3>Publiez un avis</h3>
             </nav>
 
+            <div>
+            <?php
+            if($avis){
+                require_once __DIR__ . "/components/avis/avisMembre.php";
+            }else{
+            ?>
+                <p>Aucun avis pour le moment, soyez le premier à donner le vôtre !</p> 
+            <?php
+            }
+            
+            ?>
+            </div";
         <?php
-        echo "<div>";
-        require_once __DIR__ . "/components/avis/avisMembre.php";
-        echo "</div";
     }
         ?>
         </div>
