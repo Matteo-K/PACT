@@ -29,6 +29,29 @@ function transformerHoraires($idOffre_, $horaires) {
   return $resultats;
 }
 
+function transformerHorairesPrecis($idOffre_, $horaires) {
+  if (empty($horaires)) {
+    return [];
+  }
+
+  $resultats = [];
+  $horairesArray = explode(';', $horaires);
+
+  foreach ($horairesArray as $item) {
+    $decodedItem = json_decode($item, true);
+    if (json_last_error() === JSON_ERROR_NONE) {
+      $resultats[] = [
+        'idoffre' => $idOffre_,
+        'jour' => $decodedItem['jour'],
+        'heureouverture' => $decodedItem['heureOuverture'],
+        'heurefermeture' => $decodedItem['heureFin'],
+        'daterepresentation' => $decodedItem['dateRepresentation']
+      ];
+    }
+  }
+  return $resultats;
+}
+
 class ArrayOffer {
   // format : [$idOffre -> Objet, ...]
   private $arrayOffer;
@@ -78,7 +101,7 @@ class ArrayOffer {
             );
             break;
             
-          case 'Spectacl': // casse temporiare
+          case 'Spectacle':
             $stmt = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre = ?");
             $stmt->execute([$offre['idoffre']]);
             $resShow = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -88,12 +111,12 @@ class ArrayOffer {
                 $resShow['duree'], 
                 $resShow['nbplace'], 
                 $resShow['prixminimal'],
-                transformerHoraires($offre['idoffre'], $offre['listehoraireprecise'])
+                transformerHorairesPrecis($offre['idoffre'], $offre['listehoraireprecise'])
               );
             }
             break;
             
-          case 'Visite':
+          case 'Visit':
             $this->arrayOffer[$offre['idoffre']] = new Visit();
             $stmt = $conn->prepare("SELECT * FROM pact._visite_langue WHERE idoffre = ?");
             $stmt->execute([$offre['idoffre']]);
