@@ -1395,6 +1395,14 @@ header ul+div {
   backdrop-filter: blur(10px);
 }
 
+#paymentOffer section:nth-child(2) {
+  align-items: center;
+}
+
+#paymentOffer section:nth-child(2) p {
+  margin-left: 10%;
+}
+
 #paymentOffer .hidenAside {
   display: none;
 }
