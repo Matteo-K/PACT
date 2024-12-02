@@ -2064,6 +2064,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   padding: 10px 20px;
   text-align: center;
   flex: 1;
+  font-size: 2.5rem;
   transition: color 0.3s ease;
 }
 
@@ -2098,6 +2099,19 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .sectionBtn{
   text-align: right;
   width: 100%;
+}
+
+.taille{
+  font-size: 1.5rem;
+}
+
+.taille2{
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.taille3{
+  font-size: 2rem;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO

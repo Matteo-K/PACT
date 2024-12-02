@@ -328,7 +328,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
                 <section class="contentPop" id="content-2">
                     <section class="AlaUne">
-                        <h3>A la Une</h3>
+                        <p class="taille3">A la Une</p>
                         <aside>
                             <form action="" method="post">
                                 <input type="hidden" name="nomOption" value="ALaUne">
@@ -352,12 +352,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </section>
                     </section>
                     <section class="EnRelief">
-                        <h3>En Relief</h3>
+                        <p class="taille3">En Relief</p>
                         <aside>
                             <form action="" method="post">
                                 <input type="hidden" name="nomOption" value="ALaUne">
-                                <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
-                                <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                <label class="taille" for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
                             </form>
                             <?php
                             if (!$optionUne) {
