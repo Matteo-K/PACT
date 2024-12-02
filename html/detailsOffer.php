@@ -440,9 +440,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $result[0]['ville'] ?></h3>
         <?php
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-        ?>
-            <h3 class="DetailsStatut"><?php echo $statutActuel == 'actif' ? "En-Ligne" : "Hors-Ligne"; ?></h3>
-        <?php
         }
         ?>
         <div>
