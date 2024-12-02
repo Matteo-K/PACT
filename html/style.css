@@ -3561,7 +3561,7 @@ tbody td:last-child {
   margin-left: 5px;
 }
 
-#visit>div[class="divAccessibliteVisit"] ,
+#visit>div[class="access"] ,
 #visit>div[class="divPrixMin"],
 #visit>div[class="visGuideeEtDuree"]{
   margin-bottom: 15px;
@@ -3574,7 +3574,7 @@ tbody td:last-child {
 }
 
 #visit>div[class="languesProp"],
-#visit>div[class="divAccessibliteVisit"] {
+#visit>div[class="access"] {
   display: flex;
   flex-direction: column;
 }
