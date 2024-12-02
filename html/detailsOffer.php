@@ -153,6 +153,7 @@ if (!$result) {
 ?>
     <form id="manageOfferAuto" action="manageOffer.php" method="post">
         <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+        <input type="hiddedn" name="page" value="2">
     </form>
     <script>
         document.getElementById("manageOfferAuto").submit();
@@ -269,9 +270,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <section class="traitBouge"></section>
                 <section class="afficheOption">
                     <?php 
-                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null)");
+                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'ALaUne'");
                         $option->execute([$idOffre]);
-                        $mesOtion = $option->fetchAll(PDO::FETCH_ASSOC);
+                        $optionUne = $option->fetchAll(PDO::FETCH_ASSOC);
+                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'EnRelief'");
+                        $option->execute([$idOffre]);
+                        $optionRelief = $option->fetchAll(PDO::FETCH_ASSOC);
+                        $mesOtion[] = $optionRelief;
+                        $mesOtion[] = $optionUne;
                         if ($mesOtion) {
                             ?>
                                 <strong><p>Mes options : </p></strong>
@@ -320,9 +326,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <input type="hidden" name="nomOption" value="ALaUne">
                                 <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
                                 <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
-                                <input type="checkbox" name="aLaFin" id="aLaFin">
                             </form>
-                            <p>l'option sera active lors de la prochaine mise en ligne</p>
+                            <?php
+                            if (!$optionUne) {
+                                ?>
+                                    <p>l'option sera active lors de la prochaine mise en ligne</p>
+                                <?php                                
+                            } else {
+                                ?>
+                                    <p>L'option sera lancer à la fin de celle-ci</p>
+                                <?php
+                            }
+                            ?>
                         </aside>
                     </section>
                     <section class="EnRelief">
