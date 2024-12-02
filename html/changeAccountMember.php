@@ -16,7 +16,7 @@
 
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
-        $stmt = $conn->prepare("SELECT m.*, a.numeroRue, a.rue, a.ville, a.pays, a.codePostal FROM pact.membre m JOIN pact._adresse a ON m.idU = a.idU WHERE m.idU = ?");
+        $stmt = $conn->prepare("SELECT * FROM pact._adresse WHERE idU = ?");
         // $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE idU = ?");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
