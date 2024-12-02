@@ -328,51 +328,59 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
                 <section class="contentPop" id="content-2">
                     <section class="AlaUne">
-                        <p class="taille3">A la Une</p>
-                        <aside>
-                            <form action="" method="post">
-                                <input type="hidden" name="nomOption" value="ALaUne">
-                                <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
-                                <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
-                            </form>
-                            <?php
-                            if (!$optionUne) {
-                                ?>
-                                    <p>l'option sera active lors de la prochaine mise en ligne</p>
-                                    <?php                                
-                            } else {
-                                ?>
-                                    <p>L'option sera lancer à la fin de celle-ci</p>
+                        <strong>
+                            <p class="taille3">A la Une</p>
+                        </strong>
+                        <section class="donnee">
+                            <aside>
+                                <form action="" method="post">
+                                    <input type="hidden" name="nomOption" value="ALaUne">
+                                    <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                    <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                </form>
                                 <?php
-                            }
-                            ?>
-                        </aside>
-                        <section class="sectionBtn">
-                            <button class="modifierBut">Ajouter</button>
+                                if (!$optionUne) {
+                                    ?>
+                                        <p>l'option sera active lors de la prochaine mise en ligne</p>
+                                        <?php                                
+                                } else {
+                                    ?>
+                                        <p>L'option sera lancer à la fin de celle-ci</p>
+                                    <?php
+                                }
+                                ?>
+                            </aside>
+                            <section class="sectionBtn">
+                                <button class="modifierBut">Ajouter</button>
+                            </section>
                         </section>
                     </section>
                     <section class="EnRelief">
-                        <p class="taille3">En Relief</p>
-                        <aside>
-                            <form action="" method="post">
-                                <input type="hidden" name="nomOption" value="ALaUne">
-                                <label class="taille" for="nbWeekALaUne">Nombre de semaine à la Une</label>
-                                <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
-                            </form>
-                            <?php
-                            if (!$optionUne) {
+                        <strong>
+                            <p class="taille3">En Relief</p>
+                        </strong>
+                        <section class="donnee">
+                            <aside>
+                                <form action="" method="post">
+                                    <input type="hidden" name="nomOption" value="ALaUne">
+                                    <label class="taille" for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                </form>
+                                <?php
+                                if (!$optionUne) {
+                                    ?>
+                                        <p>l'option sera active lors de la prochaine mise en ligne</p>
+                                        <?php                                
+                                } else {
+                                    ?>
+                                        <p>L'option sera lancer à la fin de celle-ci</p>
+                                        <?php
+                                }
                                 ?>
-                                    <p>l'option sera active lors de la prochaine mise en ligne</p>
-                                    <?php                                
-                            } else {
-                                ?>
-                                    <p>L'option sera lancer à la fin de celle-ci</p>
-                                    <?php
-                            }
-                            ?>
-                        </aside>
-                        <section class="sectionBtn">
-                            <button id="buttonAjt" class="modifierBut">Ajouter</button>
+                            </aside>
+                            <section class="sectionBtn">
+                                <button id="buttonAjt" class="modifierBut">Ajouter</button>
+                            </section>
                         </section>
                     </section>
                 </section>              
