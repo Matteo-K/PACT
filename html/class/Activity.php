@@ -17,7 +17,7 @@ class Activity extends Offer {
     $this->horaireSoir = [];
   }
 
-  public function setDataActivity($duree_, $ageMinimal_, $prixMinimal_, $prestation_) {
+  public function setDataActivity($duree_, $ageMinimal_, $prixMinimal_, $prestation_, $horaireMidi_, $horaireSoir_) {
     $this->duree = $duree_;
     $this->ageMinimal = $ageMinimal_;
     $this->prixMinimal = $prixMinimal_;
