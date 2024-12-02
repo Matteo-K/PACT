@@ -2,7 +2,7 @@ SET SCHEMA 'pact';
 
 -- Peuplement de la table _utilisateur
 INSERT INTO _utilisateur (password) 
-VALUES ('motdepasse1'), ('motdepasse2'), ('motdepasse3'), ('$2y$10$UCrpwG.yZKqiAC4K2JctOeFwiar3nhNH1HWkx1NivF1KYUfnwxYTa'), ('motdepasse5');
+VALUES ('motdepasse1'), ('motdepasse2'), ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'), ('$2y$10$UCrpwG.yZKqiAC4K2JctOeFwiar3nhNH1HWkx1NivF1KYUfnwxYTa'), ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC');
 
 -- Peuplement de la table _admin
 INSERT INTO _admin (idU, login) 
@@ -254,13 +254,7 @@ VALUES ('Lundi', 3, '19:00', '21:00'),
        ('Mercredi', 3, '19:00', '21:00'),
        ('Jeudi', 3, '19:00', '21:00'), 
        ('Vendredi', 3, '19:00', '21:00'),
-       ('Samedi', 3, '19:00', '21:00'),
-       ('Lundi', 4, '19:00', '21:00'),
-       ('Mardi', 4, '19:00', '21:00'), 
-       ('Mercredi', 4, '19:00', '21:00'),
-       ('Jeudi', 4, '19:00', '21:00'), 
-       ('Vendredi', 4, '19:00', '21:00'),
-       ('Samedi', 4, '19:00', '21:00');
+       ('Samedi', 3, '19:00', '21:00');
        
 --peuplement horaire precise
 INSERT INTO _horairePrecise (jour, idOffre, heureDebut, heureFin, DateRepresentation) 
@@ -269,7 +263,13 @@ VALUES ('Lundi', 2, '19:00', '21:00', '2024-12-02'),
        ('Mercredi', 2, '19:00', '21:00', '2024-12-04'),
        ('Jeudi', 2, '19:00', '21:00', '2024-12-05'), 
        ('Vendredi', 2, '19:00', '21:00', '2024-12-06'),
-       ('Samedi', 2, '19:00', '21:00', '2024-12-07');
+       ('Samedi', 2, '19:00', '21:00', '2024-12-07'),
+       ('Lundi', 4, '19:00', '21:00', '2024-12-09'),
+       ('Mardi', 4, '19:00', '21:00', '2024-12-10'), 
+       ('Mercredi', 4, '19:00', '21:00', '2024-12-11'),
+       ('Jeudi', 4, '19:00', '21:00', '2024-12-12'), 
+       ('Vendredi', 4, '19:00', '21:00', '2024-12-13'),
+       ('Samedi', 4, '19:00', '21:00', '2024-12-14');
 
 -- Peuplement de la table _horaireMidi
 INSERT INTO _horaireMidi (jour, idOffre, heureOuverture, heureFermeture) 
