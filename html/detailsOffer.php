@@ -682,7 +682,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
          
         <div class="swiper-container">
-            <div class="swiper mySwiper">
+            <div class="swiper menu">
                 <div class="swiper-wrapper">
                     <?php
                     foreach ($menus as $menu) {
@@ -838,6 +838,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             loop: true,
             spaceBetween: 10,
             slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+        var swiper4 = new Swiper(".menu", {
+            loop: true,
+            slidesPerView: 3,
+            spaceBetween: 10,
             freeMode: true,
             watchSlidesProgress: true,
         });
