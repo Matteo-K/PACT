@@ -780,7 +780,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
             
             ?>
-            </div";
+            </div>
         <?php
     }
         ?>
