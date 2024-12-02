@@ -58,11 +58,16 @@
         // Si l'adresse mail a été modifiée, vérifier si elle existe déjà
         if ($mail !== $user['mail']) {
             try {
-                $stmt = $conn->prepare("SELECT * FROM pact.propublic WHERE mail = ? UNION SELECT * FROM pact.proprive WHERE mail = ?");
-                $stmt->execute([$mail, $mail]);
+                // Requête sur propublic
+                $stmt = $conn->prepare("SELECT * FROM pact.propublic WHERE mail = ?");
+                $stmt->execute([$mail]);
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                if ($result) {
-                    $_SESSION['errors'][] = "L'adresse email existe déjà.";
+
+                // Si pas trouvé, vérifier dans proprive
+                if (!$result) {
+                    $stmt = $conn->prepare("SELECT * FROM pact.proprive WHERE mail = ?");
+                    $stmt->execute([$mail]);
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
             }
 
