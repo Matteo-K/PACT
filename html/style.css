@@ -2979,7 +2979,7 @@ tbody td:last-child {
   text-align: center;
 }
 
-#avisproS2 > div:first-child{
+#avisproS2 > details{
   width: 90%;
   background-color: var(--primary60);
   border-radius: 20px;

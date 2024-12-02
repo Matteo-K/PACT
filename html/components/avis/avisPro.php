@@ -57,12 +57,14 @@
 
     <section id="avisproS2">
 
-        <div>
+        <details>
 
-            <h2 class="triangle">
-                Nombre d'avis
-            </h2>
-
+            <summary>
+                <h2 class="triangle">
+                    Nombre d'avis
+                </h2>
+            </summary>
+            
             <h3>
                 <div class="nonLu"></div>
                 Non lus
@@ -125,7 +127,7 @@
             }
             ?>
 
-        </div> 
+        </details> 
 
         <div class="conteneurAvisPro">
             <div id="detailAvisPro">Cliquez sur un avis pour l'afficher ici.</div>
