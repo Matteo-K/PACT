@@ -772,7 +772,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             const activeTab = document.querySelector('.tab.active');
             const tabWidth = activeTab.offsetWidth;
             const tabOffset = activeTab.offsetLeft;
-            trait.style.width = `${tabWidth}px`; // Met à jour la largeur du trait
+            trait.style.width = `30%`; // Met à jour la largeur du trait
             trait.style.transform = `translateX(${tabOffset}px)`; // Déplace le trait sous l'onglet actif
         }
 
