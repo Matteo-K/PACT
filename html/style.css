@@ -809,20 +809,6 @@ header ul+div {
   gap: 20px;
 }
 
-#voirPlus a {
-  color: var(--text-dark);
-  background-color: var(--primary40);
-  padding: 0.5rem 4rem;
-  border-radius: 0.8rem;
-  margin-bottom: 30px;
-  width: 120px;
-  text-align: center;
-}
-
-#voirPlus a:hover {
-  background-color: var(--primary60);
-}
-
 .blcTag,
 .information {
   display: none;

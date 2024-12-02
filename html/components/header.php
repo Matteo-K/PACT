@@ -73,12 +73,16 @@
                     </figure>
                     <ul>
                         <?php if ($typeUser === "pro_public" || $typeUser === "pro_prive") {?>
+                            <li><a href="changeAccountPro.php">Gérer mon compte</a></li>
                             <li><a href="search.php">Mes offres</a></li>
                             <li><a href="manageOffer.php">Créer une offre</a></li>
                             <li class="liFact">Mes Factures</li>
+                        <?php } else if ($typeUser === "membre") {?>
+                            <li><a href="changeAccountPro.php">Gérer mon compte</a></li>
                         <?php } ?>
                     </ul>
                     <div>
+                        <a class="buttonMenu" href="changePassword.php">Changer mon mot de passe</a>
                         <a id="changeAccount" class="buttonMenu" href="logout.php?change=true">Changer de compte</a>
                         <a id="logoutButton" class="buttonMenu" href="logout.php">Déconnexion</a>
                     </div>
