@@ -347,7 +347,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             }
                             ?>
                         </aside>
-                        <button class="modifierBut">Ajouter</button>
+                        <section class="sectionBtn">
+                            <button class="modifierBut">Ajouter</button>
+                        </section>
                     </section>
                     <section class="EnRelief">
                         <h3>En Relief</h3>
@@ -369,7 +371,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             }
                             ?>
                         </aside>
-                        <button id="buttonAjt" class="modifierBut">Ajouter</button>
+                        <section class="sectionBtn">
+                            <button id="buttonAjt" class="modifierBut">Ajouter</button>
+                        </section>
                     </section>
                 </section>              
                 <button class="modifierBut" onclick="confirmation()">Comfirmer</button>
