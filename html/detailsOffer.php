@@ -267,7 +267,93 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <h2>Gestion des option</h2>
                     <h2>Ajouter une option</h2>
                 </section>
-                
+                <section class="traitBouge"></section>
+                <section class="afficheOption">
+                    <?php 
+                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'ALaUne'");
+                        $option->execute([$idOffre]);
+                        $optionUne = $option->fetchAll(PDO::FETCH_ASSOC);
+                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'EnRelief'");
+                        $option->execute([$idOffre]);
+                        $optionRelief = $option->fetchAll(PDO::FETCH_ASSOC);
+                        $mesOtion[] = $optionRelief;
+                        $mesOtion[] = $optionUne;
+                        if ($mesOtion) {
+                            ?>
+                                <strong><p>Mes options : </p></strong>
+                                <ul>
+                                    <?php
+                                        foreach ($mesOtion as $key => $value) {
+                                            ?>
+                                            <li>
+                                                <section class="popUpOption">
+                                                    <?php
+                                                    if ($value['datefin'] != null) {
+                                                        $dateActuelle = NEW DateTime();
+                                                        $dateFin = NEW DateTime($value['datefin']);
+                                                        $dureeRestante = $dateActuelle->diff($dateFin);
+                                                        ?><p><?php echo "Option en cours : " . $value['nomoption'] . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
+                                                        <button class="modifierBut">Arrêter</button>
+                                                        <?php
+                                                    } else {
+                                                        ?><p><?php echo "Option pas commencer : " . $value['nomoption'] . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
+                                                        <button class="modifierBut">Résilier</button>
+                                                        <?php
+                                                    } 
+                                                    ?>
+                                                </section>
+                                            </li>
+                                            <?php
+                                        }
+                                    ?>
+                                </ul>
+                            <?php
+                        } else {
+                            ?>
+                                <strong><p>Aucune option activé</p></strong>
+                            <?php
+                        }
+
+
+                    ?>
+                </section>
+                <section class="AjouterOption">
+                    <section class="AlaUne">
+                        <h4>A la Une</h4>
+                        <button class="modifierBut">Ajouter</button>
+                        <aside>
+                            <form action="" method="post">
+                                <input type="hidden" name="nomOption" value="ALaUne">
+                                <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                            </form>
+                            <?php
+                            if (!$optionUne) {
+                                ?>
+                                    <p>l'option sera active lors de la prochaine mise en ligne</p>
+                                <?php                                
+                            } else {
+                                ?>
+                                    <p>L'option sera lancer à la fin de celle-ci</p>
+                                <?php
+                            }
+                            ?>
+                        </aside>
+                    </section>
+                    <section class="EnRelief">
+                        <h4>En Relief</h4>
+                        <button class="modifierBut">Ajouter</button>
+                        <aside>
+                            <form action="" method="post">
+                                <input type="hidden" name="nomOption" value="ALaUne">
+                                <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                <input type="checkbox" name="aLaFin" id="aLaFin">
+                            </form>
+                            <p>l'option sera active lors de la prochaine mise en ligne</p>
+                        </aside>
+                    </section>
+                </section>              
                 <button onclick="confirmation()">Comfirmer</button>
               </section>
             </section>
@@ -671,6 +757,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             // Fonction pour afficher le modal
             function openModal() {
+            console.log("hop");
               modal.style.display = "block";
             }
         
