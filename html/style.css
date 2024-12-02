@@ -3056,9 +3056,20 @@ tbody td:last-child {
   text-align: center;
 }
 
-.conteneurAvisPro > img{
+#ligneTitreAvis{
+  display: flex;
+  flex-wrap: nowrap;
+  width: 90%;
+}
+
+#ligneTitreAvis > h2{
+  width: 90%;
+}
+
+#ligneTitreAvis > img{
   width: 2.2em;
   height: 2.2em;
+  align-self: flex-end;
 }
 
 .conteneurAvisPro .star{

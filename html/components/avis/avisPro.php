@@ -132,12 +132,13 @@
 
         <div class="conteneurAvisPro">
             
-            <h2>
-                Auteur
-            </h2>
-
-            <img src="./img/icone/trois-points.png" alt="icone de parametre">
-
+            <div id="ligneTitreAvis">
+                <h2>
+                    Auteur
+                </h2>
+                <img src="./img/icone/trois-points.png" alt="icone de parametre">
+            </div>
+            
             <div class="noteEtoile">
 
                 <?php
