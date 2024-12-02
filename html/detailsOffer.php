@@ -278,7 +278,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $optionRelief = $option->fetchAll(PDO::FETCH_ASSOC);
                         $mesOtion[] = $optionRelief;
                         $mesOtion[] = $optionUne;
-                        print_r($mesOtion);
+                        echo($mesOtion);
                         if ($mesOtion) {
                             ?>
                                 <strong><p>Mes options : </p></strong>
