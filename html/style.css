@@ -2365,8 +2365,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .modal-content {
   background-color: #fff;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin: auto auto;
   padding: 20px;
   border: 1px solid #888;
   width: 50%;
