@@ -16,18 +16,21 @@ class Visit extends Offer {
     parent::__construct("Visite");
     $this->handicap = [];
     $this->langue = [];
+    $this->horaireMidi = [];
+    $this->horaireSoir = [];
   }
 
-  public function setDataVisit($estGuide_, $duree_, $prixMinimal_, $accessibilite_, $handicap_, $langue_) {
+  public function setDataVisit($estGuide_, $duree_, $prixMinimal_, $accessibilite_, $handicap_, $langue_, $horaireMidi_, $horaireSoir_) {
     $this->estGuide = $estGuide_;
     $this->duree = $duree_;
     $this->prixMinimal = $prixMinimal_;
     $this->accessibilite = $accessibilite_;
     $this->handicap = $handicap_;
     $this->langue = $langue_;
+    $this->$horaireMidi = $horaireMidi_;
+    $this->horaireSoir = $horaireSoir_;
   }
 
-  /*
   public function getData() {
     $parentData = parent::getData();
 
@@ -37,9 +40,12 @@ class Visit extends Offer {
       "prixMinimal" => $this->prixMinimal,
       "accessibilite" => $this->accessibilite,
       "handicap" => $this->handicap,
-      "langue" => $this->langue
+      "langue" => $this->langue,
+      "horaireMidi" => $this->horaireMidi,
+      "horaireSoir" => $this->horaireSoir,
+      "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
     ]);
-  }*/
+  }
 }
 
 ?>

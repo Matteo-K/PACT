@@ -28,7 +28,10 @@ require_once "config.php";
       </div>
     </div>
     <div id="voirPlus">
-      <a href="search.php">Voir plus</a>
+      <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
+        <a href="manageOffer.php">Créer une offre</a>  
+      <?php } ?>
+        <a href="search.php">Voir plus</a>
     </div>
   </main>
   <?php require_once "components/footer.php"; ?>

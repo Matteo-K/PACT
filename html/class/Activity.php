@@ -13,6 +13,8 @@ class Activity extends Offer {
   public function __construct() {
     parent::__construct("Activité");
     $this->prestation = [];
+    $this->horaireMidi = [];
+    $this->horaireSoir = [];
   }
 
   public function setDataActivity($duree_, $ageMinimal_, $prixMinimal_, $prestation_) {
@@ -22,7 +24,6 @@ class Activity extends Offer {
     $this->prestation = $prestation_;
   }
 
-  /*
   public function getData() {
     $parentData = parent::getData();
 
@@ -30,9 +31,12 @@ class Activity extends Offer {
       "duree" => $this->duree,
       "ageMinimal" => $this->ageMinimal,
       "prixMinimal" => $this->prixMinimal,
-      "prestation" => $this->prestation
+      "prestation" => $this->prestation,
+      "horaireMidi" => $this->horaireMidi,
+      "horaireSoir" => $this->horaireSoir,
+      "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
     ]);
-  }*/
+  }
 }
 
 ?>

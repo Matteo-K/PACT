@@ -63,23 +63,89 @@ class ArrayOffer {
         switch ($offre['categorie']) {
           case 'Restaurant':
             $this->arrayOffer[$offre['idoffre']] = new Restaurant();
-            $this->arrayOffer[$offre['idoffre']]->setDataRestaurant($offre['gammedeprix']);
-            break;
-          
-          case 'Spectacle':
-            $this->arrayOffer[$offre['idoffre']] = new Show();
-            break;
+            $stmt = $conn->prepare("SELECT * FROM pact._menu WHERE idoffre = ?");
+            $stmt->execute([$offre['idoffre']]);
+            $menu = array();
+            while ($resMenu = $stmt->fetch(PDO::FETCH_ASSOC)) {
+              $menu[] = $resMenu;
+            }
 
+            $this->arrayOffer[$offre['idoffre']]->setDataRestaurant(
+              $offre['gammedeprix'],
+              [],
+              transformerHoraires($offre['idoffre'], $offre['listhorairemidi']),
+              transformerHoraires($offre['idoffre'], $offre['listhorairesoir'])
+            );
+            break;
+            
+          case 'Spectacle':
+            $stmt = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre = ?");
+            $stmt->execute([$offre['idoffre']]);
+            $resShow = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->arrayOffer[$offre['idoffre']] = new Show();
+            if ($resShow) {
+              $this->arrayOffer[$offre['idoffre']]->setDataShow(
+                $resShow['duree'], 
+                $resShow['nbplace'], 
+                $resShow['prixminimal'],
+                transformerHoraires($offre['idoffre'], $offre['listehoraireprecise'])
+              );
+            }
+            break;
+            
           case 'Visite':
             $this->arrayOffer[$offre['idoffre']] = new Visit();
-            break;
+            $stmt = $conn->prepare("SELECT * FROM pact._visite_langue WHERE idoffre = ?");
+            $stmt->execute([$offre['idoffre']]);
+            $langue = array();
+            while ($resLangue = $stmt->fetch(PDO::FETCH_ASSOC)) {
+              $langue[] = $resLangue;
+            }
 
+            $handicap = array();
+            /*
+            $stmt = $conn->prepare("SELECT * FROM pact._handicap WHERE idoffre = ?");
+            $stmt->execute([$offre['idoffre']]);
+            while ($resHandicap = $stmt->fetch(PDO::FETCH_ASSOC)) {
+              $handicap[] = $resHandicap;
+            }*/
+
+            $stmt = $conn->prepare("SELECT * FROM pact._visite WHERE idoffre = ?");
+            $stmt->execute([$offre['idoffre']]);
+            $resVisit = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($resVisit) {
+              $this->arrayOffer[$offre['idoffre']]->setDataVisit(
+                $resVisit['guide'],
+                $resVisit['duree'], 
+                $resVisit['prixminimal'],
+                $resVisit['accessibilite'],
+                $handicap,
+                $langue,
+                transformerHoraires($offre['idoffre'], $offre['listhorairemidi']),
+                transformerHoraires($offre['idoffre'], $offre['listhorairesoir'])
+              );
+            }
+            break;
+              
           case 'Activité':
             $this->arrayOffer[$offre['idoffre']] = new Activity();
             break;
           
           case 'Parc Attraction':
+            $stmt = $conn->prepare("SELECT * FROM pact._parcattraction WHERE idoffre = ?");
+            $stmt->execute([$offre['idoffre']]);
+            $resPark = $stmt->fetch(PDO::FETCH_ASSOC);
             $this->arrayOffer[$offre['idoffre']] = new Park();
+            if ($resPark) {  
+              $this->arrayOffer[$offre['idoffre']]->setDataPark(
+                $resPark['agemin'], 
+                $resPark['nbattraction'], 
+                $resPark['prixminimal'],
+                $resPark['urlplan'],
+                transformerHoraires($offre['idoffre'], $offre['listhorairemidi']),
+                transformerHoraires($offre['idoffre'], $offre['listhorairesoir'])
+              );
+            }
             break;
 
           // Autre
@@ -119,8 +185,6 @@ class ArrayOffer {
           $offre['rue'],
           $offre['codepostal'],
           $offre['statut'],
-          transformerHoraires($offre['idoffre'], $offre['listhorairemidi']),
-          transformerHoraires($offre['idoffre'], $offre['listhorairesoir']),
           floatval($moyenne),
           $total
         );
@@ -177,7 +241,10 @@ class ArrayOffer {
     return array_slice($array_, $elementStart_, $nbElement_); 
   }
 
-  public function getArray($array_) {
+  public function getArray($array_ = null) {
+    if ($array_ == null) {
+      $array_ = $this->arrayOffer;
+    }
     $arrayWithData = [];
     foreach ($array_ as $idOffre => $objet) {
       $arrayWithData[$idOffre] = $objet->getData();
