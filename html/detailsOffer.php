@@ -19,6 +19,12 @@ $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
 $offre = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// Rechercher l'offre dans les parcs d'attractions
+$stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
+$stmt->bindParam(':idoffre', $idOffre);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 // Fonction pour récupérer les horaires
 
@@ -142,12 +148,6 @@ function formatDateEnFrancais(DateTime $date) {
     // Retourner la date formatée
     return "$jour $jourMois $mois $annee";
 }
-
-// Rechercher l'offre dans les parcs d'attractions
-$stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
-$stmt->bindParam(':idoffre', $idOffre);
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!$result) {
 ?>
