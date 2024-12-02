@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         else {
             sirenLabel.style.display = "none"; // Cache le label
             sirenInput.style.display = "none"; // Cache le champ
+            sirenInput.style.visibility = "hidden";
             sirenInput.required = false;
         }
     }
