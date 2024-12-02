@@ -2113,10 +2113,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 2rem;
 }
 
+.taille4{
+  font-size: 0.5rem;
+}
+
 .donnee{
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.donnee form{
+  width: fit-content;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO

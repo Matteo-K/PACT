@@ -341,11 +341,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <?php
                                 if (!$optionUne) {
                                     ?>
-                                        <p class="taille4">l'option sera active lors de la prochaine mise en ligne</p>
+                                        <p class="taille4">*l'option sera active lors de la prochaine mise en ligne</p>
                                         <?php                                
                                 } else {
                                     ?>
-                                        <p class="taille4">L'option sera lancer à la fin de celle-ci</p>
+                                        <p class="taille4">*L'option sera lancer à la fin de celle-ci</p>
                                     <?php
                                 }
                                 ?>
@@ -369,11 +369,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <?php
                                 if (!$optionUne) {
                                     ?>
-                                        <p class="taille4">l'option sera active lors de la prochaine mise en ligne</p>
+                                        <p class="taille4">*l'option sera active lors de la prochaine mise en ligne</p>
                                         <?php                                
                                 } else {
                                     ?>
-                                        <p class="taille4">L'option sera lancer à la fin de celle-ci</p>
+                                        <p class="taille4">*L'option sera lancer à la fin de celle-ci</p>
                                         <?php
                                 }
                                 ?>
