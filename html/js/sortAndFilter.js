@@ -348,7 +348,7 @@ function updatePagination(totalItems, nbElement) {
 
 function goToPage(page) {
   currentPage = page;
-  sortAndFilter(offers, (page - 1) * nbElement, nbElement);
+  sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement);
 }
 
 /* ### Affichage des offres ### */
