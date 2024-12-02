@@ -328,7 +328,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
                 <section class="contentPop" id="content-2">
                     <section class="AlaUne">
-                        <h4>A la Une</h4>
+                        <h3>A la Une</h3>
                         <button class="modifierBut">Ajouter</button>
                         <aside>
                             <form action="" method="post">
@@ -350,7 +350,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </aside>
                     </section>
                     <section class="EnRelief">
-                        <h4>En Relief</h4>
+                        <h3>En Relief</h3>
                         <button class="modifierBut">Ajouter</button>
                         <aside>
                             <form action="" method="post">
@@ -372,7 +372,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </aside>
                     </section>
                 </section>              
-                <button onclick="confirmation()">Comfirmer</button>
+                <button class="modifierBut" onclick="confirmation()">Comfirmer</button>
               </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
