@@ -263,12 +263,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <section id="myModal" class="modal">
               <section class="modal-content">
                 <span class="close">&times;</span>
+                          
+                <!-- Titres des onglets -->
                 <section class="titre">
-                    <h2>Gestion des option</h2>
-                    <h2>Ajouter une option</h2>
+                  <h2 class="tab active" data-tab="1">Gestion des options</h2>
+                  <h2 class="tab" data-tab="2">Ajouter une option</h2>
+                  <!-- Trait qui se déplace sous les onglets -->
+                  <section class="traitBouge"></section>
                 </section>
-                <section class="traitBouge"></section>
-                <section class="afficheOption">
+                <section class="contentPop" id="content-1">
                     <?php 
                         $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'ALaUne'");
                         $option->execute([$idOffre]);
@@ -276,12 +279,43 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'EnRelief'");
                         $option->execute([$idOffre]);
                         $optionRelief = $option->fetchAll(PDO::FETCH_ASSOC);
-                        $mesOtion[] = $optionRelief;
-                        $mesOtion[] = $optionUne;
-                        if ($mesOtion) {
+                        $mesOtion = [];
+                        if ($optionRelief) {
+                            $mesOtion[] = $optionRelief;
+                        }
+                        if ($optionUne) {
+                            $mesOtion[] = $optionUne;
+                        }
+                        if ($mesOtion != []) {
                             ?>
                                 <strong><p>Mes options : </p></strong>
-                                
+                                <ul>
+                                    <?php
+                                        foreach ($mesOtion as $key => $value) {
+                                            ?>
+                                            <li>
+                                                <section class="popUpOption">
+                                                    <?php
+                                                    print_r($value);
+                                                    if ($value['datefin'] != null) {
+                                                        $dateActuelle = NEW DateTime();
+                                                        $dateFin = NEW DateTime($value['datefin']);
+                                                        $dureeRestante = $dateActuelle->diff($dateFin);
+                                                        ?><p><?php echo "Option en cours : " . $value['nomoption'] . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
+                                                        <button class="modifierBut">Arrêter</button>
+                                                        <?php
+                                                    } else {
+                                                        ?><p><?php echo "Option pas commencer : " . $value['nomoption'] . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
+                                                        <button class="modifierBut">Résilier</button>
+                                                        <?php
+                                                    } 
+                                                    ?>
+                                                </section>
+                                            </li>
+                                            <?php
+                                        }
+                                    ?>
+                                </ul>
                             <?php
                         } else {
                             ?>
@@ -292,44 +326,65 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     ?>
                 </section>
-                <section class="AjouterOption">
+                <section class="contentPop" id="content-2">
                     <section class="AlaUne">
-                        <h4>A la Une</h4>
-                        <button class="modifierBut">Ajouter</button>
-                        <aside>
-                            <form action="" method="post">
-                                <input type="hidden" name="nomOption" value="ALaUne">
-                                <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
-                                <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
-                            </form>
-                            <?php
-                            if (!$optionUne) {
-                                ?>
-                                    <p>l'option sera active lors de la prochaine mise en ligne</p>
-                                <?php                                
-                            } else {
-                                ?>
-                                    <p>L'option sera lancer à la fin de celle-ci</p>
+                        <strong>
+                            <p class="taille3">A la Une</p>
+                        </strong>
+                        <section class="donnee">
+                            <aside>
+                                <form action="" method="post">
+                                    <input type="hidden" name="nomOption" value="ALaUne">
+                                    <label class="taille" for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                </form>
                                 <?php
-                            }
-                            ?>
-                        </aside>
+                                if (!$optionUne) {
+                                    ?>
+                                        <p class="taille4">*l'option sera active lors de la prochaine mise en ligne</p>
+                                        <?php                                
+                                } else {
+                                    ?>
+                                        <p class="taille4">*L'option sera lancer à la fin de celle-ci</p>
+                                    <?php
+                                }
+                                ?>
+                            </aside>
+                            <section class="sectionBtn">
+                                <button class="modifierBut">Ajouter</button>
+                            </section>
+                        </section>
                     </section>
                     <section class="EnRelief">
-                        <h4>En Relief</h4>
-                        <button class="modifierBut">Ajouter</button>
-                        <aside>
-                            <form action="" method="post">
-                                <input type="hidden" name="nomOption" value="ALaUne">
-                                <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
-                                <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
-                                <input type="checkbox" name="aLaFin" id="aLaFin">
-                            </form>
-                            <p>l'option sera active lors de la prochaine mise en ligne</p>
-                        </aside>
+                        <strong>
+                            <p class="taille3">En Relief</p>
+                        </strong>
+                        <section class="donnee">
+                            <aside>
+                                <form action="" method="post">
+                                    <input type="hidden" name="nomOption" value="ALaUne">
+                                    <label class="taille" for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                </form>
+                                <?php
+                                if (!$optionUne) {
+                                    ?>
+                                        <p class="taille4">*l'option sera active lors de la prochaine mise en ligne</p>
+                                        <?php                                
+                                } else {
+                                    ?>
+                                        <p class="taille4">*L'option sera lancer à la fin de celle-ci</p>
+                                        <?php
+                                }
+                                ?>
+                            </aside>
+                            <section class="sectionBtn">
+                                <button id="buttonAjt" class="modifierBut">Ajouter</button>
+                            </section>
+                        </section>
                     </section>
                 </section>              
-                <button onclick="confirmation()">Comfirmer</button>
+                <button class="modifierBut" onclick="confirmation()">Comfirmer</button>
               </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
@@ -712,7 +767,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
             
             ?>
-            </div";
+            </div>
         <?php
     }
         ?>
@@ -722,44 +777,94 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.contentPop');
+    const trait = document.querySelector('.traitBouge'); // Trait qui se déplace
 
+    // Fonction pour mettre à jour la position et la taille du trait sous les onglets
+    function updateUnderline() {
+        const activeTab = document.querySelector('.tab.active');
+        const tabWidth = activeTab.offsetWidth;
+        const tabOffset = activeTab.offsetLeft;
+        trait.style.width = `40%`; // Ajuste la largeur du trait
+        trait.style.transform = `translateX(${tabOffset}px)`; // Déplace le trait sous l'onglet actif
+    }
+
+    // Ajoute l'événement click sur chaque onglet
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            const targetTab = this; // Onglet cliqué
+
+            // Active l'onglet et désactive les autres
+            tabs.forEach(t => t.classList.remove('active'));
+            targetTab.classList.add('active');
+
+            // Affiche le contenu associé et cache les autres
+            const targetContent = document.getElementById(`content-${targetTab.dataset.tab}`);
+            contents.forEach(content => {
+                if (content === targetContent) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+
+            // Met à jour la position et la largeur du trait
+            updateUnderline();
+        });
+    });
+
+    // Initialiser le premier onglet comme actif
+    updateUnderline(); // Met à jour la position du trait dès que la page est chargée
+});
+
+
+
+    const modal = document.getElementById("myModal");
+    const openModalBtn = document.getElementById("openModalBtn");
+    const closeModalBtn = document.querySelector(".close");
+    const popupForm = document.getElementById("popupForm");
+    const body = document.body;
+    console.log("js1");
+    // Fonction pour afficher le modal
+    function openModal() {
+    console.log("hop");
+      modal.style.display = "block";
+      body.classList.add("no-scroll");
+    }
+    console.log("js2");
+    // Fonction pour fermer le modal
+    function closeModal() {
+      modal.style.display = "none";
+      body.classList.remove("no-scroll");
+    }
+    console.log("js3");
+    // Ouvrir le popup lorsque le bouton est cliqué
+    openModalBtn.onclick = openModal;
+    console.log("js4");
+    // Fermer le popup lorsqu'on clique sur la croix
+    closeModalBtn.onclick = closeModal;
+    console.log("js5");
+    // Fermer le popup lorsqu'on clique en dehors du contenu
+    // window.onclick = function(event) {
+    //   if (event.target === modal) {
+    //     closeModal();
+    //   }
+    // }
+
+    // Soumettre le formulaire
+    function confirmation() {
+      closeModal(); // Fermer la fenêtre modale après soumission
+    }
+    console.log("js6");
+</script>
     <script>
         try {
-            const modal = document.getElementById("myModal");
-            const openModalBtn = document.getElementById("openModalBtn");
-            const closeModalBtn = document.querySelector(".close");
-            const popupForm = document.getElementById("popupForm");
-
-            // Fonction pour afficher le modal
-            function openModal() {
-            console.log("hop");
-              modal.style.display = "block";
-            }
-        
-            // Fonction pour fermer le modal
-            function closeModal() {
-              modal.style.display = "none";
-            }
-        
-            // Ouvrir le popup lorsque le bouton est cliqué
-            openModalBtn.onclick = openModal;
-        
-            // Fermer le popup lorsqu'on clique sur la croix
-            closeModalBtn.onclick = closeModal;
-        
-            // Fermer le popup lorsqu'on clique en dehors du contenu
-            // window.onclick = function(event) {
-            //   if (event.target === modal) {
-            //     closeModal();
-            //   }
-            // }
-        
-            // Soumettre le formulaire
-            function confirmation() {
-              closeModal(); // Fermer la fenêtre modale après soumission
-            }
+            
         } catch (error) {
-            console.log("tema" + error)
+
         }
 
         let map;
