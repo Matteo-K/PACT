@@ -389,17 +389,17 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.',CURRENT_TIMESTA
        (3,'Merci beaucoup, à bientôt.',CURRENT_TIMESTAMP),
        (3,'Avec des personnes comme vous, compliqué de la rendre intéressante.',CURRENT_TIMESTAMP);
        
-INSERT INTO _avis(idC,idOffre,note,companie,mois,annee,titre)
-VALUES (1,1,5,'solo','novembre','2024','ouai pas mal'),
-       (2,1,4,'solo','novembre','2024','ouai pas mal'),
-       (3,5,5,'solo','novembre','2024','ouai pas mal'),
-       (4,5,4,'solo','novembre','2024','ouai pas mal'),
-       (5,2,5,'solo','novembre','2024','ouai pas mal'),
-       (6,2,4,'solo','novembre','2024','ouai pas mal'),
-       (7,3,5,'solo','novembre','2024','ouai pas mal'),
-       (8,3,4,'solo','novembre','2024','ouai pas mal'),
-       (9,4,2,'solo','novembre','2024','ouai nan!!'),
-       (10,4,1,'solo','novembre','2024','ouai nan!!');
+INSERT INTO _avis(idC,idOffre,note,companie,mois,annee,titre,lu)
+VALUES (1,1,5,'solo','novembre','2024','ouai pas mal',FALSE),
+       (2,1,4,'solo','novembre','2024','ouai pas mal',FALSE),
+       (3,5,5,'solo','novembre','2024','ouai pas mal',FALSE),
+       (4,5,4,'solo','novembre','2024','ouai pas mal',FALSE),
+       (5,2,5,'solo','novembre','2024','ouai pas mal',FALSE),
+       (6,2,4,'solo','novembre','2024','ouai pas mal',FALSE),
+       (7,3,5,'solo','novembre','2024','ouai pas mal',FALSE),
+       (8,3,4,'solo','novembre','2024','ouai pas mal',FALSE),
+       (9,4,2,'solo','novembre','2024','ouai nan!!',FALSE),
+       (10,4,1,'solo','novembre','2024','ouai nan!!',FALSE);
        
 INSERT INTO _reponse(idC,ref)
 VALUES (11,3),
