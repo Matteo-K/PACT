@@ -600,6 +600,7 @@ if ($pageDirection >= 1) {
   <form id="myForm" action="manageOffer.php" method="POST">
     <input type="hidden" name="page" value="<?php echo $pageDirection; ?>">
     <input type="hidden" name="idOffre" value="<?php echo $idOffre; ?>">
+    <input type="hidden" name="save">
   </form>
   <?php
 } else {

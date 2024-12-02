@@ -107,11 +107,38 @@
       }
       ?>
     </div>
+    <?php if (isset($_POST["save"])) { ?>
+      <div id="save-offer">
+        <div id="loading-logo"></div>
+        <figure id="valid-logo">
+          <div>&#10003;</div>
+          <figcaption>Sauvegardé</figcaption>
+        </figure>
+        <img src="img/icone/croix.png" alt="ferme feedback save" onclick="closeSave()">
+      </div>
+    <?php } ?>
   </main>
   <?php require_once "components/footer.php"; ?>
 </body>
 <script src="js/script.js"></script>
 <script>
+  // FeedBack visuel sauvegarde
+
+  window.onload = () => {
+    const saveAside = document.getElementById("save-offer");
+    if (saveAside) {
+      setTimeout(function() {
+        document.getElementById('loading-logo').style.display = 'none';
+        document.getElementById('valid-logo').style.display = 'block';
+      }, 1000); // 1s
+      
+      setTimeout(() => closeSave(), 10000); // 10s 
+    }
+      function closeSave() {
+        saveAside.style.display = "none";
+    }
+  }
+
   /* envoie un formulaire à la page enregistrement (enregOffer.php) */
   function submitForm(event, page) {
       document.getElementById('pageCurrent').value = page;

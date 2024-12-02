@@ -1037,6 +1037,48 @@ header ul+div {
   border-radius: 20px;
 }
 
+/* Feedback Save */
+#save-offer {
+  position: fixed;
+  top: 60%;
+  right: 20px;
+  width: 500px;
+  height: 100px;
+  z-index: 2;
+  background-color: var(--background);
+  border: var(--primary) 3px solid;
+  border-radius: 10px 10px 0 10px;
+}
+
+#loading-spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+#valid-logo {
+  font-size: 3rem;
+  color: green;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
 .blueBtnOffer {
   background-color: var(--primary);
   box-shadow: inset -4px -4px 4px #1883bc;
@@ -1418,6 +1460,7 @@ header ul+div {
   flex-flow: column nowrap;
   align-items: center;
   background-color: var(--bloc);
+  color: var(--text-light);
 }
 
 /* ------------------------- END Payment OFFER CSS --------------------------------*/
