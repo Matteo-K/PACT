@@ -17,7 +17,7 @@
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
         $stmt = $conn->prepare("SELECT * FROM pact.propublic WHERE idU = ? UNION SELECT * FROM pact.proprive WHERE idU = ?");
-        $stmt->execute([$userId]);
+        $stmt->execute([$userId, $userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Vérifier si les données sont trouvées
