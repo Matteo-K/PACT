@@ -14,6 +14,8 @@ if (!$idOffre) {
 $monOffre = new ArrayOffer($idOffre);
 $ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
 
+print_r($ouverture);
+
 $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = :idoffre");
 $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
