@@ -342,7 +342,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <!-- Message affiché au survol du bouton désactivé -->
 
                         </div>
-                        
+
                         <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
 
                         
@@ -355,7 +355,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <section id="myModal" class="modal">
               <section class="modal-content">
                 <span class="close">&times;</span>
-                <h2>Gestion des option</h2>
+                <section class="titre">
+                    <h2>Gestion des option</h2>
+                    <h2>Ajouter une option</h2>
+                </section>
+                <section class="traitBouge"></section>
+                <section class="afficheOption">
                     <?php 
                         $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null)");
                         $option->execute([$idOffre]);
@@ -397,8 +402,36 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         }
 
 
-                    ?>    
-                <button>Ajouter des option</button>              
+                    ?>
+                </section>
+                <section class="AjouterOption">
+                    <section class="AlaUne">
+                        <h4>A la Une</h4>
+                        <button class="modifierBut">Ajouter</button>
+                        <aside>
+                            <form action="" method="post">
+                                <input type="hidden" name="nomOption" value="ALaUne">
+                                <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                <input type="checkbox" name="aLaFin" id="aLaFin">
+                            </form>
+                            <p>l'option sera active lors de la prochaine mise en ligne</p>
+                        </aside>
+                    </section>
+                    <section class="EnRelief">
+                        <h4>En Relief</h4>
+                        <button class="modifierBut">Ajouter</button>
+                        <aside>
+                            <form action="" method="post">
+                                <input type="hidden" name="nomOption" value="ALaUne">
+                                <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                <input type="checkbox" name="aLaFin" id="aLaFin">
+                            </form>
+                            <p>l'option sera active lors de la prochaine mise en ligne</p>
+                        </aside>
+                    </section>
+                </section>              
                 <button onclick="Comfirmation()">Comfirmer</button>
               </section>
             </section>

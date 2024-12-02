@@ -33,6 +33,59 @@
         header("Location: index.php");
         exit();
     }
+
+    
+    // Vérifier si le formulaire a été soumis
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les nouvelles données du formulaire
+        $nom = trim($_POST['nomMembre']);
+        $prenom = trim($_POST['prenomMembre']);
+        $pseudo = trim($_POST['pseudoMembre']);
+        $telephone = trim($_POST['telephone']);
+        $mail = trim($_POST['email']);
+        $adresse = trim($_POST['adresse']);
+        $code = trim($_POST['code']);
+        $ville = trim($_POST['ville']);
+
+        // // Si l'adresse mail a été modifié, vérifier si elle existe déjà
+        if ($mail !== $user['mail']) {
+            try {
+                $stmt = $conn->prepare("SELECT * FROM pact._nonadmin WHERE mail = ?");
+                $stmt->execute([$mail]);
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if ($result) {
+                    $_SESSION['errors'][] = "L'adresse email existe déjà.";
+                }
+            } 
+            
+            catch (Exception $e) {
+                $_SESSION['errors'][] = "Erreur lors de la vérification de l'adresse mail : " . htmlspecialchars($e->getMessage());
+            }
+        }
+
+        // Si aucun problème, mettre à jour les informations
+        if (empty($_SESSION['errors'])) {
+            try {
+                $hashedPassword = $motdepasse ? password_hash($motdepasse, PASSWORD_DEFAULT) : $user['password'];
+
+                $adresseExplode = explode(' ', $adresse, 2); 
+                $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
+                $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
+
+                // Mettre à jour les informations dans la base de données
+                $stmt = $conn->prepare("UPDATE pact.membre SET pseudo = ?, nom = ?, prenom = ?, password = ?, numeroRue = ?, rue = ?, ville = ?, pays = ?, codePostal = ?, telephone = ?, mail = ? WHERE idU = ?");
+                $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, 'France',$code, $telephone, $mail, $userId]);
+
+                $_SESSION['success'] = "Informations mises à jour avec succès.";
+                header("Location: profile.php");
+                exit();
+            } 
+            
+            catch (Exception $e) {
+                $_SESSION['errors'][] = "Erreur lors de la mise à jour des informations : " . $e->getMessage();
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +122,7 @@
             }
         ?>
 
-        <form id = "formMember" action="chnageAccountMember.php" method="post" enctype="multipart/form-data">
+        <form id = "formMember" action="changeAccountMember.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
                 <label  id="labelPrenom" for="prenomMembre">Prénom*:</label>
                 <label id="labelNom" for="nomMembre">Nom*:</label>
@@ -106,7 +159,7 @@
             <div class="ligne3">
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
-                <input type="text" placeholder="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['numeroRue']) && isset($user['rue']) ? htmlspecialchars($user['numeroRue']) . '' . htmlspecialchars($user['rue']): '' ?>" required>
+                <input type="text" placeholder="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['numerorue']) && isset($user['rue']) ? htmlspecialchars($user['numerorue']) . ' ' . htmlspecialchars($user['rue']) : '' ?>" required>
             </div>
 
 
@@ -116,7 +169,7 @@
                 <label id="labelVille" for="ville">Ville*:</label>
                 
                 <!-- Saisi du code postale -->
-                <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($user['codePostal']) ? htmlspecialchars($user['codePostal']) : '' ?>" required>
+                <input type="text" placeholder="29200" id="code" name="code" value="<?= isset($user['codepostal']) ? htmlspecialchars($user['codepostal']) : '' ?>" required>
 
                 <!-- Saisi de la ville -->
                 <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($user['ville']) ? htmlspecialchars($user['ville']) : '' ?>" required>

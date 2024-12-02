@@ -3457,7 +3457,10 @@ tbody td:last-child {
   margin-bottom: 15px;
 }
 
-
+#restaurant >div[class="imgRestaurant"]{
+  width: 550px;
+  height: 35px;
+}
 /* CSS pour le détails d'une offre de type spectacle */
 
 #show>div ,
