@@ -22,6 +22,8 @@ class Activity extends Offer {
     $this->ageMinimal = $ageMinimal_;
     $this->prixMinimal = $prixMinimal_;
     $this->prestation = $prestation_;
+    $this->horaireMidi = $horaireMidi_;
+    $this->horaireSoir = $horaireSoir_;
   }
 
   public function getData() {
