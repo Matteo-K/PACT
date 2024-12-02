@@ -264,8 +264,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <section class="modal-content">
                 <span class="close">&times;</span>
                 <section class="titre">
-                    <h2>Gestion des option</h2>
-                    <h2>Ajouter une option</h2>
+                    <h2 class="tab active">Gestion des option</h2>
+                    <h2 class="tab">Ajouter une option</h2>
                 </section>
                 <section class="traitBouge"></section>
                 <section class="afficheOption">
@@ -763,6 +763,36 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('.tab');
+        const trait = document.querySelector('.traitBouge');
+
+        // Fonction pour mettre à jour la position du trait
+        function updateTrait() {
+            const activeTab = document.querySelector('.tab.active');
+            const tabWidth = activeTab.offsetWidth;
+            const tabOffset = activeTab.offsetLeft;
+            trait.style.width = `${tabWidth}px`; // Met à jour la largeur du trait
+            trait.style.transform = `translateX(${tabOffset}px)`; // Déplace le trait sous l'onglet actif
+        }
+
+        // Ajoute l'événement click sur chaque onglet
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Active l'onglet et désactive les autres
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                // Met à jour la position du trait
+                updateTrait();
+            });
+        });
+
+        // Initialiser le premier onglet comme actif
+        updateTrait(); // Met à jour la position du trait dès le début
+    });
+
+
     const modal = document.getElementById("myModal");
     const openModalBtn = document.getElementById("openModalBtn");
     const closeModalBtn = document.querySelector(".close");

@@ -2055,11 +2055,33 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: flex;
 }
 
-.titre > h2 {
-  width: 50%;
+.tab {
+  cursor: pointer;
+  padding: 10px 20px;
   text-align: center;
+  flex: 1;
+  transition: color 0.3s ease;
 }
 
+.tab:hover {
+  color: #007bff;
+}
+
+.tab.active {
+  color: #007bff;
+}
+
+
+.traitBouge{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: 10%;
+  height: 2px;
+  background-color: #007bff;
+  transition: transform 0.3s ease;
+  width: 30%; 
+}
 
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
