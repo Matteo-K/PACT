@@ -14,6 +14,7 @@
   --background-avis: #c9c9c9;
   --header-size: 100px;
   --header-size2: var(--header-size);
+  scroll-behavior: smooth;
 }
 
 * {

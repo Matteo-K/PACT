@@ -317,8 +317,6 @@ function updatePagination(totalItems, nbElement) {
 
   const totalPages = Math.ceil(totalItems / nbElement);
 
-  console.log("Total Pages:", totalPages);
-
   for (let page = 1; page <= totalPages; page++) {
     const pageLink = document.createElement('li');
     const link = document.createElement('a');
@@ -348,6 +346,7 @@ function updatePagination(totalItems, nbElement) {
 
 function goToPage(page) {
   currentPage = page;
+  scrollTo(0);
   sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement);
 }
 
