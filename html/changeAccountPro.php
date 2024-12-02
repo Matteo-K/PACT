@@ -16,16 +16,11 @@
 
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
-        // $stmt = $conn->prepare("SELECT * FROM pact.propublic WHERE idU = ? UNION SELECT * FROM pact.proprive WHERE idU = ?");
-        // $stmt->execute([$userId, $userId]);
-        // $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Vérifier dans la table propublic
         $stmt = $conn->prepare("SELECT * FROM pact.propublic WHERE idU = ?");
         $stmt->execute([$userId]);
         $userPublic = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Vérifier dans la table proprive si pas trouvé dans propublic
+        // Vérifier dans la table pro privé si pas trouvé dans pro public
         if (!$userPublic) {
             $stmt = $conn->prepare("SELECT * FROM pact.proprive WHERE idU = ?");
             $stmt->execute([$userId]);
@@ -33,7 +28,7 @@
         }
 
         // Fusionner les résultats de propublic et proprive, si les deux existent
-        $user = $userPublic ?: $userPrivate;
+        // $user = $userPublic ?: $userPrivate;
 
         // Vérifier si les données sont trouvées
         if (!$user) {
@@ -47,6 +42,62 @@
         $_SESSION['errors'][] = "Erreur de connexion à la base de données: " . $e->getMessage();
         header("Location: login.php");
         exit();
+    }
+    
+
+    // Vérifier si le formulaire a été soumis
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les nouvelles données du formulaire
+        $denomination = trim($_POST['denomination']);
+        $telephone = trim($_POST['telephone']);
+        $mail = trim($_POST['email']);
+        $adresse = trim($_POST['adresse']);
+        $code = trim($_POST['code']);
+        $ville = trim($_POST['ville']);
+
+        // Si l'adresse mail a été modifiée, vérifier si elle existe déjà
+        if ($mail !== $user['mail']) {
+            try {
+                $stmt = $conn->prepare("SELECT * FROM pact.propublic WHERE mail = ? UNION SELECT * FROM pact.proprive WHERE mail = ?");
+                $stmt->execute([$mail, $mail]);
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if ($result) {
+                    $_SESSION['errors'][] = "L'adresse email existe déjà.";
+                }
+            }
+
+            catch (Exception $e) {
+                $_SESSION['errors'][] = "Erreur lors de la vérification de l'adresse mail : " . htmlspecialchars($e->getMessage());
+            }
+        }
+
+        // Si aucun problème, mettre à jour les informations
+        if (empty($_SESSION['errors'])) {
+            try {
+                $adresseExplode = explode(' ', $adresse, 2);
+                $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
+                $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
+
+                // Mettre à jour les informations dans la base de données
+                if ($userPublic) {
+                    $stmt = $conn->prepare("UPDATE pact.propublic SET denomination = ?, telephone = ?, mail = ?, numeroRue = ?, rue = ?, codePostal = ?, ville = ? WHERE idU = ?");
+                    $stmt->execute([$denomination, $telephone, $mail, $numeroRue, $rue, $code, $ville, $userId]);
+                } 
+                
+                else {
+                    $stmt = $conn->prepare("UPDATE pact.proprive SET denomination = ?, telephone = ?, mail = ?, numeroRue = ?, rue = ?, codePostal = ?, ville = ? WHERE idU = ?");
+                    $stmt->execute([$denomination, $telephone, $mail, $numeroRue, $rue, $code, $ville, $userId]);
+                }
+
+                $_SESSION['success'] = "Informations mises à jour avec succès.";
+                header("Location: profilePro.php");
+                exit();
+            }
+
+            catch (Exception $e) {
+                $_SESSION['errors'][] = "Erreur lors de la mise à jour des informations : " . $e->getMessage();
+            }
+        }
     }
 ?>
  
@@ -109,7 +160,7 @@
             <div class="ligne3">
                 <!-- Saisi de l'adresse postale -->
                 <label for="adresse">Adresse postale*:</label>
-                <input type="text" placeholder ="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['numerorue']) && isset($user['rue']) ? htmlspecialchars($user['numerorue']) . '' . htmlspecialchars($user['rue']): '' ?>" required>
+                <input type="text" placeholder ="123 Rue de Brest" id="adresse" name="adresse" value="<?= isset($user['numerorue']) && isset($user['rue']) ? htmlspecialchars($user['numerorue']) . ' ' . htmlspecialchars($user['rue']) : '' ?>" required>
                 <br>
             </div>
 
