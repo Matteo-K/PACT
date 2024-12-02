@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (priveRadio.checked) {
             sirenLabel.style.display = "block"; // Affiche le label
             sirenInput.style.display = "block"; // Affiche le champ
-            sirenInput.setAttribute('required', 'required');
         } 
         
         else {
