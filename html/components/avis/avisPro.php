@@ -30,7 +30,6 @@
                                     }
                                 }
                                 ?>
-                                <p><?= $av['note'] ?> / 5</p>
                             </div>
 
                             <p>
@@ -57,12 +56,14 @@
 
     <section id="avisproS2">
 
-        <div>
+        <details>
 
-            <h2 class="triangle">
-                Nombre d'avis
-            </h2>
-
+            <summary>
+                <h2 class="triangle">
+                    Nombre d'avis
+                </h2>
+            </summary>
+            
             <h3>
                 <div class="nonLu"></div>
                 Non lus
@@ -125,10 +126,40 @@
             }
             ?>
 
-        </div> 
+        </details> 
+
+        <p id="aucunAvisSelect"> Cliquez sur un avis de la liste pour l'afficher ici. </p>
 
         <div class="conteneurAvisPro">
-            <div id="detailAvisPro">Cliquez sur un avis pour l'afficher ici.</div>
+            
+            <h2>
+                Auteur
+            </h2>
+
+            <img src="./img/icone/trois-points.png" alt="icone de parametre">
+
+            <div class="noteEtoile">
+
+                <?php
+                    for ($i = 0; $i < $av['note']; $i++) {
+                        echo "<div class='star'></div>";
+                    }
+                ?>
+
+            </div>
+
+            <h3>
+                Titre
+            </h3>
+
+            <p class="contenuAvis">
+                Texte de l'avis
+            </p>
+
+            <p id="visiteRedaction"> 
+                Visité en .... le ../.. - rédigé le ../.. 
+            </p>
+            
         </div>
 
     </section>
