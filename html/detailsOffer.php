@@ -676,7 +676,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         
     } else if($typeOffer == "Restaurant"){
-
+    ?>
+        <div class=""></div>
+    <?php
     }
     if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
         require_once __DIR__ . "/components/avis/avisPro.php";
