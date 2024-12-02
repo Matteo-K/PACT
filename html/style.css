@@ -2930,21 +2930,12 @@ tbody td:last-child {
   font-weight: 600 ;
   font-size: 2.2em;
   margin: 20px;
-}
-
-#avisPro h3 {
-  font-weight: 500 ;
-  font-size: 1.7em;
-  margin-top: 10px;
+  text-align: center;
+  margin-top: 0px;
 }
 
 #avisPro section{
   width: 45%;
-}
-
-#avisPro section h2{
-  text-align: center;
-  margin-top: 0px;
 }
 
 .triangle{
@@ -2963,13 +2954,6 @@ tbody td:last-child {
 #avisproS1{
   border-right: solid 2px black;
   text-align: center;
-}
-
-#avisproS2 > details{
-  width: 90%;
-  background-color: var(--primary60);
-  border-radius: 20px;
-  padding: 20px;
 }
 
 .nonLu {
@@ -2992,10 +2976,10 @@ tbody td:last-child {
 }
 
 
-/* Liste défilable */
+/* Liste des avis */
 #avisProS1 > div {
-  width: 100%; /* Largeur de la liste */
-  overflow-y: auto; /* Activer le scroll vertical */
+  width: 100%;
+  overflow-y: auto; 
 }
 
 #avisPro ul {
@@ -3012,12 +2996,12 @@ tbody td:last-child {
   background: var(--secondary);
   background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary) 80%,  transparent 100%);
   margin: 5px 0 10px 20px;
+  border-bottom-left-radius: 5px;
 }
 
 #avisPro li:hover {
   background: linear-gradient(90deg, var(--primary60) 0%, var(--primary60) 80%,  transparent 100%);
 }
-
 
 #avisPro li > div{
   display: flex;
@@ -3039,8 +3023,26 @@ tbody td:last-child {
 }
 
 
+#avisproS2 > details{
+  width: 90%;
+  background-color: var(--primary60);
+  border-radius: 15px;
+  padding: 20px;
+}
 
-/* Panneau de prévisualisation */
+#avisPro h3 {
+  font-weight: 500 ;
+  font-size: 1.7em;
+  margin-top: 10px;
+}
+
+
+/*Detail des avis sélectionnés */
+
+#aucunAvisSelect{
+  display: none;
+}
+
 .conteneurAvisPro {
   width: 100%; /* Prend tout l'espace restant */
   padding: 20px;
