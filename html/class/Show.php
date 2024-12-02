@@ -1,7 +1,6 @@
 <?php
 require_once "Offer.php";
 
-// TODO
 class Show extends Offer {
   private $duree;
   private $nbPlace;
@@ -10,24 +9,27 @@ class Show extends Offer {
 
   public function __construct() {
     parent::__construct("Spectacle");
+    $this->horaire = [];
   }
 
-  public function setDataShow($duree_, $nbPlace_, $prixMinimal_) {
+  public function setDataShow($duree_, $nbPlace_, $prixMinimal_, $horaire_) {
     $this->duree = $duree_;
     $this->nbPlace = $nbPlace_;
     $this->prixMinimal = $prixMinimal_;
+    $this->horaire = $horaire_;
   }
 
-  /*
   public function getData() {
     $parentData = parent::getData();
 
     return array_merge($parentData, [
       "duree" => $this->duree,
       "nbPlace" => $this->nbPlace,
-      "prixMinimal" => $this->prixMinimal
+      "prixMinimal" => $this->prixMinimal,
+      "horaire" => $this->horaire,
+      "ouverture" => parent::statutOuverture($this->horaire)
     ]);
-  }*/
+  }
 }
 
 ?>

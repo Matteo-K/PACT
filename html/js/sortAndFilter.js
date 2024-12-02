@@ -102,28 +102,22 @@ function selectSort(array) {
   if (radBtnEnAvant.checked) {
     console.log("Tri avec Mise en avant");
     return array; // Aucun tri, juste mise en avant
-  } 
-  if (radBtnNoteCroissant.checked) {
+  } else if (radBtnNoteCroissant.checked) {
     console.log("Tri avec Note Croissant");
     return sortNoteCroissant(array);
-  } 
-  if (radBtnNoteDecroissant.checked) {
+  } else if (radBtnNoteDecroissant.checked) {
     console.log("Tri avec Note Décroissant");
     return sortNoteDecroissant(array);
-  } 
-  if (radBtnprixCroissant.checked) {
+  } else if (radBtnprixCroissant.checked) {
     console.log("Tri avec Prix Croissant");
     return sortprixCroissant(array);
-  } 
-  if (radBtnPrixDecroissant.checked) {
+  } else if (radœBtnPrixDecroissant.checked) {
     console.log("Tri avec Prix Décroissant");
     return sortPrixDecroissant(array);
-  } 
-  if (radBtnDateRecent.checked) {
+  } else if (radBtnDateRecent.checked) {
     console.log("Tri avec Date Récent");
     return sortDateRecent(array);
-  } 
-  if (radBtnDateAncien.checked) {
+  } else if (radBtnDateAncien.checked) {
     console.log("Tri avec Date Ancien");
     return sortDateAncien(array);
   }
