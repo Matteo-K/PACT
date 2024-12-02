@@ -425,8 +425,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </aside>
                     </section>
                 </section>              
-                <button onclick="Comfirmation()">Comfirmer</button>
-              </section>        
                 <button onclick="confirmation()">Comfirmer</button>
               </section>
             </section>
