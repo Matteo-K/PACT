@@ -252,9 +252,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <form method="post" action="changer_statut.php">
                             <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
                             <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
-                            <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
+                            <input type="hidden" name="nouveau_statut" value="<?php echo $offre[0]['statut'] === 'inactif' ? 'actif' : 'inactif'; ?>">
                             <button class="modifierBut" type="submit">
-                                <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
+                                <?php echo $offre[0]['statut'] === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
                             </button>
                         </form>
                         <div class="form-container">
