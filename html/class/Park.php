@@ -12,16 +12,19 @@ class Park extends Offer {
 
   public function __construct() {
     parent::__construct("Parc Attraction");
+    $this->horaireMidi = [];
+    $this->horaireSoir = [];
   }
 
-  public function setDataPark($ageMinimal_, $nbAttraction_, $prixMinimal_, $urlPlan_) {
+  public function setDataPark($ageMinimal_, $nbAttraction_, $prixMinimal_, $urlPlan_, $horaireMidi_, $horaireSoir_) {
     $this->ageMinimal = $ageMinimal_;
     $this->nbAttraction = $nbAttraction_;
     $this->prixMinimal = $prixMinimal_;
     $this->urlPlan = $urlPlan_;
+    $this->horaireMidi = $horaireMidi_;
+    $this->horaireSoir = $horaireSoir_;
   }
 
-  /*
   public function getData() {
     $parentData = parent::getData();
 
@@ -29,9 +32,12 @@ class Park extends Offer {
       "ageMinimal" => $this->ageMinimal,
       "nbAttraction" => $this->nbAttraction,
       "prixMinimal" => $this->prixMinimal,
-      "urlPlan" => $this->urlPlan
+      "urlPlan" => $this->urlPlan,
+      "horaireMidi" => $this->horaireMidi,
+      "horaireSoir" => $this->horaireSoir,
+      "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
     ]);
-  }*/
+  }
   
 }
 

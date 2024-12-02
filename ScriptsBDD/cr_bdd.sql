@@ -435,6 +435,7 @@ CREATE TABLE _avis(
   mois VARCHAR (20) NOT NULL,
   annee VARCHAR(4) NOT NULL,
   titre VARCHAR(255) NOT NULL,
+  lu BOOLEAN NOT NULL,
   PRIMARY KEY (idC),
   CONSTRAINT _avis_fk_idC
       FOREIGN KEY (idC)
@@ -791,6 +792,7 @@ CREATE VIEW avis AS
     a.mois,
     a.annee,
     a.titre,
+    a.lu,
     ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage
     FROM _avis a 
     JOIN _commentaire c ON a.idC = c.idC
@@ -806,6 +808,7 @@ CREATE VIEW avis AS
     a.companie,
     a.mois,
     a.annee,
+    a.lu,
     a.titre;
 
 CREATE VIEW reponse AS

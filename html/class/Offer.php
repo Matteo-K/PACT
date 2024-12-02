@@ -22,30 +22,6 @@ $daysOfWeek = [
 $currentDay = $daysOfWeek[$currentDay];
 $currentTime = new DateTime(date('H:i'));
 
-/**
- * Détermine le statut ouvert/fermé 
- * suivant les horaires déterminés et l'horaire actuelle
- */
-function statutOuverture($soir, $midi) {
-  global $currentDay, $currentTime;
-  $horaires = array_merge($soir, $midi);
-  $ouverture = "EstFermé";
-  
-  // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
-  foreach ($horaires as $horaire) {
-      if ($horaire['jour'] == $currentDay) {
-          $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
-          $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
-          if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
-              $ouverture = "EstOuvert";
-              break;
-          }
-      }
-  }
-  return $ouverture;
-}
-
-
 class Offer {
   private $idUser;
   private $idOffre;
@@ -69,20 +45,16 @@ class Offer {
   private $numerorue;
   private $rue;
   private $codePostal;
-  private $horaireMidi;
-  private $horaireSoir;
 
   public function __construct($categorie_) {
     $this->options = [];
     $this->images = [];
     $this->tags = [];
-    $this->horaireMidi = [];
-    $this->horaireSoir = [];
     $this->categorie = $categorie_;
   }
 
-  /** TODO
-   * 
+  /** 
+   * Affichage des cartes d'offres
    */
   public function displayCardOffer() {
     $idOffre = $this->idOffre;
@@ -95,8 +67,7 @@ class Offer {
     $resume = $this->resume;
     $noteAvg = $this->noteAvg;
 
-    // Récupération ouvert Fermé
-    $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi);
+    $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi) ?? ""; // à remplacer
     require __DIR__."/../components/cardOffer.php";
   }
 
@@ -110,7 +81,7 @@ class Offer {
     $tag = $this->tags;
     $resume = $this->resume;
     $noteAvg = $this->noteAvg;
-    $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi);
+    $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi) ?? ""; // à remplacer
     $statut = $this->statut;
     require __DIR__."/../components/cardOfferPro.php";
   }
@@ -145,6 +116,33 @@ class Offer {
     require __DIR__."/../components/cardALaUnePro.php";
   }
 
+  /**
+   * Détermine le statut ouvert/fermé 
+   * suivant les horaires déterminés et l'horaire actuelle
+   */
+  public function statutOuverture($soir, $midi) {
+    global $currentDay, $currentTime;
+    $ouverture = "EstFermé";
+    if ($this->categorie != "Spectacle") {
+      $horaires = array_merge($soir, $midi);
+      
+      // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
+      foreach ($horaires as $horaire) {
+        if ($horaire['jour'] == $currentDay) {
+          $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
+          $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
+          if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
+            $ouverture = "EstOuvert";
+            break;
+          }
+        }
+      }
+    } else {
+
+    }
+      return $ouverture;
+  }
+
   public function filterPagination($idUser_, $typeUser_) {
     if (($typeUser_ == "pro_public" || $typeUser_ == "pro_prive")) {
       return $this->idUser == $idUser_;
@@ -153,7 +151,7 @@ class Offer {
     }
   }
 
-  public function setData($idOffre_, $idUser_, $nomOffre_, $abonnement_, $options_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $horaireMidi_, $horaireSoir_, $noteAvg_, $nbNote_) {
+  public function setData($idOffre_, $idUser_, $nomOffre_, $abonnement_, $options_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $noteAvg_, $nbNote_) {
     $this->idOffre = $idOffre_;
     $this->statut = $statut_;
     $this->idUser = $idUser_;
@@ -179,8 +177,6 @@ class Offer {
     $this->numerorue = $numerorue_;
     $this->rue = $rue_;
     $this->codePostal = $codePostal_;
-    $this->horaireMidi = $horaireMidi_;
-    $this->horaireSoir = $horaireSoir_;
     $this->mail = empty($mail_) ? "" : $mail_;
     $this->telephone = $telephone_;
     //$this->urlsite = $urlsite_;
@@ -214,10 +210,7 @@ class Offer {
       "pays" => $this->pays,
       "numeroRue" => $this->numerorue,
       "rue" => $this->rue,
-      "codePostal" => $this->codePostal,
-      "horaireMidi" => $this->horaireMidi,
-      "horaireSoir" => $this->horaireSoir,
-      "ouverture" => statutOuverture($this->horaireSoir, $this->horaireMidi)
+      "codePostal" => $this->codePostal
     ];
   }
 

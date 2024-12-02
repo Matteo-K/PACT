@@ -11,17 +11,14 @@
 
         <div>
             <ul id="listeAvis">
-            <li data-content="Voici le contenu complet du message 1" onclick="showPreview(this)">Message 1</li>
-            <li data-content="Voici le contenu complet du message 2" onclick="showPreview(this)">Message 2</li>
-            <li data-content="Voici le contenu complet du message 3" onclick="showPreview(this)">Message 3</li>
-            <li data-content="Voici le contenu complet du message 4" onclick="showPreview(this)">Message 4</li>
-            <li data-content="Voici le contenu complet du message 5" onclick="showPreview(this)">Message 5</li>
-            <?php
-
-                foreach ($avis as $av) {
-                    echo "<li>" . $av['pseudo'] . " - " . $av['titre'] . "</li>";
+                
+                <?php
+                foreach ($avis as $numAv => $av) {
+                    ?> 
+                    <li onclick="afficheAvisSelect(<?php echo $numAv ?>)"> <?php echo $av['pseudo'] . " - " . $av['titre'] . "</li>";
                 }
                 ?>
+                
             </ul>
         </div>
 
@@ -113,12 +110,12 @@
 
 
 <script>
-    function showPreview(element) {
-        // Récupère le contenu depuis l'attribut data-content de l'élément cliqué
-        const content = element.getAttribute('data-content');
+
+let listeAvis = <?php echo json_encode($avis) ?>;
+let affichage = document.getElementById("detailAvisPro");
+
+function afficheAvisSelect(numAvis) {
         
-        // Met à jour la zone de prévisualisation
-        const preview = document.getElementById("detailAvisPro");
-        preview.textContent = content;
-    }
+    affichage.textContent = listeAvis[numAvis]["content"];
+}
 </script>
