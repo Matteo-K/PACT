@@ -342,8 +342,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <!-- Message affiché au survol du bouton désactivé -->
 
                         </div>
-                        
-                        <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
+                            <form action="">
+                                <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
+                            </form>
 
                         
                     <?php
@@ -413,7 +414,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <input type="hidden" name="nomOption" value="ALaUne">
                                 <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
                                 <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
-                                <input type="checkbox" name="" id="">
+                                <input type="checkbox" name="aLaFin" id="aLaFin">
+                                <input type="checkbox" name="enLigne" id="enLigne">
                             </form>
                         </aside>
                     </section>
