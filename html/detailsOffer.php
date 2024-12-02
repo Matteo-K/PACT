@@ -342,7 +342,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <!-- Message affiché au survol du bouton désactivé -->
 
                         </div>
-                            <form action="">
+                            <form>
                                 <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
                             </form>
 
@@ -922,7 +922,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         history.pushState(null, '', window.location.href);
 
         // Intercepter l'action de retour
-        
+        window.onpopstate = function(event) {
+            console.log('Redirection vers:', window.location.href);
+            window.location.href = './search.php';
+        };
     </script>
     <script src="js/setColor.js"></script>
 </body>
