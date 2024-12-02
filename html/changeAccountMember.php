@@ -66,7 +66,6 @@
         // Si aucun problème, mettre à jour les informations
         if (empty($_SESSION['errors'])) {
             try {
-
                 $adresseExplode = explode(' ', $adresse, 2); 
                 $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
                 $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
