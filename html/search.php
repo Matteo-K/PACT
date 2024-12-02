@@ -53,55 +53,7 @@ $arrayOffer = [];
         <section class="searchoffre">
         </section>
         <section id="pagination">
-            <?php $lien = "search.php?search=" . ($search != "" ? $search : ""); ?>
-            <ul>
-                <li>
-                    <?php if ($page > 5) { ?>
-                        <a href="<?php echo $lien . "&page=" . ($page - 5); ?>">
-                            <?php echo $page - 5; ?>
-                        </a>
-                    <?php } ?>
-                </li>
-                <li>
-                    <?php if ($page > 2) { ?>
-                        <a href="<?php echo $lien . "&page=" . ($page - 2); ?>">
-                            <?php echo $page - 2; ?>
-                        </a>
-                    <?php } ?>
-                </li>
-                <li>
-                    <?php if ($page > 1) { ?>
-                        <a href="<?php echo $lien . "&page=" . ($page - 1); ?>">
-                            <?php echo $page - 1; ?>
-                        </a>
-                    <?php } ?>
-                </li>
-                <li id="pageActuel">
-                    <a href="<?php echo $lien . "&page=" . $page; ?>">
-                        <?php echo $page; ?>
-                    </a>
-                </li>
-                <li>
-                    <?php if (($page) * $nbElement <= $countOffer) { ?>
-                        <a href="<?php echo $lien . "&page=" . ($page + 1); ?>">
-                            <?php echo $page + 1; ?>
-                        </a>
-                    <?php } ?>
-                </li>
-                <li>
-                    <?php if (($page + 1) * $nbElement <= $countOffer) { ?>
-                        <a href="<?php echo $lien . "&page=" . ($page + 2); ?>">
-                            <?php echo $page + 2; ?>
-                        </a>
-                    <?php } ?>
-                </li>
-                <li>
-                    <?php if (($page + 4) * $nbElement <= $countOffer) { ?>
-                        <a href="<?php echo $lien . "&page=" . ($page + 5); ?>">
-                            <?php echo $page + 5; ?>
-                        </a>
-                    <?php } ?>
-                </li>
+            <ul id="pagination-liste">
             </ul>
         </section>
     </main>

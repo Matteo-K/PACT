@@ -4,8 +4,9 @@
  * Ensemble des fonctions et évènements 
  * afin de trier et filtrer les offres de la page de recherche
  */
-
+let currentPage = 1;
 let nbElement = 15;
+
 let userType, arrayOffer, page;
 document.addEventListener('DOMContentLoaded', function() {
   const offersDataElement = document.getElementById('offers-data');
@@ -27,9 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const params = new URLSearchParams(window.location.search);
 
   if (params.has('page') && params.get('page').trim() !== '') {
-      page = params.get('page');
-  } else {
-      page = 1;
+    currentPage = params.get('page');
   }
 
   sortAndFilter(arrayOffer, nbElement * (page-1), nbElement);
@@ -302,6 +301,47 @@ function sortAndFilter(array, elementStart, nbElement) {
 
   // Affichage
   displayOffers(array, elementStart, nbElement);
+
+  // Affichage de la pagination
+  updatePagination(array.length, nbElement);
+}
+
+/**
+ * 
+ * @param {integer} totalItems taille de la liste
+ * @param {integer} nbElement nombre d'élément maximum par page
+ */
+function updatePagination(totalItems, nbElement) {
+  const paginationLinks = document.getElementById('pagination-liste');
+  paginationLinks.innerHTML = '';
+
+  const totalPages = Math.ceil(totalItems / nbElement);
+
+  // Créer les liens de pagination
+  for (let page = 1; page <= totalPages; page++) {
+    const pageLink = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = "#";
+    link.textContent = page;
+    link.onclick = () => goToPage(page);
+
+    pageLink.appendChild(link);
+    paginationLinks.appendChild(pageLink);
+  }
+  
+  const links = paginationLinks.querySelectorAll('a');
+  links.forEach(link => {
+    if (parseInt(link.innerText) === currentPage) {
+      link.id = "pageActuel";
+    } else {
+      link.removeAttribute("id");
+    }
+  });
+}
+
+function goToPage(page) {
+  currentPage = page;
+  sortAndFilter(offers, (page - 1) * nbElement, nbElement);
 }
 
 /* ### Affichage des offres ### */
@@ -310,7 +350,7 @@ function displayOffers(array, elementStart, nbElement) {
   const bloc = document.querySelector(".searchoffre");
   bloc.innerHTML = "";
   if (array.length != 0) {
-    let offers = array.slice(elementStart, nbElement);
+    let offers = array.slice(elementStart, elementStart + nbElement);
     offers.forEach(element => {displayOffer(element)});
   } else {
     let pasOffre = document.createElement("p");

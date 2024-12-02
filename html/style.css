@@ -1070,6 +1070,7 @@ header ul+div {
   align-items: center;
   justify-content: center;
   flex-flow: row nowrap;
+  margin-left: 0;
 }
 
 #save-offer img {
