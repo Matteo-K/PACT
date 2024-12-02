@@ -152,6 +152,27 @@ class ArrayOffer {
               
           case 'Activité':
             $this->arrayOffer[$offre['idoffre']] = new Activity();
+
+            $stmt = $conn->prepare("SELECT * FROM pact._handicap_activite WHERE idoffre = ?");
+            //$stmt->execute([$offre['idoffre']]);
+            $prestation = array();
+            /*while ($resPrestation = $stmt->fetch(PDO::FETCH_ASSOC)) {
+              $prestation[] = $resPrestation;
+            }*/
+
+            $stmt = $conn->prepare("SELECT * FROM pact._activite WHERE idoffre = ?");
+            $stmt->execute([$offre['idoffre']]);
+            $resActivity = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($resActivity) {
+              $this->arrayOffer[$offre['idoffre']]->setDataActivity(
+                $resActivity['duree'], 
+                $resActivity['agemin'],
+                $resActivity['prixminimal'],
+                $prestation,
+                transformerHoraires($offre['idoffre'], $offre['listhorairemidi']),
+                transformerHoraires($offre['idoffre'], $offre['listhorairesoir'])
+              );
+            }
             break;
           
           case 'Parc Attraction':
