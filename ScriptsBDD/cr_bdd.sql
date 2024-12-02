@@ -692,11 +692,12 @@ SELECT
     o.nom,
     o.description,
     o.resume,
-	  o.mail,
-	  o.telephone,
-	  o.urlsite,
-	  o.datecrea,
+	o.mail,
+	o.telephone,
+	o.urlsite,
+	o.datecrea,
     ab.nomabonnement,
+	pa.urlplan,
     ARRAY_AGG(DISTINCT i.url) AS listImage,
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'jour', hm.jour,
@@ -744,6 +745,8 @@ SELECT
     END AS categorie
 FROM 
     _offre o
+LEFT JOIN
+	_parcattraction pa on o.idoffre = pa.idoffre
 LEFT JOIN 
     _illustre i ON o.idOffre = i.idOffre
 LEFT JOIN 
@@ -776,7 +779,7 @@ WHERE
     l.codePostal IS NOT NULL AND
     ab.nomabonnement IS NOT NULl
 GROUP BY 
-    o.idOffre, l.ville, l.numeroRue, l.rue, l.pays, l.codePostal, r.gammeDePrix, ab.nomabonnement
+    o.idOffre, l.ville, l.numeroRue, l.rue, l.pays, l.codePostal, r.gammeDePrix, ab.nomabonnement, pa.urlplan
 ORDER BY o.dateCrea DESC;
 
 -- Vue pour tous les avis avec offres

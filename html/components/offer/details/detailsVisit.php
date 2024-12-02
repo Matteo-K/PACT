@@ -69,21 +69,27 @@ if ($categorie["_visite"]) {
     </div>
 
 
-    <div class="divAccessibliteVisit">
+    <div class="access">
+        <label id="labAccess">Accessibilité</label> <!-- Label Accessibilité -->
 
-        <label>Accessibilité</label> <!-- Label Accessibilité -->
-        <div class="divAccessibliteVisit1">
-            <input type="radio" id="access" name="Accessibilité" value="access" checked>
-            <!-- Bouton radio pour le choix de l'accesibilite PMR il est lier avec le 2eme et est selectionner par defaut -->
-            <label for="access"> Accès personne handicapées</label>
+
+        <div class="acces1">
+            <input type="radio"  name="AccesH1" value="Acces" checked>
+
+            <label for="Acces">Accès Personne à Modibilté Réduite</label>
             <!-- Label associé au bouton radio -->
-
-            <input type="radio" id="pasAcces" name="Accessibilité" value="pasAcces">
-            <!-- 2eme bouton radio liés au 1er via l'id -->
-            <label for="pasAcces"> Pas d’accès personne handicapées </label>
+        </div>
+        <div class="access1">
+            <input type="radio"  name="AccesH2" value="pasAcces">
+            <label for="pasAcces">Accès personne sourde/malentendantes </label>
             <!-- Label du 2eme bouton radio -->
         </div>
-    </div>
+        <div class="access1">
+            <input type="radio"  name="AccesH3" value="pasAcces">
+            
+            <label for="pasAcces">Accès personnes aveugle/déficience visuelle </label>
+            <!-- Label du 3eme bouton radio -->
+        </div>
 
 
     <div class="divPrixMin">
