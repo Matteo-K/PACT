@@ -16,27 +16,24 @@
 
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
-        $stmt = $conn->prepare("SELECT
-            u.denomination,
-            na.telephone,
-            na.mail,
-            a.numeroRue,
-            a.rue,
-            a.ville,
-            a.pays,
-            a.codePostal
-        FROM
-            pact._utilisateur u
-        JOIN
-            pact._nonAdmin na ON u.idU = na.idU
-        JOIN
-            pact._adresse a ON u.idU = a.idU
-        WHERE
-            u.type = 'pro'  -- Assurez-vous que vous filtrez correctement selon le type de profil (privé/public)
-            AND (na.type = 'public' OR na.type = 'prive')  -- Filtre selon le type (public ou privé)
-        ");
-        $stmt->execute([$userId, $userId]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $stmt = $conn->prepare("SELECT * FROM pact.propublic WHERE idU = ? UNION SELECT * FROM pact.proprive WHERE idU = ?");
+        // $stmt->execute([$userId, $userId]);
+        // $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Vérifier dans la table propublic
+        $stmt = $conn->prepare("SELECT * FROM pact.propublic WHERE idU = ?");
+        $stmt->execute([$userId]);
+        $userPublic = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Vérifier dans la table proprive si pas trouvé dans propublic
+        if (!$userPublic) {
+            $stmt = $conn->prepare("SELECT * FROM pact.proprive WHERE idU = ?");
+            $stmt->execute([$userId]);
+            $userPrivate = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        // Fusionner les résultats de propublic et proprive, si les deux existent
+        $user = $userPublic ?: $userPrivate;
 
         // Vérifier si les données sont trouvées
         if (!$user) {
