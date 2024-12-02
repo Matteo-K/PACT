@@ -16,11 +16,30 @@
 
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
-        $stmt = $conn->prepare("SELECT * FROM pact.propublic WHERE idU = ? UNION SELECT * FROM pact.proprive WHERE idU = ?");
-        $stmt->bindParam(1, $userId, PDO::PARAM_INT);
-        $stmt->bindParam(2, $userId, PDO::PARAM_INT);
-        $stmt->execute();
-        // $stmt->execute([$userId, $userId]);
+        $stmt = $conn->prepare("SELECT 
+            p.idU AS id_utilisateur,
+            p.denomination AS denomination,
+            n.telephone,
+            n.mail,
+            a.numeroRue,
+            a.rue,
+            a.ville,
+            a.pays,
+            a.codePostal,
+            ab.nomAbonnement
+        FROM 
+            _pro p
+        JOIN 
+            _nonAdmin n ON p.idU = n.idU
+        JOIN 
+            _adresse a ON p.idU = a.numeroRue
+        LEFT JOIN 
+            _abonner ab ON p.idU = ab.idOffre
+        WHERE 
+            p.idU IS NOT NULL;
+        ");
+        
+        $stmt->execute([$userId, $userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Vérifier si les données sont trouvées
