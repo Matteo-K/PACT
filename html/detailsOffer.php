@@ -335,8 +335,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <aside>
                                 <form action="" method="post">
                                     <input type="hidden" name="nomOption" value="ALaUne">
-                                    <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
-                                    <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                    <label class="taille" for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
                                 </form>
                                 <?php
                                 if (!$optionUne) {
