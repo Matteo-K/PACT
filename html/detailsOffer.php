@@ -329,7 +329,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <section class="contentPop" id="content-2">
                     <section class="AlaUne">
                         <h3>A la Une</h3>
-                        <button class="modifierBut">Ajouter</button>
                         <aside>
                             <form action="" method="post">
                                 <input type="hidden" name="nomOption" value="ALaUne">
@@ -340,7 +339,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             if (!$optionUne) {
                                 ?>
                                     <p>l'option sera active lors de la prochaine mise en ligne</p>
-                                <?php                                
+                                    <?php                                
                             } else {
                                 ?>
                                     <p>L'option sera lancer à la fin de celle-ci</p>
@@ -348,10 +347,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             }
                             ?>
                         </aside>
+                        <button class="modifierBut">Ajouter</button>
                     </section>
                     <section class="EnRelief">
                         <h3>En Relief</h3>
-                        <button class="modifierBut">Ajouter</button>
                         <aside>
                             <form action="" method="post">
                                 <input type="hidden" name="nomOption" value="ALaUne">
@@ -362,14 +361,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             if (!$optionUne) {
                                 ?>
                                     <p>l'option sera active lors de la prochaine mise en ligne</p>
-                                <?php                                
+                                    <?php                                
                             } else {
                                 ?>
                                     <p>L'option sera lancer à la fin de celle-ci</p>
-                                <?php
+                                    <?php
                             }
                             ?>
                         </aside>
+                        <button id="buttonAjt" class="modifierBut">Ajouter</button>
                     </section>
                 </section>              
                 <button class="modifierBut" onclick="confirmation()">Comfirmer</button>
