@@ -27,12 +27,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (priveRadio.checked) {
             sirenLabel.style.display = "block"; // Affiche le label
             sirenInput.style.display = "block"; // Affiche le champ
+            sirenInput.required = true;
         } 
         
         else {
             sirenLabel.style.display = "none"; // Cache le label
             sirenInput.style.display = "none"; // Cache le champ
-            sirenInput.removeAttribute('required');
+            sirenInput.required = false;
         }
     }
 
