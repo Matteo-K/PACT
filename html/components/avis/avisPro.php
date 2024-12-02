@@ -17,24 +17,29 @@
                     ?> 
                     <li onclick="afficheAvisSelect(<?php echo $numAv ?>)">
 
-                        <div class="noteEtoile">
-                            <?php
-                            for ($i = 0; $i < $av['note']; $i++) {
-                                echo "<div class='star'></div>";
-                            }
-                            if (5 - $av['note'] != 0) {
-                                for ($i = 0; $i < 5 - $av['note']; $i++) {
-                                    echo "<div class='star starAvisIncolore'></div>";
-                                }
-                            }
-                            ?>
-                            <p><?= $av['note'] ?> / 5</p>
-                        </div>
+                        <div class="titreAvisListe">
 
-                        <p>
-                            <?php echo $av['pseudo'] . " - " . $av['titre'] ?>
-                        </p>
-                    </li>;
+                            <div class="noteEtoile">
+                                <?php
+                                for ($i = 0; $i < $av['note']; $i++) {
+                                    echo "<div class='star'></div>";
+                                }
+                                if (5 - $av['note'] != 0) {
+                                    for ($i = 0; $i < 5 - $av['note']; $i++) {
+                                        echo "<div class='star starAvisIncolore'></div>";
+                                    }
+                                }
+                                ?>
+                                <p><?= $av['note'] ?> / 5</p>
+                            </div>
+
+                            <p>
+                                <?php echo $av['pseudo'] . " - " . $av['titre'] ?>
+                            </p>
+
+                        </div>
+                        
+                    </li>
                 <?php
                 }
                 ?>
