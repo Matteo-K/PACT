@@ -17,7 +17,7 @@
                     ?> 
                     <li onclick="afficheAvisSelect(<?php echo $numAv ?>)">
 
-                        <div class="titreAvisListe">
+                        <div>
 
                             <div class="noteEtoile">
                                 <?php
@@ -38,7 +38,11 @@
                             </p>
 
                         </div>
-                        
+
+                        <p>
+                            <?php echo $av['content'] ?>
+                        </p>
+
                     </li>
                 <?php
                 }

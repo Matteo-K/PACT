@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
 
-:root {
+:root { 
   --bloc: #034d7c;
   --background: #eaeaea;
   --primary: #1ca4ed;
@@ -3000,11 +3000,9 @@ tbody td:last-child {
   width: 25px; 
   height: 20px; 
   border: none;
-  border-radius: 2px; 
-  position: relative; 
   background-color: var(--primary);
-  margin-right: 7px;
-  clip-path: polygon(0% 0%, 100% 0, 100% 75%, 89% 75%, 100% 92%, 70% 76%, 0% 75%); /* pour faire une forme de bulle */
+  margin-right: 10px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 88% 75%, 92% 100%, 59% 75%, 0% 75%);
 }
 
 
@@ -3012,7 +3010,6 @@ tbody td:last-child {
 #avisProS1 > div {
   width: 100%; /* Largeur de la liste */
   overflow-y: auto; /* Activer le scroll vertical */
-  background-color: #ffd0d0;
 }
 
 #avisPro ul {
@@ -3024,12 +3021,29 @@ tbody td:last-child {
 #avisPro li {
   padding: 10px;
   cursor: pointer;
-  border-bottom: 1px solid #ddd;
   transition: background-color 0.2s;
+  clip-path: polygon(7% 80%, 7% 0, 100% 0, 100% 90%, 30% 90%, 13% 90%, 0 100%);
+  background: var(--background);
+  background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary) 80%,  transparent 100%);
 }
 
 #avisPro li:hover {
-  background-color: #e0e0e0;
+  background: linear-gradient(90deg, var(--primary60) 0%, var(--primary60) 80%,  transparent 100%);
+}
+
+
+#avisPro li > div{
+  display: flex;
+  flex-wrap: nowrap;
+  width: 90%;
+  overflow: none;
+}
+
+#avisPro li > p{
+  display: flex;
+  flex-wrap: nowrap;
+  width: 90%;
+  overflow: none;
 }
 
 /* Panneau de prévisualisation */
