@@ -806,6 +806,7 @@ header ul+div {
   align-items: center;
   justify-content: center;
   margin: 10px;
+  gap: 25%;
 }
 
 #voirPlus a {
@@ -814,6 +815,8 @@ header ul+div {
   padding: 0.5rem 4rem;
   border-radius: 0.8rem;
   margin-bottom: 30px;
+  width: 120px;
+  text-align: center;
 }
 
 #voirPlus a:hover {
