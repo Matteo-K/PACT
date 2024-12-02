@@ -1405,8 +1405,14 @@ header ul+div {
   top: 50%;
   left: 50%;
   transform: translate(-25%, -25%);
-  width: 30%;
+  width: 50%;
   height: 30vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  background-image: url(img/phare.jpg);
+  background-position: center;
+  background-size: cover;
 }
 
 /* ------------------------- END Payment OFFER CSS --------------------------------*/
