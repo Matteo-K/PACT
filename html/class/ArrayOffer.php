@@ -137,7 +137,7 @@ class ArrayOffer {
             $resPark = $stmt->fetch(PDO::FETCH_ASSOC);
             $this->arrayOffer[$offre['idoffre']] = new Park();
             if ($resPark) {  
-              $this->arrayOffer[$offre['idoffre']]->setDataShow(
+              $this->arrayOffer[$offre['idoffre']]->setDataPark(
                 $resPark['agemin'], 
                 $resPark['nbattraction'], 
                 $resPark['prixminimal'],
