@@ -129,7 +129,9 @@
     if (saveAside) {
       setTimeout(function() {
         document.getElementById('loading-logo').style.display = 'none';
-        document.getElementById('valid-logo').style.display = 'block';
+        document.getElementById('valid-logo').style.display = 'flex';
+        saveAside.style.borderColor = "#1ca4ed";
+        saveAside.style.backgroundColor = "white";
       }, 1000); // 1s
       
       setTimeout(() => closeSave(), 10000); // 10s 

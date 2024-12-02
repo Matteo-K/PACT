@@ -1040,13 +1040,13 @@ header ul+div {
 /* Feedback Save */
 #save-offer {
   position: fixed;
-  top: 60%;
+  bottom: 10vh;
   right: 20px;
   width: 400px;
   height: 100px;
   z-index: 2;
-  background-color: white;
-  border: var(--primary) 3px solid;
+  background-color: transparent;
+  border: transparent 3px solid;
   border-radius: 10px 10px 0 10px;
   display: flex;
   align-items: center;
@@ -1055,8 +1055,8 @@ header ul+div {
 }
 
 #loading-logo {
-  border: 6px solid #f3f3f3;
-  border-top: 6px solid #3498db;
+  border: 6px solid white;
+  border-top: 6px solid var(--bloc);
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -1067,6 +1067,9 @@ header ul+div {
   font-size: 3rem;
   color: green;
   display: none;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row nowrap;
 }
 
 #save-offer img {
