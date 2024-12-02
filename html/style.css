@@ -806,6 +806,7 @@ header ul+div {
   align-items: center;
   justify-content: center;
   margin: 10px;
+  gap: 20px;
 }
 
 #voirPlus a {
@@ -814,6 +815,8 @@ header ul+div {
   padding: 0.5rem 4rem;
   border-radius: 0.8rem;
   margin-bottom: 30px;
+  width: 120px;
+  text-align: center;
 }
 
 #voirPlus a:hover {
@@ -3574,7 +3577,8 @@ tbody td:last-child {
   margin-top: 5px;
 }
 
-#visit>div[class="languesProp"] {
+#visit>div[class="languesProp"],
+#visit>div[class="divAccessibliteVisit"] {
   display: flex;
   flex-direction: column;
 }

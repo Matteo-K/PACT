@@ -425,8 +425,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </aside>
                     </section>
                 </section>              
-                <button onclick="Comfirmation()">Comfirmer</button>
-              </section>        
+                <button onclick="confirmation()">Comfirmer</button>
+              </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
                 <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
@@ -821,7 +821,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // }
         
             // Soumettre le formulaire
-            function Comfirmation() {
+            function confirmation() {
               closeModal(); // Fermer la fenêtre modale après soumission
             }
         } catch (error) {
