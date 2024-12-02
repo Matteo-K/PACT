@@ -116,7 +116,7 @@ class ArrayOffer {
             }
             break;
             
-          case 'Visite':
+          case 'Visit':
             $this->arrayOffer[$offre['idoffre']] = new Visit();
             $stmt = $conn->prepare("SELECT * FROM pact._visite_langue WHERE idoffre = ?");
             $stmt->execute([$offre['idoffre']]);
