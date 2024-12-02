@@ -27,11 +27,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (priveRadio.checked) {
             sirenLabel.style.display = "block"; // Affiche le label
             sirenInput.style.display = "block"; // Affiche le champ
+            sirenInput.setAttribute('required', 'required');
         } 
         
         else {
             sirenLabel.style.display = "none"; // Cache le label
             sirenInput.style.display = "none"; // Cache le champ
+            sirenInput.removeAttribute('required');
         }
     }
 
@@ -90,16 +92,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction de validation pour chaque champ
     function validateField(inputElement, pattern, messageErreur) {
-        if (!pattern.test(inputElement.value.trim())) {
-            displayFieldError(inputElement, messageErreur);
-            return false;
-        } 
-        
-        else {
-            clearFieldError(inputElement);
-            return true;
+        if (inputElement.style.display !== 'none' && inputElement.hasAttribute('required')) {
+            if (!pattern.test(inputElement.value.trim())) {
+                displayFieldError(inputElement, messageErreur);
+                return false;
+            } 
+            
+            else {
+                clearFieldError(inputElement);
+                return true;
+            }
         }
+        return true;
     }
+    
 
 
     // Récupérer le nom du fichier actuel

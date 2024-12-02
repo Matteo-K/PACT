@@ -69,21 +69,27 @@ if ($categorie["_visite"]) {
     </div>
 
 
-    <div class="divAccessibliteVisit">
+    <div class="access">
+        <label id="labAccess">Accessibilité</label> <!-- Label Accessibilité -->
 
-        <label>Accessibilité</label> <!-- Label Accessibilité -->
-<div class="divAccessibliteVisit1">
-        <input type="radio" id="access" name="Accessibilité" value="access" checked>
-        <!-- Bouton radio pour le choix de l'accesibilite PMR il est lier avec le 2eme et est selectionner par defaut -->
-        <label for="access"> Accès personne handicapées</label>
-        <!-- Label associé au bouton radio -->
 
-        <input type="radio" id="pasAcces" name="Accessibilité" value="pasAcces">
-        <!-- 2eme bouton radio liés au 1er via l'id -->
-        <label for="pasAcces"> Pas d’accès personne handicapées </label>
-        <!-- Label du 2eme bouton radio -->
-</div>
-    </div>
+        <div class="acces1">
+            <input type="radio"  name="AccesH1" value="Acces" checked>
+
+            <label for="Acces">Accès Personne à Modibilté Réduite</label>
+            <!-- Label associé au bouton radio -->
+        </div>
+        <div class="access1">
+            <input type="radio"  name="AccesH2" value="pasAcces">
+            <label for="pasAcces">Accès personne sourde/malentendantes </label>
+            <!-- Label du 2eme bouton radio -->
+        </div>
+        <div class="access1">
+            <input type="radio"  name="AccesH3" value="pasAcces">
+            
+            <label for="pasAcces">Accès personnes aveugle/déficience visuelle </label>
+            <!-- Label du 3eme bouton radio -->
+        </div>
 
 
     <div class="divPrixMin">
@@ -115,70 +121,70 @@ if ($categorie["_visite"]) {
 
 <!-- Script Js de activity -->
 <script>
-// Récupération des éléments nécessaires
-const selectLangue = document.getElementById('selectionLangue');
-const sectionLangue = document.getElementById('sectionLangue');
+    // Récupération des éléments nécessaires
+    const selectLangue = document.getElementById('selectionLangue');
+    const sectionLangue = document.getElementById('sectionLangue');
 
-// Écouteur d'événement pour détecter un changement dans le select
-selectLangue.addEventListener('change', function () {
-    const selectedValue = this.value; // Récupère la valeur sélectionnée
+    // Écouteur d'événement pour détecter un changement dans le select
+    selectLangue.addEventListener('change', function () {
+        const selectedValue = this.value; // Récupère la valeur sélectionnée
 
-    // Vérifier si une langue a été sélectionnée
-    if (selectedValue !== 'selectionLangue') {
-        // Vérifier si la langue est déjà ajoutée
-        if (document.getElementById(`lang-${selectedValue}`)) {
-            alert(`La langue "${selectedValue}" est déjà ajoutée !`);
-        } else {
-            // Créer un conteneur pour la langue sélectionnée
-            const langDiv = document.createElement('div');
-            langDiv.className = 'lang-item';
-            langDiv.id = `lang-${selectedValue}`; // ID unique pour éviter les doublons
+        // Vérifier si une langue a été sélectionnée
+        if (selectedValue !== 'selectionLangue') {
+            // Vérifier si la langue est déjà ajoutée
+            if (document.getElementById(`lang-${selectedValue}`)) {
+                alert(`La langue "${selectedValue}" est déjà ajoutée !`);
+            } else {
+                // Créer un conteneur pour la langue sélectionnée
+                const langDiv = document.createElement('div');
+                langDiv.className = 'lang-item';
+                langDiv.id = `lang-${selectedValue}`; // ID unique pour éviter les doublons
 
-            // Ajouter le nom de la langue dans un élément stylisé
-            const langText = document.createElement('span');
-            langText.textContent = selectedValue;
-            langText.className = 'lang-text';
+                // Ajouter le nom de la langue dans un élément stylisé
+                const langText = document.createElement('span');
+                langText.textContent = selectedValue;
+                langText.className = 'lang-text';
 
-            // Ajouter un bouton de suppression avec une icône
-            const removeBtn = document.createElement('button');
-            removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; // Symbole "×" stylisé
-            removeBtn.className = 'remove-btn';
+                // Ajouter un bouton de suppression avec une icône
+                const removeBtn = document.createElement('button');
+                removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; // Symbole "×" stylisé
+                removeBtn.className = 'remove-btn';
 
-            // Action pour retirer la langue lorsqu'on clique sur le bouton
-            removeBtn.addEventListener('click', function () {
-                sectionLangue.removeChild(langDiv);
-            });
+                // Action pour retirer la langue lorsqu'on clique sur le bouton
+                removeBtn.addEventListener('click', function () {
+                    sectionLangue.removeChild(langDiv);
+                });
 
-            // Ajouter le texte et le bouton au conteneur de langue
-            langDiv.appendChild(langText);
-            langDiv.appendChild(removeBtn);
+                // Ajouter le texte et le bouton au conteneur de langue
+                langDiv.appendChild(langText);
+                langDiv.appendChild(removeBtn);
 
-            // Appliquer un style visuel au conteneur
-            langDiv.style.display = 'inline-flex';
-            langDiv.style.alignItems = 'center';
-            langDiv.style.margin = '5px';
-            langDiv.style.padding = '8px 12px';
-            langDiv.style.backgroundColor = '#c8e6c9'; // Couleur similaire pour les tags ajoutés
-            langDiv.style.border = '1px solid #66bb6a';
-            langDiv.style.borderRadius = '20px';
-            langDiv.style.fontSize = '0.9em';
-            langDiv.style.color = '#2e7d32'; // Texte de même couleur que les tags ajoutés
-            langDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                // Appliquer un style visuel au conteneur
+                langDiv.style.display = 'inline-flex';
+                langDiv.style.alignItems = 'center';
+                langDiv.style.margin = '5px';
+                langDiv.style.padding = '8px 12px';
+                langDiv.style.backgroundColor = '#c8e6c9'; // Couleur similaire pour les tags ajoutés
+                langDiv.style.border = '1px solid #66bb6a';
+                langDiv.style.borderRadius = '20px';
+                langDiv.style.fontSize = '0.9em';
+                langDiv.style.color = '#2e7d32'; // Texte de même couleur que les tags ajoutés
+                langDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
-            // Ajouter une animation pour l'apparition
-            langDiv.style.opacity = '0';
-            langDiv.style.transform = 'scale(0.95)';
-            sectionLangue.appendChild(langDiv);
-            setTimeout(() => {
-                langDiv.style.opacity = '1';
-                langDiv.style.transform = 'scale(1)';
-            }, 10); // Transition après ajout
+                // Ajouter une animation pour l'apparition
+                langDiv.style.opacity = '0';
+                langDiv.style.transform = 'scale(0.95)';
+                sectionLangue.appendChild(langDiv);
+                setTimeout(() => {
+                    langDiv.style.opacity = '1';
+                    langDiv.style.transform = 'scale(1)';
+                }, 10); // Transition après ajout
+            }
         }
-    }
 
-    // Réinitialiser le select après ajout
-    this.value = 'selectionLangue';
-});
+        // Réinitialiser le select après ajout
+        this.value = 'selectionLangue';
+    });
 
 
 </script>
