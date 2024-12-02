@@ -768,7 +768,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <script>
     document.addEventListener('DOMContentLoaded', function () {
     const tabs = document.querySelectorAll('.tab');
-    const contents = document.querySelectorAll('.content');
+    const contents = document.querySelectorAll('.contentPop');
     const trait = document.querySelector('.traitBouge'); // Trait qui se déplace
 
     // Fonction pour mettre à jour la position et la taille du trait sous les onglets
