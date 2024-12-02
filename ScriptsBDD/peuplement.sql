@@ -229,7 +229,7 @@ VALUES (5, 1, '2024-10-10'),
 -- Peuplement des tables spécifiques aux types d'offres (chaque offre appartient à une seule catégorie)
 -- Parc d'attraction (idOffre 1)
 INSERT INTO _parcAttraction (idOffre, ageMin, nbAttraction, prixMinimal, urlPlan) 
-VALUES (1, 5, 20, 15.0, 'http://planparc.com');
+VALUES (1, 5, 20, 15.0, './img/imagePlan/1/0.jpg');
 
 -- Spectacle (idOffre 2)
 INSERT INTO _spectacle (idOffre, duree, nbPlace, prixMinimal) 
