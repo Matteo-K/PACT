@@ -15,7 +15,7 @@
                 <?php
                 foreach ($avis as $numAv => $av) {
                     ?> 
-                    <li data-content="<?php echo $numAv ?>" onclick="showPreview(this)"> <?php echo $av['pseudo'] . " - " . $av['titre'] . "</li>";
+                    <li onclick="afficheAvisSelect(<?php echo $numAv ?>)"> <?php echo $av['pseudo'] . " - " . $av['titre'] . "</li>";
                 }
                 ?>
                 
@@ -114,10 +114,8 @@
 let listeAvis = <?php echo json_encode($avis) ?>
 let affichage = document.getElementById("detailAvisPro");
 
-function showPreview(element) {
-        // Récupère le contenu depuis l'attribut data-content de l'élément cliqué
-        const numAvis = element.getAttribute('data-content');
-            
-        affichage.textContent = listeAvis[numAvis]["content"];
-    }
+function afficheAvisSelect(numAvis) {
+        
+    affichage.textContent = listeAvis[numAvis]["content"];
+}
 </script>
