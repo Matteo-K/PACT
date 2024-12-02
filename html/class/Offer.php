@@ -122,7 +122,7 @@ class Offer {
    * suivant les horaires déterminés et l'horaire actuelle
    */
   public function statutOuverture($soir, $midi = null) {
-    global $currentDay, $currentTime;
+    global $currentDay, $currentTime, $currentDate;
     $ouverture = "EstFermé";
     if ($this->categorie != "Spectacle") {
       $horaires = array_merge($soir, $midi);
