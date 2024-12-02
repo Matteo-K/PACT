@@ -278,37 +278,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $optionRelief = $option->fetchAll(PDO::FETCH_ASSOC);
                         $mesOtion[] = $optionRelief;
                         $mesOtion[] = $optionUne;
-                        echo($mesOtion);
                         if ($mesOtion) {
                             ?>
                                 <strong><p>Mes options : </p></strong>
-                                <ul>
-                                    <?php
-                                        foreach ($mesOtion as $key => $value) {
-                                            ?>
-                                            <li>
-                                                <section class="popUpOption">
-                                                    <?php
-                                                    print_r($value);
-                                                    if ($value['datefin'] != null) {
-                                                        $dateActuelle = NEW DateTime();
-                                                        $dateFin = NEW DateTime($value['datefin']);
-                                                        $dureeRestante = $dateActuelle->diff($dateFin);
-                                                        ?><p><?php echo "Option en cours : " . $value['nomoption'] . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
-                                                        <button class="modifierBut">Arrêter</button>
-                                                        <?php
-                                                    } else {
-                                                        ?><p><?php echo "Option pas commencer : " . $value['nomoption'] . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
-                                                        <button class="modifierBut">Résilier</button>
-                                                        <?php
-                                                    } 
-                                                    ?>
-                                                </section>
-                                            </li>
-                                            <?php
-                                        }
-                                    ?>
-                                </ul>
+                                
                             <?php
                         } else {
                             ?>
