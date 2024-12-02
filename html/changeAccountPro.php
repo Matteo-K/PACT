@@ -28,7 +28,7 @@
         }
 
         // Fusionner les résultats de propublic et proprive, si les deux existent
-        // $user = $userPublic ?: $userPrivate;
+        $user = $userPublic ?: $userPrivate;
 
         // Vérifier si les données sont trouvées
         if (!$user) {
@@ -43,7 +43,7 @@
         header("Location: login.php");
         exit();
     }
-    
+
 
     // Vérifier si le formulaire a été soumis
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -58,11 +58,16 @@
         // Si l'adresse mail a été modifiée, vérifier si elle existe déjà
         if ($mail !== $user['mail']) {
             try {
-                $stmt = $conn->prepare("SELECT * FROM pact.propublic WHERE mail = ? UNION SELECT * FROM pact.proprive WHERE mail = ?");
-                $stmt->execute([$mail, $mail]);
+                // Requête sur propublic
+                $stmt = $conn->prepare("SELECT * FROM pact.propublic WHERE mail = ?");
+                $stmt->execute([$mail]);
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                if ($result) {
-                    $_SESSION['errors'][] = "L'adresse email existe déjà.";
+
+                // Si pas trouvé, vérifier dans proprive
+                if (!$result) {
+                    $stmt = $conn->prepare("SELECT * FROM pact.proprive WHERE mail = ?");
+                    $stmt->execute([$mail]);
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
             }
 
