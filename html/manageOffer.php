@@ -136,11 +136,12 @@
       
       setTimeout(() => closeSave(), 10000); // 10s 
     }
-      function closeSave() {
-        saveAside.style.display = "none";
-    }
   }
-
+  
+  function closeSave() {
+    saveAside.style.display = "none";
+  }
+  
   /* envoie un formulaire à la page enregistrement (enregOffer.php) */
   function submitForm(event, page) {
       document.getElementById('pageCurrent').value = page;
