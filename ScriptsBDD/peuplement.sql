@@ -330,10 +330,10 @@ VALUES (1, '22300', 'Lannion', 'France', 'Rue Édouard Branly', '1'),
 
 -- Peuplement de la table _abonner
 INSERT INTO _abonner (idOffre, nomAbonnement) 
-VALUES (1, 'Gratuite'), 
+VALUES (1, 'Gratuit'), 
        (2, 'Basique'), 
        (3, 'Premium'), 
-       (4, 'Gratuite'), 
+       (4, 'Gratuit'), 
        (5, 'Premium');
        
 
