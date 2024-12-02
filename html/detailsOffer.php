@@ -143,25 +143,6 @@ function formatDateEnFrancais(DateTime $date) {
     return "$jour $jourMois $mois $annee";
 }
 
-function getOpen($date, $horaires){
-    $jourActuel = $date->format('l');
-    $jourActuel = explode(' ', formatDateEnFrancais($date))[0];
-    $heureActuelle = $date->format('H:i');
-
-    $ouvert = false;
-
-    if (isset($horaires[$jourActuel])) {
-        foreach ($horaires[$jourActuel] as $plage) {
-            if ($heureActuelle >= str_replace("=>",":",$plage['ouverture']) && $heureActuelle <= str_replace("=>",":", $plage['fermeture'])) {
-                $ouvert = true;
-                break;
-            }
-        }
-    }
-
-    return $ouvert;
-}
-
 // Rechercher l'offre dans les parcs d'attractions
 $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
 $stmt->bindParam(':idoffre', $idOffre);
