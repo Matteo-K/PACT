@@ -119,7 +119,7 @@ class ArrayOffer {
                 $resVisit['duree'], 
                 $resVisit['prixminimal'],
                 $resVisit['accessibilite'],
-                $handicap,
+                //$handicap,
                 $langue,
                 transformerHoraires($offre['idoffre'], $offre['listhorairemidi']),
                 transformerHoraires($offre['idoffre'], $offre['listhorairesoir'])

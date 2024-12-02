@@ -806,7 +806,7 @@ header ul+div {
   align-items: center;
   justify-content: center;
   margin: 10px;
-  gap: 25%;
+  gap: 20px;
 }
 
 #voirPlus a {
