@@ -791,7 +791,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
             console.log("js6");
         } catch (error) {
-            console.log("tema" + error)
+
         }
 
         let map;
