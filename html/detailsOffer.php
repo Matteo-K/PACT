@@ -676,7 +676,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         
     } else if($typeOffer == "Restaurant"){
-        $stmt = $conn -> prepare("SELECT * from _menu where idoffre = $idoffre");
+        $stmt = $conn -> prepare("SELECT * from pact._menu where idoffre = $idOffre");
         $stmt -> execute();
         $menus = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     ?>
