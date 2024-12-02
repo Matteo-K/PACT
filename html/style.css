@@ -1048,7 +1048,6 @@ header ul+div {
   background-color: white;
   border: var(--primary) 3px solid;
   border-radius: 10px 10px 0 10px;
-  position: static;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1068,10 +1067,6 @@ header ul+div {
   font-size: 3rem;
   color: green;
   display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 #save-offer img {
