@@ -266,8 +266,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                           
                 <!-- Titres des onglets -->
                 <section class="titre">
-                  <h2 class="tab active">Gestion des options</h2>
-                  <h2 class="tab">Ajouter une option</h2>
+                  <h2 class="tab active" data-tab="1">Gestion des options</h2>
+                  <h2 class="tab" data-tab="2">Ajouter une option</h2>
                   <!-- Trait qui se déplace sous les onglets -->
                   <section class="traitBouge"></section>
                 </section>
