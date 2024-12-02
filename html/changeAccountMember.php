@@ -33,6 +33,73 @@
         header("Location: index.php");
         exit();
     }
+
+
+
+    // Vérifier si le formulaire a été soumis
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les nouvelles données du formulaire
+        $nom = trim($_POST['nomMembre']);
+        $prenom = trim($_POST['prenomMembre']);
+        $pseudo = trim($_POST['pseudoMembre']);
+        $telephone = trim($_POST['telephone']);
+        $mail = trim($_POST['email']);
+        $adresse = trim($_POST['adresse']);
+        $code = trim($_POST['code']);
+        $ville = trim($_POST['ville']);
+
+        // Vérifier si l'email existe déjà
+        if ($mail !== $user['mail']) { // Si l'email a été modifié
+            try {
+                $stmt = $conn->prepare("SELECT * FROM pact._nonadmin WHERE mail = ?");
+                $stmt->execute([$mail]);
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if ($result) {
+                    $_SESSION['errors'][] = "L'adresse email existe déjà.";
+                }
+            } catch (Exception $e) {
+                $_SESSION['errors'][] = "Erreur lors de la vérification de l'adresse mail : " . htmlspecialchars($e->getMessage());
+            }
+        }
+
+        // Si aucun problème, mettre à jour les informations
+        if (empty($_SESSION['errors'])) {
+            try {
+                // Hash du mot de passe si un nouveau mot de passe est donné
+                $hashedPassword = $motdepasse ? password_hash($motdepasse, PASSWORD_DEFAULT) : $user['password'];
+
+                // Séparer le numéro et le nom de la rue
+                $adresseExplode = explode(' ', $adresse, 2); 
+                $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
+                $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
+
+                // Mettre à jour les informations dans la base de données
+                $stmt = $conn->prepare(
+                    "UPDATE pact.membre SET pseudo = ?, nom = ?, prenom = ?, password = ?, numeroRue = ?, rue = ?, ville = ?, pays = ?, codePostal = ?, telephone = ?, mail = ? WHERE idU = ?"
+                );
+                $stmt->execute([
+                    $pseudo, 
+                    $nom, 
+                    $prenom, 
+                    $hashedPassword, 
+                    $numeroRue, 
+                    $rue, 
+                    $ville, 
+                    'France', // pays (fixe pour la France)
+                    $code, 
+                    $telephone, 
+                    $mail, 
+                    $userId
+                ]);
+
+                $_SESSION['success'] = "Informations mises à jour avec succès.";
+                header("Location: profile.php"); // Rediriger vers la page de profil ou autre page
+                exit();
+            } catch (Exception $e) {
+                $_SESSION['errors'][] = "Erreur lors de la mise à jour des informations : " . $e->getMessage();
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
