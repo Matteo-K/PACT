@@ -288,6 +288,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <li>
                                                 <section class="popUpOption">
                                                     <?php
+                                                    print_r($value);
                                                     if ($value['datefin'] != null) {
                                                         $dateActuelle = NEW DateTime();
                                                         $dateFin = NEW DateTime($value['datefin']);
