@@ -136,7 +136,7 @@
             }
         ?>
 
-        <form id = "formMember" action="chnageAccountMember.php" method="post" enctype="multipart/form-data">
+        <form id = "formMember" action="changeAccountMember.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
                 <label  id="labelPrenom" for="prenomMembre">Prénom*:</label>
                 <label id="labelNom" for="nomMembre">Nom*:</label>
