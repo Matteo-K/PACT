@@ -153,6 +153,7 @@ if (!$result) {
 ?>
     <form id="manageOfferAuto" action="manageOffer.php" method="post">
         <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+        <input type="hiddedn" name="page" value="2">
     </form>
     <script>
         document.getElementById("manageOfferAuto").submit();
@@ -269,38 +270,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <section class="traitBouge"></section>
                 <section class="afficheOption">
                     <?php 
-                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null)");
+                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'ALaUne'");
                         $option->execute([$idOffre]);
-                        $mesOtion = $option->fetchAll(PDO::FETCH_ASSOC);
+                        $optionUne = $option->fetchAll(PDO::FETCH_ASSOC);
+                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'EnRelief'");
+                        $option->execute([$idOffre]);
+                        $optionRelief = $option->fetchAll(PDO::FETCH_ASSOC);
+                        $mesOtion[] = $optionRelief;
+                        $mesOtion[] = $optionUne;
                         if ($mesOtion) {
                             ?>
                                 <strong><p>Mes options : </p></strong>
-                                <ul>
-                                    <?php
-                                        foreach ($mesOtion as $key => $value) {
-                                            ?>
-                                            <li>
-                                                <section class="popUpOption">
-                                                    <?php
-                                                    if ($value['datefin'] != null) {
-                                                        $dateActuelle = NEW DateTime();
-                                                        $dateFin = NEW DateTime($value['datefin']);
-                                                        $dureeRestante = $dateActuelle->diff($dateFin);
-                                                        ?><p><?php echo "Option en cours : " . $value['nomoption'] . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
-                                                        <button class="modifierBut">Arrêter</button>
-                                                        <?php
-                                                    } else {
-                                                        ?><p><?php echo "Option pas commencer : " . $value['nomoption'] . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
-                                                        <button class="modifierBut">Résilier</button>
-                                                        <?php
-                                                    } 
-                                                    ?>
-                                                </section>
-                                            </li>
-                                            <?php
-                                        }
-                                    ?>
-                                </ul>
+                                
                             <?php
                         } else {
                             ?>
@@ -320,9 +301,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <input type="hidden" name="nomOption" value="ALaUne">
                                 <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
                                 <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
-                                <input type="checkbox" name="aLaFin" id="aLaFin">
                             </form>
-                            <p>l'option sera active lors de la prochaine mise en ligne</p>
+                            <?php
+                            if (!$optionUne) {
+                                ?>
+                                    <p>l'option sera active lors de la prochaine mise en ligne</p>
+                                <?php                                
+                            } else {
+                                ?>
+                                    <p>L'option sera lancer à la fin de celle-ci</p>
+                                <?php
+                            }
+                            ?>
                         </aside>
                     </section>
                     <section class="EnRelief">
@@ -676,8 +666,29 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         
     } else if($typeOffer == "Restaurant"){
+        $stmt = $conn -> prepare("SELECT * from pact._menu where idoffre = $idOffre");
+        $stmt -> execute();
+        $menus = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     ?>
-        <div class=""></div>
+         
+        <div class="swiper-container menu-container">
+            <div class="swiper menu">
+                <div class="swiper-wrapper">
+                    <?php
+                    foreach ($menus as $menu) {
+                    ?>
+                        <div class="swiper-slide">
+                            <img src="<?php echo $menu['menu']; ?>" />
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
     <?php
     }
     if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
@@ -721,6 +732,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             // Fonction pour afficher le modal
             function openModal() {
+            console.log("hop");
               modal.style.display = "block";
             }
         
@@ -747,7 +759,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
               closeModal(); // Fermer la fenêtre modale après soumission
             }
         } catch (error) {
-            console.log(error)
+            console.log("tema" + error)
         }
 
         let map;
@@ -817,6 +829,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             loop: true,
             spaceBetween: 10,
             slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+        var swiper4 = new Swiper(".menu", {
+            loop: true,
+            slidesPerView: 3,
+            spaceBetween: 10,
             freeMode: true,
             watchSlidesProgress: true,
         });

@@ -209,13 +209,32 @@ function filtrerParNotes(offers) {
 
 // Fonction de filtre par prix
 function filtrerParPrix(offers) {
-  const prixMin = parseInt(selectPrixMin.value);
-  const prixMax = parseInt(selectPrixMax.value);
+  // Récupérer les valeurs des sélecteurs de prix
+  const prixMin = parseInt(document.getElementById('selectPrixMin').value);
+  const prixMax = parseInt(document.getElementById('selectPrixMax').value);
 
+  // Fonction qui détermine la plage de prix en fonction de la gamme
+  function getPrixRange(gammeDePrix) {
+    switch (gammeDePrix) {
+      case '€':
+        return [0, 25];
+      case '€€':
+        return [25, 40];
+      case '€€€':
+        return [40, Infinity];
+      default:
+        return [0, Infinity];
+    }
+  }
+
+  // Filtrage des offres selon la plage de prix sélectionnée
   return offers.filter(offer => {
-    // changer "prix"
-    const prixOffre = offer.prix;
-    return prixOffre >= prixMin && prixOffre <= prixMax;
+    const prixRange = getPrixRange(offer.gammeDePrix);
+    const prixMinOffre = prixRange[0];
+    const prixMaxOffre = prixRange[1];
+
+    // Vérifie si l'offre est dans la plage de prix spécifiée par l'utilisateur
+    return prixMinOffre >= prixMin && prixMaxOffre <= prixMax;
   });
 }
 
