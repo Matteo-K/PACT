@@ -317,18 +317,24 @@ function updatePagination(totalItems, nbElement) {
 
   const totalPages = Math.ceil(totalItems / nbElement);
 
-  // Créer les liens de pagination
+  console.log("Total Pages:", totalPages);
+
   for (let page = 1; page <= totalPages; page++) {
     const pageLink = document.createElement('li');
     const link = document.createElement('a');
     link.href = "#";
     link.textContent = page;
-    link.onclick = () => goToPage(page);
+
+    link.onclick = (event) => {
+      event.preventDefault();
+      goToPage(page);
+    };
 
     pageLink.appendChild(link);
     paginationLinks.appendChild(pageLink);
   }
-  
+
+  // Mettre à jour l'ID de la page actuelle
   const links = paginationLinks.querySelectorAll('a');
   links.forEach(link => {
     if (parseInt(link.innerText) === currentPage) {
@@ -338,6 +344,7 @@ function updatePagination(totalItems, nbElement) {
     }
   });
 }
+
 
 function goToPage(page) {
   currentPage = page;
