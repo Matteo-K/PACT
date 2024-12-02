@@ -758,16 +758,19 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     const openModalBtn = document.getElementById("openModalBtn");
     const closeModalBtn = document.querySelector(".close");
     const popupForm = document.getElementById("popupForm");
+    const body = document.body;
     console.log("js1");
     // Fonction pour afficher le modal
     function openModal() {
     console.log("hop");
       modal.style.display = "block";
+      body.classList.add("no-scroll");
     }
     console.log("js2");
     // Fonction pour fermer le modal
     function closeModal() {
       modal.style.display = "none";
+      body.classList.remove("no-scroll");
     }
     console.log("js3");
     // Ouvrir le popup lorsque le bouton est cliqué
