@@ -28,7 +28,7 @@
         }
 
         // Fusionner les résultats de propublic et proprive, si les deux existent
-        // $user = $userPublic ?: $userPrivate;
+        $user = $userPublic ?: $userPrivate;
 
         // Vérifier si les données sont trouvées
         if (!$user) {
@@ -43,7 +43,7 @@
         header("Location: login.php");
         exit();
     }
-    
+
 
     // Vérifier si le formulaire a été soumis
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
