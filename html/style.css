@@ -3090,7 +3090,7 @@ tbody td:last-child {
   flex-wrap: wrap ;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 22px;
   color: #333;
   text-align: center;
 }
@@ -3127,12 +3127,14 @@ tbody td:last-child {
   width: 90%;
 }
 
+#contenuAvis{
+  width: 90%;
+}
+
 #visiteRedaction{
   font-style: italic;
-  color: var(--secondary);
   padding: 5px;
-  border-bottom: 1px solid var(--secondary60);
-
+  border-bottom: 1px solid #000;
 }
 
 
