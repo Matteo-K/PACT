@@ -90,4 +90,11 @@
   </section>
   <section>
     <h4>Montant total à régler : <?php echo $montant; ?>€ (lors de la mise en ligne)</h4>
+    <button onclick="document.getElementById('removeCB').classList.remove('hidenAside')">Retirer mes coordonnées</button>
   </section>
+  <aside id="removeCB" class="hidenAside">
+    <div>
+      <h3>Vos coordonnées bancaires ont bien été effacées</h3>
+      <button onclick="document.getElementById('removeCB').classList.add('hidenAside')">Continuer</button>
+    </div>
+  </aside>
