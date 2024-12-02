@@ -78,7 +78,7 @@ class ArrayOffer {
             );
             break;
             
-          case 'Spectacle':
+          case 'Spectacl': // casse temporiare
             $stmt = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre = ?");
             $stmt->execute([$offre['idoffre']]);
             $resShow = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -119,7 +119,7 @@ class ArrayOffer {
                 $resVisit['duree'], 
                 $resVisit['prixminimal'],
                 $resVisit['accessibilite'],
-                $handicap,
+                //$handicap,
                 $langue,
                 transformerHoraires($offre['idoffre'], $offre['listhorairemidi']),
                 transformerHoraires($offre['idoffre'], $offre['listhorairesoir'])

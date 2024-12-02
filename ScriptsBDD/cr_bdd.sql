@@ -1104,6 +1104,69 @@ INSTEAD OF INSERT ON pact.membre
 FOR EACH ROW
 EXECUTE FUNCTION ajout_membre();
 
+CREATE OR REPLACE FUNCTION update_membre()
+RETURNS TRIGGER AS $$
+DECLARE
+    iduser INT;
+BEGIN
+    -- Récupérer l'ID utilisateur correspondant au pseudo actuel
+    SELECT idU INTO iduser FROM pact._membre WHERE pseudo = OLD.pseudo;
+    IF iduser IS NULL THEN
+        RAISE EXCEPTION 'Utilisateur avec le pseudo % introuvable', OLD.pseudo;
+    END IF;
+
+    -- Mise à jour des informations utilisateur
+    UPDATE pact._utilisateur
+    SET password = COALESCE(NEW.password, pact._utilisateur.password)
+    WHERE idU = iduser;
+
+    -- Mise à jour des informations non-administratives
+    UPDATE pact._nonAdmin
+    SET telephone = COALESCE(NEW.telephone, pact._nonAdmin.telephone),
+        mail = COALESCE(NEW.mail, pact._nonAdmin.mail)
+    WHERE idU = iduser;
+
+    -- Mise à jour des informations de membre
+    UPDATE pact._membre
+    SET pseudo = COALESCE(NEW.pseudo, pact._membre.pseudo),
+        nom = COALESCE(NEW.nom, pact._membre.nom),
+        prenom = COALESCE(NEW.prenom, pact._membre.prenom)
+    WHERE idU = iduser;
+
+    -- Mise à jour de la photo de profil
+    UPDATE pact._photo_profil
+    SET url = COALESCE(NEW.url, pact._photo_profil.url)
+    WHERE idU = iduser;
+
+    -- Vérifier si l'adresse existe, sinon la créer
+    IF NOT EXISTS (
+        SELECT 1 FROM pact._adresse
+        WHERE numeroRue = NEW.numeroRue AND rue = NEW.rue AND ville = NEW.ville AND pays = NEW.pays AND codePostal = NEW.codePostal
+    ) THEN
+        INSERT INTO pact._adresse (numeroRue, rue, ville, pays, codePostal)
+        VALUES (NEW.numeroRue, NEW.rue, NEW.ville, NEW.pays, NEW.codePostal);
+    END IF;
+
+    -- Mettre à jour l'adresse de résidence
+    UPDATE pact._habite
+    SET codePostal = COALESCE(NEW.codePostal, pact._habite.codePostal),
+        ville = COALESCE(NEW.ville, pact._habite.ville),
+        pays = COALESCE(NEW.pays, pact._habite.pays),
+        rue = COALESCE(NEW.rue, pact._habite.rue),
+        numeroRue = COALESCE(NEW.numeroRue, pact._habite.numeroRue)
+    WHERE idU = iduser;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Création du trigger associé
+CREATE TRIGGER trigger_update_membre
+INSTEAD OF UPDATE ON pact.membre
+FOR EACH ROW
+EXECUTE FUNCTION update_membre();
+
+
 CREATE OR REPLACE FUNCTION ajout_option()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -1119,3 +1182,35 @@ CREATE TRIGGER trigger_ajout_option
 INSTEAD OF INSERT ON pact.option
 FOR EACH ROW
 EXECUTE FUNCTION ajout_option();
+
+CREATE OR REPLACE FUNCTION ajout_avis()
+RETURNS TRIGGER AS $$
+DECLARE
+  idcomment INT;
+BEGIN
+    INSERT INTO pact._commentaire (idU,content,datePublie) VALUES (NEW.idU,NEW.content, NEW.datePublie) RETURNING idC into idcomment;
+    INSERT INTO pact._avis (idC, idOffre, note, companie, mois, annee, titre, lu) VALUES (idcomment, NEW.idOffre, NEW.note, NEW.companie, NEW.mois, NEW.annee, NEW.titre, NEW.lu);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_ajout_avis
+INSTEAD OF INSERT ON pact.avis
+FOR EACH ROW
+EXECUTE FUNCTION ajout_avis();
+
+CREATE OR REPLACE FUNCTION ajout_reponse()
+RETURNS TRIGGER AS $$
+DECLARE
+  idcomment INT;
+BEGIN
+    INSERT INTO pact._commentaire (idU,content,datePublie) VALUES (NEW.idU,NEW.content, NEW.datePublie) RETURNING idC into idcomment;
+    INSERT INTO pact._reponse (idC, ref) VALUES (idcomment, NEW.ref);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_ajout_reponse
+INSTEAD OF INSERT ON pact.reponse
+FOR EACH ROW
+EXECUTE FUNCTION ajout_reponse();

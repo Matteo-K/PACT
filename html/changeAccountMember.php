@@ -66,15 +66,14 @@
         // Si aucun problème, mettre à jour les informations
         if (empty($_SESSION['errors'])) {
             try {
-                $hashedPassword = $motdepasse ? password_hash($motdepasse, PASSWORD_DEFAULT) : $user['password'];
 
                 $adresseExplode = explode(' ', $adresse, 2); 
                 $numeroRue = isset($adresseExplode[0]) ? $adresseExplode[0] : '';
                 $rue = isset($adresseExplode[1]) ? $adresseExplode[1] : '';
 
                 // Mettre à jour les informations dans la base de données
-                $stmt = $conn->prepare("UPDATE pact.membre SET pseudo = ?, nom = ?, prenom = ?, password = ?, numeroRue = ?, rue = ?, ville = ?, pays = ?, codePostal = ?, telephone = ?, mail = ? WHERE idU = ?");
-                $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, 'France',$code, $telephone, $mail, $userId]);
+                $stmt = $conn->prepare("UPDATE pact.membre SET pseudo = ?, nom = ?, prenom = ?, numeroRue = ?, rue = ?, ville = ?, pays = ?, codePostal = ?, telephone = ?, mail = ? WHERE idU = ?");
+                $stmt->execute([$pseudo, $nom, $prenom, $numeroRue, $rue, $ville, 'France', $code, $telephone, $mail, $userId]);
 
                 $_SESSION['success'] = "Informations mises à jour avec succès.";
                 header("Location: profile.php");

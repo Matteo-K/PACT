@@ -425,8 +425,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </aside>
                     </section>
                 </section>              
-                <button onclick="Comfirmation()">Comfirmer</button>
-              </section>        
+                <button onclick="confirmation()">Comfirmer</button>
+              </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
                 <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
@@ -768,10 +768,19 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h3>Publiez un avis</h3>
             </nav>
 
+            <div>
+            <?php
+            if($avis){
+                require_once __DIR__ . "/components/avis/avisMembre.php";
+            }else{
+            ?>
+                <p>Aucun avis pour le moment, soyez le premier à donner le vôtre !</p> 
+            <?php
+            }
+            
+            ?>
+            </div";
         <?php
-        echo "<div>";
-        require_once __DIR__ . "/components/avis/avisMembre.php";
-        echo "</div";
     }
         ?>
         </div>
@@ -812,7 +821,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // }
         
             // Soumettre le formulaire
-            function Comfirmation() {
+            function confirmation() {
               closeModal(); // Fermer la fenêtre modale après soumission
             }
         } catch (error) {
