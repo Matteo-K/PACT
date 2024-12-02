@@ -3076,6 +3076,7 @@ tbody td:last-child {
   background-color: #dee6fa;
   overflow-y: auto; /* Permet le scroll si le contenu est trop grand */
   display: flex;
+  flex-wrap: wrap ;
   align-items: center;
   justify-content: center;
   font-size: 16px;
@@ -3087,16 +3088,23 @@ tbody td:last-child {
   display: flex;
   flex-wrap: nowrap;
   width: 90%;
+  margin: 20px 0;
 }
 
 #ligneTitreAvis > h2{
   width: 90%;
+  margin: 0;
 }
 
 #ligneTitreAvis > img{
   width: 2.2em;
   height: 2.2em;
   align-self: flex-end;
+}
+
+.conteneurAvisPro .noteEtoile{
+  width: 100%;
+  height: 50px;
 }
 
 .conteneurAvisPro .star{
