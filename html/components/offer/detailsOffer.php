@@ -278,7 +278,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         // Fonction pour charger les images existantes
         // Fonction pour charger les images existantes
         function loadExistingImages() {
-            fetch('./upload.php?idOffre=' + idOffre)
+            fetch('upload.php?idOffre=' + idOffre)
                 .then(response => response.json())
                 .then(data => {
                     const existingPreview = document.getElementById('afficheImages');
@@ -314,7 +314,7 @@ function deleteImage(fileName, imgElement, index) {
     imgElement.remove();
 
     // Faire la requête de suppression côté serveur
-    fetch('./upload.php', {
+    fetch('upload.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -383,7 +383,7 @@ function deleteImage(fileName, imgElement, index) {
             formData.append('action', 'upload');
             formData.append('idOffre', idOffre);
 
-            fetch('./upload.php', {
+            fetch('upload.php', {
                 method: 'POST',
                 body: formData,
             })
