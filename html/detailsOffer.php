@@ -266,8 +266,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <section class="titre">
                     <h2 class="tab active">Gestion des option</h2>
                     <h2 class="tab">Ajouter une option</h2>
+                    <section class="traitBouge"></section>
                 </section>
-                <section class="traitBouge"></section>
                 <section class="afficheOption">
                     <?php 
                         $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'ALaUne'");
