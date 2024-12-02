@@ -414,15 +414,21 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
                                 <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
                                 <input type="checkbox" name="aLaFin" id="aLaFin">
-                                <input type="checkbox" name="enLigne" id="enLigne">
                             </form>
+                            <p>l'option sera active lors de la prochaine mise en ligne</p>
                         </aside>
                     </section>
                     <section class="EnRelief">
                         <h4>En Relief</h4>
                         <button class="modifierBut">Ajouter</button>
                         <aside>
-
+                            <form action="" method="post">
+                                <input type="hidden" name="nomOption" value="ALaUne">
+                                <label for="nbWeekALaUne">Nombre de semaine à la Une</label>
+                                <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                <input type="checkbox" name="aLaFin" id="aLaFin">
+                            </form>
+                            <p>l'option sera active lors de la prochaine mise en ligne</p>
                         </aside>
                     </section>
                 </section>              
