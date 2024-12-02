@@ -278,14 +278,14 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         // Fonction pour charger les images existantes
         // Fonction pour charger les images existantes
         function loadExistingImages() {
-            fetch('./upload.php?idOffre=' + idOffre)
+            fetch('upload.php?idOffre=' + idOffre)
                 .then(response => response.json())
                 .then(data => {
                     const existingPreview = document.getElementById('afficheImages');
                     existingPreview.innerHTML = ""; // Réinitialise la liste
                     data.images.forEach((image, index) => {
                         const img = document.createElement('img');
-                        img.src = `./img/imageOffre/${idOffre}/${image}`;
+                        img.src = `img/imageOffre/${idOffre}/${image}`;
                         img.alt = image;
                         img.title = `Cliquez pour supprimer ${image}`;
                         img.style.cursor = 'pointer';
@@ -314,7 +314,7 @@ function deleteImage(fileName, imgElement, index) {
     imgElement.remove();
 
     // Faire la requête de suppression côté serveur
-    fetch('./upload.php', {
+    fetch('upload.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -337,6 +337,7 @@ function deleteImage(fileName, imgElement, index) {
     .catch(error => {
         // En cas de problème avec la requête, restaurer l'image et afficher un message d'erreur
         alert('Erreur lors de la suppression de l\'image. Veuillez réessayer.');
+        console.log(error);
         // Recharger la liste des images pour restaurer l'état
         loadExistingImages();
     });
@@ -353,7 +354,7 @@ function deleteImage(fileName, imgElement, index) {
             // Vérifie la limite d'images
             const totalSelected = existingImagesCount + input.files.length;
 
-            if (totalSelected > maxFiles) {
+            if (totalSelected > maxFiles) { 
                 alert(
                     `Erreur : Vous ne pouvez importer que ${maxFiles} photos maximum.\n` +
                     `${existingImagesCount} sont déjà sur le serveur, et vous avez sélectionné ${input.files.length}.`
@@ -382,7 +383,7 @@ function deleteImage(fileName, imgElement, index) {
             formData.append('action', 'upload');
             formData.append('idOffre', idOffre);
 
-            fetch('./upload.php', {
+            fetch('upload.php', {
                 method: 'POST',
                 body: formData,
             })

@@ -7,7 +7,7 @@ class Visit extends Offer {
   private $duree;
   private $prixMinimal;
   private $accessibilite;
-  private $handicap; // adaptation bdd
+  private $handicap;
   private $langue;
   private $horaireMidi;
   private $horaireSoir;
@@ -20,14 +20,14 @@ class Visit extends Offer {
     $this->horaireSoir = [];
   }
 
-  public function setDataVisit($estGuide_, $duree_, $prixMinimal_, $accessibilite_, $langue_, $horaireMidi_, $horaireSoir_) {
+  public function setDataVisit($estGuide_, $duree_, $prixMinimal_, $accessibilite_, $handicap_, $langue_, $horaireMidi_, $horaireSoir_) {
     $this->estGuide = $estGuide_;
     $this->duree = $duree_;
     $this->prixMinimal = $prixMinimal_;
     $this->accessibilite = $accessibilite_;
-    //$this->handicap = $handicap_;
+    $this->handicap = $handicap_;
     $this->langue = $langue_;
-    $this->$horaireMidi = $horaireMidi_;
+    $this->horaireMidi = $horaireMidi_;
     $this->horaireSoir = $horaireSoir_;
   }
 

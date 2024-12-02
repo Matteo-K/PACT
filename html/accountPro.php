@@ -202,7 +202,7 @@
                 <div class="ligne5_2">
                     <!-- Saisi du numéro de SIREN -->
                     <label for="siren">N° SIREN*:</label>
-                    <input type="text" placeholder="123 456 789" id="siren" name="siren" value="<?= isset($_POST['siren']) ? htmlspecialchars($_POST['siren']) : '' ?>" required>
+                    <input type="text" placeholder="123 456 789" id="siren" name="siren" value="<?= isset($_POST['siren']) ? htmlspecialchars($_POST['siren']) : '' ?>">
                 </div>
             </div>
 

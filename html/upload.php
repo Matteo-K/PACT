@@ -1,4 +1,7 @@
+
+
 <?php
+
 $uploadDir = './img/imageOffre/';
 $response = [];
 

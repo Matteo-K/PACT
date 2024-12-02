@@ -19,6 +19,12 @@ $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
 $offre = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// Rechercher l'offre dans les parcs d'attractions
+$stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
+$stmt->bindParam(':idoffre', $idOffre);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 // Fonction pour récupérer les horaires
 
@@ -143,31 +149,6 @@ function formatDateEnFrancais(DateTime $date) {
     return "$jour $jourMois $mois $annee";
 }
 
-function getOpen($date, $horaires){
-    $jourActuel = $date->format('l');
-    $jourActuel = explode(' ', formatDateEnFrancais($date))[0];
-    $heureActuelle = $date->format('H:i');
-
-    $ouvert = false;
-
-    if (isset($horaires[$jourActuel])) {
-        foreach ($horaires[$jourActuel] as $plage) {
-            if ($heureActuelle >= str_replace("=>",":",$plage['ouverture']) && $heureActuelle <= str_replace("=>",":", $plage['fermeture'])) {
-                $ouvert = true;
-                break;
-            }
-        }
-    }
-
-    return $ouvert;
-}
-
-// Rechercher l'offre dans les parcs d'attractions
-$stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
-$stmt->bindParam(':idoffre', $idOffre);
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 if (!$result) {
 ?>
     <form id="manageOfferAuto" action="manageOffer.php" method="post">
@@ -247,75 +228,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <h3 class="Enligne"><?php echo $offre[0]['statut'] ?></h3>
 
                     <div class="buttonDetails">
-                        <?php
-                        $affiche = false;
-                        foreach ($offre[0] as $key => $value) {
-                            if ($value == NULL) {
-                                $affiche = true;
-                            }
-                        }
-                        if ($affiche) {
-                            $resto = $conn->prepare("SELECT * FROM pact._restauration WHERE idoffre=$idOffre");
-                            $resto->execute();
-                            $restau = $resto->fetchAll(PDO::FETCH_ASSOC);
-
-                            $spec = $conn->prepare("SELECT * FROM pact._spectacle WHERE idoffre=$idOffre");
-                            $spec->execute();
-                            $spect = $spec->fetchAll(PDO::FETCH_ASSOC);
-
-                            $visi = $conn->prepare("SELECT * FROM pact._visite WHERE idoffre=$idOffre");
-                            $visi->execute();
-                            $visit = $visi->fetchAll(PDO::FETCH_ASSOC);
-
-                            $act = $conn->prepare("SELECT * FROM pact._activite WHERE idoffre=$idOffre");
-                            $act->execute();
-                            $acti = $act->fetchAll(PDO::FETCH_ASSOC);
-
-                            $parc = $conn->prepare("SELECT * FROM pact._parcattraction WHERE idoffre=$idOffre");
-                            $parc->execute();
-                            $parca = $parc->fetchAll(PDO::FETCH_ASSOC);
-
-                            if ($restau) {
-                                $tema = $restau;
-                            } elseif ($spect) {
-                                $tema = $spect;
-                            } elseif ($visit) {
-                                $tema = $visit;
-                            } elseif ($acti) {
-                                $tema = $acti;
-                            } else {
-                                $tema = $parca;
-                            }
-
-                            foreach ($tema[0] as $key => $value) {
-                                if ($value == NULL) {
-                                    $affiche = true;
-                                }
-                            }
-                            $adr = $conn->prepare("SELECT * FROM pact._localisation WHERE idoffre=$idOffre");
-                            $adr->execute();
-                            $loca = $adr->fetchAll(PDO::FETCH_ASSOC);
-
-                            if (!$loca) {
-                                $affiche = true;
-                            }
-                        }
-                        if (!$affiche) {
-                            $statutActuel = $offre[0]['statut'];
-                        ?>
-
-                            <form method="post" action="changer_statut.php">
-                                <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
-                                <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
-                                <input type="hidden" name="nouveau_statut" value="<?php echo $statutActuel === 'inactif' ? 'actif' : 'inactif'; ?>">
-                                <button class="modifierBut" type="submit">
-                                    <?php echo $statutActuel === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
-                                </button>
-                            </form>
-                        <?php
-                        }
-                        ?>
-
+                        <form method="post" action="changer_statut.php">
+                            <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
+                            <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
+                            <input type="hidden" name="nouveau_statut" value="<?php echo $offre[0]['statut'] === 'inactif' ? 'actif' : 'inactif'; ?>">
+                            <button class="modifierBut" type="submit">
+                                <?php echo $offre[0]['statut'] === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
+                            </button>
+                        </form>
                         <div class="form-container">
                             <form method="post" action="manageOffer.php">
                                 <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
@@ -331,14 +251,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <?php echo "Modifier offre"; ?>
                                 </button>
                             </form>
-
-                            <!-- Message affiché au survol du bouton désactivé -->
-
                         </div>
-
                         <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
-
-                        
                     <?php
                 }
 
@@ -435,12 +349,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
         
         <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
-        <h3 id="typeOffer"><?php echo str_replace("_", " ", ucfirst(strtolower($typeOffer))) ?> à <?php echo $result[0]['ville'] ?></h3>
+        <h3 id="typeOffer"><?php echo $typeOffer ?> à <?php echo $result[0]['ville'] ?></h3>
         <?php
         if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-        ?>
-            <h3 class="DetailsStatut"><?php echo $statutActuel == 'actif' ? "En-Ligne" : "Hors-Ligne"; ?></h3>
-        <?php
         }
         ?>
         <div>
@@ -471,8 +382,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php }
         endforeach;
 
-        if (getOpen($aujourdhui, $schedules)) {
+        if ($ouverture == "EstOuvert" && $typeOffer == "Spectacle") {
             ?>
+            <a class="ouvert" href="search.php?search=ouvert">En Cours</a>
+        <?php
+        }else if($ouverture == "EstOuvert"){
+        ?>
             <a class="ouvert" href="search.php?search=ouvert">Ouvert</a>
         <?php
         } else{
@@ -752,12 +667,17 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
     <?php
-    if ($typeOffer == "parcs_attractions") {
-    ?>
-        <img src="<?php echo $result[0]["urlplan"] ?>">
-    <?php
-    }
+    if ($typeOffer == "Parc Attraction") {
+        if($result[0]['urlplan']){
+        ?>
+            <img src="<?php echo $result[0]["urlplan"] ?>">
+        <?php
+        }
+        
+        
+    } else if($typeOffer == "Restaurant"){
 
+    }
     if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
         require_once __DIR__ . "/components/avis/avisPro.php";
     } else {
