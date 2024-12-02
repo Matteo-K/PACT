@@ -124,8 +124,8 @@
 <script>
   // FeedBack visuel sauvegarde
 
+  const saveAside = document.getElementById("save-offer");
   window.onload = () => {
-    const saveAside = document.getElementById("save-offer");
     if (saveAside) {
       setTimeout(function() {
         document.getElementById('loading-logo').style.display = 'none';
@@ -137,7 +137,7 @@
       setTimeout(() => closeSave(), 10000); // 10s 
     }
   }
-  
+
   function closeSave() {
     saveAside.style.display = "none";
   }
