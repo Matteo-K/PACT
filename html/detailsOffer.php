@@ -263,12 +263,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <section id="myModal" class="modal">
               <section class="modal-content">
                 <span class="close">&times;</span>
+                          
+                <!-- Titres des onglets -->
                 <section class="titre">
-                    <h2 class="tab active">Gestion des option</h2>
-                    <h2 class="tab">Ajouter une option</h2>
-                    <section class="traitBouge"></section>
+                  <h2 class="tab active">Gestion des options</h2>
+                  <h2 class="tab">Ajouter une option</h2>
+                  <!-- Trait qui se déplace sous les onglets -->
+                  <section class="traitBouge"></section>
                 </section>
-                <section class="afficheOption">
+                <section class="contentPop" id="content-1">
                     <?php 
                         $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'ALaUne'");
                         $option->execute([$idOffre]);
@@ -323,7 +326,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     ?>
                 </section>
-                <section class="AjouterOption">
+                <section class="contentPop" id="content-2">
                     <section class="AlaUne">
                         <h4>A la Une</h4>
                         <button class="modifierBut">Ajouter</button>
@@ -763,34 +766,48 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const tabs = document.querySelectorAll('.tab');
-        const trait = document.querySelector('.traitBouge');
+    document.addEventListener('DOMContentLoaded', function () {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.content');
+    const trait = document.querySelector('.traitBouge'); // Trait qui se déplace
 
-        // Fonction pour mettre à jour la position du trait
-        function updateTrait() {
-            const activeTab = document.querySelector('.tab.active');
-            const tabWidth = activeTab.offsetWidth;
-            const tabOffset = activeTab.offsetLeft;
-            trait.style.width = `30%`; // Met à jour la largeur du trait
-            trait.style.transform = `translateX(${tabOffset}px)`; // Déplace le trait sous l'onglet actif
-        }
+    // Fonction pour mettre à jour la position et la taille du trait sous les onglets
+    function updateUnderline() {
+        const activeTab = document.querySelector('.tab.active');
+        const tabWidth = activeTab.offsetWidth;
+        const tabOffset = activeTab.offsetLeft;
+        trait.style.width = `150px`; // Ajuste la largeur du trait
+        trait.style.transform = `translateX(${tabOffset}px)`; // Déplace le trait sous l'onglet actif
+    }
 
-        // Ajoute l'événement click sur chaque onglet
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Active l'onglet et désactive les autres
-                tabs.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
+    // Ajoute l'événement click sur chaque onglet
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            const targetTab = this; // Onglet cliqué
 
-                // Met à jour la position du trait
-                updateTrait();
+            // Active l'onglet et désactive les autres
+            tabs.forEach(t => t.classList.remove('active'));
+            targetTab.classList.add('active');
+
+            // Affiche le contenu associé et cache les autres
+            const targetContent = document.getElementById(`content-${targetTab.dataset.tab}`);
+            contents.forEach(content => {
+                if (content === targetContent) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
             });
-        });
 
-        // Initialiser le premier onglet comme actif
-        updateTrait(); // Met à jour la position du trait dès le début
+            // Met à jour la position et la largeur du trait
+            updateUnderline();
+        });
     });
+
+    // Initialiser le premier onglet comme actif
+    updateUnderline(); // Met à jour la position du trait dès que la page est chargée
+});
+
 
 
     const modal = document.getElementById("myModal");

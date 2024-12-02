@@ -2051,10 +2051,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 5px;
 }
 
-.titre{
+.titre {
   display: flex;
+  justify-content: space-between;
+  position: relative;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
-
 .tab {
   cursor: pointer;
   padding: 10px 20px;
@@ -2083,6 +2087,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 30%; 
 }
 
+.content {
+  display: none;
+}
+
+.content.active {
+  display: block;
+}
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
