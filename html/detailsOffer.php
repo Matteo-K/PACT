@@ -14,8 +14,6 @@ if (!$idOffre) {
 $monOffre = new ArrayOffer($idOffre);
 $ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
 
-print_r($ouverture);
-
 $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = :idoffre");
 $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
@@ -403,8 +401,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php }
         endforeach;
 
-        if (getOpen($aujourdhui, $schedules)) {
+        if ($ouverture == "EstOuvert" && $typeOffer == "Spectacle") {
             ?>
+            <a class="ouvert" href="search.php?search=ouvert">En Cours</a>
+        <?php
+        }else if($ouverture == "EstOuvert"){
+        ?>
             <a class="ouvert" href="search.php?search=ouvert">Ouvert</a>
         <?php
         } else{
