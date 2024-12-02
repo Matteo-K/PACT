@@ -116,7 +116,7 @@ class ArrayOffer {
             }
             break;
             
-          case 'Visit':
+          case 'Visite':
             $this->arrayOffer[$offre['idoffre']] = new Visit();
             $stmt = $conn->prepare("SELECT * FROM pact._visite_langue WHERE idoffre = ?");
             $stmt->execute([$offre['idoffre']]);
@@ -142,7 +142,7 @@ class ArrayOffer {
                 $resVisit['duree'], 
                 $resVisit['prixminimal'],
                 $resVisit['accessibilite'],
-                //$handicap,
+                $handicap,
                 $langue,
                 transformerHoraires($offre['idoffre'], $offre['listhorairemidi']),
                 transformerHoraires($offre['idoffre'], $offre['listhorairesoir'])
