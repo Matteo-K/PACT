@@ -2831,6 +2831,20 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
 }
 
+.menu > .swiper-wrapper > .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #f8f8f8; /* Couleur de fond */
+  border: 1px solid #ddd; /* Bordure légère */
+  border-radius: 8px; /* Coins arrondis */
+  overflow: hidden;
+  width: calc((100% / 3) - 10px); /* Ajuste la largeur pour 3 éléments */
+  margin: 0 5px; /* Espacement entre les slides */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
 .menu > .swiper-wrapper >.swiper-slide img {
   width: 100%;
   height: auto;
@@ -2963,7 +2977,7 @@ article#descriptionOffre {
   align-items: flex-end;
 }
 
-article#descriptionOffre h3, #afficheLoc + h2 {
+article#descriptionOffre h3,.divMenu >  h2 {
   font-size: 2.5em;
   font-weight: 100;
   border-bottom: 2px solid #000;
