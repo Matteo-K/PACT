@@ -932,16 +932,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
             });
         });
-
-        const forms3 = document.querySelectorAll('.confirmation-form-ajt');
-        forms3.forEach(form => {
-            form.addEventListener('submit', (event) => {
-                const confirmation = confirm("Êtes-vous sûr de vouloir ajouter cette option ?\nVous serez facturé pour toutes les options en cours, sauf si arrêté le jour du lancement");
-                if (!confirmation) {
-                    event.preventDefault(); // Empêche la soumission si l'utilisateur annule
-                }
-            });
-        });
     });
     /** Fin du script */
 
@@ -954,16 +944,22 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if (button1 && form1) {
             // Ajouter un listener de clic au bouton
             button1.addEventListener("click", (event) => {
-                event.preventDefault(); // Empêche l'action par défaut du bouton
-                form1.submit(); // Soumet le formulaire correspondant
+                const confirmation = confirm("Êtes-vous sûr de vouloir ajouter cette option ?\nVous serez facturé pour toutes les options en cours, sauf si arrêté le jour du lancement");
+                if (confirmation) {
+                    event.preventDefault(); // Empêche l'action par défaut du bouton
+                    form1.submit(); // Soumet le formulaire correspondant
+                }
             });
         }
 
         if (button2 && form2) {
             // Ajouter un listener de clic au bouton
             button2.addEventListener("click", (event) => {
-                event.preventDefault(); // Empêche l'action par défaut du bouton
-                form2.submit(); // Soumet le formulaire correspondant
+                const confirmation = confirm("Êtes-vous sûr de vouloir ajouter cette option ?\nVous serez facturé pour toutes les options en cours, sauf si arrêté le jour du lancement");
+                if (confirmation) {
+                    event.preventDefault(); // Empêche l'action par défaut du bouton
+                    form2.submit(); // Soumet le formulaire correspondant
+                }
             });
         }
 
