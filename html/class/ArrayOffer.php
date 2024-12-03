@@ -243,7 +243,8 @@ class ArrayOffer {
           $offre['codepostal'],
           $offre['statut'],
           floatval($moyenne),
-          $total
+          $total,
+          $avis
         );
       }
     }
