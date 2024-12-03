@@ -415,10 +415,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </aside>
             <section class="sectionBtn">
                 <button id="button1" class="modifierBut <?php echo count($optionUne)>=2? 'disabled' : ''; ?>"
-                onmouseover="showMessageAdd(event)"
-                onmouseout="hideMessageAdd(event)"
                 <?php if (count($optionUne)>=2) {
-                    ?>onclick="return false;"<?php
+                    ?>
+                    onmouseover="showMessageAdd(event)"
+                    onmouseout="hideMessageAdd(event)"
+                    onclick="return false;"
+                    
+                    <?php
                 }?>
                 >
                     Ajouter
@@ -463,10 +466,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </aside>
             <section class="sectionBtn">
                 <button id="button2" class="modifierBut <?php echo count($optionRelief)>=2? 'disabled' : ''; ?>"
-                onmouseover="showMessageAdd(event)"
-                onmouseout="hideMessageAdd(event)"
                 <?php if (count($optionRelief)>=2) {
-                    ?>onclick="return false;"<?php
+                    ?>
+                    onclick="return false;"
+                    onmouseover="showMessageAdd(event)"
+                    onmouseout="hideMessageAdd(event)"
+                    <?php
                 }?>
                 >
                     Ajouter
