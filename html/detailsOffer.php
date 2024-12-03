@@ -344,7 +344,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         $dateFin = NEW DateTime($value['datefin']);
                                                         $dureeRestante = $dateActuelle->diff($dateFin);
                                                         ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . " jours." ?></p>
-                                                        <form class="confirmation-form" action="addOption.php" method="post">
+                                                        <form class="confirmation-form-arr" action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="arreter">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                                             <input type="hidden" name="nom" value="<?php echo $value['nomoption'] ?>">
@@ -945,7 +945,17 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         const forms = document.querySelectorAll('.confirmation-form');
         forms.forEach(form => {
             form.addEventListener('submit', (event) => {
-                const confirmation = confirm("Êtes-vous sûr de vouloir effectuer cette action ?");
+                const confirmation = confirm("Êtes-vous sûr de vouloir resilier cette option ?");
+                if (!confirmation) {
+                    event.preventDefault(); // Empêche la soumission si l'utilisateur annule
+                }
+            });
+        });
+
+        const forms2 = document.querySelectorAll('.confirmation-form-arr');
+        forms2.forEach(form => {
+            form.addEventListener('submit', (event) => {
+                const confirmation = confirm("Êtes-vous sûr de vouloir arrêter cette option ?\n Vous serez facturé pour le nombre de semaines entamées");
                 if (!confirmation) {
                     event.preventDefault(); // Empêche la soumission si l'utilisateur annule
                 }
