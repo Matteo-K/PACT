@@ -40,7 +40,7 @@
                 <input type="radio" name="tri" id="dateAncien">
                 <label for="dateAncien">Plus ancien</label>
             </div>
-            <div <?php echo ($typeUser === "pro_public" || $typeUser === "pro_prive") ? "style='display : none;'" : "" ?>>
+            <div <?php echo ($typeUser === "pro_public" || $typeUser === "pro_prive") ? "" : "style='display : none;'" ?>>
                 <input type="radio" name="tri" id="dateCreationRecent">
                 <label for="dateCreationRecent">Créé récemment</label>
                 <input type="radio" name="tri" id="dateCreationAncien">
