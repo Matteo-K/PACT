@@ -328,15 +328,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
                 <section class="contentPop" id="content-2">
                     <section class="AlaUne">
-                        <section class="titreOpt">
-                            <input id="checkOption" type="checkbox">
-                            <strong>
-                                <p class="taille3">A la Une</p>
-                            </strong>
-                        </section>
+                        <strong>
+                            <p class="taille3">A la Une</p>
+                        </strong>
                         <section class="donnee">
                             <aside>
-                                <form class="donneeForm" action="" method="post">
+                                <form action="" method="post">
                                     <input type="hidden" name="nomOption" value="ALaUne">
                                     <label class="taille" for="nbWeekALaUne">Nombre de semaine à la Une</label>
                                     <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
@@ -359,12 +356,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </section>
                     </section>
                     <section class="EnRelief">
-                        <section class="titreOpt">
+                        <strong>
                             <input id="checkOption" type="checkbox">
-                            <strong>
-                                <p class="taille3">En Relief</p>
-                            </strong>
-                        </section>
+                            <p class="taille3">En Relief</p>
+                        </strong>
                         <section class="donnee">
                             <aside>
                                 <form class="donneeForm" action="" method="post">
