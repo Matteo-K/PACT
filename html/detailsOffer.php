@@ -371,7 +371,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
                                 </form>
                                 <?php
-                                if (!$optionUne) {
+                                if (!$optionRelief) {
                                     ?>
                                         <p class="taille4">*l'option sera active lors de la prochaine mise en ligne</p>
                                         <?php                                

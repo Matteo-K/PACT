@@ -178,7 +178,7 @@ function sortPrixDecroissant(array) {
 
 function sortDateRecent(array) {
   return array.sort((offre1, offre2) => {
-    console.log("offre1 : "+offre1.dateCreation+ "| offre2 : "+offre2.dateCreation);
+    console.log("offre1 : "+ (offre1.horaireMidi || offre1.horaire));
     return offre1.dateCreation - offre2.dateCreation
   });
 }
