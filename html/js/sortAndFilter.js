@@ -311,30 +311,30 @@ function filtrerParStatuts(offers) {
 
 
 // Fonction de filtre par période
-function filtrerParPeriode(offers) {
-  const dateDepartValue = new Date(dateDepart.value);
-  const dateFinValue = new Date(dateFin.value);
-  const heureDebutValue = heureDebut.value;
-  const heureFinValue = heureFin.value;
+// function filtrerParPeriode(offers) {
+//   const dateDepartValue = new Date(dateDepart.value);
+//   const dateFinValue = new Date(dateFin.value);
+//   const heureDebutValue = heureDebut.value;
+//   const heureFinValue = heureFin.value;
 
-  if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
-    return offers;
-  }
+//   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
+//     return offers;
+//   }
 
-  return offers.filter(offer => {
-    if (!offer.date) {
-      return false;
-    }
+//   return offers.filter(offer => {
+//     if (!offer.date) {
+//       return false;
+//     }
 
-    const dateOffre = new Date(offer.date);
-    const heureOffre = offer.date.split('T')[1];
+//     const dateOffre = new Date(offer.date);
+//     const heureOffre = offer.date.split('T')[1];
 
-    const dateValide = dateOffre >= dateDepartValue && dateOffre <= dateFinValue;
-    const heureValide = (heureDebutValue && heureFinValue) ? (heureOffre >= heureDebutValue && heureOffre <= heureFinValue) : true;
+//     const dateValide = dateOffre >= dateDepartValue && dateOffre <= dateFinValue;
+//     const heureValide = (heureDebutValue && heureFinValue) ? (heureOffre >= heureDebutValue && heureOffre <= heureFinValue) : true;
 
-    return dateValide && heureValide;
-  });
-}
+//     return dateValide && heureValide;
+//   });
+// }
 
 
 // Fonction de filtre par lieu
