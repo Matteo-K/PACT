@@ -145,7 +145,7 @@
             <?php
                 }
                 else {
-                    echo "Aucune donnée a afficher : vous n'avez pas encore d'avis";
+                    echo "<p> Aucune donnée a afficher : vous n'avez pas encore d'avis </p>";
                 }
             ?>
 
