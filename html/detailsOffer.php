@@ -890,10 +890,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         require_once __DIR__ . "/components/avis/avisPro.php";
     } else {
     ?>  <div class="avis">
-            <div id="tab-container">
-                <button id="tab-avis">Avis</button>
-                <button id="tab-publiez">Publiez un avis</button>
-            </div>
+            <nav id="tab-container">
+                <h3 id="tab-avis">Avis</h3>
+                <h3 id="tab-publiez">Publiez un avis</h3>
+            </nav>
 
             <div id="avis-section">
                 <!-- Contenu chargé dynamiquement -->
