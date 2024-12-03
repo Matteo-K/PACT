@@ -91,10 +91,10 @@ if (isset($_POST['pageBefore'])) {
             $stmt->execute([$idOffre, $value[1], $value[2], $value[0]]);
           }
   
-          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if ($row["datefin"] < date('Y-m-d')) {
-            }
-          }
+          // while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          //   if ($row["datefin"] < date('Y-m-d')) {
+          //   }
+          // }
 
         break;
 
