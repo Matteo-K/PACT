@@ -3296,6 +3296,7 @@ details[open] .custom-marker {
   max-height: 0; 
   transition: max-height 0.5s ease;
   display: flex;
+  flex-wrap: wrap;
 }
 
 details.animating .contentDetails {

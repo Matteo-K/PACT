@@ -64,7 +64,12 @@
                     Nombre d'avis
                 </h2>
                 <h2>
-                    <?php echo count($avis[0]) ?>
+                    <?php
+                    if($avis) {
+                         echo count($avis);
+                    }else {
+                        echo 0;
+                    } ?>
                 </h2>
                 
             </summary>
@@ -138,6 +143,9 @@
                     </div>
 
             <?php
+                }
+                else {
+                    echo "Aucune donnée a afficher : vous n'avez pas encore d'avis";
                 }
             ?>
 
