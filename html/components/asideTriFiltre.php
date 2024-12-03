@@ -35,16 +35,16 @@
                 <label for="prixDecroissant">Prix décroissant</label>
             </div>
             <div>
-                <input type="radio" name="tri" id="dateRecent">
-                <label for="dateRecent">Plus récent</label>
-                <input type="radio" name="tri" id="dateAncien">
-                <label for="dateAncien">Plus ancien</label>
+                <input type="radio" name="tri" id="avisCroissant">
+                <label for="avisCroissant">Avis croissant</label>
+                <input type="radio" name="tri" id="avisDecroissant">
+                <label for="avisDecroissant">Avis décroissant</label>
             </div>
-            <div <?php echo ($typeUser === "pro_public" || $typeUser === "pro_prive") ? "" : "style='display : none;'" ?>>
+            <div>
                 <input type="radio" name="tri" id="dateCreationRecent">
                 <label for="dateCreationRecent">Créé récemment</label>
                 <input type="radio" name="tri" id="dateCreationAncien">
-                <label for="dateCreationAncien">Premières création</label>
+                <label for="dateCreationAncien">Plus anciennne</label>
             </div>
         </div>
     </aside>
