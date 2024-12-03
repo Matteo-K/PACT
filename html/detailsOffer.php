@@ -631,7 +631,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                     <p>Langues : 
                 <?php
-                    foreach($langue as $key => $langue){
+                    foreach($langues as $key => $langue){
                         echo $langue["langue"]?>   
                 <?php
                         if(count($langues) != $key +1){
