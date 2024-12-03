@@ -2924,7 +2924,7 @@ article#descriptionOffre {
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
-  align-items: flex-end;
+  align-items: center;
 }
 
 article#descriptionOffre h3 {
