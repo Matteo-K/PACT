@@ -474,7 +474,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </section>
         </section>
     </section>
-    <section id="hoverMessageAdd" class="hover-message">Veuillez supprimer l'option en attente pour en ajouter une nouvelle</section>
+    <section id="hoverMessageAdd" class="hover-message">Vous avez trop de d'option en attente (1 option en attente et 1 en cour maximun par option)</section>
 </section>             
                 <button class="modifierBut" onclick="confirmation()">Quitter</button>
               </section>
