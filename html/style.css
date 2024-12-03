@@ -3181,6 +3181,9 @@ tbody td:last-child {
   height: 17px; 
   background-color: var(--accent); 
   border-radius: 50%; 
+  box-shadow: 
+              inset 2px 2px 4px rgba(0, 0, 0, 0.5),
+              inset -2px -2px 4px rgba(255, 255, 255, 0.4);
 }
 
 .nonRepondu {
@@ -3190,6 +3193,9 @@ tbody td:last-child {
   border: none;
   background-color: var(--primary);
   clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 88% 75%, 92% 100%, 59% 75%, 0% 75%);
+  box-shadow: 
+              inset 2px 2px 4px rgba(0, 0, 0, 0.4),
+              inset -2px -2px 4px rgba(255, 255, 255, 0.3);
 }
 
 
@@ -3271,6 +3277,12 @@ summary::marker{
 details[open] .custom-marker {
   transform: rotate(90deg); 
 }
+
+#avisproS2 > details h2{
+  text-align: left;
+  margin: 0 40px;
+}
+
 
 #avisPro h3 {
   font-weight: 500 ;
