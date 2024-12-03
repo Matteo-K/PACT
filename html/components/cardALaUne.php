@@ -4,6 +4,7 @@
   <?php $alt = !empty($urlImg) ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";?>
     <img <?php echo !empty($urlImg) ? "src='$urlImg'" : "" ?> alt=<?php echo $alt; ?>>
     <figcaption>
+      <?php $titre = $nomOffre ?? "Offre ".$idOffre; ?>
       <h3><?php echo $nomOffre ?></h3>
       <div class="information">
         <div class="detailsCardOffer">
