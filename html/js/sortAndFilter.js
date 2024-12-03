@@ -61,6 +61,10 @@ const radBtnPrixDecroissant = document.querySelector("#prixDecroissant");
 const radBtnDateRecent = document.querySelector("#dateRecent");
 const radBtnDateAncien = document.querySelector("#dateAncien");
 
+// date
+const radBtnDateCreationRecent = document.querySelector("#dateCreationRecent");
+const radBtnDateCreationAncien = document.querySelector("#dateCreationAncien");
+
 
 /// Inputs Filtres ///
 // notes
@@ -125,8 +129,16 @@ function selectSort(array) {
   } else if (radBtnDateAncien.checked) {
     console.log("Tri avec Date Ancien");
     return sortDateAncien(array);
-  }
 
+  } else if (radBtnDateCreationRecent.checked) {
+    console.log("Tri avec Date Récent");
+    return sortDateCreaRecent(array);
+
+  } else if (radBtnDateCreationAncien.checked) {
+    console.log("Tri avec Date Récent");
+    return sortDateCreaAncien(array);
+  }
+  
   return array;
 }
 
@@ -177,20 +189,25 @@ function sortPrixDecroissant(array) {
 }
 
 function sortDateRecent(array) {
+  return array;
+}
+
+function sortDateAncien(array) {
+  return array;
+}
+
+function sortDateCreaRecent(array) {
   return array.sort((offre1, offre2) => {
     console.log("offre1 : "+ (offre1.horaireMidi || offre1.horaire));
     return offre1.dateCreation - offre2.dateCreation
   });
 }
 
-function sortDateAncien(array) {
+function sortDateCreaAncien(array) {
   return array.sort((offre1, offre2) => {
     return offre2.dateCreation - offre1.dateCreation
   });
 }
-
-
-
 
 // Filtres
 
