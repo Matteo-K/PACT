@@ -2898,9 +2898,8 @@ tbody td:last-child {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  /* Space between the map and contact info */
   align-items: center;
-  /* Aligns the items to the top */
+  justify-content: center;
   width: 60%;
 }
 

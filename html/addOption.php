@@ -5,7 +5,11 @@ print_r($_POST);
 
 
 if ($_POST['type'] == 'ajout') {
-    $duree = $_POST['nbWeek']*10;
+    if ($_POST['nomOption']=='ALaUne') {
+        $duree = $_POST['nbWeek']*20;
+    } else {
+        $duree = $_POST['nbWeek']*10;
+    }
     $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
     $stmt->execute([$_POST['idOffre'], $_POST['nbWeek'], $duree , $_POST['nomOption']]);
 }
