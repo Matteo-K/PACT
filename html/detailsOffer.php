@@ -328,12 +328,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
                 <section class="contentPop" id="content-2">
                     <section class="AlaUne">
-                        <strong>
-                            <p class="taille3">A la Une</p>
-                        </strong>
+                        <section class="titreOpt">
+                            <input id="checkOption" type="checkbox">
+                            <strong>
+                                <p class="taille3">A la Une</p>
+                            </strong>
+                        </section>
                         <section class="donnee">
                             <aside>
-                                <form action="" method="post">
+                                <form class="donneeForm" action="" method="post">
                                     <input type="hidden" name="nomOption" value="ALaUne">
                                     <label class="taille" for="nbWeekALaUne">Nombre de semaine à la Une</label>
                                     <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
@@ -356,12 +359,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </section>
                     </section>
                     <section class="EnRelief">
-                        <strong>
-                            <p class="taille3">En Relief</p>
-                        </strong>
+                        <section class="titreOpt">
+                            <input id="checkOption" type="checkbox">
+                            <strong>
+                                <p class="taille3">En Relief</p>
+                            </strong>
+                        </section>
                         <section class="donnee">
                             <aside>
-                                <form action="" method="post">
+                                <form class="donneeForm" action="" method="post">
                                     <input type="hidden" name="nomOption" value="ALaUne">
                                     <label class="taille" for="nbWeekALaUne">Nombre de semaine en Relief</label>
                                     <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
