@@ -348,7 +348,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php
                         } else {
                             ?>
-                                <strong><p>Aucune option activé</p></strong>
+                                <strong><p class="taille3">Aucune option activé</p></strong>
                             <?php
                         }
 
