@@ -372,12 +372,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </strong>
         <section class="donnee">
             <aside>
-                <form id="formOpt1" action="addOption.php" method="post">
+                <form class="formopt" id="formOpt1" action="addOption.php" method="post">
                     <input type="hidden" name="nomOption" value="ALaUne">
                     <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                     <input type="hidden" name="type" value="ajout">
-                    <label class="taille" for="nbWeek">Nombre de semaine à la Une</label>
-                    <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
+                    <label class="taille" for="nbWeek">Nombre de semaine à la Une
+                        <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
+                    </label>
 
                     <!-- Checkbox pour afficher le date picker -->
                     <label class="taille">
@@ -411,12 +412,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </strong>
         <section class="donnee">
             <aside>
-                <form id="formOpt2" action="addOption.php" method="post">
+                <form class="formopt" id="formOpt2" action="addOption.php" method="post">
                     <input type="hidden" name="nomOption" value="EnRelief">
                     <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                     <input type="hidden" name="type" value="ajout">
-                    <label class="taille" for="nbWeek">Nombre de semaine en Relief</label>
-                    <input class="taille2" type="number" name="nbWeek" id="nbWeekEnRelief" min="1" max="4" value="1">
+                    <label class="taille" for="nbWeek">Nombre de semaine en Relief
+                        <input class="taille2" type="number" name="nbWeek" id="nbWeekEnRelief" min="1" max="4" value="1">
+                    </label>
 
                     <!-- Checkbox pour afficher le date picker -->
                     <label class="taille">
