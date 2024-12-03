@@ -16,36 +16,55 @@
                 <h2><?php echo $value['idOffre'] . " - " . $value["nomOffre"]; ?></h2>
                 <p>Data&nbsp;:&nbsp;</p>
                 <?php print_r($value) ?>
-                <input type="text" id="input-<?php echo $key ?>">
+                <br>
+                <input type="text" id="input-<?php echo $key ?>" placeholder="nom de l'attribut">
+                <br>
                 <pre id="code-<?php echo $key ?>" style="color : green;"></pre>
             </section>
     <?php } ?>
     <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search)))); ?>'></div>
   </main>
   <script>
-
     document.addEventListener('DOMContentLoaded', function() {
         const offersDataElement = document.getElementById('offers-data');
         const offersData = offersDataElement.getAttribute('data-offers');
-        // console.log(offersData); // Débugger
-
+        
+        let arrayOffer = [];
+        
         try {
             arrayOffer = JSON.parse(offersData);
-            arrayOffer = Object.values(arrayOffer);
+            arrayOffer = Object.values(arrayOffer); // Convertir l'objet en tableau
         } catch (error) {
             console.error("Erreur de parsing JSON :", error);
         }
-    });
 
-    const input = document.querySelectorAll("[type='text']");
-    const code = document.querySelectorAll("pre");
+        // Sélectionner tous les champs de recherche
+        const searchInputs = document.querySelectorAll('.search-input');
 
-    input.forEach(element => {
-        element.addEventListener("blur", (this) => {
-            const pre = this.closest('.wrapper').querySelector('pre');
-            pre.textContent = arrayOffer;
+        searchInputs.forEach(input => {
+            input.addEventListener("input", function() {
+                const searchTerm = this.value.toLowerCase(); // Obtenir le terme recherché
+
+                // Parcourir arrayOffer pour trouver les correspondances
+                let result = '';
+                arrayOffer.forEach(item => {
+                    // Assurez-vous que chaque élément de arrayOffer est un objet
+                    for (let key in item) {
+                        if (key.toLowerCase().includes(searchTerm)) {
+                            result += `${key}: ${item[key]}\n`; // Afficher l'attribut trouvé
+                        }
+                    }
+                });
+
+                // Afficher le résultat dans le <pre> associé
+                const pre = this.closest('section').querySelector('pre');
+                if (pre) {
+                    pre.textContent = result || 'Aucun résultat trouvé';
+                }
+            });
         });
     });
+
   </script>
 </body>
 </html>
