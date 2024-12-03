@@ -3498,6 +3498,10 @@ details .nonLu, details .nonRepondu{
   right: 0;
 }
 
+#ligneTitreAvis > img:first-child{
+  left: 0;
+}
+
 .conteneurAvisPro .noteEtoile{
   width: 100%;
   height: 50px;

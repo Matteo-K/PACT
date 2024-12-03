@@ -308,7 +308,7 @@ document.querySelectorAll("#avisproS2 > details").forEach(details => {
     content.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
     content.addEventListener("transitionend", () => {
       if (details.open) {
-        content.style.maxHeight = "none"; // Supprime maxHeight après l'animation
+        content.style.maxHeight = "auto"; // Supprime maxHeight après l'animation
       }
     }, { once: true });
   }
