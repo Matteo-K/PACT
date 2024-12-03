@@ -910,6 +910,49 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
 <script>
+    /** Charger les composants */
+    document.addEventListener("DOMContentLoaded", () => {
+    const tabAvis = document.getElementById("tab-avis");
+    const tabPubliez = document.getElementById("tab-publiez");
+    const avisSection = document.getElementById("avis-section");
+
+    // Fonction générique pour charger un composant
+    const loadComponent = (url, targetElement) => {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP : ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(html => {
+                targetElement.innerHTML = html;
+            })
+            .catch(error => console.error(`Erreur lors du chargement de ${url} :`, error));
+    };
+
+    // Activer l'onglet Avis
+    tabAvis.addEventListener("click", () => {
+        tabPubliez.classList.remove("active");
+        tabAvis.classList.add("active");
+
+        // Charger le composant avis
+        loadComponent("components/avis/avisMembre.php", avisSection);
+    });
+
+    // Activer l'onglet Publiez un avis
+    tabPubliez.addEventListener("click", () => {
+        tabAvis.classList.remove("active");
+        tabPubliez.classList.add("active");
+
+        // Charger le formulaire pour écrire un avis
+        loadComponent("components/avis/ecrireAvis.php", avisSection);
+    });
+
+    // Charger l'onglet par défaut (Avis)
+    loadComponent("components/avis/avisMembre.php", avisSection);
+});
+/** fin script chargement composant */
 
     document.addEventListener('DOMContentLoaded', function () {
 
