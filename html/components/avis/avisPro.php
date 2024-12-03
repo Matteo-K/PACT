@@ -145,7 +145,7 @@
             <?php
                 }
                 else {
-                    echo "Aucune donnée a afficher : vous n'avez pas encore d'avis";
+                    echo "<p> Aucune donnée a afficher : vous n'avez pas encore d'avis </p>";
                 }
             ?>
 
@@ -169,7 +169,7 @@
             <div class="noteEtoile">
 
                 <?php
-                    for ($i = 0; $i < $av['note']; $i++) {
+                    for ($i = 0; $i < 5; $i++) {
                         echo "<div class='star'></div>";
                     }
                 ?>
