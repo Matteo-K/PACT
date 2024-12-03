@@ -32,6 +32,7 @@ if ($_POST['type'] == 'ajout') {
         $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? AND nomoption = ? AND(datefin >= CURRENT_DATE OR datefin IS NULL)");
         $stmt->execute([$offreId,$_POST['nomOption']]);
         $ttOpt = $stmt->fetchAll();
+        print_r($ttOpt);
         if (count($ttOpt)<=2) {
             $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
             $stmt->execute([$_POST['idOffre'], $_POST['nbWeek'], $prix , $_POST['nomOption']]);
