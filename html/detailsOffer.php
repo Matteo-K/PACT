@@ -5,6 +5,13 @@ $idOffre = $_POST["idoffre"] ?? null;
 $ouvert = $_GET["ouvert"] ?? null;
 $aujourdhui = new DateTime();
 
+
+
+// Vérifiez si idoffre est défini
+if (!$idOffre) {
+    header("location: index.php");
+    exit();
+}
 ?>
 <script>
 document.addEventListener("DOMContentLoaded",function(){
@@ -14,13 +21,6 @@ document.addEventListener("DOMContentLoaded",function(){
 });
 </script>
 <?php
-
-// Vérifiez si idoffre est défini
-if (!$idOffre) {
-    header("location: index.php");
-    exit();
-}
-
 $monOffre = new ArrayOffer($idOffre);
 $ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
 
