@@ -368,7 +368,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <section class="donnee">
                             <aside>
                                 <form id="formOpt2" action="addOption.php" method="post">
-                                    <input type="hidden" name="nomOption" value="ALaUne">
+                                    <input type="hidden" name="nomOption" value="EnRelief">
                                     <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                     <input type="hidden" name="type" value="ajout">
                                     <label class="taille" for="nbWeek">Nombre de semaine en Relief</label>
@@ -392,7 +392,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </section>
                     </section>
                 </section>              
-                <button class="modifierBut" onclick="confirmation()">Comfirmer</button>
+                <button class="modifierBut" onclick="confirmation()">Quitter</button>
               </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
