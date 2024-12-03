@@ -2922,7 +2922,6 @@ tbody td:last-child {
 article#descriptionOffre {
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
@@ -2944,7 +2943,6 @@ article#descriptionOffre p {
 section#infoComp {
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 section#infoComp h2 {
