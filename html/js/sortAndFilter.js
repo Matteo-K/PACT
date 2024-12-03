@@ -153,10 +153,10 @@ function attribuerEtoiles(note) {
 function sortprixCroissant(array) {
   return array.sort((offre1, offre2) => {
     const prix1 = offre1.categorie === "Restaurant" 
-      ? getPrixRange(offre1.gammeDePrix)[0] 
+      ? getPrixRangeRestaurant(offre1.gammeDePrix)[0] 
       : (offre1.prixMinimal || 0);
     const prix2 = offre2.categorie === "Restaurant" 
-      ? getPrixRange(offre2.gammeDePrix)[0] 
+      ? getPrixRangeRestaurant(offre2.gammeDePrix)[0] 
       : (offre2.prixMinimal || 0);
     
     return prix1 - prix2;
@@ -166,10 +166,10 @@ function sortprixCroissant(array) {
 function sortPrixDecroissant(array) {
   return array.sort((offre1, offre2) => {
     const prix1 = offre1.categorie === "Restaurant" 
-      ? getPrixRange(offre1.gammeDePrix)[0] 
+      ? getPrixRangeRestaurant(offre1.gammeDePrix)[0] 
       : (offre1.prixMinimal || 0);
     const prix2 = offre2.categorie === "Restaurant" 
-      ? getPrixRange(offre2.gammeDePrix)[0] 
+      ? getPrixRangeRestaurant(offre2.gammeDePrix)[0] 
       : (offre2.prixMinimal || 0);
     
     return prix2 - prix1;
