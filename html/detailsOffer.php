@@ -918,7 +918,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <div id="avis-section">
                 <!-- Contenu chargé dynamiquement -->
-                <div class="selected" id="avis-component" style="display: flex;">
+                <div id="avis-component" style="display: flex;">
                     <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
                 </div>
                 <div id="publiez-component" style="display: none;">

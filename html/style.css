@@ -3103,27 +3103,31 @@ section#infoComp div {
   cursor: pointer;
   position: relative;
   padding-bottom: 5px;
-  transition: color 0.3s ease, text-decoration 0.3s ease;
+  transition: color 0.3s ease;
 }
 
-/* Souligner par défaut tab-avis */
-#tab-avis {
-  text-decoration: underline;
+/* Ajouter un soulignement en utilisant le pseudo-élément ::after */
+#tab-container > nav > h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #007BFF; /* Couleur du soulignement */
+  transition: width 0.3s ease;
 }
 
+/* Appliquer le soulignement à l'élément sélectionné */
+#tab-container > nav > h3.selected::after {
+  width: 100%;
+}
+
+/* Couleur du texte lorsqu'il est sélectionné */
 #tab-container > nav > h3.selected {
-  color: #007BFF; /* Couleur du texte quand sélectionné */
+  color: #007BFF; /* Couleur du texte sélectionné */
 }
 
-/* Soulignement lorsque l'élément est sélectionné */
-#tab-avis.selected, #tab-publiez.selected {
-  text-decoration: underline;
-}
-
-/* Lorsque tab-publiez est sélectionné, ajouter le soulignement */
-#tab-publiez.selected {
-  text-decoration: underline;
-}
 
 
 
