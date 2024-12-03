@@ -266,7 +266,7 @@ function filtrerParPrix(offers) {
       return prixMinOffre >= prixMin && prixMaxOffre <= prixMax;
     } else {
       // Vérifie si le prix minimal de l'offre est dans la plage de prix sélectionnée
-      prixMinOffre = (offer.prixMinimal || 0);
+      const prixMinOffre = (offer.prixMinimal || 0);
       return prixMinOffre >= prixMin && prixMinOffre <= prixMax;
     }
   });
