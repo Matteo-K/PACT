@@ -401,7 +401,7 @@ function deleteImage(fileName, imgElement, index) {
         }
 
         // Charger les images existantes au chargement de la page
-        window.onload = loadExistingImages;
+        window.onload = loadExistingImages();
 
         // Rafraîchir la liste manuellement
 
