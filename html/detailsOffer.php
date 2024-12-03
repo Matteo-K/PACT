@@ -326,8 +326,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                             <input type="hidden" name="type" value="resilier">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                                             <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
+                                                            <button type="submit" class="modifierBut">Résilier</button>
                                                         </form>
-                                                        <button id="button3" class="modifierBut">Résilier</button>
                                                         <?php
                                                     } 
                                                     ?>
@@ -824,10 +824,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     document.addEventListener('DOMContentLoaded', function () {
         const button1 = document.getElementById("button1");
         const button2 = document.getElementById("button2");
-        const button3 = document.getElementById("button3");
         const form1 = document.getElementById("formOpt1");
         const form2 = document.getElementById("formOpt2");
-        const form3 = document.getElementById("formOpt3");
 
         if (button1 && form1) {
             // Ajouter un listener de clic au bouton
@@ -842,14 +840,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             button2.addEventListener("click", (event) => {
                 event.preventDefault(); // Empêche l'action par défaut du bouton
                 form2.submit(); // Soumet le formulaire correspondant
-            });
-        }
-
-        if (button3 && form3) {
-            // Ajouter un listener de clic au bouton
-            button3.addEventListener("click", (event) => {
-                event.preventDefault(); // Empêche l'action par défaut du bouton
-                form3.submit(); // Soumet le formulaire correspondant
             });
         }
 
