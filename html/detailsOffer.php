@@ -150,7 +150,7 @@ function formatDateEnFrancais(DateTime $date) {
 }
 
 function convertionMinuteHeure($tempsEnMinute){
-    return $tempsEnMinute / 60 . "h " . $tempsEnMinute%60 . "min" 
+    return $tempsEnMinute / 60 . "h " . $tempsEnMinute%60 . "min" ;
 }
 
 if (!$result) {
