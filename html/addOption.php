@@ -53,7 +53,7 @@ if ($_POST['type'] == 'ajout') {
     $stmt = $conn->prepare("SELECT * FROM pact._dateOption WHERE idoption = ?");
     $stmt->execute([$idoption]);
     $heure = $stmt->fetchAll();
-    $datetime2 = new DateTime($heure[0]['datefin']);
+    $datetime2 = new DateTime($heure[0]['datelancement']);
 
     // Calculer la différence en jours
     $interval = $datetime1->diff($datetime2);
@@ -62,8 +62,11 @@ if ($_POST['type'] == 'ajout') {
     // Calculer les semaines et arrondir au supérieur
     $weeks = ceil($days / 7);
 
-    $stmt = $conn->prepare("UPDATE pact._dateOption SET duree = ?, datefin = CURRENT_DATE WHERE idoption = ?");
-    $stmt->execute([$weeks,$idoption]);
+    $tarif = $_POST['nom']=='ALaUne'?20:10;
+    $prix = $weeks * $tarif;
+
+    $stmt = $conn->prepare("UPDATE pact._dateOption SET duree = ?, prix = ?, datefin = CURRENT_DATE WHERE idoption = ?");
+    $stmt->execute([$weeks,$prix,$idoption]);
 }
 
 $stmt = $conn->prepare("SELECT * FROM pact.option");
