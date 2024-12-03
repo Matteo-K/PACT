@@ -169,7 +169,7 @@
             <div class="noteEtoile">
 
                 <?php
-                    for ($i = 0; $i < $av['note']; $i++) {
+                    for ($i = 0; $i < 5; $i++) {
                         echo "<div class='star'></div>";
                     }
                 ?>
