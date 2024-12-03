@@ -189,25 +189,32 @@ function afficheAvisSelect(numAvis) {
 document.querySelectorAll("#avisproS2 > details").forEach(details => {
   const content = details.querySelector(".contentDetails");
 
+  // Fonction pour ouvrir avec une animation
+  function openDetails() {
+    const height = content.scrollHeight; // Calcule la hauteur totale
+    content.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
+    content.addEventListener("transitionend", () => {
+      if (details.open) {
+        content.style.maxHeight = "none"; // Supprime maxHeight après l'animation
+      }
+    }, { once: true });
+  }
+
+  // Fonction pour fermer avec une animation
+  function closeDetails() {
+    const height = content.scrollHeight; // Hauteur actuelle
+    content.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
+    requestAnimationFrame(() => { // Assure une relecture du style
+      content.style.maxHeight = "0"; // Puis réduit à 0 pour l'animation
+    });
+  }
+
+  // Gérer les événements d'ouverture et de fermeture
   details.addEventListener("toggle", () => {
     if (details.open) {
-      // Ouverture : calcule la hauteur réelle du contenu
-      const height = content.scrollHeight;
-      content.style.maxHeight = `${height}px`;
-
-      // Supprime maxHeight après la transition pour gérer les contenus dynamiques
-      content.addEventListener("transitionend", () => {
-        if (details.open) {
-          content.style.maxHeight = "none";
-        }
-      }, { once: true });
+      openDetails();
     } else {
-      // Fermeture : réinitialise maxHeight pour une transition fluide
-      const height = content.scrollHeight; // Hauteur actuelle
-      content.style.maxHeight = `${height}px`; // Réinitialise temporairement
-      setTimeout(() => {
-        content.style.maxHeight = "0"; // Puis réduit à 0 pour l'animation
-      });
+      closeDetails();
     }
   });
 });
