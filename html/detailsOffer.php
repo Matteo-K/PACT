@@ -324,10 +324,22 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 <section class="popUpOption">
                                                     <?php
                                                     if ($value['datefin'] != null) {
+                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         $dateActuelle = NEW DateTime();
+                                                        $dateDeb = NEW DateTime($value['datelancement']);
+                                                        if ($dateActuelle<$dateDeb) {
+                                                            $dureeAvDeb = $dateActuelle->diff($dateDeb);
+                                                            ?><p><?php echo "Option en attente : " . $nom . " commence dans " . $dureeAvDeb->days . "jours pour " . $value['duree_total'] * 7 . " jours." ?></p>
+                                                            <form action="addOption.php" method="post">
+                                                                <input type="hidden" name="type" value="resilier">
+                                                                <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                                                <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
+                                                                <button class="modifierBut">Résilier</button>
+                                                            </form>
+                                                            <?php
+                                                        }else {
                                                         $dateFin = NEW DateTime($value['datefin']);
                                                         $dureeRestante = $dateActuelle->diff($dateFin);
-                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
                                                         <form action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="arreter">
@@ -337,6 +349,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                             <button class="modifierBut">Arrêter</button>
                                                         </form>
                                                         <?php
+                                                        }
                                                     } else {
                                                         $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option en attente : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
