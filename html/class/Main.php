@@ -11,10 +11,13 @@
   <main>
     <?php 
         $getOffres = $offres->getArray();
-        foreach ($getOffres as $key => $value) {
-            print_r($value); ?> <br> <?php
-        }
-    ?>
+        foreach ($getOffres as $key => $value) { ?>
+            <section>
+                <h2><?php echo $value["idOffre"] + " - " + $value["nomOffre"] ?></h2>
+                <p>Data&nbsp;:&nbsp;</p>
+                <?php print_r($value) ?>
+            </section>
+    <?php } ?>
   </main>
 </body>
 </html>
