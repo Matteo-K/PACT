@@ -5,6 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class Main</title>
+  <style>
+    body {
+        margin-bottom : 100vh;
+    }
+  </style>
 </head>
 <body>
   <?php $offres = new ArrayOffer(); ?>
@@ -14,7 +19,7 @@
         foreach ($getOffres as $key => $value) { ?>
             <section>
                 <h2><?php echo $value['idOffre'] . " - " . $value["nomOffre"]; ?></h2>
-                <p>Data&nbsp;:&nbsp;</p>
+                <p>Clé&nbsp;:&nbsp;</p>
                 <?php print_r(array_keys($value)) ?>
             </section>
     <?php } ?>
