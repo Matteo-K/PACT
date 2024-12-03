@@ -304,11 +304,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         $dateActuelle = NEW DateTime();
                                                         $dateFin = NEW DateTime($value['datefin']);
                                                         $dureeRestante = $dateActuelle->diff($dateFin);
-                                                        ?><p><?php echo "Option en cours : " . $value['nomoption'] . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
+                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
+                                                        ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
                                                         <button class="modifierBut">Arrêter</button>
                                                         <?php
                                                     } else {
-                                                        ?><p><?php echo "Option pas commencer : " . $value['nomoption'] . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
+                                                        ?><p><?php echo "Option pas commencer : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
                                                         <button class="modifierBut">Résilier</button>
                                                         <?php
                                                     } 
