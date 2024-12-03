@@ -592,7 +592,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h2>Informations Complémentaires</h2>
         <?php
         if($typeOffer == "Visite"){
-            $stmt = $conn -> prepare("SELECT * from pact.visite where idoffre = $idOffre");
+            $stmt = $conn -> prepare("SELECT * from pact.visites where idoffre = $idOffre");
             $stmt -> execute();
             $visite = $stmt -> fetchAll(PDO::FETCH_ASSOC);
         ?>
