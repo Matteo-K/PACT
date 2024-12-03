@@ -646,7 +646,7 @@ function displayStar(offer) {
 function displayAvis(offer) {
   let blcAvis = document.createElement("div");
 
-  console.log(offer).avis;
+  console.log(offer.avis);
   return blcAvis;
 }
 
