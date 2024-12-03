@@ -139,8 +139,6 @@ function sortNoteCroissant(array) {
     const etoile1 = attribuerEtoiles(parseFloat(a.noteAvg));
     const etoile2 = attribuerEtoiles(parseFloat(b.noteAvg));
 
-    if (etoile1 == 0 || etoile2 == 0) return -10;
-
     return etoile1 - etoile2;
   }
 );
@@ -151,8 +149,7 @@ function sortNoteDecroissant(array) {
 }
 
 function attribuerEtoiles(note) {
-  if (note == 0) return 0;
-  else if (note <= 1) return 1;
+  if (note <= 1) return 1;
   else if (note <= 2) return 2;
   else if (note <= 3) return 3;
   else if (note <= 4) return 4;
