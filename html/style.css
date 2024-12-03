@@ -3087,7 +3087,7 @@ section#infoComp div {
   gap: 10em;
 }
 
-.avis-section, .avis-section > .avis-component {
+#avis-section, #avis-section > #avis-component {
     width: 95%;
     gap: 3em;
     justify-content: center;
