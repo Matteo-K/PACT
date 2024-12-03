@@ -60,7 +60,7 @@ if ($_POST['type'] == 'ajout') {
     $days = $interval->days; // Obtenir le nombre total de jours
 
     // Calculer les semaines et arrondir au supérieur
-    $weeks = ceil($days / 7);
+    $weeks = ceil($days / 7) == 0 ? 1 : ceil($days / 7);
 
     $tarif = $_POST['nom']=='ALaUne'?20:10;
     $prix = $weeks * $tarif;
