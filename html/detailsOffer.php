@@ -357,7 +357,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </section>
                     <section class="EnRelief">
                         <strong>
-                            <input id="checkOption" type="checkbox">
                             <p class="taille3">En Relief</p>
                         </strong>
                         <section class="donnee">
