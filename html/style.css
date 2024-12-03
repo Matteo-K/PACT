@@ -3252,6 +3252,7 @@ details[open] .custom-marker {
   font-size: 22px;
   color: #333;
   text-align: center;
+  position: relative;
 }
 
 #ligneTitreAvis{
@@ -3260,6 +3261,7 @@ details[open] .custom-marker {
   width: 90%;
   margin: 20px 0;
   position: relative;
+  justify-content: center;
 }
 
 #ligneTitreAvis > h2{
@@ -3271,7 +3273,7 @@ details[open] .custom-marker {
   width: 2em;
   height: 2em;
   position: absolute;
-  top: 20px;
+  top: 30px;
   right: 20px;
 }
 
