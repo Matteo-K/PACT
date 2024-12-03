@@ -6,9 +6,6 @@ $ouvert = $_GET["ouvert"] ?? null;
 $aujourdhui = new DateTime();
 
 
-// Déterminer l'onglet actif
-$activeTab = $_GET['tab'] ?? 'avis'; // Par défaut, afficher les avis
-
 
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
@@ -327,24 +324,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 <section class="popUpOption">
                                                     <?php
                                                     if ($value['datefin'] != null) {
-                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         $dateActuelle = NEW DateTime();
-                                                        $dateDeb = NEW DateTime($value['datelancement']);
-                                                        if ($dateActuelle<$dateDeb) {
-                                                            $dureeAvDeb = $dateActuelle->diff($dateDeb);
-                                                            ?><p><?php echo "Option en attente : " . $nom . " commence dans " . $dureeAvDeb->days . "jours pour " . $value['duree_total'] * 7 . " jours." ?></p>
-                                                            <form class="confirmation-form" action="addOption.php" method="post">
-                                                                <input type="hidden" name="type" value="resilier">
-                                                                <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-                                                                <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
-                                                                <button class="modifierBut">Résilier</button>
-                                                            </form>
-                                                            <?php
-                                                        }else {
                                                         $dateFin = NEW DateTime($value['datefin']);
                                                         $dureeRestante = $dateActuelle->diff($dateFin);
-                                                        ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . " jours." ?></p>
-                                                        <form class="confirmation-form" action="addOption.php" method="post">
+                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
+                                                        ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
+                                                        <form action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="arreter">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                                             <input type="hidden" name="nom" value="<?php echo $value['nomoption'] ?>">
@@ -352,11 +337,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                             <button class="modifierBut">Arrêter</button>
                                                         </form>
                                                         <?php
-                                                        }
                                                     } else {
                                                         $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
-                                                        ?><p><?php echo "Option en attente : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "j ours." ?></p>
-                                                        <form class="confirmation-form" id="formOpt3" action="addOption.php" method="post">
+                                                        ?><p><?php echo "Option en attente : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
+                                                        <form id="formOpt3" action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="resilier">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                                             <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
@@ -398,7 +382,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <!-- Checkbox pour afficher le date picker -->
                     <label class="taille">
-                        <input type="checkbox" name="dtcheck" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
+                        <input type="checkbox" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
                     </label>
                     
                     <!-- Date picker (caché par défaut) -->
@@ -417,18 +401,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </aside>
             <section class="sectionBtn">
-                <button id="button1" class="modifierBut <?php echo count($optionUne)>=2? 'disabled' : ''; ?>"
-                <?php if (count($optionUne)>=2) {
-                    ?>
-                    onmouseover="showMessageAdd(event)"
-                    onmouseout="hideMessageAdd(event)"
-                    onclick="return false;"
-                    
-                    <?php
-                }?>
-                >
-                    Ajouter
-                </button>
+                <button id="button1" class="modifierBut">Ajouter</button>
             </section>
         </section>
     </section>
@@ -468,27 +441,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </aside>
             <section class="sectionBtn">
-                <button id="button2" class="modifierBut <?php echo count($optionRelief)>=2? 'disabled' : ''; ?>"
-                <?php if (count($optionRelief)>=2) {
-                    ?>
-                    onclick="return false;"
-                    onmouseover="showMessageAdd(event)"
-                    onmouseout="hideMessageAdd(event)"
-                    <?php
-                }?>
-                >
-                    Ajouter
-                </button>
+                <button id="button2" class="modifierBut">Ajouter</button>
             </section>
         </section>
     </section>
-    <section id="hoverMessageAdd" class="hover-message">Vous avez trop de d'option en attente (1 option en attente et 1 en cour maximun par option)</section>
 </section>             
-                <button class="modifierBut taillebtn" onclick="confirmation()">Quitter</button>
+                <button class="modifierBut" onclick="confirmation()">Quitter</button>
               </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
-                <section id="hoverMessage" class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</section>
+                <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }
         }
         ?>
@@ -916,42 +878,61 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
         <div class="avis">
             <nav>
-                <a href="?tab=avis" class="<?= $activeTab === 'avis' ? 'active' : '' ?>">Avis</a>
-                <a href="?tab=publiez" class="<?= $activeTab === 'publiez' ? 'active' : '' ?>">Publiez un avis</a>
+                <h3 role="button" tabindex="0" id="tab-avis" class="active">Avis</h3>
+                <h3 role="button" tabindex="0" id="tab-publiez">Publiez un avis</h3>
             </nav>
 
             <section id="avis-section">
                 <?php
-                // Charger le composant en fonction de l'onglet sélectionné
-                if ($activeTab === 'avis') {
-                    require_once __DIR__ . "/components/avis/avisMembre.php";
-                } elseif ($activeTab === 'publiez') {
-                    require_once __DIR__ . "/components/avis/ecrireAvis.php";
-                }
+                // Inclusion du composant pour afficher les avis
+                require_once __DIR__ . "/components/avis/avisMembre.php";
                 ?>
             </section>
         </div>
-    <?php 
-        }
-    ?>
+        
     </main>
     <?php
     require_once "./components/footer.php";
     ?>
 <script>
+    /** Script permettant de charger la page avisMembre ou publier avis */
+    document.addEventListener("DOMContentLoaded", () => {
+        const tabAvis = document.getElementById("tab-avis");
+        const tabPubliez = document.getElementById("tab-publiez");
+        const avisSection = document.getElementById("avis-section");
 
-    document.addEventListener('DOMContentLoaded', function () {
+        // Activer l'onglet Avis
+        tabAvis.addEventListener("click", () => {
+            tabPubliez.classList.remove("active");
+            tabAvis.classList.add("active");
 
-        const forms = document.querySelectorAll('.confirmation-form');
-        forms.forEach(form => {
-            form.addEventListener('submit', (event) => {
-                const confirmation = confirm("Êtes-vous sûr de vouloir effectuer cette action ?");
-                if (!confirmation) {
-                    event.preventDefault(); // Empêche la soumission si l'utilisateur annule
-                }
-            });
+            // Charger le composant avis
+            fetch("components/avis/avisMembre.php")
+                .then(response => response.text())
+                .then(html => {
+                    avisSection.innerHTML = html;
+                })
+                .catch(error => console.error("Erreur lors du chargement des avis :", error));
         });
 
+        // Activer l'onglet Publiez un avis
+        tabPubliez.addEventListener("click", () => {
+            tabAvis.classList.remove("active");
+            tabPubliez.classList.add("active");
+
+            // Charger le formulaire pour écrire un avis
+            fetch("components/avis/ecrireAvis.php")
+                .then(response => response.text())
+                .then(html => {
+                    avisSection.innerHTML = html;
+                })
+                .catch(error => console.error("Erreur lors du chargement du formulaire :", error));
+        });
+    });
+
+    /** Fin du script */
+
+    document.addEventListener('DOMContentLoaded', function () {
         const button1 = document.getElementById("button1");
         const button2 = document.getElementById("button2");
         const form1 = document.getElementById("formOpt1");
@@ -1184,17 +1165,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Fonction pour masquer le message
         function hideMessage(event) {
             const message = document.getElementById('hoverMessage');
-            message.style.display = 'none';
-        }
-
-        function showMessageAdd(event) {
-            const message = document.getElementById('hoverMessageAdd');
-            message.style.display = 'block';
-        }
-
-        // Fonction pour masquer le message
-        function hideMessageAdd(event) {
-            const message = document.getElementById('hoverMessageAdd');
             message.style.display = 'none';
         }
 
