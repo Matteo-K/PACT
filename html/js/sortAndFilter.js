@@ -101,7 +101,7 @@ function selectSort(array) {
   if (radBtnEnAvant.checked) {
     console.log("Tri avec Mise en avant");
     return array; // Aucun tri, juste mise en avant
-    
+
   } else if (radBtnNoteCroissant.checked) {
     console.log("Tri avec Note Croissant");
     return sortNoteCroissant(array);
@@ -152,8 +152,12 @@ function attribuerEtoiles(note) {
 
 function sortprixCroissant(array) {
   return array.sort((offre1, offre2) => {
-    const prix1 = offre1.categorie === "Restaurant" ? getPrixRange(offre1.gammeDePrix)[0] : offre1.prixMinimal;
-    const prix2 = offre2.categorie === "Restaurant" ? getPrixRange(offre2.gammeDePrix)[0] : offre2.prixMinimal;
+    const prix1 = offre1.categorie === "Restaurant" 
+      ? getPrixRange(offre1.gammeDePrix)[0] 
+      : (offre1.prixMinimal || 0);
+    const prix2 = offre2.categorie === "Restaurant" 
+      ? getPrixRange(offre2.gammeDePrix)[0] 
+      : (offre2.prixMinimal || 0);
     
     return prix2 - prix1;
   });
