@@ -1,4 +1,7 @@
 <?php
+
+require_once __DIR__ . "../../../config.php";
+
 $stmt = $conn->prepare("SELECT * from pact.proprive where idu = ?");
 $stmt->execute([$offre[0]['idu']]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
