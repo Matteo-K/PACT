@@ -353,7 +353,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     } else {
                                                         $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option en attente : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . " jours." ?></p>
-                                                
                                                         <form class="confirmation-form" id="formOpt3" action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="resilier">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
@@ -396,7 +395,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <!-- Checkbox pour afficher le date picker -->
                     <label class="taille">
-                        <input type="checkbox" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
+                        <input type="checkbox" name="dtcheck" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
                     </label>
                     
                     <!-- Date picker (caché par défaut) -->
@@ -415,7 +414,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </aside>
             <section class="sectionBtn">
-                <button id="button1" class="modifierBut">Ajouter</button>
+                <button id="button1" class="modifierBut <?php echo count($optionUne)>=2? 'disabled' : ''; ?>"
+                <?php if (count($optionUne)>=2) {
+                    ?>
+                    onmouseover="showMessageAdd(event)"
+                    onmouseout="hideMessageAdd(event)"
+                    onclick="return false;"
+                    
+                    <?php
+                }?>
+                >
+                Ajouter
+                </button>
             </section>
         </section>
     </section>
@@ -436,7 +446,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <!-- Checkbox pour afficher le date picker -->
                     <label class="taille">
-                        <input type="checkbox" id="datePickerToggle2" class="datePickerToggle taille5"> Ajouter une date personnalisée
+                        <input type="checkbox" name="dtcheck" id="datePickerToggle2" class="datePickerToggle taille5"> Ajouter une date personnalisée
                     </label>
                     
                     <!-- Date picker (caché par défaut) -->
@@ -455,12 +465,23 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </aside>
             <section class="sectionBtn">
-                <button id="button2" class="modifierBut">Ajouter</button>
+                <button id="button2" class="modifierBut <?php echo count($optionRelief)>=2? 'disabled' : ''; ?>"
+                <?php if (count($optionRelief)>=2) {
+                    ?>
+                    onclick="return false;"
+                    onmouseover="showMessageAdd(event)"
+                    onmouseout="hideMessageAdd(event)"
+                    <?php
+                }?>
+                >
+                Ajouter
+                </button>
             </section>
         </section>
     </section>
+    <section id="hoverMessageAdd" class="hover-message">Vous avez trop de d'option en attente (1 option en attente et 1 en cour maximun par option)</section>
 </section>             
-                <button class="modifierBut" onclick="confirmation()">Quitter</button>
+                <button class="modifierBut taillebtn" onclick="confirmation()">Quitter</button>
               </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
@@ -890,14 +911,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         require_once __DIR__ . "/components/avis/avisPro.php";
     } else {
     ?>  <div class="avis">
-            <div id="tab-container">
-                <button id="tab-avis">Avis</button>
-                <button id="tab-publiez">Publiez un avis</button>
-            </div>
+            <nav id="tab-container">
+                <h3 id="tab-avis">Avis</h3>
+                <h3 id="tab-publiez">Publiez un avis</h3>
+            </nav>
 
             <div id="avis-section">
                 <!-- Contenu chargé dynamiquement -->
-                <div id="avis-component" style="display: none;">
+                <div id="avis-component" style="display: flex;">
                     <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
                 </div>
                 <div id="publiez-component" style="display: none;">
@@ -926,7 +947,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         tabPubliez.classList.remove("active");
 
         // Afficher le composant des avis
-        avisComponent.style.display = "block";
+        avisComponent.style.display = "flex";
         publiezComponent.style.display = "none";
     });
 
@@ -936,7 +957,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         tabAvis.classList.remove("active");
 
         // Afficher le composant pour écrire un avis
-        publiezComponent.style.display = "block";
+        publiezComponent.style.display = "flex";
         avisComponent.style.display = "none";
     });
 });
@@ -1206,6 +1227,17 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Fonction pour masquer le message
         function hideMessage(event) {
             const message = document.getElementById('hoverMessage');
+            message.style.display = 'none';
+        }
+
+        function showMessageAdd(event) {
+            const message = document.getElementById('hoverMessageAdd');
+            message.style.display = 'block';
+        }
+
+        // Fonction pour masquer le message
+        function hideMessageAdd(event) {
+            const message = document.getElementById('hoverMessageAdd');
             message.style.display = 'none';
         }
 

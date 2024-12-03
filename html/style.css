@@ -3088,7 +3088,7 @@ section#infoComp div {
   gap: 10em;
 }
 
-.avis>div {
+avis-section, avis-section > avis-component {
   width: 100%;
   display: flex;
   flex-direction: row;
