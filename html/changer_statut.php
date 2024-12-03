@@ -54,10 +54,10 @@ if ($nouveauStatut=='actif') {
         print_r($tema);
         if ($tema) {
             foreach ($tema as $key => $value) {
-                if ($tema['nomoption'] == 'ALaUne') {
+                if ($value['nomoption'] == 'ALaUne') {
                     $alaUne = $value;
                 }
-                if ($tema['nomoption'] == 'EnRelief') {
+                if ($value['nomoption'] == 'EnRelief') {
                     $relief = $value;
                 }
             }
