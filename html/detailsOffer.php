@@ -279,7 +279,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'EnRelief'");
                         $option->execute([$idOffre]);
                         $optionRelief = $option->fetchAll(PDO::FETCH_ASSOC);
-                        $mesOtion = [];
+                        $mesOtion;
                         if ($optionRelief) {
                             $mesOtion[] = $optionRelief;
                         }
