@@ -2209,6 +2209,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 1.5rem;
 }
 
+.formopt{
+  display: flex;
+  flex-direction: column;
+}
+
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
@@ -2884,14 +2889,10 @@ tbody td:last-child {
 
 #descriptionOffre>section {
   margin-left: 3em;
-  background-color: var(--accent80);
   border-radius: 0.5em;
   padding: 10px;
   margin-top: 1em;
-}
-
-#descriptionOffre>section>p {
-  text-indent: 20px;
+  width: 70%;
 }
 
 #infoPro {
@@ -2910,14 +2911,62 @@ tbody td:last-child {
   height: 25px;
 }
 
-#afficheLoc,
-#descriptionOffre {
+#afficheLoc,article#descriptionOffre {
   display: flex;
   flex-direction: row;
   gap: 20px;
   align-items: center;
   justify-content: center;
   width: 60%;
+}
+
+article#descriptionOffre {
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  align-items: flex-end;
+}
+
+article#descriptionOffre h3 {
+  font-size: 2.5em;
+  font-weight: 100;
+  border-bottom: 2px solid #000;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+article#descriptionOffre p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 10px;
+  text-align: justify;
+}
+
+section#infoComp {
+  border-radius: 10px;
+  padding: 20px;
+}
+
+section#infoComp h2 {
+  font-size: 2.5em;
+  font-weight: 200;
+  border-bottom: 2px solid #000;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+section#infoComp p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+section#infoComp div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 #carte {
@@ -3147,10 +3196,6 @@ tbody td:last-child {
   rotate: -90deg;
 }
 
-#infoComp > div {
-  display: flex;
-  justify-content: space-evenly;
-}
 
 /** Avis PRO **/
 
@@ -3444,6 +3489,7 @@ details .nonLu, details .nonRepondu{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 30%;
 }
 
 .notation > div > p{

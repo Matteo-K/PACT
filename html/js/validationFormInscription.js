@@ -76,7 +76,10 @@ document.addEventListener('DOMContentLoaded', function () {
         let errorElement = document.querySelector("#messageErreur");
         errorElement.textContent = messageErreur; // Met le message dans l'élément
         inputElement.style.borderColor = 'red'; // Mettre la bordure en rouge
-        window.scrollTo(0);
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Cela permet un défilement en douceur
+        });
     }
 
 
