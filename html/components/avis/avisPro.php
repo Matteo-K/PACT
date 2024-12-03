@@ -153,7 +153,7 @@
                 Titre
             </h3>
 
-            <p class="contenuAvis">
+            <p id="contenuAvis">
                 Texte de l'avis
             </p>
 

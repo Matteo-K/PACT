@@ -3216,6 +3216,7 @@ tbody td:last-child {
 }
 
 
+
 /*Detail des avis sélectionnés */
 
 #aucunAvisSelect{
@@ -3241,6 +3242,7 @@ tbody td:last-child {
   flex-wrap: nowrap;
   width: 90%;
   margin: 20px 0;
+  position: relative;
 }
 
 #ligneTitreAvis > h2{
@@ -3251,8 +3253,27 @@ tbody td:last-child {
 #ligneTitreAvis > img{
   width: 2.2em;
   height: 2.2em;
-  align-self: flex-end;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
+
+.custom-marker {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  display: inline-block;
+  transform: rotate(0deg); 
+  transition: transform 0.3s ease; 
+  margin-right: 8px; 
+  color: #000;
+}
+
+/* Change la rotation du triangle lorsque <details> est ouvert */
+details[open] .custom-marker {
+  transform: rotate(90deg); 
+}
+
 
 .conteneurAvisPro .noteEtoile{
   width: 100%;
@@ -3263,6 +3284,7 @@ tbody td:last-child {
   width: 50px;
   height: 50px;
 }
+
 
 .conteneurAvisPro h3{
   width: 90%;
