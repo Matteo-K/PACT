@@ -2212,7 +2212,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .formopt{
   display: flex;
   flex-direction: column;
-  margin: 20px 0;
+  gap: 10px;
 }
 
 /* Style général pour le date picker */
@@ -2268,6 +2268,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .sectionBtn .modifierBut:hover {
   background-color: #0056b3;
+}
+
+.taille5{
+  margin: 0 !important;
 }
 
 
