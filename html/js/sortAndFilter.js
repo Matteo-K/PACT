@@ -189,11 +189,15 @@ function sortPrixDecroissant(array) {
 }
 
 function sortAvisCroissant(array) {
-  return array;
+  return array.sort((offre1, offre2) => {
+    return parseInt(offre1.nbNote) - parseInt(offre2.nbNote);
+  });
 }
 
 function sortAvisDecroissant(array) {
-  return array;
+  return array.sort((offre1, offre2) => {
+    return parseInt(offre2.nbNote) - parseInt(offre1.nbNote);
+  });
 }
 
 function sortDateCreaRecent(array) {
