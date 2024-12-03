@@ -177,11 +177,16 @@ function sortPrixDecroissant(array) {
 }
 
 function sortDateRecent(array) {
-  return array.sort((offre1, offre2) => offre2.dateCreation - offre1.dateCreation);
+  return array.sort((offre1, offre2) => {
+    console.log("offre1 : "+offre1.dateCreation+ "| offre2 : "+offre2.dateCreation);
+    return offre1.dateCreation - offre2.dateCreation
+  });
 }
 
 function sortDateAncien(array) {
-  return array.sort((offre1, offre2) => offre1.dateCreation - offre2.dateCreation);
+  return array.sort((offre1, offre2) => {
+    return offre2.dateCreation - offre1.dateCreation
+  });
 }
 
 
