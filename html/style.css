@@ -748,8 +748,11 @@ header ul+div {
 
 .dataOffre div {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 8px;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .blcTag h4,
@@ -1913,6 +1916,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-direction: column;
   width: 40%;
   justify-content: space-around;
+  position: relative;
+}
+
+.searchStatutO, .searchStatutF {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
 }
 
 .searchTitre {
@@ -2161,7 +2171,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .taille2{
   height: 1.5rem;
-  width: 1.5rem;
+  width: 2rem;
   font-size: 1rem;
 }
 

@@ -153,10 +153,10 @@ function attribuerEtoiles(note) {
 function sortprixCroissant(array) {
   return array.sort((offre1, offre2) => {
     const prix1 = offre1.categorie === "Restaurant" 
-      ? getPrixRange(offre1.gammeDePrix)[0] 
+      ? getPrixRangeRestaurant(offre1.gammeDePrix)[0] 
       : (offre1.prixMinimal || 0);
     const prix2 = offre2.categorie === "Restaurant" 
-      ? getPrixRange(offre2.gammeDePrix)[0] 
+      ? getPrixRangeRestaurant(offre2.gammeDePrix)[0] 
       : (offre2.prixMinimal || 0);
     
     return prix1 - prix2;
@@ -166,10 +166,10 @@ function sortprixCroissant(array) {
 function sortPrixDecroissant(array) {
   return array.sort((offre1, offre2) => {
     const prix1 = offre1.categorie === "Restaurant" 
-      ? getPrixRange(offre1.gammeDePrix)[0] 
+      ? getPrixRangeRestaurant(offre1.gammeDePrix)[0] 
       : (offre1.prixMinimal || 0);
     const prix2 = offre2.categorie === "Restaurant" 
-      ? getPrixRange(offre2.gammeDePrix)[0] 
+      ? getPrixRangeRestaurant(offre2.gammeDePrix)[0] 
       : (offre2.prixMinimal || 0);
     
     return prix2 - prix1;
@@ -465,7 +465,18 @@ function createCard(offer) {
   }
 
   infoOffre.appendChild(resume);
-  infoOffre.appendChild(note(offer));
+
+  let ouverture = document.createElement("p");
+  ouverture.id = "couleur-" + offer.idOffre;
+  if (offer.ouverture == "EstOuvert") {
+    ouverture.classList.add("searchStatutO");
+    ouverture.textContent = "Ouvert";
+  } else {
+    ouverture.classList.add("searchStatutF");
+    ouverture.textContent = "Fermé";
+  }
+
+  infoOffre.appendChild(ouverture);
 
   card.appendChild(infoOffre);
   card.appendChild(avisSearch(offer));
@@ -548,17 +559,6 @@ function note(offer) {
   
   section.appendChild(divStar);
 
-  let ouverture = document.createElement("p");
-  ouverture.id = "couleur-" + offer.idOffre;
-  if (offer.ouverture == "EstOuvert") {
-    ouverture.classList.add("searchStatutO");
-    ouverture.textContent = "Ouvert";
-  } else {
-    ouverture.classList.add("searchStatutF");
-    ouverture.textContent = "Fermé";
-  }
-  section.appendChild(ouverture);
-
   return section;
 }
 
@@ -574,6 +574,7 @@ function avisSearch(offer) {
   tempPasAvis.textContent = "Pas d'avis";
 
   div.appendChild(titre);
+  div.appendChild(note(offer));
   div.appendChild(tempPasAvis);
 
   return div;

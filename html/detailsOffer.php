@@ -149,6 +149,17 @@ function formatDateEnFrancais(DateTime $date) {
     return "$jour $jourMois $mois $annee";
 }
 
+function convertionMinuteHeure($tempsEnMinute) {
+    $heures = floor($tempsEnMinute / 60);
+    $minutes = $tempsEnMinute % 60;
+    
+    if ($minutes == 0) {
+        return $heures . "h";
+    } else {
+        return $heures . "h " . $minutes . "min";
+    }
+}
+
 if (!$result) {
 ?>
     <form id="manageOfferAuto" action="manageOffer.php" method="post">
@@ -171,7 +182,7 @@ $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $conn->prepare(" SELECT a.*,
+$stmt = $conn->prepare("SELECT a.*,
     AVG(a.note) OVER() AS moynote,
     COUNT(a.note) OVER() AS nbnote,
     SUM(CASE WHEN a.note = 1 THEN 1 ELSE 0 END) OVER() AS note_1,
@@ -179,6 +190,8 @@ $stmt = $conn->prepare(" SELECT a.*,
     SUM(CASE WHEN a.note = 3 THEN 1 ELSE 0 END) OVER() AS note_3,
     SUM(CASE WHEN a.note = 4 THEN 1 ELSE 0 END) OVER() AS note_4,
     SUM(CASE WHEN a.note = 5 THEN 1 ELSE 0 END) OVER() AS note_5,
+    SUM(CASE WHEN a.lu = FALSE then 1 else 0 end) over() as avisnonlus,
+	SUM(CASE WHEN r.idc_reponse is null then 1 else 0 end) over() as avisnonrepondus,
     m.url AS membre_url,
     r.idc_reponse,
     r.denomination AS reponse_denomination,
@@ -192,7 +205,7 @@ JOIN
 LEFT JOIN 
     pact.reponse r ON r.idc_avis = a.idc
 WHERE 
-    a.idoffre = ?
+    a.idoffre = 2
 ORDER BY 
     a.datepublie desc
 ");
@@ -309,8 +322,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         <button class="modifierBut">Arrêter</button>
                                                         <?php
                                                     } else {
+                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option pas commencer : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
-                                                        <button class="modifierBut">Résilier</button>
+                                                        <form id="formOpt3" action="addOption.php" method="post">
+                                                            <input type="hidden" name="type" value="resilier">
+                                                            <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                                            <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
+                                                            <button type="submit" class="modifierBut">Résilier</button>
+                                                        </form>
                                                         <?php
                                                     } 
                                                     ?>
@@ -590,6 +609,25 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <section id="infoComp">
         <h2>Informations Complémentaires</h2>
+        <?php
+        if($typeOffer == "Visite"){
+            $stmt = $conn -> prepare("SELECT * from pact.visites where idoffre = $idOffre");
+            $stmt -> execute();
+            $visite = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+        ?>
+            <div>
+                <p>Durée : <?= convertionMinuteHeure($visite[0]['duree'])?></p>
+                <p>Visite guidée : <?= isset($visite[0]["guide"])? "Oui" : "Non"?></p>
+                <?php
+                if($visite[0]["guide"]){
+                ?>
+                <?php
+                }
+                ?>
+            </div>
+        <?php
+        }
+        ?>
         <table>
     <thead>
         <tr>
@@ -733,7 +771,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt -> execute();
         $menus = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     ?>
-        <p>Menu</p>
+        <h2>Menu</h2>
         <div class="swiper-container menu-container">
             <div class="swiper menu">
                 <div class="swiper-wrapper">
