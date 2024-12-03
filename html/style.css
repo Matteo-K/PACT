@@ -2985,6 +2985,9 @@ article#descriptionOffre h3, #afficheLoc + h2 {
   margin-bottom: 15px;
   text-align: center;
 }
+#divMenu{
+  width: 70%;
+}
 
 article#descriptionOffre p {
   font-size: 1rem;
