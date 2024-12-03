@@ -260,14 +260,17 @@ function filtrerParPrix(offers) {
   return offers.filter(offer => {
     if (offer.categorie === 'Restaurant') {
       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
-      const prixMinOffre = prixRange[0];
-      const prixMaxOffre = prixRange[1];
+      const prixMinOffreRestaurant = prixRange[0];
+      const prixMaxOffreRestaurant = prixRange[1];
+
       // Vérifie si la gamme de prix de l'offre est dans la plage de prix sélectionnée
-      return prixMinOffre >= prixMin && prixMaxOffre <= prixMax;
-    } else {
+      return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
+    } 
+    
+    else {
       // Vérifie si le prix minimal de l'offre est dans la plage de prix sélectionnée
-      const prixMinOffre = (offer.prixMinimal || 0);
-      return prixMinOffre >= prixMin && prixMinOffre <= prixMax;
+      const prixMinOffreAutres = (offer.prixMinimal || 0);
+      return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
     }
   });
 }
