@@ -14,7 +14,7 @@ if ($_POST['type'] == 'ajout') {
     $stmt = $conn->prepare("SELECT statut FROM pact.offres WHERE idoffre=?");
     $stmt->execute([$offreId]);
     $EnLigne = $stmt->fetchAll();
-    $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? AND nomoption = ? and datefin >= CURRENT_DATE");
+    $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? AND nomoption = ? and datefin > CURRENT_DATE");
     $stmt->execute([$offreId,'ALaUne']);
     $resultUne = $stmt->fetchAll();
     $stmt->execute([$offreId,'EnRelief']);
@@ -76,6 +76,7 @@ $stmt->execute();
 echo <<<HTML
 <form id="redirectForm" method="POST" action="detailsOffer.php">
     <input type="hidden" name="idoffre" value="{$offreId}">
+    <input type="hidden" name="popup">
 </form>
 <script>
     document.getElementById('redirectForm').submit();
