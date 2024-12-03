@@ -414,7 +414,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </aside>
             <section class="sectionBtn">
-                <button id="button1" class="modifierBut">Ajouter</button>
+                <button id="button1" class="modifierBut <?php echo count($optionUne)>=2? 'disabled' : ''; ?>">
+                    Ajouter
+                </button>
             </section>
         </section>
     </section>
@@ -454,7 +456,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </aside>
             <section class="sectionBtn">
-                <button id="button2" class="modifierBut">Ajouter</button>
+                <button id="button2" class="modifierBut <?php echo count($optionUne)>=2? 'disabled' : ''; ?>">
+                    Ajouter
+                </button>
             </section>
         </section>
     </section>
