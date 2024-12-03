@@ -729,6 +729,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt -> execute();
         $menus = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     ?>
+        <p>Menu</p>
         <div class="swiper-container menu-container">
             <div class="swiper menu">
                 <div class="swiper-wrapper">
