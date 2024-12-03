@@ -103,39 +103,30 @@ const heureFin = document.querySelector("#heureFin");
 function selectSort(array) {
   
   if (radBtnEnAvant.checked) {
-    console.log("Tri avec Mise en avant");
     return sortEnAvant(array);
 
   } else if (radBtnNoteCroissant.checked) {
-    console.log("Tri avec Note Croissant");
     return sortNoteCroissant(array);
 
   } else if (radBtnNoteDecroissant.checked) {
-    console.log("Tri avec Note Décroissant");
     return sortNoteDecroissant(array);
 
   } else if (radBtnprixCroissant.checked) {
-    console.log("Tri avec Prix Croissant");
     return sortprixCroissant(array);
 
   } else if (radBtnPrixDecroissant.checked) {
-    console.log("Tri avec Prix Décroissant");
     return sortPrixDecroissant(array);
 
   } else if (radBtnAvisCroissant.checked) {
-    console.log("Tri avec Avis croissant");
     return sortAvisCroissant(array);
 
   } else if (radBtnPrixDecroissant.checked) {
-    console.log("Tri avec Avis décroissant");
     return sortAvisDecroissant(array);
 
   } else if (radBtnDateCreationRecent.checked) {
-    console.log("Tri avec Date Récent");
     return sortDateCreaRecent(array);
 
   } else if (radBtnDateCreationAncien.checked) {
-    console.log("Tri avec Date Ancien");
     return sortDateCreaAncien(array);
   }
   
