@@ -3246,6 +3246,9 @@ tbody td:last-child {
   border-radius: 15px;
   padding: 20px;
   position: relative;
+  overflow: hidden;
+  max-height: auto;
+  transition: max-height 0.3s ease;
 }
 
 summary::marker{
@@ -3275,7 +3278,7 @@ details[open] .custom-marker {
   margin: 10px 40px;
 }
 
-details .nonLu .nonRepondu{
+details .nonLu, details .nonRepondu{
   position: absolute;
   left: 20px;
 }
@@ -3322,6 +3325,7 @@ details .nonLu .nonRepondu{
   height: 2em;
   position: absolute;
   top: 10px;
+  right: 0;
 }
 
 .conteneurAvisPro .noteEtoile{
