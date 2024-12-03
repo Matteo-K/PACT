@@ -17,7 +17,7 @@
                 <p>Data&nbsp;:&nbsp;</p>
                 <?php print_r($value) ?>
                 <br>
-                <input type="text" id="input-<?php echo $key ?>" placeholder="nom de l'attribut">
+                <input type="text" id="input-<?php echo $key ?>" placeholder="Rechercher un attribut" class="search-input">
                 <br>
                 <pre id="code-<?php echo $key ?>" style="color : green;"></pre>
             </section>
