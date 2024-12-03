@@ -48,7 +48,7 @@ if ($_POST['type'] == 'ajout') {
                 $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? AND nomoption = ? AND datefin>CURRENT_DATE");
                 $stmt->execute([$offreId,$_POST['nomOption']]);
                 $ttOpt = $stmt->fetchAll();
-                if ($ttOpt) {
+                if (count($ttOpt)<2) {
                     $duree = $_POST['nbWeek'] * 7;
                     $dt = NEW DateTime($ttOpt[0]['datefin']);
                     $dt->modify("+$duree days"); // Ajout de la durée
