@@ -382,7 +382,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <!-- Checkbox pour afficher le date picker -->
                     <label class="taille">
-                        <input type="checkbox" id="datePickerToggle1" class="datePickerToggle"> Ajouter une date personnalisée
+                        <input type="checkbox" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
                     </label>
                     
                     <!-- Date picker (caché par défaut) -->
@@ -422,7 +422,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <!-- Checkbox pour afficher le date picker -->
                     <label class="taille">
-                        <input type="checkbox" id="datePickerToggle2" class="datePickerToggle"> Ajouter une date personnalisée
+                        <input type="checkbox" id="datePickerToggle2" class="datePickerToggle taille5"> Ajouter une date personnalisée
                     </label>
                     
                     <!-- Date picker (caché par défaut) -->

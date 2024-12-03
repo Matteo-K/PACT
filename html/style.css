@@ -2167,6 +2167,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .taille{
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .taille2{
@@ -2212,7 +2215,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .formopt{
   display: flex;
   flex-direction: column;
-  margin: 20px 0;
+  gap: 10px;
 }
 
 /* Style général pour le date picker */
@@ -2254,20 +2257,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-top: 10px;
 }
 
-/* Boutons Ajouter */
-.sectionBtn .modifierBut {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.sectionBtn .modifierBut:hover {
-  background-color: #0056b3;
+.taille5{
+  margin: 0 !important;
+  width: 25px;
+  height: 25px;
 }
 
 
@@ -2981,7 +2974,7 @@ article#descriptionOffre {
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
-  align-items: center;
+  align-items: flex-end;
 }
 
 article#descriptionOffre h3, #afficheLoc + h2 {
@@ -4307,10 +4300,11 @@ input[id="siren"] {
   border: 3px solid var(--accent);
 }
 
-.creation-compte [type="checkbox"] {
+.creation-compte input[type="checkbox"] {
   width: 25px;
   height: 25px;
   margin: 0 5px;
+  border: 3px solid var(--accent);
 }
 
 button[id="boutonInscription"] {
