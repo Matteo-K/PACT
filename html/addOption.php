@@ -40,6 +40,12 @@ if ($_POST['type'] == 'ajout') {
             $stmt->execute([$_POST['idOffre'], $_POST['nbWeek'], $prix , $_POST['nomOption']]);
         }
     }
+}elseif ($_POST['type'] == 'resilier') {
+    $idoption = $_POST['idoption'];
+    $stmt = $conn->prepare("DELETE FROM pact._dateOption Where idoption = ?");
+    $stmt->execute([$idoption]);
+    $stmt = $conn->prepare("DELETE FROM pact._option_offre Where idoption = ?");
+    $stmt->execute([$idoption]);
 }
 
 $stmt = $conn->prepare("SELECT * FROM pact.option");
