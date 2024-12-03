@@ -2181,7 +2181,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .donnee aside{
-  width: 50%;
+  width: 80%;
 }
 
 .titreOpt{
@@ -2190,6 +2190,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .donneeForm{
   display: none;
+}
+
+.popUpOption{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
@@ -3180,6 +3187,9 @@ tbody td:last-child {
   height: 17px; 
   background-color: var(--accent); 
   border-radius: 50%; 
+  box-shadow: 
+              inset 2px 2px 4px rgba(0, 0, 0, 0.5),
+              inset -2px -2px 4px rgba(255, 255, 255, 0.4);
 }
 
 .nonRepondu {
@@ -3189,6 +3199,9 @@ tbody td:last-child {
   border: none;
   background-color: var(--primary);
   clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 88% 75%, 92% 100%, 59% 75%, 0% 75%);
+  box-shadow: 
+              inset 2px 2px 4px rgba(0, 0, 0, 0.4),
+              inset -2px -2px 4px rgba(255, 255, 255, 0.3);
 }
 
 
@@ -3246,8 +3259,6 @@ tbody td:last-child {
   padding: 20px;
   position: relative;
   overflow: hidden;
-  max-height: auto;
-  transition: max-height 0.3s ease;
 }
 
 summary::marker{
@@ -3256,11 +3267,11 @@ summary::marker{
 
 .custom-marker {
   position: absolute;
-  top: 40px;
+  top: 20px;
   left: 20px;
   display: inline-block;
   transform: rotate(0deg); 
-  transition: transform 0.3s ease; 
+  transition: transform 0.5s ease; 
   margin-right: 8px; 
   color: #000;
   font-size: 30px;
@@ -3268,8 +3279,24 @@ summary::marker{
 
 /* Change la rotation du triangle lorsque <details> est ouvert */
 details[open] .custom-marker {
-  transform: rotate(90deg); 
+  transform: rotate(450deg); 
 }
+
+.contentDetails{
+  overflow: hidden; 
+  max-height: 0; 
+  transition: max-height 0.3s ease;
+}
+
+details.animating .contentDetails {
+  transition: max-height 0.3s ease;
+}
+
+#avisproS2 > details h2{
+  text-align: left;
+  margin: 0 40px;
+}
+
 
 #avisPro h3 {
   font-weight: 500 ;
@@ -3292,7 +3319,7 @@ details .nonLu, details .nonRepondu{
 
 .conteneurAvisPro {
   width: 100%; /* Prend tout l'espace restant */
-  padding: 20px;
+  padding: 0 20px;
   background-color: #dee6fa;
   overflow-y: auto; /* Permet le scroll si le contenu est trop grand */
   display: flex;
@@ -3303,6 +3330,8 @@ details .nonLu, details .nonRepondu{
   color: #333;
   text-align: center;
   position: relative;
+  margin: 30px 0;
+  border-radius: 15px;
 }
 
 #ligneTitreAvis{

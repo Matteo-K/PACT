@@ -108,7 +108,7 @@
                         <label for="prixMin">De</label>
                         <select name="prixMin" id="prixMin">
                             <option value="0" selected>0€</option>
-                            <option value="25">25€</option>
+                            <option value="20">20€</option>
                             <option value="40">40€</option>
                             <option value="80">80€</option>
                             <option value="100">100€</option>

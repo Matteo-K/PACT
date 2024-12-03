@@ -1,16 +1,52 @@
 <?php
 
 require_once 'config.php';
-print_r($_POST);
 
+$offreId = $_POST['idOffre'];
 
 if ($_POST['type'] == 'ajout') {
-    $duree = $_POST['nbWeek']*10;
-    $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
-    $stmt->execute([$_POST['idOffre'], $_POST['nbWeek'], $duree , $_POST['nomOption']]);
+    if ($_POST['nomOption']=='ALaUne') {
+        $prix = $_POST['nbWeek']*20;
+    } else {
+        $prix = $_POST['nbWeek']*10;
+    }
+
+    $stmt = $conn->prepare("SELECT statut FROM pact.offres WHERE idoffre=?");
+    $stmt->execute([$offreId]);
+    $EnLigne = $stmt->fetchAll();
+    $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? and datefin >= CURRENT_DATE");
+    $stmt->execute([$offreId]);
+    $result = $stmt->fetchAll();
+    if ($EnLigne[0]['statut'] == 'actif' && !$result) {
+        $duree = $_POST['nbWeek'] * 7;
+        $date = new DateTime();
+        $date->modify("+$duree days"); // Ajout de la durée
+        $formattedDate = $date->format('Y-m-d'); // Conversion de l'objet DateTime en format SQL compatible
+                
+        $idoption = $offreId;
+                        
+        $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,CURRENT_DATE,?,?,?,?)");
+        $stmt->execute([$_POST['idOffre'], $formattedDate , $_POST['nbWeek'], $prix , $_POST['nomOption']]);
+    }else {
+        if (count($result)<=2) {
+            $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
+            $stmt->execute([$_POST['idOffre'], $_POST['nbWeek'], $prix , $_POST['nomOption']]);
+        }
+    }
 }
 
 $stmt = $conn->prepare("SELECT * FROM pact.option");
 $stmt->execute();
-print_r($stmt->fetchAll());
+
+
+echo <<<HTML
+<form id="redirectForm" method="POST" action="detailsOffer.php">
+    <input type="hidden" name="idoffre" value="{$offreId}">
+</form>
+<script>
+    document.getElementById('redirectForm').submit();
+</script>
+HTML;
+
+exit;
 ?>

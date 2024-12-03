@@ -26,7 +26,7 @@ class Show extends Offer {
       "duree" => $this->duree,
       "nbPlace" => $this->nbPlace,
       "prixMinimal" => $this->prixMinimal,
-      "horaire" => $this->horaire,
+      "horaire" => $this->horairePrecisToJSON($this->horaire),
       "ouverture" => parent::statutOuverture($this->horaire)
     ]);
   }

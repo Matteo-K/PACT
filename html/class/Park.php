@@ -33,8 +33,8 @@ class Park extends Offer {
       "nbAttraction" => $this->nbAttraction,
       "prixMinimal" => $this->prixMinimal,
       "urlPlan" => $this->urlPlan,
-      "horaireMidi" => $this->horaireMidi,
-      "horaireSoir" => $this->horaireSoir,
+      "horaireMidi" => $this->horaireToJSON($this->horaireMidi),
+      "horaireSoir" => $this->horaireToJSON($this->horaireSoir),
       "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
     ]);
   }

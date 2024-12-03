@@ -27,8 +27,8 @@ class Restaurant extends Offer {
     return array_merge($parentData, [
       "gammeDePrix" => $this->gammeDePrix,
       "UrlMenu" => $this->urlMenu,
-      "horaireMidi" => $this->horaireMidi,
-      "horaireSoir" => $this->horaireSoir,
+      "horaireMidi" => $this->horaireToJSON($this->horaireMidi),
+      "horaireSoir" => $this->horaireToJSON($this->horaireSoir),
       "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
     ]);
   }
