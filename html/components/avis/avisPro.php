@@ -64,68 +64,72 @@
                     Nombre d'avis
                 </h2>
             </summary>
+
+            <div class="contentDetails">
             
-            <h3>
-                <div class="nonLu"></div>
-                Non lus
-            </h3>
+                <h3>
+                    <div class="nonLu"></div>
+                    Non lus
+                </h3>
 
-            <h3>
-                <div class="nonRepondu"></div>
-                Non répondus
-            </h3>
+                <h3>
+                    <div class="nonRepondu"></div>
+                    Non répondus
+                </h3>
 
 
-            <?php
+                <?php
 
-            if (!$avis) {
-                echo '<p>Pas de note pour le moment</p>';
-            } else {
-                $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
-                $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
-            ?>
-                <div class="notation">
-                    <div>
-                        <?php
-                        // Étoiles pleines
-                        for ($i = 1; $i <= $etoilesPleines; $i++) {
-                            echo '<div class="star pleine"></div>';
-                        }
-                        // Étoile partielle
-                        if ($reste > 0) {
-                            $pourcentageRempli = $reste * 100; // Pourcentage rempli
-                            echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
-                        }
-                        // Étoiles vides
-                        for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
-                            echo '<div class="star vide"></div>';
-                        }
-                        ?>
-                        <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
-                    </div>
-                    <div class="notedetaille">
-                        <?php
-                        // Adjectifs pour les notes
-                        $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
-                        for ($i = 5; $i >= 1; $i--) {
-                            // Largeur simulée pour chaque barre en fonction de vos données
-                            $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
-                        ?>
-                            <div class="ligneNotation">
-                                <span><?= $listNoteAdjectif[$i-1]; ?></span>
-                                <div class="barreDeNotationBlanche">
-                                    <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
+                if (!$avis) {
+                    echo '<p>Pas de note pour le moment</p>';
+                } else {
+                    $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
+                    $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
+                ?>
+                    <div class="notation">
+                        <div>
+                            <?php
+                            // Étoiles pleines
+                            for ($i = 1; $i <= $etoilesPleines; $i++) {
+                                echo '<div class="star pleine"></div>';
+                            }
+                            // Étoile partielle
+                            if ($reste > 0) {
+                                $pourcentageRempli = $reste * 100; // Pourcentage rempli
+                                echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
+                            }
+                            // Étoiles vides
+                            for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
+                                echo '<div class="star vide"></div>';
+                            }
+                            ?>
+                            <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
+                        </div>
+                        <div class="notedetaille">
+                            <?php
+                            // Adjectifs pour les notes
+                            $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
+                            for ($i = 5; $i >= 1; $i--) {
+                                // Largeur simulée pour chaque barre en fonction de vos données
+                                $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
+                            ?>
+                                <div class="ligneNotation">
+                                    <span><?= $listNoteAdjectif[$i-1]; ?></span>
+                                    <div class="barreDeNotationBlanche">
+                                        <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
+                                    </div>
+                                    <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
                                 </div>
-                                <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
-                            </div>
-                        <?php
-                        }
-                        ?>
+                            <?php
+                            }
+                            ?>
+                        </div>
                     </div>
-                </div>
-            <?php
-            }
-            ?>
+                <?php
+                }
+                ?>
+
+            </div>
 
         </details> 
 

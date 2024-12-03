@@ -3252,8 +3252,11 @@ tbody td:last-child {
   padding: 20px;
   position: relative;
   overflow: hidden;
-  max-height: auto;
-  transition: max-height 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+#avisproS2 > details[open]{
+  height: auto;
 }
 
 summary::marker{
@@ -3262,11 +3265,11 @@ summary::marker{
 
 .custom-marker {
   position: absolute;
-  top: 40px;
+  top: 20px;
   left: 20px;
   display: inline-block;
   transform: rotate(0deg); 
-  transition: transform 0.3s ease; 
+  transition: transform 0.5s ease; 
   margin-right: 8px; 
   color: #000;
   font-size: 30px;
@@ -3274,7 +3277,17 @@ summary::marker{
 
 /* Change la rotation du triangle lorsque <details> est ouvert */
 details[open] .custom-marker {
-  transform: rotate(90deg); 
+  transform: rotate(450deg); 
+}
+
+.contentDetails{
+  overflow: hidden; 
+  max-height: 0; 
+  transition: max-height 0.3s ease;
+}
+
+details[open] .contentDetails {
+  max-height: 1000px; /* Une grande valeur pour permettre l'animation */
 }
 
 #avisproS2 > details h2{
@@ -3304,7 +3317,7 @@ details .nonLu, details .nonRepondu{
 
 .conteneurAvisPro {
   width: 100%; /* Prend tout l'espace restant */
-  padding: 20px;
+  padding: 0 20px;
   background-color: #dee6fa;
   overflow-y: auto; /* Permet le scroll si le contenu est trop grand */
   display: flex;
@@ -3315,6 +3328,8 @@ details .nonLu, details .nonRepondu{
   color: #333;
   text-align: center;
   position: relative;
+  margin: 30px 0;
+  border-radius: 15px;
 }
 
 #ligneTitreAvis{
