@@ -117,6 +117,30 @@ class Offer {
     require __DIR__."/../components/cardALaUnePro.php";
   }
 
+  public function horaireToJSON($horaire) {
+    $formattedResultats = [];
+    foreach ($horaire as $result) {
+      $formattedResultats[] = json_encode([
+          'jour' => $result['jour'],
+          'heureOuverture' => $result['heureouverture'],
+          'heureFermeture' => $result['heurefermeture']
+      ]);
+    }
+    return $formattedResultats;
+  }
+
+  public function horairePrecisToJSON($horaire) {
+    $formattedResultats = [];
+    foreach ($horaire as $result) {
+      $formattedResultats[] = json_encode([
+        'jour' => $result['jour'],
+        'heureouverture' => $result['heureouverture'],
+        'heurefermeture' => $result['heurefermeture'],
+        'daterepresentation' => $result['daterepresentation']
+      ]);
+    }
+  }
+
   /**
    * Détermine le statut ouvert/fermé 
    * suivant les horaires déterminés et l'horaire actuelle
