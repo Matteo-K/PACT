@@ -252,26 +252,17 @@ function filtrerParNotes(offers) {
 }
 
 
+// Fonction de filtre par prix
 function filtrerParPrix(offers) {
-  const prixMin = parseInt(selectPrixMin.value);
-  const prixMax = parseInt(selectPrixMax.value);
+  const prixMin = parseFloat(selectPrixMin.value) || 0;
+  const prixMax = parseFloat(selectPrixMax.value) || Infinity;
 
-  // Filtrage des offres selon la plage de prix sélectionnée
-  return offers.filter(offer => {
-    if (offer.categorie === 'Restaurant') {
-      const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
-      const prixMinOffreRestaurant = prixRange[0];
-      const prixMaxOffreRestaurant = prixRange[1];
+  return array.filter(offer => {
+    const prixOffer = offer.categorie === "Restaurant" 
+      ? getPrixRangeRestaurant(offer.gammeDePrix)[0] 
+      : (offer.prixMinimal || 0);
 
-      // Vérifie si la gamme de prix de l'offre est dans la plage de prix sélectionnée
-      return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
-    } 
-    
-    else {
-      // Vérifie si le prix minimal de l'offre est dans la plage de prix sélectionnée
-      const prixMinOffreAutres = (offer.prixMinimal || 0);
-      return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
-    }
+    return prixOffer >= prixMin && prixOffer <= prixMax;
   });
 }
 
