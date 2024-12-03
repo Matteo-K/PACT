@@ -17,9 +17,7 @@ if ($_POST['type'] == 'ajout') {
     $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? and datefin >= CURRENT_DATE");
     $stmt->execute([$offreId]);
     $result = $stmt->fetchAll();
-    $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? and (datefin >= CURRENT_DATE OR datefin IS NULL)");
-    $stmt->execute([$offreId]);
-    $ttOpt = $stmt->fetchAll();
+    
     if ($EnLigne[0]['statut'] == 'actif' && !$result) {
         $duree = $_POST['nbWeek'] * 7;
         $date = new DateTime();
@@ -31,6 +29,9 @@ if ($_POST['type'] == 'ajout') {
         $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,CURRENT_DATE,?,?,?,?)");
         $stmt->execute([$_POST['idOffre'], $formattedDate , $_POST['nbWeek'], $prix , $_POST['nomOption']]);
     }else {
+        $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? AND nomoption = ? AND(datefin >= CURRENT_DATE OR datefin IS NULL)");
+        $stmt->execute([$offreId,$_POST['nomOption']]);
+        $ttOpt = $stmt->fetchAll();
         if (count($ttOpt)<=2) {
             $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
             $stmt->execute([$_POST['idOffre'], $_POST['nbWeek'], $prix , $_POST['nomOption']]);
