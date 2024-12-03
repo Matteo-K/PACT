@@ -271,7 +271,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   <!-- Trait qui se déplace sous les onglets -->
                   <section class="traitBouge"></section>
                 </section>
-                <section class="contentPop" id="content-1">
+                <section class="contentPop active" id="content-1">
                     <?php 
                         $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'ALaUne'");
                         $option->execute([$idOffre]);
