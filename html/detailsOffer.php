@@ -944,6 +944,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         document.getElementById('tab-avis').classList.remove('selected');
     });
 
+
     /** Charger les composants */
     document.addEventListener("DOMContentLoaded", () => {
     const tabAvis = document.getElementById("tab-avis");

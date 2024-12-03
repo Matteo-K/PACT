@@ -3094,6 +3094,11 @@ section#infoComp div {
     align-items: flex-start;
 }
 
+#tab-container {
+  display: flex;
+  gap: 20px;
+}
+
 #tab-container > nav > h3 {
   cursor: pointer;
   position: relative;
@@ -3101,14 +3106,33 @@ section#infoComp div {
   transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
-#tab-avis.selected, #tab-publiez.selected {
+/* Souligner par défaut tab-avis */
+#tab-avis {
   text-decoration: underline;
-  text-decoration-color: var(--bloc); /* Couleur du soulignement */
+  text-decoration-color: #007BFF; /* Couleur du soulignement */
 }
 
 #tab-container > nav > h3.selected {
-  color: var(--bloc); /* Couleur du texte quand sélectionné */
+  color: #007BFF; /* Couleur du texte quand sélectionné */
 }
+
+/* Soulignement lorsque l'élément est sélectionné */
+#tab-avis.selected, #tab-publiez.selected {
+  text-decoration: underline;
+  text-decoration-color: #007BFF; /* Couleur du soulignement */
+}
+
+/* Lorsque tab-avis n'est pas sélectionné, enlever le soulignement */
+#tab-avis:not(.selected) {
+  text-decoration: none;
+}
+
+/* Lorsque tab-publiez est sélectionné, ajouter le soulignement */
+#tab-publiez.selected {
+  text-decoration: underline;
+  text-decoration-color: #007BFF;
+}
+
 
 
 .avis>nav>h3 {
