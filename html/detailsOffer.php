@@ -366,45 +366,84 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                 </section>
                 <section class="contentPop" id="content-2">
-                    <section class="AlaUne">
-                        <strong>
-                            <p class="taille3">A la Une</p>
-                        </strong>
-                        <section class="donnee">
-                            <aside>
-                                <form id="formOpt1" action="addOption.php" method="post">
-                                    <input type="hidden" name="nomOption" value="ALaUne">
-                                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-                                    <input type="hidden" name="type" value="ajout">
-                                    <label class="taille" for="nbWeek">Nombre de semaine à la Une</label>
-                                    <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
+    <section class="AlaUne">
+        <strong>
+            <p class="taille3">A la Une</p>
+        </strong>
+        <section class="donnee">
+            <aside>
+                <form id="formOpt1" action="addOption.php" method="post">
+                    <input type="hidden" name="nomOption" value="ALaUne">
+                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                    <input type="hidden" name="type" value="ajout">
+                    <label class="taille" for="nbWeek">Nombre de semaine à la Une</label>
+                    <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
 
-                                    <!-- Checkbox pour afficher le date picker -->
-                                    <label class="taille">
-                                        <input type="checkbox" id="datePickerToggle1" class="datePickerToggle"> Ajouter une date personnalisée
-                                    </label>
+                    <!-- Checkbox pour afficher le date picker -->
+                    <label class="taille">
+                        <input type="checkbox" id="datePickerToggle1" class="datePickerToggle"> Ajouter une date personnalisée
+                    </label>
+                    
+                    <!-- Date picker (caché par défaut) -->
+                    <input class="taille2 datePicker" type="date" name="customDate" id="customDate1" style="display: none;">
+                </form>
+                <?php
+                if (!$optionUne) {
+                    ?>
+                        <p class="taille4 toggleMessage">*L'option sera active lors de la prochaine mise en ligne</p>
+                        <?php                                
+                } else {
+                    ?>
+                        <p class="taille4 toggleMessage">*L'option sera lancée à la fin de celle-ci</p>
+                    <?php
+                }
+                ?>
+            </aside>
+            <section class="sectionBtn">
+                <button id="button1" class="modifierBut">Ajouter</button>
+            </section>
+        </section>
+    </section>
 
-                                    <!-- Date picker (caché par défaut) -->
-                                    <input class="taille2 datePicker" type="date" name="customDate" id="customDate1" style="display: none;">
-                                </form>
-                                <?php
-                                if (!$optionUne) {
-                                    ?>
-                                        <p class="taille4 toggleMessage">*L'option sera active lors de la prochaine mise en ligne</p>
-                                        <?php                                
-                                } else {
-                                    ?>
-                                        <p class="taille4 toggleMessage">*L'option sera lancée à la fin de celle-ci</p>
-                                    <?php
-                                }
-                                ?>
-                            </aside>
-                            <section class="sectionBtn">
-                                <button id="button1" class="modifierBut">Ajouter</button>
-                            </section>
-                        </section>
-                    </section>
-                </section>             
+    <section class="EnRelief">
+        <strong>
+            <p class="taille3">En Relief</p>
+        </strong>
+        <section class="donnee">
+            <aside>
+                <form id="formOpt2" action="addOption.php" method="post">
+                    <input type="hidden" name="nomOption" value="EnRelief">
+                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                    <input type="hidden" name="type" value="ajout">
+                    <label class="taille" for="nbWeek">Nombre de semaine en Relief</label>
+                    <input class="taille2" type="number" name="nbWeek" id="nbWeekEnRelief" min="1" max="4" value="1">
+
+                    <!-- Checkbox pour afficher le date picker -->
+                    <label class="taille">
+                        <input type="checkbox" id="datePickerToggle2" class="datePickerToggle"> Ajouter une date personnalisée
+                    </label>
+                    
+                    <!-- Date picker (caché par défaut) -->
+                    <input class="taille2 datePicker" type="date" name="customDate" id="customDate2" style="display: none;">
+                </form>
+                <?php
+                if (!$optionRelief) {
+                    ?>
+                        <p class="taille4 toggleMessage">*L'option sera active lors de la prochaine mise en ligne</p>
+                        <?php                                
+                } else {
+                    ?>
+                        <p class="taille4 toggleMessage">*L'option sera lancée à la fin de celle-ci</p>
+                        <?php
+                }
+                ?>
+            </aside>
+            <section class="sectionBtn">
+                <button id="button2" class="modifierBut">Ajouter</button>
+            </section>
+        </section>
+    </section>
+</section>             
                 <button class="modifierBut" onclick="confirmation()">Quitter</button>
               </section>
             </section>
