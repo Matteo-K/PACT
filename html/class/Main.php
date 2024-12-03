@@ -5,6 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class Main</title>
+  <style>
+    body {
+        margin-bottom : 100vh;
+    }
+  </style>
 </head>
 <body>
   <?php $offres = new ArrayOffer(); ?>
@@ -14,14 +19,14 @@
         foreach ($getOffres as $key => $value) { ?>
             <section>
                 <h2><?php echo $value['idOffre'] . " - " . $value["nomOffre"]; ?></h2>
-                <p>Data&nbsp;:&nbsp;</p>
-                <?php print_r($value) ?>
-                <br>
-                <input type="text" id="input-<?php echo $key ?>" placeholder="Rechercher un attribut" class="search-input">
-                <br>
-                <pre id="code-<?php echo $key ?>" style="color : green;"></pre>
+                <p>Clé&nbsp;:&nbsp;</p>
+                <?php print_r(array_keys($value)) ?>
             </section>
     <?php } ?>
+    <br>
+    <input type="text" id="input-<?php echo $key ?>" placeholder="Rechercher un attribut" class="search-input">
+    <br>
+    <pre id="code-<?php echo $key ?>" style="color : green;"></pre>
     <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray())); ?>'></div>
   </main>
   <script>
@@ -39,10 +44,9 @@
         }
 
         // Sélectionner tous les champs de recherche
-        const searchInputs = document.querySelectorAll('.search-input');
+        const searchInputs = document.querySelector('.search-input');
 
-        searchInputs.forEach(input => {
-            input.addEventListener("input", function() {
+        searchInputs.addEventListener("input", function() {
                 const searchTerm = this.value.toLowerCase(); // Obtenir le terme recherché
 
                 // Parcourir arrayOffer pour trouver les correspondances
@@ -57,13 +61,12 @@
                 });
 
                 // Afficher le résultat dans le <pre> associé
-                const pre = this.closest('section').querySelector('pre');
+                const pre = document.querySelector('pre');
                 if (pre) {
                     pre.textContent = result || 'Aucun résultat trouvé';
                 }
             });
         });
-    });
 
   </script>
 </body>
