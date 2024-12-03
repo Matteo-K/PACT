@@ -586,6 +586,24 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <section id="infoComp">
         <h2>Informations Complémentaires</h2>
+        <?php
+        if($typeOffer == "Visite"){
+            $stmt = $conn -> prepare("SELECT * from pact.visite where idoffre = $idOffre");
+            $stmt -> execute();
+            $visite = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+        ?>
+            <div>
+                <p>Durée : <?= $visite[0]['duree']?></p>
+                <p>Visite guidée : <?php isset($visite[0]["guide"])? "Oui" : "Non";?></p>
+                <?php
+                if($visite[0]["guide"]){
+
+                }
+                ?>
+            </div>
+        <?php
+        }
+        ?>
         <table>
     <thead>
         <tr>
@@ -729,7 +747,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt -> execute();
         $menus = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     ?>
-        <p>Menu</p>
+        <h2>Menu</h2>
         <div class="swiper-container menu-container">
             <div class="swiper menu">
                 <div class="swiper-wrapper">
