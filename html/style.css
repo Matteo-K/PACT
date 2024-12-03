@@ -1909,7 +1909,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 173px;
   margin-right: 15px;
   margin-left: 0;
-  border-radius: 20px;
+  border-radius: 20px 0 0 20px;
 }
 
 .infoOffre {

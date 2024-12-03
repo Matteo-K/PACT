@@ -488,7 +488,7 @@ function createCard(offer) {
   if (offer.resume != "") {
     resume.textContent = offer.resume;
   } else {
-    resume.textContent = "Pas de resume saisie";
+    resume.textContent = "";
   }
 
   infoOffre.appendChild(resume);
@@ -506,7 +506,7 @@ function proStatut(offer) {
   // Titre de l'offre
   let titre = document.createElement("p");
   titre.classList.add("searchTitre");
-  titre.textContent = offer.nomOffre;
+  titre.textContent = offer.nomOffre != "" ? offer.nomOffre : "Offre " + offer.idOffre;
 
   proStatut.appendChild(titre);
 
