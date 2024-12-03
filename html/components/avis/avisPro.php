@@ -152,17 +152,21 @@
             </div>
 
             
-
         </details> 
 
-        <p id="aucunAvisSelect"> Cliquez sur un avis de la liste pour l'afficher ici. </p>
+        
 
         <div class="conteneurAvisPro">
+
+            <p id="aucunAvisSelect"> Cliquez sur un avis de la liste pour l'afficher ici. </p>
             
             <div id="ligneTitreAvis">
+
+                <img src="./img/profile_picture/default.svg" alt="Photo du membre">
                 <h2>
                     Auteur
                 </h2>
+
                 <img src="./img/icone/trois-points.png" alt="icone de parametre">
             </div>
             
@@ -184,6 +188,10 @@
                 Texte de l'avis
             </p>
 
+            <div id="imagesAvisPro">
+
+            </div>
+
             <p id="visiteRedaction"> 
                 Visité en .... le ../.. - rédigé le ../.. 
             </p>
@@ -200,12 +208,93 @@
 <script>
 
 let listeAvis = <?php echo json_encode($avis) ?>;
-let affichage = document.getElementById("detailAvisPro");
+let conteneurAvis = document.getElementById("conteneurAvisPro");
+
+let photoAuteurAvis = document.querySelector("#ligneTitreAvis > h2");
+let auteurAvis = document.querySelector("#ligneTitreAvis > h2");
+let etoilesAvis = document.querySelectorAll(".conteneurAvisPro .noteEtoile .star");
+let titreAvis = document.querySelector("#conteneurAvisPro > h3");
+
+let contenuAvis = document.getElementById("contenuAvis");
+let dateAvis = document.getElementById("visiteRedaction");
+
 
 function afficheAvisSelect(numAvis) {
-        
-    affichage.textContent = listeAvis[numAvis]["content"];
+
+    //changement photo auteur
+    photoAuteurAvis.src = listeAvis[numAvis]['membre_url'];
+
+    //changement pseudo auteur
+    auteurAvis.textContent = listeAvis[numAvis]['pseudo'];
+
+    //changement couleur etoiles (on remet tout jaune puis grise certaines)
+    for ($i = 0; $i > 5; $i++) {
+        etoilesAvis[i].style.backgroundColor = var(--accent);
+    }
+
+    if (5 - listeAvis['note'] != 0) {
+        for ($i = 5; $i > listeAvis['note']; $i--) {
+            etoilesAvis[i].style.backgroundColor = var(--secondary);
+        }
+    }
+
+    //changement titre avis
+    titreAvis.textContent = listeAvis[numAvis]['titre'];
+
+    //changement texte
+    contenuAvis.textContent = listeAvis[numAvis]['content'];
+
+    //changement date publication et visite
+    dateAvis.textContent = "Visité en" +  listeAvis[numAvis]['mois'] + " " + listeAvis[numAvis]['annee'] + formatDateDiff(listeAvis[numAvis]['datepublie']);
 }
+
+
+function formatDateDiff(dateString) {
+  // Créer des objets Date à partir de la date donnée et de la date actuelle
+  const dateDB = new Date(dateString);
+  const dateNow = new Date();
+
+  // Fixer les objets Date à minuit pour calculer les jours
+  const dateDBMidnight = new Date(dateDB);
+  dateDBMidnight.setHours(0, 0, 0, 0);
+
+  const dateNowMidnight = new Date(dateNow);
+  dateNowMidnight.setHours(0, 0, 0, 0);
+
+  // Calculer la différence en jours (à partir de minuit)
+  const diffInDays = Math.floor((dateNowMidnight - dateDBMidnight) / (1000 * 60 * 60 * 24));
+
+  // Calculer la différence en heures et minutes
+  const diffInMilliseconds = dateNow - dateDB;
+  const diffInHours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
+  const diffInMinutes = Math.floor((diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
+
+  // Déterminer le message à afficher
+  if (diffInDays === 0) {
+    if (diffInMinutes === 0) {
+      return " Rédigé à l'instant";
+    } else if (diffInHours > 1) {
+      return ` Rédigé il y a ${diffInHours - 1} heure${diffInHours > 2 ? 's' : ''}`;
+    } else {
+      return ` Rédigé il y a ${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''}`;
+    }
+  } else if (diffInDays === 1) {
+    // La date est hier
+    return " Rédigé hier";
+  } else if (diffInDays > 1 && diffInDays <= 7) {
+    // La date est dans les 7 derniers jours
+    return ` Rédigé il y a ${diffInDays} jour${diffInDays > 1 ? 's' : ''}`;
+  } else {
+    // La date est plus ancienne que 7 jours ou dans le futur
+    return ` Rédigé le ${dateDB.toLocaleDateString("fr-FR")} à ${dateDB.toLocaleTimeString("fr-FR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    })}`;
+  }
+}
+
+
+
 
 
 
