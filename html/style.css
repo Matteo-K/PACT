@@ -3291,7 +3291,6 @@ summary::marker{
   font-size: 30px;
 }
 
-/* Change la rotation du triangle lorsque <details> est ouvert */
 details[open] .custom-marker {
   transform: rotate(450deg); 
 }
@@ -3346,6 +3345,12 @@ details .nonLu, details .nonRepondu{
   width: 100%;
 }
 
+#avisproS2 > details > summary > p {
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+  margin: 30px auto;
+}
 
 
 /*Detail des avis sélectionnés */
