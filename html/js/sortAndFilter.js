@@ -143,8 +143,7 @@ function sortNoteDecroissant(array) {
 }
 
 function attribuerEtoiles(note) {
-  if (note == 0) return 0;
-  else if (note <= 1) return 1;
+  if (note <= 1) return 1;
   else if (note <= 2) return 2;
   else if (note <= 3) return 3;
   else if (note <= 4) return 4;
@@ -160,25 +159,34 @@ function sortprixCroissant(array) {
       ? getPrixRange(offre2.gammeDePrix)[0] 
       : (offre2.prixMinimal || 0);
     
-    return prix2 - prix1;
+    return prix1 - prix2;
   });
 }
 
 function sortPrixDecroissant(array) {
   return array.sort((offre1, offre2) => {
-    const prix1 = offre1.categorie === "Restaurant" ? getPrixRange(offre1.gammeDePrix)[0] : offre1.prixMinimal;
-    const prix2 = offre2.categorie === "Restaurant" ? getPrixRange(offre2.gammeDePrix)[0] : offre2.prixMinimal;
+    const prix1 = offre1.categorie === "Restaurant" 
+      ? getPrixRange(offre1.gammeDePrix)[0] 
+      : (offre1.prixMinimal || 0);
+    const prix2 = offre2.categorie === "Restaurant" 
+      ? getPrixRange(offre2.gammeDePrix)[0] 
+      : (offre2.prixMinimal || 0);
     
-    return prix1 - prix2;
+    return prix2 - prix1;
   });
 }
 
 function sortDateRecent(array) {
-  return array.sort((offre1, offre2) => offre2.dateCreation - offre1.dateCreation);
+  return array.sort((offre1, offre2) => {
+    console.log("offre1 : "+offre1.dateCreation+ "| offre2 : "+offre2.dateCreation);
+    return offre1.dateCreation - offre2.dateCreation
+  });
 }
 
 function sortDateAncien(array) {
-  return array.sort((offre1, offre2) => offre1.dateCreation - offre2.dateCreation);
+  return array.sort((offre1, offre2) => {
+    return offre2.dateCreation - offre1.dateCreation
+  });
 }
 
 

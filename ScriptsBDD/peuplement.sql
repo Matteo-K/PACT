@@ -44,7 +44,7 @@ VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
 INSERT INTO _abonnement (nomAbonnement, tarif) 
 VALUES ('Basique', 2), 
        ('Premium', 4),
-	('Gratuit', 0.0);
+	     ('Gratuit', 0.0);
 
 -- Peuplement de la table _statut
 INSERT INTO _statut (statut) 
@@ -258,7 +258,7 @@ VALUES ('Lundi', 3, '19:00', '21:00'),
        
 --peuplement horaire precise
 INSERT INTO _horairePrecise (jour, idOffre, heureDebut, heureFin, DateRepresentation) 
-VALUES ('Lundi', 2, '19:00', '21:00', '2024-12-02'),
+VALUES ('Lundi', 2, '16:00', '21:00', '2024-12-02'),
        ('Mardi', 2, '19:00', '21:00', '2024-12-03'), 
        ('Mercredi', 2, '19:00', '21:00', '2024-12-04'),
        ('Jeudi', 2, '19:00', '21:00', '2024-12-05'), 
@@ -330,10 +330,10 @@ VALUES (1, '22300', 'Lannion', 'France', 'Rue Édouard Branly', '1'),
 
 -- Peuplement de la table _abonner
 INSERT INTO _abonner (idOffre, nomAbonnement) 
-VALUES (1, 'Gratuit'), 
+VALUES (1, 'Premium'), 
        (2, 'Basique'), 
        (3, 'Premium'), 
-       (4, 'Gratuit'), 
+       (4, 'Basique'), 
        (5, 'Premium');
        
 
@@ -375,7 +375,7 @@ INSERT INTO _menu(idOffre, menu)
 VALUES (3,'./img/imageMenu/3/0.png');
 
 INSERT INTO _commentaire (idU,content,datePublie)
-VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.',CURRENT_TIMESTAMP),
+VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:55:59'),
        (5,'Je recommande ce parc d’attractions.',CURRENT_TIMESTAMP),
        (5,'J’ai adoré cette visite.',CURRENT_TIMESTAMP),
        (5,'À faire.',CURRENT_TIMESTAMP),

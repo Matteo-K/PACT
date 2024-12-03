@@ -48,15 +48,16 @@ if ($nouveauStatut=='actif') {
             $ajst->execute();
         }
 
-        $ajst = $conn->prepare("SELECT * FROM pact._dateOption WHERE idoffre=? and (datefin is null)");
+        $ajst = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin is null)");
         $ajst->execute([$offreId]);
         $tema = $ajst->fetchAll();
+        print_r($tema);
         if ($tema) {
             foreach ($tema as $key => $value) {
-                if ($tema['nomoption'] == 'ALaUne') {
+                if ($value['nomoption'] == 'ALaUne') {
                     $alaUne = $value;
                 }
-                if ($tema['nomoption'] == 'EnRelief') {
+                if ($value['nomoption'] == 'EnRelief') {
                     $relief = $value;
                 }
             }
@@ -65,13 +66,13 @@ if ($nouveauStatut=='actif') {
             $relief = false;
         }
 
-        $ajst = $conn->prepare("SELECT datefin FROM pact._dateOption WHERE idoffre=? and (datefin>CURRENT_DATE)");
+        $ajst = $conn->prepare("SELECT datefin FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE)");
         $ajst->execute([$offreId]);
         $dtOpt = $ajst->fetchAll();
 
         if (!$dtOpt) {
             if ($alaUne != false) {
-                $duree = $alaUne['duree'] * 7;
+                $duree = $alaUne['duree_total'] * 7;
                 $date = new DateTime();
                 $date->modify("+$duree days"); // Ajout de la durée
                 $formattedDate = $date->format('Y-m-d'); // Conversion de l'objet DateTime en format SQL compatible
