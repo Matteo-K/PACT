@@ -63,18 +63,28 @@
                 <h2>
                     Nombre d'avis
                 </h2>
+                <h2>
+                    <?php echo $avis[0]["nbnote"] ?>
+                </h2>
+                
             </summary>
 
             <div class="contentDetails">
             
                 <h3>
                     <div class="nonLu"></div>
-                    Non lus
+                    <?php echo $avis[0]["avisnonlus"] ?>
+                </h3>
+                <h3>
+                    nb
                 </h3>
 
                 <h3>
                     <div class="nonRepondu"></div>
-                    Non répondus
+                    <?php echo $avis[0]["avisnonrepondus"] ?>
+                </h3>
+                <h3>
+                    nb
                 </h3>
 
 
@@ -186,6 +196,8 @@ function afficheAvisSelect(numAvis) {
 }
 
 
+
+//Animation 
 document.querySelectorAll("#avisproS2 > details").forEach(details => {
   const content = details.querySelector(".contentDetails");
 
