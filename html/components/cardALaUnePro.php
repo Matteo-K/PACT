@@ -41,6 +41,7 @@
                 <?php echo $abonnement ?>
             </span>
             <div>
+              <?php print_r($options) ?>
               <?php foreach ($options as $option) { ?>
                 <span><?php echo $option ?></span>
               <?php } ?>
