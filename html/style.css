@@ -3147,7 +3147,10 @@ tbody td:last-child {
   rotate: -90deg;
 }
 
-
+#infoComp > div {
+  display: flex;
+  justify-content: space-evenly;
+}
 
 /** Avis PRO **/
 
