@@ -212,15 +212,19 @@ function sortAvisDecroissant(array) {
 
 function sortDateCreaRecent(array) {
   return array.sort((offre1, offre2) => {
-    console.log("offre1 : "+ (offre1.dateCreation));
-    console.log("offre2 : "+ (offre2.dateCreation));
-    return offre1.dateCreation - offre2.dateCreation
+    const date1 = new Date(offre1.dateCreation);
+    const date2 = new Date(offre2.dateCreation);
+
+    return date2.getTime() - date1.getTime()
   });
 }
 
 function sortDateCreaAncien(array) {
   return array.sort((offre1, offre2) => {
-    return offre2.dateCreation - offre1.dateCreation
+    const date1 = new Date(offre1.dateCreation);
+    const date2 = new Date(offre2.dateCreation);
+    
+    return date1.getTime() - date2.getTime()
   });
 }
 
