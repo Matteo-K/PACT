@@ -58,8 +58,8 @@ const radBtnprixCroissant = document.querySelector("#prixCroissant");
 const radBtnPrixDecroissant = document.querySelector("#prixDecroissant");
 
 // date
-const radBtnDateRecent = document.querySelector("#dateRecent");
-const radBtnDateAncien = document.querySelector("#dateAncien");
+const radBtnAvisCroissant = document.querySelector("#avisCroissant");
+const radBtnAvisDecroissant = document.querySelector("#avisDecroissant");
 
 // date
 const radBtnDateCreationRecent = document.querySelector("#dateCreationRecent");
@@ -122,20 +122,20 @@ function selectSort(array) {
     console.log("Tri avec Prix Décroissant");
     return sortPrixDecroissant(array);
 
-  } else if (radBtnDateRecent.checked) {
+  } else if (radBtnAvisCroissant.checked) {
     console.log("Tri avec Date Récent");
-    return sortDateRecent(array);
+    return sortAvisCroissant(array);
 
-  } else if (radBtnDateAncien.checked) {
+  } else if (radBtnPrixDecroissant.checked) {
     console.log("Tri avec Date Ancien");
-    return sortDateAncien(array);
+    return sortAvisDecroissant(array);
 
   } else if (radBtnDateCreationRecent.checked) {
     console.log("Tri avec Date Récent");
     return sortDateCreaRecent(array);
 
   } else if (radBtnDateCreationAncien.checked) {
-    console.log("Tri avec Date Récent");
+    console.log("Tri avec Date Ancien");
     return sortDateCreaAncien(array);
   }
   
@@ -188,11 +188,11 @@ function sortPrixDecroissant(array) {
   });
 }
 
-function sortDateRecent(array) {
+function sortAvisCroissant(array) {
   return array;
 }
 
-function sortDateAncien(array) {
+function sortAvisDecroissant(array) {
   return array;
 }
 
