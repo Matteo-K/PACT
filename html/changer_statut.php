@@ -48,7 +48,7 @@ if ($nouveauStatut=='actif') {
             $ajst->execute();
         }
 
-        $ajst = $conn->prepare("SELECT * FROM pact._dateOption WHERE idoffre=? and (datefin is null)");
+        $ajst = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin is null)");
         $ajst->execute([$offreId]);
         $tema = $ajst->fetchAll();
         if ($tema) {
@@ -71,7 +71,7 @@ if ($nouveauStatut=='actif') {
 
         if (!$dtOpt) {
             if ($alaUne != false) {
-                $duree = $alaUne['duree'] * 7;
+                $duree = $alaUne['duree_total'] * 7;
                 $date = new DateTime();
                 $date->modify("+$duree days"); // Ajout de la durée
                 $formattedDate = $date->format('Y-m-d'); // Conversion de l'objet DateTime en format SQL compatible
