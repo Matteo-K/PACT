@@ -4307,7 +4307,7 @@ input[id="siren"] {
   border: 3px solid var(--accent);
 }
 
-input[type="checkbox"] {
+.creation-compte [type="checkbox"] {
   width: 25px;
   height: 25px;
   margin: 0 5px;
