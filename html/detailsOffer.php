@@ -339,9 +339,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         }else {
                                                         $dateFin = NEW DateTime($value['datefin']);
                                                         $dureeRestante = $dateActuelle->diff($dateFin);
-                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
-                                                        ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
-                                                        <form action="addOption.php" method="post">
+                                                        ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . " jours." ?></p>
+                                                        <form class="confirmation-form-arr" action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="arreter">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                                             <input type="hidden" name="nom" value="<?php echo $value['nomoption'] ?>">
@@ -911,40 +910,28 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
 <script>
-    /** Script permettant de charger la page avisMembre ou publier avis */
-    document.addEventListener("DOMContentLoaded", () => {
-        const tabAvis = document.getElementById("tab-avis");
-        const tabPubliez = document.getElementById("tab-publiez");
-        const avisSection = document.getElementById("avis-section");
 
-        // Activer l'onglet Avis
-        tabAvis.addEventListener("click", () => {
-            tabPubliez.classList.remove("active");
-            tabAvis.classList.add("active");
+    document.addEventListener('DOMContentLoaded', function () {
 
-            // Charger le composant avis
-            fetch("components/avis/avisMembre.php")
-                .then(response => response.text())
-                .then(html => {
-                    avisSection.innerHTML = html;
-                })
-                .catch(error => console.error("Erreur lors du chargement des avis :", error));
+        const forms = document.querySelectorAll('.confirmation-form');
+        forms.forEach(form => {
+            form.addEventListener('submit', (event) => {
+                const confirmation = confirm("Êtes-vous sûr de vouloir resilier cette option ?");
+                if (!confirmation) {
+                    event.preventDefault(); // Empêche la soumission si l'utilisateur annule
+                }
+            });
         });
 
-        // Activer l'onglet Publiez un avis
-        tabPubliez.addEventListener("click", () => {
-            tabAvis.classList.remove("active");
-            tabPubliez.classList.add("active");
-
-            // Charger le formulaire pour écrire un avis
-            fetch("components/avis/ecrireAvis.php")
-                .then(response => response.text())
-                .then(html => {
-                    avisSection.innerHTML = html;
-                })
-                .catch(error => console.error("Erreur lors du chargement du formulaire :", error));
+        const forms2 = document.querySelectorAll('.confirmation-form-arr');
+        forms2.forEach(form => {
+            form.addEventListener('submit', (event) => {
+                const confirmation = confirm("Êtes-vous sûr de vouloir arrêter cette option ?\nVous serez facturé pour le nombre de semaines entamées");
+                if (!confirmation) {
+                    event.preventDefault(); // Empêche la soumission si l'utilisateur annule
+                }
+            });
         });
-    });
 
     /** Fin du script */
 
