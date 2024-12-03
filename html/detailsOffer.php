@@ -934,6 +934,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
 <script>
+    document.getElementById('tab-avis').addEventListener('click', function() {
+        document.getElementById('tab-avis').classList.add('selected');
+        document.getElementById('tab-publiez').classList.remove('selected');
+    });
+
+    document.getElementById('tab-publiez').addEventListener('click', function() {
+        document.getElementById('tab-publiez').classList.add('selected');
+        document.getElementById('tab-avis').classList.remove('selected');
+    });
+
     /** Charger les composants */
     document.addEventListener("DOMContentLoaded", () => {
     const tabAvis = document.getElementById("tab-avis");
