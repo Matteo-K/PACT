@@ -2272,6 +2272,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .taille5{
   margin: 0 !important;
+  width: 25px;
+  height: 25px;
 }
 
 
@@ -2985,7 +2987,7 @@ article#descriptionOffre {
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
-  align-items: center;
+  align-items: flex-end;
 }
 
 article#descriptionOffre h3 {
@@ -4311,7 +4313,7 @@ input[id="siren"] {
   border: 3px solid var(--accent);
 }
 
-.creation-compte [type="checkbox"] {
+input[type="checkbox"] {
   width: 25px;
   height: 25px;
   margin: 0 5px;
