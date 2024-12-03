@@ -386,7 +386,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </label>
                     
                     <!-- Date picker (caché par défaut) -->
-                    <input class="taille2 datePicker" type="date" name="customDate" id="customDate1" style="display: none;">
+                    <input class="datePicker" type="date" name="customDate" id="customDate1" style="display: none;">
                 </form>
                 <?php
                 if (!$optionUne) {
@@ -426,7 +426,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </label>
                     
                     <!-- Date picker (caché par défaut) -->
-                    <input class="taille2 datePicker" type="date" name="customDate" id="customDate2" style="display: none;">
+                    <input class="datePicker" type="date" name="customDate" id="customDate2" style="display: none;">
                 </form>
                 <?php
                 if (!$optionRelief) {
