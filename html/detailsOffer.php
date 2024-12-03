@@ -481,7 +481,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </section>
     <section id="hoverMessageAdd" class="hover-message">Vous avez trop de d'option en attente (1 option en attente et 1 en cour maximun par option)</section>
 </section>             
-                <button class="modifierBut" onclick="confirmation()">Quitter</button>
+                <button class="modifierBut taillebtn" onclick="confirmation()">Quitter</button>
               </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
@@ -913,32 +913,61 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
         <div class="avis">
             <nav>
-                <h3>Avis</h3>
-                <h3>Publiez un avis</h3>
+                <h3 role="button" tabindex="0" id="tab-avis" class="active">Avis</h3>
+                <h3 role="button" tabindex="0" id="tab-publiez">Publiez un avis</h3>
             </nav>
 
-            <div>
-            <?php
-            if($avis){
+            <section id="avis-section">
+                <?php
+                // Inclusion du composant pour afficher les avis
                 require_once __DIR__ . "/components/avis/avisMembre.php";
-            }else{
-            ?>
-                <p>Aucun avis pour le moment, soyez le premier à donner le vôtre !</p> 
-            <?php
-            }
-            
-            ?>
-            </div>
-        <?php
-    }
-        ?>
+                ?>
+            </section>
         </div>
+    <?php 
+        }
+    ?>
     </main>
     <?php
     require_once "./components/footer.php";
     ?>
-
 <script>
+    /** Script permettant de charger la page avisMembre ou publier avis */
+    document.addEventListener("DOMContentLoaded", () => {
+        const tabAvis = document.getElementById("tab-avis");
+        const tabPubliez = document.getElementById("tab-publiez");
+        const avisSection = document.getElementById("avis-section");
+
+        // Activer l'onglet Avis
+        tabAvis.addEventListener("click", () => {
+            tabPubliez.classList.remove("active");
+            tabAvis.classList.add("active");
+
+            // Charger le composant avis
+            fetch("components/avis/avisMembre.php")
+                .then(response => response.text())
+                .then(html => {
+                    avisSection.innerHTML = html;
+                })
+                .catch(error => console.error("Erreur lors du chargement des avis :", error));
+        });
+
+        // Activer l'onglet Publiez un avis
+        tabPubliez.addEventListener("click", () => {
+            tabAvis.classList.remove("active");
+            tabPubliez.classList.add("active");
+
+            // Charger le formulaire pour écrire un avis
+            fetch("components/avis/ecrireAvis.php")
+                .then(response => response.text())
+                .then(html => {
+                    avisSection.innerHTML = html;
+                })
+                .catch(error => console.error("Erreur lors du chargement du formulaire :", error));
+        });
+    });
+
+    /** Fin du script */
 
     document.addEventListener('DOMContentLoaded', function () {
 
