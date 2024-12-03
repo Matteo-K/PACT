@@ -223,7 +223,8 @@ class ArrayOffer {
           $avis[] = [
             "titre" => $resAvis["titre"], 
             "contenue" => $resAvis["content"],
-            "pseudo" => $resAvis["pseudo"]
+            "pseudo" => $resAvis["pseudo"],
+            "note" => $resAvis["note"]
           ];
         }
 
@@ -242,7 +243,8 @@ class ArrayOffer {
           $offre['codepostal'],
           $offre['statut'],
           floatval($moyenne),
-          $total
+          $total,
+          $avis
         );
       }
     }

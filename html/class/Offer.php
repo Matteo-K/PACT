@@ -46,11 +46,13 @@ class Offer {
   private $numerorue;
   private $rue;
   private $codePostal;
+  private $avis;
 
   public function __construct($categorie_) {
     $this->options = [];
     $this->images = [];
     $this->tags = [];
+    $this->avis = [];
     $this->categorie = $categorie_;
   }
 
@@ -141,6 +143,18 @@ class Offer {
     }
   }
 
+  public function avisToJSON($avis) {
+    $formattedResultats = [];
+    foreach ($avis as $result) {
+      $formattedResultats[] = json_encode([
+        'titre' => $result['titre'],
+        'contenue' => $result['contenue'],
+        'pseudo' => $result['pseudo'],
+        'note' => $result['note']
+      ]);
+    }
+  }
+
   /**
    * Détermine le statut ouvert/fermé 
    * suivant les horaires déterminés et l'horaire actuelle
@@ -184,7 +198,7 @@ class Offer {
     }
   }
 
-  public function setData($idOffre_, $idUser_, $nomOffre_, $abonnement_, $options_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $noteAvg_, $nbNote_) {
+  public function setData($idOffre_, $idUser_, $nomOffre_, $abonnement_, $options_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $noteAvg_, $nbNote_, $avis_) {
     $this->idOffre = $idOffre_;
     $this->statut = $statut_;
     $this->idUser = $idUser_;
@@ -218,6 +232,7 @@ class Offer {
     $this->options = $options_;
     $this->noteAvg = number_format($noteAvg_,1);
     $this->nbNote = $nbNote_;
+    $this->avis = $avis_;
   }
 
   public function getData() {
@@ -243,7 +258,8 @@ class Offer {
       "pays" => $this->pays,
       "numeroRue" => $this->numerorue,
       "rue" => $this->rue,
-      "codePostal" => $this->codePostal
+      "codePostal" => $this->codePostal,
+      "avis" => $this->avisToJSON($this->avis)
     ];
   }
 
