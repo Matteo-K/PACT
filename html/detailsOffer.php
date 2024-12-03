@@ -149,6 +149,10 @@ function formatDateEnFrancais(DateTime $date) {
     return "$jour $jourMois $mois $annee";
 }
 
+function convertionMinuteHeure($tempsEnMinute){
+    return $tempsEnMinute / 60 . "h " . $tempsEnMinute%60 . "min" 
+}
+
 if (!$result) {
 ?>
     <form id="manageOfferAuto" action="manageOffer.php" method="post">
@@ -597,7 +601,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $visite = $stmt -> fetchAll(PDO::FETCH_ASSOC);
         ?>
             <div>
-                <p>Durée : <?= $visite[0]['duree']?></p>
+                <p>Durée : <?= convertionMinuteHeure($visite[0]['duree'])?></p>
                 <p>Visite guidée : <?php isset($visite[0]["guide"])? "Oui" : "Non";?></p>
                 <?php
                 if($visite[0]["guide"]){
