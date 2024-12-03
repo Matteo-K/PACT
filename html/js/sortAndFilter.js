@@ -253,27 +253,20 @@ function filtrerParNotes(offers) {
 
 
 function filtrerParPrix(offers) {
-  // Récupérer les valeurs des sélecteurs de prix
   const prixMin = parseInt(selectPrixMin.value);
   const prixMax = parseInt(selectPrixMax.value);
 
   // Filtrage des offres selon la plage de prix sélectionnée
   return offers.filter(offer => {
-    // Si l'offre est un restaurant, on vérifie la gamme de prix (en utilisant "€", "€€", "€€€")
     if (offer.categorie === 'Restaurant') {
-      const prixRange = getPrixRangeRestaurant(offer.gammeDePrix); // Calcule la plage de prix pour un restaurant
+      const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
       const prixMinOffre = prixRange[0];
       const prixMaxOffre = prixRange[1];
-
       // Vérifie si la gamme de prix de l'offre est dans la plage de prix sélectionnée
       return prixMinOffre >= prixMin && prixMaxOffre <= prixMax;
-    } 
-    
-    else {
-      // Pour les autres catégories (spectacles, activités, etc.), on compare le prix minimal
-      const prixMinOffre = offer.prixMinimal;  // Prix minimal pour l'offre
-
+    } else {
       // Vérifie si le prix minimal de l'offre est dans la plage de prix sélectionnée
+      const prixMinOffre = (offer.prixMinimal || 0);
       return prixMinOffre >= prixMin && prixMinOffre <= prixMax;
     }
   });
