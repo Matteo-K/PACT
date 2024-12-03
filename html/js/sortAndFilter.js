@@ -143,7 +143,17 @@ function selectSort(array) {
 }
 
 function sortEnAvant(array) {
-  return array;
+  return array.sort((offre1, offre2) => {
+    const containsEnReliefA = offre1.option.includes('EnRelief');
+    const containsEnReliefB = offre2.option.includes('EnRelief');
+    
+    if (containsEnReliefA && !containsEnReliefB) {
+        return -1;
+    } else if (!containsEnReliefA && containsEnReliefB) {
+        return 1;
+    }
+    return 0;
+});
 }
 
 function sortNoteCroissant(array) {
