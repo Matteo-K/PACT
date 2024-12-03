@@ -135,13 +135,7 @@ function sortEnAvant(array) {
 }
 
 function sortNoteCroissant(array) {
-  return array.sort((a, b) => {
-    const etoile1 = attribuerEtoiles(parseFloat(a.noteAvg));
-    const etoile2 = attribuerEtoiles(parseFloat(b.noteAvg));
-
-    return etoile1 - etoile2;
-  }
-);
+  return array.sort((a, b) => attribuerEtoiles(parseFloat(a.noteAvg)) - attribuerEtoiles(parseFloat(b.noteAvg)));
 }
 
 function sortNoteDecroissant(array) {
@@ -171,8 +165,12 @@ function sortprixCroissant(array) {
 
 function sortPrixDecroissant(array) {
   return array.sort((offre1, offre2) => {
-    const prix1 = offre1.categorie === "Restaurant" ? getPrixRange(offre1.gammeDePrix)[0] : offre1.prixMinimal;
-    const prix2 = offre2.categorie === "Restaurant" ? getPrixRange(offre2.gammeDePrix)[0] : offre2.prixMinimal;
+    const prix1 = offre1.categorie === "Restaurant" 
+      ? getPrixRange(offre1.gammeDePrix)[0] 
+      : (offre1.prixMinimal || 0);
+    const prix2 = offre2.categorie === "Restaurant" 
+      ? getPrixRange(offre2.gammeDePrix)[0] 
+      : (offre2.prixMinimal || 0);
     
     return prix1 - prix2;
   });
