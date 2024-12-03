@@ -367,11 +367,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
                 <section class="contentPop" id="content-2">
     <section class="AlaUne">
-        <strong>
-            <p class="taille3">A la Une</p>
-        </strong>
         <section class="donnee">
             <aside>
+                <strong>
+                    <p class="taille3">A la Une</p>
+                </strong>
                 <form class="formopt" id="formOpt1" action="addOption.php" method="post">
                     <input type="hidden" name="nomOption" value="ALaUne">
                     <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
@@ -382,11 +382,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <!-- Checkbox pour afficher le date picker -->
                     <label class="taille">
-                        <input type="checkbox" id="datePickerToggle1" class="datePickerToggle"> Ajouter une date personnalisée
+                        <input type="checkbox" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
                     </label>
                     
                     <!-- Date picker (caché par défaut) -->
-                    <input class="taille2 datePicker" type="date" name="customDate" id="customDate1" style="display: none;">
+                    <input class="datePicker" type="date" name="customDate" id="customDate1" style="display: none;">
                 </form>
                 <?php
                 if (!$optionUne) {
@@ -407,11 +407,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </section>
 
     <section class="EnRelief">
-        <strong>
-            <p class="taille3">En Relief</p>
-        </strong>
         <section class="donnee">
             <aside>
+                <strong>
+                    <p class="taille3">En Relief</p>
+                </strong>
                 <form class="formopt" id="formOpt2" action="addOption.php" method="post">
                     <input type="hidden" name="nomOption" value="EnRelief">
                     <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
@@ -422,11 +422,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <!-- Checkbox pour afficher le date picker -->
                     <label class="taille">
-                        <input type="checkbox" id="datePickerToggle2" class="datePickerToggle"> Ajouter une date personnalisée
+                        <input type="checkbox" id="datePickerToggle2" class="datePickerToggle taille5"> Ajouter une date personnalisée
                     </label>
                     
                     <!-- Date picker (caché par défaut) -->
-                    <input class="taille2 datePicker" type="date" name="customDate" id="customDate2" style="display: none;">
+                    <input class="datePicker" type="date" name="customDate" id="customDate2" style="display: none;">
                 </form>
                 <?php
                 if (!$optionRelief) {

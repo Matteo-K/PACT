@@ -2212,7 +2212,68 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .formopt{
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
+
+/* Style général pour le date picker */
+.datePicker {
+  width: 100%; /* Prend toute la largeur disponible */
+  max-width: 300px; /* Limite la largeur */
+  padding: 10px; /* Espacement interne */
+  font-size: 16px; /* Texte lisible */
+  font-family: Arial, sans-serif; /* Police simple */
+  border: 2px solid #007BFF; /* Bordure bleue */
+  border-radius: 5px; /* Coins arrondis */
+  background-color: #fff; /* Fond blanc */
+  color: #333; /* Texte noir/gris */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Légère ombre */
+  transition: all 0.3s ease; /* Transition douce pour interactions */
+  display: none; /* Caché par défaut */
+}
+
+/* Style au focus */
+.datePicker:focus {
+  border-color: #0056b3; /* Bleu plus foncé */
+  outline: none; /* Supprime l'effet par défaut */
+  box-shadow: 0 4px 8px rgba(0, 91, 179, 0.2); /* Ombre accentuée */
+}
+
+/* Checkbox pour activer le date picker */
+.datePickerToggle {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #007BFF; /* Texte bleu */
+}
+
+/* Style pour les messages */
+.toggleMessage {
+  font-size: 12px;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* Boutons Ajouter */
+.sectionBtn .modifierBut {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sectionBtn .modifierBut:hover {
+  background-color: #0056b3;
+}
+
+.taille5{
+  margin: 0 !important;
+}
+
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
@@ -2924,7 +2985,7 @@ article#descriptionOffre {
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
-  align-items: flex-end;
+  align-items: center;
 }
 
 article#descriptionOffre h3 {
@@ -4250,7 +4311,7 @@ input[id="siren"] {
   border: 3px solid var(--accent);
 }
 
-input[type="checkbox"] {
+.creation-compte [type="checkbox"] {
   width: 25px;
   height: 25px;
   margin: 0 5px;
