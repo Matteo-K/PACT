@@ -6,6 +6,9 @@ $ouvert = $_GET["ouvert"] ?? null;
 $aujourdhui = new DateTime();
 
 
+// Déterminer l'onglet actif
+$activeTab = $_GET['tab'] ?? 'avis'; // Par défaut, afficher les avis
+
 
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
