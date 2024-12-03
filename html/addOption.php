@@ -15,6 +15,7 @@ if ($_POST['type'] == 'ajout') {
 $stmt = $conn->prepare("SELECT * FROM pact.option");
 $stmt->execute();
 
+$offreId = $_POST['idOffre'] ;
 
 echo <<<HTML
 <form id="redirectForm" method="POST" action="detailsOffer.php">
