@@ -1,8 +1,6 @@
 <?php
 
 require_once 'config.php';
-print_r($_POST);
-
 
 if ($_POST['type'] == 'ajout') {
     if ($_POST['nomOption']=='ALaUne') {
@@ -16,5 +14,17 @@ if ($_POST['type'] == 'ajout') {
 
 $stmt = $conn->prepare("SELECT * FROM pact.option");
 $stmt->execute();
-print_r($stmt->fetchAll());
+
+$offreId = $_POST['idOffre'] ;
+
+echo <<<HTML
+<form id="redirectForm" method="POST" action="detailsOffer.php">
+    <input type="hidden" name="idoffre" value="{$offreId}">
+</form>
+<script>
+    document.getElementById('redirectForm').submit();
+</script>
+HTML;
+
+exit;
 ?>

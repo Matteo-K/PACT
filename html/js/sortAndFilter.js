@@ -243,9 +243,9 @@ function filtrerParPrix(offers) {
 
   // Filtrage des offres selon la plage de prix sélectionnée
   return offers.filter(offer => {
-    const prixRange = getPrixRange(offer.gammeDePrix);
-    const prixMinOffre = prixRange[0];
-    const prixMaxOffre = prixRange[1];
+    const prixRange = getPrixRange(offer.gammeDePrix); // Calcule la plage de prix de l'offre
+    const prixMinOffre = prixRange[0]; // Prix minimum de l'offre
+    const prixMaxOffre = prixRange[1]; // Prix maximum de l'offre
 
     // Vérifie si l'offre est dans la plage de prix spécifiée par l'utilisateur
     return prixMinOffre >= prixMin && prixMaxOffre <= prixMax;
@@ -265,6 +265,7 @@ function getPrixRange(gammeDePrix) {
       return [0, Infinity];
   }
 }
+
 
 // Fonction de filtre par statuts
 function filtrerParStatuts(offers) {
