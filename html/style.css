@@ -1919,12 +1919,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: space-around;
 }
 
-.searchStatutO, .searchStatutF {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
 .searchTitre {
   font-size: 24px;
   color: #000;
@@ -1955,6 +1949,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .searchAvis {
   padding: 5px;
+}
+
+.searchAvis > div {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .avisSearch {
