@@ -104,7 +104,7 @@ function selectSort(array) {
   
   if (radBtnEnAvant.checked) {
     console.log("Tri avec Mise en avant");
-    return array; // Aucun tri, juste mise en avant
+    return sortEnAvant(array);
 
   } else if (radBtnNoteCroissant.checked) {
     console.log("Tri avec Note Croissant");
@@ -123,11 +123,11 @@ function selectSort(array) {
     return sortPrixDecroissant(array);
 
   } else if (radBtnAvisCroissant.checked) {
-    console.log("Tri avec Date Récent");
+    console.log("Tri avec Avis croissant");
     return sortAvisCroissant(array);
 
   } else if (radBtnPrixDecroissant.checked) {
-    console.log("Tri avec Date Ancien");
+    console.log("Tri avec Avis décroissant");
     return sortAvisDecroissant(array);
 
   } else if (radBtnDateCreationRecent.checked) {
@@ -261,8 +261,6 @@ function filtrerParPrix(offers) {
   const prixMin = parseInt(selectPrixMin.value);
   const prixMax = parseInt(selectPrixMax.value);
 
-  console.log(`Filtrage : Prix Min = ${prixMin}, Prix Max = ${prixMax}`);
-
   return offers.filter(offer => {
     if (offer.categorie === 'Restaurant') {
       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
@@ -319,17 +317,24 @@ function filtrerParPeriode(offers) {
   const heureDebut = heureDebut.value;
   const heureFin = heureFin.value;
 
-  if (isNaN(dateDebut.getTime()) || isNaN(dateFin.getTime())) {
+  // Vérification des dates valides
+  if (isNaN(dateDepart.getTime()) || isNaN(dateFin.getTime())) {
     return offers;
   }
 
   return offers.filter(offer => {
+    if (!offer.date) {
+      return false;
+    }
+
     const dateOffre = new Date(offer.date);
     const heureOffre = offer.date.split('T')[1];
 
-    const dateValide = dateOffre >= dateDebut &&  dateOffre <= dateFin;
+    const dateValide = dateOffre >= dateDepart && dateOffre <= dateFin;
 
-    const heureValide = (heureDebut && heureFin) ? (heureOffre >= heureDebut && heureOffre <= heureFin) : true;
+    // Si les heures sont spécifiées, filtrer également par heure
+    const heureValide = (heureDebut && heureFin) ? 
+                        (heureOffre >= heureDebut && heureOffre <= heureFin) : true;
 
     return dateValide && heureValide;
   });
