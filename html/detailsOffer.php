@@ -456,7 +456,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </aside>
             <section class="sectionBtn">
-                <button id="button2" class="modifierBut <?php echo count($optionUne)>=2? 'disabled' : ''; ?>">
+                <button id="button2" class="modifierBut <?php echo count($optionRelief)>=2? 'disabled' : ''; ?>">
                     Ajouter
                 </button>
             </section>
