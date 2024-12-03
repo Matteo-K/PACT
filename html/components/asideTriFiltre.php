@@ -201,7 +201,7 @@
                 <h3>Par date</h3>
                 <div>
                     <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
-                    <input type="date" name="dateDepart" id="dateDepart" value="<?php echo date("Y-m-j"); ?>" min="<?php echo date("Y-m-j"); ?>">
+                    <input type="date" name="dateDepart" id="dateDepart" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>">
                     <input type="time" name="heureDebut" id="heureDebut" >
                 </div>
                 <div>

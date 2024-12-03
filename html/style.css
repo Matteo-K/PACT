@@ -2977,13 +2977,17 @@ article#descriptionOffre {
   align-items: flex-end;
 }
 
-article#descriptionOffre h3, #afficheLoc + h2 {
+article#descriptionOffre h3,.divMenu >  h2 {
   font-size: 2.5em;
   font-weight: 100;
   border-bottom: 2px solid #000;
   padding-bottom: 5px;
   margin-bottom: 15px;
   text-align: center;
+}
+.divMenu{
+  width: 70%;
+  flex-direction: column;
 }
 
 article#descriptionOffre p {

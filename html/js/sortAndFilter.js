@@ -104,7 +104,7 @@ function selectSort(array) {
   
   if (radBtnEnAvant.checked) {
     console.log("Tri avec Mise en avant");
-    return array; // Aucun tri, juste mise en avant
+    return sortEnAvant(array);
 
   } else if (radBtnNoteCroissant.checked) {
     console.log("Tri avec Note Croissant");
@@ -123,11 +123,11 @@ function selectSort(array) {
     return sortPrixDecroissant(array);
 
   } else if (radBtnAvisCroissant.checked) {
-    console.log("Tri avec Date Récent");
+    console.log("Tri avec Avis croissant");
     return sortAvisCroissant(array);
 
   } else if (radBtnPrixDecroissant.checked) {
-    console.log("Tri avec Date Ancien");
+    console.log("Tri avec Avis décroissant");
     return sortAvisDecroissant(array);
 
   } else if (radBtnDateCreationRecent.checked) {
@@ -143,7 +143,17 @@ function selectSort(array) {
 }
 
 function sortEnAvant(array) {
-  return array;
+  return array.sort((offre1, offre2) => {
+    const containsEnReliefA = offre1.option.includes('EnRelief');
+    const containsEnReliefB = offre2.option.includes('EnRelief');
+    
+    if (containsEnReliefA && !containsEnReliefB) {
+        return -1;
+    } else if (!containsEnReliefA && containsEnReliefB) {
+        return 1;
+    }
+    return 0;
+});
 }
 
 function sortNoteCroissant(array) {
@@ -219,10 +229,10 @@ function sortDateCreaAncien(array) {
 function filtrerParCategorie(offers) {
   const categoriesSelection = [];
   
-  if (chkBxParc.checked) categoriesSelection.push("Parc Attraction");
   if (chkBxVisite.checked) categoriesSelection.push("Visite");
   if (chkBxActivite.checked) categoriesSelection.push("Activité");
   if (chkBxSpectacle.checked) categoriesSelection.push("Spectacle");
+  if (chkBxParc.checked) categoriesSelection.push("Parc Attraction");
   if (chkBxRestauration.checked) categoriesSelection.push("Restaurant");
 
   if (categoriesSelection.length == 0) {
@@ -260,8 +270,6 @@ function filtrerParNotes(offers) {
 function filtrerParPrix(offers) {
   const prixMin = parseInt(selectPrixMin.value);
   const prixMax = parseInt(selectPrixMax.value);
-
-  console.log(`Filtrage : Prix Min = ${prixMin}, Prix Max = ${prixMax}`);
 
   return offers.filter(offer => {
     if (offer.categorie === 'Restaurant') {
@@ -313,27 +321,30 @@ function filtrerParStatuts(offers) {
 
 
 // Fonction de filtre par période
-function filtrerParPeriode(offers) {
-  const dateDepart = new Date(dateDepart.value);
-  const dateFin = new Date(dateFin.value);
-  const heureDebut = heureDebut.value;
-  const heureFin = heureFin.value;
+// function filtrerParPeriode(offers) {
+//   const dateDepartValue = new Date(dateDepart.value);
+//   const dateFinValue = new Date(dateFin.value);
+//   const heureDebutValue = heureDebut.value;
+//   const heureFinValue = heureFin.value;
 
-  if (isNaN(dateDebut.getTime()) || isNaN(dateFin.getTime())) {
-    return offers;
-  }
+//   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
+//     return offers;
+//   }
 
-  return offers.filter(offer => {
-    const dateOffre = new Date(offer.date);
-    const heureOffre = offer.date.split('T')[1];
+//   return offers.filter(offer => {
+//     if (!offer.date) {
+//       return false;
+//     }
 
-    const dateValide = dateOffre >= dateDebut &&  dateOffre <= dateFin;
+//     const dateOffre = new Date(offer.date);
+//     const heureOffre = offer.date.split('T')[1];
 
-    const heureValide = (heureDebut && heureFin) ? (heureOffre >= heureDebut && heureOffre <= heureFin) : true;
+//     const dateValide = dateOffre >= dateDepartValue && dateOffre <= dateFinValue;
+//     const heureValide = (heureDebutValue && heureFinValue) ? (heureOffre >= heureDebutValue && heureOffre <= heureFinValue) : true;
 
-    return dateValide && heureValide;
-  });
-}
+//     return dateValide && heureValide;
+//   });
+// }
 
 
 // Fonction de filtre par lieu

@@ -845,25 +845,32 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt = $conn -> prepare("SELECT * from pact._menu where idoffre = $idOffre");
         $stmt -> execute();
         $menus = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-    ?>
-        <h2>Menu</h2>
-        <div class="swiper-container menu-container">
-            <div class="swiper menu">
-                <div class="swiper-wrapper">
-                    <?php
-                    foreach ($menus as $menu) {
-                    ?>
-                        <div class="swiper-slide">
-                            <img src="<?php echo $menu['menu']; ?>" />
-                        </div>
-                    <?php
-                    }
-                    ?>
-                </div>
-            </div>
 
+        if($menus){
+        ?>
+
+        <div class="divMenu">
+            <h2>Menu</h2>
+            <div class="swiper-container menu-container">
+                <div class="swiper menu">
+                    <div class="swiper-wrapper">
+                        <?php
+                        foreach ($menus as $menu) {
+                        ?>
+                            <div class="swiper-slide">
+                                <img src="<?php echo $menu['menu']; ?>" />
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    <?php
+        <?php
+            
+        }
     }
     if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
         require_once __DIR__ . "/components/avis/avisPro.php";
