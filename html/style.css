@@ -3111,19 +3111,20 @@ section#infoComp div {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 0;
   height: 2px;
-  background-color: transparent;
-  transition: all 0.3s ease;
+  background-color: #007BFF; /* Couleur de soulignement */
+  transition: width 0.3s ease;
 }
 
 #tab-container > nav > h3.selected::after {
-  background-color: #007BFF; /* Couleur de soulignement */
+  width: 100%;
 }
 
 #tab-container > nav > h3.selected {
   color: #007BFF; /* Couleur du texte quand sélectionné */
 }
+
 
 #tab-avis.selected::after {
   width: 100%;
