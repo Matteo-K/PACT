@@ -279,8 +279,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                           
                 <!-- Titres des onglets -->
                 <section class="titre">
-                  <h2 class="tab active" data-tab="1">Gestion des options</h2>
-                  <h2 class="tab" data-tab="2">Ajouter une option</h2>
+                  <p class="tab active" data-tab="1">Gestion des options</p>
+                  <p class="tab" data-tab="2">Ajouter une option</p>
                   <!-- Trait qui se déplace sous les onglets -->
                   <section class="traitBouge"></section>
                 </section>
@@ -319,9 +319,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         $dureeRestante = $dateActuelle->diff($dateFin);
                                                         $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
-                                                        <form action="" method="post">
+                                                        <form action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="arreter">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                                            <input type="hidden" name="nom" value="<?php echo $value['nomoption'] ?>">
                                                             <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
                                                             <button class="modifierBut">Arrêter</button>
                                                         </form>

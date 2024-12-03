@@ -466,18 +466,6 @@ function createCard(offer) {
 
   infoOffre.appendChild(resume);
 
-  let ouverture = document.createElement("p");
-  ouverture.id = "couleur-" + offer.idOffre;
-  if (offer.ouverture == "EstOuvert") {
-    ouverture.classList.add("searchStatutO");
-    ouverture.textContent = "Ouvert";
-  } else {
-    ouverture.classList.add("searchStatutF");
-    ouverture.textContent = "Fermé";
-  }
-
-  infoOffre.appendChild(ouverture);
-
   card.appendChild(infoOffre);
   card.appendChild(avisSearch(offer));
 
@@ -570,10 +558,26 @@ function avisSearch(offer) {
   titre.classList.add("avisSearch");
   titre.textContent = "Les avis les plus récent :";
 
+  let divTitre = document.createElement("div");
+
+  // Ouvert fermé
+  let ouverture = document.createElement("p");
+  ouverture.id = "couleur-" + offer.idOffre;
+  if (offer.ouverture == "EstOuvert") {
+    ouverture.classList.add("searchStatutO");
+    ouverture.textContent = "Ouvert";
+  } else {
+    ouverture.classList.add("searchStatutF");
+    ouverture.textContent = "Fermé";
+  }
+
+  divTitre.appendChild(titre)
+  divTitre.appendChild(ouverture);
+
   let tempPasAvis = document.createElement("p");
   tempPasAvis.textContent = "Pas d'avis";
 
-  div.appendChild(titre);
+  div.appendChild(divTitre);
   div.appendChild(note(offer));
   div.appendChild(tempPasAvis);
 

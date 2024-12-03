@@ -64,35 +64,41 @@
                     Nombre d'avis
                 </h2>
                 <h2>
-                    <?php echo $avis[0]["nbnote"] ?>
+                    <?php
+                    if($avis) {
+                         echo count($avis);
+                    }else {
+                        echo 0;
+                    } ?>
                 </h2>
                 
             </summary>
 
             <div class="contentDetails">
+
+            <?php 
+                if($avis) {
+            ?>
             
                 <h3>
                     <div class="nonLu"></div>
-                    <?php echo $avis[0]["avisnonlus"] ?>
+                    Non lus
                 </h3>
                 <h3>
-                    nb
+                    <?php echo $avis[0]["avisnonlus"] ?>
                 </h3>
 
                 <h3>
                     <div class="nonRepondu"></div>
-                    <?php echo $avis[0]["avisnonrepondus"] ?>
+                    Non répondus
                 </h3>
                 <h3>
-                    nb
+                    <?php echo $avis[0]["avisnonrepondus"] ?>
                 </h3>
 
 
                 <?php
 
-                if (!$avis) {
-                    echo '<p>Pas de note pour le moment</p>';
-                } else {
                     $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
                     $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
                 ?>
@@ -135,11 +141,17 @@
                             ?>
                         </div>
                     </div>
-                <?php
+
+            <?php
                 }
-                ?>
+                else {
+                    echo "Aucune donnée a afficher : vous n'avez pas encore d'avis";
+                }
+            ?>
 
             </div>
+
+            
 
         </details> 
 
@@ -157,7 +169,7 @@
             <div class="noteEtoile">
 
                 <?php
-                    for ($i = 0; $i < $av['note']; $i++) {
+                    for ($i = 0; $i < 5; $i++) {
                         echo "<div class='star'></div>";
                     }
                 ?>
