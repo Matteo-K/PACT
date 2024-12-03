@@ -3072,8 +3072,7 @@ section#infoComp div {
 .avis {
   width: 95%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1em;
   align-items: center;
   justify-content: center;
@@ -3089,12 +3088,10 @@ section#infoComp div {
 }
 
 avis-section, avis-section > avis-component {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 3em;
+    width: 95%;
+    gap: 3em;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .avis>nav>h3 {
