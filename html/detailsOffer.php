@@ -320,6 +320,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         <button class="modifierBut">Arrêter</button>
                                                         <?php
                                                     } else {
+                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option pas commencer : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
                                                         <button class="modifierBut">Résilier</button>
                                                         <?php

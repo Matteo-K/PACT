@@ -14,13 +14,13 @@ if ($_POST['type'] == 'ajout') {
     $stmt = $conn->prepare("SELECT statut FROM pact.offres WHERE idoffre=?");
     $stmt->execute([$offreId]);
     $EnLigne = $stmt->fetchAll();
-    $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? and datefin >= CURRENT_DATE");
-    $stmt->execute([$offreId]);
-    $result = $stmt->fetchAll();
-    $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? and (datefin >= CURRENT_DATE OR datefin IS NULL)");
-    $stmt->execute([$offreId]);
-    $ttOpt = $stmt->fetchAll();
-    if ($EnLigne[0]['statut'] == 'actif' && !$result) {
+    $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? AND nomoption = ? and datefin >= CURRENT_DATE");
+    $stmt->execute([$offreId,'ALaUne']);
+    $resultUne = $stmt->fetchAll();
+    $stmt->execute([$offreId,'EnRelief']);
+    $resultRelief = $stmt->fetchAll();
+    
+    if ($EnLigne[0]['statut'] == 'actif' && ($_POST['nomOption']=='ALaUne'? !$resultUne : !$resultRelief)) {
         $duree = $_POST['nbWeek'] * 7;
         $date = new DateTime();
         $date->modify("+$duree days"); // Ajout de la durée
@@ -31,7 +31,11 @@ if ($_POST['type'] == 'ajout') {
         $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,CURRENT_DATE,?,?,?,?)");
         $stmt->execute([$_POST['idOffre'], $formattedDate , $_POST['nbWeek'], $prix , $_POST['nomOption']]);
     }else {
-        if (count($ttOpt)<=2) {
+        $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? AND nomoption = ? AND datefin IS NULL");
+        $stmt->execute([$offreId,$_POST['nomOption']]);
+        $ttOpt = $stmt->fetchAll();
+        print_r($ttOpt);
+        if (count($ttOpt)<1) {
             $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
             $stmt->execute([$_POST['idOffre'], $_POST['nbWeek'], $prix , $_POST['nomOption']]);
         }
