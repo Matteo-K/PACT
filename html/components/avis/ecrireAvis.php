@@ -1,7 +1,4 @@
-<?php
 
-require_once __DIR__ . "../../../config.php";
-?>
 <div>
     <?php
         for($i = 1; $i <= 5; $i++){

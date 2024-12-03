@@ -889,19 +889,21 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
         require_once __DIR__ . "/components/avis/avisPro.php";
     } else {
-    ?>
-        <div class="avis">
-            <nav>
-                <h3 role="button" tabindex="0" id="tab-avis" class="active">Avis</h3>
-                <h3 role="button" tabindex="0" id="tab-publiez">Publiez un avis</h3>
-            </nav>
+    ?>  <div class="avis">
+            <div id="tab-container">
+                <button id="tab-avis">Avis</button>
+                <button id="tab-publiez">Publiez un avis</button>
+            </div>
 
-            <section id="avis-section">
-                <?php
-                // Inclusion du composant pour afficher les avis
-                require_once __DIR__ . "/components/avis/avisMembre.php";
-                ?>
-            </section>
+            <div id="avis-section">
+                <!-- Contenu chargé dynamiquement -->
+                <div id="avis-component" style="display: none;">
+                    <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
+                </div>
+                <div id="publiez-component" style="display: none;">
+                    <?php require_once __DIR__ . "/components/avis/ecrireAvis.php"; ?>
+                </div>
+            </div>
         </div>
         <?php
         }
@@ -915,44 +917,30 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     document.addEventListener("DOMContentLoaded", () => {
     const tabAvis = document.getElementById("tab-avis");
     const tabPubliez = document.getElementById("tab-publiez");
-    const avisSection = document.getElementById("avis-section");
+    const avisComponent = document.getElementById("avis-component");
+    const publiezComponent = document.getElementById("publiez-component");
 
-    // Fonction générique pour charger un composant
-    const loadComponent = (url, targetElement) => {
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Erreur HTTP : ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(html => {
-                targetElement.innerHTML = html;
-            })
-            .catch(error => console.error(`Erreur lors du chargement de ${url} :`, error));
-    };
-
-    // Activer l'onglet Avis
+    // Activer l'onglet "Avis"
     tabAvis.addEventListener("click", () => {
-        tabPubliez.classList.remove("active");
         tabAvis.classList.add("active");
+        tabPubliez.classList.remove("active");
 
-        // Charger le composant avis
-        loadComponent("components/avis/avisMembre.php", avisSection);
+        // Afficher le composant des avis
+        avisComponent.style.display = "block";
+        publiezComponent.style.display = "none";
     });
 
-    // Activer l'onglet Publiez un avis
+    // Activer l'onglet "Publiez un avis"
     tabPubliez.addEventListener("click", () => {
-        tabAvis.classList.remove("active");
         tabPubliez.classList.add("active");
+        tabAvis.classList.remove("active");
 
-        // Charger le formulaire pour écrire un avis
-        loadComponent("components/avis/ecrireAvis.php", avisSection);
+        // Afficher le composant pour écrire un avis
+        publiezComponent.style.display = "block";
+        avisComponent.style.display = "none";
     });
-
-    // Charger l'onglet par défaut (Avis)
-    loadComponent("components/avis/avisMembre.php", avisSection);
 });
+
 /** fin script chargement composant */
 
     document.addEventListener('DOMContentLoaded', function () {
