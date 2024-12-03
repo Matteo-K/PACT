@@ -1048,7 +1048,6 @@ header ul+div {
   z-index: 2;
   background-color: transparent;
   border: transparent 5px solid;
-  border-radius: 10px 10px 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
