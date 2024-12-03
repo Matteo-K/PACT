@@ -149,8 +149,15 @@ function formatDateEnFrancais(DateTime $date) {
     return "$jour $jourMois $mois $annee";
 }
 
-function convertionMinuteHeure($tempsEnMinute){
-    return $tempsEnMinute / 60 . "h " . $tempsEnMinute%60 . "min" ;
+function convertionMinuteHeure($tempsEnMinute) {
+    $heures = floor($tempsEnMinute / 60);
+    $minutes = $tempsEnMinute % 60;
+    
+    if ($minutes == 0) {
+        return $heures . "h";
+    } else {
+        return $heures . "h " . $minutes . "min";
+    }
 }
 
 if (!$result) {
@@ -313,6 +320,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         <button class="modifierBut">Arrêter</button>
                                                         <?php
                                                     } else {
+                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option pas commencer : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
                                                         <button class="modifierBut">Résilier</button>
                                                         <?php
