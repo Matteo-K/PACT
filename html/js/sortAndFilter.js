@@ -312,28 +312,34 @@ function filtrerParStatuts(offers) {
 
 // Fonction de filtre par période
 function filtrerParPeriode(offers) {
-  const dateDepartValue = new Date(dateDepart.value);
-  const dateFinValue = new Date(dateFin.value);
-  const heureDebutValue = heureDebut.value;
-  const heureFinValue = heureFin.value;
+  const dateDepart = new Date(dateDepart.value);
+  const dateFin = new Date(dateFin.value);
+  const heureDebut = heureDebut.value;
+  const heureFin = heureFin.value;
 
-  // Vérifier que les dates sont valides
-  if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
+  // Vérification des dates valides
+  if (isNaN(dateDepart.getTime()) || isNaN(dateFin.getTime())) {
     return offers;
   }
 
   return offers.filter(offer => {
+    if (!offer.date) {
+      return false;
+    }
+
     const dateOffre = new Date(offer.date);
     const heureOffre = offer.date.split('T')[1];
 
-    const dateValide = dateOffre >= dateDepartValue && dateOffre <= dateFinValue;
+    const dateValide = dateOffre >= dateDepart && dateOffre <= dateFin;
 
-    // Si l'heure est spécifiée, filtrer aussi par heure
-    const heureValide = (heureDebutValue && heureFinValue) ? (heureOffre >= heureDebutValue && heureOffre <= heureFinValue) : true;
+    // Si les heures sont spécifiées, filtrer également par heure
+    const heureValide = (heureDebut && heureFin) ? 
+                        (heureOffre >= heureDebut && heureOffre <= heureFin) : true;
 
     return dateValide && heureValide;
   });
 }
+
 
 // Fonction de filtre par lieu
 // function filtrerParLieu(offers) {
