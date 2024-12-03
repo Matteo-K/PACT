@@ -159,7 +159,7 @@ function sortprixCroissant(array) {
       ? getPrixRange(offre2.gammeDePrix)[0] 
       : (offre2.prixMinimal || 0);
     
-    return prix2 - prix1;
+    return prix1 - prix2;
   });
 }
 
@@ -172,7 +172,7 @@ function sortPrixDecroissant(array) {
       ? getPrixRange(offre2.gammeDePrix)[0] 
       : (offre2.prixMinimal || 0);
     
-    return prix1 - prix2;
+    return prix2 - prix1;
   });
 }
 
