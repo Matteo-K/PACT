@@ -292,7 +292,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         }
                         if ($mesOtion != []) {
                             ?>
-                                <strong><p>Mes options : </p></strong>
+                                <strong><p class="taille3">Mes options : </p></strong>
                                 <ul>
                                     <?php
                                         foreach ($mesOtion as $key => $value) {
