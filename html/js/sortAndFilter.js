@@ -566,7 +566,7 @@ function note(offer) {
   let divStar = document.createElement("div");
   divStar.classList.add("noteSearch");
 
-  divStar.appendChild(displayStar(offer));
+  divStar.appendChild(displayStar(offer.noteAvg));
 
   let note = document.createElement("p");
   note.textContent = offer.noteAvg;
@@ -611,12 +611,12 @@ function avisSearch(offer) {
   return div;
 }
 
-function displayStar(offer) {
+function displayStar(note) {
   let container = document.createElement("span");
   container.classList.add("blcStarSearch");
 
-  const etoilesPleines = Math.floor(offer.noteAvg);
-  const reste = offer.noteAvg - etoilesPleines;
+  const etoilesPleines = Math.floor(note);
+  const reste = note - etoilesPleines;
 
   for (let i = 1; i <= etoilesPleines; i++) {
     let star = document.createElement('div');
@@ -646,9 +646,39 @@ function displayStar(offer) {
 function displayAvis(offer) {
   let blcAvis = document.createElement("div");
 
-  console.log(offer.avis);
+  if (!offer.avis || offer.avis.length === 0) {
+    blcAvis.textContent = "Aucun avis";
+  } else {
+    let avisCount = Math.min(offer.avis.length, 2);
+    for (let i = 0; i < avisCount; i++) {
+      let avis = JSON.parse(offer.avis[i]);
+
+      let conteneur = document.createElement("div");
+      conteneur.classList.add("avisSearch");
+
+      // Extraire les informations de l'avis
+      let pseudo = avis.pseudo || "Anonyme";
+      let titre = avis.titre || "Pas de titre";
+      let note = avis.note || 0;
+      let contenu = avis.contenue || "Pas de contenu";
+
+      let enTete = document.createElement("h5");
+      enTete.textContent = pseudo + " - " + titre
+
+      let p = document.createElement("p");
+      p.textContent = contenu;
+
+      conteneur.appendChild(enTete);
+      conteneur.appendChild(displayStar(note));
+      conteneur.appendChild(p);
+      
+      blcAvis.appendChild(conteneur);
+    }
+  }
+
   return blcAvis;
 }
+
 
 /* ### Evènements ### */
 
