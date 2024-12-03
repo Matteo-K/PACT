@@ -947,7 +947,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         tabPubliez.classList.remove("active");
 
         // Afficher le composant des avis
-        avisComponent.style.display = "block";
+        avisComponent.style.display = "flex";
         publiezComponent.style.display = "none";
     });
 
@@ -957,7 +957,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         tabAvis.classList.remove("active");
 
         // Afficher le composant pour écrire un avis
-        publiezComponent.style.display = "block";
+        publiezComponent.style.display = "flex";
         avisComponent.style.display = "none";
     });
 });
