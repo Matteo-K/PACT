@@ -942,7 +942,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
             });
         });
-
+    });
     /** Fin du script */
 
     document.addEventListener('DOMContentLoaded', function () {
