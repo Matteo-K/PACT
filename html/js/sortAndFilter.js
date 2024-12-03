@@ -212,7 +212,7 @@ function sortAvisDecroissant(array) {
 
 function sortDateCreaRecent(array) {
   return array.sort((offre1, offre2) => {
-    console.log("offre1 : "+ (offre1.horaireMidi || offre1.horaire));
+    console.log("offre1 : "+ (offre1.dateCreation));
     return offre1.dateCreation - offre2.dateCreation
   });
 }
