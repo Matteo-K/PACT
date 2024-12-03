@@ -149,8 +149,15 @@ function formatDateEnFrancais(DateTime $date) {
     return "$jour $jourMois $mois $annee";
 }
 
-function convertionMinuteHeure($tempsEnMinute){
-    return $tempsEnMinute / 60 . "h " . $tempsEnMinute%60 . "min" ;
+function convertionMinuteHeure($tempsEnMinute) {
+    $heures = floor($tempsEnMinute / 60);
+    $minutes = $tempsEnMinute % 60;
+    
+    if ($minutes == 0) {
+        return $heures . "h";
+    } else {
+        return $heures . "h " . $minutes . "min";
+    }
 }
 
 if (!$result) {
