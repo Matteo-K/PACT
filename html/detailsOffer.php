@@ -372,7 +372,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </strong>
         <section class="donnee">
             <aside>
-                <form id="formOpt1" action="addOption.php" method="post">
+                <form class="formopt" id="formOpt1" action="addOption.php" method="post">
                     <input type="hidden" name="nomOption" value="ALaUne">
                     <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                     <input type="hidden" name="type" value="ajout">
@@ -411,7 +411,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </strong>
         <section class="donnee">
             <aside>
-                <form id="formOpt2" action="addOption.php" method="post">
+                <form class="formopt" id="formOpt2" action="addOption.php" method="post">
                     <input type="hidden" name="nomOption" value="EnRelief">
                     <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                     <input type="hidden" name="type" value="ajout">
