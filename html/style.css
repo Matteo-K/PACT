@@ -1916,6 +1916,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-direction: column;
   width: 40%;
   justify-content: space-around;
+  position: relative;
+}
+
+.searchStatutO, .searchStatutF {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
 }
 
 .searchTitre {
@@ -3288,11 +3295,11 @@ details[open] .custom-marker {
 .contentDetails{
   overflow: hidden; 
   max-height: 0; 
-  transition: max-height 0.3s ease;
+  transition: max-height 0.5s ease;
 }
 
 details.animating .contentDetails {
-  transition: max-height 0.3s ease;
+  transition: max-height 0.5s ease;
 }
 
 #avisproS2 > details h2{
