@@ -604,6 +604,8 @@ function avisSearch(offer) {
   let tempPasAvis = document.createElement("p");
   tempPasAvis.textContent = "Pas d'avis";
 
+  console.log(offer.avis);
+
   div.appendChild(divTitre);
   div.appendChild(note(offer));
   div.appendChild(tempPasAvis);
