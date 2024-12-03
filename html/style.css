@@ -3101,13 +3101,13 @@ section#infoComp div {
   transition: color 0.3s ease;
 }
 
-#tab-container > nav > h3::after {
+#tab-container > nav > h3{
   height: 2px;
   background-color: #007BFF; /* Couleur de soulignement */
   transition: width 0.3s ease;
 }
 
-#tab-container > nav > h3.selected::after {
+#tab-container > nav > h3.selected{
   width: 100%;
 }
 
@@ -3116,11 +3116,11 @@ section#infoComp div {
 }
 
 
-#tab-avis.selected::after {
+#tab-avis.selected {
   text-decoration: underline;
 }
 
-#tab-publiez.selected::after {
+#tab-publiez.selected {
   text-decoration: underline;
 }
 
