@@ -338,7 +338,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                     <input type="hidden" name="type" value="ajout">
                                     <label class="taille" for="nbWeek">Nombre de semaine à la Une</label>
-                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="1">
+                                    <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
                                 </form>
                                 <?php
                                 if (!$optionUne) {
@@ -368,7 +368,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                     <input type="hidden" name="type" value="ajout">
                                     <label class="taille" for="nbWeek">Nombre de semaine en Relief</label>
-                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="1">
+                                    <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
                                 </form>
                                 <?php
                                 if (!$optionUne) {
