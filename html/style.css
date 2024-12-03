@@ -3101,12 +3101,13 @@ section#infoComp div {
   transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
-#tab-avis.selected {
+#tab-avis.selected, #tab-publiez.selected {
   text-decoration: underline;
+  text-decoration-color: var(--bloc); /* Couleur du soulignement */
 }
 
-#tab-publiez.selected {
-  text-decoration: underline;
+#tab-container > nav > h3.selected {
+  color: var(--bloc); /* Couleur du texte quand sélectionné */
 }
 
 
