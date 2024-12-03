@@ -295,13 +295,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <strong><p>Mes options : </p></strong>
                                 <ul>
                                     <?php
-                                    print_r($mesOtion);
                                         foreach ($mesOtion as $key => $value) {
                                             ?>
                                             <li>
                                                 <section class="popUpOption">
                                                     <?php
-                                                    print_r($value);
                                                     if ($value['datefin'] != null) {
                                                         $dateActuelle = NEW DateTime();
                                                         $dateFin = NEW DateTime($value['datefin']);
