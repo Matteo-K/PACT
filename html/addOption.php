@@ -49,15 +49,17 @@ if ($_POST['type'] == 'ajout') {
                 $stmt->execute([$offreId,$_POST['nomOption']]);
                 $ttOpt = $stmt->fetchAll();
                 if (count($ttOpt)<2) {
-                    $duree = $_POST['nbWeek'] * 7;
-                    $dt = NEW DateTime($ttOpt[0]['datefin']);
-                    $dt->modify("+$duree days"); // Ajout de la durée
-                    $formattedDate = $dt->format('Y-m-d');
-                    $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,?,?,?,?,?)");
-                    $stmt->execute([$_POST['idOffre'], $ttOpt[0]['datefin'], $formattedDate, $_POST['nbWeek'], $prix , $_POST['nomOption']]);
-                }else {
-                    $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
-                    $stmt->execute([$_POST['idOffre'], $_POST['nbWeek'], $prix , $_POST['nomOption']]);
+                    if ($ttOpt) {
+                        $duree = $_POST['nbWeek'] * 7;
+                        $dt = NEW DateTime($ttOpt[0]['datefin']);
+                        $dt->modify("+$duree days"); // Ajout de la durée
+                        $formattedDate = $dt->format('Y-m-d');
+                        $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,?,?,?,?,?)");
+                        $stmt->execute([$_POST['idOffre'], $ttOpt[0]['datefin'], $formattedDate, $_POST['nbWeek'], $prix , $_POST['nomOption']]);
+                    }else {
+                        $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
+                        $stmt->execute([$_POST['idOffre'], $_POST['nbWeek'], $prix , $_POST['nomOption']]);
+                    }
                 }
             }
         }
