@@ -3579,6 +3579,9 @@ details .nonLu, details .nonRepondu{
   border-radius: 5px;
 }
 
+.star.pleine{
+  background-color:var(--accent)
+}
 
 .star.partielle {
   background: linear-gradient(to right, var(--accent) var(--pourcentage), var(--background-avis) var(--pourcentage));
