@@ -271,7 +271,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   <!-- Trait qui se déplace sous les onglets -->
                   <section class="traitBouge"></section>
                 </section>
-                <section class="contentPop" id="content-1">
+                <section class="contentPop active" id="content-1">
                     <?php 
                         $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'ALaUne'");
                         $option->execute([$idOffre]);
@@ -336,7 +336,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <form action="" method="post">
                                     <input type="hidden" name="nomOption" value="ALaUne">
                                     <label class="taille" for="nbWeekALaUne">Nombre de semaine à la Une</label>
-                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="1">
                                 </form>
                                 <?php
                                 if (!$optionUne) {
@@ -361,10 +361,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </strong>
                         <section class="donnee">
                             <aside>
-                                <form action="" method="post">
+                                <form class="donneeForm" action="" method="post">
                                     <input type="hidden" name="nomOption" value="ALaUne">
                                     <label class="taille" for="nbWeekALaUne">Nombre de semaine en Relief</label>
-                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4">
+                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="1">
                                 </form>
                                 <?php
                                 if (!$optionUne) {
