@@ -628,23 +628,49 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt = $conn -> prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
                     $stmt -> execute();
                     $langues = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-                ?>
-                    <p>Langues : 
-                <?php
-                    foreach($langues as $key => $langue){
-                        echo $langue["langue"]?>   
-                <?php
-                        if(count($langues) != $key +1){
-                            echo ", ";
+                    if($langues){
+                        ?>
+                        <p>Langues : 
+                    <?php
+                        foreach($langues as $key => $langue){
+                            echo $langue["langue"]?>   
+                    <?php
+                            if(count($langues) != $key +1){
+                                echo ", ";
+                            }
                         }
+                    ?>
+                        </p>
+                    <?php
                     }
-                ?>
-                    </p>
-                <?php
                 }
                 ?>
             </div>
         <?php
+        } else if($typeOffer == "Spectacle"){
+            $stmt = $conn -> prepare("SELECT * from pact.spectacles where idoffre = $idOffre");
+            $stmt -> execute();
+            $spectacle = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <div>
+                <p>Durée : <?= convertionMinuteHeure($spectacle[0]['duree'])?></p>
+                <p>Nombre de places : <?= $spectacle[0]['nbplace']?></p>
+            </div>
+            <?php
+        } else if($typeOffer == "Activité" || $typeOffer == "Parc Attraction"){
+            if($typeOffer == "Activité"){
+                $stmt = $conn -> prepare("SELECT * from pact.activites where idoffre = $idOffre");
+            } 
+            else{
+                $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idoffre = $idOffre");
+            }
+            $stmt -> execute();
+            $theme = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <div>
+                <p>Âge minimum : <?= $theme[0]['agemin']?></p>
+            </div>
+            <?php
         }
         ?>
         <table>
