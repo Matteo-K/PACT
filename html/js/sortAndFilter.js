@@ -649,37 +649,41 @@ radBtnNoteDecroissant.addEventListener("click", () => goToPage(currentPage));
 radBtnprixCroissant.addEventListener("click", () => goToPage(currentPage));
 radBtnPrixDecroissant.addEventListener("click", () => goToPage(currentPage));
 
-// dates
-radBtnDateRecent.addEventListener("click", () => goToPage(currentPage));
-radBtnDateAncien.addEventListener("click", () => goToPage(currentPage));
+// avis
+radBtnAvisCroissant.addEventListener("click", () => goToPage(currentPage));
+radBtnAvisDecroissant.addEventListener("click", () => goToPage(currentPage));
+
+// date création
+radBtnDateCreationRecent.addEventListener("click", () => goToPage(currentPage));
+radBtnDateCreationAncien.addEventListener("click", () => goToPage(currentPage));
 
 
 
 // Événements des filtres
 // notes
-chkBxNote1.addEventListener("click", () => goToPage(currentPage));
-chkBxNote2.addEventListener("click", () => goToPage(currentPage));
-chkBxNote3.addEventListener("click", () => goToPage(currentPage));
-chkBxNote4.addEventListener("click", () => goToPage(currentPage));
-chkBxNote5.addEventListener("click", () => goToPage(currentPage));
+chkBxNote1.addEventListener("click", () => goToPage(1));
+chkBxNote2.addEventListener("click", () => goToPage(1));
+chkBxNote3.addEventListener("click", () => goToPage(1));
+chkBxNote4.addEventListener("click", () => goToPage(1));
+chkBxNote5.addEventListener("click", () => goToPage(1));
 
 // prix
-selectPrixMin.addEventListener("change", () => goToPage(currentPage));
-selectPrixMax.addEventListener("change", () => goToPage(currentPage));
+selectPrixMin.addEventListener("change", () => goToPage(1));
+selectPrixMax.addEventListener("change", () => goToPage(1));
 
 // statuts
-chkBxOuvert.addEventListener("click", () => goToPage(currentPage));
-chkBxFerme .addEventListener("click", () => goToPage(currentPage));
+chkBxOuvert.addEventListener("click", () => goToPage(1));
+chkBxFerme .addEventListener("click", () => goToPage(1));
 
 // catégories
-chkBxParc.addEventListener("click", () => goToPage(currentPage));
-chkBxVisite.addEventListener("click", () => goToPage(currentPage));
-chkBxActivite.addEventListener("click", () => goToPage(currentPage));
-chkBxSpectacle.addEventListener("click", () => goToPage(currentPage));
-chkBxRestauration.addEventListener("click", () => goToPage(currentPage));
+chkBxParc.addEventListener("click", () => goToPage(1));
+chkBxVisite.addEventListener("click", () => goToPage(1));
+chkBxActivite.addEventListener("click", () => goToPage(1));
+chkBxSpectacle.addEventListener("click", () => goToPage(1));
+chkBxRestauration.addEventListener("click", () => goToPage(1));
 
 // dates
-dateDepart.addEventListener("change", () => goToPage(currentPage));
-heureDebut.addEventListener("change", () => goToPage(currentPage));
-dateFin.addEventListener("change", () => goToPage(currentPage));
-heureFin.addEventListener("change", () => goToPage(currentPage));
+dateDepart.addEventListener("change", () => goToPage(1));
+heureDebut.addEventListener("change", () => goToPage(1));
+dateFin.addEventListener("change", () => goToPage(1));
+heureFin.addEventListener("change", () => goToPage(1));
