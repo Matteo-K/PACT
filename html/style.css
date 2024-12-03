@@ -3094,11 +3094,6 @@ section#infoComp div {
     align-items: flex-start;
 }
 
-#tab-container {
-  display: flex;
-  gap: 20px;
-}
-
 #tab-container > nav > h3 {
   cursor: pointer;
   position: relative;
@@ -3107,11 +3102,6 @@ section#infoComp div {
 }
 
 #tab-container > nav > h3::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
   height: 2px;
   background-color: #007BFF; /* Couleur de soulignement */
   transition: width 0.3s ease;
@@ -3127,11 +3117,11 @@ section#infoComp div {
 
 
 #tab-avis.selected::after {
-  width: 100%;
+  text-decoration: underline;
 }
 
 #tab-publiez.selected::after {
-  width: 100%;
+  text-decoration: underline;
 }
 
 
