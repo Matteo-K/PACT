@@ -13,7 +13,7 @@
         $getOffres = $offres->getArray();
         foreach ($getOffres as $key => $value) { ?>
             <section>
-                <h2><?php echo $value["idOffre"] + " - " + $value["nomOffre"] ?></h2>
+                <h2><?php echo $value['idOffre'] . " - " . $value["nomOffre"]; ?></h2>
                 <p>Data&nbsp;:&nbsp;</p>
                 <?php print_r($value) ?>
                 <input type="text" id="input-<?php echo $key ?>">
