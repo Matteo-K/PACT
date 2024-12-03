@@ -2169,6 +2169,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 1.5rem;
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .taille2{
@@ -2254,22 +2255,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 12px;
   color: #555;
   margin-top: 10px;
-}
-
-/* Boutons Ajouter */
-.sectionBtn .modifierBut {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.sectionBtn .modifierBut:hover {
-  background-color: #0056b3;
 }
 
 .taille5{
@@ -2992,13 +2977,16 @@ article#descriptionOffre {
   align-items: flex-end;
 }
 
-article#descriptionOffre h3 {
+article#descriptionOffre h3, #afficheLoc + h2 {
   font-size: 2.5em;
   font-weight: 100;
   border-bottom: 2px solid #000;
   padding-bottom: 5px;
   margin-bottom: 15px;
   text-align: center;
+}
+#divMenu{
+  width: 70%;
 }
 
 article#descriptionOffre p {
@@ -3384,7 +3372,8 @@ section#infoComp div {
   overflow: hidden;
 }
 
-#avisProS2 > details > summary{
+#avisProS2 summary{
+  display: flex;
   justify-content: space-between;
 }
 
@@ -3414,6 +3403,7 @@ details[open] .custom-marker {
   transition: max-height 0.5s ease;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 details.animating .contentDetails {
@@ -3454,7 +3444,7 @@ details .nonLu, details .nonRepondu{
   left: 20px;
 }
 
-#avisPro .notedetaille{
+#avisPro .notation{
   width: 100%;
 }
 
@@ -4315,10 +4305,11 @@ input[id="siren"] {
   border: 3px solid var(--accent);
 }
 
-input[type="checkbox"] {
+.creation-compte input[type="checkbox"] {
   width: 25px;
   height: 25px;
   margin: 0 5px;
+  border: 3px solid var(--accent);
 }
 
 button[id="boutonInscription"] {
