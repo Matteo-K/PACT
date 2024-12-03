@@ -153,6 +153,7 @@ class Offer {
         'note' => $result['note']
       ]);
     }
+    return $formattedResultats;
   }
 
   /**
@@ -233,9 +234,6 @@ class Offer {
     $this->noteAvg = number_format($noteAvg_,1);
     $this->nbNote = $nbNote_;
     $this->avis = $avis_;
-
-    print_r($this->avis);
-
   }
 
   public function getData() {
