@@ -135,7 +135,15 @@ function sortEnAvant(array) {
 }
 
 function sortNoteCroissant(array) {
-  return array.sort((a, b) => attribuerEtoiles(parseFloat(a.noteAvg)) - attribuerEtoiles(parseFloat(b.noteAvg)));
+  return array.sort((a, b) => {
+    const etoile1 = attribuerEtoiles(parseFloat(a.noteAvg));
+    const etoile2 = attribuerEtoiles(parseFloat(b.noteAvg));
+
+    if (etoile1 == 0 || etoile2 == 0) return -10;
+
+    return etoile1 - etoile2;
+  }
+);
 }
 
 function sortNoteDecroissant(array) {
