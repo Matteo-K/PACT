@@ -66,7 +66,7 @@ if ($nouveauStatut=='actif') {
             $relief = false;
         }
 
-        $ajst = $conn->prepare("SELECT datefin FROM pact._dateOption WHERE idoffre=? and (datefin>CURRENT_DATE)");
+        $ajst = $conn->prepare("SELECT datefin FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE)");
         $ajst->execute([$offreId]);
         $dtOpt = $ajst->fetchAll();
 
