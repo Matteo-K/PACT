@@ -213,6 +213,7 @@ function sortAvisDecroissant(array) {
 function sortDateCreaRecent(array) {
   return array.sort((offre1, offre2) => {
     console.log("offre1 : "+ (offre1.dateCreation));
+    console.log("offre2 : "+ (offre2.dateCreation));
     return offre1.dateCreation - offre2.dateCreation
   });
 }
