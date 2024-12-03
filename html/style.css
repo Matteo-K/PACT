@@ -1047,7 +1047,8 @@ header ul+div {
   height: 100px;
   z-index: 2;
   background-color: transparent;
-  border: transparent 3px solid;
+  box-shadow: var(--bloc) 4px 4px 4px;
+  border: transparent 5px solid;
   border-radius: 10px 10px 0 10px;
   display: flex;
   align-items: center;
@@ -1066,7 +1067,7 @@ header ul+div {
 
 #valid-logo {
   font-size: 3rem;
-  color: green;
+  color: var(--bloc);
   display: none;
   align-items: center;
   justify-content: center;
