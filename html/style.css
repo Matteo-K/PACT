@@ -3082,7 +3082,7 @@ tbody td:last-child {
 
 .autreInfoAvis{
   gap:12px
-}
+} 
 
 .user+article>div>div:nth-child(1)>p>strong {
   font-size: 20px;

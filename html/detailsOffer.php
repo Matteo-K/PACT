@@ -669,7 +669,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $theme = $stmt -> fetchAll(PDO::FETCH_ASSOC);
             ?>
             <div>
-                <p>Âge minimum : <?= $theme[0]['agemin']?></p>
+                <p>Âge minimum : <?= $theme[0]['agemin']?> ans</p>
             </div>
             <?php
         }
