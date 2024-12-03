@@ -3109,7 +3109,6 @@ section#infoComp div {
 /* Souligner par défaut tab-avis */
 #tab-avis {
   text-decoration: underline;
-  text-decoration-color: #007BFF; /* Couleur du soulignement */
 }
 
 #tab-container > nav > h3.selected {
@@ -3119,18 +3118,11 @@ section#infoComp div {
 /* Soulignement lorsque l'élément est sélectionné */
 #tab-avis.selected, #tab-publiez.selected {
   text-decoration: underline;
-  text-decoration-color: #007BFF; /* Couleur du soulignement */
-}
-
-/* Lorsque tab-avis n'est pas sélectionné, enlever le soulignement */
-#tab-avis:not(.selected) {
-  text-decoration: none;
 }
 
 /* Lorsque tab-publiez est sélectionné, ajouter le soulignement */
 #tab-publiez.selected {
   text-decoration: underline;
-  text-decoration-color: #007BFF;
 }
 
 
