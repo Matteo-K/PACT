@@ -582,7 +582,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <article id="descriptionOffre">
         <?php
         if (!$avis) {
-            echo '<p>Pas de note pour le moment</p>';
+            echo '<p class="notation">Pas de note pour le moment</p>';
         } else {
             $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
             $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle

@@ -2887,6 +2887,7 @@ tbody td:last-child {
   border-radius: 0.5em;
   padding: 10px;
   margin-top: 1em;
+  width: 70%;
 }
 
 #descriptionOffre>section>p {
@@ -3486,6 +3487,7 @@ details .nonLu, details .nonRepondu{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 30%;
 }
 
 .notation > div > p{
