@@ -2977,13 +2977,16 @@ article#descriptionOffre {
   align-items: flex-end;
 }
 
-article#descriptionOffre h3 {
+article#descriptionOffre h3, #afficheLoc + h2 {
   font-size: 2.5em;
   font-weight: 100;
   border-bottom: 2px solid #000;
   padding-bottom: 5px;
   margin-bottom: 15px;
   text-align: center;
+}
+#divMenu{
+  width: 70%;
 }
 
 article#descriptionOffre p {
@@ -3369,7 +3372,8 @@ section#infoComp div {
   overflow: hidden;
 }
 
-#avisProS2 > details > summary{
+#avisProS2 summary{
+  display: flex;
   justify-content: space-between;
 }
 
@@ -3399,6 +3403,7 @@ details[open] .custom-marker {
   transition: max-height 0.5s ease;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 details.animating .contentDetails {
@@ -3439,7 +3444,7 @@ details .nonLu, details .nonRepondu{
   left: 20px;
 }
 
-#avisPro .notedetaille{
+#avisPro .notation{
   width: 100%;
 }
 

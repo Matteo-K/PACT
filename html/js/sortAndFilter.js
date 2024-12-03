@@ -104,7 +104,7 @@ function selectSort(array) {
   
   if (radBtnEnAvant.checked) {
     console.log("Tri avec Mise en avant");
-    return array; // Aucun tri, juste mise en avant
+    return sortEnAvant(array);
 
   } else if (radBtnNoteCroissant.checked) {
     console.log("Tri avec Note Croissant");
@@ -123,11 +123,11 @@ function selectSort(array) {
     return sortPrixDecroissant(array);
 
   } else if (radBtnAvisCroissant.checked) {
-    console.log("Tri avec Date Récent");
+    console.log("Tri avec Avis croissant");
     return sortAvisCroissant(array);
 
   } else if (radBtnPrixDecroissant.checked) {
-    console.log("Tri avec Date Ancien");
+    console.log("Tri avec Avis décroissant");
     return sortAvisDecroissant(array);
 
   } else if (radBtnDateCreationRecent.checked) {

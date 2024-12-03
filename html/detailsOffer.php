@@ -846,6 +846,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt -> execute();
         $menus = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     ?>
+    <div class="divMenu">
         <h2>Menu</h2>
         <div class="swiper-container menu-container">
             <div class="swiper menu">
@@ -863,6 +864,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
 
         </div>
+    </div>
     <?php
     }
     if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
