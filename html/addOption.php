@@ -11,6 +11,8 @@ if ($_POST['type'] == 'ajout') {
         $prix = $_POST['nbWeek']*10;
     }
 
+    $date = isset($_POST['dtcheck']) ? true : false;
+
     $stmt = $conn->prepare("SELECT statut FROM pact.offres WHERE idoffre=?");
     $stmt->execute([$offreId]);
     $EnLigne = $stmt->fetchAll();
@@ -20,7 +22,7 @@ if ($_POST['type'] == 'ajout') {
     $stmt->execute([$offreId,'EnRelief']);
     $resultRelief = $stmt->fetchAll();
     
-    if ($EnLigne[0]['statut'] == 'actif' && ($_POST['nomOption']=='ALaUne'? !$resultUne : !$resultRelief)) {
+    if ($EnLigne[0]['statut'] == 'actif' && ($_POST['nomOption']=='ALaUne'? !$resultUne : !$resultRelief) && !$date) {
         $duree = $_POST['nbWeek'] * 7;
         $date = new DateTime();
         $date->modify("+$duree days"); // Ajout de la durée
@@ -35,8 +37,17 @@ if ($_POST['type'] == 'ajout') {
         $stmt->execute([$offreId,$_POST['nomOption']]);
         $ttOpt = $stmt->fetchAll();
         if (count($ttOpt)<1) {
-            $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
-            $stmt->execute([$_POST['idOffre'], $_POST['nbWeek'], $prix , $_POST['nomOption']]);
+            if ($date) {
+                $duree = $_POST['nbWeek'] * 7;
+                $dt = NEW DateTime($_POST['customDate']);
+                $dt->modify("+$duree days"); // Ajout de la durée
+                $formattedDate = $dt->format('Y-m-d');
+                $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,?,?,?,?,?)");
+                $stmt->execute([$_POST['idOffre'],$_POST['customDate'],$formattedDate, $_POST['nbWeek'], $prix , $_POST['nomOption']]);
+            }else {
+                $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
+                $stmt->execute([$_POST['idOffre'], $_POST['nbWeek'], $prix , $_POST['nomOption']]);
+            }
         }
     }
 }elseif ($_POST['type'] == 'resilier') {
@@ -78,7 +89,7 @@ echo <<<HTML
     <input type="hidden" name="popup">
 </form>
 <script>
-   // document.getElementById('redirectForm').submit();
+   document.getElementById('redirectForm').submit();
 </script>
 HTML;
 
