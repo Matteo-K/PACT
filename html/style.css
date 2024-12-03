@@ -2257,22 +2257,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-top: 10px;
 }
 
-/* Boutons Ajouter */
-.sectionBtn .modifierBut {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.sectionBtn .modifierBut:hover {
-  background-color: #0056b3;
-}
-
 .taille5{
   margin: 0 !important;
   width: 25px;
