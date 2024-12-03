@@ -51,12 +51,13 @@ if ($nouveauStatut=='actif') {
         $ajst = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin is null)");
         $ajst->execute([$offreId]);
         $tema = $ajst->fetchAll();
+        print_r($tema);
         if ($tema) {
             foreach ($tema as $key => $value) {
-                if ($tema['nomoption'] == 'ALaUne') {
+                if ($value['nomoption'] == 'ALaUne') {
                     $alaUne = $value;
                 }
-                if ($tema['nomoption'] == 'EnRelief') {
+                if ($value['nomoption'] == 'EnRelief') {
                     $relief = $value;
                 }
             }
@@ -65,7 +66,7 @@ if ($nouveauStatut=='actif') {
             $relief = false;
         }
 
-        $ajst = $conn->prepare("SELECT datefin FROM pact._dateOption WHERE idoffre=? and (datefin>CURRENT_DATE)");
+        $ajst = $conn->prepare("SELECT datefin FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE)");
         $ajst->execute([$offreId]);
         $dtOpt = $ajst->fetchAll();
 
