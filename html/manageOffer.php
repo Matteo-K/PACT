@@ -133,6 +133,7 @@
         document.getElementById('valid-logo').style.display = 'flex';
         saveAside.style.borderColor = "#1ca4ed";
         saveAside.style.backgroundColor = "white";
+        saveAside.style.boxShadow = '#034d7c 4px 4px 4px';
       }, 1000); // 1s
       
       setTimeout(() => closeSave(), 10000); // 10s 

@@ -1047,7 +1047,6 @@ header ul+div {
   height: 100px;
   z-index: 2;
   background-color: transparent;
-  box-shadow: var(--bloc) 4px 4px 4px;
   border: transparent 5px solid;
   border-radius: 10px 10px 0 10px;
   display: flex;
