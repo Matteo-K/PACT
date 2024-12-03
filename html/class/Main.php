@@ -22,7 +22,7 @@
                 <pre id="code-<?php echo $key ?>" style="color : green;"></pre>
             </section>
     <?php } ?>
-    <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search)))); ?>'></div>
+    <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray())); ?>'></div>
   </main>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
