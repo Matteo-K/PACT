@@ -602,13 +602,11 @@ function avisSearch(offer) {
   divTitre.appendChild(ouverture);
 
   let tempPasAvis = document.createElement("p");
-  tempPasAvis.textContent = "Pas d'avis";
-
-  console.table(offer);
 
   div.appendChild(divTitre);
   div.appendChild(note(offer));
   div.appendChild(tempPasAvis);
+  div.appendChild(displayAvis(offer));
 
   return div;
 }
@@ -645,6 +643,12 @@ function displayStar(offer) {
   return container;
 }
 
+function displayAvis(offer) {
+  let blcAvis = document.createElement("div");
+
+  console.log(offer.avis);
+  return blcAvis;
+}
 
 /* ### Evènements ### */
 
