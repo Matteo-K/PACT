@@ -3296,6 +3296,7 @@ details[open] .custom-marker {
   overflow: hidden; 
   max-height: 0; 
   transition: max-height 0.5s ease;
+  display: flex;
 }
 
 details.animating .contentDetails {
@@ -3303,8 +3304,17 @@ details.animating .contentDetails {
 }
 
 #avisproS2 > details h2{
+  text-align: right;
+  margin: 0;
+  width: 20%;
+  display: inline-block;
+}
+
+#avisproS2 > details h2:first-child {
   text-align: left;
-  margin: 0 40px;
+  margin: 0 0 0 40px;
+  width: 60%;
+  display: inline-block;
 }
 
 
@@ -3312,11 +3322,23 @@ details.animating .contentDetails {
   font-weight: 500 ;
   font-size: 1.7em;
   margin: 10px 40px;
+  display: inline-block;
+  width: 60%;
+}
+
+#avisPro h3:nth-child(2), #avisPro h3:nth-child(4) {
+  margin: 10px 0;
+  width: 20%;
+  text-align: right;
 }
 
 details .nonLu, details .nonRepondu{
   position: absolute;
   left: 20px;
+}
+
+#avisPro .notedetaille{
+  justify-self: center;
 }
 
 

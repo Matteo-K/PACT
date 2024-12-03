@@ -64,35 +64,36 @@
                     Nombre d'avis
                 </h2>
                 <h2>
-                    <?php echo $avis[0]["nbnote"] ?>
+                    <?php echo count($avis[0]) ?>
                 </h2>
                 
             </summary>
 
             <div class="contentDetails">
+
+            <?php 
+                if($avis) {
+            ?>
             
                 <h3>
                     <div class="nonLu"></div>
-                    <?php echo $avis[0]["avisnonlus"] ?>
+                    Non lus
                 </h3>
                 <h3>
-                    nb
+                    <?php echo $avis[0]["avisnonlus"] ?>
                 </h3>
 
                 <h3>
                     <div class="nonRepondu"></div>
-                    <?php echo $avis[0]["avisnonrepondus"] ?>
+                    Non répondus
                 </h3>
                 <h3>
-                    nb
+                    <?php echo $avis[0]["avisnonrepondus"] ?>
                 </h3>
 
 
                 <?php
 
-                if (!$avis) {
-                    echo '<p>Pas de note pour le moment</p>';
-                } else {
                     $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
                     $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
                 ?>
@@ -135,11 +136,14 @@
                             ?>
                         </div>
                     </div>
-                <?php
+
+            <?php
                 }
-                ?>
+            ?>
 
             </div>
+
+            
 
         </details> 
 
