@@ -199,10 +199,12 @@ class ArrayOffer {
         }
 
         $options = [];
-        $stmt = $conn->prepare("SELECT * FROM pact._option_offre WHERE idoffre = ? AND idoption = (SELECT MAX(idoption) FROM pact._option_offre WHERE idoffre = ?)");
-        $stmt->execute([$offre['idoffre'], $offre['idoffre']]);
+        $stmt = $conn->prepare("SELECT * from pact._option_offre natural join pact._dateoption where idoffre = 3 And datefin >= CURRENT_DATE");
+        $stmt->execute([$offre['idoffre']]);
         while ($resOption = $stmt->fetch(PDO::FETCH_ASSOC)) {
-          $options[] = $resOption["nomoption"];
+          if (!in_array($resOption["nomoption"], $options)) {
+            $options[] = $resOption["nomoption"];
+          }
         }
         
         $moyenne = "";

@@ -143,7 +143,8 @@ function sortNoteDecroissant(array) {
 }
 
 function attribuerEtoiles(note) {
-  if (note <= 1) return 1;
+  if (note == 0) return 0;
+  else if (note <= 1) return 1;
   else if (note <= 2) return 2;
   else if (note <= 3) return 3;
   else if (note <= 4) return 4;
