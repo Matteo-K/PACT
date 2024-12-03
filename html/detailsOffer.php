@@ -319,7 +319,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         $dureeRestante = $dateActuelle->diff($dateFin);
                                                         $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
-                                                        <form action="" method="post">
+                                                        <form action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="arreter">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                                             <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
