@@ -57,7 +57,6 @@ class ArrayOffer {
   private $arrayOffer;
   private $nbOffer;
 
-
   public function __construct($idoffres_ = "") {
     $this->arrayOffer = [];
     $this->nbOffer = 0;
@@ -215,6 +214,17 @@ class ArrayOffer {
         if ($resNote) {
           $moyenne = $resNote["moyenne"] ?? 0;
           $total = $resNote["total"] ?? 0;
+        }
+
+        $avis = [];
+        $stmt = $conn->prepare("SELECT a.* from pact.avis a where idoffre = ? order by datepublie desc limit 2");
+        $stmt->execute([$offre['idoffre']]);
+        while ($resAvis = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          $avis[] = [
+            "titre" => $resAvis["titre"], 
+            "contenue" => $resAvis["content"],
+            "pseudo" => $resAvis["pseudo"]
+          ];
         }
 
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 

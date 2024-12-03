@@ -46,6 +46,24 @@ if ($_POST['type'] == 'ajout') {
     $stmt->execute([$idoption]);
     $stmt = $conn->prepare("DELETE FROM pact._dateOption Where idoption = ?");
     $stmt->execute([$idoption]);
+} elseif ($_POST['type'] == 'arreter') {
+    $idoption = $_POST['idoption'];
+
+    $datetime1 = new DateTime();
+    $stmt = $conn->prepare("SELECT * FROM pact._dateOption WHERE idoption = ?");
+    $stmt->execute([$idoption]);
+    $heure = $stmt->fetchAll();
+    $datetime2 = new DateTime($heure[0]['datefin']);
+
+    // Calculer la différence en jours
+    $interval = $datetime1->diff($datetime2);
+    $days = $interval->days; // Obtenir le nombre total de jours
+
+    // Calculer les semaines et arrondir au supérieur
+    $weeks = ceil($days / 7);
+
+    $stmt = $conn->prepare("UPDATE pact._dateOption SET duree = ?, datefin = CURRENT_DATE WHERE idoption = ?");
+    $stmt->execute([$weeks,$idoption]);
 }
 
 $stmt = $conn->prepare("SELECT * FROM pact.option");
