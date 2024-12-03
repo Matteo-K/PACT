@@ -262,13 +262,11 @@ function filtrerParPrix(offers) {
       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
       const prixMinOffre = prixRange[0];
       const prixMaxOffre = prixRange[1];
-
       // Vérifie si la gamme de prix de l'offre est dans la plage de prix sélectionnée
       return prixMinOffre >= prixMin && prixMaxOffre <= prixMax;
-    } 
-    
-    else {
+    } else {
       // Vérifie si le prix minimal de l'offre est dans la plage de prix sélectionnée
+      prixMinOffre = (offer.prixMinimal || 0);
       return prixMinOffre >= prixMin && prixMinOffre <= prixMax;
     }
   });
