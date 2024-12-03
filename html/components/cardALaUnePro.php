@@ -7,7 +7,7 @@
       <div>
         <div class="hrlBlocIndex">
           <div class="detailsCardOffer">
-            <?php $titre = $nomOffre ?? "Offre ".$idOffre; ?>
+            <?php $titre = empty($nomOffre) ? "Offre ".$idOffre : $nomOffre ; ?>
             <h3><?php echo $nomOffre ?></h3>
             <div class="noteALaUne">
               <span class="blcStarALaUne">
