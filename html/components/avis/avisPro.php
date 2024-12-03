@@ -59,7 +59,8 @@
         <details>
 
             <summary>
-                <h2 class="triangle">
+                <span class="custom-marker">▶</span>
+                <h2>
                     Nombre d'avis
                 </h2>
             </summary>
@@ -133,7 +134,6 @@
         <div class="conteneurAvisPro">
             
             <div id="ligneTitreAvis">
-                <span class="custom-marker">▶</span>
                 <h2>
                     Auteur
                 </h2>
