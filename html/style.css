@@ -3180,7 +3180,6 @@ tbody td:last-child {
   height: 17px; 
   background-color: var(--accent); 
   border-radius: 50%; 
-  margin-right: 15px;
 }
 
 .nonRepondu {
@@ -3189,7 +3188,6 @@ tbody td:last-child {
   height: 20px; 
   border: none;
   background-color: var(--primary);
-  margin-right: 10px;
   clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 88% 75%, 92% 100%, 59% 75%, 0% 75%);
 }
 
@@ -3240,24 +3238,26 @@ tbody td:last-child {
   overflow: none;
 }
 
-
+/* bloc fermable */
 #avisproS2 > details{
   width: 100%;
   background-color: var(--primary60);
   border-radius: 15px;
   padding: 20px;
+  position: relative;
+  overflow: hidden;
+  max-height: auto;
+  transition: max-height 0.3s ease;
 }
 
-#avisPro h3 {
-  font-weight: 500 ;
-  font-size: 1.7em;
-  margin-top: 10px;
+summary::marker{
+  content: "";
 }
 
 .custom-marker {
   position: absolute;
-  top: 20px;
-  left: 50px;
+  top: 40px;
+  left: 20px;
   display: inline-block;
   transform: rotate(0deg); 
   transition: transform 0.3s ease; 
@@ -3269,6 +3269,17 @@ tbody td:last-child {
 /* Change la rotation du triangle lorsque <details> est ouvert */
 details[open] .custom-marker {
   transform: rotate(90deg); 
+}
+
+#avisPro h3 {
+  font-weight: 500 ;
+  font-size: 1.7em;
+  margin: 10px 40px;
+}
+
+details .nonLu, details .nonRepondu{
+  position: absolute;
+  left: 20px;
 }
 
 
@@ -3312,8 +3323,8 @@ details[open] .custom-marker {
   width: 2em;
   height: 2em;
   position: absolute;
-  top: 30px;
-  right: 20px;
+  top: 10px;
+  right: 0;
 }
 
 .conteneurAvisPro .noteEtoile{

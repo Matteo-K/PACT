@@ -47,6 +47,73 @@ if ($nouveauStatut=='actif') {
             $ajst = $conn->prepare("INSERT INTO pact._historiqueStatut(idoffre,datelancement,dureeenligne) VALUES ($offreId,CURRENT_DATE,NULL)");
             $ajst->execute();
         }
+
+        $ajst = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin is null)");
+        $ajst->execute([$offreId]);
+        $tema = $ajst->fetchAll();
+        print_r($tema);
+        if ($tema) {
+            foreach ($tema as $key => $value) {
+                if ($value['nomoption'] == 'ALaUne') {
+                    $alaUne = $value;
+                }
+                if ($value['nomoption'] == 'EnRelief') {
+                    $relief = $value;
+                }
+            }
+        }else {
+            $alaUne = false;
+            $relief = false;
+        }
+
+        $ajst = $conn->prepare("SELECT datefin FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE)");
+        $ajst->execute([$offreId]);
+        $dtOpt = $ajst->fetchAll();
+
+        if (!$dtOpt) {
+            if ($alaUne != false) {
+                $duree = $alaUne['duree_total'] * 7;
+                $date = new DateTime();
+                $date->modify("+$duree days"); // Ajout de la durée
+                $formattedDate = $date->format('Y-m-d'); // Conversion de l'objet DateTime en format SQL compatible
+                        
+                $idoption = $alaUne['idoption'];
+                        
+                // Requête SQL sécurisée avec des paramètres
+                $ajst = $conn->prepare("UPDATE pact._dateoption 
+                                        SET datelancement = CURRENT_DATE, 
+                                            datefin = :datefin 
+                                        WHERE idoption = :idoption");
+            
+                // Liaison des paramètres
+                $ajst->bindParam(':datefin', $formattedDate);
+                $ajst->bindParam(':idoption', $idoption, PDO::PARAM_INT);
+                        
+                // Exécution de la requête
+                $ajst->execute();
+            }
+            if ($relief) {
+                $duree = $relief['duree'] * 7;
+                $date = new DateTime();
+                $date->modify("+$duree days"); // Ajout de la durée
+                $formattedDate = $date->format('Y-m-d'); // Conversion de l'objet DateTime en format SQL compatible
+                        
+                $idoption = $relief['idoption'];
+                        
+                // Requête SQL sécurisée avec des paramètres
+                $ajst = $conn->prepare("UPDATE pact._dateoption 
+                                        SET datelancement = CURRENT_DATE, 
+                                            datefin = :datefin 
+                                        WHERE idoption = :idoption");
+            
+                // Liaison des paramètres
+                $ajst->bindParam(':datefin', $formattedDate);
+                $ajst->bindParam(':idoption', $idoption, PDO::PARAM_INT);
+                        
+                // Exécution de la requête
+                $ajst->execute();
+            }
+        }
     } else {
         // première mise en ligne
         $ajst = $conn->prepare("INSERT INTO pact._historiqueStatut(idoffre,datelancement,dureeenligne) VALUES ($offreId,CURRENT_DATE,NULL)");
