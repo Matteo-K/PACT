@@ -33,7 +33,7 @@ if ($_POST['type'] == 'ajout') {
         $stmt->execute([$offreId,$_POST['nomOption']]);
         $ttOpt = $stmt->fetchAll();
         print_r($ttOpt);
-        if (count($ttOpt)<=2) {
+        if (count($ttOpt)<2) {
             $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,NULL,NULL,?,?,?)");
             $stmt->execute([$_POST['idOffre'], $_POST['nbWeek'], $prix , $_POST['nomOption']]);
         }
