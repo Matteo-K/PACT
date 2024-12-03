@@ -14,7 +14,7 @@ if ($_POST['type'] == 'ajout') {
     $stmt = $conn->prepare("SELECT statut FROM pact.offres WHERE idoffre=?");
     $stmt->execute([$offreId]);
     $EnLigne = $stmt->fetchAll();
-    $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? AND nomoption = ? and datefin >= CURRENT_DATE");
+    $stmt = $conn->prepare("SELECT * FROM pact.option WHERE idoffre = ? AND nomoption = ? and datefin > CURRENT_DATE");
     $stmt->execute([$offreId,'ALaUne']);
     $resultUne = $stmt->fetchAll();
     $stmt->execute([$offreId,'EnRelief']);
