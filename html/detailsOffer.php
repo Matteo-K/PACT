@@ -324,7 +324,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     } else {
                                                         $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option pas commencer : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
-                                                        <button class="modifierBut">Résilier</button>
+                                                        <form id="formOpt3" action="addOption.php" method="post">
+                                                            <input type="hidden" name="type" value="resilier">
+                                                            <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                                            <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
+                                                            <button type="submit" class="modifierBut">Résilier</button>
+                                                        </form>
                                                         <?php
                                                     } 
                                                     ?>

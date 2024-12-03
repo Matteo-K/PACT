@@ -748,8 +748,11 @@ header ul+div {
 
 .dataOffre div {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 8px;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .blcTag h4,
