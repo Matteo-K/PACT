@@ -383,7 +383,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 ?>
                             </aside>
                             <section class="sectionBtn">
-                                <button id="buttonAjt" class="modifierBut">Ajouter</button>
+                                <button id="button2" class="modifierBut">Ajouter</button>
                             </section>
                         </section>
                     </section>
