@@ -333,7 +333,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </strong>
                         <section class="donnee">
                             <aside>
-                                <form id="formOpt1" action="AddOption.php" method="post">
+                                <form id="formOpt1" action="addOption.php" method="post">
                                     <input type="hidden" name="nomOption" value="ALaUne">
                                     <label class="taille" for="nbWeekALaUne">Nombre de semaine à la Une</label>
                                     <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="1">
@@ -361,7 +361,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </strong>
                         <section class="donnee">
                             <aside>
-                                <form id="formOpt2" action="AddOption.php" method="post">
+                                <form id="formOpt2" action="addOption.php" method="post">
                                     <input type="hidden" name="nomOption" value="ALaUne">
                                     <label class="taille" for="nbWeekALaUne">Nombre de semaine en Relief</label>
                                     <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="1">
