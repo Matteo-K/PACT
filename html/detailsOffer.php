@@ -205,7 +205,7 @@ JOIN
 LEFT JOIN 
     pact.reponse r ON r.idc_avis = a.idc
 WHERE 
-    a.idoffre = 2
+    a.idoffre = ?
 ORDER BY 
     a.datepublie desc
 ");
