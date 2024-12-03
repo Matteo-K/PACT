@@ -219,10 +219,10 @@ function sortDateCreaAncien(array) {
 function filtrerParCategorie(offers) {
   const categoriesSelection = [];
   
-  if (chkBxParc.checked) categoriesSelection.push("Parc Attraction");
   if (chkBxVisite.checked) categoriesSelection.push("Visite");
   if (chkBxActivite.checked) categoriesSelection.push("Activité");
   if (chkBxSpectacle.checked) categoriesSelection.push("Spectacle");
+  if (chkBxParc.checked) categoriesSelection.push("Parc Attraction");
   if (chkBxRestauration.checked) categoriesSelection.push("Restaurant");
 
   if (categoriesSelection.length == 0) {
@@ -312,13 +312,12 @@ function filtrerParStatuts(offers) {
 
 // Fonction de filtre par période
 function filtrerParPeriode(offers) {
-  const dateDepart = new Date(dateDepart.value);
-  const dateFin = new Date(dateFin.value);
-  const heureDebut = heureDebut.value;
-  const heureFin = heureFin.value;
+  const dateDepartValue = new Date(dateDepart.value);
+  const dateFinValue = new Date(dateFin.value);
+  const heureDebutValue = heureDebut.value;
+  const heureFinValue = heureFin.value;
 
-  // Vérification des dates valides
-  if (isNaN(dateDepart.getTime()) || isNaN(dateFin.getTime())) {
+  if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
     return offers;
   }
 
@@ -330,11 +329,8 @@ function filtrerParPeriode(offers) {
     const dateOffre = new Date(offer.date);
     const heureOffre = offer.date.split('T')[1];
 
-    const dateValide = dateOffre >= dateDepart && dateOffre <= dateFin;
-
-    // Si les heures sont spécifiées, filtrer également par heure
-    const heureValide = (heureDebut && heureFin) ? 
-                        (heureOffre >= heureDebut && heureOffre <= heureFin) : true;
+    const dateValide = dateOffre >= dateDepartValue && dateOffre <= dateFinValue;
+    const heureValide = (heureDebutValue && heureFinValue) ? (heureOffre >= heureDebutValue && heureOffre <= heureFinValue) : true;
 
     return dateValide && heureValide;
   });
