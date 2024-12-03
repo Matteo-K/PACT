@@ -748,8 +748,11 @@ header ul+div {
 
 .dataOffre div {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 8px;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .blcTag h4,
@@ -1889,6 +1892,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 20px;
   /* border:solid 2px #034d7c; */
   background-color: #ffffff;
+  position: relative;
 }
 
 .carteOffre p {
@@ -1921,7 +1925,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .searchResume {
-  font-size: 12px;
+  font-size: 1.1rem;
 }
 
 .searchTag {
@@ -1929,7 +1933,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   color: #000;
   padding: 5px 5px;
   border-radius: 10px;
-  font-size: 0.7em;
+  font-size: 0.85em;
   margin-right: 5px;
   display: inline-block;
 }
@@ -1945,11 +1949,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .searchAvis {
   padding: 5px;
-  width: 20%;
+}
+
+.searchAvis > div {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .avisSearch {
-  font-size: 0.7em;
+  font-size: 1em;
 }
 
 .searchUser {
@@ -2161,7 +2171,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .taille2{
   height: 1.5rem;
-  width: 1.5rem;
+  width: 2rem;
   font-size: 1rem;
 }
 
@@ -2181,7 +2191,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .donnee aside{
-  width: 50%;
+  width: 80%;
 }
 
 .titreOpt{
@@ -2190,6 +2200,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .donneeForm{
   display: none;
+}
+
+.popUpOption{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
@@ -3065,7 +3082,7 @@ tbody td:last-child {
 
 .autreInfoAvis{
   gap:12px
-}
+} 
 
 .user+article>div>div:nth-child(1)>p>strong {
   font-size: 20px;
@@ -3252,8 +3269,10 @@ tbody td:last-child {
   padding: 20px;
   position: relative;
   overflow: hidden;
-  max-height: auto;
-  transition: max-height 0.3s ease;
+}
+
+#avisProS2 > details > summary{
+  justify-content: space-between;
 }
 
 summary::marker{
@@ -3262,24 +3281,44 @@ summary::marker{
 
 .custom-marker {
   position: absolute;
-  top: 40px;
+  top: 20px;
   left: 20px;
   display: inline-block;
   transform: rotate(0deg); 
-  transition: transform 0.3s ease; 
+  transition: transform 0.5s ease; 
   margin-right: 8px; 
   color: #000;
   font-size: 30px;
 }
 
-/* Change la rotation du triangle lorsque <details> est ouvert */
 details[open] .custom-marker {
-  transform: rotate(90deg); 
+  transform: rotate(450deg); 
+}
+
+.contentDetails{
+  overflow: hidden; 
+  max-height: 0; 
+  transition: max-height 0.5s ease;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+details.animating .contentDetails {
+  transition: max-height 0.5s ease;
 }
 
 #avisproS2 > details h2{
+  text-align: right;
+  margin: 0;
+  width: 20%;
+  display: inline-block;
+}
+
+#avisproS2 summary > h2:first-of-type {
   text-align: left;
-  margin: 0 40px;
+  margin: 0 0 0 40px;
+  width: 60%;
+  display: inline-block;
 }
 
 
@@ -3287,6 +3326,14 @@ details[open] .custom-marker {
   font-weight: 500 ;
   font-size: 1.7em;
   margin: 10px 40px;
+  display: inline-block;
+  width: 60%;
+}
+
+#avisPro h3:nth-child(2), #avisPro h3:nth-child(4) {
+  margin: 10px 0;
+  width: 20%;
+  text-align: right;
 }
 
 details .nonLu, details .nonRepondu{
@@ -3294,6 +3341,16 @@ details .nonLu, details .nonRepondu{
   left: 20px;
 }
 
+#avisPro .notedetaille{
+  width: 100%;
+}
+
+#avisproS2 > details > .contentDetails > p {
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+  margin: 30px auto;
+}
 
 
 /*Detail des avis sélectionnés */
@@ -3304,7 +3361,7 @@ details .nonLu, details .nonRepondu{
 
 .conteneurAvisPro {
   width: 100%; /* Prend tout l'espace restant */
-  padding: 20px;
+  padding: 0 20px;
   background-color: #dee6fa;
   overflow-y: auto; /* Permet le scroll si le contenu est trop grand */
   display: flex;
@@ -3315,6 +3372,8 @@ details .nonLu, details .nonRepondu{
   color: #333;
   text-align: center;
   position: relative;
+  margin: 30px 0;
+  border-radius: 15px;
 }
 
 #ligneTitreAvis{

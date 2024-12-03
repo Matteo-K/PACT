@@ -41,8 +41,8 @@ class Visit extends Offer {
       "accessibilite" => $this->accessibilite,
       "handicap" => $this->handicap,
       "langue" => $this->langue,
-      "horaireMidi" => $this->horaireMidi,
-      "horaireSoir" => $this->horaireSoir,
+      "horaireMidi" => $this->horaireToJSON($this->horaireMidi),
+      "horaireSoir" => $this->horaireToJSON($this->horaireSoir),
       "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
     ]);
   }

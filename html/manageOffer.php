@@ -136,7 +136,7 @@
         saveAside.style.boxShadow = '#034d7c 4px 4px 4px';
       }, 1000); // 1s
       
-      setTimeout(() => closeSave(), 10000); // 10s 
+      setTimeout(() => closeSave(), 3000); // 3s 
     }
   }
 

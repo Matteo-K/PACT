@@ -61,6 +61,10 @@ const radBtnPrixDecroissant = document.querySelector("#prixDecroissant");
 const radBtnDateRecent = document.querySelector("#dateRecent");
 const radBtnDateAncien = document.querySelector("#dateAncien");
 
+// date
+const radBtnDateCreationRecent = document.querySelector("#dateCreationRecent");
+const radBtnDateCreationAncien = document.querySelector("#dateCreationAncien");
+
 
 /// Inputs Filtres ///
 // notes
@@ -125,8 +129,16 @@ function selectSort(array) {
   } else if (radBtnDateAncien.checked) {
     console.log("Tri avec Date Ancien");
     return sortDateAncien(array);
-  }
 
+  } else if (radBtnDateCreationRecent.checked) {
+    console.log("Tri avec Date Récent");
+    return sortDateCreaRecent(array);
+
+  } else if (radBtnDateCreationAncien.checked) {
+    console.log("Tri avec Date Récent");
+    return sortDateCreaAncien(array);
+  }
+  
   return array;
 }
 
@@ -153,10 +165,10 @@ function attribuerEtoiles(note) {
 function sortprixCroissant(array) {
   return array.sort((offre1, offre2) => {
     const prix1 = offre1.categorie === "Restaurant" 
-      ? getPrixRange(offre1.gammeDePrix)[0] 
+      ? getPrixRangeRestaurant(offre1.gammeDePrix)[0] 
       : (offre1.prixMinimal || 0);
     const prix2 = offre2.categorie === "Restaurant" 
-      ? getPrixRange(offre2.gammeDePrix)[0] 
+      ? getPrixRangeRestaurant(offre2.gammeDePrix)[0] 
       : (offre2.prixMinimal || 0);
     
     return prix1 - prix2;
@@ -166,10 +178,10 @@ function sortprixCroissant(array) {
 function sortPrixDecroissant(array) {
   return array.sort((offre1, offre2) => {
     const prix1 = offre1.categorie === "Restaurant" 
-      ? getPrixRange(offre1.gammeDePrix)[0] 
+      ? getPrixRangeRestaurant(offre1.gammeDePrix)[0] 
       : (offre1.prixMinimal || 0);
     const prix2 = offre2.categorie === "Restaurant" 
-      ? getPrixRange(offre2.gammeDePrix)[0] 
+      ? getPrixRangeRestaurant(offre2.gammeDePrix)[0] 
       : (offre2.prixMinimal || 0);
     
     return prix2 - prix1;
@@ -177,20 +189,25 @@ function sortPrixDecroissant(array) {
 }
 
 function sortDateRecent(array) {
+  return array;
+}
+
+function sortDateAncien(array) {
+  return array;
+}
+
+function sortDateCreaRecent(array) {
   return array.sort((offre1, offre2) => {
     console.log("offre1 : "+ (offre1.horaireMidi || offre1.horaire));
     return offre1.dateCreation - offre2.dateCreation
   });
 }
 
-function sortDateAncien(array) {
+function sortDateCreaAncien(array) {
   return array.sort((offre1, offre2) => {
     return offre2.dateCreation - offre1.dateCreation
   });
 }
-
-
-
 
 // Filtres
 
@@ -468,7 +485,6 @@ function createCard(offer) {
   }
 
   infoOffre.appendChild(resume);
-  infoOffre.appendChild(note(offer));
 
   card.appendChild(infoOffre);
   card.appendChild(avisSearch(offer));
@@ -551,17 +567,6 @@ function note(offer) {
   
   section.appendChild(divStar);
 
-  let ouverture = document.createElement("p");
-  ouverture.id = "couleur-" + offer.idOffre;
-  if (offer.ouverture == "EstOuvert") {
-    ouverture.classList.add("searchStatutO");
-    ouverture.textContent = "Ouvert";
-  } else {
-    ouverture.classList.add("searchStatutF");
-    ouverture.textContent = "Fermé";
-  }
-  section.appendChild(ouverture);
-
   return section;
 }
 
@@ -573,10 +578,27 @@ function avisSearch(offer) {
   titre.classList.add("avisSearch");
   titre.textContent = "Les avis les plus récent :";
 
+  let divTitre = document.createElement("div");
+
+  // Ouvert fermé
+  let ouverture = document.createElement("p");
+  ouverture.id = "couleur-" + offer.idOffre;
+  if (offer.ouverture == "EstOuvert") {
+    ouverture.classList.add("searchStatutO");
+    ouverture.textContent = "Ouvert";
+  } else {
+    ouverture.classList.add("searchStatutF");
+    ouverture.textContent = "Fermé";
+  }
+
+  divTitre.appendChild(titre)
+  divTitre.appendChild(ouverture);
+
   let tempPasAvis = document.createElement("p");
   tempPasAvis.textContent = "Pas d'avis";
 
-  div.appendChild(titre);
+  div.appendChild(divTitre);
+  div.appendChild(note(offer));
   div.appendChild(tempPasAvis);
 
   return div;

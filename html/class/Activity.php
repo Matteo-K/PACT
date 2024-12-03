@@ -34,8 +34,8 @@ class Activity extends Offer {
       "ageMinimal" => $this->ageMinimal,
       "prixMinimal" => $this->prixMinimal,
       "prestation" => $this->prestation,
-      "horaireMidi" => $this->horaireMidi,
-      "horaireSoir" => $this->horaireSoir,
+      "horaireMidi" => $this->horaireToJSON($this->horaireMidi),
+      "horaireSoir" => $this->horaireToJSON($this->horaireSoir),
       "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
     ]);
   }

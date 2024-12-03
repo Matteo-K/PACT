@@ -5,12 +5,22 @@ $idOffre = $_POST["idoffre"] ?? null;
 $ouvert = $_GET["ouvert"] ?? null;
 $aujourdhui = new DateTime();
 
+
+
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
     header("location: index.php");
     exit();
 }
-
+?>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+    <?php if (isset($_POST['popup'])): ?>
+        openModal(); // Appelle la fonction openModal si la condition PHP est vraie
+    <?php endif; ?>
+});
+</script>
+<?php
 $monOffre = new ArrayOffer($idOffre);
 $ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
 
@@ -149,6 +159,17 @@ function formatDateEnFrancais(DateTime $date) {
     return "$jour $jourMois $mois $annee";
 }
 
+function convertionMinuteHeure($tempsEnMinute) {
+    $heures = floor($tempsEnMinute / 60);
+    $minutes = $tempsEnMinute % 60;
+    
+    if ($minutes == 0) {
+        return $heures . "h";
+    } else {
+        return $heures . "h " . $minutes . "min";
+    }
+}
+
 if (!$result) {
 ?>
     <form id="manageOfferAuto" action="manageOffer.php" method="post">
@@ -171,7 +192,7 @@ $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $conn->prepare(" SELECT a.*,
+$stmt = $conn->prepare("SELECT a.*,
     AVG(a.note) OVER() AS moynote,
     COUNT(a.note) OVER() AS nbnote,
     SUM(CASE WHEN a.note = 1 THEN 1 ELSE 0 END) OVER() AS note_1,
@@ -179,6 +200,8 @@ $stmt = $conn->prepare(" SELECT a.*,
     SUM(CASE WHEN a.note = 3 THEN 1 ELSE 0 END) OVER() AS note_3,
     SUM(CASE WHEN a.note = 4 THEN 1 ELSE 0 END) OVER() AS note_4,
     SUM(CASE WHEN a.note = 5 THEN 1 ELSE 0 END) OVER() AS note_5,
+    SUM(CASE WHEN a.lu = FALSE then 1 else 0 end) over() as avisnonlus,
+	SUM(CASE WHEN r.idc_reponse is null then 1 else 0 end) over() as avisnonrepondus,
     m.url AS membre_url,
     r.idc_reponse,
     r.denomination AS reponse_denomination,
@@ -266,8 +289,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                           
                 <!-- Titres des onglets -->
                 <section class="titre">
-                  <h2 class="tab active" data-tab="1">Gestion des options</h2>
-                  <h2 class="tab" data-tab="2">Ajouter une option</h2>
+                  <p class="tab active" data-tab="1">Gestion des options</p>
+                  <p class="tab" data-tab="2">Ajouter une option</p>
                   <!-- Trait qui se déplace sous les onglets -->
                   <section class="traitBouge"></section>
                 </section>
@@ -281,33 +304,48 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $optionRelief = $option->fetchAll(PDO::FETCH_ASSOC);
                         $mesOtion = [];
                         if ($optionRelief) {
-                            $mesOtion[] = $optionRelief;
+                            foreach ($optionRelief as $key => $value) {
+                                $mesOtion[] = $value;
+                            }
                         }
                         if ($optionUne) {
-                            $mesOtion[] = $optionUne;
+                            foreach ($optionUne as $key => $value) {
+                                $mesOtion[] = $value;
+                            }
                         }
                         if ($mesOtion != []) {
                             ?>
-                                <strong><p>Mes options : </p></strong>
+                                <strong><p class="taille3">Mes options : </p></strong>
                                 <ul>
                                     <?php
-                                    print_r($mesOtion);
                                         foreach ($mesOtion as $key => $value) {
                                             ?>
                                             <li>
                                                 <section class="popUpOption">
                                                     <?php
-                                                    print_r($value);
                                                     if ($value['datefin'] != null) {
                                                         $dateActuelle = NEW DateTime();
                                                         $dateFin = NEW DateTime($value['datefin']);
                                                         $dureeRestante = $dateActuelle->diff($dateFin);
-                                                        ?><p><?php echo "Option en cours : " . $value['nomoption'] . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
-                                                        <button class="modifierBut">Arrêter</button>
+                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
+                                                        ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
+                                                        <form action="addOption.php" method="post">
+                                                            <input type="hidden" name="type" value="arreter">
+                                                            <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                                            <input type="hidden" name="nom" value="<?php echo $value['nomoption'] ?>">
+                                                            <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
+                                                            <button class="modifierBut">Arrêter</button>
+                                                        </form>
                                                         <?php
                                                     } else {
-                                                        ?><p><?php echo "Option pas commencer : " . $value['nomoption'] . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
-                                                        <button class="modifierBut">Résilier</button>
+                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
+                                                        ?><p><?php echo "Option en attente : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
+                                                        <form id="formOpt3" action="addOption.php" method="post">
+                                                            <input type="hidden" name="type" value="resilier">
+                                                            <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                                            <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
+                                                            <button type="submit" class="modifierBut">Résilier</button>
+                                                        </form>
                                                         <?php
                                                     } 
                                                     ?>
@@ -320,7 +358,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php
                         } else {
                             ?>
-                                <strong><p>Aucune option activé</p></strong>
+                                <strong><p class="taille3">Aucune option activé</p></strong>
                             <?php
                         }
 
@@ -365,7 +403,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <section class="donnee">
                             <aside>
                                 <form id="formOpt2" action="addOption.php" method="post">
-                                    <input type="hidden" name="nomOption" value="ALaUne">
+                                    <input type="hidden" name="nomOption" value="EnRelief">
                                     <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                     <input type="hidden" name="type" value="ajout">
                                     <label class="taille" for="nbWeek">Nombre de semaine en Relief</label>
@@ -389,7 +427,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </section>
                     </section>
                 </section>              
-                <button class="modifierBut" onclick="confirmation()">Comfirmer</button>
+                <button class="modifierBut" onclick="confirmation()">Quitter</button>
               </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
@@ -587,6 +625,65 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <section id="infoComp">
         <h2>Informations Complémentaires</h2>
+        <?php
+        if($typeOffer == "Visite"){
+            $stmt = $conn -> prepare("SELECT * from pact.visites where idoffre = $idOffre");
+            $stmt -> execute();
+            $visite = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+        ?>
+            <div>
+                <p>Durée : <?= convertionMinuteHeure($visite[0]['duree'])?></p>
+                <p>Visite guidée : <?= isset($visite[0]["guide"])? "Oui" : "Non"?></p>
+                <?php
+                if($visite[0]["guide"]){
+                    $stmt = $conn -> prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
+                    $stmt -> execute();
+                    $langues = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+                    if($langues){
+                        ?>
+                        <p>Langues : 
+                    <?php
+                        foreach($langues as $key => $langue){
+                            echo $langue["langue"]?>   
+                    <?php
+                            if(count($langues) != $key +1){
+                                echo ", ";
+                            }
+                        }
+                    ?>
+                        </p>
+                    <?php
+                    }
+                }
+                ?>
+            </div>
+        <?php
+        } else if($typeOffer == "Spectacle"){
+            $stmt = $conn -> prepare("SELECT * from pact.spectacles where idoffre = $idOffre");
+            $stmt -> execute();
+            $spectacle = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <div>
+                <p>Durée : <?= convertionMinuteHeure($spectacle[0]['duree'])?></p>
+                <p>Nombre de places : <?= $spectacle[0]['nbplace']?></p>
+            </div>
+            <?php
+        } else if($typeOffer == "Activité" || $typeOffer == "Parc Attraction"){
+            if($typeOffer == "Activité"){
+                $stmt = $conn -> prepare("SELECT * from pact.activites where idoffre = $idOffre");
+            } 
+            else{
+                $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idoffre = $idOffre");
+            }
+            $stmt -> execute();
+            $theme = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <div>
+                <p>Âge minimum : <?= $theme[0]['agemin']?> ans</p>
+            </div>
+            <?php
+        }
+        ?>
         <table>
     <thead>
         <tr>
@@ -730,7 +827,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt -> execute();
         $menus = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     ?>
-        <p>Menu</p>
+        <h2>Menu</h2>
         <div class="swiper-container menu-container">
             <div class="swiper menu">
                 <div class="swiper-wrapper">
