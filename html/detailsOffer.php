@@ -913,14 +913,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
         <div class="avis">
             <nav>
-                <h3 role="button" tabindex="0" id="tab-avis" class="active">Avis</h3>
-                <h3 role="button" tabindex="0" id="tab-publiez">Publiez un avis</h3>
+                <a href="?tab=avis" class="<?= $activeTab === 'avis' ? 'active' : '' ?>">Avis</a>
+                <a href="?tab=publiez" class="<?= $activeTab === 'publiez' ? 'active' : '' ?>">Publiez un avis</a>
             </nav>
 
             <section id="avis-section">
                 <?php
-                // Inclusion du composant pour afficher les avis
-                require_once __DIR__ . "/components/avis/avisMembre.php";
+                // Charger le composant en fonction de l'onglet sélectionné
+                if ($activeTab === 'avis') {
+                    require_once __DIR__ . "/components/avis/avisMembre.php";
+                } elseif ($activeTab === 'publiez') {
+                    require_once __DIR__ . "/components/avis/ecrireAvis.php";
+                }
                 ?>
             </section>
         </div>
@@ -932,42 +936,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
 <script>
-    /** Script permettant de charger la page avisMembre ou publier avis */
-    document.addEventListener("DOMContentLoaded", () => {
-        const tabAvis = document.getElementById("tab-avis");
-        const tabPubliez = document.getElementById("tab-publiez");
-        const avisSection = document.getElementById("avis-section");
-
-        // Activer l'onglet Avis
-        tabAvis.addEventListener("click", () => {
-            tabPubliez.classList.remove("active");
-            tabAvis.classList.add("active");
-
-            // Charger le composant avis
-            fetch("components/avis/avisMembre.php")
-                .then(response => response.text())
-                .then(html => {
-                    avisSection.innerHTML = html;
-                })
-                .catch(error => console.error("Erreur lors du chargement des avis :", error));
-        });
-
-        // Activer l'onglet Publiez un avis
-        tabPubliez.addEventListener("click", () => {
-            tabAvis.classList.remove("active");
-            tabPubliez.classList.add("active");
-
-            // Charger le formulaire pour écrire un avis
-            fetch("components/avis/ecrireAvis.php")
-                .then(response => response.text())
-                .then(html => {
-                    avisSection.innerHTML = html;
-                })
-                .catch(error => console.error("Erreur lors du chargement du formulaire :", error));
-        });
-    });
-
-    /** Fin du script */
 
     document.addEventListener('DOMContentLoaded', function () {
 
