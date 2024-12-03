@@ -330,7 +330,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         if ($dateActuelle<$dateDeb) {
                                                             $dureeAvDeb = $dateActuelle->diff($dateDeb);
                                                             ?><p><?php echo "Option en attente : " . $nom . " commence dans " . $dureeAvDeb->days . "jours pour " . $value['duree_total'] * 7 . " jours." ?></p>
-                                                            <form action="addOption.php" method="post">
+                                                            <form class="confirmation-form" action="addOption.php" method="post">
                                                                 <input type="hidden" name="type" value="resilier">
                                                                 <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                                                 <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
@@ -341,7 +341,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         $dateFin = NEW DateTime($value['datefin']);
                                                         $dureeRestante = $dateActuelle->diff($dateFin);
                                                         ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
-                                                        <form action="addOption.php" method="post">
+                                                        <form class="confirmation-form" action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="arreter">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                                             <input type="hidden" name="nom" value="<?php echo $value['nomoption'] ?>">
@@ -353,7 +353,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     } else {
                                                         $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option en attente : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
-                                                        <form id="formOpt3" action="addOption.php" method="post">
+                                                        <form class="confirmation-form" id="formOpt3" action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="resilier">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                                             <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
@@ -415,10 +415,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </aside>
             <section class="sectionBtn">
                 <button id="button1" class="modifierBut <?php echo count($optionUne)>=2? 'disabled' : ''; ?>"
-                onmouseover="showMessageAdd(event)"
-                onmouseout="hideMessageAdd(event)"
                 <?php if (count($optionUne)>=2) {
-                    ?>onclick="return false;"<?php
+                    ?>
+                    onmouseover="showMessageAdd(event)"
+                    onmouseout="hideMessageAdd(event)"
+                    onclick="return false;"
+                    
+                    <?php
                 }?>
                 >
                     Ajouter
@@ -463,10 +466,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </aside>
             <section class="sectionBtn">
                 <button id="button2" class="modifierBut <?php echo count($optionRelief)>=2? 'disabled' : ''; ?>"
-                onmouseover="showMessageAdd(event)"
-                onmouseout="hideMessageAdd(event)"
                 <?php if (count($optionRelief)>=2) {
-                    ?>onclick="return false;"<?php
+                    ?>
+                    onclick="return false;"
+                    onmouseover="showMessageAdd(event)"
+                    onmouseout="hideMessageAdd(event)"
+                    <?php
                 }?>
                 >
                     Ajouter
@@ -936,6 +941,17 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <script>
 
     document.addEventListener('DOMContentLoaded', function () {
+
+        const forms = document.querySelectorAll('.confirmation-form');
+        forms.forEach(form => {
+            form.addEventListener('submit', (event) => {
+                const confirmation = confirm("Êtes-vous sûr de vouloir effectuer cette action ?");
+                if (!confirmation) {
+                    event.preventDefault(); // Empêche la soumission si l'utilisateur annule
+                }
+            });
+        });
+
         const button1 = document.getElementById("button1");
         const button2 = document.getElementById("button2");
         const form1 = document.getElementById("formOpt1");
