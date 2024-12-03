@@ -2167,6 +2167,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .taille{
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .taille2{
@@ -2208,6 +2211,58 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
   font-size: 1.5rem;
 }
+
+.formopt{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Style général pour le date picker */
+.datePicker {
+  width: 100%; /* Prend toute la largeur disponible */
+  max-width: 300px; /* Limite la largeur */
+  padding: 10px; /* Espacement interne */
+  font-size: 16px; /* Texte lisible */
+  font-family: Arial, sans-serif; /* Police simple */
+  border: 2px solid #007BFF; /* Bordure bleue */
+  border-radius: 5px; /* Coins arrondis */
+  background-color: #fff; /* Fond blanc */
+  color: #333; /* Texte noir/gris */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Légère ombre */
+  transition: all 0.3s ease; /* Transition douce pour interactions */
+  display: none; /* Caché par défaut */
+}
+
+/* Style au focus */
+.datePicker:focus {
+  border-color: #0056b3; /* Bleu plus foncé */
+  outline: none; /* Supprime l'effet par défaut */
+  box-shadow: 0 4px 8px rgba(0, 91, 179, 0.2); /* Ombre accentuée */
+}
+
+/* Checkbox pour activer le date picker */
+.datePickerToggle {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #007BFF; /* Texte bleu */
+}
+
+/* Style pour les messages */
+.toggleMessage {
+  font-size: 12px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.taille5{
+  margin: 0 !important;
+  width: 25px;
+  height: 25px;
+}
+
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
@@ -2884,14 +2939,10 @@ tbody td:last-child {
 
 #descriptionOffre>section {
   margin-left: 3em;
-  background-color: var(--accent80);
   border-radius: 0.5em;
   padding: 10px;
   margin-top: 1em;
-}
-
-#descriptionOffre>section>p {
-  text-indent: 20px;
+  width: 70%;
 }
 
 #infoPro {
@@ -2910,14 +2961,62 @@ tbody td:last-child {
   height: 25px;
 }
 
-#afficheLoc,
-#descriptionOffre {
+#afficheLoc,article#descriptionOffre {
   display: flex;
   flex-direction: row;
   gap: 20px;
   align-items: center;
   justify-content: center;
   width: 60%;
+}
+
+article#descriptionOffre {
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  align-items: flex-end;
+}
+
+article#descriptionOffre h3, #afficheLoc + h2 {
+  font-size: 2.5em;
+  font-weight: 100;
+  border-bottom: 2px solid #000;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+article#descriptionOffre p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 10px;
+  text-align: justify;
+}
+
+section#infoComp {
+  border-radius: 10px;
+  padding: 20px;
+}
+
+section#infoComp h2 {
+  font-size: 2.5em;
+  font-weight: 200;
+  border-bottom: 2px solid #000;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+section#infoComp p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+section#infoComp div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 #carte {
@@ -3082,7 +3181,7 @@ tbody td:last-child {
 
 .autreInfoAvis{
   gap:12px
-}
+} 
 
 .user+article>div>div:nth-child(1)>p>strong {
   font-size: 20px;
@@ -3146,7 +3245,6 @@ tbody td:last-child {
   transform: scaleY(-1);
   rotate: -90deg;
 }
-
 
 
 /** Avis PRO **/
@@ -3443,6 +3541,7 @@ details .nonLu, details .nonRepondu{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 30%;
 }
 
 .notation > div > p{
@@ -4203,10 +4302,11 @@ input[id="siren"] {
   border: 3px solid var(--accent);
 }
 
-input[type="checkbox"] {
+.creation-compte input[type="checkbox"] {
   width: 25px;
   height: 25px;
   margin: 0 5px;
+  border: 3px solid var(--accent);
 }
 
 button[id="boutonInscription"] {

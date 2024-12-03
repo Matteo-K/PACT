@@ -58,8 +58,12 @@ const radBtnprixCroissant = document.querySelector("#prixCroissant");
 const radBtnPrixDecroissant = document.querySelector("#prixDecroissant");
 
 // date
-const radBtnDateRecent = document.querySelector("#dateRecent");
-const radBtnDateAncien = document.querySelector("#dateAncien");
+const radBtnAvisCroissant = document.querySelector("#avisCroissant");
+const radBtnAvisDecroissant = document.querySelector("#avisDecroissant");
+
+// date
+const radBtnDateCreationRecent = document.querySelector("#dateCreationRecent");
+const radBtnDateCreationAncien = document.querySelector("#dateCreationAncien");
 
 
 /// Inputs Filtres ///
@@ -118,15 +122,23 @@ function selectSort(array) {
     console.log("Tri avec Prix Décroissant");
     return sortPrixDecroissant(array);
 
-  } else if (radBtnDateRecent.checked) {
+  } else if (radBtnAvisCroissant.checked) {
     console.log("Tri avec Date Récent");
-    return sortDateRecent(array);
+    return sortAvisCroissant(array);
 
-  } else if (radBtnDateAncien.checked) {
+  } else if (radBtnPrixDecroissant.checked) {
     console.log("Tri avec Date Ancien");
-    return sortDateAncien(array);
-  }
+    return sortAvisDecroissant(array);
 
+  } else if (radBtnDateCreationRecent.checked) {
+    console.log("Tri avec Date Récent");
+    return sortDateCreaRecent(array);
+
+  } else if (radBtnDateCreationAncien.checked) {
+    console.log("Tri avec Date Ancien");
+    return sortDateCreaAncien(array);
+  }
+  
   return array;
 }
 
@@ -176,21 +188,30 @@ function sortPrixDecroissant(array) {
   });
 }
 
-function sortDateRecent(array) {
+function sortAvisCroissant(array) {
+  return array.sort((offre1, offre2) => {
+    return parseInt(offre1.nbNote) - parseInt(offre2.nbNote);
+  });
+}
+
+function sortAvisDecroissant(array) {
+  return array.sort((offre1, offre2) => {
+    return parseInt(offre2.nbNote) - parseInt(offre1.nbNote);
+  });
+}
+
+function sortDateCreaRecent(array) {
   return array.sort((offre1, offre2) => {
     console.log("offre1 : "+ (offre1.horaireMidi || offre1.horaire));
     return offre1.dateCreation - offre2.dateCreation
   });
 }
 
-function sortDateAncien(array) {
+function sortDateCreaAncien(array) {
   return array.sort((offre1, offre2) => {
     return offre2.dateCreation - offre1.dateCreation
   });
 }
-
-
-
 
 // Filtres
 
@@ -235,42 +256,41 @@ function filtrerParNotes(offers) {
 }
 
 
+// Fonction de filtre par prix
 function filtrerParPrix(offers) {
-  // Récupérer les valeurs des sélecteurs de prix
-  const prixMin = parseInt(document.getElementById('selectPrixMin').value);
-  const prixMax = parseInt(document.getElementById('selectPrixMax').value);
+  const prixMin = parseInt(selectPrixMin.value);
+  const prixMax = parseInt(selectPrixMax.value);
 
-  // Filtrage des offres selon la plage de prix sélectionnée
+  console.log(`Filtrage : Prix Min = ${prixMin}, Prix Max = ${prixMax}`);
+
   return offers.filter(offer => {
-    // Si l'offre est un restaurant, on vérifie la gamme de prix (en utilisant "€", "€€", "€€€")
     if (offer.categorie === 'Restaurant') {
-      const prixRange = getPrixRangeRestaurant(offer.gammeDePrix); // Calcule la plage de prix pour un restaurant
-      const prixMinOffre = prixRange[0];
-      const prixMaxOffre = prixRange[1];
+      const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
+      const prixMinOffreRestaurant = prixRange[0];
+      const prixMaxOffreRestaurant = prixRange[1];
 
-      // Vérifie si la gamme de prix de l'offre est dans la plage de prix sélectionnée
-      return prixMinOffre >= prixMin && prixMaxOffre <= prixMax;
-    } else {
-      // Pour les autres catégories (spectacles, activités, etc.), on compare le prix minimal
-      const prixMinOffre = offer.prixMinimal;  // Prix minimal pour l'offre
-
-      // Vérifie si le prix minimal de l'offre est dans la plage de prix sélectionnée
-      return prixMinOffre >= prixMin && prixMinOffre <= prixMax;
+      return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
+    } 
+    
+    else {
+      const prixMinOffreAutres = (offer.prixMinimal || 0);
+      return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
     }
   });
 }
+
 
 // Fonction qui détermine la plage de prix en fonction de la gamme pour les restaurants
 function getPrixRangeRestaurant(gammeDePrix) {
   switch (gammeDePrix) {
     case '€':
-      return [0, 25];    // Moins de 25€
+      return [0, 25];
     case '€€':
-      return [25, 40];   // Entre 25€ et 40€
+      return [25, 40];
     case '€€€':
-      return [40, Infinity]; // Plus de 40€
+      return [40, Infinity];
     default:
-      return [0, Infinity];  // Par défaut, une plage infinie si la gamme est inconnue
+      return [0, Infinity];
   }
 }
 
@@ -330,9 +350,9 @@ function sortAndFilter(array, elementStart, nbElement) {
   // Filtres
   array = filtrerParCategorie(array);
   array = filtrerParNotes(array);
-  // array = filtrerParPrix(array);
+  array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  // array = filtrerParPeriode(array);
+  array = filtrerParPeriode(array);
 
   // Tris
   array = selectSort(array);
@@ -630,37 +650,41 @@ radBtnNoteDecroissant.addEventListener("click", () => goToPage(currentPage));
 radBtnprixCroissant.addEventListener("click", () => goToPage(currentPage));
 radBtnPrixDecroissant.addEventListener("click", () => goToPage(currentPage));
 
-// dates
-radBtnDateRecent.addEventListener("click", () => goToPage(currentPage));
-radBtnDateAncien.addEventListener("click", () => goToPage(currentPage));
+// avis
+radBtnAvisCroissant.addEventListener("click", () => goToPage(currentPage));
+radBtnAvisDecroissant.addEventListener("click", () => goToPage(currentPage));
+
+// date création
+radBtnDateCreationRecent.addEventListener("click", () => goToPage(currentPage));
+radBtnDateCreationAncien.addEventListener("click", () => goToPage(currentPage));
 
 
 
 // Événements des filtres
 // notes
-chkBxNote1.addEventListener("click", () => goToPage(currentPage));
-chkBxNote2.addEventListener("click", () => goToPage(currentPage));
-chkBxNote3.addEventListener("click", () => goToPage(currentPage));
-chkBxNote4.addEventListener("click", () => goToPage(currentPage));
-chkBxNote5.addEventListener("click", () => goToPage(currentPage));
+chkBxNote1.addEventListener("click", () => goToPage(1));
+chkBxNote2.addEventListener("click", () => goToPage(1));
+chkBxNote3.addEventListener("click", () => goToPage(1));
+chkBxNote4.addEventListener("click", () => goToPage(1));
+chkBxNote5.addEventListener("click", () => goToPage(1));
 
 // prix
-selectPrixMin.addEventListener("change", () => goToPage(currentPage));
-selectPrixMax.addEventListener("change", () => goToPage(currentPage));
+selectPrixMin.addEventListener("change", () => goToPage(1));
+selectPrixMax.addEventListener("change", () => goToPage(1));
 
 // statuts
-chkBxOuvert.addEventListener("click", () => goToPage(currentPage));
-chkBxFerme .addEventListener("click", () => goToPage(currentPage));
+chkBxOuvert.addEventListener("click", () => goToPage(1));
+chkBxFerme .addEventListener("click", () => goToPage(1));
 
 // catégories
-chkBxParc.addEventListener("click", () => goToPage(currentPage));
-chkBxVisite.addEventListener("click", () => goToPage(currentPage));
-chkBxActivite.addEventListener("click", () => goToPage(currentPage));
-chkBxSpectacle.addEventListener("click", () => goToPage(currentPage));
-chkBxRestauration.addEventListener("click", () => goToPage(currentPage));
+chkBxParc.addEventListener("click", () => goToPage(1));
+chkBxVisite.addEventListener("click", () => goToPage(1));
+chkBxActivite.addEventListener("click", () => goToPage(1));
+chkBxSpectacle.addEventListener("click", () => goToPage(1));
+chkBxRestauration.addEventListener("click", () => goToPage(1));
 
 // dates
-dateDepart.addEventListener("change", () => goToPage(currentPage));
-heureDebut.addEventListener("change", () => goToPage(currentPage));
-dateFin.addEventListener("change", () => goToPage(currentPage));
-heureFin.addEventListener("change", () => goToPage(currentPage));
+dateDepart.addEventListener("change", () => goToPage(1));
+heureDebut.addEventListener("change", () => goToPage(1));
+dateFin.addEventListener("change", () => goToPage(1));
+heureFin.addEventListener("change", () => goToPage(1));

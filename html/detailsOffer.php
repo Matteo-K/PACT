@@ -5,6 +5,13 @@ $idOffre = $_POST["idoffre"] ?? null;
 $ouvert = $_GET["ouvert"] ?? null;
 $aujourdhui = new DateTime();
 
+
+
+// Vérifiez si idoffre est défini
+if (!$idOffre) {
+    header("location: index.php");
+    exit();
+}
 ?>
 <script>
 document.addEventListener("DOMContentLoaded",function(){
@@ -14,13 +21,6 @@ document.addEventListener("DOMContentLoaded",function(){
 });
 </script>
 <?php
-
-// Vérifiez si idoffre est défini
-if (!$idOffre) {
-    header("location: index.php");
-    exit();
-}
-
 $monOffre = new ArrayOffer($idOffre);
 $ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
 
@@ -366,67 +366,86 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                 </section>
                 <section class="contentPop" id="content-2">
-                    <section class="AlaUne">
-                        <strong>
-                            <p class="taille3">A la Une</p>
-                        </strong>
-                        <section class="donnee">
-                            <aside>
-                                <form id="formOpt1" action="addOption.php" method="post">
-                                    <input type="hidden" name="nomOption" value="ALaUne">
-                                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-                                    <input type="hidden" name="type" value="ajout">
-                                    <label class="taille" for="nbWeek">Nombre de semaine à la Une</label>
-                                    <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
-                                </form>
-                                <?php
-                                if (!$optionUne) {
-                                    ?>
-                                        <p class="taille4">*l'option sera active lors de la prochaine mise en ligne</p>
-                                        <?php                                
-                                } else {
-                                    ?>
-                                        <p class="taille4">*L'option sera lancer à la fin de celle-ci</p>
-                                    <?php
-                                }
-                                ?>
-                            </aside>
-                            <section class="sectionBtn">
-                                <button id="button1" class="modifierBut">Ajouter</button>
-                            </section>
-                        </section>
-                    </section>
-                    <section class="EnRelief">
-                        <strong>
-                            <p class="taille3">En Relief</p>
-                        </strong>
-                        <section class="donnee">
-                            <aside>
-                                <form id="formOpt2" action="addOption.php" method="post">
-                                    <input type="hidden" name="nomOption" value="EnRelief">
-                                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-                                    <input type="hidden" name="type" value="ajout">
-                                    <label class="taille" for="nbWeek">Nombre de semaine en Relief</label>
-                                    <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
-                                </form>
-                                <?php
-                                if (!$optionRelief) {
-                                    ?>
-                                        <p class="taille4">*l'option sera active lors de la prochaine mise en ligne</p>
-                                        <?php                                
-                                } else {
-                                    ?>
-                                        <p class="taille4">*L'option sera lancer à la fin de celle-ci</p>
-                                        <?php
-                                }
-                                ?>
-                            </aside>
-                            <section class="sectionBtn">
-                                <button id="button2" class="modifierBut">Ajouter</button>
-                            </section>
-                        </section>
-                    </section>
-                </section>              
+    <section class="AlaUne">
+        <section class="donnee">
+            <aside>
+                <strong>
+                    <p class="taille3">A la Une</p>
+                </strong>
+                <form class="formopt" id="formOpt1" action="addOption.php" method="post">
+                    <input type="hidden" name="nomOption" value="ALaUne">
+                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                    <input type="hidden" name="type" value="ajout">
+                    <label class="taille" for="nbWeek">Nombre de semaine à la Une
+                        <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
+                    </label>
+
+                    <!-- Checkbox pour afficher le date picker -->
+                    <label class="taille">
+                        <input type="checkbox" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
+                    </label>
+                    
+                    <!-- Date picker (caché par défaut) -->
+                    <input class="datePicker" type="date" name="customDate" id="customDate1" style="display: none;">
+                </form>
+                <?php
+                if (!$optionUne) {
+                    ?>
+                        <p class="taille4 toggleMessage">*L'option sera active lors de la prochaine mise en ligne</p>
+                        <?php                                
+                } else {
+                    ?>
+                        <p class="taille4 toggleMessage">*L'option sera lancée à la fin de celle-ci</p>
+                    <?php
+                }
+                ?>
+            </aside>
+            <section class="sectionBtn">
+                <button id="button1" class="modifierBut">Ajouter</button>
+            </section>
+        </section>
+    </section>
+
+    <section class="EnRelief">
+        <section class="donnee">
+            <aside>
+                <strong>
+                    <p class="taille3">En Relief</p>
+                </strong>
+                <form class="formopt" id="formOpt2" action="addOption.php" method="post">
+                    <input type="hidden" name="nomOption" value="EnRelief">
+                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                    <input type="hidden" name="type" value="ajout">
+                    <label class="taille" for="nbWeek">Nombre de semaine en Relief
+                        <input class="taille2" type="number" name="nbWeek" id="nbWeekEnRelief" min="1" max="4" value="1">
+                    </label>
+
+                    <!-- Checkbox pour afficher le date picker -->
+                    <label class="taille">
+                        <input type="checkbox" id="datePickerToggle2" class="datePickerToggle taille5"> Ajouter une date personnalisée
+                    </label>
+                    
+                    <!-- Date picker (caché par défaut) -->
+                    <input class="datePicker" type="date" name="customDate" id="customDate2" style="display: none;">
+                </form>
+                <?php
+                if (!$optionRelief) {
+                    ?>
+                        <p class="taille4 toggleMessage">*L'option sera active lors de la prochaine mise en ligne</p>
+                        <?php                                
+                } else {
+                    ?>
+                        <p class="taille4 toggleMessage">*L'option sera lancée à la fin de celle-ci</p>
+                        <?php
+                }
+                ?>
+            </aside>
+            <section class="sectionBtn">
+                <button id="button2" class="modifierBut">Ajouter</button>
+            </section>
+        </section>
+    </section>
+</section>             
                 <button class="modifierBut" onclick="confirmation()">Quitter</button>
               </section>
             </section>
@@ -568,7 +587,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <article id="descriptionOffre">
         <?php
         if (!$avis) {
-            echo '<p>Pas de note pour le moment</p>';
+            echo '<p class="notation">Pas de note pour le moment</p>';
         } else {
             $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
             $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
@@ -679,7 +698,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $theme = $stmt -> fetchAll(PDO::FETCH_ASSOC);
             ?>
             <div>
-                <p>Âge minimum : <?= $theme[0]['agemin']?></p>
+                <p>Âge minimum : <?= $theme[0]['agemin']?> ans</p>
             </div>
             <?php
         }
@@ -901,6 +920,27 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             });
         }
 
+        const toggles = document.querySelectorAll(".datePickerToggle");
+
+    toggles.forEach(toggle => {
+        toggle.addEventListener("change", function () {
+            const form = this.closest("form");
+            const datePicker = form.querySelector(".datePicker");
+            const toggleMessage = form.closest("aside").querySelector(".toggleMessage");
+
+            if (this.checked) {
+                datePicker.style.display = "block"; // Affiche le date picker
+                if (toggleMessage) {
+                    toggleMessage.style.display = "none"; // Cache le message
+                }
+            } else {
+                datePicker.style.display = "none"; // Cache le date picker
+                if (toggleMessage) {
+                    toggleMessage.style.display = "block"; // Affiche à nouveau le message
+                }
+            }
+        });
+    });
 
     const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.contentPop');
