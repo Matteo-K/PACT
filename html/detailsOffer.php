@@ -414,7 +414,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </aside>
             <section class="sectionBtn">
-                <button id="button1" class="modifierBut <?php echo count($optionUne)>=2? 'disabled' : ''; ?>">
+                <button id="button1" class="modifierBut <?php echo count($optionUne)>=2? 'disabled' : ''; ?>"
+                onmouseover="showMessageAdd(event)"
+                onmouseout="hideMessageAdd(event)"
+                <?php if (count($optionUne)>=2) {
+                    ?>onclick="return false;"<?php
+                }?>
+                >
                     Ajouter
                 </button>
             </section>
@@ -456,18 +462,25 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </aside>
             <section class="sectionBtn">
-                <button id="button2" class="modifierBut <?php echo count($optionRelief)>=2? 'disabled' : ''; ?>">
+                <button id="button2" class="modifierBut <?php echo count($optionRelief)>=2? 'disabled' : ''; ?>"
+                onmouseover="showMessageAdd(event)"
+                onmouseout="hideMessageAdd(event)"
+                <?php if (count($optionRelief)>=2) {
+                    ?>onclick="return false;"<?php
+                }?>
+                >
                     Ajouter
                 </button>
             </section>
         </section>
     </section>
+    <section id="hoverMessageAdd" class="hover-message">Vous avez trop de d'option en attente (1 option en attente et 1 en cour maximun par option)</section>
 </section>             
                 <button class="modifierBut" onclick="confirmation()">Quitter</button>
               </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
-                <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
+                <section id="hoverMessage" class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }
         }
         ?>
@@ -1155,6 +1168,17 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Fonction pour masquer le message
         function hideMessage(event) {
             const message = document.getElementById('hoverMessage');
+            message.style.display = 'none';
+        }
+
+        function showMessageAdd(event) {
+            const message = document.getElementById('hoverMessageAdd');
+            message.style.display = 'block';
+        }
+
+        // Fonction pour masquer le message
+        function hideMessageAdd(event) {
+            const message = document.getElementById('hoverMessageAdd');
             message.style.display = 'none';
         }
 
