@@ -220,6 +220,8 @@ class ArrayOffer {
         $stmt = $conn->prepare("SELECT a.* from pact.avis a where idoffre = ? order by datepublie desc limit 2");
         $stmt->execute([$offre['idoffre']]);
         while ($resAvis = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          echo "pass";
+          print_r($resAvis);
           $avis[] = [
             "titre" => $resAvis["titre"], 
             "contenue" => $resAvis["content"],
