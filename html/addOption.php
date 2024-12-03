@@ -3,7 +3,7 @@
 require_once 'config.php';
 
 $offreId = $_POST['idOffre'];
-
+print_r($_POST);
 if ($_POST['type'] == 'ajout') {
     if ($_POST['nomOption']=='ALaUne') {
         $prix = $_POST['nbWeek']*20;
@@ -78,7 +78,7 @@ echo <<<HTML
     <input type="hidden" name="popup">
 </form>
 <script>
-    document.getElementById('redirectForm').submit();
+   // document.getElementById('redirectForm').submit();
 </script>
 HTML;
 
