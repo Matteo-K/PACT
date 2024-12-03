@@ -199,7 +199,7 @@ class ArrayOffer {
         }
 
         $options = [];
-        $stmt = $conn->prepare("SELECT * from pact._option_offre natural join pact._dateoption where idoffre = 3 And datefin >= CURRENT_DATE");
+        $stmt = $conn->prepare("SELECT * from pact._option_offre natural join pact._dateoption where idoffre = ? And datefin >= CURRENT_DATE");
         $stmt->execute([$offre['idoffre']]);
         while ($resOption = $stmt->fetch(PDO::FETCH_ASSOC)) {
           if (!in_array($resOption["nomoption"], $options)) {
