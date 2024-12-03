@@ -197,11 +197,11 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         <?php
             $source = "details/";
-            require_once $source . "detailsRestaurant.php";
-            require_once $source . "detailsPark.php";
-            require_once $source . "detailsVisit.php";
-            require_once $source . "detailsShow.php";
-            require_once $source . "detailsActivity.php";
+            // require_once $source . "detailsRestaurant.php";
+            // require_once $source . "detailsPark.php";
+            // require_once $source . "detailsVisit.php";
+            // require_once $source . "detailsShow.php";
+            // require_once $source . "detailsActivity.php";
             
         ?>
 
