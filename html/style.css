@@ -29,7 +29,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "IBM Plex Mono", sans-serif;
+  font-family: sans-serif;
 }
 
 #logoText {
@@ -3203,7 +3203,7 @@ tbody td:last-child {
 
 
 #avisproS2 > details{
-  width: 90%;
+  width: 100%;
   background-color: var(--primary60);
   border-radius: 15px;
   padding: 20px;
@@ -3213,6 +3213,23 @@ tbody td:last-child {
   font-weight: 500 ;
   font-size: 1.7em;
   margin-top: 10px;
+}
+
+.custom-marker {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  display: inline-block;
+  transform: rotate(0deg); 
+  transition: transform 0.3s ease; 
+  margin-right: 8px; 
+  color: #000;
+  font-size: 30px;
+}
+
+/* Change la rotation du triangle lorsque <details> est ouvert */
+details[open] .custom-marker {
+  transform: rotate(90deg); 
 }
 
 
@@ -3251,29 +3268,12 @@ tbody td:last-child {
 }
 
 #ligneTitreAvis > img{
-  width: 2.2em;
-  height: 2.2em;
+  width: 2em;
+  height: 2em;
   position: absolute;
   top: 20px;
   right: 20px;
 }
-
-.custom-marker {
-  position: absolute;
-  top: 20px;
-  left: 50px;
-  display: inline-block;
-  transform: rotate(0deg); 
-  transition: transform 0.3s ease; 
-  margin-right: 8px; 
-  color: #000;
-}
-
-/* Change la rotation du triangle lorsque <details> est ouvert */
-details[open] .custom-marker {
-  transform: rotate(90deg); 
-}
-
 
 .conteneurAvisPro .noteEtoile{
   width: 100%;

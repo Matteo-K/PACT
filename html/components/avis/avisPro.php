@@ -133,6 +133,7 @@
         <div class="conteneurAvisPro">
             
             <div id="ligneTitreAvis">
+                <span class="custom-marker">▶</span>
                 <h2>
                     Auteur
                 </h2>
