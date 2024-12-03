@@ -212,20 +212,6 @@ function filtrerParPrix(offers) {
   const prixMin = parseInt(document.getElementById('selectPrixMin').value);
   const prixMax = parseInt(document.getElementById('selectPrixMax').value);
 
-  // Fonction qui détermine la plage de prix en fonction de la gamme
-  function getPrixRange(gammeDePrix) {
-    switch (gammeDePrix) {
-      case '€':
-        return [0, 25];
-      case '€€':
-        return [25, 40];
-      case '€€€':
-        return [40, Infinity];
-      default:
-        return [0, Infinity];
-    }
-  }
-
   // Filtrage des offres selon la plage de prix sélectionnée
   return offers.filter(offer => {
     const prixRange = getPrixRange(offer.gammeDePrix);
@@ -237,6 +223,19 @@ function filtrerParPrix(offers) {
   });
 }
 
+// Fonction qui détermine la plage de prix en fonction de la gamme
+function getPrixRange(gammeDePrix) {
+  switch (gammeDePrix) {
+    case '€':
+      return [0, 25];
+    case '€€':
+      return [25, 40];
+    case '€€€':
+      return [40, Infinity];
+    default:
+      return [0, Infinity];
+  }
+}
 
 // Fonction de filtre par statuts
 function filtrerParStatuts(offers) {

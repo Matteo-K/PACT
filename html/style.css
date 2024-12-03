@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
 
 :root { 
@@ -29,7 +29,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Belanosima", sans-serif;
+  font-family: "IBM Plex Mono", sans-serif;
 }
 
 #logoText {
