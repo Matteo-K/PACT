@@ -2890,10 +2890,6 @@ tbody td:last-child {
   width: 70%;
 }
 
-#descriptionOffre>section>p {
-  text-indent: 20px;
-}
-
 #infoPro {
   gap: 10vh;
   margin-bottom: 1em;
@@ -2923,10 +2919,12 @@ article#descriptionOffre {
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
+  align-items: flex-end;
 }
 
 article#descriptionOffre h3 {
-  font-size: 1.5rem;
+  font-size: 2.5em;
+  font-weight: 100;
   border-bottom: 2px solid #000;
   padding-bottom: 5px;
   margin-bottom: 15px;
@@ -2946,7 +2944,8 @@ section#infoComp {
 }
 
 section#infoComp h2 {
-  font-size: 1.8rem;
+  font-size: 2.5em;
+  font-weight: 200;
   border-bottom: 2px solid #000;
   padding-bottom: 5px;
   margin-bottom: 15px;
