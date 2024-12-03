@@ -3271,7 +3271,8 @@ tbody td:last-child {
   overflow: hidden;
 }
 
-#avisProS2 > details > summary{
+#avisProS2 summary{
+  display: flex;
   justify-content: space-between;
 }
 
@@ -3301,6 +3302,7 @@ details[open] .custom-marker {
   transition: max-height 0.5s ease;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 details.animating .contentDetails {
@@ -3341,7 +3343,7 @@ details .nonLu, details .nonRepondu{
   left: 20px;
 }
 
-#avisPro .notedetaille{
+#avisPro .notation{
   width: 100%;
 }
 
