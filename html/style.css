@@ -2209,6 +2209,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 1.5rem;
 }
 
+.formopt{
+  display: flex;
+  flex-direction: column;
+}
+
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
@@ -2887,6 +2892,7 @@ tbody td:last-child {
   border-radius: 0.5em;
   padding: 10px;
   margin-top: 1em;
+  width: 70%;
 }
 
 #descriptionOffre>section>p {
@@ -2921,7 +2927,6 @@ tbody td:last-child {
 article#descriptionOffre {
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
@@ -2943,7 +2948,6 @@ article#descriptionOffre p {
 section#infoComp {
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 section#infoComp h2 {
@@ -3486,6 +3490,7 @@ details .nonLu, details .nonRepondu{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 30%;
 }
 
 .notation > div > p{
