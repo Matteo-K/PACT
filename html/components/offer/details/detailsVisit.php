@@ -146,9 +146,10 @@ if ($categorie["_visite"]) {
                 langText.className = 'lang-text';
 
                 // Ajouter un bouton de suppression avec une icône
+                /*
                 const removeBtn = document.createElement('button');
                 removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; // Symbole "×" stylisé
-                removeBtn.className = 'remove-btn';
+                removeBtn.className = 'remove-btn';*/
 
                 // Action pour retirer la langue lorsqu'on clique sur le bouton
                 removeBtn.addEventListener('click', function () {
@@ -160,6 +161,7 @@ if ($categorie["_visite"]) {
                 langDiv.appendChild(removeBtn);
 
                 // Appliquer un style visuel au conteneur
+                /*
                 langDiv.style.display = 'inline-flex';
                 langDiv.style.alignItems = 'center';
                 langDiv.style.margin = '5px';
@@ -170,7 +172,7 @@ if ($categorie["_visite"]) {
                 langDiv.style.fontSize = '0.9em';
                 langDiv.style.color = '#2e7d32'; // Texte de même couleur que les tags ajoutés
                 langDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-
+*/
                 // Ajouter une animation pour l'apparition
                 langDiv.style.opacity = '0';
                 langDiv.style.transform = 'scale(0.95)';

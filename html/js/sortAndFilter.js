@@ -235,7 +235,6 @@ function filtrerParNotes(offers) {
 }
 
 
-// Fonction de filtre par prix
 function filtrerParPrix(offers) {
   // Récupérer les valeurs des sélecteurs de prix
   const prixMin = parseInt(document.getElementById('selectPrixMin').value);
@@ -243,28 +242,38 @@ function filtrerParPrix(offers) {
 
   // Filtrage des offres selon la plage de prix sélectionnée
   return offers.filter(offer => {
-    const prixRange = getPrixRange(offer.gammeDePrix); // Calcule la plage de prix de l'offre
-    const prixMinOffre = prixRange[0]; // Prix minimum de l'offre
-    const prixMaxOffre = prixRange[1]; // Prix maximum de l'offre
+    // Si l'offre est un restaurant, on vérifie la gamme de prix (en utilisant "€", "€€", "€€€")
+    if (offer.categorie === 'Restaurant') {
+      const prixRange = getPrixRangeRestaurant(offer.gammeDePrix); // Calcule la plage de prix pour un restaurant
+      const prixMinOffre = prixRange[0];
+      const prixMaxOffre = prixRange[1];
 
-    // Vérifie si l'offre est dans la plage de prix spécifiée par l'utilisateur
-    return prixMinOffre >= prixMin && prixMaxOffre <= prixMax;
+      // Vérifie si la gamme de prix de l'offre est dans la plage de prix sélectionnée
+      return prixMinOffre >= prixMin && prixMaxOffre <= prixMax;
+    } else {
+      // Pour les autres catégories (spectacles, activités, etc.), on compare le prix minimal
+      const prixMinOffre = offer.prixMinimal;  // Prix minimal pour l'offre
+
+      // Vérifie si le prix minimal de l'offre est dans la plage de prix sélectionnée
+      return prixMinOffre >= prixMin && prixMinOffre <= prixMax;
+    }
   });
 }
 
-// Fonction qui détermine la plage de prix en fonction de la gamme
-function getPrixRange(gammeDePrix) {
+// Fonction qui détermine la plage de prix en fonction de la gamme pour les restaurants
+function getPrixRangeRestaurant(gammeDePrix) {
   switch (gammeDePrix) {
     case '€':
-      return [0, 25];
+      return [0, 25];    // Moins de 25€
     case '€€':
-      return [25, 40];
+      return [25, 40];   // Entre 25€ et 40€
     case '€€€':
-      return [40, Infinity];
+      return [40, Infinity]; // Plus de 40€
     default:
-      return [0, Infinity];
+      return [0, Infinity];  // Par défaut, une plage infinie si la gamme est inconnue
   }
 }
+
 
 
 // Fonction de filtre par statuts

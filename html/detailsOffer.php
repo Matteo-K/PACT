@@ -281,14 +281,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $optionRelief = $option->fetchAll(PDO::FETCH_ASSOC);
                         $mesOtion = [];
                         if ($optionRelief) {
-                            $mesOtion[] = $optionRelief;
+                            foreach ($optionRelief as $key => $value) {
+                                $mesOtion[] = $value;
+                            }
                         }
                         if ($optionUne) {
-                            $mesOtion[] = $optionUne;
+                            foreach ($optionUne as $key => $value) {
+                                $mesOtion[] = $value;
+                            }
                         }
                         if ($mesOtion != []) {
                             ?>
-                                <strong><p>Mes options : </p></strong>
+                                <strong><p class="taille3">Mes options : </p></strong>
                                 <ul>
                                     <?php
                                         foreach ($mesOtion as $key => $value) {
@@ -296,16 +300,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <li>
                                                 <section class="popUpOption">
                                                     <?php
-                                                    print_r($value);
                                                     if ($value['datefin'] != null) {
                                                         $dateActuelle = NEW DateTime();
                                                         $dateFin = NEW DateTime($value['datefin']);
                                                         $dureeRestante = $dateActuelle->diff($dateFin);
-                                                        ?><p><?php echo "Option en cours : " . $value['nomoption'] . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
+                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
+                                                        ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
                                                         <button class="modifierBut">Arrêter</button>
                                                         <?php
                                                     } else {
-                                                        ?><p><?php echo "Option pas commencer : " . $value['nomoption'] . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
+                                                        ?><p><?php echo "Option pas commencer : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
                                                         <button class="modifierBut">Résilier</button>
                                                         <?php
                                                     } 
@@ -364,14 +368,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <section class="donnee">
                             <aside>
                                 <form id="formOpt2" action="addOption.php" method="post">
-                                    <input type="hidden" name="nomOption" value="ALaUne">
+                                    <input type="hidden" name="nomOption" value="EnRelief">
                                     <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                     <input type="hidden" name="type" value="ajout">
                                     <label class="taille" for="nbWeek">Nombre de semaine en Relief</label>
                                     <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
                                 </form>
                                 <?php
-                                if (!$optionUne) {
+                                if (!$optionRelief) {
                                     ?>
                                         <p class="taille4">*l'option sera active lors de la prochaine mise en ligne</p>
                                         <?php                                
@@ -388,7 +392,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </section>
                     </section>
                 </section>              
-                <button class="modifierBut" onclick="confirmation()">Comfirmer</button>
+                <button class="modifierBut" onclick="confirmation()">Quitter</button>
               </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
