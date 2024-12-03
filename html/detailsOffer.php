@@ -335,8 +335,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <aside>
                                 <form id="formOpt1" action="addOption.php" method="post">
                                     <input type="hidden" name="nomOption" value="ALaUne">
-                                    <label class="taille" for="nbWeekALaUne">Nombre de semaine à la Une</label>
-                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="1">
+                                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                    <input type="hidden" name="type" value="ajout">
+                                    <label class="taille" for="nbWeek">Nombre de semaine à la Une</label>
+                                    <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
                                 </form>
                                 <?php
                                 if (!$optionUne) {
@@ -363,8 +365,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <aside>
                                 <form id="formOpt2" action="addOption.php" method="post">
                                     <input type="hidden" name="nomOption" value="ALaUne">
-                                    <label class="taille" for="nbWeekALaUne">Nombre de semaine en Relief</label>
-                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="1">
+                                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                    <input type="hidden" name="type" value="ajout">
+                                    <label class="taille" for="nbWeek">Nombre de semaine en Relief</label>
+                                    <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
                                 </form>
                                 <?php
                                 if (!$optionUne) {
@@ -725,7 +729,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt -> execute();
         $menus = $stmt -> fetchAll(PDO::FETCH_ASSOC);
     ?>
-         
         <div class="swiper-container menu-container">
             <div class="swiper menu">
                 <div class="swiper-wrapper">
@@ -741,8 +744,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
 
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
     <?php
     }

@@ -29,7 +29,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "IBM Plex Mono", sans-serif;
+  font-family: sans-serif;
 }
 
 #logoText {
@@ -2675,7 +2675,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Swiper Styles */
-.mySwiper {
+.mySwiper{
   height: 35em;
   /* Height of the main Swiper */
   border-radius: 15px;
@@ -2716,6 +2716,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background: #fff;
 }
 
+
+
 .swiper-slide img {
   display: block;
   width: 100%;
@@ -2740,6 +2742,44 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
   max-width: 1200px;
 }
+
+.swiper-container.menu-container {
+  width: 100%;
+  height: auto;
+  padding: 20px 0; /* Ajustez si nécessaire */
+}
+
+.swiper.menu {
+  width: 100%;
+  height: 100%;
+}
+
+.menu > .swiper-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.menu > .swiper-wrapper > .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #f8f8f8; /* Couleur de fond */
+  border: 1px solid #ddd; /* Bordure légère */
+  border-radius: 8px; /* Coins arrondis */
+  overflow: hidden;
+  width: calc((100% / 3) - 10px); /* Ajuste la largeur pour 3 éléments */
+  margin: 0 5px; /* Espacement entre les slides */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+.menu > .swiper-wrapper >.swiper-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Adapte l'image au contenant */
+  border-radius: 8px;
+}
+
 
 table {
   width: 50em;
@@ -3203,7 +3243,7 @@ tbody td:last-child {
 
 
 #avisproS2 > details{
-  width: 90%;
+  width: 100%;
   background-color: var(--primary60);
   border-radius: 15px;
   padding: 20px;
@@ -3213,6 +3253,23 @@ tbody td:last-child {
   font-weight: 500 ;
   font-size: 1.7em;
   margin-top: 10px;
+}
+
+.custom-marker {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  display: inline-block;
+  transform: rotate(0deg); 
+  transition: transform 0.3s ease; 
+  margin-right: 8px; 
+  color: #000;
+  font-size: 30px;
+}
+
+/* Change la rotation du triangle lorsque <details> est ouvert */
+details[open] .custom-marker {
+  transform: rotate(90deg); 
 }
 
 
@@ -3251,29 +3308,12 @@ tbody td:last-child {
 }
 
 #ligneTitreAvis > img{
-  width: 2.2em;
-  height: 2.2em;
+  width: 2em;
+  height: 2em;
   position: absolute;
   top: 20px;
   right: 20px;
 }
-
-.custom-marker {
-  position: absolute;
-  top: 20px;
-  left: 50px;
-  display: inline-block;
-  transform: rotate(0deg); 
-  transition: transform 0.3s ease; 
-  margin-right: 8px; 
-  color: #000;
-}
-
-/* Change la rotation du triangle lorsque <details> est ouvert */
-details[open] .custom-marker {
-  transform: rotate(90deg); 
-}
-
 
 .conteneurAvisPro .noteEtoile{
   width: 100%;
