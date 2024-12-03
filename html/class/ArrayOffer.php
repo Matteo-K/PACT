@@ -228,8 +228,6 @@ class ArrayOffer {
           ];
         }
 
-        print_r($avis);
-
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
           $offre['idu'], $offre['nom'],
           $offre['nomabonnement'], $options, 
