@@ -2985,8 +2985,9 @@ article#descriptionOffre h3,.divMenu >  h2 {
   margin-bottom: 15px;
   text-align: center;
 }
-#divMenu{
+.divMenu{
   width: 70%;
+  flex-direction: column;
 }
 
 article#descriptionOffre p {
