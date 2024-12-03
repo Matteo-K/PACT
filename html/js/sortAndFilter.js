@@ -261,8 +261,6 @@ function filtrerParPrix(offers) {
   const prixMin = parseInt(selectPrixMin.value);
   const prixMax = parseInt(selectPrixMax.value);
 
-  console.log(`Filtrage : Prix Min = ${prixMin}, Prix Max = ${prixMax}`);
-
   return offers.filter(offer => {
     if (offer.categorie === 'Restaurant') {
       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
@@ -314,12 +312,13 @@ function filtrerParStatuts(offers) {
 
 // Fonction de filtre par période
 function filtrerParPeriode(offers) {
-  const dateDepart = new Date(dateDepart.value);
-  const dateFin = new Date(dateFin.value);
-  const heureDebut = heureDebut.value;
-  const heureFin = heureFin.value;
+  const dateDepartValue = new Date(dateDepart.value);
+  const dateFinValue = new Date(dateFin.value);
+  const heureDebutValue = heureDebut.value;
+  const heureFinValue = heureFin.value;
 
-  if (isNaN(dateDebut.getTime()) || isNaN(dateFin.getTime())) {
+  // Vérifier que les dates sont valides
+  if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
     return offers;
   }
 
@@ -327,14 +326,14 @@ function filtrerParPeriode(offers) {
     const dateOffre = new Date(offer.date);
     const heureOffre = offer.date.split('T')[1];
 
-    const dateValide = dateOffre >= dateDebut &&  dateOffre <= dateFin;
+    const dateValide = dateOffre >= dateDepartValue && dateOffre <= dateFinValue;
 
-    const heureValide = (heureDebut && heureFin) ? (heureOffre >= heureDebut && heureOffre <= heureFin) : true;
+    // Si l'heure est spécifiée, filtrer aussi par heure
+    const heureValide = (heureDebutValue && heureFinValue) ? (heureOffre >= heureDebutValue && heureOffre <= heureFinValue) : true;
 
     return dateValide && heureValide;
   });
 }
-
 
 // Fonction de filtre par lieu
 // function filtrerParLieu(offers) {
