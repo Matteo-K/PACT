@@ -103,39 +103,30 @@ const heureFin = document.querySelector("#heureFin");
 function selectSort(array) {
   
   if (radBtnEnAvant.checked) {
-    console.log("Tri avec Mise en avant");
     return sortEnAvant(array);
 
   } else if (radBtnNoteCroissant.checked) {
-    console.log("Tri avec Note Croissant");
     return sortNoteCroissant(array);
 
   } else if (radBtnNoteDecroissant.checked) {
-    console.log("Tri avec Note Décroissant");
     return sortNoteDecroissant(array);
 
   } else if (radBtnprixCroissant.checked) {
-    console.log("Tri avec Prix Croissant");
     return sortprixCroissant(array);
 
   } else if (radBtnPrixDecroissant.checked) {
-    console.log("Tri avec Prix Décroissant");
     return sortPrixDecroissant(array);
 
   } else if (radBtnAvisCroissant.checked) {
-    console.log("Tri avec Avis croissant");
     return sortAvisCroissant(array);
 
   } else if (radBtnPrixDecroissant.checked) {
-    console.log("Tri avec Avis décroissant");
     return sortAvisDecroissant(array);
 
   } else if (radBtnDateCreationRecent.checked) {
-    console.log("Tri avec Date Récent");
     return sortDateCreaRecent(array);
 
   } else if (radBtnDateCreationAncien.checked) {
-    console.log("Tri avec Date Ancien");
     return sortDateCreaAncien(array);
   }
   
@@ -143,7 +134,17 @@ function selectSort(array) {
 }
 
 function sortEnAvant(array) {
-  return array;
+  return array.sort((offre1, offre2) => {
+    const containsEnReliefA = offre1.option.includes('EnRelief');
+    const containsEnReliefB = offre2.option.includes('EnRelief');
+    
+    if (containsEnReliefA && !containsEnReliefB) {
+        return -1;
+    } else if (!containsEnReliefA && containsEnReliefB) {
+        return 1;
+    }
+    return 0;
+});
 }
 
 function sortNoteCroissant(array) {
@@ -202,14 +203,19 @@ function sortAvisDecroissant(array) {
 
 function sortDateCreaRecent(array) {
   return array.sort((offre1, offre2) => {
-    console.log("offre1 : "+ (offre1.horaireMidi || offre1.horaire));
-    return offre1.dateCreation - offre2.dateCreation
+    const date1 = new Date(offre1.dateCreation);
+    const date2 = new Date(offre2.dateCreation);
+
+    return date2.getTime() - date1.getTime()
   });
 }
 
 function sortDateCreaAncien(array) {
   return array.sort((offre1, offre2) => {
-    return offre2.dateCreation - offre1.dateCreation
+    const date1 = new Date(offre1.dateCreation);
+    const date2 = new Date(offre2.dateCreation);
+    
+    return date1.getTime() - date2.getTime()
   });
 }
 
@@ -338,12 +344,12 @@ function filtrerParPeriode(offers) {
 
 
 // Fonction de filtre par lieu
-// function filtrerParLieu(offers) {
-//   const lieuSelection = [];
+function filtrerParLieu(offers) {
+  const lieuSelection = [];
 
 
-//   return offers.filter(offer => lieuSelection.includes(offer.note));
-// }
+  return offers.filter(offer => lieuSelection.includes(offer.note));
+}
 
 
 // Fonction global
@@ -353,7 +359,7 @@ function sortAndFilter(array, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  array = filtrerParPeriode(array);
+  //array = filtrerParPeriode(array);
 
   // Tris
   array = selectSort(array);
@@ -597,6 +603,8 @@ function avisSearch(offer) {
 
   let tempPasAvis = document.createElement("p");
   tempPasAvis.textContent = "Pas d'avis";
+
+  console.table(offer);
 
   div.appendChild(divTitre);
   div.appendChild(note(offer));

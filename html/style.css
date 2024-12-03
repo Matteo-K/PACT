@@ -2263,6 +2263,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 25px;
 }
 
+.taillebtn{
+  width: 100% !important;
+}
+
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
@@ -2534,7 +2538,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .modal-content {
   background-color: #fff;
-  margin: 10% auto;
+  margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 50%;
@@ -3500,6 +3504,10 @@ details .nonLu, details .nonRepondu{
   position: absolute;
   top: 10px;
   right: 0;
+}
+
+#ligneTitreAvis > img:first-child{
+  left: 0;
 }
 
 .conteneurAvisPro .noteEtoile{

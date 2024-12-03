@@ -324,12 +324,24 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 <section class="popUpOption">
                                                     <?php
                                                     if ($value['datefin'] != null) {
+                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         $dateActuelle = NEW DateTime();
+                                                        $dateDeb = NEW DateTime($value['datelancement']);
+                                                        if ($dateActuelle<$dateDeb) {
+                                                            $dureeAvDeb = $dateActuelle->diff($dateDeb);
+                                                            ?><p><?php echo "Option en attente : " . $nom . " commence dans " . $dureeAvDeb->days . "jours pour " . $value['duree_total'] * 7 . " jours." ?></p>
+                                                            <form class="confirmation-form" action="addOption.php" method="post">
+                                                                <input type="hidden" name="type" value="resilier">
+                                                                <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                                                <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
+                                                                <button class="modifierBut">Résilier</button>
+                                                            </form>
+                                                            <?php
+                                                        }else {
                                                         $dateFin = NEW DateTime($value['datefin']);
                                                         $dureeRestante = $dateActuelle->diff($dateFin);
-                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
-                                                        <form action="addOption.php" method="post">
+                                                        <form class="confirmation-form" action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="arreter">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                                             <input type="hidden" name="nom" value="<?php echo $value['nomoption'] ?>">
@@ -337,10 +349,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                             <button class="modifierBut">Arrêter</button>
                                                         </form>
                                                         <?php
+                                                        }
                                                     } else {
                                                         $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option en attente : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
-                                                        <form id="formOpt3" action="addOption.php" method="post">
+                                                        <form class="confirmation-form" id="formOpt3" action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="resilier">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
                                                             <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
@@ -382,7 +395,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <!-- Checkbox pour afficher le date picker -->
                     <label class="taille">
-                        <input type="checkbox" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
+                        <input type="checkbox" name="dtcheck" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
                     </label>
                     
                     <!-- Date picker (caché par défaut) -->
@@ -401,7 +414,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </aside>
             <section class="sectionBtn">
-                <button id="button1" class="modifierBut">Ajouter</button>
+                <button id="button1" class="modifierBut <?php echo count($optionUne)>=2? 'disabled' : ''; ?>"
+                <?php if (count($optionUne)>=2) {
+                    ?>
+                    onmouseover="showMessageAdd(event)"
+                    onmouseout="hideMessageAdd(event)"
+                    onclick="return false;"
+                    
+                    <?php
+                }?>
+                >
+                    Ajouter
+                </button>
             </section>
         </section>
     </section>
@@ -441,16 +465,27 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </aside>
             <section class="sectionBtn">
-                <button id="button2" class="modifierBut">Ajouter</button>
+                <button id="button2" class="modifierBut <?php echo count($optionRelief)>=2? 'disabled' : ''; ?>"
+                <?php if (count($optionRelief)>=2) {
+                    ?>
+                    onclick="return false;"
+                    onmouseover="showMessageAdd(event)"
+                    onmouseout="hideMessageAdd(event)"
+                    <?php
+                }?>
+                >
+                    Ajouter
+                </button>
             </section>
         </section>
     </section>
+    <section id="hoverMessageAdd" class="hover-message">Vous avez trop de d'option en attente (1 option en attente et 1 en cour maximun par option)</section>
 </section>             
-                <button class="modifierBut" onclick="confirmation()">Quitter</button>
+                <button class="modifierBut taillebtn" onclick="confirmation()">Quitter</button>
               </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
-                <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
+                <section id="hoverMessage" class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }
         }
         ?>
@@ -935,6 +970,17 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     /** Fin du script */
 
     document.addEventListener('DOMContentLoaded', function () {
+
+        const forms = document.querySelectorAll('.confirmation-form');
+        forms.forEach(form => {
+            form.addEventListener('submit', (event) => {
+                const confirmation = confirm("Êtes-vous sûr de vouloir effectuer cette action ?");
+                if (!confirmation) {
+                    event.preventDefault(); // Empêche la soumission si l'utilisateur annule
+                }
+            });
+        });
+
         const button1 = document.getElementById("button1");
         const button2 = document.getElementById("button2");
         const form1 = document.getElementById("formOpt1");
@@ -1167,6 +1213,17 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Fonction pour masquer le message
         function hideMessage(event) {
             const message = document.getElementById('hoverMessage');
+            message.style.display = 'none';
+        }
+
+        function showMessageAdd(event) {
+            const message = document.getElementById('hoverMessageAdd');
+            message.style.display = 'block';
+        }
+
+        // Fonction pour masquer le message
+        function hideMessageAdd(event) {
+            const message = document.getElementById('hoverMessageAdd');
             message.style.display = 'none';
         }
 
