@@ -110,7 +110,7 @@ function selectSort(array) {
   } else if (radBtnprixCroissant.checked) {
     console.log("Tri avec Prix Croissant");
     return sortprixCroissant(array);
-  } else if (radœBtnPrixDecroissant.checked) {
+  } else if (radBtnPrixDecroissant.checked) {
     console.log("Tri avec Prix Décroissant");
     return sortPrixDecroissant(array);
   } else if (radBtnDateRecent.checked) {
