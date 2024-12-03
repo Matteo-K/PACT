@@ -465,7 +465,6 @@ function createCard(offer) {
   }
 
   infoOffre.appendChild(resume);
-  infoOffre.appendChild(note(offer));
 
   card.appendChild(infoOffre);
   card.appendChild(avisSearch(offer));
@@ -574,6 +573,7 @@ function avisSearch(offer) {
   tempPasAvis.textContent = "Pas d'avis";
 
   div.appendChild(titre);
+  div.appendChild(note(offer));
   div.appendChild(tempPasAvis);
 
   return div;
