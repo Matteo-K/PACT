@@ -3259,11 +3259,6 @@ tbody td:last-child {
   padding: 20px;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-#avisproS2 > details[open]{
-  height: auto;
 }
 
 summary::marker{
@@ -3293,8 +3288,8 @@ details[open] .custom-marker {
   transition: max-height 0.3s ease;
 }
 
-details[open] .contentDetails {
-  max-height: 1000px; /* Une grande valeur pour permettre l'animation */
+details.animating .contentDetails {
+  transition: max-height 0.3s ease;
 }
 
 #avisproS2 > details h2{

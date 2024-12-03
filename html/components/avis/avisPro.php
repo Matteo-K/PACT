@@ -184,4 +184,31 @@ function afficheAvisSelect(numAvis) {
         
     affichage.textContent = listeAvis[numAvis]["content"];
 }
+
+
+document.querySelectorAll("#avisproS2 > details").forEach(details => {
+  const content = details.querySelector(".contentDetails");
+
+  details.addEventListener("toggle", () => {
+    if (details.open) {
+      // Ouverture : calcule la hauteur réelle du contenu
+      const height = content.scrollHeight;
+      content.style.maxHeight = `${height}px`;
+
+      // Supprime maxHeight après la transition pour gérer les contenus dynamiques
+      content.addEventListener("transitionend", () => {
+        if (details.open) {
+          content.style.maxHeight = "none";
+        }
+      }, { once: true });
+    } else {
+      // Fermeture : réinitialise maxHeight pour une transition fluide
+      const height = content.scrollHeight; // Hauteur actuelle
+      content.style.maxHeight = `${height}px`; // Réinitialise temporairement
+      setTimeout(() => {
+        content.style.maxHeight = "0"; // Puis réduit à 0 pour l'animation
+      });
+    }
+  });
+});
 </script>
