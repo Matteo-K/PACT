@@ -322,6 +322,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         <form action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="arreter">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                                            <input type="hidden" name="nom" value="<?php echo $value['nomoption'] ?>">
                                                             <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
                                                             <button class="modifierBut">Arrêter</button>
                                                         </form>
