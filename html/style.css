@@ -2910,14 +2910,61 @@ tbody td:last-child {
   height: 25px;
 }
 
-#afficheLoc,
-#descriptionOffre {
+#afficheLoc,article#descriptionOffre {
   display: flex;
   flex-direction: row;
   gap: 20px;
   align-items: center;
   justify-content: center;
   width: 60%;
+}
+
+article#descriptionOffre {
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+article#descriptionOffre h3 {
+  font-size: 1.5rem;
+  color: #007BFF;
+  border-bottom: 2px solid #007BFF;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+article#descriptionOffre p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+
+section#infoComp {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+section#infoComp h2 {
+  font-size: 1.8rem;
+  color: #007BFF;
+  border-bottom: 2px solid #007BFF;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+section#infoComp p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+section#infoComp div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 #carte {
@@ -3147,10 +3194,6 @@ tbody td:last-child {
   rotate: -90deg;
 }
 
-#infoComp > div {
-  display: flex;
-  justify-content: space-evenly;
-}
 
 /** Avis PRO **/
 
