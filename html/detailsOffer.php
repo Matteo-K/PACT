@@ -620,7 +620,21 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <p>Visite guidée : <?= isset($visite[0]["guide"])? "Oui" : "Non"?></p>
                 <?php
                 if($visite[0]["guide"]){
+                    $stmt = $conn -> prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
+                    $stmt -> execute();
+                    $langues = $stmt -> fetchAll(PDO::FETCH_ASSOC);
                 ?>
+                    <p>Langues : 
+                <?php
+                    foreach($langue as $key => $langue){
+                        echo $langue["langue"]?>   
+                <?php
+                        if(count($langues) != $key +1){
+                            echo ", ";
+                        }
+                    }
+                ?>
+                    </p>
                 <?php
                 }
                 ?>
