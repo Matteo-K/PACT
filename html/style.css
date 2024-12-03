@@ -2167,6 +2167,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .taille{
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .taille2{
