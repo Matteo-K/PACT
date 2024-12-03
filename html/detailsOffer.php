@@ -333,10 +333,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </strong>
                         <section class="donnee">
                             <aside>
-                                <form action="" method="post">
+                                <form id="formOpt1" action="addOption.php" method="post">
                                     <input type="hidden" name="nomOption" value="ALaUne">
-                                    <label class="taille" for="nbWeekALaUne">Nombre de semaine à la Une</label>
-                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="1">
+                                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                    <input type="hidden" name="type" value="ajout">
+                                    <label class="taille" for="nbWeek">Nombre de semaine à la Une</label>
+                                    <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
                                 </form>
                                 <?php
                                 if (!$optionUne) {
@@ -351,7 +353,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 ?>
                             </aside>
                             <section class="sectionBtn">
-                                <button class="modifierBut">Ajouter</button>
+                                <button id="button1" class="modifierBut">Ajouter</button>
                             </section>
                         </section>
                     </section>
@@ -361,10 +363,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </strong>
                         <section class="donnee">
                             <aside>
-                                <form class="donneeForm" action="" method="post">
+                                <form id="formOpt2" action="addOption.php" method="post">
                                     <input type="hidden" name="nomOption" value="ALaUne">
-                                    <label class="taille" for="nbWeekALaUne">Nombre de semaine en Relief</label>
-                                    <input class="taille2" type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="1">
+                                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                    <input type="hidden" name="type" value="ajout">
+                                    <label class="taille" for="nbWeek">Nombre de semaine en Relief</label>
+                                    <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
                                 </form>
                                 <?php
                                 if (!$optionUne) {
@@ -775,7 +779,30 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
 <script>
+
     document.addEventListener('DOMContentLoaded', function () {
+        const button1 = document.getElementById("button1");
+        const button2 = document.getElementById("button2");
+        const form1 = document.getElementById("formOpt1");
+        const form2 = document.getElementById("formOpt2");
+
+        if (button1 && form1) {
+            // Ajouter un listener de clic au bouton
+            button1.addEventListener("click", (event) => {
+                event.preventDefault(); // Empêche l'action par défaut du bouton
+                form1.submit(); // Soumet le formulaire correspondant
+            });
+        }
+
+        if (button2 && form2) {
+            // Ajouter un listener de clic au bouton
+            button2.addEventListener("click", (event) => {
+                event.preventDefault(); // Empêche l'action par défaut du bouton
+                form2.submit(); // Soumet le formulaire correspondant
+            });
+        }
+
+
     const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.contentPop');
     const trait = document.querySelector('.traitBouge'); // Trait qui se déplace

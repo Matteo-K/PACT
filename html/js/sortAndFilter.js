@@ -101,21 +101,27 @@ function selectSort(array) {
   if (radBtnEnAvant.checked) {
     console.log("Tri avec Mise en avant");
     return array; // Aucun tri, juste mise en avant
+    
   } else if (radBtnNoteCroissant.checked) {
     console.log("Tri avec Note Croissant");
     return sortNoteCroissant(array);
+
   } else if (radBtnNoteDecroissant.checked) {
     console.log("Tri avec Note Décroissant");
     return sortNoteDecroissant(array);
+
   } else if (radBtnprixCroissant.checked) {
     console.log("Tri avec Prix Croissant");
     return sortprixCroissant(array);
-  } else if (radœBtnPrixDecroissant.checked) {
+
+  } else if (radBtnPrixDecroissant.checked) {
     console.log("Tri avec Prix Décroissant");
     return sortPrixDecroissant(array);
+
   } else if (radBtnDateRecent.checked) {
     console.log("Tri avec Date Récent");
     return sortDateRecent(array);
+
   } else if (radBtnDateAncien.checked) {
     console.log("Tri avec Date Ancien");
     return sortDateAncien(array);
@@ -145,11 +151,21 @@ function attribuerEtoiles(note) {
 }
 
 function sortprixCroissant(array) {
-  return array;
+  return array.sort((offre1, offre2) => {
+    const prix1 = offre1.categorie === "Restaurant" ? getPrixRange(offre1.gammeDePrix)[0] : offre1.prixMinimal;
+    const prix2 = offre2.categorie === "Restaurant" ? getPrixRange(offre2.gammeDePrix)[0] : offre2.prixMinimal;
+    
+    return prix2 - prix1;
+  });
 }
 
 function sortPrixDecroissant(array) {
-  return array;
+  return array.sort((offre1, offre2) => {
+    const prix1 = offre1.categorie === "Restaurant" ? getPrixRange(offre1.gammeDePrix)[0] : offre1.prixMinimal;
+    const prix2 = offre2.categorie === "Restaurant" ? getPrixRange(offre2.gammeDePrix)[0] : offre2.prixMinimal;
+    
+    return prix1 - prix2;
+  });
 }
 
 function sortDateRecent(array) {
