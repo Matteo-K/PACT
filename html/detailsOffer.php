@@ -205,7 +205,7 @@ JOIN
 LEFT JOIN 
     pact.reponse r ON r.idc_avis = a.idc
 WHERE 
-    a.idoffre = 2
+    a.idoffre = ?
 ORDER BY 
     a.datepublie desc
 ");
@@ -319,11 +319,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         $dureeRestante = $dateActuelle->diff($dateFin);
                                                         $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
                                                         ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . "jours." ?></p>
-                                                        <button class="modifierBut">Arrêter</button>
+                                                        <form action="addOption.php" method="post">
+                                                            <input type="hidden" name="type" value="arreter">
+                                                            <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                                            <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
+                                                            <button class="modifierBut">Arrêter</button>
+                                                        </form>
                                                         <?php
                                                     } else {
                                                         $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
-                                                        ?><p><?php echo "Option pas commencer : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
+                                                        ?><p><?php echo "Option en attente : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . "jours." ?></p>
                                                         <form id="formOpt3" action="addOption.php" method="post">
                                                             <input type="hidden" name="type" value="resilier">
                                                             <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
@@ -620,7 +625,21 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <p>Visite guidée : <?= isset($visite[0]["guide"])? "Oui" : "Non"?></p>
                 <?php
                 if($visite[0]["guide"]){
+                    $stmt = $conn -> prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
+                    $stmt -> execute();
+                    $langues = $stmt -> fetchAll(PDO::FETCH_ASSOC);
                 ?>
+                    <p>Langues : 
+                <?php
+                    foreach($langues as $key => $langue){
+                        echo $langue["langue"]?>   
+                <?php
+                        if(count($langues) != $key +1){
+                            echo ", ";
+                        }
+                    }
+                ?>
+                    </p>
                 <?php
                 }
                 ?>
