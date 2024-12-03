@@ -2984,7 +2984,7 @@ article#descriptionOffre {
   align-items: center;
 }
 
-article#descriptionOffre h3 {
+article#descriptionOffre h3, #afficheLoc + h2 {
   font-size: 2.5em;
   font-weight: 100;
   border-bottom: 2px solid #000;
