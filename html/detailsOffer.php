@@ -610,7 +610,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
             <div>
                 <p>Durée : <?= convertionMinuteHeure($visite[0]['duree'])?></p>
-                <p>Visite guidée : <?= isset($visite[0]["guide"])? "Oui" : "Non";?></p>
+                <p>Visite guidée : <?= isset($visite[0]["guide"])? "Oui" : "Non"?></p>
                 <?php
                 if($visite[0]["guide"]){
                 ?>
@@ -755,7 +755,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if($result[0]['urlplan']){
         ?>
             <img src="<?php echo $result[0]["urlplan"] ?>">
-        <?php :
+        <?php
         }
         
         
