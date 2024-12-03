@@ -3314,7 +3314,7 @@ details.animating .contentDetails {
   display: inline-block;
 }
 
-#avisproS2 > details > summary > h2:first-child {
+#avisproS2 summary > h2:first-of-type {
   text-align: left;
   margin: 0 0 0 40px;
   width: 60%;
@@ -3345,7 +3345,7 @@ details .nonLu, details .nonRepondu{
   width: 100%;
 }
 
-#avisproS2 > details > summary > p {
+#avisproS2 > details > .contentDetails > p {
   justify-content: center;
   text-align: center;
   width: 90%;
