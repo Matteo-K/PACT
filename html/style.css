@@ -2884,7 +2884,6 @@ tbody td:last-child {
 
 #descriptionOffre>section {
   margin-left: 3em;
-  background-color: var(--accent80);
   border-radius: 0.5em;
   padding: 10px;
   margin-top: 1em;
@@ -2928,20 +2927,20 @@ article#descriptionOffre {
 
 article#descriptionOffre h3 {
   font-size: 1.5rem;
-  color: #007BFF;
-  border-bottom: 2px solid #007BFF;
+  border-bottom: 2px solid #000;
   padding-bottom: 5px;
   margin-bottom: 15px;
+  text-align: center;
 }
 
 article#descriptionOffre p {
   font-size: 1rem;
   line-height: 1.6;
   margin: 0 0 10px;
+  text-align: justify;
 }
 
 section#infoComp {
-  background-color: #ffffff;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -2949,10 +2948,10 @@ section#infoComp {
 
 section#infoComp h2 {
   font-size: 1.8rem;
-  color: #007BFF;
-  border-bottom: 2px solid #007BFF;
+  border-bottom: 2px solid #000;
   padding-bottom: 5px;
   margin-bottom: 15px;
+  text-align: center;
 }
 
 section#infoComp p {

@@ -378,6 +378,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <input type="hidden" name="type" value="ajout">
                                     <label class="taille" for="nbWeek">Nombre de semaine à la Une</label>
                                     <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
+
+                                    <label class="taille">
+                                        <input type="checkbox" id="datePickerToggle1" class="datePickerToggle"> Ajouter une date personnalisée
+                                    </label>
+
+                                    <!-- Date picker (caché par défaut) -->
+                                    <input class="taille2 datePicker" type="date" name="customDate" id="customDate1" style="display: none;">
                                 </form>
                                 <?php
                                 if (!$optionUne) {
@@ -408,6 +415,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <input type="hidden" name="type" value="ajout">
                                     <label class="taille" for="nbWeek">Nombre de semaine en Relief</label>
                                     <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
+                                
+                                    <label class="taille">
+                                        <input type="checkbox" id="datePickerToggle2" class="datePickerToggle"> Ajouter une date personnalisée
+                                    </label>
+
+                                    <!-- Date picker (caché par défaut) -->
+                                    <input class="taille2 datePicker" type="date" name="customDate" id="customDate2" style="display: none;">                                
                                 </form>
                                 <?php
                                 if (!$optionRelief) {
@@ -901,6 +915,17 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             });
         }
 
+    const toggles = document.querySelectorAll(".datePickerToggle");
+    toggles.forEach(toggle => {
+        toggle.addEventListener("change", function() {
+            const datePicker = this.closest("form").querySelector(".datePicker");
+            if (this.checked) {
+                datePicker.style.display = "block"; // Affiche le date picker
+            } else {
+                datePicker.style.display = "none"; // Cache le date picker
+            }
+        });
+    });
 
     const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.contentPop');
