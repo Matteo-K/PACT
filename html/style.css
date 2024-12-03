@@ -3098,23 +3098,8 @@ section#infoComp div {
   cursor: pointer;
   position: relative;
   padding-bottom: 5px;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }
-
-#tab-container > nav > h3{
-  height: 2px;
-  background-color: #007BFF; /* Couleur de soulignement */
-  transition: width 0.3s ease;
-}
-
-#tab-container > nav > h3.selected{
-  width: 100%;
-}
-
-#tab-container > nav > h3.selected {
-  color: #007BFF; /* Couleur du texte quand sélectionné */
-}
-
 
 #tab-avis.selected {
   text-decoration: underline;
