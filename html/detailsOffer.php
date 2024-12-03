@@ -5,6 +5,16 @@ $idOffre = $_POST["idoffre"] ?? null;
 $ouvert = $_GET["ouvert"] ?? null;
 $aujourdhui = new DateTime();
 
+?>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+    <?php if (isset($_POST['popup'])): ?>
+        openModal(); // Appelle la fonction openModal si la condition PHP est vraie
+    <?php endif; ?>
+});
+</script>
+<?php
+
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
     header("location: index.php");

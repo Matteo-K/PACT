@@ -76,6 +76,7 @@ $stmt->execute();
 echo <<<HTML
 <form id="redirectForm" method="POST" action="detailsOffer.php">
     <input type="hidden" name="idoffre" value="{$offreId}">
+    <input type="hidden" name="popup">
 </form>
 <script>
     document.getElementById('redirectForm').submit();
