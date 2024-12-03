@@ -291,6 +291,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <strong><p>Mes options : </p></strong>
                                 <ul>
                                     <?php
+                                    print_r($mesOtion);
                                         foreach ($mesOtion as $key => $value) {
                                             ?>
                                             <li>
