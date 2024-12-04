@@ -2293,6 +2293,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .tema{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
@@ -2734,14 +2735,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .Enligne {
   width: fit-content;
-  margin: 0 auto 0 0;
+  margin-right: 20px;
 }
 
 .buttonDetails {
   display: flex;
   gap: 10px;
-  width: fit-content;
-  margin-left: auto;
+  width: 100%;
+  justify-content: center;
 }
 
 #titleOffer {
@@ -3165,15 +3166,18 @@ section#infoComp div {
   flex-direction: column;
 }
 
-#publiez-component > div{
+#publiez-component > section{
   display:flex;
   justify-content: center;
   align-items: center;
   padding: 2em;
+}
+
+.note{
   background-color: var(--bloc);
 }
 
-#publiez-component > div > .star {
+#publiez-component > section .star {
   width: 5em;
   height: 5em;
 }
