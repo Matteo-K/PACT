@@ -195,7 +195,7 @@ function sortAvisCroissant(array) {
     const note2 = offre2.nbNote ? parseInt(offre2.nbNote) : 0;
 
     console.log("note1 "+note1+" note2 "+note2)
-
+    console.log(note1 - note2);
     return note1 - note2;
   });
 }
