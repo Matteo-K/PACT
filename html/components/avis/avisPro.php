@@ -173,7 +173,7 @@ let listeAvis = <?php echo json_encode($avis) ?>;
 
 console.table(listeAvis);
 document.addEventListener('DOMContentLoaded', function() {
-    displayArrayAvis(listeAvis);
+    //displayArrayAvis(listeAvis);
 });
 
 let conteneurAvis = document.getElementById("conteneurAvisPro");
@@ -307,6 +307,11 @@ function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
     blocListAvis.innerHTML = "";
 
+    for (let key in arrayAvis) {
+        if (avis.hasOwnProperty(key)) {
+            blocListAvis.appendChild(displayAvis(element));
+        }
+    }
     arrayAvis.forEach(element => {
        blocListAvis.appendChild(displayAvis(element));
     });
