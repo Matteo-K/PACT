@@ -1,6 +1,6 @@
 <?php 
 $avisTemp = [];
-$avisN0 = $avisN0;
+$avisN0 = $avis[0];
 foreach ($avis as $key => $av) {
     $avisTemp[$av["idc"]] = $av;
 }
