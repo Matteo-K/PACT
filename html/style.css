@@ -2263,11 +2263,22 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 25px;
 }
 
+
 .taillebtn{
   display: flex;
   justify-content: flex-end;
 }
 
+.taillebtn button{
+  background-color: #D9534F !important;
+  border:solid #D9534F 1px !important;
+}
+
+.taillebtn button:hover{
+  background-color: white !important;
+  border:solid #D9534F 1px !important;
+  color: #D9534F !important;
+}
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
@@ -3127,7 +3138,22 @@ section#infoComp div {
   color: #007BFF; /* Couleur du texte sélectionné */
 }
 
+#publiez-component{
+  flex-direction: column;
+}
 
+#publiez-component > div{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  background-color: var(--bloc);
+}
+
+#publiez-component > div > .star {
+  width: 5em;
+  height: 5em;
+}
 
 
 .avis>nav>h3 {

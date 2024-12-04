@@ -334,12 +334,12 @@ function filtrerParPeriode(offers) {
   }
 
   return offers.filter(offer => {
-    if (!offer.date) {
+    if (!offer.horaires) {
       return false;
     }
 
     const dateOffre = new Date(offer.date);
-    const heureOffre = offer.date.split('T')[1];
+    const heureOffre = offer.horaires.split('T')[1];
 
     const dateValide = dateOffre >= dateDepartValue && dateOffre <= dateFinValue;
     const heureValide = (heureDebutValue && heureFinValue) ? (heureOffre >= heureDebutValue && heureOffre <= heureFinValue) : true;
