@@ -3,10 +3,8 @@ $avisTemp = [];
 foreach ($avis as $key => $av) {
     $avisTemp[$av["idc"]] = $av;
 }
-
-print_r($avisTemp);
+$avis = $avisTemp;
 ?>
-
 <div id="avisPro">
     <section id="avisproS1">
         <h2 class="triangle">
