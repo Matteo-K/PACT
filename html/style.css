@@ -2263,11 +2263,22 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 25px;
 }
 
+
 .taillebtn{
   display: flex;
   justify-content: flex-end;
 }
 
+.taillebtn button{
+  background-color: red !important;
+  border:solid red 1px !important;
+}
+
+.taillebtn button:hover{
+  background-color: white !important;
+  border:solid red 1px !important;
+  color: red !important;
+}
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
