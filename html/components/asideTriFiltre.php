@@ -36,9 +36,9 @@
             </div>
             <div>
                 <input type="radio" name="tri" id="avisCroissant">
-                <label for="avisCroissant">Avis croissant</label>
+                <label for="avisCroissant">Moins noté</label>
                 <input type="radio" name="tri" id="avisDecroissant">
-                <label for="avisDecroissant">Avis décroissant</label>
+                <label for="avisDecroissant">Plus noté</label>
             </div>
             <div>
                 <input type="radio" name="tri" id="dateCreationRecent">
