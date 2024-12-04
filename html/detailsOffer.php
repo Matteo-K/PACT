@@ -244,11 +244,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
             <section class="info">
-                <p class="infoP">Information Offre</p>
-                <?php
+                <section>
+                    <p class="infoP">Information Offre</p>
+
+                    <?php
                 if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-                ?>
-                    <p class="Enligne infoP"><?php echo $offre[0]['statut']=='actif'?"En Ligne" : "Hors Ligne" ?></p>
+                    ?>
+                    <section>
+                        <p class="Enligne infoP StatutAffiche <?php echo $offre[0]['statut']=='actif'?"" : "horslgnOffre" ?>"><?php echo $offre[0]['statut']=='actif'?"En Ligne" : "Hors Ligne" ?></p>
+                    </section>
+                </section>
 
                     <div class="buttonDetails">
                         <form class="taille6" method="post" action="changer_statut.php">
