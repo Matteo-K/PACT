@@ -3167,7 +3167,7 @@ section#infoComp div {
   flex-direction: column;
 }
 
-#publiez-component > section, #publiez-component > section div{
+#publiez-component > section{
   display:flex;
   justify-content: center;
   align-items: center;
