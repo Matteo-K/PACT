@@ -1,5 +1,6 @@
 <?php 
 $avisTemp = [];
+$avisN0 = $avisN0;
 foreach ($avis as $key => $av) {
     $avisTemp[$av["idc"]] = $av;
 }
@@ -68,18 +69,18 @@ $avis = $avisTemp;
                 Non lus
             </h3>
             <h3>
-                <?php echo $avis[0]["avisnonlus"] ?>
+                <?php echo $avisN0["avisnonlus"] ?>
             </h3>
             <h3>
                 <div class="nonRepondu"></div>
                 Non répondus
             </h3>
             <h3>
-                <?php echo $avis[0]["avisnonrepondus"] ?>
+                <?php echo $avisN0["avisnonrepondus"] ?>
             </h3>
                 <?php
-                    $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
-                    $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
+                    $etoilesPleines = floor($avisN0['moynote']); // Nombre entier d'étoiles pleines
+                    $reste = $avisN0['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
                 ?>
                     <div class="notation">
                         <div>
@@ -98,7 +99,7 @@ $avis = $avisTemp;
                                 echo '<div class="star vide"></div>';
                             }
                             ?>
-                            <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
+                            <p><?php echo number_format($avisN0['moynote'], 1); ?> / 5 (<?php echo $avisN0['nbnote']; ?> avis)</p>
                         </div>
                         <div class="notedetaille">
                             <?php
@@ -106,14 +107,14 @@ $avis = $avisTemp;
                             $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
                             for ($i = 5; $i >= 1; $i--) {
                                 // Largeur simulée pour chaque barre en fonction de vos données
-                                $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
+                                $pourcentageParNote = isset($avisN0["note_$i"]) ? ($avisN0["note_$i"] / $avisN0['nbnote']) * 100 : 0;
                             ?>
                                 <div class="ligneNotation">
                                     <span><?= $listNoteAdjectif[$i-1]; ?></span>
                                     <div class="barreDeNotationBlanche">
                                         <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
                                     </div>
-                                    <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
+                                    <span>(<?= isset($avisN0["note_$i"]) ? $avisN0["note_$i"] : 0; ?> avis)</span>
                                 </div>
                             <?php
                             }
@@ -171,6 +172,9 @@ $avis = $avisTemp;
 let listeAvis = <?php echo json_encode($avis) ?>;
 
 console.table(listeAvis);
+document.addEventListener('DOMContentLoaded', function() {
+    displayArrayAvis(listeAvis);
+});
 
 let conteneurAvis = document.getElementById("conteneurAvisPro");
 
@@ -298,13 +302,20 @@ function closeDetails() {
 });
 
 
-const blocListAvis = document.getElementById("listeAvis");
 
-function displayArrayAvis(ArrayAvis) {
+function displayArrayAvis(arrayAvis) {
+    const blocListAvis = document.getElementById("listeAvis");
     blocListAvis.innerHTML = "";
 
+    listeAvis.forEach(element => {
+       blocListAvis 
+    });
+}
+
+function displayAvis(avis) {
     let li = document.createElement("li");
-    li.setAttribute("onclick","afficheAvisSelect()")
+    li.setAttribute("onclick","afficheAvisSelect("+ avis['idc'] +")");
+
 }
 
 /**
