@@ -2707,6 +2707,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-left: 20px;
   display: flex;
   flex-direction: column;
+  background-color: white;
+  border-radius: 20px;
 }
 
 .Enligne {
