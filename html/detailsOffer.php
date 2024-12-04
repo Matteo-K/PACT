@@ -276,7 +276,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </button>
                             </form>
                         </div>
-                        <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
+                        <section>
+                            <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
+                        </section>
                     <?php
                 }
 
