@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
     displayArrayAvis(listeAvis);
 });
 
-let conteneurAvis = document.getElementClassName("conteneurAvisPro");
+let conteneurAvis = document.querySelector(".conteneurAvisPro");
 
 let photoAuteurAvis = document.querySelector("#ligneTitreAvis > h2");
 let auteurAvis = document.querySelector("#ligneTitreAvis > h2");
