@@ -206,13 +206,19 @@
 
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    let listeAvis = <?php echo json_encode($avis) ?>;
-    let conteneurAvis = document.getElementById("conteneurAvisPro");
-    
-    let photoAuteurAvis = document.querySelector("#ligneTitreAvis > h2");
-    let auteurAvis = document.querySelector("#ligneTitreAvis > h2");
-    let etoilesAvis = document.querySelectorAll(".conteneurAvisPro .noteEtoile .star");
+
+// afficheListeAvis = document.querySelectorAll("#listeAvis > li");
+// afficheListeAvis.forEach(li => {
+//     li.addEventListener(afficheAvisSelect())
+// });
+
+
+let listeAvis = <?php echo json_encode($avis) ?>;
+let conteneurAvis = document.getElementById("conteneurAvisPro");
+
+let photoAuteurAvis = document.querySelector("#ligneTitreAvis > h2");
+let auteurAvis = document.querySelector("#ligneTitreAvis > h2");
+let etoilesAvis = document.querySelectorAll(".conteneurAvisPro .noteEtoile .star");
 let titreAvis = document.querySelector("#conteneurAvisPro > h3");
 
 let contenuAvis = document.getElementById("contenuAvis");
@@ -232,12 +238,12 @@ function afficheAvisSelect(numAvis) {
     auteurAvis.textContent = listeAvis[numAvis]['pseudo'];
     
     //changement couleur etoiles (on remet tout jaune puis grise certaines)
-    for ($i = 0; $i > 5; $i++) {
+    for (i = 0; i > 5; i++) {
         etoilesAvis[i].style.backgroundColor = primaryColor;
     }
     
-    if (5 - listeAvis['note'] != 0) {
-        for ($i = 5; $i > listeAvis['note']; $i--) {
+    if (5 - listeAvis[numAvis]['note'] != 0) {
+        for (i = 5; i > listeAvis[numAvis]['note']; i--) {
             etoilesAvis[i].style.backgroundColor = secondaryColor;
         }
     }
@@ -335,5 +341,5 @@ function closeDetails() {
     }
   });
 });
-});
+
 </script>

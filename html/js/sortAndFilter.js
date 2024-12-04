@@ -194,7 +194,9 @@ function sortAvisCroissant(array) {
     const note1 = offre1.nbNote ? parseInt(offre1.nbNote) : 0;
     const note2 = offre2.nbNote ? parseInt(offre2.nbNote) : 0;
 
-    return parseInt(note1) - parseInt(note2);
+    console.log("note1 "+note1+" note2 "+note2)
+    console.log(note1 - note2);
+    return note1 - note2;
   });
 }
 
@@ -203,7 +205,7 @@ function sortAvisDecroissant(array) {
     const note1 = offre1.nbNote ? parseInt(offre1.nbNote) : 0;
     const note2 = offre2.nbNote ? parseInt(offre2.nbNote) : 0;
 
-    return parseInt(note2) - parseInt(note1);
+    return note2 - note1;
   });
 }
 
@@ -334,19 +336,42 @@ function filtrerParPeriode(offers) {
   }
 
   return offers.filter(offer => {
-    if (!offer.horaires) {
+    if (!offer.horaires && !offer.ouverture) {
+      // Si l'offre n'a pas d'horaires, on l'exclut directement
       return false;
     }
 
-    const dateOffre = new Date(offer.date);
-    const heureOffre = offer.horaires.split('T')[1];
-
+    // Vérifier la date
+    const dateOffre = new Date(offer.date);  // La date de l'offre
     const dateValide = dateOffre >= dateDepartValue && dateOffre <= dateFinValue;
-    const heureValide = (heureDebutValue && heureFinValue) ? (heureOffre >= heureDebutValue && heureOffre <= heureFinValue) : true;
 
+    // Vérifier l'heure
+    const heureOffre = offer.horaires ? offer.horaires.split('T')[1] : null;  // L'heure de l'offre
+
+    let heureValide = true;
+    if (heureDebutValue && heureFinValue && heureOffre) {
+      heureValide = (heureOffre >= heureDebutValue && heureOffre <= heureFinValue);
+    }
+
+    // Si l'offre est un restaurant, un parc ou une visite, vérifier les horaires d'ouverture
+    if (["Restaurant", "Parc Attraction", "Visite"].includes(offer.categorie)) {
+      const ouvertureOffre = offer.ouverture || '';
+      const fermetureOffre = offer.fermeture || '';
+
+      // Vérifier si l'offre est ouverte dans la plage horaire sélectionnée
+      const horaireValide = (
+        (heureDebutValue <= fermetureOffre && heureFinValue >= ouvertureOffre) ||
+        (heureDebutValue <= ouvertureOffre && heureFinValue >= fermetureOffre)
+      );
+
+      return dateValide && heureValide && horaireValide;
+    }
+
+    // Pour les autres catégories (activité, spectacle, etc.), on ne vérifie que l'heure
     return dateValide && heureValide;
   });
 }
+
 
 
 // Fonction de filtre par lieu
@@ -365,7 +390,7 @@ function sortAndFilter(array, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  //array = filtrerParPeriode(array);
+  // array = filtrerParPeriode(array);
 
   // Tris
   array = selectSort(array);
