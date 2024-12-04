@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function definirNote(note) {
         noteActuelle = note;
         etoiles.forEach((etoile, i) => {
-            if (i <script note) {
+            if (i < note) {
                 etoile.classList.add("pleine");
                 etoile.classList.remove("vide");
             } else {
@@ -72,4 +72,5 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Note sélectionnée :", note);
     }
 });
+
 </script>
