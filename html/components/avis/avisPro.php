@@ -167,13 +167,12 @@ const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim()
 
 function afficheAvisSelect(numAvis) {
 
-    compteurLi = 0;
-    document.querySelectorAll("#listeAvis > li").forEach(li => {
-        li.style.background = linear-gradient(90deg, secondaryColor 0%, secondaryColor 80%, transparent 100%);
-        if (numAvis == compteurLi) {
-            li.style.background = linear-gradient(90deg, primaryColor  0%, primaryColor 100%);
+    //Changement de couleur du li sélectionné et on remet les autres en gris
+    document.querySelectorAll("#listeAvis > li").forEach((li, numLi) => {
+        li.style.background = `linear-gradient(90deg, ${secondaryColor} 0%, ${secondaryColor} 80%, transparent 100%)`;
+        if (numAvis == numLi) {
+            li.style.background = `linear-gradient(90deg, ${primaryColor} 0%, ${primaryColor} 90%, transparent 100%)`;
         }
-        compteurLi++;
     });
     
     //changement photo auteur
