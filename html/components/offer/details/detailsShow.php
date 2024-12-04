@@ -21,9 +21,9 @@ if ($categorie["_spectacle"]) {
 }
 // Il reste à initialisé les valeurs dans les input
 ?>
-<section id="show"> <!-- Id pour pouvoir modifer separement dans le css -->
+<section id="show"> <!-- Pour le CSS-->
 
-
+    <!-- Gestion du nombre de place pour le parc d'attraction -->
     <div>
         <label class="labelNbPlace">Nombre de places : </label> <!-- Label nombre de place -->
 
@@ -32,7 +32,7 @@ if ($categorie["_spectacle"]) {
             <!-- Pour le nombre de place -->
             <?php echo "places" ?>
         </div>
-
+    <!-- Gestion du prix -->
         <label class="labelShow1">Prix minimum : </label>
 
         <div>
@@ -45,8 +45,8 @@ if ($categorie["_spectacle"]) {
 
 
 
-    <div class="classDivShow1">
-
+    <div class="classDivShow1"> <!-- Pour le CSS-->
+    <!-- Gestion de la durée -->
         <label class="ligne1">Durée du Spectacle : </label>
 
         <div>
