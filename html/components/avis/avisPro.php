@@ -307,15 +307,15 @@ function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
     blocListAvis.innerHTML = "";
 
-    listeAvis.forEach(element => {
-       blocListAvis 
+    arrayAvis.forEach(element => {
+       blocListAvis.appendChild(displayAvis(element));
     });
 }
 
 function displayAvis(avis) {
     let li = document.createElement("li");
     li.setAttribute("onclick","afficheAvisSelect("+ avis['idc'] +")");
-
+    li.textContent = avis["content"];
 }
 
 /**
