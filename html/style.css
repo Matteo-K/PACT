@@ -2270,14 +2270,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .taillebtn button{
-  background-color: red !important;
-  border:solid red 1px !important;
+  background-color: #D9534F !important;
+  border:solid #D9534F 1px !important;
 }
 
 .taillebtn button:hover{
   background-color: white !important;
-  border:solid red 1px !important;
-  color: red !important;
+  border:solid #D9534F 1px !important;
+  color: #D9534F !important;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
