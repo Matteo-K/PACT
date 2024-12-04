@@ -35,9 +35,9 @@
         function survolerEtoiles(note) {
             etoiles.forEach((etoile, i) => {
                 if (i < note) {
-                    etoile.classList.add("hover");
+                    etoile.classList.add("pleine");
                 } else {
-                    etoile.classList.remove("hover");
+                    etoile.classList.remove("pleine");
                 }
             });
         }
@@ -45,9 +45,9 @@
         // Réinitialiser l'état des étoiles après le survol
         function reinitialiserSurvol() {
             etoiles.forEach((etoile, i) => {
-                etoile.classList.remove("hover");
+                etoile.classList.remove("pleine");
                 if (i < noteActuelle) {
-                    etoile.classList.add("remplie");
+                    etoile.classList.add("pleine");
                 } else {
                     etoile.classList.add("vide");
                 }
@@ -59,10 +59,10 @@
             noteActuelle = note; // Enregistre la note sélectionnée
             etoiles.forEach((etoile, i) => {
                 if (i < note) {
-                    etoile.classList.add("remplie");
+                    etoile.classList.add("pleine");
                     etoile.classList.remove("vide");
                 } else {
-                    etoile.classList.remove("remplie");
+                    etoile.classList.remove("pleine");
                     etoile.classList.add("vide");
                 }
             });
