@@ -273,7 +273,7 @@ function openDetails() {
     const height = content.scrollHeight; // Calcule la hauteur totale
     content.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
     content.addEventListener("transitionend", () => {
-        if (blocDetails = .open) {
+        if (blocDetails.open) {
             content.style.maxHeight = "none"; // Supprime maxHeight après l'animation
     }
 }, { once: true });
