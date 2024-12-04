@@ -384,10 +384,10 @@ if (isset($_POST['pageBefore'])) {
           case 'visite':
             // Obtention des données
             $guideTemp = $_POST["VisiteGuidee"];
-            $guide = $guideTemp == "Guidee";
+            $guide = $guideTemp == "Guidee" ?? null;
             $duree = $_POST["numberHVisit"];
             $prixMinimale = $_POST["PrixMinVisit"];
-            $accessibilite = $_POST["AccesPersHandi"] == "access";
+            $accessibilite = $_POST["AccesPersHandi"] == "access" ?? null;
             // Création/Modification d'une offre de visite
             $stmt = $conn->prepare("SELECT * from pact._visite where idoffre=?");
             $stmt->execute([$idOffre]);
