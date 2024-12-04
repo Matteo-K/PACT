@@ -248,8 +248,8 @@ function afficheAvisSelect(numAvis) {
     
     if (listeAvis[numAvis]['note'] < 5) {
         console.log("boucle etoiles grises");
-        for (i = 5; i > listeAvis[numAvis]['note']; i--) {
-            console.log("mets etoile grise");
+        for (i = 4; i > listeAvis[numAvis]['note']; i--) {
+            console.log("mets etoile grise" + i);
             etoilesAvis[i].style.backgroundColor = secondaryColor;
         }
     }
