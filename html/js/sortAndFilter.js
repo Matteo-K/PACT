@@ -194,7 +194,7 @@ function sortAvisCroissant(array) {
     const note1 = offre1.nbNote ? parseInt(offre1.nbNote) : 0;
     const note2 = offre2.nbNote ? parseInt(offre2.nbNote) : 0;
 
-    return parseInt(note1) - parseInt(note2);
+    return note1 - note2;
   });
 }
 
@@ -203,7 +203,7 @@ function sortAvisDecroissant(array) {
     const note1 = offre1.nbNote ? parseInt(offre1.nbNote) : 0;
     const note2 = offre2.nbNote ? parseInt(offre2.nbNote) : 0;
 
-    return parseInt(note2) - parseInt(note1);
+    return note2 - note1;
   });
 }
 
