@@ -171,8 +171,12 @@ const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim()
 
 function afficheAvisSelect(numAvis) {
 
+    console.log(conteneurAvis);
+
+    console.log("Display style:", conteneurAvis.style.display);
+
     conteneurAvis.style.display = "flex";
-    document.getElementById(aucunAvisSelect).style.display = none
+    document.getElementById(aucunAvisSelect).style.display = none;
 
     //Changement de couleur du li sélectionné et on remet les autres en gris
     document.querySelectorAll("#listeAvis > li").forEach((li, numLi) => {
