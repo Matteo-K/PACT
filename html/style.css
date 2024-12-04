@@ -2096,6 +2096,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   right: -8px;
 }
 
+.mainOffer.StatutAffiche::after{
+width: 20px !important;
+height: 20px !important;
+}
+
 .horslgnOffre::after {
   background-color: red !important;
 }
