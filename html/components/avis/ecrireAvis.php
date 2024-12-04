@@ -8,7 +8,7 @@
             <?php
                 }
             ?>
-            <input name="note" type="hidden" value="0">
+            <input id="note-value" name="note" type="hidden" value="0">
         </div>
     </form>
 </section>
