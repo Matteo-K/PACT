@@ -294,8 +294,8 @@ function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
 
     // filtre
-    //arrayAvis = filtreNonLu(arrayAvis);
-    //arrayAvis = filtreNonRep(arrayAvis);
+    arrayAvis = filtreNonLu(arrayAvis);
+    arrayAvis = filtreNonRep(arrayAvis);
     // tri
 
     blocListAvis.innerHTML = "";
@@ -309,6 +309,16 @@ function displayArrayAvis(arrayAvis) {
 function filtreNonLu(arrayAvis) {
     if (chbxNonLu.checked) {
         return arrayAvis.filter(avis => {
+            return avis.lu == false;
+        });
+    }
+    return arrayAvis;
+}
+
+function filtreNonRep(arrayAvis) {
+    if (chbxNonRep.checked) {
+        return arrayAvis.filter(avis => {
+            return avis.idc_reponse == null;
         });
     }
     return arrayAvis;
