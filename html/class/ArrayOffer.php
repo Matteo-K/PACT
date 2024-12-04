@@ -263,23 +263,24 @@ class ArrayOffer {
     $array = $this->filtre($idUser_, $typeUser_);
 
     if (empty($recherche)) {
-      return $array;
+        return $array;
     }
-    
+
     return array_filter($this->arrayOffer, function($item) use ($recherche) {
+      $data = $item->getData();
+      $categorie = isset($data["categorie"]) ? $data["categorie"] : '';
+      $nomOffre = isset($data["nomOffre"]) ? $data["nomOffre"] : '';
+      $gammeDePrix = isset($data["gammeDePrix"]) ? $data["gammeDePrix"] : '';
+      $adresse = method_exists($item, 'formaterAdresse') ? $item->formaterAdresse() : '';
 
-      $categorie = $item->getData()["categorie"] ?? '';
-      $nomOffre = $item->getData()["nomOffre"] ?? '';
-      $gammeDePrix = $item->getData()["gammeDePrix"] ?? '';
-      $adresse = $item->formaterAdresse() ?? '';
-
-      return $this->offreContientTag($item->getData()["tags"], $recherche) // tag
-          || strpos(strtolower($categorie), strtolower($recherche)) !== false // catégorie
-          || strpos(strtolower($nomOffre), strtolower($recherche)) !== false  // nom Offre
-          || strpos(strtolower($adresse), strtolower($recherche)) !== false  // localisation
-          || $gammeDePrix === $recherche;  // gamme de prix
+      return $this->offreContientTag($data["tags"], $recherche)  // tags
+          || (strlen($categorie) > 0 && strpos(strtolower($categorie), strtolower($recherche)) !== false)  // catégorie
+          || (strlen($nomOffre) > 0 && strpos(strtolower($nomOffre), strtolower($recherche)) !== false)  // nom de l'offre
+          || (strlen($adresse) > 0 && strpos(strtolower($adresse), strtolower($recherche)) !== false)  // adresse
+          || ($gammeDePrix === $recherche);  // gamme de prix
     });
   }
+
 
 
   public function offreContientTag($tags, $recherche) {
@@ -299,8 +300,8 @@ class ArrayOffer {
     return array_slice($array_, $elementStart_, $nbElement_); 
   }
 
-  public function getArray($array_ = null) {
-    if ($array_ == null) {
+  public function getArray($array_ = 0) {
+    if ($array_ == 0) {
       $array_ = $this->arrayOffer;
     }
     $arrayWithData = [];

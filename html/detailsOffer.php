@@ -480,8 +480,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </section>
     </section>
     <section id="hoverMessageAdd" class="hover-message">Vous avez trop de d'option en attente (1 option en attente et 1 en cour maximun par option)</section>
-</section>             
-                <button class="modifierBut taillebtn" onclick="confirmation()">Quitter</button>
+</section>
+                <section classe="taillebtn">
+                    <button class="modifierBut " onclick="confirmation()">Quitter</button>
+                </section>
               </section>
             </section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
