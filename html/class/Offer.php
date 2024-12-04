@@ -203,7 +203,7 @@ class Offer {
     $this->idOffre = $idOffre_;
     $this->statut = $statut_;
     $this->idUser = $idUser_;
-    $this->nomOffre = empty($nomOffre_) ? "" : $nomOffre_;
+    $this->nomOffre = empty($nomOffre_) ? "Offre ". $this->idOffre : $nomOffre_;
     $this->resume = empty($resume_) ? "" : $resume_;
     $this->description = empty($description_) ? "" : $description_;
     $this->images = $images_;
