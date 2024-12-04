@@ -11,24 +11,23 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-    const etoiles = divEtoile.querySelectorAll(".star.ecrire");
-    
-    etoiles.forEach((divEtoile) => {
+    const etoiles = document.querySelectorAll(".star.ecrire");
 
-        etoiles.addEventListener("mouseenter", () => {
+    etoiles.forEach((etoile) => {
+        etoile.addEventListener("mouseenter", () => {
             // Met en surbrillance les étoiles jusqu'à celle survolée
-            const note = parseInt(divEtoile.getAttribute("data-note"));
+            const note = parseInt(etoile.getAttribute("data-note"));
             surbrillanceEtoiles(etoiles, note);
         });
 
-        etoiles.addEventListener("mouseleave", () => {
+        etoile.addEventListener("mouseleave", () => {
             // Réinitialise les étoiles lorsqu'on quitte la souris
             reinitialiserEtoiles(etoiles);
         });
 
-        etoiles.addEventListener("click", () => {
+        etoile.addEventListener("click", () => {
             // Définit définitivement la note
-            const note = parseInt(divEtoile.getAttribute("data-note"));
+            const note = parseInt(etoile.getAttribute("data-note"));
             definirNote(etoiles, note);
         });
     });
@@ -66,5 +65,6 @@
         console.log("Note sélectionnée :", note);
     }
 });
+
 
 </script>
