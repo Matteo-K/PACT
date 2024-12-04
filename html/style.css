@@ -2264,8 +2264,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .taillebtn{
-  margin: 0 !important;
-  margin-left: auto !important; 
+  width: 100% !important;
+  text-align: right; 
 }
 
 
