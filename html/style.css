@@ -2096,9 +2096,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   right: -8px;
 }
 
-.mainOffer.StatutAffiche::after{
-width: 20px !important;
-height: 20px !important;
+.mainOffer .StatutAffiche::after{
+  width: 20px !important;
+  height: 20px !important;
+  right: -16px !important;
 }
 
 .horslgnOffre::after {
@@ -2287,6 +2288,11 @@ height: 20px !important;
 
 .taille6{
   margin: 0;
+}
+
+.tema{
+  display: flex;
+  justify-content: space-between;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
