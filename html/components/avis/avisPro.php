@@ -173,7 +173,7 @@ let listeAvis = <?php echo json_encode($avis) ?>;
 
 console.table(listeAvis);
 document.addEventListener('DOMContentLoaded', function() {
-    //displayArrayAvis(listeAvis);
+    displayArrayAvis(listeAvis);
 });
 
 let conteneurAvis = document.getElementById("conteneurAvisPro");
@@ -305,19 +305,15 @@ function closeDetails() {
 
 function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
-    blocListAvis.innerHTML = "";
+    //blocListAvis.innerHTML = "";
 
     for (let key in arrayAvis) {
-        if (avis.hasOwnProperty(key)) {
-            blocListAvis.appendChild(displayAvis(element));
-        }
+        blocListAvis.appendChild(displayAvis(arrayAvis[key]));
     }
-    arrayAvis.forEach(element => {
-       blocListAvis.appendChild(displayAvis(element));
-    });
 }
 
 function displayAvis(avis) {
+    console.log(avis);
     let li = document.createElement("li");
     li.setAttribute("onclick","afficheAvisSelect("+ avis['idc'] +")");
     li.textContent = avis["content"];
