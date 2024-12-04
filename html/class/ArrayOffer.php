@@ -266,7 +266,7 @@ class ArrayOffer {
         return $array;
     }
 
-    $liste = array_filter($this->arrayOffer, function($item) use ($recherche) {
+    return array_filter($this->arrayOffer, function($item) use ($recherche) {
       $data = $item->getData();
       $categorie = isset($data["categorie"]) ? $data["categorie"] : '';
       $nomOffre = isset($data["nomOffre"]) ? $data["nomOffre"] : '';
@@ -279,9 +279,6 @@ class ArrayOffer {
           || (strlen($adresse) > 0 && strpos(strtolower($adresse), strtolower($recherche)) !== false)  // adresse
           || ($gammeDePrix === $recherche);  // gamme de prix
     });
-    print_r($liste);
-
-    return $liste;
   }
 
 
