@@ -318,7 +318,6 @@ function displayArrayAvis(arrayAvis) {
     blocListAvis.innerHTML = "";
 
     array.forEach(avis => {
-        console.log(avis);
         blocListAvis.appendChild(displayAvis(avis[1]));
     });
 }
