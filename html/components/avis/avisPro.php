@@ -226,8 +226,8 @@ let dateAvis = document.getElementById("visiteRedaction");
 
 //On récupère les couleurs du css pour les attribuer aux etoiles
 const root = document.documentElement;
-const primaryColor = getComputedStyle(root).getPropertyValue('--primary-color').trim();
-const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary-color').trim();
+const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
+const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim();
 
 
 function afficheAvisSelect(numAvis) {
