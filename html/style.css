@@ -3133,6 +3133,15 @@ section#infoComp div {
 
 #publiez-component > div{
   display:flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  background-color: var(--bloc);
+}
+
+#publiez-component > div > .star {
+  width: 5em;
+  height: 5em;
 }
 
 
