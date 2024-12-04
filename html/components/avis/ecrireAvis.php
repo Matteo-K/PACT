@@ -13,57 +13,61 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const divEtoile = document.querySelectorAll(".divEtoile")
-        const etoiles = document.querySelectorAll(".star.ecrire");
-        
-        etoiles.forEach((etoile, index) => {
-            divEtoile.addEventListener("mouseenter", () => {
-                // Met en surbrillance les étoiles jusqu'à celle survolée
-                surbrillanceEtoiles(index + 1);
-            });
+    const divEtoiles = document.querySelectorAll(".divEtoile");
+    
+    divEtoiles.forEach((divEtoile) => {
+        const etoiles = divEtoile.querySelectorAll(".star.ecrire");
 
-            divEtoile.addEventListener("mouseleave", () => {
-                // Réinitialise les étoiles lorsqu'on quitte la souris
-                reinitialiserEtoiles();
-            });
-
-            divEtoile.addEventListener("click", () => {
-                // Définit définitivement la note
-                definirNote(index + 1);
-            });
+        divEtoile.addEventListener("mouseenter", () => {
+            // Met en surbrillance les étoiles jusqu'à celle survolée
+            const note = parseInt(divEtoile.getAttribute("data-note"));
+            surbrillanceEtoiles(etoiles, note);
         });
 
-        function surbrillanceEtoiles(nombre) {
-            etoiles.forEach((etoile, i) => {
-                if (i < nombre) {
-                    etoile.classList.add("pleine");
-                    etoile.classList.remove("vide");
-                } else {
-                    etoile.classList.remove("pleine");
-                    etoile.classList.add("vide");
-                }
-            });
-        }
+        divEtoile.addEventListener("mouseleave", () => {
+            // Réinitialise les étoiles lorsqu'on quitte la souris
+            reinitialiserEtoiles(etoiles);
+        });
 
-        function reinitialiserEtoiles() {
-            etoiles.forEach((etoile) => {
+        divEtoile.addEventListener("click", () => {
+            // Définit définitivement la note
+            const note = parseInt(divEtoile.getAttribute("data-note"));
+            definirNote(etoiles, note);
+        });
+    });
+
+    function surbrillanceEtoiles(etoiles, nombre) {
+        etoiles.forEach((etoile, i) => {
+            if (i < nombre) {
+                etoile.classList.add("pleine");
+                etoile.classList.remove("vide");
+            } else {
                 etoile.classList.remove("pleine");
                 etoile.classList.add("vide");
-            });
-        }
+            }
+        });
+    }
 
-        function definirNote(note) {
-            etoiles.forEach((etoile, i) => {
-                if (i < note) {
-                    etoile.classList.add("pleine");
-                    etoile.classList.remove("vide");
-                } else {
-                    etoile.classList.remove("pleine");
-                    etoile.classList.add("vide");
-                }
-            });
+    function reinitialiserEtoiles(etoiles) {
+        etoiles.forEach((etoile) => {
+            etoile.classList.remove("pleine");
+            etoile.classList.add("vide");
+        });
+    }
 
-            console.log("Note sélectionnée :", note);
-        }
-    });
+    function definirNote(etoiles, note) {
+        etoiles.forEach((etoile, i) => {
+            if (i < note) {
+                etoile.classList.add("pleine");
+                etoile.classList.remove("vide");
+            } else {
+                etoile.classList.remove("pleine");
+                etoile.classList.add("vide");
+            }
+        });
+
+        console.log("Note sélectionnée :", note);
+    }
+});
+
 </script>
