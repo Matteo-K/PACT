@@ -42,14 +42,6 @@ if ($categorie["_visite"]) {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $visite["hadicap"][] = $row["hadicap"];
     }*/
-
-
-        // Requete pour les langues
-    $stmt = $conn->prepare("SELECT * from pact._langue where idoffre=?");
-    $stmt->execute([$idOffre]);
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $visite["langue"][] = $row["langue"];
-    }
 }
 
 ?>
@@ -59,14 +51,14 @@ if ($categorie["_visite"]) {
     <div class="visGuideeEtDuree">
         <label>Visite Guidée </label>
 
-        <input type="radio" id="guidee" name="VisiteGuidee" value="pasGuidee" checked> <!-- Par défaut la visite est guidée-->
+        <input type="radio" id="guidee" name="VisiteGuidee" value="Guidee" checked> <!-- Par défaut la visite est guidée-->
 
-        <label for="access"> Oui</label>
+        <label for="guidee"> Oui</label>
 
     <!-- Seul un des 2 radios button peut être coché car une visite ne peut pas être guidée et non guidée en même temps -->
         <input type="radio" id="pasGuidee" name="VisiteGuidee" value="pasGuidee">
 
-        <label for="pasAcces"> Non </label>
+        <label for="pasGuidee"> Non </label>
 
 
         <label class="labDureeVis">Durée :</label> <!-- Label durée -->
@@ -102,7 +94,7 @@ if ($categorie["_visite"]) {
 
 
     <div class="divPrixMin">
-        <label>Prix minimum</label>
+        <label for="PrixMinVisit">Prix minimum</label>
 
 
         <input type="number" id="PrixMinVisit" name="PrixMinVisit" min="0" placeholder="0">
