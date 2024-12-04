@@ -210,6 +210,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!document.getElementById('cgu').checked) {
             errors.push('Vous devez accepter les conditions générales d\'utilisation.');
+        }
+
+        if (errors.length > 0) {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
