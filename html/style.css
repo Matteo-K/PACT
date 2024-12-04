@@ -3072,8 +3072,7 @@ section#infoComp div {
 .avis {
   width: 95%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1em;
   align-items: center;
   justify-content: center;
@@ -3088,14 +3087,49 @@ section#infoComp div {
   gap: 10em;
 }
 
-avis-section, avis-section > avis-component {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 3em;
+#avis-section, #avis-section > #avis-component {
+    width: 95%;
+    gap: 3em;
+    justify-content: center;
+    align-items: flex-start;
 }
+
+#tab-container {
+  display: flex;
+  gap: 20px;
+}
+
+#tab-container > nav > h3 {
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+/* Ajouter un soulignement en utilisant le pseudo-élément ::after */
+#tab-container > nav > h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #007BFF; /* Couleur du soulignement */
+  transition: width 0.3s ease;
+}
+
+/* Appliquer le soulignement à l'élément sélectionné */
+#tab-container > nav > h3.selected::after {
+  width: 100%;
+}
+
+/* Couleur du texte lorsqu'il est sélectionné */
+#tab-container > nav > h3.selected {
+  color: #007BFF; /* Couleur du texte sélectionné */
+}
+
+
+
 
 .avis>nav>h3 {
   font-size: 2.5em;

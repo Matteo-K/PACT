@@ -3,7 +3,7 @@
     <?php
         for($i = 1; $i <= 5; $i++){
     ?>
-        <div class="star vide" id="star-<?=$i?>"></div>
+        <div class="star ecrire vide" id="star-<?=$i?>"></div>
     <?php
         }
     ?>
@@ -11,7 +11,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const etoiles = document.querySelectorAll(".star");
+        const etoiles = document.querySelectorAll(".star.ecrire");
         
         etoiles.forEach((etoile, index) => {
             etoile.addEventListener("mouseenter", () => {

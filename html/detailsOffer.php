@@ -934,36 +934,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
 <script>
-    /** Charger les composants */
-    document.addEventListener("DOMContentLoaded", () => {
-    const tabAvis = document.getElementById("tab-avis");
-    const tabPubliez = document.getElementById("tab-publiez");
-    const avisComponent = document.getElementById("avis-component");
-    const publiezComponent = document.getElementById("publiez-component");
-
-    // Activer l'onglet "Avis"
-    tabAvis.addEventListener("click", () => {
-        tabAvis.classList.add("active");
-        tabPubliez.classList.remove("active");
-
-        // Afficher le composant des avis
-        avisComponent.style.display = "flex";
-        publiezComponent.style.display = "none";
-    });
-
-    // Activer l'onglet "Publiez un avis"
-    tabPubliez.addEventListener("click", () => {
-        tabPubliez.classList.add("active");
-        tabAvis.classList.remove("active");
-
-        // Afficher le composant pour écrire un avis
-        publiezComponent.style.display = "flex";
-        avisComponent.style.display = "none";
-    });
-});
-
-/** fin script chargement composant */
-
     document.addEventListener('DOMContentLoaded', function () {
 
         const forms = document.querySelectorAll('.confirmation-form');
@@ -986,7 +956,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             });
         });
     });
-    /** Fin du script */
 
     document.addEventListener('DOMContentLoaded', function () {
         const button1 = document.getElementById("button1");
@@ -1249,6 +1218,51 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             console.log('Redirection vers:', window.location.href);
             window.location.href = './search.php';
         };
+
+        try {
+            document.getElementById('tab-avis').addEventListener('click', function() {
+                document.getElementById('tab-avis').classList.add('selected');
+                document.getElementById('tab-publiez').classList.remove('selected');
+            });
+
+            document.getElementById('tab-publiez').addEventListener('click', function() {
+                document.getElementById('tab-publiez').classList.add('selected');
+                document.getElementById('tab-avis').classList.remove('selected');
+            });
+
+            /** Charger les composants */
+            document.addEventListener("DOMContentLoaded", () => {
+                const tabAvis = document.getElementById("tab-avis");
+                const tabPubliez = document.getElementById("tab-publiez");
+                const avisComponent = document.getElementById("avis-component");
+                const publiezComponent = document.getElementById("publiez-component");
+
+                // Activer l'onglet "Avis"
+                tabAvis.addEventListener("click", () => {
+                    tabAvis.classList.add("active");
+                    tabPubliez.classList.remove("active");
+
+                    // Afficher le composant des avis
+                    avisComponent.style.display = "flex";
+                    publiezComponent.style.display = "none";
+                });
+
+                // Activer l'onglet "Publiez un avis"
+                tabPubliez.addEventListener("click", () => {
+                    tabPubliez.classList.add("active");
+                    tabAvis.classList.remove("active");
+
+                    // Afficher le composant pour écrire un avis
+                    publiezComponent.style.display = "flex";
+                    avisComponent.style.display = "none";
+                });
+            });
+
+            /** fin script chargement composant */
+        } catch (error) {
+            console.error(error);
+        }
+
     </script>
     <script src="js/setColor.js"></script>
 </body>
