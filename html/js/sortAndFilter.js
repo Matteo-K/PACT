@@ -535,7 +535,7 @@ function proStatut(offer) {
   // Titre de l'offre
   let titre = document.createElement("p");
   titre.classList.add("searchTitre");
-  titre.textContent = offer.nomOffre != "" ? offer.nomOffre : "Offre " + offer.idOffre;
+  titre.textContent = offer.nomOffre;
 
   proStatut.appendChild(titre);
 
