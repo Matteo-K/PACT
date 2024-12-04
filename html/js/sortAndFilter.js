@@ -194,8 +194,6 @@ function sortAvisCroissant(array) {
     const note1 = offre1.nbNote ? parseInt(offre1.nbNote) : 0;
     const note2 = offre2.nbNote ? parseInt(offre2.nbNote) : 0;
 
-    console.log("note1 "+note1+" note2 "+note2)
-
     return note1 - note2;
   });
 }
@@ -537,7 +535,7 @@ function proStatut(offer) {
   // Titre de l'offre
   let titre = document.createElement("p");
   titre.classList.add("searchTitre");
-  titre.textContent = offer.nomOffre != "" ? offer.nomOffre : "Offre " + offer.idOffre;
+  titre.textContent = offer.nomOffre;
 
   proStatut.appendChild(titre);
 
