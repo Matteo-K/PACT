@@ -324,67 +324,68 @@ function filtrerParStatuts(offers) {
 
 // Fonction de filtre par période
 function filtrerParPeriode(offers) {
+  // Récupérer les valeurs des dates et heures
   const dateDepartValue = new Date(dateDepart.value);
   const dateFinValue = new Date(dateFin.value);
   const heureDebutValue = heureDebut.value;
   const heureFinValue = heureFin.value;
 
+  // Si les dates ne sont pas valides, retourner directement les offres
   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
     return offers;
   }
 
+  // Filtrer les offres en fonction de la période
   return offers.filter(offer => {
-    if (!offer.horaires && !offer.ouverture) {
-      // Si l'offre n'a pas d'horaires, on l'exclut directement
+    // Si l'offre n'a pas de dates ou d'horaires, on l'exclut directement
+    if (!offer.dateCreation || !offer.ouverture) {
       return false;
     }
 
-    // Vérification de la date
-    const dateOffre = new Date(offer.dateCreation);  // Utiliser la date de création de l'offre
+    // Vérification de la date de création de l'offre
+    const dateOffre = new Date(offer.dateCreation);
     const dateValide = dateOffre >= dateDepartValue && dateOffre <= dateFinValue;
 
-    // Vérification de l'heure (si l'heure est définie)
-    const heureOffre = offer.horaires ? offer.horaires.split('T')[1] : null;  // L'heure de l'offre (si présente)
-
+    // Vérification des horaires (si définis)
     let heureValide = true;
-    if (heureDebutValue && heureFinValue && heureOffre) {
-      // Convertir l'heure en format comparable (hh:mm)
+    if (heureDebutValue && heureFinValue) {
       const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
       const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
-      const [heureOffreH, heureOffreM] = heureOffre.split(':').map(Number);
 
-      const debutOffre = heureOffreH * 60 + heureOffreM;  // Convertir en minutes
-      const debutRange = heureDebutH * 60 + heureDebutM;
+      const debutRange = heureDebutH * 60 + heureDebutM; // Convertir en minutes
       const finRange = heureFinH * 60 + heureFinM;
 
-      heureValide = debutOffre >= debutRange && debutOffre <= finRange;
+      // Si l'offre a des horaires spécifiques, on les compare avec la plage d'heures sélectionnée
+      if (offer.horaires) {
+        const heureOffre = offer.horaires.split('T')[1]; // Récupérer l'heure de l'offre
+        if (heureOffre) {
+          const [heureOffreH, heureOffreM] = heureOffre.split(':').map(Number);
+          const debutOffre = heureOffreH * 60 + heureOffreM; // Convertir en minutes
+          heureValide = debutOffre >= debutRange && debutOffre <= finRange;
+        }
+      }
+
+      // Si l'offre est un restaurant ou une attraction, on vérifie aussi les horaires d'ouverture
+      if (["Restaurant", "Parc Attraction", "Visite"].includes(offer.categorie) && offer.ouverture && offer.fermeture) {
+        const [ouvertureH, ouvertureM] = offer.ouverture.split(':').map(Number);
+        const [fermetureH, fermetureM] = offer.fermeture.split(':').map(Number);
+
+        const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
+        const fermetureMinutes = fermetureH * 60 + fermetureM;
+
+        // Comparer les horaires de l'offre avec la plage horaire sélectionnée
+        if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
+          heureValide = true;
+        } else {
+          heureValide = false;
+        }
+      }
     }
 
-    // Si l'offre est un restaurant, un parc ou une visite, vérifier les horaires d'ouverture
-    if (["Restaurant", "Parc Attraction", "Visite"].includes(offer.categorie)) {
-      const ouvertureOffre = offer.ouverture || '';
-      const fermetureOffre = offer.fermeture || '';
-
-      // Convertir les horaires d'ouverture et de fermeture en minutes pour comparaison
-      const [ouvertureH, ouvertureM] = ouvertureOffre.split(':').map(Number);
-      const [fermetureH, fermetureM] = fermetureOffre.split(':').map(Number);
-
-      const debutHoraire = ouvertureH * 60 + ouvertureM;
-      const finHoraire = fermetureH * 60 + fermetureM;
-
-      const horaireValide = (
-        (debutRange <= finHoraire && finRange >= debutHoraire) ||
-        (debutRange <= debutHoraire && finRange >= finHoraire)
-      );
-
-      return dateValide && heureValide && horaireValide;
-    }
-
-    // Pour les autres catégories (activité, spectacle, etc.), on ne vérifie que l'heure
+    // Si l'offre est valide pour la date et les horaires, la retourner
     return dateValide && heureValide;
   });
 }
-
 
 
 
