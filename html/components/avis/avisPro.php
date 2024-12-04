@@ -13,34 +13,6 @@ $avis = $avisTemp;
         </h2>
         <div>
             <ul id="listeAvis">   
-                <?php
-                foreach ($avis as $numAv => $av) {
-                    ?> 
-                    <li onclick="afficheAvisSelect(<?php echo $numAv ?>)">
-                        <div>
-                            <div class="noteEtoile">
-                                <?php
-                                for ($i = 0; $i < $av['note']; $i++) {
-                                    echo "<div class='star'></div>";
-                                }
-                                if (5 - $av['note'] != 0) {
-                                    for ($i = 0; $i < 5 - $av['note']; $i++) {
-                                        echo "<div class='star starAvisIncolore'></div>";
-                                    }
-                                }
-                                ?>
-                            </div>
-                            <p>
-                                <?php echo $av['pseudo'] . " - " . $av['titre'] ?>
-                            </p>
-                        </div>
-                        <p>
-                            <?php echo $av['content'] ?>
-                        </p>
-                    </li>
-                <?php
-                }
-                ?>
             </ul>
         </div>
     </section>
@@ -305,7 +277,7 @@ function closeDetails() {
 
 function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
-    //blocListAvis.innerHTML = "";
+    blocListAvis.innerHTML = "";
 
     for (let key in arrayAvis) {
         blocListAvis.appendChild(displayAvis(arrayAvis[key]));
