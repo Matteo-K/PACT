@@ -144,7 +144,7 @@ function sortEnAvant(array) {
         return 1;
     }
     return 0;
-});
+  });
 }
 
 function sortNoteCroissant(array) {

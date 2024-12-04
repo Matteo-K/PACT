@@ -291,9 +291,15 @@ function closeDetails() {
   });
 });
 
+/* ### Gestion des tri et filtre des avis ### */
+
 const selectTri = document.getElementById("TridateAvis");
 const chbxNonLu = document.getElementById("fltAvisNonLus");
 const chbxNonRep = document.getElementById("fltAvisNonRep");
+
+selectTri.addEventListener('change', () => displayArrayAvis(listeAvis));
+chbxNonLu.addEventListener('change', () => displayArrayAvis(listeAvis));
+chbxNonRep.addEventListener('change', () => displayArrayAvis(listeAvis));
 
 function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
@@ -301,7 +307,9 @@ function displayArrayAvis(arrayAvis) {
     // filtre
     arrayAvis = filtreNonLu(arrayAvis);
     arrayAvis = filtreNonRep(arrayAvis);
+
     // tri
+    //arrayAvis = triAvis(arrayAvis);
 
     blocListAvis.innerHTML = "";
 
@@ -310,7 +318,46 @@ function displayArrayAvis(arrayAvis) {
     }
 }
 
+/**
+ * Sélectionne le tri des avis
+ */
+function triAvis(arrayAvis) {
+  
+  if (selectTri.value === 'recent') {
+    return triDateRecent(arrayAvis);
+  } else if (selectTri.value === 'ancien') {
+    return triDateAncien(arrayAvis);
+  }
+  return arrayAvis;
+}
 
+/**
+ * Tri la liste des avis du plus récent au plus ancien
+ */
+function triDateRecent(arrayAvis) {
+    return arrayAvis.sort((avis1, avis2) => {
+        const date1 = new Date(avis1.datepublie);
+        const date2 = new Date(avis2.datepublie);
+
+        return date2.getTime() - date1.getTime()
+    });
+}
+
+/**
+ * Tri la liste des avis du plus ancien au plus récent
+ */
+function triDateAncien(arrayAvis) {
+    return arrayAvis.sort((avis1, avis2) => {
+        const date1 = new Date(avis1.datepublie);
+        const date2 = new Date(avis2.datepublie);
+
+        return date1.getTime() - date2.getTime()
+    });
+}
+
+/**
+ * Retourne une liste avec seulement lesavis non lus
+ */
 function filtreNonLu(arrayAvis) {
     if (chbxNonLu.checked) {
         return arrayAvis.filter(avis => {
@@ -320,6 +367,9 @@ function filtreNonLu(arrayAvis) {
     return arrayAvis;
 }
 
+/**
+ * Retourne une liste avec seulement lesavis non répondu
+ */
 function filtreNonRep(arrayAvis) {
     if (chbxNonRep.checked) {
         return arrayAvis.filter(avis => {
