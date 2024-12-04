@@ -3166,7 +3166,7 @@ section#infoComp div {
   flex-direction: column;
 }
 
-#publiez-component > div{
+#publiez-component > section{
   display:flex;
   justify-content: center;
   align-items: center;
@@ -3174,7 +3174,7 @@ section#infoComp div {
   background-color: var(--bloc);
 }
 
-#publiez-component > div > .star {
+#publiez-component > section .star {
   width: 5em;
   height: 5em;
 }
