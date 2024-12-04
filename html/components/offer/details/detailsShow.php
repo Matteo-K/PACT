@@ -25,41 +25,39 @@ if ($categorie["_spectacle"]) {
 
     <!-- Gestion du nombre de place pour le parc d'attraction -->
     <div>
-        <label class="labelNbPlace">Nombre de places : </label> <!-- Label nombre de place -->
+        <label class="labelNbPlace" for="nbPlaceShow">Nombre de places : </label> <!-- Label nombre de place -->
 
         <div>
-            <input type="number" 2class="nb" name="nbPlaceShow" min="0" placeholder="0">
+            <input type="number" class="nb" id="nbPlaceShow" name="nbPlaceShow" min="0" placeholder="0" value="<?php echo $spectacle["nbplace"] ?>">
             <!-- Pour le nombre de place -->
-            <?php echo "places" ?>
+            places
         </div>
     <!-- Gestion du prix -->
-        <label class="labelShow1">Prix minimum : </label>
+        <label class="labelShow1" for="PrixMinShow">Prix minimum : </label>
 
         <div>
-            <input type="number" class="nb" name="PrixMinShow" min="0" placeholder="0">
+            <input type="number" class="nb" id="PrixMinShow" name="PrixMinShow" min="0" placeholder="0">
             <!-- Pour entrer un prix minimum -->
-            <?php echo "€" ?>
+            €
         </div>
     </div>
 
 
 
 
-    <div class="classDivShow1"> <!-- Pour le CSS-->
+    <div class="classDivShow1">
     <!-- Gestion de la durée -->
         <label class="ligne1">Durée du Spectacle : </label>
 
         <div>
             <div class="classDivLigne">
-            <label class="ligne1">En minutes : </label>
-            
-                <input type="number" class="nb" name="nbHeures" min="0" placeholder="0">
+            <label for="nbMin" class="ligne1">En minutes : </label>
+            <input type="number" class="nb" id="nbMin" name="nbMin" min="0" placeholder="0">
                 
             
 
-                <label class="ligne4">En heures : </label>
-                <input type="time" class="nb" name="nbMinutesHeure" placeholder="0">
-                <label class="ligne3">h</label>
+                <label for="nbMinutesHeure" class="ligne4">En heures : </label>
+                <input type="time" id="nbMinutesHeure" class="nb" name="nbMinutesHeure" placeholder="0">
             </div>
         </div>
     </div>
