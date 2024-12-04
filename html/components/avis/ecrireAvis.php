@@ -13,40 +13,12 @@
         const etoiles = document.querySelectorAll(".star");
         
         etoiles.forEach((etoile, index) => {
-            etoile.addEventListener("mouseenter", () => {
-                // Met en surbrillance les étoiles jusqu'à celle survolée
-                surbrillanceEtoiles(index + 1);
-            });
-
-            etoile.addEventListener("mouseleave", () => {
-                // Réinitialise les étoiles lorsqu'on quitte la souris
-                reinitialiserEtoiles();
-            });
 
             etoile.addEventListener("click", () => {
                 // Définit définitivement la note
                 definirNote(index + 1);
             });
         });
-
-        function surbrillanceEtoiles(nombre) {
-            etoiles.forEach((etoile, i) => {
-                if (i < nombre) {
-                    etoile.classList.add("remplie");
-                    etoile.classList.remove("vide");
-                } else {
-                    etoile.classList.remove("remplie");
-                    etoile.classList.add("vide");
-                }
-            });
-        }
-
-        function reinitialiserEtoiles() {
-            etoiles.forEach((etoile) => {
-                etoile.classList.remove("remplie");
-                etoile.classList.add("vide");
-            });
-        }
 
         function definirNote(note) {
             etoiles.forEach((etoile, i) => {
