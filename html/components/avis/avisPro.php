@@ -169,16 +169,15 @@ const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim()
 
 function afficheAvisSelect(numAvis) {
 
-    console.log(conteneurAvis);
-
-    console.log("Display style:", conteneurAvis.style.display);
 
     conteneurAvis.style.display = "flex";
     document.getElementById("aucunAvisSelect").style.display = "none";
 
+    closeDetails();
+
     //Changement de couleur du li sélectionné et on remet les autres en gris
     document.querySelectorAll("#listeAvis > li").forEach((li, numLi) => {
-        li.style.background = `linear-gradient(90deg, ${secondaryColor} 0%, ${secondaryColor} 80%, transparent 100%)`;
+        li.style.background = `linear-gradient(90deg, ${accentColor} 0%, ${accentColor} 80%, transparent 100%)`;
         if (numAvis == numLi) {
             li.style.background = `linear-gradient(90deg, ${primaryColor} 0%, ${primaryColor} 90%, transparent 100%)`;
         }
