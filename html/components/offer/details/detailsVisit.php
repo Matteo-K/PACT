@@ -75,21 +75,12 @@ if ($categorie["_visite"]) {
 
 
         <div class="acces1">
-            <input type="radio"  name="AccesH1" value="Acces" checked>
-
-            <label for="Acces">Accès Personne à Modibilté Réduite</label>
-            <!-- Label associé au bouton radio -->
+            <input type="radio" id="Acces" name="AccesPersHandi" value="Acces" checked>
+            <label for="Acces">Accès personne handicapée</label>
         </div>
         <div class="access1">
-            <input type="radio"  name="AccesH2" value="pasAcces">
-            <label for="pasAcces">Accès personne sourde/malentendantes </label>
-            <!-- Label du 2eme bouton radio -->
-        </div>
-        <div class="access1">
-            <input type="radio"  name="AccesH3" value="pasAcces">
-            
-            <label for="pasAcces">Accès personnes aveugle/déficience visuelle </label>
-            <!-- Label du 3eme bouton radio -->
+            <input type="radio" id="pasAcces" name="AccesPersHandi" value="pasAcces">
+            <label for="pasAcces">Pas d'accès personne handicapée </label>
         </div>
 
 
