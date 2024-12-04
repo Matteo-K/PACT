@@ -3179,6 +3179,11 @@ section#infoComp div {
   width: 5em;
   height: 5em;
 }
+#publiez-component > section div {
+  display: flex;
+}
+
+
 
 
 .avis>nav>h3 {
