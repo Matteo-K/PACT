@@ -146,13 +146,11 @@ $avis = $avisTemp;
 
 
 let listeAvis = <?php echo json_encode($avis) ?>;
-
-console.table(listeAvis);
 document.addEventListener('DOMContentLoaded', function() {
     displayArrayAvis(listeAvis);
 });
 
-let conteneurAvis = document.getElementById("conteneurAvisPro");
+let conteneurAvis = document.querySelector(".conteneurAvisPro");
 
 let photoAuteurAvis = document.querySelector("#ligneTitreAvis > h2");
 let auteurAvis = document.querySelector("#ligneTitreAvis > h2");
@@ -176,7 +174,7 @@ function afficheAvisSelect(numAvis) {
     console.log("Display style:", conteneurAvis.style.display);
 
     conteneurAvis.style.display = "flex";
-    document.getElementById(aucunAvisSelect).style.display = none;
+    document.getElementById("aucunAvisSelect").style.display = "none";
 
     //Changement de couleur du li sélectionné et on remet les autres en gris
     document.querySelectorAll("#listeAvis > li").forEach((li, numLi) => {
@@ -307,19 +305,22 @@ chbxNonRep.addEventListener('change', () => displayArrayAvis(listeAvis));
 
 function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
+    
+    let array = Object.entries(arrayAvis);
 
     // filtre
-    arrayAvis = filtreNonLu(arrayAvis);
-    arrayAvis = filtreNonRep(arrayAvis);
+    array = filtreNonLu(array);
+    array = filtreNonRep(array);
 
     // tri
-    //arrayAvis = triAvis(arrayAvis);
+    array = triAvis(array);
 
     blocListAvis.innerHTML = "";
 
-    for (let key in arrayAvis) {
-        blocListAvis.appendChild(displayAvis(arrayAvis[key]));
-    }
+    array.forEach(avis => {
+        console.log(avis);
+        blocListAvis.appendChild(displayAvis(avis[1]));
+    });
 }
 
 /**
@@ -340,8 +341,8 @@ function triAvis(arrayAvis) {
  */
 function triDateRecent(arrayAvis) {
     return arrayAvis.sort((avis1, avis2) => {
-        const date1 = new Date(avis1.datepublie);
-        const date2 = new Date(avis2.datepublie);
+        const date1 = new Date(avis1[1].datepublie);
+        const date2 = new Date(avis2[1].datepublie);
 
         return date2.getTime() - date1.getTime()
     });
@@ -352,8 +353,8 @@ function triDateRecent(arrayAvis) {
  */
 function triDateAncien(arrayAvis) {
     return arrayAvis.sort((avis1, avis2) => {
-        const date1 = new Date(avis1.datepublie);
-        const date2 = new Date(avis2.datepublie);
+        const date1 = new Date(avis1[1].datepublie);
+        const date2 = new Date(avis2[1].datepublie);
 
         return date1.getTime() - date2.getTime()
     });
@@ -365,7 +366,7 @@ function triDateAncien(arrayAvis) {
 function filtreNonLu(arrayAvis) {
     if (chbxNonLu.checked) {
         return arrayAvis.filter(avis => {
-            return avis.lu == false;
+            return avis[1].lu == false;
         });
     }
     return arrayAvis;
@@ -377,7 +378,7 @@ function filtreNonLu(arrayAvis) {
 function filtreNonRep(arrayAvis) {
     if (chbxNonRep.checked) {
         return arrayAvis.filter(avis => {
-            return avis.idc_reponse == null;
+            return avis[1].idc_reponse == null;
         });
     }
     return arrayAvis;
@@ -387,9 +388,8 @@ function filtreNonRep(arrayAvis) {
  * Affichage d'un avis
  */
 function displayAvis(avis) {
-    console.log(avis);
     let li = document.createElement("li");
-    li.setAttribute("onclick","afficheAvisSelect("+ avis['idc'] +")");
+    li.setAttribute("onclick","afficheAvisSelect("+ avis.idc +")");
 
     let blocTitre = document.createElement("div");
     let titre = document.createElement("p");
