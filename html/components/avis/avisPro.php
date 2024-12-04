@@ -294,8 +294,8 @@ function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
 
     // filtre
-    arrayAvis = filtreNonLu(arrayAvis);
-    arrayAvis = filtreNonRep(arrayAvis);
+    //arrayAvis = filtreNonLu(arrayAvis);
+    //arrayAvis = filtreNonRep(arrayAvis);
     // tri
 
     blocListAvis.innerHTML = "";
