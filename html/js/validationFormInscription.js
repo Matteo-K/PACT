@@ -25,14 +25,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fonction pour mettre à jour l'affichage du SIREN
     function updateSirenVisibility() {
         if (priveRadio.checked) {
-            sirenLabel.style.display = "block"; // Affiche le label
-            sirenInput.style.display = "block"; // Affiche le champ
+            sirenLabel.style.display = "block";
+            sirenInput.style.display = "block";
             sirenInput.setAttribute('required', 'required');
         } 
         
         else {
-            sirenLabel.style.display = "none"; // Cache le label
-            sirenInput.style.display = "none"; // Cache le champ
+            sirenLabel.style.display = "none";
+            sirenInput.style.display = "none";
             sirenInput.removeAttribute('required');
         }
     }
@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour afficher les erreurs globales dans la div messageErreur
     function displayGlobalErrors(errors) {
-        messageErreurDiv.innerHTML = ''; // Efface les erreurs précédentes
+        messageErreurDiv.innerHTML = '';
         if (errors.length > 0) {
-            messageErreurDiv.style.display = 'block'; // Affiche la div
-            const errorList = document.createElement('ul'); // Crée une liste des erreurs
+            messageErreurDiv.style.display = 'block';
+            const errorList = document.createElement('ul');
 
             errors.forEach(error => {
                 const li = document.createElement('li');
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } 
         
         else {
-            messageErreurDiv.style.display = 'none'; // Cache la div si pas d'erreurs
+            messageErreurDiv.style.display = 'none';
         }
     }
 
@@ -74,11 +74,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fonction pour afficher un message d'erreur pour un champ
     function displayFieldError(inputElement, messageErreur) {
         let errorElement = document.querySelector("#messageErreur");
-        errorElement.textContent = messageErreur; // Met le message dans l'élément
-        inputElement.style.borderColor = 'red'; // Mettre la bordure en rouge
+        errorElement.textContent = messageErreur;
+        inputElement.style.borderColor = 'red';
         window.scrollTo({
             top: 0,
-            behavior: 'smooth' // Cela permet un défilement en douceur
+            behavior: 'smooth'
         });
     }
 
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function clearFieldError(inputElement) {
         const errorElement = document.querySelector("#messageErreur");
         errorElement.innerText = "";
-        inputElement.style.borderColor = ''; // Réinitialiser la bordure à son état d'origine
+        inputElement.style.borderColor = '';
     }
 
 
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', function (event) {
         event.preventDefault(); // Empêche l'envoi du formulaire
 
-        const errors = []; // Tableau pour stocker les erreurs globales
+        const errors = [];
 
         // Vérifier les champs lors de la soumission
         fieldsToValidate.forEach(field => {
@@ -210,6 +210,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!document.getElementById('cgu').checked) {
             errors.push('Vous devez accepter les conditions générales d\'utilisation.');
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
         // Afficher les erreurs globales
