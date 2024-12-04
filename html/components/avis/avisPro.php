@@ -8,9 +8,11 @@ $avis = $avisTemp;
 ?>
 <div id="avisPro">
     <section id="avisproS1">
-        <h2 class="triangle">
-            Avis les plus récents
-        </h2>
+        <!-- Ancien h2 -->
+        <select name="TridateAvis" id="TridateAvis">
+            <option value="recent" selected>Avis les plus récents</option>
+            <option value="ancien">Avis les plus ancien</option>
+        </select>
         <div>
             <ul id="listeAvis">   
             </ul>
@@ -38,14 +40,16 @@ $avis = $avisTemp;
             ?>
             <h3>
                 <div class="nonLu"></div>
-                Non lus
+                <input type="checkbox" name="fltAvisNonLus" id="fltAvisNonLus">
+                <label for="fltAvisNonLus">Non lus</label>
             </h3>
             <h3>
                 <?php echo $avisN0["avisnonlus"] ?>
             </h3>
             <h3>
                 <div class="nonRepondu"></div>
-                Non répondus
+                <input type="checkbox" name="fltAvisNonRep" id="fltAvisNonRep">
+                <label for="fltAvisNonRep">Non répondus</label>
             </h3>
             <h3>
                 <?php echo $avisN0["avisnonrepondus"] ?>
@@ -287,10 +291,18 @@ function closeDetails() {
   });
 });
 
-
+const selectTri = document.getElementById("TridateAvis");
+const chbxNonLu = document.getElementById("fltAvisNonLus");
+const chbxNonRep = document.getElementById("fltAvisNonRep");
 
 function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
+
+    // filtre
+    arrayAvis = filtreNonLu(arrayAvis);
+    arrayAvis = filtreNonRep(arrayAvis);
+    // tri
+
     blocListAvis.innerHTML = "";
 
     for (let key in arrayAvis) {
@@ -298,6 +310,28 @@ function displayArrayAvis(arrayAvis) {
     }
 }
 
+
+function filtreNonLu(arrayAvis) {
+    if (chbxNonLu.checked) {
+        return arrayAvis.filter(avis => {
+            return avis.lu == false;
+        });
+    }
+    return arrayAvis;
+}
+
+function filtreNonRep(arrayAvis) {
+    if (chbxNonRep.checked) {
+        return arrayAvis.filter(avis => {
+            return avis.idc_reponse == null;
+        });
+    }
+    return arrayAvis;
+}
+
+/**
+ * Affichage d'un avis
+ */
 function displayAvis(avis) {
     console.log(avis);
     let li = document.createElement("li");
