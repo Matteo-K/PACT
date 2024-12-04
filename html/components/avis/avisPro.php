@@ -240,12 +240,16 @@ function afficheAvisSelect(numAvis) {
     
     //changement couleur etoiles (on remet tout jaune puis grise certaines)
     console.log(etoilesAvis);
+    console.log(listeAvis[numAvis]['note']);
     for (i = 0; i < 5; i++) {
+        console.log("remet etoile jaune");
         etoilesAvis[i].style.backgroundColor = primaryColor;
     }
     
     if (listeAvis[numAvis]['note'] < 5) {
+        console.log("boucle etoiles grises");
         for (i = 5; i > listeAvis[numAvis]['note']; i--) {
+            console.log("mets etoile grise");
             etoilesAvis[i].style.backgroundColor = secondaryColor;
         }
     }

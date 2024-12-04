@@ -244,7 +244,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
             <section class="info">
-                <section>
+                <section class="tema">
                     <p class="infoP">Information Offre</p>
 
                     <?php

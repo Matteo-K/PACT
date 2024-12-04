@@ -42,6 +42,14 @@ if ($categorie["_visite"]) {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $visite["hadicap"][] = $row["hadicap"];
     }*/
+
+
+        // Requete pour les langues
+    $stmt = $conn->prepare("SELECT * from pact._langue where idoffre=?");
+    $stmt->execute([$idOffre]);
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $visite["langue"][] = $row["langue"];
+    }
 }
 
 ?>
