@@ -1,17 +1,31 @@
 <section>
-    <form action="">
+    <form action="submitNote.php" method="post">
         <div id="note">
+            <!-- Étoiles pour la notation -->
             <?php
-                for($i = 1; $i <= 5; $i++){
+                for ($i = 1; $i <= 5; $i++) {
             ?>
-                    <div class="star ecrire vide" id="star-<?=$i?>"></div>
+                    <div 
+                        class="star ecrire vide" 
+                        id="star-<?=$i?>" 
+                        role="button" 
+                        aria-label="Étoile <?= $i ?> sur 5">
+                    </div>
             <?php
                 }
             ?>
-            <input id="note-value"name="note" type="hidden" value="0">
+            <input name="note" id="note-value" type="hidden" value="0">
         </div>
+
+        <!-- Champ pour la date -->
+        <div>
+            <label for="date-avis">Donnez la date de visite :</label>
+            <input type="date" id="date-avis" name="date" required>
+        </div>
+
     </form>
 </section>
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const etoiles = document.querySelectorAll(".star");
