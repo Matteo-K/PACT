@@ -3678,6 +3678,10 @@ details .nonLu, details .nonRepondu{
   /* Icône étoile vide */
 }
 
+.star.hover {
+  background-color: var(--accent);
+}
+
 @media screen and (max-width: 768px) {
   :root {
     --header-size2: 0;
