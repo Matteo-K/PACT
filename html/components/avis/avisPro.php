@@ -309,7 +309,7 @@ function displayArrayAvis(arrayAvis) {
     arrayAvis = filtreNonRep(arrayAvis);
 
     // tri
-    arrayAvis = triAvis(arrayAvis);
+    //arrayAvis = triAvis(arrayAvis);
 
     blocListAvis.innerHTML = "";
 
