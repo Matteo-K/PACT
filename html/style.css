@@ -3558,6 +3558,10 @@ details .nonLu, details .nonRepondu{
 
 #aucunAvisSelect{
   display: block;
+  text-align: center;
+  font-size: 1.5em;
+  width: 100%;
+  padding: 20px
 }
 
 .conteneurAvisPro {
