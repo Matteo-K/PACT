@@ -255,24 +255,25 @@ function formatDateDiff(dateString) {
     }
 }
 
+blocDetails = document.querySelector("#avisproS2 > details")
 
 //Animation du bloc details
-document.querySelector("#avisproS2 > details").addEventListener("toggle", () => {
-    if (details.open) {
+blocDetails.addEventListener("toggle", () => {
+    if (blocDetails.open) {
         openDetails();
     } else {
         closeDetails();
     }
 });
     
-const content = details.querySelector("#avisPro2 .contentDetails");
+const content = blocDetails.querySelector("#avisPro2 .contentDetails");
     
     // Fonction pour ouvrir avec une animation
 function openDetails() {
     const height = content.scrollHeight; // Calcule la hauteur totale
     content.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
     content.addEventListener("transitionend", () => {
-        if (details.open) {
+        if (blocDetails = .open) {
             content.style.maxHeight = "none"; // Supprime maxHeight après l'animation
     }
 }, { once: true });
