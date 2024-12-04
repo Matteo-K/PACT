@@ -447,6 +447,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <aside>
                 <strong>
                     <p class="taille3">En Relief</p>
+                    <p id="totalPrice2" class="taille4">Prix total : 10€</p>
                 </strong>
                 <form class="formopt" id="formOpt2" action="addOption.php" method="post">
                     <input type="hidden" name="nomOption" value="EnRelief">
@@ -966,6 +967,22 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Ajout d'un écouteur d'événement sur le champ de saisie
         nbWeekInput.addEventListener('input', updatePrice);
+
+        const nbWeekInput2 = document.getElementById('nbWeekEnRelief');
+        const totalPriceElement2 = document.getElementById('totalPrice2');
+        const pricePerWeek2 = 10; // Prix par semaine
+
+        function updatePrice2() {
+            const nbWeeks2 = parseInt(nbWeekInput2.value) || 0; // Récupère la valeur ou 0 si vide
+            const totalPrice2 = nbWeeks2 * pricePerWeek2;
+            totalPriceElement2.textContent = `Prix total : ${totalPrice2}€`;
+        }
+
+        // Mise à jour initiale
+        updatePrice2();
+
+        // Ajout d'un écouteur d'événement sur le champ de saisie
+        nbWeekInput2.addEventListener('input', updatePrice2);
 
         const forms = document.querySelectorAll('.confirmation-form');
         forms.forEach(form => {
