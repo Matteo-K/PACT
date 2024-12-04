@@ -29,6 +29,9 @@ if ($categorie["_activite"]) {
         <input type="number" id="numberAct" name="ageAct" min="0" placeholder="0"  /> 
         <label class="labAnsAct" name="labAgeAct"> Ans </label>
     </div>
+    <!-- Gestion des prestations proposée dans l'activité -->
+
+    <!-- Faire une select depuis la BDD--> <!------------------------------------------------------------------!-->
     <div class="presta">
         <label>Prestation(s)</label>
 
@@ -40,7 +43,7 @@ if ($categorie["_activite"]) {
     </div>
 
 
-
+    <!-- Gestion des prix de l'activité -->
     <div class="divP">
         <label>Prix minimum</label>
 
@@ -72,14 +75,14 @@ if ($categorie["_activite"]) {
             <!-- Label du 3eme bouton radio -->
         </div>
     </div>
+<!-- Fin handicap a modfier avec la BDD-->
 
 
-
-
+<!-- Gestion de la durée de l'activité -->
     <div class="divD">
         <label class="labDuréeAct" name="labDuréeAct"> Durée: </label>
         <div class="divD1">
-            <input type="number" id="numberAct" name="duréeAct" placeholder="0" />
+            <input type="number" id="numberAct" name="duréeAct" placeholder="0" /> 
             <label class="labHAct" name="labHAct"> H </label>
         </div>
 

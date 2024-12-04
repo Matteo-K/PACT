@@ -2263,11 +2263,22 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 25px;
 }
 
+
 .taillebtn{
   display: flex;
   justify-content: flex-end;
 }
 
+.taillebtn button{
+  background-color: #C24D4D !important;
+  border:solid #C24D4D 1px !important;
+}
+
+.taillebtn button:hover{
+  background-color: white !important;
+  border:solid #C24D4D 1px !important;
+  color: #C24D4D !important;
+}
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
@@ -3070,7 +3081,7 @@ section#infoComp div {
 /** AVIS **/
 
 .avis {
-  width: 95%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -3127,7 +3138,22 @@ section#infoComp div {
   color: #007BFF; /* Couleur du texte sélectionné */
 }
 
+#publiez-component{
+  flex-direction: column;
+}
 
+#publiez-component > div{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  background-color: var(--bloc);
+}
+
+#publiez-component > div > .star {
+  width: 5em;
+  height: 5em;
+}
 
 
 .avis>nav>h3 {

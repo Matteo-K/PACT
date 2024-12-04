@@ -191,13 +191,19 @@ function sortPrixDecroissant(array) {
 
 function sortAvisCroissant(array) {
   return array.sort((offre1, offre2) => {
-    return parseInt(offre1.nbNote) - parseInt(offre2.nbNote);
+    const note1 = offre1.nbNote ? parseInt(offre1.nbNote) : 0;
+    const note2 = offre2.nbNote ? parseInt(offre2.nbNote) : 0;
+
+    return parseInt(note1) - parseInt(note2);
   });
 }
 
 function sortAvisDecroissant(array) {
   return array.sort((offre1, offre2) => {
-    return parseInt(offre2.nbNote) - parseInt(offre1.nbNote);
+    const note1 = offre1.nbNote ? parseInt(offre1.nbNote) : 0;
+    const note2 = offre2.nbNote ? parseInt(offre2.nbNote) : 0;
+
+    return parseInt(note2) - parseInt(note1);
   });
 }
 
