@@ -20,7 +20,10 @@
         <!-- Champ pour la date -->
         <div>
             <label for="date-avis">Donnez la date de visite :</label>
-            <input type="date" id="date-avis" name="date" required>
+            <input 
+                type="month" 
+                id="date-avis" 
+                name="date" min="<?= date('Y-m', strtotime('-1 year')) ?>" max="<?= date('Y-m') ?>" required>
         </div>
 
     </form>
