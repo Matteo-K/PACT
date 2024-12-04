@@ -63,7 +63,7 @@
         // Définit la note finale, met à jour les étoiles et l'input caché
         function definirNote(note) {
             noteActuelle = note;
-            noteInput.value = note%4; // Met à jour l'input caché
+            noteInput.value = note%4+1; // Met à jour l'input caché
             etoiles.forEach((etoile, i) => {
                 if (i < note) {
                     etoile.classList.add("pleine");
