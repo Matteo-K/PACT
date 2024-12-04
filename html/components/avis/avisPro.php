@@ -335,7 +335,7 @@ function triAvis(arrayAvis) {
  * Tri la liste des avis du plus récent au plus ancien
  */
 function triDateRecent(arrayAvis) {
-    return array.sort((avis1, avis2) => {
+    return arrayAvis.sort((avis1, avis2) => {
         const date1 = new Date(avis1.datepublie);
         const date2 = new Date(avis2.datepublie);
 
@@ -347,7 +347,7 @@ function triDateRecent(arrayAvis) {
  * Tri la liste des avis du plus ancien au plus récent
  */
 function triDateAncien(arrayAvis) {
-    return array.sort((avis1, avis2) => {
+    return arrayAvis.sort((avis1, avis2) => {
         const date1 = new Date(avis1.datepublie);
         const date2 = new Date(avis2.datepublie);
 
