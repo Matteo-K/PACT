@@ -22,12 +22,12 @@
                 surbrillanceEtoiles(index + 1);
             });
 
-            etoile.addEventListener("mouseleave", () => {
+            divEtoile.addEventListener("mouseleave", () => {
                 // Réinitialise les étoiles lorsqu'on quitte la souris
                 reinitialiserEtoiles();
             });
 
-            etoile.addEventListener("click", () => {
+            divEtoile.addEventListener("click", () => {
                 // Définit définitivement la note
                 definirNote(index + 1);
             });
