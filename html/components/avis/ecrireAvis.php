@@ -9,65 +9,68 @@
     ?>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const etoiles = document.querySelectorAll(".star");
+document.addEventListener("DOMContentLoaded", () => {
+    const etoiles = document.querySelectorAll(".star");
 
-        etoiles.forEach((etoile, index) => {
-            // Survol : afficher temporairement les étoiles remplies
-            etoile.addEventListener("mouseover", () => {
-                survolerEtoiles(index + 1);
-            });
+    // Note actuellement sélectionnée
+    let noteActuelle = 0;
 
-            // Quitter le survol : rétablir l'état initial ou la sélection
-            etoile.addEventListener("mouseout", () => {
-                reinitialiserSurvol();
-            });
-
-            // Clic : définir la note de manière permanente
-            etoile.addEventListener("click", () => {
-                definirNote(index + 1);
-            });
+    etoiles.forEach((etoile, index) => {
+        // Survol : remplit les étoiles jusqu'à l'étoile survolée
+        etoile.addEventListener("mouseover", () => {
+            survolerEtoiles(index + 1);
         });
 
-        let noteActuelle = 0;
+        // Sortie du survol : restaure l'état initial
+        etoile.addEventListener("mouseout", () => {
+            reinitialiserSurvol();
+        });
 
-        // Prévisualiser les étoiles remplies lors du survol
-        function survolerEtoiles(note) {
-            etoiles.forEach((etoile, i) => {
-                if (i < note) {
-                    etoile.classList.add("hover");
-                } else {
-                    etoile.classList.remove("hover");
-                }
-            });
-        }
-
-        // Réinitialiser l'état des étoiles après le survol
-        function reinitialiserSurvol() {
-            etoiles.forEach((etoile, i) => {
-                etoile.classList.remove("hover");
-                if (i < noteActuelle) {
-                    etoile.classList.add("remplie");
-                } else {
-                    etoile.classList.add("vide");
-                }
-            });
-        }
-
-        // Définir la note de manière permanente
-        function definirNote(note) {
-            noteActuelle = note; // Enregistre la note sélectionnée
-            etoiles.forEach((etoile, i) => {
-                if (i < note) {
-                    etoile.classList.add("remplie");
-                    etoile.classList.remove("vide");
-                } else {
-                    etoile.classList.remove("remplie");
-                    etoile.classList.add("vide");
-                }
-            });
-
-            console.log("Note sélectionnée :", note);
-        }
+        // Clic : enregistre la note de manière permanente
+        etoile.addEventListener("click", () => {
+            definirNote(index + 1);
+        });
     });
+
+    // Remplit les étoiles jusqu'à `note` pour le survol
+    function survolerEtoiles(note) {
+        etoiles.forEach((etoile, i) => {
+            if (i < note) {
+                etoile.classList.add("pleine");
+            } else {
+                etoile.classList.remove("pleine");
+            }
+        });
+    }
+
+    // Réinitialise les étoiles après le survol
+    function reinitialiserSurvol() {
+        etoiles.forEach((etoile, i) => {
+            etoile.classList.remove("pleine");
+            if (i < noteActuelle) {
+                etoile.classList.add("pleine");
+            } else {
+                etoile.classList.add("vide");
+            }
+        });
+    }
+
+    // Définit la note finale et met à jour les étoiles
+    function definirNote(note) {
+        noteActuelle = note;
+        etoiles.forEach((etoile, i) => {
+            if (i < note) {
+                etoile.classList.add("pleine");
+                etoile.classList.remove("vide");
+            } else {
+                etoile.classList.remove("pleine");
+                etoile.classList.add("vide");
+            }
+        });
+
+        // Affiche la note sélectionnée dans la console
+        console.log("Note sélectionnée :", note);
+    }
+});
+
 </script>
