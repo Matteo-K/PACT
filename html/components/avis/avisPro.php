@@ -316,7 +316,9 @@ function displayAvis(avis) {
     console.log(avis);
     let li = document.createElement("li");
     li.setAttribute("onclick","afficheAvisSelect("+ avis['idc'] +")");
-    li.textContent = avis["content"];
+    li.textContent = avis.content;
+
+    return li;
 }
 
 /**
