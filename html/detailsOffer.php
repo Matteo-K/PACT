@@ -243,16 +243,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($typeUser == "pro_prive" || $typeUser == "pro_public") {
         ?>
 
-            <fieldset class="info">
-                <legend>Information de l'offre</legend>
-
+            <section class="info">
+                <p class="infoP">Information Offre</p>
                 <?php
                 if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                 ?>
                     <h3 class="Enligne"><?php echo $offre[0]['statut'] ?></h3>
 
                     <div class="buttonDetails">
-                        <form method="post" action="changer_statut.php">
+                        <form class="taille6" method="post" action="changer_statut.php">
                             <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
                             <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
                             <input type="hidden" name="nouveau_statut" value="<?php echo $offre[0]['statut'] === 'inactif' ? 'actif' : 'inactif'; ?>">
@@ -261,7 +260,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </button>
                         </form>
                         <div class="form-container">
-                            <form method="post" action="manageOffer.php">
+                            <form class="taille6" method="post" action="manageOffer.php">
                                 <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
                                 <input type="hidden" name="page" value="2">
                                 <button
@@ -276,13 +275,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </button>
                             </form>
                         </div>
-                        <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
+                        <section class="taille6">
+                            <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
+                        </section>
                     <?php
                 }
 
                     ?>
                     </div>
-            </fieldset>
+            </section>
             <section id="myModal" class="modal">
               <section class="modal-content">
                 <span class="close">&times;</span>
