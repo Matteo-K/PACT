@@ -11,16 +11,52 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const etoiles = document.querySelectorAll(".star");
-        
-        etoiles.forEach((etoile, index) => {
 
+        etoiles.forEach((etoile, index) => {
+            // Survol : afficher temporairement les étoiles remplies
+            etoile.addEventListener("mouseover", () => {
+                survolerEtoiles(index + 1);
+            });
+
+            // Quitter le survol : rétablir l'état initial ou la sélection
+            etoile.addEventListener("mouseout", () => {
+                reinitialiserSurvol();
+            });
+
+            // Clic : définir la note de manière permanente
             etoile.addEventListener("click", () => {
-                // Définit définitivement la note
                 definirNote(index + 1);
             });
         });
 
+        let noteActuelle = 0;
+
+        // Prévisualiser les étoiles remplies lors du survol
+        function survolerEtoiles(note) {
+            etoiles.forEach((etoile, i) => {
+                if (i < note) {
+                    etoile.classList.add("hover");
+                } else {
+                    etoile.classList.remove("hover");
+                }
+            });
+        }
+
+        // Réinitialiser l'état des étoiles après le survol
+        function reinitialiserSurvol() {
+            etoiles.forEach((etoile, i) => {
+                etoile.classList.remove("hover");
+                if (i < noteActuelle) {
+                    etoile.classList.add("remplie");
+                } else {
+                    etoile.classList.add("vide");
+                }
+            });
+        }
+
+        // Définir la note de manière permanente
         function definirNote(note) {
+            noteActuelle = note; // Enregistre la note sélectionnée
             etoiles.forEach((etoile, i) => {
                 if (i < note) {
                     etoile.classList.add("remplie");
