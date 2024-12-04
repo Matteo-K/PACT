@@ -105,8 +105,8 @@ $avis = $avisTemp;
             ?>
             </div>
         </details> 
+        <p id="aucunAvisSelect"> Cliquez sur un avis de la liste pour l'afficher ici. </p>
         <div class="conteneurAvisPro">
-            <p id="aucunAvisSelect"> Cliquez sur un avis de la liste pour l'afficher ici. </p>
             <div id="ligneTitreAvis">
                 <img src="./img/profile_picture/default.svg" alt="Photo du membre">
                 <h2>

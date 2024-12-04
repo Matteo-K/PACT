@@ -3568,7 +3568,7 @@ details .nonLu, details .nonRepondu{
   display: none;
   width: 100%; /* Prend tout l'espace restant */
   padding: 0 20px;
-  background-color: #dee6fa;
+  background-color: var(--primary40);
   overflow-y: auto; /* Permet le scroll si le contenu est trop grand */
   /*display: flex;*/
   flex-wrap: wrap ;
