@@ -1,24 +1,15 @@
 <div id="avisPro">
-
-
     <section id="avisproS1">
-
         <h2 class="triangle">
-        
             Avis les plus récents
         </h2>
-
-
         <div>
-            <ul id="listeAvis">
-                
+            <ul id="listeAvis">   
                 <?php
                 foreach ($avis as $numAv => $av) {
                     ?> 
                     <li onclick="afficheAvisSelect(<?php echo $numAv ?>)">
-
                         <div>
-
                             <div class="noteEtoile">
                                 <?php
                                 for ($i = 0; $i < $av['note']; $i++) {
@@ -31,33 +22,22 @@
                                 }
                                 ?>
                             </div>
-
                             <p>
                                 <?php echo $av['pseudo'] . " - " . $av['titre'] ?>
                             </p>
-
                         </div>
-
                         <p>
                             <?php echo $av['content'] ?>
                         </p>
-
                     </li>
                 <?php
                 }
                 ?>
-                
             </ul>
         </div>
-
-
     </section>
-
-
     <section id="avisproS2">
-
         <details>
-
             <summary>
                 <span class="custom-marker">▶</span>
                 <h2>
@@ -71,34 +51,26 @@
                         echo 0;
                     } ?>
                 </h2>
-                
             </summary>
-
             <div class="contentDetails">
-
             <?php 
                 if($avis) {
             ?>
-            
-                <h3>
-                    <div class="nonLu"></div>
-                    Non lus
-                </h3>
-                <h3>
-                    <?php echo $avis[0]["avisnonlus"] ?>
-                </h3>
-
-                <h3>
-                    <div class="nonRepondu"></div>
-                    Non répondus
-                </h3>
-                <h3>
-                    <?php echo $avis[0]["avisnonrepondus"] ?>
-                </h3>
-
-
+            <h3>
+                <div class="nonLu"></div>
+                Non lus
+            </h3>
+            <h3>
+                <?php echo $avis[0]["avisnonlus"] ?>
+            </h3>
+            <h3>
+                <div class="nonRepondu"></div>
+                Non répondus
+            </h3>
+            <h3>
+                <?php echo $avis[0]["avisnonrepondus"] ?>
+            </h3>
                 <?php
-
                     $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
                     $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
                 ?>
@@ -141,67 +113,43 @@
                             ?>
                         </div>
                     </div>
-
             <?php
                 }
                 else {
                     echo "<p> Aucune donnée a afficher : vous n'avez pas encore d'avis </p>";
                 }
             ?>
-
             </div>
-
-            
         </details> 
-
-        
-
         <div class="conteneurAvisPro">
-
             <p id="aucunAvisSelect"> Cliquez sur un avis de la liste pour l'afficher ici. </p>
-            
             <div id="ligneTitreAvis">
-
                 <img src="./img/profile_picture/default.svg" alt="Photo du membre">
                 <h2>
                     Auteur
                 </h2>
-
                 <img src="./img/icone/trois-points.png" alt="icone de parametre">
             </div>
-            
             <div class="noteEtoile">
-
                 <?php
                     for ($i = 0; $i < 5; $i++) {
                         echo "<div class='star'></div>";
                     }
                 ?>
-
             </div>
-
             <h3>
                 Titre
             </h3>
-
             <p id="contenuAvis">
                 Texte de l'avis
             </p>
-
             <div id="imagesAvisPro">
-
             </div>
-
             <p id="visiteRedaction"> 
                 Visité en .... le ../.. - rédigé le ../.. 
             </p>
-            
         </div>
-
     </section>
-
-
-   
 </div>
 
 
@@ -343,4 +291,53 @@ function closeDetails() {
   });
 });
 
+
+const blocListAvis = document.getElementById("listeAvis");
+
+
+console.table(listeAvis);
+
+function displayArrayAvis(ArrayAvis) {
+    blocListAvis.innerHTML = "";
+
+    let li = document.createElement("li");
+    li.setAttribute("onclick","afficheAvisSelect()")
+}
+
+/**
+ * interprète le nombre d'étoile colorié affiché
+ * @param {Integer} note nombre d'étoile colorié correpondant à la note de l'avis
+ * @returns bloc div qui contient les étoiles
+ */
+function displayStar(note) {
+  let container = document.createElement("div");
+  container.classList.add("blcStarSearch");
+
+  const etoilesPleines = Math.floor(note);
+  const reste = note - etoilesPleines;
+
+  for (let i = 1; i <= etoilesPleines; i++) {
+    let star = document.createElement('div');
+    star.classList.add('star', 'pleine');
+    container.appendChild(star);
+  }
+  
+  if (reste > 0) {
+    let pourcentageRempli = reste * 100;
+    let starPartielle = document.createElement('div');
+    starPartielle.classList.add('star', 'partielle');
+    starPartielle.style.setProperty('--pourcentage', `${pourcentageRempli}%`);
+    container.appendChild(starPartielle);
+  }
+  
+  let totalEtoiles = 5;
+  let etoilesRestantes = totalEtoiles - etoilesPleines - (reste > 0 ? 1 : 0);
+  
+  for (let i = 0; i < etoilesRestantes; i++) {
+    let star = document.createElement('div');
+    star.classList.add('star', 'vide');
+    container.appendChild(star);
+  }
+  return container;
+}
 </script>

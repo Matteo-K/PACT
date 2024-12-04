@@ -668,7 +668,7 @@ function displayStar(note) {
 
   const etoilesPleines = Math.floor(note);
   const reste = note - etoilesPleines;
-
+  
   for (let i = 1; i <= etoilesPleines; i++) {
     let star = document.createElement('div');
     star.classList.add('star', 'pleine');
