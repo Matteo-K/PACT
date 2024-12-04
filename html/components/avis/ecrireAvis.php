@@ -3,9 +3,7 @@
     <?php
         for($i = 1; $i <= 5; $i++){
     ?>
-        <div class="divEtoile">
             <div class="star ecrire vide" id="star-<?=$i?>"></div>
-        </div>
     <?php
         }
     ?>
@@ -13,23 +11,22 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-    const divEtoiles = document.querySelectorAll(".divEtoile");
+    const etoiles = divEtoile.querySelectorAll(".star.ecrire");
     
-    divEtoiles.forEach((divEtoile) => {
-        const etoiles = divEtoile.querySelectorAll(".star.ecrire");
+    etoiles.forEach((divEtoile) => {
 
-        divEtoile.addEventListener("mouseenter", () => {
+        etoiles.addEventListener("mouseenter", () => {
             // Met en surbrillance les étoiles jusqu'à celle survolée
             const note = parseInt(divEtoile.getAttribute("data-note"));
             surbrillanceEtoiles(etoiles, note);
         });
 
-        divEtoile.addEventListener("mouseleave", () => {
+        etoiles.addEventListener("mouseleave", () => {
             // Réinitialise les étoiles lorsqu'on quitte la souris
             reinitialiserEtoiles(etoiles);
         });
 
-        divEtoile.addEventListener("click", () => {
+        etoiles.addEventListener("click", () => {
             // Définit définitivement la note
             const note = parseInt(divEtoile.getAttribute("data-note"));
             definirNote(etoiles, note);
