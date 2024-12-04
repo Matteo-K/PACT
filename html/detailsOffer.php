@@ -243,9 +243,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($typeUser == "pro_prive" || $typeUser == "pro_public") {
         ?>
 
-            <fieldset class="info">
-                <legend>Information de l'offre</legend>
-
+            <section class="info">
                 <?php
                 if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                 ?>
@@ -284,7 +282,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     ?>
                     </div>
-            </fieldset>
+            </section>
             <section id="myModal" class="modal">
               <section class="modal-content">
                 <span class="close">&times;</span>
