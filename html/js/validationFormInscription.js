@@ -212,13 +212,6 @@ document.addEventListener('DOMContentLoaded', function () {
             errors.push('Vous devez accepter les conditions générales d\'utilisation.');
         }
 
-        if (errors.length > 0) {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
         // Afficher les erreurs globales
         displayGlobalErrors(errors);
 
