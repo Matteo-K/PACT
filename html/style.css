@@ -2272,7 +2272,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .taillebtn{
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .taillebtn button{
@@ -2742,8 +2742,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .buttonDetails {
   display: flex;
   gap: 10px;
-  width: fit-content;
-  margin-left: auto;
+  width: 100%;
+  justify-content: center;
 }
 
 #titleOffer {
