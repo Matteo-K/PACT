@@ -339,16 +339,25 @@ function filtrerParPeriode(offers) {
       return false;
     }
 
-    // Vérifier la date
-    const dateOffre = new Date(offer.date);  // La date de l'offre
+    // Vérification de la date
+    const dateOffre = new Date(offer.dateCreation);  // Utiliser la date de création de l'offre
     const dateValide = dateOffre >= dateDepartValue && dateOffre <= dateFinValue;
 
-    // Vérifier l'heure
-    const heureOffre = offer.horaires ? offer.horaires.split('T')[1] : null;  // L'heure de l'offre
+    // Vérification de l'heure (si l'heure est définie)
+    const heureOffre = offer.horaires ? offer.horaires.split('T')[1] : null;  // L'heure de l'offre (si présente)
 
     let heureValide = true;
     if (heureDebutValue && heureFinValue && heureOffre) {
-      heureValide = (heureOffre >= heureDebutValue && heureOffre <= heureFinValue);
+      // Convertir l'heure en format comparable (hh:mm)
+      const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
+      const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
+      const [heureOffreH, heureOffreM] = heureOffre.split(':').map(Number);
+
+      const debutOffre = heureOffreH * 60 + heureOffreM;  // Convertir en minutes
+      const debutRange = heureDebutH * 60 + heureDebutM;
+      const finRange = heureFinH * 60 + heureFinM;
+
+      heureValide = debutOffre >= debutRange && debutOffre <= finRange;
     }
 
     // Si l'offre est un restaurant, un parc ou une visite, vérifier les horaires d'ouverture
@@ -356,10 +365,16 @@ function filtrerParPeriode(offers) {
       const ouvertureOffre = offer.ouverture || '';
       const fermetureOffre = offer.fermeture || '';
 
-      // Vérifier si l'offre est ouverte dans la plage horaire sélectionnée
+      // Convertir les horaires d'ouverture et de fermeture en minutes pour comparaison
+      const [ouvertureH, ouvertureM] = ouvertureOffre.split(':').map(Number);
+      const [fermetureH, fermetureM] = fermetureOffre.split(':').map(Number);
+
+      const debutHoraire = ouvertureH * 60 + ouvertureM;
+      const finHoraire = fermetureH * 60 + fermetureM;
+
       const horaireValide = (
-        (heureDebutValue <= fermetureOffre && heureFinValue >= ouvertureOffre) ||
-        (heureDebutValue <= ouvertureOffre && heureFinValue >= fermetureOffre)
+        (debutRange <= finHoraire && finRange >= debutHoraire) ||
+        (debutRange <= debutHoraire && finRange >= finHoraire)
       );
 
       return dateValide && heureValide && horaireValide;
@@ -369,6 +384,7 @@ function filtrerParPeriode(offers) {
     return dateValide && heureValide;
   });
 }
+
 
 
 
