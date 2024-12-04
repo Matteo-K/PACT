@@ -218,13 +218,14 @@ let conteneurAvis = document.getElementById("conteneurAvisPro");
 
 let photoAuteurAvis = document.querySelector("#ligneTitreAvis > h2");
 let auteurAvis = document.querySelector("#ligneTitreAvis > h2");
-let etoilesAvis = document.querySelectorAll(".conteneurAvisPro .noteEtoile .star");
+let etoilesAvis = document.querySelectorAll(".conteneurAvisPro > .noteEtoile > .star");
 let titreAvis = document.querySelector("#conteneurAvisPro > h3");
 
 let contenuAvis = document.getElementById("contenuAvis");
 let dateAvis = document.getElementById("visiteRedaction");
 
 //On récupère les couleurs du css pour les attribuer aux etoiles
+const root = document.documentElement;
 const primaryColor = getComputedStyle(root).getPropertyValue('--primary-color').trim();
 const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary-color').trim();
 
@@ -238,11 +239,12 @@ function afficheAvisSelect(numAvis) {
     auteurAvis.textContent = listeAvis[numAvis]['pseudo'];
     
     //changement couleur etoiles (on remet tout jaune puis grise certaines)
-    for (i = 0; i > 5; i++) {
+    console.log(etoilesAvis);
+    for (i = 0; i < 5; i++) {
         etoilesAvis[i].style.backgroundColor = primaryColor;
     }
     
-    if (5 - listeAvis[numAvis]['note'] != 0) {
+    if (listeAvis[numAvis]['note'] < 5) {
         for (i = 5; i > listeAvis[numAvis]['note']; i--) {
             etoilesAvis[i].style.backgroundColor = secondaryColor;
         }
