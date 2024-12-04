@@ -13,34 +13,6 @@ $avis = $avisTemp;
         </h2>
         <div>
             <ul id="listeAvis">   
-                <?php
-                foreach ($avis as $numAv => $av) {
-                    ?> 
-                    <li onclick="afficheAvisSelect(<?php echo $numAv ?>)">
-                        <div>
-                            <div class="noteEtoile">
-                                <?php
-                                for ($i = 0; $i < $av['note']; $i++) {
-                                    echo "<div class='star'></div>";
-                                }
-                                if (5 - $av['note'] != 0) {
-                                    for ($i = 0; $i < 5 - $av['note']; $i++) {
-                                        echo "<div class='star starAvisIncolore'></div>";
-                                    }
-                                }
-                                ?>
-                            </div>
-                            <p>
-                                <?php echo $av['pseudo'] . " - " . $av['titre'] ?>
-                            </p>
-                        </div>
-                        <p>
-                            <?php echo $av['content'] ?>
-                        </p>
-                    </li>
-                <?php
-                }
-                ?>
             </ul>
         </div>
     </section>
@@ -317,15 +289,30 @@ function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
     blocListAvis.innerHTML = "";
 
-    arrayAvis.forEach(element => {
-       blocListAvis.appendChild(displayAvis(element));
-    });
+    for (let key in arrayAvis) {
+        blocListAvis.appendChild(displayAvis(arrayAvis[key]));
+    }
 }
 
 function displayAvis(avis) {
+    console.log(avis);
     let li = document.createElement("li");
     li.setAttribute("onclick","afficheAvisSelect("+ avis['idc'] +")");
-    li.textContent = avis["content"];
+
+    let blocTitre = document.createElement("div");
+    let titre = document.createElement("p");
+    titre.textContent = avis.pseudo + " - " + avis.titre;
+
+    blocTitre.appendChild(displayStar(avis.note));
+    blocTitre.appendChild(titre);
+
+    let content = document.createElement("p");
+    content.textContent = avis.content;
+    
+    li.appendChild(blocTitre);
+    li.appendChild(content);
+
+    return li;
 }
 
 /**
@@ -335,7 +322,7 @@ function displayAvis(avis) {
  */
 function displayStar(note) {
   let container = document.createElement("div");
-  container.classList.add("blcStarSearch");
+  container.classList.add("noteEtoile");
 
   const etoilesPleines = Math.floor(note);
   const reste = note - etoilesPleines;
