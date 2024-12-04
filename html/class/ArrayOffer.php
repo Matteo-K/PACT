@@ -300,8 +300,8 @@ class ArrayOffer {
     return array_slice($array_, $elementStart_, $nbElement_); 
   }
 
-  public function getArray($array_ = null) {
-    if ($array_ == null) {
+  public function getArray($array_ = 0) {
+    if ($array_ == 0) {
       $array_ = $this->arrayOffer;
     }
     $arrayWithData = [];
