@@ -299,11 +299,11 @@ if (isset($_POST['pageBefore'])) {
             // Si pas de donnée, on créer
             if ($result === false) {
               $stmt = $conn->prepare("INSERT INTO pact._parcattraction (idoffre, agemin, nbattraction, prixminimal, urlplan) VALUES (?, ?, ?, ?, ?)");
-              $stmt->execute([$idOffre, $ageMin, $nbAttraction, $prixMinimale, $urlPlan]);
+              //$stmt->execute([$idOffre, $ageMin, $nbAttraction, $prixMinimale, $urlPlan]);
             } else {
               // sinon modifie
               $stmt = $conn->prepare("UPDATE pact._parcattraction SET agemin=?, nbattraction=?, prixminimal=?, urlplan=? WHERE idoffre=?");
-              $stmt->execute([$ageMin, $nbAttraction, $prixMinimale, $urlPlan, $idOffre]);
+              //$stmt->execute([$ageMin, $nbAttraction, $prixMinimale, $urlPlan, $idOffre]);
             }
 
             // Gestion des images
@@ -331,10 +331,10 @@ if (isset($_POST['pageBefore'])) {
 
                 try {
                   $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
-                  $stmt->execute([$dossierImgNom, $fileName]);
+                  //$stmt->execute([$dossierImgNom, $fileName]);
 
                   $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
-                  $stmt->execute([$idOffre, $dossierImgNom]);
+                  //$stmt->execute([$idOffre, $dossierImgNom]);
                 } catch (PDOException $e) {
                 }
               }
@@ -354,11 +354,11 @@ if (isset($_POST['pageBefore'])) {
             // Si pas de donnée, on créer
             if ($result === false) {
               $stmt = $conn->prepare("INSERT INTO pact._activite (idoffre, duree, agemin, prixminimal, prestation) VALUES (?, ?, ?, ?, ?)");
-              $stmt->execute([$idOffre, $duree, $ageMin, $prixMinimale, $prestation]);
+              //$stmt->execute([$idOffre, $duree, $ageMin, $prixMinimale, $prestation]);
             } else {
               // sinon modifie
               $stmt = $conn->prepare("UPDATE pact._activite SET duree=?, agemin=?, prixminimal=?, prestation=? WHERE idoffre=?");
-              $stmt->execute([$duree, $ageMin, $prixMinimale, $prestation, $idOffre]);
+              //$stmt->execute([$duree, $ageMin, $prixMinimale, $prestation, $idOffre]);
             }
             break;
           case 'spectacle':
@@ -373,11 +373,11 @@ if (isset($_POST['pageBefore'])) {
             // Si pas de donnée, on créer
             if ($result === false) {
               $stmt = $conn->prepare("INSERT INTO pact._spectacle (idoffre, duree, nbplace, prixminimal) VALUES (?, ?, ?, ?)");
-              $stmt->execute([$idOffre, $duree, $nbPlace, $prixMinimale]);
+              //$stmt->execute([$idOffre, $duree, $nbPlace, $prixMinimale]);
             } else {
               // sinon modifie
               $stmt = $conn->prepare("UPDATE pact._spectacle SET duree=?, nbplace=?, prixminimal=? WHERE idoffre=?");
-              $stmt->execute([$duree, $nbPlace, $prixMinimale, $idOffre]);
+              //$stmt->execute([$duree, $nbPlace, $prixMinimale, $idOffre]);
             }
             break;
 
@@ -395,11 +395,11 @@ if (isset($_POST['pageBefore'])) {
             // Si pas de donnée, on créer
             if ($result === false) {
               $stmt = $conn->prepare("INSERT INTO pact._visite (idoffre, guide, duree, prixminimal, accessibilite) VALUES (?, ?, ?, ?, ?)");
-              $stmt->execute([$idOffre, $guide, $duree, $prixMinimale, $accessibilite]);
+              //$stmt->execute([$idOffre, $guide, $duree, $prixMinimale, $accessibilite]);
             } else {
               // sinon modifie
               $stmt = $conn->prepare("UPDATE pact._visite SET guide=?, duree=?, prixminimal=?, accessibilite=? WHERE idoffre=?");
-              $stmt->execute([$guide, $duree, $prixMinimale, $accessibilite, $idOffre]);
+              //$stmt->execute([$guide, $duree, $prixMinimale, $accessibilite, $idOffre]);
             }
 
             // Ajout des langues
