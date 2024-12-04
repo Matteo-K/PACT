@@ -146,8 +146,6 @@ $avis = $avisTemp;
 
 
 let listeAvis = <?php echo json_encode($avis) ?>;
-
-console.table(listeAvis);
 document.addEventListener('DOMContentLoaded', function() {
     displayArrayAvis(listeAvis);
 });
@@ -172,7 +170,7 @@ const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim()
 function afficheAvisSelect(numAvis) {
 
     conteneurAvis.style.display = "flex";
-    document.getElementById("aucunAvisSelect").style.display = none
+    document.getElementById("aucunAvisSelect").style.display = "none";
 
     //Changement de couleur du li sélectionné et on remet les autres en gris
     document.querySelectorAll("#listeAvis > li").forEach((li, numLi) => {
@@ -385,7 +383,6 @@ function filtreNonRep(arrayAvis) {
  * Affichage d'un avis
  */
 function displayAvis(avis) {
-    console.log(avis);
     let li = document.createElement("li");
     li.setAttribute("onclick","afficheAvisSelect("+ avis.idc +")");
 
