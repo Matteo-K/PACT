@@ -3172,6 +3172,9 @@ section#infoComp div {
   justify-content: center;
   align-items: center;
   padding: 2em;
+}
+
+.note{
   background-color: var(--bloc);
 }
 

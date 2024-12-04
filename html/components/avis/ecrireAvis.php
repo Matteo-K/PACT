@@ -25,6 +25,24 @@
                 id="date-avis" 
                 name="date" min="<?= date('Y-m', strtotime('-1 year')) ?>" max="<?= date('Y-m') ?>" required>
         </div>
+        <div>
+            <label for="enCompagnie">Qui vous accompagnait ?</label>
+            <div id="enCompagnie">
+                <input type="radio" id="seul" name="compagnie" value="Seul" required>
+                <label for="seul">Seul(e)</label>
+                
+                <input type="radio" id="amis" name="compagnie" value="Amis">
+                <label for="amis">Amis</label>
+                
+                <input type="radio" id="famille" name="compagnie" value="En_Famille">
+                <label for="famille">En famille</label>
+                
+                <input type="radio" id="couple" name="compagnie" value="Couple">
+                <label for="autre">Couple</label>
+                <input type="radio" id="affaire" name="compagnie" value="Affaire">
+                <label for="autre">Affaire</label>
+            </div>
+        </div>
 
     </form>
 </section>
