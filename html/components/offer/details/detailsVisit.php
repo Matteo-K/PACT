@@ -43,18 +43,19 @@ if ($categorie["_visite"]) {
         $visite["hadicap"][] = $row["hadicap"];
     }*/
 }
-// Il reste à initialisé les valeurs dans les input
-?>
-<section id="visit"> <!-- donne un id a la section pour l'identifier dans le css -->
 
+?>
+<!-- Partie sur les informations de la visite -->
+<section id="visit"> <!-- donne un id a la section pour l'identifier dans le css -->
+    <!-- Visite guidée ou non  -->
     <div class="visGuideeEtDuree">
         <label>Visite Guidée </label>
 
-        <input type="radio" id="guidee" name="VisiteGuidee" value="pasGuidee" checked>
+        <input type="radio" id="guidee" name="VisiteGuidee" value="pasGuidee" checked> <!-- Par défaut la visite est guidée-->
 
         <label for="access"> Oui</label>
 
-
+    <!-- Seul un des 2 radios button peut être coché car une visite ne peut pas être guidée et non guidée en même temps -->
         <input type="radio" id="pasGuidee" name="VisiteGuidee" value="pasGuidee">
 
         <label for="pasAcces"> Non </label>
@@ -100,12 +101,12 @@ if ($categorie["_visite"]) {
         <label class="labEuro">€</label>
     </div>
 
-
+    <!-- Partie pour la gestion des langues proposer par la visite -->
     <div class="languesProp">
         <label>Langue proposée(s) :</label> <!-- Label langue proposée -->
-        <label>Sélectionner les langue(s) proposée(s) par votre visite."</label>
+        <label>Sélectionner les langue(s) proposée(s) par votre visite."</label> <!-- Indication à l'utilisateur-->
 
-
+    <!-- Proposition des langues disponible à partir de la BDD -->
         <select name="langue" id="selectionLangue">
             <option value="selectionLangue">-- Sélectionner une langue --</option>
             <?php foreach ($langue as $key => $value) { ?>
