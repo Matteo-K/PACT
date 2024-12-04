@@ -3557,15 +3557,20 @@ details .nonLu, details .nonRepondu{
 /*Detail des avis sélectionnés */
 
 #aucunAvisSelect{
-  display: none;
+  display: block;
+  text-align: center;
+  font-size: 1.5em;
+  width: 100%;
+  padding: 20px
 }
 
 .conteneurAvisPro {
+  display: none;
   width: 100%; /* Prend tout l'espace restant */
   padding: 0 20px;
   background-color: #dee6fa;
   overflow-y: auto; /* Permet le scroll si le contenu est trop grand */
-  display: flex;
+  /*display: flex;*/
   flex-wrap: wrap ;
   align-items: center;
   justify-content: center;

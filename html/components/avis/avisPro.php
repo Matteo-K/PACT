@@ -171,6 +171,9 @@ const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim()
 
 function afficheAvisSelect(numAvis) {
 
+    conteneurAvis.style.display = "flex";
+    document.getElementById(aucunAvisSelect).style.display = none
+
     //Changement de couleur du li sélectionné et on remet les autres en gris
     document.querySelectorAll("#listeAvis > li").forEach((li, numLi) => {
         li.style.background = `linear-gradient(90deg, ${secondaryColor} 0%, ${secondaryColor} 80%, transparent 100%)`;
@@ -265,6 +268,7 @@ document.querySelectorAll("#avisproS2 > details").forEach(details => {
         content.style.maxHeight = "none"; // Supprime maxHeight après l'animation
     }
 }, { once: true });
+conteneurAvis.style.display = "none";
 }
 
 // Fonction pour fermer avec une animation
@@ -274,6 +278,7 @@ function closeDetails() {
     requestAnimationFrame(() => { // Assure une relecture du style
         content.style.maxHeight = "0"; // Puis réduit à 0 pour l'animation
     });
+    conteneurAvis.style.display = "flex";
   }
   
   // Gérer les événements d'ouverture et de fermeture
