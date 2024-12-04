@@ -2096,7 +2096,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   right: -8px;
 }
 
-.mainOffer.StatutAffiche::after{
+.mainOffer .StatutAffiche::after{
 width: 20px !important;
 height: 20px !important;
 }
