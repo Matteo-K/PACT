@@ -1259,8 +1259,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             });
 
             /** fin script chargement composant */
-        } catch (error) {
-            console.error(error);
+        } catch {
         }
 
     </script>

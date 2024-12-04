@@ -3096,7 +3096,6 @@ section#infoComp div {
 
 #tab-container {
   display: flex;
-  gap: 20px;
 }
 
 #tab-container > nav > h3 {
