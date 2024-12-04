@@ -8,7 +8,7 @@
             <?php
                 }
             ?>
-            <input id="note-value" name="note" type="hidden" value="0">
+            <input id="note-value"name="note" type="hidden" value="0">
         </div>
     </form>
 </section>
@@ -23,7 +23,7 @@
         etoiles.forEach((etoile, index) => {
             // Survol : remplit les étoiles jusqu'à l'étoile survolée
             etoile.addEventListener("mouseover", () => {
-                survolerEtoiles((index/4)+ 1);
+                survolerEtoiles(index + 1);
             });
 
             // Sortie du survol : restaure l'état initial
@@ -63,7 +63,7 @@
         // Définit la note finale, met à jour les étoiles et l'input caché
         function definirNote(note) {
             noteActuelle = note;
-            noteInput.value = note; // Met à jour l'input caché
+            noteInput.value = note/4; // Met à jour l'input caché
             etoiles.forEach((etoile, i) => {
                 if (i < note) {
                     etoile.classList.add("pleine");
