@@ -188,11 +188,21 @@ let dateAvis = document.getElementById("visiteRedaction");
 
 //On récupère les couleurs du css pour les attribuer aux etoiles
 const root = document.documentElement;
-const primaryColor = getComputedStyle(root).getPropertyValue('--accent').trim();
+const accentColor = getComputedStyle(root).getPropertyValue('--accent').trim();
 const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim();
+const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
 
 
 function afficheAvisSelect(numAvis) {
+
+    compteurLi = 0;
+    document.querySelectorAll("#listeAvis > li").forEach(li => {
+        li.style.background = linear-gradient(90deg, secondaryColor 0%, secondaryColor 80%, transparent 100%);
+        if (numAvis == compteurLi) {
+            li.style.background = linear-gradient(90deg, primaryColor  0%, primaryColor 100%);
+        }
+        compteurLi++;
+    });
     
     //changement photo auteur
     photoAuteurAvis.src = listeAvis[numAvis]['membre_url'];
@@ -202,7 +212,7 @@ function afficheAvisSelect(numAvis) {
     
     //changement couleur etoiles (on remet tout jaune puis grise certaines)
     for (i = 0; i < 5; i++) {
-        etoilesAvis[i].style.backgroundColor = primaryColor;
+        etoilesAvis[i].style.backgroundColor = accentColor;
     }
     
     if (listeAvis[numAvis]['note'] < 5) {
