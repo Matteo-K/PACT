@@ -8,7 +8,7 @@
             <?php
                 }
             ?>
-            <input name="note" type="hidden" value="0">
+            <input id="note-value" name="note" type="hidden" value="0">
         </div>
     </form>
 </section>
@@ -23,7 +23,7 @@
         etoiles.forEach((etoile, index) => {
             // Survol : remplit les étoiles jusqu'à l'étoile survolée
             etoile.addEventListener("mouseover", () => {
-                survolerEtoiles(index + 1);
+                survolerEtoiles((index/4)+ 1);
             });
 
             // Sortie du survol : restaure l'état initial

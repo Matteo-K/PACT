@@ -3178,6 +3178,11 @@ section#infoComp div {
   width: 5em;
   height: 5em;
 }
+#publiez-component > section div {
+  display: flex;
+}
+
+
 
 
 .avis>nav>h3 {
@@ -3671,9 +3676,7 @@ details .nonLu, details .nonRepondu{
   border-radius: 5px;
 }
 
-.star.pleine{
-  background-color:var(--accent)
-}
+
 
 .star.partielle {
   background: linear-gradient(to right, var(--accent) var(--pourcentage), var(--background-avis) var(--pourcentage));
@@ -3682,6 +3685,9 @@ details .nonLu, details .nonRepondu{
 .star.vide {
   background-color:var(--background-avis);
   /* Icône étoile vide */
+}
+.star.pleine{
+  background-color:var(--accent)
 }
 
 @media screen and (max-width: 768px) {

@@ -383,11 +383,12 @@ if (isset($_POST['pageBefore'])) {
 
           case 'visite':
             // Obtention des données
-            $guide = $_POST["PrixMinVisit"];
+            $guideTemp = $_POST["VisiteGuidee"];
+            $guide = $guideTemp == "Guidee";
             $duree = $_POST["numberHVisit"];
             $prixMinimale = $_POST["PrixMinVisit"];
-            $accessibilite = $_POST["Accessibilité"] == "access" ? true : null;
-            // Création/Modification d'une offre de parc d'attraction
+            $accessibilite = $_POST["AccesPersHandi"] == "access";
+            // Création/Modification d'une offre de visite
             $stmt = $conn->prepare("SELECT * from pact._visite where idoffre=?");
             $stmt->execute([$idOffre]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
