@@ -248,7 +248,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php
                 if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                 ?>
-                    <h3 class="Enligne"><?php echo $offre[0]['statut'] ?></h3>
+                    <p class="Enligne"><?php echo $offre[0]['statut'] ?></p>
 
                     <div class="buttonDetails">
                         <form class="taille6" method="post" action="changer_statut.php">
