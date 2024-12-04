@@ -162,6 +162,9 @@
 
 
 let listeAvis = <?php echo json_encode($avis) ?>;
+
+console.table(listeAvis);
+
 let conteneurAvis = document.getElementById("conteneurAvisPro");
 
 let photoAuteurAvis = document.querySelector("#ligneTitreAvis > h2");
@@ -253,10 +256,6 @@ function formatDateDiff(dateString) {
 }
 
 
-
-
-
-
 //Animation du bloc details
 document.querySelectorAll("#avisproS2 > details").forEach(details => {
     const content = details.querySelector(".contentDetails");
@@ -293,9 +292,6 @@ function closeDetails() {
 
 
 const blocListAvis = document.getElementById("listeAvis");
-
-
-console.table(listeAvis);
 
 function displayArrayAvis(ArrayAvis) {
     blocListAvis.innerHTML = "";
