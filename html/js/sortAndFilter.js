@@ -338,7 +338,7 @@ function filtrerParPeriode(offers) {
   // Filtrer les offres en fonction de la période (horaire)
   return offers.filter(offer => {
     // Si l'offre n'a pas de dates ou d'horaires, on l'exclut directement
-    if (!offer.ouverture || !offer.fermeture) {
+    if (!offer.heureOuverture || !offer.heureFermeture) {
       return false;
     }
 
@@ -352,8 +352,8 @@ function filtrerParPeriode(offers) {
       const finRange = heureFinH * 60 + heureFinM;
 
       // Comparer les horaires de l'offre avec la plage horaire sélectionnée
-      const [ouvertureH, ouvertureM] = offer.ouverture.split(':').map(Number);
-      const [fermetureH, fermetureM] = offer.fermeture.split(':').map(Number);
+      const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
+      const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
 
       const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
       const fermetureMinutes = fermetureH * 60 + fermetureM;
@@ -361,7 +361,9 @@ function filtrerParPeriode(offers) {
       // Vérifier si l'offre est dans la plage horaire sélectionnée
       if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
         heureValide = true;
-      } else {
+      } 
+      
+      else {
         heureValide = false;
       }
     }
