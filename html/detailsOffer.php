@@ -16,6 +16,9 @@ if (!$idOffre) {
 <script>
 document.addEventListener("DOMContentLoaded",function(){
     <?php if (isset($_POST['popup'])): ?>
+        if ($_POST['error']) {
+            alert("Erreur : la plage de date chevauche la plage de date d'une autre option")
+        }
         openModal(); // Appelle la fonction openModal si la condition PHP est vraie
     <?php endif; ?>
 });
