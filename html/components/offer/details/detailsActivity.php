@@ -26,7 +26,7 @@ if ($categorie["_activite"]) {
 
     <div class="divAge"> <!-- Zone pour l'age minimum pour l'activité -->
         <label class="labAgeAct" name="labAgeAct"> Age: </label>
-        <input type="number" id="numberAct" name="ageAct" min="0" placeholder="0"  /> 
+        <input type="number" id="numberAct" name="ageAct" min="0" placeholder="0" pattern="\d*" /> <!--test -->
         <label class="labAnsAct" name="labAgeAct"> Ans </label>
     </div>
     <div class="presta">
