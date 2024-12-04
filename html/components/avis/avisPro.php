@@ -256,6 +256,7 @@ function formatDateDiff(dateString) {
 }
 
 blocDetails = document.querySelector("#avisproS2 > details")
+const content = document.querySelector("#avisPro2 > details > .contentDetails");
 
 //Animation du bloc details
 blocDetails.addEventListener("toggle", () => {
@@ -265,9 +266,7 @@ blocDetails.addEventListener("toggle", () => {
         closeDetails();
     }
 });
-    
-const content = blocDetails.querySelector("#avisPro2 .contentDetails");
-    
+
     // Fonction pour ouvrir avec une animation
 function openDetails() {
     const height = content.scrollHeight; // Calcule la hauteur totale
