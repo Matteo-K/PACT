@@ -417,6 +417,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <button id="button1" class="modifierBut <?php echo count($optionUne)>=2? 'disabled' : ''; ?>"
                 <?php if (count($optionUne)>=2) {
                     ?>
+                    disabled
                     onmouseover="showMessageAdd(event)"
                     onmouseout="hideMessageAdd(event)"
                     onclick="return false;"
@@ -468,6 +469,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <button id="button2" class="modifierBut <?php echo count($optionRelief)>=2? 'disabled' : ''; ?>"
                 <?php if (count($optionRelief)>=2) {
                     ?>
+                    disabled
                     onclick="return false;"
                     onmouseover="showMessageAdd(event)"
                     onmouseout="hideMessageAdd(event)"

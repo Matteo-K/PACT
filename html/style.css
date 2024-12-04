@@ -3099,7 +3099,7 @@ section#infoComp div {
 }
 
 #avis-section, #avis-section > #avis-component {
-    width: 95%;
+    width: 100%;
     gap: 3em;
     justify-content: center;
     align-items: flex-start;
