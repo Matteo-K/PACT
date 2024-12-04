@@ -244,6 +244,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
             <section class="info">
+                <p class="infoP">Information Offre</p>
                 <?php
                 if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                 ?>

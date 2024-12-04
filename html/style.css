@@ -2709,6 +2709,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-direction: column;
   background-color: white;
   border-radius: 20px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.infoP{
+  font-size: 2.5rem;
 }
 
 .Enligne {
