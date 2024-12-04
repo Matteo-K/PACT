@@ -62,7 +62,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <form id="previewOffer" action="enregOffer.php" method="post">
     <section id="sectionPreview">
-        <h2 id="titleOfferPreview"><?php echo htmlspecialchars($result["nom_offre"]); ?></h2>
+        <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
                 
                 <div id="tagPreview">
                     <?php 
