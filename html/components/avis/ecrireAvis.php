@@ -124,6 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $image = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
     $imageAvis = $conn->prepare("INSERT INTO pact._avisimage (idc, url) VALUES (?, ?)");
     $mesImages = listImage($idOffre, $idComment);
+    print_r($mesImages);
 
     foreach ($mesImages['files'] as $file) {
     $fileName = pathinfo($file, PATHINFO_BASENAME);
