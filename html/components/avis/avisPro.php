@@ -202,7 +202,7 @@ const blocDetails = document.querySelector("#avisproS2 > details");
 const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
 const titreReponseAvis = document.querySelector("#avisproS2 form h2");
-const inputIdAvis = document.querySelector('#avisproS2 form input[type="text"]');
+const inputIdAvis = document.querySelector('#avisproS2 form input[type="hidden"]');
 
 
 
