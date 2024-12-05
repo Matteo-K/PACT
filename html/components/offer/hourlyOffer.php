@@ -255,6 +255,9 @@
                 } else {
                     const suppr = document.getElementById("msgHoraireSupr");
                     suppr.textContent = "Certaines horaires ont été supprimées pour cause d'expiration.";
+                    setTimeout(function() {
+                        suppr.style.display = "none";
+                    }, 4000); // 1s
                 }
             }
 
