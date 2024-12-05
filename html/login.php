@@ -19,105 +19,72 @@
         $login = $_POST['login'];
         $password = $_POST['motdepasseConnexion'];
 
-        // Vérification admin
-        $stmt = $conn->prepare("SELECT * FROM pact._admin a JOIN pact._utilisateur u ON a.idU = u.idU WHERE a.login = ?");
-        $stmt->execute([$login]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($result && $password == $result['password']) {
-            // Connexion réussie
-            $_SESSION['idUser'] = $result['idu'];
-            $_SESSION['typeUser'] = 'admin';
-
-            if(isset($idOffre)){
-            ?>
-                <form action="detailsOffer.php" method="post">
-                    <input type="hidden" name="idoffre" value="<?=$idOffre?>">
-                    <script>document.forms[0].submit();</script>
-                </form>
-            <?php
-            } else{
-                header('Location:  index.php');
-            }
-
-            exit();
-        } 
-        
-        else {
-            // Vérification pour le compte privé
-            $stmt = $conn->prepare('SELECT * FROM pact.proprive WHERE mail = ?');
+        try {
+            // Vérification admin
+            $stmt = $conn->prepare("SELECT * FROM pact._admin a JOIN pact._utilisateur u ON a.idU = u.idU WHERE a.login = ?");
             $stmt->execute([$login]);
-            $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-            if ($proUser && password_verify($password, $proUser['password'])) {
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result && password_verify($password, $result['password'])) {
                 // Connexion réussie
-                $_SESSION['idUser'] = $proUser['idu'];
-                $_SESSION['typeUser'] = 'pro_prive'; // Détermine le type
-                if(isset($idOffre)){
-                ?>
-                    <form action="detailsOffer.php" method="post">
-                        <input type="hidden" name="idoffre" value="<?=$idOffre?>">
-                        <script>document.forms[0].submit();</script>
-                    </form>
-                <?php
-                } else{
-                    header('Location:  index.php');
-                }
-                exit();
-            } 
-            
-            else {
-                // Vérification pour le compte public
-                $stmt = $conn->prepare('SELECT * FROM pact.propublic WHERE mail = ?');
+                $_SESSION['idUser'] = $result['idu'];
+                $_SESSION['typeUser'] = 'admin';
+                redirectToOfferOrHome($idOffre);
+            } else {
+                // Vérification pour le compte privé
+                $stmt = $conn->prepare('SELECT * FROM pact.proprive WHERE mail = ?');
                 $stmt->execute([$login]);
                 $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
                 if ($proUser && password_verify($password, $proUser['password'])) {
                     // Connexion réussie
                     $_SESSION['idUser'] = $proUser['idu'];
-                    $_SESSION['typeUser'] = 'pro_public'; // Détermine le type
-                    if(isset($idOffre)){
-                    ?>
-                        <form action="detailsOffer.php" method="post">
-                            <input type="hidden" name="idoffre" value="<?=$idOffre?>">
-                            <script>document.forms[0].submit();</script>
-                        </form>
-                    <?php
-                    } else{
-                        header('Location:  index.php');
-                    }
-                    exit();
-                } 
-                
-                else {
-                    // Vérification membre
-                    $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE pseudo = ? OR mail = ?");
-                    $stmt->execute([$login, $login]);
-                    $member = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-                    if ($member && password_verify($password, $member['password'])) {
+                    $_SESSION['typeUser'] = 'pro_prive';
+                    redirectToOfferOrHome($idOffre);
+                } else {
+                    // Vérification pour le compte public
+                    $stmt = $conn->prepare('SELECT * FROM pact.propublic WHERE mail = ?');
+                    $stmt->execute([$login]);
+                    $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if ($proUser && password_verify($password, $proUser['password'])) {
                         // Connexion réussie
-                        $_SESSION['idUser'] = $member['idu'];
-                        $_SESSION['typeUser'] = 'membre';
-                        if(isset($idOffre)){
-                        ?>
-                            <form action="detailsOffer.php" method="post">
-                                <input type="hidden" name="idoffre" value="<?=$idOffre?>">
-                                <script>document.forms[0].submit();</script>
-                            </form>
-                        <?php
-                        } else{
-                            header('Location:  index.php');
+                        $_SESSION['idUser'] = $proUser['idu'];
+                        $_SESSION['typeUser'] = 'pro_public';
+                        redirectToOfferOrHome($idOffre);
+                    } else {
+                        // Vérification membre
+                        $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE pseudo = ? OR mail = ?");
+                        $stmt->execute([$login, $login]);
+                        $member = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                        if ($member && password_verify($password, $member['password'])) {
+                            // Connexion réussie
+                            $_SESSION['idUser'] = $member['idu'];
+                            $_SESSION['typeUser'] = 'membre';
+                            redirectToOfferOrHome($idOffre);
+                        } else {
+                            $error = "Identifiant ou mot de passe incorrect.";
                         }
-                        exit();
-                    } 
-                    
-                    else {
-                        $error = "Identifiant ou mot de passe incorrect.";
                     }
                 }
             }
+        } catch (Exception $e) {
+            $error = "Une erreur est survenue : " . $e->getMessage();
         }
+    }
+
+    // Fonction de redirection vers l'offre ou la page d'accueil
+    function redirectToOfferOrHome($idOffre) {
+        if (isset($idOffre)) {
+            echo '<form action="detailsOffer.php" method="post">
+                    <input type="hidden" name="idoffre" value="' . htmlspecialchars($idOffre) . '">
+                    <script>document.forms[0].submit();</script>
+                  </form>';
+        } else {
+            header('Location: index.php');
+        }
+        exit();
     }
 ?>
 
