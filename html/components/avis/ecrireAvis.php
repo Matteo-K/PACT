@@ -1,10 +1,13 @@
 <?php
 function listImage($idOffre, $idComment) {
     // Chemin du dossier où les images sont stockées
-    $dossier = realpath('../img/imageAvis/' . $idOffre . '/' . $idComment . '/');
+    $dossier = '../img/imageAvis/' . $idOffre . '/' . $idComment . '/';
+
+    // Affiche le chemin pour le débogage
+    echo "Chemin du dossier : " . $dossier . "<br>"; 
 
     // Vérifie si le dossier existe et est valide
-    if ($dossier === false || !is_dir($dossier)) {
+    if (!is_dir($dossier)) {
         return ['success' => false, 'message' => 'Le dossier n\'existe pas ou est invalide.'];
     }
 
@@ -35,6 +38,7 @@ function listImage($idOffre, $idComment) {
         return ['success' => false, 'message' => 'Aucune image valide trouvée.'];
     }
 }
+
 
 
 
