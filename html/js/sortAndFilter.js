@@ -305,7 +305,6 @@ function getPrixRangeRestaurant(gammeDePrix) {
 }
 
 
-
 // Fonction de filtre par statuts
 function filtrerParStatuts(offers) {
   const statutsSelection = [];
@@ -416,11 +415,6 @@ function filtrerParPeriode(offers) {
     return heureValide;
   });
 }
-
-
-
-
-
 
 
 // Fonction de filtre par lieu
