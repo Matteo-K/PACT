@@ -75,7 +75,7 @@
                 $stmt->execute([$pseudo, $nom, $prenom, $numeroRue, $rue, $ville, 'France', $code, $telephone, $mail, $userId]);
 
                 $_SESSION['success'] = "Informations mises à jour avec succès.";
-                header("Location: profile.php");
+                header("Location: search.php");
                 exit();
             } 
             

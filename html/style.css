@@ -533,7 +533,8 @@ header ul+div {
   width: 100%;
   flex-direction: column;
   margin-bottom: 3em;
-  gap: 10px;
+  gap: 8px;
+  display: flex;
 }
 
 .buttonMenu {
@@ -547,6 +548,15 @@ header ul+div {
   margin: 0 auto;
   text-decoration: none;
   font-size: 20 px;
+}
+
+
+#changeDataAccount {
+  background-color: #034d7ccc;
+}
+
+#changeDataAccount:hover {
+  background-color: #034d7c;
 }
 
 #changeAccount {
@@ -1247,9 +1257,8 @@ header ul+div {
 
 #hourlyOffer input[type="button"] {
   border-radius: 15px;
-  height: 50px;
   width: fit-content;
-  padding-inline: 20px;
+  padding: 15px 30px;
   border: none;
   margin-left: 10px;
 }
@@ -3445,6 +3454,7 @@ section#infoComp div {
 
 #avisPro li:hover {
   background: linear-gradient(90deg, var(--primary60) 0%, var(--primary60) 80%,  transparent 100%);
+  transition: background 0.3s;
 }
 
 #avisPro li > div:first-of-type{

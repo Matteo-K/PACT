@@ -127,6 +127,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+        
         <div>
             <h4>Ajouter une date pour le spectacle&nbsp;:&nbsp;</h4>            
         </div>

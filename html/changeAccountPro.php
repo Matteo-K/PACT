@@ -95,7 +95,7 @@
                 }
 
                 $_SESSION['success'] = "Informations mises à jour avec succès.";
-                header("Location: profilePro.php");
+                header("Location: search.php");
                 exit();
             }
 
