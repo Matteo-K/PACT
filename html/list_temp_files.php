@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 // Chemin du dossier temporaire
-$tempDir = __DIR__ . '/img/imageAvis/temp_uploads/';
+$tempDir = 'img/imageAvis/temp_uploads/';
 
 // Vérifie que l'ID unique est passé en paramètre
 if (!isset($_GET['unique_id'])) {
