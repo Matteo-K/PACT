@@ -3536,6 +3536,17 @@ details.animating .contentDetails {
   width: 60%;
 }
 
+/* tri et filtre */
+#avisPro select {
+  width: 80%;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: var(--background);
+  color: black;
+  border: solid 2px black;
+}
+
 #avisPro details h3:nth-child(2), #avisPro details h3:nth-child(4) {
   margin: 10px 0;
   width: 20%;
