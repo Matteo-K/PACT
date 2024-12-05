@@ -134,11 +134,31 @@
         </div>
         <input type="button" value="Ajouter une date" name="addRep" id="addRep" class="guideSelect" onclick="addDateRep()">
         <?php 
-            $stmt = $conn->prepare("SELECT * FROM pact._horaireprecise where idoffre = ?");
-            $stmt->execute([$idOffre]);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $ar = new ArrayOffer($idOffre);
+            $data = $ar->getArray();
+            print_r($data);
         ?>
+        <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($data)); ?>'></div>
         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const offersDataElement = document.getElementById('offers-data');
+                
+                const offersData = offersDataElement.getAttribute('data-offers');
+                // console.log(offersData); // Débugger
+
+                try {
+                    arrayOffer = JSON.parse(offersData);
+                    arrayOffer = Object.values(arrayOffer);
+                } catch (error) {
+                    console.error("Erreur de parsing JSON :", error);
+                }
+
+                console.log(arrayOffer);
+
+                arrayOffer.forEach(element => {
+                    
+                });
+            });
             /* Interraction horaire */
             let counterRep = 1;
             let date_ = new Date();
@@ -215,12 +235,16 @@
                         minDate: current_date
                     });
                 } else {
+
+                    inputHoraire1.setAttribute("value", "19:00");
+                    inputHoraire2.setAttribute("value", "19:00");
+                    
                     flatpickr("#"+date.id, {
                         altInput: true,
                         altFormat: "l j F Y",
                         dateFormat: "Y-m-d",
                         locale: "fr",
-                        defaultDate: data[""],
+                        defaultDate: "2024-12-05",
                         minDate: current_date
                     });
                 }
