@@ -78,6 +78,7 @@ if ($categorie["_visite"]) {
                 <option value="<?php echo $value ?>"><?php echo $value ?></option>
             <?php } ?>
         </select>
+    </div>
 
         <!-- Gestion du prix minimum pour une visite -->
         <div class="divPrixMin">
