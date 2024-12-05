@@ -226,7 +226,7 @@ function afficheAvisSelect(idAvis) {
 
     if(avisSelect.classList.contains("avisNonLu")){
         avisSelect.classList.remove("avisNonLu");
-        iconeNonLu = avisSelect.querySelector(.nonLu);
+        iconeNonLu = avisSelect.querySelector(".nonLu");
         iconeNonLu.remove();
     }
 
