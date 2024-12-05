@@ -1,11 +1,8 @@
 <?php
-// Dossier temporaire
-$tempFolder = "img/imageAvis/temp_uploads/";
 
 // Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
 function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
 {
-    // Résultats pour le retour
     $result = [
         'success' => [],
         'errors' => []
@@ -18,7 +15,7 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
     }
 
     // Chemin du dossier cible
-    $targetFolder = "$uploadBasePath/$idOffre";
+    $targetFolder = $uploadBasePath . '/' . $idOffre;
 
     // Créer le dossier cible si nécessaire
     if (!is_dir($targetFolder)) {
@@ -38,14 +35,10 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
 
     // Déplacement des images
     foreach ($images as $image) {
-        // Récupérer l'extension du fichier
         $extension = pathinfo($image, PATHINFO_EXTENSION);
-
-        // Générer un identifiant unique pour l'image
         $idImage = uniqid();
-        $newFilePath = "$targetFolder/$idImage.$extension";
+        $newFilePath = $targetFolder . "/" . $idImage . "." . $extension;
 
-        // Déplacer le fichier
         if (rename($image, $newFilePath)) {
             $result['success'][] = $newFilePath;
         } else {
@@ -64,11 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $titreAvis = $_POST['titre'];
     $texteAvis = $_POST['avis'];
     $idOffre = $_POST['idoffre'];
+    $uniqueId = $_POST["uniqueField"];
+
+    $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
 
     // Déplacer les images vers le dossier de l'offre
-    $result = moveImagesToOfferFolder($idOffre, $tempFolder, "img/imageAvis");
+    $result = moveImagesToOfferFolder($idOffre, $tempFolder, "img/imageAvis/");
 
-    // Debugging pour vérifier les résultats
     if (!empty($result['errors'])) {
         echo "Erreurs lors du déplacement des fichiers :<br>";
         print_r($result['errors']);
@@ -81,8 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 }
 ?>
 
+
 <section>
-    <form action="detailsOffer.php" method="post" enctype="multipart/form-data">
+    <form id="formCreationAvis" action="detailsOffer.php" method="post" enctype="multipart/form-data">
         <div id="note">
             <!-- Étoiles pour la notation -->
             <?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -167,9 +163,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 </section>
 
 <script>
+    const uniqueId = generateUniqueId();
     document.addEventListener("DOMContentLoaded", () => {
         const etoiles = document.querySelectorAll(".star.ecrire");
         const noteInput = document.getElementById("note-value");
+
+        let formCreationAvis = document.getElementById("formCreationAvis");
+        let input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "uniqueField";
+        input.value = uniqueId;
+        formCreationAvis.appendChild(input);
 
         // Note actuellement sélectionnée
         let noteActuelle = 0;
@@ -233,7 +237,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             });
         }
     });
-    const uniqueId = generateUniqueId();
 
     function handleFiles(inputElement) {
         const maxImages = 3;
