@@ -126,20 +126,18 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 
                 </div>
-                <?php print_r($data[$idOffre]["images"]) ?>
+
                 <div class="swiper-container">
                     <div class="swiper mySwiperPreview">
                         <div class="swiper-wrapper">
                         <?php
-                        if ($data[$idOffre]["images"] == NULL) {
-                            foreach ($data[$idOffre]["images"] as $url) {
-                                ?>
-                                <div class="swiper-slide">
-                                    <img src="<?php echo $url ?>" />
-                                </div>
-                                <?php
+                            foreach ($photos as $picture) {
+                        ?>
+                        <div class="swiper-slide">
+                            <img src="<?php echo $picture['url']; ?>" />
+                        </div>
+                        <?php
                             }
-                        }
                         ?>
                         </div>
                     </div>
