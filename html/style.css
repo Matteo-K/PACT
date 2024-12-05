@@ -3467,10 +3467,8 @@ section#infoComp div {
   overflow: none;
 }
 
-#avisPro li .nonLu, #avisPro li .nonRepondu{
-  position: absolute;
-  left: 0;
-  bottom: 20px;
+#avisPro ul .nonLu, #avisPro ul .nonRepondu{
+  margin: 60px 0 5px 5px;
 }
 
 /* bloc fermable */
@@ -3563,7 +3561,8 @@ details.animating .contentDetails {
 }
 
 details .nonLu, details .nonRepondu{
-  margin: 60px 0 5px 5px;
+  position: absolute;
+  left: 20px;
 }
 
 #avisPro details input[type="checkbox"]{
