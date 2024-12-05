@@ -1069,6 +1069,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // Ajoute l'événement click sur chaque onglet
+    // Fonction qui gère l'activation des onglets et du contenu
+function updateTabsAndUnderline() {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
+
     tabs.forEach(tab => {
         tab.addEventListener('click', function () {
             const targetTab = this; // Onglet cliqué
@@ -1091,6 +1096,38 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             updateUnderline();
         });
     });
+
+    // En option, vous pouvez choisir un onglet par défaut si aucun n'est sélectionné
+    const defaultTab = document.querySelector('.tab.active') || tabs[0];
+    const defaultContent = document.getElementById(`content-${defaultTab.dataset.tab}`);
+    
+    if (defaultTab) {
+        defaultTab.classList.add('active');
+    }
+
+    if (defaultContent) {
+        defaultContent.classList.add('active');
+    }
+
+    // Mettre à jour la position du trait (s'il y en a un)
+    updateUnderline();
+}
+
+// Fonction qui met à jour la position du trait sous les onglets (si nécessaire)
+function updateUnderline() {
+    const activeTab = document.querySelector('.tab.active');
+    const underline = document.querySelector('.underline'); // S'il y a un élément sous l'onglet (ex : un trait)
+
+    if (activeTab && underline) {
+        const tabRect = activeTab.getBoundingClientRect();
+        underline.style.left = `${tabRect.left}px`;
+        underline.style.width = `${tabRect.width}px`;
+    }
+}
+
+// Exécutez la fonction une fois que le DOM est chargé
+document.addEventListener('DOMContentLoaded', updateTabsAndUnderline);
+
 
     // Initialiser le premier onglet comme actif
     updateUnderline(); // Met à jour la position du trait dès que la page est chargée

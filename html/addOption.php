@@ -3,7 +3,6 @@
 require_once 'config.php';
 $pasok=false;
 $offreId = $_POST['idOffre'];
-print_r($_POST);
 if ($_POST['type'] == 'ajout') {
     if ($_POST['nomOption']=='ALaUne') {
         $prix = $_POST['nbWeek']*20;
