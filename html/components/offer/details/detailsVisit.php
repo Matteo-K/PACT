@@ -168,11 +168,11 @@ if ($categorie["_visite"]) {
                 accessDiv.appendChild(removeBtn);
 
                 // Appliquer un style visuel au conteneur
-                accessDiv.style.display = 'inline-flex';
-                accessDiv.style.alignItems = 'center';
-                accessDiv.style.margin = '5px';
+                accessDiv.style.display = 'inline-block';
+                accessDiv.style.fontSize = '25px';
+                accessDiv.style.margin = '15px 0 5px 0';
                 accessDiv.style.padding = '8px 12px';
-                accessDiv.style.backgroundColor = '#ffcdd2'; // Couleur pour différencier les tags
+                accessDiv.style.width = '90%'; 
                 accessDiv.style.border = '1px solid #e57373';
                 accessDiv.style.borderRadius = '20px';
                 accessDiv.style.fontSize = '0.9em';
