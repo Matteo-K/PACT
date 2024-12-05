@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
     $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
 
-    $stmt = $conn->prepare("INSERT INTO pact.avis (pseudo, content, datepublie, idoffre, note, compagnie, mois, annee, titre) 
+    $stmt = $conn->prepare("INSERT INTO pact.avis (pseudo, content, datepublie, idoffre, note, companie, mois, annee, titre) 
                         VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?)");
     $stmt->execute([$pseudo, $texteAvis, $idOffre, $note, $compagnie, $monthInWords, $year, $titreAvis]);
 
