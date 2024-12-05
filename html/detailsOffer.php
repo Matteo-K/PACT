@@ -1069,7 +1069,34 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // Ajoute l'événement click sur chaque onglet
-    // Fonction qui gère l'activation des onglets et du contenu
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            const targetTab = this; // Onglet cliqué
+
+            // Active l'onglet et désactive les autres
+            tabs.forEach(t => t.classList.remove('active'));
+            targetTab.classList.add('active');
+
+            // Affiche le contenu associé et cache les autres
+            const targetContent = document.getElementById(`content-${targetTab.dataset.tab}`);
+            contents.forEach(content => {
+                if (content === targetContent) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+
+            // Met à jour la position et la largeur du trait
+            updateUnderline();
+        });
+    });
+
+    // Initialiser le premier onglet comme actif
+    updateUnderline(); // Met à jour la position du trait dès que la page est chargée
+});
+
+// Fonction qui gère l'activation des onglets et du contenu
 function updateTabsAndUnderline() {
     const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.tab-content');
@@ -1128,10 +1155,6 @@ function updateUnderline() {
 // Exécutez la fonction une fois que le DOM est chargé
 document.addEventListener('DOMContentLoaded', updateTabsAndUnderline);
 
-
-    // Initialiser le premier onglet comme actif
-    updateUnderline(); // Met à jour la position du trait dès que la page est chargée
-});
 
 
 
