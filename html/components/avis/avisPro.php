@@ -10,7 +10,8 @@ $avis = $avisTemp;
     <section id="avisproS1">
         <!-- Ancien h2 -->
         <select name="TridateAvis" id="TridateAvis">
-            <option value="recent" selected>Avis les plus récents</option>
+            <option value="nonLu" selected>Avis non lus</option>
+            <option value="recent">Avis les plus récents</option>
             <option value="ancien">Avis les plus ancien</option>
         </select>
         <div>
@@ -341,14 +342,32 @@ function displayArrayAvis(arrayAvis) {
  */
 function triAvis(arrayAvis) {
   
-  if (selectTri.value === 'recent') {
-    return triDateRecent(arrayAvis);
-  } else if (selectTri.value === 'ancien') {
-    return triDateAncien(arrayAvis);
-  }
-  return arrayAvis;
+    if (selectTri.value === 'nonLu') {
+        return triNonLu(arrayAvis);
+    } else if (selectTri.value === 'recent') {
+        return triDateRecent(arrayAvis);
+    } else if (selectTri.value === 'ancien') {
+        return triDateAncien(arrayAvis);
+    }
+    return arrayAvis;
 }
 
+/**
+ * Tri la liste des avis du plus récent au plus ancien
+ */
+function triNonLu(arrayAvis) {
+    return arrayAvis.sort((avis1, avis2) => {
+        const avis1NonLu = !avis1.lu
+        const avis2NonLu = !avis2.lu
+    
+        if (avis1NonLu && !avis2NonLu) {
+            return -1;
+        } else if (!avis1NonLu && avis2NonLu) {
+            return 1;
+        }
+        return 0;
+    });
+}
 /**
  * Tri la liste des avis du plus récent au plus ancien
  */

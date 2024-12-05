@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 // Chemin du dossier temporaire
-$tempDir = __DIR__ . '/img/imageAvis/temp_uploads/';
+$tempDir = 'img/imageAvis/temp_uploads/';
 
 // Crée le dossier temporaire s'il n'existe pas
 if (!is_dir($tempDir)) {

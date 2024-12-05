@@ -1,5 +1,5 @@
 <section>
-    <form action="submitNote.php" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
         <div id="note">
             <!-- Étoiles pour la notation -->
             <?php for ($i = 1; $i <= 5; $i++) { ?>

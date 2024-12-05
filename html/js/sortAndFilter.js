@@ -305,7 +305,6 @@ function getPrixRangeRestaurant(gammeDePrix) {
 }
 
 
-
 // Fonction de filtre par statuts
 function filtrerParStatuts(offers) {
   const statutsSelection = [];
@@ -364,6 +363,12 @@ function filtrerParStatuts(offers) {
 //   });
 // }
 
+
+// 1- récup la date et l'heure de début
+// 2- récup la date et l'heure de fin
+// 3- si l'utilisateur ne chage rien, on affiche toute les offres de base (entre 8h et 23h de base)
+// 4- si l'utilisateur change une valeur dans l'input, on prend cette valeur et on met à jour l'affichage
+
 // Fonction de filtre par période
 function filtrerParPeriode(offers) {
   const dateDepartValue = new Date(dateDepart.value);
@@ -377,27 +382,22 @@ function filtrerParPeriode(offers) {
   }
 
   return offers.filter(offer => {
-    // Vérifier si les heures d'ouverture et de fermeture existent
-    if (!offer.heureOuverture || !offer.heureFermeture) {
+    const dateOffer = new Date(offer.date);
+    if (dateOffer < dateDepartValue || dateOffer > dateFinValue) {
       return false;
     }
 
-    const dateOffre = new Date(offer.date); // Date de l'offre
-
-    // Vérifier si l'offre est dans la plage de dates
-    if (dateOffre < dateDepartValue || dateOffre > dateFinValue) {
-      return false;
-    }
-
-    let heureValide = true;
-
-    // Vérifier les horaires si définis
     if (heureDebutValue && heureFinValue) {
+
       const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
       const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
 
       const debutRange = heureDebutH * 60 + heureDebutM;
       const finRange = heureFinH * 60 + heureFinM;
+
+      if (!offer.heureOuverture || !offer.heureFermeture) {
+        return false;
+      }
 
       const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
       const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
@@ -405,17 +405,18 @@ function filtrerParPeriode(offers) {
       const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
       const fermetureMinutes = fermetureH * 60 + fermetureM;
 
-      // Vérifier si l'heure de début et l'heure de fin de l'offre sont dans la plage
+      // Comparaison des plages horaires
       if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
-        heureValide = true;
-      } else {
-        heureValide = false;
+        return true;
       }
+      
+      return false;
     }
 
-    return heureValide;
+    return true;
   });
 }
+
 
 
 
