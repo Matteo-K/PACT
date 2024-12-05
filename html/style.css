@@ -3497,7 +3497,7 @@ details[open] .custom-marker {
 
 .contentDetails{
   overflow: hidden; 
-  max-height: 0; 
+  max-height: auto; 
   transition: max-height 0.5s ease;
   display: flex;
   flex-wrap: wrap;
