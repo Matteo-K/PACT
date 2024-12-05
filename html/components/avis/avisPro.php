@@ -203,7 +203,7 @@ const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
 const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
-const reponseAvis = getElementById("reponseAvisPro");
+const reponseAvis = document.getElementById("reponseAvisPro");
 const titreReponseAvis = querySelector("#reponseAvisPro h2");
 const inputIdAvis = querySelector("#reponseAvisPro h2");
 
