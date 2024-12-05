@@ -1096,66 +1096,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     updateUnderline(); // Met à jour la position du trait dès que la page est chargée
 });
 
-// Fonction qui gère l'activation des onglets et du contenu
-function updateTabsAndUnderline() {
-    const tabs = document.querySelectorAll('.tab');
-    const contents = document.querySelectorAll('.tab-content');
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function () {
-            const targetTab = this; // Onglet cliqué
-
-            // Active l'onglet et désactive les autres
-            tabs.forEach(t => t.classList.remove('active'));
-            targetTab.classList.add('active');
-
-            // Affiche le contenu associé et cache les autres
-            const targetContent = document.getElementById(`content-${targetTab.dataset.tab}`);
-            contents.forEach(content => {
-                if (content === targetContent) {
-                    content.classList.add('active');
-                } else {
-                    content.classList.remove('active');
-                }
-            });
-
-            // Met à jour la position et la largeur du trait
-            updateUnderline();
-        });
-    });
-
-    // En option, vous pouvez choisir un onglet par défaut si aucun n'est sélectionné
-    const defaultTab = document.querySelector('.tab.active') || tabs[0];
-    const defaultContent = document.getElementById(`content-${defaultTab.dataset.tab}`);
-    
-    if (defaultTab) {
-        defaultTab.classList.add('active');
-    }
-
-    if (defaultContent) {
-        defaultContent.classList.add('active');
-    }
-
-    // Mettre à jour la position du trait (s'il y en a un)
-    updateUnderline();
-}
-
-// Fonction qui met à jour la position du trait sous les onglets (si nécessaire)
-function updateUnderline() {
-    const activeTab = document.querySelector('.tab.active');
-    const underline = document.querySelector('.underline'); // S'il y a un élément sous l'onglet (ex : un trait)
-
-    if (activeTab && underline) {
-        const tabRect = activeTab.getBoundingClientRect();
-        underline.style.left = `${tabRect.left}px`;
-        underline.style.width = `${tabRect.width}px`;
-    }
-}
-
-// Exécutez la fonction une fois que le DOM est chargé
-document.addEventListener('DOMContentLoaded', updateTabsAndUnderline);
-
-
 
 
     const modal = document.getElementById("myModal");
@@ -1318,7 +1258,6 @@ document.addEventListener('DOMContentLoaded', updateTabsAndUnderline);
             message.style.display = 'none';
         }
 
-        
 
         try {
             document.getElementById('tab-avis').addEventListener('click', function() {
