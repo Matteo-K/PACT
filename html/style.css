@@ -1296,6 +1296,10 @@ header ul+div {
   gap: 10px;
 }
 
+#msgHoraireSupr {
+  color: red;
+}
+
 /* ------------------------- END HOURLY OFFER CSS --------------------------------*/
 /* ------------------------- Contact OFFER CSS --------------------------------*/
 
