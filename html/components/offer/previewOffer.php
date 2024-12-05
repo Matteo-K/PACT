@@ -69,6 +69,8 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } else {
             echo "Pas d'offre trouvée ?";
         }
+
+        print_r($result);
     ?>
     </h2>
 
