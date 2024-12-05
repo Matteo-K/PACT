@@ -109,7 +109,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                     <div>
                         <img src="./img/icone/lieu.png">
-                        <a href="https://www.google.com/maps?q=<?php echo urlencode($data[$idOffre]["numeroRue"] . " " . $data[$idOffre]["rue"] . ", " . $data[$idOffre]["codePostal"] . " " . $data[$idOffre]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($data[$idOffre]["numeroRue"] . " " . $data[$idOffre]["rue"] . ", " . $data[$idOffre]["codePostal"] . " " . $data[$idOffre]["ville"]); ?></a>
+                        <a href="https://www.google.com/maps?q=<?php echo !empty($data[$idOffre]["ville"]) ? urlencode($data[$idOffre]["numeroRue"] . " " . $data[$idOffre]["rue"] . ", " . $data[$idOffre]["codePostal"] . " " . $data[$idOffre]["ville"]) : ""; ?>" target="_blank" id="lieu"><?php echo !empty($data[$idOffre]["ville"]) ? htmlspecialchars($data[$idOffre]["numeroRue"] . " " . $data[$idOffre]["rue"] . ", " . $data[$idOffre]["codePostal"] . " " . $data[$idOffre]["ville"]) : "adresse, code postal  ville"; ?></a>
                     </div>
                     <div>
                         <img src="./img/icone/tel.png">
