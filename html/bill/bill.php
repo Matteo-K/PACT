@@ -24,9 +24,9 @@ $denominationL = $results[0]['nom'];
 $rue = $results[0]['rue'];
 $codePostal = $results[0]['codepostal'];
 $ville = $results[0]['ville'];
-$rueL = $results[0]['rueL'];
-$codePostalL = $results[0]['codepostalL'];
-$villeL = $results[0]['villeL'];
+$rueL = $results[0]['ruel'];
+$codePostalL = $results[0]['codepostall'];
+$villeL = $results[0]['villel'];
 $idFacture = $results[0]['idfacture'];
 $dateFacture = $results[0]['datefactue'];
 
@@ -45,8 +45,8 @@ if ($results[0]['historiqueoption']) {
 
 // "duree": 1, "option": "ALaUne", "prixBase": 20, "dureeBase": 7, "lancement": "2024-11-25"}
 
-$tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>intval($results[0]['tarif'])];
-$v3=$tarif['prixBase'];
+$tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>$results[0]['tarif']];
+$v3=$results[0]['tarif'];
 
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
 $nbEnLigne = 0 ;
