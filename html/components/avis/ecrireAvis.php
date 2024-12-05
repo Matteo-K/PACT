@@ -240,7 +240,7 @@
         formData.append("unique_id", uniqueId); // L'ID unique pour le dossier temporaire
 
         // Envoi de la requête AJAX pour supprimer le fichier
-        fetch("delete_temp_file.php", {
+        fetch("delete_temp_files.php", {
                 method: "POST",
                 body: formData
             })
