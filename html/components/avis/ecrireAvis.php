@@ -230,28 +230,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
         }
     });
 
-    let formCreationAvis = document.getElementById("formCreationAvis");
     const uniqueId = generateUniqueId();
-    let input = formCreationAvis.createElement(input);
-    input.type = "hidden";
-    input.name = "uniqueField";
-    input.value = uniqueId;
-
-    formCreationAvis.appendChild(input);
-
-
+    
+    
     function handleFiles(inputElement) {
         const maxImages = 3;
         const files = inputElement.files;
         const formData = new FormData();
         const afficheImages = document.getElementById("afficheImages");
-
+        
         // Vérifie le nombre d'images à uploader
         if (files.length > maxImages) {
             alert(`Vous pouvez sélectionner au maximum ${maxImages} fichiers.`);
             return;
         }
-
+        
         for (let i = 0; i < files.length; i++) {
             formData.append("images[]", files[i]);
         }
@@ -261,7 +254,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
         // Envoie les fichiers au serveur via une requête AJAX
         fetch("uploadImageAvisTemp/upload_temp_files.php", {
-                method: "POST",
+            method: "POST",
                 body: formData,
             })
             .then((response) => response.json())
@@ -277,11 +270,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
                 alert("Une erreur est survenue pendant l'upload.");
             });
     }
-
+    
     function displayUploadedFiles(uniqueId) {
         const afficheImages = document.getElementById("afficheImages");
         afficheImages.innerHTML = ""; // Réinitialise l'affichage
-
+        
         fetch(`uploadImageAvisTemp/list_temp_files.php?unique_id=${uniqueId}`)
             .then((response) => response.json())
             .then((data) => {
@@ -306,7 +299,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
                         deleteIcon.style.top = "5px";
                         deleteIcon.style.right = "5px";
                         deleteIcon.style.cursor = "pointer";
-
+                        
                         deleteIcon.addEventListener("click", () => {
                             deleteFile(fileUrl, uniqueId, div);
                         });
@@ -354,4 +347,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     function generateUniqueId() {
         return "temp_" + Math.random().toString(36).substr(2, 9);
     }
+let formCreationAvis = document.getElementById("formCreationAvis");
+let input = formCreationAvis.createElement(input);
+input.type = "hidden";
+input.name = "uniqueField";
+input.value = uniqueId;
+formCreationAvis.appendChild(input);
 </script>
