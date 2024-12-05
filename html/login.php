@@ -4,8 +4,6 @@ session_start();
 
 // fichier de connexion à la BDD
 require_once 'db.php';
-
-$idOffre = 1;
 // Vérification de la connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_POST['motdepasseConnexion'])) {
     $login = $_POST['login'];
@@ -22,24 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            
-            if ($idOffre) {
-                ?>
-                <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idOffre' value='<?php echo $idOffre = null
- ?>'>
-                </form>
-                <script>
-                    document.getElementById('redirectForm').submit();
-                </script>
-                <?php
-                exit();
-            } else {
-                // Gestion d'erreur si l'idOffre n'est pas défini
-                header("Location: index.php");
-                exit();
-            }
-            
+            header("Location: index.php");
             exit();
         }
 
@@ -53,22 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            if ($idOffre) {
-                ?>
-                <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idOffre' value='<?php echo $idOffre ?>'>
-                </form>
-                <script>
-                    document.getElementById('redirectForm').submit();
-                </script>
-                <?php
-                exit();
-            } else {
-                // Gestion d'erreur si l'idOffre n'est pas défini
-                header("Location: index.php");
-                exit();
-            }
-            
+            header("Location: index.php");
             exit();
         }
 
@@ -82,22 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            if ($idOffre) {
-                ?>
-                <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idOffre' value='<?php echo $idOffre ?>'>
-                </form>
-                <script>
-                    document.getElementById('redirectForm').submit();
-                </script>
-                <?php
-                exit();
-            } else {
-                // Gestion d'erreur si l'idOffre n'est pas défini
-                header("Location: index.php");
-                exit();
-            }
-            
+            header("Location: index.php");
             exit();
         }
 
@@ -111,21 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            if ($idOffre) {
-                ?>
-                <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idOffre' value='<?php echo $idOffre ?>'>
-                </form>
-                <script>
-                    document.getElementById('redirectForm').submit();
-                </script>
-                <?php
-                exit();
-            } else {
-                // Gestion d'erreur si l'idOffre n'est pas défini
                 header("Location: index.php");
                 exit();
-            }
             
             exit();
         } else {
