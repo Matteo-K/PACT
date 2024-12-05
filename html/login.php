@@ -38,11 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
             
             ?>
-            <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='<?=$idOffre?>'>
+            <form id='redirectForm1' method='POST' action='detailsOffer.php'>
+                    <input type='hidden' name='idoffre' value='<?php echo $idOffre?>'>
                   </form>
                   <script>
-                    document.getElementById('redirectForm').submit();
+                    document.getElementById('redirectForm1').submit();
                   </script>";
             <?php
             exit();
@@ -59,11 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['typeUser'] = 'pro_prive';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
             ?>
-            <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='<?=$idOffre?>'>
+            <form id='redirectForm2' method='POST' action='detailsOffer.php'>
+                    <input type='hidden' name='idoffre' value='<?php echo $idOffre?>'>
                   </form>
                   <script>
-                    document.getElementById('redirectForm').submit();
+                    document.getElementById('redirectForm2').submit();
                   </script>";
             <?php
             exit();
@@ -80,11 +80,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['typeUser'] = 'pro_public';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
             ?>
-            <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='<?=$idOffre?>'>
+            <form id='redirectForm3' method='POST' action='detailsOffer.php'>
+                    <input type='hidden' name='idoffre' value='<?php echo $idOffre?>'>
                   </form>
                   <script>
-                    document.getElementById('redirectForm').submit();
+                    document.getElementById('redirectForm3').submit();
                   </script>";
             <?php
             exit();
@@ -101,11 +101,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['typeUser'] = 'membre';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
             ?>
-            <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='<?=$idOffre?>'>
+            <form id='redirectForm4' method='POST' action='detailsOffer.php'>
+                    <input type='hidden' name='idoffre' value='<?php echo $idOffre?>'>
                   </form>
                   <script>
-                    document.getElementById('redirectForm').submit();
+                    document.getElementById('redirectForm4').submit();
                   </script>";
             <?php
             exit();
