@@ -223,8 +223,8 @@ class Offer {
     $this->ville = empty($ville_) ? "" : $ville_;
     $this->pays = empty($pays_) ? "" : $pays_;
     $this->numerorue = $numerorue_;
-    $this->rue = $rue_;
-    $this->codePostal = $codePostal_;
+    $this->rue = empty($rue_) ? "" : $rue_ ;
+    $this->codePostal = empty($codePostal_) ? "" : $codePostal_ ;
     $this->mail = empty($mail_) ? "" : $mail_;
     $this->telephone = empty($telephone_) ? "" : $telephone_;
     //$this->urlsite = $urlsite_;
