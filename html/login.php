@@ -29,7 +29,15 @@
                 // Connexion réussie
                 $_SESSION['idUser'] = $result['idu'];
                 $_SESSION['typeUser'] = 'admin';
-                redirectToOfferOrHome($idOffre);
+                if (isset($idOffre)) {
+                    echo'<form action="detailsOffer.php" method="post">
+                            <input type="hidden" name="idoffre" value="' . htmlspecialchars($idOffre) . '">
+                            <script>document.forms[0].submit();</script>
+                          </form>';
+                } else {
+                    header('Location: index.php');
+                }
+                exit();
             } else {
                 // Vérification pour le compte privé
                 $stmt = $conn->prepare('SELECT * FROM pact.proprive WHERE mail = ?');
@@ -40,7 +48,15 @@
                     // Connexion réussie
                     $_SESSION['idUser'] = $proUser['idu'];
                     $_SESSION['typeUser'] = 'pro_prive';
-                    redirectToOfferOrHome($idOffre);
+                    if (isset($idOffre)) {
+                        echo'<form action="detailsOffer.php" method="post">
+                                <input type="hidden" name="idoffre" value="' . htmlspecialchars($idOffre) . '">
+                                <script>document.forms[0].submit();</script>
+                              </form>';
+                    } else {
+                        header('Location: index.php');
+                    }
+                    exit();
                 } else {
                     // Vérification pour le compte public
                     $stmt = $conn->prepare('SELECT * FROM pact.propublic WHERE mail = ?');
@@ -51,7 +67,15 @@
                         // Connexion réussie
                         $_SESSION['idUser'] = $proUser['idu'];
                         $_SESSION['typeUser'] = 'pro_public';
-                        redirectToOfferOrHome($idOffre);
+                        if (isset($idOffre)) {
+                            echo'<form action="detailsOffer.php" method="post">
+                                    <input type="hidden" name="idoffre" value="' . htmlspecialchars($idOffre) . '">
+                                    <script>document.forms[0].submit();</script>
+                                  </form>';
+                        } else {
+                            header('Location: index.php');
+                        }
+                        exit();
                     } else {
                         // Vérification membre
                         $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE pseudo = ? OR mail = ?");
@@ -62,7 +86,15 @@
                             // Connexion réussie
                             $_SESSION['idUser'] = $member['idu'];
                             $_SESSION['typeUser'] = 'membre';
-                            redirectToOfferOrHome($idOffre);
+                            if (isset($idOffre)) {
+                                echo'<form action="detailsOffer.php" method="post">
+                                        <input type="hidden" name="idoffre" value="' . htmlspecialchars($idOffre) . '">
+                                        <script>document.forms[0].submit();</script>
+                                      </form>';
+                            } else {
+                                header('Location: index.php');
+                            }
+                            exit();
                         } else {
                             $error = "Identifiant ou mot de passe incorrect.";
                         }
@@ -72,19 +104,6 @@
         } catch (Exception $e) {
             $error = "Une erreur est survenue : " . $e->getMessage();
         }
-    }
-
-    // Fonction de redirection vers l'offre ou la page d'accueil
-    function redirectToOfferOrHome($idOffre) {
-        if (isset($idOffre)) {
-            echo '<form action="detailsOffer.php" method="post">
-                    <input type="hidden" name="idoffre" value="' . htmlspecialchars($idOffre) . '">
-                    <script>document.forms[0].submit();</script>
-                  </form>';
-        } else {
-            header('Location: index.php');
-        }
-        exit();
     }
 ?>
 
