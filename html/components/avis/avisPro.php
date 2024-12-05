@@ -167,6 +167,10 @@ const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').tr
 const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
 
 
+const blocDetails = document.querySelector("#avisproS2 > details");
+const contenuDetails = document.querySelector("#avisPro2 .contentDetails");
+
+
 function afficheAvisSelect(numAvis) {
 
     conteneurAvis.style.display = "flex";
@@ -256,9 +260,6 @@ function formatDateDiff(dateString) {
     }
 }
 
-const blocDetails = document.querySelector("#avisproS2 > details")
-const contenuDetails = document.querySelector("#avisPro2 .contentDetails");
-
 //Animation du bloc details
 blocDetails.addEventListener("toggle", () => {
     if (blocDetails.open) {
@@ -269,7 +270,7 @@ blocDetails.addEventListener("toggle", () => {
 });
 
     // Fonction pour ouvrir avec une animation
-    function openDetails() {
+function openDetails() {
     // Obtenir la hauteur réelle
     let height = contenuDetails.scrollHeight;
     contenuDetails.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
