@@ -27,8 +27,7 @@ function listImage($idOffre, $idComment) {
 }
 
 // Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
-function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
-{
+function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBasePath = __DIR__ . '/uploads') {
     $result = [
         'success' => [],
         'errors' => []
@@ -121,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
     $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
 
-    $stmt = $conn->prepare("INSERT INTO pact._commentaire (idU, content, datePublie)VALUES (?, ?, NOW())RETURNING idC;");
+    $stmt = $conn->prepare("INSERT INTO pact._commentaire (idU, content, datePublie) VALUES (?, ?, NOW()) RETURNING idC;");
     $stmt->execute([$idUser, $texteAvis]);
     $idComment = $stmt->fetchColumn();
 
@@ -131,13 +130,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
     // Déplacer les images vers le dossier de l'offre
     $moveResult = moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, "img/imageAvis/");
-
-    // Si des erreurs se produisent lors du déplacement des images, on les affiche
-    if (!empty($moveResult['errors'])) {
-        echo json_encode(['success' => false, 'errors' => $moveResult['errors']]);
-        $conn->rollBack();
-        exit;
-    }
 
     // Insertion des images dans la base de données
     $image = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
@@ -152,11 +144,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             $imageAvis->execute([$idComment, $file]);
         }
     }
-    echo json_encode(['success' => true, 'message' => 'Avis publié avec succès.']);
 }
 ?>
-
-
 
 <section>
     <form id="formCreationAvis" action="detailsOffer.php" method="post" enctype="multipart/form-data">
@@ -213,35 +202,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             <input id="titre" name="titre" type="text" required>
         </div>
         <div>
-            <label for="avis">Ajoutez votre commentaire *</label>
-            <textarea id="avis" name="avis" required></textarea>
+            <label for="avis">Écrivez votre avis *</label>
+            <textarea id="avis" name="avis" rows="4" required></textarea>
         </div>
 
         <!-- Photos -->
-        <div>
-            <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
-            <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
-            <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
-            <input
-                type="file"
-                id="ajoutPhoto"
-                name="images[]"
-                accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
-                multiple
-                onchange="handleFiles(this)" />
-            <div id="afficheImages"></div>
+        <div id="images">
+            <label for="photo">Ajoutez vos photos :</label>
+            <input type="file" id="photo" name="photo[]" multiple accept="image/*">
+        </div>
 
-            <!-- Consentement -->
-            <div>
-                <input id="consentement" name="consentement" type="checkbox" required>
-                <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
-            </div>
-
-            <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
-
-            <button type="submit">Soumettre l'avis</button>
+        <!-- Envoi -->
+        <button type="submit">Envoyer mon avis</button>
     </form>
 </section>
+
 
 <script>
     const uniqueId = generateUniqueId();
