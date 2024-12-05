@@ -283,7 +283,7 @@ function openDetails() {
 }
 
 function closeDetails() {
-    contenuDetails = document.querySelector("#avisPro2 .contentDetails");
+    //contenuDetails = document.querySelector("#avisProS2 .contentDetails");
     console.log(contenuDetails);
     let height = contenuDetails.scrollHeight;
     contenuDetails.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
