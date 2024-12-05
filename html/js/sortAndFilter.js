@@ -322,13 +322,18 @@ function filtrerParStatuts(offers) {
 
 
 
-
 function filtrerParPeriode(offers) {
+  // On récupère les valeurs des heures de début et de fin
   const heureDepart = heureDebut.value ? new Date(`2024-12-05T${heureDebut.value}:00`) : null;
   const heureFin = heureFin.value ? new Date(`2024-12-05T${heureFin.value}:00`) : null;
 
+  // Affichage des plages horaires sélectionnées
+  console.log('Heure Début:', heureDepart);
+  console.log('Heure Fin:', heureFin);
+
   // Si aucune plage horaire n'est sélectionnée, on retourne les offres sans filtrage
   if (!heureDepart || !heureFin) {
+    console.log('Aucune plage horaire sélectionnée, retour des offres sans filtre');
     return offers;
   }
 
@@ -336,31 +341,53 @@ function filtrerParPeriode(offers) {
   return offers.filter(offer => {
     let offreEstVisible = false;
 
+    // Affichage de l'offre en cours de traitement
+    console.log('Offre en cours de traitement:', offer);
+
     // Si l'offre est un restaurant, visite, ou parc d'attraction
     if (offer.categorie === 'Restaurant' || offer.categorie === 'Visite' || offer.categorie === 'Parc' || offer.categorie === 'Activite') {
+      console.log('Catégorie de l\'offre:', offer.categorie);
+
       // On récupère l'heure d'ouverture et de fermeture de l'offre
       const ouverture = new Date(`2024-12-05T${offer.heureOuverture}:00`);
       const fermeture = new Date(`2024-12-05T${offer.heureFermeture}:00`);
 
+      // Affichage des horaires d'ouverture et de fermeture
+      console.log('Heure d\'ouverture:', ouverture);
+      console.log('Heure de fermeture:', fermeture);
+
       // Vérifier si l'heure d'ouverture et de fermeture de l'offre se chevauchent avec la plage horaire sélectionnée
       if ((ouverture >= heureDepart && ouverture <= heureFin) || (fermeture >= heureDepart && fermeture <= heureFin) || (ouverture <= heureDepart && fermeture >= heureFin)) {
+        console.log('L\'offre est visible (Restaurant, Visite, Parc, ou Activité)');
         offreEstVisible = true;
+      } else {
+        console.log('L\'offre n\'est pas visible (Restaurant, Visite, Parc, ou Activité)');
       }
     }
 
-    // Si l'offre est une activité ou un spectacle (une seule heure)
+    // Si l'offre est un spectacle (une seule heure)
     if (offer.categorie === 'Spectacle') {
+      console.log('Catégorie de l\'offre : Spectacle');
+
       const heureOffre = new Date(`2024-12-05T${offer.heure}:00`);
+
+      // Affichage de l'heure du spectacle
+      console.log('Heure du spectacle:', heureOffre);
 
       // Vérifier si l'heure de l'offre est dans la plage horaire sélectionnée
       if (heureOffre >= heureDepart && heureOffre <= heureFin) {
+        console.log('L\'offre est visible (Spectacle)');
         offreEstVisible = true;
+      } else {
+        console.log('L\'offre n\'est pas visible (Spectacle)');
       }
     }
 
+    // Retourner si l'offre est visible ou non
     return offreEstVisible;
   });
 }
+
 
 
 
