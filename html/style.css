@@ -3468,7 +3468,7 @@ section#infoComp div {
   overflow: none;
 }
 
-#avisPro li > .nonLu, #avisPro li > .nonRepondu{
+#avisPro li .nonLu, #avisPro li .nonRepondu{
   position: absolute;
   left: 0;
   bottom: 20px;
