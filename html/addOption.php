@@ -125,7 +125,8 @@ echo <<<HTML
 <form id="redirectForm" method="POST" action="detailsOffer.php">
     <input type="hidden" name="error" value="{$pasok}">
     <input type="hidden" name="idoffre" value="{$offreId}">
-    <input type="hidden" name="popup">
+    <input type="hidden" name="popup" value="true">
+    <input type="hidden" name="popupTab" value="2"> 
 </form>
 <script>
    document.getElementById('redirectForm').submit();
