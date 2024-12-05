@@ -354,7 +354,7 @@ $is_show;
                             
                             const formattedDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`;
                             
-                            document.getElementById("msgHoraireSupr").textContent = `Il manque une horaire de spectacle du jour ${formattedDate}`;
+                            document.getElementById("msgHoraireSupr").textContent = `Il manque une horaire de spectacle au jour ${formattedDate}`;
                         }
                         return false;
                     }
