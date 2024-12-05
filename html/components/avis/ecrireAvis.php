@@ -1,6 +1,6 @@
 <?php
 function listImage($idOffre, $idComment) {
-    // Chemin du dossier temporaire
+    // Chemin du dossier où les images sont stockées
     $dossier = realpath('../img/imageAvis/' . $idOffre . '/' . $idComment . '/');
 
     // Vérifie si le dossier existe et est valide
@@ -12,15 +12,30 @@ function listImage($idOffre, $idComment) {
     $files = array_diff(scandir($dossier), ['.', '..']);
     $fileUrls = [];
 
-    // Parcours chaque fichier et construit l'URL complète
+    // Extensions autorisées
+    $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+    // Parcours chaque fichier et vérifie si c'est une image valide
     foreach ($files as $file) {
         // On vérifie que c'est bien un fichier et pas un sous-dossier
         if (is_file($dossier . '/' . $file)) {
-            $fileUrls[] = '/img/imageAvis/' . $idOffre . '/' . $idComment . '/' . $file;
+            // Récupération de l'extension du fichier
+            $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+            // Vérification si l'extension est dans la liste autorisée
+            if (in_array($extension, $allowedExtensions)) {
+                $fileUrls[] = '/img/imageAvis/' . $idOffre . '/' . $idComment . '/' . $file;
+            }
         }
     }
-    return ['success' => true, 'files' => $fileUrls];
+
+    // Si des fichiers ont été trouvés
+    if (count($fileUrls) > 0) {
+        return ['success' => true, 'files' => $fileUrls];
+    } else {
+        return ['success' => false, 'message' => 'Aucune image valide trouvée.'];
+    }
 }
+
 
 
 // Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
