@@ -450,3 +450,23 @@ VALUES ('2024-12-01',1),
        ('2024-10-01',3),
        ('2024-10-01',4),
        ('2024-10-01',5);
+       
+INSERT INTO _accessibilite(nomAccess)
+VALUES ('sourd'),
+       ('malentendant'),
+       ('muet');
+       
+INSERT INTO _offreAccess(idOffre,nomAccess)
+VALUES (4,'malentendant'),
+       (4,'sourd'),
+       (5,'muet');
+       
+INSERT INTO _prestation(nomPresta)
+VALUES ('Repas'),
+       ('Transport');
+       
+INSERT INTO _offrePrestation_non_inclu(idOffre,nomPresta)
+VALUES (4,'Transport');
+       
+INSERT INTO _offrePrestation_inclu(idOffre,nomPresta)
+VALUES (4,'Repas');

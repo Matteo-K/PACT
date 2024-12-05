@@ -387,6 +387,50 @@ CREATE TABLE _visite_langue (
       REFERENCES _langue(langue)
 );
 
+CREATE TABLE _accessibilite (
+  nomAccess VARCHAR(255) PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE _offreAccess (
+  idOffre INT NOT NULL,
+  nomAccess VARCHAR(255) NOT NULL,
+  PRIMARY KEY (idOffre,nomAccess),
+  CONSTRAINT _offreAccess_nom
+      FOREIGN KEY (nomAccess)
+      REFERENCES _accessibilite(nomAccess),
+  CONSTRAINT _offreAccess_offre
+      FOREIGN KEY (idOffre)
+      REFERENCES _offre(idOffre)
+);
+
+CREATE TABLE _prestation (
+  nomPresta VARCHAR(255) PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE _offrePrestation_non_inclu (
+  idOffre INT NOT NULL,
+  nomPresta VARCHAR(255) NOT NULL,
+  PRIMARY KEY (idOffre,nomPresta),
+  CONSTRAINT _offrePrestation_nom
+      FOREIGN KEY (nomPresta)
+      REFERENCES _prestation(nomPresta),
+  CONSTRAINT _offrePrestation_offre
+      FOREIGN KEY (idOffre)
+      REFERENCES _offre(idOffre)
+);
+
+CREATE TABLE _offrePrestation_inclu (
+  idOffre INT NOT NULL,
+  nomPresta VARCHAR(255) NOT NULL,
+  PRIMARY KEY (idOffre,nomPresta),
+  CONSTRAINT _offrePrestation_nom
+      FOREIGN KEY (nomPresta)
+      REFERENCES _prestation(nomPresta),
+  CONSTRAINT _offrePrestation_offre
+      FOREIGN KEY (idOffre)
+      REFERENCES _offre(idOffre)
+);
+
 CREATE OR REPLACE FUNCTION compte_langue_offre()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -1040,7 +1084,7 @@ INSTEAD OF INSERT ON pact.parcs_attractions
 FOR EACH ROW
 EXECUTE FUNCTION ajout_offre_parcs_attraction();
 
-CREATE OR REPLACE FUNCTION ajout_offre_parcs_spectacle()
+CREATE OR REPLACE FUNCTION ajout_offre_spectacle()
 RETURNS TRIGGER AS $$
 DECLARE
   id_offre INT;
@@ -1055,12 +1099,12 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trigger_ajout_offre_parcs_spectacle
+CREATE TRIGGER trigger_ajout_offre_spectacle
 INSTEAD OF INSERT ON pact.spectacles
 FOR EACH ROW
-EXECUTE FUNCTION ajout_offre_parcs_spectacle();
+EXECUTE FUNCTION ajout_offre_spectacle();
 
-CREATE OR REPLACE FUNCTION ajout_offre_parcs_visite()
+CREATE OR REPLACE FUNCTION ajout_offre_visite()
 RETURNS TRIGGER AS $$
 DECLARE
   id_offre INT;
@@ -1075,10 +1119,10 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trigger_ajout_offre_parcs_visite
+CREATE TRIGGER trigger_ajout_offre_visite
 INSTEAD OF INSERT ON pact.visites
 FOR EACH ROW
-EXECUTE FUNCTION ajout_offre_parcs_visite();
+EXECUTE FUNCTION ajout_offre_visite();
 
 
 
@@ -1383,4 +1427,3 @@ CREATE TRIGGER trigger_update_pro_prive
 INSTEAD OF UPDATE ON pact.proprive
 FOR EACH ROW
 EXECUTE FUNCTION update_pro_prive();
-
