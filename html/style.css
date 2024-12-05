@@ -4169,6 +4169,11 @@ details .nonLu, details .nonRepondu{
   height: 40px;
 }
 
+#activity>div[class="acces1"]>select{
+  width: 500px;
+  height: 35px;
+}
+
 #activity>div[class="access"],
 #activity >div[class="divP"]{
   display: flex;
