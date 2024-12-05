@@ -12,6 +12,8 @@
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idOffre'])){
         $idOffre = $_POST['idOffre'];
+
+        print('test');
     }
 
     // Vérification du formulaire
