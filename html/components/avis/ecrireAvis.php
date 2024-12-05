@@ -54,13 +54,14 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
 
     return $result;
 }
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $note = $_POST["note-value"];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
+    $note = $_POST["note"];
     $dateAvis = $_POST["date"];
     $compagnie = $_POST["compagnie"];
     $titreAvis = $_POST['titre'];
     $texteAvis = $_POST['avis'];
-    
+
+    moveImagesToOfferFolder($idOffre, $tempFolder, "img/imageAvis");
 }
 
 ?>
