@@ -163,8 +163,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 </section>
 
 <script>
+    const uniqueId = generateUniqueId();
     document.addEventListener("DOMContentLoaded", () => {
-        const uniqueId = generateUniqueId();
         const etoiles = document.querySelectorAll(".star.ecrire");
         const noteInput = document.getElementById("note-value");
 
