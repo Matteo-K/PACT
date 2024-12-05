@@ -3422,12 +3422,12 @@ section#infoComp div {
 #avisPro ul {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow-y: scroll;
   height: 800px;
+  align-content: flex-start;
 }
 
 #avisPro li {
@@ -3557,7 +3557,7 @@ details.animating .contentDetails {
 #avisPro details h3:nth-child(2), #avisPro details h3:nth-child(4) {
   margin: 10px 0;
   width: 20%;
-  text-align: right;
+  justify-content: right;
 }
 
 details .nonLu, details .nonRepondu{

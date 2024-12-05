@@ -334,16 +334,16 @@ function filtrerParPeriode(offers) {
   }
 
   // Convertir les dates et heures en objets Date
-  const dateDepartObj = new Date(dateDepartValue + 'T' + heureDebutValue);
-  const dateFinObj = new Date(dateFinValue + 'T' + heureFinValue);
+  const debut = dateDepart.value + heureDebut.value;
+  const fin = dateFin.value + heureFin.value;
 
   // Filtrage des offres en fonction des dates et heures
   return offers.filter(offer => {
-    const offerDate = new Date(offer.dateDepart + 'T' + offer.heureDebut); // Utilisez la date et l'heure de l'offre
-    const offerEndDate = new Date(offer.dateFin + 'T' + offer.heureFin); // Utilisez la date et l'heure de fin de l'offre
+    const offerDate = offer.heureOuverture;
+    const offerEndDate = offer.heureFermeture;
 
     // Vérifier si l'offre est dans la plage de dates et heures sélectionnées
-    return offerDate >= dateDepartObj && offerEndDate <= dateFinObj;
+    return offerDate >= debut && offerEndDate <= fin;
   });
 }
 
