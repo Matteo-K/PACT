@@ -8,6 +8,7 @@ $activite = [
     "accessibilite" => true,
     "nomAccess" => [],
 ];
+$accessibilite = [];
 
 // Une activité peut avoir plusieurs prestations (Voir avec BDD)
 // Si l'offre n'existe pas 
