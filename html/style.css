@@ -1539,7 +1539,6 @@ header ul+div {
   border-radius: 50px;
   color: #000;
   margin: 0 5px;
-  box-shadow: inset -4px -4px 4px var(--bloc);
   border: none;
   cursor: pointer;
 }
@@ -1664,7 +1663,7 @@ header ul+div {
 #artDetailOffer .tag img {
   width: 12px;
   height: 12px;
-  margin-left: 5px;
+  margin: auto 0 auto 5px;
 }
 
 #artDetailOffer section,
