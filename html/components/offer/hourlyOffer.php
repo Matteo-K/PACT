@@ -127,13 +127,17 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
-        
         <div>
             <h4>Ajouter une date pour le spectacle&nbsp;:&nbsp;</h4>            
         </div>
         <div id="Representation">
         </div>
         <input type="button" value="Ajouter une date" name="addRep" id="addRep" class="guideSelect" onclick="addDateRep()">
+        <?php 
+            $stmt = $conn->prepare("SELECT * FROM pact._horaireprecise where idoffre = ?");
+            $stmt->execute([$idOffre]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        ?>
         <script>
             /* Interraction horaire */
             let counterRep = 1;
@@ -148,7 +152,7 @@
             /**
              * @brief Ajout d'un div représentation à chaque click du bouton ajouter bloc
              */
-            function addDateRep() {
+            function addDateRep(data = 0) {
                 counterRep++;
                 const dateContainer = document.getElementById("Representation");
 
@@ -201,14 +205,26 @@
                 // Ajout du nouveau bloc au bloc de représentation
                 dateContainer.appendChild(newBlock);
 
-                flatpickr("#"+date.id, {
-                    altInput: true,
-                    altFormat: "l j F Y",
-                    dateFormat: "Y-m-d",
-                    locale: "fr",
-                    defaultDate: current_date,
-                    minDate: current_date
-                });
+                if (data = 0) {
+                    flatpickr("#"+date.id, {
+                        altInput: true,
+                        altFormat: "l j F Y",
+                        dateFormat: "Y-m-d",
+                        locale: "fr",
+                        defaultDate: current_date,
+                        minDate: current_date
+                    });
+                } else {
+                    flatpickr("#"+date.id, {
+                        altInput: true,
+                        altFormat: "l j F Y",
+                        dateFormat: "Y-m-d",
+                        locale: "fr",
+                        defaultDate: data[""],
+                        minDate: current_date
+                    });
+                }
+
 
             }
 

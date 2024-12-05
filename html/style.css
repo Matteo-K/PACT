@@ -1571,10 +1571,11 @@ header ul+div {
 }
 
 #artDetailOffer input[type="text"] {
-  height: 30px;
   font-size: 15px;
   text-indent: 10px;
   padding: 5px;
+  height: 30px;
+  width: 90%;
 }
 
 #artDetailOffer textarea,
@@ -1586,14 +1587,8 @@ header ul+div {
   padding: 5px;
 }
 
-#artDetailOffer input[id="nom"] {
-  width: 90%;
-}
-
-#artDetailOffer textarea[id="resume"] {
-  height: 80px;
-  min-height: 60px;
-  max-height: 100px;
+#artDetailOffer input[id="resume"] {
+  height: 50px;
 }
 
 #artDetailOffer textarea[id="description"] {
@@ -3903,6 +3898,14 @@ details .nonLu, details .nonRepondu{
 #sectionPreview {
   width: 80%;
   margin: 0 auto;
+}
+
+#sectionPreview p, h4, h2{
+  font-size: 25px;
+}
+
+#sectionPreview h4, h2{
+  font-size: 35px;
 }
 
 #titleOfferPreview {
