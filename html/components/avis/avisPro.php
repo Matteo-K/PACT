@@ -403,7 +403,7 @@ function displayAvis(avis) {
         li.classList.add("avisRepondu");
     }
 
-    if (!avis[1].lu) {
+    if (!avis.lu) {
         li.classList.add("avisLu");
     }
 
