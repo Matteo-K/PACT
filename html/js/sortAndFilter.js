@@ -321,60 +321,29 @@ function filtrerParStatuts(offers) {
 }
 
 
-// function filtrerParPeriode(offers) {
-  // Vérification de la présence des valeurs de date et heure
-  // const dateDepartValue = dateDepart.value;
-  // const heureDebutValue = heureDebut.value;
-  // const dateFinValue = dateFin.value;
-  // const heureFinValue = heureFin.value;
-
-  // Si aucune des valeurs n'est définie, on retourne toutes les offres
-  // if (!dateDepartValue || !dateFinValue || !heureDebutValue || !heureFinValue) {
-  //   return offers;
-  // }
-
-  // Convertir les dates et heures en objets Date
-  // const debut = new Date(dateDepart.value + 'T' + heureDebut.value);
-  // const fin = new Date(dateFin.value + 'T' + heureFin.value);
-
-  // Filtrage des offres en fonction des dates et heures
-  // return offers.filter(offer => {
-  //   const offerDate = new Date(offer.dateRepresentation + 'T' + offer.heureOuverture);
-  //   const offerEndDate = new Date(offer.dateFin.value + 'T' + offer.heureFermeture);
-
-    // Vérifier si l'offre est dans la plage de dates et heures sélectionnées
-//     return offerDate >= debut && offerEndDate <= fin;
-//   });
-// }
-
-
 function filtrerParPeriode(offers) {
-  // Récupération des valeurs d'heure de début et de fin
+  // Vérification de la présence des valeurs de date et heure
+  const dateDepartValue = dateDepart.value;
   const heureDebutValue = heureDebut.value;
+  const dateFinValue = dateFin.value;
   const heureFinValue = heureFin.value;
 
   // Si aucune des valeurs n'est définie, on retourne toutes les offres
-  if (!heureDebutValue || !heureFinValue) {
+  if (!dateDepartValue || !dateFinValue || !heureDebutValue || !heureFinValue) {
     return offers;
   }
 
-  // Fonction pour convertir une heure sous format "HH:MM" en minutes depuis minuit
-  function convertirHeureEnMinutes(heure) {
-    const [heures, minutes] = heure.split(':').map(Number);
-    return heures * 60 + minutes;
-  }
+  // Convertir les dates et heures en objets Date
+  const debut = new Date(dateDepart.value + 'T' + heureDebut.value);
+  const fin = new Date(dateFin.value + 'T' + heureFin.value);
 
-  // Conversion des valeurs d'entrée en minutes
-  const heureDebutMinutes = convertirHeureEnMinutes(heureDebutValue);
-  const heureFinMinutes = convertirHeureEnMinutes(heureFinValue);
-
-  // Filtrage des offres en fonction des heures
+  // Filtrage des offres en fonction des dates et heures
   return offers.filter(offer => {
-    const heureOffreDebut = convertirHeureEnMinutes(offer.heureOuverture);
-    const heureOffreFin = convertirHeureEnMinutes(offer.heureFermeture);
+    const offerDate = new Date(offer.dateRepresentation + 'T' + offer.heureOuverture);
+    const offerEndDate = new Date(offer.dateFin.value + 'T' + offer.heureFermeture);
 
-    // Vérifier si l'offre est dans la plage de temps sélectionnée
-    return heureOffreDebut >= heureDebutMinutes && heureOffreFin <= heureFinMinutes;
+    // Vérifier si l'offre est dans la plage de dates et heures sélectionnées
+    return offerDate >= debut && offerEndDate <= fin;
   });
 }
 
