@@ -62,11 +62,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $texteAvis = $_POST['avis'];
     $idOffre = $_POST['idoffre'];
     $uniqueId = $_POST["uniqueField"];
-    print_r($dateAvis);
+    $pseudo = $result[0]['pseudo'];
+
+    list($year, $month) = explode('-', $dateAvis);
+    // Tableau des mois en lettres
+    $months = [
+    '01' => 'Janvier', '02' => 'Février', '03' => 'Mars', '04' => 'Avril',
+    '05' => 'Mai', '06' => 'Juin', '07' => 'Juillet', '08' => 'Août',
+    '09' => 'Septembre', '10' => 'Octobre', '11' => 'Novembre', '12' => 'Décembre'
+    ];
+    // Récupérer le mois en lettres
+    $monthInWords = $months[$month];
 
     $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
 
-    $stmt = $conn -> prepare("INSERT INTO pact.avis (pseudo, content, datepublie, idoffre, note, compagnie, mois, annee, titre)");
+    $stmt = $conn->prepare("INSERT INTO pact.avis (pseudo, content, datepublie, idoffre, note, companie, mois, annee, titre) 
+                        VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$pseudo, $texteAvis, $idOffre, $note, $compagnie, $monthInWords, $year, $titreAvis]);
 
     // Déplacer les images vers le dossier de l'offre
     $result = moveImagesToOfferFolder($idOffre,$idComment, $tempFolder, "img/imageAvis/");
