@@ -3445,6 +3445,7 @@ section#infoComp div {
 
 #avisPro li:hover {
   background: linear-gradient(90deg, var(--primary60) 0%, var(--primary60) 80%,  transparent 100%);
+  transition: background 0.3s;
 }
 
 #avisPro li > div:first-of-type{
