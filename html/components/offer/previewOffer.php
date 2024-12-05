@@ -20,6 +20,17 @@ function getSchedules($conn, $idOffre) {
     return $schedules;
 }
 
+function convertionMinuteHeure($tempsEnMinute) {
+    $heures = floor($tempsEnMinute / 60);
+    $minutes = $tempsEnMinute % 60;
+    
+    if ($minutes == 0) {
+        return $heures . "h";
+    } else {
+        return $heures . "h " . $minutes . "min";
+    }
+}
+
 // Récupérer les horaires
 $schedules = getSchedules($conn, $idOffre);
 
