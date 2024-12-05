@@ -159,8 +159,84 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                     </div>
                 </div>
-                
-                <p>Pas de note pour le moment</p>
+                <?php
+                    $stmt = $conn->prepare("SELECT a.*,
+                        AVG(a.note) OVER() AS moynote,
+                        COUNT(a.note) OVER() AS nbnote,
+                        SUM(CASE WHEN a.note = 1 THEN 1 ELSE 0 END) OVER() AS note_1,
+                        SUM(CASE WHEN a.note = 2 THEN 1 ELSE 0 END) OVER() AS note_2,
+                        SUM(CASE WHEN a.note = 3 THEN 1 ELSE 0 END) OVER() AS note_3,
+                        SUM(CASE WHEN a.note = 4 THEN 1 ELSE 0 END) OVER() AS note_4,
+                        SUM(CASE WHEN a.note = 5 THEN 1 ELSE 0 END) OVER() AS note_5,
+                        SUM(CASE WHEN a.lu = FALSE then 1 else 0 end) over() as avisnonlus,
+                        SUM(CASE WHEN r.idc_reponse is null then 1 else 0 end) over() as avisnonrepondus,
+                        m.url AS membre_url,
+                        r.idc_reponse,
+                        r.denomination AS reponse_denomination,
+                        r.contenureponse,
+                        r.reponsedate,
+                        r.idpro
+                    FROM 
+                        pact.avis a
+                    JOIN 
+                        pact.membre m ON m.pseudo = a.pseudo
+                    LEFT JOIN 
+                        pact.reponse r ON r.idc_avis = a.idc
+                    WHERE 
+                        a.idoffre = ?
+                    ORDER BY 
+                        a.datepublie desc
+                    ");
+                    $stmt->execute([$idOffre]);
+                    $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    ?>
+                 <?php
+                    if (!$avis) {
+                        echo '<p class="notation">Pas de note pour le moment</p>';
+                    } else {
+                        $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
+                        $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
+                    }
+                    ?>
+                        <div class="notation">
+                            <div>
+                                <?php
+                                // Étoiles pleines
+                                for ($i = 1; $i <= $etoilesPleines; $i++) {
+                                    echo '<div class="star pleine"></div>';
+                                }
+                                // Étoile partielle
+                                if ($reste > 0) {
+                                    $pourcentageRempli = $reste * 100; // Pourcentage rempli
+                                    echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
+                                }
+                                // Étoiles vides
+                                for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
+                                    echo '<div class="star vide"></div>';
+                                }
+                                ?>
+                                <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
+                            </div>
+                            <div class="notedetaille">
+                                <?php
+                                // Adjectifs pour les notes
+                                $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
+                                for ($i = 5; $i >= 1; $i--) {
+                                    // Largeur simulée pour chaque barre en fonction de vos données
+                                    $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
+                                ?>
+                                    <div class="ligneNotation">
+                                        <span><?= $listNoteAdjectif[$i - 1]; ?></span>
+                                        <div class="barreDeNotationBlanche">
+                                            <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
+                                        </div>
+                                        <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                            </div>
+            </div>
                 <section id="desciptionPreview">
                     <h4>Description</h4>
                             <p><?php echo htmlspecialchars($data[$idOffre]["description"]); ?></p>
