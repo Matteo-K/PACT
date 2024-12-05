@@ -324,8 +324,8 @@ function filtrerParStatuts(offers) {
 
 function filtrerParPeriode(offers) {
   // On récupère les valeurs des heures de début et de fin
-  const heureDepart = heureDebut.value ? new Date(`2024-12-05T${heureDebut.value}:00`) : null;
-  const heureFin = heureFin.value ? new Date(`2024-12-05T${heureFin.value}:00`) : null;
+  const heureDepart = new Date(`2024-12-05T${heureDebut.value}:00`);
+  const heureFin = new Date(`2024-12-05T${heureFin.value}:00`);
 
   // Affichage des plages horaires sélectionnées
   console.log('Heure Début:', heureDepart);
