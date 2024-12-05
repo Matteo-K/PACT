@@ -3940,6 +3940,7 @@ details .nonLu, details .nonRepondu{
 }
 
 #iconeLienPreview img {
+  margin-inline: 20px;
   width: 25px;
 }
 

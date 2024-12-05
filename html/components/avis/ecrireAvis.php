@@ -1,5 +1,72 @@
+<?php
+$tempFolder = "img/imageAvis/temp_uploads/";
+
+function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
+{
+    // Résultats pour le retour
+    $result = [
+        'success' => [],
+        'errors' => []
+    ];
+
+    // Vérification de l'idOffre
+    if (!$idOffre) {
+        $result['errors'][] = "L'identifiant de l'offre (idOffre) est manquant.";
+        return $result;
+    }
+
+    // Chemin du dossier cible
+    $targetFolder = "$uploadBasePath/$idOffre";
+
+    // Créer le dossier cible si nécessaire
+    if (!is_dir($targetFolder)) {
+        if (!mkdir($targetFolder, 0777, true)) {
+            $result['errors'][] = "Impossible de créer le dossier cible : $targetFolder";
+            return $result;
+        }
+    }
+
+    // Récupération des fichiers dans le dossier temporaire
+    $images = glob("$tempFolder/*.{jpg,jpeg,png,gif}", GLOB_BRACE);
+
+    if (!$images) {
+        $result['errors'][] = "Aucune image trouvée dans le dossier temporaire : $tempFolder";
+        return $result;
+    }
+
+    // Déplacement des images
+    $numImage = 1; // Compteur pour numéroter les images
+    foreach ($images as $image) {
+        // Récupérer l'extension du fichier
+        $extension = pathinfo($image, PATHINFO_EXTENSION);
+        // Construire le nouveau chemin de fichier
+        $newFilePath = "$targetFolder/$numImage.$extension";
+
+        // Déplacer le fichier
+        if (rename($image, $newFilePath)) {
+            $result['success'][] = $newFilePath;
+        } else {
+            $result['errors'][] = "Erreur lors du déplacement de l'image : $image";
+        }
+
+        $numImage++;
+    }
+
+    return $result;
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $note = $_POST["note-value"];
+    $dateAvis = $_POST["date"];
+    $compagnie = $_POST["compagnie"];
+    $titreAvis = $_POST['titre'];
+    $texteAvis = $_POST['avis'];
+    
+}
+
+?>
+
 <section>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="detailsOffer.php" method="post" enctype="multipart/form-data">
         <div id="note">
             <!-- Étoiles pour la notation -->
             <?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -10,7 +77,7 @@
                     aria-label="Étoile <?= $i ?> sur 5">
                 </div>
             <?php } ?>
-            <input name="note" id="note-value" type="hidden" value="0">
+            <input name="note" id="note-value" type="hidden" value="" required>
         </div>
 
         <!-- Champ pour la date -->
@@ -22,6 +89,7 @@
                 name="date"
                 min="<?= date('Y-m', strtotime('-1 year')) ?>"
                 max="<?= date('Y-m') ?>"
+                value="<?= date('Y-m') ?>"
                 required>
         </div>
 
@@ -75,6 +143,8 @@
                 <input id="consentement" name="consentement" type="checkbox" required>
                 <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
             </div>
+
+            <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
 
             <button type="submit">Soumettre l'avis</button>
     </form>
@@ -169,7 +239,7 @@
         formData.append("unique_id", uniqueId);
 
         // Envoie les fichiers au serveur via une requête AJAX
-        fetch("upload_temp_files.php", {
+        fetch("uploadImageAvisTemp/upload_temp_files.php", {
                 method: "POST",
                 body: formData,
             })
@@ -191,7 +261,7 @@
         const afficheImages = document.getElementById("afficheImages");
         afficheImages.innerHTML = ""; // Réinitialise l'affichage
 
-        fetch(`list_temp_files.php?unique_id=${uniqueId}`)
+        fetch(`uploadImageAvisTemp/list_temp_files.php?unique_id=${uniqueId}`)
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
@@ -240,7 +310,7 @@
         formData.append("unique_id", uniqueId); // L'ID unique pour le dossier temporaire
 
         // Envoi de la requête AJAX pour supprimer le fichier
-        fetch("delete_temp_files.php", {
+        fetch("uploadImageAvisTemp/delete_temp_files.php", {
                 method: "POST",
                 body: formData
             })

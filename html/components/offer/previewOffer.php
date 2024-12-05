@@ -57,12 +57,6 @@ if (!$result) {
     $typeOffer = "parcs_attractions";
 }
 
-// Récupérer les détails de localisation
-$stmt = $conn->prepare("SELECT * FROM pact.localisations_offres WHERE idoffre = :idoffre");
-$stmt->bindParam(':idoffre', $idOffre);
-$stmt->execute();
-$lieu = $stmt->fetch(PDO::FETCH_ASSOC);
-
 // Fetch photos for the offer
 $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = :idoffre ORDER BY url ASC");
 $stmt->bindParam(':idoffre', $idOffre);
@@ -86,21 +80,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
                 <div id="tagPreview">
                     <?php 
-                    // Fetch tags associated with the offer
-                    $stmt = $conn->prepare("
-                        SELECT t.nomTag FROM pact._offre o
-                        LEFT JOIN pact._tag_parc tp ON o.idOffre = tp.idOffre
-                        LEFT JOIN pact._tag_spec ts ON o.idOffre = ts.idOffre
-                        LEFT JOIN pact._tag_Act ta ON o.idOffre = ta.idOffre
-                        LEFT JOIN pact._tag_restaurant tr ON o.idOffre = tr.idOffre
-                        LEFT JOIN pact._tag_visite tv ON o.idOffre = tv.idOffre
-                        LEFT JOIN pact._tag t ON t.nomTag = COALESCE(tp.nomTag, ts.nomTag, ta.nomTag, tr.nomTag, tv.nomTag)
-                        WHERE o.idOffre = :idoffre
-                        ORDER BY o.idOffre");
-                    $stmt->bindParam(':idoffre', $idOffre);
-                    $stmt->execute();
-                    $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    
+                    // Fetch tags associated with the offer   
                     foreach ($data[$idOffre]["tags"] as $tag) {
                     ?>
                         <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag))); ?></a>
