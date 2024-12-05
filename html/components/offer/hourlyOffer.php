@@ -158,7 +158,7 @@
                 date.setAttribute("name", "trip-start");
                 date.id = "dateRepN"+counterRep;
 
-                flatpickr("dateRepN"+counterRep, {
+                flatpickr("#dateRepN"+counterRep, {
                     altInput: true,
                     altFormat: "l j F Y",
                     dateFormat: "Y-m-d",
