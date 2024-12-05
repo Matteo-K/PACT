@@ -1530,7 +1530,7 @@ header ul+div {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .buttonDetailOffer,
-.tag,
+.tag :not(#previewOffer .tag),
 .ouvert,
 .ferme {
   display: inline-block;
@@ -3895,7 +3895,6 @@ details .nonLu, details .nonRepondu{
 /* ========================= */
 
 #previewOffer {
-  width: 100%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -3943,7 +3942,7 @@ details .nonLu, details .nonRepondu{
   align-items: center;
   justify-content: center;
   margin: 20px 0;
-  gap: 10px;
+  gap: 90px;
 }
 
 #iconeLienPreview img {
