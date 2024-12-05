@@ -146,8 +146,11 @@ $avis = $avisTemp;
 
 
 let listeAvis = <?php echo json_encode($avis) ?>;
+
+let currentPage = 1;
+let nbElement = 50;
 document.addEventListener('DOMContentLoaded', function() {
-    displayArrayAvis(listeAvis);
+    goToPage(currentPage);
 });
 
 let conteneurAvis = document.querySelector(".conteneurAvisPro");
@@ -166,7 +169,7 @@ const accentColor = getComputedStyle(root).getPropertyValue('--accent').trim();
 const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim();
 const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
 
-
+const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
 let contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
@@ -174,10 +177,10 @@ let contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 function afficheAvisSelect(numAvis) {
 
     conteneurAvis.style.display = "flex";
-    document.getElementById("aucunAvisSelect").style.display = "none";
+    aucunAvisSelect.style.display = "none";
 
     if(blocDetails && blocDetails.open){
-        closeDetails();
+        blocDetails.open = false;
     }
     
     //Changement de couleur du li sélectionné et on remet les autres en gris
@@ -212,7 +215,7 @@ function afficheAvisSelect(numAvis) {
     contenuAvis.textContent = listeAvis[numAvis]['content'];
     
     //changement date publication et visite
-    dateAvis.textContent = "Visité en" +  listeAvis[numAvis]['mois'] + " " + listeAvis[numAvis]['annee'] + formatDateDiff(listeAvis[numAvis]['datepublie']);
+    dateAvis.textContent = "Visité en " +  listeAvis[numAvis]['mois'] + " - " + listeAvis[numAvis]['annee'] + formatDateDiff(listeAvis[numAvis]['datepublie']);
 }
 
 
@@ -283,14 +286,14 @@ function openDetails() {
 }
 
 function closeDetails() {
-    //contenuDetails = document.querySelector("#avisProS2 .contentDetails");
-    console.log(contenuDetails);
     let height = contenuDetails.scrollHeight;
     contenuDetails.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
     requestAnimationFrame(() => {
         contenuDetails.style.maxHeight = "0"; // Réduit à 0 pour l'animation
     });
-    conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal
+    if (getComputedStyle(aucunAvisSelect).display == "none")) {
+        conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal si un avis est select
+     }
 }
 
 
@@ -300,11 +303,16 @@ const selectTri = document.getElementById("TridateAvis");
 const chbxNonLu = document.getElementById("fltAvisNonLus");
 const chbxNonRep = document.getElementById("fltAvisNonRep");
 
-selectTri.addEventListener('change', () => displayArrayAvis(listeAvis));
-chbxNonLu.addEventListener('change', () => displayArrayAvis(listeAvis));
-chbxNonRep.addEventListener('change', () => displayArrayAvis(listeAvis));
+selectTri.addEventListener('change', () => goToPage(currentPage));
+chbxNonLu.addEventListener('change', () => goToPage(1));
+chbxNonRep.addEventListener('change', () => goToPage(1));
 
-function displayArrayAvis(arrayAvis) {
+function goToPage(NPage) {
+    currentPage = NPage;
+    displayArrayAvis(arrayAvis, (NPage - 1) * nbElement, nbElement);
+}
+
+function displayArrayAvis(arrayAvis, elementStart, nbElement) {
     const blocListAvis = document.getElementById("listeAvis");
     
     let array = Object.entries(arrayAvis);
@@ -318,9 +326,16 @@ function displayArrayAvis(arrayAvis) {
 
     blocListAvis.innerHTML = "";
 
-    array.forEach(avis => {
-        blocListAvis.appendChild(displayAvis(avis[1]));
-    });
+    if (array.length != 0) {
+        let avis = array.slice(elementStart, elementStart + nbElement);
+            array.forEach(avis => {
+            blocListAvis.appendChild(displayAvis(avis[1]));
+        });
+    } else {
+        let avis = document.createElement("p");
+        avis.textContent = "Aucun avis trouvé";
+        bloc.appendChild(avis);
+    }
 }
 
 /**

@@ -1611,17 +1611,12 @@ header ul+div {
   display: none;
 }
 
-#detailsOffer figure {
-  max-width: 120px;
-  max-height: 90px;
+#detailsOffer img {
+  max-width: 150px;
+  max-height: 120px;
   margin: 5px;
   overflow: hidden;
   cursor: pointer;
-}
-
-#detailsOffer img {
-  width: 100%;
-  height: auto;
   border-radius: 3px;
   position: static;
 }
@@ -3600,13 +3595,18 @@ details .nonLu, details .nonRepondu{
   width: 2em;
   height: 2em;
   position: absolute;
-  top: 10px;
-  right: 0;
+  top: 0.25em;
+  right: 0.5em;
 }
 
 #ligneTitreAvis > img:first-child{
+  width: 3em;
+  height: 3em;
+  position: absolute;
+  top: -0.25em;
   left: 0;
 }
+
 
 .conteneurAvisPro .noteEtoile{
   width: 100%;
