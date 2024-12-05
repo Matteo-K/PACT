@@ -37,14 +37,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['typeUser'] = 'admin';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
             
-            ?>
-            <form id='redirectForm1' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='<?php echo $idOffre?>'>
-                  </form>
-                  <script>
-                    document.getElementById('redirectForm1').submit();
-                  </script>";
-            <?php
+            if (!empty($idOffre)) {
+                ?>
+                <form id='redirectForm' method='POST' action='detailsOffer.php'>
+                    <input type='hidden' name='idoffre' value='<?php echo htmlspecialchars($idOffre); ?>'>
+                </form>
+                <script>
+                    document.getElementById('redirectForm').submit();
+                </script>
+                <?php
+                exit();
+            } else {
+                // Gestion d'erreur si l'idOffre n'est pas défini
+                header("Location: index.php");
+                exit();
+            }
+            
             exit();
         }
 
@@ -58,14 +66,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            ?>
-            <form id='redirectForm2' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='<?php echo $idOffre?>'>
-                  </form>
-                  <script>
-                    document.getElementById('redirectForm2').submit();
-                  </script>";
-            <?php
+            if (!empty($idOffre)) {
+                ?>
+                <form id='redirectForm' method='POST' action='detailsOffer.php'>
+                    <input type='hidden' name='idoffre' value='<?php echo htmlspecialchars($idOffre); ?>'>
+                </form>
+                <script>
+                    document.getElementById('redirectForm').submit();
+                </script>
+                <?php
+                exit();
+            } else {
+                // Gestion d'erreur si l'idOffre n'est pas défini
+                header("Location: index.php");
+                exit();
+            }
+            
             exit();
         }
 
@@ -79,14 +95,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            ?>
-            <form id='redirectForm3' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='<?php echo $idOffre?>'>
-                  </form>
-                  <script>
-                    document.getElementById('redirectForm3').submit();
-                  </script>";
-            <?php
+            if (!empty($idOffre)) {
+                ?>
+                <form id='redirectForm' method='POST' action='detailsOffer.php'>
+                    <input type='hidden' name='idoffre' value='<?php echo htmlspecialchars($idOffre); ?>'>
+                </form>
+                <script>
+                    document.getElementById('redirectForm').submit();
+                </script>
+                <?php
+                exit();
+            } else {
+                // Gestion d'erreur si l'idOffre n'est pas défini
+                header("Location: index.php");
+                exit();
+            }
+            
             exit();
         }
 
@@ -100,14 +124,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            ?>
-            <form id='redirectForm4' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='<?php echo $idOffre?>'>
-                  </form>
-                  <script>
-                    document.getElementById('redirectForm4').submit();
-                  </script>";
-            <?php
+            if (!empty($idOffre)) {
+                ?>
+                <form id='redirectForm' method='POST' action='detailsOffer.php'>
+                    <input type='hidden' name='idoffre' value='<?php echo htmlspecialchars($idOffre); ?>'>
+                </form>
+                <script>
+                    document.getElementById('redirectForm').submit();
+                </script>
+                <?php
+                exit();
+            } else {
+                // Gestion d'erreur si l'idOffre n'est pas défini
+                header("Location: index.php");
+                exit();
+            }
+            
             exit();
         } else {
             $error = "Identifiant ou mot de passe incorrect.";
