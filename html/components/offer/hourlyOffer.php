@@ -1,3 +1,6 @@
+<?php
+$is_show;
+?>
 <form id="hourlyOffer" action="post.php" method="post">
     <?php
         $stmt = $conn->prepare("SELECT table_name
@@ -301,4 +304,4 @@
         <?php
     }
     ?>
-    <input type="hidden" name="typeOffre" id="typeOffre" value="<?php echo $result ?>">
+    <input type="hidden" name="typeOffre" id="typeOffre" value="<?php echo $is_show ?>">
