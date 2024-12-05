@@ -40,22 +40,18 @@ $avis = $avisTemp;
             ?>
             <h3>
                 <div class="nonLu"></div>
-                <label for="fltAvisNonLus">
-                    <input type="checkbox" name="fltAvisNonLus" id="fltAvisNonLus">
-                    <span class="checkmark"></span>
-                    Non lus
-                </label>
+                Non lus
+                <input type="checkbox" name="fltAvisNonLus" id="fltAvisNonLus">
+                <label for="fltAvisNonLus">Filtrer par</label>
             </h3>
             <h3>
                 <?php echo $avisN0["avisnonlus"] ?>
             </h3>
             <h3>
                 <div class="nonRepondu"></div>
-                <label for="fltAvisNonLus">
-                    <input type="checkbox" name="fltAvisNonRep" id="fltAvisNonRep">
-                    <span class="checkmark"></span>
-                    Non répondus
-                </label>
+                Non répondus
+                <input type="checkbox" name="fltAvisNonRep" id="fltAvisNonRep">
+                <label for="fltAvisNonRep">Filtrer par</label>
             </h3>
             <h3>
                 <?php echo $avisN0["avisnonrepondus"] ?>
@@ -179,8 +175,14 @@ const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
 let contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
+let avisPrecedent = -1;
 
 function afficheAvisSelect(numAvis) {
+
+    if (avisPrecedent != -1) {
+        li.style.background = `linear-gradient(90deg, ${accentColor} 0%, ${accentColor} 80%, transparent 100%)`;
+
+    }
 
     conteneurAvis.style.display = "flex";
     aucunAvisSelect.style.display = "none";
