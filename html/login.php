@@ -6,12 +6,8 @@
     require_once 'db.php';
 
     // Vérifier si l'utilisateur est déjà connecté
-    if (isset($_SESSION['idUser'])) {
-        // Si l'utilisateur est connecté, rediriger vers la page précédente
-        echo '<script>
-                const redirectTo = document.referrer || "index.php";
-                window.location.href = redirectTo;
-              </script>';
+    if(isset($_SESSION['idUser'])){
+        header("Location: index.php");
         exit();
     }
 
@@ -29,7 +25,11 @@
             // Connexion réussie
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
-            $connexionStatus = 'success';
+
+            // Rediriger vers la page précédente ou vers la page par défaut
+            $redirectTo = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
+            header("Location: " . $redirectTo);
+            exit();
         } 
         
         else {
@@ -42,7 +42,10 @@
                 // Connexion réussie
                 $_SESSION['idUser'] = $proUser['idu'];
                 $_SESSION['typeUser'] = 'pro_prive'; // Détermine le type
-                $connexionStatus = 'success';
+                // Rediriger vers la page précédente ou vers la page par défaut
+                $redirectTo = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
+                header("Location: " . $redirectTo);
+                exit();
             } 
             
             else {
@@ -55,7 +58,10 @@
                     // Connexion réussie
                     $_SESSION['idUser'] = $proUser['idu'];
                     $_SESSION['typeUser'] = 'pro_public'; // Détermine le type
-                    $connexionStatus = 'success';
+                    // Rediriger vers la page précédente ou vers la page par défaut
+                    $redirectTo = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
+                    header("Location: " . $redirectTo);
+                    exit();
                 } 
                 
                 else {
@@ -68,12 +74,14 @@
                         // Connexion réussie
                         $_SESSION['idUser'] = $member['idu'];
                         $_SESSION['typeUser'] = 'membre';
-                        $connexionStatus = 'success';
+                        // Rediriger vers la page précédente ou vers la page par défaut
+                        $redirectTo = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
+                        header("Location: " . $redirectTo);
+                        exit();
                     } 
                     
                     else {
                         $error = "Identifiant ou mot de passe incorrect.";
-                        $connexionStatus = 'error';
                     }
                 }
             }
@@ -135,24 +143,6 @@
             </div>
         </div>
     </main>
-
-    <script>
-        // Vérifier si la connexion a été réussie via PHP
-        const connexionStatus = '<?php echo $connexionStatus ?? ''; ?>';
-
-        // Si la connexion est réussie, rediriger vers la page précédente
-        if (connexionStatus === 'success') {
-            const redirectTo = document.referrer || 'index.php';
-            window.location.href = redirectTo;
-        }
-
-        // Afficher l'erreur si la connexion a échoué
-        if (connexionStatus === 'error') {
-            const errorMessage = document.querySelector('#messageErreur');
-            if (errorMessage) {
-                errorMessage.style.display = 'block';
-            }
-        }
-    </script>
 </body>
+<script src="js/validationFormInscription.js"></script>
 </html>
