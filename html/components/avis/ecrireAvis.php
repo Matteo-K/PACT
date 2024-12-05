@@ -3,12 +3,6 @@ function listImage($idOffre, $idComment) {
     // Chemin du dossier temporaire
     $dossier = realpath('../img/imageAvis/' . $idOffre . '/' . $idComment . '/');
 
-    // Vérifie si le dossier existe
-    if (!is_dir($dossier)) {
-        echo json_encode(['success' => false, 'message' => 'Aucun fichier trouvé pour cet utilisateur.']);
-        exit;
-    }
-
     // Liste les fichiers dans le dossier
     $files = array_diff(scandir($dossier), ['.', '..']);
     $fileUrls = [];
@@ -26,7 +20,6 @@ function listImage($idOffre, $idComment) {
     }
 }
 
-// Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
 // Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
 function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
 {
