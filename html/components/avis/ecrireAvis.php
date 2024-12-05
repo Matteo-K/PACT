@@ -103,11 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $stmt->execute([$idUser]);
     $result = $stmt->fetchAll();
 
-    if (!$result) {
-        echo json_encode(['success' => false, 'message' => 'Utilisateur introuvable.']);
-        exit;
-    }
-
     $pseudo = $result[0]['pseudo'];
     list($year, $month) = explode('-', $dateAvis);
 
