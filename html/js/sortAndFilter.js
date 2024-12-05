@@ -324,58 +324,46 @@ function filtrerParStatuts(offers) {
 
 
 
-function filtrerParPeriode(offers) {
+// function filtrerParPeriode(offers) {
+//   const heureDepart = heureDebut.value ? new Date(`2024-12-05T${heureDebut.value}:00`) : null;
+//   const heureFin = heureFin.value ? new Date(`2024-12-05T${heureFin.value}:00`) : null;
 
-  // On récupère les valeurs des heures de début et de fin
-  const heureDepart = heureDebut.value ? new Date(`2024-12-05T${heureDebut.value}:00`) : null;
-  const heureFin = heureFin.value ? new Date(`2024-12-05T${heureFin.value}:00`) : null;
+//   if (!heureDepart || !heureFin) {
+//     return offers;
+//   }
 
-  // Si aucune plage horaire n'est sélectionnée, on retourne les offres sans filtrage
-  if (!heureDepart || !heureFin) {
-    return offers;  // Retourner toutes les offres si aucune période n'est sélectionnée
-  }
+//   const offresFiltrees = [];
 
-  // Tableau pour stocker les offres filtrées
-  const offresFiltrees = [];
+//   offers.forEach(offer => {
+//     let offreEstVisible = false;
 
-  // Filtrage des offres par catégorie et horaire
-  offers.forEach(offer => {
-    let offreEstVisible = false;
+//     if (offer.categorie === 'Restaurant' || offer.categorie === 'Visite' || offer.categorie === 'Parc' || offer.categorie === 'Activite') {
 
-    // Si l'offre est un restaurant, visite, ou parc d'attraction
-    if (offer.categorie === 'Restaurant' || offer.categorie === 'Visite' || offer.categorie === 'Parc' || offer.categorie === 'Activite') {
+//       const ouverture = new Date(`2024-12-05T${offer.heureOuverture}:00`);
+//       const fermeture = new Date(`2024-12-05T${offer.heureFermeture}:00`);
 
-      // On récupère l'heure d'ouverture et de fermeture de l'offre
-      const ouverture = new Date(`2024-12-05T${offer.heureOuverture}:00`);
-      const fermeture = new Date(`2024-12-05T${offer.heureFermeture}:00`);
+//       if ((ouverture >= heureDepart && ouverture <= heureFin) || 
+//           (fermeture >= heureDepart && fermeture <= heureFin) || 
+//           (ouverture <= heureDepart && fermeture >= heureFin)) {
+//         offreEstVisible = true;
+//       }
+//     }
 
-      // Vérifier si l'heure d'ouverture et de fermeture de l'offre se chevauchent avec la plage horaire sélectionnée
-      if ((ouverture >= heureDepart && ouverture <= heureFin) || 
-          (fermeture >= heureDepart && fermeture <= heureFin) || 
-          (ouverture <= heureDepart && fermeture >= heureFin)) {
-        offreEstVisible = true;
-      }
-    }
+//     if (offer.categorie === 'Spectacle') {
+//       const heureOffre = new Date(`2024-12-05T${offer.horaire}:00`);
 
-    // Si l'offre est un spectacle (une seule heure)
-    if (offer.categorie === 'Spectacle') {
-      const heureOffre = new Date(`2024-12-05T${offer.horaire}:00`);
+//       if (heureOffre >= heureDepart && heureOffre <= heureFin) {
+//         offreEstVisible = true;
+//       }
+//     }
 
-      // Vérifier si l'heure du spectacle est dans la plage horaire sélectionnée
-      if (heureOffre >= heureDepart && heureOffre <= heureFin) {
-        offreEstVisible = true;
-      }
-    }
+//     if (offreEstVisible) {
+//       offresFiltrees.push(offer);
+//     }
+//   });
 
-    // Si l'offre est visible, on l'ajoute au tableau des offres filtrées
-    if (offreEstVisible) {
-      offresFiltrees.push(offer);
-    }
-  });
-
-  // Retourner les offres filtrées
-  return offresFiltrees;
-}
+//   return offresFiltrees;
+// }
 
 
 
@@ -383,45 +371,46 @@ function filtrerParPeriode(offers) {
 
 
 // Fonction de filtre par période
-// function filtrerParPeriode(offers) {
-//   const dateDepartValue = new Date(dateDepart.value);
-//   const dateFinValue = new Date(dateFin.value);
-//   const heureDebutValue = heureDebut.value;
-//   const heureFinValue = heureFin.value;
+function filtrerParPeriode(offers) {
+  const dateDepartValue = new Date(dateDepart.value);
+  const dateFinValue = new Date(dateFin.value);
+  const heureDebutValue = heureDebut.value;
+  const heureFinValue = heureFin.value;
 
-//   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
-//     return offers;
-//   }
+  if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
+    return offers;
+  }
 
-//   return offers.filter(offer => {
-//     if (!offer.heureOuverture || !offer.heureFermeture) {
-//       return false;
-//     }
+  return offers.filter(offer => {
+    if (!offer.heureOuverture || !offer.heureFermeture) {
+      return false;
+    }
 
-//     let heureValide = true;
-//     if (heureDebutValue && heureFinValue) {
-//       const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
-//       const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
+    let heureValide = true;
+    if (heureDebutValue && heureFinValue) {
+      const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
+      const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
 
-//       const debutRange = heureDebutH * 60 + heureDebutM;
-//       const finRange = heureFinH * 60 + heureFinM;
+      const debutRange = heureDebutH * 60 + heureDebutM;
+      const finRange = heureFinH * 60 + heureFinM;
 
-//       const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
-//       const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
+      const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
+      const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
 
-//       const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
-//       const fermetureMinutes = fermetureH * 60 + fermetureM;
+      const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
+      const fermetureMinutes = fermetureH * 60 + fermetureM;
 
-//       if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
-//         heureValide = true;
-//       } else {
-//         heureValide = false;
-//       }
-//     }
+      if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
+        heureValide = true;
+      } else {
+        heureValide = false;
+      }
+    }
 
-//     return heureValide;
-//   });
-// }
+    return heureValide;
+  });
+}
+
 
 
 // 1- récup la date et l'heure de début
