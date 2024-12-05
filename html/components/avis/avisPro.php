@@ -324,6 +324,27 @@ function displayArrayAvis(arrayAvis) {
     if (array.length != 0) {
         array.forEach(avis => {
             blocListAvis.appendChild(displayAvis(avis[1]));
+        });
+        array.forEach(avis => {
+            blocListAvis.appendChild(displayAvis(avis[1]));
+        });
+        array.forEach(avis => {
+            blocListAvis.appendChild(displayAvis(avis[1]));
+        });
+        array.forEach(avis => {
+            blocListAvis.appendChild(displayAvis(avis[1]));
+        });
+        array.forEach(avis => {
+            blocListAvis.appendChild(displayAvis(avis[1]));
+        });
+        array.forEach(avis => {
+            blocListAvis.appendChild(displayAvis(avis[1]));
+        });
+        array.forEach(avis => {
+            blocListAvis.appendChild(displayAvis(avis[1]));
+        });
+        array.forEach(avis => {
+            blocListAvis.appendChild(displayAvis(avis[1]));
         }); 
     } else {
         let avis = document.createElement("p");
