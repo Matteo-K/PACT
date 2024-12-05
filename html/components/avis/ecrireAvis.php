@@ -18,7 +18,7 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
     }
 
     // Chemin du dossier cible
-    $targetFolder = "$uploadBasePath/$idOffre";
+    $targetFolder = $uploadBasePath . $idOffre;
 
     // Créer le dossier cible si nécessaire
     if (!is_dir($targetFolder)) {
@@ -43,7 +43,7 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
 
         // Générer un identifiant unique pour l'image
         $idImage = uniqid();
-        $newFilePath = "$targetFolder/$idImage.$extension";
+        $newFilePath = $targetFolder . "/" . $idImage.".".$extension;
 
         // Déplacer le fichier
         if (rename($image, $newFilePath)) {
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $idOffre = $_POST['idoffre'];
 
     // Déplacer les images vers le dossier de l'offre
-    $result = moveImagesToOfferFolder($idOffre, $tempFolder, "img/imageAvis");
+    $result = moveImagesToOfferFolder($idOffre, $tempFolder, "img/imageAvis/");
 
     // Debugging pour vérifier les résultats
     if (!empty($result['errors'])) {
