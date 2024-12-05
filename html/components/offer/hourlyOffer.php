@@ -171,7 +171,7 @@ $is_show;
                     String(date.getUTCMonth() + 1).padStart(2, "0") + "-" +
                     String(date.getUTCDate()).padStart(2, "0");
             }
-            let counterRep = 1;
+            let counterRep = 0;
             let date_ = new Date();
             let current_date = formatDate(date_);
             /**
@@ -186,7 +186,7 @@ $is_show;
                     const newBlock = document.createElement("div");
                     let date = document.createElement("input");
                     date.setAttribute("type", "text");
-                    date.setAttribute("name", "trip-start");
+                    date.setAttribute("name", "dates["+counterRep+"][trip-start]");
                     date.id = "dateRepN"+counterRep;
 
                     const span = document.createElement("span");
@@ -198,7 +198,7 @@ $is_show;
 
                     const inputHoraire1 = document.createElement("input");
                     inputHoraire1.setAttribute("type", "time");
-                    inputHoraire1.setAttribute("name", "HRepN"+counterRep+"_part1.1");
+                    inputHoraire1.setAttribute("name", "dates["+counterRep+"][HRep_part1.1]");
                     inputHoraire1.id = "HRepN"+counterRep+"_part1.1";
 
                     const lblRep2 = document.createElement("label");
@@ -207,7 +207,7 @@ $is_show;
 
                     const inputHoraire2 = document.createElement("input");
                     inputHoraire2.setAttribute("type", "time");
-                    inputHoraire2.setAttribute("name", "HRepN" + counterRep + "_part1.2");
+                    inputHoraire2.setAttribute("name", "dates["+counterRep+"][HRep_part1.2]");
                     inputHoraire2.id = "HRepN" + counterRep + "_part1.2";
 
                     span.appendChild(lblRep1);
