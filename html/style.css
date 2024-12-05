@@ -3435,7 +3435,7 @@ section#infoComp div {
   margin: 0;
   padding: 0;
   overflow-y: scroll;
-  height: 800px;
+  height: 600px;
   align-content: flex-start;
 }
 
@@ -3487,6 +3487,24 @@ section#infoComp div {
   right: -30px;
 }
 
+/* Scrollbar */
+
+#listeAvis::-webkit-scrollbar {
+  width: 10px;
+}
+
+#listeAvis::-webkit-scrollbar-thumb {
+  background: var(--bloc80);
+}
+
+#listeAvis::-webkit-scrollbar-thumb:hover {
+  background: var(--bloc);
+}
+
+#listeAvis::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
 /* bloc fermable */
 #avisproS2 > details{
   width: 100%;
@@ -3515,7 +3533,7 @@ summary::marker{
   transform: rotate(0deg); 
   transition: transform 0.5s ease; 
   margin-right: 8px; 
-  color: #000;
+  color: #fff;
   font-size: 30px;
 }
 

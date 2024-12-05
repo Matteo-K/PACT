@@ -328,11 +328,7 @@ function deleteImage(fileName, imgElement, index) {
             alert('Erreur lors de la suppression de l\'image sur le serveur : ' + data.error);
             // Recharger la liste des images pour restaurer l'état correct
             loadExistingImages();
-        } else {
-            // Si la suppression a réussi, afficher un message de succès
-            alert('Image supprimée avec succès.');
-            // Recharger la liste des images pour assurer que l'état est mis à jour
-        }
+        } 
     })
     .catch(error => {
         // En cas de problème avec la requête, restaurer l'image et afficher un message d'erreur
@@ -393,7 +389,6 @@ function deleteImage(fileName, imgElement, index) {
                     if (errors.length > 0) {
                         alert(`Erreur lors du téléchargement de "${file.name}" :\n${errors.map(e => e.error).join('\n')}`);
                     } else {
-                        alert(`Fichier "${file.name}" téléchargé avec succès !`);
                         loadExistingImages(); // Recharge la liste des images existantes
                     }
                 })
