@@ -172,8 +172,10 @@ function afficheAvisSelect(numAvis) {
     conteneurAvis.style.display = "flex";
     document.getElementById("aucunAvisSelect").style.display = "none";
 
-    closeDetails();
-
+    if(blocDetails.open){
+        closeDetails();
+    }
+    
     //Changement de couleur du li sélectionné et on remet les autres en gris
     document.querySelectorAll("#listeAvis > li").forEach((li, numLi) => {
         li.style.background = `linear-gradient(90deg, ${accentColor} 0%, ${accentColor} 80%, transparent 100%)`;
@@ -255,7 +257,7 @@ function formatDateDiff(dateString) {
 }
 
 const blocDetails = document.querySelector("#avisproS2 > details")
-const contenuDetails = document.querySelector("#avisPro2 > details > .contentdetails");
+const contenuDetails = document.querySelector("#avisPro2 .contentDetails");
 
 //Animation du bloc details
 blocDetails.addEventListener("toggle", () => {
@@ -268,7 +270,7 @@ blocDetails.addEventListener("toggle", () => {
 
     // Fonction pour ouvrir avec une animation
 function openDetails() {
-    const height = contenuDetails.scrollHeight; // Calcule la hauteur totale
+    let height = contenuDetails.scrollHeight; // Calcule la hauteur totale
     contenuDetails.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
     contenuDetails.addEventListener("transitionend", () => {
         if (blocDetails.open) {
@@ -280,7 +282,7 @@ function openDetails() {
 
 // Fonction pour fermer avec une animation
 function closeDetails() {
-    const height = contenuDetails.scrollHeight; // Hauteur actuelle
+    let height = contenuDetails.scrollHeight; // Hauteur actuelle
     contenuDetails.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
     requestAnimationFrame(() => { // Assure une relecture du style
         contenuDetails.style.maxHeight = "0"; // Puis réduit à 0 pour l'animation
