@@ -70,7 +70,7 @@ if ($categorie["_visite"]) {
 
     </div>
 
-
+    <!-- Gestion de l'accessibilité (handicap ) depuis la BDD -->
     <div class="access">
         <select name="nomAccess" id="nomAccess">
             <option value="nomAccess">-- Sélectionner un handicap --</option>
@@ -79,7 +79,7 @@ if ($categorie["_visite"]) {
             <?php } ?>
         </select>
 
-
+        <!-- Gestion du prix minimum pour une visite -->
         <div class="divPrixMin">
             <label for="PrixMinVisit">Prix minimum</label>
 
@@ -115,7 +115,7 @@ if ($categorie["_visite"]) {
 
 
 
-<!-- Script Js de activity -->
+<!-- Script Js  -->
 <script>
     // Récupération des éléments nécessaires
     const selectLangue = document.getElementById('selectionLangue');
