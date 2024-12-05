@@ -324,8 +324,8 @@ function filtrerParStatuts(offers) {
 
 
 function filtrerParPeriode(offers) {
-  const heureDepart = heureDebut.value
-  const heureFin = heureFin.value
+  const heureDepart = heureDebut.value;
+  const heureFin = heureFin.value;
 
   // Si aucune plage horaire n'est sélectionnée, on retourne les offres sans filtrage
   if (!heureDepart || !heureFin) {
