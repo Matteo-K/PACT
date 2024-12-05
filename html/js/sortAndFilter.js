@@ -324,56 +324,44 @@ function filtrerParStatuts(offers) {
 
 
 function filtrerParPeriode(offers) {
-  // Récupération des valeurs des filtres de période
-  const dateDepartValue = dateDepart.value;
-  const dateFinValue = dateFin.value;
-  const heureDebutValue = heureDebut.value;
-  const heureFinValue = heureFin.value;
+  const heureDepart = dateDepart.value ? new Date(`1970-01-01T${heureDebut.value}:00`) : null;
+  const heureFin = dateFin.value ? new Date(`1970-01-01T${heureFin.value}:00`) : null;
 
-  // Si aucune valeur n'est sélectionnée pour la période, on retourne directement la liste des offres sans filtre
-  if (!dateDepartValue && !heureDebutValue && !dateFinValue && !heureFinValue) {
+  // Si aucune plage horaire n'est sélectionnée, on retourne les offres sans filtrage
+  if (!heureDepart || !heureFin) {
     return offers;
   }
 
-  // Conversion des dates et heures sélectionnées en objets Date
-  const dateDepartDate = dateDepartValue ? new Date(dateDepartValue) : null;
-  const dateFinDate = dateFinValue ? new Date(dateFinValue) : null;
-  const heureDebutDate = heureDebutValue ? new Date(heureDebutValue) : null;
-  const heureFinDate = heureFinValue ? new Date(heureFinValue) : null;
-
+  // Filtrage des offres par catégorie et horaire
   return offers.filter(offer => {
-    // Conversion de la date de l'offre en objet Date
-    const offreDateDepart = new Date(offer.dateDepart);
-    const offreHeureDebut = new Date(offer.heureOuverture);
-    const offreDateFin = new Date(offer.dateFin);
-    const offreHeureFin = new Date(offer.heureFermeture);
+    let offreEstVisible = false;
 
-    // Vérification de la validité de la période en comparant les dates et heures
-    let isValid = true;
+    // Si l'offre est un restaurant, visite, ou parc d'attraction
+    if (offer.categorie === 'Restaurant' || offer.categorie === 'Visite' || offer.categorie === 'Parc') {
+      // On récupère l'heure d'ouverture et de fermeture de l'offre
+      const ouverture = new Date(`1970-01-01T${offer.heureOuverture}:00`);
+      const fermeture = new Date(`1970-01-01T${offer.heureFermeture}:00`);
 
-    // Vérification de la date de départ
-    if (dateDepartDate && offreDateDepart < dateDepartDate) {
-      isValid = false;
+      // Vérifier si l'heure d'ouverture et de fermeture de l'offre se chevauchent avec la plage horaire sélectionnée
+      if ((ouverture >= heureDepart && ouverture <= heureFin) || (fermeture >= heureDepart && fermeture <= heureFin) || (ouverture <= heureDepart && fermeture >= heureFin)) {
+        offreEstVisible = true;
+      }
     }
 
-    // Vérification de l'heure de début
-    if (heureDebutDate && offreHeureDebut < heureDebutDate) {
-      isValid = false;
+    // Si l'offre est une activité ou un spectacle (une seule heure)
+    if (offer.categorie === 'Activite' || offer.categorie === 'Spectacle') {
+      const heureOffre = new Date(`1970-01-01T${offer.heure}:00`);
+
+      // Vérifier si l'heure de l'offre est dans la plage horaire sélectionnée
+      if (heureOffre >= heureDepart && heureOffre <= heureFin) {
+        offreEstVisible = true;
+      }
     }
 
-    // Vérification de la date de fin
-    if (dateFinDate && offreDateFin > dateFinDate) {
-      isValid = false;
-    }
-
-    // Vérification de l'heure de fin
-    if (heureFinDate && offreHeureFin > heureFinDate) {
-      isValid = false;
-    }
-
-    return isValid;
+    return offreEstVisible;
   });
 }
+
 
 
 
