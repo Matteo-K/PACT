@@ -55,12 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            echo "<form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='$idOffre'>
-                  </form>
-                  <script>
-                    document.getElementById('redirectForm').submit();
-                  </script>";
+            echo htmlspecialchars("<form id='redirectForm' method='POST' action='detailsOffer.php'>
+            <input type='hidden' name='idoffre' value='$idOffre'>
+          </form>
+          <script>
+            document.getElementById('redirectForm').submit();
+          </script>");
             exit();
         }
 
@@ -74,12 +74,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            echo "<form id='redirectForm' method='POST' action='detailsOffer.php'>
+            echo htmlspecialchars("<form id='redirectForm' method='POST' action='detailsOffer.php'>
                     <input type='hidden' name='idoffre' value='$idOffre'>
                   </form>
                   <script>
                     document.getElementById('redirectForm').submit();
-                  </script>";
+                  </script>");
             exit();
         }
 
@@ -93,12 +93,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            echo "<form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='$idOffre'>
-                  </form>
-                  <script>
-                    document.getElementById('redirectForm').submit();
-                  </script>";
+            echo htmlspecialchars("<form id='redirectForm' method='POST' action='detailsOffer.php'>
+            <input type='hidden' name='idoffre' value='$idOffre'>
+          </form>
+          <script>
+            document.getElementById('redirectForm').submit();
+          </script>");
             exit();
         } else {
             $error = "Identifiant ou mot de passe incorrect.";
