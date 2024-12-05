@@ -1,22 +1,26 @@
 <?php
 
 print_r($_POST);
-// Définir la locale en français
-setlocale(LC_TIME, 'fr_FR.UTF-8');
 
-// Supposons que `$dates` contient la date en format "Y-m-d"
+$dateJour = [
+  "Monday"    => "Lundi",
+  "Tuesday"   => "Mardi",
+  "Wednesday" => "Mercredi",
+  "Thursday"  => "Jeudi",
+  "Friday"    => "Vendredi",
+  "Saturday"  => "Samedi",
+  "Sunday"    => "Dimanche"
+];
+
 $date = $_POST["dates"];
-$dates = $date[1]["trip-start"]; // Par exemple : "2024-12-05"
+$dates = $date[1]["trip-start"];
 
-// Formater la date en français
-$timestamp = strtotime($dates);
-$formattedDate = strftime("%A %Y-%m-%d", $timestamp); // Format : "jeudi 2024-12-05"
+$formattedDate = date("l Y-m-d", strtotime($dates));
+$jour = explode(" ",$formattedDate);
 
-// Découper en jour de la semaine et date
-$jour = explode(" ", $formattedDate);
+$frenchDay = $dateJour[$jour[0]];
 
 print_r($jour);
-
 
 
 ?>
