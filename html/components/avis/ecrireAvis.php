@@ -76,9 +76,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
     $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
 
-    $stmt = $conn->prepare("INSERT INTO pact.avis (pseudo, content, datepublie, idoffre, note, companie, mois, annee, titre) 
-                        VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$pseudo, $texteAvis, $idOffre, $note, $compagnie, $monthInWords, $year, $titreAvis]);
+    $stmt = $pdo->prepare("
+        INSERT INTO pact._commentaire (idU, content, datePublie)
+        VALUES (?, ?, NOW())
+        RETURNING idC;
+    ");
+    $stmt->execute([$idUser,$texteAvis]);
+    $idComment = $stmt->fetchColumn();
+
+    $stmt = $conn -> prepare("INSERT INTO pact.avis (idc,idoffre,note,companie,mois,annee,titre) VALUES (?,?,?,?,?,?,?)");
+    $stmt -> execute([$idComment,$idOffre,$note,$compagnie,$monthInWords,$year,$titreAvis]);
 
     // Déplacer les images vers le dossier de l'offre
     $result = moveImagesToOfferFolder($idOffre,$idComment, $tempFolder, "img/imageAvis/");
