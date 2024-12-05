@@ -1221,9 +1221,8 @@ header ul+div {
 
 #hourlyOffer h4,
 #contactOffer h4 {
-  font-weight: normal;
-  font-size: 1.25em;
-  margin-bottom: -7px;
+  font-weight: bold;
+  font-size: 1.6em;
 }
 
 #hourlyOffer div>div {
@@ -3468,10 +3467,8 @@ section#infoComp div {
   overflow: none;
 }
 
-#avisPro li > .nonLu, #avisPro li > .nonRepondu{
-  position: absolute;
-  left: 0;
-  bottom: 20px;
+#avisPro ul .nonLu, #avisPro ul .nonRepondu{
+  margin: 60px 0 5px 5px;
 }
 
 /* bloc fermable */
@@ -3564,7 +3561,8 @@ details.animating .contentDetails {
 }
 
 details .nonLu, details .nonRepondu{
-  margin: 60px 0 5px 5px;
+  position: absolute;
+  left: 20px;
 }
 
 #avisPro details input[type="checkbox"]{
