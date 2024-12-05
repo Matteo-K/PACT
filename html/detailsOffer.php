@@ -960,10 +960,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
 <script>
-    if (!<?=$isLoggedIn?>) {
-        document.getElementById('formForLogin').submit();
-    }
-    
+    let publiez = document.getElementById("tab-publiez");
+    publiez.addEventListener("click", (event)=>{
+        if (!<?=$isLoggedIn?>) {
+            document.getElementById('formForLogin').submit();
+        }
+    })
+
     document.addEventListener('DOMContentLoaded', function () {
 
         const nbWeekInput = document.getElementById('nbWeekALaUne');
