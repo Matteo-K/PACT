@@ -3,13 +3,21 @@ function listImage($idOffre, $idComment) {
     // Chemin du dossier temporaire
     $dossier = realpath('../img/imageAvis/' . $idOffre . '/' . $idComment . '/');
 
-    // Liste les fichiers dans le dossier
+    // Vérifie si le dossier existe et est valide
+    if ($dossier === false || !is_dir($dossier)) {
+        return ['success' => false, 'message' => 'Le dossier n\'existe pas ou est invalide.'];
+    }
+
+    // Liste les fichiers dans le dossier (en excluant '.' et '..')
     $files = array_diff(scandir($dossier), ['.', '..']);
     $fileUrls = [];
 
     // Parcours chaque fichier et construit l'URL complète
     foreach ($files as $file) {
-        $fileUrls[] = '/img/imageAvis/' . $idOffre . '/' . $idComment . '/' . $file;
+        // On vérifie que c'est bien un fichier et pas un sous-dossier
+        if (is_file($dossier . '/' . $file)) {
+            $fileUrls[] = '/img/imageAvis/' . $idOffre . '/' . $idComment . '/' . $file;
+        }
     }
 
     // Vérifie s'il y a des fichiers à renvoyer
@@ -19,6 +27,7 @@ function listImage($idOffre, $idComment) {
         return ['success' => false, 'message' => 'Aucun fichier disponible.'];
     }
 }
+
 
 // Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
 function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
