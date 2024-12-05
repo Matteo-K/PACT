@@ -4188,7 +4188,6 @@ details .nonLu, details .nonRepondu{
   margin-right: 5px;
 }
 
-
 #visit>div[class="visGuideeEtDuree"]>label[class="labH"],
 #visit>div[class="divPrixMin"]>label[class="labEuro"] {
   margin-left: 5px;
@@ -4212,7 +4211,8 @@ details .nonLu, details .nonRepondu{
   flex-direction: column;
 }
 
-#visit>div[class="languesProp"]>select {
+#visit>div[class="languesProp"]>select,
+#visit>div[class="access"]>select {
   width: 500px;
   height: 35px;
 }

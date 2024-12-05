@@ -3,7 +3,6 @@
 require_once 'config.php';
 $pasok=false;
 $offreId = $_POST['idOffre'];
-print_r($_POST);
 if ($_POST['type'] == 'ajout') {
     if ($_POST['nomOption']=='ALaUne') {
         $prix = $_POST['nbWeek']*20;
@@ -66,7 +65,7 @@ if ($_POST['type'] == 'ajout') {
                         $stmt = $conn->prepare("INSERT INTO pact.option (idOffre,dateLancement,dateFin,duree_total,prix_total,nomOption) VALUES (?,?,?,?,?,?)");
                         $stmt->execute([$_POST['idOffre'],$_POST['customDate'],$formattedDate, $_POST['nbWeek'], $prix , $_POST['nomOption']]);
                     } else {
-                        $pasok=true;
+                        $pasok=2;
                     }
                 }
             }else {
@@ -126,7 +125,8 @@ echo <<<HTML
 <form id="redirectForm" method="POST" action="detailsOffer.php">
     <input type="hidden" name="error" value="{$pasok}">
     <input type="hidden" name="idoffre" value="{$offreId}">
-    <input type="hidden" name="popup">
+    <input type="hidden" name="popup" value="true">
+    <input type="hidden" name="popupTab" value="2"> 
 </form>
 <script>
    document.getElementById('redirectForm').submit();

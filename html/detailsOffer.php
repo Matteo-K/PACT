@@ -931,14 +931,24 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h3 id="tab-avis">Avis</h3>
                 <h3 id="tab-publiez">Publiez un avis</h3>
             </nav>
-
+            
             <div id="avis-section">
                 <!-- Contenu chargé dynamiquement -->
                 <div id="avis-component" style="display: flex;">
                     <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
                 </div>
                 <div id="publiez-component" style="display: none;">
-                    <?php require_once __DIR__ . "/components/avis/ecrireAvis.php"; ?>
+                    <?php 
+                    if($isLoggedIn){
+                        require_once __DIR__ . "/components/avis/ecrireAvis.php"; 
+                    }else{
+                    ?> 
+                    <form id="formForLogin" action="login.php" method="post">
+                        <input type="hidden" name="idOffre" value="<?=$idOffre?>">
+                    </form>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -950,6 +960,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
 <script>
+    if (!<?=$isLoggedIn?>) {
+        document.getElementById('formForLogin').submit();
+    }
+    
     document.addEventListener('DOMContentLoaded', function () {
 
         const nbWeekInput = document.getElementById('nbWeekALaUne');
@@ -1105,11 +1119,31 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     const body = document.body;
     console.log("js1");
     // Fonction pour afficher le modal
-    function openModal() {
+    function openModal(tabIndex = 1) {
     console.log("hop");
-      modal.style.display = "block";
-      body.classList.add("no-scroll");
-    }
+    modal.style.display = "block";
+    body.classList.add("no-scroll");
+
+    // Sélectionner l'onglet à ouvrir
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.contentPop');
+
+    // Désactive tous les onglets et cache tous les contenus
+    tabs.forEach(tab => tab.classList.remove('active'));
+    contents.forEach(content => content.classList.remove('active'));
+
+    // Active l'onglet correspondant
+    const targetTab = tabs[tabIndex - 1]; // Convertir l'index pour qu'il corresponde à l'index des onglets
+    targetTab.classList.add('active');
+
+    // Affiche le contenu associé à l'onglet
+    const targetContent = document.getElementById(`content-${tabIndex}`);
+    targetContent.classList.add('active');
+
+    // Met à jour la position du trait sous l'onglet
+    updateUnderline();
+}
+
     console.log("js2");
     // Fonction pour fermer le modal
     function closeModal() {
@@ -1258,7 +1292,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             message.style.display = 'none';
         }
 
-        
 
         try {
             document.getElementById('tab-avis').addEventListener('click', function() {
