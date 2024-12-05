@@ -158,15 +158,6 @@
                 date.setAttribute("name", "trip-start");
                 date.id = "dateRepN"+counterRep;
 
-                flatpickr("#dateRepN"+counterRep, {
-                    altInput: true,
-                    altFormat: "l j F Y",
-                    dateFormat: "Y-m-d",
-                    locale: "fr",
-                    defaultDate: current_date,
-                    minDate: current_date
-                });
-
                 let span = document.createElement("span");
                 span.classList.add("hourly1");
 
@@ -208,6 +199,16 @@
 
                 // Ajout du nouveau bloc au bloc de représentation
                 dateContainer.appendChild(newBlock);
+
+                flatpickr("#"+date.id, {
+                    altInput: true,
+                    altFormat: "l j F Y",
+                    dateFormat: "Y-m-d",
+                    locale: "fr",
+                    defaultDate: current_date,
+                    minDate: current_date
+                });
+
             }
 
             addDateRep();
