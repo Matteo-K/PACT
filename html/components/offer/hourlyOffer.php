@@ -136,9 +136,29 @@
         <?php 
             $stmt = $conn->prepare("SELECT * FROM pact._horaireprecise where idoffre = ?");
             $stmt->execute([$idOffre]);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
+        <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($result)); ?>'></div>
         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const offersDataElement = document.getElementById('offers-data');
+                
+                const offersData = offersDataElement.getAttribute('data-offers');
+                // console.log(offersData); // Débugger
+
+                try {
+                    arrayOffer = JSON.parse(offersData);
+                    arrayOffer = Object.values(arrayOffer);
+                } catch (error) {
+                    console.error("Erreur de parsing JSON :", error);
+                }
+
+                console.log(arrayOffer);
+
+                arrayOffer.forEach(element => {
+                    
+                });
+            });
             /* Interraction horaire */
             let counterRep = 1;
             let date_ = new Date();
