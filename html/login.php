@@ -12,7 +12,7 @@ if (isset($_SESSION['idUser'])) {
 }
 
 // Vérification de la méthode POST et récupération de l'ID de l'offre
-$idOffre = $_POST['idOffre'] ?? null; // On récupère l'ID de l'offre si elle est présente dans le POST
+$idOffre = $_GET['idOffre'] ?? $_POST['idOffre'] ?? null; // Récupérer l'ID de l'offre s'il est passé dans l'URL ou le POST
 
 // Vérification de la connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_POST['motdepasseConnexion'])) {
@@ -29,10 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
-            // Si idOffre existe, rediriger vers detailsOffer.php, sinon vers index.php
-            $redirectUrl = isset($idOffre) ? "detailsOffer.php" : "index.php";
-            // Créer un formulaire caché et l'envoyer automatiquement
-            echo "<form id='redirectForm' method='POST' action='$redirectUrl'>
+            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
+            echo "<form id='redirectForm' method='POST' action='detailsOffer.php'>
                     <input type='hidden' name='idoffre' value='$idOffre'>
                   </form>
                   <script>
@@ -50,10 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
-            // Si idOffre existe, rediriger vers detailsOffer.php, sinon vers index.php
-            $redirectUrl = isset($idOffre) ? "detailsOffer.php" : "index.php";
-            // Créer un formulaire caché et l'envoyer automatiquement
-            echo "<form id='redirectForm' method='POST' action='$redirectUrl'>
+            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
+            echo "<form id='redirectForm' method='POST' action='detailsOffer.php'>
                     <input type='hidden' name='idoffre' value='$idOffre'>
                   </form>
                   <script>
@@ -71,10 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
-            // Si idOffre existe, rediriger vers detailsOffer.php, sinon vers index.php
-            $redirectUrl = isset($idOffre) ? "detailsOffer.php" : "index.php";
-            // Créer un formulaire caché et l'envoyer automatiquement
-            echo "<form id='redirectForm' method='POST' action='$redirectUrl'>
+            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
+            echo "<form id='redirectForm' method='POST' action='detailsOffer.php'>
                     <input type='hidden' name='idoffre' value='$idOffre'>
                   </form>
                   <script>
@@ -92,10 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
-            // Si idOffre existe, rediriger vers detailsOffer.php, sinon vers index.php
-            $redirectUrl = isset($idOffre) ? "detailsOffer.php" : "index.php";
-            // Créer un formulaire caché et l'envoyer automatiquement
-            echo "<form id='redirectForm' method='POST' action='$redirectUrl'>
+            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
+            echo "<form id='redirectForm' method='POST' action='detailsOffer.php'>
                     <input type='hidden' name='idoffre' value='$idOffre'>
                   </form>
                   <script>
@@ -110,6 +102,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
     }
 }
 ?>
+
+<!-- Le reste de votre HTML pour le formulaire de connexion -->
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
