@@ -35,12 +35,12 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
     }
 
     // Déplacement des images
-    $numImage = 1; // Compteur pour numéroter les images
+    $idImage=uniqid();
     foreach ($images as $image) {
         // Récupérer l'extension du fichier
         $extension = pathinfo($image, PATHINFO_EXTENSION);
         // Construire le nouveau chemin de fichier
-        $newFilePath = "$targetFolder/$numImage.$extension";
+        $newFilePath = "$targetFolder/$idImage.$extension";
 
         // Déplacer le fichier
         if (rename($image, $newFilePath)) {
@@ -48,8 +48,6 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
         } else {
             $result['errors'][] = "Erreur lors du déplacement de l'image : $image";
         }
-
-        $numImage++;
     }
 
     return $result;
@@ -60,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $compagnie = $_POST["compagnie"];
     $titreAvis = $_POST['titre'];
     $texteAvis = $_POST['avis'];
-
+    
     moveImagesToOfferFolder($idOffre, $tempFolder, "img/imageAvis");
 }
 
