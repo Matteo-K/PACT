@@ -121,51 +121,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
     $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
 
-    try {
-        $conn->beginTransaction();
+    $stmt = $conn->prepare("INSERT INTO pact._commentaire (idU, content, datePublie)VALUES (?, ?, NOW())RETURNING idC;");
+    $stmt->execute([$idUser, $texteAvis]);
+    $idComment = $stmt->fetchColumn();
 
-        $stmt = $conn->prepare("
-            INSERT INTO pact._commentaire (idU, content, datePublie)
-            VALUES (?, ?, NOW())
-            RETURNING idC;
-        ");
-        $stmt->execute([$idUser, $texteAvis]);
-        $idComment = $stmt->fetchColumn();
+    $stmt = $conn->prepare("INSERT INTO pact._avis (idc, idoffre, note, companie, mois, annee, titre, lu) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, false)");
+    $stmt->execute([$idComment, $idOffre, $note, $compagnie, $monthInWords, $year, $titreAvis]);
 
-        $stmt = $conn->prepare("INSERT INTO pact._avis (idc, idoffre, note, companie, mois, annee, titre, lu) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, false)");
-        $stmt->execute([$idComment, $idOffre, $note, $compagnie, $monthInWords, $year, $titreAvis]);
+    // Déplacer les images vers le dossier de l'offre
+    $moveResult = moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, "img/imageAvis/");
 
-        // Déplacer les images vers le dossier de l'offre
-        $moveResult = moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, "img/imageAvis/");
-
-        // Si des erreurs se produisent lors du déplacement des images, on les affiche
-        if (!empty($moveResult['errors'])) {
-            echo json_encode(['success' => false, 'errors' => $moveResult['errors']]);
-            $conn->rollBack();
-            exit;
-        }
-
-        // Insertion des images dans la base de données
-        $image = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
-        $imageAvis = $conn->prepare("INSERT INTO pact._avisimage (idc, url) VALUES (?, ?)");
-
-        $mesImages = listImage($idOffre, $idComment);
-
-        if ($mesImages['success']) {
-            foreach ($mesImages['files'] as $file) {
-                $fileName = pathinfo($file, PATHINFO_BASENAME);
-                $image->execute([$file, $fileName]);
-                $imageAvis->execute([$idComment, $file]);
-            }
-        }
-
-        $conn->commit();
-        echo json_encode(['success' => true, 'message' => 'Avis publié avec succès.']);
-    } catch (PDOException $e) {
+    // Si des erreurs se produisent lors du déplacement des images, on les affiche
+    if (!empty($moveResult['errors'])) {
+        echo json_encode(['success' => false, 'errors' => $moveResult['errors']]);
         $conn->rollBack();
-        echo json_encode(['success' => false, 'message' => 'Erreur de base de données : ' . $e->getMessage()]);
+        exit;
     }
+
+    // Insertion des images dans la base de données
+    $image = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
+    $imageAvis = $conn->prepare("INSERT INTO pact._avisimage (idc, url) VALUES (?, ?)");
+
+    $mesImages = listImage($idOffre, $idComment);
+
+    if ($mesImages['success']) {
+        foreach ($mesImages['files'] as $file) {
+            $fileName = pathinfo($file, PATHINFO_BASENAME);
+            $image->execute([$file, $fileName]);
+            $imageAvis->execute([$idComment, $file]);
+        }
+    }
+    echo json_encode(['success' => true, 'message' => 'Avis publié avec succès.']);
 }
 ?>
 

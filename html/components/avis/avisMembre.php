@@ -55,7 +55,7 @@ foreach ($avis as $a) {
             <article class="user">
                 <div class="infoUser">
                     <img src="<?= $a['membre_url'] ?>">
-                    <p><?= ucfirst(strtolower($a['pseudo'])) ?> </p>
+                    <p><?= ucfirst($a['pseudo']) ?> </p>
                 </div>
                 <div class="autreInfoAvis">
                     <div class="noteEtoile">
