@@ -382,6 +382,11 @@ function filtrerParPeriode(offers) {
   }
 
   return offers.filter(offer => {
+    const dateOffer = new Date(offer.date);
+    if (dateOffer < dateDepartValue || dateOffer > dateFinValue) {
+      return false;
+    }
+
     if (heureDebutValue && heureFinValue) {
 
       const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
@@ -390,9 +395,8 @@ function filtrerParPeriode(offers) {
       const debutRange = heureDebutH * 60 + heureDebutM;
       const finRange = heureFinH * 60 + heureFinM;
 
-      // Vérification si 'heureOuverture' et 'heureFermeture' sont valides
       if (!offer.heureOuverture || !offer.heureFermeture) {
-        return false;  // Si l'un des horaires est manquant, on exclut l'offre
+        return false;
       }
 
       const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
@@ -401,18 +405,18 @@ function filtrerParPeriode(offers) {
       const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
       const fermetureMinutes = fermetureH * 60 + fermetureM;
 
+      // Comparaison des plages horaires
       if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
         return true;
-      } 
-      
-      else {
-        return false;
       }
+      
+      return false;
     }
 
     return true;
   });
 }
+
 
 
 
