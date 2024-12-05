@@ -12,7 +12,7 @@
     }
 
     // Vérification du formulaire
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['login']) {
         $login = $_POST['login'];
         $password = $_POST['motdepasseConnexion'];
 
