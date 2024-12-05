@@ -3416,11 +3416,12 @@ section#infoComp div {
 }
 
 #avisPro ul {
+  display: flex;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow-y: scroll;
-  height: 500px;
+  height: 800px;
 }
 
 #avisPro li {
@@ -3430,9 +3431,11 @@ section#infoComp div {
   clip-path: polygon(7% 68%, 7% 0, 100% 0, 100% 90%, 30% 90%, 12% 90%, 0 100%);
   background: var(--secondary);
   background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary) 80%,  transparent 100%);
-  margin: 5px 0 10px 20px;
+  margin: 5px 0 10px 0;
   border-bottom-left-radius: 5px;
   position: relative;
+  width: 85%;
+  height: 70px;
 }
 
 #avisPro li:hover {
@@ -3554,8 +3557,7 @@ details.animating .contentDetails {
 }
 
 details .nonLu, details .nonRepondu{
-  position: absolute;
-  left: 20px;
+  margin: 60px 0 5px 5px;
 }
 
 #avisPro details input[type="checkbox"]{
