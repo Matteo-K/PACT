@@ -27,7 +27,8 @@ function listImage($idOffre, $idComment) {
 }
 
 // Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
-function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBasePath = __DIR__ . '/uploads') {
+function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
+{
     $result = [
         'success' => [],
         'errors' => []
@@ -89,13 +90,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     }
 
     // Préparation des données
-    $note = filter_input(INPUT_POST, 'note', FILTER_VALIDATE_INT);
-    $dateAvis = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING);
-    $compagnie = filter_input(INPUT_POST, 'compagnie', FILTER_SANITIZE_STRING);
-    $titreAvis = filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_STRING);
-    $texteAvis = filter_input(INPUT_POST, 'avis', FILTER_SANITIZE_STRING);
-    $idOffre = filter_input(INPUT_POST, 'idoffre', FILTER_VALIDATE_INT);
-    $uniqueId = filter_input(INPUT_POST, 'uniqueField', FILTER_SANITIZE_STRING);
+    $note = $_POST['note'];
+    $dateAvis = $_POST['date'];
+    $compagnie = $_POST['compagnie'];
+    $titreAvis = $_POST['titre'];
+    $texteAvis = $_POST['avis'];
+    $idOffre = $_POST['idoffre'];
+    $uniqueId = $_POST['uniqueField'];
 
     // Récupération des données de l'utilisateur
     $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE idu = ?");
@@ -120,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
     $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
 
-    $stmt = $conn->prepare("INSERT INTO pact._commentaire (idU, content, datePublie) VALUES (?, ?, NOW()) RETURNING idC;");
+    $stmt = $conn->prepare("INSERT INTO pact._commentaire (idU, content, datePublie)VALUES (?, ?, NOW())RETURNING idC;");
     $stmt->execute([$idUser, $texteAvis]);
     $idComment = $stmt->fetchColumn();
 
@@ -146,6 +147,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     }
 }
 ?>
+
+
 
 <section>
     <form id="formCreationAvis" action="detailsOffer.php" method="post" enctype="multipart/form-data">
@@ -202,13 +205,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             <input id="titre" name="titre" type="text" required>
         </div>
         <div>
-            <label for="avis">Écrivez votre avis *</label>
-            <textarea id="avis" name="avis" rows="4" required></textarea>
+            <label for="avis">Ajoutez votre commentaire *</label>
+            <textarea id="avis" name="avis" required></textarea>
         </div>
 
         <!-- Photos -->
         <div>
             <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+            <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
+            <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
             <input
                 type="file"
                 id="ajoutPhoto"
@@ -218,13 +223,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
                 onchange="handleFiles(this)" />
             <div id="afficheImages"></div>
 
+            <!-- Consentement -->
+            <div>
+                <input id="consentement" name="consentement" type="checkbox" required>
+                <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
+            </div>
 
-        <!-- Envoi -->
-         <input type='hidden' name='idoffre' value='$idOffre'>
-        <button type="submit">Envoyer mon avis</button>
+            <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
+
+            <button type="submit">Soumettre l'avis</button>
     </form>
 </section>
-
 
 <script>
     const uniqueId = generateUniqueId();
