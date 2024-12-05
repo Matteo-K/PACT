@@ -423,7 +423,7 @@ function displayAvis(avis) {
         li.classList.add("avisNonLu");
         let divNonLu =document.createElement("div");
         divNonLu.classList.add("nonLu");
-        li.appendChild(divNonLu);
+        ul.appendChild(divNonLu);
     }
     else if (avis.idc_reponse == null) {
         li.classList.add("avisNonRepondu");
