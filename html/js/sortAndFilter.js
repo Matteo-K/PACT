@@ -382,17 +382,24 @@ function filtrerParPeriode(offers) {
   // Si la plage de dates n'est pas valide, on retourne toutes les offres
   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
     console.log("Plage de dates invalide");
-    return offers;  // Retourne toutes les offres si les dates sont invalides
+    return offers;
   }
 
   return offers.filter(offer => {
-    const dateOffer = new Date(offer.date);
+    // Validation du format de la date de l'offre
+    let dateOffer = new Date(offer.date);
     console.log('Date de l\'offre:', dateOffer);
+
+    // Si la date est invalide, on ignore cette offre
+    if (isNaN(dateOffer.getTime())) {
+      console.log('Offre avec date invalide');
+      return false;
+    }
 
     // Vérification des dates
     if (dateOffer < dateDepartValue || dateOffer > dateFinValue) {
       console.log('Offre hors de la plage de dates');
-      return false;  // L'offre ne correspond pas à la plage de dates
+      return false;
     }
 
     if (heureDebutValue && heureFinValue) {
@@ -406,8 +413,7 @@ function filtrerParPeriode(offers) {
       const finRange = heureFinH * 60 + heureFinM;
 
       console.log('Début range:', debutRange, 'Fin range:', finRange);
-
-      // Vérification des horaires d'ouverture et de fermeture
+      
       if (!offer.heureOuverture || !offer.heureFermeture) {
         console.log("Offre sans horaires valides");
         return false;
@@ -421,19 +427,19 @@ function filtrerParPeriode(offers) {
 
       console.log('Ouverture (minutes):', ouvertureMinutes, 'Fermeture (minutes):', fermetureMinutes);
 
-      // Comparaison des plages horaires
       if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
         console.log("Offre valide pour les horaires");
-        return true;  // L'offre est dans la plage horaire
+        return true;
       }
 
       console.log("Offre non valide pour les horaires");
-      return false;  // L'offre n'est pas dans la plage horaire
+      return false;
     }
 
-    return true;  // Si aucun filtre horaire n'est appliqué, on garde l'offre
+    return true;
   });
 }
+
 
 
 
@@ -525,7 +531,9 @@ function displayOffers(array, elementStart, nbElement) {
   const bloc = document.querySelector(".searchoffre");
   bloc.innerHTML = "";
   if (array.length != 0) {
+    console.table(array);
     let offers = array.slice(elementStart, elementStart + nbElement);
+    console.table(offers);
     offers.forEach(element => {displayOffer(element)});
   } else {
     let pasOffre = document.createElement("p");
