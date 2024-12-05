@@ -367,9 +367,6 @@ function filtrerParStatuts(offers) {
 
 
 
-
-
-
 // Fonction de filtre par période
 function filtrerParPeriode(offers) {
   const dateDepartValue = new Date(dateDepart.value);
@@ -483,15 +480,6 @@ function filtrerParPeriode(offers) {
 
 
 
-
-
-
-
-
-
-
-
-
 // Fonction de filtre par lieu
 function filtrerParLieu(offers) {
   const lieuSelection = [];
@@ -508,7 +496,7 @@ function sortAndFilter(array, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  array = filtrerParPeriode(array);
+  //array = filtrerParPeriode(array);
 
   // Tris
   array = selectSort(array);
