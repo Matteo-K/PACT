@@ -152,7 +152,7 @@ let listeAvis = <?php echo json_encode($avis) ?>;
 let currentPage = 1;
 let nbElement = 50;
 document.addEventListener('DOMContentLoaded', function() {
-    goToPage(currentPage);
+    displayArrayAvis(listeAvis);
 });
 
 let conteneurAvis = document.querySelector(".conteneurAvisPro");
@@ -299,7 +299,7 @@ function closeDetails() {
     requestAnimationFrame(() => {
         contenuDetails.style.maxHeight = "0"; // Réduit à 0 pour l'animation
     });
-    if (getComputedStyle(aucunAvisSelect).display == "none")) {
+    if (getComputedStyle(aucunAvisSelect).display == "none") {
         conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal si un avis est select
      }
 }
@@ -311,16 +311,11 @@ const selectTri = document.getElementById("TridateAvis");
 const chbxNonLu = document.getElementById("fltAvisNonLus");
 const chbxNonRep = document.getElementById("fltAvisNonRep");
 
-selectTri.addEventListener('change', () => goToPage(currentPage));
-chbxNonLu.addEventListener('change', () => goToPage(1));
-chbxNonRep.addEventListener('change', () => goToPage(1));
+selectTri.addEventListener('change', () => displayArrayAvis(listeAvis));
+chbxNonLu.addEventListener('change', () => displayArrayAvis(listeAvis));
+chbxNonRep.addEventListener('change', () => displayArrayAvis(listeAvis));
 
-function goToPage(NPage) {
-    currentPage = NPage;
-    displayArrayAvis(arrayOffer, (NPage - 1) * nbElement, nbElement);
-}
-
-function displayArrayAvis(arrayAvis, elementStart, nbElement) {
+function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
     
     let array = Object.entries(arrayAvis);
@@ -335,8 +330,7 @@ function displayArrayAvis(arrayAvis, elementStart, nbElement) {
     blocListAvis.innerHTML = "";
 
     if (array.length != 0) {
-        let avis = array.slice(elementStart, elementStart + nbElement);
-            array.forEach(avis => {
+        array.forEach(avis => {
             blocListAvis.appendChild(displayAvis(avis[1]));
         });
     } else {
@@ -389,7 +383,7 @@ function triDateAncien(arrayAvis) {
 function filtreNonLu(arrayAvis) {
     if (chbxNonLu.checked) {
         return arrayAvis.filter(avis => {
-            return avis[1].lu == false;
+            return !avis[1].lu;
         });
     }
     return arrayAvis;
@@ -412,7 +406,15 @@ function filtreNonRep(arrayAvis) {
  */
 function displayAvis(avis) {
     let li = document.createElement("li");
+    li.id = "avis" + avis.idc;
     li.setAttribute("onclick","afficheAvisSelect("+ avis.idc +")");
+    if (avis.idc_reponse == null) {
+        li.classList.add("avisNonRepondu");
+    }
+
+    if (!avis.lu) {
+        li.classList.add("avisNonLu");
+    }
 
     let blocTitre = document.createElement("div");
     let titre = document.createElement("p");
