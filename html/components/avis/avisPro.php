@@ -437,18 +437,19 @@ function displayAvis(avis) {
     li.appendChild(blocTitre);
     li.appendChild(content);
 
+    const blocListAvis = document.getElementById("listeAvis");
 
     if (!avis.lu) {
         li.classList.add("avisNonLu");
         let divNonLu =document.createElement("div");
         divNonLu.classList.add("nonLu");
-        ul.appendChild(divNonLu);
+        blocListAvis.appendChild(divNonLu);
     }
     else if (avis.idc_reponse == null) {
         li.classList.add("avisNonRepondu");
         let divNonRep =document.createElement("div");
         divNonRep.classList.add("nonRepondu");
-        li.appendChild(divNonRep);
+        blocListAvis.appendChild(divNonRep);
     }
 
     return li;
