@@ -150,16 +150,14 @@ if(isset($_POST["reponsePro"])){
             </p>
         </div>
 
-        <div id="reponseAvisPro">
+        <form action="detailsOffer.php">
             <h2>
                 Répondre a membre
             </h2>
-            <form action="detailsOffer.php">
-                <textarea name="reponsePro" id="reponsePro" placeholder="Entrez votre réponse"></textarea>
-                <input type="hidden" name="hiddenInputIdAvis" value="">
-                <input type="submit" class="blueBtnOffer">
-            </form>
-        </div>
+            <input type="submit" class="blueBtnOffer">
+            <textarea name="reponsePro" id="reponsePro" placeholder="Entrez votre réponse à propos de cet avis"></textarea>
+            <input type="hidden" name="hiddenInputIdAvis" value="">
+        </form>
     </section>
 </div>
 
@@ -203,9 +201,8 @@ const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
 const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
-const reponseAvis = document.getElementById("reponseAvisPro");
-const titreReponseAvis = document.querySelector("#reponseAvisPro h2");
-const inputIdAvis = document.querySelector("#reponseAvisPro h2");
+const titreReponseAvis = document.querySelector("#avisproS2 form h2");
+const inputIdAvis = document.querySelector('#avisproS2 form input[type="text"]');
 
 
 
@@ -236,12 +233,12 @@ function afficheAvisSelect(idAvis) {
     
     //changement couleur etoiles (on remet tout jaune puis grise certaines)
     for (i = 0; i < 5; i++) {
-        etoilesAvis[i].style.backgroundColor = "#fff";
+        etoilesAvis[i].style.backgroundColor = accentColor;
     }
     
     if (listeAvis[idAvis]['note'] < 5) {
         for (i = 4; i >= listeAvis[idAvis]['note']; i--) {
-            etoilesAvis[i].style.backgroundColor = secondaryColor;
+            etoilesAvis[i].style.backgroundColor = "#fff";
         }
     }
     
@@ -255,7 +252,7 @@ function afficheAvisSelect(idAvis) {
     dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
 
     //On modifie le bloc de réponse (titre + input caché)
-    titreReponseAvis.textContent("Répondre à " + listeAvis[idAvis]['pseudo']);
+    titreReponseAvis.textContent = "Répondre à " + listeAvis[idAvis]['pseudo'];
     inputIdAvis.value = idAvis;
 
     //On passe l'avis de non lu a lu
