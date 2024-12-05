@@ -1,7 +1,7 @@
 <?php
 
 // Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
-function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
+function moveImagesToOfferFolder($idOffre,$idComment, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
 {
     $result = [
         'success' => [],
@@ -15,7 +15,7 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
     }
 
     // Chemin du dossier cible
-    $targetFolder = $uploadBasePath . '/' . $idOffre;
+    $targetFolder = $uploadBasePath . '/' . $idOffre . "/" . $idComment;
 
     // Créer le dossier cible si nécessaire
     if (!is_dir($targetFolder)) {
@@ -51,6 +51,10 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
 
 // Traitement des données envoyées par le formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
+    $stmt = $conn -> prepare("SELECT * FROM pact.membre where idu = $idUser");
+    $stmt -> execute();
+    $result = $stmt -> fetchAll();
+
     $note = $_POST["note"];
     $dateAvis = $_POST["date"];
     $compagnie = $_POST["compagnie"];
@@ -58,11 +62,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $texteAvis = $_POST['avis'];
     $idOffre = $_POST['idoffre'];
     $uniqueId = $_POST["uniqueField"];
+    print_r($dateAvis);
 
     $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
 
+    $stmt = $conn -> prepare("INSERT INTO pact.avis (pseudo, content, datepublie, idoffre, note, compagnie, mois, annee, titre)");
+
     // Déplacer les images vers le dossier de l'offre
-    $result = moveImagesToOfferFolder($idOffre, $tempFolder, "img/imageAvis/");
+    $result = moveImagesToOfferFolder($idOffre,$idComment, $tempFolder, "img/imageAvis/");
 
     if (!empty($result['errors'])) {
         echo "Erreurs lors du déplacement des fichiers :<br>";
