@@ -113,16 +113,16 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <div>
                         <img src="./img/icone/tel.png">
-                        <a href="tel:<?php echo htmlspecialchars($data[$idOffre]["telephone"]); ?>"><?php echo htmlspecialchars($data[$idOffre]["telephone"]); ?></a>
+                        <a href="tel:<?php echo htmlspecialchars($data[$idOffre]["telephone"]); ?>"><?php echo !empty($data[$idOffre]["telephone"]) ? htmlspecialchars($data[$idOffre]["telephone"]) : "téléphone"; ?></a>
                     </div>
                     <div>
                         <img src="./img/icone/mail.png">
-                        <a href="mailto:<?php echo htmlspecialchars($data[$idOffre]["mail"]); ?>"><?php echo htmlspecialchars($data[$idOffre]["mail"]); ?></a>
+                        <a href="mailto:<?php echo htmlspecialchars($data[$idOffre]["mail"]); ?>"><?php echo !empty($data[$idOffre]["mail"]) ? htmlspecialchars($data[$idOffre]["mail"]) : "adresse@mail.domaine"; ?></a>
                     </div>
                     <!-- url du site -->
                     <div>
                         <img src="./img/icone/globe.png">
-                        <a href="<?php echo htmlspecialchars(""); ?>"><?php echo htmlspecialchars(""); ?></a> 
+                        <a href="<?php echo htmlspecialchars(""); ?>"><?php echo isset($data[$idOffre]["urlSite"]) ? htmlspecialchars("") : "https://lien/site/web/"; ?></a> 
                     </div>
                 
                 </div>
