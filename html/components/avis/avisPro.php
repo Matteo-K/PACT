@@ -255,7 +255,7 @@ function formatDateDiff(dateString) {
 }
 
 const blocDetails = document.querySelector("#avisproS2 > details")
-const contenuDetails = document.querySelector("#avisPro2 > details > .contentDetails");
+const contenuDetails = document.querySelector("#avisPro2 > details > .contentdetails");
 
 //Animation du bloc details
 blocDetails.addEventListener("toggle", () => {
