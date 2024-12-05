@@ -160,7 +160,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
                 
-                <p>Pas de note pour le moment</p>
+                <p>Pas de note pour le moment.</p>
                 <section id="desciptionPreview">
                     <h4>Description</h4>
                             <p><?php echo htmlspecialchars($data[$idOffre]["description"]); ?></p>

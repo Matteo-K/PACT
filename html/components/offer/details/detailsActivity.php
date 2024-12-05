@@ -37,10 +37,10 @@ if ($categorie["_activite"]) {
         $visite["nomAccess"][] = $row["nomAccess"];
     }
 }
-// Il reste à initialisé les valeurs dans les input
+
 ?>
 
-<section id="activity"> <!-- Section pour le css -->
+<section id="activity">
 
     <div class="divAge"> <!-- Zone pour l'age minimum pour l'activité -->
         <label class="labAgeAct" name="labAgeAct"> Age: </label>
@@ -80,7 +80,7 @@ if ($categorie["_activite"]) {
             <div class="access">
                 <select name="nomAccess" id="nomAccess">
                     <option value="SelectionAccess">-- Sélectionner un handicap --</option>
-                    <?php foreach ($nomAccess as $key => $value) { ?>
+                    <?php foreach ($accessibilite as $key => $value) { ?>
                         <option value="<?php echo $value ?>"><?php echo $value ?></option>
                     <?php } ?>
                 </select>
