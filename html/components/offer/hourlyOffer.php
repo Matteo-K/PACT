@@ -229,7 +229,7 @@
                 // Ajout du nouveau bloc au bloc de représentation
                 dateContainer.appendChild(newBlock);
 
-                if (data = 0) {
+                if (!data) {
                     flatpickr("#"+date.id, {
                         altInput: true,
                         altFormat: "l j F Y",
@@ -252,8 +252,6 @@
                         minDate: current_date
                     });
                 }
-
-
             }
 
             /**
