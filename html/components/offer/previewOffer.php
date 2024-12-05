@@ -122,7 +122,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <!-- url du site -->
                     <div>
                         <img src="./img/icone/globe.png">
-                        
+                        <a href="<?php echo htmlspecialchars(""); ?>"><?php echo htmlspecialchars(""); ?></a> 
                     </div>
                 
                 </div>
