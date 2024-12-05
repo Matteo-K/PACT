@@ -40,16 +40,22 @@ $avis = $avisTemp;
             ?>
             <h3>
                 <div class="nonLu"></div>
-                <input type="checkbox" name="fltAvisNonLus" id="fltAvisNonLus">
-                <label for="fltAvisNonLus">Non lus</label>
+                <label for="fltAvisNonLus">
+                    <input type="checkbox" name="fltAvisNonLus" id="fltAvisNonLus">
+                    <span class="checkmark"></span>
+                    Non lus
+                </label>
             </h3>
             <h3>
                 <?php echo $avisN0["avisnonlus"] ?>
             </h3>
             <h3>
                 <div class="nonRepondu"></div>
-                <input type="checkbox" name="fltAvisNonRep" id="fltAvisNonRep">
-                <label for="fltAvisNonRep">Non répondus</label>
+                <label for="fltAvisNonLus">
+                    <input type="checkbox" name="fltAvisNonRep" id="fltAvisNonRep">
+                    <span class="checkmark"></span>
+                    Non répondus
+                </label>
             </h3>
             <h3>
                 <?php echo $avisN0["avisnonrepondus"] ?>
