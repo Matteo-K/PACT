@@ -323,27 +323,27 @@ function filtrerParStatuts(offers) {
 
 function filtrerParPeriode(offers) {
   // Vérification de la présence des valeurs de date et heure
-  // const dateDepartValue = dateDepart.value;
-  // const dateFinValue = dateFin.value;
+  const dateDepartValue = dateDepart.value;
   const heureDebutValue = heureDebut.value;
+  const dateFinValue = dateFin.value;
   const heureFinValue = heureFin.value;
 
   // Si aucune des valeurs n'est définie, on retourne toutes les offres
-  if (!heureDebutValue || !heureFinValue) {
+  if (!dateDepartValue || !dateFinValue || !heureDebutValue || !heureFinValue) {
     return offers;
   }
 
   // Convertir les dates et heures en objets Date
-  // const debut = dateDepart.value + heureDebut.value;
-  // const fin = dateFin.value + heureFin.value;
+  const debut = new Date(dateDepart.value + 'T' + heureDebut.value);
+  const fin = new Date(dateFin.value + 'T' + heureFin.value);
 
   // Filtrage des offres en fonction des dates et heures
   return offers.filter(offer => {
-    const heureOffreDebut = offer.heureOuverture;
-    const heureOffreFin = offer.heureFermeture;
+    const offerDate = new Date(offer.dateRepresentation + 'T' + offer.heureOuverture);
+    const offerEndDate = new Date(offer.dateFin.value + 'T' + offer.heureFermeture);
 
     // Vérifier si l'offre est dans la plage de dates et heures sélectionnées
-    return heureOffreDebut >= heureDebutValue && heureOffreFin <= heureFinValue;
+    return offerDate >= debut && offerEndDate <= fin;
   });
 }
 
@@ -486,7 +486,7 @@ function sortAndFilter(array, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  array = filtrerParPeriode(array);
+  //array = filtrerParPeriode(array);
 
   // Tris
   array = selectSort(array);
