@@ -187,4 +187,67 @@ if ($categorie["_visite"]) {
     });
 
 
+
+/* ----------------------- ACCESSIBILITE ------------------------------*/
+// Script d'accessibilité pour améliorer l'expérience utilisateur
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Ajouter un bouton pour augmenter/diminuer la taille du texte
+    const controls = document.createElement("div");
+    controls.id = "accessibility-controls";
+    controls.innerHTML = `
+        <button id="increase-font">A+</button>
+        <button id="decrease-font">A-</button>
+        <button id="reset-font">A</button>
+    `;
+    document.body.prepend(controls);
+
+    const root = document.documentElement;
+    let fontSize = parseFloat(window.getComputedStyle(root).fontSize);
+
+    document.getElementById("increase-font").addEventListener("click", () => {
+        fontSize += 1;
+        root.style.fontSize = fontSize + "px";
+    });
+
+    document.getElementById("decrease-font").addEventListener("click", () => {
+        fontSize = Math.max(10, fontSize - 1); // Empêche de descendre en dessous de 10px
+        root.style.fontSize = fontSize + "px";
+    });
+
+    document.getElementById("reset-font").addEventListener("click", () => {
+        fontSize = 16; // Valeur par défaut
+        root.style.fontSize = fontSize + "px";
+    });
+
+    // Ajouter des rôles ARIA dynamiquement pour améliorer l'accessibilité
+    const mainContent = document.querySelector("main");
+    if (mainContent) {
+        mainContent.setAttribute("role", "main");
+    }
+
+    const nav = document.querySelector("nav");
+    if (nav) {
+        nav.setAttribute("role", "navigation");
+    }
+
+    const footer = document.querySelector("footer");
+    if (footer) {
+        footer.setAttribute("role", "contentinfo");
+    }
+
+    // Ajout d'une gestion des touches pour la navigation clavier
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Tab") {
+            document.body.classList.add("user-is-tabbing");
+        }
+    });
+
+    // Supprimer les styles de navigation clavier si la souris est utilisée
+    document.addEventListener("mousedown", () => {
+        document.body.classList.remove("user-is-tabbing");
+    });
+});
+
+
 </script>
