@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
     $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
 
-    $stmt = $pdo->prepare("
+    $stmt = $conn->prepare("
         INSERT INTO pact._commentaire (idU, content, datePublie)
         VALUES (?, ?, NOW())
         RETURNING idC;
