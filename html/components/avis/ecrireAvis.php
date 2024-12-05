@@ -1,7 +1,7 @@
 <?php
 function listImage($idOffre, $idComment) {
     // Chemin du dossier où les images sont stockées
-    $dossier = '../img/imageAvis/' . $idOffre . '/' . $idComment . '/';
+    $dossier = 'img/imageAvis/' . $idOffre . '/' . $idComment . '/';
 
     // Affiche le chemin pour le débogage
     echo "Chemin du dossier : " . $dossier . "<br>"; 
