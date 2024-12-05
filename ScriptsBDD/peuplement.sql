@@ -402,6 +402,7 @@ VALUES (5, 'culturel');
 -- Peuplement de la table _habite
 INSERT INTO _habite (idU, codePostal, ville, pays, rue, numeroRue) 
 VALUES (5, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
+    (3, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 		(4, '22300', 'Fond de l eau', 'France', 'rue de l ananas au fond de la mer', 123),
 		(6, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 		(7, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
