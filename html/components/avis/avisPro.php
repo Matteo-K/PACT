@@ -151,13 +151,13 @@ if(isset($_POST["reponsePro"])){
         </div>
 
         <div id="reponseAvisPro">
-            <h2>
-                Répondre a membre
-            </h2>
             <form action="detailsOffer.php">
-                <textarea name="reponsePro" id="reponsePro" placeholder="Entrez votre réponse"></textarea>
-                <input type="hidden" name="hiddenInputIdAvis" value="">
+                <h2>
+                    Répondre a membre
+                </h2>
                 <input type="submit" class="blueBtnOffer">
+                <textarea name="reponsePro" id="reponsePro" placeholder="Entrez votre réponse à propos de cet avis"></textarea>
+                <input type="hidden" name="hiddenInputIdAvis" value="">
             </form>
         </div>
     </section>
@@ -236,12 +236,12 @@ function afficheAvisSelect(idAvis) {
     
     //changement couleur etoiles (on remet tout jaune puis grise certaines)
     for (i = 0; i < 5; i++) {
-        etoilesAvis[i].style.backgroundColor = "#fff";
+        etoilesAvis[i].style.backgroundColor = accentColor;
     }
     
     if (listeAvis[idAvis]['note'] < 5) {
         for (i = 4; i >= listeAvis[idAvis]['note']; i--) {
-            etoilesAvis[i].style.backgroundColor = secondaryColor;
+            etoilesAvis[i].style.backgroundColor = "#fff";
         }
     }
     
@@ -255,7 +255,7 @@ function afficheAvisSelect(idAvis) {
     dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
 
     //On modifie le bloc de réponse (titre + input caché)
-    titreReponseAvis.textContent("Répondre à " + listeAvis[idAvis]['pseudo']);
+    titreReponseAvis.textContent = "Répondre à " + listeAvis[idAvis]['pseudo'];
     inputIdAvis.value = idAvis;
 
     //On passe l'avis de non lu a lu
