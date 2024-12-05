@@ -325,27 +325,6 @@ function displayArrayAvis(arrayAvis) {
         array.forEach(avis => {
             blocListAvis.appendChild(displayAvis(avis[1]));
         });
-        array.forEach(avis => {
-            blocListAvis.appendChild(displayAvis(avis[1]));
-        });
-        array.forEach(avis => {
-            blocListAvis.appendChild(displayAvis(avis[1]));
-        });
-        array.forEach(avis => {
-            blocListAvis.appendChild(displayAvis(avis[1]));
-        });
-        array.forEach(avis => {
-            blocListAvis.appendChild(displayAvis(avis[1]));
-        });
-        array.forEach(avis => {
-            blocListAvis.appendChild(displayAvis(avis[1]));
-        });
-        array.forEach(avis => {
-            blocListAvis.appendChild(displayAvis(avis[1]));
-        });
-        array.forEach(avis => {
-            blocListAvis.appendChild(displayAvis(avis[1]));
-        }); 
     } else {
         let avis = document.createElement("p");
         avis.textContent = "Aucun avis trouvé";
@@ -419,6 +398,7 @@ function filtreNonRep(arrayAvis) {
  */
 function displayAvis(avis) {
     let li = document.createElement("li");
+    li.id = "avis" + avis.idc;
     li.setAttribute("onclick","afficheAvisSelect("+ avis.idc +")");
     if (avis.idc_reponse == null) {
         li.classList.add("avisNonRepondu");
