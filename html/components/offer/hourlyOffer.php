@@ -335,7 +335,9 @@ $is_show;
 
             function checkOfferValidity(event) {
                 let inputime = checkInput();
-                return inputime;
+                let inputDate = checkEmptyDates();
+                let unique = checkUniqueDate();
+                return inputime && inputDate && unique;
             }
 
             /**
@@ -359,6 +361,47 @@ $is_show;
                         return false;
                     }
                 }    
+                return true;
+            }
+            /**
+             * @brief Vérifie si une date est vide
+             */
+            function checkEmptyDates() {
+                const dateInputs = document.querySelectorAll('input[name^="dates["][name$="][trip-start]"]');
+                for (let input of dateInputs) {
+                    if (input.value.trim() === "") {
+                        document.getElementById("msgHoraireSupr").textContent = `Veuillez remplir toutes les dates. Une date est manquante.`;
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            /**
+             * @brief Vérifie si une date et l'heure de début est unique
+             */
+            function checkUniqueDate() {
+                const dateInputs = document.querySelectorAll('input[name^="dates["][name$="][trip-start]"]');
+                const timeInputs = document.querySelectorAll('input[name^="dates["][name$="][HRep_part1.1]"]');
+                
+                let dateTimeCombinations = [];
+
+                for (let i = 0; i < dateInputs.length; i++) {
+                    const date = dateInputs[i].value.trim();
+                    const startTime = timeInputs[i].value.trim();
+                    
+                    if (!date || !startTime) {
+                        continue;
+                    }
+
+                    const dateTime = `${date} ${startTime}`;
+                    if (dateTimeCombinations.includes(dateTime)) {
+                        document.getElementById("msgHoraireSupr").textContent = "Une combinaison de date et heure de début est déjà utilisée.";
+                        return false;
+                    } else {
+                        dateTimeCombinations.push(dateTime);
+                    }
+                }
                 return true;
             }
 
