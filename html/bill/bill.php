@@ -24,9 +24,9 @@ $denominationL = $results[0]['nom'];
 $rue = $results[0]['rue'];
 $codePostal = $results[0]['codepostal'];
 $ville = $results[0]['ville'];
-$rueL = $results[0]['rueL'];
-$codePostalL = $results[0]['codepostalL'];
-$villeL = $results[0]['villeL'];
+$rueL = $results[0]['ruel'];
+$codePostalL = $results[0]['codepostall'];
+$villeL = $results[0]['villel'];
 $idFacture = $results[0]['idfacture'];
 $dateFacture = $results[0]['datefactue'];
 
