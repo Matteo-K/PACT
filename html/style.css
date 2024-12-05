@@ -3350,7 +3350,6 @@ section#infoComp div {
 /** Avis PRO **/
 
 
-
 #avisPro {
   display: flex;
   flex-wrap: nowrap;
@@ -3437,10 +3436,9 @@ section#infoComp div {
   clip-path: polygon(7% 68%, 7% 0, 100% 0, 100% 90%, 30% 90%, 12% 90%, 0 100%);
   background: var(--secondary);
   background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary) 80%,  transparent 100%);
-  margin: 5px 0 10px 0;
+  margin: 5px 0 10px 15px;
   border-bottom-left-radius: 5px;
-  position: relative;
-  width: 85%;
+  width: 90%;
   height: 70px;
 }
 
@@ -3453,9 +3451,15 @@ section#infoComp div {
   flex-wrap: nowrap;
   width: 90%;
   overflow: none;
+  position: relative;
 }
 
 #avisPro li > div p{
+  margin: 0 0 0 10px;
+  font-weight: 600;
+}
+
+#avisPro li > div > div{
   margin: 0 0 0 10px;
   font-weight: 600;
 }
