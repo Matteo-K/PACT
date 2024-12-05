@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             if ($idOffre) {
                 ?>
                 <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idOffre' value='<?php echo "1" ?>'>
+                    <input type='hidden' name='idOffre' value='<?php echo $idOffre ?>'>
                 </form>
                 <script>
                     document.getElementById('redirectForm').submit();
