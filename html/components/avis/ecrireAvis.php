@@ -1,6 +1,4 @@
 <?php
-// Dossier temporaire
-$tempFolder = "img/imageAvis/temp_uploads/";
 
 // Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
 function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
@@ -64,6 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $titreAvis = $_POST['titre'];
     $texteAvis = $_POST['avis'];
     $idOffre = $_POST['idoffre'];
+    $uniqueId = $_POST["uniqueField"];
+
+    $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
 
     // Déplacer les images vers le dossier de l'offre
     $result = moveImagesToOfferFolder($idOffre, $tempFolder, "img/imageAvis/");
@@ -82,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 ?>
 
 <section>
-    <form action="detailsOffer.php" method="post" enctype="multipart/form-data">
+    <form id="formCreationAvis" action="detailsOffer.php" method="post" enctype="multipart/form-data">
         <div id="note">
             <!-- Étoiles pour la notation -->
             <?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -233,7 +234,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             });
         }
     });
+
+    let formCreationAvis = document.getElementById("formCreationAvis");
     const uniqueId = generateUniqueId();
+    let input = formCreationAvis.createElement(input);
+    input.type = "hidden";
+    input.name = "uniqueField";
+    input.value = uniqueId;
+
+    formCreationAvis.appendChild(input);
+
 
     function handleFiles(inputElement) {
         const maxImages = 3;
