@@ -67,9 +67,9 @@ $arrayOffer = [];
             
             // Acualise l'heure actuelle
             let timeString = `${08}:${00}`;
-            document.querySelector('#heureFin').value = timeString;
-            let timeString = `${23}:${00}`;
             document.querySelector('#heureDebut').value = timeString;
+            timeString = `${23}:${00}`;
+            document.querySelector('#heureFin').value = timeString;
             
             
             document.querySelector('#prixMin').addEventListener('change', inverseValuesPrix);
