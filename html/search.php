@@ -66,10 +66,15 @@ $arrayOffer = [];
         document.addEventListener("DOMContentLoaded", () => {
             
             // Acualise l'heure actuelle
-            let timeString = `${08}:${00}`;
-            document.querySelector('#heureDebut').value = timeString;
-            timeString = `${23}:${00}`;
-            document.querySelector('#heureFin').value = timeString;
+            // const now = new Date();
+            // let hours = now.getHours().toString().padStart(2, '0');
+            // let minutes = now.getMinutes().toString().padStart(2, '0');
+
+            let timeDebut = "08:00";
+            let timeFin = "23:00";
+
+            document.querySelector('#heureDebut').value = timeDebut;
+            document.querySelector('#heureFin').value = timeFin;
             
             
             document.querySelector('#prixMin').addEventListener('change', inverseValuesPrix);
