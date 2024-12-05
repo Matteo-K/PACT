@@ -141,6 +141,7 @@ class Offer {
         'daterepresentation' => $result['daterepresentation']
       ]);
     }
+    return $formattedResultats;
   }
 
   public function avisToJSON($avis) {
