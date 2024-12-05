@@ -253,7 +253,7 @@
                         });
                     }
                 } else {
-                    const suppr = document.getElementBuId("msgHoraireSupr");
+                    const suppr = document.getElementById("msgHoraireSupr");
                     suppr.textContent = "Certaines horaires ont été supprimées pour cause d'expiration.";
                 }
             }
