@@ -110,14 +110,6 @@
             </div>
         </div>
         <input type="button" value="Ajouter une date" name="addRep" id="addRep" class="guideSelect" onclick="addDateRep()">
-    <?php
-    } else {
-        ?>
-        <div>
-            <h3>Veuillez sélectionner Le type d'offre</h3>
-            <button type="submit" onclick="submitForm(event,2)">Détails de l'offre</button>
-        </div>
-
         <script>
             /* Interraction horaire */
             let counterRep = 1;
@@ -185,6 +177,13 @@
                 }
             }
         </script>
+    <?php
+    } else {
+        ?>
+        <div>
+            <h3>Veuillez sélectionner Le type d'offre</h3>
+            <button type="submit" onclick="submitForm(event,2)">Détails de l'offre</button>
+        </div>
         <?php
     }
     ?>
