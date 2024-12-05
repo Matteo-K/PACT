@@ -107,7 +107,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $tel = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-                if ($result['ville'] && $result['pays'] && $result['codepostal'] == TRUE) {
+                if ($result['ville'] && $result['pays'] && $result['codepostal']) {
                 ?>
                     <div>
                         <img src="./img/icone/lieu.png">
@@ -116,11 +116,11 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <?php
                 }
-                if ($result["telephone"] && $tel["affiche"] == TRUE) {
+                if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
                 ?>
                     <div>
                         <img src="./img/icone/tel.png">
-                        <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
+                        <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
                     </div>
                 <?php
                 }
@@ -133,7 +133,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <?php
                 }
-                if ($result[0]["urlsite"]) {
+                if ($result["urlsite"]) {
                 ?>
                     <div>
                         <img src="./img/icone/globe.png">
