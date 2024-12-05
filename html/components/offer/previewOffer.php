@@ -199,150 +199,50 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                 </section>
 
-                <section id="infoComp">
-        <h2>Informations Complémentaires</h2>
-        <?php
-        if($typeOffer == "Visite"){
-            $stmt = $conn -> prepare("SELECT * from pact.visites where idoffre = $idOffre");
-            $stmt -> execute();
-            $visite = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-        ?>
-            <div>
-                <p>Durée : <?= convertionMinuteHeure($visite[0]['duree'])?></p>
-                <p>Visite guidée : <?= isset($visite[0]["guide"])? "Oui" : "Non"?></p>
-                <?php
-                if($visite[0]["guide"]){
-                    $stmt = $conn -> prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
-                    $stmt -> execute();
-                    $langues = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-                    if($langues){
-                        ?>
-                        <p>Langues : 
-                    <?php
-                        foreach($langues as $key => $langue){
-                            echo $langue["langue"]?>   
-                    <?php
-                            if(count($langues) != $key +1){
-                                echo ", ";
-                            }
-                        }
-                    ?>
-                        </p>
-                    <?php
-                    }
-                }
-                ?>
-            </div>
-        <?php
-        } else if($typeOffer == "Spectacle"){
-            $stmt = $conn -> prepare("SELECT * from pact.spectacles where idoffre = $idOffre");
-            $stmt -> execute();
-            $spectacle = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-            ?>
-            <div>
-                <p>Durée : <?= convertionMinuteHeure($spectacle[0]['duree'])?></p>
-                <p>Nombre de places : <?= $spectacle[0]['nbplace']?></p>
-            </div>
-            <?php
-        } else if($typeOffer == "Activité" || $typeOffer == "Parc Attraction"){
-            if($typeOffer == "Activité"){
-                $stmt = $conn -> prepare("SELECT * from pact.activites where idoffre = $idOffre");
-            } 
-            else{
-                $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idoffre = $idOffre");
-            }
-            $stmt -> execute();
-            $theme = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-            ?>
-            <div>
-                <p>Âge minimum : <?= $theme[0]['agemin']?> ans</p>
-            </div>
-            <?php
-        }
-        ?>
-        <table>
-    <thead>
-        <tr>
-            <th colspan="2">Horaires</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        // Tableau de tous les jours de la semaine
-        $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-
-        // Récupérer les horaires à partir de la fonction getSchedules
-        $schedules = getSchedules();
-        // Afficher les horaires pour chaque jour de la semaine
-        if($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
-            $horaireSpectacle = [];
-            if($schedules['spectacle']){
-                usort($schedules['spectacle'], function($a, $b) {
-                    $dateA = new DateTime($a['dateRepresentation']);
-                    $dateB = new DateTime($b['dateRepresentation']);
-                    return $dateA <=> $dateB; // Trier du plus récent au plus ancien
-                });
-
-                foreach($schedules['spectacle'] as $spec){
-                    $dateSpectacle = new DateTime($spec['dateRepresentation']);
-                    ?>
-                    <tr>
-                        <td class="jourSemaine"><?= ucwords(formatDateEnFrancais($dateSpectacle))?></td>
-                        <td>
+                <section id="InfoCompPreview">
+                    <h4>Informations Complémentaires</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="2">Horaires</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <?php
-                                echo "à " . str_replace("=>",":",$spec['heureOuverture']);
-                            ?>
-                        </td>
-                    </tr>
-                    <?php
+                            // Tableau de tous les jours de la semaine
+                            $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
-                }
-            }
-        }else{
-            foreach ($joursSemaine as $jour): ?>
-                <tr>
-                    <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
-                    <td>
-                        <?php
+                            // Afficher les horaires pour chaque jour de la semaine
+                            foreach ($joursSemaine as $jour): ?>
+                                <tr>
+                                    <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
+                                    <td>
+                                        <?php
+                                        $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
+                                        $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
 
-                            // Filtrer les horaires pour chaque jour spécifique
-                            $horaireMidi = [];
-                            $horaireSoir = [];
-        
-                            if ($schedules['midi']) {
-                                $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
-                            }
-                            if ($schedules['soir']) {
-                                $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
-                            }
-        
-                            // Collecter les horaires à afficher
-                            $horairesAffichage = [];
-                            if (!empty($horaireMidi)) {
-                                $horaireMidi = current($horaireMidi); // Prendre le premier élément du tableau filtré
-                                $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":",$horaireMidi['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":",$horaireMidi['heureFermeture']));
-                            }
-                            if (!empty($horaireSoir)) {
-                                $horaireSoir = current($horaireSoir); // Prendre le premier élément du tableau filtré
-                                $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":",$horaireSoir['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":",$horaireSoir['heureFermeture']));
-                            }
-                            if (empty($horaireMidi) && empty($horaireSoir)) {
-                                $horairesAffichage[] = "Fermé";
-                            }
-        
-                            // Afficher les horaires ou "Fermé"
-                            echo implode(' et ', $horairesAffichage); 
-                        ?>
-                    </td>
-                </tr>
-            <?php 
-                endforeach;   
-            }
-            ?>
-    </tbody>
-</table>
-
-
+                                        // Collect hours
+                                        $horairesAffichage = [];
+                                        if (!empty($horaireMidi)) {
+                                            $horairesAffichage[] = htmlspecialchars(current($horaireMidi)['heureouverture']) . " à " . htmlspecialchars(current($horaireMidi)['heurefermeture']);
+                                        } 
+                                        if (!empty($horaireSoir)) {
+                                            $horairesAffichage[] = htmlspecialchars(current($horaireSoir)['heureouverture']) . " à " . htmlspecialchars(current($horaireSoir)['heurefermeture']);
+                                        }
+                                        if(empty($horaireMidi) && empty($horaireSoir)){
+                                            $horairesAffichage[] = "Fermé";
+                                        }
+                                        echo implode(' et ', $horairesAffichage);
+                                        ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </section>
+                <!-- Carte Google Maps -->
+                <div id="mapPreview" class="carte"></div>
+               
     </section>
 
     script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
