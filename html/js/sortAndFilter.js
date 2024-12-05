@@ -562,9 +562,7 @@ function displayOffers(array, elementStart, nbElement) {
   const bloc = document.querySelector(".searchoffre");
   bloc.innerHTML = "";
   if (array.length != 0) {
-    console.table(array);
     let offers = array.slice(elementStart, elementStart + nbElement);
-    console.table(offers);
     offers.forEach(element => {displayOffer(element)});
   } else {
     let pasOffre = document.createElement("p");

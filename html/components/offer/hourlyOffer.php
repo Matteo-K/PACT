@@ -164,7 +164,8 @@
                 }
             });
             /* Interraction horaire */
-            function formatDate(date) {
+            function formatDate(date_) {
+                let date = new Date(date_);
                 return date.getUTCFullYear() + "-" +
                     String(date.getUTCMonth() + 1).padStart(2, "0") + "-" +
                     String(date.getUTCDate()).padStart(2, "0");
@@ -176,80 +177,82 @@
              * @brief Ajout d'un div représentation à chaque click du bouton ajouter bloc
              */
             function addDateRep(data = 0) {
-                counterRep++;
-                const dateContainer = document.getElementById("Representation");
+                if (current_date <= formatDate(data.daterepresentation)) {
+                    counterRep++;
+                    const dateContainer = document.getElementById("Representation");
 
-                // Création d'un nouveau bloc
-                const newBlock = document.createElement("div");
-                let date = document.createElement("input");
-                date.setAttribute("type", "text");
-                date.setAttribute("name", "trip-start");
-                date.id = "dateRepN"+counterRep;
+                    // Création d'un nouveau bloc
+                    const newBlock = document.createElement("div");
+                    let date = document.createElement("input");
+                    date.setAttribute("type", "text");
+                    date.setAttribute("name", "trip-start");
+                    date.id = "dateRepN"+counterRep;
 
-                const span = document.createElement("span");
-                span.classList.add("hourly1");
+                    const span = document.createElement("span");
+                    span.classList.add("hourly1");
 
-                const lblRep1 = document.createElement("label");
-                lblRep1.setAttribute("for", "HRepN"+ counterRep +"_part1.1");
-                lblRep1.textContent = "Représentation de";
+                    const lblRep1 = document.createElement("label");
+                    lblRep1.setAttribute("for", "HRepN"+ counterRep +"_part1.1");
+                    lblRep1.textContent = "Représentation de";
 
-                const inputHoraire1 = document.createElement("input");
-                inputHoraire1.setAttribute("type", "time");
-                inputHoraire1.setAttribute("name", "HRepN"+counterRep+"_part1.1");
-                inputHoraire1.id = "HRepN"+counterRep+"_part1.1";
+                    const inputHoraire1 = document.createElement("input");
+                    inputHoraire1.setAttribute("type", "time");
+                    inputHoraire1.setAttribute("name", "HRepN"+counterRep+"_part1.1");
+                    inputHoraire1.id = "HRepN"+counterRep+"_part1.1";
 
-                const lblRep2 = document.createElement("label");
-                lblRep2.setAttribute("for", "HRepN"+ counterRep +"_part1.2");
-                lblRep2.textContent = "à";
+                    const lblRep2 = document.createElement("label");
+                    lblRep2.setAttribute("for", "HRepN"+ counterRep +"_part1.2");
+                    lblRep2.textContent = "à";
 
-                const inputHoraire2 = document.createElement("input");
-                inputHoraire2.setAttribute("type", "time");
-                inputHoraire2.setAttribute("name", "HRepN" + counterRep + "_part1.2");
-                inputHoraire2.id = "HRepN" + counterRep + "_part1.2";
+                    const inputHoraire2 = document.createElement("input");
+                    inputHoraire2.setAttribute("type", "time");
+                    inputHoraire2.setAttribute("name", "HRepN" + counterRep + "_part1.2");
+                    inputHoraire2.id = "HRepN" + counterRep + "_part1.2";
 
-                span.appendChild(lblRep1);
-                span.appendChild(inputHoraire1);
-                span.appendChild(lblRep2);
-                span.appendChild(inputHoraire2);
+                    span.appendChild(lblRep1);
+                    span.appendChild(inputHoraire1);
+                    span.appendChild(lblRep2);
+                    span.appendChild(inputHoraire2);
 
-                
-                const ajouterDate = document.createElement("input");
-                ajouterDate.setAttribute("type", "button");
-                ajouterDate.setAttribute("value", "Retirer");
-                ajouterDate.setAttribute("name", "btnRetirerRepN"+counterRep);
-                ajouterDate.id = "btnRetirerRepN"+counterRep;
-                ajouterDate.classList.add("blueBtnOffer");
-                ajouterDate.setAttribute("onclick", "removeDateRep(this)");
-                
-                newBlock.appendChild(date);
-                newBlock.appendChild(span);
-                newBlock.appendChild(ajouterDate);
-
-                // Ajout du nouveau bloc au bloc de représentation
-                dateContainer.appendChild(newBlock);
-
-                if (!data) {
-                    flatpickr("#"+date.id, {
-                        altInput: true,
-                        altFormat: "l j F Y",
-                        dateFormat: "Y-m-d",
-                        locale: "fr",
-                        defaultDate: current_date,
-                        minDate: current_date
-                    });
-                } else {
-
-                    inputHoraire1.setAttribute("value", data.heureouverture);
-                    inputHoraire2.setAttribute("value", data.heurefermeture);
                     
-                    flatpickr("#"+date.id, {
-                        altInput: true,
-                        altFormat: "l j F Y",
-                        dateFormat: "Y-m-d",
-                        locale: "fr",
-                        defaultDate: formatDate(data.daterepresentation),
-                        minDate: current_date
-                    });
+                    const ajouterDate = document.createElement("input");
+                    ajouterDate.setAttribute("type", "button");
+                    ajouterDate.setAttribute("value", "Retirer");
+                    ajouterDate.setAttribute("name", "btnRetirerRepN"+counterRep);
+                    ajouterDate.id = "btnRetirerRepN"+counterRep;
+                    ajouterDate.classList.add("blueBtnOffer");
+                    ajouterDate.setAttribute("onclick", "removeDateRep(this)");
+                    
+                    newBlock.appendChild(date);
+                    newBlock.appendChild(span);
+                    newBlock.appendChild(ajouterDate);
+                    
+                    // Ajout du nouveau bloc au bloc de représentation
+                    dateContainer.appendChild(newBlock);
+                    
+                    if (!data) {
+                        flatpickr("#"+date.id, {
+                            altInput: true,
+                            altFormat: "l j F Y",
+                            dateFormat: "Y-m-d",
+                            locale: "fr",
+                            defaultDate: current_date,
+                            minDate: current_date
+                        });
+                    } else {
+                        
+                        inputHoraire1.setAttribute("value", data.heureouverture);
+                        inputHoraire2.setAttribute("value", data.heurefermeture);
+                        
+                        flatpickr("#"+date.id, {
+                            altInput: true,
+                            altFormat: "l j F Y",
+                            dateFormat: "Y-m-d",
+                            locale: "fr",
+                            defaultDate: formatDate(data.daterepresentation),
+                            minDate: current_date
+                        });
+                    }
                 }
             }
 
