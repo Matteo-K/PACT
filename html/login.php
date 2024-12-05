@@ -6,7 +6,15 @@
     require_once 'db.php';
 
     if(isset($_SESSION['idUser'])){
-        header("Location: index.php");
+        if (isset($_SERVER['HTTP_REFERER'])) {
+            // Rediriger vers la page précédente
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit;
+        } else {
+            // Si la page précédente n'est pas disponible, rediriger vers une page par défaut
+            header("Location: index.php"); // Par exemple, vers la page d'accueil
+            exit;
+        }
         exit();
     }
 
@@ -25,7 +33,15 @@
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
 
-            header("Location: index.php");
+            if (isset($_SERVER['HTTP_REFERER'])) {
+                // Rediriger vers la page précédente
+                header("Location: " . $_SERVER['HTTP_REFERER']);
+                exit;
+            } else {
+                // Si la page précédente n'est pas disponible, rediriger vers une page par défaut
+                header("Location: index.php"); // Par exemple, vers la page d'accueil
+                exit;
+            }
             // Rediriger vers une page protégée
             exit();
         } 
@@ -40,7 +56,15 @@
                 // Connexion réussie
                 $_SESSION['idUser'] = $proUser['idu'];
                 $_SESSION['typeUser'] = 'pro_prive'; // Détermine le type
-                header("Location: index.php");
+                if (isset($_SERVER['HTTP_REFERER'])) {
+                    // Rediriger vers la page précédente
+                    header("Location: " . $_SERVER['HTTP_REFERER']);
+                    exit;
+                } else {
+                    // Si la page précédente n'est pas disponible, rediriger vers une page par défaut
+                    header("Location: index.php"); // Par exemple, vers la page d'accueil
+                    exit;
+                }
                 exit();
             } 
             
@@ -54,7 +78,15 @@
                     // Connexion réussie
                     $_SESSION['idUser'] = $proUser['idu'];
                     $_SESSION['typeUser'] = 'pro_public'; // Détermine le type
-                    header("Location: index.php");
+                    if (isset($_SERVER['HTTP_REFERER'])) {
+                        // Rediriger vers la page précédente
+                        header("Location: " . $_SERVER['HTTP_REFERER']);
+                        exit;
+                    } else {
+                        // Si la page précédente n'est pas disponible, rediriger vers une page par défaut
+                        header("Location: index.php"); // Par exemple, vers la page d'accueil
+                        exit;
+                    }
                     exit();
                 } 
                 
@@ -68,7 +100,15 @@
                         // Connexion réussie
                         $_SESSION['idUser'] = $member['idu'];
                         $_SESSION['typeUser'] = 'membre';
-                        header("Location: index.php");
+                        if (isset($_SERVER['HTTP_REFERER'])) {
+                            // Rediriger vers la page précédente
+                            header("Location: " . $_SERVER['HTTP_REFERER']);
+                            exit;
+                        } else {
+                            // Si la page précédente n'est pas disponible, rediriger vers une page par défaut
+                            header("Location: index.php"); // Par exemple, vers la page d'accueil
+                            exit;
+                        }
 
                         exit();
                     } 
