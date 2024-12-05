@@ -1,6 +1,7 @@
 <!-- Visite -->
 <?php
 $langue = [];
+$accessibilite = [];
 $visite = [
     "guide" => true,
     "duree" => "",
@@ -14,6 +15,12 @@ $stmt = $conn->prepare("SELECT * from pact._langue");
 $stmt->execute();
 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $langue[] = $result["langue"];
+}
+
+$stmt = $conn->prepare("SELECT * from pact._accessibilite");
+$stmt->execute();
+while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $accessibilite[] = $result["nomaccess"];
 }
 
 // Si la visite était déà existante, on récupère les données
@@ -73,7 +80,7 @@ if ($categorie["_visite"]) {
     <div class="access">
         <select name="nomAccess" id="nomAccess">
             <option value="SelectionAccess">-- Sélectionner un handicap --</option>
-            <?php foreach ($visite["nomAccess"] as $key => $value) { ?>
+            <?php foreach ($accessibilite as $key => $value) { ?>
                 <option value="<?php echo $value ?>"><?php echo $value ?></option>
             <?php } ?>
         </select>
