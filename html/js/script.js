@@ -120,16 +120,6 @@ try {
   });
     
   } catch (error) { }
-  
-
-
-
-try {
-
-} catch (error) {
-  
-}
-
 
 try {
   const btnsAddHourly = document.querySelectorAll(".btnAddOffer");
