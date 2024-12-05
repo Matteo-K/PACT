@@ -1119,7 +1119,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     const body = document.body;
     console.log("js1");
     // Fonction pour afficher le modal
-    function openModal(tabIndex = 1) {
+    function openModal(tabIndex = 2) {
     console.log("hop");
     modal.style.display = "block";
     body.classList.add("no-scroll");
