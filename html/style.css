@@ -3131,6 +3131,7 @@ section#infoComp div {
     gap: 3em;
     justify-content: center;
     align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 #tab-container {
