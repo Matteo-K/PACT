@@ -168,17 +168,12 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <section id="InfoCompPreview">
                     <h2>Informations Complémentaires</h2>
-                    <?php
-                    if($typeOffer == "Visite"){
-                        $stmt = $conn -> prepare("SELECT * from pact.visites where idoffre = $idOffre");
-                        $stmt -> execute();
-                        $visite = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-                    ?>
+                    <?php if($data[$idOffre]["categorie"] == "Visite"){ ?>
                         <div>
-                            <p>Durée : <?= convertionMinuteHeure($visite[0]['duree'])?></p>
-                            <p>Visite guidée : <?= isset($visite[0]["guide"])? "Oui" : "Non"?></p>
+                            <p>Durée : <?= convertionMinuteHeure($data[$idOffre]["duree"])?></p>
+                            <p>Visite guidée : <?= isset($data[$idOffre]["estGuide"])? "Oui" : "Non"?></p>
                             <?php
-                            if($visite[0]["guide"]){
+                            if($data[$idOffre]["estGuide"]){
                                 $stmt = $conn -> prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
                                 $stmt -> execute();
                                 $langues = $stmt -> fetchAll(PDO::FETCH_ASSOC);
@@ -201,7 +196,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             ?>
                         </div>
                     <?php
-                    } else if($typeOffer == "Spectacle"){
+                    } else if($data[$idOffre]["categorie"] == "Spectacle"){
                         $stmt = $conn -> prepare("SELECT * from pact.spectacles where idoffre = $idOffre");
                         $stmt -> execute();
                         $spectacle = $stmt -> fetchAll(PDO::FETCH_ASSOC);
@@ -211,8 +206,8 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <p>Nombre de places : <?= $spectacle[0]['nbplace']?></p>
                         </div>
                         <?php
-                    } else if($typeOffer == "Activité" || $typeOffer == "Parc Attraction"){
-                        if($typeOffer == "Activité"){
+                    } else if($data[$idOffre]["categorie"] == "Activité" || $data[$idOffre]["categorie"] == "Parc Attraction"){
+                        if($data[$idOffre]["categorie"] == "Activité"){
                             $stmt = $conn -> prepare("SELECT * from pact.activites where idoffre = $idOffre");
                         } 
                         else{
