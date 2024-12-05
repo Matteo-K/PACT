@@ -20,6 +20,17 @@ function getSchedules($conn, $idOffre) {
     return $schedules;
 }
 
+function convertionMinuteHeure($tempsEnMinute) {
+    $heures = floor($tempsEnMinute / 60);
+    $minutes = $tempsEnMinute % 60;
+    
+    if ($minutes == 0) {
+        return $heures . "h";
+    } else {
+        return $heures . "h " . $minutes . "min";
+    }
+}
+
 // Récupérer les horaires
 $schedules = getSchedules($conn, $idOffre);
 
@@ -59,10 +70,19 @@ $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+<?php
+    $ar = new ArrayOffer($idOffre);
+    $data = $ar->getArray();
+?>
 
 <form id="previewOffer" action="enregOffer.php" method="post">
     <section id="sectionPreview">
-        <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
+    <h2 id="titleOffer">
+    <?php 
+        echo $data[$idOffre]["nomOffre"];
+    ?>
+    </h2>
+
                 
                 <div id="tagPreview">
                     <?php 
@@ -81,12 +101,11 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt->execute();
                     $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
-                    foreach ($tags as $tag): 
-                    if($tag["nomtag"]) {
+                    foreach ($data[$idOffre]["tags"] as $tag) {
                     ?>
-                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
+                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag))); ?></a>
                     <?php 
-                        } endforeach; 
+                        }
                     ?>
                    
                 </div>
@@ -98,42 +117,24 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $tel = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-                if ($result[0]['ville'] && $result[0]['pays'] && $result[0]['codepostal']) {
                 ?>
                     <div>
                         <img src="./img/icone/lieu.png">
-                        <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
+                        <a href="https://www.google.com/maps?q=<?php echo !empty($data[$idOffre]["ville"]) ? urlencode($data[$idOffre]["numeroRue"] . " " . $data[$idOffre]["rue"] . ", " . $data[$idOffre]["codePostal"] . " " . $data[$idOffre]["ville"]) : ""; ?>" target="_blank" id="lieu"><?php echo !empty($data[$idOffre]["ville"]) ? htmlspecialchars($data[$idOffre]["numeroRue"] . " " . $data[$idOffre]["rue"] . ", " . $data[$idOffre]["codePostal"] . " " . $data[$idOffre]["ville"]) : "adresse, code postal  ville"; ?></a>
                     </div>
-
-                <?php
-                }
-                if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
-                ?>
                     <div>
                         <img src="./img/icone/tel.png">
-                        <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
+                        <a href="tel:<?php echo htmlspecialchars($data[$idOffre]["telephone"]); ?>"><?php echo !empty($data[$idOffre]["telephone"]) ? htmlspecialchars($data[$idOffre]["telephone"]) : "téléphone"; ?></a>
                     </div>
-                <?php
-                }
-                if ($result[0]["mail"]) {
-                ?>
                     <div>
                         <img src="./img/icone/mail.png">
-                        <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
+                        <a href="mailto:<?php echo htmlspecialchars($data[$idOffre]["mail"]); ?>"><?php echo !empty($data[$idOffre]["mail"]) ? htmlspecialchars($data[$idOffre]["mail"]) : "adresse@mail.domaine"; ?></a>
                     </div>
-
-                <?php
-                }
-                if ($result[0]["urlsite"]) {
-                ?>
+                    <!-- url du site -->
                     <div>
                         <img src="./img/icone/globe.png">
-                        <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
+                        <a href="<?php echo htmlspecialchars(""); ?>"><?php echo isset($data[$idOffre]["urlSite"]) ? htmlspecialchars("") : "https://lien/site/web/"; ?></a> 
                     </div>
-
-                <?php
-                }
-                ?>
                 
                 </div>
 
@@ -143,9 +144,9 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php
                             foreach ($photos as $picture) {
                         ?>
-                                <div class="swiper-slide">
-                                    <img src="<?php echo $picture['url']; ?>" />
-                                </div>
+                        <div class="swiper-slide">
+                            <img src="<?php echo $picture['url']; ?>" />
+                        </div>
                         <?php
                             }
                         ?>
@@ -170,28 +171,68 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
                 
-                <p>Pas de note pour le moment</p>
+                <p>Pas de note pour le moment.</p>
                 <section id="desciptionPreview">
                     <h4>Description</h4>
-                    <?php
-                        if($result["description"]) {
-                    ?>
-                            <p><?php echo htmlspecialchars($result["description"]); ?></p>
-                    <?php
-
-                        } 
-                        
-                        else {
-                    ?>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, illo!</p>
-                    <?php
-                        }
-
-                    ?>
+                            <p><?php echo htmlspecialchars($data[$idOffre]["description"]); ?></p>
                 </section>
 
                 <section id="InfoCompPreview">
-                    <h4>Informations Complémentaires</h4>
+                    <h2>Informations Complémentaires</h2>
+                    <?php if($data[$idOffre]["categorie"] == "Visite"){ ?>
+                        <div>
+                            <p>Durée : <?= convertionMinuteHeure($data[$idOffre]["duree"])?></p>
+                            <p>Visite guidée : <?= isset($data[$idOffre]["estGuide"])? "Oui" : "Non"?></p>
+                            <?php
+                            if($data[$idOffre]["estGuide"]){
+                                $stmt = $conn -> prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
+                                $stmt -> execute();
+                                $langues = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+                                if($langues){
+                                    ?>
+                                    <p>Langues : 
+                                <?php
+                                    foreach($langues as $key => $langue){
+                                        echo $langue["langue"]?>   
+                                <?php
+                                        if(count($langues) != $key +1){
+                                            echo ", ";
+                                        }
+                                    }
+                                ?>
+                                    </p>
+                                <?php
+                                }
+                            }
+                            ?>
+                        </div>
+                    <?php
+                    } else if($data[$idOffre]["categorie"] == "Spectacle"){
+                        $stmt = $conn -> prepare("SELECT * from pact.spectacles where idoffre = $idOffre");
+                        $stmt -> execute();
+                        $spectacle = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                        <div>
+                            <p>Durée : <?= convertionMinuteHeure($data[$idOffre]["duree"])?></p>
+                            <p>Nombre de places : <?= $data[$idOffre]["nbPlace"] ?></p>
+                        </div>
+                        <?php
+                    } else if($data[$idOffre]["categorie"] == "Activité" || $data[$idOffre]["categorie"] == "Parc Attraction"){
+                        if($data[$idOffre]["categorie"] == "Activité"){
+                            $stmt = $conn -> prepare("SELECT * from pact.activites where idoffre = $idOffre");
+                        }
+                        else{
+                            $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idoffre = $idOffre");
+                        }
+                        $stmt -> execute();
+                        $theme = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                        <div>
+                            <p>Âge minimum : <?= $data[$idOffre]["ageMinimal"] ?> ans</p>
+                        </div>
+                        <?php
+                    }
+                    ?>
                     <table>
                         <thead>
                             <tr>
