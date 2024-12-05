@@ -19,13 +19,7 @@ function listImage($idOffre, $idComment) {
             $fileUrls[] = '/img/imageAvis/' . $idOffre . '/' . $idComment . '/' . $file;
         }
     }
-
-    // Vérifie s'il y a des fichiers à renvoyer
-    if (count($fileUrls) > 0) {
-        return ['success' => true, 'files' => $fileUrls];
-    } else {
-        return ['success' => false, 'message' => 'Aucun fichier disponible.'];
-    }
+    return ['success' => true, 'files' => $fileUrls];
 }
 
 
