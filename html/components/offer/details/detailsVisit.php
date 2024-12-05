@@ -38,7 +38,7 @@ if ($categorie["_visite"]) {
 
 
     // Accessibilité
-    $stmt = $conn->prepare("SELECT * from pact._accessibilite where idoffre=?");
+    $stmt = $conn->prepare("SELECT * from pact._offreAccess where idoffre=?");
     $stmt->execute([$idOffre]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $visite["nomAccess"][] = $row["nomAccess"];
