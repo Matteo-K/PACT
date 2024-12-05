@@ -148,6 +148,7 @@
         }
     });
     const uniqueId = generateUniqueId();
+
     function handleFiles(inputElement) {
         const maxImages = 3;
         const files = inputElement.files;
@@ -195,12 +196,33 @@
             .then((data) => {
                 if (data.success) {
                     data.files.forEach((fileUrl) => {
+                        const div = document.createElement("div");
+                        div.classList.add("image-container");
+                        div.style.position = "relative";
+
                         const img = document.createElement("img");
                         img.src = fileUrl;
                         img.alt = "Image uploaded";
                         img.style.width = "100px";
                         img.style.margin = "10px";
-                        afficheImages.appendChild(img);
+
+                        const deleteIcon = document.createElement("img");
+                        deleteIcon.src = "img/icone/croix.png"; // Remplace par le chemin de ton image de croix
+                        deleteIcon.alt = "Supprimer";
+                        deleteIcon.style.width = "20px";
+                        deleteIcon.style.height = "20px";
+                        deleteIcon.style.position = "absolute";
+                        deleteIcon.style.top = "5px";
+                        deleteIcon.style.right = "5px";
+                        deleteIcon.style.cursor = "pointer";
+
+                        deleteIcon.addEventListener("click", () => {
+                            deleteFile(fileUrl, uniqueId, div);
+                        });
+
+                        div.appendChild(img);
+                        div.appendChild(deleteIcon);
+                        afficheImages.appendChild(div);
                     });
                 } else {
                     alert("Erreur lors de la récupération des fichiers : " + data.message);
@@ -212,6 +234,30 @@
             });
     }
 
+    function deleteFile(fileUrl, uniqueId, imageContainer) {
+        const formData = new FormData();
+        formData.append("fileUrl", fileUrl); // L'URL du fichier à supprimer
+        formData.append("unique_id", uniqueId); // L'ID unique pour le dossier temporaire
+
+        // Envoi de la requête AJAX pour supprimer le fichier
+        fetch("delete_temp_files.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Si la suppression est réussie, retire l'image du DOM
+                    imageContainer.remove();
+                } else {
+                    alert("Erreur lors de la suppression de l'image : " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Erreur lors de la suppression :", error);
+                alert("Une erreur est survenue pendant la suppression.");
+            });
+    }
 
     // Fonction pour générer un ID unique
     function generateUniqueId() {
