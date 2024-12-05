@@ -73,7 +73,7 @@ if ($categorie["_visite"]) {
     <div class="access">
         <select name="nomAccess" id="nomAccess">
             <option value="SelectionAccess">-- Sélectionner un handicap --</option>
-            <?php foreach ($visite["nomAccess"] as $key => $value) { ?>
+            <?php foreach ($visite as $key => $value) { ?>
                 <option value="<?php echo $value ?>"><?php echo $value ?></option>
             <?php } ?>
         </select>
