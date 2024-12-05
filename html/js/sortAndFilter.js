@@ -339,7 +339,7 @@ function filtrerParPeriode(offers) {
 
   // Filtrage des offres en fonction des dates et heures
   return offers.filter(offer => {
-    const offerDate = new Date(offer.dateDepart.value + 'T' + offer.heureOuverture);
+    const offerDate = new Date(offer.dateRepresentation + 'T' + offer.heureOuverture);
     const offerEndDate = new Date(offer.dateFin.value + 'T' + offer.heureFermeture);
 
     // Vérifier si l'offre est dans la plage de dates et heures sélectionnées
