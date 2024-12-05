@@ -106,42 +106,24 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $tel = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-                if ($result['ville'] && $result['pays'] && $result['codepostal']) {
                 ?>
                     <div>
                         <img src="./img/icone/lieu.png">
-                        <a href="https://www.google.com/maps?q=<?php echo urlencode($result["numerorue"] . " " . $result["rue"] . ", " . $result["codepostal"] . " " . $data[$idOffre]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
+                        <a href="https://www.google.com/maps?q=<?php echo urlencode($data[$idOffre]["numeroRue"] . " " . $data[$idOffre]["rue"] . ", " . $data[$idOffre]["codePostal"] . " " . $data[$idOffre]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
                     </div>
-
-                <?php
-                }
-                if ($result["telephone"] && $tel["affiche"] == TRUE) {
-                ?>
                     <div>
                         <img src="./img/icone/tel.png">
-                        <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
+                        <a href="tel:<?php echo htmlspecialchars($data[$idOffre]["telephone"]); ?>"><?php echo htmlspecialchars($data[$idOffre]["telephone"]); ?></a>
                     </div>
-                <?php
-                }
-                if ($result["mail"]) {
-                ?>
                     <div>
                         <img src="./img/icone/mail.png">
-                        <a href="mailto:<?php echo htmlspecialchars($result["mail"]); ?>"><?php echo htmlspecialchars($result["mail"]); ?></a>
+                        <a href="mailto:<?php echo htmlspecialchars($data[$idOffre]["mail"]); ?>"><?php echo htmlspecialchars($data[$idOffre]["mail"]); ?></a>
                     </div>
-
-                <?php
-                }
-                if ($result["urlsite"]) {
-                ?>
+                    <!-- url du site -->
                     <div>
                         <img src="./img/icone/globe.png">
-                        <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars($result["urlsite"]); ?></a>
+                        <a href="<?php echo htmlspecialchars($result["urlsite"]); ?>"><?php echo htmlspecialchars(); ?></a> 
                     </div>
-
-                <?php
-                }
-                ?>
                 
                 </div>
 
