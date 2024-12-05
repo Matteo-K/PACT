@@ -608,8 +608,8 @@ if (isset($_POST['pageBefore'])) {
                 $convertionDate = date("l Y-m-d", strtotime($date["trip-start"]));
                 $splitDate = explode(" ",$convertionDate);
 
-                $jour = $dateJour[$jour[0]];
-                $dateRep = new DateTime($jour[1]);
+                $jour = $dateJour[$splitDate[0]];
+                $dateRep = new DateTime($splitDate[1]);
                 $heureDebut = $date["HRep_part1.1"];
                 $heureFin = $date["HRep_part1.2"];
 
