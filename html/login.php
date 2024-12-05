@@ -5,21 +5,11 @@ session_start();
 // fichier de connexion à la BDD
 require_once 'db.php';
 
-// Vérifier si l'utilisateur est déjà connecté
-if (isset($_SESSION['idUser'])) {
-    header("Location: index.php");
-    exit();
-}
-
-// Vérification de la méthode POST et récupération de l'ID de l'offre
 if(isset($_POST['idOffre'])){
-    $idOffre = $_POST['idoffre'];
+    print_r($_POST['idOffre']);
+}else{
+    print("swdfhk,:ù;mbdswrd,;:!nbdwqwvb ,!:bcx<sx, ;:!vcw<s");
 }
-else{
-    $idOffre = null; // Récupérer l'ID de l'offre s'il est passé dans l'URL ou le POST
-}
-
-print($idOffre);
 // Vérification de la connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_POST['motdepasseConnexion'])) {
     $login = $_POST['login'];
@@ -37,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['typeUser'] = 'admin';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
             
-            if (isset($_POST['idoffre'])) {
+            if (isset($_POST['idOffre'])) {
                 ?>
                 <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='<?php echo htmlspecialchars($_POST['idoffre']); ?>'>
+                    <input type='hidden' name='idOffre' value='<?php echo htmlspecialchars($_POST['idOffre']); ?>'>
                 </form>
                 <script>
                     document.getElementById('redirectForm').submit();
@@ -66,10 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            if (isset($_POST['idoffre'])) {
+            if (isset($_POST['idOffre'])) {
                 ?>
                 <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='<?php echo htmlspecialchars($_POST['idoffre']); ?>'>
+                    <input type='hidden' name='idOffre' value='<?php echo htmlspecialchars($_POST['idOffre']); ?>'>
                 </form>
                 <script>
                     document.getElementById('redirectForm').submit();
@@ -95,10 +85,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            if (isset($_POST['idoffre'])) {
+            if (isset($_POST['idOffre'])) {
                 ?>
                 <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='<?php echo htmlspecialchars($_POST['idoffre']); ?>'>
+                    <input type='hidden' name='idOffre' value='<?php echo htmlspecialchars($_POST['idOffre']); ?>'>
                 </form>
                 <script>
                     document.getElementById('redirectForm').submit();
@@ -124,10 +114,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            if (isset($_POST['idoffre'])) {
+            if (isset($_POST['idOffre'])) {
                 ?>
                 <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='<?php echo htmlspecialchars($_POST['idoffre']); ?>'>
+                    <input type='hidden' name='idOffre' value='<?php echo htmlspecialchars($_POST['idOffre']); ?>'>
                 </form>
                 <script>
                     document.getElementById('redirectForm').submit();

@@ -946,7 +946,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     }else{
                     ?> 
                     <form id="formForLogin" action="login.php" method="post">
-                        <input type="hidden" name="idoffre" value="<?=$idOffre?>">
+                        <input type="hidden" name="idOffre" value="<?=$idOffre?>">
                     </form>
                     <?php
                     }
