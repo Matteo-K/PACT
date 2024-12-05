@@ -323,27 +323,27 @@ function filtrerParStatuts(offers) {
 
 function filtrerParPeriode(offers) {
   // Vérification de la présence des valeurs de date et heure
-  const dateDepartValue = dateDepart.value;
+  // const dateDepartValue = dateDepart.value;
+  // const dateFinValue = dateFin.value;
   const heureDebutValue = heureDebut.value;
-  const dateFinValue = dateFin.value;
   const heureFinValue = heureFin.value;
 
   // Si aucune des valeurs n'est définie, on retourne toutes les offres
-  if (!dateDepartValue || !dateFinValue || !heureDebutValue || !heureFinValue) {
+  if (!heureDebutValue || !heureFinValue) {
     return offers;
   }
 
   // Convertir les dates et heures en objets Date
-  const debut = dateDepart.value + heureDebut.value;
-  const fin = dateFin.value + heureFin.value;
+  // const debut = dateDepart.value + heureDebut.value;
+  // const fin = dateFin.value + heureFin.value;
 
   // Filtrage des offres en fonction des dates et heures
   return offers.filter(offer => {
-    const offerDate = offer.heureOuverture;
-    const offerEndDate = offer.heureFermeture;
+    const heureOffreDebut = offer.heureOuverture;
+    const heureOffreFin = offer.heureFermeture;
 
     // Vérifier si l'offre est dans la plage de dates et heures sélectionnées
-    return offerDate >= debut && offerEndDate <= fin;
+    return heureOffreDebut >= heureDebutValue && heureOffreFin <= heureFinValue;
   });
 }
 
