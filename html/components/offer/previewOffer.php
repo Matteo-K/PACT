@@ -167,7 +167,66 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
 
                 <section id="InfoCompPreview">
-                    <h4>Informations Complémentaires</h4>
+                    <h2>Informations Complémentaires</h2>
+                    <?php
+                    if($typeOffer == "Visite"){
+                        $stmt = $conn -> prepare("SELECT * from pact.visites where idoffre = $idOffre");
+                        $stmt -> execute();
+                        $visite = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+                    ?>
+                        <div>
+                            <p>Durée : <?= convertionMinuteHeure($visite[0]['duree'])?></p>
+                            <p>Visite guidée : <?= isset($visite[0]["guide"])? "Oui" : "Non"?></p>
+                            <?php
+                            if($visite[0]["guide"]){
+                                $stmt = $conn -> prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
+                                $stmt -> execute();
+                                $langues = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+                                if($langues){
+                                    ?>
+                                    <p>Langues : 
+                                <?php
+                                    foreach($langues as $key => $langue){
+                                        echo $langue["langue"]?>   
+                                <?php
+                                        if(count($langues) != $key +1){
+                                            echo ", ";
+                                        }
+                                    }
+                                ?>
+                                    </p>
+                                <?php
+                                }
+                            }
+                            ?>
+                        </div>
+                    <?php
+                    } else if($typeOffer == "Spectacle"){
+                        $stmt = $conn -> prepare("SELECT * from pact.spectacles where idoffre = $idOffre");
+                        $stmt -> execute();
+                        $spectacle = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                        <div>
+                            <p>Durée : <?= convertionMinuteHeure($spectacle[0]['duree'])?></p>
+                            <p>Nombre de places : <?= $spectacle[0]['nbplace']?></p>
+                        </div>
+                        <?php
+                    } else if($typeOffer == "Activité" || $typeOffer == "Parc Attraction"){
+                        if($typeOffer == "Activité"){
+                            $stmt = $conn -> prepare("SELECT * from pact.activites where idoffre = $idOffre");
+                        } 
+                        else{
+                            $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idoffre = $idOffre");
+                        }
+                        $stmt -> execute();
+                        $theme = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                        <div>
+                            <p>Âge minimum : <?= $theme[0]['agemin']?> ans</p>
+                        </div>
+                        <?php
+                    }
+                    ?>
                     <table>
                         <thead>
                             <tr>
