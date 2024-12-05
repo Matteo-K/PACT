@@ -29,19 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
-            // Rediriger vers detailsOffer.php ou index.php selon le cas
+            // Si idOffre existe, rediriger vers detailsOffer.php, sinon vers index.php
             $redirectUrl = isset($idOffre) ? "detailsOffer.php" : "index.php";
-            echo "<script>
-                    var form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = '$redirectUrl';
-                    var input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = 'idoffre';
-                    input.value = '$idOffre';
-                    form.appendChild(input);
-                    document.body.appendChild(form);
-                    form.submit();
+            // Créer un formulaire caché et l'envoyer automatiquement
+            echo "<form id='redirectForm' method='POST' action='$redirectUrl'>
+                    <input type='hidden' name='idoffre' value='$idOffre'>
+                  </form>
+                  <script>
+                    document.getElementById('redirectForm').submit();
                   </script>";
             exit();
         }
@@ -55,19 +50,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
-            // Rediriger vers detailsOffer.php ou index.php selon le cas
+            // Si idOffre existe, rediriger vers detailsOffer.php, sinon vers index.php
             $redirectUrl = isset($idOffre) ? "detailsOffer.php" : "index.php";
-            echo "<script>
-                    var form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = '$redirectUrl';
-                    var input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = 'idoffre';
-                    input.value = '$idOffre';
-                    form.appendChild(input);
-                    document.body.appendChild(form);
-                    form.submit();
+            // Créer un formulaire caché et l'envoyer automatiquement
+            echo "<form id='redirectForm' method='POST' action='$redirectUrl'>
+                    <input type='hidden' name='idoffre' value='$idOffre'>
+                  </form>
+                  <script>
+                    document.getElementById('redirectForm').submit();
                   </script>";
             exit();
         }
@@ -81,19 +71,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
-            // Rediriger vers detailsOffer.php ou index.php selon le cas
+            // Si idOffre existe, rediriger vers detailsOffer.php, sinon vers index.php
             $redirectUrl = isset($idOffre) ? "detailsOffer.php" : "index.php";
-            echo "<script>
-                    var form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = '$redirectUrl';
-                    var input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = 'idoffre';
-                    input.value = '$idOffre';
-                    form.appendChild(input);
-                    document.body.appendChild(form);
-                    form.submit();
+            // Créer un formulaire caché et l'envoyer automatiquement
+            echo "<form id='redirectForm' method='POST' action='$redirectUrl'>
+                    <input type='hidden' name='idoffre' value='$idOffre'>
+                  </form>
+                  <script>
+                    document.getElementById('redirectForm').submit();
                   </script>";
             exit();
         }
@@ -107,19 +92,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
-            // Rediriger vers detailsOffer.php ou index.php selon le cas
+            // Si idOffre existe, rediriger vers detailsOffer.php, sinon vers index.php
             $redirectUrl = isset($idOffre) ? "detailsOffer.php" : "index.php";
-            echo "<script>
-                    var form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = '$redirectUrl';
-                    var input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = 'idoffre';
-                    input.value = '$idOffre';
-                    form.appendChild(input);
-                    document.body.appendChild(form);
-                    form.submit();
+            // Créer un formulaire caché et l'envoyer automatiquement
+            echo "<form id='redirectForm' method='POST' action='$redirectUrl'>
+                    <input type='hidden' name='idoffre' value='$idOffre'>
+                  </form>
+                  <script>
+                    document.getElementById('redirectForm').submit();
                   </script>";
             exit();
         } else {
