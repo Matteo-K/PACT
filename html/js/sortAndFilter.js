@@ -327,48 +327,56 @@ function filtrerParStatuts(offers) {
 function filtrerParPeriode(offers) {
 
   // On récupère les valeurs des heures de début et de fin
-  const heureDepart = heureDebut.value;
-  const heureFin = heureFin.value;
-
+  const heureDepart = heureDebut.value ? new Date(`2024-12-05T${heureDebut.value}:00`) : null;
+  const heureFin = heureFin.value ? new Date(`2024-12-05T${heureFin.value}:00`) : null;
 
   // Si aucune plage horaire n'est sélectionnée, on retourne les offres sans filtrage
   if (!heureDepart || !heureFin) {
-    return offers;
+    return offers;  // Retourner toutes les offres si aucune période n'est sélectionnée
   }
 
+  // Tableau pour stocker les offres filtrées
+  const offresFiltrees = [];
+
   // Filtrage des offres par catégorie et horaire
-  return offers.filter(offer => {
+  offers.forEach(offer => {
     let offreEstVisible = false;
 
     // Si l'offre est un restaurant, visite, ou parc d'attraction
     if (offer.categorie === 'Restaurant' || offer.categorie === 'Visite' || offer.categorie === 'Parc' || offer.categorie === 'Activite') {
 
       // On récupère l'heure d'ouverture et de fermeture de l'offre
-      const ouverture = offer.heureOuverture;
-      const fermeture = offer.heureFermeture;
-
-
+      const ouverture = new Date(`2024-12-05T${offer.heureOuverture}:00`);
+      const fermeture = new Date(`2024-12-05T${offer.heureFermeture}:00`);
 
       // Vérifier si l'heure d'ouverture et de fermeture de l'offre se chevauchent avec la plage horaire sélectionnée
-      if ((ouverture >= heureDepart && ouverture <= heureFin) || (fermeture >= heureDepart && fermeture <= heureFin) || (ouverture <= heureDepart && fermeture >= heureFin)) {
+      if ((ouverture >= heureDepart && ouverture <= heureFin) || 
+          (fermeture >= heureDepart && fermeture <= heureFin) || 
+          (ouverture <= heureDepart && fermeture >= heureFin)) {
         offreEstVisible = true;
       }
     }
 
     // Si l'offre est un spectacle (une seule heure)
     if (offer.categorie === 'Spectacle') {
-      const heureOffre = offer.horaire;
+      const heureOffre = new Date(`2024-12-05T${offer.horaire}:00`);
 
-      // Vérifier si l'heure de l'offre est dans la plage horaire sélectionnée
+      // Vérifier si l'heure du spectacle est dans la plage horaire sélectionnée
       if (heureOffre >= heureDepart && heureOffre <= heureFin) {
         offreEstVisible = true;
       }
     }
 
-    // Retourner si l'offre est visible ou non
-    return offreEstVisible;
+    // Si l'offre est visible, on l'ajoute au tableau des offres filtrées
+    if (offreEstVisible) {
+      offresFiltrees.push(offer);
+    }
   });
+
+  // Retourner les offres filtrées
+  return offresFiltrees;
 }
+
 
 
 
