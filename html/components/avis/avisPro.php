@@ -169,7 +169,7 @@ const accentColor = getComputedStyle(root).getPropertyValue('--accent').trim();
 const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim();
 const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
 
-
+const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
 let contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
@@ -177,10 +177,10 @@ let contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 function afficheAvisSelect(numAvis) {
 
     conteneurAvis.style.display = "flex";
-    document.getElementById("aucunAvisSelect").style.display = "none";
+    aucunAvisSelect.style.display = "none";
 
     if(blocDetails && blocDetails.open){
-        closeDetails();
+        blocDetails.open = false;
     }
     
     //Changement de couleur du li sélectionné et on remet les autres en gris
@@ -215,7 +215,7 @@ function afficheAvisSelect(numAvis) {
     contenuAvis.textContent = listeAvis[numAvis]['content'];
     
     //changement date publication et visite
-    dateAvis.textContent = "Visité en" +  listeAvis[numAvis]['mois'] + " " + listeAvis[numAvis]['annee'] + formatDateDiff(listeAvis[numAvis]['datepublie']);
+    dateAvis.textContent = "Visité en " +  listeAvis[numAvis]['mois'] + " - " + listeAvis[numAvis]['annee'] + formatDateDiff(listeAvis[numAvis]['datepublie']);
 }
 
 
@@ -286,14 +286,14 @@ function openDetails() {
 }
 
 function closeDetails() {
-    //contenuDetails = document.querySelector("#avisProS2 .contentDetails");
-    console.log(contenuDetails);
     let height = contenuDetails.scrollHeight;
     contenuDetails.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
     requestAnimationFrame(() => {
         contenuDetails.style.maxHeight = "0"; // Réduit à 0 pour l'animation
     });
-    conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal
+    if (getComputedStyle(aucunAvisSelect).display == "none")) {
+        conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal si un avis est select
+     }
 }
 
 
