@@ -148,118 +148,75 @@
             });
         }
     });
+    function handleFiles(inputElement) {
+    const maxImages = 3;
+    const files = inputElement.files;
+    const formData = new FormData();
+    const afficheImages = document.getElementById("afficheImages");
 
-    // Fonction pour charger les images existantes
-    function loadExistingImages() {
-            fetch('upload.php?idOffre=' + idOffre)
-                .then(response => response.json())
-                .then(data => {
-                    const existingPreview = document.getElementById('afficheImages');
-                    existingPreview.innerHTML = ""; // Réinitialise la liste
-                    data.images.forEach((image, index) => {
-                        const img = document.createElement('img');
-                        img.src = `img/imageOffre/${idOffre}/${image}`;
-                        img.alt = image;
-                        img.title = `Cliquez pour supprimer ${image}`;
-                        img.style.cursor = 'pointer';
-                    
-                        // Ajouter un attribut data-index pour garder une référence unique de l'image
-                        img.setAttribute('data-index', index);
-                    
-                        // Ajoute un gestionnaire de clic pour supprimer l'image
-                        img.onclick = () => deleteImage(image, img, index); // Passe aussi l'index pour supprimer la bonne image côté client
-                    
-                        existingPreview.appendChild(img);
-                    });
-                    existingImagesCount = data.images.length; // Met à jour le compteur d'images existantes
-                })
-                .catch(error => console.error('Erreur de chargement des images:', error));
-        }
+    // Vérifie le nombre d'images à uploader
+    if (files.length > maxImages) {
+        alert(`Vous pouvez sélectionner au maximum ${maxImages} fichiers.`);
+        return;
+    }
 
-// Fonction pour supprimer une image existante
-function deleteImage(fileName, imgElement, index) {
-    // Supprimer l'image du DOM immédiatement
-    imgElement.remove();
+    for (let i = 0; i < files.length; i++) {
+        formData.append("images[]", files[i]);
+    }
 
-    // Faire la requête de suppression côté serveur
-    fetch('upload.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `action=delete&fileName=${encodeURIComponent(fileName)}&idOffre=${idOffre}`,
+    // Ajoute un ID unique à l'upload pour un dossier temporaire
+    const uniqueId = generateUniqueId();
+    formData.append("unique_id", uniqueId);
+
+    // Envoie les fichiers au serveur via une requête AJAX
+    fetch("upload_temp_files.php", {
+        method: "POST",
+        body: formData,
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            // En cas d'erreur côté serveur, restaurer l'image dans le DOM et afficher un message
-            alert('Erreur lors de la suppression de l\'image sur le serveur : ' + data.error);
-            // Recharger la liste des images pour restaurer l'état correct
-            loadExistingImages();
-        } else {
-            // Si la suppression a réussi, afficher un message de succès
-            alert('Image supprimée avec succès.');
-            // Recharger la liste des images pour assurer que l'état est mis à jour
-        }
-    })
-    .catch(error => {
-        // En cas de problème avec la requête, restaurer l'image et afficher un message d'erreur
-        alert('Erreur lors de la suppression de l\'image. Veuillez réessayer.');
-        console.log(error);
-        // Recharger la liste des images pour restaurer l'état
-        loadExistingImages();
-    });
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                displayUploadedFiles(uniqueId); // Met à jour dynamiquement les images
+            } else {
+                alert("Erreur lors de l'upload : " + data.message);
+            }
+        })
+        .catch((error) => {
+            console.error("Erreur lors de la requête :", error);
+            alert("Une erreur est survenue pendant l'upload.");
+        });
 }
 
-    // Fonction pour gérer les fichiers sélectionnés
-    function handleFiles(input) {
-            const maxFiles = 10;
-            // Vérifie la limite d'images
-            const totalSelected = existingImagesCount + input.files.length;
+function displayUploadedFiles(uniqueId) {
+    const afficheImages = document.getElementById("afficheImages");
+    afficheImages.innerHTML = ""; // Réinitialise l'affichage
 
-            if (totalSelected > maxFiles) { 
-                alert(
-                    `Erreur : Vous ne pouvez importer que ${maxFiles} photos maximum.\n` +
-                    `${existingImagesCount} sont déjà sur le serveur, et vous avez sélectionné ${input.files.length}.`
-                );
-                input.value = ""; // Réinitialise la sélection
-                return;
+    fetch(`list_temp_files.php?unique_id=${uniqueId}`)
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                data.files.forEach((fileUrl) => {
+                    const img = document.createElement("img");
+                    img.src = fileUrl;
+                    img.alt = "Image uploaded";
+                    img.style.width = "100px";
+                    img.style.margin = "10px";
+                    afficheImages.appendChild(img);
+                });
+            } else {
+                alert("Erreur lors de la récupération des fichiers : " + data.message);
             }
+        })
+        .catch((error) => {
+            console.error("Erreur lors de la récupération :", error);
+            alert("Une erreur est survenue pendant la récupération des fichiers.");
+        });
+}
 
-            // Ajoute les nouvelles images sélectionnées
-            Array.from(input.files).forEach(file => {
-                if (existingImagesCount < maxFiles) {
-                    if (file.type.startsWith("image/")) {
-                        // Envoyer directement chaque fichier pour importation
-                        uploadFile(file);
-                    }
-                }
-            });
 
-            input.value = ""; // Réinitialise l'input
-        }
+// Fonction pour générer un ID unique
+function generateUniqueId() {
+    return "temp_" + Math.random().toString(36).substr(2, 9);
+}
 
-        // Fonction pour envoyer un fichier au serveur
-        function uploadFile(file) {
-            const formData = new FormData();
-            formData.append('images[]', file);
-            formData.append('action', 'upload');
-            formData.append('idOffre', idOffre);
-
-            fetch('upload.php', {
-                method: 'POST',
-                body: formData,
-            })
-                .then(response => response.json())
-                .then(data => {
-                    const errors = data.filter(result => result.error);
-                    if (errors.length > 0) {
-                        alert(`Erreur lors du téléchargement de "${file.name}" :\n${errors.map(e => e.error).join('\n')}`);
-                    } else {
-                        alert(`Fichier "${file.name}" téléchargé avec succès !`);
-                        loadExistingImages(); // Recharge la liste des images existantes
-                    }
-                })
-                .catch(error => console.error('Erreur lors de l\'envoi du fichier:', error));
-        }
 </script>
