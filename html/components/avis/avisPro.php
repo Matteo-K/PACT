@@ -168,7 +168,7 @@ const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim()
 
 
 const blocDetails = document.querySelector("#avisproS2 > details");
-let contenuDetails = document.querySelector("#avisPro2 .contentDetails");
+let contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
 
 function afficheAvisSelect(numAvis) {
