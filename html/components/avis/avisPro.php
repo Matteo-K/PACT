@@ -182,6 +182,8 @@ const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
 function afficheAvisSelect(idAvis) {
 
+    avisSelect = querySelector (`#avisPro ul .avis${idAvis}`);
+
     conteneurAvis.style.display = "flex";
     aucunAvisSelect.style.display = "none";
     if(blocDetails && blocDetails.open){
@@ -221,6 +223,8 @@ function afficheAvisSelect(idAvis) {
     
     //changement date publication et visite
     dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
+
+    avisPrecedent = querySelector (`#avisPro ul .avis${idAvis}`);
 }
 
 

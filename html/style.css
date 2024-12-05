@@ -3422,12 +3422,12 @@ section#infoComp div {
 #avisPro ul {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow-y: scroll;
   height: 800px;
+  align-content: flex-start;
 }
 
 #avisPro li {
