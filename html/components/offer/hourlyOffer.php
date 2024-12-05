@@ -153,11 +153,15 @@
                     console.error("Erreur de parsing JSON :", error);
                 }
 
-                console.log(arrayOffer);
+                const listHoraire = arrayOffer[0].horaire.map(item => JSON.parse(item));
 
-                arrayOffer.forEach(element => {
-                    
-                });
+                if (listHoraire.length != 0) {
+                    listHoraire.forEach(element => {
+                        addDateRep(element);
+                    });
+                } else {
+                    addDateRep();
+                }
             });
             /* Interraction horaire */
             let counterRep = 1;
@@ -225,7 +229,7 @@
                 // Ajout du nouveau bloc au bloc de représentation
                 dateContainer.appendChild(newBlock);
 
-                if (data = 0) {
+                if (!data) {
                     flatpickr("#"+date.id, {
                         altInput: true,
                         altFormat: "l j F Y",
@@ -236,23 +240,19 @@
                     });
                 } else {
 
-                    inputHoraire1.setAttribute("value", "19:00");
-                    inputHoraire2.setAttribute("value", "19:00");
+                    inputHoraire1.setAttribute("value", data.heureouverture);
+                    inputHoraire2.setAttribute("value", data.heurefermeture);
                     
                     flatpickr("#"+date.id, {
                         altInput: true,
                         altFormat: "l j F Y",
                         dateFormat: "Y-m-d",
                         locale: "fr",
-                        defaultDate: "2024-12-05",
+                        defaultDate: data.daterepresentation,
                         minDate: current_date
                     });
                 }
-
-
             }
-
-            addDateRep();
 
             /**
              * @brief Retire le bloc Représentation
