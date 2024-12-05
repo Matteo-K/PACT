@@ -164,8 +164,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+        const uniqueId = generateUniqueId();
         const etoiles = document.querySelectorAll(".star.ecrire");
         const noteInput = document.getElementById("note-value");
+
+        let formCreationAvis = document.getElementById("formCreationAvis"); 
+        let input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "uniqueField";
+        input.value = uniqueId;
+        formCreationAvis.appendChild(input);
 
         // Note actuellement sélectionnée
         let noteActuelle = 0;
@@ -228,123 +236,120 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
                 }
             });
         }
-    });
-
-    const uniqueId = generateUniqueId();
+        function handleFiles(inputElement) {
+            const maxImages = 3;
+            const files = inputElement.files;
+            const formData = new FormData();
+            const afficheImages = document.getElementById("afficheImages");
+            
+            // Vérifie le nombre d'images à uploader
+            if (files.length > maxImages) {
+                alert(`Vous pouvez sélectionner au maximum ${maxImages} fichiers.`);
+                return;
+            }
+            
+            for (let i = 0; i < files.length; i++) {
+                formData.append("images[]", files[i]);
+            }
     
+            // Ajoute un ID unique à l'upload pour un dossier temporaire
+            formData.append("unique_id", uniqueId);
     
-    function handleFiles(inputElement) {
-        const maxImages = 3;
-        const files = inputElement.files;
-        const formData = new FormData();
-        const afficheImages = document.getElementById("afficheImages");
-        
-        // Vérifie le nombre d'images à uploader
-        if (files.length > maxImages) {
-            alert(`Vous pouvez sélectionner au maximum ${maxImages} fichiers.`);
-            return;
-        }
-        
-        for (let i = 0; i < files.length; i++) {
-            formData.append("images[]", files[i]);
-        }
-
-        // Ajoute un ID unique à l'upload pour un dossier temporaire
-        formData.append("unique_id", uniqueId);
-
-        // Envoie les fichiers au serveur via une requête AJAX
-        fetch("uploadImageAvisTemp/upload_temp_files.php", {
-            method: "POST",
-                body: formData,
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    displayUploadedFiles(uniqueId); // Met à jour dynamiquement les images
-                } else {
-                    alert("Erreur lors de l'upload : " + data.message);
-                }
-            })
-            .catch((error) => {
-                console.error("Erreur lors de la requête :", error);
-                alert("Une erreur est survenue pendant l'upload.");
-            });
-    }
-    
-    function displayUploadedFiles(uniqueId) {
-        const afficheImages = document.getElementById("afficheImages");
-        afficheImages.innerHTML = ""; // Réinitialise l'affichage
-        
-        fetch(`uploadImageAvisTemp/list_temp_files.php?unique_id=${uniqueId}`)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    data.files.forEach((fileUrl) => {
-                        const div = document.createElement("div");
-                        div.classList.add("image-container");
-                        div.style.position = "relative";
-
-                        const img = document.createElement("img");
-                        img.src = fileUrl;
-                        img.alt = "Image uploaded";
-                        img.style.width = "100px";
-                        img.style.margin = "10px";
-
-                        const deleteIcon = document.createElement("img");
-                        deleteIcon.src = "img/icone/croix.png"; // Remplace par le chemin de ton image de croix
-                        deleteIcon.alt = "Supprimer";
-                        deleteIcon.style.width = "20px";
-                        deleteIcon.style.height = "20px";
-                        deleteIcon.style.position = "absolute";
-                        deleteIcon.style.top = "5px";
-                        deleteIcon.style.right = "5px";
-                        deleteIcon.style.cursor = "pointer";
-                        
-                        deleteIcon.addEventListener("click", () => {
-                            deleteFile(fileUrl, uniqueId, div);
-                        });
-
-                        div.appendChild(img);
-                        div.appendChild(deleteIcon);
-                        afficheImages.appendChild(div);
-                    });
-                } else {
-                    alert("Erreur lors de la récupération des fichiers : " + data.message);
-                }
-            })
-            .catch((error) => {
-                console.error("Erreur lors de la récupération :", error);
-                alert("Une erreur est survenue pendant la récupération des fichiers.");
-            });
-    }
-
-    function deleteFile(fileUrl, uniqueId, imageContainer) {
-        const formData = new FormData();
-        formData.append("fileUrl", fileUrl); // L'URL du fichier à supprimer
-        formData.append("unique_id", uniqueId); // L'ID unique pour le dossier temporaire
-
-        // Envoi de la requête AJAX pour supprimer le fichier
-        fetch("uploadImageAvisTemp/delete_temp_files.php", {
+            // Envoie les fichiers au serveur via une requête AJAX
+            fetch("uploadImageAvisTemp/upload_temp_files.php", {
                 method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Si la suppression est réussie, retire l'image du DOM
-                    imageContainer.remove();
-                } else {
-                    alert("Erreur lors de la suppression de l'image : " + data.message);
-                }
-            })
-            .catch(error => {
-                console.error("Erreur lors de la suppression :", error);
-                alert("Une erreur est survenue pendant la suppression.");
-            });
-    }
-
-    // Fonction pour générer un ID unique
-    function generateUniqueId() {
-        return "temp_" + Math.random().toString(36).substr(2, 9);
-    }
+                    body: formData,
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        displayUploadedFiles(uniqueId); // Met à jour dynamiquement les images
+                    } else {
+                        alert("Erreur lors de l'upload : " + data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Erreur lors de la requête :", error);
+                    alert("Une erreur est survenue pendant l'upload.");
+                });
+        }
+        
+        function displayUploadedFiles(uniqueId) {
+            const afficheImages = document.getElementById("afficheImages");
+            afficheImages.innerHTML = ""; // Réinitialise l'affichage
+            
+            fetch(`uploadImageAvisTemp/list_temp_files.php?unique_id=${uniqueId}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        data.files.forEach((fileUrl) => {
+                            const div = document.createElement("div");
+                            div.classList.add("image-container");
+                            div.style.position = "relative";
+    
+                            const img = document.createElement("img");
+                            img.src = fileUrl;
+                            img.alt = "Image uploaded";
+                            img.style.width = "100px";
+                            img.style.margin = "10px";
+    
+                            const deleteIcon = document.createElement("img");
+                            deleteIcon.src = "img/icone/croix.png"; // Remplace par le chemin de ton image de croix
+                            deleteIcon.alt = "Supprimer";
+                            deleteIcon.style.width = "20px";
+                            deleteIcon.style.height = "20px";
+                            deleteIcon.style.position = "absolute";
+                            deleteIcon.style.top = "5px";
+                            deleteIcon.style.right = "5px";
+                            deleteIcon.style.cursor = "pointer";
+                            
+                            deleteIcon.addEventListener("click", () => {
+                                deleteFile(fileUrl, uniqueId, div);
+                            });
+    
+                            div.appendChild(img);
+                            div.appendChild(deleteIcon);
+                            afficheImages.appendChild(div);
+                        });
+                    } else {
+                        alert("Erreur lors de la récupération des fichiers : " + data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Erreur lors de la récupération :", error);
+                    alert("Une erreur est survenue pendant la récupération des fichiers.");
+                });
+        }
+    
+        function deleteFile(fileUrl, uniqueId, imageContainer) {
+            const formData = new FormData();
+            formData.append("fileUrl", fileUrl); // L'URL du fichier à supprimer
+            formData.append("unique_id", uniqueId); // L'ID unique pour le dossier temporaire
+    
+            // Envoi de la requête AJAX pour supprimer le fichier
+            fetch("uploadImageAvisTemp/delete_temp_files.php", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Si la suppression est réussie, retire l'image du DOM
+                        imageContainer.remove();
+                    } else {
+                        alert("Erreur lors de la suppression de l'image : " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Erreur lors de la suppression :", error);
+                    alert("Une erreur est survenue pendant la suppression.");
+                });
+        }
+    
+        // Fonction pour générer un ID unique
+        function generateUniqueId() {
+            return "temp_" + Math.random().toString(36).substr(2, 9);
+        }
+    });
+    
 </script>
