@@ -204,8 +204,8 @@ const blocDetails = document.querySelector("#avisproS2 > details");
 const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
 const reponseAvis = document.getElementById("reponseAvisPro");
-const titreReponseAvis = querySelector("#reponseAvisPro h2");
-const inputIdAvis = querySelector("#reponseAvisPro h2");
+const titreReponseAvis = document.querySelector("#reponseAvisPro h2");
+const inputIdAvis = document.querySelector("#reponseAvisPro h2");
 
 
 
