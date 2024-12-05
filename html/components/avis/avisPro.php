@@ -1,63 +1,25 @@
+<?php 
+$avisTemp = [];
+$avisN0 = $avis[0];
+foreach ($avis as $key => $av) {
+    $avisTemp[$av["idc"]] = $av;
+}
+$avis = $avisTemp;
+?>
 <div id="avisPro">
-
-
     <section id="avisproS1">
-
-        <h2 class="triangle">
-        
-            Avis les plus récents
-        </h2>
-
-
+        <!-- Ancien h2 -->
+        <select name="TridateAvis" id="TridateAvis">
+            <option value="recent" selected>Avis les plus récents</option>
+            <option value="ancien">Avis les plus ancien</option>
+        </select>
         <div>
-            <ul id="listeAvis">
-                
-                <?php
-                foreach ($avis as $numAv => $av) {
-                    ?> 
-                    <li onclick="afficheAvisSelect(<?php echo $numAv ?>)">
-
-                        <div>
-
-                            <div class="noteEtoile">
-                                <?php
-                                for ($i = 0; $i < $av['note']; $i++) {
-                                    echo "<div class='star'></div>";
-                                }
-                                if (5 - $av['note'] != 0) {
-                                    for ($i = 0; $i < 5 - $av['note']; $i++) {
-                                        echo "<div class='star starAvisIncolore'></div>";
-                                    }
-                                }
-                                ?>
-                            </div>
-
-                            <p>
-                                <?php echo $av['pseudo'] . " - " . $av['titre'] ?>
-                            </p>
-
-                        </div>
-
-                        <p>
-                            <?php echo $av['content'] ?>
-                        </p>
-
-                    </li>
-                <?php
-                }
-                ?>
-                
+            <ul id="listeAvis">   
             </ul>
         </div>
-
-
     </section>
-
-
     <section id="avisproS2">
-
-        <details>
-
+        <details open>
             <summary>
                 <span class="custom-marker">▶</span>
                 <h2>
@@ -71,36 +33,30 @@
                         echo 0;
                     } ?>
                 </h2>
-                
             </summary>
-
             <div class="contentDetails">
-
             <?php 
                 if($avis) {
             ?>
-            
-                <h3>
-                    <div class="nonLu"></div>
-                    Non lus
-                </h3>
-                <h3>
-                    <?php echo $avis[0]["avisnonlus"] ?>
-                </h3>
-
-                <h3>
-                    <div class="nonRepondu"></div>
-                    Non répondus
-                </h3>
-                <h3>
-                    <?php echo $avis[0]["avisnonrepondus"] ?>
-                </h3>
-
-
+            <h3>
+                <div class="nonLu"></div>
+                <input type="checkbox" name="fltAvisNonLus" id="fltAvisNonLus">
+                <label for="fltAvisNonLus">Non lus</label>
+            </h3>
+            <h3>
+                <?php echo $avisN0["avisnonlus"] ?>
+            </h3>
+            <h3>
+                <div class="nonRepondu"></div>
+                <input type="checkbox" name="fltAvisNonRep" id="fltAvisNonRep">
+                <label for="fltAvisNonRep">Non répondus</label>
+            </h3>
+            <h3>
+                <?php echo $avisN0["avisnonrepondus"] ?>
+            </h3>
                 <?php
-
-                    $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
-                    $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
+                    $etoilesPleines = floor($avisN0['moynote']); // Nombre entier d'étoiles pleines
+                    $reste = $avisN0['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
                 ?>
                     <div class="notation">
                         <div>
@@ -119,7 +75,7 @@
                                 echo '<div class="star vide"></div>';
                             }
                             ?>
-                            <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
+                            <p><?php echo number_format($avisN0['moynote'], 1); ?> / 5 (<?php echo $avisN0['nbnote']; ?> avis)</p>
                         </div>
                         <div class="notedetaille">
                             <?php
@@ -127,81 +83,57 @@
                             $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
                             for ($i = 5; $i >= 1; $i--) {
                                 // Largeur simulée pour chaque barre en fonction de vos données
-                                $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
+                                $pourcentageParNote = isset($avisN0["note_$i"]) ? ($avisN0["note_$i"] / $avisN0['nbnote']) * 100 : 0;
                             ?>
                                 <div class="ligneNotation">
                                     <span><?= $listNoteAdjectif[$i-1]; ?></span>
                                     <div class="barreDeNotationBlanche">
                                         <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
                                     </div>
-                                    <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
+                                    <span>(<?= isset($avisN0["note_$i"]) ? $avisN0["note_$i"] : 0; ?> avis)</span>
                                 </div>
                             <?php
                             }
                             ?>
                         </div>
                     </div>
-
             <?php
                 }
                 else {
                     echo "<p> Aucune donnée a afficher : vous n'avez pas encore d'avis </p>";
                 }
             ?>
-
             </div>
-
-            
         </details> 
-
-        
-
+        <p id="aucunAvisSelect"> Cliquez sur un avis de la liste pour l'afficher ici. </p>
         <div class="conteneurAvisPro">
-
-            <p id="aucunAvisSelect"> Cliquez sur un avis de la liste pour l'afficher ici. </p>
-            
             <div id="ligneTitreAvis">
-
                 <img src="./img/profile_picture/default.svg" alt="Photo du membre">
                 <h2>
                     Auteur
                 </h2>
-
                 <img src="./img/icone/trois-points.png" alt="icone de parametre">
             </div>
-            
             <div class="noteEtoile">
-
                 <?php
                     for ($i = 0; $i < 5; $i++) {
                         echo "<div class='star'></div>";
                     }
                 ?>
-
             </div>
-
             <h3>
                 Titre
             </h3>
-
             <p id="contenuAvis">
                 Texte de l'avis
             </p>
-
             <div id="imagesAvisPro">
-
             </div>
-
             <p id="visiteRedaction"> 
                 Visité en .... le ../.. - rédigé le ../.. 
             </p>
-            
         </div>
-
     </section>
-
-
-   
 </div>
 
 
@@ -214,7 +146,11 @@
 
 
 let listeAvis = <?php echo json_encode($avis) ?>;
-let conteneurAvis = document.getElementById("conteneurAvisPro");
+document.addEventListener('DOMContentLoaded', function() {
+    displayArrayAvis(listeAvis);
+});
+
+let conteneurAvis = document.querySelector(".conteneurAvisPro");
 
 let photoAuteurAvis = document.querySelector("#ligneTitreAvis > h2");
 let auteurAvis = document.querySelector("#ligneTitreAvis > h2");
@@ -226,11 +162,31 @@ let dateAvis = document.getElementById("visiteRedaction");
 
 //On récupère les couleurs du css pour les attribuer aux etoiles
 const root = document.documentElement;
-const primaryColor = getComputedStyle(root).getPropertyValue('--accent').trim();
+const accentColor = getComputedStyle(root).getPropertyValue('--accent').trim();
 const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim();
+const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
+
+
+const blocDetails = document.querySelector("#avisproS2 > details");
+let contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
 
 function afficheAvisSelect(numAvis) {
+
+    conteneurAvis.style.display = "flex";
+    document.getElementById("aucunAvisSelect").style.display = "none";
+
+    if(blocDetails && blocDetails.open){
+        closeDetails();
+    }
+    
+    //Changement de couleur du li sélectionné et on remet les autres en gris
+    document.querySelectorAll("#listeAvis > li").forEach((li, numLi) => {
+        li.style.background = `linear-gradient(90deg, ${accentColor} 0%, ${accentColor} 80%, transparent 100%)`;
+        if (numAvis == numLi) {
+            li.style.background = `linear-gradient(90deg, ${primaryColor} 0%, ${primaryColor} 90%, transparent 100%)`;
+        }
+    });
     
     //changement photo auteur
     photoAuteurAvis.src = listeAvis[numAvis]['membre_url'];
@@ -240,7 +196,7 @@ function afficheAvisSelect(numAvis) {
     
     //changement couleur etoiles (on remet tout jaune puis grise certaines)
     for (i = 0; i < 5; i++) {
-        etoilesAvis[i].style.backgroundColor = primaryColor;
+        etoilesAvis[i].style.backgroundColor = accentColor;
     }
     
     if (listeAvis[numAvis]['note'] < 5) {
@@ -304,43 +260,187 @@ function formatDateDiff(dateString) {
     }
 }
 
-
-
-
-
-
 //Animation du bloc details
-document.querySelectorAll("#avisproS2 > details").forEach(details => {
-    const content = details.querySelector(".contentDetails");
-    
-    // Fonction pour ouvrir avec une animation
-    function openDetails() {
-    const height = content.scrollHeight; // Calcule la hauteur totale
-    content.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
-    content.addEventListener("transitionend", () => {
-        if (details.open) {
-        content.style.maxHeight = "none"; // Supprime maxHeight après l'animation
-    }
-}, { once: true });
-}
-
-// Fonction pour fermer avec une animation
-function closeDetails() {
-    const height = content.scrollHeight; // Hauteur actuelle
-    content.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
-    requestAnimationFrame(() => { // Assure une relecture du style
-        content.style.maxHeight = "0"; // Puis réduit à 0 pour l'animation
-    });
-  }
-  
-  // Gérer les événements d'ouverture et de fermeture
-  details.addEventListener("toggle", () => {
-    if (details.open) {
+blocDetails.addEventListener("toggle", () => {
+    if (blocDetails.open) {
         openDetails();
     } else {
         closeDetails();
     }
-  });
 });
 
+    // Fonction pour ouvrir avec une animation
+function openDetails() {
+    // Obtenir la hauteur réelle
+    let height = contenuDetails.scrollHeight;
+    contenuDetails.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
+    contenuDetails.addEventListener("transitionend", () => {
+        if (blocDetails.open) {
+            contenuDetails.style.maxHeight = "none"; // Supprime maxHeight après l'animation
+        }
+    }, { once: true });
+    conteneurAvis.style.display = "none"; // Masquer le conteneur principal
+}
+
+function closeDetails() {
+    contenuDetails = document.querySelector("#avisPro2 .contentDetails");
+    console.log(contenuDetails);
+    let height = contenuDetails.scrollHeight;
+    contenuDetails.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
+    requestAnimationFrame(() => {
+        contenuDetails.style.maxHeight = "0"; // Réduit à 0 pour l'animation
+    });
+    conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal
+}
+
+
+/* ### Gestion des tri et filtre des avis ### */
+
+const selectTri = document.getElementById("TridateAvis");
+const chbxNonLu = document.getElementById("fltAvisNonLus");
+const chbxNonRep = document.getElementById("fltAvisNonRep");
+
+selectTri.addEventListener('change', () => displayArrayAvis(listeAvis));
+chbxNonLu.addEventListener('change', () => displayArrayAvis(listeAvis));
+chbxNonRep.addEventListener('change', () => displayArrayAvis(listeAvis));
+
+function displayArrayAvis(arrayAvis) {
+    const blocListAvis = document.getElementById("listeAvis");
+    
+    let array = Object.entries(arrayAvis);
+
+    // filtre
+    array = filtreNonLu(array);
+    array = filtreNonRep(array);
+
+    // tri
+    array = triAvis(array);
+
+    blocListAvis.innerHTML = "";
+
+    array.forEach(avis => {
+        blocListAvis.appendChild(displayAvis(avis[1]));
+    });
+}
+
+/**
+ * Sélectionne le tri des avis
+ */
+function triAvis(arrayAvis) {
+  
+  if (selectTri.value === 'recent') {
+    return triDateRecent(arrayAvis);
+  } else if (selectTri.value === 'ancien') {
+    return triDateAncien(arrayAvis);
+  }
+  return arrayAvis;
+}
+
+/**
+ * Tri la liste des avis du plus récent au plus ancien
+ */
+function triDateRecent(arrayAvis) {
+    return arrayAvis.sort((avis1, avis2) => {
+        const date1 = new Date(avis1[1].datepublie);
+        const date2 = new Date(avis2[1].datepublie);
+
+        return date2.getTime() - date1.getTime()
+    });
+}
+
+/**
+ * Tri la liste des avis du plus ancien au plus récent
+ */
+function triDateAncien(arrayAvis) {
+    return arrayAvis.sort((avis1, avis2) => {
+        const date1 = new Date(avis1[1].datepublie);
+        const date2 = new Date(avis2[1].datepublie);
+
+        return date1.getTime() - date2.getTime()
+    });
+}
+
+/**
+ * Retourne une liste avec seulement lesavis non lus
+ */
+function filtreNonLu(arrayAvis) {
+    if (chbxNonLu.checked) {
+        return arrayAvis.filter(avis => {
+            return avis[1].lu == false;
+        });
+    }
+    return arrayAvis;
+}
+
+/**
+ * Retourne une liste avec seulement lesavis non répondu
+ */
+function filtreNonRep(arrayAvis) {
+    if (chbxNonRep.checked) {
+        return arrayAvis.filter(avis => {
+            return avis[1].idc_reponse == null;
+        });
+    }
+    return arrayAvis;
+}
+
+/**
+ * Affichage d'un avis
+ */
+function displayAvis(avis) {
+    let li = document.createElement("li");
+    li.setAttribute("onclick","afficheAvisSelect("+ avis.idc +")");
+
+    let blocTitre = document.createElement("div");
+    let titre = document.createElement("p");
+    titre.textContent = avis.pseudo + " - " + avis.titre;
+
+    blocTitre.appendChild(displayStar(avis.note));
+    blocTitre.appendChild(titre);
+
+    let content = document.createElement("p");
+    content.textContent = avis.content;
+    
+    li.appendChild(blocTitre);
+    li.appendChild(content);
+
+    return li;
+}
+
+/**
+ * interprète le nombre d'étoile colorié affiché
+ * @param {Integer} note nombre d'étoile colorié correpondant à la note de l'avis
+ * @returns bloc div qui contient les étoiles
+ */
+function displayStar(note) {
+  let container = document.createElement("div");
+  container.classList.add("noteEtoile");
+
+  const etoilesPleines = Math.floor(note);
+  const reste = note - etoilesPleines;
+
+  for (let i = 1; i <= etoilesPleines; i++) {
+    let star = document.createElement('div');
+    star.classList.add('star', 'pleine');
+    container.appendChild(star);
+  }
+  
+  if (reste > 0) {
+    let pourcentageRempli = reste * 100;
+    let starPartielle = document.createElement('div');
+    starPartielle.classList.add('star', 'partielle');
+    starPartielle.style.setProperty('--pourcentage', `${pourcentageRempli}%`);
+    container.appendChild(starPartielle);
+  }
+  
+  let totalEtoiles = 5;
+  let etoilesRestantes = totalEtoiles - etoilesPleines - (reste > 0 ? 1 : 0);
+  
+  for (let i = 0; i < etoilesRestantes; i++) {
+    let star = document.createElement('div');
+    star.classList.add('star', 'vide');
+    container.appendChild(star);
+  }
+  return container;
+}
 </script>
