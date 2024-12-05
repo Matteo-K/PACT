@@ -123,16 +123,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     // Insertion des images dans la base de données
     $image = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
     $imageAvis = $conn->prepare("INSERT INTO pact._avisimage (idc, url) VALUES (?, ?)");
-
     $mesImages = listImage($idOffre, $idComment);
 
-    if ($mesImages['success']) {
-        foreach ($mesImages['files'] as $file) {
-            $fileName = pathinfo($file, PATHINFO_BASENAME);
-            $image->execute([$file, $fileName]);
-            $imageAvis->execute([$idComment, $file]);
-        }
+    foreach ($mesImages['files'] as $file) {
+    $fileName = pathinfo($file, PATHINFO_BASENAME);
+    
+    // Exécution de l'insertion de l'image
+    if (!$image->execute([$file, $fileName])) {
+        $result['errors'][] = "Erreur lors de l'insertion de l'image dans la base de données.";
     }
+    
+    // Exécution de l'insertion dans la table _avisimage
+    if (!$imageAvis->execute([$idComment, $file])) {
+        $result['errors'][] = "Erreur lors de l'insertion de l'image liée à l'avis dans la base de données.";
+    }
+}
+
     $note = "";
     $dateAvis = "";
     $compagnie = "";
