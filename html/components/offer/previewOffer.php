@@ -64,8 +64,8 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <section id="sectionPreview">
     <h2 id="titleOffer">
     <?php 
-        if ($result && isset($result[0])) {
-            echo htmlspecialchars($result[0]["nom"] ?? "No name available");
+        if ($result && isset($result)) {
+            echo htmlspecialchars($result["nom"] ?? "No name available");
         } else {
             echo "Pas d'offre trouvée ?";
         }
@@ -120,7 +120,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                     <div>
                         <img src="./img/icone/tel.png">
-                        <a href="tel:<?php echo htmlspecialchars($result["telephone"]); ?>"><?php echo htmlspecialchars($result["telephone"]); ?></a>
+                        <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
                     </div>
                 <?php
                 }
