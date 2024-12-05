@@ -150,16 +150,14 @@ if(isset($_POST["reponsePro"])){
             </p>
         </div>
 
-        <div id="reponseAvisPro">
-            <form action="detailsOffer.php">
-                <h2>
-                    Répondre a membre
-                </h2>
-                <input type="submit" class="blueBtnOffer">
-                <textarea name="reponsePro" id="reponsePro" placeholder="Entrez votre réponse à propos de cet avis"></textarea>
-                <input type="hidden" name="hiddenInputIdAvis" value="">
-            </form>
-        </div>
+        <form action="detailsOffer.php">
+            <h2>
+                Répondre a membre
+            </h2>
+            <input type="submit" class="blueBtnOffer">
+            <textarea name="reponsePro" id="reponsePro" placeholder="Entrez votre réponse à propos de cet avis"></textarea>
+            <input type="hidden" name="hiddenInputIdAvis" value="">
+        </form>
     </section>
 </div>
 
@@ -203,9 +201,8 @@ const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
 const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
-const reponseAvis = document.getElementById("reponseAvisPro");
-const titreReponseAvis = document.querySelector("#reponseAvisPro h2");
-const inputIdAvis = document.querySelector("#reponseAvisPro h2");
+const titreReponseAvis = document.querySelector("#avisproS2 form h2");
+const inputIdAvis = document.querySelector('#avisproS2 form input[type="text"]');
 
 
 
