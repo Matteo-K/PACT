@@ -3900,6 +3900,10 @@ details .nonLu, details .nonRepondu{
   margin: 0 auto;
 }
 
+#sectionPreview p, h4, h2{
+  font-size: 30px;
+}
+
 #titleOfferPreview {
   font-size: 3.5em;
   color: var(--bloc);
