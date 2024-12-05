@@ -115,6 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $stmt = $conn->prepare("INSERT INTO pact._avis (idc, idoffre, note, companie, mois, annee, titre, lu) 
     VALUES (?, ?, ?, ?, ?, ?, ?, false)");
     $stmt->execute([$idComment, $idOffre, $note, $compagnie, $monthInWords, $year, $titreAvis]);
+    
 
     // Déplacer les images vers le dossier de l'offre
     $moveResult = moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, "img/imageAvis/");
@@ -132,6 +133,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             $imageAvis->execute([$idComment, $file]);
         }
     }
+    $note = "";
+    $dateAvis = "";
+    $compagnie = "";
+    $titreAvis = "";
+    $texteAvis = "";
+    $idOffre = "";
+    $uniqueId = "";
+
 }
 ?>
 
