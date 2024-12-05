@@ -610,11 +610,12 @@ if (isset($_POST['pageBefore'])) {
 
                 $jour = $dateJour[$splitDate[0]];
                 $dateRep = new DateTime($splitDate[1]);
+                $dateRepFormatted = $dateRep->format('Y-m-d');
                 $heureDebut = $date["HRep_part1.1"];
                 $heureFin = $date["HRep_part1.2"];
 
-                $stmt = $conn->prepare("INSERT INTO pact._horaireprecise (jour, idoffre, heuredebut, heurefin, daterepresentation) values ('Jeudi', 2, '17:00', '22:00', CURRENT_DATE)");
-                $stmt->execute([$jour, $idOffre, $heureDebut, $heureFin, $dateRep]);
+                $stmt = $conn->prepare("INSERT INTO pact._horaireprecise (jour, idoffre, heuredebut, heurefin, daterepresentation) values (?, ?, ?, ?, ?)");
+                $stmt->execute([$jour, $idOffre, $heureDebut, $heureFin, $dateRepFormatted]);
               }
             }
             break;
