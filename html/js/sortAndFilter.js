@@ -320,11 +320,14 @@ function filtrerParStatuts(offers) {
   return offers.filter(offer => statutsSelection.includes(offer.ouverture));
 }
 
+
+
+
 function filtrerParPeriode(offers) {
   // Récupération des valeurs des filtres de période
   const dateDepartValue = dateDepart.value;
-  const heureDebutValue = heureDebut.value;
   const dateFinValue = dateFin.value;
+  const heureDebutValue = heureDebut.value;
   const heureFinValue = heureFin.value;
 
   // Si aucune valeur n'est sélectionnée pour la période, on retourne directement la liste des offres sans filtre
@@ -334,15 +337,16 @@ function filtrerParPeriode(offers) {
 
   // Conversion des dates et heures sélectionnées en objets Date
   const dateDepartDate = dateDepartValue ? new Date(dateDepartValue) : null;
-  const heureDebutDate = heureDebutValue ? new Date(`1970-01-01T${heureDebutValue}:00`) : null;
-  const heureFinDate = heureFinValue ? new Date(`1970-01-01T${heureFinValue}:00`) : null;
+  const dateFinDate = dateFinValue ? new Date(dateFinValue) : null;
+  const heureDebutDate = heureDebutValue ? new Date(heureDebutValue) : null;
+  const heureFinDate = heureFinValue ? new Date(heureFinValue) : null;
 
   return offers.filter(offer => {
     // Conversion de la date de l'offre en objet Date
     const offreDateDepart = new Date(offer.dateDepart);
-    const offreHeureDebut = new Date(`1970-01-01T${offer.heureDebut}:00`);
+    const offreHeureDebut = new Date(offer.heureOuverture);
     const offreDateFin = new Date(offer.dateFin);
-    const offreHeureFin = new Date(`1970-01-01T${offer.heureFin}:00`);
+    const offreHeureFin = new Date(offer.heureFermeture);
 
     // Vérification de la validité de la période en comparant les dates et heures
     let isValid = true;
