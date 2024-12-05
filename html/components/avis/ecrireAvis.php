@@ -82,7 +82,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const etoiles = document.querySelectorAll(".star");
+        const etoiles = document.querySelectorAll(".star.ecrire");
         const noteInput = document.getElementById("note-value");
 
         // Note actuellement sélectionnée

@@ -1039,6 +1039,7 @@ header ul+div {
   width: 150px;
   padding: 10px;
   border-radius: 20px;
+  border: none;
 }
 
 /* Feedback Save */

@@ -87,18 +87,52 @@
             </span>
         </div>
     </div>
+    <script>
+        const btnsAddHourly = document.querySelectorAll(".btnAddOffer");
+        const btnsRmHourly = document.querySelectorAll(".btnRmOffer");
+
+        /**
+         * @brief Ajoute une horaire à la journée
+         */
+        btnsAddHourly.forEach((button) => {
+            button.addEventListener("click", () => {
+            let nextSpan = button.nextElementSibling;
+            let nextBtn = nextSpan.nextElementSibling;
+            nextSpan.classList.remove("hourlyHide");
+            nextBtn.classList.remove("hourlyHide");
+            button.classList.add("hourlyHide");
+            });
+        });
+
+        /**
+         * @brief Retire une horaire à la journée
+         */
+        btnsRmHourly.forEach((button) => {
+            button.addEventListener("click", () => {
+            let span = button.previousElementSibling;
+            span.querySelectorAll("input").forEach((input) => {
+                input.value = "";
+                console.log(input);
+            });
+            span.classList.add("hourlyHide");
+            button.classList.add("hourlyHide");
+            span.previousElementSibling.classList.remove("hourlyHide");
+            });
+        });
+    </script>
     <?php
         }
     } else if ($is_show == 1) {
     ?>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
         <div>
             <h4>Ajouter une date pour le spectacle&nbsp;:&nbsp;</h4>            
         </div>
         <div id="Representation">
             <div>
-                <!-- Saisie de la date -->
-                <!-- Lors de l'ajout dans la base de donnée, il faut vérifier si la date éxiste déjà à la même heure -->
-                <input type="date" name="dateRepN1" id="dateRepresentation" value="<?php echo date("Y-m-j"); ?>" min="<?php echo date("Y-m-j"); ?>">
+            <input type="text" id="start" name="trip-start">
                 <!-- Saisie des heures -->
                 <span class="hourly1">
                     <label for="HRepN1_part1.1">Représentation de</label>
@@ -111,6 +145,14 @@
         </div>
         <input type="button" value="Ajouter une date" name="addRep" id="addRep" class="guideSelect" onclick="addDateRep()">
         <script>
+            flatpickr("#start", {
+                altInput: true,
+                altFormat: "l j F Y",
+                dateFormat: "Y-m-d",
+                locale: "fr",
+                defaultDate: "2024-12-05",
+                minDate: "2024-12-01"
+            });
             /* Interraction horaire */
             let counterRep = 1;
             let date_ = new Date();
