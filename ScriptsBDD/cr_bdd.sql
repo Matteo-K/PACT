@@ -518,7 +518,7 @@ CREATE TABLE _dateOption(
   dateLancement DATE,
   dateFin DATE,
   duree INT NOT NULL,
-  prix INT NOT NULL
+  prix float NOT NULL
 );
 
 CREATE TABLE _option_offre(
