@@ -324,8 +324,8 @@ function filtrerParStatuts(offers) {
 
 
 function filtrerParPeriode(offers) {
-  const heureDepart = heureDebut.value;
-  const heureFin = heureFin.value;
+  const heureDepart = heureDebut.value ? new Date(`2024-12-05T${heureDebut.value}:00`) : null;
+  const heureFin = heureFin.value ? new Date(`2024-12-05T${heureFin.value}:00`) : null;
 
   // Si aucune plage horaire n'est sélectionnée, on retourne les offres sans filtrage
   if (!heureDepart || !heureFin) {
