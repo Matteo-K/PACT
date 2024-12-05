@@ -3557,7 +3557,7 @@ details.animating .contentDetails {
 #avisPro details h3:nth-child(2), #avisPro details h3:nth-child(4) {
   margin: 10px 0;
   width: 20%;
-  text-align: right;
+  justify-content: right;
 }
 
 details .nonLu, details .nonRepondu{
