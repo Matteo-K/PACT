@@ -10,6 +10,7 @@ if(isset($_POST['idOffre'])){
 }else{
     $idOffre = null;
 }
+
 // Vérification de la connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_POST['motdepasseConnexion'])) {
     $login = $_POST['login'];
@@ -181,13 +182,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             <button id="boutonConnexion">Connexion</button>
 
             <a id="lienMotDePasseOublie" href="#"> Mot de passe oublié ?</a>
-        <?php
-        if($idOffre){
-        ?>
+            
             <input type="hidden" name="idOffre" value="<?= $idOffre?>">
-        <?php
-        }
-        ?>
         </form>
         
         <h1 id="pasDeCompteTitre">Vous n'avez pas de compte ? Créez-en un !</h1>
