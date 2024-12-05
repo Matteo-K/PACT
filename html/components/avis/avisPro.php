@@ -400,11 +400,11 @@ function displayAvis(avis) {
     let li = document.createElement("li");
     li.setAttribute("onclick","afficheAvisSelect("+ avis.idc +")");
     if (avis.idc_reponse == null) {
-        li.classList.add("avisRepondu");
+        li.classList.add("avisNonRepondu");
     }
 
     if (!avis.lu) {
-        li.classList.add("avisLu");
+        li.classList.add("avisNonLu");
     }
 
     let blocTitre = document.createElement("div");
