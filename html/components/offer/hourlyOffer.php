@@ -164,15 +164,14 @@
                 }
             });
             /* Interraction horaire */
+            function formatDate(date) {
+                return date.getUTCFullYear() + "-" +
+                    String(date.getUTCMonth() + 1).padStart(2, "0") + "-" +
+                    String(date.getUTCDate()).padStart(2, "0");
+            }
             let counterRep = 1;
             let date_ = new Date();
-            let current_date = String(
-                date_.getUTCFullYear() +
-                "-" +
-                ("0" + (date_.getUTCMonth() + 1)).slice(-2) +
-                "-" +
-                ("0" + date_.getUTCDate()).slice(-2)
-            );
+            let current_date = formatDate(date_);
             /**
              * @brief Ajout d'un div représentation à chaque click du bouton ajouter bloc
              */
@@ -248,7 +247,7 @@
                         altFormat: "l j F Y",
                         dateFormat: "Y-m-d",
                         locale: "fr",
-                        defaultDate: data.daterepresentation,
+                        defaultDate: formatDate(data.daterepresentation),
                         minDate: current_date
                     });
                 }
