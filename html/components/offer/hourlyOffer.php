@@ -131,28 +131,9 @@
             <h4>Ajouter une date pour le spectacle&nbsp;:&nbsp;</h4>            
         </div>
         <div id="Representation">
-            <div>
-            <input type="text" id="start" name="trip-start">
-                <!-- Saisie des heures -->
-                <span class="hourly1">
-                    <label for="HRepN1_part1.1">Représentation de</label>
-                    <input type="time" name="HRepN1_part1.1" id="HRepN1_part1.1">
-                    <label for="HRepN1_part1.2">à</label>
-                    <input type="time" name="HRepN1_part1.2" id="HRepN1_part1.2">
-                </span>
-                <input type="button" value="Retirer" name="btnRetirerRepN1" id="btnRetirerRepN1" class="blueBtnOffer" onclick="removeDateRep(this)">
-            </div>
         </div>
         <input type="button" value="Ajouter une date" name="addRep" id="addRep" class="guideSelect" onclick="addDateRep()">
         <script>
-            flatpickr("#start", {
-                altInput: true,
-                altFormat: "l j F Y",
-                dateFormat: "Y-m-d",
-                locale: "fr",
-                defaultDate: "2024-12-05",
-                minDate: "2024-12-01"
-            });
             /* Interraction horaire */
             let counterRep = 1;
             let date_ = new Date();
@@ -172,21 +153,65 @@
 
                 // Création d'un nouveau bloc
                 const newBlock = document.createElement("div");
-                newBlock.innerHTML = `
-                    <label for="dateRepresentation">jour</label>
-                    <input type="date" name="dateRepN${counterRep}" id="dateRepresentation" value="${current_date}" min="${current_date}">
-                    <span class="hourly1">
-                        <label for="HRepN${counterRep}_part1.1">Représentation de</label>
-                        <input type="time" name="HRepN${counterRep}_part1.1" id="HRepN${counterRep}_part1.1">
-                        <label for="HRepN${counterRep}_part1.2">à</label>
-                        <input type="time" name="HRepN${counterRep}_part1.2" id="HRepN${counterRep}_part1.2">
-                    </span>
-                    <input type="button" value="Retirer" name="btnRetirerRepN${counterRep}" id="btnRetirerRepN${counterRep}" class="blueBtnOffer" onclick="removeDateRep(this)">
-                `;
+                let date = document.createElement("input");
+                date.setAttribute("type", "text");
+                date.setAttribute("name", "trip-start");
+                date.id = "dateRepN"+counterRep;
+
+                let span = document.createElement("span");
+                span.classList.add("hourly1");
+
+                let lblRep1 = document.createElement("label");
+                lblRep1.setAttribute("for", "HRepN"+ counterRep +"_part1.1");
+                lblRep1.textContent = "Représentation de";
+
+                let inputHoriare1 = document.createElement("input");
+                inputHoriare1.setAttribute("type", "time");
+                inputHoriare1.setAttribute("name", "HRepN"+counterRep+"_part1.1");
+                inputHoriare1.id = "HRepN"+counterRep+"_part1.1";
+
+                let lblRep2 = document.createElement("label");
+                lblRep2.setAttribute("for", "HRepN"+ counterRep +"_part1.2");
+                lblRep2.textContent = "à";
+
+                let inputHoriare2 = document.createElement("input");
+                inputHoriare1.setAttribute("type", "time");
+                inputHoriare1.setAttribute("name", "HRepN"+counterRep+"_part1.2");
+                inputHoriare1.id = "HRepN"+counterRep+"_part1.2";
+
+                span.appendChild(lblRep1);
+                span.appendChild(inputHoriare1);
+                span.appendChild(lblRep2);
+                span.appendChild(inputHoriare2);
+
+                
+                let ajouterDate = document.createElement("input");
+                ajouterDate.setAttribute("type", "button");
+                ajouterDate.setAttribute("value", "Retirer");
+                ajouterDate.setAttribute("name", "btnRetirerRepN"+counterRep);
+                ajouterDate.id = "btnRetirerRepN"+counterRep;
+                ajouterDate.classList.add("blueBtnOffer");
+                ajouterDate.setAttribute("onclick", "removeDateRep(this)");
+                
+                newBlock.appendChild(date);
+                newBlock.appendChild(span);
+                newBlock.appendChild(ajouterDate);
 
                 // Ajout du nouveau bloc au bloc de représentation
                 dateContainer.appendChild(newBlock);
+
+                flatpickr("#"+date.id, {
+                    altInput: true,
+                    altFormat: "l j F Y",
+                    dateFormat: "Y-m-d",
+                    locale: "fr",
+                    defaultDate: current_date,
+                    minDate: current_date
+                });
+
             }
+
+            addDateRep();
 
             /**
              * @brief Retire le bloc Représentation
