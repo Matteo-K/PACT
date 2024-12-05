@@ -10,6 +10,9 @@
         header("Location: index.php");
         exit();
     }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idOffre'])){
+        $idOffre = $_POST['idOffre'];
+    }
 
     // Vérification du formulaire
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
@@ -26,9 +29,17 @@
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
 
-            // Rediriger vers la page précédente ou vers la page par défaut
-            $redirectTo = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
-            header("Location: " . $redirectTo);
+            if(isset($idOffre)){
+            ?>
+                <form action="detailsOffer.php" method="post">
+                    <input type="hidden" name="idoffre" value="<?=$idOffre?>">
+                    <script>document.forms[0].submit();</script>
+                </form>
+            <?php
+            } else{
+                header('Location:  index.php');
+            }
+
             exit();
         } 
         
@@ -42,9 +53,16 @@
                 // Connexion réussie
                 $_SESSION['idUser'] = $proUser['idu'];
                 $_SESSION['typeUser'] = 'pro_prive'; // Détermine le type
-                // Rediriger vers la page précédente ou vers la page par défaut
-                $redirectTo = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
-                header("Location: " . $redirectTo);
+                if(isset($idOffre)){
+                ?>
+                    <form action="detailsOffer.php" method="post">
+                        <input type="hidden" name="idoffre" value="<?=$idOffre?>">
+                        <script>document.forms[0].submit();</script>
+                    </form>
+                <?php
+                } else{
+                    header('Location:  index.php');
+                }
                 exit();
             } 
             
@@ -58,9 +76,16 @@
                     // Connexion réussie
                     $_SESSION['idUser'] = $proUser['idu'];
                     $_SESSION['typeUser'] = 'pro_public'; // Détermine le type
-                    // Rediriger vers la page précédente ou vers la page par défaut
-                    $redirectTo = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
-                    header("Location: " . $redirectTo);
+                    if(isset($idOffre)){
+                    ?>
+                        <form action="detailsOffer.php" method="post">
+                            <input type="hidden" name="idoffre" value="<?=$idOffre?>">
+                            <script>document.forms[0].submit();</script>
+                        </form>
+                    <?php
+                    } else{
+                        header('Location:  index.php');
+                    }
                     exit();
                 } 
                 
@@ -74,9 +99,16 @@
                         // Connexion réussie
                         $_SESSION['idUser'] = $member['idu'];
                         $_SESSION['typeUser'] = 'membre';
-                        // Rediriger vers la page précédente ou vers la page par défaut
-                        $redirectTo = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
-                        header("Location: " . $redirectTo);
+                        if(isset($idOffre)){
+                        ?>
+                            <form action="detailsOffer.php" method="post">
+                                <input type="hidden" name="idoffre" value="<?=$idOffre?>">
+                                <script>document.forms[0].submit();</script>
+                            </form>
+                        <?php
+                        } else{
+                            header('Location:  index.php');
+                        }
                         exit();
                     } 
                     
