@@ -1530,7 +1530,7 @@ header ul+div {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .buttonDetailOffer,
-.tag :not(#previewOffer .tag),
+.tag:not(#previewOffer .tag),
 .ouvert,
 .ferme {
   display: inline-block;
