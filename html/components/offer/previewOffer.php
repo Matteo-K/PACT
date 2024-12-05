@@ -202,14 +202,14 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $spectacle = $stmt -> fetchAll(PDO::FETCH_ASSOC);
                         ?>
                         <div>
-                            <p>Durée : <?= convertionMinuteHeure($spectacle[0]['duree'])?></p>
-                            <p>Nombre de places : <?= $spectacle[0]['nbplace']?></p>
+                            <p>Durée : <?= convertionMinuteHeure($data[$idOffre]["duree"])?></p>
+                            <p>Nombre de places : <?= $data[$idOffre]["nbPlace"] ?></p>
                         </div>
                         <?php
                     } else if($data[$idOffre]["categorie"] == "Activité" || $data[$idOffre]["categorie"] == "Parc Attraction"){
                         if($data[$idOffre]["categorie"] == "Activité"){
                             $stmt = $conn -> prepare("SELECT * from pact.activites where idoffre = $idOffre");
-                        } 
+                        }
                         else{
                             $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idoffre = $idOffre");
                         }
@@ -217,7 +217,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $theme = $stmt -> fetchAll(PDO::FETCH_ASSOC);
                         ?>
                         <div>
-                            <p>Âge minimum : <?= $theme[0]['agemin']?> ans</p>
+                            <p>Âge minimum : <?= $data[$idOffre]["ageMinimal"] ?> ans</p>
                         </div>
                         <?php
                     }
