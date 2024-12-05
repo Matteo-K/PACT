@@ -62,7 +62,16 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <form id="previewOffer" action="enregOffer.php" method="post">
     <section id="sectionPreview">
-        <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
+    <h2 id="titleOffer">
+    <?php 
+        if ($result && isset($result[0])) {
+            echo htmlspecialchars($result[0]["nom"] ?? "No name available");
+        } else {
+            echo "Pas d'offre trouvée ?";
+        }
+    ?>
+    </h2>
+
                 
                 <div id="tagPreview">
                     <?php 
