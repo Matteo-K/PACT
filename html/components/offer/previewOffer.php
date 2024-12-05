@@ -107,7 +107,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $tel = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-                if ($result['ville'] && $result['pays'] && $result['codepostal']) {
+                if ($result['ville'] && $result['pays'] && $result['codepostal'] == TRUE) {
                 ?>
                     <div>
                         <img src="./img/icone/lieu.png">
