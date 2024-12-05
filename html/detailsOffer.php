@@ -931,14 +931,24 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h3 id="tab-avis">Avis</h3>
                 <h3 id="tab-publiez">Publiez un avis</h3>
             </nav>
-
+            
             <div id="avis-section">
                 <!-- Contenu chargé dynamiquement -->
                 <div id="avis-component" style="display: flex;">
                     <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
                 </div>
                 <div id="publiez-component" style="display: none;">
-                    <?php require_once __DIR__ . "/components/avis/ecrireAvis.php"; ?>
+                    <?php 
+                    if($isLoggedIn){
+                        require_once __DIR__ . "/components/avis/ecrireAvis.php"; 
+                    }else{
+                    ?> 
+                    <form id="formForLogin" action="login.php" method="post">
+                        <input type="hidden" name="idOffre" value="<?=$idOffre?>">
+                    </form>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -950,6 +960,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
 <script>
+    if (!<?=$isLoggedIn?>) {
+        document.getElementById('formForLogin').submit();
+    }
+    
     document.addEventListener('DOMContentLoaded', function () {
 
         const nbWeekInput = document.getElementById('nbWeekALaUne');
