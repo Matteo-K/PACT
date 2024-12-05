@@ -1,7 +1,7 @@
 <?php
 $is_show;
 ?>
-<form id="hourlyOffer" action="post.php" method="post">
+<form id="hourlyOffer" action="enregOffer.php" method="post">
     <?php
         $stmt = $conn->prepare("SELECT table_name
             FROM (
