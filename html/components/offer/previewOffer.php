@@ -59,13 +59,15 @@ $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+<?php
+    $ar = new ArrayOffer($idOffre);
+    $data = $ar->getArray();
+?>
 
 <form id="previewOffer" action="enregOffer.php" method="post">
     <section id="sectionPreview">
     <h2 id="titleOffer">
     <?php 
-        $ar = new ArrayOffer($idOffre);
-        $data = $ar->getArray();
         echo $data[$idOffre]["nomOffre"];
     ?>
     </h2>
@@ -88,12 +90,11 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt->execute();
                     $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
-                    foreach ($tags as $tag): 
-                    if($tag["nomtag"]) {
+                    foreach ($data[$idOffre]["tags"] as $tag) {
                     ?>
-                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
+                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag))); ?></a>
                     <?php 
-                        } endforeach; 
+                        }
                     ?>
                    
                 </div>
