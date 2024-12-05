@@ -19,7 +19,7 @@ else{
     $idOffre = null; // Récupérer l'ID de l'offre s'il est passé dans l'URL ou le POST
 }
 
-print_r($idOffre);
+print($idOffre);
 // Vérification de la connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_POST['motdepasseConnexion'])) {
     $login = $_POST['login'];
