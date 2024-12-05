@@ -367,30 +367,51 @@ function filtrerParStatuts(offers) {
 //   });
 // }
 
-
+// Fonction de filtre par période
 function filtrerParPeriode(offers) {
-  const dateDepartValue = dateDepart.value;
   const heureDebutValue = heureDebut.value;
-  const dateFinValue = dateFin.value;
   const heureFinValue = heureFin.value;
 
-  // Si les champs ne sont pas remplis, on ne filtre pas par période
-  if (!dateDepartValue || !dateFinValue) {
+  if (!heureDebutValue || !heureFinValue) {
     return offers;
   }
 
-  // Créer des objets Date pour la date et l'heure de début
-  const dateDepartObj = new Date(dateDepartValue + "T" + (heureDebutValue || "00:00"));
-  const dateFinObj = new Date(dateFinValue + "T" + (heureFinValue || "23:59"));
+  const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
+  const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
 
-  // Filtrer les offres en fonction de la période
+  const debutRange = heureDebutH * 60 + heureDebutM;
+  const finRange = heureFinH * 60 + heureFinM;
+
   return offers.filter(offer => {
-    const offreDate = new Date(offer.date); // Assure-toi que `offer.date` est dans un format compatible
+    if (offer.categorie === "Restaurant" || offer.categorie === "Visite" || offer.categorie === "Parc Attraction") {
+      const horaires = offer.horaires;
 
-    // Vérifier si l'offre est dans la période choisie
-    return offreDate >= dateDepartObj && offreDate <= dateFinObj;
+      return horaires.some(plage => {
+        const [ouvertureH, ouvertureM] = plage.heureOuverture.split(':').map(Number);
+        const [fermetureH, fermetureM] = plage.heureFermeture.split(':').map(Number);
+
+        const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
+        const fermetureMinutes = fermetureH * 60 + fermetureM;
+
+        return (
+          (ouvertureMinutes < finRange && fermetureMinutes > debutRange)
+        );
+      });
+    } 
+    
+    else {
+      const heureOffre = offer.horaires;
+
+      const [offreH, offreM] = heureOffre.split(':').map(Number);
+      const offreTimeInMinutes = offreH * 60 + offreM;
+
+      return offreTimeInMinutes >= debutRange && offreTimeInMinutes <= finRange;
+    }
   });
 }
+
+
+
 
 
 
@@ -410,7 +431,7 @@ function sortAndFilter(array, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  //array = filtrerParPeriode(array);
+  array = filtrerParPeriode(array);
 
   // Tris
   array = selectSort(array);

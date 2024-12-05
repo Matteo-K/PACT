@@ -3419,6 +3419,8 @@ section#infoComp div {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  overflow-y: scroll;
+  height: 500px;
 }
 
 #avisPro li {
@@ -3535,6 +3537,17 @@ details.animating .contentDetails {
 details .nonLu, details .nonRepondu{
   position: absolute;
   left: 20px;
+}
+
+#avisPro details input[type="checkbox"]{
+  display: none;
+}
+
+#avisPro details label {
+  cursor: pointer;
+  font-size: 1.4em; 
+  text-decoration: underline;
+  font-style: italic;
 }
 
 #avisPro .notation{

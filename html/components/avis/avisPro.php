@@ -40,16 +40,18 @@ $avis = $avisTemp;
             ?>
             <h3>
                 <div class="nonLu"></div>
+                Non lus
                 <input type="checkbox" name="fltAvisNonLus" id="fltAvisNonLus">
-                <label for="fltAvisNonLus">Non lus</label>
+                <label for="fltAvisNonLus">Filtrer par</label>
             </h3>
             <h3>
                 <?php echo $avisN0["avisnonlus"] ?>
             </h3>
             <h3>
                 <div class="nonRepondu"></div>
+                Non répondus
                 <input type="checkbox" name="fltAvisNonRep" id="fltAvisNonRep">
-                <label for="fltAvisNonRep">Non répondus</label>
+                <label for="fltAvisNonRep">Filtrer par</label>
             </h3>
             <h3>
                 <?php echo $avisN0["avisnonrepondus"] ?>
@@ -173,8 +175,14 @@ const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
 let contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
+let avisPrecedent = -1;
 
 function afficheAvisSelect(numAvis) {
+
+    if (avisPrecedent != -1) {
+        li.style.background = `linear-gradient(90deg, ${accentColor} 0%, ${accentColor} 80%, transparent 100%)`;
+
+    }
 
     conteneurAvis.style.display = "flex";
     aucunAvisSelect.style.display = "none";
@@ -324,7 +332,7 @@ function displayArrayAvis(arrayAvis) {
     if (array.length != 0) {
         array.forEach(avis => {
             blocListAvis.appendChild(displayAvis(avis[1]));
-        }); 
+        });
     } else {
         let avis = document.createElement("p");
         avis.textContent = "Aucun avis trouvé";
@@ -375,7 +383,7 @@ function triDateAncien(arrayAvis) {
 function filtreNonLu(arrayAvis) {
     if (chbxNonLu.checked) {
         return arrayAvis.filter(avis => {
-            return avis[1].lu == false;
+            return !avis[1].lu;
         });
     }
     return arrayAvis;
@@ -398,7 +406,15 @@ function filtreNonRep(arrayAvis) {
  */
 function displayAvis(avis) {
     let li = document.createElement("li");
+    li.id = "avis" + avis.idc;
     li.setAttribute("onclick","afficheAvisSelect("+ avis.idc +")");
+    if (avis.idc_reponse == null) {
+        li.classList.add("avisNonRepondu");
+    }
+
+    if (!avis.lu) {
+        li.classList.add("avisNonLu");
+    }
 
     let blocTitre = document.createElement("div");
     let titre = document.createElement("p");
