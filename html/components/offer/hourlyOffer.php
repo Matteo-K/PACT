@@ -154,8 +154,8 @@
                 // Création d'un nouveau bloc
                 const newBlock = document.createElement("div");
                 let date = document.createElement("input");
-                date.setAttribut("type", "text");
-                date.setAttribut("name", "trip-start");
+                date.setAttribute("type", "text");
+                date.setAttribute("name", "trip-start");
                 date.id = "dateRepN"+counterRep;
 
                 flatpickr("dateRepN"+counterRep, {
@@ -171,21 +171,21 @@
                 span.classList.add("hourly1");
 
                 let lblRep1 = document.createElement("label");
-                lblRep.setAttribut("for", "HRepN"+ counterRep +"_part1.1");
+                lblRep.setAttribute("for", "HRepN"+ counterRep +"_part1.1");
                 lblRep.textContent = "Représentation de";
 
                 let inputHoriare1 = document.createElement("input");
-                inputHoriare1.setAttribut("type", "time");
-                inputHoriare1.setAttribut("name", "HRepN"+counterRep+"_part1.1");
+                inputHoriare1.setAttribute("type", "time");
+                inputHoriare1.setAttribute("name", "HRepN"+counterRep+"_part1.1");
                 inputHoriare1.id = "HRepN"+counterRep+"_part1.1";
 
                 let lblRep2 = document.createElement("label");
-                lblRep.setAttribut("for", "HRepN"+ counterRep +"_part1.2");
+                lblRep.setAttribute("for", "HRepN"+ counterRep +"_part1.2");
                 lblRep.textContent = "à";
 
                 let inputHoriare2 = document.createElement("input");
-                inputHoriare1.setAttribut("type", "time");
-                inputHoriare1.setAttribut("name", "HRepN"+counterRep+"_part1.2");
+                inputHoriare1.setAttribute("type", "time");
+                inputHoriare1.setAttribute("name", "HRepN"+counterRep+"_part1.2");
                 inputHoriare1.id = "HRepN"+counterRep+"_part1.2";
 
                 span.appendChild(lblRep1);
@@ -195,12 +195,12 @@
 
                 
                 let ajouterDate = document.createElement("input");
-                ajouterDate.setAttribut("type", "button");
-                ajouterDate.setAttribut("value", "Retirer");
-                ajouterDate.setAttribut("name", "btnRetirerRepN"+counterRep);
+                ajouterDate.setAttribute("type", "button");
+                ajouterDate.setAttribute("value", "Retirer");
+                ajouterDate.setAttribute("name", "btnRetirerRepN"+counterRep);
                 ajouterDate.id = "btnRetirerRepN"+counterRep;
                 ajouterDate.classList.add("blueBtnOffer");
-                ajouterDate.setAttribut("onclick", "removeDateRep(this)");
+                ajouterDate.setAttribute("onclick", "removeDateRep(this)");
                 
                 newBlock.appendChild(date);
                 newBlock.appendChild(span);
