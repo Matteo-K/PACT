@@ -6,9 +6,9 @@ session_start();
 require_once 'db.php';
 
 if(isset($_POST['idOffre'])){
-    print_r($_POST['idOffre']);
+    $idOffre = $_POST['idOffre'];
 }else{
-    print("swdfhk,:ù;mbdswrd,;:!nbdwqwvb ,!:bcx<sx, ;:!vcw<s");
+    $idOffre = null;
 }
 // Vérification de la connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_POST['motdepasseConnexion'])) {
@@ -27,10 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['typeUser'] = 'admin';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
             
-            if (isset($_POST['idOffre'])) {
+            if ($idOffre) {
                 ?>
                 <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idOffre' value='<?php echo htmlspecialchars($_POST['idOffre']); ?>'>
+                    <input type='hidden' name='idOffre' value='<?php echo $idOffre = null
+ ?>'>
                 </form>
                 <script>
                     document.getElementById('redirectForm').submit();
@@ -56,10 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            if (isset($_POST['idOffre'])) {
+            if ($idOffre) {
                 ?>
                 <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idOffre' value='<?php echo htmlspecialchars($_POST['idOffre']); ?>'>
+                    <input type='hidden' name='idOffre' value='<?php echo $idOffre ?>'>
                 </form>
                 <script>
                     document.getElementById('redirectForm').submit();
@@ -85,10 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            if (isset($_POST['idOffre'])) {
+            if ($idOffre) {
                 ?>
                 <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idOffre' value='<?php echo htmlspecialchars($_POST['idOffre']); ?>'>
+                    <input type='hidden' name='idOffre' value='<?php echo $idOffre ?>'>
                 </form>
                 <script>
                     document.getElementById('redirectForm').submit();
@@ -114,10 +115,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            if (isset($_POST['idOffre'])) {
+            if ($idOffre) {
                 ?>
                 <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idOffre' value='<?php echo htmlspecialchars($_POST['idOffre']); ?>'>
+                    <input type='hidden' name='idOffre' value='<?php echo $idOffre ?>'>
                 </form>
                 <script>
                     document.getElementById('redirectForm').submit();
@@ -181,9 +182,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 
             <a id="lienMotDePasseOublie" href="#"> Mot de passe oublié ?</a>
         <?php
-        if(isset($_POST['idOffre'])){
+        if($idOffre){
         ?>
-            <input type="hidden" name="idOffre" value="<?= $_POST['idOffre']?>">
+            <input type="hidden" name="idOffre" value="<?= $idOffre?>">
         <?php
         }
         ?>
