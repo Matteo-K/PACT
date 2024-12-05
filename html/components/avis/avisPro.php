@@ -375,7 +375,7 @@ function triDateAncien(arrayAvis) {
 function filtreNonLu(arrayAvis) {
     if (chbxNonLu.checked) {
         return arrayAvis.filter(avis => {
-            return avis[1].lu == false;
+            return !avis[1].lu;
         });
     }
     return arrayAvis;
@@ -399,6 +399,13 @@ function filtreNonRep(arrayAvis) {
 function displayAvis(avis) {
     let li = document.createElement("li");
     li.setAttribute("onclick","afficheAvisSelect("+ avis.idc +")");
+    if (avis.idc_reponse == null) {
+        li.classList.add("avisRepondu");
+    }
+
+    if (!avis[1].lu) {
+        li.classList.add("avisLu");
+    }
 
     let blocTitre = document.createElement("div");
     let titre = document.createElement("p");
