@@ -27,6 +27,7 @@ function listImage($idOffre, $idComment) {
 }
 
 // Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
+// Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
 function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
 {
     $result = [
@@ -41,7 +42,7 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
     }
 
     // Chemin du dossier cible
-    $targetFolder = realpath($uploadBasePath . '/' . $idOffre . "/" . $idComment);
+    $targetFolder = $uploadBasePath . '/' . $idOffre . "/" . $idComment;
 
     // Créer le dossier cible si nécessaire
     if (!is_dir($targetFolder)) {
@@ -64,11 +65,6 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
         $extension = pathinfo($image, PATHINFO_EXTENSION);
         $idImage = uniqid();
         $newFilePath = $targetFolder . "/" . $idImage . "." . $extension;
-
-        if (file_exists($newFilePath)) {
-            $result['errors'][] = "Le fichier existe déjà : $newFilePath";
-            continue;
-        }
 
         if (rename($image, $newFilePath)) {
             $result['success'][] = $newFilePath;
