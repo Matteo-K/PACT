@@ -4,22 +4,6 @@ session_start();
 
 // fichier de connexion à la BDD
 require_once 'db.php';
-
-// Vérifier si l'utilisateur est déjà connecté
-if (isset($_SESSION['idUser'])) {
-    header("Location: index.php");
-    exit();
-}
-
-// Vérification de la méthode POST et récupération de l'ID de l'offre
-if(isset($_POST['idOffre'])){
-    $idOffre = $_POST['idOffre'];
-}
-else{
-    $idOffre = null; // Récupérer l'ID de l'offre s'il est passé dans l'URL ou le POST
-}
-
-print($idOffre);
 // Vérification de la connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_POST['motdepasseConnexion'])) {
     $login = $_POST['login'];
@@ -36,12 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            echo "<form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='$idOffre'>
-                  </form>
-                  <script>
-                    document.getElementById('redirectForm').submit();
-                  </script>";
+            header("Location: index.php");
             exit();
         }
 
@@ -55,12 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            echo "<form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='$idOffre'>
-                  </form>
-                  <script>
-                    document.getElementById('redirectForm').submit();
-                  </script>";
+            header("Location: index.php");
             exit();
         }
 
@@ -74,12 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            echo "<form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='$idOffre'>
-                  </form>
-                  <script>
-                    document.getElementById('redirectForm').submit();
-                  </script>";
+            header("Location: index.php");
             exit();
         }
 
@@ -93,12 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            echo "<form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idoffre' value='$idOffre'>
-                  </form>
-                  <script>
-                    document.getElementById('redirectForm').submit();
-                  </script>";
+                header("Location: index.php");
+                exit();
+            
             exit();
         } else {
             $error = "Identifiant ou mot de passe incorrect.";

@@ -12,6 +12,8 @@ if (!$idOffre) {
     header("location: index.php");
     exit();
 }
+
+print_r($idOffre);
 ?>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -941,12 +943,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php 
                     if($isLoggedIn){
                         require_once __DIR__ . "/components/avis/ecrireAvis.php"; 
-                    }else{
-                    ?> 
-                    <form id="formForLogin" action="login.php" method="post">
-                        <input type="hidden" name="idOffre" value="<?=$idOffre?>">
-                    </form>
-                    <?php
+                    }else {
+                        ?>
+                        <p>Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></p>
+                        <?php
                     }
                     ?>
                 </div>
@@ -960,17 +960,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
 <script>
-    let publiez = document.getElementById("tab-publiez");
-    publiez.addEventListener("click", (event) => {
-        // Vérifier si l'utilisateur est connecté via une variable injectée par PHP
-        const isLoggedIn = <?= json_encode($isLoggedIn); ?>;
-
-        // Si l'utilisateur n'est pas connecté, soumettre le formulaire de connexion
-        if (!isLoggedIn) {
-            event.preventDefault(); // Empêche l'action par défaut
-            document.getElementById('formForLogin').submit();
-        }
-    });
     
     document.addEventListener('DOMContentLoaded', function () {
 

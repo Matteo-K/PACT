@@ -113,7 +113,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
 
             <label for="resume">Résumé de l'offre</label>
-            <textarea id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50><?php echo $resume;?></textarea>
+            <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50><?php echo $resume;?></inp>
 
             <label for="description">Description de votre offre*</label>
             <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
@@ -328,11 +328,7 @@ function deleteImage(fileName, imgElement, index) {
             alert('Erreur lors de la suppression de l\'image sur le serveur : ' + data.error);
             // Recharger la liste des images pour restaurer l'état correct
             loadExistingImages();
-        } else {
-            // Si la suppression a réussi, afficher un message de succès
-            alert('Image supprimée avec succès.');
-            // Recharger la liste des images pour assurer que l'état est mis à jour
-        }
+        } 
     })
     .catch(error => {
         // En cas de problème avec la requête, restaurer l'image et afficher un message d'erreur
@@ -393,7 +389,6 @@ function deleteImage(fileName, imgElement, index) {
                     if (errors.length > 0) {
                         alert(`Erreur lors du téléchargement de "${file.name}" :\n${errors.map(e => e.error).join('\n')}`);
                     } else {
-                        alert(`Fichier "${file.name}" téléchargé avec succès !`);
                         loadExistingImages(); // Recharge la liste des images existantes
                     }
                 })

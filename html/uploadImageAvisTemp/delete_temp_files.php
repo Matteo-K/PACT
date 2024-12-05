@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uniqueId = $_POST['unique_id'];
 
     // Chemin du dossier temporaire où les images sont stockées
-    $tempDir = 'img/imageAvis/temp_uploads/' . $uniqueId;
+    $tempDir = '../img/imageAvis/temp_uploads/' . $uniqueId;
 
     // Vérifier que le fichier existe dans le dossier temporaire
     $filePath = $tempDir ."/". basename($fileUrl);
