@@ -20,6 +20,8 @@ $jour = explode(" ",$formattedDate);
 
 $frenchDay = $dateJour[$jour[0]];
 
+echo $frenchDay;
+
 print_r($jour);
 
 
