@@ -5,7 +5,7 @@ $visite = [
     "guide" => true,
     "duree" => "",
     "prixminimal" => "",
-    //"accessibilite" => true,
+    "accessibilite" => true,
     "nomAccess" => [],
     "langue" => []
 ];
@@ -26,7 +26,7 @@ if ($categorie["_visite"]) {
         $visite["guide"] = $result["guide"];
         $visite["duree"] = $result["duree"];
         $visite["prixminimal"] = $result["prixminimal"];
-        $visite["accessibilite"] = $result["accessibilite"];
+        $visite["nomAccess"] = $result["nomAccess"];
     }
     // Langue
     $stmt = $conn->prepare("SELECT langue from pact._visite_langue where idoffre=?");
