@@ -3,7 +3,6 @@
 // Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
 function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
 {
-    // Résultats pour le retour
     $result = [
         'success' => [],
         'errors' => []
@@ -16,7 +15,7 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
     }
 
     // Chemin du dossier cible
-    $targetFolder = $uploadBasePath . $idOffre;
+    $targetFolder = $uploadBasePath . '/' . $idOffre;
 
     // Créer le dossier cible si nécessaire
     if (!is_dir($targetFolder)) {
@@ -36,14 +35,10 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
 
     // Déplacement des images
     foreach ($images as $image) {
-        // Récupérer l'extension du fichier
         $extension = pathinfo($image, PATHINFO_EXTENSION);
-
-        // Générer un identifiant unique pour l'image
         $idImage = uniqid();
-        $newFilePath = $targetFolder . "/" . $idImage.".".$extension;
+        $newFilePath = $targetFolder . "/" . $idImage . "." . $extension;
 
-        // Déplacer le fichier
         if (rename($image, $newFilePath)) {
             $result['success'][] = $newFilePath;
         } else {
@@ -69,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     // Déplacer les images vers le dossier de l'offre
     $result = moveImagesToOfferFolder($idOffre, $tempFolder, "img/imageAvis/");
 
-    // Debugging pour vérifier les résultats
     if (!empty($result['errors'])) {
         echo "Erreurs lors du déplacement des fichiers :<br>";
         print_r($result['errors']);
@@ -81,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     }
 }
 ?>
+    
 
 <section>
     <form id="formCreationAvis" action="detailsOffer.php" method="post" enctype="multipart/form-data">
