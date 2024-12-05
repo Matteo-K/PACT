@@ -131,13 +131,15 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="swiper mySwiperPreview">
                         <div class="swiper-wrapper">
                         <?php
+                        if ($data[$idOffre]["images"] == NULL) {
                             foreach ($data[$idOffre]["images"] as $url) {
-                        ?>
+                                ?>
                                 <div class="swiper-slide">
                                     <img src="<?php echo $url ?>" />
                                 </div>
-                        <?php
+                                <?php
                             }
+                        }
                         ?>
                         </div>
                     </div>
