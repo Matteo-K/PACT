@@ -74,6 +74,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $data = $ar->getArray();
 
         print_r($data[$idOffre]["nomOffre"]);
+        print_r($data[$idOffre]["idOffre"]);
     ?>
     </h2>
 
