@@ -90,9 +90,9 @@ const chkBxSpectacle = document.querySelector("#Spectacle");
 const chkBxRestauration = document.querySelector("#Restauration");
 
 // dates
-const dateDepart = document.querySelector("#dateDepart");
+// const dateDepart = document.querySelector("#dateDepart");
+// const dateFin = document.querySelector("#dateFin");
 const heureDebut = document.querySelector("#heureDebut");
-const dateFin = document.querySelector("#dateFin");
 const heureFin = document.querySelector("#heureFin");
 
 
@@ -872,7 +872,7 @@ chkBxSpectacle.addEventListener("click", () => goToPage(1));
 chkBxRestauration.addEventListener("click", () => goToPage(1));
 
 // dates
-dateDepart.addEventListener("change", () => goToPage(1));
+// dateDepart.addEventListener("change", () => goToPage(1));
+// dateFin.addEventListener("change", () => goToPage(1));
 heureDebut.addEventListener("change", () => goToPage(1));
-dateFin.addEventListener("change", () => goToPage(1));
 heureFin.addEventListener("change", () => goToPage(1));
