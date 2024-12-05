@@ -82,12 +82,6 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 
 // Traitement des données envoyées par le formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
-    // Validation des entrées utilisateur
-    $idUser = filter_input(INPUT_POST, 'idUser', FILTER_VALIDATE_INT);
-    if (!$idUser) {
-        echo json_encode(['success' => false, 'message' => 'Utilisateur invalide.']);
-        exit;
-    }
 
     // Préparation des données
     $note = $_POST['note'];
