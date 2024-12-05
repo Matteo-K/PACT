@@ -3432,13 +3432,14 @@ section#infoComp div {
   background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary) 80%,  transparent 100%);
   margin: 5px 0 10px 20px;
   border-bottom-left-radius: 5px;
+  position: relative;
 }
 
 #avisPro li:hover {
   background: linear-gradient(90deg, var(--primary60) 0%, var(--primary60) 80%,  transparent 100%);
 }
 
-#avisPro li > div{
+#avisPro li > div:first-of-type{
   display: flex;
   flex-wrap: nowrap;
   width: 90%;
@@ -3455,6 +3456,12 @@ section#infoComp div {
   flex-wrap: nowrap;
   width: 90%;
   overflow: none;
+}
+
+#avisPro li > .nonLu, #avisPro li > .nonRepondu{
+  position: absolute;
+  left: 0;
+  bottom: 20px;
 }
 
 /* bloc fermable */
@@ -3546,9 +3553,10 @@ details .nonLu, details .nonRepondu{
 
 #avisPro details label {
   cursor: pointer;
-  font-size: 1.4em; 
+  font-size: 1.2rem;
   text-decoration: underline;
   font-style: italic;
+  margin-left: 20px;
 }
 
 #avisPro .notation{

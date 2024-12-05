@@ -404,13 +404,6 @@ function displayAvis(avis) {
     let li = document.createElement("li");
     li.id = "avis" + avis.idc;
     li.setAttribute("onclick","afficheAvisSelect("+ avis.idc +")");
-    if (avis.idc_reponse == null) {
-        li.classList.add("avisNonRepondu");
-    }
-
-    if (!avis.lu) {
-        li.classList.add("avisNonLu");
-    }
 
     let blocTitre = document.createElement("div");
     let titre = document.createElement("p");
@@ -424,6 +417,20 @@ function displayAvis(avis) {
     
     li.appendChild(blocTitre);
     li.appendChild(content);
+
+
+    if (!avis.lu) {
+        li.classList.add("avisNonLu");
+        let divNonLu =document.createElement("div");
+        divNonLu.classList.add("nonLu");
+        li.appendChild(divNonLu);
+    }
+    else if (avis.idc_reponse == null) {
+        li.classList.add("avisNonRepondu");
+        let divNonRep =document.createElement("div");
+        divNonRep.classList.add("nonRepondu");
+        li.appendChild(divNonRep);
+    }
 
     return li;
 }
