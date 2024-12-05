@@ -195,6 +195,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
                 <p id="legendeBoutonLienPro">Compte destiné aux professionels voulant promouvoir une offre de leur entreprise</p>
             </div>
         </div>
+        <?php
+        if(isset($_POST['idOffre'])){
+        ?>
+            <input type="hidden" name="idOffre" value="<?= $_POST['idOffre']?>">
+        <?php
+        }
+        ?>
     </main>
 </body>
 <script src="js/validationFormInscription.js"></script>
