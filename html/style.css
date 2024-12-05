@@ -3473,7 +3473,8 @@ section#infoComp div {
 }
 
 #avisPro ul .nonLu, #avisPro ul .nonRepondu{
-  margin: 60px 0 5px 5px;
+  position: absolute;
+  right: -30px;
 }
 
 /* bloc fermable */
@@ -3665,7 +3666,8 @@ details .nonLu, details .nonRepondu{
 
 
 .conteneurAvisPro h3{
-  width: 90%;
+  width: 90% !important;
+  justify-content: center;
 }
 
 #contenuAvis{

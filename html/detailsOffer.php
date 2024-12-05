@@ -1272,7 +1272,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             message.style.display = 'none';
         }
 
-        
 
         try {
             document.getElementById('tab-avis').addEventListener('click', function() {

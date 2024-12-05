@@ -173,7 +173,7 @@ let dateAvis = document.getElementById("visiteRedaction");
 const root = document.documentElement;
 const accentColor = getComputedStyle(root).getPropertyValue('--accent').trim();
 const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim();
-const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
+const primaryColor = getComputedStyle(root).getPropertyValue('--primary60').trim();
 
 const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
@@ -224,7 +224,7 @@ function afficheAvisSelect(idAvis) {
     //changement date publication et visite
     dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
 
-    avisPrecedent = querySelector (`#avisPro ul .avis${idAvis}`);
+    avisPrecedent = document.getElementById(`avis${idAvis}`);
 }
 
 
