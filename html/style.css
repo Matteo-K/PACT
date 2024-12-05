@@ -3901,7 +3901,11 @@ details .nonLu, details .nonRepondu{
 }
 
 #sectionPreview p, h4, h2{
-  font-size: 30px;
+  font-size: 25px;
+}
+
+#sectionPreview h4, h2{
+  font-size: 35px;
 }
 
 #titleOfferPreview {
