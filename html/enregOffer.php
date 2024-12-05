@@ -530,57 +530,79 @@ if (isset($_POST['pageBefore'])) {
         break;
 
       case 5:
-        // Détails Horaires update
-        $jour_semaine = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
-        // Ajoute dans la base de donnée les heures pour chaque jour
-        // Si fermé ou les champs son vides, on ajoute pas dans la base de donnée
-        foreach ($jour_semaine as $jour) {
-          // Vérifier si le jour est fermé
-          if (!isset($_POST["check$jour"])) {
-            // Récupérer les horaires
-            $horairesOuv1 = $_POST["horairesOuv1$jour"] ?? null;
-            $horairesF1 = $_POST["horairesF1$jour"] ?? null;
-            $horairesOuv2 = $_POST["horairesOuv2$jour"] ?? null;
-            $horairesF2 = $_POST["horairesF2$jour"] ?? null;
-
-            // Ajouter les horaires au Midi
-            if ($horairesOuv1 && $horairesF1) {
-              // Vérifier que l'horaire d'ouverture est avant l'horaire de fermeture
-              if ($horairesOuv1 < $horairesF1) {
-                // Requête ajout dans la base de donnée midi
-                $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=? AND jour=?");
-                $stmt->execute([$idOffre, $jour]);
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                if ($result !== false) {
-                  // si existe déjà, on modifie
-                  $stmt = $conn->prepare("UPDATE pact._horairemidi SET heureouverture=?, heurefermeture=? where idoffre=? and jour=?");
-                  $stmt->execute([$horairesOuv1, $horairesF1, $idOffre, $jour]);
-                } else {
-                  // sinon ajoute
-                  $stmt = $conn->prepare("INSERT INTO pact._horairemidi (idoffre, jour, heureouverture, heurefermeture) VALUES (?, ?, ?, ?)");
-                  $stmt->execute([$idOffre, $jour, $horairesOuv1, $horairesF1]);
-                }
-                // Ajout du soir si les horaires du midi sont correctes
-                if (($horairesOuv2 && $horairesF2) && ($horairesF1 < $horairesOuv2)) {
-                  // Requête ajout dans la base de donnée Soir
-                  $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=? AND jour=?");
-                  $stmt->execute([$idOffre, $jour]);
-                  $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                  if ($result !== false) {
-                    // si existe déjà, on modifie
-                    $stmt = $conn->prepare("UPDATE pact._horairesoir SET heureouverture=?, heurefermeture=? where idoffre=? and jour=?");
-                    $stmt->execute([$horairesOuv2, $horairesF2, $idOffre, $jour]);
-                  } else {
-                    // sinon ajoute
-                    $stmt = $conn->prepare("INSERT INTO pact._horairesoir (idoffre, jour, heureouverture, heurefermeture) VALUES (?, ?, ?, ?)");
-                    $stmt->execute([$idOffre, $jour, $horairesOuv2, $horairesF2]);
+        switch ($_POST["typeOffre"]) {
+          case 0: // Autre
+            // Détails Horaires update
+            $jour_semaine = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+    
+            // Ajoute dans la base de donnée les heures pour chaque jour
+            // Si fermé ou les champs son vides, on ajoute pas dans la base de donnée
+            foreach ($jour_semaine as $jour) {
+              // Vérifier si le jour est fermé
+              if (!isset($_POST["check$jour"])) {
+                // Récupérer les horaires
+                $horairesOuv1 = $_POST["horairesOuv1$jour"] ?? null;
+                $horairesF1 = $_POST["horairesF1$jour"] ?? null;
+                $horairesOuv2 = $_POST["horairesOuv2$jour"] ?? null;
+                $horairesF2 = $_POST["horairesF2$jour"] ?? null;
+    
+                // Ajouter les horaires au Midi
+                if ($horairesOuv1 && $horairesF1) {
+                  // Vérifier que l'horaire d'ouverture est avant l'horaire de fermeture
+                  if ($horairesOuv1 < $horairesF1) {
+                    // Requête ajout dans la base de donnée midi
+                    $stmt = $conn->prepare("SELECT * FROM pact._horairemidi WHERE idoffre=? AND jour=?");
+                    $stmt->execute([$idOffre, $jour]);
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                    if ($result !== false) {
+                      // si existe déjà, on modifie
+                      $stmt = $conn->prepare("UPDATE pact._horairemidi SET heureouverture=?, heurefermeture=? where idoffre=? and jour=?");
+                      $stmt->execute([$horairesOuv1, $horairesF1, $idOffre, $jour]);
+                    } else {
+                      // sinon ajoute
+                      $stmt = $conn->prepare("INSERT INTO pact._horairemidi (idoffre, jour, heureouverture, heurefermeture) VALUES (?, ?, ?, ?)");
+                      $stmt->execute([$idOffre, $jour, $horairesOuv1, $horairesF1]);
+                    }
+                    // Ajout du soir si les horaires du midi sont correctes
+                    if (($horairesOuv2 && $horairesF2) && ($horairesF1 < $horairesOuv2)) {
+                      // Requête ajout dans la base de donnée Soir
+                      $stmt = $conn->prepare("SELECT * FROM pact._horairesoir WHERE idoffre=? AND jour=?");
+                      $stmt->execute([$idOffre, $jour]);
+                      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                      if ($result !== false) {
+                        // si existe déjà, on modifie
+                        $stmt = $conn->prepare("UPDATE pact._horairesoir SET heureouverture=?, heurefermeture=? where idoffre=? and jour=?");
+                        $stmt->execute([$horairesOuv2, $horairesF2, $idOffre, $jour]);
+                      } else {
+                        // sinon ajoute
+                        $stmt = $conn->prepare("INSERT INTO pact._horairesoir (idoffre, jour, heureouverture, heurefermeture) VALUES (?, ?, ?, ?)");
+                        $stmt->execute([$idOffre, $jour, $horairesOuv2, $horairesF2]);
+                      }
+                    }
                   }
                 }
               }
             }
-          }
+            
+            break;
+          
+          case 1: // Spectacle
+            if (isset($_POST["dates"])) {
+              $dates = $_POST["dates"];
+              $stmt = $conn->prepare("DELETE FROM pact._horaireprecise WHERE idoffre= ?");
+              $stmt->execute([$idOffre]);
+              foreach ($dates as $date) {
+                //INSERT INTO pact._horaireprecise (jour, idoffre, heuredebut, heurefin, daterepresentation) values ('Jeudi', 2, '17:00', '22:00', CURRENT_DATE)
+                $stmt = $conn->prepare("INSERT INTO pact._offre (idu, statut, idoffre, nom, description, mail, telephone, affiche, urlsite, resume, datecrea) VALUES (?, ?, ?, null, null, null, null, null, null, null, ?)");
+                $stmt->execute([$idUser, 'inactif', $idOffre, $date]);
+              }
+            }
+            break;
+          default: // -1 : Aucune offre
+            break;
         }
+
         break;
 
       case 6:
