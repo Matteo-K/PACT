@@ -7,7 +7,7 @@ $spectacle = [
     "prixminimal" => ""
 ];
 
-// Si le spectacle était déà existante, on récupère les données
+// Si le spectacle était déjà existant, on récupère les données
 if ($categorie["_spectacle"]) {
     $stmt = $conn->prepare("SELECT * from pact._spectacle where idoffre=?");
     $stmt->execute([$idOffre]);
@@ -19,13 +19,13 @@ if ($categorie["_spectacle"]) {
         $spectacle["prixminimal"] = $result["prixminimal"];
     }
 }
-// Il reste à initialisé les valeurs dans les input
+
 ?>
-<section id="show"> <!-- Pour le CSS-->
+<section id="show"> 
 
     <!-- Gestion du nombre de place pour le parc d'attraction -->
     <div>
-        <label class="labelNbPlace" for="nbPlaceShow">Nombre de places : </label> <!-- Label nombre de place -->
+        <label for="nbPlaceShow" class="labelNbPlace" >Nombre de places : </label> <!-- Label nombre de place -->
 
         <div>
             <input type="number" class="nb" id="nbPlaceShow" name="nbPlaceShow" min="0" placeholder="0" value="<?php echo $spectacle["nbplace"] ?>">
@@ -33,10 +33,10 @@ if ($categorie["_spectacle"]) {
             places
         </div>
     <!-- Gestion du prix -->
-        <label class="labelShow1" for="PrixMinShow">Prix minimum : </label>
+        <label for="PrixMinShow" class="labelShow1" >Prix minimum : </label>
 
         <div>
-            <input type="number" class="nb" id="PrixMinShow" name="PrixMinShow" min="0" placeholder="0">
+            <input type="number" class="nb" id="PrixMinShow" name="PrixMinShow" min="0" placeholder="0" value="<?php echo $spectacle["prixminimal"] ?>">
             <!-- Pour entrer un prix minimum -->
             €
         </div>
@@ -52,12 +52,13 @@ if ($categorie["_spectacle"]) {
         <div>
             <div class="classDivLigne">
             <label for="nbMin" class="ligne1">En minutes : </label>
-            <input type="number" class="nb" id="nbMin" name="nbMin" min="0" placeholder="0">
+            <input type="number" class="nb" id="nbMin" name="nbMin" min="0" placeholder="0" >
                 
             
 
                 <label for="nbMinutesHeure" class="ligne4">En heures : </label>
-                <input type="time" id="nbMinutesHeure" class="nb" name="nbMinutesHeure" placeholder="0">
+                <input type="time" id="nbMinutesHeure" class="nb" name="nbMinutesHeure" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
+                <!-- Pour entrer un prix minimum -->
             </div>
         </div>
     </div>
