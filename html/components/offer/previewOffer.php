@@ -64,17 +64,9 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <section id="sectionPreview">
     <h2 id="titleOffer">
     <?php 
-        if ($result && isset($result)) {
-            echo htmlspecialchars($result["nom"] ?? "No name available");
-        } else {
-            echo "Pas d'offre trouvée ?";
-        }
-
         $ar = new ArrayOffer($idOffre);
         $data = $ar->getArray();
-
-        print_r($data[$idOffre]["nomOffre"]);
-        print_r($data[$idOffre]["ville"]);
+        echo $data[$idOffre]["nomOffre"];
     ?>
     </h2>
 
