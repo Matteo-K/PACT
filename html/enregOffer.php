@@ -589,13 +589,32 @@ if (isset($_POST['pageBefore'])) {
           
           case 1: // Spectacle
             if (isset($_POST["dates"])) {
-              $dates = $_POST["dates"];
               $stmt = $conn->prepare("DELETE FROM pact._horaireprecise WHERE idoffre= ?");
               $stmt->execute([$idOffre]);
+
+              // Tableau pour la convertion anglais français
+              $dateJour = [
+                "Monday"    => "Lundi",
+                "Tuesday"   => "Mardi",
+                "Wednesday" => "Mercredi",
+                "Thursday"  => "Jeudi",
+                "Friday"    => "Vendredi",
+                "Saturday"  => "Samedi",
+                "Sunday"    => "Dimanche"
+              ];
+              $dates = $_POST["dates"];
+              
               foreach ($dates as $date) {
-                //INSERT INTO pact._horaireprecise (jour, idoffre, heuredebut, heurefin, daterepresentation) values ('Jeudi', 2, '17:00', '22:00', CURRENT_DATE)
-                $stmt = $conn->prepare("INSERT INTO pact._offre (idu, statut, idoffre, nom, description, mail, telephone, affiche, urlsite, resume, datecrea) VALUES (?, ?, ?, null, null, null, null, null, null, null, ?)");
-                $stmt->execute([$idUser, 'inactif', $idOffre, $date]);
+                $convertionDate = date("l Y-m-d", strtotime($date["trip-start"]));
+                $splitDate = explode(" ",$convertionDate);
+
+                $jour = $dateJour[$splitDate[0]];
+                $dateRep = new DateTime($splitDate[1]);
+                $heureDebut = $date["HRep_part1.1"];
+                $heureFin = $date["HRep_part1.2"];
+
+                $stmt = $conn->prepare("INSERT INTO pact._horaireprecise (jour, idoffre, heuredebut, heurefin, daterepresentation) values ('Jeudi', 2, '17:00', '22:00', CURRENT_DATE)");
+                $stmt->execute([$jour, $idOffre, $heureDebut, $heureFin, $dateRep]);
               }
             }
             break;
