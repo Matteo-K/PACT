@@ -180,7 +180,7 @@
                 inputHoraire2.id = "HRepN" + counterRep + "_part1.2";
 
                 span.appendChild(lblRep1);
-                span.appendChild(inputHoriare1);
+                span.appendChild(inputHoraire1);
                 span.appendChild(lblRep2);
                 span.appendChild(inputHoraire2);
 
