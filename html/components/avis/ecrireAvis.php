@@ -97,7 +97,7 @@
             etoile.addEventListener("mouseout", reinitialiserSurvol);
 
             // Clic : enregistre la note de manière permanente
-            etoile.addEventListener("click", () => definirNote(index));
+            etoile.addEventListener("click", () => definirNote(index + 1));
         });
 
         function survolerEtoiles(note) {
@@ -116,6 +116,7 @@
         function definirNote(note) {
             noteActuelle = note % 5 + 1;
             noteInput.value = note; // Met à jour l'input caché
+            etoile.classList.add("pleine", i < note);
             reinitialiserSurvol();
         }
     });
