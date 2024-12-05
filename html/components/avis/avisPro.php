@@ -150,7 +150,7 @@ let listeAvis = <?php echo json_encode($avis) ?>;
 let currentPage = 1;
 let nbElement = 50;
 document.addEventListener('DOMContentLoaded', function() {
-    goToPage(currentPage);
+    displayArrayAvis(listeAvis);
 });
 
 let conteneurAvis = document.querySelector(".conteneurAvisPro");
@@ -303,16 +303,11 @@ const selectTri = document.getElementById("TridateAvis");
 const chbxNonLu = document.getElementById("fltAvisNonLus");
 const chbxNonRep = document.getElementById("fltAvisNonRep");
 
-selectTri.addEventListener('change', () => goToPage(currentPage));
-chbxNonLu.addEventListener('change', () => goToPage(1));
-chbxNonRep.addEventListener('change', () => goToPage(1));
+selectTri.addEventListener('change', () => displayArrayAvis(listeAvis));
+chbxNonLu.addEventListener('change', () => displayArrayAvis(listeAvis));
+chbxNonRep.addEventListener('change', () => displayArrayAvis(listeAvis));
 
-function goToPage(NPage) {
-    currentPage = NPage;
-    displayArrayAvis(arrayAvis, (NPage - 1) * nbElement, nbElement);
-}
-
-function displayArrayAvis(arrayAvis, elementStart, nbElement) {
+function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
     
     let array = Object.entries(arrayAvis);
@@ -327,10 +322,9 @@ function displayArrayAvis(arrayAvis, elementStart, nbElement) {
     blocListAvis.innerHTML = "";
 
     if (array.length != 0) {
-        let avis = array.slice(elementStart, elementStart + nbElement);
-            array.forEach(avis => {
+        array.forEach(avis => {
             blocListAvis.appendChild(displayAvis(avis[1]));
-        });
+        }); 
     } else {
         let avis = document.createElement("p");
         avis.textContent = "Aucun avis trouvé";
