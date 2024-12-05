@@ -226,7 +226,7 @@ class Offer {
     $this->rue = $rue_;
     $this->codePostal = $codePostal_;
     $this->mail = empty($mail_) ? "" : $mail_;
-    $this->telephone = $telephone_;
+    $this->telephone = empty($telephone_) ? "" : $telephone_;
     //$this->urlsite = $urlsite_;
     $this->dateCreation = $dateCreation_;
     $this->abonnement = $abonnement_;
