@@ -309,7 +309,7 @@ chbxNonRep.addEventListener('change', () => goToPage(1));
 
 function goToPage(NPage) {
     currentPage = NPage;
-    displayArrayAvis(arrayOffer, (NPage - 1) * nbElement, nbElement);
+    displayArrayAvis(arrayAvis, (NPage - 1) * nbElement, nbElement);
 }
 
 function displayArrayAvis(arrayAvis, elementStart, nbElement) {
