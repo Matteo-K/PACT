@@ -232,7 +232,7 @@ function afficheAvisSelect(idAvis) {
         avisSelect.classList.add("avisNonRepondu");
         let divNonRep = document.createElement("div");
         divNonRep.classList.add("nonRepondu");
-        avisSelect.querySelector(div).appendChild(divNonRep);
+        avisSelect.querySelector("div").appendChild(divNonRep);
     }
 
     avisPrecedent = document.getElementById(`avis${idAvis}`);
