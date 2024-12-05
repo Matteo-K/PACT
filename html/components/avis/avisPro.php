@@ -220,6 +220,7 @@ function afficheAvisSelect(idAvis) {
     //On remet l'ancien avis sélectionné en gris
     if (avisPrecedent != -1) {
         avisPrecedent.style.background = `linear-gradient(90deg, ${secondaryColor} 0%, ${secondaryColor} 80%, transparent 100%)`;
+        alert("remet l'ancien en gris");
     }
     //Et l'avis actuel en évidence
     avisSelect.style.background = `linear-gradient(90deg, ${primaryColor} 0%, ${primaryColor} 90%, transparent 100%)`;
@@ -257,6 +258,7 @@ function afficheAvisSelect(idAvis) {
 
     //On passe l'avis de non lu a lu
     if(avisSelect.classList.contains("avisNonLu")){
+        alert("changement icone");
         avisSelect.classList.remove("avisNonLu");
         iconeNonLu = avisSelect.querySelector(".nonLu");
         iconeNonLu.remove();
@@ -265,6 +267,7 @@ function afficheAvisSelect(idAvis) {
         let divNonRep = document.createElement("div");
         divNonRep.classList.add("nonRepondu");
         avisSelect.querySelector("div").appendChild(divNonRep);
+        alert("changement icone terminé");
     }
 
     avisPrecedent = document.getElementById(`avis${idAvis}`);
