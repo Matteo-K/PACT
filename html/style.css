@@ -3537,6 +3537,17 @@ details .nonLu, details .nonRepondu{
   left: 20px;
 }
 
+#avisPro details input[type="checkbox"]{
+  display: none;
+}
+
+#avisPro details label {
+  cursor: pointer;
+  font-size: 1.4em; 
+  text-decoration: underline;
+  font-style: italic;
+}
+
 #avisPro .notation{
   width: 100%;
 }
