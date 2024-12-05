@@ -1,6 +1,8 @@
 <?php
+// Dossier temporaire
 $tempFolder = "img/imageAvis/temp_uploads/";
 
+// Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
 function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
 {
     // Résultats pour le retour
@@ -27,7 +29,7 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
     }
 
     // Récupération des fichiers dans le dossier temporaire
-    $images = glob("$tempFolder/*.{jpg,jpeg,png,gif}", GLOB_BRACE);
+    $images = glob("$tempFolder/*.{jpg,jpeg,png,gif,webp}", GLOB_BRACE);
 
     if (!$images) {
         $result['errors'][] = "Aucune image trouvée dans le dossier temporaire : $tempFolder";
@@ -35,11 +37,12 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
     }
 
     // Déplacement des images
-    $idImage=uniqid();
     foreach ($images as $image) {
         // Récupérer l'extension du fichier
         $extension = pathinfo($image, PATHINFO_EXTENSION);
-        // Construire le nouveau chemin de fichier
+
+        // Générer un identifiant unique pour l'image
+        $idImage = uniqid();
         $newFilePath = "$targetFolder/$idImage.$extension";
 
         // Déplacer le fichier
@@ -52,16 +55,30 @@ function moveImagesToOfferFolder($idOffre, $tempFolder, $uploadBasePath = __DIR_
 
     return $result;
 }
+
+// Traitement des données envoyées par le formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $note = $_POST["note"];
     $dateAvis = $_POST["date"];
     $compagnie = $_POST["compagnie"];
     $titreAvis = $_POST['titre'];
     $texteAvis = $_POST['avis'];
-    
-    moveImagesToOfferFolder($idOffre, $tempFolder, "img/imageAvis");
-}
+    $idOffre = $_POST['idoffre'];
 
+    // Déplacer les images vers le dossier de l'offre
+    $result = moveImagesToOfferFolder($idOffre, $tempFolder, "img/imageAvis");
+
+    // Debugging pour vérifier les résultats
+    if (!empty($result['errors'])) {
+        echo "Erreurs lors du déplacement des fichiers :<br>";
+        print_r($result['errors']);
+    }
+
+    if (!empty($result['success'])) {
+        echo "Fichiers déplacés avec succès :<br>";
+        print_r($result['success']);
+    }
+}
 ?>
 
 <section>
