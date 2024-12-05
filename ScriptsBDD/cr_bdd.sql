@@ -1273,9 +1273,6 @@ INSTEAD OF INSERT ON pact.reponse
 FOR EACH ROW
 EXECUTE FUNCTION ajout_reponse();
 
-INSERT INTO pact.reponse (id
-
-
 CREATE OR REPLACE FUNCTION update_pro_public()
 RETURNS TRIGGER AS $$
 BEGIN

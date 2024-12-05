@@ -20,6 +20,17 @@ function getSchedules($conn, $idOffre) {
     return $schedules;
 }
 
+function convertionMinuteHeure($tempsEnMinute) {
+    $heures = floor($tempsEnMinute / 60);
+    $minutes = $tempsEnMinute % 60;
+    
+    if ($minutes == 0) {
+        return $heures . "h";
+    } else {
+        return $heures . "h " . $minutes . "min";
+    }
+}
+
 // Récupérer les horaires
 $schedules = getSchedules($conn, $idOffre);
 
@@ -46,12 +57,6 @@ if (!$result) {
     $typeOffer = "parcs_attractions";
 }
 
-// Récupérer les détails de localisation
-$stmt = $conn->prepare("SELECT * FROM pact.localisations_offres WHERE idoffre = :idoffre");
-$stmt->bindParam(':idoffre', $idOffre);
-$stmt->execute();
-$lieu = $stmt->fetch(PDO::FETCH_ASSOC);
-
 // Fetch photos for the offer
 $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = :idoffre ORDER BY url ASC");
 $stmt->bindParam(':idoffre', $idOffre);
@@ -75,21 +80,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
                 <div id="tagPreview">
                     <?php 
-                    // Fetch tags associated with the offer
-                    $stmt = $conn->prepare("
-                        SELECT t.nomTag FROM pact._offre o
-                        LEFT JOIN pact._tag_parc tp ON o.idOffre = tp.idOffre
-                        LEFT JOIN pact._tag_spec ts ON o.idOffre = ts.idOffre
-                        LEFT JOIN pact._tag_Act ta ON o.idOffre = ta.idOffre
-                        LEFT JOIN pact._tag_restaurant tr ON o.idOffre = tr.idOffre
-                        LEFT JOIN pact._tag_visite tv ON o.idOffre = tv.idOffre
-                        LEFT JOIN pact._tag t ON t.nomTag = COALESCE(tp.nomTag, ts.nomTag, ta.nomTag, tr.nomTag, tv.nomTag)
-                        WHERE o.idOffre = :idoffre
-                        ORDER BY o.idOffre");
-                    $stmt->bindParam(':idoffre', $idOffre);
-                    $stmt->execute();
-                    $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    
+                    // Fetch tags associated with the offer   
                     foreach ($data[$idOffre]["tags"] as $tag) {
                     ?>
                         <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag))); ?></a>
@@ -109,20 +100,20 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                     <div>
                         <img src="./img/icone/lieu.png">
-                        <a href="https://www.google.com/maps?q=<?php echo urlencode($data[$idOffre]["numeroRue"] . " " . $data[$idOffre]["rue"] . ", " . $data[$idOffre]["codePostal"] . " " . $data[$idOffre]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($data[$idOffre]["numeroRue"] . " " . $data[$idOffre]["rue"] . ", " . $data[$idOffre]["codePostal"] . " " . $data[$idOffre]["ville"]); ?></a>
+                        <a href="https://www.google.com/maps?q=<?php echo !empty($data[$idOffre]["ville"]) ? urlencode($data[$idOffre]["numeroRue"] . " " . $data[$idOffre]["rue"] . ", " . $data[$idOffre]["codePostal"] . " " . $data[$idOffre]["ville"]) : ""; ?>" target="_blank" id="lieu"><?php echo !empty($data[$idOffre]["ville"]) ? htmlspecialchars($data[$idOffre]["numeroRue"] . " " . $data[$idOffre]["rue"] . ", " . $data[$idOffre]["codePostal"] . " " . $data[$idOffre]["ville"]) : "adresse, code postal  ville"; ?></a>
                     </div>
                     <div>
                         <img src="./img/icone/tel.png">
-                        <a href="tel:<?php echo htmlspecialchars($data[$idOffre]["telephone"]); ?>"><?php echo htmlspecialchars($data[$idOffre]["telephone"]); ?></a>
+                        <a href="tel:<?php echo htmlspecialchars($data[$idOffre]["telephone"]); ?>"><?php echo !empty($data[$idOffre]["telephone"]) ? htmlspecialchars($data[$idOffre]["telephone"]) : "téléphone"; ?></a>
                     </div>
                     <div>
                         <img src="./img/icone/mail.png">
-                        <a href="mailto:<?php echo htmlspecialchars($data[$idOffre]["mail"]); ?>"><?php echo htmlspecialchars($data[$idOffre]["mail"]); ?></a>
+                        <a href="mailto:<?php echo htmlspecialchars($data[$idOffre]["mail"]); ?>"><?php echo !empty($data[$idOffre]["mail"]) ? htmlspecialchars($data[$idOffre]["mail"]) : "adresse@mail.domaine"; ?></a>
                     </div>
                     <!-- url du site -->
                     <div>
                         <img src="./img/icone/globe.png">
-                        <a href="<?php echo htmlspecialchars(""); ?>"><?php echo htmlspecialchars(""); ?></a> 
+                        <a href="<?php echo htmlspecialchars(""); ?>"><?php echo isset($data[$idOffre]["urlSite"]) ? htmlspecialchars("") : "https://lien/site/web/"; ?></a> 
                     </div>
                 
                 </div>
@@ -167,7 +158,61 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
 
                 <section id="InfoCompPreview">
-                    <h4>Informations Complémentaires</h4>
+                    <h2>Informations Complémentaires</h2>
+                    <?php if($data[$idOffre]["categorie"] == "Visite"){ ?>
+                        <div>
+                            <p>Durée : <?= convertionMinuteHeure($data[$idOffre]["duree"])?></p>
+                            <p>Visite guidée : <?= isset($data[$idOffre]["estGuide"])? "Oui" : "Non"?></p>
+                            <?php
+                            if($data[$idOffre]["estGuide"]){
+                                $stmt = $conn -> prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
+                                $stmt -> execute();
+                                $langues = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+                                if($langues){
+                                    ?>
+                                    <p>Langues : 
+                                <?php
+                                    foreach($langues as $key => $langue){
+                                        echo $langue["langue"]?>   
+                                <?php
+                                        if(count($langues) != $key +1){
+                                            echo ", ";
+                                        }
+                                    }
+                                ?>
+                                    </p>
+                                <?php
+                                }
+                            }
+                            ?>
+                        </div>
+                    <?php
+                    } else if($data[$idOffre]["categorie"] == "Spectacle"){
+                        $stmt = $conn -> prepare("SELECT * from pact.spectacles where idoffre = $idOffre");
+                        $stmt -> execute();
+                        $spectacle = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                        <div>
+                            <p>Durée : <?= convertionMinuteHeure($data[$idOffre]["duree"])?></p>
+                            <p>Nombre de places : <?= $data[$idOffre]["nbPlace"] ?></p>
+                        </div>
+                        <?php
+                    } else if($data[$idOffre]["categorie"] == "Activité" || $data[$idOffre]["categorie"] == "Parc Attraction"){
+                        if($data[$idOffre]["categorie"] == "Activité"){
+                            $stmt = $conn -> prepare("SELECT * from pact.activites where idoffre = $idOffre");
+                        }
+                        else{
+                            $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idoffre = $idOffre");
+                        }
+                        $stmt -> execute();
+                        $theme = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                        <div>
+                            <p>Âge minimum : <?= $data[$idOffre]["ageMinimal"] ?> ans</p>
+                        </div>
+                        <?php
+                    }
+                    ?>
                     <table>
                         <thead>
                             <tr>

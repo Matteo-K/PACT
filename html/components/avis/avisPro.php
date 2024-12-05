@@ -8,6 +8,16 @@ foreach ($avis as $key => $av) {
     $avisTemp[$av["idc"]] = $av;
 }
 $avis = $avisTemp;
+
+
+if(isset($_POST["reponsePro"])){
+    $contenuReponse = $_POST["reponsePro"];
+    $idAvis = $_POST["hiddenInputIdAvis"];
+
+    $stmt = $conn->prepare("INSERT INTO pact.reponse (idpro, contenureponse, idc_avis) VALUES (?, ?, ?) ");
+    $stmt->execute([$idUser, $contenuReponse, $idAvis]);
+}
+
 ?>
 <div id="avisPro">
     <section id="avisproS1">
@@ -139,6 +149,17 @@ $avis = $avisTemp;
                 Visité en .... le ../.. - rédigé le ../.. 
             </p>
         </div>
+
+        <div id="reponseAvisPro">
+            <h2>
+                Répondre a membre
+            </h2>
+            <form action="detailsOffer.php">
+                <textarea name="reponsePro" id="reponsePro" placeholder="Entrez votre réponse"></textarea>
+                <input type="hidden" name="hiddenInputIdAvis" value="">
+                <input type="submit" class="blueBtnOffer">
+            </form>
+        </div>
     </section>
 </div>
 
@@ -182,6 +203,12 @@ const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
 const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
+const reponseAvis = document.getElementById("reponseAvisPro");
+const titreReponseAvis = document.querySelector("#reponseAvisPro h2");
+const inputIdAvis = document.querySelector("#reponseAvisPro h2");
+
+
+
 
 function afficheAvisSelect(idAvis) {
 
@@ -209,7 +236,7 @@ function afficheAvisSelect(idAvis) {
     
     //changement couleur etoiles (on remet tout jaune puis grise certaines)
     for (i = 0; i < 5; i++) {
-        etoilesAvis[i].style.backgroundColor = accentColor;
+        etoilesAvis[i].style.backgroundColor = "#fff";
     }
     
     if (listeAvis[idAvis]['note'] < 5) {
@@ -227,6 +254,11 @@ function afficheAvisSelect(idAvis) {
     //changement date publication et visite
     dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
 
+    //On modifie le bloc de réponse (titre + input caché)
+    titreReponseAvis.textContent("Répondre à " + listeAvis[idAvis]['pseudo']);
+    inputIdAvis.value = idAvis;
+
+    //On passe l'avis de non lu a lu
     if(avisSelect.classList.contains("avisNonLu")){
         avisSelect.classList.remove("avisNonLu");
         iconeNonLu = avisSelect.querySelector(".nonLu");
