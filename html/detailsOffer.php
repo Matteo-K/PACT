@@ -931,14 +931,24 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h3 id="tab-avis">Avis</h3>
                 <h3 id="tab-publiez">Publiez un avis</h3>
             </nav>
-
+            
             <div id="avis-section">
                 <!-- Contenu chargé dynamiquement -->
                 <div id="avis-component" style="display: flex;">
                     <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
                 </div>
                 <div id="publiez-component" style="display: none;">
-                    <?php require_once __DIR__ . "/components/avis/ecrireAvis.php"; ?>
+                    <?php 
+                    if($isLoggedIn){
+                        require_once __DIR__ . "/components/avis/ecrireAvis.php"; 
+                    }else{
+                    ?> 
+                    <form id="formForLogin" action="login.php" method="post">
+                        <input type="hidden" name="idOffre" value="<?=$idOffre?>">
+                    </form>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -951,12 +961,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 <script>
     let publiez = document.getElementById("tab-publiez");
-    publiez.addEventListener("click", (event)=>{
-        if (!<?=$isLoggedIn?>) {
+    publiez.addEventListener("click", (event) => {
+        // Vérifier si l'utilisateur est connecté via une variable injectée par PHP
+        const isLoggedIn = <?= json_encode($isLoggedIn); ?>;
+
+        // Si l'utilisateur n'est pas connecté, soumettre le formulaire de connexion
+        if (!isLoggedIn) {
+            event.preventDefault(); // Empêche l'action par défaut
             document.getElementById('formForLogin').submit();
         }
-    })
-
+    });
     document.addEventListener('DOMContentLoaded', function () {
 
         const nbWeekInput = document.getElementById('nbWeekALaUne');
