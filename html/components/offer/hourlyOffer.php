@@ -153,7 +153,7 @@
                     console.error("Erreur de parsing JSON :", error);
                 }
 
-                console.log(arrayOffer);
+                console.log(arrayOffer[0].horaire);
 
                 arrayOffer.forEach(element => {
                     
