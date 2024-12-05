@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tempDir = 'img/imageAvis/temp_uploads/' . $uniqueId;
 
     // Vérifier que le fichier existe dans le dossier temporaire
-    $filePath = $tempDir . '/' . basename($fileUrl);
+    $filePath = $tempDir . basename($fileUrl);
     if (file_exists($filePath)) {
         // Suppression du fichier
         if (unlink($filePath)) {
