@@ -3705,20 +3705,20 @@ details .nonLu, details .nonRepondu{
 
 
 /* Partie réponse du pro */
-#avisproS2 form{
+#avisproS2 > form{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   width: calc(100% + 40px);
 }
 
-#avisproS2 form h2{
+#avisproS2 > form > h2{
   text-align: left;
   width: 70%;
   display: inline-block;
 }
 
-#avisproS2 form input[type="submit"]{
+#avisproS2 > form > input[type="submit"]{
   height: 45px;
   padding: 5px 30px;
   border: none;
@@ -3726,7 +3726,7 @@ details .nonLu, details .nonRepondu{
   font-size: 20px;
 }
 
-#avisproS2 form textarea{
+#avisproS2 > form > textarea{
   width: calc(100% + 40px);
   font-size: 20px;
   padding: 5px;
