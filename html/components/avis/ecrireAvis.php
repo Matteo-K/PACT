@@ -3,28 +3,25 @@ function listImage($idOffre, $idComment) {
     // Chemin du dossier temporaire
     $dossier = realpath('../img/imageAvis/' . $idOffre . '/' . $idComment . '/');
 
-    // Vérifie si le dossier existe
-    if (!is_dir($dossier)) {
-        echo json_encode(['success' => false, 'message' => 'Aucun fichier trouvé pour cet utilisateur.']);
-        exit;
+    // Vérifie si le dossier existe et est valide
+    if ($dossier === false || !is_dir($dossier)) {
+        return ['success' => false, 'message' => 'Le dossier n\'existe pas ou est invalide.'];
     }
 
-    // Liste les fichiers dans le dossier
+    // Liste les fichiers dans le dossier (en excluant '.' et '..')
     $files = array_diff(scandir($dossier), ['.', '..']);
     $fileUrls = [];
 
     // Parcours chaque fichier et construit l'URL complète
     foreach ($files as $file) {
-        $fileUrls[] = '/img/imageAvis/' . $idOffre . '/' . $idComment . '/' . $file;
+        // On vérifie que c'est bien un fichier et pas un sous-dossier
+        if (is_file($dossier . '/' . $file)) {
+            $fileUrls[] = '/img/imageAvis/' . $idOffre . '/' . $idComment . '/' . $file;
+        }
     }
-
-    // Vérifie s'il y a des fichiers à renvoyer
-    if (count($fileUrls) > 0) {
-        return ['success' => true, 'files' => $fileUrls];
-    } else {
-        return ['success' => false, 'message' => 'Aucun fichier disponible.'];
-    }
+    return ['success' => true, 'files' => $fileUrls];
 }
+
 
 // Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
 function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
@@ -41,7 +38,7 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
     }
 
     // Chemin du dossier cible
-    $targetFolder = realpath($uploadBasePath . '/' . $idOffre . "/" . $idComment);
+    $targetFolder = $uploadBasePath . '/' . $idOffre . "/" . $idComment;
 
     // Créer le dossier cible si nécessaire
     if (!is_dir($targetFolder)) {
@@ -65,11 +62,6 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
         $idImage = uniqid();
         $newFilePath = $targetFolder . "/" . $idImage . "." . $extension;
 
-        if (file_exists($newFilePath)) {
-            $result['errors'][] = "Le fichier existe déjà : $newFilePath";
-            continue;
-        }
-
         if (rename($image, $newFilePath)) {
             $result['success'][] = $newFilePath;
         } else {
@@ -82,12 +74,6 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 
 // Traitement des données envoyées par le formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
-    // Validation des entrées utilisateur
-    $idUser = filter_input(INPUT_POST, 'idUser', FILTER_VALIDATE_INT);
-    if (!$idUser) {
-        echo json_encode(['success' => false, 'message' => 'Utilisateur invalide.']);
-        exit;
-    }
 
     // Préparation des données
     $note = $_POST['note'];
@@ -102,11 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE idu = ?");
     $stmt->execute([$idUser]);
     $result = $stmt->fetchAll();
-
-    if (!$result) {
-        echo json_encode(['success' => false, 'message' => 'Utilisateur introuvable.']);
-        exit;
-    }
 
     $pseudo = $result[0]['pseudo'];
     list($year, $month) = explode('-', $dateAvis);
@@ -128,6 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $stmt = $conn->prepare("INSERT INTO pact._avis (idc, idoffre, note, companie, mois, annee, titre, lu) 
     VALUES (?, ?, ?, ?, ?, ?, ?, false)");
     $stmt->execute([$idComment, $idOffre, $note, $compagnie, $monthInWords, $year, $titreAvis]);
+    
 
     // Déplacer les images vers le dossier de l'offre
     $moveResult = moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, "img/imageAvis/");
@@ -135,16 +117,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     // Insertion des images dans la base de données
     $image = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
     $imageAvis = $conn->prepare("INSERT INTO pact._avisimage (idc, url) VALUES (?, ?)");
-
     $mesImages = listImage($idOffre, $idComment);
+    print_r($mesImages);
 
-    if ($mesImages['success']) {
-        foreach ($mesImages['files'] as $file) {
-            $fileName = pathinfo($file, PATHINFO_BASENAME);
-            $image->execute([$file, $fileName]);
-            $imageAvis->execute([$idComment, $file]);
-        }
+    foreach ($mesImages['files'] as $file) {
+    $fileName = pathinfo($file, PATHINFO_BASENAME);
+    
+    // Exécution de l'insertion de l'image
+    if (!$image->execute([$file, $fileName])) {
+        $result['errors'][] = "Erreur lors de l'insertion de l'image dans la base de données.";
     }
+    
+    // Exécution de l'insertion dans la table _avisimage
+    if (!$imageAvis->execute([$idComment, $file])) {
+        $result['errors'][] = "Erreur lors de l'insertion de l'image liée à l'avis dans la base de données.";
+    }
+}
+
+    $note = "";
+    $dateAvis = "";
+    $compagnie = "";
+    $titreAvis = "";
+    $texteAvis = "";
+    $idOffre = "";
+    $uniqueId = "";
+
 }
 ?>
 

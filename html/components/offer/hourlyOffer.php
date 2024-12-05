@@ -141,6 +141,7 @@ $is_show;
         ?>
         <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($data)); ?>'></div>
         <script>
+            let duree;
             document.addEventListener('DOMContentLoaded', function() {
                 const offersDataElement = document.getElementById('offers-data');
                 
@@ -154,6 +155,7 @@ $is_show;
                     console.error("Erreur de parsing JSON :", error);
                 }
 
+                duree = parseInt(arrayOffer[0].duree);
                 const listHoraire = arrayOffer[0].horaire.map(item => JSON.parse(item));
 
                 if (listHoraire.length != 0) {
@@ -192,6 +194,16 @@ $is_show;
                     const span = document.createElement("span");
                     span.classList.add("hourly1");
 
+                    const lblRep2 = document.createElement("label");
+                    lblRep2.setAttribute("for", "HRepN"+ counterRep +"_part1.2");
+                    lblRep2.textContent = "à";
+                    
+                    const inputHoraire2 = document.createElement("input");
+                    inputHoraire2.setAttribute("type", "time");
+                    inputHoraire2.setAttribute("name", "dates["+counterRep+"][HRep_part1.2]");
+                    inputHoraire2.id = "HRepN" + counterRep + "_part1.2";
+                    inputHoraire2.addEventListener("change", () => {removeMsgErreur()});
+                    
                     const lblRep1 = document.createElement("label");
                     lblRep1.setAttribute("for", "HRepN"+ counterRep +"_part1.1");
                     lblRep1.textContent = "Représentation de";
@@ -200,15 +212,10 @@ $is_show;
                     inputHoraire1.setAttribute("type", "time");
                     inputHoraire1.setAttribute("name", "dates["+counterRep+"][HRep_part1.1]");
                     inputHoraire1.id = "HRepN"+counterRep+"_part1.1";
-
-                    const lblRep2 = document.createElement("label");
-                    lblRep2.setAttribute("for", "HRepN"+ counterRep +"_part1.2");
-                    lblRep2.textContent = "à";
-
-                    const inputHoraire2 = document.createElement("input");
-                    inputHoraire2.setAttribute("type", "time");
-                    inputHoraire2.setAttribute("name", "dates["+counterRep+"][HRep_part1.2]");
-                    inputHoraire2.id = "HRepN" + counterRep + "_part1.2";
+                    inputHoraire1.addEventListener("change", () => {
+                        removeMsgErreur();
+                        updateHeureFin(inputHoraire1, inputHoraire2, duree);
+                    });
 
                     span.appendChild(lblRep1);
                     span.appendChild(inputHoraire1);
@@ -292,6 +299,71 @@ $is_show;
                 });
                 timeInputs.forEach((input) => (input.disabled = false));
                 }
+            }
+
+            /**
+             * Modifie l'horaire de fin suivant l'horaire du début et la durée du spectacle
+             */
+            function updateHeureFin(inputHoraire1, inputHoraire2, duree) {
+                let startTime = inputHoraire1.value || "00:00";
+                
+                let [startHours, startMinutes] = startTime.split(":").map(Number);
+
+                // Si l'heure ou les minutes sont vides, les mettre à 0
+                startHours = isNaN(startHours) ? 0 : startHours;
+                startMinutes = isNaN(startMinutes) ? 0 : startMinutes;
+
+                let dureeHeures = Math.floor(duree / 60);
+                let dureeMinutes = duree % 60;
+
+                let endHours = startHours + dureeHeures;
+                let endMinutes = startMinutes + dureeMinutes;
+
+                if (endMinutes >= 60) {
+                    endMinutes -= 60;
+                    endHours++;
+                }
+
+                if (endHours >= 24) {
+                    endHours -= 24;
+                }
+
+                let formattedEndTime = `${String(endHours).padStart(2, '0')}:${String(endMinutes).padStart(2, '0')}`;
+                inputHoraire2.value = formattedEndTime;
+            }
+
+
+            function checkOfferValidity(event) {
+                let inputime = checkInput();
+                return inputime;
+            }
+
+            /**
+             * Vérifie si les input time ne sont pas vide ou partiellement vide
+             * @returns {boolean} - Renvoie true si les inputs est conforme. False sinon.
+             */
+            function checkInput() {
+                const timeInputs = document.querySelectorAll('input[type="time"]');
+                
+                for (let input of timeInputs) {
+                    if (!input.value || input.value.length < 5) {
+                        const dateInput = input.closest("div").querySelector('input[name*="trip-start"]');
+                        if (dateInput) {
+                            const dateValue = dateInput.value;
+                            const dateObj = new Date(dateValue);
+                            
+                            const formattedDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`;
+                            
+                            document.getElementById("msgHoraireSupr").textContent = `Il manque une horaire de spectacle au jour ${formattedDate}`;
+                        }
+                        return false;
+                    }
+                }    
+                return true;
+            }
+
+            function removeMsgErreur() {
+                document.getElementById("msgHoraireSupr").textContent = "";
             }
         </script>
     <?php
