@@ -12,6 +12,8 @@ $aujourdhui = new DateTime();
 //     header("location: index.php");
 //     exit();
 // }
+
+print_r($idOffre);
 ?>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
