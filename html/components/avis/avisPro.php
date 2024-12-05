@@ -169,7 +169,6 @@ const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim()
 
 function afficheAvisSelect(numAvis) {
 
-
     conteneurAvis.style.display = "flex";
     document.getElementById("aucunAvisSelect").style.display = "none";
 
@@ -255,8 +254,8 @@ function formatDateDiff(dateString) {
     }
 }
 
-blocDetails = document.querySelector("#avisproS2 > details")
-const content = document.querySelector("#avisPro2 > details > .contentDetails");
+const blocDetails = document.querySelector("#avisproS2 > details")
+const contenuDetails = document.querySelector("#avisPro2 > details > .contentDetails");
 
 //Animation du bloc details
 blocDetails.addEventListener("toggle", () => {
@@ -269,11 +268,11 @@ blocDetails.addEventListener("toggle", () => {
 
     // Fonction pour ouvrir avec une animation
 function openDetails() {
-    const height = content.scrollHeight; // Calcule la hauteur totale
-    content.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
-    content.addEventListener("transitionend", () => {
+    const height = contenuDetails.scrollHeight; // Calcule la hauteur totale
+    contenuDetails.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
+    contenuDetails.addEventListener("transitionend", () => {
         if (blocDetails.open) {
-            content.style.maxHeight = "none"; // Supprime maxHeight après l'animation
+            contenuDetails.style.maxHeight = "none"; // Supprime maxHeight après l'animation
     }
 }, { once: true });
     conteneurAvis.style.display = "none";
@@ -281,10 +280,10 @@ function openDetails() {
 
 // Fonction pour fermer avec une animation
 function closeDetails() {
-    const height = content.scrollHeight; // Hauteur actuelle
-    content.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
+    const height = contenuDetails.scrollHeight; // Hauteur actuelle
+    contenuDetails.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
     requestAnimationFrame(() => { // Assure une relecture du style
-        content.style.maxHeight = "0"; // Puis réduit à 0 pour l'animation
+        contenuDetails.style.maxHeight = "0"; // Puis réduit à 0 pour l'animation
     });
     conteneurAvis.style.display = "flex";
 }
