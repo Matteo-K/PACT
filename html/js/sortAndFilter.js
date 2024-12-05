@@ -305,7 +305,6 @@ function getPrixRangeRestaurant(gammeDePrix) {
 }
 
 
-
 // Fonction de filtre par statuts
 function filtrerParStatuts(offers) {
   const statutsSelection = [];
@@ -322,9 +321,9 @@ function filtrerParStatuts(offers) {
 }
 
 
+
 // Fonction de filtre par période
 // function filtrerParPeriode(offers) {
-
 //   const dateDepartValue = new Date(dateDepart.value);
 //   const dateFinValue = new Date(dateFin.value);
 //   const heureDebutValue = heureDebut.value;
@@ -339,7 +338,6 @@ function filtrerParStatuts(offers) {
 //       return false;
 //     }
 
-//     // Vérification des horaires (si définis)
 //     let heureValide = true;
 //     if (heureDebutValue && heureFinValue) {
 //       const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
@@ -356,9 +354,7 @@ function filtrerParStatuts(offers) {
 
 //       if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
 //         heureValide = true;
-//       } 
-      
-//       else {
+//       } else {
 //         heureValide = false;
 //       }
 //     }
@@ -367,48 +363,61 @@ function filtrerParStatuts(offers) {
 //   });
 // }
 
+
+// 1- récup la date et l'heure de début
+// 2- récup la date et l'heure de fin
+// 3- si l'utilisateur ne chage rien, on affiche toute les offres de base (entre 8h et 23h de base)
+// 4- si l'utilisateur change une valeur dans l'input, on prend cette valeur et on met à jour l'affichage
+
 // Fonction de filtre par période
 function filtrerParPeriode(offers) {
+  const dateDepartValue = new Date(dateDepart.value);
+  const dateFinValue = new Date(dateFin.value);
   const heureDebutValue = heureDebut.value;
   const heureFinValue = heureFin.value;
 
-  if (!heureDebutValue || !heureFinValue) {
+  // Si la plage de dates n'est pas valide, on retourne toutes les offres
+  if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
     return offers;
   }
 
-  const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
-  const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
-
-  const debutRange = heureDebutH * 60 + heureDebutM;
-  const finRange = heureFinH * 60 + heureFinM;
-
   return offers.filter(offer => {
-    if (offer.categorie === "Restaurant" || offer.categorie === "Visite" || offer.categorie === "Parc Attraction") {
-      const horaires = offer.horaires;
-
-      return horaires.some(plage => {
-        const [ouvertureH, ouvertureM] = plage.heureOuverture.split(':').map(Number);
-        const [fermetureH, fermetureM] = plage.heureFermeture.split(':').map(Number);
-
-        const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
-        const fermetureMinutes = fermetureH * 60 + fermetureM;
-
-        return (
-          (ouvertureMinutes < finRange && fermetureMinutes > debutRange)
-        );
-      });
-    } 
-    
-    else {
-      const heureOffre = offer.horaires;
-
-      const [offreH, offreM] = heureOffre.split(':').map(Number);
-      const offreTimeInMinutes = offreH * 60 + offreM;
-
-      return offreTimeInMinutes >= debutRange && offreTimeInMinutes <= finRange;
+    const dateOffer = new Date(offer.date);
+    if (dateOffer < dateDepartValue || dateOffer > dateFinValue) {
+      return false;
     }
+
+    if (heureDebutValue && heureFinValue) {
+
+      const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
+      const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
+
+      const debutRange = heureDebutH * 60 + heureDebutM;
+      const finRange = heureFinH * 60 + heureFinM;
+
+      if (!offer.heureOuverture || !offer.heureFermeture) {
+        return false;
+      }
+
+      const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
+      const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
+
+      const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
+      const fermetureMinutes = fermetureH * 60 + fermetureM;
+
+      // Comparaison des plages horaires
+      if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
+        return true;
+      }
+      
+      return false;
+    }
+
+    return true;
   });
 }
+
+
 
 
 

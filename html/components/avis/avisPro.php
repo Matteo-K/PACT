@@ -10,7 +10,8 @@ $avis = $avisTemp;
     <section id="avisproS1">
         <!-- Ancien h2 -->
         <select name="TridateAvis" id="TridateAvis">
-            <option value="recent" selected>Avis les plus récents</option>
+            <option value="nonLu" selected>Avis non lus</option>
+            <option value="recent">Avis les plus récents</option>
             <option value="ancien">Avis les plus ancien</option>
         </select>
         <div>
@@ -155,6 +156,9 @@ document.addEventListener('DOMContentLoaded', function() {
     displayArrayAvis(listeAvis);
 });
 
+let avisSelect = -1;
+let avisPrecedent = -1;
+
 let conteneurAvis = document.querySelector(".conteneurAvisPro");
 
 let photoAuteurAvis = document.querySelector("#ligneTitreAvis > h2");
@@ -173,57 +177,50 @@ const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim()
 
 const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
-let contenuDetails = document.querySelector("#avisproS2 .contentDetails");
+const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
-let avisPrecedent = -1;
 
-function afficheAvisSelect(numAvis) {
-
-    if (avisPrecedent != -1) {
-        li.style.background = `linear-gradient(90deg, ${accentColor} 0%, ${accentColor} 80%, transparent 100%)`;
-
-    }
+function afficheAvisSelect(idAvis) {
 
     conteneurAvis.style.display = "flex";
     aucunAvisSelect.style.display = "none";
-
     if(blocDetails && blocDetails.open){
         blocDetails.open = false;
     }
-    
-    //Changement de couleur du li sélectionné et on remet les autres en gris
-    document.querySelectorAll("#listeAvis > li").forEach((li, numLi) => {
-        li.style.background = `linear-gradient(90deg, ${accentColor} 0%, ${accentColor} 80%, transparent 100%)`;
-        if (numAvis == numLi) {
-            li.style.background = `linear-gradient(90deg, ${primaryColor} 0%, ${primaryColor} 90%, transparent 100%)`;
-        }
-    });
+
+    //On remet l'ancien avis sélectionné en gris
+    if (avisPrecedent != -1) {
+        avisPrecedent.style.background = `linear-gradient(90deg, ${accentColor} 0%, ${accentColor} 80%, transparent 100%)`;
+    }
+    //Et l'avis actuel en évidence
+    avisSelect.style.background = `linear-gradient(90deg, ${primaryColor} 0%, ${primaryColor} 90%, transparent 100%)`;
+
     
     //changement photo auteur
-    photoAuteurAvis.src = listeAvis[numAvis]['membre_url'];
+    photoAuteurAvis.src = listeAvis[idAvis]['membre_url'];
     
     //changement pseudo auteur
-    auteurAvis.textContent = listeAvis[numAvis]['pseudo'];
+    auteurAvis.textContent = listeAvis[idAvis]['pseudo'];
     
     //changement couleur etoiles (on remet tout jaune puis grise certaines)
     for (i = 0; i < 5; i++) {
         etoilesAvis[i].style.backgroundColor = accentColor;
     }
     
-    if (listeAvis[numAvis]['note'] < 5) {
-        for (i = 4; i >= listeAvis[numAvis]['note']; i--) {
+    if (listeAvis[idAvis]['note'] < 5) {
+        for (i = 4; i >= listeAvis[idAvis]['note']; i--) {
             etoilesAvis[i].style.backgroundColor = secondaryColor;
         }
     }
     
     //changement titre avis
-    titreAvis.textContent = listeAvis[numAvis]['titre'];
+    titreAvis.textContent = listeAvis[idAvis]['titre'];
     
     //changement texte
-    contenuAvis.textContent = listeAvis[numAvis]['content'];
+    contenuAvis.textContent = listeAvis[idAvis]['content'];
     
     //changement date publication et visite
-    dateAvis.textContent = "Visité en " +  listeAvis[numAvis]['mois'] + " - " + listeAvis[numAvis]['annee'] + formatDateDiff(listeAvis[numAvis]['datepublie']);
+    dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
 }
 
 
@@ -345,14 +342,32 @@ function displayArrayAvis(arrayAvis) {
  */
 function triAvis(arrayAvis) {
   
-  if (selectTri.value === 'recent') {
-    return triDateRecent(arrayAvis);
-  } else if (selectTri.value === 'ancien') {
-    return triDateAncien(arrayAvis);
-  }
-  return arrayAvis;
+    if (selectTri.value === 'nonLu') {
+        return triNonLu(arrayAvis);
+    } else if (selectTri.value === 'recent') {
+        return triDateRecent(arrayAvis);
+    } else if (selectTri.value === 'ancien') {
+        return triDateAncien(arrayAvis);
+    }
+    return arrayAvis;
 }
 
+/**
+ * Tri la liste des avis du plus récent au plus ancien
+ */
+function triNonLu(arrayAvis) {
+    return arrayAvis.sort((avis1, avis2) => {
+        const avis1NonLu = !avis1.lu
+        const avis2NonLu = !avis2.lu
+    
+        if (avis1NonLu && !avis2NonLu) {
+            return -1;
+        } else if (!avis1NonLu && avis2NonLu) {
+            return 1;
+        }
+        return 0;
+    });
+}
 /**
  * Tri la liste des avis du plus récent au plus ancien
  */
@@ -408,13 +423,6 @@ function displayAvis(avis) {
     let li = document.createElement("li");
     li.id = "avis" + avis.idc;
     li.setAttribute("onclick","afficheAvisSelect("+ avis.idc +")");
-    if (avis.idc_reponse == null) {
-        li.classList.add("avisNonRepondu");
-    }
-
-    if (!avis.lu) {
-        li.classList.add("avisNonLu");
-    }
 
     let blocTitre = document.createElement("div");
     let titre = document.createElement("p");
@@ -428,6 +436,20 @@ function displayAvis(avis) {
     
     li.appendChild(blocTitre);
     li.appendChild(content);
+
+
+    if (!avis.lu) {
+        li.classList.add("avisNonLu");
+        let divNonLu =document.createElement("div");
+        divNonLu.classList.add("nonLu");
+        li.appendChild(divNonLu);
+    }
+    else if (avis.idc_reponse == null) {
+        li.classList.add("avisNonRepondu");
+        let divNonRep =document.createElement("div");
+        divNonRep.classList.add("nonRepondu");
+        li.appendChild(divNonRep);
+    }
 
     return li;
 }
