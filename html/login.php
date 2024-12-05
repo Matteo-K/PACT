@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             if ($idOffre) {
                 ?>
                 <form id='redirectForm' method='POST' action='detailsOffer.php'>
-                    <input type='hidden' name='idOffre' value='<?php echo $idOffre ?>'>
+                    <input type='hidden' name='idOffre' value='<?php echo "1" ?>'>
                 </form>
                 <script>
                     document.getElementById('redirectForm').submit();
@@ -182,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             <button id="boutonConnexion">Connexion</button>
 
             <a id="lienMotDePasseOublie" href="#"> Mot de passe oublié ?</a>
-            
+
             <input type="hidden" name="idOffre" value="<?= $idOffre?>">
         </form>
         
