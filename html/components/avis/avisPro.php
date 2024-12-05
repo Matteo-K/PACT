@@ -19,7 +19,7 @@ $avis = $avisTemp;
         </div>
     </section>
     <section id="avisproS2">
-        <details>
+        <details open>
             <summary>
                 <span class="custom-marker">▶</span>
                 <h2>
@@ -269,25 +269,25 @@ blocDetails.addEventListener("toggle", () => {
 });
 
     // Fonction pour ouvrir avec une animation
-function openDetails() {
-    let height = contenuDetails.scrollHeight; // Calcule la hauteur totale
+    function openDetails() {
+    // Obtenir la hauteur réelle
+    let height = contenuDetails.scrollHeight;
     contenuDetails.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
     contenuDetails.addEventListener("transitionend", () => {
         if (blocDetails.open) {
             contenuDetails.style.maxHeight = "none"; // Supprime maxHeight après l'animation
-    }
-}, { once: true });
-    conteneurAvis.style.display = "none";
+        }
+    }, { once: true });
+    conteneurAvis.style.display = "none"; // Masquer le conteneur principal
 }
 
-// Fonction pour fermer avec une animation
 function closeDetails() {
-    let height = contenuDetails.scrollHeight; // Hauteur actuelle
+    let height = contenuDetails.scrollHeight;
     contenuDetails.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
-    requestAnimationFrame(() => { // Assure une relecture du style
-        contenuDetails.style.maxHeight = "0"; // Puis réduit à 0 pour l'animation
+    requestAnimationFrame(() => {
+        contenuDetails.style.maxHeight = "0"; // Réduit à 0 pour l'animation
     });
-    conteneurAvis.style.display = "flex";
+    conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal
 }
 
 
