@@ -441,13 +441,13 @@ function displayAvis(avis) {
 
     if (!avis.lu) {
         li.classList.add("avisNonLu");
-        let divNonLu =document.createElement("div");
+        let divNonLu = document.createElement("div");
         divNonLu.classList.add("nonLu");
         blocListAvis.appendChild(divNonLu);
     }
     else if (avis.idc_reponse == null) {
         li.classList.add("avisNonRepondu");
-        let divNonRep =document.createElement("div");
+        let divNonRep = document.createElement("div");
         divNonRep.classList.add("nonRepondu");
         blocListAvis.appendChild(divNonRep);
     }
