@@ -35,8 +35,6 @@ if ($categorie["_visite"]) {
         $visite["langue"][] = $row["langue"];
     }
 
-
-
     // Accessibilité
     $stmt = $conn->prepare("SELECT * from pact._offreAccess where idoffre=?");
     $stmt->execute([$idOffre]);

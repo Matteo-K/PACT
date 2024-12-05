@@ -116,7 +116,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <?php
                 }
-                if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
+                if ($result["telephone"] && $tel["affiche"] == TRUE) {
                 ?>
                     <div>
                         <img src="./img/icone/tel.png">

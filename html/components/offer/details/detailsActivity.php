@@ -5,6 +5,8 @@ $activite = [
     "duree" => "",
     "agemin" => "",
     "prixminimal" => "",
+    "accessibilite" => true,
+    "nomAccess" => [],
 ];
 // Une activité peut avoir plusieurs prestations (Voir avec BDD)
 
@@ -18,6 +20,13 @@ if ($categorie["_activite"]) {
         $activite["agemin"] = $result["agemin"];
         $activite["prixminimal"] = $result["prixminimal"];
     }
+
+    // Accessibilité
+    $stmt = $conn->prepare("SELECT * from pact._offreAccess where idoffre=?");
+    $stmt->execute([$idOffre]);
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $visite["nomAccess"][] = $row["nomAccess"];
+    }
 }
 // Il reste à initialisé les valeurs dans les input
 ?>
@@ -26,7 +35,7 @@ if ($categorie["_activite"]) {
 
     <div class="divAge"> <!-- Zone pour l'age minimum pour l'activité -->
         <label class="labAgeAct" name="labAgeAct"> Age: </label>
-        <input type="number" id="numberAct" name="ageAct" min="0" placeholder="0"  /> 
+        <input type="number" id="numberAct" name="ageAct" min="0" placeholder="0" />
         <label class="labAnsAct" name="labAgeAct"> Ans </label>
     </div>
     <!-- Gestion des prestations proposée dans l'activité -->
@@ -58,34 +67,26 @@ if ($categorie["_activite"]) {
 
 
         <div class="acces1">
-            <input type="radio"  name="AccesH1" value="Acces" checked>
-
-            <label for="Acces">Accès Personne à Modibilté Réduite</label>
-            <!-- Label associé au bouton radio -->
-        </div>
-        <div class="access1">
-            <input type="radio"  name="AccesH2" value="pasAcces">
-            <label for="pasAcces">Accès personne sourde/malentendantes </label>
-            <!-- Label du 2eme bouton radio -->
-        </div>
-        <div class="access1">
-            <input type="radio"  name="AccesH3" value="pasAcces">
-            
-            <label for="pasAcces">Accès personnes aveugle/déficience visuelle </label>
-            <!-- Label du 3eme bouton radio -->
-        </div>
-    </div>
-<!-- Fin handicap a modfier avec la BDD-->
+            <!-- Gestion de l'accessibilité (handicap ) depuis la BDD -->
+            <div class="access">
+                <select name="nomAccess" id="nomAccess">
+                    <option value="SelectionAccess">-- Sélectionner un handicap --</option>
+                    <?php foreach ($nomAccess as $key => $value) { ?>
+                        <option value="<?php echo $value ?>"><?php echo $value ?></option>
+                    <?php } ?>
+                </select>
+            </div>
 
 
-<!-- Gestion de la durée de l'activité -->
-    <div class="divD">
-        <label class="labDuréeAct" name="labDuréeAct"> Durée: </label>
-        <div class="divD1">
-            <input type="number" id="numberAct" name="duréeAct" placeholder="0" /> 
-            <label class="labHAct" name="labHAct"> H </label>
-        </div>
 
-    </div>
+            <!-- Gestion de la durée de l'activité -->
+            <div class="divD">
+                <label class="labDuréeAct" name="labDuréeAct"> Durée: </label>
+                <div class="divD1">
+                    <input type="number" id="numberAct" name="duréeAct" placeholder="0" />
+                    <label class="labHAct" name="labHAct"> H </label>
+                </div>
+
+            </div>
 
 </section>
