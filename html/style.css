@@ -1587,10 +1587,6 @@ header ul+div {
   padding: 5px;
 }
 
-#artDetailOffer input[id="resume"] {
-  height: 50px;
-}
-
 #artDetailOffer textarea[id="description"] {
   height: 250px;
   min-height: 250px;
