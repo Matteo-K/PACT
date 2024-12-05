@@ -283,7 +283,27 @@ VALUES (1, './img/profile_picture/default.svg'),
 	   (2, './img/profile_picture/default.svg'),
 	   (3, './img/profile_picture/default.svg'),
 	   (4, './img/profile_picture/default.svg'),
-       (5, './img/profile_picture/default.svg');
+       (5, './img/profile_picture/default.svg'),
+       (6, './img/profile_picture/default.svg'),
+       (7, './img/profile_picture/default.svg'),
+       (8, './img/profile_picture/default.svg'),
+       (9, './img/profile_picture/default.svg'),
+       (10, './img/profile_picture/default.svg'),
+       (11, './img/profile_picture/default.svg'),
+       (12, './img/profile_picture/default.svg'),
+       (13, './img/profile_picture/default.svg'),
+       (14, './img/profile_picture/default.svg'),
+       (15, './img/profile_picture/default.svg'),
+       (16, './img/profile_picture/default.svg'),
+       (17, './img/profile_picture/default.svg'),
+       (18, './img/profile_picture/default.svg'),
+       (19, './img/profile_picture/default.svg'),
+       (20, './img/profile_picture/default.svg'),
+       (21, './img/profile_picture/default.svg'),
+       (22, './img/profile_picture/default.svg'),
+       (23, './img/profile_picture/default.svg'),
+       (24, './img/profile_picture/default.svg'),
+       (25, './img/profile_picture/default.svg');
 
 -- Peuplement de la table _consulter
 INSERT INTO _consulter (idU, idOffre, dateConsultation) 
@@ -829,3 +849,31 @@ VALUES (4,'Transport');
        
 INSERT INTO _offrePrestation_inclu(idOffre,nomPresta)
 VALUES (4,'Repas');
+
+
+SELECT a.*,
+    AVG(a.note) OVER() AS moynote,
+    COUNT(a.note) OVER() AS nbnote,
+    SUM(CASE WHEN a.note = 1 THEN 1 ELSE 0 END) OVER() AS note_1,
+    SUM(CASE WHEN a.note = 2 THEN 1 ELSE 0 END) OVER() AS note_2,
+    SUM(CASE WHEN a.note = 3 THEN 1 ELSE 0 END) OVER() AS note_3,
+    SUM(CASE WHEN a.note = 4 THEN 1 ELSE 0 END) OVER() AS note_4,
+    SUM(CASE WHEN a.note = 5 THEN 1 ELSE 0 END) OVER() AS note_5,
+    SUM(CASE WHEN a.lu = FALSE then 1 else 0 end) over() as avisnonlus,
+	SUM(CASE WHEN r.idc_reponse is null then 1 else 0 end) over() as avisnonrepondus,
+    m.url AS membre_url,
+    r.idc_reponse,
+    r.denomination AS reponse_denomination,
+    r.contenureponse,
+    r.reponsedate,
+    r.idpro
+FROM 
+    pact.avis a
+LEFT JOIN 
+    pact.membre m ON m.pseudo = a.pseudo
+LEFT JOIN 
+    pact.reponse r ON r.idc_avis = a.idc
+WHERE 
+    a.idoffre = 3
+ORDER BY 
+    a.datepublie desc;
