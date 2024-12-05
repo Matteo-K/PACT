@@ -52,7 +52,7 @@ if ($categorie["_spectacle"]) {
         <div>
             <div class="classDivLigne">
             <label for="nbMin" class="ligne1">En minutes : </label>
-            <input type="number" class="nb" id="nbMin" name="nbMin" min="0" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
+            <input type="number" class="nb" id="nbMin" name="nbMin" min="0" max="1439" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
                 
             
 
@@ -81,10 +81,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Synchroniser les heures avec les minutes
     hoursInput.addEventListener("input", function () {
-        const [hours, minutes] = hoursInput.value.split(":").map(Number);
-        const totalMinutes = (hours || 0) * 60 + (minutes || 0);
+        const timeParts = hoursInput.value.split(":");
+        const hours = parseInt(timeParts[0]) || 0; // Récupérer les heures
+        const minutes = parseInt(timeParts[1]) || 0; // Si minutes non saisies, elles valent 0
+
+        const totalMinutes = hours * 60 + minutes;
+
+        minutesInput.value = totalMinutes;
+    });
+
+    // Mettre les minutes à 0 si seule l'heure est saisie
+    hoursInput.addEventListener("blur", function () {
+        if (hoursInput.value && !hoursInput.value.includes(":")) {
+            // Si aucune minute n'est saisie, ajouter ":00"
+            hoursInput.value = `${String(hoursInput.value).padStart(2, '0')}:00`;
+        }
+    });
+});
+</script>
+
+<!--
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const minutesInput = document.getElementById("nbMin");
+    const hoursInput = document.getElementById("nbMinutesHeure");
+
+    // Synchroniser les minutes avec les heures
+    minutesInput.addEventListener("input", function () {
+        const totalMinutes = parseInt(minutesInput.value) || 0;
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+
+        hoursInput.value = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    });
+
+    // Synchroniser les heures avec les minutes
+    hoursInput.addEventListener("input", function () {
+        let [hours, minutes] = (hoursInput.value || "0:0").split(":").map(Number);
+
+        // Si les minutes ne sont pas définies, on les considère comme 0
+        if (isNaN(minutes)) {
+            minutes = 0;
+        }
+
+        const totalMinutes = (hours || 0) * 60 + minutes;
 
         minutesInput.value = totalMinutes;
     });
 });
 </script>
+-->
