@@ -66,11 +66,9 @@ $arrayOffer = [];
         document.addEventListener("DOMContentLoaded", () => {
             
             // Acualise l'heure actuelle
-            const now = new Date();
-            let hours = now.getHours().toString().padStart(2, '0');
-            let minutes = now.getMinutes().toString().padStart(2, '0');
-            let timeString = `${hours}:${minutes}`;
+            let timeString = `${08}:${00}`;
             document.querySelector('#heureFin').value = timeString;
+            let timeString = `${23}:${00}`;
             document.querySelector('#heureDebut').value = timeString;
             
             
