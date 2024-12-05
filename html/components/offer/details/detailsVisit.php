@@ -51,11 +51,12 @@ if ($categorie["_visite"]) {
     <div class="visGuideeEtDuree">
         <label>Visite Guidée </label>
 
-        <input type="radio" id="guidee" name="VisiteGuidee" value="Guidee" checked> <!-- Par défaut la visite est guidée-->
+        <input type="radio" id="guidee" name="VisiteGuidee" value="Guidee" checked>
+        <!-- Par défaut la visite est guidée-->
 
         <label for="guidee"> Oui</label>
 
-    <!-- Seul un des 2 radios button peut être coché car une visite ne peut pas être guidée et non guidée en même temps -->
+        <!-- Seul un des 2 radios button peut être coché car une visite ne peut pas être guidée et non guidée en même temps -->
         <input type="radio" id="pasGuidee" name="VisiteGuidee" value="pasGuidee">
 
         <label for="pasGuidee"> Non </label>
@@ -71,44 +72,47 @@ if ($categorie["_visite"]) {
 
 
     <div class="access">
-        <label id="labAccess">Accessibilité</label> <!-- Label Accessibilité -->
-
-
-        <div class="acces1">
-            <input type="radio" id="Acces" name="AccesPersHandi" value="Acces" checked>
-            <label for="Acces">Accès personne handicapée</label>
-        </div>
-        <div class="access1">
-            <input type="radio" id="pasAcces" name="AccesPersHandi" value="pasAcces">
-            <label for="pasAcces">Pas d'accès personne handicapée </label>
-        </div>
-
-
-    <div class="divPrixMin">
-        <label for="PrixMinVisit">Prix minimum</label>
-
-
-        <input type="number" id="PrixMinVisit" name="PrixMinVisit" min="0" placeholder="0">
-        <label class="labEuro">€</label>
-    </div>
-
-    <!-- Partie pour la gestion des langues proposer par la visite -->
-    <div class="languesProp">
-        <label>Langue proposée(s) :</label> <!-- Label langue proposée -->
-        <label>Sélectionner les langue(s) proposée(s) par votre visite."</label> <!-- Indication à l'utilisateur-->
-
-    <!-- Proposition des langues disponible à partir de la BDD -->
-        <select name="langue" id="selectionLangue">
-            <option value="selectionLangue">-- Sélectionner une langue --</option>
+        <select name="nomAccess" id="nomAccess">
+            <option value="nomAccess">-- Sélectionner un handicap --</option>
             <?php foreach ($langue as $key => $value) { ?>
                 <option value="<?php echo $value ?>"><?php echo $value ?></option>
             <?php } ?>
         </select>
 
-        <section id="sectionLangue">
-            <!-- Les langues ajoutées apparaîtront ici -->
-        </section>
+
+        <div class="divPrixMin">
+            <label for="PrixMinVisit">Prix minimum</label>
+
+
+            <input type="number" id="PrixMinVisit" name="PrixMinVisit" min="0" placeholder="0">
+            <label class="labEuro">€</label>
+        </div>
+
+        <!-- Partie pour la gestion des langues proposer par la visite -->
+        <div class="languesProp">
+            <label>Langue proposée(s) :</label> <!-- Label langue proposée -->
+            <label>Sélectionner les langue(s) proposée(s) par votre visite."</label> <!-- Indication à l'utilisateur-->
+
+            <!-- Proposition des langues disponible à partir de la BDD -->
+            <select name="langue" id="selectionLangue">
+                <option value="selectionLangue">-- Sélectionner une langue --</option>
+                <?php foreach ($langue as $key => $value) { ?>
+                    <option value="<?php echo $value ?>"><?php echo $value ?></option>
+                <?php } ?>
+            </select>
+
+            <section id="sectionLangue">
+                <!-- Les langues ajoutées apparaîtront ici -->
+            </section>
 </section>
+
+
+
+
+
+
+
+
 
 
 <!-- Script Js de activity -->
@@ -138,7 +142,7 @@ if ($categorie["_visite"]) {
                 langText.className = 'lang-text';
 
                 // Ajouter un bouton de suppression avec une icône
-                
+
                 const removeBtn = document.createElement('button');
                 removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; // Symbole "×" stylisé
                 removeBtn.className = 'remove-btn';
@@ -153,7 +157,7 @@ if ($categorie["_visite"]) {
                 langDiv.appendChild(removeBtn);
 
                 // Appliquer un style visuel au conteneur
-                
+
                 langDiv.style.display = 'inline-flex';
                 langDiv.style.alignItems = 'center';
                 langDiv.style.margin = '5px';
