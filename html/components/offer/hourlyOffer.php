@@ -134,11 +134,11 @@
         </div>
         <input type="button" value="Ajouter une date" name="addRep" id="addRep" class="guideSelect" onclick="addDateRep()">
         <?php 
-            $stmt = $conn->prepare("SELECT * FROM pact._horaireprecise where idoffre = ?");
-            $stmt->execute([$idOffre]);
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $ar = new ArrayOffer($idOffre);
+            $data = $ar->getArray();
+            print_r($data);
         ?>
-        <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($result)); ?>'></div>
+        <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($data)); ?>'></div>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const offersDataElement = document.getElementById('offers-data');
