@@ -8,7 +8,15 @@ $activite = [
     "accessibilite" => true,
     "nomAccess" => [],
 ];
+
 // Une activité peut avoir plusieurs prestations (Voir avec BDD)
+// Si l'offre n'existe pas 
+$stmt = $conn->prepare("SELECT * from pact._accessibilite");
+$stmt->execute();
+while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $accessibilite[] = $result["nomaccess"];
+}
+
 
 // Si l'activité était déà existante, on récupère les données
 if ($categorie["_activite"]) {
