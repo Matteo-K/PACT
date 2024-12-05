@@ -126,7 +126,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 
                 </div>
-
+                <?php print_r($data[$idOffre]["images"]) ?>
                 <div class="swiper-container">
                     <div class="swiper mySwiperPreview">
                         <div class="swiper-wrapper">
