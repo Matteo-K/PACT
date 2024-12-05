@@ -207,10 +207,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
         </div>
 
         <!-- Photos -->
-        <div id="images">
-            <label for="photo">Ajoutez vos photos :</label>
-            <input type="file" id="photo" name="photo[]" multiple accept="image/*">
-        </div>
+        <div>
+            <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+            <input
+                type="file"
+                id="ajoutPhoto"
+                name="images[]"
+                accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
+                multiple
+                onchange="handleFiles(this)" />
+            <div id="afficheImages"></div>
+
 
         <!-- Envoi -->
         <button type="submit">Envoyer mon avis</button>
