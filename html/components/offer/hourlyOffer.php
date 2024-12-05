@@ -215,12 +215,16 @@
                         minDate: current_date
                     });
                 } else {
+
+                    inputHoraire1.setAttribute("value", "19:00");
+                    inputHoraire2.setAttribute("value", "19:00");
+                    
                     flatpickr("#"+date.id, {
                         altInput: true,
                         altFormat: "l j F Y",
                         dateFormat: "Y-m-d",
                         locale: "fr",
-                        defaultDate: data[""],
+                        defaultDate: "2024-12-05",
                         minDate: current_date
                     });
                 }
