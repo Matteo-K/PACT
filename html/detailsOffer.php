@@ -971,6 +971,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             document.getElementById('formForLogin').submit();
         }
     });
+    
     document.addEventListener('DOMContentLoaded', function () {
 
         const nbWeekInput = document.getElementById('nbWeekALaUne');

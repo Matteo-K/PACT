@@ -12,7 +12,12 @@ if (isset($_SESSION['idUser'])) {
 }
 
 // Vérification de la méthode POST et récupération de l'ID de l'offre
-$idOffre = $_GET['idOffre'] ?? $_POST['idOffre'] ?? null; // Récupérer l'ID de l'offre s'il est passé dans l'URL ou le POST
+if(isset($_POST['idOffre'])){
+    $idOffre = $_POST['idOffre'];
+}
+else{
+    $idOffre = null; // Récupérer l'ID de l'offre s'il est passé dans l'URL ou le POST
+}
 
 // Vérification de la connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_POST['motdepasseConnexion'])) {
