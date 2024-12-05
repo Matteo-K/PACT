@@ -1,29 +1,24 @@
 <?php
-// Vérifie que la requête est POST et contient un JSON valide
+// Suppression du fichier dans le dossier temporaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
+    // Récupération des données envoyées
+    $fileUrl = $_POST['fileUrl'];
+    $uniqueId = $_POST['unique_id'];
 
-    if (!isset($data['fileUrl']) || !isset($data['uniqueId'])) {
-        echo json_encode(['success' => false, 'message' => 'Données manquantes.']);
-        exit;
-    }
+    // Chemin du dossier temporaire où les images sont stockées
+    $tempDir = 'path_to_temp_folder/' . $uniqueId;
 
-    $fileUrl = $data['fileUrl'];
-    $uniqueId = $data['uniqueId'];
-
-    // Chemin réel du fichier à supprimer
-    $filePath = $_SERVER['DOCUMENT_ROOT'] . parse_url($fileUrl, PHP_URL_PATH);
-
+    // Vérifier que le fichier existe dans le dossier temporaire
+    $filePath = $tempDir . '/' . basename($fileUrl);
     if (file_exists($filePath)) {
+        // Suppression du fichier
         if (unlink($filePath)) {
             echo json_encode(['success' => true]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Impossible de supprimer le fichier.']);
         }
     } else {
-        echo json_encode(['success' => false, 'message' => 'Fichier introuvable.']);
+        echo json_encode(['success' => false, 'message' => 'Fichier non trouvé.']);
     }
-} else {
-    echo json_encode(['success' => false, 'message' => 'Méthode non autorisée.']);
 }
 ?>

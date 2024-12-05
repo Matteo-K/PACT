@@ -235,33 +235,29 @@
     }
 
     function deleteFile(fileUrl, uniqueId, imageContainer) {
+        const formData = new FormData();
+        formData.append("fileUrl", fileUrl); // L'URL du fichier à supprimer
+        formData.append("unique_id", uniqueId); // L'ID unique pour le dossier temporaire
+
+        // Envoi de la requête AJAX pour supprimer le fichier
         fetch("delete_temp_file.php", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    fileUrl,
-                    uniqueId
-                }),
+                body: formData
             })
-            .then((response) => response.json())
-            .then((data) => {
+            .then(response => response.json())
+            .then(data => {
                 if (data.success) {
-                    // Supprime l'élément visuellement
+                    // Si la suppression est réussie, retire l'image du DOM
                     imageContainer.remove();
                 } else {
-                    alert("Erreur lors de la suppression : " + data.message);
+                    alert("Erreur lors de la suppression de l'image : " + data.message);
                 }
             })
-            .catch((error) => {
+            .catch(error => {
                 console.error("Erreur lors de la suppression :", error);
                 alert("Une erreur est survenue pendant la suppression.");
             });
     }
-
-
-
 
     // Fonction pour générer un ID unique
     function generateUniqueId() {
