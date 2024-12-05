@@ -5,12 +5,7 @@ session_start();
 // fichier de connexion à la BDD
 require_once 'db.php';
 
-if(isset($_POST['idOffre'])){
-    $idOffre = $_POST['idOffre'];
-}else{
-    $idOffre = null;
-}
-
+$idOffre = 1;
 // Vérification de la connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_POST['motdepasseConnexion'])) {
     $login = $_POST['login'];
@@ -182,8 +177,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             <button id="boutonConnexion">Connexion</button>
 
             <a id="lienMotDePasseOublie" href="#"> Mot de passe oublié ?</a>
-
-            <input type="hidden" name="idOffre" value="<?= $idOffre?>">
         </form>
         
         <h1 id="pasDeCompteTitre">Vous n'avez pas de compte ? Créez-en un !</h1>
