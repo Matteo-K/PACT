@@ -70,10 +70,10 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo "Pas d'offre trouvée ?";
         }
 
-        print_r($result);
-
         $ar = new ArrayOffer($idOffre);
-        print_r($ar->getArray());
+        $date = $ar->getArray();
+
+        print_r($data[$idOffre]["nomOffre"]);
     ?>
     </h2>
 
