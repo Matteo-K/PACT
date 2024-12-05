@@ -6,7 +6,7 @@ $visite = [
     "duree" => "",
     "prixminimal" => "",
     "accessibilite" => true,
-    "hadicap" => [],
+    "nomAccess" => [],
     "langue" => []
 ];
 
