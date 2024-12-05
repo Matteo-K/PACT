@@ -21,6 +21,7 @@ $jour = explode(" ",$formattedDate);
 $frenchDay = $dateJour[$jour[0]];
 
 echo $frenchDay;
+$dateRep = new DateTime($jour[1]);
 
 print_r($jour);
 
