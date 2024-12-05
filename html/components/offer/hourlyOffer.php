@@ -112,7 +112,6 @@
             let span = button.previousElementSibling;
             span.querySelectorAll("input").forEach((input) => {
                 input.value = "";
-                console.log(input);
             });
             span.classList.add("hourlyHide");
             button.classList.add("hourlyHide");
@@ -128,7 +127,7 @@
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
         <div>
-            <h4>Ajouter une date pour le spectacle&nbsp;:&nbsp;</h4>            
+            <h4>Ajouter une date pour le spectacle&nbsp;:&nbsp;</h4><span id="msgHoraireSupr"></span>          
         </div>
         <div id="Representation">
         </div>
@@ -253,6 +252,9 @@
                             minDate: current_date
                         });
                     }
+                } else {
+                    const suppr = document.getElementBuId("msgHoraireSupr");
+                    suppr.textContent = "Certaines horaires ont été supprimées pour cause d'expiration.";
                 }
             }
 
