@@ -176,7 +176,7 @@ function afficheAvisSelect(numAvis) {
     conteneurAvis.style.display = "flex";
     document.getElementById("aucunAvisSelect").style.display = "none";
 
-    if(blocDetails.open){
+    if(blocDetails && blocDetails.open){
         closeDetails();
     }
     
@@ -283,6 +283,7 @@ function openDetails() {
 }
 
 function closeDetails() {
+    console.log(contenuDetails);
     let height = contenuDetails.scrollHeight;
     contenuDetails.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
     requestAnimationFrame(() => {
