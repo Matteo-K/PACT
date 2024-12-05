@@ -3524,7 +3524,8 @@ details.animating .contentDetails {
   font-weight: 500 ;
   font-size: 1.7em;
   margin: 10px 40px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   width: 60%;
 }
 
