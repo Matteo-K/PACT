@@ -36,12 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            echo "<form id='redirectForm' method='POST' action='detailsOffer.php'>
+            echo htmlspecialchars("<form id='redirectForm' method='POST' action='detailsOffer.php'>
                     <input type='hidden' name='idoffre' value='$idOffre'>
                   </form>
                   <script>
                     document.getElementById('redirectForm').submit();
-                  </script>";
+                  </script>");
             exit();
         }
 
