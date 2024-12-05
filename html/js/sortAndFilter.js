@@ -382,10 +382,8 @@ function filtrerParPeriode(offers) {
   const debutRange = heureDebutH * 60 + heureDebutM;
   const finRange = heureFinH * 60 + heureFinM;
 
-  // Filtrer les offres en fonction des horaires
   return offers.filter(offer => {
     if (offer.categorie === "Restaurant" || offer.categorie === "Visite" || offer.categorie === "Parc Attraction") {
-      
       const horaires = offer.horaires;
 
       return horaires.some(plage => {
@@ -411,6 +409,7 @@ function filtrerParPeriode(offers) {
     }
   });
 }
+
 
 
 
