@@ -91,33 +91,59 @@
 
         etoiles.forEach((etoile, index) => {
             // Survol : remplit les étoiles jusqu'à l'étoile survolée
-            etoile.addEventListener("mouseover", () => survolerEtoiles(index + 1));
+            etoile.addEventListener("mouseover", () => {
+                survolerEtoiles(index + 1);
+            });
 
             // Sortie du survol : restaure l'état initial
-            etoile.addEventListener("mouseout", reinitialiserSurvol);
+            etoile.addEventListener("mouseout", () => {
+                reinitialiserSurvol();
+            });
 
             // Clic : enregistre la note de manière permanente
-            etoile.addEventListener("click", () => definirNote(index + 1));
+            etoile.addEventListener("click", () => {
+                definirNote(index + 1);
+            });
         });
 
+        // Remplit les étoiles jusqu'à note pour le survol
         function survolerEtoiles(note) {
             etoiles.forEach((etoile, i) => {
-                etoile.classList.toggle("pleine", i < note);
+                if (i < note) {
+                    etoile.classList.add("pleine");
+                } else {
+                    etoile.classList.remove("pleine");
+                }
             });
         }
 
+        // Réinitialise les étoiles après le survol
         function reinitialiserSurvol() {
             etoiles.forEach((etoile, i) => {
-                etoile.classList.toggle("pleine", i < noteActuelle);
-                etoile.classList.toggle("vide", i >= noteActuelle);
+                etoile.classList.remove("pleine");
+                if (i < noteActuelle) {
+                    etoile.classList.add("pleine");
+                } else {
+                    etoile.classList.add("vide");
+                }
             });
         }
 
+        // Définit la note finale, met à jour les étoiles et l'input caché
         function definirNote(note) {
-            noteActuelle = note % 5 + 1;
-            noteInput.value = note; // Met à jour l'input caché
-            etoile.classList.add("pleine", i < note);
-            reinitialiserSurvol();
+            noteActuelle = note;
+            noteInput.value = note%5+1; // Met à jour l'input caché
+            etoiles.forEach((etoile, i) => {
+                if (i < note) {
+                    etoile.classList.add("pleine");
+                    etoile.classList.remove("vide");
+                } else {
+                    etoile.classList.remove("pleine");
+                    etoile.classList.add("vide");
+                }
+            });
+
+            console.log("Note sélectionnée :", note);
         }
     });
 
