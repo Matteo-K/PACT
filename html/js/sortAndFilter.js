@@ -321,6 +321,33 @@ function filtrerParStatuts(offers) {
 }
 
 
+function filtrerParPeriode(offers) {
+  // Vérification de la présence des valeurs de date et heure
+  const dateDepartValue = dateDepart.value;
+  const heureDebutValue = heureDebut.value;
+  const dateFinValue = dateFin.value;
+  const heureFinValue = heureFin.value;
+
+  // Si aucune des valeurs n'est définie, on retourne toutes les offres
+  if (!dateDepartValue || !dateFinValue || !heureDebutValue || !heureFinValue) {
+    return offers;
+  }
+
+  // Convertir les dates et heures en objets Date
+  const dateDepartObj = new Date(dateDepartValue + 'T' + heureDebutValue);
+  const dateFinObj = new Date(dateFinValue + 'T' + heureFinValue);
+
+  // Filtrage des offres en fonction des dates et heures
+  return offers.filter(offer => {
+    const offerDate = new Date(offer.dateDepart + 'T' + offer.heureDebut); // Utilisez la date et l'heure de l'offre
+    const offerEndDate = new Date(offer.dateFin + 'T' + offer.heureFin); // Utilisez la date et l'heure de fin de l'offre
+
+    // Vérifier si l'offre est dans la plage de dates et heures sélectionnées
+    return offerDate >= dateDepartObj && offerEndDate <= dateFinObj;
+  });
+}
+
+
 
 // Fonction de filtre par période
 // function filtrerParPeriode(offers) {
@@ -379,15 +406,15 @@ function filtrerParPeriode(offers) {
   console.log("Date de départ sélectionnée: ", dateDepartValue);
   console.log("Date de fin sélectionnée: ", dateFinValue);
 
-  const debutRange = heureDebutValue;
-  const finRange = heureFinValue;
+  const debutRange = dateDepartValue && heureDebutValue;
+  const finRange = dateFinValue && heureFinValue;
 
   console.log("Heure de début sélectionnée: ", debutRange);
   console.log("Heure de fin sélectionnée: ", finRange);
 
   // Convertir les heures en minutes pour faciliter la comparaison
-  const [heureDebutH, heureDebutM] = debutRange.split(':').map(Number);
-  const [heureFinH, heureFinM] = finRange.split(':').map(Number);
+  const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
+  const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
 
   const debutRangeMinutes = heureDebutH * 60 + heureDebutM;
   const finRangeMinutes = heureFinH * 60 + heureFinM;
