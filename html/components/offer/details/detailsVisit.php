@@ -73,7 +73,7 @@ if ($categorie["_visite"]) {
     <!-- Gestion de l'accessibilité (handicap ) depuis la BDD -->
     <div class="access">
         <select name="nomAccess" id="nomAccess">
-            <option value="nomAccess">-- Sélectionner un handicap --</option>
+            <option value="SelectionAccess">-- Sélectionner un handicap --</option>
             <?php foreach ($nomAccess as $key => $value) { ?>
                 <option value="<?php echo $value ?>"><?php echo $value ?></option>
             <?php } ?>
