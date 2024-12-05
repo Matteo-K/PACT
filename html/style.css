@@ -3480,11 +3480,12 @@ section#infoComp div {
 /* bloc fermable */
 #avisproS2 > details{
   width: 100%;
-  background-color: var(--primary60);
+  background-color: var(--bloc);
   border-radius: 15px;
   padding: 20px;
   position: relative;
   overflow: hidden;
+  color: white;
 }
 
 #avisProS2 summary{
@@ -4187,7 +4188,6 @@ details .nonLu, details .nonRepondu{
   margin-right: 5px;
 }
 
-
 #visit>div[class="visGuideeEtDuree"]>label[class="labH"],
 #visit>div[class="divPrixMin"]>label[class="labEuro"] {
   margin-left: 5px;
@@ -4211,7 +4211,8 @@ details .nonLu, details .nonRepondu{
   flex-direction: column;
 }
 
-#visit>div[class="languesProp"]>select {
+#visit>div[class="languesProp"]>select,
+#visit>div[class="access"]>select {
   width: 500px;
   height: 35px;
 }

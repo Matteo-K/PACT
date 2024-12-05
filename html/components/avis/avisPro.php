@@ -173,7 +173,7 @@ let dateAvis = document.getElementById("visiteRedaction");
 const root = document.documentElement;
 const accentColor = getComputedStyle(root).getPropertyValue('--accent').trim();
 const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').trim();
-const primaryColor = getComputedStyle(root).getPropertyValue('--primary60').trim();
+const primaryColor = rgba(28, 164, 237, 0.6);
 
 const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");

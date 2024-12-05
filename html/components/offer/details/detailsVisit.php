@@ -37,7 +37,7 @@ if ($categorie["_visite"]) {
 
     // Ajouté une requête pour l'handicap
     
-    $stmt = $conn->prepare("SELECT * from pact._accessibilite where idoffre=?");
+    $stmt = $conn->prepare("SELECT * from pact._offreAccess where idoffre=?");
     $stmt->execute([$idOffre]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $visite["nomAccess"][] = $row["nomAccess"];
@@ -78,6 +78,7 @@ if ($categorie["_visite"]) {
                 <option value="<?php echo $value ?>"><?php echo $value ?></option>
             <?php } ?>
         </select>
+    </div>
 
         <!-- Gestion du prix minimum pour une visite -->
         <div class="divPrixMin">

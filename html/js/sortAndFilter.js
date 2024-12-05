@@ -323,9 +323,13 @@ function filtrerParStatuts(offers) {
 
 
 
+
 function filtrerParPeriode(offers) {
+
+  // On récupère les valeurs des heures de début et de fin
   const heureDepart = heureDebut.value;
   const heureFin = heureFin.value;
+
 
   // Si aucune plage horaire n'est sélectionnée, on retourne les offres sans filtrage
   if (!heureDepart || !heureFin) {
@@ -338,9 +342,12 @@ function filtrerParPeriode(offers) {
 
     // Si l'offre est un restaurant, visite, ou parc d'attraction
     if (offer.categorie === 'Restaurant' || offer.categorie === 'Visite' || offer.categorie === 'Parc' || offer.categorie === 'Activite') {
+
       // On récupère l'heure d'ouverture et de fermeture de l'offre
-      const ouverture = new Date(`2024-12-05T${offer.heureOuverture}:00`);
-      const fermeture = new Date(`2024-12-05T${offer.heureFermeture}:00`);
+      const ouverture = offer.heureOuverture;
+      const fermeture = offer.heureFermeture;
+
+
 
       // Vérifier si l'heure d'ouverture et de fermeture de l'offre se chevauchent avec la plage horaire sélectionnée
       if ((ouverture >= heureDepart && ouverture <= heureFin) || (fermeture >= heureDepart && fermeture <= heureFin) || (ouverture <= heureDepart && fermeture >= heureFin)) {
@@ -348,9 +355,9 @@ function filtrerParPeriode(offers) {
       }
     }
 
-    // Si l'offre est une activité ou un spectacle (une seule heure)
+    // Si l'offre est un spectacle (une seule heure)
     if (offer.categorie === 'Spectacle') {
-      const heureOffre = new Date(`2024-12-05T${offer.heure}:00`);
+      const heureOffre = offer.horaire;
 
       // Vérifier si l'heure de l'offre est dans la plage horaire sélectionnée
       if (heureOffre >= heureDepart && heureOffre <= heureFin) {
@@ -358,9 +365,11 @@ function filtrerParPeriode(offers) {
       }
     }
 
+    // Retourner si l'offre est visible ou non
     return offreEstVisible;
   });
 }
+
 
 
 
