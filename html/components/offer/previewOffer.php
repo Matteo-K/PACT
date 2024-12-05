@@ -163,21 +163,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <p>Pas de note pour le moment</p>
                 <section id="desciptionPreview">
                     <h4>Description</h4>
-                    <?php
-                        if($result["description"]) {
-                    ?>
-                            <p><?php echo htmlspecialchars($result["description"]); ?></p>
-                    <?php
-
-                        } 
-                        
-                        else {
-                    ?>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, illo!</p>
-                    <?php
-                        }
-
-                    ?>
+                            <p><?php echo htmlspecialchars($data[$idOffre]["description"]); ?></p>
                 </section>
 
                 <section id="InfoCompPreview">
