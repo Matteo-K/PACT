@@ -1,4 +1,33 @@
 <?php
+function listImage($idOffre, $idComment) {
+
+    // Chemin du dossier temporaire
+    $dossier = '../img/imageAvis/' . $idOffre . '/' . $idComment . '/';
+
+    // Vérifie si le dossier utilisateur existe
+    if (!is_dir($dossier)) {
+        echo json_encode(['success' => false, 'message' => 'Aucun fichier trouvé pour cet utilisateur.']);
+        exit;
+    }
+
+    // Liste les fichiers dans le dossier
+    $files = array_diff(scandir($dossier), ['.', '..']);
+    $fileUrls = [];
+
+    // Parcours chaque fichier et construit l'URL complète
+    foreach ($files as $file) {
+        $fileUrls[] = $dossier . $file;
+    }
+
+    // Vérifie s'il y a des fichiers à renvoyer
+    if (count($fileUrls) > 0) {
+        return ['success' => true, 'files' => $fileUrls];
+    } else {
+        return ['success' => false, 'message' => 'Aucun fichier disponible.']   ;
+    }
+}
+
+
 
 // Fonction pour déplacer les images du dossier temporaire vers le dossier de l'offre
 function moveImagesToOfferFolder($idOffre,$idComment, $tempFolder, $uploadBasePath = __DIR__ . '/uploads')
@@ -90,14 +119,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     // Déplacer les images vers le dossier de l'offre
     $result = moveImagesToOfferFolder($idOffre,$idComment, $tempFolder, "img/imageAvis/");
 
-    if (!empty($result['errors'])) {
-        echo "Erreurs lors du déplacement des fichiers :<br>";
-        print_r($result['errors']);
-    }
+    $image = $conn -> prepare("INSERT INTO pact._image (url, nomimage) VALUES (?,?)");
+    $imageAvis = $conn -> prepare("INSERT INTO pact._avisimage (idc,url) VALUES (?,?)");
 
-    if (!empty($result['success'])) {
-        echo "Fichiers déplacés avec succès :<br>";
-        print_r($result['success']);
+    $mesImages = listImage($idOffre,$idComment);
+
+    if($mesImages['success']){
+        foreach($mesImages['files'] as $file){
+            $fileName = pathinfo($file, PATHINFO_BASENAME);
+            $image -> execute([$file, $fileName]);
+            $imageAvis -> execute([$idComment, $file]);
+        }
     }
 }
 ?>
