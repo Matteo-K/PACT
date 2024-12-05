@@ -379,35 +379,39 @@ function filtrerParPeriode(offers) {
   const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
   const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
 
-  const debutRange = heureDebutH * 60 + heureDebutM; // Plage horaire début en minutes
-  const finRange = heureFinH * 60 + heureFinM; // Plage horaire fin en minutes
+  const debutRange = heureDebutH * 60 + heureDebutM;
+  const finRange = heureFinH * 60 + heureFinM;
 
   // Filtrer les offres en fonction des horaires
   return offers.filter(offer => {
     if (offer.categorie === "Restaurant" || offer.categorie === "Visite" || offer.categorie === "Parc Attraction") {
-      // Cas des offres avec une plage horaire (restaurant, visite, parc)
-      const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
-      const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
+      
+      const horaires = offer.horaires;
 
-      const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
-      const fermetureMinutes = fermetureH * 60 + fermetureM;
+      return horaires.some(plage => {
+        const [ouvertureH, ouvertureM] = plage.heureOuverture.split(':').map(Number);
+        const [fermetureH, fermetureM] = plage.heureFermeture.split(':').map(Number);
 
-      // Vérifier si la plage horaire de l'offre se superpose avec la plage horaire sélectionnée par l'utilisateur
-      return (
-        (ouvertureMinutes < finRange && fermetureMinutes > debutRange) // Si les horaires se chevauchent
-      );
-    } else {
-      // Cas des offres avec une heure unique (activités, spectacles, etc.)
-      const heureOffre = offer.heure; // Cette variable est une heure au format "HH:mm"
+        const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
+        const fermetureMinutes = fermetureH * 60 + fermetureM;
+
+        return (
+          (ouvertureMinutes < finRange && fermetureMinutes > debutRange)
+        );
+      });
+    } 
+    
+    else {
+      const heureOffre = offer.horaires;
 
       const [offreH, offreM] = heureOffre.split(':').map(Number);
-      const offreTimeInMinutes = offreH * 60 + offreM; // Convertir en minutes depuis 00:00
+      const offreTimeInMinutes = offreH * 60 + offreM;
 
-      // Vérifier si l'heure de l'offre est dans la plage horaire sélectionnée
       return offreTimeInMinutes >= debutRange && offreTimeInMinutes <= finRange;
     }
   });
 }
+
 
 
 
