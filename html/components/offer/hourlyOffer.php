@@ -164,7 +164,8 @@
                 }
             });
             /* Interraction horaire */
-            function formatDate(date) {
+            function formatDate(date_) {
+                let date = new Date(date_);
                 return date.getUTCFullYear() + "-" +
                     String(date.getUTCMonth() + 1).padStart(2, "0") + "-" +
                     String(date.getUTCDate()).padStart(2, "0");
