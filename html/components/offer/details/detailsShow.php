@@ -52,12 +52,12 @@ if ($categorie["_spectacle"]) {
         <div>
             <div class="classDivLigne">
             <label for="nbMin" class="ligne1">En minutes : </label>
-            <input type="number" class="nb" id="nbMin" name="nbMin" min="0" placeholder="0" >
+            <input type="number" class="nb" id="nbMin" name="nbMin" min="0" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
                 
             
 
                 <label for="nbMinutesHeure" class="ligne4">En heures : </label>
-                <input type="time" id="nbMinutesHeure" class="nb" name="nbMinutesHeure" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
+                <input type="time" id="nbMinutesHeure" class="nb" name="nbMinutesHeure" placeholder="0" >
                 <!-- Pour entrer un prix minimum -->
             </div>
         </div>
