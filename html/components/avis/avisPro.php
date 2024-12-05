@@ -356,7 +356,7 @@ function triAvis(arrayAvis) {
  * Tri la liste des avis du plus récent au plus ancien
  */
 function triNonLu(arrayAvis) {
-    return array.sort((avis1, avis2) => {
+    return arrayAvis.sort((avis1, avis2) => {
         const avis1NonLu = !avis1.lu
         const avis2NonLu = !avis2.lu
     
