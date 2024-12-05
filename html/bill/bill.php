@@ -175,7 +175,7 @@ footer{
                         
                         foreach ($resultat as $key => $value) {
                             $v1 = intval($value['duree']);
-                            $v2 = intval($value['prixBase']);
+                            $v2 = ($value['prixBase']);
                             $total += $v1 * $v2;
                             ?>
                                 <tr>
