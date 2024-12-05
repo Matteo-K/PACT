@@ -220,6 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
 
         <!-- Envoi -->
+         <input type='hidden' name='idoffre' value='$idOffre'>
         <button type="submit">Envoyer mon avis</button>
     </form>
 </section>
