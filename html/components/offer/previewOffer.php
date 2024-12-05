@@ -1,17 +1,18 @@
 <?php
-    // Fonction pour récupérer les horaires
+// Fonction pour récupérer les horaires
 function getSchedules($conn, $idOffre) {
     $schedules = [
         'midi' => [],
         'soir' => []
     ];
 
-    // Récupérer les horaires du midi et du soir
+    // Récupérer les horaires du midi
     $stmtMidi = $conn->prepare("SELECT * FROM pact._horaireMidi WHERE idOffre = :idOffre");
     $stmtMidi->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
     $stmtMidi->execute();
     $schedules['midi'] = $stmtMidi->fetchAll(PDO::FETCH_ASSOC);
 
+    // Récupérer les horaires du soir
     $stmtSoir = $conn->prepare("SELECT * FROM pact._horaireSoir WHERE idOffre = :idOffre");
     $stmtSoir->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
     $stmtSoir->execute();
@@ -42,7 +43,7 @@ if (!$result) {
             break; // Sortir de la boucle si une offre est trouvée
         }
     }
-} else{
+} else {
     $typeOffer = "parcs_attractions";
 }
 
@@ -59,151 +60,141 @@ $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-
 <form id="previewOffer" action="enregOffer.php" method="post">
     <section id="sectionPreview">
         <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
                 
-                <div id="tagPreview">
-                    <?php 
-                    // Fetch tags associated with the offer
-                    $stmt = $conn->prepare("
-                        SELECT t.nomTag FROM pact._offre o
-                        LEFT JOIN pact._tag_parc tp ON o.idOffre = tp.idOffre
-                        LEFT JOIN pact._tag_spec ts ON o.idOffre = ts.idOffre
-                        LEFT JOIN pact._tag_Act ta ON o.idOffre = ta.idOffre
-                        LEFT JOIN pact._tag_restaurant tr ON o.idOffre = tr.idOffre
-                        LEFT JOIN pact._tag_visite tv ON o.idOffre = tv.idOffre
-                        LEFT JOIN pact._tag t ON t.nomTag = COALESCE(tp.nomTag, ts.nomTag, ta.nomTag, tr.nomTag, tv.nomTag)
-                        WHERE o.idOffre = :idoffre
-                        ORDER BY o.idOffre");
-                    $stmt->bindParam(':idoffre', $idOffre);
-                    $stmt->execute();
-                    $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    
-                    foreach ($tags as $tag): 
-                    if($tag["nomtag"]) {
-                    ?>
-                        <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
-                    <?php 
-                        } endforeach; 
-                    ?>
-                   
+        <div id="tagPreview">
+            <?php 
+            // Fetch tags associated with the offer
+            $stmt = $conn->prepare("
+                SELECT t.nomTag FROM pact._offre o
+                LEFT JOIN pact._tag_parc tp ON o.idOffre = tp.idOffre
+                LEFT JOIN pact._tag_spec ts ON o.idOffre = ts.idOffre
+                LEFT JOIN pact._tag_Act ta ON o.idOffre = ta.idOffre
+                LEFT JOIN pact._tag_restaurant tr ON o.idOffre = tr.idOffre
+                LEFT JOIN pact._tag_visite tv ON o.idOffre = tv.idOffre
+                LEFT JOIN pact._tag t ON t.nomTag = COALESCE(tp.nomTag, ts.nomTag, ta.nomTag, tr.nomTag, tv.nomTag)
+                WHERE o.idOffre = :idoffre
+                ORDER BY o.idOffre");
+            $stmt->bindParam(':idoffre', $idOffre);
+            $stmt->execute();
+            $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach ($tags as $tag): 
+                if($tag["nomtag"]) {
+            ?>
+                    <a class="tag" href="search.php"><?php echo htmlspecialchars(ucfirst(strtolower($tag["nomtag"]))); ?></a>
+            <?php 
+                } endforeach; 
+            ?>
+        </div>
+
+        <div id="iconeLienPreview">
+            <?php
+            $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
+            $stmt->execute();
+            $tel = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result[0]['ville'] && $result[0]['pays'] && $result[0]['codepostal']) {
+            ?>
+                <div>
+                    <img src="./img/icone/lieu.png">
+                    <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
                 </div>
-
-                <div id="iconeLienPreview">
-                <?php
-                $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
-                $stmt->execute();
-                $tel = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-                if ($result[0]['ville'] && $result[0]['pays'] && $result[0]['codepostal']) {
-                ?>
-                    <div>
-                        <img src="./img/icone/lieu.png">
-                        <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
-                    </div>
-
-                <?php
-                }
-                if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
-                ?>
-                    <div>
-                        <img src="./img/icone/tel.png">
-                        <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
-                    </div>
-                <?php
-                }
-                if ($result[0]["mail"]) {
-                ?>
-                    <div>
-                        <img src="./img/icone/mail.png">
-                        <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
-                    </div>
-
-                <?php
-                }
-                if ($result[0]["urlsite"]) {
-                ?>
-                    <div>
-                        <img src="./img/icone/globe.png">
-                        <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
-                    </div>
-
-                <?php
-                }
-                ?>
-                
+            <?php
+            }
+            if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
+            ?>
+                <div>
+                    <img src="./img/icone/tel.png">
+                    <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
                 </div>
+            <?php
+            }
+            if ($result[0]["mail"]) {
+            ?>
+                <div>
+                    <img src="./img/icone/mail.png">
+                    <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
+                </div>
+            <?php
+            }
+            if ($result[0]["urlsite"]) {
+            ?>
+                <div>
+                    <img src="./img/icone/globe.png">
+                    <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
 
-                <div class="swiper-container">
-                    <div class="swiper mySwiperPreview">
-                        <div class="swiper-wrapper">
-                        <?php
-                            foreach ($photos as $picture) {
-                        ?>
-                                <div class="swiper-slide">
-                                    <img src="<?php echo $picture['url']; ?>" />
-                                </div>
-                        <?php
-                            }
-                        ?>
+        <div class="swiper-container">
+            <div class="swiper mySwiperPreview">
+                <div class="swiper-wrapper">
+                <?php
+                    foreach ($photos as $picture) {
+                ?>
+                        <div class="swiper-slide">
+                            <img src="<?php echo $picture['url']; ?>" />
                         </div>
-                    </div>
-
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <?php
+                    }
+                ?>
                 </div>
+            </div>
 
-                <div thumbsSlider="" class="swiper myThumbSliderPreview">
-                    <div class="swiper-wrapper">
-                    <?php
-                        foreach ($photos as $picture) {
-                    ?>
-                            <div class="swiper-slide">
-                                <img src="<?php echo $picture['url']; ?>" />
-                            </div>
-                    <?php
-                        }
-                    ?>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        </div>
+
+        <div thumbsSlider="" class="swiper myThumbSliderPreview">
+            <div class="swiper-wrapper">
+            <?php
+                foreach ($photos as $picture) {
+            ?>
+                    <div class="swiper-slide">
+                        <img src="<?php echo $picture['url']; ?>" />
                     </div>
-                </div>
-                
-                <p>Pas de note pour this moment</p>
-                <section id="desciptionPreview">
-                    <h4>Description</h4>
+            <?php
+                }
+            ?>
+            </div>
+        </div>
+
+        <p>Pas de note pour this moment</p>
+        <section id="desciptionPreview">
+            <h4>Description</h4>
+            <?php
+                if($result["description"]) {
+            ?>
+                    <p><?php echo htmlspecialchars($result["description"]); ?></p>
+            <?php
+                } else {
+            ?>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, illo!</p>
+            <?php
+                }
+            ?>
+        </section>
+
+        <section id="InfoCompPreview">
+            <h4>Informations Complémentaires</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Horaires</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <?php
-                        if($result["description"]) {
-                    ?>
-                            <p><?php echo htmlspecialchars($result["description"]); ?></p>
-                    <?php
+                    // Tableau de tous les jours de la semaine
+                    $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
-                        } 
-                        
-                        else {
-                    ?>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, illo!</p>
-                    <?php
-                        }
+                    // Afficher les horaires pour chaque jour de la semaine
 
-                    ?>
-                </section>
-
-                <section id="InfoCompPreview">
-                    <h4>Informations Complémentaires</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th colspan="2">Horaires</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            // Tableau de tous les jours de la semaine
-                            $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-
-                            // Afficher les horaires pour chaque jour de la semaine
                             foreach ($joursSemaine as $jour): ?>
                                 <tr>
                                     <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>

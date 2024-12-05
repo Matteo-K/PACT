@@ -6,7 +6,7 @@ $visite = [
     "duree" => "",
     "prixminimal" => "",
     "accessibilite" => true,
-    "hadicap" => [],
+    "nomAccess" => [],
     "langue" => []
 ];
 
@@ -28,16 +28,17 @@ if ($categorie["_visite"]) {
         $visite["prixminimal"] = $result["prixminimal"];
         $visite["accessibilite"] = $result["accessibilite"];
     }
-
+    // Langue
     $stmt = $conn->prepare("SELECT langue from pact._visite_langue where idoffre=?");
     $stmt->execute([$idOffre]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $visite["langue"][] = $row["langue"];
     }
 
-    // Ajouté une requête pour l'handicap
-    
-    $stmt = $conn->prepare("SELECT * from pact._offreAccess where idoffre=?");
+
+
+    // Accessibilité
+    $stmt = $conn->prepare("SELECT * from pact._accessibilite where idoffre=?");
     $stmt->execute([$idOffre]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $visite["nomAccess"][] = $row["nomAccess"];

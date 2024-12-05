@@ -106,8 +106,8 @@ VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
 
 -- Peuplement de la table _abonnement
 INSERT INTO _abonnement (nomAbonnement, tarif) 
-VALUES ('Basique', 2), 
-       ('Premium', 4),
+VALUES ('Basique', 1.67), 
+       ('Premium', 3.34),
 	     ('Gratuit', 0.0);
 
 -- Peuplement de la table _statut
@@ -224,8 +224,8 @@ VALUES ('Lundi'),
 
 -- Peuplement de la table _option
 INSERT INTO _option (nomOption, prixOffre, dureeOption) 
-VALUES ('ALaUne', 20, 1), 
-       ('EnRelief', 10, 1);
+VALUES ('ALaUne', 16.68, 1), 
+       ('EnRelief', 8.34, 1);
 
 -- Peuplement de la table _langue
 INSERT INTO _langue (langue) 
@@ -442,18 +442,18 @@ VALUES (1, 'Premium'),
        
 
 INSERT INTO _dateOption(dateLancement,dateFin,duree,prix)
-VALUES ('2024-11-01','2024-11-08',1,20),
-       ('2024-11-01','2024-11-15',2,40),
-       ('2024-11-01','2024-11-15',2,20),
-       ('2024-11-01','2024-11-22',3,30),
-       ('2024-09-01','2024-09-08',1,20),
-       ('2024-09-01','2024-09-15',2,40),
-       ('2024-09-01','2024-09-15',2,20),
-       ('2024-09-01','2024-09-22',3,30),
-       ('2024-10-01','2024-10-08',1,20),
-       ('2024-10-01','2024-10-15',2,40),
-       ('2024-10-01','2024-10-15',2,20),
-       ('2024-11-01','2024-11-22',3,30);
+VALUES ('2024-11-01','2024-11-08',1,16.68),
+       ('2024-11-01','2024-11-15',2,33.36),
+       ('2024-11-01','2024-11-15',2,16.68),
+       ('2024-11-01','2024-11-22',3,25.02),
+       ('2024-09-01','2024-09-08',1,16.68),
+       ('2024-09-01','2024-09-15',2,33.36),
+       ('2024-09-01','2024-09-15',2,16.68),
+       ('2024-09-01','2024-09-22',3,25.02),
+       ('2024-10-01','2024-10-08',1,16.68),
+       ('2024-10-01','2024-10-15',2,33.36),
+       ('2024-10-01','2024-10-15',2,16.68),
+       ('2024-11-01','2024-11-22',3,25.02);
 
 -- Peuplement de la table _option_offre
 INSERT INTO _option_offre (idOption, idOffre, nomOption) 
