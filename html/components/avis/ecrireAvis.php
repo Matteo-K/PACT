@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $stmt->execute([$idUser,$texteAvis]);
     $idComment = $stmt->fetchColumn();
 
-    $stmt = $conn -> prepare("INSERT INTO pact.avis (idc,idoffre,note,companie,mois,annee,titre) VALUES (?,?,?,?,?,?,?)");
+    $stmt = $conn -> prepare("INSERT INTO pact._avis (idc,idoffre,note,companie,mois,annee,titre) VALUES (?,?,?,?,?,?,?)");
     $stmt -> execute([$idComment,$idOffre,$note,$compagnie,$monthInWords,$year,$titreAvis]);
 
     // Déplacer les images vers le dossier de l'offre
