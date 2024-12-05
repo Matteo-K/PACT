@@ -19,11 +19,14 @@ $stmt->bindParam(':datefactue', $date, PDO::PARAM_STR);
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-$denomination = $results[0]['nom'];
+$denomination = $results[0]['denomination'];
+$denominationL = $results[0]['nom'];
 $rue = $results[0]['rue'];
 $codePostal = $results[0]['codepostal'];
 $ville = $results[0]['ville'];
+$rueL = $results[0]['rueL'];
+$codePostalL = $results[0]['codepostalL'];
+$villeL = $results[0]['villeL'];
 $idFacture = $results[0]['idfacture'];
 $dateFacture = $results[0]['datefactue'];
 
@@ -133,6 +136,9 @@ footer{
                 <p><?php echo $denomination ?></p>
                 <p><?php echo $rue ?></p>
                 <p><?php echo $codePostal . " " . $ville ?></p>
+                <p><?php echo $denominationL ?></p>
+                <p><?php echo $rueL ?></p>
+                <p><?php echo $codePostalL . " " . $villeL ?></p>
             </section>
         </strong>
         <h1>Facture du mois de <?php echo $mois . " " . $annee ?></h1>
@@ -142,7 +148,7 @@ footer{
             <strong>
                 <p>Numéro de facture : <?php echo $idFacture ?></p>
                 <p>Date de facture : <?php echo($newDate)  ?></p>
-                <p>Numéeo Client : <?php echo $idU ?></p>
+                <p>Numéro Client : <?php echo $idU ?></p>
             </strong>
         </section>
         <aside>
