@@ -347,10 +347,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     function generateUniqueId() {
         return "temp_" + Math.random().toString(36).substr(2, 9);
     }
-let formCreationAvis = document.getElementById("formCreationAvis");
-let input = formCreationAvis.createElement(input);
-input.type = "hidden";
-input.name = "uniqueField";
-input.value = uniqueId;
-formCreationAvis.appendChild(input);
 </script>
