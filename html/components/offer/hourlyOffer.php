@@ -171,8 +171,8 @@
                 span.classList.add("hourly1");
 
                 let lblRep1 = document.createElement("label");
-                lblRep.setAttribute("for", "HRepN"+ counterRep +"_part1.1");
-                lblRep.textContent = "Représentation de";
+                lblRep1.setAttribute("for", "HRepN"+ counterRep +"_part1.1");
+                lblRep1.textContent = "Représentation de";
 
                 let inputHoriare1 = document.createElement("input");
                 inputHoriare1.setAttribute("type", "time");
@@ -180,8 +180,8 @@
                 inputHoriare1.id = "HRepN"+counterRep+"_part1.1";
 
                 let lblRep2 = document.createElement("label");
-                lblRep.setAttribute("for", "HRepN"+ counterRep +"_part1.2");
-                lblRep.textContent = "à";
+                lblRep2.setAttribute("for", "HRepN"+ counterRep +"_part1.2");
+                lblRep2.textContent = "à";
 
                 let inputHoriare2 = document.createElement("input");
                 inputHoriare1.setAttribute("type", "time");
