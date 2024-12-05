@@ -390,6 +390,11 @@ function filtrerParPeriode(offers) {
       const debutRange = heureDebutH * 60 + heureDebutM;
       const finRange = heureFinH * 60 + heureFinM;
 
+      // Vérification si 'heureOuverture' et 'heureFermeture' sont valides
+      if (!offer.heureOuverture || !offer.heureFermeture) {
+        return false;  // Si l'un des horaires est manquant, on exclut l'offre
+      }
+
       const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
       const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
 
@@ -408,7 +413,6 @@ function filtrerParPeriode(offers) {
     return true;
   });
 }
-
 
 
 
