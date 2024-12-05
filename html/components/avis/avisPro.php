@@ -291,7 +291,7 @@ function closeDetails() {
     requestAnimationFrame(() => {
         contenuDetails.style.maxHeight = "0"; // Réduit à 0 pour l'animation
     });
-    if (getComputedStyle(aucunAvisSelect).display == "none")) {
+    if (getComputedStyle(aucunAvisSelect).display == "none") {
         conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal si un avis est select
      }
 }
