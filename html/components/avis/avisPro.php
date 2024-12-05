@@ -182,7 +182,7 @@ const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
 function afficheAvisSelect(idAvis) {
 
-    avisSelect = querySelector(`#avisPro ul .avis${idAvis}`);
+    avisSelect = document.querySelector(`#avisPro ul .avis${idAvis}`);
 
     conteneurAvis.style.display = "flex";
     aucunAvisSelect.style.display = "none";
