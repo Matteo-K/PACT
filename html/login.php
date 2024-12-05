@@ -5,6 +5,7 @@
     // fichier de connexion à la BDD
     require_once 'db.php';
 
+    // Vérifier si l'utilisateur est déjà connecté
     if(isset($_SESSION['idUser'])){
         header("Location: index.php");
         exit();
@@ -18,20 +19,21 @@
         // Vérification admin
         $stmt = $conn->prepare("SELECT * FROM pact._admin a JOIN pact._utilisateur u ON a.idU = u.idU WHERE a.login = ?");
         $stmt->execute([$login]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch a single row
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($result && $password == $result['password']) {
             // Connexion réussie
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
 
-            header("Location: index.php");
-            // Rediriger vers une page protégée
+            // Rediriger vers la page précédente ou vers la page par défaut
+            $redirectTo = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
+            header("Location: " . $redirectTo);
             exit();
         } 
         
         else {
-            // Vérification proprive
+            // Vérification pour le compte privé
             $stmt = $conn->prepare('SELECT * FROM pact.proprive WHERE mail = ?');
             $stmt->execute([$login]);
             $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -40,12 +42,14 @@
                 // Connexion réussie
                 $_SESSION['idUser'] = $proUser['idu'];
                 $_SESSION['typeUser'] = 'pro_prive'; // Détermine le type
-                header("Location: index.php");
+                // Rediriger vers la page précédente ou vers la page par défaut
+                $redirectTo = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
+                header("Location: " . $redirectTo);
                 exit();
             } 
             
             else {
-                // Vérification propublic
+                // Vérification pour le compte public
                 $stmt = $conn->prepare('SELECT * FROM pact.propublic WHERE mail = ?');
                 $stmt->execute([$login]);
                 $proUser = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -54,7 +58,9 @@
                     // Connexion réussie
                     $_SESSION['idUser'] = $proUser['idu'];
                     $_SESSION['typeUser'] = 'pro_public'; // Détermine le type
-                    header("Location: index.php");
+                    // Rediriger vers la page précédente ou vers la page par défaut
+                    $redirectTo = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
+                    header("Location: " . $redirectTo);
                     exit();
                 } 
                 
@@ -68,8 +74,9 @@
                         // Connexion réussie
                         $_SESSION['idUser'] = $member['idu'];
                         $_SESSION['typeUser'] = 'membre';
-                        header("Location: index.php");
-
+                        // Rediriger vers la page précédente ou vers la page par défaut
+                        $redirectTo = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
+                        header("Location: " . $redirectTo);
                         exit();
                     } 
                     
@@ -83,7 +90,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -91,9 +98,9 @@
     <link rel="icon" href="img/logo.png" type="image/x-icon">
     <title>Connexion</title>
 </head>
-<body id ="body_connexion" class="connexion-compte">
+<body id="body_connexion" class="connexion-compte">
     <aside id="asideRetour">
-        <button id="retour">
+        <button id="retour" onclick="window.history.back();">
             <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
             Retour
         </button>
@@ -106,21 +113,20 @@
             <div id="messageErreur" class="messageErreur"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
 
-        <form id = "formConnexion" action="login.php" method="post" enctype="multipart/form-data">
+        <form id="formConnexion" action="login.php" method="post" enctype="multipart/form-data">
             <div class="ligne1">
                 <!-- Saisi du login -->
                 <input type="text" placeholder="Identifiant/adresse mail" id="login" name="login" required>
             </div>
-    
     
             <div class="ligne2">
                 <!-- Saisi du mot de passe -->
                 <input type="password" placeholder="Mot de passe" id="motdepasseConnexion" name="motdepasseConnexion" required>
             </div>
     
-            <button onclick = "validationFormConnexion()" id="boutonConnexion">Connexion</button>
+            <button id="boutonConnexion">Connexion</button>
 
-            <a id="lienMotDePasseOublie" href=""> Mot de passe oublié ?</a>
+            <a id="lienMotDePasseOublie" href="#"> Mot de passe oublié ?</a>
         </form>
         
         <h1 id="pasDeCompteTitre">Vous n'avez pas de compte ? Créez-en un !</h1>
@@ -138,5 +144,5 @@
         </div>
     </main>
 </body>
-<script src = "js/validationFormInscription.js"></script>
+<script src="js/validationFormInscription.js"></script>
 </html>
