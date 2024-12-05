@@ -1,4 +1,7 @@
-<form id="hourlyOffer" action="enregOffer.php" method="post">
+<?php
+$is_show;
+?>
+<form id="hourlyOffer" action="post.php" method="post">
     <?php
         $stmt = $conn->prepare("SELECT table_name
             FROM (
@@ -135,7 +138,6 @@
         <?php 
             $ar = new ArrayOffer($idOffre);
             $data = $ar->getArray();
-            print_r($data);
         ?>
         <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($data)); ?>'></div>
         <script>
@@ -302,4 +304,4 @@
         <?php
     }
     ?>
-    <input type="hidden" name="typeOffre" id="typeOffre" value="<?php echo $result ?>">
+    <input type="hidden" name="typeOffre" id="typeOffre" value="<?php echo $is_show ?>">
