@@ -64,3 +64,27 @@ if ($categorie["_spectacle"]) {
     </div>
 
 </section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const minutesInput = document.getElementById("nbMin");
+    const hoursInput = document.getElementById("nbMinutesHeure");
+
+    // Synchroniser les minutes avec les heures
+    minutesInput.addEventListener("input", function () {
+        const totalMinutes = parseInt(minutesInput.value) || 0;
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+
+        hoursInput.value = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    });
+
+    // Synchroniser les heures avec les minutes
+    hoursInput.addEventListener("input", function () {
+        const [hours, minutes] = hoursInput.value.split(":").map(Number);
+        const totalMinutes = (hours || 0) * 60 + (minutes || 0);
+
+        minutesInput.value = totalMinutes;
+    });
+});
+</script>
