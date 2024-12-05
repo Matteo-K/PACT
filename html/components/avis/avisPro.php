@@ -253,7 +253,7 @@ function afficheAvisSelect(idAvis) {
     dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
 
     //On modifie le bloc de réponse (titre + input caché)
-    formReponseAvis.display = "flex";
+    formReponseAvis.style.display = "flex";
     titreReponseAvis.textContent = "Répondre à " + listeAvis[idAvis]['pseudo'];
     inputIdAvis.value = idAvis;
 
@@ -337,7 +337,7 @@ function openDetails() {
         }
     }, { once: true });
     conteneurAvis.style.display = "none"; // Masquer le conteneur principal
-    formReponseAvis.display = "none"; // et le conteneur de réponse
+    formReponseAvis.style.display = "none"; // et le conteneur de réponse
 
 }
 
@@ -349,7 +349,7 @@ function closeDetails() {
     });
     if (getComputedStyle(aucunAvisSelect).display == "none") {
         conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal si un avis est select
-        formReponseAvis.display = "flex";
+        formReponseAvis.style.display = "flex";
      }
 }
 
