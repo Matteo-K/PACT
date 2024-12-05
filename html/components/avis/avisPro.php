@@ -19,7 +19,7 @@ $avis = $avisTemp;
         </div>
     </section>
     <section id="avisproS2">
-        <details>
+        <details open>
             <summary>
                 <span class="custom-marker">▶</span>
                 <h2>
@@ -170,14 +170,22 @@ const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary').tr
 const primaryColor = getComputedStyle(root).getPropertyValue('--primary').trim();
 
 
+const blocDetails = document.querySelector("#avisproS2 > details");
+let contenuDetails = document.querySelector("#avisproS2 .contentDetails");
+
+
 function afficheAvisSelect(numAvis) {
 
     conteneurAvis.style.display = "flex";
     document.getElementById("aucunAvisSelect").style.display = "none";
 
+    if(blocDetails && blocDetails.open){
+        closeDetails();
+    }
+    
     //Changement de couleur du li sélectionné et on remet les autres en gris
     document.querySelectorAll("#listeAvis > li").forEach((li, numLi) => {
-        li.style.background = `linear-gradient(90deg, ${secondaryColor} 0%, ${secondaryColor} 80%, transparent 100%)`;
+        li.style.background = `linear-gradient(90deg, ${accentColor} 0%, ${accentColor} 80%, transparent 100%)`;
         if (numAvis == numLi) {
             li.style.background = `linear-gradient(90deg, ${primaryColor} 0%, ${primaryColor} 90%, transparent 100%)`;
         }
@@ -255,42 +263,39 @@ function formatDateDiff(dateString) {
     }
 }
 
-
 //Animation du bloc details
-document.querySelectorAll("#avisproS2 > details").forEach(details => {
-    const content = details.querySelector(".contentDetails");
-    
-    // Fonction pour ouvrir avec une animation
-    function openDetails() {
-    const height = content.scrollHeight; // Calcule la hauteur totale
-    content.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
-    content.addEventListener("transitionend", () => {
-        if (details.open) {
-        content.style.maxHeight = "none"; // Supprime maxHeight après l'animation
-    }
-}, { once: true });
-conteneurAvis.style.display = "none";
-}
-
-// Fonction pour fermer avec une animation
-function closeDetails() {
-    const height = content.scrollHeight; // Hauteur actuelle
-    content.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
-    requestAnimationFrame(() => { // Assure une relecture du style
-        content.style.maxHeight = "0"; // Puis réduit à 0 pour l'animation
-    });
-    conteneurAvis.style.display = "flex";
-  }
-  
-  // Gérer les événements d'ouverture et de fermeture
-  details.addEventListener("toggle", () => {
-    if (details.open) {
+blocDetails.addEventListener("toggle", () => {
+    if (blocDetails.open) {
         openDetails();
     } else {
         closeDetails();
     }
-  });
 });
+
+    // Fonction pour ouvrir avec une animation
+function openDetails() {
+    // Obtenir la hauteur réelle
+    let height = contenuDetails.scrollHeight;
+    contenuDetails.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
+    contenuDetails.addEventListener("transitionend", () => {
+        if (blocDetails.open) {
+            contenuDetails.style.maxHeight = "none"; // Supprime maxHeight après l'animation
+        }
+    }, { once: true });
+    conteneurAvis.style.display = "none"; // Masquer le conteneur principal
+}
+
+function closeDetails() {
+    //contenuDetails = document.querySelector("#avisProS2 .contentDetails");
+    console.log(contenuDetails);
+    let height = contenuDetails.scrollHeight;
+    contenuDetails.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
+    requestAnimationFrame(() => {
+        contenuDetails.style.maxHeight = "0"; // Réduit à 0 pour l'animation
+    });
+    conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal
+}
+
 
 /* ### Gestion des tri et filtre des avis ### */
 

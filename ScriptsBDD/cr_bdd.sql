@@ -1217,3 +1217,170 @@ CREATE TRIGGER trigger_ajout_reponse
 INSTEAD OF INSERT ON pact.reponse
 FOR EACH ROW
 EXECUTE FUNCTION ajout_reponse();
+
+
+CREATE OR REPLACE FUNCTION update_pro_public()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Vérification : éviter les doublons sur la dénomination
+    IF NEW.denomination IS DISTINCT FROM OLD.denomination THEN
+        IF EXISTS (SELECT 1 FROM pact._pro WHERE denomination = NEW.denomination) THEN
+            RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnels privés ayant la même dénomination';
+        END IF;
+    END IF;
+
+    -- Vérification : éviter les doublons sur le mail
+    IF NEW.mail IS DISTINCT FROM OLD.mail THEN
+        IF EXISTS (SELECT 1 FROM pact._nonAdmin WHERE mail = NEW.mail) THEN
+            RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnels privés ayant le même mail';
+        END IF;
+    END IF;
+
+    -- Mettre à jour les informations dans pact._utilisateur
+    UPDATE pact._utilisateur
+    SET password = COALESCE(NEW.password, OLD.password)
+    WHERE idU = OLD.idU;
+
+    -- Mettre à jour les informations dans pact._nonAdmin
+    UPDATE pact._nonAdmin
+    SET telephone = COALESCE(NEW.telephone, OLD.telephone),
+        mail = COALESCE(NEW.mail, OLD.mail)
+    WHERE idU = OLD.idU;
+
+    -- Mettre à jour les informations dans pact._pro
+    UPDATE pact._pro
+    SET denomination = COALESCE(NEW.denomination, OLD.denomination)
+    WHERE idU = OLD.idU;
+
+    -- Mettre à jour les informations dans pact._photo_profil
+    UPDATE pact._photo_profil
+    SET url = COALESCE(NEW.url, OLD.url)
+    WHERE idU = OLD.idU;
+
+    -- Vérifier et insérer l'adresse si elle n'existe pas déjà
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pact._adresse
+        WHERE numeroRue = COALESCE(NEW.numeroRue, OLD.numeroRue)
+          AND rue = COALESCE(NEW.rue, OLD.rue)
+          AND ville = COALESCE(NEW.ville, OLD.ville)
+          AND pays = COALESCE(NEW.pays, OLD.pays)
+          AND codePostal = COALESCE(NEW.codePostal, OLD.codePostal)
+    ) THEN
+        INSERT INTO pact._adresse (numeroRue, rue, ville, pays, codePostal)
+        VALUES (
+            COALESCE(NEW.numeroRue, OLD.numeroRue),
+            COALESCE(NEW.rue, OLD.rue),
+            COALESCE(NEW.ville, OLD.ville),
+            COALESCE(NEW.pays, OLD.pays),
+            COALESCE(NEW.codePostal, OLD.codePostal)
+        );
+    END IF;
+
+    -- Mettre à jour les informations dans pact._habite
+    UPDATE pact._habite
+    SET codePostal = COALESCE(NEW.codePostal, OLD.codePostal),
+        ville = COALESCE(NEW.ville, OLD.ville),
+        pays = COALESCE(NEW.pays, OLD.pays),
+        rue = COALESCE(NEW.rue, OLD.rue),
+        numeroRue = COALESCE(NEW.numeroRue, OLD.numeroRue)
+    WHERE idU = OLD.idU;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trigger_update_pro_public
+INSTEAD OF UPDATE ON pact.proPublic
+FOR EACH ROW
+EXECUTE FUNCTION update_pro_public();
+
+CREATE OR REPLACE FUNCTION update_pro_prive()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Vérification : éviter les doublons sur la dénomination
+    IF NEW.denomination IS DISTINCT FROM OLD.denomination THEN
+        IF EXISTS (SELECT 1 FROM pact._pro WHERE denomination = NEW.denomination) THEN
+            RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnels privés ayant la même dénomination';
+        END IF;
+    END IF;
+
+    -- Vérification : éviter les doublons sur le mail
+    IF NEW.mail IS DISTINCT FROM OLD.mail THEN
+        IF EXISTS (SELECT 1 FROM pact._nonAdmin WHERE mail = NEW.mail) THEN
+            RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnels privés ayant le même mail';
+        END IF;
+    END IF;
+
+    -- Vérification : éviter les doublons sur le SIREN
+    IF NEW.siren IS DISTINCT FROM OLD.siren THEN
+        IF EXISTS (SELECT 1 FROM pact._privee WHERE siren = NEW.siren) THEN
+            RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnels privés ayant le même SIREN';
+        END IF;
+    END IF;
+
+    -- Mettre à jour les informations dans pact._utilisateur
+    UPDATE pact._utilisateur
+    SET password = COALESCE(NEW.password, OLD.password)
+    WHERE idU = OLD.idU;
+
+    -- Mettre à jour les informations dans pact._nonAdmin
+    UPDATE pact._nonAdmin
+    SET telephone = COALESCE(NEW.telephone, OLD.telephone),
+        mail = COALESCE(NEW.mail, OLD.mail)
+    WHERE idU = OLD.idU;
+
+    -- Mettre à jour les informations dans pact._pro
+    UPDATE pact._pro
+    SET denomination = COALESCE(NEW.denomination, OLD.denomination)
+    WHERE idU = OLD.idU;
+
+    -- Mettre à jour les informations dans pact._privee
+    UPDATE pact._privee
+    SET siren = COALESCE(NEW.siren, OLD.siren)
+    WHERE idU = OLD.idU;
+
+    -- Mettre à jour les informations dans pact._photo_profil
+    UPDATE pact._photo_profil
+    SET url = COALESCE(NEW.url, OLD.url)
+    WHERE idU = OLD.idU;
+
+    -- Vérifier et insérer l'adresse si elle n'existe pas déjà
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pact._adresse
+        WHERE numeroRue = COALESCE(NEW.numeroRue, OLD.numeroRue)
+          AND rue = COALESCE(NEW.rue, OLD.rue)
+          AND ville = COALESCE(NEW.ville, OLD.ville)
+          AND pays = COALESCE(NEW.pays, OLD.pays)
+          AND codePostal = COALESCE(NEW.codePostal, OLD.codePostal)
+    ) THEN
+        INSERT INTO pact._adresse (numeroRue, rue, ville, pays, codePostal)
+        VALUES (
+            COALESCE(NEW.numeroRue, OLD.numeroRue),
+            COALESCE(NEW.rue, OLD.rue),
+            COALESCE(NEW.ville, OLD.ville),
+            COALESCE(NEW.pays, OLD.pays),
+            COALESCE(NEW.codePostal, OLD.codePostal)
+        );
+    END IF;
+
+    -- Mettre à jour les informations dans pact._habite
+    UPDATE pact._habite
+    SET codePostal = COALESCE(NEW.codePostal, OLD.codePostal),
+        ville = COALESCE(NEW.ville, OLD.ville),
+        pays = COALESCE(NEW.pays, OLD.pays),
+        rue = COALESCE(NEW.rue, OLD.rue),
+        numeroRue = COALESCE(NEW.numeroRue, OLD.numeroRue)
+    WHERE idU = OLD.idU;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_update_pro_prive
+INSTEAD OF UPDATE ON pact.proprive
+FOR EACH ROW
+EXECUTE FUNCTION update_pro_prive();
+
