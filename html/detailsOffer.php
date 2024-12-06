@@ -536,7 +536,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $stmt->execute();
                         $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                        if ($typeOffer == "restaurant") {
+                        if ($result[0]['categorie'] == "Restaurant") {
                             array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
                         }
 
