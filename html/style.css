@@ -3772,7 +3772,7 @@ details .nonLu, details .nonRepondu{
 /* Champs d'entrée */
 #formCreationAvis input,
 #formCreationAvis textarea {
-  width: 20em;
+  width: 45em;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -3881,7 +3881,7 @@ details .nonLu, details .nonRepondu{
 /* Consentement */
 #formCreationAvis div {
   margin-bottom: 10px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
