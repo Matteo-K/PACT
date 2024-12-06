@@ -893,7 +893,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     if ($typeOffer == "Parc Attraction") {
                         if ($result[0]['urlplan']) {
                     ?>
-                            <div>
+                            <div class="planParc">
                                 <h2>Plan du parc :</h2>
                                 <div>
                                     <img src="<?php echo $result[0]["urlplan"] ?>">
