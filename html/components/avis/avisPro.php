@@ -479,6 +479,7 @@ function filtreNonLu(arrayAvis) {
         return arrayAvis.filter(avis => {
             return !avis[1].lu;
         });
+        chbxNonLu.style.color = accentColor;
     }
     return arrayAvis;
 }
@@ -491,6 +492,7 @@ function filtreNonRep(arrayAvis) {
         return arrayAvis.filter(avis => {
             return avis[1].idc_reponse == null;
         });
+        divNonRep.style.color = accentColor;
     }
     return arrayAvis;
 }
