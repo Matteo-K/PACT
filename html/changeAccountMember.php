@@ -96,13 +96,19 @@
                         $_SESSION['success'] = "Photo de profil mise à jour avec succès.";
                         header("Location: changeAccountPro.php");
                         exit();
-                    } catch (Exception $e) {
+                    } 
+                    
+                    catch (Exception $e) {
                         $_SESSION['errors'][] = "Erreur lors de la mise à jour de la photo : " . $e->getMessage();
                     }
-                } else {
+                } 
+                
+                else {
                     $_SESSION['errors'][] = "Échec du téléchargement de l'image.";
                 }
-            } else {
+            } 
+            
+            else {
                 $_SESSION['errors'][] = "Seules les images JPG, PNG ou GIF sont autorisées.";
             }
         }

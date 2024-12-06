@@ -5179,3 +5179,7 @@ div[id=divPFPactuelle] img {
   width: 130px;
   height: 130px;
 }
+
+input[id="profile-pic"] {
+  display: none;
+}

@@ -77,17 +77,25 @@
         if (isset($_FILES['profile-pic']) && $_FILES['profile-pic']['error'] === UPLOAD_ERR_OK) {
             // Récupérer le fichier téléchargé
             $file = $_FILES['profile-pic'];
-            
+        
             // Définir les types de fichiers autorisés
             $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-            
+        
             // Vérifier si le type de fichier est autorisé
             if (in_array($file['type'], $allowedTypes)) {
+                // Définir le répertoire de destination pour l'upload
                 $targetDir = 'uploads/';
-                $targetFile = $targetDir . basename($file['./img/profile_picture/']);
                 
+                // Vérifier si le répertoire existe, sinon créer le répertoire
+                if (!is_dir($targetDir)) {
+                    mkdir($targetDir, 0777, true);  // Créer le répertoire avec les bonnes permissions
+                }
+        
+                // Créer un nom de fichier unique pour éviter les collisions
+                $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
+        
                 // Déplacer le fichier téléchargé vers le répertoire de destination
-                if (move_uploaded_file($file['fichierTemp'], $targetFile)) {
+                if (move_uploaded_file($file['tmp_name'], $targetFile)) {
                     try {
                         // Mettre à jour l'URL de la photo de profil dans la base de données
                         $stmt = $conn->prepare("UPDATE pact._photo_profil SET url = ? WHERE idU = ?");
@@ -96,13 +104,19 @@
                         $_SESSION['success'] = "Photo de profil mise à jour avec succès.";
                         header("Location: changeAccountPro.php");
                         exit();
-                    } catch (Exception $e) {
+                    } 
+                    
+                    catch (Exception $e) {
                         $_SESSION['errors'][] = "Erreur lors de la mise à jour de la photo : " . $e->getMessage();
                     }
-                } else {
+                } 
+                
+                else {
                     $_SESSION['errors'][] = "Échec du téléchargement de l'image.";
                 }
-            } else {
+            } 
+            
+            else {
                 $_SESSION['errors'][] = "Seules les images JPG, PNG ou GIF sont autorisées.";
             }
         }
