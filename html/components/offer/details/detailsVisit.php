@@ -229,7 +229,9 @@ if ($categorie["_visite"]) {
                 
                 //Style de l'image
                 removeBtn.style.width='12px';
-                removeBtn.style.height='8px';
+                removeBtn.style.height='18px';
+                removeBtn.style.alignItems='center';
+
                 removeBtn.style.margin='auto 0 auto 5px'
                 // Pour supprimer le tag 
                 removeBtn.addEventListener('click', function () {
