@@ -121,7 +121,7 @@
                             <option value="120">120€</option>
                             <option value="150">150€</option>
                             <option value="170">170€</option>
-                            <option value="200">200€ et +</option>
+                            <option value="Infinity">200€ et +</option>
                         </select>
                     </div>
                     <div>
@@ -135,7 +135,7 @@
                             <option value="120">120€</option>
                             <option value="150">150€</option>
                             <option value="170">170€</option>
-                            <option value="200">200€ et +</option>
+                            <option value="Infinity">200€ et +</option>
                         </select>
                     </div>
                 </div>
