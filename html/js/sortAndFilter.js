@@ -608,7 +608,7 @@ function createCard(offer) {
   if (offer.images.length == 0) {
     img.setAttribute("alt", "Pas_de_photo_attribué_à_l'offre");
   } else {
-    img.setAttribute("alt", "photo_principal_de_l'offre");
+    img.setAttribute("alt", "photo_principale_de_l'offre");
     img.setAttribute("src", offer.images[0]);
   }
   card.appendChild(img);
