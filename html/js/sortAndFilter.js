@@ -493,10 +493,10 @@ function sortAndFilter(array, elementStart, nbElement) {
   // Filtres
   array = filtrerParCategorie(array);
   array = filtrerParNotes(array);
+  console.log("categorie & note");
+  console.log(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  console.log("array");
-  console.log(array);
   //array = filtrerParPeriode(array);
 
   // Tris
