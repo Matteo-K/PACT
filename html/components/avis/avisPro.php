@@ -150,7 +150,7 @@ if(isset($_POST["reponsePro"])){
             </p>
         </div>
 
-        <div calss="conteneurReponsePro">
+        <div class="conteneurReponsePro">
             <img src="./img/icone/reponse.png" alt="icone de reponse">
             <article>
                 <p> Contenu de la réponse </p>
