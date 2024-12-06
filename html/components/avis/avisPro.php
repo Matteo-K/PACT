@@ -271,8 +271,7 @@ function afficheAvisSelect(idAvis) {
     dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
 
     //On modifie le bloc de réponse (titre + inputs caché) ou la réponse
-
-    if(avisSelect.classList.contains("avisNonRepondu")){
+    if(avisSelect.classList.contains("avisNonRepondu") || avisSelect.classList.contains("avisNonLu")){
         formReponseAvis.style.display = "flex";
         titreReponseAvis.textContent = "Répondre à " + listeAvis[idAvis]['pseudo'];
         inputIdAvis.value = idAvis;

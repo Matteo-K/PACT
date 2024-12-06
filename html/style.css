@@ -3814,6 +3814,8 @@ details .nonRepondu {
   position: absolute;
   top: -0.25em;
   left: 0;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 
@@ -3876,6 +3878,41 @@ details .nonRepondu {
   min-height: 150px;
   max-height: 300px;
 }
+
+/* Affichage de la réponse de l'avis si existante */
+
+.conteneurReponsePro {
+  display: flex;
+  flex-wrap: nowrap;
+  width: calc(100% + 40px);
+  margin: 10px 0;
+}
+
+.conteneurReponsePro>img {
+  height: 5%;
+  width: 5%;
+  margin: 0.5em;
+  transform: scaleY(-1);
+  rotate: -90deg;
+}
+
+.conteneurReponsePro>article {
+  width: 90%;
+  padding: 20px;
+  background-color: var(--secondary60);
+  border-radius: 20px;
+}
+
+.conteneurReponsePro > h3 {
+  margin: 0;
+}
+
+.conteneurReponsePro > p {
+  margin: 0;
+  font-size: 20px;
+}
+
+
 
 /** Ecrire Avis */
 
@@ -4029,36 +4066,6 @@ details .nonRepondu {
 
 .soumission {
   justify-content: flex-end;
-}
-
-
-/* Affichage de la réponse de l'avis si existante */
-
-.conteneurReponsePro {
-  display: flex;
-  flex-wrap: nowrap;
-  width: calc(100% + 40px);
-  margin: 10px 0;
-}
-
-.conteneurReponsePro>img {
-  height: 5%;
-  width: 5%;
-  margin: 0.5em;
-  transform: scaleY(-1);
-  rotate: -90deg;
-}
-
-.conteneurReponsePro>article {
-  width: 90%;
-  padding: 20px;
-  background-color: var(--secondary60);
-  border-radius: 20px;
-}
-
-.conteneurReponsePro > p {
-  margin: 0;
-  font-size: 20px;
 }
 
 
