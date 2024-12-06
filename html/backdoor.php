@@ -57,10 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <tr>
         <td class="typeUser" colspan="2">Admin</td>
       </tr>
-      <tr>
-        <td>Nom</td>
-        <td>Connexion</td>
-      </tr>
       <?php 
           $stmt = $conn->prepare("SELECT * from pact.admin");
           $stmt->execute();
@@ -82,10 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <!-- Pro privé -->
       <tr>
         <td class="typeUser" colspan="2">Pro Privée</td>
-      </tr>
-      <tr>
-        <td>Nom</td>
-        <td>Connexion</td>
       </tr>
       <?php 
           $stmt = $conn->prepare("SELECT * from pact.proprive");
@@ -109,10 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <tr>
         <td class="typeUser" colspan="2">Pro Public</td>
       </tr>
-      <tr>
-        <td>Nom</td>
-        <td>Connexion</td>
-      </tr>
       <?php 
           $stmt = $conn->prepare("SELECT * from pact.propublic");
           $stmt->execute();
@@ -134,10 +122,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <!-- Membre -->
       <tr>
         <td class="typeUser" colspan="2">Membre</td>
-      </tr>
-      <tr>
-        <td>Nom</td>
-        <td>Connexion</td>
       </tr>
       <?php 
           $stmt = $conn->prepare("SELECT * from pact.membre");

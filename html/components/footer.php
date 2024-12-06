@@ -17,7 +17,8 @@
     </address>
   </div>
   <div>
-    <a href="planDuSite.php">Plan du site</a>
+    <a href="../backdoor.php">Backdoor</a>
+    <a href="../planDuSite.php">Plan du site</a>
     <p id="copyrightFooter">Copyright&nbsp;&copy;&nbsp;2024 TripEnArvor</p>
   </div>
 </footer>
