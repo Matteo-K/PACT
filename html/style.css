@@ -4156,7 +4156,7 @@ details .nonRepondu {
   .mainOffer .tag,
   .ouvert,
   .ferme {
-    font-size: 13px;
+    font-size: 13px !important;
     padding-inline: 15px;
     font-weight: 600;
   }
