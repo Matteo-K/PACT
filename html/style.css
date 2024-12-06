@@ -3950,7 +3950,32 @@ details .nonLu, details .nonRepondu{
 }
 
 
+/* Affichage de la réponse de l'avis si existante */
+
+.conteneurReponsePro{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.conteneurReponsePro > img {
+  height: 5%;
+  width: 5%;
+  margin: 0.5em;
+  transform: scaleY(-1);
+  rotate: -90deg;
+}
+
+.conteneurReponsePro > article {
+  width: 90%;
+  padding: 20px;
+  background-color: var(--primary30);
+  border-radius: 20px;
+}
+
+
+
 /** Fin avis **/
+
 
 
 .notation>div {
