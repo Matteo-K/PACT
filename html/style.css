@@ -1968,9 +1968,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   padding: 5px;
 }
 
-.searchAvis > div {
+.searchAvis > div:nth-child(1) {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
 }
