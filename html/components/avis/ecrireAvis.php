@@ -94,14 +94,6 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 
 // Traitement des données envoyées par le formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
-
-    $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ? AND idu = ?");
-    $stmt->execute([$idOffre, $idUser]);
-    $existingReview = $stmt->fetch();
-
-    if ($existingReview) {
-        // L'utilisateur a déjà laissé un avis pour cette offre
-        $_SESSION['review_error'] = "Vous avez déjà laissé un avis pour cette offre.";
     } else {
         $_SESSION['review_success'] = "Avis soumis avec succès!";
         // Préparation des données
@@ -314,12 +306,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             <button type="submit">Soumettre l'avis</button>
     </form>
 </section>
-
-<!-- Popup -->
-<div id="popup" class="popup">
-    <p id="popup-message"></p>
-    <button onclick="closePopup()">Fermer</button>
-</div>
 
 <script>
     const uniqueId = generateUniqueId();

@@ -942,7 +942,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div id="publiez-component" style="display: none;">
                     <?php 
                     if($isLoggedIn){
-                        require_once __DIR__ . "/components/avis/ecrireAvis.php"; 
+                        $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ? AND idu = ?");
+                        $stmt->execute([$idOffre, $idUser]);
+                        $existingReview = $stmt->fetch();
+
+                        if ($existingReview) {
+                            // L'utilisateur a déjà laissé un avis pour cette offre
+                            $_SESSION['review_error'] = "Vous avez déjà laissé un avis pour cette offre.";
+                        }else{
+                            require_once __DIR__ . "/components/avis/ecrireAvis.php"; 
+                        }
                     }else {
                         ?>
                         <p>Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></p>
@@ -956,6 +965,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         ?>
     </main>
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <p id="popup-message"></p>
+        <button onclick="closePopup()">Fermer</button>
+    </div>
     <?php
     require_once "./components/footer.php";
     ?>
