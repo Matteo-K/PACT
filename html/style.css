@@ -3348,6 +3348,7 @@ section#infoComp div {
   width: 2.2em;
   height: 2.2em;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .user,
