@@ -2703,7 +2703,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 @media (max-width: 1451px) {
-  span.avisSearch {
+  .blcAvis {
     display: none;
   }
 }
