@@ -294,7 +294,13 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         img.setAttribute('data-index', index);
                     
                         // Ajoute un gestionnaire de clic pour supprimer l'image
-                        img.onclick = () => deleteImage(image, img, index); // Passe aussi l'index pour supprimer la bonne image côté client
+                        img.onclick = () => {
+                            if (confirm("Êtes-vous sûr de vouloir supprimer cette image ?")) {
+                                deleteImage(image, img, index); // Supprime l'image si l'utilisateur confirme
+                            } else {
+                                console.log("Suppression annulée."); // Optionnel : un message en cas d'annulation
+                            }
+                        };
                     
                         existingPreview.appendChild(img);
                     });
