@@ -232,6 +232,7 @@
             </div>
 
             <div id="divNewPFP">
+                <label for="profile-pic"> Modifier la photo de profil</label>
                 <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
             </div>
 
