@@ -113,7 +113,7 @@ foreach ($avis as $a) {
         </div>
 
         <!-- Popup pour supprimer ou signaler l'avis -->
-        <div class="popup" id="popup-<?= $a['idavis'] ?>">
+        <div class="popup" id="popup-<?= $a['idc'] ?>">
             <div class="popup-content">
                 <button class="close-popup">X</button>
                 <h2>Actions pour l'avis</h2>
