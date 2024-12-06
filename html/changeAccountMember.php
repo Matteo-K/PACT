@@ -178,7 +178,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="img/logo.png" type="image/x-icon">
-        <title>Modifier des informations</title>
+        <title>Modifier mes informations</title>
     </head>
     <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
@@ -188,7 +188,7 @@
             </button>
         </aside>
         
-        <h1 id="changerInfoTitre">Modifier des informations</h1>
+        <h1 id="changerInfoTitre">Modifier mes informations</h1>
 
         <div id="messageErreur" class="messageErreur"></div>
 
@@ -212,7 +212,7 @@
             </div>
 
             <div id="divNewPFP">
-                <label for="profile-pic" id="labelPFP"> Modifier la photo de profil</label>
+                <label for="profile-pic" id="labelPFP"> Modifier ma photo de profil</label>
                 <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
             </div>
 
