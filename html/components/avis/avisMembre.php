@@ -162,3 +162,46 @@ foreach ($avis as $a) {
     });
 
 </script>
+<style>
+    /* Style de la popup */
+.popup {
+    display: none; /* Cacher la popup par défaut */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+}
+
+/* Contenu de la popup */
+.popup-content {
+    text-align: center;
+}
+
+/* Boutons de la popup */
+.popup button {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.popup button:hover {
+    background-color: #d32f2f;
+}
+
+/* Bouton de fermeture */
+.close-popup {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+</style>
