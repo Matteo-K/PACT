@@ -84,7 +84,7 @@
             // Vérifier si le type de fichier est autorisé
             if (in_array($file['type'], $allowedTypes)) {
                 // Définir le répertoire de destination pour l'upload
-                $targetDir = 'uploads/';
+                $targetDir = './img/profile_picture/';
                 
                 // Vérifier si le répertoire existe, sinon créer le répertoire
                 if (!is_dir($targetDir)) {
