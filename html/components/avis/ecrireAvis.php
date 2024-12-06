@@ -94,74 +94,72 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 
 // Traitement des données envoyées par le formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
-    } else {
-        $_SESSION['review_success'] = "Avis soumis avec succès!";
-        // Préparation des données
-        $note = $_POST['note'];
-        $dateAvis = $_POST['date'];
-        $compagnie = $_POST['compagnie'];
-        $titreAvis = $_POST['titre'];
-        $texteAvis = $_POST['avis'];
-        $idOffre = $_POST['idoffre'];
-        $uniqueId = $_POST['uniqueField'];
+    $_SESSION['review_success'] = "Avis soumis avec succès!";
+    // Préparation des données
+    $note = $_POST['note'];
+    $dateAvis = $_POST['date'];
+    $compagnie = $_POST['compagnie'];
+    $titreAvis = $_POST['titre'];
+    $texteAvis = $_POST['avis'];
+    $idOffre = $_POST['idoffre'];
+    $uniqueId = $_POST['uniqueField'];
 
-        // Récupération des données de l'utilisateur
-        $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE idu = ?");
-        $stmt->execute([$idUser]);
-        $result = $stmt->fetchAll();
+    // Récupération des données de l'utilisateur
+    $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE idu = ?");
+    $stmt->execute([$idUser]);
+    $result = $stmt->fetchAll();
 
-        $pseudo = $result[0]['pseudo'];
-        list($year, $month) = explode('-', $dateAvis);
+    $pseudo = $result[0]['pseudo'];
+    list($year, $month) = explode('-', $dateAvis);
 
-        // Tableau des mois en lettres
-        $months = [
-            '01' => 'Janvier',
-            '02' => 'Février',
-            '03' => 'Mars',
-            '04' => 'Avril',
-            '05' => 'Mai',
-            '06' => 'Juin',
-            '07' => 'Juillet',
-            '08' => 'Août',
-            '09' => 'Septembre',
-            '10' => 'Octobre',
-            '11' => 'Novembre',
-            '12' => 'Décembre'
-        ];
-        $monthInWords = $months[$month] ?? 'Inconnu'; // Gérer les mois invalides
+    // Tableau des mois en lettres
+    $months = [
+        '01' => 'Janvier',
+        '02' => 'Février',
+        '03' => 'Mars',
+        '04' => 'Avril',
+        '05' => 'Mai',
+        '06' => 'Juin',
+        '07' => 'Juillet',
+        '08' => 'Août',
+        '09' => 'Septembre',
+        '10' => 'Octobre',
+        '11' => 'Novembre',
+        '12' => 'Décembre'
+    ];
+    $monthInWords = $months[$month] ?? 'Inconnu'; // Gérer les mois invalides
 
-        $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
+    $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
 
-        $stmt = $conn->prepare("INSERT INTO pact._commentaire (idU, content, datePublie)VALUES (?, ?, NOW())RETURNING idC;");
-        $stmt->execute([$idUser, $texteAvis]);
-        $idComment = $stmt->fetchColumn();
+    $stmt = $conn->prepare("INSERT INTO pact._commentaire (idU, content, datePublie)VALUES (?, ?, NOW())RETURNING idC;");
+    $stmt->execute([$idUser, $texteAvis]);
+    $idComment = $stmt->fetchColumn();
 
-        $stmt = $conn->prepare("INSERT INTO pact._avis (idc, idoffre, note, companie, mois, annee, titre, lu) 
+    $stmt = $conn->prepare("INSERT INTO pact._avis (idc, idoffre, note, companie, mois, annee, titre, lu) 
     VALUES (?, ?, ?, ?, ?, ?, ?, false)");
-        $stmt->execute([$idComment, $idOffre, $note, $compagnie, $monthInWords, $year, $titreAvis]);
+    $stmt->execute([$idComment, $idOffre, $note, $compagnie, $monthInWords, $year, $titreAvis]);
 
 
-        // Déplacer les images vers le dossier de l'offre
-        $moveResult = moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, "img/imageAvis/");
+    // Déplacer les images vers le dossier de l'offre
+    $moveResult = moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, "img/imageAvis/");
 
-        // Insertion des images dans la base de données
-        $image = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
-        $imageAvis = $conn->prepare("INSERT INTO pact._avisimage (idc, url) VALUES (?, ?)");
-        $mesImages = listImage($idOffre, $idComment);
-        print_r($mesImages);
+    // Insertion des images dans la base de données
+    $image = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
+    $imageAvis = $conn->prepare("INSERT INTO pact._avisimage (idc, url) VALUES (?, ?)");
+    $mesImages = listImage($idOffre, $idComment);
+    print_r($mesImages);
 
-        foreach ($mesImages['files'] as $file) {
-            $fileName = pathinfo($file, PATHINFO_BASENAME);
+    foreach ($mesImages['files'] as $file) {
+        $fileName = pathinfo($file, PATHINFO_BASENAME);
 
-            // Exécution de l'insertion de l'image
-            if (!$image->execute([$file, $fileName])) {
-                $result['errors'][] = "Erreur lors de l'insertion de l'image dans la base de données.";
-            }
+        // Exécution de l'insertion de l'image
+        if (!$image->execute([$file, $fileName])) {
+            $result['errors'][] = "Erreur lors de l'insertion de l'image dans la base de données.";
+        }
 
-            // Exécution de l'insertion dans la table _avisimage
-            if (!$imageAvis->execute([$idComment, $file])) {
-                $result['errors'][] = "Erreur lors de l'insertion de l'image liée à l'avis dans la base de données.";
-            }
+        // Exécution de l'insertion dans la table _avisimage
+        if (!$imageAvis->execute([$idComment, $file])) {
+            $result['errors'][] = "Erreur lors de l'insertion de l'image liée à l'avis dans la base de données.";
         }
     }
 ?>
@@ -185,41 +183,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 }
 ?>
 <style>
-        /* Style de la popup */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border: 1px solid #ccc;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            width: 300px;
-            text-align: center;
-        }
-        .popup.active {
-            display: block;
-        }
-        .popup.success {
-            border-color: green;
-            background-color: #e7ffe7;
-        }
-        .popup.error {
-            border-color: red;
-            background-color: #ffe7e7;
-        }
-        .popup button {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+    /* Style de la popup */
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        width: 300px;
+        text-align: center;
+    }
+
+    .popup.active {
+        display: block;
+    }
+
+    .popup.success {
+        border-color: green;
+        background-color: #e7ffe7;
+    }
+
+    .popup.error {
+        border-color: red;
+        background-color: #ffe7e7;
+    }
+
+    .popup button {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+</style>
 
 
 <section>
