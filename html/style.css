@@ -3708,7 +3708,7 @@ details .nonLu, details .nonRepondu{
   color: #333;
   text-align: center;
   position: relative;
-  margin: 30px 0;
+  margin: 30px 0 0 0;
   border-radius: 15px;
 }
 
@@ -3777,6 +3777,7 @@ details .nonLu, details .nonRepondu{
   flex-wrap: wrap;
   justify-content: space-between;
   width: calc(100% + 40px);
+  margin: 20px 0;
 }
 
 #avisproS2 > form > h2{
@@ -3955,6 +3956,8 @@ details .nonLu, details .nonRepondu{
 .conteneurReponsePro{
   display: flex;
   flex-wrap: nowrap;
+  width: calc(100% + 40px);
+  margin: 10px 0;
 }
 
 .conteneurReponsePro > img {
@@ -3968,10 +3971,14 @@ details .nonLu, details .nonRepondu{
 .conteneurReponsePro > article {
   width: 90%;
   padding: 20px;
-  background-color: var(--primary30);
+  background-color: var(--secondary60);
   border-radius: 20px;
 }
 
+.conteneurReponsePro > p {
+  margin: 0;
+  font-size: 20px;
+}
 
 
 /** Fin avis **/
