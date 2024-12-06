@@ -111,18 +111,6 @@ foreach ($avis as $a) {
                 </div>
             </article>
         </div>
-
-        <!-- Popup pour supprimer ou signaler l'avis -->
-        <div class="popup" id="popup-<?= $a['idc'] ?>" style="display: none;">
-            <div class="popup-content">
-                <button class="close-popup">X</button>
-                <h2>Actions pour l'avis</h2>
-                <ul>
-                    <li><button class="delete-avis">Supprimer l'avis</button></li>
-                    <li><button class="report-avis">Signaler l'avis</button></li>
-                </ul>
-            </div>
-        </div>
     </div>
 <?php
 }
@@ -145,63 +133,4 @@ foreach ($avis as $a) {
         },
     });
 
-    // Ouvre la popup lorsque l'icône des trois points est cliquée
-    document.querySelectorAll('.openPopup').forEach(item => {
-        item.addEventListener('click', event => {
-            const popup = document.getElementById('popup-' + <?= $a['idc']?>);
-            popup.style.display = 'block'; // Afficher la popup
-        });
-    });
-
-    // Ferme la popup lorsque le bouton de fermeture est cliqué
-    document.querySelectorAll('.close-popup').forEach(item => {
-        item.addEventListener('click', event => {
-            const popup = event.target.closest('.popup');
-            popup.style.display = 'none'; // Fermer la popup
-        });
-    });
-
 </script>
-<style>
-    /* Style de la popup */
-.popup {
-    display: none; /* Cacher la popup par défaut */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 9999;
-}
-
-/* Contenu de la popup */
-.popup-content {
-    text-align: center;
-}
-
-/* Boutons de la popup */
-.popup button {
-    background-color: #f44336;
-    color: white;
-    padding: 10px;
-    margin: 5px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.popup button:hover {
-    background-color: #d32f2f;
-}
-
-/* Bouton de fermeture */
-.close-popup {
-    background-color: transparent;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-</style>
