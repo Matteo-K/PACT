@@ -3172,9 +3172,10 @@ section#infoComp div {
 
 #avis-section, #avis-section > #avis-component {
     width: 100%;
+    flex-direction: column;
     gap: 3em;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
 }
 
@@ -5185,11 +5186,11 @@ main[id="mainChangerMDP"] {
 
 div[id=divPFPactuelle] img {
   border-radius: 90%;
-  margin-top: 30px;
-  width: 120px;
-  height: 120px;
+  margin-top: 25px;
+  width: 130px;
+  height: 130px;
 }
 
-#divNewPFP > #fileupload-button {
-  color: #0056b3;
+div[id=divNewPFP] > input > button {
+  display: none;
 }
