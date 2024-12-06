@@ -240,6 +240,7 @@ header div>a>img,
   height: 5em;
   border-radius: 50%;
   margin-right: 0.5em;
+  object-fit: cover;
 }
 
 /* Formulaire de recherche */
@@ -474,6 +475,7 @@ header>div>a>div {
   width: 10em;
   height: 10em;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 /* Styles pour le pseudo ou le nom */
@@ -5319,4 +5321,5 @@ div[id=divPFPactuelle] img {
   margin-top: 25px;
   width: 130px;
   height: 130px;
+  object-fit: cover;
 }
