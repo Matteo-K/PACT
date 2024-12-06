@@ -237,16 +237,16 @@ if ($categorie["_visite"]) {
                 langDiv.appendChild(langText);
                 langDiv.appendChild(removeBtn);
 
-                
-                // Style des "tag" des langues ajoutées
-                accessDiv.style.display = 'inline-block';
-                accessDiv.style.boxShadow = 'none';
-                accessDiv.style.margin = '5px ';
-                accessDiv.style.padding = '5px 15px';
-                accessDiv.style.height = '30px';
-                accessDiv.style.borderRadius = '20px';
-                accessDiv.style.fontSize = '0.9em';
-                accessDiv.style.backgroundColor="#d1ccdc";
+                // Appliquer un style visuel au conteneur
+
+                langDiv.style.display = 'inline-block';
+                langDiv.style.boxShadow = 'none';
+                langDiv.style.margin = '5px ';
+                langDiv.style.padding = '5px 15px';
+                langDiv.style.height = '30px';
+                langDiv.style.borderRadius = '20px';
+                langDiv.style.fontSize = '0.9em';
+                langDiv.style.backgroundColor="#d1ccdc";
                 // Ajouter une animation pour l'apparition
                 langDiv.style.opacity = '0';
                 langDiv.style.transform = 'scale(0.95)';
