@@ -5331,5 +5331,5 @@ input[id="profile-pic"]  {
 
 label[id="labelPFP"]:hover  {
   color: var(--accent);
-  text-decoration: ;
+  text-decoration: underline;
 }
