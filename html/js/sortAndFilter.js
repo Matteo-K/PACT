@@ -285,6 +285,7 @@ function filtrerParPrix(offers) {
 
       console.table(prixRange);
       console.log(prixMax);
+      console.log(prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax);
 
       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
     } else {
