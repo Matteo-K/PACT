@@ -3936,7 +3936,6 @@ details .nonRepondu {
 /* Style pour les étoiles */
 #note {
   display: flex;
-  flex-direction: column;
   gap: 5px;
   margin-bottom: 15px;
 }
@@ -4882,6 +4881,7 @@ button[id="boutonInscription"] {
   border: none;
   box-shadow: inset -4px -4px 4px var(--accent-border);
   background-color: var(--accent);
+  cursor: pointer;
 }
 
 /* Messages d'erreurs */
