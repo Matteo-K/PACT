@@ -2005,6 +2005,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 12px;
 }
 
+.optionEnRelief {
+  background-color: var(--primary50);
+}
+
 .searchA {
   width: 90%;
   text-decoration: none;
@@ -2123,6 +2127,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 1.2em;
   margin-right: 10px;
   width: fit-content;
+  text-wrap: nowrap;
 }
 
 .StatutAffiche::after {
@@ -2667,6 +2672,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .option button:hover {
   background-color: #0056b3;
+}
+
+@media (max-width: 1451px) {
+  span.avisSearch {
+    display: none;
+  }
 }
 
 @media (max-width: 1079px) {
@@ -3485,7 +3496,7 @@ section#infoComp div {
   margin: 0;
   padding: 0;
   overflow-y: scroll;
-  height: 600px;
+  height: 800px;
   align-content: flex-start;
 }
 
@@ -3843,6 +3854,7 @@ details .nonLu, details .nonRepondu{
 /* Style pour les étoiles */
 #note {
   display: flex;
+  flex-direction: column;
   gap: 5px;
   margin-bottom: 15px;
 }

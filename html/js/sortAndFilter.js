@@ -601,6 +601,9 @@ function displayOffer(offer) {
 function createCard(offer) {
   let card = document.createElement("div");
   card.classList.add("carteOffre");
+  if (offer.option.includes('EnRelief')) {
+    card.classList.add("optionEnRelief");
+  }
 
   // Image principale
   let img = document.createElement("img");
