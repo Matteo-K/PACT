@@ -1,34 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const messageErreurDiv = document.getElementById('messageErreur');
-    const form = document.getElementById('formPro') || document.getElementById('formMember');
-
-
-
-    const profilePicInput = document.getElementById('profile-pic');
-    const currentProfilePic = document.getElementById('current-profile-pic');
-
-    // Vérifier si l'élément d'image de profil existe avant de lui ajouter un écouteur
-    if (profilePicInput && currentProfilePic) {
-        profilePicInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];  // Récupérer le premier fichier sélectionné
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    // Changer la source de l'image dès qu'elle est chargée
-                    currentProfilePic.src = e.target.result;
-                    // Vous pouvez également ajouter une classe ou d'autres styles ici si nécessaire
-                };
-
-                // Lire le fichier sélectionné
-                reader.readAsDataURL(file);
-            }
-        });
-    }
-            
-
-
+    const form = document.getElementById('formPro') || document.getElementById('formMember');   
 
     // Gestion du bouton retour
     document.getElementById('retour').addEventListener('click', function () {
@@ -247,4 +219,36 @@ document.addEventListener('DOMContentLoaded', function () {
             form.submit();
         }
     }); 
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const messageErreurDiv = document.getElementById('messageErreur');
+    const form = document.getElementById('formPro') || document.getElementById('formMember');
+
+    // Récupérer les éléments pour la photo de profil
+    const profilePicInput = document.getElementById('profile-pic');
+    const currentProfilePic = document.getElementById('current-profile-pic');
+
+    // Vérifier si les éléments existent avant d'ajouter un événement
+    if (profilePicInput && currentProfilePic) {
+        profilePicInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];  // Récupérer le fichier sélectionné
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // Mettre à jour immédiatement l'élément image avec la nouvelle source
+                    currentProfilePic.src = e.target.result;
+                };
+
+                // Lire le fichier sélectionné comme une URL de données (Data URL)
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // Reste du code pour gérer les erreurs, la validation, etc.
+    // ...
 });
