@@ -167,7 +167,7 @@ if ($categorie["_visite"]) {
                 accessDiv.appendChild(accessText);
                 accessDiv.appendChild(removeBtn);
 
-                // Appliquer un style visuel au conteneur
+                // Style des "tag" pour le handicap
                 accessDiv.style.display = 'inline-block';
                 accessDiv.style.boxShadow = 'none';
                 accessDiv.style.margin = '5px ';
@@ -237,19 +237,16 @@ if ($categorie["_visite"]) {
                 langDiv.appendChild(langText);
                 langDiv.appendChild(removeBtn);
 
-                // Appliquer un style visuel au conteneur
-
-                langDiv.style.display = 'inline-flex';
-                langDiv.style.alignItems = 'center';
-                langDiv.style.margin = '5px';
-                langDiv.style.padding = '8px 12px';
-                langDiv.style.backgroundColor = '#c8e6c9'; // Couleur similaire pour les tags ajoutés
-                langDiv.style.border = '1px solid #66bb6a';
-                langDiv.style.borderRadius = '20px';
-                langDiv.style.fontSize = '0.9em';
-                langDiv.style.color = '#2e7d32'; // Texte de même couleur que les tags ajoutés
-                langDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-
+                
+                // Style des "tag" des langues ajoutées
+                accessDiv.style.display = 'inline-block';
+                accessDiv.style.boxShadow = 'none';
+                accessDiv.style.margin = '5px ';
+                accessDiv.style.padding = '5px 15px';
+                accessDiv.style.height = '30px';
+                accessDiv.style.borderRadius = '20px';
+                accessDiv.style.fontSize = '0.9em';
+                accessDiv.style.backgroundColor="#d1ccdc";
                 // Ajouter une animation pour l'apparition
                 langDiv.style.opacity = '0';
                 langDiv.style.transform = 'scale(0.95)';
