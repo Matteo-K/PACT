@@ -3972,21 +3972,21 @@ details .nonRepondu {
 }
 
 /* Style pour les étoiles */
-#note {
+.note {
   display: flex;
   flex-direction: row;
   gap: 5px;
   margin-bottom: 15px;
 }
 
-#note .star {
+.note .star {
   width: 30px;
   height: 30px;
   cursor: pointer;
   transition: transform 0.3s;
 }
 
-#note .star:hover {
+.note .star:hover {
   transform: scale(1.2);
 }
 
@@ -4039,7 +4039,7 @@ details .nonRepondu {
 }
 
 /* Consentement */
-#formCreationAvis>div:not(#note) {
+#formCreationAvis>div:not(.note) {
   margin-bottom: 10px;
   justify-content: space-between;
   align-items: center;

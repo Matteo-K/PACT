@@ -184,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 ?>
 <section>
     <form id="formCreationAvis" action="detailsOffer.php" method="post" enctype="multipart/form-data">
-        <div id="note">
+        <div class="note">
             <!-- Étoiles pour la notation -->
             <?php for ($i = 1; $i <= 5; $i++) { ?>
                 <div
