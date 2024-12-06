@@ -4,29 +4,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_POST['typeUser']) && isset($_POST['idU'])) {
     
     $_SESSION['idUser'] = htmlspecialchars($_POST['idU']);
-    
-    switch ($_POST['typeUser']) {
-      case 'admin':
-        $_SESSION['typeUser'] = 'admin';
-        break;
+    $_SESSION['typeUser'] = $_POST['typeUser'];
 
-      case 'pro_prive':
-        $_SESSION['typeUser'] = 'pro_prive';
-        break;
-
-      case 'pro_public':
-        $_SESSION['typeUser'] = 'pro_public';
-        break;
-
-      case 'membre':
-        $_SESSION['typeUser'] = 'membre';
-        break;
-        
-      
-      }
-      
-      header("Location: index.php");
-      exit();
+    header("Location: index.php");
+    exit();
   }
 }
 ?>
