@@ -8,10 +8,10 @@ $aujourdhui = new DateTime();
 
 
 // Vérifiez si idoffre est défini
-// if (!$idOffre) {
-//     header("location: index.php");
-//     exit();
-// }
+if (!$idOffre) {
+    header("location: index.php");
+    exit();
+}
 
 $monOffre = new ArrayOffer($idOffre);
 $ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
@@ -171,7 +171,7 @@ if (!$result) {
         <input type="hiddedn" name="page" value="2">
     </form>
     <script>
-        // document.getElementById("manageOfferAuto").submit();
+        document.getElementById("manageOfferAuto").submit();
     </script>
 <?php
 
