@@ -491,6 +491,7 @@ function filtrerParLieu(offers) {
 // Fonction global
 function sortAndFilter(array, elementStart, nbElement) {
   // Filtres
+  console.log(array);
   array = filtrerParCategorie(array);
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
@@ -547,7 +548,6 @@ function updatePagination(totalItems, nbElement) {
 
 function goToPage(page) {
   currentPage = page;
-  console.log(arrayOffer);
   sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement);
 }
 
