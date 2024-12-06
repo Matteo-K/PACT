@@ -95,7 +95,7 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 // Traitement des données envoyées par le formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
-    $stmt = $conn->prepare("SELECT * FROM pact._avis WHERE idoffre = ? AND idu = ?");
+    $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ? AND idu = ?");
     $stmt->execute([$idOffre, $idUser]);
     $existingReview = $stmt->fetch();
 
