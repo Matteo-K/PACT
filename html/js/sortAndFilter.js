@@ -272,24 +272,14 @@ function filtrerParPrix(offers) {
   const prixMin = parseInt(selectPrixMin.value);
   const prixMax = parseInt(selectPrixMax.value);
 
-  console.log("Par prix");
-  console.log(offers);
-
   return offers.filter(offer => {
-    console.log("Categorie " + offer.categorie);
     if (offer.categorie === 'Restaurant') {
-      console.log("Restaurant");
       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
       const prixMinOffreRestaurant = prixRange[0];
       const prixMaxOffreRestaurant = prixRange[0] + 20;
 
-      console.table(prixRange);
-      console.log(prixMax);
-      console.log(prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax);
-
       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
     } else {
-      console.log("Autre");
       const prixMinOffreAutres = (offer.prixMinimal || 0);
       return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
     }
