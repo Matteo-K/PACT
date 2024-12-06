@@ -32,8 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   goToPage(currentPage);
 
-  console.log(arrayOffer);
-
   const forms = document.querySelectorAll(".search form");
   forms.forEach(form => {
     form.addEventListener("click", (event) => {
@@ -549,11 +547,7 @@ function updatePagination(totalItems, nbElement) {
 
 function goToPage(page) {
   currentPage = page;
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
-  });
+  console.log(arrayOffer);
   sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement);
 }
 
