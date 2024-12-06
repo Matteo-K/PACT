@@ -3782,7 +3782,7 @@ details .nonRepondu {
   color: #333;
   text-align: center;
   position: relative;
-  margin: 30px 0;
+  margin: 30px 0 0 0;
   border-radius: 15px;
 }
 
@@ -3851,6 +3851,7 @@ details .nonRepondu {
   flex-wrap: wrap;
   justify-content: space-between;
   width: calc(100% + 40px);
+  margin: 20px 0;
 }
 
 #avisproS2>form>h2 {
@@ -4035,6 +4036,8 @@ details .nonRepondu {
 .conteneurReponsePro {
   display: flex;
   flex-wrap: nowrap;
+  width: calc(100% + 40px);
+  margin: 10px 0;
 }
 
 .conteneurReponsePro>img {
@@ -4048,10 +4051,14 @@ details .nonRepondu {
 .conteneurReponsePro>article {
   width: 90%;
   padding: 20px;
-  background-color: var(--primary30);
+  background-color: var(--secondary60);
   border-radius: 20px;
 }
 
+.conteneurReponsePro > p {
+  margin: 0;
+  font-size: 20px;
+}
 
 
 /** Fin avis **/
@@ -4874,6 +4881,7 @@ button[id="boutonInscription"] {
   border: none;
   box-shadow: inset -4px -4px 4px var(--accent-border);
   background-color: var(--accent);
+  cursor: pointer;
 }
 
 /* Messages d'erreurs */
@@ -5218,6 +5226,7 @@ button[id="boutonChangerMDP"] {
   margin: 5px auto;
   margin-top: 30px;
   background-color: var(--accent);
+  cursor: pointer;
 }
 
 a[id="boutonLienMembre"],
@@ -5233,6 +5242,7 @@ a[id="boutonLienPro"] {
   color: var(--text-dark);
   background-color: var(--accent);
   text-decoration: none;
+  cursor: pointer;
 }
 
 p[id="legendeBoutonLienMembre"],
@@ -5279,6 +5289,7 @@ p[id="legendeBoutonLienPro"] {
     width: 180px;
     height: 50px;
     font-size: 22px;
+    cursor: pointer;
   }
 
   div[id="lienBouton"] {
@@ -5326,4 +5337,12 @@ div[id=divPFPactuelle] img {
 
 input[id="profile-pic"]  {
   display: none;
+}
+
+label[id="labelPFP"] {
+  text-decoration: underline;
+}
+
+label[id="labelPFP"]:hover  {
+  color: var(--accent);
 }

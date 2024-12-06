@@ -150,22 +150,26 @@ if(isset($_POST["reponsePro"])){
             </p>
         </div>
 
-        <div class="conteneurReponsePro">
-            <img src="./img/icone/reponse.png" alt="icone de reponse">
-            <article>
-                <p> Contenu de la réponse </p>
-            </article>
-        </div>
+        <div id="blocReponsePro">
+            <div class="conteneurReponsePro">
+                <img src="./img/icone/reponse.png" alt="icone de reponse">
+                <article>
+                    <h3> Votre réponse à membre </h3>
+                    <p> Contenu de la réponse </p>
+                </article>
+            </div>
 
-        <form action="detailsOffer.php" method="post">
-            <h2>
-                Répondre a membre
-            </h2>
-            <input type="submit" class="blueBtnOffer">
-            <textarea name="reponsePro" id="reponsePro" placeholder="Entrez votre réponse à propos de cet avis"></textarea>
-            <input type="hidden" name="hiddenInputIdAvis" value="">
-            <input type="hidden" name="idoffre" value="<?=$idOffre?>">
-        </form>
+            <form action="detailsOffer.php" method="post">
+                <h2>
+                    Répondre a membre
+                </h2>
+                <input type="submit" class="blueBtnOffer">
+                <textarea name="reponsePro" id="reponsePro" placeholder="Entrez votre réponse à propos de cet avis"></textarea>
+                <input type="hidden" name="hiddenInputIdAvis" value="">
+                <input type="hidden" name="idoffre" value="<?=$idOffre?>">
+            </form>
+        </div>
+        
     </section>
 </div>
 
@@ -191,7 +195,7 @@ let avisPrecedent = -1;
 
 let conteneurAvis = document.querySelector(".conteneurAvisPro");
 
-let photoAuteurAvis = document.querySelector("#ligneTitreAvis > h2");
+let photoAuteurAvis = document.querySelectorAll("#ligneTitreAvis > img")[0];
 let auteurAvis = document.querySelector("#ligneTitreAvis > h2");
 let etoilesAvis = document.querySelectorAll(".conteneurAvisPro > .noteEtoile > .star");
 let titreAvis = document.querySelector(".conteneurAvisPro > h3");
@@ -209,7 +213,12 @@ const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
 const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
-const formReponseAvis = document.querySelector("#avisproS2 form");
+const blocReponseAvis = document.getElementById("blocReponsePro");
+
+const conteneurReponseAvis = document.querySelector("#blocReponsePro .conteneurReponsePro");
+const contenuReponseAvis = document.querySelector("#blocReponsePro .conteneurReponsePro p");
+
+const formReponseAvis = document.querySelector("#blocReponsePro form");
 const titreReponseAvis = document.querySelector("#avisproS2 form h2");
 const inputIdAvis = document.querySelector('#avisproS2 form input[type="hidden"]');
 
@@ -260,10 +269,18 @@ function afficheAvisSelect(idAvis) {
     //changement date publication et visite
     dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
 
-    //On modifie le bloc de réponse (titre + input caché)
-    formReponseAvis.style.display = "flex";
-    titreReponseAvis.textContent = "Répondre à " + listeAvis[idAvis]['pseudo'];
-    inputIdAvis.value = idAvis;
+    //On modifie le bloc de réponse (titre + inputs caché) ou la réponse
+
+    if(avisSelect.classList.contains("avisNonRepondu")){
+        formReponseAvis.style.display = "flex";
+        titreReponseAvis.textContent = "Répondre à " + listeAvis[idAvis]['pseudo'];
+        inputIdAvis.value = idAvis;
+    }
+    else{
+        conteneurReponseAvis.display = "flex";
+        contenuReponseAvis.textContent = listeAvis[idAvis]['contenureponse'];
+    }
+    
 
     //On passe l'avis de non lu a lu
     if(avisSelect.classList.contains("avisNonLu")){
@@ -345,7 +362,7 @@ function openDetails() {
         }
     }, { once: true });
     conteneurAvis.style.display = "none"; // Masquer le conteneur principal
-    formReponseAvis.style.display = "none"; // et le conteneur de réponse
+    blocReponseAvis.style.display = "none"; // et le conteneur de réponse
 
 }
 
@@ -357,7 +374,7 @@ function closeDetails() {
     });
     if (getComputedStyle(aucunAvisSelect).display == "none") {
         conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal si un avis est select
-        formReponseAvis.style.display = "flex";
+        blocReponseAvis.style.display = "flex";
      }
 }
 
@@ -499,7 +516,7 @@ function displayAvis(avis) {
 
     const blocListAvis = document.getElementById("listeAvis");
 
-    if (!avis.lu && !avis.repondu) {
+    if (!avis.lu && avis.idc_reponse == null) {
         li.classList.add("avisNonLu");
         let divNonLu = document.createElement("div");
         divNonLu.classList.add("nonLu");
