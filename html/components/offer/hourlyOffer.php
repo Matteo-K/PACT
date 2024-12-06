@@ -396,7 +396,7 @@ $is_show;
 
                     const dateTime = `${date} ${startTime}`;
                     if (dateTimeCombinations.includes(dateTime)) {
-                        document.getElementById("msgHoraireSupr").textContent = "Une combinaison de date et heure de début est déjà utilisée.";
+                        document.getElementById("msgHoraireSupr").textContent = "Une combinaison de date et heure est déjà utilisée.";
                         return false;
                     } else {
                         dateTimeCombinations.push(dateTime);

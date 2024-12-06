@@ -30,6 +30,7 @@ h2,
 h3,
 h4 {
   font-family: Belanosima, sans-serif;
+  font-weight: 500;
 }
 
 #logoText {
@@ -5134,4 +5135,9 @@ main[id="mainChangerMDP"] {
   align-items: center;
   justify-content: center;
   margin-top: 5%;
+}
+
+
+input[id=profile-pic] {
+  border-radius: 90%;
 }
