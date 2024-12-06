@@ -4171,14 +4171,14 @@ details .nonRepondu {
 
   #descriptionOffre>section {
     order: 2;
-    width: 65%;
+    width: 80%;
     margin: 1em 0;
   }
 
   #descriptionOffre {
     margin: 0;
     flex-direction: column;
-    width: 85%;
+    width: 95%;
   }
 
   #infoComp {
