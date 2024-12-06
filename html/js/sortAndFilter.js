@@ -578,6 +578,9 @@ function displayOffer(offer) {
   form.classList.add("searchA");
   form.setAttribute("action", "/detailsOffer.php");
   form.setAttribute("method", "post");
+  if (offer.option.includes('EnRelief')) {
+    form.classList.add("optionEnRelief");
+  }
 
   let input = document.createElement("input");
   input.setAttribute("type", "hidden");

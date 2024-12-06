@@ -2005,6 +2005,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 12px;
 }
 
+.optionEnRelief {
+  background-color: var(--primary20);
+}
+
 .searchA {
   width: 90%;
   text-decoration: none;
