@@ -1262,7 +1262,7 @@ RETURNS TRIGGER AS $$
 DECLARE
   idcomment INT;
 BEGIN
-    INSERT INTO pact._commentaire (idU,content,datePublie) VALUES (NEW.idpro,NEW.contenureponse, CURRENT_DATE) RETURNING idC into idcomment;
+    INSERT INTO pact._commentaire (idU,content,datePublie) VALUES (NEW.idpro,NEW.contenureponse, CURRENT_TIMESTAMP) RETURNING idC into idcomment;
     INSERT INTO pact._reponse (idC, ref) VALUES (idcomment, NEW.idc_avis);
     RETURN NEW;
 END;
@@ -1272,6 +1272,7 @@ CREATE TRIGGER trigger_ajout_reponse
 INSTEAD OF INSERT ON pact.reponse
 FOR EACH ROW
 EXECUTE FUNCTION ajout_reponse();
+
 
 CREATE OR REPLACE FUNCTION update_pro_public()
 RETURNS TRIGGER AS $$

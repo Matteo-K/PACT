@@ -1160,6 +1160,7 @@ header ul+div {
   display: flex;
   flex-flow: column nowrap;
   gap: clamp(10px, 2vh, 25px);
+  margin-top: 10%; 
 }
 
 #selectOffer>div:first-child>div li {
@@ -1970,6 +1971,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .searchAvis {
   padding: 5px;
+  width: 600px;
 }
 
 .searchAvis > div:nth-child(1) {
@@ -1979,13 +1981,24 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: space-between;
 }
 
+.blcAvis {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 .avisSearch {
   font-size: 1em;
+  width: 50%;
+  margin-inline: 10px;
 }
 
 .avisSearch .star {
   width: 1.2rem;
   height: 1.2rem;
+}
+.avisSearch h5 {
+  margin: 0;
+  margin-top: 2px;
 }
 
 .searchUser {
@@ -2060,6 +2073,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .blcStarSearch {
   display: flex;
+  margin-bottom: 2%;
 }
 
 .noteSearch {
@@ -5179,12 +5193,4 @@ div[id=divPFPactuelle] img {
   margin-top: 25px;
   width: 130px;
   height: 130px;
-}
-
-input[id="profile-pic"] {
-  display: inline-block;
-}
-
-div[id=divNewPFP] > button[id="file-upload-button"] {
-  display: none;
 }
