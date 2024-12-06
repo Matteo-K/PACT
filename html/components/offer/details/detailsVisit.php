@@ -167,17 +167,15 @@ if ($categorie["_visite"]) {
                 accessDiv.appendChild(accessText);
                 accessDiv.appendChild(removeBtn);
 
-                // Appliquer un style visuel au conteneur
+                // Style des "tag" pour le handicap
                 accessDiv.style.display = 'inline-block';
-                accessDiv.style.fontSize = '25px';
-                accessDiv.style.margin = '15px 0 5px 0';
-                accessDiv.style.padding = '8px 12px';
-                accessDiv.style.width = '90%'; 
-                accessDiv.style.border = '1px solid #e57373';
+                accessDiv.style.boxShadow = 'none';
+                accessDiv.style.margin = '5px ';
+                accessDiv.style.padding = '5px 15px';
+                accessDiv.style.height = '30px';
                 accessDiv.style.borderRadius = '20px';
                 accessDiv.style.fontSize = '0.9em';
-                accessDiv.style.color = 'blue';
-                accessDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                accessDiv.style.backgroundColor="#d1ccdc";
 
                 // Ajouter une animation pour l'apparition
                 accessDiv.style.opacity = '0';
@@ -225,33 +223,29 @@ if ($categorie["_visite"]) {
                 langText.className = 'lang-text';
 
                 // Ajouter un bouton de suppression avec une icône
-
-                const removeBtn = document.createElement('button');
-                removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; // Symbole "×" stylisé
+                let removeBtn = document.createElement("img");
+                removeBtn.setAttribute("src", "../../img/icone/croix.png");
                 removeBtn.className = 'remove-btn';
 
-                // Action pour retirer la langue lorsqu'on clique sur le bouton
+                // Pour supprimer le tag 
                 removeBtn.addEventListener('click', function () {
-                    sectionLangue.removeChild(langDiv);
+                sectionLangue.removeChild(langDiv);
                 });
 
-                // Ajouter le texte et le bouton au conteneur de langue
+                
                 langDiv.appendChild(langText);
-                langDiv.appendChild(removeBtn);
+              //  langDiv.appendChild(removeBtn);
 
                 // Appliquer un style visuel au conteneur
 
-                langDiv.style.display = 'inline-flex';
-                langDiv.style.alignItems = 'center';
-                langDiv.style.margin = '5px';
-                langDiv.style.padding = '8px 12px';
-                langDiv.style.backgroundColor = '#c8e6c9'; // Couleur similaire pour les tags ajoutés
-                langDiv.style.border = '1px solid #66bb6a';
+                langDiv.style.display = 'inline-block';
+                langDiv.style.boxShadow = 'none';
+                langDiv.style.margin = '5px ';
+                langDiv.style.padding = '5px 15px';
+                langDiv.style.height = '30px';
                 langDiv.style.borderRadius = '20px';
                 langDiv.style.fontSize = '0.9em';
-                langDiv.style.color = '#2e7d32'; // Texte de même couleur que les tags ajoutés
-                langDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-
+                langDiv.style.backgroundColor="#d1ccdc";
                 // Ajouter une animation pour l'apparition
                 langDiv.style.opacity = '0';
                 langDiv.style.transform = 'scale(0.95)';

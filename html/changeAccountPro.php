@@ -25,6 +25,12 @@
             $stmt = $conn->prepare("SELECT * FROM pact.proprive WHERE idU = ?");
             $stmt->execute([$userId]);
             $userPrivate = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+            // Récupérer la photo de profil de la table _photo_profil
+            $stmtPhoto = $conn->prepare("SELECT * FROM pact._photo_profil WHERE idU = ?");
+            $stmtPhoto->execute([$userId]);
+            $photoProfil = $stmtPhoto->fetch(PDO::FETCH_ASSOC);
         }
 
         // Fusionner les résultats de propublic et proprive, si les deux existent
@@ -141,6 +147,17 @@
         <div id="messageErreur" class="messageErreur"></div>
 
         <form id = "formPro" action="changeAccountPro.php" method="post" enctype="multipart/form-data">
+
+
+            <div id="divPFPactuelle">
+                <img src="uploads/<?= htmlspecialchars($user['url']) ?>" alt="Photo de Profil" id="current-profile-pic">
+            </div>
+
+            <div id="divPFP">
+                <input type="file" id="profile-pic" name="profile-pic" accept="image/*" required>
+            </div>
+
+
             <div class="ligne1">
                 <label for="denomination">Dénomination*:</label>
                 <label for="telephone">Numéro de téléphone*:</label>

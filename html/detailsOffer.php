@@ -396,7 +396,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <aside>
                 <strong>
                     <p class="taille3">A la Une</p>
-                    <p id="totalPrice" class="taille4">Prix total : 20€</p>
+                    <p id="totalPrice" class="taille7">Prix total : 20€</p>
                 </strong>
                 <form class="formopt" id="formOpt1" action="addOption.php" method="post">
                     <input type="hidden" name="nomOption" value="ALaUne">
@@ -412,7 +412,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </label>
                     
                     <!-- Date picker (caché par défaut) -->
-                    <input class="datePicker" type="date" name="customDate" id="customDate1" style="display: none;">
+                    <input class="datePicker" min="<?php echo date('Y-m-d')?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate1" style="display: none;">
                 </form>
                 <?php
                 if (!$optionUne) {
@@ -449,7 +449,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <aside>
                 <strong>
                     <p class="taille3">En Relief</p>
-                    <p id="totalPrice2" class="taille4">Prix total : 10€</p>
+                    <p id="totalPrice2" class="taille7">Prix total : 10€</p>
                 </strong>
                 <form class="formopt" id="formOpt2" action="addOption.php" method="post">
                     <input type="hidden" name="nomOption" value="EnRelief">
@@ -502,6 +502,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
               </section>
             </section>
+            <section class="traitDtOf"></section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
                 <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }

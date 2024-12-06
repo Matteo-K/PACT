@@ -27,7 +27,7 @@ function listImage($idOffre, $idComment)
             $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
             // Vérification si l'extension est dans la liste autorisée
             if (in_array($extension, $allowedExtensions)) {
-                $fileUrls[] = '/img/imageAvis/' . $idOffre . '/' . $idComment . '/' . $file;
+                $fileUrls[] = $dossier . $file;
             }
         }
     }
