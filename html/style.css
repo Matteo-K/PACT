@@ -3234,10 +3234,10 @@ section#infoComp div {
 
 .avis>nav {
   display: flex;
+  width: 95%;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 10em;
+  justify-content: space-evenly;
 }
 
 #avis-section,
