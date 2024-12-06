@@ -21,6 +21,9 @@ if ($categorie["_parcattraction"]) {
         $parc["urlplan"] = $result["urlplan"];
     }
 }
+
+
+
 ?>
 
 <section id="park"> <!-- Section pour le CSS -->
@@ -50,7 +53,7 @@ if ($categorie["_parcattraction"]) {
         </div>
         <label for="ajoutPhoto2" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
         <input type="file" id="ajoutPhoto2" name="ajoutPhoto2[]"
-            accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple class="zoneImages" max="1">
+            accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple class="zoneImages" >
         <div id="afficheImages2" class="afficheImages2"></div>
 
 
