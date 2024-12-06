@@ -6,6 +6,7 @@ $gamme = [
   "€€" => false,
   "€€€" => false
 ];
+$image =[];
 
 // Si le restaurant était déjà existante, on récupère les données
 if ($categorie["_restauration"]) {
@@ -15,6 +16,15 @@ if ($categorie["_restauration"]) {
   if ($result) {
     $gamme["€"] = false;
     $gamme[$result["gammedeprix"]] = true;
+  }
+}
+if ($categorie["_restauration"]) {
+  $stmt = $conn->prepare("SELECT * from pact._image where idoffre=?");
+  $stmt->execute([$idOffre]);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  if ($result) {
+
+    $image[$result["nomImage"]] = true;
   }
 }
 
@@ -42,8 +52,8 @@ if ($categorie["_restauration"]) {
   <!-- Partie pour l'ajout des photos du menu du restaurant-->
   <div class="photosR">
     <label class="labelPhotos">Photos du menu* </label>
-    <label class="labNbPhotos">Vous pouvez insérer jusqu'à 5 photos </label> <!-- Indication pour l'utilisateur -->
-    <label class="labelSuppPhotos"> Cliquez sur une image pour la supprimer</label>
+    <label class="labNbPhotos">Vous pouvez insérer 1 photo de votre menu </label> <!-- Indication pour l'utilisateur -->
+    <label class="labelSuppPhotos"> Cliquez sur l'image pour la supprimer</label>
 
   </div>
 

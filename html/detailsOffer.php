@@ -539,7 +539,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         if ($result[0]['categorie'] == "Restaurant") {
                             array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
                         }
-
                         foreach ($tags as $tag):
                             if ($tag["nomtag"] != NULL) {
                         ?>
