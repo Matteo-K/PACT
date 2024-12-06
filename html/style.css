@@ -3706,7 +3706,8 @@ details .nonLu, details .nonRepondu{
 
 /* Partie réponse du pro */
 #avisproS2 > form{
-  display: flex;
+  display: none;
+  /*display: flex;*/
   flex-wrap: wrap;
   justify-content: space-between;
   width: calc(100% + 40px);

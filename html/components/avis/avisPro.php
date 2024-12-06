@@ -201,8 +201,9 @@ const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
 const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
+const formReponseAvis = document.querySelector("#avisproS2 form");
 const titreReponseAvis = document.querySelector("#avisproS2 form h2");
-const inputIdAvis = document.querySelector('#avisproS2 form input[type="text"]');
+const inputIdAvis = document.querySelector('#avisproS2 form input[type="hidden"]');
 
 
 
@@ -220,7 +221,6 @@ function afficheAvisSelect(idAvis) {
     //On remet l'ancien avis sélectionné en gris
     if (avisPrecedent != -1) {
         avisPrecedent.style.background = `linear-gradient(90deg, ${secondaryColor} 0%, ${secondaryColor} 80%, transparent 100%)`;
-        alert("remet l'ancien en gris");
     }
     //Et l'avis actuel en évidence
     avisSelect.style.background = `linear-gradient(90deg, ${primaryColor} 0%, ${primaryColor} 90%, transparent 100%)`;
@@ -253,12 +253,12 @@ function afficheAvisSelect(idAvis) {
     dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
 
     //On modifie le bloc de réponse (titre + input caché)
+    formReponseAvis.style.display = "flex";
     titreReponseAvis.textContent = "Répondre à " + listeAvis[idAvis]['pseudo'];
     inputIdAvis.value = idAvis;
 
     //On passe l'avis de non lu a lu
     if(avisSelect.classList.contains("avisNonLu")){
-        alert("changement icone");
         avisSelect.classList.remove("avisNonLu");
         iconeNonLu = avisSelect.querySelector(".nonLu");
         iconeNonLu.remove();
@@ -267,7 +267,6 @@ function afficheAvisSelect(idAvis) {
         let divNonRep = document.createElement("div");
         divNonRep.classList.add("nonRepondu");
         avisSelect.querySelector("div").appendChild(divNonRep);
-        alert("changement icone terminé");
     }
 
     avisPrecedent = document.getElementById(`avis${idAvis}`);
@@ -338,6 +337,8 @@ function openDetails() {
         }
     }, { once: true });
     conteneurAvis.style.display = "none"; // Masquer le conteneur principal
+    formReponseAvis.style.display = "none"; // et le conteneur de réponse
+
 }
 
 function closeDetails() {
@@ -348,6 +349,7 @@ function closeDetails() {
     });
     if (getComputedStyle(aucunAvisSelect).display == "none") {
         conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal si un avis est select
+        formReponseAvis.style.display = "flex";
      }
 }
 
