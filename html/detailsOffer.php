@@ -5,12 +5,31 @@ $idOffre = $_POST["idoffre"] ?? null;
 $ouvert = $_GET["ouvert"] ?? null;
 $aujourdhui = new DateTime();
 
-
-
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
     header("location: index.php");
     exit();
+}
+
+// Consulté récemment
+if ($_SESSION["typeUser"] == 'membre') {
+    $stmt = $conn->prepare("SELECT * from pact._consulter where idu = ? and idoffre = ?");
+    $stmt->execute([$_SESSION['idUser'], $idOffre]);
+    $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Si Une consultation récente existe on la modifie
+    if ($consultRecent) {
+        // Si la date est différente d'aujourd'hui on la modifie
+        if (date('Y-m-d') !== $consultRecent["dateconsultation"]) {
+            $stmt = $conn->prepare("UPDATE pact._consulter set dateconsultation = CURRENT_DATE where idu = 5 and idoffre = 2");
+            $stmt->execute();
+            $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+    // Sinon on la créer
+    } else {
+        $stmt = $conn->prepare("INSERT INTO pact._consulter (idu, idoffre, dateconsultation) values (?, ?, CURRENT_DATE)");
+        $stmt->execute();
+        $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 $monOffre = new ArrayOffer($idOffre);
