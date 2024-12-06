@@ -1219,7 +1219,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
 
     <!-- Inclure l'API Google Maps avec votre clé API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $cleAPI?>&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

@@ -5,7 +5,7 @@
  * afin de trier et filtrer les offres de la page de recherche
  */
 let currentPage = 1;
-let nbElement = 15;
+let nbElement = 10;
 
 let userType, arrayOffer, page;
 document.addEventListener('DOMContentLoaded', function() {
