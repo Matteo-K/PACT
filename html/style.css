@@ -1308,7 +1308,7 @@ header ul+div {
 }
 
 .hourlyHide {
-  display: none;
+  display: none !important;
 }
 
 .btnDisabledHourly {
@@ -4171,14 +4171,14 @@ details .nonRepondu {
 
   #descriptionOffre>section {
     order: 2;
-    width: 80%;
+    width: 95%;
     margin: 1em 0;
   }
 
   #descriptionOffre {
     margin: 0;
     flex-direction: column;
-    width: 95%;
+    width: 95% !important;
   }
 
   #infoComp {
