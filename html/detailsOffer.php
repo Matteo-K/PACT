@@ -20,14 +20,14 @@ if ($_SESSION["typeUser"] == 'membre') {
     if ($consultRecent) {
         // Si la date est différente d'aujourd'hui on la modifie
         if (date('Y-m-d') !== $consultRecent["dateconsultation"]) {
-            $stmt = $conn->prepare("UPDATE pact._consulter set dateconsultation = CURRENT_DATE where idu = 5 and idoffre = 2");
-            $stmt->execute();
+            $stmt = $conn->prepare("UPDATE pact._consulter set dateconsultation = CURRENT_DATE where idu = ? and idoffre = ?");
+            $stmt->execute([$_SESSION['idUser'], $idOffre]);
             $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
         }
     // Sinon on la créer
     } else {
         $stmt = $conn->prepare("INSERT INTO pact._consulter (idu, idoffre, dateconsultation) values (?, ?, CURRENT_DATE)");
-        $stmt->execute();
+        $stmt->execute([$_SESSION['idUser'], $idOffre]);
         $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
