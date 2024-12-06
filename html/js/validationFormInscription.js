@@ -10,17 +10,23 @@ document.addEventListener('DOMContentLoaded', function () {
     // Vérifier si l'élément d'image de profil existe avant de lui ajouter un écouteur
     if (profilePicInput && currentProfilePic) {
         profilePicInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
+            const file = event.target.files[0];  // Récupérer le premier fichier sélectionné
 
             if (file) {
                 const reader = new FileReader();
+
                 reader.onload = function(e) {
+                    // Changer la source de l'image dès qu'elle est chargée
                     currentProfilePic.src = e.target.result;
+                    // Vous pouvez également ajouter une classe ou d'autres styles ici si nécessaire
                 };
+
+                // Lire le fichier sélectionné
                 reader.readAsDataURL(file);
             }
         });
     }
+            
 
 
 
