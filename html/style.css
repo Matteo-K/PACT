@@ -3175,7 +3175,6 @@ section#infoComp div {
   display:flex;
   justify-content: center;
   align-items: center;
-  padding: 2em;
 }
 
 .note{
@@ -3188,6 +3187,12 @@ section#infoComp div {
 }
 #publiez-component > section div {
   display: flex;
+  justify-content: center;
+}
+
+.note{
+  background-color: var(--bloc);
+  padding: 2em;
 }
 
 
@@ -3732,6 +3737,164 @@ details .nonLu, details .nonRepondu{
   font-size: 20px;
   padding: 5px;
   height: 150px;
+}
+
+/** Ecrire Avis */
+
+/* Formulaire principal */
+#formCreationAvis {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Labels */
+#formCreationAvis label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Champs d'entrée */
+#formCreationAvis input,
+#formCreationAvis textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Zones obligatoires */
+#formCreationAvis input:required,
+#formCreationAvis textarea:required {
+  border: 1px solid #66afe9;
+  background-color: #eef5fc;
+}
+
+/* Style pour les étoiles */
+#note {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+#note .star {
+  width: 30px;
+  height: 30px;
+  background: url('./img/star-empty.png') no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+#note .star.ecrire {
+  background: url('./img/star-filled.png') no-repeat center;
+  background-size: contain;
+}
+
+#note .star:hover {
+  transform: scale(1.2);
+}
+
+/* Options radio (compagnie) */
+#enCompagnie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+#enCompagnie label {
+  background-color: #e0e0e0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#enCompagnie input[type="radio"]:checked + label {
+  background-color: #66afe9;
+  color: white;
+  border-color: #66afe9;
+}
+
+/* Ajout photo */
+#ajoutPhoto {
+  display: none;
+}
+
+#afficheImages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#afficheImages img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Boutons */
+.buttonDetailOffer {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.blueBtnOffer {
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.blueBtnOffer:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Consentement */
+#formCreationAvis div {
+  margin-bottom: 10px;
+}
+
+#formCreationAvis input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/* Bouton Soumettre */
+#formCreationAvis button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#formCreationAvis button[type="submit"]:hover {
+  background-color: #218838;
 }
 
 

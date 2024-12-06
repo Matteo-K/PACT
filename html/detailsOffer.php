@@ -889,7 +889,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($typeOffer == "Parc Attraction") {
         if($result[0]['urlplan']){
         ?>
+        <div>
+            <h2>Plan du parc :</h2>
             <img src="<?php echo $result[0]["urlplan"] ?>">
+        </div>
         <?php
         }
         
@@ -903,7 +906,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
         <div class="divMenu">
-            <h2>Menu</h2>
+            <h2>Menu :</h2>
             <div class="swiper-container menu-container">
                 <div class="swiper menu">
                     <div class="swiper-wrapper">
