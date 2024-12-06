@@ -5103,6 +5103,35 @@ div.ligne6>label {
   #conditionMotdepasse {
     order: 19;
   }
+
+  /* Centrer la photo de profil et son label */
+  #divPFPactuelle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  #divNewPFP {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  label[id="labelPFP"] {
+    text-decoration: underline;
+    text-align: center;
+  }
+  
+  label[id="labelPFP"]:hover {
+    color: var(--accent);
+  }
+
+  input[id="profile-pic"] {
+    display: none;
+  }
 }
 
 /*++++++++++++++++++++++++++++++*/
