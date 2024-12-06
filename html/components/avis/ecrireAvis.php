@@ -254,16 +254,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
                 multiple
                 onchange="handleFiles(this)" />
             <div id="afficheImages"></div>
-
+        </div>
             <!-- Consentement -->
-            <div>
-                <input id="consentement" name="consentement" type="checkbox" required>
-                <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
-            </div>
+        <div>
+            <input id="consentement" name="consentement" type="checkbox" required>
+            <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
+        </div>
 
-            <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
+        <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
 
-            <button type="submit">Soumettre l'avis</button>
+        <button type="submit">Soumettre l'avis</button>
     </form>
 </section>
 
