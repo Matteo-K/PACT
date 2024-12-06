@@ -8,10 +8,10 @@ $aujourdhui = new DateTime();
 
 
 // Vérifiez si idoffre est défini
-if (!$idOffre) {
-    header("location: index.php");
-    exit();
-}
+// if (!$idOffre) {
+//     header("location: index.php");
+//     exit();
+// }
 
 $monOffre = new ArrayOffer($idOffre);
 $ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
