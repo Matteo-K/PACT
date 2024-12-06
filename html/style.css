@@ -3853,6 +3853,7 @@ details .nonLu, details .nonRepondu{
 /* Style pour les étoiles */
 #note {
   display: flex;
+  flex-direction: column;
   gap: 5px;
   margin-bottom: 15px;
 }
