@@ -5181,10 +5181,6 @@ div[id=divPFPactuelle] img {
   height: 130px;
 }
 
-label[id="pfpUpload"] {
+div[id=divNewPFP] > input > button {
   display: none;
-}
-
-div[id=divNewPFP] > input {
-  display: inline-block;
 }
