@@ -7,27 +7,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const profilePicInput = document.getElementById('profile-pic');
     const currentProfilePic = document.getElementById('current-profile-pic');
 
-    // Lorsqu'un utilisateur choisit un nouveau fichier pour la photo de profil
-    profilePicInput.addEventListener('change', function(event) {
-        const file = event.target.files[0];  // Récupérer le premier fichier sélectionné
+    // Vérifier si l'élément d'image de profil existe avant de lui ajouter un écouteur
+    if (profilePicInput && currentProfilePic) {
+        profilePicInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
 
-        // Vérifier si un fichier a bien été sélectionné
-        if (file) {
-            // Créer un objet FileReader
-            const reader = new FileReader();
-
-            // Lorsque le fichier est chargé (l'image est prête à être affichée)
-            reader.onload = function(e) {
-                // Mettre à jour l'image affichée avec la nouvelle image sélectionnée
-                currentProfilePic.src = e.target.result;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentProfilePic.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
             }
+        });
+    }
 
-            // Lire le fichier sélectionné
-            reader.readAsDataURL(file);
-        }
-    });
 
-    
 
     // Gestion du bouton retour
     document.getElementById('retour').addEventListener('click', function () {
