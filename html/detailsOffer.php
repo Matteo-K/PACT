@@ -53,8 +53,8 @@ function getSchedules()
 
             // Remplacer les { par [ et les } par ] pour le reste
             $listhorairemidi = str_replace(
-                ['{', '}', ':', ';'], 
-                ['[', ']', '=>', ','], 
+                ['{', '}', ':', ';'],
+                ['[', ']', '=>', ','],
                 $listhorairemidi
             );
 
@@ -72,8 +72,8 @@ function getSchedules()
 
             // Remplacer les { par [ et les } par ] pour le reste
             $listhorairesoir = str_replace(
-                ['{', '}', ':', ';'], 
-                ['[', ']', '=>', ','], 
+                ['{', '}', ':', ';'],
+                ['[', ']', '=>', ','],
                 $listhorairesoir
             );
 
@@ -85,12 +85,12 @@ function getSchedules()
             $listhorairesoir = [];
         }
 
-        if($result[0]['listehoraireprecise']){
+        if ($result[0]['listehoraireprecise']) {
             $listhorairespectacle = $result[0]['listehoraireprecise'];
 
             $listhorairespectacle = str_replace(
-                ['{', '}', ':', ';'], 
-                ['[', ']', '=>', ','], 
+                ['{', '}', ':', ';'],
+                ['[', ']', '=>', ','],
                 $listhorairespectacle
             );
 
@@ -113,7 +113,8 @@ function getSchedules()
 
 $schedules = getSchedules();
 
-function formatDateEnFrancais(DateTime $date) {
+function formatDateEnFrancais(DateTime $date)
+{
     // Traduction des jours de la semaine
     $joursSemaine = [
         'Monday' => 'Lundi',
@@ -151,10 +152,11 @@ function formatDateEnFrancais(DateTime $date) {
     return "$jour $jourMois $mois $annee";
 }
 
-function convertionMinuteHeure($tempsEnMinute) {
+function convertionMinuteHeure($tempsEnMinute)
+{
     $heures = floor($tempsEnMinute / 60);
     $minutes = $tempsEnMinute % 60;
-    
+
     if ($minutes == 0) {
         return $heures . "h";
     } else {
@@ -179,14 +181,14 @@ if (!$result) {
 
 ?>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    <?php if (isset($_POST['popup'])): ?>
-        <?php if (!empty($_POST['error'])): ?> // Vérifie que 'error' est défini et non vide
-            alert("Erreur : la plage de date chevauche la plage de date d'une autre option");
+    document.addEventListener("DOMContentLoaded", function() {
+        <?php if (isset($_POST['popup'])): ?>
+            <?php if (!empty($_POST['error'])): ?> // Vérifie que 'error' est défini et non vide
+                alert("Erreur : la plage de date chevauche la plage de date d'une autre option");
+            <?php endif; ?>
+            openModal(); // Appelle la fonction openModal si la condition PHP est vraie
         <?php endif; ?>
-        openModal(); // Appelle la fonction openModal si la condition PHP est vraie
-    <?php endif; ?>
-});
+    });
 </script>
 
 <?php
@@ -254,60 +256,60 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <p class="infoP">Informations de l'offre</p>
 
                     <?php
-                if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
+                    if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                     ?>
-                    <section>
-                        <p class="Enligne infoP StatutAffiche <?php echo $offre[0]['statut']=='actif'?"" : "horslgnOffre" ?>"><?php echo $offre[0]['statut']=='actif'?"En Ligne" : "Hors Ligne" ?></p>
-                    </section>
+                        <section>
+                            <p class="Enligne infoP StatutAffiche <?php echo $offre[0]['statut'] == 'actif' ? "" : "horslgnOffre" ?>"><?php echo $offre[0]['statut'] == 'actif' ? "En Ligne" : "Hors Ligne" ?></p>
+                        </section>
                 </section>
 
-                    <div class="buttonDetails">
-                        <form class="taille6" method="post" action="changer_statut.php">
-                            <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
-                            <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
-                            <input type="hidden" name="nouveau_statut" value="<?php echo $offre[0]['statut'] === 'inactif' ? 'actif' : 'inactif'; ?>">
-                            <button class="modifierBut" type="submit">
-                                <?php echo $offre[0]['statut'] === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
+                <div class="buttonDetails">
+                    <form class="taille6" method="post" action="changer_statut.php">
+                        <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
+                        <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
+                        <input type="hidden" name="nouveau_statut" value="<?php echo $offre[0]['statut'] === 'inactif' ? 'actif' : 'inactif'; ?>">
+                        <button class="modifierBut" type="submit">
+                            <?php echo $offre[0]['statut'] === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
+                        </button>
+                    </form>
+                    <div class="form-container">
+                        <form class="taille6" method="post" action="manageOffer.php">
+                            <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
+                            <input type="hidden" name="page" value="2">
+                            <button
+                                class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>"
+                                type="submit"
+                                onmouseover="showMessage(event)"
+                                onmouseout="hideMessage(event)"
+                                <?php if ($offre[0]['statut'] === 'actif') { ?>
+                                onclick="return false;"
+                                <?php } ?>>
+                                <?php echo "Modifier offre"; ?>
                             </button>
                         </form>
-                        <div class="form-container">
-                            <form class="taille6" method="post" action="manageOffer.php">
-                                <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
-                                <input type="hidden" name="page" value="2">
-                                <button
-                                    class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>"
-                                    type="submit"
-                                    onmouseover="showMessage(event)"
-                                    onmouseout="hideMessage(event)"
-                                    <?php if ($offre[0]['statut'] === 'actif') { ?>
-                                    onclick="return false;"
-                                    <?php } ?>>
-                                    <?php echo "Modifier offre"; ?>
-                                </button>
-                            </form>
-                        </div>
-                        <section class="taille6">
-                            <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
-                        </section>
-                    <?php
-                }
-
-                    ?>
                     </div>
+                    <section class="taille6">
+                        <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
+                    </section>
+                <?php
+                    }
+
+                ?>
+                </div>
             </section>
             <section id="myModal" class="modal">
-              <section class="modal-content">
-                <span class="close">&times;</span>
-                          
-                <!-- Titres des onglets -->
-                <section class="titre">
-                  <p class="tab active" data-tab="1">Gestion des options</p>
-                  <p class="tab" data-tab="2">Ajouter une option</p>
-                  <!-- Trait qui se déplace sous les onglets -->
-                  <section class="traitBouge"></section>
-                </section>
-                <section class="contentPop active" id="content-1">
-                    <?php 
+                <section class="modal-content">
+                    <span class="close">&times;</span>
+
+                    <!-- Titres des onglets -->
+                    <section class="titre">
+                        <p class="tab active" data-tab="1">Gestion des options</p>
+                        <p class="tab" data-tab="2">Ajouter une option</p>
+                        <!-- Trait qui se déplace sous les onglets -->
+                        <section class="traitBouge"></section>
+                    </section>
+                    <section class="contentPop active" id="content-1">
+                        <?php
                         $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'ALaUne'");
                         $option->execute([$idOffre]);
                         $optionUne = $option->fetchAll(PDO::FETCH_ASSOC);
@@ -326,199 +328,201 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             }
                         }
                         if ($mesOtion != []) {
-                            ?>
-                                <strong><p class="taille3">Mes options : </p></strong>
-                                <ul>
-                                    <?php
-                                        foreach ($mesOtion as $key => $value) {
-                                            ?>
-                                            <li>
-                                                <section class="popUpOption">
-                                                    <?php
-                                                    if ($value['datefin'] != null) {
-                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
-                                                        $dateActuelle = NEW DateTime();
-                                                        $dateDeb = NEW DateTime($value['datelancement']);
-                                                        if ($dateActuelle<$dateDeb) {
-                                                            $dureeAvDeb = $dateActuelle->diff($dateDeb);
-                                                            ?><p><?php echo "Option en attente : " . $nom . " commence dans " . $dureeAvDeb->days . " jours pour " . $value['duree_total'] * 7 . " jours." ?></p>
-                                                            <form class="confirmation-form" action="addOption.php" method="post">
-                                                                <input type="hidden" name="type" value="resilier">
-                                                                <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-                                                                <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
-                                                                <button class="modifierBut">Résilier</button>
-                                                            </form>
-                                                            <?php
-                                                        }else {
-                                                            $dateFin = NEW DateTime($value['datefin']);
-                                                            $dureeRestante = $dateActuelle->diff($dateFin);
-                                                            ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . " jours." ?></p>
-                                                            <form class="confirmation-form-arr" action="addOption.php" method="post">
-                                                                <input type="hidden" name="type" value="arreter">
-                                                                <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-                                                                <input type="hidden" name="nom" value="<?php echo $value['nomoption'] ?>">
-                                                                <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
-                                                                <button class="modifierBut">Arrêter</button>
-                                                            </form>
-                                                            <?php
-                                                        }
-                                                    } else {
-                                                        $nom = $value['nomoption']=='ALaUne'? "A la une" : "En relief";
-                                                        ?><p><?php echo "Option en attente : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total']*7 . " jours." ?></p>
-                                                        <form class="confirmation-form" id="formOpt3" action="addOption.php" method="post">
-                                                            <input type="hidden" name="type" value="resilier">
-                                                            <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-                                                            <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
-                                                            <button type="submit" class="modifierBut">Résilier</button>
-                                                        </form>
-                                                        <?php
-                                                    } 
-                                                    ?>
-                                                </section>
-                                            </li>
+                        ?>
+                            <strong>
+                                <p class="taille3">Mes options : </p>
+                            </strong>
+                            <ul>
+                                <?php
+                                foreach ($mesOtion as $key => $value) {
+                                ?>
+                                    <li>
+                                        <section class="popUpOption">
                                             <?php
-                                        }
-                                    ?>
-                                </ul>
-                            <?php
+                                            if ($value['datefin'] != null) {
+                                                $nom = $value['nomoption'] == 'ALaUne' ? "A la une" : "En relief";
+                                                $dateActuelle = new DateTime();
+                                                $dateDeb = new DateTime($value['datelancement']);
+                                                if ($dateActuelle < $dateDeb) {
+                                                    $dureeAvDeb = $dateActuelle->diff($dateDeb);
+                                            ?><p><?php echo "Option en attente : " . $nom . " commence dans " . $dureeAvDeb->days . " jours pour " . $value['duree_total'] * 7 . " jours." ?></p>
+                                                    <form class="confirmation-form" action="addOption.php" method="post">
+                                                        <input type="hidden" name="type" value="resilier">
+                                                        <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                                        <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
+                                                        <button class="modifierBut">Résilier</button>
+                                                    </form>
+                                                <?php
+                                                } else {
+                                                    $dateFin = new DateTime($value['datefin']);
+                                                    $dureeRestante = $dateActuelle->diff($dateFin);
+                                                ?><p><?php echo "Option en cours : " . $nom . " prends fin dans " . $dureeRestante->days . " jours." ?></p>
+                                                    <form class="confirmation-form-arr" action="addOption.php" method="post">
+                                                        <input type="hidden" name="type" value="arreter">
+                                                        <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                                        <input type="hidden" name="nom" value="<?php echo $value['nomoption'] ?>">
+                                                        <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
+                                                        <button class="modifierBut">Arrêter</button>
+                                                    </form>
+                                                <?php
+                                                }
+                                            } else {
+                                                $nom = $value['nomoption'] == 'ALaUne' ? "A la une" : "En relief";
+                                                ?><p><?php echo "Option en attente : " . $nom . " Commencera lors de la prochaine mise en ligne pour " . $value['duree_total'] * 7 . " jours." ?></p>
+                                                <form class="confirmation-form" id="formOpt3" action="addOption.php" method="post">
+                                                    <input type="hidden" name="type" value="resilier">
+                                                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                                    <input type="hidden" name="idoption" value="<?php echo $value['idoption'] ?>">
+                                                    <button type="submit" class="modifierBut">Résilier</button>
+                                                </form>
+                                            <?php
+                                            }
+                                            ?>
+                                        </section>
+                                    </li>
+                                <?php
+                                }
+                                ?>
+                            </ul>
+                        <?php
                         } else {
-                            ?>
-                                <strong><p class="taille3">Aucune option activé</p></strong>
-                            <?php
+                        ?>
+                            <strong>
+                                <p class="taille3">Aucune option activé</p>
+                            </strong>
+                        <?php
                         }
 
 
-                    ?>
+                        ?>
+                    </section>
+                    <section class="contentPop" id="content-2">
+                        <section class="AlaUne">
+                            <section class="donnee">
+                                <aside>
+                                    <strong>
+                                        <p class="taille3">A la Une</p>
+                                        <p id="totalPrice" class="taille7">Prix total : 20€</p>
+                                    </strong>
+                                    <form class="formopt" id="formOpt1" action="addOption.php" method="post">
+                                        <input type="hidden" name="nomOption" value="ALaUne">
+                                        <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                        <input type="hidden" name="type" value="ajout">
+                                        <label class="taille" for="nbWeek">Nombre de semaine à la Une
+                                            <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
+                                        </label>
+
+                                        <!-- Checkbox pour afficher le date picker -->
+                                        <label class="taille">
+                                            <input type="checkbox" name="dtcheck" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
+                                        </label>
+
+                                        <!-- Date picker (caché par défaut) -->
+                                        <input class="datePicker" min="<?php echo date('Y-m-d') ?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate1" style="display: none;">
+                                    </form>
+                                    <?php
+                                    if (!$optionUne) {
+                                    ?>
+                                        <p class="taille4 toggleMessage">*L'option sera active lors de la prochaine mise en ligne</p>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <p class="taille4 toggleMessage">*L'option sera lancée à la fin de celle-ci</p>
+                                    <?php
+                                    }
+                                    ?>
+                                </aside>
+                                <section class="sectionBtn">
+                                    <button id="button1" class="modifierBut <?php echo count($optionUne) >= 2 ? 'disabled' : ''; ?>"
+                                        <?php if (count($optionUne) >= 2) {
+                                        ?>
+                                        disabled
+                                        onmouseover="showMessageAdd(event)"
+                                        onmouseout="hideMessageAdd(event)"
+                                        onclick="return false;"
+
+                                        <?php
+                                        } ?>>
+                                        Ajouter
+                                    </button>
+                                </section>
+                            </section>
+                        </section>
+
+                        <section class="EnRelief">
+                            <section class="donnee">
+                                <aside>
+                                    <strong>
+                                        <p class="taille3">En Relief</p>
+                                        <p id="totalPrice2" class="taille7">Prix total : 10€</p>
+                                    </strong>
+                                    <form class="formopt" id="formOpt2" action="addOption.php" method="post">
+                                        <input type="hidden" name="nomOption" value="EnRelief">
+                                        <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+                                        <input type="hidden" name="type" value="ajout">
+                                        <label class="taille" for="nbWeek">Nombre de semaine en Relief
+                                            <input class="taille2" type="number" name="nbWeek" id="nbWeekEnRelief" min="1" max="4" value="1">
+                                        </label>
+
+                                        <!-- Checkbox pour afficher le date picker -->
+                                        <label class="taille">
+                                            <input type="checkbox" name="dtcheck" id="datePickerToggle2" class="datePickerToggle taille5"> Ajouter une date personnalisée
+                                        </label>
+
+                                        <!-- Date picker (caché par défaut) -->
+                                        <input class="datePicker" type="date" name="customDate" id="customDate2" style="display: none;">
+                                    </form>
+                                    <?php
+                                    if (!$optionRelief) {
+                                    ?>
+                                        <p class="taille4 toggleMessage">*L'option sera active lors de la prochaine mise en ligne</p>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <p class="taille4 toggleMessage">*L'option sera lancée à la fin de celle-ci</p>
+                                    <?php
+                                    }
+                                    ?>
+                                </aside>
+                                <section class="sectionBtn">
+                                    <button id="button2" class="modifierBut <?php echo count($optionRelief) >= 2 ? 'disabled' : ''; ?>"
+                                        <?php if (count($optionRelief) >= 2) {
+                                        ?>
+                                        disabled
+                                        onclick="return false;"
+                                        onmouseover="showMessageAdd(event)"
+                                        onmouseout="hideMessageAdd(event)"
+                                        <?php
+                                        } ?>>
+                                        Ajouter
+                                    </button>
+                                </section>
+                            </section>
+                        </section>
+                        <section id="hoverMessageAdd" class="hover-message">Vous avez trop de d'option en attente (1 option en attente et 1 en cour maximun par option)</section>
+                    </section>
+                    <section class="taillebtn">
+                        <button class="modifierBut " onclick="confirmation()">Quitter</button>
+                    </section>
                 </section>
-                <section class="contentPop" id="content-2">
-    <section class="AlaUne">
-        <section class="donnee">
-            <aside>
-                <strong>
-                    <p class="taille3">A la Une</p>
-                    <p id="totalPrice" class="taille7">Prix total : 20€</p>
-                </strong>
-                <form class="formopt" id="formOpt1" action="addOption.php" method="post">
-                    <input type="hidden" name="nomOption" value="ALaUne">
-                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-                    <input type="hidden" name="type" value="ajout">
-                    <label class="taille" for="nbWeek">Nombre de semaine à la Une
-                        <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
-                    </label>
-
-                    <!-- Checkbox pour afficher le date picker -->
-                    <label class="taille">
-                        <input type="checkbox" name="dtcheck" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
-                    </label>
-                    
-                    <!-- Date picker (caché par défaut) -->
-                    <input class="datePicker" min="<?php echo date('Y-m-d')?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate1" style="display: none;">
-                </form>
-                <?php
-                if (!$optionUne) {
-                    ?>
-                        <p class="taille4 toggleMessage">*L'option sera active lors de la prochaine mise en ligne</p>
-                        <?php                                
-                } else {
-                    ?>
-                        <p class="taille4 toggleMessage">*L'option sera lancée à la fin de celle-ci</p>
-                    <?php
-                }
-                ?>
-            </aside>
-            <section class="sectionBtn">
-                <button id="button1" class="modifierBut <?php echo count($optionUne)>=2? 'disabled' : ''; ?>"
-                <?php if (count($optionUne)>=2) {
-                    ?>
-                    disabled
-                    onmouseover="showMessageAdd(event)"
-                    onmouseout="hideMessageAdd(event)"
-                    onclick="return false;"
-                    
-                    <?php
-                }?>
-                >
-                Ajouter
-                </button>
-            </section>
-        </section>
-    </section>
-
-    <section class="EnRelief">
-        <section class="donnee">
-            <aside>
-                <strong>
-                    <p class="taille3">En Relief</p>
-                    <p id="totalPrice2" class="taille7">Prix total : 10€</p>
-                </strong>
-                <form class="formopt" id="formOpt2" action="addOption.php" method="post">
-                    <input type="hidden" name="nomOption" value="EnRelief">
-                    <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-                    <input type="hidden" name="type" value="ajout">
-                    <label class="taille" for="nbWeek">Nombre de semaine en Relief
-                        <input class="taille2" type="number" name="nbWeek" id="nbWeekEnRelief" min="1" max="4" value="1">
-                    </label>
-
-                    <!-- Checkbox pour afficher le date picker -->
-                    <label class="taille">
-                        <input type="checkbox" name="dtcheck" id="datePickerToggle2" class="datePickerToggle taille5"> Ajouter une date personnalisée
-                    </label>
-                    
-                    <!-- Date picker (caché par défaut) -->
-                    <input class="datePicker" type="date" name="customDate" id="customDate2" style="display: none;">
-                </form>
-                <?php
-                if (!$optionRelief) {
-                    ?>
-                        <p class="taille4 toggleMessage">*L'option sera active lors de la prochaine mise en ligne</p>
-                        <?php                                
-                } else {
-                    ?>
-                        <p class="taille4 toggleMessage">*L'option sera lancée à la fin de celle-ci</p>
-                        <?php
-                }
-                ?>
-            </aside>
-            <section class="sectionBtn">
-                <button id="button2" class="modifierBut <?php echo count($optionRelief)>=2? 'disabled' : ''; ?>"
-                <?php if (count($optionRelief)>=2) {
-                    ?>
-                    disabled
-                    onclick="return false;"
-                    onmouseover="showMessageAdd(event)"
-                    onmouseout="hideMessageAdd(event)"
-                    <?php
-                }?>
-                >
-                Ajouter
-                </button>
-            </section>
-        </section>
-    </section>
-    <section id="hoverMessageAdd" class="hover-message">Vous avez trop de d'option en attente (1 option en attente et 1 en cour maximun par option)</section>
-</section>
-                <section class ="taillebtn">
-                    <button class="modifierBut " onclick="confirmation()">Quitter</button>
-                </section>
-              </section>
             </section>
             <section class="traitDtOf"></section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
                 <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }
         }
-        ?>
+            ?>
         
-        <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
-        <h3 id="typeOffer"><?php echo $typeOffer ?> à <?php echo $result[0]['ville'] ?></h3>
-        <?php
-        if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-        }
-        ?>
-        <div>
-            <?php
-            // Fetch tags associated with the offer
-        $stmt = $conn->prepare("
+        <h2 id=" titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
+                    <h3 id="typeOffer"><?php echo $typeOffer ?> à <?php echo $result[0]['ville'] ?></h3>
+                    <?php
+                    if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
+                    }
+                    ?>
+                    <div>
+                        <?php
+                        // Fetch tags associated with the offer
+                        $stmt = $conn->prepare("
                 SELECT t.nomTag FROM pact._offre o
                 LEFT JOIN pact._tag_parc tp ON o.idOffre = tp.idOffre
                 LEFT JOIN pact._tag_spec ts ON o.idOffre = ts.idOffre
@@ -528,641 +532,637 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 LEFT JOIN pact._tag t ON t.nomTag = COALESCE(tp.nomTag, ts.nomTag, ta.nomTag, tr.nomTag, tv.nomTag)
                 WHERE o.idOffre = :idoffre
                 ORDER BY o.idOffre");
-        $stmt->bindParam(':idoffre', $idOffre);
-        $stmt->execute();
-        $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        $stmt->bindParam(':idoffre', $idOffre);
+                        $stmt->execute();
+                        $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($typeOffer == "restaurant") {
-            array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
-        }
+                        if ($typeOffer == "restaurant") {
+                            array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
+                        }
 
-        foreach ($tags as $tag):
-            if ($tag["nomtag"] != NULL) {
-        ?>
-                <a class="tag" href="search.php?search=<?= str_replace("_", "+", $tag["nomtag"]) ?>"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
-            <?php }
-        endforeach;
+                        foreach ($tags as $tag):
+                            if ($tag["nomtag"] != NULL) {
+                        ?>
+                                <a class="tag" href="search.php?search=<?= str_replace("_", "+", $tag["nomtag"]) ?>"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
+                            <?php }
+                        endforeach;
 
-        if ($ouverture == "EstOuvert" && $typeOffer == "Spectacle") {
-            ?>
-            <a class="ouvert" href="search.php?search=ouvert">En Cours</a>
-        <?php
-        }else if($ouverture == "EstOuvert"){
-        ?>
-            <a class="ouvert" href="search.php?search=ouvert">Ouvert</a>
-        <?php
-        } else{
-        ?>
-            <a class="ferme" href="search.php?search=ferme">Fermé</a>
-        <?php
-        }
-        ?>
+                        if ($ouverture == "EstOuvert" && $typeOffer == "Spectacle") {
+                            ?>
+                            <a class="ouvert" href="search.php?search=ouvert">En Cours</a>
+                        <?php
+                        } else if ($ouverture == "EstOuvert") {
+                        ?>
+                            <a class="ouvert" href="search.php?search=ouvert">Ouvert</a>
+                        <?php
+                        } else {
+                        ?>
+                            <a class="ferme" href="search.php?search=ferme">Fermé</a>
+                        <?php
+                        }
+                        ?>
 
-    </div>
-
-    <div id="infoPro">
-        <?php
-        $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
-        $stmt->execute();
-        $tel = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-        if ($result[0]['ville'] && $result[0]['pays'] && $result[0]['codepostal']) {
-        ?>
-            <div>
-                <img src="./img/icone/lieu.png">
-                <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
-            </div>
-
-        <?php
-        }
-        if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
-        ?>
-            <div>
-                <img src="./img/icone/tel.png">
-                <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
-            </div>
-        <?php
-        }
-        if ($result[0]["mail"]) {
-        ?>
-            <div>
-                <img src="./img/icone/mail.png">
-                <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
-            </div>
-
-        <?php
-        }
-        if ($result[0]["urlsite"]) {
-        ?>
-            <div>
-                <img src="./img/icone/globe.png">
-                <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
-            </div>
-
-        <?php
-        }
-        ?>
-
-    </div>
-
-    <div class="swiper-container">
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <?php
-                foreach ($photos as $picture) {
-                ?>
-                    <div class="swiper-slide">
-                        <img src="<?php echo $picture['url']; ?>" />
                     </div>
-                <?php
-                }
-                ?>
-            </div>
-        </div>
 
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-    </div>
+                    <div id="infoPro">
+                        <?php
+                        $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
+                        $stmt->execute();
+                        $tel = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    <div thumbsSlider="" class="swiper myThumbSlider">
-        <div class="swiper-wrapper">
-            <?php
-            foreach ($photos as $picture) {
-            ?>
-                <div class="swiper-slide">
-                    <img src="<?php echo $picture['url']; ?>" />
-                </div>
-            <?php
-            }
-            ?>
-        </div>
-    </div>
-    <article id="descriptionOffre">
-        <?php
-        if (!$avis) {
-            echo '<p class="notation">Pas de note pour le moment</p>';
-        } else {
-            $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
-            $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
-        ?>
-            <div class="notation">
-                <div>
-                    <?php
-                    // Étoiles pleines
-                    for ($i = 1; $i <= $etoilesPleines; $i++) {
-                        echo '<div class="star pleine"></div>';
-                    }
-                    // Étoile partielle
-                    if ($reste > 0) {
-                        $pourcentageRempli = $reste * 100; // Pourcentage rempli
-                        echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
-                    }
-                    // Étoiles vides
-                    for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
-                        echo '<div class="star vide"></div>';
-                    }
-                    ?>
-                    <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
-                </div>
-                <div class="notedetaille">
-                    <?php
-                    // Adjectifs pour les notes
-                    $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
-                    for ($i = 5; $i >= 1; $i--) {
-                        // Largeur simulée pour chaque barre en fonction de vos données
-                        $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
-                    ?>
-                        <div class="ligneNotation">
-                            <span><?= $listNoteAdjectif[$i - 1]; ?></span>
-                            <div class="barreDeNotationBlanche">
-                                <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
+
+                        if ($result[0]['ville'] && $result[0]['pays'] && $result[0]['codepostal']) {
+                        ?>
+                            <div>
+                                <img src="./img/icone/lieu.png">
+                                <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
                             </div>
-                            <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
+
+                        <?php
+                        }
+                        if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
+                        ?>
+                            <div>
+                                <img src="./img/icone/tel.png">
+                                <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
+                            </div>
+                        <?php
+                        }
+                        if ($result[0]["mail"]) {
+                        ?>
+                            <div>
+                                <img src="./img/icone/mail.png">
+                                <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
+                            </div>
+
+                        <?php
+                        }
+                        if ($result[0]["urlsite"]) {
+                        ?>
+                            <div>
+                                <img src="./img/icone/globe.png">
+                                <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
+                            </div>
+
+                        <?php
+                        }
+                        ?>
+
+                    </div>
+
+                    <div class="swiper-container">
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                <?php
+                                foreach ($photos as $picture) {
+                                ?>
+                                    <div class="swiper-slide">
+                                        <img src="<?php echo $picture['url']; ?>" />
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+
+                    <div thumbsSlider="" class="swiper myThumbSlider">
+                        <div class="swiper-wrapper">
+                            <?php
+                            foreach ($photos as $picture) {
+                            ?>
+                                <div class="swiper-slide">
+                                    <img src="<?php echo $picture['url']; ?>" />
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <article id="descriptionOffre">
+                        <?php
+                        if (!$avis) {
+                            echo '<p class="notation">Pas de note pour le moment</p>';
+                        } else {
+                            $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
+                            $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
+                        ?>
+                            <div class="notation">
+                                <div>
+                                    <?php
+                                    // Étoiles pleines
+                                    for ($i = 1; $i <= $etoilesPleines; $i++) {
+                                        echo '<div class="star pleine"></div>';
+                                    }
+                                    // Étoile partielle
+                                    if ($reste > 0) {
+                                        $pourcentageRempli = $reste * 100; // Pourcentage rempli
+                                        echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
+                                    }
+                                    // Étoiles vides
+                                    for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
+                                        echo '<div class="star vide"></div>';
+                                    }
+                                    ?>
+                                    <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
+                                </div>
+                                <div class="notedetaille">
+                                    <?php
+                                    // Adjectifs pour les notes
+                                    $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
+                                    for ($i = 5; $i >= 1; $i--) {
+                                        // Largeur simulée pour chaque barre en fonction de vos données
+                                        $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
+                                    ?>
+                                        <div class="ligneNotation">
+                                            <span><?= $listNoteAdjectif[$i - 1]; ?></span>
+                                            <div class="barreDeNotationBlanche">
+                                                <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
+                                            </div>
+                                            <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                        <section>
+                            <h3>Description</h3>
+                            <p><?php echo htmlspecialchars($result[0]["description"]); ?></p>
+                        </section>
+                    </article>
+
+
+
+                    <section id="infoComp">
+                        <h2>Informations Complémentaires</h2>
+                        <?php
+                        if ($typeOffer == "Visite") {
+                            $stmt = $conn->prepare("SELECT * from pact.visites where idoffre = $idOffre");
+                            $stmt->execute();
+                            $visite = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                            <div>
+                                <p>Durée : <?= convertionMinuteHeure($visite[0]['duree']) ?></p>
+                                <p>Visite guidée : <?= isset($visite[0]["guide"]) ? "Oui" : "Non" ?></p>
+                                <?php
+                                if ($visite[0]["guide"]) {
+                                    $stmt = $conn->prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
+                                    $stmt->execute();
+                                    $langues = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                    if ($langues) {
+                                ?>
+                                        <p>Langues :
+                                            <?php
+                                            foreach ($langues as $key => $langue) {
+                                                echo $langue["langue"] ?>
+                                            <?php
+                                                if (count($langues) != $key + 1) {
+                                                    echo ", ";
+                                                }
+                                            }
+                                            ?>
+                                        </p>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                        <?php
+                        } else if ($typeOffer == "Spectacle") {
+                            $stmt = $conn->prepare("SELECT * from pact.spectacles where idoffre = $idOffre");
+                            $stmt->execute();
+                            $spectacle = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                            <div>
+                                <p>Durée : <?= convertionMinuteHeure($spectacle[0]['duree']) ?></p>
+                                <p>Nombre de places : <?= $spectacle[0]['nbplace'] ?></p>
+                            </div>
+                        <?php
+                        } else if ($typeOffer == "Activité" || $typeOffer == "Parc Attraction") {
+                            if ($typeOffer == "Activité") {
+                                $stmt = $conn->prepare("SELECT * from pact.activites where idoffre = $idOffre");
+                            } else {
+                                $stmt = $conn->prepare("SELECT * from pact.parcs_attractions where idoffre = $idOffre");
+                            }
+                            $stmt->execute();
+                            $theme = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                            <div>
+                                <p>Âge minimum : <?= $theme[0]['agemin'] ?> ans</p>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Horaires</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                // Tableau de tous les jours de la semaine
+                                $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+
+                                // Récupérer les horaires à partir de la fonction getSchedules
+                                $schedules = getSchedules();
+                                // Afficher les horaires pour chaque jour de la semaine
+                                if ($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
+                                    $horaireSpectacle = [];
+                                    if ($schedules['spectacle']) {
+                                        usort($schedules['spectacle'], function ($a, $b) {
+                                            $dateA = new DateTime($a['dateRepresentation']);
+                                            $dateB = new DateTime($b['dateRepresentation']);
+                                            return $dateA <=> $dateB; // Trier du plus récent au plus ancien
+                                        });
+
+                                        foreach ($schedules['spectacle'] as $spec) {
+                                            $dateSpectacle = new DateTime($spec['dateRepresentation']);
+                                ?>
+                                            <tr>
+                                                <td class="jourSemaine"><?= ucwords(formatDateEnFrancais($dateSpectacle)) ?></td>
+                                                <td>
+                                                    <?php
+                                                    echo "à " . str_replace("=>", ":", $spec['heureOuverture']);
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                        <?php
+
+                                        }
+                                    }
+                                } else {
+                                    foreach ($joursSemaine as $jour): ?>
+                                        <tr>
+                                            <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
+                                            <td>
+                                                <?php
+
+                                                // Filtrer les horaires pour chaque jour spécifique
+                                                $horaireMidi = [];
+                                                $horaireSoir = [];
+
+                                                if ($schedules['midi']) {
+                                                    $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
+                                                }
+                                                if ($schedules['soir']) {
+                                                    $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
+                                                }
+
+                                                // Collecter les horaires à afficher
+                                                $horairesAffichage = [];
+                                                if (!empty($horaireMidi)) {
+                                                    $horaireMidi = current($horaireMidi); // Prendre le premier élément du tableau filtré
+                                                    $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":", $horaireMidi['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":", $horaireMidi['heureFermeture']));
+                                                }
+                                                if (!empty($horaireSoir)) {
+                                                    $horaireSoir = current($horaireSoir); // Prendre le premier élément du tableau filtré
+                                                    $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":", $horaireSoir['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":", $horaireSoir['heureFermeture']));
+                                                }
+                                                if (empty($horaireMidi) && empty($horaireSoir)) {
+                                                    $horairesAffichage[] = "Fermé";
+                                                }
+
+                                                // Afficher les horaires ou "Fermé"
+                                                echo implode(' et ', $horairesAffichage);
+                                                ?>
+                                            </td>
+                                        </tr>
+                                <?php
+                                    endforeach;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+
+
+                    </section>
+                    <!-- Carte Google Maps -->
+                    <div id="afficheLoc">
+                        <div id="carte"></div>
+                        <div id="contact-info">
+                            <?php
+                            if ($result[0]['ville'] && $result[0]['codepostal'] && $result[0]['pays']) {
+                            ?>
+                                <div>
+                                    <img src="./img/icone/lieu.png">
+                                    <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
+                                </div>
+
+                            <?php
+                            }
+                            if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
+                            ?>
+                                <div>
+                                    <img src="./img/icone/tel.png">
+                                    <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
+                                </div>
+                            <?php
+                            }
+                            if ($result[0]["mail"]) {
+                            ?>
+                                <div>
+                                    <img src="./img/icone/mail.png">
+                                    <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
+                                </div>
+
+                            <?php
+                            }
+                            if ($result[0]["urlsite"]) {
+                            ?>
+                                <div>
+                                    <img src="./img/icone/globe.png">
+                                    <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
+                                </div>
+
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+
+
+                    <?php
+                    if ($typeOffer == "Parc Attraction") {
+                        if ($result[0]['urlplan']) {
+                    ?>
+                            <div>
+                                <h2>Plan du parc :</h2>
+                                <img src="<?php echo $result[0]["urlplan"] ?>">
+                            </div>
+                        <?php
+                        }
+                    } else if ($typeOffer == "Restaurant") {
+                        $stmt = $conn->prepare("SELECT * from pact._menu where idoffre = $idOffre");
+                        $stmt->execute();
+                        $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        if ($menus) {
+                        ?>
+
+                            <div class="divMenu">
+                                <h2>Menu :</h2>
+                                <div class="swiper-container menu-container">
+                                    <div class="swiper menu">
+                                        <div class="swiper-wrapper">
+                                            <?php
+                                            foreach ($menus as $menu) {
+                                            ?>
+                                                <div class="swiper-slide">
+                                                    <img src="<?php echo $menu['menu']; ?>" />
+                                                </div>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        <?php
+
+                        }
+                    }
+                    if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
+                        require_once __DIR__ . "/components/avis/avisPro.php";
+                    } else {
+                        ?> <div class="avis">
+                            <nav id="tab-container">
+                                <h3 id="tab-avis">Avis</h3>
+                                <h3 id="tab-publiez">Publiez un avis</h3>
+                            </nav>
+
+                            <div id="avis-section">
+                                <!-- Contenu chargé dynamiquement -->
+                                <div id="avis-component" style="display: flex;">
+                                    <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
+                                </div>
+                                <div id="publiez-component" style="display: none;">
+                                    <?php
+                                    if ($isLoggedIn) {
+                                        $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ? AND idu = ?");
+                                        $stmt->execute([$idOffre, $idUser]);
+                                        $existingReview = $stmt->fetch();
+
+                                        if ($existingReview) {
+                                            // L'utilisateur a déjà laissé un avis pour cette offre
+                                            echo '<p>Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre</p>';
+                                        } else {
+                                            require_once __DIR__ . "/components/avis/ecrireAvis.php";
+                                        }
+                                    } else {
+                                    ?>
+                                        <p>Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></p>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
                         </div>
                     <?php
                     }
                     ?>
-                </div>
-            </div>
-        <?php
-        }
-        ?>
-        <section>
-            <h3>Description</h3>
-            <p><?php echo htmlspecialchars($result[0]["description"]); ?></p>
-        </section>
-    </article>
-
-
-
-    <section id="infoComp">
-        <h2>Informations Complémentaires</h2>
-        <?php
-        if($typeOffer == "Visite"){
-            $stmt = $conn -> prepare("SELECT * from pact.visites where idoffre = $idOffre");
-            $stmt -> execute();
-            $visite = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-        ?>
-            <div>
-                <p>Durée : <?= convertionMinuteHeure($visite[0]['duree'])?></p>
-                <p>Visite guidée : <?= isset($visite[0]["guide"])? "Oui" : "Non"?></p>
-                <?php
-                if($visite[0]["guide"]){
-                    $stmt = $conn -> prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
-                    $stmt -> execute();
-                    $langues = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-                    if($langues){
-                        ?>
-                        <p>Langues : 
-                    <?php
-                        foreach($langues as $key => $langue){
-                            echo $langue["langue"]?>   
-                    <?php
-                            if(count($langues) != $key +1){
-                                echo ", ";
-                            }
-                        }
-                    ?>
-                        </p>
-                    <?php
-                    }
-                }
-                ?>
-            </div>
-        <?php
-        } else if($typeOffer == "Spectacle"){
-            $stmt = $conn -> prepare("SELECT * from pact.spectacles where idoffre = $idOffre");
-            $stmt -> execute();
-            $spectacle = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-            ?>
-            <div>
-                <p>Durée : <?= convertionMinuteHeure($spectacle[0]['duree'])?></p>
-                <p>Nombre de places : <?= $spectacle[0]['nbplace']?></p>
-            </div>
-            <?php
-        } else if($typeOffer == "Activité" || $typeOffer == "Parc Attraction"){
-            if($typeOffer == "Activité"){
-                $stmt = $conn -> prepare("SELECT * from pact.activites where idoffre = $idOffre");
-            } 
-            else{
-                $stmt = $conn -> prepare("SELECT * from pact.parcs_attractions where idoffre = $idOffre");
-            }
-            $stmt -> execute();
-            $theme = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-            ?>
-            <div>
-                <p>Âge minimum : <?= $theme[0]['agemin']?> ans</p>
-            </div>
-            <?php
-        }
-        ?>
-        <table>
-    <thead>
-        <tr>
-            <th colspan="2">Horaires</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        // Tableau de tous les jours de la semaine
-        $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-
-        // Récupérer les horaires à partir de la fonction getSchedules
-        $schedules = getSchedules();
-        // Afficher les horaires pour chaque jour de la semaine
-        if($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
-            $horaireSpectacle = [];
-            if($schedules['spectacle']){
-                usort($schedules['spectacle'], function($a, $b) {
-                    $dateA = new DateTime($a['dateRepresentation']);
-                    $dateB = new DateTime($b['dateRepresentation']);
-                    return $dateA <=> $dateB; // Trier du plus récent au plus ancien
-                });
-
-                foreach($schedules['spectacle'] as $spec){
-                    $dateSpectacle = new DateTime($spec['dateRepresentation']);
-                    ?>
-                    <tr>
-                        <td class="jourSemaine"><?= ucwords(formatDateEnFrancais($dateSpectacle))?></td>
-                        <td>
-                            <?php
-                                echo "à " . str_replace("=>",":",$spec['heureOuverture']);
-                            ?>
-                        </td>
-                    </tr>
-                    <?php
-
-                }
-            }
-        }else{
-            foreach ($joursSemaine as $jour): ?>
-                <tr>
-                    <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
-                    <td>
-                        <?php
-
-                            // Filtrer les horaires pour chaque jour spécifique
-                            $horaireMidi = [];
-                            $horaireSoir = [];
-        
-                            if ($schedules['midi']) {
-                                $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
-                            }
-                            if ($schedules['soir']) {
-                                $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
-                            }
-        
-                            // Collecter les horaires à afficher
-                            $horairesAffichage = [];
-                            if (!empty($horaireMidi)) {
-                                $horaireMidi = current($horaireMidi); // Prendre le premier élément du tableau filtré
-                                $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":",$horaireMidi['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":",$horaireMidi['heureFermeture']));
-                            }
-                            if (!empty($horaireSoir)) {
-                                $horaireSoir = current($horaireSoir); // Prendre le premier élément du tableau filtré
-                                $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":",$horaireSoir['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":",$horaireSoir['heureFermeture']));
-                            }
-                            if (empty($horaireMidi) && empty($horaireSoir)) {
-                                $horairesAffichage[] = "Fermé";
-                            }
-        
-                            // Afficher les horaires ou "Fermé"
-                            echo implode(' et ', $horairesAffichage); 
-                        ?>
-                    </td>
-                </tr>
-            <?php 
-                endforeach;   
-            }
-            ?>
-    </tbody>
-</table>
-
-
-    </section>
-    <!-- Carte Google Maps -->
-    <div id="afficheLoc">
-        <div id="carte"></div>
-        <div id="contact-info">
-            <?php
-            if ($result[0]['ville'] && $result[0]['codepostal'] && $result[0]['pays']) {
-            ?>
-                <div>
-                    <img src="./img/icone/lieu.png">
-                    <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
-                </div>
-
-            <?php
-            }
-            if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
-            ?>
-                <div>
-                    <img src="./img/icone/tel.png">
-                    <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
-                </div>
-            <?php
-            }
-            if ($result[0]["mail"]) {
-            ?>
-                <div>
-                    <img src="./img/icone/mail.png">
-                    <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
-                </div>
-
-            <?php
-            }
-            if ($result[0]["urlsite"]) {
-            ?>
-                <div>
-                    <img src="./img/icone/globe.png">
-                    <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
-                </div>
-
-            <?php
-            }
-            ?>
-        </div>
-    </div>
-
-
-    <?php
-    if ($typeOffer == "Parc Attraction") {
-        if($result[0]['urlplan']){
-        ?>
-        <div>
-            <h2>Plan du parc :</h2>
-            <img src="<?php echo $result[0]["urlplan"] ?>">
-        </div>
-        <?php
-        }
-        
-        
-    } else if($typeOffer == "Restaurant"){
-        $stmt = $conn -> prepare("SELECT * from pact._menu where idoffre = $idOffre");
-        $stmt -> execute();
-        $menus = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-
-        if($menus){
-        ?>
-
-        <div class="divMenu">
-            <h2>Menu :</h2>
-            <div class="swiper-container menu-container">
-                <div class="swiper menu">
-                    <div class="swiper-wrapper">
-                        <?php
-                        foreach ($menus as $menu) {
-                        ?>
-                            <div class="swiper-slide">
-                                <img src="<?php echo $menu['menu']; ?>" />
-                            </div>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <?php
-            
-        }
-    }
-    if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
-        require_once __DIR__ . "/components/avis/avisPro.php";
-    } else {
-    ?>  <div class="avis">
-            <nav id="tab-container">
-                <h3 id="tab-avis">Avis</h3>
-                <h3 id="tab-publiez">Publiez un avis</h3>
-            </nav>
-            
-            <div id="avis-section">
-                <!-- Contenu chargé dynamiquement -->
-                <div id="avis-component" style="display: flex;">
-                    <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
-                </div>
-                <div id="publiez-component" style="display: none;">
-                    <?php 
-                    if($isLoggedIn){
-                        $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ? AND idu = ?");
-                        $stmt->execute([$idOffre, $idUser]);
-                        $existingReview = $stmt->fetch();
-
-                        if ($existingReview) {
-                            // L'utilisateur a déjà laissé un avis pour cette offre
-                            echo '<p>Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre</p>';
-                        }else{
-                            require_once __DIR__ . "/components/avis/ecrireAvis.php"; 
-                        }
-                    }else {
-                        ?>
-                        <p>Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></p>
-                        <?php
-                    }
-                    ?>
-                </div>
-            </div>
-        </div>
-        <?php
-        }
-        ?>
     </main>
     <?php
     require_once "./components/footer.php";
     ?>
-<script>
-    
-    document.addEventListener('DOMContentLoaded', function () {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
-        const nbWeekInput = document.getElementById('nbWeekALaUne');
-        const totalPriceElement = document.getElementById('totalPrice');
-        const pricePerWeek = 20; // Prix par semaine
+            const nbWeekInput = document.getElementById('nbWeekALaUne');
+            const totalPriceElement = document.getElementById('totalPrice');
+            const pricePerWeek = 20; // Prix par semaine
 
-        function updatePrice() {
-            const nbWeeks = parseInt(nbWeekInput.value) || 0; // Récupère la valeur ou 0 si vide
-            const totalPrice = nbWeeks * pricePerWeek;
-            totalPriceElement.textContent = `Prix total : ${totalPrice}€`;
-        }
-
-        // Mise à jour initiale
-        updatePrice();
-
-        // Ajout d'un écouteur d'événement sur le champ de saisie
-        nbWeekInput.addEventListener('input', updatePrice);
-
-        const nbWeekInput2 = document.getElementById('nbWeekEnRelief');
-        const totalPriceElement2 = document.getElementById('totalPrice2');
-        const pricePerWeek2 = 10; // Prix par semaine
-
-        function updatePrice2() {
-            const nbWeeks2 = parseInt(nbWeekInput2.value) || 0; // Récupère la valeur ou 0 si vide
-            const totalPrice2 = nbWeeks2 * pricePerWeek2;
-            totalPriceElement2.textContent = `Prix total : ${totalPrice2}€`;
-        }
-
-        // Mise à jour initiale
-        updatePrice2();
-
-        // Ajout d'un écouteur d'événement sur le champ de saisie
-        nbWeekInput2.addEventListener('input', updatePrice2);
-
-        const forms = document.querySelectorAll('.confirmation-form');
-        forms.forEach(form => {
-            form.addEventListener('submit', (event) => {
-                const confirmation = confirm("Êtes-vous sûr de vouloir resilier cette option ?\nVous ne serez pas facturé pour cette option");
-                if (!confirmation) {
-                    event.preventDefault(); // Empêche la soumission si l'utilisateur annule
-                }
-            });
-        });
-
-        const forms2 = document.querySelectorAll('.confirmation-form-arr');
-        forms2.forEach(form => {
-            form.addEventListener('submit', (event) => {
-                const confirmation = confirm("Êtes-vous sûr de vouloir arrêter cette option ?\nVous serez facturé pour le nombre de semaines entamées, sauf arrêt le jour du lancement");
-                if (!confirmation) {
-                    event.preventDefault(); // Empêche la soumission si l'utilisateur annule
-                }
-            });
-        });
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const button1 = document.getElementById("button1");
-        const button2 = document.getElementById("button2");
-        const form1 = document.getElementById("formOpt1");
-        const form2 = document.getElementById("formOpt2");
-
-        if (button1 && form1) {
-            // Ajouter un listener de clic au bouton
-            button1.addEventListener("click", (event) => {
-                const confirmation = confirm("Êtes-vous sûr de vouloir ajouter cette option ?\nVous serez facturé pour toutes les options en cours, sauf si arrêté le jour du lancement");
-                if (confirmation) {
-                    event.preventDefault(); // Empêche l'action par défaut du bouton
-                    form1.submit(); // Soumet le formulaire correspondant
-                }
-            });
-        }
-
-        if (button2 && form2) {
-            // Ajouter un listener de clic au bouton
-            button2.addEventListener("click", (event) => {
-                const confirmation = confirm("Êtes-vous sûr de vouloir ajouter cette option ?\nVous serez facturé pour toutes les options en cours, sauf si arrêté le jour du lancement");
-                if (confirmation) {
-                    event.preventDefault(); // Empêche l'action par défaut du bouton
-                    form2.submit(); // Soumet le formulaire correspondant
-                }
-            });
-        }
-
-        const toggles = document.querySelectorAll(".datePickerToggle");
-
-    toggles.forEach(toggle => {
-        toggle.addEventListener("change", function () {
-            const form = this.closest("form");
-            const datePicker = form.querySelector(".datePicker");
-            const toggleMessage = form.closest("aside").querySelector(".toggleMessage");
-
-            if (this.checked) {
-                datePicker.style.display = "block"; // Affiche le date picker
-                if (toggleMessage) {
-                    toggleMessage.style.display = "none"; // Cache le message
-                }
-            } else {
-                datePicker.style.display = "none"; // Cache le date picker
-                if (toggleMessage) {
-                    toggleMessage.style.display = "block"; // Affiche à nouveau le message
-                }
+            function updatePrice() {
+                const nbWeeks = parseInt(nbWeekInput.value) || 0; // Récupère la valeur ou 0 si vide
+                const totalPrice = nbWeeks * pricePerWeek;
+                totalPriceElement.textContent = `Prix total : ${totalPrice}€`;
             }
-        });
-    });
 
-    const tabs = document.querySelectorAll('.tab');
-    const contents = document.querySelectorAll('.contentPop');
-    const trait = document.querySelector('.traitBouge'); // Trait qui se déplace
+            // Mise à jour initiale
+            updatePrice();
 
-    // Fonction pour mettre à jour la position et la taille du trait sous les onglets
-    function updateUnderline() {
-        const activeTab = document.querySelector('.tab.active');
-        const tabWidth = activeTab.offsetWidth;
-        const tabOffset = activeTab.offsetLeft;
-        trait.style.width = `40%`; // Ajuste la largeur du trait
-        trait.style.transform = `translateX(${tabOffset}px)`; // Déplace le trait sous l'onglet actif
-    }
+            // Ajout d'un écouteur d'événement sur le champ de saisie
+            nbWeekInput.addEventListener('input', updatePrice);
 
-    // Ajoute l'événement click sur chaque onglet
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function () {
-            const targetTab = this; // Onglet cliqué
+            const nbWeekInput2 = document.getElementById('nbWeekEnRelief');
+            const totalPriceElement2 = document.getElementById('totalPrice2');
+            const pricePerWeek2 = 10; // Prix par semaine
 
-            // Active l'onglet et désactive les autres
-            tabs.forEach(t => t.classList.remove('active'));
-            targetTab.classList.add('active');
+            function updatePrice2() {
+                const nbWeeks2 = parseInt(nbWeekInput2.value) || 0; // Récupère la valeur ou 0 si vide
+                const totalPrice2 = nbWeeks2 * pricePerWeek2;
+                totalPriceElement2.textContent = `Prix total : ${totalPrice2}€`;
+            }
 
-            // Affiche le contenu associé et cache les autres
-            const targetContent = document.getElementById(`content-${targetTab.dataset.tab}`);
-            contents.forEach(content => {
-                if (content === targetContent) {
-                    content.classList.add('active');
-                } else {
-                    content.classList.remove('active');
-                }
+            // Mise à jour initiale
+            updatePrice2();
+
+            // Ajout d'un écouteur d'événement sur le champ de saisie
+            nbWeekInput2.addEventListener('input', updatePrice2);
+
+            const forms = document.querySelectorAll('.confirmation-form');
+            forms.forEach(form => {
+                form.addEventListener('submit', (event) => {
+                    const confirmation = confirm("Êtes-vous sûr de vouloir resilier cette option ?\nVous ne serez pas facturé pour cette option");
+                    if (!confirmation) {
+                        event.preventDefault(); // Empêche la soumission si l'utilisateur annule
+                    }
+                });
             });
 
-            // Met à jour la position et la largeur du trait
-            updateUnderline();
+            const forms2 = document.querySelectorAll('.confirmation-form-arr');
+            forms2.forEach(form => {
+                form.addEventListener('submit', (event) => {
+                    const confirmation = confirm("Êtes-vous sûr de vouloir arrêter cette option ?\nVous serez facturé pour le nombre de semaines entamées, sauf arrêt le jour du lancement");
+                    if (!confirmation) {
+                        event.preventDefault(); // Empêche la soumission si l'utilisateur annule
+                    }
+                });
+            });
         });
-    });
 
-    // Initialiser le premier onglet comme actif
-    updateUnderline(); // Met à jour la position du trait dès que la page est chargée
-});
+        document.addEventListener('DOMContentLoaded', function() {
+            const button1 = document.getElementById("button1");
+            const button2 = document.getElementById("button2");
+            const form1 = document.getElementById("formOpt1");
+            const form2 = document.getElementById("formOpt2");
+
+            if (button1 && form1) {
+                // Ajouter un listener de clic au bouton
+                button1.addEventListener("click", (event) => {
+                    const confirmation = confirm("Êtes-vous sûr de vouloir ajouter cette option ?\nVous serez facturé pour toutes les options en cours, sauf si arrêté le jour du lancement");
+                    if (confirmation) {
+                        event.preventDefault(); // Empêche l'action par défaut du bouton
+                        form1.submit(); // Soumet le formulaire correspondant
+                    }
+                });
+            }
+
+            if (button2 && form2) {
+                // Ajouter un listener de clic au bouton
+                button2.addEventListener("click", (event) => {
+                    const confirmation = confirm("Êtes-vous sûr de vouloir ajouter cette option ?\nVous serez facturé pour toutes les options en cours, sauf si arrêté le jour du lancement");
+                    if (confirmation) {
+                        event.preventDefault(); // Empêche l'action par défaut du bouton
+                        form2.submit(); // Soumet le formulaire correspondant
+                    }
+                });
+            }
+
+            const toggles = document.querySelectorAll(".datePickerToggle");
+
+            toggles.forEach(toggle => {
+                toggle.addEventListener("change", function() {
+                    const form = this.closest("form");
+                    const datePicker = form.querySelector(".datePicker");
+                    const toggleMessage = form.closest("aside").querySelector(".toggleMessage");
+
+                    if (this.checked) {
+                        datePicker.style.display = "block"; // Affiche le date picker
+                        if (toggleMessage) {
+                            toggleMessage.style.display = "none"; // Cache le message
+                        }
+                    } else {
+                        datePicker.style.display = "none"; // Cache le date picker
+                        if (toggleMessage) {
+                            toggleMessage.style.display = "block"; // Affiche à nouveau le message
+                        }
+                    }
+                });
+            });
+
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.contentPop');
+            const trait = document.querySelector('.traitBouge'); // Trait qui se déplace
+
+            // Fonction pour mettre à jour la position et la taille du trait sous les onglets
+            function updateUnderline() {
+                const activeTab = document.querySelector('.tab.active');
+                const tabWidth = activeTab.offsetWidth;
+                const tabOffset = activeTab.offsetLeft;
+                trait.style.width = `40%`; // Ajuste la largeur du trait
+                trait.style.transform = `translateX(${tabOffset}px)`; // Déplace le trait sous l'onglet actif
+            }
+
+            // Ajoute l'événement click sur chaque onglet
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetTab = this; // Onglet cliqué
+
+                    // Active l'onglet et désactive les autres
+                    tabs.forEach(t => t.classList.remove('active'));
+                    targetTab.classList.add('active');
+
+                    // Affiche le contenu associé et cache les autres
+                    const targetContent = document.getElementById(`content-${targetTab.dataset.tab}`);
+                    contents.forEach(content => {
+                        if (content === targetContent) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+
+                    // Met à jour la position et la largeur du trait
+                    updateUnderline();
+                });
+            });
+
+            // Initialiser le premier onglet comme actif
+            updateUnderline(); // Met à jour la position du trait dès que la page est chargée
+        });
 
 
 
-    const modal = document.getElementById("myModal");
-    const openModalBtn = document.getElementById("openModalBtn");
-    const closeModalBtn = document.querySelector(".close");
-    const popupForm = document.getElementById("popupForm");
-    const body = document.body;
-    console.log("js1");
-    // Fonction pour afficher le modal
-    function openModal() {
-    console.log("hop");
-      modal.style.display = "block";
-      body.classList.add("no-scroll");
-    }
-    console.log("js2");
-    // Fonction pour fermer le modal
-    function closeModal() {
-      modal.style.display = "none";
-      body.classList.remove("no-scroll");
-    }
-    console.log("js3");
-    // Ouvrir le popup lorsque le bouton est cliqué
-    openModalBtn.onclick = openModal;
-    console.log("js4");
-    // Fermer le popup lorsqu'on clique sur la croix
-    closeModalBtn.onclick = closeModal;
-    console.log("js5");
-    // Fermer le popup lorsqu'on clique en dehors du contenu
-    // window.onclick = function(event) {
-    //   if (event.target === modal) {
-    //     closeModal();
-    //   }
-    // }
+        const modal = document.getElementById("myModal");
+        const openModalBtn = document.getElementById("openModalBtn");
+        const closeModalBtn = document.querySelector(".close");
+        const popupForm = document.getElementById("popupForm");
+        const body = document.body;
+        console.log("js1");
+        // Fonction pour afficher le modal
+        function openModal() {
+            console.log("hop");
+            modal.style.display = "block";
+            body.classList.add("no-scroll");
+        }
+        console.log("js2");
+        // Fonction pour fermer le modal
+        function closeModal() {
+            modal.style.display = "none";
+            body.classList.remove("no-scroll");
+        }
+        console.log("js3");
+        // Ouvrir le popup lorsque le bouton est cliqué
+        openModalBtn.onclick = openModal;
+        console.log("js4");
+        // Fermer le popup lorsqu'on clique sur la croix
+        closeModalBtn.onclick = closeModal;
+        console.log("js5");
+        // Fermer le popup lorsqu'on clique en dehors du contenu
+        // window.onclick = function(event) {
+        //   if (event.target === modal) {
+        //     closeModal();
+        //   }
+        // }
 
-    // Soumettre le formulaire
-    function confirmation() {
-      closeModal(); // Fermer la fenêtre modale après soumission
-    }
-    console.log("js6");
-</script>
+        // Soumettre le formulaire
+        function confirmation() {
+            closeModal(); // Fermer la fenêtre modale après soumission
+        }
+        console.log("js6");
+    </script>
     <script>
         try {
-            
+
         } catch (error) {
 
         }
@@ -1258,6 +1258,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 swiper: swiper,
             },
         });
+        var swiper3 = new Swiper(".mySwiperAvis", {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+            },
+            slidesPerView: 1,
+            spaceBetween: 10,
+            pagination: {
+                el: ".swiper-pagination",
+                dynamicBullets: true,
+            },
+        });
 
 
         function showMessage(event) {
@@ -1323,9 +1335,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             });
 
             /** fin script chargement composant */
-        } catch {
-        }
-
+        } catch {}
     </script>
     <script src="js/setColor.js"></script>
 </body>

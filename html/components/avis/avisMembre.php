@@ -116,20 +116,3 @@ foreach ($avis as $a) {
 <?php
 }
 ?>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-    var swiper3 = new Swiper(".mySwiperAvis", {
-        loop: true,
-        autoplay: {
-            delay: 5000,
-        },
-        slidesPerView:1,
-        spaceBetween: 10,
-        pagination: {
-            el: ".swiper-pagination",
-            dynamicBullets: true,
-        },
-    });
-
-</script>
