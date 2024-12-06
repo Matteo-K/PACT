@@ -189,14 +189,13 @@
         <div id="messageErreur" class="messageErreur"></div>
 
         <form id = "formPro" action="changeAccountPro.php" method="post" enctype="multipart/form-data">
-
-
+            
             <div id="divPFPactuelle">
                 <img src="<?= $photoPath ?>" alt="Photo de Profil" id="current-profile-pic">
             </div>
 
             <div id="divNewPFP">
-                <input type="file" id="profile-pic" name="profile-pic" accept="image/*" required>
+                <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
             </div>
 
 

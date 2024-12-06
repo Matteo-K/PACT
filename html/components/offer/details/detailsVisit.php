@@ -154,8 +154,8 @@ if ($categorie["_visite"]) {
                 accessText.className = 'access-text';
 
                 // Ajouter un bouton de suppression
-                const removeBtn = document.createElement('button');
-                removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; // Symbole "×" stylisé
+                let removeBtn = document.createElement("img");
+                removeBtn.setAttribute("src", "../../img/icone/croix.png");
                 removeBtn.className = 'remove-btn';
 
                 // Action pour retirer l'option lorsqu'on clique sur le bouton
@@ -222,14 +222,16 @@ if ($categorie["_visite"]) {
                 langText.textContent = selectedValue;
                 langText.className = 'lang-text';
 
-                // Ajouter un bouton de suppression avec une icône
+                // Ajouter un bouton de suppression 
                 let removeBtn = document.createElement("img");
                 removeBtn.setAttribute("src", "../../img/icone/croix.png");
                 removeBtn.className = 'remove-btn';
                 
                 //Style de l'image
                 removeBtn.style.width='12px';
-                removeBtn.style.height='18px';
+                removeBtn.style.height='12px';
+                removeBtn.style.alignItems='center';
+
                 removeBtn.style.margin='auto 0 auto 5px'
                 // Pour supprimer le tag 
                 removeBtn.addEventListener('click', function () {

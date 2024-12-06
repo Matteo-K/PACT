@@ -1141,7 +1141,11 @@ header ul+div {
 
 /* Prix par mois */
 #selectOffer>div:first-child>div h3 {
-  margin-top: -20px;
+  margin: 10px;
+}
+
+#selectOffer>div:first-child>div h2 {
+  margin-bottom: 0;
 }
 
 /* Bouton séletionner */
@@ -4112,11 +4116,11 @@ details .nonLu, details .nonRepondu{
   margin: 0 auto;
 }
 
-#sectionPreview p, h4, h2{
+#sectionPreview p, #sectionPreview h4, #sectionPreview h2{
   font-size: 25px;
 }
 
-#sectionPreview h4, h2{
+#sectionPreview h4, #sectionPreview h2{
   font-size: 35px;
 }
 
@@ -5171,11 +5175,7 @@ main[id="mainChangerMDP"] {
 
 div[id=divPFPactuelle] img {
   border-radius: 90%;
-  margin-top: 30px;
-  width: 120px;
-  height: 120px;
-}
-
-div[id=divNewPFP] input {
-  height: 30px;
+  margin-top: 25px;
+  width: 130px;
+  height: 130px;
 }
