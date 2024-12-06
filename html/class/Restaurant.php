@@ -34,6 +34,7 @@ class Restaurant extends Offer {
   }
 
   public function displayCardOffer() {
+    $offre = parent::getData();
     $idOffre = $offre["idOffre"];
     $nomOffre = $offre["nomOffre"];
     $urlImg = $offre["images"][0] ?? "";
@@ -45,7 +46,7 @@ class Restaurant extends Offer {
     $noteAvg = $offre["noteAvg"];
 
     // Récupération ouvert Fermé
-    $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi);
+    $restaurantOuvert = parent::statutOuverture($this->horaireSoir, $this->horaireMidi);
     require __DIR__."/../components/cardOffer.php";
   }
 
@@ -60,7 +61,7 @@ class Restaurant extends Offer {
     $tag = $offre["tags"];
     $resume = $offre["resume"];
     $noteAvg = $offre["noteAvg"];
-    $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi);
+    $restaurantOuvert = parent::statutOuverture($this->horaireSoir, $this->horaireMidi);
     $statut = $offre["statut"];
     require __DIR__."/../components/cardOfferPro.php";
   }
