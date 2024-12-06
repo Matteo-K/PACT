@@ -224,18 +224,18 @@ if ($categorie["_visite"]) {
 
                 // Ajouter un bouton de suppression avec une icône
 
-                 const removeBtn = document.createElement('button');
-                 removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; 
-                 removeBtn.className = 'remove-btn';
+                //  const removeBtn = document.createElement('button');
+                //  removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; 
+                //  removeBtn.className = 'remove-btn';
 
                 // Pour supprimer le tag 
                 removeBtn.addEventListener('click', function () {
                     sectionLangue.removeChild(langDiv);
                 });
 
-                // Ajouter le texte et le bouton au conteneur de langue
+                
                 langDiv.appendChild(langText);
-                langDiv.appendChild(removeBtn);
+              //  langDiv.appendChild(removeBtn);
 
                 // Appliquer un style visuel au conteneur
 
