@@ -539,7 +539,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         if ($result[0]['categorie'] == "Restaurant") {
                             array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
                         }
-
+                        echo "<div class='divTag'>";
                         foreach ($tags as $tag):
                             if ($tag["nomtag"] != NULL) {
                         ?>
@@ -560,6 +560,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <a class="ferme" href="search.php?search=ferme">Fermé</a>
                         <?php
                         }
+                        echo "</div";
                         ?>
 
                     </div>
