@@ -124,6 +124,7 @@ foreach ($avis as $a) {
         autoplay: {
             delay: 5000,
         },
+        slidesPerView:1,
         spaceBetween: 10,
         pagination: {
             el: ".swiper-pagination",
