@@ -3223,7 +3223,7 @@ section#infoComp div {
 /** AVIS **/
 
 .avis {
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -3234,15 +3234,15 @@ section#infoComp div {
 
 .avis>nav {
   display: flex;
+  width: 95%;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 10em;
+  justify-content: space-evenly;
 }
 
 #avis-section,
 #avis-section>#avis-component {
-  width: 100%;
+  width: 95%;
   flex-direction: column;
   gap: 3em;
   justify-content: center;
@@ -3814,6 +3814,8 @@ details .nonRepondu {
   position: absolute;
   top: -0.25em;
   left: 0;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 
@@ -3845,7 +3847,7 @@ details .nonRepondu {
 
 
 /* Partie réponse du pro */
-#avisproS2>form {
+#avisproS2 form {
   display: none;
   /*display: flex;*/
   flex-wrap: wrap;
@@ -3854,13 +3856,13 @@ details .nonRepondu {
   margin: 20px 0;
 }
 
-#avisproS2>form>h2 {
+#avisproS2 form h2 {
   text-align: left;
   width: 70%;
   display: inline-block;
 }
 
-#avisproS2>form>input[type="submit"] {
+#avisproS2 form input[type="submit"] {
   height: 45px;
   padding: 5px 30px;
   border: none;
@@ -3868,7 +3870,7 @@ details .nonRepondu {
   font-size: 20px;
 }
 
-#avisproS2>form>textarea {
+#avisproS2 form textarea {
   min-width: calc(100%);
   max-width: calc(100% + 40px);
   font-size: 20px;
@@ -3876,6 +3878,41 @@ details .nonRepondu {
   min-height: 150px;
   max-height: 300px;
 }
+
+/* Affichage de la réponse de l'avis si existante */
+
+.conteneurReponsePro {
+  display: flex;
+  flex-wrap: nowrap;
+  width: calc(100% + 40px);
+  margin: 10px 0;
+}
+
+.conteneurReponsePro>img {
+  height: 5%;
+  width: 5%;
+  margin: 0.5em;
+  transform: scaleY(-1);
+  rotate: -90deg;
+}
+
+.conteneurReponsePro>article {
+  width: 90%;
+  padding: 20px;
+  background-color: var(--secondary60);
+  border-radius: 20px;
+}
+
+.conteneurReponsePro h3 {
+  margin: 0;
+}
+
+.conteneurReponsePro p {
+  margin: 0;
+  font-size: 20px;
+}
+
+
 
 /** Ecrire Avis */
 
@@ -3936,7 +3973,7 @@ details .nonRepondu {
 /* Style pour les étoiles */
 #note {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 5px;
   margin-bottom: 15px;
 }
@@ -4029,36 +4066,6 @@ details .nonRepondu {
 
 .soumission {
   justify-content: flex-end;
-}
-
-
-/* Affichage de la réponse de l'avis si existante */
-
-.conteneurReponsePro {
-  display: flex;
-  flex-wrap: nowrap;
-  width: calc(100% + 40px);
-  margin: 10px 0;
-}
-
-.conteneurReponsePro>img {
-  height: 5%;
-  width: 5%;
-  margin: 0.5em;
-  transform: scaleY(-1);
-  rotate: -90deg;
-}
-
-.conteneurReponsePro>article {
-  width: 90%;
-  padding: 20px;
-  background-color: var(--secondary60);
-  border-radius: 20px;
-}
-
-.conteneurReponsePro > p {
-  margin: 0;
-  font-size: 20px;
 }
 
 
@@ -4232,6 +4239,11 @@ details .nonRepondu {
   }
 
   /** Responsive Avis **/
+
+  .avis>nav>h3 {
+    font-size: clamp(0.5em, 10vw, 2.5em);
+    font-weight: 500;
+  }
 
   .avis>div {
     flex-direction: column;

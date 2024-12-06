@@ -45,7 +45,7 @@ function getSchedules()
 
 
     // Vérifier si les résultats existent
-    if ($result[0]) {
+    if ($result) {
         // Traitement des horaires midi
         if ($result[0]['listhorairemidi']) {
             // Remplacer les { et } uniquement dans les parties de l'objet qui ne sont pas des horaires
@@ -168,7 +168,7 @@ if (!$result) {
 ?>
     <form id="manageOfferAuto" action="manageOffer.php" method="post">
         <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-        <input type="hiddedn" name="page" value="2">
+        <input type="hidden" name="page" value="2">
     </form>
     <script>
         document.getElementById("manageOfferAuto").submit();
