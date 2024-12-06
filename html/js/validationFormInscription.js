@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
         window.history.back();
     });
 
-
     // Vérifier si des erreurs ont été passées du côté serveur et les afficher
     // if (messageErreurDiv.innerHTML.trim() !== "") {
     //     messageErreurDiv.classList.add('show');
@@ -219,36 +218,4 @@ document.addEventListener('DOMContentLoaded', function () {
             form.submit();
         }
     }); 
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const messageErreurDiv = document.getElementById('messageErreur');
-    const form = document.getElementById('formPro') || document.getElementById('formMember');
-
-    // Récupérer les éléments pour la photo de profil
-    const profilePicInput = document.getElementById('profile-pic');
-    const currentProfilePic = document.getElementById('current-profile-pic');
-
-    // Vérifier si les éléments existent avant d'ajouter un événement
-    if (profilePicInput && currentProfilePic) {
-        profilePicInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];  // Récupérer le fichier sélectionné
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    // Mettre à jour immédiatement l'élément image avec la nouvelle source
-                    currentProfilePic.src = e.target.result;
-                };
-
-                // Lire le fichier sélectionné comme une URL de données (Data URL)
-                reader.readAsDataURL(file);
-            }
-        });
-    }
-
-    // Reste du code pour gérer les erreurs, la validation, etc.
-    // ...
 });
