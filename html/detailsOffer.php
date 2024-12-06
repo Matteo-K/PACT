@@ -889,7 +889,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($typeOffer == "Parc Attraction") {
         if($result[0]['urlplan']){
         ?>
+        <div>
+            <h2>Plan du parc :</h2>
             <img src="<?php echo $result[0]["urlplan"] ?>">
+        </div>
         <?php
         }
         
@@ -903,7 +906,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
         <div class="divMenu">
-            <h2>Menu</h2>
+            <h2>Menu :</h2>
             <div class="swiper-container menu-container">
                 <div class="swiper menu">
                     <div class="swiper-wrapper">
@@ -942,7 +945,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div id="publiez-component" style="display: none;">
                     <?php 
                     if($isLoggedIn){
-                        require_once __DIR__ . "/components/avis/ecrireAvis.php"; 
+                        $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ? AND idu = ?");
+                        $stmt->execute([$idOffre, $idUser]);
+                        $existingReview = $stmt->fetch();
+
+                        if ($existingReview) {
+                            // L'utilisateur a déjà laissé un avis pour cette offre
+                            echo '<p>Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre</p>';
+                        }else{
+                            require_once __DIR__ . "/components/avis/ecrireAvis.php"; 
+                        }
                     }else {
                         ?>
                         <p>Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></p>

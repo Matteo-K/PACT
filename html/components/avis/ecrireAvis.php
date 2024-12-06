@@ -1,10 +1,14 @@
 <?php
-function listImage($idOffre, $idComment) {
+function listImage($idOffre, $idComment)
+{
     // Chemin du dossier où les images sont stockées
-    $dossier = realpath('../img/imageAvis/' . $idOffre . '/' . $idComment . '/');
+    $dossier = 'img/imageAvis/' . $idOffre . '/' . $idComment . '/';
+
+    // Affiche le chemin pour le débogage
+    echo "Chemin du dossier : " . $dossier . "<br>";
 
     // Vérifie si le dossier existe et est valide
-    if ($dossier === false || !is_dir($dossier)) {
+    if (!is_dir($dossier)) {
         return ['success' => false, 'message' => 'Le dossier n\'existe pas ou est invalide.'];
     }
 
@@ -35,6 +39,7 @@ function listImage($idOffre, $idComment) {
         return ['success' => false, 'message' => 'Aucune image valide trouvée.'];
     }
 }
+
 
 
 
@@ -89,7 +94,7 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 
 // Traitement des données envoyées par le formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
-
+    $_SESSION['review_success'] = "Avis soumis avec succès!";
     // Préparation des données
     $note = $_POST['note'];
     $dateAvis = $_POST['date'];
@@ -109,9 +114,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
     // Tableau des mois en lettres
     $months = [
-        '01' => 'Janvier', '02' => 'Février', '03' => 'Mars', '04' => 'Avril',
-        '05' => 'Mai', '06' => 'Juin', '07' => 'Juillet', '08' => 'Août',
-        '09' => 'Septembre', '10' => 'Octobre', '11' => 'Novembre', '12' => 'Décembre'
+        '01' => 'Janvier',
+        '02' => 'Février',
+        '03' => 'Mars',
+        '04' => 'Avril',
+        '05' => 'Mai',
+        '06' => 'Juin',
+        '07' => 'Juillet',
+        '08' => 'Août',
+        '09' => 'Septembre',
+        '10' => 'Octobre',
+        '11' => 'Novembre',
+        '12' => 'Décembre'
     ];
     $monthInWords = $months[$month] ?? 'Inconnu'; // Gérer les mois invalides
 
@@ -124,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     $stmt = $conn->prepare("INSERT INTO pact._avis (idc, idoffre, note, companie, mois, annee, titre, lu) 
     VALUES (?, ?, ?, ?, ?, ?, ?, false)");
     $stmt->execute([$idComment, $idOffre, $note, $compagnie, $monthInWords, $year, $titreAvis]);
-    
+
 
     // Déplacer les images vers le dossier de l'offre
     $moveResult = moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, "img/imageAvis/");
@@ -136,32 +150,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     print_r($mesImages);
 
     foreach ($mesImages['files'] as $file) {
-    $fileName = pathinfo($file, PATHINFO_BASENAME);
-    
-    // Exécution de l'insertion de l'image
-    if (!$image->execute([$file, $fileName])) {
-        $result['errors'][] = "Erreur lors de l'insertion de l'image dans la base de données.";
-    }
-    
-    // Exécution de l'insertion dans la table _avisimage
-    if (!$imageAvis->execute([$idComment, $file])) {
-        $result['errors'][] = "Erreur lors de l'insertion de l'image liée à l'avis dans la base de données.";
-    }
-}
+        $fileName = pathinfo($file, PATHINFO_BASENAME);
 
-    $note = "";
-    $dateAvis = "";
-    $compagnie = "";
-    $titreAvis = "";
-    $texteAvis = "";
-    $idOffre = "";
-    $uniqueId = "";
+        // Exécution de l'insertion de l'image
+        if (!$image->execute([$file, $fileName])) {
+            $result['errors'][] = "Erreur lors de l'insertion de l'image dans la base de données.";
+        }
+
+        // Exécution de l'insertion dans la table _avisimage
+        if (!$imageAvis->execute([$idComment, $file])) {
+            $result['errors'][] = "Erreur lors de l'insertion de l'image liée à l'avis dans la base de données.";
+        }
+    }
+?>
+    <script>
+        let form = document.createElement('form');
+        form.action = "detailsOffer";
+        form.method = "post";
+
+        let input = document.createElement('input');
+        input.type = "hidden";
+        input.name = "idoffre";
+        input.value = <?= $idOffre ?>; // Make sure this is correctly echoed into the JavaScript
+
+        form.appendChild(input);
+        document.body.appendChild(form); // Append the form to the body (or another container)
+
+        form.submit(); // Call submit method with parentheses to submit the form
+    </script>
+<?php
 
 }
 ?>
-
-
-
 <section>
     <form id="formCreationAvis" action="detailsOffer.php" method="post" enctype="multipart/form-data">
         <div id="note">
@@ -223,7 +243,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
         <!-- Photos -->
         <div>
-            <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+            <label for="ajoutPhoto" class="classAjouterPhotos">Ajouter des Photos</label>
             <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
             <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
             <input
@@ -233,17 +253,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
                 accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
                 multiple
                 onchange="handleFiles(this)" />
-            <div id="afficheImages"></div>
+            <div id="afficheImagesAvis"></div>
+        </div>
+        <!-- Consentement -->
+        <div>
+            <input id="consentement" name="consentement" type="checkbox" required>
+            <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
+        </div>
 
-            <!-- Consentement -->
-            <div>
-                <input id="consentement" name="consentement" type="checkbox" required>
-                <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
-            </div>
-
-            <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
-
+        <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
+        <div class="soumission">
             <button type="submit">Soumettre l'avis</button>
+        </div>
     </form>
 </section>
 
@@ -322,24 +343,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             });
         }
     });
+    const maxImages = 3; // Nombre maximum d'images autorisé
+    let nbImageTotaleInAvis = 0; // Compteur global
 
     function handleFiles(inputElement) {
-        const maxImages = 3;
         const files = inputElement.files;
         const formData = new FormData();
-        const afficheImages = document.getElementById("afficheImages");
 
-        // Vérifie le nombre d'images à uploader
-        if (files.length > maxImages) {
-            alert(`Vous pouvez sélectionner au maximum ${maxImages} fichiers.`);
+        // Vérifie si l'ajout dépasse la limite maximale
+        if (nbImageTotaleInAvis + files.length > maxImages) {
+            alert(`Vous ne pouvez ajouter que ${maxImages - nbImageTotaleInAvis} image(s) supplémentaire(s).`);
+            inputElement.value = ""; // Réinitialise le champ file
             return;
         }
 
+        // Ajoute chaque fichier au FormData pour l'upload
         for (let i = 0; i < files.length; i++) {
             formData.append("images[]", files[i]);
         }
 
-        // Ajoute un ID unique à l'upload pour un dossier temporaire
+        // Ajoute l'ID unique pour le dossier temporaire
         formData.append("unique_id", uniqueId);
 
         // Envoie les fichiers au serveur via une requête AJAX
@@ -350,19 +373,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
-                    displayUploadedFiles(uniqueId); // Met à jour dynamiquement les images
+                    nbImageTotaleInAvis += files.length; // Met à jour le compteur
+                    displayUploadedFiles(uniqueId); // Met à jour l'affichage des images
                 } else {
                     alert("Erreur lors de l'upload : " + data.message);
+                    inputElement.value = ""; // Réinitialise le champ en cas d'échec
                 }
             })
             .catch((error) => {
                 console.error("Erreur lors de la requête :", error);
                 alert("Une erreur est survenue pendant l'upload.");
+                inputElement.value = ""; // Réinitialise le champ en cas d'erreur
             });
     }
 
     function displayUploadedFiles(uniqueId) {
-        const afficheImages = document.getElementById("afficheImages");
+        const afficheImages = document.getElementById("afficheImagesAvis");
         afficheImages.innerHTML = ""; // Réinitialise l'affichage
 
         fetch(`uploadImageAvisTemp/list_temp_files.php?unique_id=${uniqueId}`)
@@ -381,7 +407,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
                         img.style.margin = "10px";
 
                         const deleteIcon = document.createElement("img");
-                        deleteIcon.src = "img/icone/croix.png"; // Remplace par le chemin de ton image de croix
+                        deleteIcon.src = "img/icone/croix.png";
                         deleteIcon.alt = "Supprimer";
                         deleteIcon.style.width = "20px";
                         deleteIcon.style.height = "20px";
@@ -413,7 +439,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
         formData.append("fileUrl", fileUrl); // L'URL du fichier à supprimer
         formData.append("unique_id", uniqueId); // L'ID unique pour le dossier temporaire
 
-        // Envoi de la requête AJAX pour supprimer le fichier
         fetch("uploadImageAvisTemp/delete_temp_files.php", {
                 method: "POST",
                 body: formData
@@ -421,8 +446,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Si la suppression est réussie, retire l'image du DOM
-                    imageContainer.remove();
+                    nbImageTotaleInAvis--; // Décrémente le compteur
+                    imageContainer.remove(); // Supprime l'image du DOM
                 } else {
                     alert("Erreur lors de la suppression de l'image : " + data.message);
                 }

@@ -46,8 +46,6 @@ function formatDateDiff($date)
     }
 }
 
-
-
 foreach ($avis as $a) {
 ?>
     <div class="messageAvisReponse">
@@ -71,16 +69,15 @@ foreach ($avis as $a) {
                         ?>
                         <p><?= $a['note'] ?> / 5</p>
                     </div>
-                    <img src="./img/icone/trois-points.png" alt="icone de parametre">
+                    <!-- Icône de 3 points pour ouvrir la popup -->
+                    <img src="./img/icone/trois-points.png" alt="icone de parametre" class="openPopup"/>
                 </div>
             </article>
             <article>
                 <div>
                     <div>
                         <p><strong><?= ucfirst($a['titre']) ?></strong></p>
-                        <p><?php if (isset($a['datepublie'])) {
-                                echo formatDateDiff($a["datepublie"]);
-                            } ?></p>
+                        <p><?php if (isset($a['datepublie'])) { echo formatDateDiff($a["datepublie"]); } ?></p>
                     </div>
                     <div>
                         <p>Visité en <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
@@ -89,11 +86,10 @@ foreach ($avis as $a) {
                     </div>
                     <div>
                         <p><?= $a['content'] ?></p>
-                        <?php if ($a['listimage'] != null) {
+                        <?php if ($a['listimage'] != null) { 
                             $listimage = trim($a['listimage'], '{}');
                             $pictures = explode(',', $listimage);
                         ?>
-
                             <div class="swiper-container">
                                 <div class="swiper mySwiperAvis">
                                     <div class="swiper-wrapper">
@@ -110,52 +106,16 @@ foreach ($avis as $a) {
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>
-                        <?php
-                        }
-                        ?>
+                        <?php } ?>
                     </div>
                 </div>
-
             </article>
-
         </div>
-        <?php
-        if ($a['idc_reponse']) {
-        ?>
-            <div>
-                <img src="./img/icone/reponse.png" alt="icone de reponse">
-                <div class="reponseAvis">
-                    <div class="user">
-                        <div class="infoProReponse">
-                            <div>
-                                <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
-                                <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
-                            </div>
-                        </div>
-                        <div class="autreInfoAvis">
-                            <?php
-                            if (isset($a['reponsedate'])) {
-                                echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
-                            }
-                            ?>
-                            <img src="./img/icone/trois-points.png" alt="icone de parametre">
-                        </div>
-
-                    </div>
-                    <article>
-                        <p><?= $a['contenureponse'] ?></p>
-                    </article>
-                </div>
-            </div>
-        <?php
-        }
-        ?>
-
     </div>
-
 <?php
 }
 ?>
+
 
 <script>
     var swiper3 = new Swiper(".mySwiperAvis", {
@@ -172,4 +132,5 @@ foreach ($avis as $a) {
             swiper: swiper,
         },
     });
+
 </script>
