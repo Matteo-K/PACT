@@ -25,6 +25,12 @@
             $stmt = $conn->prepare("SELECT * FROM pact.proprive WHERE idU = ?");
             $stmt->execute([$userId]);
             $userPrivate = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+            // Récupérer la photo de profil de la table _photo_profil
+            $stmtPhoto = $conn->prepare("SELECT * FROM pact._photo_profil WHERE idU = ?");
+            $stmtPhoto->execute([$userId]);
+            $photoProfil = $stmtPhoto->fetch(PDO::FETCH_ASSOC);
         }
 
         // Fusionner les résultats de propublic et proprive, si les deux existent
@@ -144,12 +150,10 @@
 
 
             <div id="divPFPactuelle">
-                <img src="uploads/<?= htmlspecialchars($photoProfil) ?>" alt="Photo de Profil" id="current-profile-pic">
-                <input type="file" id="profile-pic" name="profile-pic" accept="image/*" required>
+                <img src="uploads/<?= htmlspecialchars($user['url']) ?>" alt="Photo de Profil" id="current-profile-pic">
             </div>
 
             <div id="divPFP">
-                <img src="uploads/<?= htmlspecialchars($photoProfil) ?>" alt="Photo de Profil" id="current-profile-pic">
                 <input type="file" id="profile-pic" name="profile-pic" accept="image/*" required>
             </div>
 
