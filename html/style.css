@@ -4112,11 +4112,11 @@ details .nonLu, details .nonRepondu{
   margin: 0 auto;
 }
 
-#sectionPreview p, h4, h2{
+#sectionPreview p, #sectionPreview h4, #sectionPreview h2{
   font-size: 25px;
 }
 
-#sectionPreview h4, h2{
+#sectionPreview h4, #sectionPreview h2{
   font-size: 35px;
 }
 
@@ -5177,5 +5177,5 @@ div[id=divPFPactuelle] img {
 }
 
 div[id=divNewPFP] input {
-  height: 30px;
+  height: 20px;
 }
