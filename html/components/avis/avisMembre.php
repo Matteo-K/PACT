@@ -132,9 +132,6 @@ foreach ($avis as $a) {
             el: ".swiper-pagination",
             dynamicBullets: true,
         },
-        thumbs: {
-            swiper: swiper,
-        },
     });
 
 </script>
