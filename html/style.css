@@ -1230,6 +1230,18 @@ header ul+div {
   padding: 20px;
   padding-bottom: 6%;
 }
+#hourlyOffer input{
+  font-size: 1.2rem;
+  padding: 5px;
+  text-align: center;
+}
+#hourlyOffer [type="text"]{ 
+  width: 100%;
+}
+
+#hourlyOffer label {
+  text-wrap: nowrap;
+}
 
 #hourlyOffer h4,
 #contactOffer h4 {
@@ -1241,6 +1253,8 @@ header ul+div {
   display: flex;
   flex-flow: nowrap row;
   align-items: center;
+  gap: 10px;
+
 }
 
 /* div de saisie */
@@ -1249,7 +1263,10 @@ header ul+div {
 }
 
 #hourlyOffer span {
-  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
 }
 
 #hourlyOffer div>div {
@@ -1295,6 +1312,7 @@ header ul+div {
   flex-flow: column nowrap;
   align-items: center;
   gap: 10px;
+  font-size: 1.3rem;
 }
 
 #msgHoraireSupr {
