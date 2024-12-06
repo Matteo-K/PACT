@@ -3278,6 +3278,7 @@ section#infoComp div {
 .user>div img  {
   width: 2.2em;
   height: 2.2em;
+  border-radius: 50%;
 }
 
 .user, .noteEtoile, .infoUser, .infoProReponse > div, .infoProReponse, .autreInfoAvis {
