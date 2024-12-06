@@ -278,14 +278,14 @@ function filtrerParPrix(offers) {
   return offers.filter(offer => {
     console.log("Categorie " + offer.categorie);
     if (offer.categorie === 'Restaurant') {
+      console.log("Restaurant");
       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
       const prixMinOffreRestaurant = prixRange[0];
       const prixMaxOffreRestaurant = prixRange[1];
 
       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
-    } 
-    
-    else {
+    } else {
+      console.log("Autre");
       const prixMinOffreAutres = (offer.prixMinimal || 0);
       return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
     }
