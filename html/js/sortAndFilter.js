@@ -601,6 +601,9 @@ function displayOffer(offer) {
 function createCard(offer) {
   let card = document.createElement("div");
   card.classList.add("carteOffre");
+  if (offer.option.includes('EnRelief')) {
+    card.classList.add("optionEnRelief");
+  }
 
   // Image principale
   let img = document.createElement("img");
@@ -782,6 +785,7 @@ function displayStar(note) {
 
 function displayAvis(offer) {
   let blcAvis = document.createElement("div");
+  blcAvis.classList.add("blcAvis");
 
   if (!offer.avis || offer.avis.length === 0) {
     blcAvis.textContent = "Aucun avis";

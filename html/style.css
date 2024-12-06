@@ -1141,7 +1141,11 @@ header ul+div {
 
 /* Prix par mois */
 #selectOffer>div:first-child>div h3 {
-  margin-top: -20px;
+  margin: 10px;
+}
+
+#selectOffer>div:first-child>div h2 {
+  margin-bottom: 0;
 }
 
 /* Bouton séletionner */
@@ -1156,6 +1160,7 @@ header ul+div {
   display: flex;
   flex-flow: column nowrap;
   gap: clamp(10px, 2vh, 25px);
+  margin-top: 10%; 
 }
 
 #selectOffer>div:first-child>div li {
@@ -1966,6 +1971,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .searchAvis {
   padding: 5px;
+  width: 600px;
 }
 
 .searchAvis > div:nth-child(1) {
@@ -1975,17 +1981,32 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: space-between;
 }
 
+.blcAvis {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 .avisSearch {
   font-size: 1em;
+  width: 50%;
+  margin-inline: 10px;
 }
 
 .avisSearch .star {
   width: 1.2rem;
   height: 1.2rem;
 }
+.avisSearch h5 {
+  margin: 0;
+  margin-top: 2px;
+}
 
 .searchUser {
   font-size: 12px;
+}
+
+.optionEnRelief {
+  background-color: var(--primary20);
 }
 
 .searchA {
@@ -2056,6 +2077,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .blcStarSearch {
   display: flex;
+  margin-bottom: 2%;
 }
 
 .noteSearch {
@@ -3158,9 +3180,10 @@ section#infoComp div {
 
 #avis-section, #avis-section > #avis-component {
     width: 100%;
+    flex-direction: column;
     gap: 3em;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
 }
 
@@ -4112,11 +4135,11 @@ details .nonLu, details .nonRepondu{
   margin: 0 auto;
 }
 
-#sectionPreview p, h4, h2{
+#sectionPreview p, #sectionPreview h4, #sectionPreview h2{
   font-size: 25px;
 }
 
-#sectionPreview h4, h2{
+#sectionPreview h4, #sectionPreview h2{
   font-size: 35px;
 }
 
@@ -5171,11 +5194,7 @@ main[id="mainChangerMDP"] {
 
 div[id=divPFPactuelle] img {
   border-radius: 90%;
-  margin-top: 30px;
-  width: 120px;
-  height: 120px;
-}
-
-div[id=divNewPFP] input {
-  height: 30px;
+  margin-top: 25px;
+  width: 130px;
+  height: 130px;
 }

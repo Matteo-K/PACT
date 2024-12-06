@@ -26,6 +26,21 @@
             header("Location: index.php");
             exit();
         }
+
+
+        // Récupérer la photo de profil de la table _photo_profil
+        $stmtPhoto = $conn->prepare("SELECT * FROM pact._photo_profil WHERE idU = ?");
+        $stmtPhoto->execute([$userId]);
+        $photoProfil = $stmtPhoto->fetch(PDO::FETCH_ASSOC);
+
+        if ($photoProfil) {
+            $photoPath = $photoProfil['url'];  // Le chemin de l'image
+        } 
+        
+        else {
+            // Si aucune photo n'est trouvée, utiliser une image par défaut
+            $photoPath = './img/profile_picture/default.svg';
+        }
     } 
     
     catch (Exception $e) {
@@ -46,6 +61,58 @@
         $adresse = trim($_POST['adresse']);
         $code = trim($_POST['code']);
         $ville = trim($_POST['ville']);
+
+        // Photo de profil
+        $file = $_FILES['profile-pic'];
+
+        // Vérifier si un fichier a été envoyé
+        if (isset($_FILES['profile-pic']) && $_FILES['profile-pic']['error'] === UPLOAD_ERR_OK) {
+            // Récupérer le fichier téléchargé
+            $file = $_FILES['profile-pic'];
+        
+            // Définir les types de fichiers autorisés
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        
+            // Vérifier si le type de fichier est autorisé
+            if (in_array($file['type'], $allowedTypes)) {
+                // Définir le répertoire de destination pour l'upload
+                $targetDir = './img/profile_picture/';
+                
+                // Vérifier si le répertoire existe, sinon créer le répertoire
+                if (!is_dir($targetDir)) {
+                    mkdir($targetDir, 0777, true);  // Créer le répertoire avec les bonnes permissions
+                }
+        
+                // Créer un nom de fichier unique pour éviter les collisions
+                $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
+        
+                // Déplacer le fichier téléchargé vers le répertoire de destination
+                if (move_uploaded_file($file['tmp_name'], $targetFile)) {
+                    try {
+                        // Mettre à jour l'URL de la photo de profil dans la base de données
+                        $stmt = $conn->prepare("UPDATE pact._photo_profil SET url = ? WHERE idU = ?");
+                        $stmt->execute([$targetFile, $userId]);
+                        
+                        $_SESSION['success'] = "Photo de profil mise à jour avec succès.";
+                        header("Location: changeAccountPro.php");
+                        exit();
+                    } 
+                    
+                    catch (Exception $e) {
+                        $_SESSION['errors'][] = "Erreur lors de la mise à jour de la photo : " . $e->getMessage();
+                    }
+                } 
+                
+                else {
+                    $_SESSION['errors'][] = "Échec du téléchargement de l'image.";
+                }
+            } 
+            
+            else {
+                $_SESSION['errors'][] = "Seules les images JPG, PNG ou GIF sont autorisées.";
+            }
+        }
+
 
         // // Si l'adresse mail a été modifié, vérifier si elle existe déjà
         if ($mail !== $user['mail']) {
@@ -121,6 +188,16 @@
         ?>
 
         <form id = "formMember" action="changeAccountMember.php" method="post" enctype="multipart/form-data">
+
+            <div id="divPFPactuelle">
+                <img src="<?= $photoPath ?>" alt="Photo de Profil" id="current-profile-pic">
+            </div>
+
+            <div id="divNewPFP">
+                <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
+            </div>
+
+
             <div class="ligne1">
                 <label  id="labelPrenom" for="prenomMembre">Prénom*:</label>
                 <label id="labelNom" for="nomMembre">Nom*:</label>
