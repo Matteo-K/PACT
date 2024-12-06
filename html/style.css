@@ -1996,6 +1996,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 1.2rem;
   height: 1.2rem;
 }
+.avisSearch h5 {
+  margin: 0;
+  margin-top: 2px;
+}
 
 .searchUser {
   font-size: 12px;
