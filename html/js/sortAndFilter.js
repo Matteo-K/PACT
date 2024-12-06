@@ -491,11 +491,12 @@ function filtrerParLieu(offers) {
 // Fonction global
 function sortAndFilter(array, elementStart, nbElement) {
   // Filtres
-  console.log(array);
   array = filtrerParCategorie(array);
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
+  console.log("array");
+  console.log(array);
   //array = filtrerParPeriode(array);
 
   // Tris
