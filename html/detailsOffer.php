@@ -895,7 +895,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                             <div>
                                 <h2>Plan du parc :</h2>
-                                <img src="<?php echo $result[0]["urlplan"] ?>">
+                                <div>
+
+                                    <img src="<?php echo $result[0]["urlplan"] ?>">
+                                </div>
                             </div>
                         <?php
                         }
