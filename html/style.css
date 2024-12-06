@@ -238,6 +238,7 @@ header div>a>img,
 #auth>img {
   width: 5em;
   height: 5em;
+  border-radius: 50%;
   margin-right: 0.5em;
 }
 
@@ -471,6 +472,7 @@ header>div>a>div {
 #imagProfil img {
   margin: 0;
   width: 10em;
+  height: 10em;
   border-radius: 50%;
 }
 
