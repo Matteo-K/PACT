@@ -412,7 +412,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </label>
                     
                     <!-- Date picker (caché par défaut) -->
-                    <input class="datePicker" min="<?php echo new DateTime() ?>" value="<?php echo new DateTime() ?>" type="date" name="customDate" id="customDate1" style="display: none;">
+                    <input class="datePicker" min="<?php echo date('Y-m-d')?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate1" style="display: none;">
                 </form>
                 <?php
                 if (!$optionUne) {

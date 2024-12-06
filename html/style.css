@@ -2263,7 +2263,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* Style pour les messages */
 .toggleMessage {
-  font-size: 12px;
+  font-size: 0.9rem;
   color: #555;
   margin-top: 10px;
 }
@@ -5138,6 +5138,7 @@ main[id="mainChangerMDP"] {
 }
 
 
-input[id=profile-pic] {
+
+div[id=divPFP] img {
   border-radius: 90%;
 }
