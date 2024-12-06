@@ -23,9 +23,7 @@ if ($categorie["_parcattraction"]) {
 }
 
 
-$stmt = $conn->prepare("SELECT * from pact._image where idoffre=?");
-$stmt->execute([$idOffre]);
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <section id="park"> <!-- Section pour le CSS -->
