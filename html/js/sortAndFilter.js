@@ -276,7 +276,7 @@ function filtrerParPrix(offers) {
     if (offer.categorie === 'Restaurant') {
       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
       const prixMinOffreRestaurant = prixRange[0];
-      const prixMaxOffreRestaurant = prixRange[0] + 20;
+      const prixMaxOffreRestaurant = prixRange[0];
 
       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
     } else {
