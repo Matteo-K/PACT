@@ -343,19 +343,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             });
         }
     });
+    const maxImages = 3;
+    let nbImageTotaleInAvis = 0;
 
     function handleFiles(inputElement) {
-        const maxImages = 3;
         const files = inputElement.files;
         const formData = new FormData();
         const afficheImages = document.getElementById("afficheImagesAvis");
 
         // Vérifie le nombre d'images à uploader
-        if (files.length > maxImages) {
+        if (files.length > maxImages && nbImageTotaleInAvis <= maxImages) {
             alert(`Vous pouvez sélectionner au maximum ${maxImages} fichiers.`);
             return;
         }
-
+        nbImageTotaleInAvis++;
         for (let i = 0; i < files.length; i++) {
             formData.append("images[]", files[i]);
         }
@@ -433,7 +434,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
         const formData = new FormData();
         formData.append("fileUrl", fileUrl); // L'URL du fichier à supprimer
         formData.append("unique_id", uniqueId); // L'ID unique pour le dossier temporaire
-
+        nbImageTotaleInAvis--;
         // Envoi de la requête AJAX pour supprimer le fichier
         fetch("uploadImageAvisTemp/delete_temp_files.php", {
                 method: "POST",
