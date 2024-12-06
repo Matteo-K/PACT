@@ -352,7 +352,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
         // Vérifie si l'ajout dépasse la limite maximale
         if (nbImageTotaleInAvis + files.length > maxImages) {
-            alert(`Vous ne pouvez ajouter que ${maxImages - nbImageTotaleInAvis} image(s) supplémentaire(s).`);
+            alert(`Vous ne pouvez ajouter plus ajouter d'images.`);
             inputElement.value = ""; // Réinitialise le champ file
             return;
         }
