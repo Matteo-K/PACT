@@ -283,6 +283,8 @@ function filtrerParPrix(offers) {
       const prixMinOffreRestaurant = prixRange[0];
       const prixMaxOffreRestaurant = prixRange[1];
 
+      console.table(prixRange);
+
       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
     } else {
       console.log("Autre");
