@@ -255,14 +255,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
                 onchange="handleFiles(this)" />
             <div id="afficheImagesAvis"></div>
         </div>
-            <!-- Consentement -->
+        <!-- Consentement -->
         <div>
             <input id="consentement" name="consentement" type="checkbox" required>
             <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
         </div>
 
         <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
-        <div class="soumission">  
+        <div class="soumission">
             <button type="submit">Soumettre l'avis</button>
         </div>
     </form>
@@ -343,25 +343,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             });
         }
     });
-    const maxImages = 3;
-    let nbImageTotaleInAvis = 0;
+    const maxImages = 3; // Nombre maximum d'images autorisé
+    let nbImageTotaleInAvis = 0; // Compteur global
 
     function handleFiles(inputElement) {
         const files = inputElement.files;
         const formData = new FormData();
-        const afficheImages = document.getElementById("afficheImagesAvis");
 
-        // Vérifie le nombre d'images à uploader
-        if (files.length > maxImages && nbImageTotaleInAvis <= maxImages) {
-            alert(`Vous pouvez sélectionner au maximum ${maxImages} fichiers.`);
+        // Vérifie si l'ajout dépasse la limite maximale
+        if (nbImageTotaleInAvis + files.length > maxImages) {
+            alert(`Vous ne pouvez ajouter que ${maxImages - nbImageTotaleInAvis} image(s) supplémentaire(s).`);
+            inputElement.value = ""; // Réinitialise le champ file
             return;
         }
-        nbImageTotaleInAvis++;
+
+        // Ajoute chaque fichier au FormData pour l'upload
         for (let i = 0; i < files.length; i++) {
             formData.append("images[]", files[i]);
         }
 
-        // Ajoute un ID unique à l'upload pour un dossier temporaire
+        // Ajoute l'ID unique pour le dossier temporaire
         formData.append("unique_id", uniqueId);
 
         // Envoie les fichiers au serveur via une requête AJAX
@@ -372,14 +373,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
-                    displayUploadedFiles(uniqueId); // Met à jour dynamiquement les images
+                    nbImageTotaleInAvis += files.length; // Met à jour le compteur
+                    displayUploadedFiles(uniqueId); // Met à jour l'affichage des images
                 } else {
                     alert("Erreur lors de l'upload : " + data.message);
+                    inputElement.value = ""; // Réinitialise le champ en cas d'échec
                 }
             })
             .catch((error) => {
                 console.error("Erreur lors de la requête :", error);
                 alert("Une erreur est survenue pendant l'upload.");
+                inputElement.value = ""; // Réinitialise le champ en cas d'erreur
             });
     }
 
@@ -403,7 +407,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
                         img.style.margin = "10px";
 
                         const deleteIcon = document.createElement("img");
-                        deleteIcon.src = "img/icone/croix.png"; // Remplace par le chemin de ton image de croix
+                        deleteIcon.src = "img/icone/croix.png";
                         deleteIcon.alt = "Supprimer";
                         deleteIcon.style.width = "20px";
                         deleteIcon.style.height = "20px";
@@ -434,8 +438,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
         const formData = new FormData();
         formData.append("fileUrl", fileUrl); // L'URL du fichier à supprimer
         formData.append("unique_id", uniqueId); // L'ID unique pour le dossier temporaire
-        nbImageTotaleInAvis--;
-        // Envoi de la requête AJAX pour supprimer le fichier
+
         fetch("uploadImageAvisTemp/delete_temp_files.php", {
                 method: "POST",
                 body: formData
@@ -443,8 +446,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Si la suppression est réussie, retire l'image du DOM
-                    imageContainer.remove();
+                    nbImageTotaleInAvis--; // Décrémente le compteur
+                    imageContainer.remove(); // Supprime l'image du DOM
                 } else {
                     alert("Erreur lors de la suppression de l'image : " + data.message);
                 }
