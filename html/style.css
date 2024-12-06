@@ -3223,7 +3223,7 @@ section#infoComp div {
 /** AVIS **/
 
 .avis {
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -3242,7 +3242,7 @@ section#infoComp div {
 
 #avis-section,
 #avis-section>#avis-component {
-  width: 100%;
+  width: 95%;
   flex-direction: column;
   gap: 3em;
   justify-content: center;
