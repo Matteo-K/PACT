@@ -118,8 +118,8 @@ foreach ($avis as $a) {
                 <button class="close-popup">X</button>
                 <h2>Actions pour l'avis</h2>
                 <ul>
-                    <li><button class="delete-avis" data-id="<?= $a['idavis'] ?>">Supprimer l'avis</button></li>
-                    <li><button class="report-avis" data-id="<?= $a['idavis'] ?>">Signaler l'avis</button></li>
+                    <li><button class="delete-avis">Supprimer l'avis</button></li>
+                    <li><button class="report-avis">Signaler l'avis</button></li>
                 </ul>
             </div>
         </div>
