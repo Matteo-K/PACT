@@ -131,11 +131,11 @@
                             <option value="20">20€</option>
                             <option value="40">40€</option>
                             <option value="80">80€</option>
-                            <option value="100" selected>100€</option>
+                            <option value="100">100€</option>
                             <option value="120">120€</option>
                             <option value="150">150€</option>
                             <option value="170">170€</option>
-                            <option value="200">200€ et +</option>
+                            <option value="200" selected>200€ et +</option>
                         </select>
                     </div>
                 </div>
