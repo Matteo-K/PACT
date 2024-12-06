@@ -94,9 +94,7 @@ foreach ($avis as $a) {
                                 <div class="swiper mySwiperAvis">
                                     <div class="swiper-wrapper">
                                         <?php
-                                        print_r($pictures);
                                         foreach ($pictures as $picture) {
-                                            print_r($pictures);
                                         ?>
 
                                             <div class="swiper-slide">
