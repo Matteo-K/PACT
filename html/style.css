@@ -5317,11 +5317,14 @@ main[id="mainChangerMDP"] {
   margin-top: 5%;
 }
 
-
 div[id=divPFPactuelle] img {
   border-radius: 90%;
   margin-top: 25px;
   width: 130px;
   height: 130px;
   object-fit: cover;
+}
+
+input[id="profile-pic"]  {
+  display: none;
 }
