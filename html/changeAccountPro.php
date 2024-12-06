@@ -142,7 +142,7 @@
 
         <form id = "formPro" action="changeAccountPro.php" method="post" enctype="multipart/form-data">
 
-            <div>
+            <div id="divPFP">
                 <input type="file" id="profile-pic" name="profile-pic" accept="image/*" required>
             </div>
 

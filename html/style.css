@@ -5138,6 +5138,6 @@ main[id="mainChangerMDP"] {
 }
 
 
-input[id=profile-pic] {
+div[id=divPFP] {
   border-radius: 90%;
 }
