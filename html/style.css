@@ -3829,6 +3829,11 @@ details .nonLu, details .nonRepondu{
   border-color: #66afe9;
 }
 
+#enCompagnie input[type="radio"]{
+  display: none ;
+  margin-bottom: 0.5em;
+}
+
 /* Ajout photo */
 #ajoutPhoto {
   display: none;
