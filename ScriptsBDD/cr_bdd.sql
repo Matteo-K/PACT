@@ -1192,6 +1192,7 @@ BEGIN
     WHERE idU = iduser;
 
     -- Mise à jour de la photo de profil
+    
     UPDATE pact._photo_profil
     SET url = COALESCE(NEW.url, pact._photo_profil.url)
     WHERE idU = iduser;

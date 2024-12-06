@@ -150,6 +150,10 @@ if(isset($_POST["reponsePro"])){
             </p>
         </div>
 
+        <div calss="conteneurReponsePro">
+            
+        </div>
+
         <form action="detailsOffer.php" method="post">
             <h2>
                 Répondre a membre

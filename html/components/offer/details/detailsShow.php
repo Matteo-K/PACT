@@ -100,34 +100,3 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-<!--
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const minutesInput = document.getElementById("nbMin");
-    const hoursInput = document.getElementById("nbMinutesHeure");
-
-    // Synchroniser les minutes avec les heures
-    minutesInput.addEventListener("input", function () {
-        const totalMinutes = parseInt(minutesInput.value) || 0;
-        const hours = Math.floor(totalMinutes / 60);
-        const minutes = totalMinutes % 60;
-
-        hoursInput.value = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-    });
-
-    // Synchroniser les heures avec les minutes
-    hoursInput.addEventListener("input", function () {
-        let [hours, minutes] = (hoursInput.value || "0:0").split(":").map(Number);
-
-        // Si les minutes ne sont pas définies, on les considère comme 0
-        if (isNaN(minutes)) {
-            minutes = 0;
-        }
-
-        const totalMinutes = (hours || 0) * 60 + minutes;
-
-        minutesInput.value = totalMinutes;
-    });
-});
-</script>
--->
