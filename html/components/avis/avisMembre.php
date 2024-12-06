@@ -118,31 +118,31 @@ foreach ($avis as $a) {
         <?php
         if ($a['idc_reponse']) {
         ?>
-            <div>
-                <img src="./img/icone/reponse.png" alt="icone de reponse">
-                <div class="reponseAvis">
-                    <div class="user">
-                        <div class="infoProReponse">
-                            <div>
-                                <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
-                                <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
-                            </div>
+        <div>
+            <img src="./img/icone/reponse.png" alt="icone de reponse">
+            <div class="reponseAvis">
+                <div class="user">
+                    <div class="infoProReponse">
+                        <div>
+                            <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
+                            <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
                         </div>
-                        <div class="autreInfoAvis">
-                            <?php
-                            if (isset($a['reponsedate'])) {
-                                echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
-                            }
-                            ?>
-                            <img src="./img/icone/trois-points.png" alt="icone de parametre">
-                        </div>
-
                     </div>
-                    <article>
-                        <p><?= $a['contenureponse'] ?></p>
-                    </article>
+                    <div class="autreInfoAvis">
+                        <?php
+                        if (isset($a['reponsedate'])) {
+                            echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
+                        }
+                        ?>
+                        <img src="./img/icone/trois-points.png" alt="icone de parametre">
+                    </div>
+
                 </div>
+                <article>
+                    <p><?= $a['contenureponse'] ?></p>
+                </article>
             </div>
+        </div>
         <?php
         }
         ?>
