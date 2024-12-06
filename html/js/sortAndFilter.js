@@ -15,9 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const offersData = offersDataElement.getAttribute('data-offers');
   // console.log(offersData); // Débugger
 
-  console.log("Avant Json");
-  console.log(offersData);
-
   try {
     arrayOffer = JSON.parse(offersData);
     arrayOffer = Object.values(arrayOffer);
@@ -25,8 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
     console.error("Erreur de parsing JSON :", error);
   }
   
-  console.log("Après Json");
-  console.log(arrayOffer);
   userType = userDataElement.getAttribute('data-user');
 
   const params = new URLSearchParams(window.location.search);
@@ -552,11 +547,7 @@ function updatePagination(totalItems, nbElement) {
 
 function goToPage(page) {
   currentPage = page;
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
-  });
+  console.log(arrayOffer);
   sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement);
 }
 

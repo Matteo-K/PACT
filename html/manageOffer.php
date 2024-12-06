@@ -172,30 +172,5 @@
         form.reportValidity();
       }
   }
-
-
-  try {
-    function deleteAllCookies() {
-    // Récupère tous les cookies
-    const cookies = document.cookie.split(";");
-
-    // Parcourt les cookies et les supprime
-    for (let cookie of cookies) {
-        const eqPos = cookie.indexOf("=");
-        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-
-        // Supprime le cookie en définissant une date passée
-        document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
-    }
-
-    console.log("Tous les cookies ont été supprimés !");
-}
-
-// Appeler la fonction
-deleteAllCookies();
-
-  } catch (error) {
-    console.log(error);
-  }
 </script>
 </html>
