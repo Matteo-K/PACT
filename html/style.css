@@ -3903,11 +3903,11 @@ details .nonRepondu {
   border-radius: 20px;
 }
 
-.conteneurReponsePro > h3 {
+.conteneurReponsePro h3 {
   margin: 0;
 }
 
-.conteneurReponsePro > p {
+.conteneurReponsePro p {
   margin: 0;
   font-size: 20px;
 }
