@@ -88,6 +88,17 @@
         
                 // Déplacer le fichier téléchargé vers le répertoire de destination
                 if (move_uploaded_file($file['tmp_name'], $targetFile)) {
+                        // Vérifier si l'URL de l'image existe déjà dans la table _image
+                        $stmtImage = $conn->prepare("SELECT * FROM pact._image WHERE url = ?");
+                        $stmtImage->execute([$targetFile]);
+                        $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
+
+                        if (!$imageExist) {
+                            // Si l'image n'existe pas, l'ajouter à la table _image
+                            $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url) VALUES (?)");
+                            $stmtInsertImage->execute([$targetFile]);
+                        }
+
                     try {
                         // Mettre à jour l'URL de la photo de profil dans la base de données
                         $stmt = $conn->prepare("UPDATE pact._photo_profil SET url = ? WHERE idU = ?");
