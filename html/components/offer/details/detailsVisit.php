@@ -224,9 +224,9 @@ if ($categorie["_visite"]) {
 
                 // Ajouter un bouton de suppression avec une icône
 
-                // const removeBtn = document.createElement('button');
-                // removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; 
-                // removeBtn.className = 'remove-btn';
+                 const removeBtn = document.createElement('button');
+                 removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; 
+                 removeBtn.className = 'remove-btn';
 
                 // Pour supprimer le tag 
                 removeBtn.addEventListener('click', function () {
