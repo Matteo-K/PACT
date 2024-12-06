@@ -114,6 +114,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
       }
       ?>
+      <span>(prix hors-taxe)</span>
       <ul>
         <li>Réservée au privé</li>
         <li>Saisie d’une grille tarifaire</li>
@@ -131,6 +132,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if ($ab['nomabonnement'] === "Basique") {
             ?>
             <h3 prix="<?php echo htmlspecialchars($ab['tarif']) ?>"> <?php echo htmlspecialchars($ab['tarif']) ?> &euro;&nbsp;/&nbsp;jour</h3>
+            <span>(prix hors-taxe)</span>
             <?php
             break;
         }
