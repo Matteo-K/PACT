@@ -150,8 +150,11 @@ if(isset($_POST["reponsePro"])){
             </p>
         </div>
 
-        <div calss="conteneurReponsePro">
-            
+        <div class="conteneurReponsePro">
+            <img src="./img/icone/reponse.png" alt="icone de reponse">
+            <article>
+                <p> Contenu de la réponse </p>
+            </article>
         </div>
 
         <form action="detailsOffer.php" method="post">
@@ -496,7 +499,7 @@ function displayAvis(avis) {
 
     const blocListAvis = document.getElementById("listeAvis");
 
-    if (!avis.lu) {
+    if (!avis.lu && !avis.repondu) {
         li.classList.add("avisNonLu");
         let divNonLu = document.createElement("div");
         divNonLu.classList.add("nonLu");

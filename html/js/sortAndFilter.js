@@ -560,6 +560,7 @@ function goToPage(page) {
 
 function displayOffers(array, elementStart, nbElement) {
   const bloc = document.querySelector(".searchoffre");
+  console.table(array);
   bloc.innerHTML = "";
   if (array.length != 0) {
     let offers = array.slice(elementStart, elementStart + nbElement);

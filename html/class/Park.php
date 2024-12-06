@@ -38,7 +38,6 @@ class Park extends Offer {
       "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
     ]);
   }
-  
 }
 
 ?>
