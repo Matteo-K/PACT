@@ -143,6 +143,7 @@
         <form id = "formPro" action="changeAccountPro.php" method="post" enctype="multipart/form-data">
 
             <div id="divPFP">
+                <img src="uploads/<?= htmlspecialchars($photoProfil) ?>" alt="Photo de Profil" id="current-profile-pic">
                 <input type="file" id="profile-pic" name="profile-pic" accept="image/*" required>
             </div>
 
