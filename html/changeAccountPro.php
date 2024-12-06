@@ -33,7 +33,7 @@
         $photoProfil = $stmtPhoto->fetch(PDO::FETCH_ASSOC);
 
         if ($photoProfil) {
-            $photoPath = $photoProfil[''];  // Le chemin de l'image
+            $photoPath = $photoProfil['url'];  // Le chemin de l'image
         } 
         
         else {
@@ -195,7 +195,7 @@
                 <img src="<?= $photoPath ?>" alt="Photo de Profil" id="current-profile-pic">
             </div>
 
-            <div id="divPFP">
+            <div id="divNewPFP">
                 <input type="file" id="profile-pic" name="profile-pic" accept="image/*" required>
             </div>
 
