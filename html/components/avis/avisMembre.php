@@ -95,7 +95,9 @@ foreach ($avis as $a) {
                                     <div class="swiper-wrapper">
                                         <?php
                                         foreach ($pictures as $picture) {
+                                            print($picture);
                                         ?>
+
                                             <div class="swiper-slide">
                                                 <img src="<?php echo $picture; ?>" />
                                             </div>
