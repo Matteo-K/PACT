@@ -195,7 +195,7 @@
             </div>
 
             <div id="divNewPFP">
-                <input type="file" id="profile-pic" name="profile-pic" accept="image/*" required>
+                <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
             </div>
 
 
