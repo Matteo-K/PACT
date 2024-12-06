@@ -513,7 +513,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
             ?>
         
-        <h2 id=" titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
+        <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
                     <h3 id="typeOffer"><?php echo $typeOffer ?> à <?php echo $result[0]['ville'] ?></h3>
                     <?php
                     if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
