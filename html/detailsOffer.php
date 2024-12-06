@@ -396,7 +396,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <aside>
                 <strong>
                     <p class="taille3">A la Une</p>
-                    <p id="totalPrice" class="taille">Prix total : 20€</p>
+                    <p id="totalPrice" class="taille7">Prix total : 20€</p>
                 </strong>
                 <form class="formopt" id="formOpt1" action="addOption.php" method="post">
                     <input type="hidden" name="nomOption" value="ALaUne">
@@ -449,7 +449,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <aside>
                 <strong>
                     <p class="taille3">En Relief</p>
-                    <p id="totalPrice2" class="taille">Prix total : 10€</p>
+                    <p id="totalPrice2" class="taille7">Prix total : 10€</p>
                 </strong>
                 <form class="formopt" id="formOpt2" action="addOption.php" method="post">
                     <input type="hidden" name="nomOption" value="EnRelief">
