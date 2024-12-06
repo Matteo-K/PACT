@@ -70,7 +70,7 @@ class Offer {
     $resume = $this->resume;
     $noteAvg = $this->noteAvg;
 
-    $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi) ?? ""; // à remplacer
+    $restaurantOuvert = $this->statutOuverture($this->horaireSoir, $this->horaireMidi) ?? ""; // à remplacer
     require __DIR__."/../components/cardOffer.php";
   }
 
@@ -84,7 +84,7 @@ class Offer {
     $tag = $this->tags;
     $resume = $this->resume;
     $noteAvg = $this->noteAvg;
-    $restaurantOuvert = statutOuverture($this->horaireSoir, $this->horaireMidi) ?? ""; // à remplacer
+    $restaurantOuvert = $this->statutOuverture($this->horaireSoir, $this->horaireMidi) ?? ""; // à remplacer
     $statut = $this->statut;
     require __DIR__."/../components/cardOfferPro.php";
   }
