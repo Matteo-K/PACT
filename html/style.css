@@ -3162,9 +3162,10 @@ section#infoComp div {
 
 #avis-section, #avis-section > #avis-component {
     width: 100%;
+    flex-direction: column;
     gap: 3em;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
 }
 
