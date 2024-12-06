@@ -1,10 +1,11 @@
 <?php
-function listImage($idOffre, $idComment) {
+function listImage($idOffre, $idComment)
+{
     // Chemin du dossier où les images sont stockées
     $dossier = 'img/imageAvis/' . $idOffre . '/' . $idComment . '/';
 
     // Affiche le chemin pour le débogage
-    echo "Chemin du dossier : " . $dossier . "<br>"; 
+    echo "Chemin du dossier : " . $dossier . "<br>";
 
     // Vérifie si le dossier existe et est valide
     if (!is_dir($dossier)) {
@@ -94,65 +95,84 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 // Traitement des données envoyées par le formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
-    // Préparation des données
-    $note = $_POST['note'];
-    $dateAvis = $_POST['date'];
-    $compagnie = $_POST['compagnie'];
-    $titreAvis = $_POST['titre'];
-    $texteAvis = $_POST['avis'];
-    $idOffre = $_POST['idoffre'];
-    $uniqueId = $_POST['uniqueField'];
+    $stmt = $conn->prepare("SELECT * FROM pact._avis WHERE idoffre = ? AND idu = ?");
+    $stmt->execute([$idOffre, $idUser]);
+    $existingReview = $stmt->fetch();
 
-    // Récupération des données de l'utilisateur
-    $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE idu = ?");
-    $stmt->execute([$idUser]);
-    $result = $stmt->fetchAll();
+    if ($existingReview) {
+        // L'utilisateur a déjà laissé un avis pour cette offre
+        $_SESSION['review_error'] = "Vous avez déjà laissé un avis pour cette offre.";
+    } else {
+        $_SESSION['review_success'] = "Avis soumis avec succès!";
+        // Préparation des données
+        $note = $_POST['note'];
+        $dateAvis = $_POST['date'];
+        $compagnie = $_POST['compagnie'];
+        $titreAvis = $_POST['titre'];
+        $texteAvis = $_POST['avis'];
+        $idOffre = $_POST['idoffre'];
+        $uniqueId = $_POST['uniqueField'];
 
-    $pseudo = $result[0]['pseudo'];
-    list($year, $month) = explode('-', $dateAvis);
+        // Récupération des données de l'utilisateur
+        $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE idu = ?");
+        $stmt->execute([$idUser]);
+        $result = $stmt->fetchAll();
 
-    // Tableau des mois en lettres
-    $months = [
-        '01' => 'Janvier', '02' => 'Février', '03' => 'Mars', '04' => 'Avril',
-        '05' => 'Mai', '06' => 'Juin', '07' => 'Juillet', '08' => 'Août',
-        '09' => 'Septembre', '10' => 'Octobre', '11' => 'Novembre', '12' => 'Décembre'
-    ];
-    $monthInWords = $months[$month] ?? 'Inconnu'; // Gérer les mois invalides
+        $pseudo = $result[0]['pseudo'];
+        list($year, $month) = explode('-', $dateAvis);
 
-    $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
+        // Tableau des mois en lettres
+        $months = [
+            '01' => 'Janvier',
+            '02' => 'Février',
+            '03' => 'Mars',
+            '04' => 'Avril',
+            '05' => 'Mai',
+            '06' => 'Juin',
+            '07' => 'Juillet',
+            '08' => 'Août',
+            '09' => 'Septembre',
+            '10' => 'Octobre',
+            '11' => 'Novembre',
+            '12' => 'Décembre'
+        ];
+        $monthInWords = $months[$month] ?? 'Inconnu'; // Gérer les mois invalides
 
-    $stmt = $conn->prepare("INSERT INTO pact._commentaire (idU, content, datePublie)VALUES (?, ?, NOW())RETURNING idC;");
-    $stmt->execute([$idUser, $texteAvis]);
-    $idComment = $stmt->fetchColumn();
+        $tempFolder = "img/imageAvis/temp_uploads/" . $uniqueId;
 
-    $stmt = $conn->prepare("INSERT INTO pact._avis (idc, idoffre, note, companie, mois, annee, titre, lu) 
+        $stmt = $conn->prepare("INSERT INTO pact._commentaire (idU, content, datePublie)VALUES (?, ?, NOW())RETURNING idC;");
+        $stmt->execute([$idUser, $texteAvis]);
+        $idComment = $stmt->fetchColumn();
+
+        $stmt = $conn->prepare("INSERT INTO pact._avis (idc, idoffre, note, companie, mois, annee, titre, lu) 
     VALUES (?, ?, ?, ?, ?, ?, ?, false)");
-    $stmt->execute([$idComment, $idOffre, $note, $compagnie, $monthInWords, $year, $titreAvis]);
-    
+        $stmt->execute([$idComment, $idOffre, $note, $compagnie, $monthInWords, $year, $titreAvis]);
 
-    // Déplacer les images vers le dossier de l'offre
-    $moveResult = moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, "img/imageAvis/");
 
-    // Insertion des images dans la base de données
-    $image = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
-    $imageAvis = $conn->prepare("INSERT INTO pact._avisimage (idc, url) VALUES (?, ?)");
-    $mesImages = listImage($idOffre, $idComment);
-    print_r($mesImages);
+        // Déplacer les images vers le dossier de l'offre
+        $moveResult = moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, "img/imageAvis/");
 
-    foreach ($mesImages['files'] as $file) {
-    $fileName = pathinfo($file, PATHINFO_BASENAME);
-    
-    // Exécution de l'insertion de l'image
-    if (!$image->execute([$file, $fileName])) {
-        $result['errors'][] = "Erreur lors de l'insertion de l'image dans la base de données.";
+        // Insertion des images dans la base de données
+        $image = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
+        $imageAvis = $conn->prepare("INSERT INTO pact._avisimage (idc, url) VALUES (?, ?)");
+        $mesImages = listImage($idOffre, $idComment);
+        print_r($mesImages);
+
+        foreach ($mesImages['files'] as $file) {
+            $fileName = pathinfo($file, PATHINFO_BASENAME);
+
+            // Exécution de l'insertion de l'image
+            if (!$image->execute([$file, $fileName])) {
+                $result['errors'][] = "Erreur lors de l'insertion de l'image dans la base de données.";
+            }
+
+            // Exécution de l'insertion dans la table _avisimage
+            if (!$imageAvis->execute([$idComment, $file])) {
+                $result['errors'][] = "Erreur lors de l'insertion de l'image liée à l'avis dans la base de données.";
+            }
+        }
     }
-    
-    // Exécution de l'insertion dans la table _avisimage
-    if (!$imageAvis->execute([$idComment, $file])) {
-        $result['errors'][] = "Erreur lors de l'insertion de l'image liée à l'avis dans la base de données.";
-    }
-}
-    ?>
+?>
     <script>
         let form = document.createElement('form');
         form.action = "detailsOffer";
@@ -161,14 +181,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
         let input = document.createElement('input');
         input.type = "hidden";
         input.name = "idoffre";
-        input.value = <?= $idOffre ?>;  // Make sure this is correctly echoed into the JavaScript
+        input.value = <?= $idOffre ?>; // Make sure this is correctly echoed into the JavaScript
 
         form.appendChild(input);
-        document.body.appendChild(form);  // Append the form to the body (or another container)
+        document.body.appendChild(form); // Append the form to the body (or another container)
 
-        form.submit();  // Call submit method with parentheses to submit the form
+        form.submit(); // Call submit method with parentheses to submit the form
     </script>
-    <?php
+<?php
 
 }
 ?>
@@ -259,6 +279,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
             <button type="submit">Soumettre l'avis</button>
     </form>
 </section>
+
+<!-- Popup -->
+<div id="popup" class="popup">
+    <p id="popup-message"></p>
+    <button onclick="closePopup()">Fermer</button>
+</div>
 
 <script>
     const uniqueId = generateUniqueId();
@@ -449,5 +475,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     // Fonction pour générer un ID unique
     function generateUniqueId() {
         return "temp_" + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Vérifier si un message de session existe (success ou error)
+    <?php if (isset($_SESSION['review_success'])): ?>
+        showPopup("<?php echo $_SESSION['review_success']; ?>", "success");
+        <?php unset($_SESSION['review_success']); ?>
+    <?php elseif (isset($_SESSION['review_error'])): ?>
+        showPopup("<?php echo $_SESSION['review_error']; ?>", "error");
+        <?php unset($_SESSION['review_error']); ?>
+    <?php endif; ?>
+
+    // Fonction pour afficher la popup
+    function showPopup(message, type) {
+        const popup = document.getElementById("popup");
+        const popupMessage = document.getElementById("popup-message");
+
+        popupMessage.innerText = message;
+        popup.classList.add("active");
+        popup.classList.add(type);
+    }
+
+    // Fonction pour fermer la popup
+    function closePopup() {
+        const popup = document.getElementById("popup");
+        popup.classList.remove("active");
     }
 </script>
