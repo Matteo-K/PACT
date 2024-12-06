@@ -94,9 +94,7 @@ foreach ($avis as $a) {
                                 <div class="swiper mySwiperAvis">
                                     <div class="swiper-wrapper">
                                         <?php
-                                        print($pictures);
                                         foreach ($pictures as $picture) {
-                                            print($picture);
                                         ?>
 
                                             <div class="swiper-slide">
@@ -118,23 +116,3 @@ foreach ($avis as $a) {
 <?php
 }
 ?>
-
-
-<script>
-    var swiper3 = new Swiper(".mySwiperAvis", {
-        loop: true,
-        autoplay: {
-            delay: 5000,
-        },
-        slidesPerView: 1,
-        spaceBetween: 10,
-        pagination: {
-            el: ".swiper-pagination",
-            dynamicBullets: true,
-        },
-        thumbs: {
-            swiper: swiper,
-        },
-    });
-
-</script>

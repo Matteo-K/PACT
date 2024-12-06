@@ -226,7 +226,11 @@ if ($categorie["_visite"]) {
                 let removeBtn = document.createElement("img");
                 removeBtn.setAttribute("src", "../../img/icone/croix.png");
                 removeBtn.className = 'remove-btn';
-
+                
+                //Style de l'image
+                removeBtn.style.width='12px';
+                removeBtn.style.height='18px';
+                removeBtn.style.margin='auto 0 auto 5px'
                 // Pour supprimer le tag 
                 removeBtn.addEventListener('click', function () {
                 sectionLangue.removeChild(langDiv);
@@ -234,7 +238,7 @@ if ($categorie["_visite"]) {
 
                 
                 langDiv.appendChild(langText);
-              //  langDiv.appendChild(removeBtn);
+                langDiv.appendChild(removeBtn);
 
                 // Appliquer un style visuel au conteneur
 
