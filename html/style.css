@@ -1160,6 +1160,7 @@ header ul+div {
   display: flex;
   flex-flow: column nowrap;
   gap: clamp(10px, 2vh, 25px);
+  margin-top: 10%; 
 }
 
 #selectOffer>div:first-child>div li {
@@ -1970,6 +1971,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .searchAvis {
   padding: 5px;
+  width: 600px;
 }
 
 .searchAvis > div:nth-child(1) {
@@ -1979,8 +1981,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: space-between;
 }
 
+.blcAvis {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 .avisSearch {
   font-size: 1em;
+  width: 50%;
+  margin-inline: 10px;
 }
 
 .avisSearch .star {
@@ -2060,6 +2069,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .blcStarSearch {
   display: flex;
+  margin-bottom: 2%;
 }
 
 .noteSearch {
