@@ -5182,9 +5182,9 @@ div[id=divPFPactuelle] img {
 }
 
 label[id="pfpUpload"] {
-  display: inline-block;
+  display: none;
 }
 
 div[id=divNewPFP] > input {
-  display: none;
+  display: inline-block;
 }
