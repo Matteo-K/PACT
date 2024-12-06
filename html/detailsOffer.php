@@ -13,20 +13,6 @@ if (!$idOffre) {
     exit();
 }
 
-print_r($idOffre);
-?>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    <?php if (isset($_POST['popup'])): ?>
-        <?php if (!empty($_POST['error'])): ?> // Vérifie que 'error' est défini et non vide
-            alert("Erreur : la plage de date chevauche la plage de date d'une autre option");
-        <?php endif; ?>
-        openModal(); // Appelle la fonction openModal si la condition PHP est vraie
-    <?php endif; ?>
-});
-</script>
-
-<?php
 $monOffre = new ArrayOffer($idOffre);
 $ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
 
@@ -191,6 +177,20 @@ if (!$result) {
     $typeOffer = $result[0]['categorie'];
 }
 
+?>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    <?php if (isset($_POST['popup'])): ?>
+        <?php if (!empty($_POST['error'])): ?> // Vérifie que 'error' est défini et non vide
+            alert("Erreur : la plage de date chevauche la plage de date d'une autre option");
+        <?php endif; ?>
+        openModal(); // Appelle la fonction openModal si la condition PHP est vraie
+    <?php endif; ?>
+});
+</script>
+
+<?php
+
 
 // Fetch photos for the offer
 $stmt = $conn->prepare("SELECT * FROM pact._illustre WHERE idoffre = :idoffre ORDER BY url ASC");
@@ -251,7 +251,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <section class="info">
                 <section class="tema">
-                    <p class="infoP">Information Offre</p>
+                    <p class="infoP">Informations de l'offre</p>
 
                     <?php
                 if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {

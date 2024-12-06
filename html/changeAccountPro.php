@@ -25,12 +25,20 @@
             $stmt = $conn->prepare("SELECT * FROM pact.proprive WHERE idU = ?");
             $stmt->execute([$userId]);
             $userPrivate = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        
+        // Récupérer la photo de profil de la table _photo_profil
+        $stmtPhoto = $conn->prepare("SELECT * FROM pact._photo_profil WHERE idU = ?");
+        $stmtPhoto->execute([$userId]);
+        $photoProfil = $stmtPhoto->fetch(PDO::FETCH_ASSOC);
 
-
-            // Récupérer la photo de profil de la table _photo_profil
-            $stmtPhoto = $conn->prepare("SELECT * FROM pact._photo_profil WHERE idU = ?");
-            $stmtPhoto->execute([$userId]);
-            $photoProfil = $stmtPhoto->fetch(PDO::FETCH_ASSOC);
+        if ($photoProfil) {
+            $photoPath = $photoProfil['photo'];  // Le chemin de l'image
+        } 
+        
+        else {
+            // Si aucune photo n'est trouvée, utiliser une image par défaut
+            $photoPath = 'default-avatar.png';
         }
 
         // Fusionner les résultats de propublic et proprive, si les deux existent
@@ -60,6 +68,34 @@
         $adresse = trim($_POST['adresse']);
         $code = trim($_POST['code']);
         $ville = trim($_POST['ville']);
+
+        $file = $_FILES['profile-pic'];
+
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (in_array($file['type'], $allowedTypes)) {
+            $targetDir = 'uploads/';
+            $targetFile = $targetDir . basename($file['name']);
+
+            if (move_uploaded_file($file['tmp_name'], $targetFile)) {
+                try {
+                    $stmt = $conn->prepare("UPDATE pact._photo_profil SET photo = ? WHERE idU = ?");
+                    $stmt->execute([$targetFile, $userId]);
+
+                    $_SESSION['success'] = "Photo de profil mise à jour avec succès.";
+                    header("Location: changeAccountPro.php");
+                    exit();
+                } 
+                catch (Exception $e) {
+                    $_SESSION['errors'][] = "Erreur lors de la mise à jour de la photo : " . $e->getMessage();
+                }
+            } 
+            else {
+                $_SESSION['errors'][] = "Échec du téléchargement de l'image.";
+            }
+        } 
+        else {
+            $_SESSION['errors'][] = "Seules les images JPG, PNG ou GIF sont autorisées.";
+        }
 
         // Si l'adresse mail a été modifiée, vérifier si elle existe déjà
         if ($mail !== $user['mail']) {
@@ -150,7 +186,7 @@
 
 
             <div id="divPFPactuelle">
-                <img src="uploads/<?= htmlspecialchars($user['url']) ?>" alt="Photo de Profil" id="current-profile-pic">
+                <img src="<?= $photoPath ?>" alt="Photo de Profil" id="current-profile-pic">
             </div>
 
             <div id="divPFP">
