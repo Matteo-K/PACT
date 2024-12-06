@@ -2326,7 +2326,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .tema{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -3763,10 +3763,12 @@ details .nonLu, details .nonRepondu{
 }
 
 #avisproS2 > form > textarea{
-  width: calc(100% + 40px);
+  min-width: calc(100%);
+  max-width: calc(100% + 40px);
   font-size: 20px;
   padding: 5px;
-  height: 150px;
+  min-height: 150px;
+  max-height: 300px;
 }
 
 /** Ecrire Avis */

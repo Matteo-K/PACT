@@ -223,15 +223,14 @@ if ($categorie["_visite"]) {
                 langText.className = 'lang-text';
 
                 // Ajouter un bouton de suppression avec une icône
-
-                //  const removeBtn = document.createElement('button');
-                //  removeBtn.innerHTML = '<span style="font-size: 1.2em; color: #d32f2f;">&times;</span>'; 
-                //  removeBtn.className = 'remove-btn';
+                let removeBtn = document.createElement("img");
+                removeBtn.setAttribute("src", "../../img/icone/croix.png");
+                removeBtn.className = 'remove-btn';
 
                 // Pour supprimer le tag 
-              //  removeBtn.addEventListener('click', function () {
-             //       sectionLangue.removeChild(langDiv);
-             //   });
+                removeBtn.addEventListener('click', function () {
+                sectionLangue.removeChild(langDiv);
+                });
 
                 
                 langDiv.appendChild(langText);
