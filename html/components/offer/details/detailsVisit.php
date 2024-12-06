@@ -229,9 +229,9 @@ if ($categorie["_visite"]) {
                 //  removeBtn.className = 'remove-btn';
 
                 // Pour supprimer le tag 
-                removeBtn.addEventListener('click', function () {
-                    sectionLangue.removeChild(langDiv);
-                });
+              //  removeBtn.addEventListener('click', function () {
+             //       sectionLangue.removeChild(langDiv);
+             //   });
 
                 
                 langDiv.appendChild(langText);
