@@ -253,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
                 accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
                 multiple
                 onchange="handleFiles(this)" />
-            <div id="afficheImages"></div>
+            <div id="afficheImagesAvis"></div>
         </div>
             <!-- Consentement -->
         <div>
@@ -262,8 +262,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
         </div>
 
         <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
-
-        <button type="submit">Soumettre l'avis</button>
+        <div class="soumission">  
+            <button type="submit">Soumettre l'avis</button>
+        </div>
     </form>
 </section>
 
@@ -347,7 +348,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
         const maxImages = 3;
         const files = inputElement.files;
         const formData = new FormData();
-        const afficheImages = document.getElementById("afficheImages");
+        const afficheImages = document.getElementById("afficheImagesAvis");
 
         // Vérifie le nombre d'images à uploader
         if (files.length > maxImages) {
@@ -382,7 +383,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     }
 
     function displayUploadedFiles(uniqueId) {
-        const afficheImages = document.getElementById("afficheImages");
+        const afficheImages = document.getElementById("afficheImagesAvis");
         afficheImages.innerHTML = ""; // Réinitialise l'affichage
 
         fetch(`uploadImageAvisTemp/list_temp_files.php?unique_id=${uniqueId}`)

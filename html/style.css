@@ -3772,7 +3772,7 @@ details .nonLu, details .nonRepondu{
 /* Champs d'entrée */
 #formCreationAvis input,
 #formCreationAvis textarea {
-  width: 45em;
+  width: 65%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -3839,14 +3839,14 @@ details .nonLu, details .nonRepondu{
   display: none;
 }
 
-#afficheImages {
+#afficheImagesAvis {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
 }
 
-#afficheImages img {
+#afficheImagesAvis img {
   width: 60px;
   height: 60px;
   object-fit: cover;
@@ -3854,32 +3854,8 @@ details .nonLu, details .nonRepondu{
   border: 1px solid #ddd;
 }
 
-/* Boutons */
-.buttonDetailOffer {
-  display: inline-block;
-  padding: 10px 15px;
-  font-size: 14px;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 15px;
-}
-
-.blueBtnOffer {
-  background-color: #007bff;
-  border: 1px solid #007bff;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.blueBtnOffer:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-}
-
 /* Consentement */
-#formCreationAvis div {
+#formCreationAvis > div:not(.note) {
   margin-bottom: 10px;
   justify-content: space-between;
   align-items: center;
@@ -3903,6 +3879,10 @@ details .nonLu, details .nonRepondu{
 
 #formCreationAvis button[type="submit"]:hover {
   background-color: #218838;
+}
+
+.soumission{
+  justify-content: flex-end;
 }
 
 
