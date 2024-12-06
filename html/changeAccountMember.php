@@ -194,7 +194,6 @@
             </div>
 
             <div id="divNewPFP">
-                <label for="file-upload" id="pfpUpload"> Choisir un fichier</label>
                 <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
             </div>
 
