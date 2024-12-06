@@ -1308,7 +1308,7 @@ header ul+div {
 }
 
 .hourlyHide {
-  display: none;
+  display: none !important;
 }
 
 .btnDisabledHourly {

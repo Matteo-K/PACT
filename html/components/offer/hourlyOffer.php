@@ -90,6 +90,9 @@ $is_show;
             </span>
         </div>
     </div>
+    <?php
+        }
+    ?>
     <script>
         const btnsAddHourly = document.querySelectorAll(".btnAddOffer");
         const btnsRmHourly = document.querySelectorAll(".btnRmOffer");
@@ -122,9 +125,7 @@ $is_show;
             });
         });
     </script>
-    <?php
-        }
-    } else if ($is_show == 1) {
+    <?php } else if ($is_show == 1) {
     ?>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
