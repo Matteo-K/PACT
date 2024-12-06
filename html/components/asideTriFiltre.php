@@ -197,7 +197,7 @@
                     </li>
                 </ul>
             </div>
-            <div id="date" style="display=none;">
+            <div id="date" style="display:none;">
                 <h3>Par date</h3>
                 <div>
                     <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
