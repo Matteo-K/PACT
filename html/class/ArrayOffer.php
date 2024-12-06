@@ -262,8 +262,6 @@ class ArrayOffer {
   public function recherche($idUser_, $typeUser_, $recherche) {
     $array = $this->filtre($idUser_, $typeUser_);
 
-    print_r($array);
-
     if (empty($recherche)) {
         return $array;
     }
