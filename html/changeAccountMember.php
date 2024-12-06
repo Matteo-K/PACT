@@ -95,9 +95,12 @@
                         $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
         
                         if (!$imageExist) {
-                            // Si l'image n'existe pas, l'ajouter à la table _image
-                            $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url) VALUES (?)");
-                            $stmtInsertImage->execute([$targetFile]);
+                            // Si l'image n'existe pas, l'ajouter à la table _image avec un nom pour "nomimage"
+                            $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
+                            
+                            // Utiliser le nom du fichier comme nom d'image (ou autre logique pour générer un nom unique)
+                            $imageName = basename($targetFile); // Vous pouvez personnaliser cette logique si nécessaire
+                            $stmtInsertImage->execute([$targetFile, $imageName]);
                         }
         
                         // Mettre à jour l'URL de la photo de profil dans la table _photo_profil
