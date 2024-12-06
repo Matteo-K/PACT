@@ -5176,6 +5176,6 @@ div[id=divPFPactuelle] img {
   height: 120px;
 }
 
-div[id=divNewPFP] input {
-  background-color: #034d7c;
+input[id="profile-pic"] {
+  color: #034d7c;
 }
