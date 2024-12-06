@@ -213,6 +213,7 @@ const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
 const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
 
+
 const blocReponseAvis = document.getElementById("blocReponsePro");
 
 const conteneurReponseAvis = document.querySelector("#blocReponsePro .conteneurReponsePro");
@@ -275,10 +276,12 @@ function afficheAvisSelect(idAvis) {
         formReponseAvis.style.display = "flex";
         titreReponseAvis.textContent = "Répondre à " + listeAvis[idAvis]['pseudo'];
         inputIdAvis.value = idAvis;
+        conteneurReponseAvis.style.display = "none";
     }
     else{
-        conteneurReponseAvis.display = "flex";
+        conteneurReponseAvis.style.display = "flex";
         contenuReponseAvis.textContent = listeAvis[idAvis]['contenureponse'];
+        formReponseAvis.style.display = "none";
     }
     
 
@@ -374,7 +377,7 @@ function closeDetails() {
     });
     if (getComputedStyle(aucunAvisSelect).display == "none") {
         conteneurAvis.style.display = "flex"; // Réaffiche le conteneur principal si un avis est select
-        blocReponseAvis.style.display = "flex";
+        blocReponseAvis.style.display = "block";
      }
 }
 
