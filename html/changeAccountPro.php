@@ -143,7 +143,6 @@
         <form id = "formPro" action="changeAccountPro.php" method="post" enctype="multipart/form-data">
 
             <div>
-                <label for="profile-pic">Sélectionner une nouvelle photo de profil:</label>
                 <input type="file" id="profile-pic" name="profile-pic" accept="image/*" required>
             </div>
 

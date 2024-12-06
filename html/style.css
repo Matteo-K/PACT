@@ -5136,3 +5136,8 @@ main[id="mainChangerMDP"] {
   justify-content: center;
   margin-top: 5%;
 }
+
+
+input[id=profile-pic] {
+  border-radius: 90%;
+}
