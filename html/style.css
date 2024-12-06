@@ -3751,6 +3751,7 @@ details .nonLu, details .nonRepondu{
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
   color: #333;
+  gap: 1em;
 }
 
 /* Labels */
@@ -3760,7 +3761,14 @@ details .nonLu, details .nonRepondu{
   font-weight: bold;
   color: #555;
 }
-
+#formCreationAvis textarea {
+  resize: vertical; /* Autorise uniquement le redimensionnement vertical */
+  min-height: 100px; /* Hauteur minimale */
+  max-height: 300px; /* Hauteur maximale (optionnel) */
+  line-height: 1.5; /* Hauteur de ligne */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Effet d'ombre interne */
+  transition: border-color 0.3s ease;
+}
 /* Champs d'entrée */
 #formCreationAvis input,
 #formCreationAvis textarea {
