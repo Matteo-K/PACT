@@ -4875,6 +4875,7 @@ button[id="boutonInscription"] {
   border: none;
   box-shadow: inset -4px -4px 4px var(--accent-border);
   background-color: var(--accent);
+  cursor: pointer;
 }
 
 /* Messages d'erreurs */
