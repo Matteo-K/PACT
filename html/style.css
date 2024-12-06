@@ -5180,6 +5180,6 @@ div[id=divPFPactuelle] img {
   height: 120px;
 }
 
-#divNewPFP > #fileupload-button {
-  color: #0056b3;
+div[id=divNewPFP] #file-upload-button {
+  color: red;
 }
