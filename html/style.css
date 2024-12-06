@@ -2006,7 +2006,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .optionEnRelief {
-  background-color: var(--primary20);
+  background-color: var(--primary50);
 }
 
 .searchA {
@@ -2127,6 +2127,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 1.2em;
   margin-right: 10px;
   width: fit-content;
+  text-wrap: nowrap;
 }
 
 .StatutAffiche::after {
@@ -2671,6 +2672,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .option button:hover {
   background-color: #0056b3;
+}
+
+@media (max-width: 1451px) {
+  span.avisSearch {
+    display: none;
+  }
 }
 
 @media (max-width: 1079px) {
@@ -3282,6 +3289,7 @@ section#infoComp div {
 .user>div img  {
   width: 2.2em;
   height: 2.2em;
+  border-radius: 50%;
 }
 
 .user, .noteEtoile, .infoUser, .infoProReponse > div, .infoProReponse, .autreInfoAvis {
@@ -3846,6 +3854,7 @@ details .nonLu, details .nonRepondu{
 /* Style pour les étoiles */
 #note {
   display: flex;
+  flex-direction: column;
   gap: 5px;
   margin-bottom: 15px;
 }
