@@ -496,6 +496,10 @@ function sortAndFilter(array, elementStart, nbElement) {
   // Filtres
   array = filtrerParCategorie(array);
   array = filtrerParNotes(array);
+
+  console.log("note");
+  console.log(array);
+
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
   //array = filtrerParPeriode(array);
