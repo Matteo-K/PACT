@@ -226,7 +226,11 @@ if ($categorie["_visite"]) {
                 let removeBtn = document.createElement("img");
                 removeBtn.setAttribute("src", "../../img/icone/croix.png");
                 removeBtn.className = 'remove-btn';
-
+                
+                //Style de l'image
+                removeBtn.style.width='12px';
+                removeBtn.style.height='12px';
+                removeBtn.style.margin='auto 0 auto 5px'
                 // Pour supprimer le tag 
                 removeBtn.addEventListener('click', function () {
                 sectionLangue.removeChild(langDiv);
