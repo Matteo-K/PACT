@@ -502,6 +502,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
               </section>
             </section>
+            <section class="traitDtOf"></section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
                 <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }

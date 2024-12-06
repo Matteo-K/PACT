@@ -2180,6 +2180,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin: 0;
 }
 
+.traitDtOf{
+  height: 2px;
+  width: 70%;
+  background-color: var(--bloc);
+}
+
 .taille{
   font-size: 1.5rem;
   display: flex;
