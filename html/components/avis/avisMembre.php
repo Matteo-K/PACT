@@ -43,6 +43,7 @@ function formatDateDiff($date)
     }
 }
 
+// Boucle sur les avis
 foreach ($avis as $a) {
 ?>
     <div class="messageAvisReponse">
@@ -50,7 +51,7 @@ foreach ($avis as $a) {
             <article class="user">
                 <div class="infoUser">
                     <img src="<?= $a['membre_url'] ?>" alt="Photo de profil">
-                    <p><?= ucfirst($a['pseudo']) ?> </p>
+                    <p><?= ucfirst($a['pseudo']) ?></p>
                 </div>
                 <div class="autreInfoAvis">
                     <div class="noteEtoile">
@@ -58,7 +59,7 @@ foreach ($avis as $a) {
                         for ($i = 0; $i < $a['note']; $i++) {
                             echo "<div class='star'></div>";
                         }
-                        if (5 - $a['note'] != 0) {
+                        if (5 - $a['note'] > 0) {
                             for ($i = 0; $i < 5 - $a['note']; $i++) {
                                 echo "<div class='star starAvisIncolore'></div>";
                             }
@@ -66,63 +67,64 @@ foreach ($avis as $a) {
                         ?>
                         <p><?= $a['note'] ?> / 5</p>
                     </div>
-                    <img src="./img/icone/trois-points.png" alt="icone de parametre" class="openPopup"/>
+                    <img src="./img/icone/trois-points.png" alt="icone de paramètre" class="openPopup"/>
                 </div>
             </article>
             <article>
                 <div>
-                    <div>
-                        <p><strong><?= ucfirst($a['titre']) ?></strong></p>
-                        <p><?php if (isset($a['datepublie'])) { echo formatDateDiff($a["datepublie"]); } ?></p>
-                    </div>
-                    <div>
-                        <p>Visité en <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
-                        <p> • </p>
-                        <p class="tag"><?= $a['companie'] ?></p>
-                    </div>
-                    <div>
-                        <p><?= $a['content'] ?></p>
-                        <?php if ($a['listimage'] != null) { 
-                            $listimage = trim($a['listimage'], '{}');
-                            $pictures = explode(',', $listimage);
-                        ?>
-                            <div class="swiper-container">
-                                <div class="swiper mySwiperAvis">
-                                    <div class="swiper-wrapper">
-                                        <?php
-                                        foreach ($pictures as $picture) {
-                                        ?>
-                                            <div class="swiper-slide">
-                                                <img src="<?php echo $picture; ?>" alt="Image de l'avis" />
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
+                    <p><strong><?= ucfirst($a['titre']) ?></strong></p>
+                    <p><?php if (isset($a['datepublie'])) echo formatDateDiff($a['datepublie']); ?></p>
+                </div>
+                <div>
+                    <p>Visité en <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
+                    <p> • </p>
+                    <p class="tag"><?= $a['companie'] ?></p>
+                </div>
+                <div>
+                    <p><?= $a['content'] ?></p>
+                    <?php if ($a['listimage'] != null) { 
+                        $listimage = trim($a['listimage'], '{}');
+                        $pictures = explode(',', $listimage);
+                    ?>
+                        <div class="swiper-container">
+                            <div class="swiper mySwiperAvis">
+                                <div class="swiper-wrapper">
+                                    <?php
+                                    foreach ($pictures as $picture) {
+                                    ?>
+                                        <div class="swiper-slide">
+                                            <img src="<?= $picture; ?>" alt="Image de l'avis"/>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
-                                <div class="swiper-pagination"></div>
                             </div>
-                        <?php } ?>
-                    </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    <?php } ?>
                 </div>
             </article>
         </div>
-        <?php if (!empty($a['reponses'])) { 
-            foreach ($a['reponses'] as $r) { ?>
-                <div class="reponseAvis">
-                    <article class="user">
-                        <div class="infoUser">
-                            <img src="<?= $r['membre_url'] ?>" alt="Photo de profil de réponse">
-                            <p><?= ucfirst($r['pseudo']) ?></p>
-                        </div>
-                        <div>
-                            <p><?php echo $r['content']; ?></p>
-                            <p><?php if (isset($r['datepublie'])) { echo formatDateDiff($r["datepublie"]); } ?></p>
-                        </div>
-                    </article>
-                </div>
-            <?php }
-        } ?>
+        <!-- Gestion des réponses -->
+        <?php if (!empty($a['reponses'])) { ?>
+            <div class="listeReponses">
+                <?php foreach ($a['reponses'] as $r) { ?>
+                    <div class="reponseAvis">
+                        <article class="user">
+                            <div class="infoUser">
+                                <img src="<?= $r['membre_url'] ?>" alt="Photo de profil">
+                                <p><?= ucfirst($r['pseudo']) ?></p>
+                            </div>
+                            <div>
+                                <p><?= $r['content'] ?></p>
+                                <p><?php if (isset($r['datepublie'])) echo formatDateDiff($r['datepublie']); ?></p>
+                            </div>
+                        </article>
+                    </div>
+                <?php } ?>
+            </div>
+        <?php } ?>
     </div>
 <?php
 }
