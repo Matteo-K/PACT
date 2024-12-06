@@ -5180,6 +5180,6 @@ div[id=divPFPactuelle] img {
   height: 120px;
 }
 
-input[id="profile-pic"] {
-  color: #034d7c;
+#divNewPFP > #fileupload-button {
+  color: #0056b3;
 }
