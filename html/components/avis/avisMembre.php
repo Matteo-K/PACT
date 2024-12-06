@@ -96,7 +96,6 @@ foreach ($avis as $a) {
                                         <?php
                                         foreach ($pictures as $picture) {
                                         ?>
-
                                             <div class="swiper-slide">
                                                 <img src="<?php echo $picture; ?>" />
                                             </div>
