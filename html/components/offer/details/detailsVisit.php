@@ -174,6 +174,8 @@ if ($categorie["_visite"]) {
                 accessDiv.style.padding = '5px 15px';
                 accessDiv.style.height = '30px';
                 accessDiv.style.borderRadius = '20px';
+                accessDiv.style.fontSize = '0.9em';
+                accessDiv.style.backgroundColor="blue";
 
                 // Ajouter une animation pour l'apparition
                 accessDiv.style.opacity = '0';
