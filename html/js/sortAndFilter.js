@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const userDataElement = document.getElementById('user-data');
   
   const offersData = offersDataElement.getAttribute('data-offers');
-  // console.log(offersData); // Débugger
+  console.table(offersData); // Débugger
 
   try {
     arrayOffer = JSON.parse(offersData);
@@ -560,7 +560,6 @@ function goToPage(page) {
 
 function displayOffers(array, elementStart, nbElement) {
   const bloc = document.querySelector(".searchoffre");
-  console.table(array);
   bloc.innerHTML = "";
   if (array.length != 0) {
     let offers = array.slice(elementStart, elementStart + nbElement);
