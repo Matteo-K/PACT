@@ -578,9 +578,6 @@ function displayOffer(offer) {
   form.classList.add("searchA");
   form.setAttribute("action", "/detailsOffer.php");
   form.setAttribute("method", "post");
-  if (offer.option.includes('EnRelief')) {
-    form.classList.add("optionEnRelief");
-  }
 
   let input = document.createElement("input");
   input.setAttribute("type", "hidden");
@@ -604,6 +601,9 @@ function displayOffer(offer) {
 function createCard(offer) {
   let card = document.createElement("div");
   card.classList.add("carteOffre");
+  if (offer.option.includes('EnRelief')) {
+    card.classList.add("optionEnRelief");
+  }
 
   // Image principale
   let img = document.createElement("img");
