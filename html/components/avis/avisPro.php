@@ -150,7 +150,7 @@ if(isset($_POST["reponsePro"])){
             </p>
         </div>
 
-        <form action="detailsOffer.php">
+        <form action="detailsOffer.php" method="post">
             <h2>
                 Répondre a membre
             </h2>
