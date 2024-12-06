@@ -121,8 +121,8 @@ try {
     
   } catch (error) { }
 
-/* gestion des payments */
 
+/* gestion des payments */
 try {
   const radBtnCB = document.querySelector("#carte_bancaire");
   const radBtnVB = document.querySelector("#virement_bancaire");
