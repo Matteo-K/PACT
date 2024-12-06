@@ -192,7 +192,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
 }
 ?>
-
+<style>
+        /* Style de la popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 300px;
+            text-align: center;
+        }
+        .popup.active {
+            display: block;
+        }
+        .popup.success {
+            border-color: green;
+            background-color: #e7ffe7;
+        }
+        .popup.error {
+            border-color: red;
+            background-color: #ffe7e7;
+        }
+        .popup button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 
 
 <section>
