@@ -141,6 +141,13 @@
         <div id="messageErreur" class="messageErreur"></div>
 
         <form id = "formPro" action="changeAccountPro.php" method="post" enctype="multipart/form-data">
+
+            <div>
+                <label for="profile-pic">Sélectionner une nouvelle photo de profil:</label>
+                <input type="file" id="profile-pic" name="profile-pic" accept="image/*" required>
+            </div>
+
+
             <div class="ligne1">
                 <label for="denomination">Dénomination*:</label>
                 <label for="telephone">Numéro de téléphone*:</label>
