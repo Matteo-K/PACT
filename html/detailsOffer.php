@@ -948,7 +948,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         if ($existingReview) {
                             // L'utilisateur a déjà laissé un avis pour cette offre
-                            echo '<p>"Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre"</p>';
+                            echo '<p>Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre</p>';
                         }else{
                             require_once __DIR__ . "/components/avis/ecrireAvis.php"; 
                         }
