@@ -3287,6 +3287,7 @@ section#infoComp div {
 
 #publiez-component {
   flex-direction: column;
+  width: 100%;
 }
 
 #publiez-component>section {
