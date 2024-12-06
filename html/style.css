@@ -5219,6 +5219,7 @@ button[id="boutonChangerMDP"] {
   margin: 5px auto;
   margin-top: 30px;
   background-color: var(--accent);
+  cursor: pointer;
 }
 
 a[id="boutonLienMembre"],
@@ -5234,6 +5235,7 @@ a[id="boutonLienPro"] {
   color: var(--text-dark);
   background-color: var(--accent);
   text-decoration: none;
+  cursor: pointer;
 }
 
 p[id="legendeBoutonLienMembre"],
@@ -5280,6 +5282,7 @@ p[id="legendeBoutonLienPro"] {
     width: 180px;
     height: 50px;
     font-size: 22px;
+    cursor: pointer;
   }
 
   div[id="lienBouton"] {
