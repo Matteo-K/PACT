@@ -2175,6 +2175,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 100%;
 }
 
+.taille7{
+  font-size: 1.5rem;
+  margin: 0;
+}
+
 .taille{
   font-size: 1.5rem;
   display: flex;
@@ -5139,6 +5144,6 @@ main[id="mainChangerMDP"] {
 
 
 
-div[id=divPFP] img {
+div[id=divPFPactuelle] img {
   border-radius: 90%;
 }
