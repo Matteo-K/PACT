@@ -272,10 +272,11 @@ function filtrerParPrix(offers) {
   const prixMin = parseInt(selectPrixMin.value);
   const prixMax = parseInt(selectPrixMax.value);
 
-  console.log("- prix -");
+  console.log("Par prix");
   console.log(offers);
 
   return offers.filter(offer => {
+    console.log("Categorie " + offer.categorie);
     if (offer.categorie === 'Restaurant') {
       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
       const prixMinOffreRestaurant = prixRange[0];
@@ -496,10 +497,6 @@ function sortAndFilter(array, elementStart, nbElement) {
   // Filtres
   array = filtrerParCategorie(array);
   array = filtrerParNotes(array);
-
-  console.log("note");
-  console.log(array);
-
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
   //array = filtrerParPeriode(array);
