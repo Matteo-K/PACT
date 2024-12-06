@@ -23,17 +23,15 @@ class Restaurant extends Offer {
 
   public function getData() {
     $parentData = parent::getData();
-    $data = array_merge($parentData, [
-        "gammeDePrix" => $this->gammeDePrix,
-        "UrlMenu" => $this->urlMenu,
-        "horaireMidi" => $this->horaireToJSON($this->horaireMidi),
-        "horaireSoir" => $this->horaireToJSON($this->horaireSoir),
-        "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
+
+    return array_merge($parentData, [
+      "gammeDePrix" => $this->gammeDePrix,
+      "UrlMenu" => $this->urlMenu,
+      "horaireMidi" => $this->horaireToJSON($this->horaireMidi),
+      "horaireSoir" => $this->horaireToJSON($this->horaireSoir),
+      "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
     ]);
-
-    return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-}
-
+  }
 
   public function displayCardALaUne() {
     $offre = parent::getData();

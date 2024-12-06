@@ -89,15 +89,14 @@ class Offer {
   public function horaireToJSON($horaire) {
     $formattedResultats = [];
     foreach ($horaire as $result) {
-        $formattedResultats[] = [
-            'jour' => $result['jour'],
-            'heureOuverture' => $result['heureouverture'],
-            'heureFermeture' => $result['heurefermeture']
-        ];
+      $formattedResultats[] = json_encode([
+          'jour' => $result['jour'],
+          'heureOuverture' => $result['heureouverture'],
+          'heureFermeture' => $result['heurefermeture']
+      ]);
     }
     return $formattedResultats;
-}
-
+  }
 
   public function horairePrecisToJSON($horaire) {
     $formattedResultats = [];
