@@ -90,6 +90,9 @@ $is_show;
             </span>
         </div>
     </div>
+    <?php
+        }
+    ?>
     <script>
         const btnsAddHourly = document.querySelectorAll(".btnAddOffer");
         const btnsRmHourly = document.querySelectorAll(".btnRmOffer");
@@ -99,11 +102,11 @@ $is_show;
          */
         btnsAddHourly.forEach((button) => {
             button.addEventListener("click", () => {
-            let nextSpan = button.nextElementSibling;
-            let nextBtn = nextSpan.nextElementSibling;
-            nextSpan.classList.remove("hourlyHide");
-            nextBtn.classList.remove("hourlyHide");
-            button.classList.add("hourlyHide");
+                let nextSpan = button.nextElementSibling;
+                let nextBtn = nextSpan.nextElementSibling;
+                nextSpan.classList.remove("hourlyHide");
+                nextBtn.classList.remove("hourlyHide");
+                button.classList.add("hourlyHide");
             });
         });
 
@@ -112,19 +115,17 @@ $is_show;
          */
         btnsRmHourly.forEach((button) => {
             button.addEventListener("click", () => {
-            let span = button.previousElementSibling;
-            span.querySelectorAll("input").forEach((input) => {
-                input.value = "";
-            });
-            span.classList.add("hourlyHide");
-            button.classList.add("hourlyHide");
-            span.previousElementSibling.classList.remove("hourlyHide");
+                let span = button.previousElementSibling;
+                span.querySelectorAll("input").forEach((input) => {
+                    input.value = "";
+                });
+                span.classList.add("hourlyHide");
+                button.classList.add("hourlyHide");
+                span.previousElementSibling.classList.remove("hourlyHide");
             });
         });
     </script>
-    <?php
-        }
-    } else if ($is_show == 1) {
+    <?php } else if ($is_show == 1) {
     ?>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
