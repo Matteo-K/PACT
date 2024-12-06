@@ -5180,5 +5180,10 @@ div[id=divPFPactuelle] img {
   height: 130px;
 }
 
-/* input[id="profile-pic"] {
-} */
+input[id="profile-pic"] {
+  display: inline-block;
+}
+
+div[id=divNewPFP] > button[id="file-upload-button"] {
+  display: none;
+}
