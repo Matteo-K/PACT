@@ -4057,7 +4057,7 @@ details .nonRepondu {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: 25%;
 }
 
 .notation>div>p {
@@ -4157,7 +4157,7 @@ details .nonRepondu {
 
   #descriptionOffre>section {
     order: 2;
-    width: 100%;
+    width: 65%;
     margin: 1em 0;
   }
 
