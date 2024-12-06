@@ -16,6 +16,9 @@ if(isset($_POST["reponsePro"])){
 
     $stmt = $conn->prepare("INSERT INTO pact.reponse (idpro, contenureponse, idc_avis) VALUES (?, ?, ?) ");
     $stmt->execute([$idUser, $contenuReponse, $idAvis]);
+
+    $stmt = $conn->prepare(query: "UPDATE pact._avis SET lu = true WHERE idc = ? ");
+    $stmt->execute([$idAvis]);
 }
 
 ?>
@@ -492,7 +495,7 @@ function filtreNonRep(arrayAvis) {
         return arrayAvis.filter(avis => {
             return avis[1].idc_reponse == null;
         });
-        divNonRep.style.color = accentColor;
+        chbxNonRep.style.color = accentColor;
     }
     return arrayAvis;
 }
