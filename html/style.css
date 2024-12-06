@@ -3855,7 +3855,7 @@ details .nonLu, details .nonRepondu{
 }
 
 /* Consentement */
-#formCreationAvis > div:not(.note) {
+#formCreationAvis > div:not(#note) {
   margin-bottom: 10px;
   justify-content: space-between;
   align-items: center;
