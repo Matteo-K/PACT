@@ -3296,10 +3296,6 @@ section#infoComp div {
   align-items: center;
 }
 
-.note {
-  background-color: var(--bloc);
-}
-
 #publiez-component>section .star {
   width: 5em;
   height: 5em;
@@ -3308,11 +3304,6 @@ section#infoComp div {
 #publiez-component>section div {
   display: flex;
   justify-content: center;
-}
-
-.note {
-  background-color: var(--bloc);
-  padding: 2em;
 }
 
 
