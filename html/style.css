@@ -5172,10 +5172,10 @@ main[id="mainChangerMDP"] {
 div[id=divPFPactuelle] img {
   border-radius: 90%;
   margin-top: 30px;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
 }
 
 div[id=divNewPFP] input {
-  height: 10px;
+  height: 30px;
 }
