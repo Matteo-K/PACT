@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const userDataElement = document.getElementById('user-data');
   
   const offersData = offersDataElement.getAttribute('data-offers');
-  console.table(offersData); // Débugger
+  // console.log(offersData); // Débugger
 
   try {
     arrayOffer = JSON.parse(offersData);
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.error("Erreur de parsing JSON :", error);
   }
   
-
+  console.log(arrayOffer);
   userType = userDataElement.getAttribute('data-user');
 
   const params = new URLSearchParams(window.location.search);
