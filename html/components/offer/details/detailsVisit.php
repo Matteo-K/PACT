@@ -169,15 +169,11 @@ if ($categorie["_visite"]) {
 
                 // Appliquer un style visuel au conteneur
                 accessDiv.style.display = 'inline-block';
-                accessDiv.style.fontSize = '25px';
-                accessDiv.style.margin = '15px 0 5px 0';
-                accessDiv.style.padding = '8px 12px';
-                accessDiv.style.width = '90%'; 
-                accessDiv.style.border = '1px solid #e57373';
+                accessDiv.style.boxShadow = 'none';
+                accessDiv.style.margin = '5px ';
+                accessDiv.style.padding = '5px 15px';
+                accessDiv.style.height = '30px';
                 accessDiv.style.borderRadius = '20px';
-                accessDiv.style.fontSize = '0.9em';
-                accessDiv.style.color = 'blue';
-                accessDiv.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
                 // Ajouter une animation pour l'apparition
                 accessDiv.style.opacity = '0';
