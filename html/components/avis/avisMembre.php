@@ -70,14 +70,16 @@ foreach ($avis as $a) {
                         <p><?= $a['note'] ?> / 5</p>
                     </div>
                     <!-- Icône de 3 points pour ouvrir la popup -->
-                    <img src="./img/icone/trois-points.png" alt="icone de parametre" class="openPopup"/>
+                    <img src="./img/icone/trois-points.png" alt="icone de parametre" class="openPopup" />
                 </div>
             </article>
             <article>
                 <div>
                     <div>
                         <p><strong><?= ucfirst($a['titre']) ?></strong></p>
-                        <p><?php if (isset($a['datepublie'])) { echo formatDateDiff($a["datepublie"]); } ?></p>
+                        <p><?php if (isset($a['datepublie'])) {
+                                echo formatDateDiff($a["datepublie"]);
+                            } ?></p>
                     </div>
                     <div>
                         <p>Visité en <?= ucfirst(strtolower($a['mois'])) . " " . $a['annee'] ?></p>
@@ -86,7 +88,7 @@ foreach ($avis as $a) {
                     </div>
                     <div>
                         <p><?= $a['content'] ?></p>
-                        <?php if ($a['listimage'] != null) { 
+                        <?php if ($a['listimage'] != null) {
                             $listimage = trim($a['listimage'], '{}');
                             $pictures = explode(',', $listimage);
                         ?>
@@ -112,7 +114,7 @@ foreach ($avis as $a) {
                     </div>
                 </div>
             </article>
-            </div>
+        </div>
         <?php
         if ($a['idc_reponse']) {
         ?>
