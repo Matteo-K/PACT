@@ -5103,6 +5103,24 @@ div.ligne6>label {
   #conditionMotdepasse {
     order: 19;
   }
+
+  div[id=divPFPactuelle] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  input[id="profile-pic"]  {
+    display: none;
+  }
+  
+  label[id="labelPFP"] {
+    text-decoration: underline;
+  }
+  
+  label[id="labelPFP"]:hover  {
+    color: var(--accent);
+  }
 }
 
 /*++++++++++++++++++++++++++++++*/
