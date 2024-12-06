@@ -5194,7 +5194,3 @@ div[id=divPFPactuelle] img {
   width: 130px;
   height: 130px;
 }
-
-div[id=divNewPFP] > input > button {
-  display: none;
-}
