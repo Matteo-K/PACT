@@ -108,7 +108,7 @@
                         $stmtUpdatePhoto->execute([$targetFile, $userId]);
         
                         $_SESSION['success'] = "Photo de profil mise à jour avec succès.";
-                        header("Location: changeAccountPro.php");
+                        header("Location: changeAccountMember.php");
                         exit();
                     } 
                     
