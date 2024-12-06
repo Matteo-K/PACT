@@ -18,11 +18,11 @@ function formatDateDiff($date)
 
     // Calculer la différence en jours (à partir de minuit)
     $intervalDays = $dateDBMidnight->diff($dateNowMidnight);
-    $diffInDays = (int)$intervalDays->format('%r%a'); // %r pour prendre en compte les jours négatifs
+    $diffInDays = (int)$intervalDays->format('%r%a');
 
     // Calculer la différence en heures et minutes
     $interval = $dateDB->diff($dateNow);
-    $diffInHours = $interval->h + ($interval->days * 24); // Ajouter les heures des jours entiers
+    $diffInHours = $interval->h + ($interval->days * 24);
     $diffInMinutes = $interval->i;
 
     // Déterminer le message à afficher
@@ -30,18 +30,15 @@ function formatDateDiff($date)
         if ($diffInMinutes === 0) {
             return "Rédigé à l'instant";
         } elseif ($diffInHours > 1) {
-            return "Rédigé il y a " . $diffInHours - 1 . " heure" . ($diffInHours > 1 ? 's' : '');
+            return "Rédigé il y a " . ($diffInHours - 1) . " heure" . ($diffInHours > 1 ? 's' : '');
         } else {
             return "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '');
         }
     } elseif ($diffInDays === 1) {
-        // La date est hier
         return "Rédigé hier";
     } elseif ($diffInDays > 1 && $diffInDays <= 7) {
-        // La date est dans les 7 derniers jours
         return "Rédigé il y a " . abs($diffInDays) . " jour" . (abs($diffInDays) > 1 ? 's' : '');
     } else {
-        // La date est plus ancienne que 7 jours ou dans le futur
         return "Rédigé le " . $dateDB->format("d/m/Y à H:i");
     }
 }
@@ -52,7 +49,7 @@ foreach ($avis as $a) {
         <div class="messageAvis">
             <article class="user">
                 <div class="infoUser">
-                    <img src="<?= $a['membre_url'] ?>">
+                    <img src="<?= $a['membre_url'] ?>" alt="Photo de profil">
                     <p><?= ucfirst($a['pseudo']) ?> </p>
                 </div>
                 <div class="autreInfoAvis">
@@ -69,7 +66,6 @@ foreach ($avis as $a) {
                         ?>
                         <p><?= $a['note'] ?> / 5</p>
                     </div>
-                    <!-- Icône de 3 points pour ouvrir la popup -->
                     <img src="./img/icone/trois-points.png" alt="icone de parametre" class="openPopup"/>
                 </div>
             </article>
@@ -96,9 +92,8 @@ foreach ($avis as $a) {
                                         <?php
                                         foreach ($pictures as $picture) {
                                         ?>
-
                                             <div class="swiper-slide">
-                                                <img src="<?php echo $picture; ?>" />
+                                                <img src="<?php echo $picture; ?>" alt="Image de l'avis" />
                                             </div>
                                         <?php
                                         }
@@ -112,6 +107,22 @@ foreach ($avis as $a) {
                 </div>
             </article>
         </div>
+        <?php if (!empty($a['reponses'])) { 
+            foreach ($a['reponses'] as $r) { ?>
+                <div class="reponseAvis">
+                    <article class="user">
+                        <div class="infoUser">
+                            <img src="<?= $r['membre_url'] ?>" alt="Photo de profil de réponse">
+                            <p><?= ucfirst($r['pseudo']) ?></p>
+                        </div>
+                        <div>
+                            <p><?php echo $r['content']; ?></p>
+                            <p><?php if (isset($r['datepublie'])) { echo formatDateDiff($r["datepublie"]); } ?></p>
+                        </div>
+                    </article>
+                </div>
+            <?php }
+        } ?>
     </div>
 <?php
 }
