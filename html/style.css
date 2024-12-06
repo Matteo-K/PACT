@@ -5329,7 +5329,10 @@ input[id="profile-pic"]  {
   display: none;
 }
 
+label[id="labelPFP"] {
+  text-decoration: underline;
+}
+
 label[id="labelPFP"]:hover  {
   color: var(--accent);
-  text-decoration: underline;
 }
