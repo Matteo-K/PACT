@@ -5328,3 +5328,8 @@ div[id=divPFPactuelle] img {
 input[id="profile-pic"]  {
   display: none;
 }
+
+label[id="labelPFP"]:hover  {
+  color: var(--accent);
+  text-decoration: ;
+}
