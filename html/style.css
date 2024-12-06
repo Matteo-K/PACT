@@ -5181,10 +5181,10 @@ div[id=divPFPactuelle] img {
   height: 130px;
 }
 
-input[id="profile-pic"] {
+label[id="pfpUpload"] {
   display: inline-block;
 }
 
-div[id=divNewPFP] > button[id="file-upload-button"] {
+div[id=divNewPFP] > input {
   display: none;
 }
