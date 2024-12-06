@@ -70,7 +70,7 @@ foreach ($avis as $a) {
                         <p><?= $a['note'] ?> / 5</p>
                     </div>
                     <!-- Icône de 3 points pour ouvrir la popup -->
-                    <img src="./img/icone/trois-points.png" alt="icone de parametre" class="openPopup" data-id="<?= $a['idavis'] ?>" />
+                    <img src="./img/icone/trois-points.png" alt="icone de parametre" class="openPopup"/>
                 </div>
             </article>
             <article>
@@ -148,8 +148,7 @@ foreach ($avis as $a) {
     // Ouvre la popup lorsque l'icône des trois points est cliquée
     document.querySelectorAll('.openPopup').forEach(item => {
         item.addEventListener('click', event => {
-            const avisId = event.target.getAttribute('data-id');
-            const popup = document.getElementById('popup-' + avisId);
+            const popup = document.getElementById('popup-' + <?= $a['idc']?>);
             popup.style.display = 'block'; // Afficher la popup
         });
     });
