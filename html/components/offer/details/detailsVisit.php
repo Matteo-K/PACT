@@ -234,7 +234,7 @@ if ($categorie["_visite"]) {
 
                 
                 langDiv.appendChild(langText);
-              //  langDiv.appendChild(removeBtn);
+                langDiv.appendChild(removeBtn);
 
                 // Appliquer un style visuel au conteneur
 
