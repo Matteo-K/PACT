@@ -5175,11 +5175,7 @@ main[id="mainChangerMDP"] {
 
 div[id=divPFPactuelle] img {
   border-radius: 90%;
-  margin-top: 30px;
-  width: 120px;
-  height: 120px;
-}
-
-div[id=divNewPFP] #file-upload-button {
-  color: red;
+  margin-top: 25px;
+  width: 130px;
+  height: 130px;
 }
