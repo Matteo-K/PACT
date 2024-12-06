@@ -93,6 +93,10 @@
                         $stmtImage = $conn->prepare("SELECT * FROM pact._image WHERE url = ?");
                         $stmtImage->execute([$targetFile]);
                         $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
+
+                        if($photoProfil['url'] !="./img/profile_picture/default.svg"){
+                            unlink($photoProfil['url']);
+                        }
         
                         if (!$imageExist) {
                             // Si l'image n'existe pas, l'ajouter à la table _image avec un nom pour "nomimage"
