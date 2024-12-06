@@ -99,3 +99,81 @@ if ($categorie["_activite"]) {
             </div>
 
 </section>
+
+
+<script>
+    // Gestion de l'accésibilité
+    // Récupération des éléments nécessaires
+    const selectAccessibilite = document.getElementById('nomAccess');
+    const sectionAccessibilite = document.createElement('div');
+    sectionAccessibilite.id = 'sectionAccessibilite';
+    sectionAccessibilite.style.marginTop = '10px';
+    selectAccessibilite.parentNode.appendChild(sectionAccessibilite);
+
+
+    selectAccessibilite.addEventListener('change', function () {
+        const selectedValue = this.value; // Récupère la valeur sélectionnée
+
+
+        if (selectedValue !== 'SelectionAccess') {
+            // Vérifier si l'option est déjà ajoutée
+            if (document.getElementById(`access-${selectedValue}`)) {
+                alert(`L'accessibilité "${selectedValue}" est déjà ajoutée !`);
+            } else {
+                // Créer un conteneur pour l'option sélectionnée
+                const accessDiv = document.createElement('div');
+                accessDiv.className = 'access-item';
+                accessDiv.id = `access-${selectedValue}`; // ID unique pour éviter les doublons
+
+                // Ajouter le nom de l'option dans un élément stylisé
+                const accessText = document.createElement('span');
+                accessText.textContent = selectedValue;
+                accessText.className = 'access-text';
+
+                // Ajouter un bouton de suppression
+                let removeBtn = document.createElement("img");
+                removeBtn.setAttribute("src", "../../img/icone/croix.png");
+                removeBtn.className = 'remove-btn';
+
+
+                //Style de l'image
+                removeBtn.style.width = '12px';
+                removeBtn.style.height = '12px';
+                removeBtn.style.alignItems = 'center';
+                removeBtn.style.margin = 'auto 0 auto 5px'
+
+                // Action pour retirer l'option lorsqu'on clique sur le bouton
+                removeBtn.addEventListener('click', function () {
+                    sectionAccessibilite.removeChild(accessDiv);
+                });
+
+                // Ajouter le texte et le bouton au conteneur de l'option
+                accessDiv.appendChild(accessText);
+                accessDiv.appendChild(removeBtn);
+
+                // Style des "tag" pour le handicap
+                accessDiv.style.display = 'inline-block';
+                accessDiv.style.boxShadow = 'none';
+                accessDiv.style.margin = '5px ';
+                accessDiv.style.padding = '5px 15px';
+                accessDiv.style.height = '30px';
+                accessDiv.style.borderRadius = '20px';
+                accessDiv.style.fontSize = '0.9em';
+                accessDiv.style.backgroundColor = "#d1ccdc";
+
+                // Ajouter une animation pour l'apparition
+                accessDiv.style.opacity = '0';
+                accessDiv.style.transform = 'scale(0.95)';
+                sectionAccessibilite.appendChild(accessDiv);
+                setTimeout(() => {
+                    accessDiv.style.opacity = '1';
+                    accessDiv.style.transform = 'scale(1)';
+                }, 10); // Transition après ajout
+            }
+        }
+
+        // Réinitialiser le select après ajout
+        this.value = 'SelectionAccess';
+    });
+
+</script>

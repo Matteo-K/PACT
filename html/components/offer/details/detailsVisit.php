@@ -125,19 +125,19 @@ if ($categorie["_visite"]) {
 <!-- Script Js  -->
 
 <script>
-
+    // Gestion de l'accésibilité
     // Récupération des éléments nécessaires
     const selectAccessibilite = document.getElementById('nomAccess');
-    const sectionAccessibilite = document.createElement('div'); // Conteneur pour les tags
+    const sectionAccessibilite = document.createElement('div'); 
     sectionAccessibilite.id = 'sectionAccessibilite';
     sectionAccessibilite.style.marginTop = '10px';
-    selectAccessibilite.parentNode.appendChild(sectionAccessibilite); // Ajout après le select
+    selectAccessibilite.parentNode.appendChild(sectionAccessibilite); 
 
-    // Écouteur d'événement pour détecter un changement dans le select
+    
     selectAccessibilite.addEventListener('change', function () {
         const selectedValue = this.value; // Récupère la valeur sélectionnée
 
-        // Vérifier si une option d'accessibilité a été sélectionnée
+        
         if (selectedValue !== 'SelectionAccess') {
             // Vérifier si l'option est déjà ajoutée
             if (document.getElementById(`access-${selectedValue}`)) {
@@ -201,7 +201,7 @@ if ($categorie["_visite"]) {
 
 
 
-    // Pour l'accessibilité 
+
 
 
     // Pour les langues 
