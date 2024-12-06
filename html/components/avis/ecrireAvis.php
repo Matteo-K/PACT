@@ -182,48 +182,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
 
 }
 ?>
-<style>
-    /* Style de la popup */
-    .popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 20px;
-        border: 1px solid #ccc;
-        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        width: 300px;
-        text-align: center;
-    }
-
-    .popup.active {
-        display: block;
-    }
-
-    .popup.success {
-        border-color: green;
-        background-color: #e7ffe7;
-    }
-
-    .popup.error {
-        border-color: red;
-        background-color: #ffe7e7;
-    }
-
-    .popup button {
-        margin-top: 10px;
-        padding: 10px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-</style>
-
-
 <section>
     <form id="formCreationAvis" action="detailsOffer.php" method="post" enctype="multipart/form-data">
         <div id="note">
@@ -498,30 +456,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["note"])) {
     // Fonction pour générer un ID unique
     function generateUniqueId() {
         return "temp_" + Math.random().toString(36).substr(2, 9);
-    }
-
-    // Vérifier si un message de session existe (success ou error)
-    <?php if (isset($_SESSION['review_success'])): ?>
-        showPopup("<?php echo $_SESSION['review_success']; ?>", "success");
-        <?php unset($_SESSION['review_success']); ?>
-    <?php elseif (isset($_SESSION['review_error'])): ?>
-        showPopup("<?php echo $_SESSION['review_error']; ?>", "error");
-        <?php unset($_SESSION['review_error']); ?>
-    <?php endif; ?>
-
-    // Fonction pour afficher la popup
-    function showPopup(message, type) {
-        const popup = document.getElementById("popup");
-        const popupMessage = document.getElementById("popup-message");
-
-        popupMessage.innerText = message;
-        popup.classList.add("active");
-        popup.classList.add(type);
-    }
-
-    // Fonction pour fermer la popup
-    function closePopup() {
-        const popup = document.getElementById("popup");
-        popup.classList.remove("active");
     }
 </script>
