@@ -169,7 +169,7 @@ if (!$result) {
         <input type="hiddedn" name="page" value="2">
     </form>
     <script>
-        document.getElementById("manageOfferAuto").submit();
+        // document.getElementById("manageOfferAuto").submit();
     </script>
 <?php
 
