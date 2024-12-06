@@ -1,13 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     const messageErreurDiv = document.getElementById('messageErreur');
-    const form = document.getElementById('formPro') || document.getElementById('formMember');
+    const form = document.getElementById('formPro') || document.getElementById('formMember');   
 
-    
     // Gestion du bouton retour
     document.getElementById('retour').addEventListener('click', function () {
         window.history.back();
     });
-
 
     // Vérifier si des erreurs ont été passées du côté serveur et les afficher
     // if (messageErreurDiv.innerHTML.trim() !== "") {
