@@ -76,10 +76,10 @@
             // Vérifier si le type de fichier est autorisé
             if (in_array($file['type'], $allowedTypes)) {
                 $targetDir = 'uploads/';
-                $targetFile = $targetDir . basename($file['name']);
+                $targetFile = $targetDir . basename($file['./img/profile_picture/']);
                 
                 // Déplacer le fichier téléchargé vers le répertoire de destination
-                if (move_uploaded_file($file['./img/profile_picture/'], $targetFile)) {
+                if (move_uploaded_file($file['fichierTemp'], $targetFile)) {
                     try {
                         // Mettre à jour l'URL de la photo de profil dans la base de données
                         $stmt = $conn->prepare("UPDATE pact._photo_profil SET url = ? WHERE idU = ?");
