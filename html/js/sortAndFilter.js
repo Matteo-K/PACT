@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
     console.error("Erreur de parsing JSON :", error);
   }
   
-
   userType = userDataElement.getAttribute('data-user');
 
   const params = new URLSearchParams(window.location.search);
@@ -277,12 +276,10 @@ function filtrerParPrix(offers) {
     if (offer.categorie === 'Restaurant') {
       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
       const prixMinOffreRestaurant = prixRange[0];
-      const prixMaxOffreRestaurant = prixRange[1];
+      const prixMaxOffreRestaurant = prixRange[0] + 20;
 
       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
-    } 
-    
-    else {
+    } else {
       const prixMinOffreAutres = (offer.prixMinimal || 0);
       return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
     }
@@ -548,11 +545,6 @@ function updatePagination(totalItems, nbElement) {
 
 function goToPage(page) {
   currentPage = page;
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
-  });
   sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement);
 }
 

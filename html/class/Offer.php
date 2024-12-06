@@ -56,39 +56,6 @@ class Offer {
     $this->categorie = $categorie_;
   }
 
-  /** 
-   * Affichage des cartes d'offres
-   */
-  public function displayCardOffer() {
-    $idOffre = $this->idOffre;
-    $nomOffre = $this->nomOffre;
-    $urlImg = $this->images[0] ?? "";
-    $gammeText = "";
-    $ville = $this->ville;
-    $nomTag = $this->categorie;
-    $tag = $this->tags;
-    $resume = $this->resume;
-    $noteAvg = $this->noteAvg;
-
-    $restaurantOuvert = $this->statutOuverture($this->horaireSoir, $this->horaireMidi) ?? ""; // à remplacer
-    require __DIR__."/../components/cardOffer.php";
-  }
-
-  public function displayCardOfferPro() {
-    $idOffre = $this->idOffre;
-    $nomOffre = $this->nomOffre;
-    $urlImg = $this->images[0] ?? "";
-    $gammeText = "";
-    $ville = $this->ville;
-    $nomTag = $this->categorie;
-    $tag = $this->tags;
-    $resume = $this->resume;
-    $noteAvg = $this->noteAvg;
-    $restaurantOuvert = $this->statutOuverture($this->horaireSoir, $this->horaireMidi) ?? ""; // à remplacer
-    $statut = $this->statut;
-    require __DIR__."/../components/cardOfferPro.php";
-  }
-
   public function displayCardALaUne() {
     $idOffre = $this->idOffre;
     $nomOffre = $this->nomOffre;

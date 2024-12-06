@@ -33,39 +33,6 @@ class Restaurant extends Offer {
     ]);
   }
 
-  public function displayCardOffer() {
-    $offre = parent::getData();
-    $idOffre = $offre["idOffre"];
-    $nomOffre = $offre["nomOffre"];
-    $urlImg = $offre["images"][0] ?? "";
-    $gammeText = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
-    $ville = $offre["ville"];
-    $nomTag = $offre["categorie"];
-    $tag = $offre["tags"];
-    $resume = $offre["resume"];
-    $noteAvg = $offre["noteAvg"];
-
-    // Récupération ouvert Fermé
-    $restaurantOuvert = parent::statutOuverture($this->horaireSoir, $this->horaireMidi);
-    require __DIR__."/../components/cardOffer.php";
-  }
-
-  public function displayCardOfferPro() {
-    $offre = parent::getData();
-    $idOffre = $offre["idOffre"];
-    $nomOffre = $offre["nomOffre"];
-    $urlImg = $offre["images"][0] ?? "";
-    $gammeText = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
-    $ville = $offre["ville"];
-    $nomTag = $offre["categorie"];
-    $tag = $offre["tags"];
-    $resume = $offre["resume"];
-    $noteAvg = $offre["noteAvg"];
-    $restaurantOuvert = parent::statutOuverture($this->horaireSoir, $this->horaireMidi);
-    $statut = $offre["statut"];
-    require __DIR__."/../components/cardOfferPro.php";
-  }
-
   public function displayCardALaUne() {
     $offre = parent::getData();
     $idOffre = $offre["idOffre"];

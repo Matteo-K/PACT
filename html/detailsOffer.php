@@ -536,7 +536,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $stmt->execute();
                         $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                        if ($typeOffer == "restaurant") {
+                        if ($result[0]['categorie'] == "Restaurant") {
                             array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
                         }
 
@@ -893,9 +893,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     if ($typeOffer == "Parc Attraction") {
                         if ($result[0]['urlplan']) {
                     ?>
-                            <div>
+                            <div class="planParc">
                                 <h2>Plan du parc :</h2>
-                                <img src="<?php echo $result[0]["urlplan"] ?>">
+                                <div>
+                                    <img src="<?php echo $result[0]["urlplan"] ?>">
+                                </div>
                             </div>
                         <?php
                         }
