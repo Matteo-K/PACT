@@ -27,6 +27,24 @@ require_once "config.php";
         ?>
       </div>
     </div>
+    <?php if ($typeUser == "membre") { ?>
+    <div id="consultationRecente">
+        <h2>Consulté récemment</h2>
+        <div>
+          <?php
+          $nbElement = 20;
+          $stmt = $conn->prepare("SELECT idoffre FROM pact._consulter where idu = ? and dateconsultation = CURRENT_DATE;");
+          $stmt->execute([$_SESSION['idUser']]);
+          $idOffres = [];
+          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+              $idOffres[] = $row['idoffre'];
+          }
+          $offres = new ArrayOffer($idOffres);
+          $offres->displayConsulteRecemment($nbElement);
+          ?>
+      </div>
+    </div>
+    <?php } ?>
     <div id="voirPlus">
       <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
         <a href="manageOffer.php" class="modifierBut">Créer une offre</a>  

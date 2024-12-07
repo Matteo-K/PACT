@@ -323,7 +323,19 @@ class ArrayOffer {
         }
       }
     } else {
-      echo "<p>Aucune offre trouvée </p>";
+      echo "<p>Aucune offre à la une </p>";
+    }
+  }
+
+  public function displayConsulteRecemment($nbElement_) {
+    $array = $this->arrayOffer;
+    $array = array_slice($array, 0, $nbElement_);
+    if (count($array) > 0) {
+      foreach ($array as $key => $elem) {
+        $elem->displayCardALaUne();
+      }
+    } else {
+      echo "<p>Aucune offre consulté récemment</p>";
     }
   }
 
