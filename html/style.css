@@ -923,15 +923,19 @@ header ul+div {
   width: auto !important;
   padding: 10px !important;
   border-radius: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-evenly !important;
-  z-index: 2 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: 2;
 }
 
 /* sprint 3 */
 .blcTriFiltre:not(#tri .blcTriFiltre) {
   display: flex;
+}
+
+.searchoffre {
+  margin-left: 0 !important;
 }
 
 /* ### Offer ### */
