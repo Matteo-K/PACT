@@ -39,8 +39,9 @@ require_once "config.php";
           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
               $idOffres[] = $row['idoffre'];
           }
-          $offres = new ArrayOffer($idOffres);
-          $offres->displayConsulteRecemment($nbElement);
+          print_r($idOffres);
+          $consultRecent = new ArrayOffer($idOffres);
+          $consultRecent->displayConsulteRecemment($nbElement);
           ?>
       </div>
     </div>

@@ -666,7 +666,7 @@ header ul+div {
   height: 304px;
 }
 
-#ALaUne>div {
+#ALaUne>div, #consultationRecente > div {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
