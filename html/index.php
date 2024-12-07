@@ -34,7 +34,7 @@ require_once "config.php";
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
           $idOffres[] = $row['idoffre'];
       }
-      if (count($idOffres > 0)) {
+      if (count($idOffres) > 0) {
       ?>
       <div id="consultationRecente">
         <h2>Consulté récemment</h2>
