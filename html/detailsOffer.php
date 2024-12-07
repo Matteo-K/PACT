@@ -561,21 +561,21 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($tags as $tag):
                             if ($tag["nomtag"] != NULL) {
                         ?>
-                                <a class="tag" href="search.php?search=<?= str_replace("_", "+", $tag["nomtag"]) ?>"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
+                                <a class="tag" href="index.php#trifiltre?search=<?= str_replace("_", "+", $tag["nomtag"]) ?>"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
                             <?php }
                         endforeach;
 
                         if ($ouverture == "EstOuvert" && $typeOffer == "Spectacle") {
                             ?>
-                            <a class="ouvert" href="search.php?search=ouvert">En Cours</a>
+                            <a class="ouvert" href="index.php#trifiltre?search=ouvert">En Cours</a>
                         <?php
                         } else if ($ouverture == "EstOuvert") {
                         ?>
-                            <a class="ouvert" href="search.php?search=ouvert">Ouvert</a>
+                            <a class="ouvert" href="index.php#trifiltre?search=ouvert">Ouvert</a>
                         <?php
                         } else {
                         ?>
-                            <a class="ferme" href="search.php?search=ferme">Fermé</a>
+                            <a class="ferme" href="index.php#trifiltre?search=ferme">Fermé</a>
                         <?php
                         }
                         ?>

@@ -917,7 +917,7 @@ header ul+div {
 }
 
 /* aside index temporaire - sprint 3 */
-#trifiltre {
+#trifiltre:not(#search #trifiltre) {
   position: sticky !important;
   top: var(--header-size) !important;
   width: auto !important;
@@ -930,11 +930,11 @@ header ul+div {
 }
 
 /* sprint 3 */
-.blcTriFiltre:not(#tri .blcTriFiltre) {
+.blcTriFiltre:not(#tri .blcTriFiltre, #search .blcTriFiltre) {
   display: flex;
 }
 
-.searchoffre {
+.searchoffre:not(#search .searchoffre) {
   margin-left: 0 !important;
 }
 

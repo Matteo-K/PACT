@@ -180,7 +180,7 @@
                 }
 
                 $_SESSION['success'] = "Informations mises à jour avec succès.";
-                header("Location: search.php");
+                header("Location: index.php");
                 exit();
             }
 

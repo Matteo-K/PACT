@@ -52,7 +52,7 @@
           <h4>Catégories&nbsp;:&nbsp;</h4>
           <div class="tagsCard">
             <?php foreach ($tags as $key => $tag) { ?>
-              <a href="search.php?search=<?php echo $tag ?>" class="tagIndex"><?php echo $tag ?></a>
+              <a href="index.php#trifiltre?search=<?php echo $tag ?>" class="tagIndex"><?php echo $tag ?></a>
             <?php } ?>
           </div>
         </div>
