@@ -27,24 +27,28 @@ require_once "config.php";
         ?>
       </div>
     </div>
-    <?php if ($typeUser == "membre") { ?>
-    <div id="consultationRecente">
+    <?php if ($typeUser == "membre") {
+      $stmt = $conn->prepare("SELECT idoffre FROM pact._consulter where idu = ? and dateconsultation = CURRENT_DATE;");
+      $stmt->execute([$_SESSION['idUser']]);
+      $idOffres = [];
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          $idOffres[] = $row['idoffre'];
+      }
+      if (count($idOffres > 0)) {
+      ?>
+      <div id="consultationRecente">
         <h2>Consulté récemment</h2>
         <div>
           <?php
-          $nbElement = 20;
-          $stmt = $conn->prepare("SELECT idoffre FROM pact._consulter where idu = ? and dateconsultation = CURRENT_DATE;");
-          $stmt->execute([$_SESSION['idUser']]);
-          $idOffres = [];
-          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-              $idOffres[] = $row['idoffre'];
-          }
-          print_r($idOffres);
-          $consultRecent = new ArrayOffer($idOffres);
-          $consultRecent->displayConsulteRecemment($nbElement);
+            $nbElement = 20;
+            $consultRecent = new ArrayOffer($idOffres);
+            $consultRecent->displayConsulteRecemment($nbElement);
           ?>
+        </div>
       </div>
-    </div>
+      <?php } else { ?>
+        <p>Aucune offre consultée récemment</p>
+      <?php } ?>
     <?php } ?>
     <div id="voirPlus">
       <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>

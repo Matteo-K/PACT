@@ -335,7 +335,7 @@ class ArrayOffer {
         $elem->displayCardALaUne();
       }
     } else {
-      echo "<p>Aucune offre consulté récemment</p>";
+      echo "<p>Aucune offre consultée récemment</p>";
     }
   }
 
