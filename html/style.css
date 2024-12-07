@@ -17,6 +17,11 @@
   scroll-behavior: smooth;
 }
 
+/* pre sprint 3 */
+html {
+  scroll-padding-top: 20px;
+}
+
 * {
   font-family: "Lato", sans-serif;
 }
@@ -916,7 +921,7 @@ header ul+div {
   }
 }
 
-/* aside index temporaire - sprint 3 */
+/* aside index temporaire - pre sprint 3 */
 #trifiltre:not(#search #trifiltre) {
   position: sticky !important;
   top: var(--header-size) !important;
@@ -929,7 +934,7 @@ header ul+div {
   z-index: 2;
 }
 
-/* sprint 3 */
+/* pre sprint 3 */
 .blcTriFiltre:not(#tri .blcTriFiltre, #search .blcTriFiltre) {
   display: flex;
 }
