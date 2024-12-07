@@ -930,7 +930,7 @@ header ul+div {
 }
 
 /* sprint 3 */
-.blcTriFiltre {
+.blcTriFiltre:not(#tri .blcTriFiltre) {
   display: flex;
 }
 
