@@ -27,6 +27,12 @@ require_once "config.php";
         ?>
       </div>
     </div>
+    <div id="voirPlus">
+      <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
+        <a href="manageOffer.php" class="modifierBut">Créer une offre</a>  
+      <?php } ?>
+        <a href="search.php" class="modifierBut">Voir plus</a>
+    </div>
     <?php if ($typeUser == "membre") {
       $stmt = $conn->prepare("SELECT idoffre FROM pact._consulter where idu = ? and dateconsultation = CURRENT_DATE;");
       $stmt->execute([$_SESSION['idUser']]);
@@ -48,25 +54,37 @@ require_once "config.php";
         </div>
       </div>
     <?php } ?>
-    <div id="voirPlus">
-      <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
-        <a href="manageOffer.php" class="modifierBut">Créer une offre</a>  
-      <?php } ?>
-        <a href="search.php" class="modifierBut">Voir plus</a>
+    <!-- Partie de recherche -->
+    <div class="search">
+      <?php 
+      require_once "components/asideTriFiltre.php";
+
+      $offres = new ArrayOffer();
+      ?>
+      <section class="searchoffre">
+      </section>
+      <section id="pagination">
+          <ul id="pagination-liste">
+          </ul>
+      </section>
     </div>
-  </main>
-  <?php require_once "components/footer.php"; ?>
-  <script>
-    const forms = document.querySelectorAll("#index form");
-    forms.forEach(form => {
-      form.addEventListener("click", (event) => {
-        if (event.target.tagName.toLowerCase() === "a") {
-          return;
-        }
-        event.preventDefault();
-        form.submit();
+    <?php require_once "components/footer.php"; ?>
+    <!-- Data -->
+    <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->recherche($idUser, $typeUser, $search)))); ?>'></div>
+    <div id="user-data" data-user='<?php echo $typeUser ?>'></div>
+    <script src="js/sortAndFilter.js"></script>
+    <?php require_once "components/footer.php"; ?>
+    <script>
+      const forms = document.querySelectorAll("#index form");
+      forms.forEach(form => {
+        form.addEventListener("click", (event) => {
+          if (event.target.tagName.toLowerCase() === "a") {
+            return;
+          }
+          event.preventDefault();
+          form.submit();
+        });
       });
-    });
-  </script>
+    </script>
 </body>
 </html>

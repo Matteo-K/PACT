@@ -202,14 +202,65 @@
                 <div>
                     <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
                     <input type="date" name="dateDepart" id="dateDepart" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>">
-                    <input type="time" name="heureDebut" id="heureDebut" >
+                    <input type="time" name="heureDebut" id="heureDebut" value="08:00">
                 </div>
                 <div>
                     <label for="dateDepart">Fin&nbsp;:&nbsp;</label>
                     <input type="date" name="dateFin" id="dateFin" value="<?php echo date('Y-m-d', strtotime('+7 day')); ?>" min="<?php echo date('Y-m-d'); ?>">
-                    <input type="time" name="heureFin" id="heureFin">
+                    <input type="time" name="heureFin" id="heureFin" value="23:00">
                 </div>
             </div>
         </div>
     </aside>
 </section>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        
+        document.querySelector('#prixMin').addEventListener('change', inverseValuesPrix);
+        document.querySelector('#prixMax').addEventListener('change', inverseValuesPrix);
+                
+        /**
+         * Switch les valeurs des prix maximum et minimum si prix maximum < prix minimum
+         */
+        function inverseValuesPrix () {
+            const selectMin = document.querySelector('#prixMin');
+            const selectMax = document.querySelector('#prixMax');
+            const valueMin = parseInt(selectMin.value);
+            const valueMax = parseInt(selectMax.value);
+            
+            if (valueMin > valueMax) {
+                selectMin.value = valueMax;
+                selectMax.value = valueMin;
+            }
+        }
+        
+        // Ouvre et ferme le pop-up tri et filtre pour la partie mobile
+        const btnFiltre = document.querySelector("#btnFiltre");
+        const btnTri = document.querySelector("#btnTri");
+        const asideTri = document.querySelector("#tri");
+        const asideFiltre = document.querySelector("#filtre");
+        const fermeTri = document.querySelector("#fermeTri");
+        const fermeFiltre = document.querySelector("#fermeFiltre");
+        const body = document.body;
+        
+        /**
+         * Ouvre et ferme le aside au format mobile
+         * Empêche le scroll
+         */
+        function toggleAside(aside) {
+            aside.classList.toggle('openFiltreTri');
+            
+            if (asideTri.classList.contains('openFiltreTri') || asideFiltre.classList.contains('openFiltreTri')) {
+                body.classList.add('no-scroll');
+            } else {
+                body.classList.remove('no-scroll');
+            }
+        }
+        
+        fermeTri.addEventListener("click", () => toggleAside(asideTri));
+        fermeFiltre.addEventListener("click", () => toggleAside(asideFiltre));
+        btnTri.addEventListener("click", () => toggleAside(asideTri));
+        btnFiltre.addEventListener("click", () => toggleAside(asideFiltre));
+        
+    });
+</script>
