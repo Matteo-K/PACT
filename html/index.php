@@ -35,18 +35,17 @@ require_once "config.php";
           $idOffres[] = $row['idoffre'];
       } ?>
       <div id="consultationRecente">
-      <?php if (count($idOffres) > 0) { ?>
-      <h2>Consulté récemment</h2>
-      <div>
-        <?php
-          $nbElement = 20;
-          $consultRecent = new ArrayOffer($idOffres);
-          $consultRecent->displayConsulteRecemment($nbElement);
-        ?>
-      </div>
-      <?php } else { ?>
-        <p>Aucune offre consultée récemment</p>
-      <?php } ?>
+        <h2>Consulté récemment</h2>
+        <div>
+          <?php if (count($idOffres) > 0) {
+            $nbElement = 20;
+            $consultRecent = new ArrayOffer($idOffres);
+            $consultRecent->displayConsulteRecemment($nbElement);
+          ?>
+        <?php } else { ?>
+            <p>Aucune offre consultée récemment</p>
+          <?php } ?>
+        </div>
       </div>
     <?php } ?>
     <div id="voirPlus">
