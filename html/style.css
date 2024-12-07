@@ -641,7 +641,6 @@ header ul+div {
 /* ### Index ### */
 
 #index {
-  padding-top: var(--header-size);
   min-height: 70vh;
   margin-top: 20px;
 }
