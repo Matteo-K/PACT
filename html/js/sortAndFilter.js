@@ -684,7 +684,7 @@ function ajouterTag(offer) {
     let tag = document.createElement("a");
     tag.classList.add("searchTag");
     tag.textContent = element.replace("_", " ");
-    tag.setAttribute("href", "index.php#trifiltre?search="+element.replace("_", "+"));
+    tag.setAttribute("href", "index.php?search="+element.replace("_", "+")+"#searchIndex");
     tags.appendChild(tag);
   });
 

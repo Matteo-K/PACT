@@ -18,7 +18,7 @@
         </a>
     </div>
     <div id="divFormHeader">
-        <form method="get" action="index.php#trifiltre" id="formHeader">
+        <form method="get" action="index.php#searchIndex" id="formHeader">
             <input type="text" placeholder="Rechercher :" name="search" value="<?php echo $search ?>">
             <button type="submit"><img src="../img/icone/loupe.png" title="icone de recherche"></button>
         </form>
@@ -74,7 +74,7 @@
                     <ul>
                         <?php if ($typeUser === "pro_public" || $typeUser === "pro_prive") {?>
                             <li><a href="changeAccountPro.php">Gérer mon compte</a></li>
-                            <li><a href="index.php#trifiltre">Mes offres</a></li>
+                            <li><a href="index.php#searchIndex">Mes offres</a></li>
                             <li><a href="manageOffer.php">Créer une offre</a></li>
                             <li class="liFact">Mes Factures</li>
                         <?php } else if ($typeUser === "membre") {?>

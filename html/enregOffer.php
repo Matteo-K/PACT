@@ -649,7 +649,7 @@ if ($pageDirection >= 1) {
   </form>
   <?php
 } else {
-  header("Location: index.php#trifiltre");
+  header("Location: index.php");
   exit();
 }
 ?>
