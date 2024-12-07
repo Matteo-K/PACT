@@ -32,7 +32,7 @@ require_once "config.php";
       <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
         <a href="manageOffer.php" class="modifierBut">Créer une offre</a>  
         <?php } ?>
-        <a href="index.php#searchIndex" class="modifierBut">Voir plus</a>
+        <a href="search.php" class="modifierBut">Voir plus</a>
       </div>
       <?php if ($typeUser == "membre") {
         $stmt = $conn->prepare("SELECT idoffre FROM pact._consulter where idu = ? and dateconsultation = CURRENT_DATE;");
