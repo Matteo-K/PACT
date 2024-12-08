@@ -35,19 +35,82 @@
       <h3>Gestion de votre offre</h3>
       <ul>
         <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
-        <li><button <?php echo empty($idOffre)? "" : "disabled"?> id="<?php echo empty($idOffre)? "" : "disabledSelect"?>" type="submit" onclick="submitForm(event,1)" class="<?php echo $step == 1 ? "guideSelect" : "" ?>">Sélection de l’abonnement</button></li>
-        <li><button type="submit" onclick="submitForm(event,2)" class="<?php echo $step == 2 ? "guideSelect" : "" ?>">Détails de l’offre</button></li>
-        <li><button type="submit" onclick="submitForm(event,3)" class="<?php echo $step == 3 ? "guideSelect" : "" ?>">Localisation</button></li>
-        <li><button type="submit" onclick="submitForm(event,4)" class="<?php echo $step == 4 ? "guideSelect" : "" ?>">Contact</button></li>
-        <li><button type="submit" onclick="submitForm(event,5)" class="<?php echo $step == 5 ? "guideSelect" : "" ?>">Horaires</button></li>
-        <li><button type="submit" onclick="submitForm(event,6)" class="<?php echo $step == 6 ? "guideSelect" : "" ?>">Prévisualiser l’offre</button></li>
-        <li><button type="submit" onclick="submitForm(event,7)" class="<?php echo $step == 7 ? "guideSelect" : "" ?>">Paiement</button></li>
+        <li>
+          <button <?php echo empty($idOffre)? "" : "disabled"?> id="<?php echo empty($idOffre)? "" : "disabledSelect"?>" type="submit" onclick="submitForm(event,1)" class="<?php echo $step == 1 ? "guideSelect" : "" ?>">
+            <figure>
+              <img src="" alt="selection de l'abonnement">
+              <figcaption>
+                Sélection de l’abonnement
+              </figcaption>
+            </figure>
+          </button>
+        </li>
+        <li>
+          <button type="submit" onclick="submitForm(event,2)" class="<?php echo $step == 2 ? "guideSelect" : "" ?>">
+            <figure>
+              <img src="img/icone/about.png" alt="détails de l'offre">
+              <figcaption>
+                Détails de l’offre
+              </figcaption>
+            </figure>
+          </button>
+        </li>
+        <li>
+          <button type="submit" onclick="submitForm(event,3)" class="<?php echo $step == 3 ? "guideSelect" : "" ?>">
+            <figure>
+              <img src="img/icone/localisation.png" alt="localisation">
+              <figcaption>
+                Localisation
+              </figcaption>
+            </figure>
+          </button>
+        </li>
+        <li>
+          <button type="submit" onclick="submitForm(event,4)" class="<?php echo $step == 4 ? "guideSelect" : "" ?>">
+          <figure>
+              <img src="img/icone/contact.png" alt="contact">
+              <figcaption>
+                Contact
+              </figcaption>
+            </figure>
+          </button>
+        </li>
+        <li>
+          <button type="submit" onclick="submitForm(event,5)" class="<?php echo $step == 5 ? "guideSelect" : "" ?>">
+          <figure>
+              <img src="img/icone/hourly.png" alt="horaires">
+              <figcaption>
+                Horaires
+              </figcaption>
+            </figure>
+          </button>
+        </li>
+        <li>
+          <button type="submit" onclick="submitForm(event,6)" class="<?php echo $step == 6 ? "guideSelect" : "" ?>">
+          <figure>
+              <img src="img/icone/preview.png" alt="prévisualisation de l'offre">
+              <figcaption>
+                Prévisualiser l’offre
+              </figcaption>
+            </figure>
+          </button>
+        </li>
+        <li>
+          <button type="submit" onclick="submitForm(event,7)" class="<?php echo $step == 7 ? "guideSelect" : "" ?>">
+          <figure>
+              <img src="" alt="paiement">
+              <figcaption>
+                Paiement
+              </figcaption>
+            </figure>
+          </button>
+        </li>
       </ul>
-      <ul>
+      <div>
         <!-- Si 0 on enregistre et retourne au menu du professionnel -->
-        <li><button type="submit" onclick="submitForm(event,0)" class="guideComplete">Sauvegarder & Quitter</button></li>
+        <button type="submit" onclick="submitForm(event,0)" class="guideComplete">Sauvegarder & Quitter</button>
         <!-- Si -1 on retourne au menu du professionnel sans enregistrer -->
-        <li><button type="submit" onclick="submitForm(event,-1)" class="guideStartComplete">Quitter</button></li>
+        <button type="submit" onclick="submitForm(event,-1)" class="guideStartComplete">Quitter</button>
       </ul>
     </aside>
     <section>

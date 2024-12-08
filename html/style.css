@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Lilita+One&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
 
+/* Style globale */
+
 /*
 :root {
   --bloc: #034d7c;
@@ -87,6 +89,40 @@ li {
 .msgError {
   color: red;
   font-size: 0.8em;
+}
+
+.tag {
+  background-color: var(--accent);
+}
+
+.star {
+  clip-path: polygon(50% 0%,
+      61% 35%,
+      98% 35%,
+      68% 57%,
+      79% 91%,
+      50% 70%,
+      21% 91%,
+      32% 57%,
+      2% 35%,
+      39% 35%);
+  background-color: #edae14;
+  border-radius: 2%;
+  width: 30px;
+  height: 30px;
+}
+
+.star.partielle {
+  background: linear-gradient(to right, var(--accent) var(--pourcentage), var(--background-avis) var(--pourcentage));
+}
+
+.star.vide {
+  background-color: var(--background-avis);
+  /* Icône étoile vide */
+}
+
+.star.pleine {
+  background-color: var(--accent)
 }
 
 body {
@@ -2628,23 +2664,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   padding-left: 30px;
 }
 
-.star {
-  clip-path: polygon(50% 0%,
-      61% 35%,
-      98% 35%,
-      68% 57%,
-      79% 91%,
-      50% 70%,
-      21% 91%,
-      32% 57%,
-      2% 35%,
-      39% 35%);
-  background-color: #edae14;
-  border-radius: 2%;
-  width: 30px;
-  height: 30px;
-}
-
 .blocStar {
   display: flex;
   flex-flow: row nowrap;
@@ -4157,21 +4176,6 @@ details .nonRepondu {
   background-color: var(--accent);
   height: 100%;
   border-radius: 5px;
-}
-
-
-
-.star.partielle {
-  background: linear-gradient(to right, var(--accent) var(--pourcentage), var(--background-avis) var(--pourcentage));
-}
-
-.star.vide {
-  background-color: var(--background-avis);
-  /* Icône étoile vide */
-}
-
-.star.pleine {
-  background-color: var(--accent)
 }
 
 @media screen and (max-width: 768px) {
