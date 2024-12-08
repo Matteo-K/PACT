@@ -1022,7 +1022,7 @@ header ul+div {
   &::after {
     content: "";
     position: absolute;
-    top: 28%;
+    top: 30%;
     left: 50%;
     width: 90%;
     z-index: -1;
@@ -1037,7 +1037,7 @@ header ul+div {
   padding: 5px;
   border: solid;
   background-color: var(--background);
-  border-radius: 50%;
+  border-radius: 20%;
   object-fit: cover;
 }
 
