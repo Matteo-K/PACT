@@ -1049,9 +1049,6 @@ header ul+div {
   font-size: 1.1rem;
   width: 200px;
   height: 30px;
-  &:hover {
-    font-size: 1.2rem;
-  }
 }
 
 .currentStep figcaption {
@@ -1062,6 +1059,10 @@ header ul+div {
 #manageOffer aside button {
   background-color: transparent;
   border: none;
+}
+
+button figcaption:hover {
+  font-size: 1.2rem;
 }
 
 #manageOffer aside+section {
