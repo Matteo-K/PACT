@@ -31,11 +31,11 @@
   <?php require_once "components/header.php" ?>
   <main>
     <aside>
-      <!-- Création ou modification -->
       <h3>Gestion de votre offre</h3>
       <ul>
         <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
-        <li>
+
+        <!-- <li>
           <button <?php echo empty($idOffre)? "" : "disabled"?> id="<?php echo empty($idOffre)? "" : "disabledSelect"?>" type="submit" onclick="submitForm(event,1)" class="<?php echo $step == 1 ? "guideSelect" : "" ?>">
             <figure>
               <img src="" alt="selection de l'abonnement">
@@ -44,11 +44,11 @@
               </figcaption>
             </figure>
           </button>
-        </li>
+        </li> -->
         <li>
           <button type="submit" onclick="submitForm(event,2)" class="<?php echo $step == 2 ? "guideSelect" : "" ?>">
             <figure>
-              <img src="img/icone/about.png" alt="détails de l'offre">
+              <img src="img/icone/details.png" alt="détails de l'offre">
               <figcaption>
                 Détails de l’offre
               </figcaption>
@@ -98,7 +98,7 @@
         <li>
           <button type="submit" onclick="submitForm(event,7)" class="<?php echo $step == 7 ? "guideSelect" : "" ?>">
           <figure>
-              <img src="" alt="paiement">
+              <img src="img/icone/paiment.png" alt="paiement">
               <figcaption>
                 Paiement
               </figcaption>
@@ -108,9 +108,9 @@
       </ul>
       <div>
         <!-- Si 0 on enregistre et retourne au menu du professionnel -->
-        <button type="submit" onclick="submitForm(event,0)" class="guideComplete">Sauvegarder & Quitter</button>
+        <button type="submit" onclick="submitForm(event,0)">Sauvegarder & Quitter</button>
         <!-- Si -1 on retourne au menu du professionnel sans enregistrer -->
-        <button type="submit" onclick="submitForm(event,-1)" class="guideStartComplete">Quitter</button>
+        <button type="submit" onclick="submitForm(event,-1)">Quitter</button>
       </ul>
     </aside>
     <section>
