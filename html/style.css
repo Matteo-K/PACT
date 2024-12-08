@@ -1065,8 +1065,21 @@ header ul+div {
   font-size: 1.2rem !important;
 }
 
+#manageOffer aside ul + div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
 #manageOffer aside+section {
   min-height: 70vh;
+}
+
+#manageOffer fieldset {
+  width: 100%;
+  margin: 30px;
 }
 
 /* Bouton suivant précédent */
@@ -1266,7 +1279,7 @@ header ul+div {
   justify-content: flex-start;
 }
 
-/* ------------------------- HOURLY OFFER CSS BENJAMIN--------------------------------*/
+/* ------------------------- HOURLY OFFER CSS --------------------------------*/
 #hourlyOffer {
   padding: 20px;
   padding-bottom: 6%;
@@ -4445,9 +4458,7 @@ details .nonRepondu {
   object-fit: cover;
 }
 
-/*------------------------ CSS BENJAMIN OFFRE PARTICULIERE ------------------------------------------
------------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------*/
+/*------------------------ CSS BENJAMIN OFFRE PARTICULIERE -----------------------------------------*/
 
 /* CSS pour le détails d'une offre de type restaurant */
 #restaurant {
@@ -4577,7 +4588,7 @@ details .nonRepondu {
 }
 
 #activity>div[class="access"]>div[class="access1"],
-g #activity>div[class="divP"]>div[class="divP1"],
+#activity>div[class="divP"]>div[class="divP1"],
 #activity>div[class="divD"]>div[class="divD1"] {
   display: flex;
   flex-direction: row;
@@ -4655,7 +4666,6 @@ g #activity>div[class="divP"]>div[class="divP1"],
 #park>div[class="afficheImages2"] {
   width: 300px;
 }
-
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
