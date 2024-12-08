@@ -1017,12 +1017,13 @@ header ul+div {
   align-items: center;
   justify-content: space-evenly;
   position: relative;
-  margin: 0;
+  margin: -20px;
+  padding: 0;
   &::after {
     content: "";
     position: absolute;
-    top: 25%;
-    left: 51%;
+    top: 28%;
+    left: 50%;
     width: 90%;
     z-index: -1;
     transform: translateX(-50%);
@@ -1031,22 +1032,31 @@ header ul+div {
 }
 
 #manageOffer aside img {
-  width: 25px;
+  width: 35px;
+  height: 35px;
   padding: 5px;
   border: solid;
   background-color: var(--background);
   border-radius: 50%;
-  height: 25px;
   object-fit: cover;
+}
+
+.currentStep img {
+  background-color: var(--accent);
 }
 
 #manageOffer figcaption {
   font-size: 1.1rem;
   width: 200px;
-  height: 50px;
+  height: 30px;
   &:hover {
     font-size: 1.2rem;
   }
+}
+
+.currentStep figcaption {
+  font-weight: bold;
+  text-decoration: underline var(--accent) 3px;
 }
 
 #manageOffer aside button {

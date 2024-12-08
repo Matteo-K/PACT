@@ -46,7 +46,7 @@
           </button>
         </li> -->
         <li>
-          <button type="submit" onclick="submitForm(event,2)" class="<?php echo $step == 2 ? "guideSelect" : "" ?>">
+          <button type="submit" onclick="submitForm(event,2)" class="<?php echo $step == 2 ? "currentStep" : "" ?>">
             <figure>
               <img src="img/icone/details.png" alt="détails de l'offre">
               <figcaption>
@@ -56,7 +56,7 @@
           </button>
         </li>
         <li>
-          <button type="submit" onclick="submitForm(event,3)" class="<?php echo $step == 3 ? "guideSelect" : "" ?>">
+          <button type="submit" onclick="submitForm(event,3)" class="<?php echo $step == 3 ? "currentStep" : "" ?>">
             <figure>
               <img src="img/icone/localisation.png" alt="localisation">
               <figcaption>
@@ -66,7 +66,7 @@
           </button>
         </li>
         <li>
-          <button type="submit" onclick="submitForm(event,4)" class="<?php echo $step == 4 ? "guideSelect" : "" ?>">
+          <button type="submit" onclick="submitForm(event,4)" class="<?php echo $step == 4 ? "currentStep" : "" ?>">
           <figure>
               <img src="img/icone/contact.png" alt="contact">
               <figcaption>
@@ -76,7 +76,7 @@
           </button>
         </li>
         <li>
-          <button type="submit" onclick="submitForm(event,5)" class="<?php echo $step == 5 ? "guideSelect" : "" ?>">
+          <button type="submit" onclick="submitForm(event,5)" class="<?php echo $step == 5 ? "currentStep" : "" ?>">
           <figure>
               <img src="img/icone/hourly.png" alt="horaires">
               <figcaption>
@@ -86,7 +86,7 @@
           </button>
         </li>
         <li>
-          <button type="submit" onclick="submitForm(event,6)" class="<?php echo $step == 6 ? "guideSelect" : "" ?>">
+          <button type="submit" onclick="submitForm(event,6)" class="<?php echo $step == 6 ? "currentStep" : "" ?>">
           <figure>
               <img src="img/icone/preview.png" alt="prévisualisation de l'offre">
               <figcaption>
@@ -96,7 +96,7 @@
           </button>
         </li>
         <li>
-          <button type="submit" onclick="submitForm(event,7)" class="<?php echo $step == 7 ? "guideSelect" : "" ?>">
+          <button type="submit" onclick="submitForm(event,7)" class="<?php echo $step == 7 ? "currentStep" : "" ?>">
           <figure>
               <img src="img/icone/paiment.png" alt="paiement">
               <figcaption>
