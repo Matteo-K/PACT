@@ -1011,6 +1011,22 @@ header ul+div {
   width: 100%;
 }
 
+#manageOffer aside ul {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#manageOffer aside img {
+  width: 25px;
+}
+
+#manageOffer aside button {
+  background-color: transparent;
+  border: none;
+}
+
 #manageOffer aside+section {
   margin-left: 17em;
   margin-top: var(--header-size2);
@@ -1786,6 +1802,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 90%;
 }
 
+/* A suppr pre sprint 3 */
 #disabledSelect {
   background-color: #666 !important;
   border: solid #666 1px !important;
