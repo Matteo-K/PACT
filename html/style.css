@@ -1061,8 +1061,8 @@ header ul+div {
   border: none;
 }
 
-button figcaption:hover {
-  font-size: 1.2rem;
+#manageOffer aside button figcaption:hover {
+  font-size: 1.2rem !important;
 }
 
 #manageOffer aside+section {
