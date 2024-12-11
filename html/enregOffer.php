@@ -651,8 +651,11 @@ if ($pageDirection >= 1) {
   </form>
   <?php
 } else {
-  $Ar = new ArrayOffer($idOffre);
-  if ($Ar->getArray[$idOffre]["categorie"] !== "Pas de catégorie") {
+  $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
+  $stmt->bindParam(':idoffre', $idOffre);
+  $stmt->execute();
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  if (!$result) {
     ?>
     <form action="detailsOffer.php" id="toDetailsOffer" method="post">
       <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
