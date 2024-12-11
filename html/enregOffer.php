@@ -4,7 +4,7 @@ $pageDirection = $_POST['pageCurrent'] ?? 1;
 $idOffre = $_POST["idOffre"];
 $idUser = $_POST["idUser"];
 
-$stepManageOffer = json_decode($_POST["ArrayStepManageOffer"]);
+$stepManageOffer = json_decode($_POST["ArrayStepManageOffer"], true);
 
 if (isset($_POST['pageBefore'])) {
   if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['pageBefore'] > -1) {
