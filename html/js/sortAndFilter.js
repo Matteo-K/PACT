@@ -44,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+/// Inputs de recherche ///
+const searchInput = document.querySelector("#formHeader input");
 
 /// Inputs Tris ///
 const radBtnEnAvant = document.querySelector("#miseEnAvant");
@@ -485,9 +487,21 @@ function filtrerParLieu(offers) {
   return offers.filter(offer => lieuSelection.includes(offer.note));
 }
 
+function searchOffer(offers, search) {
+  console.table(offers);
+  return offers;
+}
 
-// Fonction global
-function sortAndFilter(array, elementStart, nbElement) {
+/**
+ * filtre, tri et affcihe les offres dynamiquement
+ * @param {array} array 
+ * @param {integer} elementStart 
+ * @param {integer} nbElement 
+ */
+function sortAndFilter(array, search, elementStart, nbElement) {
+  // Recherche
+  array = searchOffer(array, search);
+
   // Filtres
   array = filtrerParCategorie(array);
   array = filtrerParNotes(array);
@@ -545,7 +559,8 @@ function updatePagination(totalItems, nbElement) {
 
 function goToPage(page) {
   currentPage = page;
-  sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement);
+  search = searchInput.value;
+  sortAndFilter(arrayOffer, search, (page - 1) * nbElement, nbElement);
 }
 
 /* ### Affichage des offres ### */
@@ -814,6 +829,9 @@ function displayAvis(offer) {
 
 
 /* ### Evènements ### */
+
+// Événements de recherche
+searchInput.addEventListener("input", () => goToPage(currentPage));
 
 // Événements des tris
 radBtnEnAvant.addEventListener("click", () => goToPage(currentPage));

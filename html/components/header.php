@@ -47,13 +47,6 @@
         form.addEventListener('submit', (event) => {
             if (currentFile === 'index.php') {
                 event.preventDefault();
-
-                input.addEventListener("input", (event) => {
-                    const searchValue = event.target.value;
-                    console.log("Recherche en cours :", searchValue);
-                });
-            } else {
-                alert("pas à moi");
             }
         });
 
