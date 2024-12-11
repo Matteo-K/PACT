@@ -688,6 +688,27 @@ header ul+div {
 
 #index {
   margin-top: 20px;
+  min-height: calc(100vh - var(--header-size));
+}
+
+#imgPhare {
+  position: relative;
+}
+
+#imgPhare::before {
+  min-height: calc(100vh - var(--header-size));
+  background-image: url(img/phare.jpg);
+  background-position: 5% 20%;
+  background-size: 150%;
+  background-repeat: no-repeat;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "";
+  z-index: -1;
+  filter: hue-rotate(20deg);
 }
 
 #index h2 {
@@ -713,7 +734,7 @@ header ul+div {
 #ALaUne>div, #consultationRecente > div {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: left;
   justify-content: space-evenly;
 }
 
