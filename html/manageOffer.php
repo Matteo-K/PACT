@@ -22,7 +22,7 @@
     ["nom" => "Contact", "img" => "contact.png" ,"page" => "contactOffer.php"],
     ["nom" => "Horaires", "img" => "hourly.png" ,"page" => "hourlyOffer.php"],
     ["nom" => "Prévisualiser l’offre", "img" => "preview.png" ,"page" => "previewOffer.php"],
-    ["nom" => "Paiement", "img" => "paiment.png" ,"page" => "paymentOffer.php"],
+    ["nom" => "Paiement", "img" => "paiment.png" ,"page" => "paymentOffer.php"]
   ];
 ?>
 <!DOCTYPE html>
@@ -55,6 +55,8 @@
             </figure>
           </button>
         </li> -->
+        <?php echo "taille liste " . count($stepManageOffer) ?>
+        <?php print_r($stepManageOffer); ?>
         <?php for ($i=1; $i < count($stepManageOffer); $i++) { ?>
           <li>
             <button type="submit" onclick="submitForm(event, <?php echo ($i + 1) ?>)" class="<?php echo $step == ($i + 1) ? "currentStep" : "" ?>">
