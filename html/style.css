@@ -4,7 +4,7 @@
 
 /* Style globale */
 
-/*
+
 :root {
   --bloc: #034d7c;
   --background: #eaeaea;
@@ -14,22 +14,6 @@
   --accent-border: #bb880e;
   --text-dark: #000;
   --text-light: #eaeaea;
-  --background-avis: #c9c9c9;
-  --header-size: 100px;
-  --header-size2: var(--header-size);
-  scroll-behavior: smooth;
-}*/
-
-
-:root {
-  --bloc: #046c61;
-  --background: #eaeaea;
-  --primary: #1ce2ed;
-  --secondary: #d1ccdc;
-  --accent: #14ed2d;
-  --accent-border: #239d1d;
-  --text-dark: #000;
-  --text-light: #dce2e2;
   --background-avis: #c9c9c9;
   --header-size: 100px;
   --header-size2: var(--header-size);
