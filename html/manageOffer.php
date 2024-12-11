@@ -69,6 +69,7 @@
         // Affichage du formulaire suivant l'étape indiquer par un chiffre dans la barre de recherche avec un require
         require_once "components/offer/".$stepManageOffer[$step - 1 ]["page"];
       ?>
+          <input type="hidden" name="ArrayStepManageOffer" id="ArrayStepManageOffer" value="<?php echo $stepManageOffer ?>">
           <input type="hidden" name="pageCurrent" id="pageCurrent" value="">
           <input type="hidden" name="pageBefore" id="pageBefore" value="<?php echo $step ?>">
           <input type="hidden" name="idOffre" id="idOffre" value="<?php echo $idOffre ?>">
@@ -87,7 +88,7 @@
       ?>
       <!-- Suivant -->
       <?php
-      if ($step < 7) {
+      if ($step < count($stepManageOffer)) {
         ?>
         <button type="submit" onclick="submitForm(event,<?php echo $step+1?>)" class="guideSelect">Suivant</button>
         <?php
@@ -138,7 +139,7 @@
       let confirm_quit = (page == 0)? confirm("Les données seront enregistrées.\n Vous pourrez reprendre vos modifications plus tard.\n Il faut compléter toute les données obligatoires pour quitter") : true;
       let confirm_annule = (page == -1)? confirm("Les données ne seront pas enregistrées.\n Toute modification apportée aux données ne sera pas prise en compte.") : false;
 
-      // Si le professionnel annule, on le redirige vers la page d'acceuil
+      // Si le professionnel annule, onstepManageOffer le redirige vers la page d'acceuil
       if (confirm_annule) {
           window.location.href = "index.php"; 
       }

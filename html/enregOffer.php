@@ -4,7 +4,7 @@ $pageDirection = $_POST['pageCurrent'] ?? 1;
 $idOffre = $_POST["idOffre"];
 $idUser = $_POST["idUser"];
 
-
+$stepManageOffer = $_POST["ArrayStepManageOffer"];
 
 if (isset($_POST['pageBefore'])) {
   if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['pageBefore'] > -1) {
@@ -76,8 +76,8 @@ if (isset($_POST['pageBefore'])) {
             </script>
         <?php
     }
-    switch ($pageBefore) {
-      case 1:
+    switch ($stepManageOffer[$pageBefore]["page"]) {
+      case "selectOffer.php":
         // Gestion des options d'offre
           $options = [];
           if (isset($_POST["aLaUne"])) {
@@ -98,7 +98,7 @@ if (isset($_POST['pageBefore'])) {
 
         break;
 
-      case 2:
+      case "detailsOffer.php":
         // Détails offre update
 
         // Informations obligatoires (Titre, Description) + résumé
@@ -476,7 +476,7 @@ if (isset($_POST['pageBefore'])) {
 
         break;
 
-      case 3:
+      case "localisationOffer.php":
         // Détails Localisation update
         // insertion dans adresse
         $adresse = $_POST["adresse2"];
@@ -514,7 +514,7 @@ if (isset($_POST['pageBefore'])) {
         }
         break;
 
-      case 4:
+      case "contactOffer.php":
         // Détails Contact update
         $mail = $_POST["mail"];
         $telephone = empty($_POST["phone"]) ? null : preg_replace('/[^\d]/', '', $_POST["phone"]);
@@ -529,7 +529,7 @@ if (isset($_POST['pageBefore'])) {
         $stmt->execute([$mail, $telephone, $affiche, $site, $idOffre]);
         break;
 
-      case 5:
+      case "hourlyOffer.php":
 
         switch ($_POST["typeOffre"]) {
           case 0: // Autre
@@ -625,11 +625,11 @@ if (isset($_POST['pageBefore'])) {
 
         break;
 
-      case 6:
+      case "previewOffer.php":
         // Pad de modification pour la prévisualisation
         break;
 
-      case 7:
+      case "paymentOffer.php":
         // Détails Paiement update
         break;
 
