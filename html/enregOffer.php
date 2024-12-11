@@ -651,6 +651,17 @@ if ($pageDirection >= 1) {
   </form>
   <?php
 } else {
+  $Ar = new ArrayOffer($idOffre);
+  if ($Ar->getArray[$idOffre]["categorie"] !== "Pas de catégorie") {
+    ?>
+    <form action="detailsOffer.php" id="toDetailsOffer" method="post">
+      <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
+    </form>
+    <script>
+      document.getElementById("toDetailsOffer").submit();
+    </script>
+    <?php
+  }
   header("Location: index.php");
   exit();
 }
