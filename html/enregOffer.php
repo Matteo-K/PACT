@@ -76,11 +76,8 @@ if (isset($_POST['pageBefore'])) {
             </script>
         <?php
     }
-    print_r($stepManageOffer);
-    print_r($_POST);
-    $page = $stepManageOffer[$pageBefore]["page"];
 
-    exit("Fin du script.\n");
+    $page = $stepManageOffer[$pageBefore]["page"];
     switch ($page) {
       case "selectOffer.php":
         // Gestion des options d'offre
