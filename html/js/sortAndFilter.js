@@ -520,7 +520,7 @@ function searchOffer(offers, search) {
     const adresse = `${numeroRue} ${rue} ${ville} ${pays} ${codePostal}`.toLowerCase();
 
     // Filtre les données
-    const containsTag = offreContientTag(item.tags, search);
+    const containsTag = item.tags.some(tag => tag.toLowerCase() === search.toLowerCase());
     const matchesCategorie = categorie && categorie.toLowerCase().includes(search.toLowerCase());
     const matchesNomOffre = nomOffre && nomOffre.toLowerCase().includes(search.toLowerCase());
     const matchesAdresse = adresse && adresse.includes(search.toLowerCase());
