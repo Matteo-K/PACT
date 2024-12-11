@@ -69,7 +69,7 @@
         // Affichage du formulaire suivant l'étape indiquer par un chiffre dans la barre de recherche avec un require
         require_once "components/offer/".$stepManageOffer[$step - 1 ]["page"];
       ?>
-          <input type="hidden" name="ArrayStepManageOffer" id="ArrayStepManageOffer" value="<?php echo $stepManageOffer ?>">
+          <input type="hidden" name="ArrayStepManageOffer" id="ArrayStepManageOffer" value="<?php echo json_encode($stepManageOffer) ?>">
           <input type="hidden" name="pageCurrent" id="pageCurrent" value="">
           <input type="hidden" name="pageBefore" id="pageBefore" value="<?php echo $step ?>">
           <input type="hidden" name="idOffre" id="idOffre" value="<?php echo $idOffre ?>">
