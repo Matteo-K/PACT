@@ -488,7 +488,8 @@ function filtrerParLieu(offers) {
 }
 
 function searchOffer(offers, search) {
-  console.table(offers);
+  console.log(search);
+  console.log(offers);
   return offers;
 }
 
