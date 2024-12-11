@@ -693,6 +693,7 @@ header ul+div {
 
 #imgPhare {
   position: sticky;
+  top: var(--header-size);
 }
 
 #imgPhare::before {
@@ -1963,10 +1964,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-top: var(--header-size);
   padding-bottom: 20px;
   padding-top: 20px;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: var(--background);
 }
 
 .searchoffre {
