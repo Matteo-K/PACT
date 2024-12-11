@@ -69,66 +69,6 @@
             </button>
           </li>
         <?php } ?>
-        <li>
-          <button type="submit" onclick="submitForm(event,2)" class="<?php echo $step == 2 ? "currentStep" : "" ?>">
-            <figure>
-              <img src="img/icone/details.png" alt="détails de l'offre">
-              <figcaption>
-                Détails de l’offre
-              </figcaption>
-            </figure>
-          </button>
-        </li>
-        <li>
-          <button type="submit" onclick="submitForm(event,3)" class="<?php echo $step == 3 ? "currentStep" : "" ?>">
-            <figure>
-              <img src="img/icone/localisation.png" alt="localisation">
-              <figcaption>
-                Localisation
-              </figcaption>
-            </figure>
-          </button>
-        </li>
-        <li>
-          <button type="submit" onclick="submitForm(event,4)" class="<?php echo $step == 4 ? "currentStep" : "" ?>">
-          <figure>
-              <img src="img/icone/contact.png" alt="contact">
-              <figcaption>
-                Contact
-              </figcaption>
-            </figure>
-          </button>
-        </li>
-        <li>
-          <button type="submit" onclick="submitForm(event,5)" class="<?php echo $step == 5 ? "currentStep" : "" ?>">
-          <figure>
-              <img src="img/icone/hourly.png" alt="horaires">
-              <figcaption>
-                Horaires
-              </figcaption>
-            </figure>
-          </button>
-        </li>
-        <li>
-          <button type="submit" onclick="submitForm(event,6)" class="<?php echo $step == 6 ? "currentStep" : "" ?>">
-          <figure>
-              <img src="img/icone/preview.png" alt="prévisualisation de l'offre">
-              <figcaption>
-                Prévisualiser l’offre
-              </figcaption>
-            </figure>
-          </button>
-        </li>
-        <li>
-          <button type="submit" onclick="submitForm(event,7)" class="<?php echo $step == 7 ? "currentStep" : "" ?>">
-          <figure>
-              <img src="img/icone/paiment.png" alt="paiement">
-              <figcaption>
-                Paiement
-              </figcaption>
-            </figure>
-          </button>
-        </li>
       </ul>
       <div>
         <!-- Si 0 on enregistre et retourne au menu du professionnel -->
