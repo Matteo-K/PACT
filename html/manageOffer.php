@@ -14,6 +14,16 @@
   $nameOffer = "";
   $step =  isset($_POST["page"]) ? $_POST["page"] : 1;
   $idOffre = isset($_POST["idOffre"])?$_POST["idOffre"]:"";
+
+  $stepManageOffer = [
+    ["nom" => "Sélection de l’abonnement", "img" => "" ,"page" => "selectOffer.php"],
+    ["nom" => "Détails de l’offre", "img" => "details.png" ,"page" => "detailsOffer.php"],
+    ["nom" => "Localisation", "img" => "localisation.png" ,"page" => "localisationOffer.php"],
+    ["nom" => "Contact", "img" => "contact.png" ,"page" => "contactOffer.php"],
+    ["nom" => "Horaires", "img" => "hourly.png" ,"page" => "hourlyOffer.php"],
+    ["nom" => "Prévisualiser l’offre", "img" => "preview.png" ,"page" => "previewOffer.php"],
+    ["nom" => "Paiement", "img" => "paiment.png" ,"page" => "paymentOffer.php"],
+  ];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -45,6 +55,18 @@
             </figure>
           </button>
         </li> -->
+        <?php for ($i=1; $i < count($stepManageOffer); $i++) { ?>
+          <li>
+            <button type="submit" onclick="submitForm(event, <?php echo ($i + 1) ?>)" class="<?php echo $step == ($i + 1) ? "currentStep" : "" ?>">
+              <figure>
+                <img src="img/icone/<?php echo $stepManageOffer[$i]["img"] ?>" alt="<?php echo $stepManageOffer[$i]["nom"] ?>">
+                <figcaption>
+                  <?php echo $stepManageOffer[$i]["img"] ?>
+                </figcaption>
+              </figure>
+            </button>
+          </li>
+        <?php } ?>
         <li>
           <button type="submit" onclick="submitForm(event,2)" class="<?php echo $step == 2 ? "currentStep" : "" ?>">
             <figure>
@@ -143,7 +165,7 @@
             $partOffer = "errorOffer.php";
             break;
         }
-        require_once "components/offer/".$partOffer;
+        require_once "components/offer/".$stepManageOffer[$step - 1 ]["page"];
       ?>
           <input type="hidden" name="pageCurrent" id="pageCurrent" value="">
           <input type="hidden" name="pageBefore" id="pageBefore" value="<?php echo $step ?>">
