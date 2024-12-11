@@ -694,6 +694,7 @@ header ul+div {
 #imgPhare {
   position: sticky;
   top: var(--header-size);
+  z-index: -1;
 }
 
 #imgPhare::before {
