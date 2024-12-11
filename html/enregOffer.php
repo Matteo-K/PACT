@@ -655,7 +655,7 @@ if ($pageDirection >= 1) {
   $stmt->bindParam(':idoffre', $idOffre);
   $stmt->execute();
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  if (!$result) {
+  if ($result) {
     ?>
     <form action="detailsOffer.php" id="toDetailsOffer" method="post">
       <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
