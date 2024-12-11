@@ -1633,6 +1633,19 @@ header ul+div {
   margin: 1%;
 }
 
+#artDetailOffer fieldset {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#aboutOffer {
+  flex: 2;
+}
+
+#blcImg {
+  flex: 1;
+}
+
 #artDetailOffer>div>label:not(.buttonDetailOffer),
 #choixCategorie label:first-of-type,
 #choixImage label,
