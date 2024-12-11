@@ -30,7 +30,18 @@
         input.addEventListener("blur", (event) => {
             event.preventDefault();
             form.submit();
-        })
+        });
+
+        document.getElementById('myForm').addEventListener('submit', (event) => {
+            const currentFile = window.location.pathname.split('/').pop();
+            
+            if (currentFile === 'index.php') {
+                event.preventDefault();
+                alert('Le formulaire ne peut pas être soumis sur index.php.');
+            } else {
+                alert("pas à moi");
+            }
+        });
     </script>
 
 
