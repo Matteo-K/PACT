@@ -50,7 +50,7 @@
               <figure>
                 <img src="img/icone/<?php echo $stepManageOffer[$i]["img"] ?>" alt="<?php echo $stepManageOffer[$i]["nom"] ?>">
                 <figcaption>
-                  <?php echo $stepManageOffer[$i]["img"] ?>
+                  <?php echo $stepManageOffer[$i]["nom"] ?>
                 </figcaption>
               </figure>
             </button>
