@@ -44,19 +44,6 @@
       <h3>Gestion de votre offre</h3>
       <ul>
         <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
-
-        <!-- <li>
-          <button <?php echo empty($idOffre)? "" : "disabled"?> id="<?php echo empty($idOffre)? "" : "disabledSelect"?>" type="submit" onclick="submitForm(event,1)" class="<?php echo $step == 1 ? "guideSelect" : "" ?>">
-            <figure>
-              <img src="" alt="selection de l'abonnement">
-              <figcaption>
-                Sélection de l’abonnement
-              </figcaption>
-            </figure>
-          </button>
-        </li> -->
-        <?php echo "taille liste " . count($stepManageOffer) ?>
-        <?php print_r($stepManageOffer); ?>
         <?php for ($i=1; $i < count($stepManageOffer); $i++) { ?>
           <li>
             <button type="submit" onclick="submitForm(event, <?php echo ($i + 1) ?>)" class="<?php echo $step == ($i + 1) ? "currentStep" : "" ?>">
@@ -80,33 +67,6 @@
     <section>
       <?php
         // Affichage du formulaire suivant l'étape indiquer par un chiffre dans la barre de recherche avec un require
-        $partOffer;
-        switch ($step) {
-          case 1:
-            $partOffer = "selectOffer.php";
-            break;
-          case 2:
-            $partOffer = "detailsOffer.php";
-            break;
-          case 3:
-            $partOffer = "localisationOffer.php";
-            break;
-          case 4:
-            $partOffer = "contactOffer.php";
-            break;
-          case 5:
-            $partOffer = "hourlyOffer.php";
-            break;
-          case 6:
-            $partOffer = "previewOffer.php";
-            break;
-          case 7:
-            $partOffer = "paymentOffer.php";
-            break;
-          default:
-            $partOffer = "errorOffer.php";
-            break;
-        }
         require_once "components/offer/".$stepManageOffer[$step - 1 ]["page"];
       ?>
           <input type="hidden" name="pageCurrent" id="pageCurrent" value="">
