@@ -27,21 +27,36 @@
     <script>
         const form = document.querySelector("#divFormHeader form");
         const input = form.querySelector("input");
+
+        // Vérifie la page actuelle
+        const currentFile = window.location.pathname.split('/').pop();
+
+        /**
+         * On soumet le formulaire dès que l'on sort de l'input
+         */
         input.addEventListener("blur", (event) => {
             event.preventDefault();
-            form.submit();
+            if (currentFile !== 'index.php') {
+                window.location.href = 'index.php'; 
+            }
         });
 
-        document.getElementById('myForm').addEventListener('submit', (event) => {
-            const currentFile = window.location.pathname.split('/').pop();
-            
+        /**
+         * On envoit le formulaire si on est pas sur la page index
+         */
+        form.addEventListener('submit', (event) => {
             if (currentFile === 'index.php') {
                 event.preventDefault();
-                alert('Le formulaire ne peut pas être soumis sur index.php.');
+
+                input.addEventListener("input", (event) => {
+                    const searchValue = event.target.value;
+                    console.log("Recherche en cours :", searchValue);
+                });
             } else {
                 alert("pas à moi");
             }
         });
+
     </script>
 
 
