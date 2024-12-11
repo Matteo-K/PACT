@@ -1736,7 +1736,7 @@ header ul+div {
 #artDetailOffer section,
 #afficheImages,
 #afficheImages2 {
-  width: calc(70% + 141.625px);
+  width: 90%;
   /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
   min-height: 100px;
   margin: 10px 0 5px 0;
@@ -1750,7 +1750,6 @@ header ul+div {
 
 #inputAutoComplete {
   position: relative;
-  width: calc(70% + 141.625px);
 }
 
 #autocompletion {
