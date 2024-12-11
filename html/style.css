@@ -691,7 +691,11 @@ header ul+div {
   min-height: calc(100vh - var(--header-size));
 }
 
-#index::before {
+#imgPhare {
+  position: sticky;
+}
+
+#imgPhare::before {
   min-height: calc(100vh - var(--header-size));
   background-image: url(img/phare.jpg);
   background-position: 5% 20%;
