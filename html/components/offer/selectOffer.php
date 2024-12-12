@@ -37,7 +37,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <?php
     if (!$is_prive) {
     ?>
-    <div>
+    <div class="offre-container">
       <h2>Offre Gratuit</h2>
       <?php
       foreach ($abonnement as $ab) {
@@ -60,7 +60,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <?php
     } else {
     ?>
-    <div>
+    <div class="offre-container">
       <h2>Offre Premium</h2>
       <?php
       foreach ($abonnement as $ab) {
@@ -83,7 +83,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <label for="premium">Sélectionner</label>
       </div>
     </div>
-    <div>
+    <div class="offre-container">
       <h2>Offre Standard</h2>
       <?php
       foreach ($abonnement as $ab) {

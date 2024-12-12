@@ -28,12 +28,6 @@ require_once "config.php";
           ?>
         </div>
       </div>
-      <div id="voirPlus">
-        <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
-          <a href="manageOffer.php" class="modifierBut">Créer une offre</a>  
-        <?php } ?>
-        <a href="search.php" class="modifierBut">Voir plus</a>
-      </div>
       <?php if ($typeUser == "membre") {
         $stmt = $conn->prepare("SELECT idoffre FROM pact._consulter where idu = ? and dateconsultation = CURRENT_DATE;");
         $stmt->execute([$_SESSION['idUser']]);
@@ -55,6 +49,11 @@ require_once "config.php";
         </div>
       </div>
       <?php } ?>
+      <div id="voirPlus">
+        <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
+          <a href="manageOffer.php" class="modifierBut">Créer une offre</a>  
+        <?php } ?>
+      </div>
     </div>
       <!-- Partie de recherche -->
     <div id="searchIndex" class="search">

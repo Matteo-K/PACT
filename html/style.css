@@ -962,28 +962,6 @@ header ul+div {
   }
 }
 
-/* aside index temporaire - pre sprint 3 */
-#trifiltre:not(#search #trifiltre) {
-  position: sticky !important;
-  top: var(--header-size) !important;
-  width: auto !important;
-  padding: 10px !important;
-  border-radius: 0 !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  z-index: 2;
-}
-
-/* pre sprint 3 */
-.blcTriFiltre:not(#tri .blcTriFiltre, #search .blcTriFiltre) {
-  display: flex;
-}
-
-.searchoffre:not(#search .searchoffre) {
-  margin-left: 0 !important;
-}
-
 /* ### Offer ### */
 
 /* Gestion de l'offre */
@@ -1171,6 +1149,29 @@ header ul+div {
   background-color: var(--secondary20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--secondary60);
+  transition: all 0.3s;
+}
+
+/* Appliquer une box-shadow à .offre-container lorsque le radio bouton est coché */
+input[type="radio"]:checked ~ .offre-container {
+  transform: skewX(-1deg);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--secondary60),
+    4px 4px 12px var(--text-dark30);
+}
+
+input[type="radio"]:checked ~ .offre-container:nth-child(2) {
+  transform: skewX(-1deg);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--accent60),
+    4px 4px 12px var(--accent30);
+}
+
+input[type="radio"]:checked ~ .offre-container:nth-child(3) {
+  transform: skewX(-1deg);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--primary60),
+    4px 4px 12px var(--bloc);
 }
 
 /* Prix par mois */
@@ -1940,9 +1941,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .search {
   position: relative;
   min-height: 1000px;
-  margin-top: var(--header-size);
   padding-bottom: 20px;
-  padding-top: 20px;
   background-color: var(--background);
 }
 
@@ -1954,6 +1953,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   padding-top: 30px;
   gap: 20px;
   margin-left: 380px;
+}
+
+.searchoffre:not(#search .searchoffre) {
+  margin-left: 0;
 }
 
 .carteOffre {
@@ -2424,15 +2427,27 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* ##### Aside Filtre & tri ##### */
 
-#trifiltre {
-  position: absolute;
-  background: var(--bloc);
-  width: 380px;
-  top: 0;
+/* aside index temporaire - pre sprint 3 */
+#trifiltre:not(#search #trifiltre) {
+  position: sticky;
+  top: var(--header-size);
   left: 0;
+  background: var(--bloc);
+  width: auto;
   padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: 2;
+}
+
+/* pre sprint 3 */
+.blcTriFiltre:not(#tri .blcTriFiltre, #search .blcTriFiltre) {
+  display: flex;
+}
+
+#trifiltre {
   padding-top: 2rem;
-  border-radius: 0 0 45px 0;
 }
 
 #trifiltre h2 {
