@@ -116,6 +116,43 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     const prixPrevisionnel = document.querySelector("#prixPrevisionel");
     const radio = document.querySelectorAll("[type='radio']");
 
+    // Style
+    document.addEventListener('DOMContentLoaded', function() {
+      const radioButtons = document.querySelectorAll('input[name="typeOffre"]');
+      
+      function applyStyle() {
+        document.querySelectorAll('.offre-container').forEach(carte => {
+          carte.style.transform = '';
+          carte.style.boxShadow = '';
+        });
+
+        // Appliquer les styles en fonction de la carte sélectionnée
+        radioButtons.forEach((radio, index) => {
+          const carte = radio.closest('.offre-container');
+
+          if (radio.checked) {
+            carte.style.transform = 'skewX(-1deg)';
+            if (index === 0) {
+              carte.style.boxShadow = 'inset 4px 4px 4px rgba(255, 255, 255, 0.5), inset -4px -4px 4px var(--secondary60), 4px 4px 12px var(--text-dark30)';
+            } else if (index === 1) {
+              carte.style.boxShadow = 'inset 4px 4px 4px rgba(255, 255, 255, 0.5), inset -4px -4px 4px var(--accent60), 4px 4px 12px var(--accent30)';
+            } else if (index === 2) {
+              carte.style.boxShadow = 'inset 4px 4px 4px rgba(255, 255, 255, 0.5), inset -4px -4px 4px var(--primary60), 4px 4px 12px var(--bloc)';
+            }
+          }
+        });
+      }
+
+      // Attache l'événement 'change' pour appliquer les styles à chaque fois qu'un radio est sélectionné
+      radioButtons.forEach(radio => {
+        radio.addEventListener('change', applyStyle);
+      });
+
+      // Appliquer les styles au chargement si déjà sélectionné
+      applyStyle();
+    });
+
+
     function updatePrix() {
       let prix = 0;
 

@@ -1152,28 +1152,6 @@ header ul+div {
   transition: all 0.3s;
 }
 
-/* Appliquer une box-shadow à .offre-container lorsque le radio bouton est coché */
-input[type="radio"]:checked ~ .offre-container {
-  transform: skewX(-1deg);
-  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
-    inset -4px -4px 4px var(--secondary60),
-    4px 4px 12px var(--text-dark30);
-}
-
-input[type="radio"]:checked ~ .offre-container:nth-child(2) {
-  transform: skewX(-1deg);
-  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
-    inset -4px -4px 4px var(--accent60),
-    4px 4px 12px var(--accent30);
-}
-
-input[type="radio"]:checked ~ .offre-container:nth-child(3) {
-  transform: skewX(-1deg);
-  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
-    inset -4px -4px 4px var(--primary60),
-    4px 4px 12px var(--bloc);
-}
-
 /* Prix par mois */
 #selectOffer>div:first-child>div h3 {
   margin: 10px;
