@@ -149,11 +149,11 @@ function sortEnAvant(array) {
 }
 
 function sortNoteCroissant(array) {
-  return array.sort((a, b) => attribuerEtoiles(parseFloat(a.noteAvg)) - attribuerEtoiles(parseFloat(b.noteAvg)));
+  return array.sort((a, b) => parseFloat(a.noteAvg) - parseFloat(b.noteAvg));
 }
 
 function sortNoteDecroissant(array) {
-  return array.sort((a, b) => attribuerEtoiles(parseFloat(b.noteAvg)) - attribuerEtoiles(parseFloat(a.noteAvg)));
+  return array.sort((a, b) => parseFloat(b.noteAvg) - parseFloat(a.noteAvg));
 }
 
 function attribuerEtoiles(note) {
