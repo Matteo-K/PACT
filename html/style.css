@@ -682,6 +682,10 @@ header ul+div {
     width: clamp(2em, 15vw, 5em);
     height: clamp(2em, 15vw, 5em);
   }
+
+  #imgPhare {
+    top: 0;
+  }  
 }
 
 /* ### Index ### */
