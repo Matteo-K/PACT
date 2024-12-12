@@ -42,21 +42,25 @@
   <main>
     <aside>
       <h3>Gestion de votre offre</h3>
-      <ul>
-        <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
-        <?php for ($i=1; $i < count($stepManageOffer); $i++) { ?>
-          <li>
-            <button type="submit" onclick="submitForm(event, <?php echo ($i + 1) ?>)" class="<?php echo $step == ($i + 1) ? "currentStep" : "" ?>">
-              <figure>
-                <img src="img/icone/<?php echo $stepManageOffer[$i]["img"] ?>" alt="<?php echo $stepManageOffer[$i]["nom"] ?>">
-                <figcaption>
-                  <?php echo $stepManageOffer[$i]["nom"] ?>
-                </figcaption>
-              </figure>
-            </button>
-          </li>
-        <?php } ?>
-      </ul>
+      <div>
+      <span class="circleManageOffer"></span>
+        <ul>
+          <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
+          <?php for ($i=1; $i < count($stepManageOffer); $i++) { ?>
+            <li>
+              <button type="submit" onclick="submitForm(event, <?php echo ($i + 1) ?>)" class="<?php echo $step == ($i + 1) ? "currentStep" : "" ?>">
+                <figure>
+                  <img src="img/icone/<?php echo $stepManageOffer[$i]["img"] ?>" alt="<?php echo $stepManageOffer[$i]["nom"] ?>">
+                  <figcaption>
+                    <?php echo $stepManageOffer[$i]["nom"] ?>
+                  </figcaption>
+                </figure>
+              </button>
+            </li>
+          <?php } ?>
+        </ul>
+        <span class="arrowManageOffer"></span>
+      </div>
       <div>
         <?php if ($step != 1) { ?>
           <!-- Si 0 on enregistre et retourne au menu du professionnel -->

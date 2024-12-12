@@ -975,6 +975,10 @@ header ul+div {
   padding-top: 20px;
 }
 
+#manageOffer aside h3 + div {
+  position: relative;
+}
+
 #manageOffer aside ul {
   display: flex;
   flex-flow: row nowrap;
@@ -987,11 +991,29 @@ header ul+div {
     position: absolute;
     top: 30%;
     left: 50%;
-    width: 90%;
+    width: 95%;
     z-index: -1;
     transform: translateX(-50%);
     border: 2px dashed black;
   }
+}
+
+.circleManageOffer {
+  position: absolute;
+  top: 30%;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  transform: translateY(-50%);
+}
+
+.arrowManageOffer {
+  position: absolute;
+  top: 30%;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  transform: translateY(-50%);
 }
 
 #manageOffer aside img {
@@ -1008,6 +1030,9 @@ header ul+div {
   background-color: var(--accent) !important;
 }
 
+#manageOffer figure {
+  margin: 0;
+}
 #manageOffer figcaption {
   font-size: 1.1rem;
   width: 200px;
