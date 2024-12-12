@@ -682,10 +682,6 @@ header ul+div {
     width: clamp(2em, 15vw, 5em);
     height: clamp(2em, 15vw, 5em);
   }
-
-  #imgPhare {
-    top: 0;
-  }  
 }
 
 /* ### Index ### */
@@ -693,28 +689,6 @@ header ul+div {
 #index {
   margin-top: 20px;
   min-height: calc(100vh - var(--header-size));
-}
-
-#imgPhare {
-  position: sticky;
-  top: var(--header-size);
-  z-index: -1;
-}
-
-#imgPhare::before {
-  min-height: calc(100vh - var(--header-size));
-  background-image: url(img/phare.jpg);
-  background-position: 5% 20%;
-  background-size: 150%;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: "";
-  z-index: -1;
-  filter: hue-rotate(20deg);
 }
 
 #index h2 {
