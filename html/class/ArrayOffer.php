@@ -314,15 +314,18 @@ class ArrayOffer {
 
   public function displayCardALaUne($array_, $typeUser_, $elementStart_, $nbElement_) {
     $array = $this->pagination($array_, $elementStart_, $nbElement_);
+    $nbOffre = 0;
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
         if ($typeUser_ == "pro_public" || $typeUser_ == "pro_prive") {
           $elem->displayCardALaUnePro();
+          $nbOffre ++;
         } else if (in_array("ALaUne", $elem->getData()["option"])) {
           $elem->displayCardALaUne();
+          $nbOffre++;
         }
       }
-    } else {
+    } if ($nbOffre == 0) {
       echo "<p>Aucune offre à la une </p>";
     }
   }
