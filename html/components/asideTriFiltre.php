@@ -236,12 +236,12 @@
         /**
          * Ouvre et ferme le aside au format mobile
          */
-        function toggleAside() {
-            console.log("click");
-        }
-
-        function fermeAside() {
-            console.log("ferme");
-        }
     });
+    function toggleAside() {
+        console.log("click");
+    }
+
+    function fermeAside() {
+        console.log("ferme");
+    }
 </script>
