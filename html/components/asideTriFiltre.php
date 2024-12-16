@@ -241,14 +241,8 @@
          * Ouvre et ferme le aside au format mobile
          * Empêche le scroll
          */
-        function toggleAside(aside) {
-            aside.classList.toggle('openFiltreTri');
-            
-            if (asideTri.classList.contains('openFiltreTri') || asideFiltre.classList.contains('openFiltreTri')) {
-                body.classList.add('no-scroll');
-            } else {
-                body.classList.remove('no-scroll');
-            }
+        function toggleAside(this) {
+            console.log(this);
         }
         
         fermeTri.addEventListener("click", () => toggleAside(asideTri));
