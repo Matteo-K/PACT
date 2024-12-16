@@ -1000,20 +1000,24 @@ header ul+div {
 
 .circleManageOffer {
   position: absolute;
-  top: 30%;
-  right: 0;
-  width: 100px;
-  height: 100px;
+  top: 31%;
+  left: 20px;
+  width: 20px;
+  height: 20px;
   transform: translateY(-50%);
+  background-color: black;
+  border-radius: 50%;
 }
 
 .arrowManageOffer {
   position: absolute;
-  top: 30%;
-  right: 0;
+  top: 31%;
+  right: 20px;
   width: 100px;
   height: 100px;
   transform: translateY(-50%);
+  background-color: black;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%);
 }
 
 #manageOffer aside img {
