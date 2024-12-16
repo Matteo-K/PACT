@@ -1838,7 +1838,7 @@ header ul + div {
 
 /* titre */
 
-#searchIndex aside > div {
+#titreAside {
   background-color: blueviolet;
   border: #000 1px solid;
 }

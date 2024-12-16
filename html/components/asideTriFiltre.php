@@ -9,7 +9,7 @@
     </div>
     <div>
         <aside id="tri">
-            <div>
+            <div id="titreAside">
                 <h2>Trier</h2>
                 <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet tri">
             </div>
@@ -45,7 +45,7 @@
             </div>
         </aside>
         <aside id="filtre" class="asdTriFiltre">
-            <div>
+            <div id="titreAside">
                 <h2>Filtrer</h2>
                 <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet filtre">
             </div>
