@@ -1797,47 +1797,6 @@ header ul + div {
 
 /****** TRI ET FILTRE  INDEX ******/
 
-#blcSearch {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-#btnAside {
-  position: sticky;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 5px;
-}
-
-#btnAside img {
-  width: 80px;
-}
-
-#btnFiltre img {
-  width: 60px;
-  padding: 10px;
-}
-
-#btnAside a {
-  width: fit-content;
-  padding: 10px;
-  background-color: var(--bloc25);
-  border-radius: 0 1.5rem 1.5rem 0;
-}
-
-#btnAside a:hover {
-  padding-left: 20px;
-}
-
-#trifiltre {
-  flex: 1;
-  display: flex;
-  flex-flow: row-reverse;
-}
-
-.asdTriFiltre h2 + img {
-  width: 30px;
-}
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
