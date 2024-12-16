@@ -11,7 +11,7 @@
         <aside id="tri">
             <div id="titreAside">
                 <h2>Trier</h2>
-                <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet tri">
+                <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet tri" onclick="fermeAside()">
             </div>
             <div class="blcTriFiltre">
                 <div>
@@ -47,7 +47,7 @@
         <aside id="filtre" class="asdTriFiltre">
             <div id="titreAside">
                 <h2>Filtrer</h2>
-                <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet filtre">
+                <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet filtre" onclick="fermeAside()">
             </div>
             <div class="blcTriFiltre">
                 <div id="note">
@@ -229,26 +229,19 @@
         }
         
         // Ouvre et ferme le pop-up tri et filtre pour la partie mobile
-        const btnFiltre = document.querySelector("#btnFiltre");
-        const btnTri = document.querySelector("#btnTri");
         const asideTri = document.querySelector("#tri");
         const asideFiltre = document.querySelector("#filtre");
-        const fermeTri = document.querySelector("#fermeTri");
-        const fermeFiltre = document.querySelector("#fermeFiltre");
         const body = document.body;
         
         /**
          * Ouvre et ferme le aside au format mobile
-         * Empêche le scroll
          */
         function toggleAside() {
             console.log("click");
         }
-        
-        fermeTri.addEventListener("click", () => toggleAside(asideTri));
-        fermeFiltre.addEventListener("click", () => toggleAside(asideFiltre));
-        btnTri.addEventListener("click", () => toggleAside(asideTri));
-        btnFiltre.addEventListener("click", () => toggleAside(asideFiltre));
-        
+
+        function fermeAside() {
+            console.log("ferme");
+        }
     });
 </script>
