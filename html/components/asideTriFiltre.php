@@ -226,22 +226,19 @@
                 selectMin.value = valueMax;
                 selectMax.value = valueMin;
             }
-        }
-        
-        // Ouvre et ferme le pop-up tri et filtre pour la partie mobile
-        const asideTri = document.querySelector("#tri");
-        const asideFiltre = document.querySelector("#filtre");
-        const body = document.body;
-        
-        /**
-         * Ouvre et ferme le aside au format mobile
-         */
+        }    
     });
-    function toggleAside() {
-        console.log("click");
+    /**
+     * Ouvre et ferme le aside
+     */
+    const asideTri = document.querySelector("#tri");
+    const asideFiltre = document.querySelector("#filtre");
+    function toggleAside(this) {
+        console.log(this);
     }
 
     function fermeAside() {
-        console.log("ferme");
+        asideTri.classList.remove('open');
+        asideFiltre.classList.remove('open');
     }
 </script>
