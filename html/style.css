@@ -1803,7 +1803,10 @@ header ul + div {
 }
 
 #btnAside {
-  position: fixed;
+  position: sticky;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 5px;
 }
 
 #btnAside img {
