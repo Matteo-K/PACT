@@ -1797,6 +1797,25 @@ header ul + div {
 
 /****** TRI ET FILTRE  INDEX ******/
 
+#btnAside img {
+  width: 80px;
+}
+
+#btnFiltre img {
+  width: 60px;
+  padding: 10px;
+}
+
+#btnAside a {
+  width: fit-content;
+  padding: 10px;
+  background-color: var(--bloc25);
+  border-radius: 0 1.5rem 1.5rem 0;
+}
+
+#btnAside a:hover {
+  padding-left: 20px;
+}
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
