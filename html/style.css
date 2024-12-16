@@ -1824,11 +1824,20 @@ header ul + div {
   background-color: var(--bloc25);
   border-radius: 0 1.5rem 1.5rem 0;
 }
-
 /* :target*/
 
 #btnAside a:hover {
   padding-left: 20px;
+}
+
+#trifiltre {
+  flex: 1;
+  display: flex;
+  flex-flow: row-reverse;
+}
+
+.asdTriFiltre h2 + img {
+  width: 30px;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
