@@ -1,9 +1,9 @@
 <section id="trifiltre" class="asdTriFiltre">
     <div id="btnAside">
-        <a onclick="toggleAside(this)" id="btnTri">
+        <a onclick="toggleAside()" id="btnTri">
             <img src="img/icone/tri.png" alt="tri">
         </a>
-        <a onclick="toggleAside(this)" id="btnFiltre">
+        <a onclick="toggleAside()" id="btnFiltre">
             <img src="img/icone/filtre.png" alt="filtre">
         </a>
     </div>
@@ -241,8 +241,8 @@
          * Ouvre et ferme le aside au format mobile
          * Empêche le scroll
          */
-        function toggleAside(this) {
-            console.log(this);
+        function toggleAside() {
+            console.log("click");
         }
         
         fermeTri.addEventListener("click", () => toggleAside(asideTri));
