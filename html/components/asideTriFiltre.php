@@ -1,21 +1,16 @@
 <section id="trifiltre" class="asdTriFiltre">
     <div>
-        <figure id="btnFiltre">
-            <figcaption>Filtrer</figcaption>
-            <img src="img/icone/burger-bar.png" alt="filtre">
-        </figure>
-        <figure id="btnTri">
-            <figcaption>Trier</figcaption>
-            <img src="img/icone/burger-bar.png" alt="tri">
-        </figure>
+        <a href="#tri" id="btnTri">
+            <img src="img/icone/tri.png" alt="tri">
+        </a>
+        <a href="#filtre" id="btnFiltre">
+            <img src="img/icone/filtre.png" alt="filtre">
+        </a>
     </div>
     <aside id="tri">
         <div>
             <h2>Trier</h2>
-            <figure id="fermeTri" class="fermeTriFiltre">
-                <figcaption>Fermer l'onglet</figcaption>
-                <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet tri">
-            </figure>
+            <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet tri">
         </div>
         <div class="blcTriFiltre">
             <div>
@@ -51,10 +46,7 @@
     <aside id="filtre" class="asdTriFiltre">
         <div>
             <h2>Filtrer</h2>
-            <figure id="fermeFiltre" class="fermeTriFiltre">
-                <figcaption>Fermer l'onglet</figcaption>
-                <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet filtre">
-            </figure>
+            <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet filtre">
         </div>
         <div class="blcTriFiltre">
             <div id="note">

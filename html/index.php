@@ -57,13 +57,15 @@ require_once "config.php";
     </div>
       <!-- Partie de recherche -->
     <div id="searchIndex" class="search">
-      <?php 
-      require_once "components/asideTriFiltre.php";
+      <div id="blcSearch">
+        <?php 
+        require_once "components/asideTriFiltre.php";
 
-      $offres = new ArrayOffer();
-      ?>
-      <section class="searchoffre">
-      </section>
+        $offres = new ArrayOffer();
+        ?>
+        <section class="searchoffre">
+        </section>
+      </div>
       <section id="pagination">
           <ul id="pagination-liste">
           </ul>
