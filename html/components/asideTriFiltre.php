@@ -1,9 +1,9 @@
 <section id="trifiltre" class="asdTriFiltre">
     <div id="btnAside">
-        <a onclick="toggleAside()" id="btnTri">
+        <a onclick="toggleAside(this)" id="btnTri">
             <img src="img/icone/tri.png" alt="tri">
         </a>
-        <a onclick="toggleAside()" id="btnFiltre">
+        <a onclick="toggleAside(this)" id="btnFiltre">
             <img src="img/icone/filtre.png" alt="filtre">
         </a>
     </div>
@@ -233,8 +233,19 @@
      */
     const asideTri = document.querySelector("#tri");
     const asideFiltre = document.querySelector("#filtre");
-    function toggleAside(this) {
-        console.log(this);
+    
+    function toggleAside() {
+        document.getElementById("btnTri").classList.remove("btnAsideOpen");
+        document.getElementById("btnFiltre").classList.remove("btnAsideOpen");
+        if (this.id == "btnTri") {
+            asideTri.classList.add("openAside");
+            asideFiltre.classList.remove('openAside');
+            document.getElementById("btnTri").classList.add("btnAsideOpen");
+        } else {
+            asideFiltre.classList.add('openAside');
+            asideTri.classList.remove("openAside");
+            document.getElementById("btnFiltre").classList.remove("btnAsideOpen");
+        }
     }
 
     function fermeAside() {
