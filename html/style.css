@@ -1806,6 +1806,14 @@ header ul + div {
   display: none;
 }
 
+/* Bouton de tri et filtre */
+
+#btnAside {
+  display: flex;
+  flex-flow: column;
+  gap: 5px;
+}
+
 #btnAside img {
   width: 70px;
 }
@@ -1824,6 +1832,15 @@ header ul + div {
 
 #btnAside a:hover {
   padding-left: 30px;
+}
+
+/* Bloc tri et filtre */
+
+/* titre */
+
+#searchIndex aside > div {
+  background-color: blueviolet;
+  border: #000 1px solid;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
