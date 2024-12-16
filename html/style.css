@@ -1824,7 +1824,6 @@ header ul + div {
   background-color: var(--bloc25);
   border-radius: 0 1.5rem 1.5rem 0;
 }
-/* :target*/
 
 #btnAside a:hover {
   padding-left: 20px;

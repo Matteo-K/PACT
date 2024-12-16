@@ -1,9 +1,9 @@
 <section id="trifiltre" class="asdTriFiltre">
     <div id="btnAside">
-        <a href="#tri" id="btnTri">
+        <a onclick="toggleAside(this)" id="btnTri">
             <img src="img/icone/tri.png" alt="tri">
         </a>
-        <a href="#filtre" id="btnFiltre">
+        <a onclick="toggleAside(this)" id="btnFiltre">
             <img src="img/icone/filtre.png" alt="filtre">
         </a>
     </div>
@@ -190,7 +190,7 @@
                         </li>
                     </ul>
                 </div>
-                <div id="date" style="display:none;">
+                <div id="date">
                     <h3>Par date</h3>
                     <div>
                         <label for="dateDepart">Départ&nbsp;:&nbsp;</label>

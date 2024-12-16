@@ -788,12 +788,8 @@ function avisSearch(offer) {
   divTitre.appendChild(titre)
   divTitre.appendChild(ouverture);
 
-  let tempPasAvis = document.createElement("p");
-
   div.appendChild(divTitre);
   div.appendChild(note(offer));
-  div.appendChild(tempPasAvis);
-  div.appendChild(displayAvis(offer));
 
   return div;
 }
@@ -828,43 +824,6 @@ function displayStar(note) {
     container.appendChild(star);
   }
   return container;
-}
-
-function displayAvis(offer) {
-  let blcAvis = document.createElement("div");
-  blcAvis.classList.add("blcAvis");
-
-  if (!offer.avis || offer.avis.length === 0) {
-    blcAvis.textContent = "Aucun avis";
-  } else {
-    let avisCount = Math.min(offer.avis.length, 2);
-    for (let i = 0; i < avisCount; i++) {
-      let avis = JSON.parse(offer.avis[i]);
-
-      let conteneur = document.createElement("div");
-      conteneur.classList.add("avisSearch");
-
-      // Extraire les informations de l'avis
-      let pseudo = avis.pseudo || "Anonyme";
-      let titre = avis.titre || "Pas de titre";
-      let note = avis.note || 0;
-      let contenu = avis.contenue || "Pas de contenu";
-
-      let enTete = document.createElement("h5");
-      enTete.textContent = pseudo + " - " + titre
-
-      let p = document.createElement("p");
-      p.textContent = contenu;
-
-      conteneur.appendChild(enTete);
-      conteneur.appendChild(displayStar(note));
-      conteneur.appendChild(p);
-      
-      blcAvis.appendChild(conteneur);
-    }
-  }
-
-  return blcAvis;
 }
 
 
