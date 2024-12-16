@@ -1,5 +1,5 @@
 <section id="trifiltre" class="asdTriFiltre">
-    <div>
+    <div id="btnAside">
         <a href="#tri" id="btnTri">
             <img src="img/icone/tri.png" alt="tri">
         </a>

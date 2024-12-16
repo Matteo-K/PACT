@@ -1798,7 +1798,24 @@ header ul + div {
 /****** TRI ET FILTRE  INDEX ******/
 
 #blcSearch {
-  background-color: red;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#btnAside {
+  position: fixed;
+}
+
+#btnAside img {
+  width: 80px;
+}
+
+#btnAside a {
+  padding: 10px;
+  background-color: var(--bloc25);
+}
+#btnAside a:hover {
+  padding-left: 20px;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
@@ -1964,6 +1981,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   padding-top: 30px;
   gap: 20px;
   margin-left: 380px;
+  flex: 4;
 }
 
 .searchoffre:not(#search .searchoffre) {
