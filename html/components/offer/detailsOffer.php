@@ -105,30 +105,35 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <article id="artDetailOffer">
         <fieldset>
             <legend>A propos de votre offre</legend>
-            <div>
-                <label for="nom">Nom de votre offre*</label>
-                <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
-
-                <label for="resume">Résumé de l'offre</label>
-                <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
-                
-                <label for="description">Description de votre offre*</label>
-                <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
-            </div>
-        
-            <div>
-                <div id="inputAutoComplete">
-                    <label for="inputTag">Tags supplémentaires </label>
-                    <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
-                    <!--<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
-                    <ul id="autocompletion"></ul>
+            <div id="aboutOffer">
+                <div>
+                    <label for="nom">Nom de votre offre*</label>
+                    <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
                 </div>
-                <section id="sectionTag">
-                    <!-- Les tags ajoutés apparaîtront ici -->
-                </section>
-                <p>
-                    Vous pouvez entrer jusqu'à 6 tags
-                </p>
+                <div>
+                    <label for="resume">Résumé de l'offre</label>
+                    <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
+                </div>
+                <div>
+                    <label for="description">Description de votre offre*</label>
+                    <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
+                </div>
+                <div id="tagsOffer">
+                    <div id="inputAutoComplete">
+                        <label for="inputTag">Tags supplémentaires </label>
+                        <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
+                        <!--<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
+                        <ul id="autocompletion"></ul>
+                    </div>
+                    <section id="sectionTag">
+                        <!-- Les tags ajoutés apparaîtront ici -->
+                    </section>
+                    <p>
+                        Vous pouvez entrer jusqu'à 6 tags
+                    </p>
+                </div>
+            </div>
+            <div id="blcImg">
                 <div id="choixImage">
                     <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
                     <p>
@@ -147,7 +152,24 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     multiple 
                     onchange="handleFiles(this)"
                 />
-                <div id="afficheImages"></div>    
+                <div id="afficheImages"></div>
+                <div>
+                    <div>
+                        <figure class="bigImgOffer"></figure>
+                    </div>
+                    <div>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                    </div>
+                </div>
             </div>
         </fieldset>
     </article>
@@ -155,7 +177,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
         <fieldset>
             <legend>Catégorie de l'offre</legend>
-            <div id="choixCategorie">
+            <span id="msgCategorie" class="msgError"></span>
+            <section id="choixCategorie">
                 <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required 
                 <?php echo $categorie["_restauration"] ? "checked" : "" ?> 
                 <?php echo $disableCategorie && !$categorie["_restauration"] ? "disabled" : "" ?>> 
@@ -180,8 +203,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <?php echo $categorie["_visite"] ? "checked" : "" ?>
                 <?php echo $disableCategorie && !$categorie["_visite"] ? "disabled" : "" ?>>
                 <label for="radioVisite">Visite</label>
-            </div>
-        <span id="msgCategorie" class="msgError"></span>
+            </section>
         <?php
             $source = "details/";
             require_once $source . "detailsRestaurant.php";
@@ -203,6 +225,10 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         //Récupération des tags déjà présents sur l'offre puis affichage (semblable a la fonction ajouTag())
         const loadedTags = <?php echo json_encode($loadedTags) ?>;
+
+        /**
+         * Gestion des TAGS
+         */
 
          // Variables de sélection des éléments
         const sectionTag = document.getElementById("sectionTag");
@@ -259,10 +285,13 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         // js de gabriel pour les images test
 
+        /**
+         * Gestion des images
+         */
+
         let existingImagesCount = 0; // Compteur des images existantes sur le serveur
         const idOffre = <?php echo $idOffre ?>; // ID de l'offre, à remplacer par une valeur dynamique si nécessaire
 
-        // Fonction pour charger les images existantes
         // Fonction pour charger les images existantes
         function loadExistingImages() {
             fetch('upload.php?idOffre=' + idOffre)
@@ -284,8 +313,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         img.onclick = () => {
                             if (confirm("Êtes-vous sûr de vouloir supprimer cette image ?")) {
                                 deleteImage(image, img, index); // Supprime l'image si l'utilisateur confirme
-                            } else {
-                                console.log("Suppression annulée."); // Optionnel : un message en cas d'annulation
                             }
                         };
                     
@@ -296,11 +323,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 .catch(error => console.error('Erreur de chargement des images:', error));
         }
 
-
-        // Fonction pour supprimer une image existante
-        // Fonction pour supprimer une image existante
-        // Fonction pour supprimer une image existante
-        // Fonction pour supprimer une image existante
         // Fonction pour supprimer une image existante
         function deleteImage(fileName, imgElement, index) {
             // Supprimer l'image du DOM immédiatement

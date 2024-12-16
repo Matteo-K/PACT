@@ -4,7 +4,6 @@
 
 /* Style globale */
 
-/*
 :root {
   --bloc: #034d7c;
   --background: #eaeaea;
@@ -14,21 +13,6 @@
   --accent-border: #bb880e;
   --text-dark: #000;
   --text-light: #eaeaea;
-  --background-avis: #c9c9c9;
-  --header-size: 100px;
-  --header-size2: var(--header-size);
-  scroll-behavior: smooth;
-}*/
-
-:root {
-  --bloc: #046c61;
-  --background: #eaeaea;
-  --primary: #1ce2ed;
-  --secondary: #d1ccdc;
-  --accent: #14ed2d;
-  --accent-border: #239d1d;
-  --text-dark: #000;
-  --text-light: #dce2e2;
   --background-avis: #c9c9c9;
   --header-size: 100px;
   --header-size2: var(--header-size);
@@ -708,6 +692,7 @@ header ul + div {
 
 #index {
   margin-top: 20px;
+  min-height: calc(100vh - var(--header-size));
 }
 
 #index h2 {
@@ -734,7 +719,7 @@ header ul + div {
 #consultationRecente > div {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: left;
   justify-content: space-evenly;
 }
 
@@ -982,28 +967,6 @@ header ul + div {
   }
 }
 
-/* aside index temporaire - pre sprint 3 */
-#trifiltre:not(#search #trifiltre) {
-  position: sticky !important;
-  top: var(--header-size) !important;
-  width: auto !important;
-  padding: 10px !important;
-  border-radius: 0 !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  z-index: 2;
-}
-
-/* pre sprint 3 */
-.blcTriFiltre:not(#tri .blcTriFiltre, #search .blcTriFiltre) {
-  display: flex;
-}
-
-.searchoffre:not(#search .searchoffre) {
-  margin-left: 0 !important;
-}
-
 /* ### Offer ### */
 
 /* Gestion de l'offre */
@@ -1015,6 +978,10 @@ header ul + div {
 #manageOffer aside {
   width: 100%;
   padding-top: 20px;
+}
+
+#manageOffer aside h3 + div {
+  position: relative;
 }
 
 #manageOffer aside ul {
@@ -1029,11 +996,29 @@ header ul + div {
     position: absolute;
     top: 30%;
     left: 50%;
-    width: 90%;
+    width: 95%;
     z-index: -1;
     transform: translateX(-50%);
     border: 2px dashed black;
   }
+}
+
+.circleManageOffer {
+  position: absolute;
+  top: 30%;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  transform: translateY(-50%);
+}
+
+.arrowManageOffer {
+  position: absolute;
+  top: 30%;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  transform: translateY(-50%);
 }
 
 #manageOffer aside img {
@@ -1050,6 +1035,9 @@ header ul + div {
   background-color: var(--accent) !important;
 }
 
+#manageOffer figure {
+  margin: 0;
+}
 #manageOffer figcaption {
   font-size: 1.1rem;
   width: 200px;
@@ -1190,6 +1178,7 @@ header ul + div {
   background-color: var(--secondary20);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--secondary60);
+  transition: all 0.3s;
 }
 
 /* Prix par mois */
@@ -1635,6 +1624,19 @@ header ul + div {
   margin: 1%;
 }
 
+#artDetailOffer fieldset {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#aboutOffer {
+  flex: 2;
+}
+
+#blcImg {
+  flex: 1;
+}
+
 #artDetailOffer > div > label:not(.buttonDetailOffer),
 #choixCategorie label:first-of-type,
 #choixImage label,
@@ -1741,7 +1743,7 @@ header ul + div {
 #artDetailOffer section,
 #afficheImages,
 #afficheImages2 {
-  width: calc(70% + 141.625px);
+  width: 90%;
   /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
   min-height: 100px;
   margin: 10px 0 5px 0;
@@ -1755,7 +1757,6 @@ header ul + div {
 
 #inputAutoComplete {
   position: relative;
-  width: calc(70% + 141.625px);
 }
 
 #autocompletion {
@@ -1941,13 +1942,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .search {
   position: relative;
   min-height: 1000px;
-  margin-top: var(--header-size);
   padding-bottom: 20px;
-  padding-top: 20px;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: var(--background);
 }
 
 .searchoffre {
@@ -1958,6 +1954,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   padding-top: 30px;
   gap: 20px;
   margin-left: 380px;
+}
+
+.searchoffre:not(#search .searchoffre) {
+  margin-left: 0;
 }
 
 .carteOffre {
@@ -2427,15 +2427,27 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* ##### Aside Filtre & tri ##### */
 
-#trifiltre {
-  position: absolute;
-  background: var(--bloc);
-  width: 380px;
-  top: 0;
+/* aside index temporaire - pre sprint 3 */
+#trifiltre:not(#search #trifiltre) {
+  position: sticky;
+  top: var(--header-size);
   left: 0;
+  background: var(--bloc);
+  width: auto;
   padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: 2;
+}
+
+/* pre sprint 3 */
+.blcTriFiltre:not(#tri .blcTriFiltre, #search .blcTriFiltre) {
+  display: flex;
+}
+
+#trifiltre {
   padding-top: 2rem;
-  border-radius: 0 0 45px 0;
 }
 
 #trifiltre h2 {

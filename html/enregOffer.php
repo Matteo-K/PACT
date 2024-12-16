@@ -4,7 +4,7 @@ $pageDirection = $_POST['pageCurrent'] ?? 1;
 $idOffre = $_POST["idOffre"];
 $idUser = $_POST["idUser"];
 
-
+$stepManageOffer = unserialize($_POST['ArrayStepManageOffer']);
 
 if (isset($_POST['pageBefore'])) {
   if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['pageBefore'] > -1) {
@@ -76,8 +76,10 @@ if (isset($_POST['pageBefore'])) {
             </script>
         <?php
     }
-    switch ($pageBefore) {
-      case 1:
+
+    $page = $stepManageOffer[$pageBefore - 1]["page"];
+    switch ($page) {
+      case "selectOffer.php":
         // Gestion des options d'offre
           $options = [];
           if (isset($_POST["aLaUne"])) {
@@ -98,7 +100,7 @@ if (isset($_POST['pageBefore'])) {
 
         break;
 
-      case 2:
+      case "detailsOffer.php":
         // Détails offre update
 
         // Informations obligatoires (Titre, Description) + résumé
@@ -476,7 +478,7 @@ if (isset($_POST['pageBefore'])) {
 
         break;
 
-      case 3:
+      case "localisationOffer.php":
         // Détails Localisation update
         // insertion dans adresse
         $adresse = $_POST["adresse2"];
@@ -514,7 +516,7 @@ if (isset($_POST['pageBefore'])) {
         }
         break;
 
-      case 4:
+      case "contactOffer.php":
         // Détails Contact update
         $mail = $_POST["mail"];
         $telephone = empty($_POST["phone"]) ? null : preg_replace('/[^\d]/', '', $_POST["phone"]);
@@ -529,7 +531,7 @@ if (isset($_POST['pageBefore'])) {
         $stmt->execute([$mail, $telephone, $affiche, $site, $idOffre]);
         break;
 
-      case 5:
+      case "hourlyOffer.php":
 
         switch ($_POST["typeOffre"]) {
           case 0: // Autre
@@ -625,11 +627,11 @@ if (isset($_POST['pageBefore'])) {
 
         break;
 
-      case 6:
+      case "previewOffer.php":
         // Pad de modification pour la prévisualisation
         break;
 
-      case 7:
+      case "paymentOffer.php":
         // Détails Paiement update
         break;
 
@@ -649,6 +651,20 @@ if ($pageDirection >= 1) {
   </form>
   <?php
 } else {
+  $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
+  $stmt->bindParam(':idoffre', $idOffre);
+  $stmt->execute();
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  if ($result) {
+    ?>
+    <form action="detailsOffer.php" id="toDetailsOffer" method="post">
+      <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
+    </form>
+    <script>
+      document.getElementById("toDetailsOffer").submit();
+    </script>
+    <?php
+  }
   header("Location: index.php");
   exit();
 }

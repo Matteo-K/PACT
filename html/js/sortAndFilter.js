@@ -44,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+/// Inputs de recherche ///
+const searchInput = document.querySelector("#formHeader input");
 
 /// Inputs Tris ///
 const radBtnEnAvant = document.querySelector("#miseEnAvant");
@@ -147,11 +149,11 @@ function sortEnAvant(array) {
 }
 
 function sortNoteCroissant(array) {
-  return array.sort((a, b) => attribuerEtoiles(parseFloat(a.noteAvg)) - attribuerEtoiles(parseFloat(b.noteAvg)));
+  return array.sort((a, b) => parseFloat(a.noteAvg) - parseFloat(b.noteAvg));
 }
 
 function sortNoteDecroissant(array) {
-  return array.sort((a, b) => attribuerEtoiles(parseFloat(b.noteAvg)) - attribuerEtoiles(parseFloat(a.noteAvg)));
+  return array.sort((a, b) => parseFloat(b.noteAvg) - parseFloat(a.noteAvg));
 }
 
 function attribuerEtoiles(note) {
@@ -485,9 +487,61 @@ function filtrerParLieu(offers) {
   return offers.filter(offer => lieuSelection.includes(offer.note));
 }
 
+/**
+ * Filtre la liste d'offres suivant le mot clé de recherche pour correspondre
+ * - l'un des tags
+ * - une catégorie d'offre
+ * - une partie du nom de l'offre
+ * - une partie de l'adresse
+ * - une gamme de prix
+ * @param {array} offers - Liste des offres à filtrer
+ * @param {string} search - Mot de recherche
+ * @returns {array} - Liste des offres filtrées par rapport au mot de recherche
+ */
+function searchOffer(offers, search) {
 
-// Fonction global
-function sortAndFilter(array, elementStart, nbElement) {
+  if (!search) {
+    return offers;
+  }
+
+  return offers.filter((item) => {
+    
+    // Extraire les données nécessaires
+    const categorie = item.categorie || '';
+    const nomOffre = item.nomOffre || '';
+    const gammeDePrix = item.gammeDePrix || '';
+    
+    const numeroRue = item.numeroRue || '';
+    const rue = item.rue || '';
+    const ville = item.ville || '';
+    const pays = item.pays || '';
+    const codePostal = item.codePostal || '';
+    
+    const adresse = `${numeroRue} ${rue} ${ville} ${pays} ${codePostal}`.toLowerCase();
+
+    // Filtre les données
+    const containsTag = item.tags.some(tag => tag.toLowerCase().includes(search.toLowerCase()));
+    const matchesCategorie = categorie && categorie.toLowerCase().includes(search.toLowerCase());
+    const matchesNomOffre = nomOffre && nomOffre.toLowerCase().includes(search.toLowerCase());
+    const matchesAdresse = adresse && adresse.includes(search.toLowerCase());
+    const matchesGammeDePrix = gammeDePrix === search;
+
+    return containsTag || matchesCategorie || matchesNomOffre || matchesAdresse || matchesGammeDePrix;
+  });
+}
+
+
+/**
+ * filtre, tri et affcihe les offres dynamiquement
+ * @param {array} array liste d'offres 
+ * @param {string} search mot de recherche entré
+ * @param {integer} elementStart élément de départ pour la pagination
+ * @param {integer} nbElement nombre d'élément pour la pagnation
+ */
+function sortAndFilter(array, search, elementStart, nbElement) {
+  // Recherche
+  array = searchOffer(array, search);
+
   // Filtres
   array = filtrerParCategorie(array);
   array = filtrerParNotes(array);
@@ -545,7 +599,8 @@ function updatePagination(totalItems, nbElement) {
 
 function goToPage(page) {
   currentPage = page;
-  sortAndFilter(arrayOffer, (page - 1) * nbElement, nbElement);
+  search = searchInput.value;
+  sortAndFilter(arrayOffer, search, (page - 1) * nbElement, nbElement);
 }
 
 /* ### Affichage des offres ### */
@@ -814,6 +869,9 @@ function displayAvis(offer) {
 
 
 /* ### Evènements ### */
+
+// Événements de recherche
+searchInput.addEventListener("input", () => goToPage(currentPage));
 
 // Événements des tris
 radBtnEnAvant.addEventListener("click", () => goToPage(currentPage));
