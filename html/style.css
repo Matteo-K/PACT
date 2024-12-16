@@ -21,7 +21,7 @@
 
 /* pre sprint 3 */
 html {
-  scroll-padding-top: 100px;
+  scroll-padding-top: 120px;
 }
 
 * {
@@ -1796,6 +1796,10 @@ header ul + div {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /****** TRI ET FILTRE  INDEX ******/
+
+#blcSearch {
+  background-color: red;
+}
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
