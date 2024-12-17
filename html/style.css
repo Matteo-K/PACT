@@ -1841,13 +1841,12 @@ header ul + div {
 }
 
 #btnAside a:hover, .btnAsideOpen {
-  padding-left: 30px;
+  padding-left: 30px !important;
 }
 
 /* Bloc tri et filtre */
 
 /* titre */
-
 #titreAside {
   background-color: blueviolet;
   border: #000 1px solid;
