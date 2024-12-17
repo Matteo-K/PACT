@@ -238,23 +238,23 @@
     
     function toggleAside(element) {
 
-    btnTri.classList.remove('btnAsideOpen');
-    btnFiltre.classList.remove('btnAsideOpen');
+        btnTri.classList.remove('btnAsideOpen');
+        btnFiltre.classList.remove('btnAsideOpen');
 
-    if (element.id === 'btnTri') {
-        asideTri.classList.add('openAside');
-        asideFiltre.classList.remove('openAside');
-        btnTri.classList.add('btnAsideOpen');
-    } else {
-        asideFiltre.classList.add('openAside');
-        asideTri.classList.remove('openAside');
-        btnFiltre.classList.add('btnAsideOpen');
+        if (element.id === 'btnTri') {
+            asideTri.classList.add('openAside');
+            asideFiltre.classList.remove('openAside');
+            btnTri.classList.add('btnAsideOpen');
+        } else {
+            asideFiltre.classList.add('openAside');
+            asideTri.classList.remove('openAside');
+            btnFiltre.classList.add('btnAsideOpen');
+        }
     }
-}
 
 
     function fermeAside() {
-        asideTri.classList.remove('open');
-        asideFiltre.classList.remove('open');
+        asideTri.classList.remove('openAside');
+        asideFiltre.classList.remove('openAside');
     }
 </script>
