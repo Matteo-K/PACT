@@ -240,7 +240,7 @@
 
         btnTri.classList.remove('btnAsideOpen');
         btnFiltre.classList.remove('btnAsideOpen');
-
+        
         if (element.id === 'btnTri') {
             asideTri.classList.add('openAside');
             asideFiltre.classList.remove('openAside');
@@ -251,9 +251,11 @@
             btnFiltre.classList.add('btnAsideOpen');
         }
     }
-
-
+    
+    
     function fermeAside() {
+        btnTri.classList.remove('btnAsideOpen');
+        btnFiltre.classList.remove('btnAsideOpen');
         asideTri.classList.remove('openAside');
         asideFiltre.classList.remove('openAside');
     }
