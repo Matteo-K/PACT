@@ -236,12 +236,13 @@
     const btnTri = document.getElementById('btnTri');
     const btnFiltre = document.getElementById('btnFiltre');
     
-    function toggleAside() {
+    function toggleAside(element) {
 
     btnTri.classList.remove('btnAsideOpen');
     btnFiltre.classList.remove('btnAsideOpen');
 
     console.log(this);
+    console.log(element);
 
     if (this.id === 'btnTri') {
         asideTri.classList.add('openAside');
