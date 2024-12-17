@@ -233,20 +233,25 @@
      */
     const asideTri = document.querySelector("#tri");
     const asideFiltre = document.querySelector("#filtre");
+    const btnTri = document.getElementById('btnTri');
+    const btnFiltre = document.getElementById('btnFiltre');
     
     function toggleAside() {
-        document.getElementById("btnTri").classList.remove("btnAsideOpen");
-        document.getElementById("btnFiltre").classList.remove("btnAsideOpen");
-        if (this.id == "btnTri") {
-            asideTri.classList.add("openAside");
-            asideFiltre.classList.remove('openAside');
-            document.getElementById("btnTri").classList.add("btnAsideOpen");
-        } else {
-            asideFiltre.classList.add('openAside');
-            asideTri.classList.remove("openAside");
-            document.getElementById("btnFiltre").classList.remove("btnAsideOpen");
-        }
+
+    btnTri.classList.remove('btnAsideOpen');
+    btnFiltre.classList.remove('btnAsideOpen');
+
+    if (this.id === 'btnTri') {
+        asideTri.classList.add('openAside');
+        asideFiltre.classList.remove('openAside');
+        btnTri.classList.add('btnAsideOpen');
+    } else {
+        asideFiltre.classList.add('openAside');
+        asideTri.classList.remove('openAside');
+        btnFiltre.classList.add('btnAsideOpen');
     }
+}
+
 
     function fermeAside() {
         asideTri.classList.remove('open');
