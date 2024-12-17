@@ -1814,10 +1814,15 @@ header ul + div {
   width: 20vw;
   height: calc(100vh - var(--header-size));
   background-color: var(--bloc);
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .openAside {
   display: block !important;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Bouton de tri et filtre */
@@ -1843,6 +1848,8 @@ header ul + div {
   padding: 10px;
   background-color: var(--bloc25);
   border-radius: 0 1.5rem 1.5rem 0;
+  transition: padding 0.1s linear;
+  cursor: pointer;
 }
 
 #btnAside a:hover, .btnAsideOpen {
@@ -1861,7 +1868,9 @@ header ul + div {
 
 #titreAside img {
   width: 30px;
+  height: 30px;
   object-fit: contain;
+  cursor: pointer;
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
