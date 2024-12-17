@@ -1821,8 +1821,8 @@ header ul + div {
 
 .openAside {
   display: block !important;
-  opacity: 1;
-  transform: translateX(0);
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
 
 /* Bouton de tri et filtre */
