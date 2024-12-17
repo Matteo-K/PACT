@@ -241,10 +241,7 @@
     btnTri.classList.remove('btnAsideOpen');
     btnFiltre.classList.remove('btnAsideOpen');
 
-    console.log(this);
-    console.log(element);
-
-    if (this.id === 'btnTri') {
+    if (element.id === 'btnTri') {
         asideTri.classList.add('openAside');
         asideFiltre.classList.remove('openAside');
         btnTri.classList.add('btnAsideOpen');
