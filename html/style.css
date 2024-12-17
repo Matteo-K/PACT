@@ -1797,18 +1797,28 @@ header ul + div {
 
 /****** TRI ET FILTRE  INDEX ******/
 
+#blcSearch {
+  display: flex;
+}
+
 #trifiltre {
   position: sticky;
   top: 120px;
+  height: fit-content;
 }
 
 #tri, #filtre {
   display: none;
 }
 
+.openAside {
+  display: block !important;
+}
+
 /* Bouton de tri et filtre */
 
 #btnAside {
+  width: 60px;
   display: flex;
   flex-flow: column;
   gap: 5px;
@@ -1830,7 +1840,7 @@ header ul + div {
   border-radius: 0 1.5rem 1.5rem 0;
 }
 
-#btnAside a:hover {
+#btnAside a:hover, .btnAsideOpen {
   padding-left: 30px;
 }
 
