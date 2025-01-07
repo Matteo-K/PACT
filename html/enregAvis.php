@@ -162,6 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($GET["membre"]) && isset($_PO
             $result['errors'][] = "Erreur lors de l'insertion de l'image liée à l'avis dans la base de données.";
         }
     }
+    header("location: detailsOffer.php");
 ?>
     <script>
         let form = document.createElement('form');
