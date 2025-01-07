@@ -66,7 +66,6 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_GET['membre'])) {
-        $_SESSION['review_success'] = "Avis soumis avec succès!";
 
         $note = $_POST['note'] ?? null;
         $dateAvis = $_POST['date'] ?? null;
@@ -121,6 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $contenuReponse = $_POST['reponsePro'] ?? null;
         $idAvis = $_POST['hiddenInputIdAvis'] ?? null;
         $idOffre = $_POST['idoffre'];
+        echo 'test';
 
         if (!$contenuReponse || !$idAvis || !$idOffre) {
             die("Données manquantes ou invalides.");
