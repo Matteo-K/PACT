@@ -177,5 +177,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET["membre"])) {
     </script>
 <?php
 
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET["pro"])){
+        $contenuReponse = $_POST["reponsePro"];
+        $idAvis = $_POST["hiddenInputIdAvis"];
+    
+        $stmt = $conn->prepare("INSERT INTO pact.reponse (idpro, contenureponse, idc_avis) VALUES (?, ?, ?) ");
+        $stmt->execute([$idUser, $contenuReponse, $idAvis]);
+    
+        $stmt = $conn->prepare(query: "UPDATE pact._avis SET lu = true WHERE idc = ? ");
+        $stmt->execute([$idAvis]);
 }
 ?>

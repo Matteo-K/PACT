@@ -10,16 +10,6 @@ foreach ($avis as $key => $av) {
 $avis = $avisTemp;
 
 
-if(isset($_POST["reponsePro"])){
-    $contenuReponse = $_POST["reponsePro"];
-    $idAvis = $_POST["hiddenInputIdAvis"];
-
-    $stmt = $conn->prepare("INSERT INTO pact.reponse (idpro, contenureponse, idc_avis) VALUES (?, ?, ?) ");
-    $stmt->execute([$idUser, $contenuReponse, $idAvis]);
-
-    $stmt = $conn->prepare(query: "UPDATE pact._avis SET lu = true WHERE idc = ? ");
-    $stmt->execute([$idAvis]);
-}
 
 ?>
 <div id="avisPro">
@@ -162,7 +152,7 @@ if(isset($_POST["reponsePro"])){
                 </article>
             </div>
 
-            <form action="detailsOffer.php" method="post">
+            <form action="/enregAvis.php?pro=true" method="post">
                 <h2>
                     Répondre a membre
                 </h2>
