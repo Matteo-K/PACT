@@ -90,10 +90,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 </head>
 <body id="body_connexion" class="connexion-compte">
     <aside id="asideRetour">
-        <button id="retour" onclick="window.history.back();">
+        <?php echo $_POST["fileDirection"] ?>
+        <a id="retour" href="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
             <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
             Retour
-        </button>
+        </a>
     </aside>
 
     <main id="mainConnexion">
@@ -122,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
         <div id="lienBouton">
             <div>
                 <form action="accountMember.php" method="post">
-                    <input type="hidden" name="<?php echo $_POST["fileDirection"] ?>">
+                    <input type="hidden" name="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
                     <input type="submit" id="boutonLienMembre" value="Compte membre">
                 </form>
                 <p id="legendeBoutonLienMembre">Compte gratuit pour une utilisation classique de la plateforme</p>
@@ -130,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             
             <div>
                 <form action="accountPro.php" method="post">
-                    <input type="hidden" name="<?php echo $_POST["fileDirection"] ?>">
+                    <input type="hidden" name="fileDirection" value="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
                     <input type="submit" id="boutonLienPro" value="Compte professionnel">
                 </form>
                 <p id="legendeBoutonLienPro">Compte destiné aux professionels voulant promouvoir une offre de leur entreprise</p>

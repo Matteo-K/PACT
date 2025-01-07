@@ -4532,7 +4532,7 @@ aside[id="asideRetour"] {
   left: 10px;
 }
 
-button[id="retour"] {
+#retour {
   background: none;
   border: none;
   color: var(--bloc);
@@ -4542,7 +4542,7 @@ button[id="retour"] {
   padding: 0;
 }
 
-aside[id="asideRetour"] > button[id="retour"] > img {
+aside[id="asideRetour"] > #retour > img {
   vertical-align: middle;
   width: 70px;
   height: 65px;
@@ -5007,7 +5007,7 @@ h1[id="pasDeCompteTitre"] {
   font-size: 50px;
 }
 
-.connexion-compte form {
+.connexion-compte #formConnexion {
   display: grid;
   justify-content: center;
   align-items: center;
@@ -5093,8 +5093,8 @@ button[id="boutonChangerMDP"] {
   cursor: pointer;
 }
 
-a[id="boutonLienMembre"],
-a[id="boutonLienPro"] {
+input[id="boutonLienMembre"],
+input[id="boutonLienPro"] {
   width: 300px;
   padding: 15px 10px;
   font-size: 20px;
