@@ -120,11 +120,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $contenuReponse = $_POST['reponsePro'] ?? null;
         $idAvis = $_POST['hiddenInputIdAvis'] ?? null;
         $idOffre = $_POST['idoffre'];
-        echo 'test';
-
-        if (!$contenuReponse || !$idAvis || !$idOffre) {
-            die("Données manquantes ou invalides.");
-        }
 
         $stmt = $conn->prepare("INSERT INTO pact.reponse (idpro, contenureponse, idc_avis) VALUES (?, ?, ?)");
         $stmt->execute([$idUser, $contenuReponse, $idAvis]);
