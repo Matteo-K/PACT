@@ -183,12 +183,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             let input = document.createElement('input');
             input.type = "hidden";
             input.name = "idoffre";
-            input.value = <?= $idOffre ?>; // Make sure this is correctly echoed into the JavaScript
+            input.value = <?= $idOffre ?>;
 
             form.appendChild(input);
-            document.body.appendChild(form); // Append the form to the body (or another container)
-
-            form.submit(); // Call submit method with parentheses to submit the form
+            document.body.appendChild(form); 
+            form.submit();
     </script>
     <?php
 }
