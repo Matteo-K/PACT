@@ -162,6 +162,39 @@
     const maxImages = 3; // Nombre maximum d'images autorisé
     let nbImageTotaleInAvis = 0; // Compteur global
 
+    window.addEventListener("beforeunload", (event) => {
+        const formChanged = !!nbImageTotaleInAvis || document.getElementById("note-value").value !== "";
+        if (formChanged) {
+            const confirmation = window.confirm("Vos données ne seront pas sauvegardées. Êtes-vous sûr de vouloir quitter ?");
+            if (!confirmation) {
+                event.preventDefault(); // Empêche l'action par défaut
+                event.returnValue = ""; // Nécessaire pour afficher un message dans certains navigateurs
+            } else {
+                // Si l'utilisateur confirme, supprimez les fichiers temporaires
+                deleteTemporaryFolder(uniqueId);
+            }
+        }
+    });
+
+    function deleteTemporaryFolder(uniqueId) {
+        const formData = new FormData();
+        formData.append("unique_id", uniqueId);
+
+        fetch("uploadImageAvisTemp/delete_temp_folder.php", {
+            method: "POST",
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (!data.success) {
+                    console.error("Erreur lors de la suppression du dossier temporaire :", data.message);
+                }
+            })
+            .catch((error) => {
+                console.error("Erreur réseau lors de la suppression du dossier temporaire :", error);
+            });
+    }
+
     function handleFiles(inputElement) {
         const files = inputElement.files;
         const formData = new FormData();
