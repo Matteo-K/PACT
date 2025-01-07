@@ -5007,7 +5007,7 @@ h1[id="pasDeCompteTitre"] {
   font-size: 50px;
 }
 
-.connexion-compte form {
+.connexion-compte #formConnexion {
   display: grid;
   justify-content: center;
   align-items: center;
