@@ -120,8 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (isset($_GET['pro'])) {
         $contenuReponse = $_POST['reponsePro'] ?? null;
         $idAvis = $_POST['hiddenInputIdAvis'] ?? null;
-        $idOffre = $_POST['idoffre'] ?? null;
-        
+        $idOffre = $_POST['idoffre'];
 
         if (!$contenuReponse || !$idAvis || !$idOffre) {
             die("Données manquantes ou invalides.");
@@ -133,6 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("UPDATE pact._avis SET lu = true WHERE idc = ?");
         $stmt->execute([$idAvis]);
     }
+
     ?>
     <script>
         let form = document.createElement('form');
@@ -150,3 +150,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
     <?php
 }
+?>
