@@ -477,7 +477,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <input class="taille2" type="number" name="nbWeek" id="nbWeekEnRelief" min="1" max="4" value="1">
                                         </label>
                                         <!-- Date picker (caché par défaut) -->
-                                        <input class="datePicker" type="date" name="customDate" id="customDate2">
+                                        <input class="datePicker" min="<?php echo date('Y-m-d') ?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate2">
                                     </form>
                                     <?php
                                     if (!$optionRelief) {
