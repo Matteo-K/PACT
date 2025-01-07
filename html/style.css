@@ -4308,7 +4308,17 @@ details .nonRepondu {
 
 /*------------------------ CSS OFFRE PARTICULIERE -----------------------------------------*/
 
+#choixCategorie input[type="radio"] {
+  display: none;
+}
 
+#choixCategorie input[type="radio"]:checked + label {
+  border-bottom: 2px solid var(--bloc);
+}
+
+#choixCategorie label {
+  padding: 10px 50px;
+}
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
