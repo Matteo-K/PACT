@@ -86,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 </head>
 <body id="body_connexion" class="connexion-compte">
     <aside id="asideRetour">
-        <?php echo $_POST["fileDirection"] . " " . $_POST["idoffre"]?>
         <a href="index.php" id="retour">
             <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
             Retour
