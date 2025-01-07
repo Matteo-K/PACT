@@ -164,6 +164,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     } elseif (isset($_GET["pro"])){
             $contenuReponse = $_POST["reponsePro"];
             $idAvis = $_POST["hiddenInputIdAvis"];
+            $idOffre = $_POST['idoffre'];
         
             $stmt = $conn->prepare("INSERT INTO pact.reponse (idpro, contenureponse, idc_avis) VALUES (?, ?, ?) ");
             $stmt->execute([$idUser, $contenuReponse, $idAvis]);
@@ -171,7 +172,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $stmt = $conn->prepare(query: "UPDATE pact._avis SET lu = true WHERE idc = ? ");
             $stmt->execute([$idAvis]);
 
-            $idOffre = $_POST['idoffre'];
 
     }
     ?>
