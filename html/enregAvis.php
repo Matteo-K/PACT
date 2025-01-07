@@ -5,9 +5,6 @@ function listImage($idOffre, $idComment)
     // Chemin du dossier où les images sont stockées
     $dossier = 'img/imageAvis/' . $idOffre . '/' . $idComment . '/';
 
-    // Affiche le chemin pour le débogage
-    echo "Chemin du dossier : " . $dossier . "<br>";
-
     // Vérifie si le dossier existe et est valide
     if (!is_dir($dossier)) {
         return ['success' => false, 'message' => 'Le dossier n\'existe pas ou est invalide.'];
@@ -148,7 +145,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($GET["membre"]) && isset($_PO
     $image = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
     $imageAvis = $conn->prepare("INSERT INTO pact._avisimage (idc, url) VALUES (?, ?)");
     $mesImages = listImage($idOffre, $idComment);
-    print_r($mesImages);
 
     foreach ($mesImages['files'] as $file) {
         $fileName = pathinfo($file, PATHINFO_BASENAME);
