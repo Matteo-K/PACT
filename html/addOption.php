@@ -4,10 +4,15 @@ require_once 'config.php';
 $pasok=false;
 $offreId = $_POST['idOffre'];
 if ($_POST['type'] == 'ajout') {
+    $stmt = $conn->prepare("SELECT prixoffre FROM pact._option WHERE nomoption=?");
     if ($_POST['nomOption']=='ALaUne') {
-        $prix = $_POST['nbWeek']*20;
+        $stmt->execute(['ALaUne']);
+        $prixb = ($stmt->fetchAll())[0]['prixoffre'];
+        $prix = $_POST['nbWeek']*$prixb;
     } else {
-        $prix = $_POST['nbWeek']*10;
+        $stmt->execute(['EnRelief']);
+        $prixb = ($stmt->fetchAll())[0]['prixoffre'];
+        $prix = $_POST['nbWeek']*$prixb;
     }
 
     $date = isset($_POST['dtcheck']) ? true : false;

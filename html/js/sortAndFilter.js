@@ -658,10 +658,11 @@ function createCard(offer) {
   
   let front = document.createElement("div");
   front.classList.add("flip-card-front");
-  front.style.backgroundImage = offer.images[0];
-
+  front.style.backgroundImage = 'url("' +offer.images[0]+'")';
+  
   let titre = document.createElement("h4");
   titre.textContent = offer.nomOffre;
+  titre.classList.add("title");
 
   let back = document.createElement("div");
   back.classList.add("flip-card-back");
