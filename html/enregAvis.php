@@ -1,5 +1,4 @@
 <?php
-ob_start();
 require_once "config.php";  
 
 // Fonction pour lister les images dans un dossier
