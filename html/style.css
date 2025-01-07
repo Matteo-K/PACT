@@ -1817,7 +1817,6 @@ header ul + div {
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  overflow: scroll;
 }
 
 .openAside {
@@ -5218,4 +5217,9 @@ label[id="labelPFP"]:hover {
 .blocStar{
   display: flex;
   flex-direction: row;
+}
+
+#note input{
+  width: 30px;
+  height: 30px;
 }
