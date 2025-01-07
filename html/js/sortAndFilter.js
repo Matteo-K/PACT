@@ -648,20 +648,31 @@ function displayOffer(offer) {
 function createCard(offer) {
   let card = document.createElement("div");
   card.classList.add("carteOffre");
+  card.classList.add("flip-card");
   if (offer.option.includes('EnRelief')) {
     card.classList.add("optionEnRelief");
   }
 
-  // Image principale
-  let img = document.createElement("img");
-  img.classList.add("searchImage");
-  if (offer.images.length == 0) {
-    img.setAttribute("alt", "Pas_de_photo_attribué_à_l'offre");
-  } else {
-    img.setAttribute("alt", "photo_principale_de_l'offre");
-    img.setAttribute("src", offer.images[0]);
-  }
-  card.appendChild(img);
+  let content = document.createElement("div");
+  content.classList.add("flip-card-inner");
+  
+  let front = document.createElement("div");
+  front.classList.add("flip-card-front");
+  front.style.backgroundImage = offer.images[0];
+
+  let titre = document.createElement("h4");
+  titre.textContent = offer.titre;
+
+  let back = document.createElement("div");
+  back.classList.add("flip-card-back");
+
+  front.appendChild(titre);
+  back.appendChild(titre);
+
+  content.appendChild(front);
+  content.appendChild(back);
+
+  card.appendChild(content);
 
   let infoOffre = document.createElement("div");
   infoOffre.classList.add("infoOffre");
@@ -680,8 +691,8 @@ function createCard(offer) {
 
   infoOffre.appendChild(resume);
 
-  card.appendChild(infoOffre);
-  card.appendChild(avisSearch(offer));
+  //card.appendChild(infoOffre);
+  //card.appendChild(avisSearch(offer));
 
   return card;
 }
@@ -744,54 +755,6 @@ function ajouterTag(offer) {
   });
 
   return tags;
-}
-
-function note(offer) {
-  let section = document.createElement("section");
-  section.classList.add("searchNote");
-
-  let divStar = document.createElement("div");
-  divStar.classList.add("noteSearch");
-
-  divStar.appendChild(displayStar(offer.noteAvg));
-
-  let note = document.createElement("p");
-  note.textContent = offer.noteAvg;
-  divStar.appendChild(note);
-  
-  section.appendChild(divStar);
-
-  return section;
-}
-
-function avisSearch(offer) {
-  let div = document.createElement("div");
-  div.classList.add("searchAvis");
-
-  let titre = document.createElement("p");
-  titre.classList.add("avisSearch");
-  titre.textContent = "Les avis les plus récent :";
-
-  let divTitre = document.createElement("div");
-
-  // Ouvert fermé
-  let ouverture = document.createElement("p");
-  ouverture.id = "couleur-" + offer.idOffre;
-  if (offer.ouverture == "EstOuvert") {
-    ouverture.classList.add("searchStatutO");
-    ouverture.textContent = "Ouvert";
-  } else {
-    ouverture.classList.add("searchStatutF");
-    ouverture.textContent = "Fermé";
-  }
-
-  divTitre.appendChild(titre)
-  divTitre.appendChild(ouverture);
-
-  div.appendChild(divTitre);
-  div.appendChild(note(offer));
-
-  return div;
 }
 
 function displayStar(note) {
