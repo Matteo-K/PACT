@@ -165,7 +165,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $contenuReponse = $_POST["reponsePro"];
             $idAvis = $_POST["hiddenInputIdAvis"];
             $idOffre = $_POST["idoffre"]; 
-            echo $idOffre . " ertuiol^mkjhgftwsdxgbnklù:mùkhgdxwdswfdgvbjklm   ";
         
             $stmt = $conn->prepare("INSERT INTO pact.reponse (idpro, contenureponse, idc_avis) VALUES (?, ?, ?) ");
             $stmt->execute([$idUser, $contenuReponse, $idAvis]);
