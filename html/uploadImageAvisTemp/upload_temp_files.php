@@ -23,7 +23,7 @@ $userTempDir = $tempDir . $uniqueId . '/';
 
 // Crée le sous-dossier pour cet utilisateur s'il n'existe pas
 if (!is_dir($userTempDir)) {
-    if (!mkdir($userTempDir, 0755, true)) {
+    if (!mkdir($userTempDir, 0777, true)) {
         echo json_encode(['success' => false, 'message' => 'Impossible de créer le dossier utilisateur temporaire.']);
         exit;
     }
