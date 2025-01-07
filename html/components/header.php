@@ -194,9 +194,10 @@
         <?php
         } else {
         ?>
-            <a href="../login.php">
-                <div id="btnConn">Connexion</div>
-            </a>
+            <form action="../login.php" method="post">
+                <input type="hidden" name="fileDirection" value="<?= htmlspecialchars(basename($_SERVER['PHP_SELF'])) ?>">
+                <input type="submit" id="btnConn" value="Connexion">
+            </form>
         <?php
         }
         ?>

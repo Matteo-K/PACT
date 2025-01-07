@@ -121,12 +121,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
         
         <div id="lienBouton">
             <div>
-                <a href="accountMember.php" id="boutonLienMembre">Compte membre</a>
+                <form action="accountMember.php" method="post">
+                    <input type="hidden" name="<?php echo $_POST["fileDirection"] ?>">
+                    <input type="submit" id="boutonLienMembre" value="Compte membre">
+                </form>
                 <p id="legendeBoutonLienMembre">Compte gratuit pour une utilisation classique de la plateforme</p>
             </div>
             
             <div>
-                <a href="accountPro.php" id="boutonLienPro">Compte professionnel</a>
+                <form action="accountPro.php" method="post">
+                    <input type="hidden" name="<?php echo $_POST["fileDirection"] ?>">
+                    <input type="submit" id="boutonLienPro" value="Compte professionnel">
+                </form>
                 <p id="legendeBoutonLienPro">Compte destiné aux professionels voulant promouvoir une offre de leur entreprise</p>
             </div>
         </div>
