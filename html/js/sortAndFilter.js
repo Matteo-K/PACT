@@ -668,20 +668,17 @@ function createCard(offer) {
   back.classList.add("flip-card-back");
 
   front.appendChild(titre.cloneNode(true));
-  back.appendChild(titre.cloneNode(true));
-
+  
   content.appendChild(front);
-  content.appendChild(back);
-
-  card.appendChild(content);
-
+  
+  
   let infoOffre = document.createElement("div");
   infoOffre.classList.add("infoOffre");
-
+  
   infoOffre.appendChild(proStatut(offer));
   infoOffre.appendChild(localisation(offer));
   infoOffre.appendChild(ajouterTag(offer));
-
+  
   let resume = document.createElement("p");
   resume.classList.add("searchResume");
   if (offer.resume != "") {
@@ -689,10 +686,14 @@ function createCard(offer) {
   } else {
     resume.textContent = "";
   }
-
+  
   infoOffre.appendChild(resume);
-
-  //card.appendChild(infoOffre);
+  
+  back.appendChild(titre.cloneNode(true));
+  back.appendChild(infoOffre);
+  content.appendChild(back);
+  card.appendChild(content);
+  
   //card.appendChild(avisSearch(offer));
 
   return card;
