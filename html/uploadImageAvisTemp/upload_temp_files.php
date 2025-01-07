@@ -6,7 +6,7 @@ $tempDir = '../img/imageAvis/temp_uploads/';
 
 // Crée le dossier temporaire s'il n'existe pas
 if (!is_dir($tempDir)) {
-    if (!mkdir($tempDir, 0755, true)) {
+    if (!mkdir($tempDir, 0777, true)) {
         echo json_encode(['success' => false, 'message' => 'Impossible de créer le dossier temporaire.']);
         exit;
     }
