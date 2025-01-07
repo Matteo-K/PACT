@@ -121,6 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $contenuReponse = $_POST['reponsePro'] ?? null;
         $idAvis = $_POST['hiddenInputIdAvis'] ?? null;
         $idOffre = $_POST['idoffre'] ?? null;
+        echo " ";
 
         if (!$contenuReponse || !$idAvis || !$idOffre) {
             die("Données manquantes ou invalides.");
