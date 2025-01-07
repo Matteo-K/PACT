@@ -22,18 +22,27 @@ if (!is_dir($tempFolderPath)) {
     exit;
 }
 
-// Fonction pour supprimer un dossier et son contenu
 function deleteFolder($folderPath) {
+    // Récupérer tous les fichiers et dossiers, en excluant '.' et '..'
     $files = array_diff(scandir($folderPath), ['.', '..']);
     foreach ($files as $file) {
         $filePath = $folderPath . DIRECTORY_SEPARATOR . $file;
         if (is_dir($filePath)) {
+            // Si c'est un dossier, l'appel récursif
             deleteFolder($filePath);
         } else {
-            unlink($filePath); // Supprime le fichier
+            // Si c'est un fichier, on le supprime
+            if (!unlink($filePath)) {
+                // Si la suppression échoue, afficher l'erreur
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Erreur lors de la suppression du fichier : ' . $filePath,
+                ]);
+                exit;
+            }
         }
     }
-    return rmdir($folderPath); // Supprime le dossier
+    return rmdir($folderPath); // Supprimer le dossier après avoir supprimé son contenu
 }
 
 // Tentez de supprimer le dossier
