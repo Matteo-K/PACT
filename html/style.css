@@ -1053,7 +1053,7 @@ header ul + div {
   text-decoration: underline var(--accent) 3px;
 }
 
-#manageOffer aside button {
+#manageOffer aside button:not(#leaveButtonBloc button) {
   background-color: transparent;
   border: none;
 }
@@ -1061,6 +1061,26 @@ header ul + div {
 #manageOffer aside button:hover figcaption {
   font-size: 1.2rem !important;
 }
+
+#leaveButtonBloc {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding-inline: 15px;
+  gap: 20px;
+}
+
+#leaveButtonBloc button {
+  width: 150px;
+  height: 35px;
+  background-color: #28a745;
+}
+
+#leaveButtonBloc button:nth-child(2) {
+  background-color: #c24d4d;
+}
+
 
 #manageOffer aside ul + div {
   display: flex;

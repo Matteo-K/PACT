@@ -41,7 +41,6 @@
   <?php require_once "components/header.php" ?>
   <main>
     <aside>
-      <h3>Gestion de votre offre</h3>
       <div>
       <span class="circleManageOffer"></span>
         <ul>
@@ -61,14 +60,13 @@
         </ul>
         <span class="arrowManageOffer"></span>
       </div>
-      <div>
+      <div id="leaveButtonBloc">
         <?php if ($step != 1) { ?>
           <!-- Si 0 on enregistre et retourne au menu du professionnel -->
           <button type="submit" onclick="submitForm(event,0)">Sauvegarder & Quitter</button>
         <?php } ?>
         <!-- Si -1 on retourne au menu du professionnel sans enregistrer -->
         <button type="submit" onclick="submitForm(event,-1)">Quitter</button>
-      </ul>
     </aside>
     <section>
       <?php
