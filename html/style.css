@@ -1834,11 +1834,11 @@ header ul + div {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-#note, #prix, #statut, #categorie, #date{
-  padding-inline: 30px;
+#filtre h3 {
+  padding-inline: 20px;
 }
 
-#filtre h3 {
+#note, #prix, #statut, #categorie, #date{
   padding-inline: 20px;
 }
 
