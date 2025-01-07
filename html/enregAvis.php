@@ -159,23 +159,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET["membre"])) {
             $result['errors'][] = "Erreur lors de l'insertion de l'image liée à l'avis dans la base de données.";
         }
     }
-?>
-    <script>
-        let form = document.createElement('form');
-        form.action = "detailsOffer.php";
-        form.method = "post";
-
-        let input = document.createElement('input');
-        input.type = "hidden";
-        input.name = "idoffre";
-        input.value = <?= $idOffre ?>; // Make sure this is correctly echoed into the JavaScript
-
-        form.appendChild(input);
-        document.body.appendChild(form); // Append the form to the body (or another container)
-
-        form.submit(); // Call submit method with parentheses to submit the form
-    </script>
-<?php
 
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET["pro"])){
         $contenuReponse = $_POST["reponsePro"];
@@ -187,8 +170,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET["membre"])) {
         $stmt = $conn->prepare(query: "UPDATE pact._avis SET lu = true WHERE idc = ? ");
         $stmt->execute([$idAvis]);
 
-        ?>
-    <script>
+        $idOffre = $_POST['idoffre'];
+
+}
+?>
+<script>
         let form = document.createElement('form');
         form.action = "detailsOffer.php";
         form.method = "post";
@@ -202,7 +188,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET["membre"])) {
         document.body.appendChild(form); // Append the form to the body (or another container)
 
         form.submit(); // Call submit method with parentheses to submit the form
-    </script>
-<?php
-}
-?>
+</script>
