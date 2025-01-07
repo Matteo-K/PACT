@@ -5063,6 +5063,8 @@ label[id="labelPFP"]:hover {
 .blocStar{
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 3px;
 }
 
 #note input{
