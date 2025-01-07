@@ -20,8 +20,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            header("Location: index.php");
-            exit();
+            ?>
+            <form id="connecteFormAdmin" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
+                <?php
+                if (isset($_POST["idOffre"])) {
+                    ?>
+                    <input type="hidden" name="" value="">
+                    <?php
+                }
+                ?>
+            </form>
+            <script>
+                document.getElementById("connecteFormAdmin").submit();
+            </script>
+            <?php
         }
 
         // Vérification pour le compte privé
@@ -34,8 +46,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            header("Location: index.php");
-            exit();
+            ?>
+            <form id="connecteFormProPriv" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
+                <?php
+                if (isset($_POST["idOffre"])) {
+                    ?>
+                    <input type="hidden" name="" value="">
+                    <?php
+                }
+                ?>
+            </form>
+            <script>
+                document.getElementById("connecteFormProPriv").submit();
+            </script>
+            <?php
         }
 
         // Vérification pour le compte public
@@ -48,8 +72,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            header("Location: index.php");
-            exit();
+            ?>
+            <form id="connecteFormProPub" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
+                <?php
+                if (isset($_POST["idOffre"])) {
+                    ?>
+                    <input type="hidden" name="" value="">
+                    <?php
+                }
+                ?>
+            </form>
+            <script>
+                document.getElementById("connecteFormProPub").submit();
+            </script>
+            <?php
         }
 
         // Vérification pour le compte membre
@@ -62,10 +98,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
             // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-                header("Location: index.php");
-                exit();
-            
-            exit();
+            ?>
+            <form id="connecteFormMembre" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
+                <?php
+                if (isset($_POST["idOffre"])) {
+                    ?>
+                    <input type="hidden" name="" value="">
+                    <?php
+                }
+                ?>
+            </form>
+            <script>
+                document.getElementById("connecteFormMembre").submit();
+            </script>
+            <?php
         } else {
             $error = "Identifiant ou mot de passe incorrect.";
         }
@@ -76,8 +122,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 ?>
 
 <!-- Le reste de votre HTML pour le formulaire de connexion -->
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
