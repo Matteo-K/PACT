@@ -2101,7 +2101,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .flip-card-back {
   background: var(--primary);
-  border: 1px solid coral;
   color: white;
   transform: rotateY(180deg);
 }

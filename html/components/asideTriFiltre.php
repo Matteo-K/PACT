@@ -242,13 +242,21 @@
         btnFiltre.classList.remove('btnAsideOpen');
         
         if (element.id === 'btnTri') {
-            asideTri.classList.add('openAside');
-            asideFiltre.classList.remove('openAside');
-            btnTri.classList.add('btnAsideOpen');
+            if (asideTri.classList.contain("openAside")) {
+                asideTri.classList.remove('openAside');
+            } else {
+                asideTri.classList.add('openAside');
+                asideFiltre.classList.remove('openAside');
+                btnTri.classList.add('btnAsideOpen');
+            }
         } else {
-            asideFiltre.classList.add('openAside');
-            asideTri.classList.remove('openAside');
-            btnFiltre.classList.add('btnAsideOpen');
+            if (asideFiltre.classList.contain("openAside")) {
+                asideFiltre.classList.remove('openAside');
+            } else {
+                asideFiltre.classList.add('openAside');
+                asideTri.classList.remove('openAside');
+                btnFiltre.classList.add('btnAsideOpen');
+            }
         }
     }
     
