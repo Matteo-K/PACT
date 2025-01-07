@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require_once "config.php";  
 
 // Fonction pour lister les images dans un dossier
@@ -121,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $contenuReponse = $_POST['reponsePro'] ?? null;
         $idAvis = $_POST['hiddenInputIdAvis'] ?? null;
         $idOffre = $_POST['idoffre'] ?? null;
-        echo "test";
+        
 
         if (!$contenuReponse || !$idAvis || !$idOffre) {
             die("Données manquantes ou invalides.");
