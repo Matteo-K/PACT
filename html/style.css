@@ -1075,6 +1075,7 @@ header ul + div {
   width: 150px;
   height: 35px;
   background-color: #28a745;
+  color: var(--text-light);
 }
 
 #leaveButtonBloc button:nth-child(2) {
@@ -1662,7 +1663,6 @@ header ul + div {
 }
 
 #artDetailOffer > div > label:not(.buttonDetailOffer),
-#choixCategorie label:first-of-type,
 #choixImage label,
 #choixImage2 label,
 #inputAutoComplete label {
@@ -1725,11 +1725,6 @@ header ul + div {
   cursor: pointer;
   border-radius: 3px;
   position: static;
-}
-
-#choixCategorie {
-  width: calc(70% + 141.625px);
-  /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
 }
 
 #tagsSelect {
