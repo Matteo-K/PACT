@@ -4,10 +4,15 @@ require_once 'config.php';
 $pasok=false;
 $offreId = $_POST['idOffre'];
 if ($_POST['type'] == 'ajout') {
+    $stmt = $conn->prepare("SELECT prixoffre FROM pact._option WHERE nomoption=?");
     if ($_POST['nomOption']=='ALaUne') {
-        $prix = $_POST['nbWeek']*20;
+        $stmt->execute(['ALaUne']);
+        $prixb = ($stmt->fetchAll())[0]['prixoffre'];
+        $prix = $_POST['nbWeek']*$prixb;
     } else {
-        $prix = $_POST['nbWeek']*10;
+        $stmt->execute(['EnRelief']);
+        $prixb = ($stmt->fetchAll())[0]['prixoffre'];
+        $prix = $_POST['nbWeek']*$prixb;
     }
 
     $date = isset($_POST['dtcheck']) ? true : false;
@@ -127,24 +132,8 @@ if ($_POST['type'] == 'ajout') {
 } elseif ($_POST['type'] == 'arreter') {
     $idoption = $_POST['idoption'];
 
-    $datetime1 = new DateTime();
-    $stmt = $conn->prepare("SELECT * FROM pact._dateOption WHERE idoption = ?");
+    $stmt = $conn->prepare("UPDATE pact._dateOption SET datefin = CURRENT_DATE WHERE idoption = ?");
     $stmt->execute([$idoption]);
-    $heure = $stmt->fetchAll();
-    $datetime2 = new DateTime($heure[0]['datelancement']);
-
-    // Calculer la différence en jours
-    $interval = $datetime1->diff($datetime2);
-    $days = $interval->days; // Obtenir le nombre total de jours
-
-    // Calculer les semaines et arrondir au supérieur
-    $weeks = ceil($days / 7) == 0 ? 1 : ceil($days / 7);
-
-    $tarif = $_POST['nom']=='ALaUne'?20:10;
-    $prix = $weeks * $tarif;
-
-    $stmt = $conn->prepare("UPDATE pact._dateOption SET duree = ?, prix = ?, datefin = CURRENT_DATE WHERE idoption = ?");
-    $stmt->execute([$weeks,$prix,$idoption]);
 }
 
 $stmt = $conn->prepare("SELECT * FROM pact.option");
