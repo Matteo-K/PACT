@@ -690,10 +690,10 @@ function createCard(offer) {
   infoOffre.appendChild(resume);
   
   back.appendChild(titre.cloneNode(true));
+  back.appendChild(infoOffre);
   content.appendChild(back);
   card.appendChild(content);
   
-  card.appendChild(infoOffre);
   //card.appendChild(avisSearch(offer));
 
   return card;
