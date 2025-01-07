@@ -186,5 +186,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET["membre"])) {
     
         $stmt = $conn->prepare(query: "UPDATE pact._avis SET lu = true WHERE idc = ? ");
         $stmt->execute([$idAvis]);
+
+        ?>
+    <script>
+        let form = document.createElement('form');
+        form.action = "detailsOffer.php";
+        form.method = "post";
+
+        let input = document.createElement('input');
+        input.type = "hidden";
+        input.name = "idoffre";
+        input.value = <?= $idOffre ?>; // Make sure this is correctly echoed into the JavaScript
+
+        form.appendChild(input);
+        document.body.appendChild(form); // Append the form to the body (or another container)
+
+        form.submit(); // Call submit method with parentheses to submit the form
+    </script>
+<?php
 }
 ?>
