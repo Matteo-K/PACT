@@ -90,10 +90,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 </head>
 <body id="body_connexion" class="connexion-compte">
     <aside id="asideRetour">
-        <button id="retour" onclick="window.history.back();">
+        <?php echo $_POST["fileDirection"] ?>
+        <a id="retour" href="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
             <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
             Retour
-        </button>
+        </a>
     </aside>
 
     <main id="mainConnexion">

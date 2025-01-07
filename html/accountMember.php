@@ -8,7 +8,7 @@
     // Initialisation du tableau pour stocker les erreurs
     $errors = []; 
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["nom"])) {
         // Récupérer les données du formulaire
         $nom = trim($_POST['nomMembre']);
         $prenom = trim($_POST['prenomMembre']);
@@ -99,10 +99,10 @@
     </head>
     <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
-            <button id="retour">
+            <a id="retour" href="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
                 <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
                 Retour
-            </button>
+            </a>
         </aside>
         
         <h1 id="inscriptionTitre">Inscription membre</h1>
@@ -201,6 +201,7 @@
             <button type="submit" id="boutonInscription">S'inscrire</button>
 
             <h2 id="dejauncompte">Vous avez déjà un compte ? <a id="lienConnexion" href="login.php">Se connecter</a></h2>
+            <input type="hidden" name="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
         </form>
     </body>
     <script src="js/validationFormInscription.js"></script>
