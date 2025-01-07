@@ -5216,5 +5216,6 @@ label[id="labelPFP"]:hover {
 /* Css filtres, Antoine */
 /*+++++++++++++++++++++*/
 div[id="note"]{
-  background-color: #28a745;
+  display: flex;
+  flex-direction: row;
 }
