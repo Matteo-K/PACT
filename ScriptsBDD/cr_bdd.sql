@@ -542,7 +542,7 @@ CREATE TABLE _historiqueStatut(
   idStatut SERIAL PRIMARY KEY,
   dateLancement DATE NOT NULL,
   dureeEnLigne INT,
-  prixDuree float
+  prixDuree float,
   CONSTRAINT _historiqueOption_fk_offre
       FOREIGN KEY (idOffre)
       REFERENCES _offre(idOffre)
