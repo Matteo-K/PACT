@@ -61,7 +61,7 @@ VALUES (3, '0123456789', 'utilisateur1@mail.com'),
 -- Peuplement de la table _pro
 INSERT INTO _pro (idU, denomination) 
 VALUES (3, 'EntreprisePro1'),
-       (4, 'Patrick LÉtoile De Mer');
+       (4, 'Patrick');
 
 -- Peuplement de la table _membre
 INSERT INTO _membre (idU, pseudo, nom, prenom) 
