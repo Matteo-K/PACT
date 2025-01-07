@@ -82,8 +82,12 @@
             $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo]);
 
             // Redirection vers une page de succès
-            header('Location: login.php');
-            exit;
+            ?>
+            <form action="login.php" id="rdtionFrom" method="post">
+                <input type="hidden" name="fileDirection" value="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
+            </form>
+            <script>document.getElementById("rdtionFrom").submit();</script>
+            <?php
         }
     }
 ?>
