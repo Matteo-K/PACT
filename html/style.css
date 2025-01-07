@@ -4566,7 +4566,8 @@ aside[id="asideRetour"] > #retour > img {
   margin-right: 5px;
 }
 
-.creation-compte form {
+.creation-compte #formMember,
+.creation-compte #formPro {
   display: flex;
   flex-direction: column;
   justify-content: center;
