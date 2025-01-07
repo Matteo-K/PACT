@@ -671,7 +671,10 @@ function createCard(offer) {
   back.appendChild(titre.cloneNode(true));
 
   content.appendChild(front);
-  
+  content.appendChild(back);
+
+  card.appendChild(content);
+
   let infoOffre = document.createElement("div");
   infoOffre.classList.add("infoOffre");
 
@@ -686,15 +689,12 @@ function createCard(offer) {
   } else {
     resume.textContent = "";
   }
-  
-  infoOffre.appendChild(resume);
-  
-  back.appendChild(infoOffre);
-  back.appendChild(avisSearch(offer));
 
-  content.appendChild(back);
-  card.appendChild(content);
-  
+  infoOffre.appendChild(resume);
+
+  //card.appendChild(infoOffre);
+  //card.appendChild(avisSearch(offer));
+
   return card;
 }
 
