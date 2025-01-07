@@ -19,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
-            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
+            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
             ?>
             <form id="connecteFormAdmin" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
                 <?php
-                if (isset($_POST["idOffre"])) {
+                if (isset($_POST["idoffre"])) {
                     ?>
                     <input type="hidden" name="" value="">
                     <?php
@@ -45,11 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
-            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
+            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
             ?>
             <form id="connecteFormProPriv" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
                 <?php
-                if (isset($_POST["idOffre"])) {
+                if (isset($_POST["idoffre"])) {
                     ?>
                     <input type="hidden" name="" value="">
                     <?php
@@ -71,11 +71,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
-            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
+            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
             ?>
             <form id="connecteFormProPub" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
                 <?php
-                if (isset($_POST["idOffre"])) {
+                if (isset($_POST["idoffre"])) {
                     ?>
                     <input type="hidden" name="" value="">
                     <?php
@@ -97,11 +97,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
-            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
+            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
             ?>
             <form id="connecteFormMembre" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
                 <?php
-                if (isset($_POST["idOffre"])) {
+                if (isset($_POST["idoffre"])) {
                     ?>
                     <input type="hidden" name="" value="">
                     <?php

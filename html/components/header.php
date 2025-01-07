@@ -198,7 +198,7 @@
                 <input type="hidden" name="fileDirection" value="<?= htmlspecialchars(basename($_SERVER['PHP_SELF'])) ?>">
                 <?php 
                 if (isset($idOffre)) {?>
-                    <input type="hidden" name="idOffre" value="<?= $idOffre ?>">
+                    <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
                 <?php }
                 ?>
                 <input type="submit" id="btnConn" value="Connexion">
