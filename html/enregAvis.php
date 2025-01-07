@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $compagnie = $_POST['compagnie'] ?? null;
         $titreAvis = $_POST['titre'] ?? null;
         $texteAvis = $_POST['avis'] ?? null;
-        $idOffre = $_POST['idoffre'] ?? null;
+        $idOffre = $_POST['idoffre'];
         $uniqueId = $_POST['uniqueField'] ?? null;
 
         if (!$note || !$dateAvis || !$compagnie || !$titreAvis || !$texteAvis || !$idOffre || !$uniqueId) {
