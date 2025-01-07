@@ -21,41 +21,6 @@ if ($is_prive) {
     $standard = "";
   }
 }
-  
-// insert les options de l'offre dans un tableau
-$options = [
-  "enRelief" => false,
-  "rlfActif" => false,
-  "rlfNbWeek" => 1,
-  "rlfFinOpt" => "",
-  "ALaUne" => false,
-  "aluActif" => false,
-  "aluNbWeek" => 1,
-  "aluFinOpt" => "",
-];
-
-if (!empty($idOffre)) {
-  $stmt = $conn->prepare("SELECT * FROM pact._option_offre NATURAL JOIN pact._dateoption WHERE idoffre = ?");
-  $stmt->execute([$idOffre]);
-  // si les options éxistent, on les ajoutent dans la base de donnée
-  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    switch ($row["nomoption"]) {
-      case "EnRelief":
-        $options["enRelief"] = true;
-        $options["rlfActif"] = $row["datelancement"] != "" ? true : false;
-        $options["rlfNbWeek"] = $row["duree"];
-        $options["rlfFinOpt"] = $row["datefin"] != "" ? $row["datefin"] : "";
-        break;
-
-      case "ALaUne":
-        $options["ALaUne"] = true;
-        $options["aluActif"] = $row["datelancement"] != null;
-        $options["aluNbWeek"] = $row["duree"];
-        $options["aluFinOpt"] = $row["datefin"] != null ? $row["datefin"] : "";
-        break;
-    }
-  }
-}
 
 // Sélection des tarifs et abonnements
 $abonnement = [];
@@ -65,13 +30,6 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $abonnement[] = ["nomabonnement" => $row["nomabonnement"], "tarif" => $row["tarif"]];
 }
 
-$prixOption = [];
-$stmt = $conn->prepare("SELECT nomoption, prixoffre FROM pact._option");
-$stmt->execute();
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $prixOption[] = ["nomoption" => $row["nomoption"], "tarif" => $row["prixoffre"]];
-}
-
 ?>
 <form id="selectOffer" action="enregOffer.php" method="post">
   <!-- Abonnement -->
@@ -79,7 +37,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <?php
     if (!$is_prive) {
     ?>
-    <div>
+    <div class="offre-container">
       <h2>Offre Gratuit</h2>
       <?php
       foreach ($abonnement as $ab) {
@@ -102,7 +60,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <?php
     } else {
     ?>
-    <div>
+    <div class="offre-container">
       <h2>Offre Premium</h2>
       <?php
       foreach ($abonnement as $ab) {
@@ -125,7 +83,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <label for="premium">Sélectionner</label>
       </div>
     </div>
-    <div>
+    <div class="offre-container">
       <h2>Offre Standard</h2>
       <?php
       foreach ($abonnement as $ab) {
@@ -151,81 +109,49 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     }
     ?>
   </div>
-  <div>
-    <!-- Option -->
-    <div>
-      <div id="blcEnRelief" class="blcOption">
-        <label for="enRelief">
-          <?php
-          foreach ($prixOption as $opt) {
-            if ($opt['nomoption'] === "EnRelief") {
-                ?>
-                <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
-                  (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
-                </span>
-                <?php
-                break;
-            }
-          }
-          ?>
-          <input type="checkbox" name="enRelief" id="enRelief" <?php echo $options["ALaUne"] ?"checked":"" ?>>
-          <span class="checkmark"></span>
-          <span>En relief</span> : met votre offre en exergue lors de son affichage dans la liste d’offres
-        </label>
-        <div>
-          <label for="nbWeekEnRelief">Nombre de semaine&nbsp;:&nbsp;</label>
-          <input type="number" name="nbWeekEnRelief" id="nbWeekEnRelief" min="1" max="4" value="<?php echo $options["rlfNbWeek"]?>" <?php echo $options["rlfActif"] ? "disabled" : ""; ?>>
-        </div>
-        <input type="hidden" name="actifEnRelief" value="<?php echo $options["rlfActif"] ?>">
-      </div>
-      <?php
-      if ($options["rlfActif"]) {
-        ?>
-        <span class="msgError">Option en relief en cours, modifiable à partir de <?php echo $options['rlfFinOpt'] ?></span>
-      <?php
-      }
-      ?>
-      <div id="blcALaUne" class="blcOption">
-        <label for="aLaUne">
-          <?php
-          foreach ($prixOption as $opt) {
-            if ($opt['nomoption'] === "ALaUne") {
-                ?>
-                <span prix="<?php echo htmlspecialchars($opt['tarif']) ?>">
-                  (&nbsp;+<?php echo htmlspecialchars($opt['tarif']) ?> &euro;/&nbsp;semaines)
-                </span>
-                <?php
-                break;
-            }
-          }
-          ?>
-          <input type="checkbox" name="aLaUne" id="aLaUne" <?php echo $options["ALaUne"]?"checked":"" ?>>
-          <span class="checkmark"></span>
-          <span>À la une</span> : met votre offre sur la page d’accueil du site
-        </label>
-        <div>
-          <label for="nbWeekALaUne">Nombre de semaine&nbsp;:&nbsp;</label>
-          <input type="number" name="nbWeekALaUne" id="nbWeekALaUne" min="1" max="4" value="<?php echo $options["aluNbWeek"]?>" <?php echo $options["aluActif"] ? "disabled" : ""; ?>>
-        </div>
-        <input type="hidden" name="actifALaUne" value="<?php echo $options["aluActif"] ?>">
-      </div>
-      <?php
-      if ($options["aluActif"]) {
-        ?>
-        <span class="msgError">Option à la Une en cours, modifiable à partir de <?php echo $options['aluFinOpt'] ?></span>
-        <?php
-      }
-      ?>
-    </div>
-    <p>Attention ! Vous ne pouvez pas changer d’offre une fois séléctionée.</p>
-    <div>Montant actuel (abonnement sur 1 mois): <span id="prixPrevisionel"></span>&euro;</div>
+  <div>Montant actuel (abonnement sur 1 mois): <span id="prixPrevisionel"></span>&euro;</div>
   </div>
 
   <script>
     const prixPrevisionnel = document.querySelector("#prixPrevisionel");
     const radio = document.querySelectorAll("[type='radio']");
-    const option = document.querySelectorAll('[type="checkbox"]');
-    const nbSemaines = document.querySelectorAll('[type="number"]');
+
+    // Style
+    document.addEventListener('DOMContentLoaded', function() {
+      const radioButtons = document.querySelectorAll('input[name="typeOffre"]');
+      
+      function applyStyle() {
+        document.querySelectorAll('.offre-container').forEach(carte => {
+          carte.style.transform = '';
+          carte.style.boxShadow = '';
+        });
+
+        // Appliquer les styles en fonction de la carte sélectionnée
+        radioButtons.forEach((radio, index) => {
+          const carte = radio.closest('.offre-container');
+
+          if (radio.checked) {
+            carte.style.transform = 'skewX(-1deg)';
+            if (index === 0) {
+              carte.style.boxShadow = 'inset 4px 4px 4px rgba(255, 255, 255, 0.5), inset -4px -4px 4px var(--secondary60), 4px 4px 12px var(--text-dark30)';
+            } else if (index === 1) {
+              carte.style.boxShadow = 'inset 4px 4px 4px rgba(255, 255, 255, 0.5), inset -4px -4px 4px var(--accent60), 4px 4px 12px var(--accent30)';
+            } else if (index === 2) {
+              carte.style.boxShadow = 'inset 4px 4px 4px rgba(255, 255, 255, 0.5), inset -4px -4px 4px var(--primary60), 4px 4px 12px var(--bloc)';
+            }
+          }
+        });
+      }
+
+      // Attache l'événement 'change' pour appliquer les styles à chaque fois qu'un radio est sélectionné
+      radioButtons.forEach(radio => {
+        radio.addEventListener('change', applyStyle);
+      });
+
+      // Appliquer les styles au chargement si déjà sélectionné
+      applyStyle();
+    });
+
 
     function updatePrix() {
       let prix = 0;
@@ -238,41 +164,11 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
       });
 
-      // Option
-      for (let index = 0; index < option.length; index++) {
-        if (option[index].checked) {
-          const tarifOption = option[index].parentElement.querySelector('span').getAttribute('prix');        
-          if (tarifOption && nbSemaines[index].value) {
-            const tarifValue = parseFloat(tarifOption);
-            const nbSemainesValue = parseInt(nbSemaines[index].value, 10);
-
-            if (!isNaN(tarifValue) && !isNaN(nbSemainesValue)) {
-              prix += tarifValue * nbSemainesValue;
-            }
-          }
-        }
-      }
-
       prixPrevisionnel.innerText = prix.toFixed(2);
     }
 
     radio.forEach(element => {
       element.addEventListener("click", updatePrix);
-    });
-
-    option.forEach(element => {
-      element.addEventListener("click", updatePrix);
-    });
-
-    nbSemaines.forEach(element => {
-      element.addEventListener("change", () => {
-        if (element.value < 1) {
-          element.value = 1;
-        } else if (element.value > 4) {
-          element.value = 4;
-        }
-      });
-      element.addEventListener("change", updatePrix);
     });
 
     updatePrix();

@@ -5,12 +5,31 @@ $idOffre = $_POST["idoffre"] ?? null;
 $ouvert = $_GET["ouvert"] ?? null;
 $aujourdhui = new DateTime();
 
-
-
 // Vérifiez si idoffre est défini
 if (!$idOffre) {
     header("location: index.php");
     exit();
+}
+
+// Consulté récemment
+if ($_SESSION["typeUser"] == 'membre') {
+    $stmt = $conn->prepare("SELECT * from pact._consulter where idu = ? and idoffre = ?");
+    $stmt->execute([$_SESSION['idUser'], $idOffre]);
+    $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Si Une consultation récente existe on la modifie
+    if ($consultRecent) {
+        // Si la date est différente d'aujourd'hui on la modifie
+        if (date('Y-m-d') !== $consultRecent["dateconsultation"]) {
+            $stmt = $conn->prepare("UPDATE pact._consulter set dateconsultation = CURRENT_DATE where idu = ? and idoffre = ?");
+            $stmt->execute([$_SESSION['idUser'], $idOffre]);
+            $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+    // Sinon on la créer
+    } else {
+        $stmt = $conn->prepare("INSERT INTO pact._consulter (idu, idoffre, dateconsultation) values (?, ?, CURRENT_DATE)");
+        $stmt->execute([$_SESSION['idUser'], $idOffre]);
+        $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 $monOffre = new ArrayOffer($idOffre);
@@ -411,14 +430,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <label class="taille" for="nbWeek">Nombre de semaine à la Une
                                             <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
                                         </label>
-
-                                        <!-- Checkbox pour afficher le date picker -->
-                                        <label class="taille">
-                                            <input type="checkbox" name="dtcheck" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
-                                        </label>
-
                                         <!-- Date picker (caché par défaut) -->
-                                        <input class="datePicker" min="<?php echo date('Y-m-d') ?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate1" style="display: none;">
+                                        <input class="datePicker" min="<?php echo date('Y-m-d') ?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate1">
                                     </form>
                                     <?php
                                     if (!$optionUne) {
@@ -463,14 +476,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <label class="taille" for="nbWeek">Nombre de semaine en Relief
                                             <input class="taille2" type="number" name="nbWeek" id="nbWeekEnRelief" min="1" max="4" value="1">
                                         </label>
-
-                                        <!-- Checkbox pour afficher le date picker -->
-                                        <label class="taille">
-                                            <input type="checkbox" name="dtcheck" id="datePickerToggle2" class="datePickerToggle taille5"> Ajouter une date personnalisée
-                                        </label>
-
                                         <!-- Date picker (caché par défaut) -->
-                                        <input class="datePicker" type="date" name="customDate" id="customDate2" style="display: none;">
+                                        <input class="datePicker" min="<?php echo date('Y-m-d') ?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate2">
                                     </form>
                                     <?php
                                     if (!$optionRelief) {
@@ -542,21 +549,21 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($tags as $tag):
                             if ($tag["nomtag"] != NULL) {
                         ?>
-                                <a class="tag" href="search.php?search=<?= str_replace("_", "+", $tag["nomtag"]) ?>"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
+                                <a class="tag" href="index.php?search=<?= str_replace("_", "+", $tag["nomtag"]) ?>#searchIndex"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
                             <?php }
                         endforeach;
 
                         if ($ouverture == "EstOuvert" && $typeOffer == "Spectacle") {
                             ?>
-                            <a class="ouvert" href="search.php?search=ouvert">En Cours</a>
+                            <a class="ouvert" href="index.php?search=ouvert#searchIndex">En Cours</a>
                         <?php
                         } else if ($ouverture == "EstOuvert") {
                         ?>
-                            <a class="ouvert" href="search.php?search=ouvert">Ouvert</a>
+                            <a class="ouvert" href="index.php?search=ouvert#searchIndex">Ouvert</a>
                         <?php
                         } else {
                         ?>
-                            <a class="ferme" href="search.php?search=ferme">Fermé</a>
+                            <a class="ferme" href="index.php?search=ferme#searchIndex">Fermé</a>
                         <?php
                         }
                         ?>
@@ -1058,27 +1065,27 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 });
             }
 
-            const toggles = document.querySelectorAll(".datePickerToggle");
+            // const toggles = document.querySelectorAll(".datePickerToggle");
 
-            toggles.forEach(toggle => {
-                toggle.addEventListener("change", function() {
-                    const form = this.closest("form");
-                    const datePicker = form.querySelector(".datePicker");
-                    const toggleMessage = form.closest("aside").querySelector(".toggleMessage");
+            // toggles.forEach(toggle => {
+            //     toggle.addEventListener("change", function() {
+            //         const form = this.closest("form");
+            //         const datePicker = form.querySelector(".datePicker");
+            //         const toggleMessage = form.closest("aside").querySelector(".toggleMessage");
 
-                    if (this.checked) {
-                        datePicker.style.display = "block"; // Affiche le date picker
-                        if (toggleMessage) {
-                            toggleMessage.style.display = "none"; // Cache le message
-                        }
-                    } else {
-                        datePicker.style.display = "none"; // Cache le date picker
-                        if (toggleMessage) {
-                            toggleMessage.style.display = "block"; // Affiche à nouveau le message
-                        }
-                    }
-                });
-            });
+            //         if (this.checked) {
+            //             datePicker.style.display = "block"; // Affiche le date picker
+            //             if (toggleMessage) {
+            //                 toggleMessage.style.display = "none"; // Cache le message
+            //             }
+            //         } else {
+            //             datePicker.style.display = "none"; // Cache le date picker
+            //             if (toggleMessage) {
+            //                 toggleMessage.style.display = "block"; // Affiche à nouveau le message
+            //             }
+            //         }
+            //     });
+            // });
 
             const tabs = document.querySelectorAll('.tab');
             const contents = document.querySelectorAll('.contentPop');

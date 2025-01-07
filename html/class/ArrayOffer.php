@@ -216,18 +216,6 @@ class ArrayOffer {
           $total = $resNote["total"] ?? 0;
         }
 
-        $avis = [];
-        $stmt = $conn->prepare("SELECT a.* from pact.avis a where idoffre = ? order by datepublie desc limit 2");
-        $stmt->execute([$offre['idoffre']]);
-        while ($resAvis = $stmt->fetch(PDO::FETCH_ASSOC)) {
-          $avis[] = [
-            "titre" => $resAvis["titre"], 
-            "contenue" => $resAvis["content"],
-            "pseudo" => $resAvis["pseudo"],
-            "note" => $resAvis["note"]
-          ];
-        }
-
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
           $offre['idu'], $offre['nom'],
           $offre['nomabonnement'], $options, 
@@ -243,8 +231,7 @@ class ArrayOffer {
           $offre['codepostal'],
           $offre['statut'],
           floatval($moyenne),
-          $total,
-          $avis
+          $total
         );
       }
     }
@@ -314,16 +301,31 @@ class ArrayOffer {
 
   public function displayCardALaUne($array_, $typeUser_, $elementStart_, $nbElement_) {
     $array = $this->pagination($array_, $elementStart_, $nbElement_);
+    $nbOffre = 0;
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
         if ($typeUser_ == "pro_public" || $typeUser_ == "pro_prive") {
           $elem->displayCardALaUnePro();
+          $nbOffre ++;
         } else if (in_array("ALaUne", $elem->getData()["option"])) {
           $elem->displayCardALaUne();
+          $nbOffre++;
         }
       }
+    } if ($nbOffre == 0) {
+      echo "<p>Aucune offre à la une </p>";
+    }
+  }
+
+  public function displayConsulteRecemment($nbElement_) {
+    $array = $this->arrayOffer;
+    $array = array_slice($array, 0, $nbElement_);
+    if (count($array) > 0) {
+      foreach ($array as $key => $elem) {
+        $elem->displayCardALaUne();
+      }
     } else {
-      echo "<p>Aucune offre trouvée </p>";
+      echo "<p>Aucune offre consultée récemment</p>";
     }
   }
 

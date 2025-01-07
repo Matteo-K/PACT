@@ -18,7 +18,7 @@
         </a>
     </div>
     <div id="divFormHeader">
-        <form method="get" action="search.php" id="formHeader">
+        <form method="get" action="index.php#searchIndex" id="formHeader">
             <input type="text" placeholder="Rechercher :" name="search" value="<?php echo $search ?>">
             <button type="submit"><img src="../img/icone/loupe.png" title="icone de recherche"></button>
         </form>
@@ -27,10 +27,29 @@
     <script>
         const form = document.querySelector("#divFormHeader form");
         const input = form.querySelector("input");
+
+        // Vérifie la page actuelle
+        const currentFile = window.location.pathname.split('/').pop();
+
+        /**
+         * On soumet le formulaire dès que l'on sort de l'input
+         */
         input.addEventListener("blur", (event) => {
             event.preventDefault();
-            form.submit();
-        })
+            if (currentFile !== 'index.php') {
+                window.location.href = 'index.php'; 
+            }
+        });
+
+        /**
+         * On envoit le formulaire si on est pas sur la page index
+         */
+        form.addEventListener('submit', (event) => {
+            if (currentFile === 'index.php') {
+                event.preventDefault();
+            }
+        });
+
     </script>
 
 
@@ -74,7 +93,7 @@
                     <ul>
                         <?php if ($typeUser === "pro_public" || $typeUser === "pro_prive") {?>
                             <li><a href="changeAccountPro.php">Gérer mon compte</a></li>
-                            <li><a href="search.php">Mes offres</a></li>
+                            <li><a href="index.php#searchIndex">Mes offres</a></li>
                             <li><a href="manageOffer.php">Créer une offre</a></li>
                             <li class="liFact">Mes Factures</li>
                         <?php } else if ($typeUser === "membre") {?>

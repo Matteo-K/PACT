@@ -84,7 +84,6 @@ if ($result != false) {
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $loadedImg[] = $result["url"];
     }
-
 }
 
 else{    
@@ -98,37 +97,93 @@ $stmt->execute();
 
 $listeTags = [];
 
-
 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $listeTags[] = str_replace("_", " ",$result["nomtag"]);
 }
-
-
 ?>
 <form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
-        <div>
-
-            <label for="nom">Nom de votre offre*</label>
-            <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
-
-            <label for="resume">Résumé de l'offre</label>
-            <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
-
-            <label for="description">Description de votre offre*</label>
-            <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
-        </div>
-
-        <div>
-
-            <div id="choixCategorie">
-                <label>Catégorie de l'offre*  <span id="msgCategorie" class="msgError"></span></label>   
-
+        <fieldset>
+            <legend>A propos de votre offre</legend>
+            <div id="aboutOffer">
+                <div>
+                    <label for="nom">Nom de votre offre*</label>
+                    <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
+                </div>
+                <div>
+                    <label for="resume">Résumé de l'offre</label>
+                    <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
+                </div>
+                <div>
+                    <label for="description">Description de votre offre*</label>
+                    <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
+                </div>
+                <div id="tagsOffer">
+                    <div id="inputAutoComplete">
+                        <label for="inputTag">Tags supplémentaires </label>
+                        <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
+                        <!--<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
+                        <ul id="autocompletion"></ul>
+                    </div>
+                    <section id="sectionTag">
+                        <!-- Les tags ajoutés apparaîtront ici -->
+                    </section>
+                    <p>
+                        Vous pouvez entrer jusqu'à 6 tags
+                    </p>
+                </div>
+            </div>
+            <div id="blcImg">
+                <div id="choixImage">
+                    <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
+                    <p>
+                        Vous pouvez insérer jusqu'à 10 photos<br>
+                        Cliquez sur une image pour la supprimer
+                    </p>
+                </div>
+                <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+                <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
+                <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
+                <input 
+                    type="file" 
+                    id="ajoutPhoto" 
+                    name="images[]" 
+                    accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
+                    multiple 
+                    onchange="handleFiles(this)"
+                />
+                <div id="afficheImages"></div>
+                <div>
+                    <div>
+                        <figure class="bigImgOffer"></figure>
+                    </div>
+                    <div>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                        <figure class="imgOffer"></figure>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </article>
+    
+    <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
+        <fieldset>
+            <legend>Catégorie de l'offre</legend>
+            <span id="msgCategorie" class="msgError"></span>
+            <section id="choixCategorie">
                 <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required 
                 <?php echo $categorie["_restauration"] ? "checked" : "" ?> 
                 <?php echo $disableCategorie && !$categorie["_restauration"] ? "disabled" : "" ?>> 
                 <label for="radioRestaurant">Restaurant</label>
-
+                
                 <input type="radio" name="categorie" id="radioParc" value="parc" 
                 <?php echo $categorie["_parcattraction"] ? "checked" : "" ?>
                 <?php echo $disableCategorie && !$categorie["_parcattraction"] ? "disabled" : "" ?>> 
@@ -138,7 +193,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <?php echo $categorie["_activite"] ? "checked" : "" ?>
                 <?php echo $disableCategorie && !$categorie["_activite"] ? "disabled" : "" ?>> 
                 <label for="radioActivite" >Activite</label>
-
+                
                 <input type="radio" name="categorie" id="radioSpectacle" value="spectacle" 
                 <?php echo $categorie["_spectacle"] ? "checked" : "" ?>
                 <?php echo $disableCategorie && !$categorie["_spectacle"] ? "disabled" : "" ?>> 
@@ -148,53 +203,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <?php echo $categorie["_visite"] ? "checked" : "" ?>
                 <?php echo $disableCategorie && !$categorie["_visite"] ? "disabled" : "" ?>>
                 <label for="radioVisite">Visite</label>
-            </div>
-
-
-            
-
-            <div id="inputAutoComplete">
-                <label for="inputTag">Tags supplémentaires </label>
-                <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
-                <!--v<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
-                <ul id="autocompletion"></ul>
-            </div>
-            
-            <section id="sectionTag">
-                <!-- Les tags ajoutés apparaîtront ici -->
             </section>
-
-            <p>
-                Vous pouvez entrer jusqu'à 6 tags
-            </p>
-
-
-
-            <div id="choixImage">
-                <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
-                <p>
-                    Vous pouvez insérer jusqu'à 10 photos<br>
-                    Cliquez sur une image pour la supprimer
-                </p>
-            </div>
-            <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
-            <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
-            <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
-            <input 
-                type="file" 
-                id="ajoutPhoto" 
-                name="images[]" 
-                accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
-                multiple 
-                onchange="handleFiles(this)"
-            />
-            <div id="afficheImages"></div>
-
-        </div>
-    </article>
-    
-    <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
-
         <?php
             $source = "details/";
             require_once $source . "detailsRestaurant.php";
@@ -204,7 +213,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             require_once $source . "detailsActivity.php";
             
         ?>
-
+        </fieldset>
     </article>
     
     <script>
@@ -216,6 +225,10 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         //Récupération des tags déjà présents sur l'offre puis affichage (semblable a la fonction ajouTag())
         const loadedTags = <?php echo json_encode($loadedTags) ?>;
+
+        /**
+         * Gestion des TAGS
+         */
 
          // Variables de sélection des éléments
         const sectionTag = document.getElementById("sectionTag");
@@ -272,10 +285,13 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         // js de gabriel pour les images test
 
+        /**
+         * Gestion des images
+         */
+
         let existingImagesCount = 0; // Compteur des images existantes sur le serveur
         const idOffre = <?php echo $idOffre ?>; // ID de l'offre, à remplacer par une valeur dynamique si nécessaire
 
-        // Fonction pour charger les images existantes
         // Fonction pour charger les images existantes
         function loadExistingImages() {
             fetch('upload.php?idOffre=' + idOffre)
@@ -297,8 +313,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         img.onclick = () => {
                             if (confirm("Êtes-vous sûr de vouloir supprimer cette image ?")) {
                                 deleteImage(image, img, index); // Supprime l'image si l'utilisateur confirme
-                            } else {
-                                console.log("Suppression annulée."); // Optionnel : un message en cas d'annulation
                             }
                         };
                     
@@ -309,41 +323,36 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 .catch(error => console.error('Erreur de chargement des images:', error));
         }
 
+        // Fonction pour supprimer une image existante
+        function deleteImage(fileName, imgElement, index) {
+            // Supprimer l'image du DOM immédiatement
+            imgElement.remove();
 
-        // Fonction pour supprimer une image existante
-        // Fonction pour supprimer une image existante
-        // Fonction pour supprimer une image existante
-// Fonction pour supprimer une image existante
-// Fonction pour supprimer une image existante
-function deleteImage(fileName, imgElement, index) {
-    // Supprimer l'image du DOM immédiatement
-    imgElement.remove();
-
-    // Faire la requête de suppression côté serveur
-    fetch('upload.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `action=delete&fileName=${encodeURIComponent(fileName)}&idOffre=${idOffre}`,
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            // En cas d'erreur côté serveur, restaurer l'image dans le DOM et afficher un message
-            alert('Erreur lors de la suppression de l\'image sur le serveur : ' + data.error);
-            // Recharger la liste des images pour restaurer l'état correct
-            loadExistingImages();
-        } 
-    })
-    .catch(error => {
-        // En cas de problème avec la requête, restaurer l'image et afficher un message d'erreur
-        alert('Erreur lors de la suppression de l\'image. Veuillez réessayer.');
-        console.log(error);
-        // Recharger la liste des images pour restaurer l'état
-        loadExistingImages();
-    });
-}
+            // Faire la requête de suppression côté serveur
+            fetch('upload.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `action=delete&fileName=${encodeURIComponent(fileName)}&idOffre=${idOffre}`,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    // En cas d'erreur côté serveur, restaurer l'image dans le DOM et afficher un message
+                    alert('Erreur lors de la suppression de l\'image sur le serveur : ' + data.error);
+                    // Recharger la liste des images pour restaurer l'état correct
+                    loadExistingImages();
+                } 
+            })
+            .catch(error => {
+                // En cas de problème avec la requête, restaurer l'image et afficher un message d'erreur
+                alert('Erreur lors de la suppression de l\'image. Veuillez réessayer.');
+                console.log(error);
+                // Recharger la liste des images pour restaurer l'état
+                loadExistingImages();
+            });
+        }
 
 
 

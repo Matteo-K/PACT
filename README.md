@@ -1,4 +1,4 @@
-# PACT
+# PACT - Benjamin
 
 ## Astuces Git pour jeune développeur
 
