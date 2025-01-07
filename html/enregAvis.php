@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require_once "config.php";  
 
 // Fonction pour lister les images dans un dossier
@@ -65,8 +66,6 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    session_start();
-
     if (isset($_GET['membre'])) {
         $_SESSION['review_success'] = "Avis soumis avec succès!";
 
@@ -123,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $contenuReponse = $_POST['reponsePro'] ?? null;
         $idAvis = $_POST['hiddenInputIdAvis'] ?? null;
         $idOffre = $_POST['idoffre'] ?? null;
+        
 
         if (!$contenuReponse || !$idAvis || !$idOffre) {
             die("Données manquantes ou invalides.");
