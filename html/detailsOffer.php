@@ -433,17 +433,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <!-- Date picker (caché par défaut) -->
                                         <input class="datePicker" min="<?php echo date('Y-m-d') ?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate1">
                                     </form>
-                                    <?php
-                                    if (!$optionUne) {
-                                    ?>
-                                        <p class="taille4 toggleMessage">*L'option sera active lors de la prochaine mise en ligne</p>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <p class="taille4 toggleMessage">*L'option sera lancée à la fin de celle-ci</p>
-                                    <?php
-                                    }
-                                    ?>
+                                    <p class="taille4 toggleMessage">*L'option sera lancée à la date de lancement choisie</p>
                                 </aside>
                                 <section class="sectionBtn">
                                     <button id="button1" class="modifierBut <?php echo count($optionUne) >= 2 ? 'disabled' : ''; ?>"
@@ -479,17 +469,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <!-- Date picker (caché par défaut) -->
                                         <input class="datePicker" min="<?php echo date('Y-m-d') ?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate2">
                                     </form>
-                                    <?php
-                                    if (!$optionRelief) {
-                                    ?>
-                                        <p class="taille4 toggleMessage">*L'option sera active lors de la prochaine mise en ligne</p>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <p class="taille4 toggleMessage">*L'option sera lancée à la fin de celle-ci</p>
-                                    <?php
-                                    }
-                                    ?>
+                                    <p class="taille4 toggleMessage">*L'option sera lancée à la date de lancement choisie</p>
                                 </aside>
                                 <section class="sectionBtn">
                                     <button id="button2" class="modifierBut <?php echo count($optionRelief) >= 2 ? 'disabled' : ''; ?>"
