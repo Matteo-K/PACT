@@ -662,7 +662,7 @@ function createCard(offer) {
   
   let titre = document.createElement("h4");
   titre.textContent = offer.nomOffre;
-  front.classList.add("title");
+  titre.classList.add("title");
 
   let back = document.createElement("div");
   back.classList.add("flip-card-back");
