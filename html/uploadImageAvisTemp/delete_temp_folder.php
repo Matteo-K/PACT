@@ -32,14 +32,7 @@ function deleteFolder($folderPath) {
             deleteFolder($filePath);
         } else {
             // Si c'est un fichier, on le supprime
-            if (!unlink($filePath)) {
-                // Si la suppression échoue, afficher l'erreur
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Erreur lors de la suppression du fichier : ' . $filePath,
-                ]);
-                exit;
-            }
+            unlink($filePath);
         }
     }
     return rmdir($folderPath); // Supprimer le dossier après avoir supprimé son contenu
