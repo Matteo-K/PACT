@@ -1,4 +1,5 @@
 <?php
+require_once "config.php";  
 function listImage($idOffre, $idComment)
 {
     // Chemin du dossier où les images sont stockées
