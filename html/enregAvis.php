@@ -18,14 +18,17 @@ function listImage($idOffre, $idComment)
     $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
     // Parcours chaque fichier et vérifie si c'est une image valide
-    foreach ($files as $file) {
-        // On vérifie que c'est bien un fichier et pas un sous-dossier
-        if (is_file($dossier . '/' . $file)) {
-            // Récupération de l'extension du fichier
-            $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-            // Vérification si l'extension est dans la liste autorisée
-            if (in_array($extension, $allowedExtensions)) {
-                $fileUrls[] = $dossier . $file;
+
+    if(isset($files)){
+        foreach ($files as $file) {
+            // On vérifie que c'est bien un fichier et pas un sous-dossier
+            if (is_file($dossier . '/' . $file)) {
+                // Récupération de l'extension du fichier
+                $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                // Vérification si l'extension est dans la liste autorisée
+                if (in_array($extension, $allowedExtensions)) {
+                    $fileUrls[] = $dossier . $file;
+                }
             }
         }
     }
@@ -165,6 +168,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $contenuReponse = $_POST["reponsePro"];
             $idAvis = $_POST["hiddenInputIdAvis"];
             $idOffre = $_POST["idoffre"]; 
+            echo "test";
         
             $stmt = $conn->prepare("INSERT INTO pact.reponse (idpro, contenureponse, idc_avis) VALUES (?, ?, ?) ");
             $stmt->execute([$idUser, $contenuReponse, $idAvis]);
