@@ -5210,3 +5210,12 @@ label[id="labelPFP"] {
 label[id="labelPFP"]:hover {
   color: var(--accent);
 }
+
+
+/*+++++++++++++++++++++++*/
+/* Css filtres, Antoine */
+/*+++++++++++++++++++++*/
+#blocStar{
+  display: flex;
+  flex-direction: row;
+}

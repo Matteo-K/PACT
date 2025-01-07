@@ -791,28 +791,28 @@ VALUES (1,'./img/imageAvis/1/0.png'),
        (3,'./img/imageAvis/3/0.png'),
        (7,'./img/imageAvis/7/0.png');
        
-INSERT INTO _historiqueStatut(idOffre,dateLancement,dureeEnLigne)
-VALUES (1,'2024-11-01',6),
-       (1,'2024-11-15',NULL),
-       (2,'2024-11-01',4),
-       (2,'2024-11-15',NULL),
-       (3,'2024-11-10',NULL),
-       (4,'2024-11-01',NULL),
-       (5,'2024-11-01',NULL),
-       (1,'2024-10-01',6),
-       (1,'2024-10-15',17),
-       (2,'2024-10-01',4),
-       (2,'2024-10-15',17),
-       (3,'2024-10-10',22),
-       (4,'2024-10-01',31),
-       (5,'2024-10-01',31),
-       (1,'2024-09-01',6),
-       (1,'2024-09-15',10),
-       (2,'2024-09-01',4),
-       (2,'2024-09-15',10),
-       (3,'2024-09-10',20),
-       (4,'2024-09-01',30),
-       (5,'2024-09-01',30);
+INSERT INTO _historiqueStatut(idOffre,dateLancement,dureeEnLigne,prixDuree)
+VALUES (1,'2024-11-01',6,20.04),
+       (1,'2024-11-15',NULL,NULL),
+       (2,'2024-11-01',4,6.68),
+       (2,'2024-11-15',NULL,NULL),
+       (3,'2024-11-10',NULL,NULL),
+       (4,'2024-11-01',NULL,NULL),
+       (5,'2024-11-01',NULL,NULL),
+       (1,'2024-10-01',6,20.04),
+       (1,'2024-10-15',17,56.78),
+       (2,'2024-10-01',4,6.68),
+       (2,'2024-10-15',17,28.39),
+       (3,'2024-10-10',22,73.48),
+       (4,'2024-10-01',31,51.77),
+       (5,'2024-10-01',31,103.54),
+       (1,'2024-09-01',6,20.04),
+       (1,'2024-09-15',10,33.4),
+       (2,'2024-09-01',4,6.68),
+       (2,'2024-09-15',10,16.7),
+       (3,'2024-09-10',20,66.8),
+       (4,'2024-09-01',30,50.1),
+       (5,'2024-09-01',30,100.20);
        
 INSERT INTO _facturation(dateFactue,idOffre)
 VALUES ('2024-12-01',1),
@@ -850,31 +850,3 @@ VALUES (4,'Transport');
        
 INSERT INTO _offrePrestation_inclu(idOffre,nomPresta)
 VALUES (4,'Repas');
-
-
-SELECT a.*,
-    AVG(a.note) OVER() AS moynote,
-    COUNT(a.note) OVER() AS nbnote,
-    SUM(CASE WHEN a.note = 1 THEN 1 ELSE 0 END) OVER() AS note_1,
-    SUM(CASE WHEN a.note = 2 THEN 1 ELSE 0 END) OVER() AS note_2,
-    SUM(CASE WHEN a.note = 3 THEN 1 ELSE 0 END) OVER() AS note_3,
-    SUM(CASE WHEN a.note = 4 THEN 1 ELSE 0 END) OVER() AS note_4,
-    SUM(CASE WHEN a.note = 5 THEN 1 ELSE 0 END) OVER() AS note_5,
-    SUM(CASE WHEN a.lu = FALSE then 1 else 0 end) over() as avisnonlus,
-	SUM(CASE WHEN r.idc_reponse is null then 1 else 0 end) over() as avisnonrepondus,
-    m.url AS membre_url,
-    r.idc_reponse,
-    r.denomination AS reponse_denomination,
-    r.contenureponse,
-    r.reponsedate,
-    r.idpro
-FROM 
-    pact.avis a
-LEFT JOIN 
-    pact.membre m ON m.pseudo = a.pseudo
-LEFT JOIN 
-    pact.reponse r ON r.idc_avis = a.idc
-WHERE 
-    a.idoffre = 3
-ORDER BY 
-    a.datepublie desc;

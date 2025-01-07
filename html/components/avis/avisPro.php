@@ -152,7 +152,7 @@ $avis = $avisTemp;
                 </article>
             </div>
 
-            <form action="/enregAvis.php?pro=true" method="post">
+            <form action="/enregAvis.php?pro" method="post">
                 <h2>
                     Répondre a membre
                 </h2>
