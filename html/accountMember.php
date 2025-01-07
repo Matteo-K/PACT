@@ -82,18 +82,14 @@
             $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo]);
 
             // Redirection vers une page de succès
-            ?>
-            <form action="login.php" id="rdtionFrom" method="post">
-                <input type="hidden" name="fileDirection" value="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
-            </form>
-            <script>document.getElementById("rdtionFrom").submit();</script>
-            <?php
+            header('Location: login.php');
+            exit;
         }
     }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head> 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,18 +99,10 @@
     </head>
     <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
-            <form action="login.php" method="post">
-                <input type="hidden" name="fileDirection" value="<?= isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
-                <?php
-                if (isset($_POST["idoffre"])) { ?>
-                    <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
-                <?php }
-                ?>
-                <button id="retour" type="submit">
-                    <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
-                    Retour
-                </button>
-            </form>
+            <a id="retour" href="login.php">
+                <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
+                Retour
+            </a>
         </aside>
         
         <h1 id="inscriptionTitre">Inscription membre</h1>
@@ -213,7 +201,6 @@
             <button type="submit" id="boutonInscription">S'inscrire</button>
 
             <h2 id="dejauncompte">Vous avez déjà un compte ? <a id="lienConnexion" href="login.php">Se connecter</a></h2>
-            <input type="hidden" name="fileDirection" value="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
         </form>
     </body>
     <script src="js/validationFormInscription.js"></script>
