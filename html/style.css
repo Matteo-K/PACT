@@ -5210,3 +5210,11 @@ label[id="labelPFP"] {
 label[id="labelPFP"]:hover {
   color: var(--accent);
 }
+
+
+/*+++++++++++++++++++++++*/
+/* Css filtres, Antoine */
+/*+++++++++++++++++++++*/
+div[id="note"]{
+  background-color: #28a745;
+}
