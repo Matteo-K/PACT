@@ -11,7 +11,7 @@ if (!isset($_POST['unique_id']) || empty($_POST['unique_id'])) {
 }
 
 $uniqueId = htmlspecialchars($_POST['unique_id']);
-$tempFolderPath = __DIR__ . "/temp/$uniqueId"; // Dossier temporaire basé sur l'ID
+$tempFolderPath = '../img/imageAvis/temp_uploads/' . $uniqueId; // Dossier temporaire basé sur l'ID
 
 // Vérifiez si le dossier existe
 if (!is_dir($tempFolderPath)) {

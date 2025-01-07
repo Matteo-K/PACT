@@ -175,7 +175,6 @@
             }
         }
     });
-
     function deleteTemporaryFolder(uniqueId) {
         const formData = new FormData();
         formData.append("unique_id", uniqueId);
