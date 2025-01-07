@@ -6,7 +6,7 @@ $tempDir = '../img/imageAvis/temp_uploads/';
 
 // Crée le dossier temporaire s'il n'existe pas
 if (!is_dir($tempDir)) {
-    if (!mkdir($tempDir, 0755, true)) {
+    if (!mkdir($tempDir, 0777, true)) {
         echo json_encode(['success' => false, 'message' => 'Impossible de créer le dossier temporaire.']);
         exit;
     }
@@ -23,7 +23,8 @@ $userTempDir = $tempDir . $uniqueId . '/';
 
 // Crée le sous-dossier pour cet utilisateur s'il n'existe pas
 if (!is_dir($userTempDir)) {
-    if (!mkdir($userTempDir, 0755, true)) {
+    if (!mkdir($userTempDir, 0777, true)) {
+        chmod($userTempDir, 0777);
         echo json_encode(['success' => false, 'message' => 'Impossible de créer le dossier utilisateur temporaire.']);
         exit;
     }
@@ -60,6 +61,7 @@ foreach ($_FILES['images']['name'] as $key => $name) {
 
     if (move_uploaded_file($tmpName, $destination)) {
         $uploadedFiles[] = $destination;
+        chmod($destination, 0777);
     } else {
         echo json_encode(['success' => false, 'message' => "Erreur lors du déplacement du fichier $name."]);
         exit;

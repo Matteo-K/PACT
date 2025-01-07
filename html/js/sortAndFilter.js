@@ -693,8 +693,6 @@ function createCard(offer) {
   back.appendChild(infoOffre);
   content.appendChild(back);
   card.appendChild(content);
-  
-  //card.appendChild(avisSearch(offer));
 
   return card;
 }
@@ -702,13 +700,6 @@ function createCard(offer) {
 function proStatut(offer) {
   let proStatut = document.createElement("div");
   proStatut.classList.add("ProStatut");
-
-  // Titre de l'offre
-  let titre = document.createElement("p");
-  titre.classList.add("searchTitre");
-  titre.textContent = offer.nomOffre;
-
-  proStatut.appendChild(titre);
 
   // statut de l'offre si professionnel
   if (userType == "pro_public" || userType == "pro_prive") {

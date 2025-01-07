@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
-            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            header("Location: index.php");
-            exit();
+            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
+            header('Location: login.php');
+            exit;
         }
 
         // Vérification pour le compte privé
@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
-            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            header("Location: index.php");
-            exit();
+            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
+            header('Location: login.php');
+            exit;
         }
 
         // Vérification pour le compte public
@@ -47,9 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
-            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            header("Location: index.php");
-            exit();
+            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
+            header('Location: login.php');
+            exit;
         }
 
         // Vérification pour le compte membre
@@ -61,11 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
-            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-                header("Location: index.php");
-                exit();
-            
-            exit();
+            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
+            header('Location: login.php');
+            exit;
         } else {
             $error = "Identifiant ou mot de passe incorrect.";
         }
@@ -76,8 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 ?>
 
 <!-- Le reste de votre HTML pour le formulaire de connexion -->
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -90,10 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 </head>
 <body id="body_connexion" class="connexion-compte">
     <aside id="asideRetour">
-        <button id="retour" onclick="window.history.back();">
+        <a href="index.php" id="retour">
             <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
             Retour
-        </button>
+        </a>
     </aside>
 
     <main id="mainConnexion">
@@ -112,21 +108,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
                 <input type="password" placeholder="Mot de passe" id="motdepasseConnexion" name="motdepasseConnexion" required>
             </div>
     
-            <button id="boutonConnexion">Connexion</button>
+            <button id="boutonConnexion" type="submit">Connexion</button>
 
             <a id="lienMotDePasseOublie" href="#"> Mot de passe oublié ?</a>
+
+            <input type="hidden" name="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
+            <?php if (isset($_POST["idoffre"])) { ?>
+                <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
+            <?php } ?>
         </form>
         
         <h1 id="pasDeCompteTitre">Vous n'avez pas de compte ? Créez-en un !</h1>
         
         <div id="lienBouton">
             <div>
-                <a href="accountMember.php" id="boutonLienMembre">Compte membre</a>
+                <form action="accountMember.php" method="post">
+                    <input type="submit" id="boutonLienMembre" value="Compte membre">
+                </form>
                 <p id="legendeBoutonLienMembre">Compte gratuit pour une utilisation classique de la plateforme</p>
             </div>
             
             <div>
-                <a href="accountPro.php" id="boutonLienPro">Compte professionnel</a>
+                <form action="accountPro.php" method="post">
+                    <input type="submit" id="boutonLienPro" value="Compte professionnel">
+                </form>
                 <p id="legendeBoutonLienPro">Compte destiné aux professionels voulant promouvoir une offre de leur entreprise</p>
             </div>
         </div>

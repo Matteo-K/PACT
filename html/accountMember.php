@@ -8,7 +8,7 @@
     // Initialisation du tableau pour stocker les erreurs
     $errors = []; 
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["nom"])) {
         // Récupérer les données du formulaire
         $nom = trim($_POST['nomMembre']);
         $prenom = trim($_POST['prenomMembre']);
@@ -89,7 +89,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head> 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,10 +99,10 @@
     </head>
     <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
-            <button id="retour">
+            <a id="retour" href="login.php">
                 <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
                 Retour
-            </button>
+            </a>
         </aside>
         
         <h1 id="inscriptionTitre">Inscription membre</h1>

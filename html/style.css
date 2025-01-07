@@ -1053,7 +1053,7 @@ header ul + div {
   text-decoration: underline var(--accent) 3px;
 }
 
-#manageOffer aside button {
+#manageOffer aside button:not(#leaveButtonBloc button) {
   background-color: transparent;
   border: none;
 }
@@ -1061,6 +1061,27 @@ header ul + div {
 #manageOffer aside button:hover figcaption {
   font-size: 1.2rem !important;
 }
+
+#leaveButtonBloc {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding-inline: 15px;
+  gap: 20px;
+}
+
+#leaveButtonBloc button {
+  width: 150px;
+  height: 35px;
+  background-color: #28a745;
+  color: var(--text-light);
+}
+
+#leaveButtonBloc button:nth-child(2) {
+  background-color: #c24d4d;
+}
+
 
 #manageOffer aside ul + div {
   display: flex;
@@ -1642,7 +1663,6 @@ header ul + div {
 }
 
 #artDetailOffer > div > label:not(.buttonDetailOffer),
-#choixCategorie label:first-of-type,
 #choixImage label,
 #choixImage2 label,
 #inputAutoComplete label {
@@ -1705,11 +1725,6 @@ header ul + div {
   cursor: pointer;
   border-radius: 3px;
   position: static;
-}
-
-#choixCategorie {
-  width: calc(70% + 141.625px);
-  /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
 }
 
 #tagsSelect {
@@ -3960,6 +3975,23 @@ details .nonRepondu {
   border-radius: 5px;
 }
 
+.load-more {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  text-align: center;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.load-more:hover {
+  background-color: #0056b3;
+}
+
+
 @media screen and (max-width: 768px) {
   :root {
     --header-size2: 0;
@@ -4273,213 +4305,18 @@ details .nonRepondu {
   object-fit: cover;
 }
 
-/*------------------------ CSS BENJAMIN OFFRE PARTICULIERE -----------------------------------------*/
+/*------------------------ CSS OFFRE PARTICULIERE -----------------------------------------*/
 
-/* CSS pour le détails d'une offre de type restaurant */
-#restaurant {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
+#choixCategorie input[type="radio"] {
+  display: none;
 }
 
-#restaurant h4 {
-  margin-bottom: 15px;
+#choixCategorie input[type="radio"]:checked + label {
+  border-bottom: 2px solid var(--bloc);
 }
 
-#restaurant > div {
-  display: flex;
-  flex-direction: row;
-  /* Alignement du bouton radio et du texte*/
-  width: 100%;
-  /* largeur*/
-  margin-bottom: 10px;
-  margin-left: 20px;
-}
-
-#restaurant input[type="radio"] {
-  margin-right: 10px;
-  display: flex;
-  flex-direction: column;
-  /* Espace entre le bouton radio et le texte */
-}
-
-#restaurant > div[class="photosR"] {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-}
-
-#restaurant > div[class="photosR"] > .labelPhotos {
-  margin-bottom: 15px;
-}
-
-#restaurant > div[class="imgRestaurant"] {
-  width: 550px;
-  height: 35px;
-}
-
-/* CSS pour le détails d'une offre de type spectacle */
-
-#show > div,
-#show > article > div > div,
-#show > div[class="classDivShow1"] > div > div[class="classDivLigne"] {
-  display: flex;
-  flex-direction: row;
-}
-
-#show > div > label[class="labelShow1"] {
-  margin-left: 15px;
-  margin-right: 5px;
-}
-
-#show > div[class="classDivShow1"] {
-  display: flex;
-  flex-direction: column;
-}
-
-#show > div > label[class="labelNbPlace"],
-#show > div[class="classDivShow1"] > div > div[class="classDivLigne"] > label {
-  margin-right: 5px;
-}
-
-#show > div[class="classDivShow1"] > div {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-#show
-  > div[class="classDivShow1"]
-  > div
-  > div[class="classDivLigne"]
-  > label[class="ligne4"] {
-  margin-left: 15px;
-}
-
-#show
-  > div[class="classDivShow1"]
-  > div
-  > div[class="classDivLigne"]
-  > label[class="ligne3"],
-#show
-  > div[class="classDivShow1"]
-  > div
-  > div[class="classDivLigne"]
-  > label[class="ligne2"] {
-  margin-left: 5px;
-}
-
-#show > div[class="classDivShow1"] > label {
-  margin-top: 5px;
-}
-
-/* CSS pour le détails d'une offre de type Activité */
-
-/* #activity{
-  background-color: pink;
-} */
-#activity > div[class="divAge"],
-#activity > div[class="presta"] > textarea,
-#activity > div[class="presta"] {
-  margin-bottom: 15px;
-}
-
-#activity > div[class="presta"] {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
-
-#activity > div[class="presta"] > textarea,
-#activity > div[class="presta"] > input[type="button"] {
-  width: 350px;
-  height: 40px;
-}
-
-#activity > div[class="acces1"] > select {
-  width: 500px;
-  height: 35px;
-}
-
-#activity > div[class="access"],
-#activity > div[class="divP"] {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
-
-#activity > div[class="access"] > div[class="access1"],
-#activity > div[class="divP"] > div[class="divP1"],
-#activity > div[class="divD"] > div[class="divD1"] {
-  display: flex;
-  flex-direction: row;
-}
-
-#activity > div[class="divD"] {
-  display: flex;
-  flex-direction: column;
-}
-
-/* CSS pour le détails d'une offre de type Visite */
-
-#visit > div[class="visGuideeEtDuree"] > label[class="labDureeVis"] {
-  margin-left: 15px;
-  margin-right: 5px;
-}
-
-#visit > div[class="visGuideeEtDuree"] > label[class="labH"],
-#visit > div[class="divPrixMin"] > label[class="labEuro"] {
-  margin-left: 5px;
-}
-
-#visit > div[class="access"],
-#visit > div[class="divPrixMin"],
-#visit > div[class="visGuideeEtDuree"] {
-  margin-bottom: 15px;
-}
-
-#visit > div[class="languesProp"] > input[type="text"] {
-  width: 500px;
-  height: 35px;
-  margin-top: 5px;
-}
-
-#visit > div[class="languesProp"],
-#visit > div[class="access"] {
-  display: flex;
-  flex-direction: column;
-}
-
-#visit > div[class="languesProp"] > select,
-#visit > div[class="access"] > select {
-  width: 500px;
-  height: 35px;
-}
-
-#park > div[class="ageMinP"],
-#park > div[class="NbEtPrixPark"] {
-  display: flex;
-  flex-direction: row;
-}
-
-#park > div[class="ageMinP"] > input[type="number"] {
-  margin-bottom: 20px;
-}
-
-#park > div[class="NbEtPrixPark"] > input[class="nbAttrac"] {
-  margin-right: 15px;
-}
-
-#park > div[class="ageMinP"] > label[class="labelGauche"],
-#park > div[class="NbEtPrixPark"] > label[class="labelGauche"] {
-  margin-right: 5px;
-}
-
-#park > div[class="NbEtPrixPark"] > label[class="labelEuro"] {
-  margin-left: 5px;
-}
-
-#park > div[class="afficheImages2"] {
-  width: 300px;
+#choixCategorie label {
+  padding: 10px 50px;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
@@ -4531,7 +4368,7 @@ aside[id="asideRetour"] {
   left: 10px;
 }
 
-button[id="retour"] {
+#retour {
   background: none;
   border: none;
   color: var(--bloc);
@@ -4541,14 +4378,15 @@ button[id="retour"] {
   padding: 0;
 }
 
-aside[id="asideRetour"] > button[id="retour"] > img {
+#retour > img {
   vertical-align: middle;
   width: 70px;
   height: 65px;
   margin-right: 5px;
 }
 
-.creation-compte form {
+.creation-compte #formMember,
+.creation-compte #formPro {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -5006,7 +4844,7 @@ h1[id="pasDeCompteTitre"] {
   font-size: 50px;
 }
 
-.connexion-compte form {
+.connexion-compte #formConnexion {
   display: grid;
   justify-content: center;
   align-items: center;
@@ -5092,8 +4930,8 @@ button[id="boutonChangerMDP"] {
   cursor: pointer;
 }
 
-a[id="boutonLienMembre"],
-a[id="boutonLienPro"] {
+input[id="boutonLienMembre"],
+input[id="boutonLienPro"] {
   width: 300px;
   padding: 15px 10px;
   font-size: 20px;
