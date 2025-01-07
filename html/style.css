@@ -2094,8 +2094,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .flip-card-front {
   justify-content: flex-end;
-  background: linear-gradient(-50deg, bisque 60%, rgb(255, 231, 222) 88%,
-    rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
   background-position: center;
   color: white;
   background-size: cover;
