@@ -20,16 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            ?>
-            <form id="connecteFormAdmin" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
-                <?php if (isset($_POST["idoffre"])) { ?>
-                    <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
-                <?php } ?>
-            </form>
-            <script>
-                document.getElementById("connecteFormAdmin").submit();
-            </script>
-            <?php
+            header('Location: login.php');
+            exit;
         }
 
         // Vérification pour le compte privé
@@ -42,16 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            ?>
-            <form id="connecteFormProPriv" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
-                <?php if (isset($_POST["idoffre"])) { ?>
-                    <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
-                <?php } ?>
-            </form>
-            <script>
-                document.getElementById("connecteFormProPriv").submit();
-            </script>
-            <?php
+            header('Location: login.php');
+            exit;
         }
 
         // Vérification pour le compte public
@@ -64,16 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            ?>
-            <form id="connecteFormProPub" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
-                <?php if (isset($_POST["idoffre"])) { ?>
-                    <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
-                <?php } ?>
-            </form>
-            <script>
-                document.getElementById("connecteFormProPub").submit();
-            </script>
-            <?php
+            header('Location: login.php');
+            exit;
         }
 
         // Vérification pour le compte membre
@@ -86,20 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            ?>
-            <form id="connecteFormMembre" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
-                <?php
-                if (isset($_POST["idoffre"])) {
-                    ?>
-                    <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
-                    <?php
-                }
-                ?>
-            </form>
-            <script>
-                document.getElementById("connecteFormMembre").submit();
-            </script>
-            <?php
+            header('Location: login.php');
+            exit;
         } else {
             $error = "Identifiant ou mot de passe incorrect.";
         }
@@ -123,17 +87,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 <body id="body_connexion" class="connexion-compte">
     <aside id="asideRetour">
         <?php echo $_POST["fileDirection"] . " " . $_POST["idoffre"]?>
-        <form action="<?= isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
-            <?php
-            if (isset($_POST["idoffre"])) { ?>
-                <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
-            <?php }
-            ?>
-            <button id="retour" type="submit">
-                <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
-                Retour
-            </button>
-        </form>
+        <a href="index.php" id="retour">
+            <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
+            Retour
+        </a>
     </aside>
 
     <main id="mainConnexion">
@@ -167,10 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
         <div id="lienBouton">
             <div>
                 <form action="accountMember.php" method="post">
-                    <input type="hidden" name="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
-                    <?php if (isset($_POST["idoffre"])) { ?>
-                        <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
-                    <?php } ?>
                     <input type="submit" id="boutonLienMembre" value="Compte membre">
                 </form>
                 <p id="legendeBoutonLienMembre">Compte gratuit pour une utilisation classique de la plateforme</p>
@@ -178,10 +131,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             
             <div>
                 <form action="accountPro.php" method="post">
-                    <input type="hidden" name="fileDirection" value="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
-                    <?php if (isset($_POST["idoffre"])) { ?>
-                        <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
-                    <?php } ?>
                     <input type="submit" id="boutonLienPro" value="Compte professionnel">
                 </form>
                 <p id="legendeBoutonLienPro">Compte destiné aux professionels voulant promouvoir une offre de leur entreprise</p>
