@@ -60,6 +60,7 @@ foreach ($_FILES['images']['name'] as $key => $name) {
 
     if (move_uploaded_file($tmpName, $destination)) {
         $uploadedFiles[] = $destination;
+        chmod($destination, 0777);
     } else {
         echo json_encode(['success' => false, 'message' => "Erreur lors du déplacement du fichier $name."]);
         exit;
