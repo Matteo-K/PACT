@@ -2489,29 +2489,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 /* Style général pour le date picker */
 .datePicker {
   width: 100%;
-  /* Prend toute la largeur disponible */
   max-width: 300px;
-  /* Limite la largeur */
   padding: 10px;
-  /* Espacement interne */
   font-size: 16px;
-  /* Texte lisible */
   font-family: Arial, sans-serif;
-  /* Police simple */
   border: 2px solid #007bff;
-  /* Bordure bleue */
   border-radius: 5px;
-  /* Coins arrondis */
   background-color: #fff;
-  /* Fond blanc */
   color: #333;
-  /* Texte noir/gris */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  /* Légère ombre */
   transition: all 0.3s ease;
-  /* Transition douce pour interactions */
-  display: none;
-  /* Caché par défaut */
 }
 
 /* Style au focus */

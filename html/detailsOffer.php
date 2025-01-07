@@ -430,14 +430,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <label class="taille" for="nbWeek">Nombre de semaine à la Une
                                             <input class="taille2" type="number" name="nbWeek" id="nbWeekALaUne" min="1" max="4" value="1">
                                         </label>
-
-                                        <!-- Checkbox pour afficher le date picker -->
-                                        <label class="taille">
-                                            <input type="checkbox" name="dtcheck" id="datePickerToggle1" class="datePickerToggle taille5"> Ajouter une date personnalisée
-                                        </label>
-
                                         <!-- Date picker (caché par défaut) -->
-                                        <input class="datePicker" min="<?php echo date('Y-m-d') ?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate1" style="display: none;">
+                                        <input class="datePicker" min="<?php echo date('Y-m-d') ?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate1">
                                     </form>
                                     <?php
                                     if (!$optionUne) {
@@ -482,14 +476,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <label class="taille" for="nbWeek">Nombre de semaine en Relief
                                             <input class="taille2" type="number" name="nbWeek" id="nbWeekEnRelief" min="1" max="4" value="1">
                                         </label>
-
-                                        <!-- Checkbox pour afficher le date picker -->
-                                        <label class="taille">
-                                            <input type="checkbox" name="dtcheck" id="datePickerToggle2" class="datePickerToggle taille5"> Ajouter une date personnalisée
-                                        </label>
-
                                         <!-- Date picker (caché par défaut) -->
-                                        <input class="datePicker" type="date" name="customDate" id="customDate2" style="display: none;">
+                                        <input class="datePicker" min="<?php echo date('Y-m-d') ?>" value="<?php echo date('Y-m-d') ?>" type="date" name="customDate" id="customDate2">
                                     </form>
                                     <?php
                                     if (!$optionRelief) {
@@ -1077,27 +1065,27 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 });
             }
 
-            const toggles = document.querySelectorAll(".datePickerToggle");
+            // const toggles = document.querySelectorAll(".datePickerToggle");
 
-            toggles.forEach(toggle => {
-                toggle.addEventListener("change", function() {
-                    const form = this.closest("form");
-                    const datePicker = form.querySelector(".datePicker");
-                    const toggleMessage = form.closest("aside").querySelector(".toggleMessage");
+            // toggles.forEach(toggle => {
+            //     toggle.addEventListener("change", function() {
+            //         const form = this.closest("form");
+            //         const datePicker = form.querySelector(".datePicker");
+            //         const toggleMessage = form.closest("aside").querySelector(".toggleMessage");
 
-                    if (this.checked) {
-                        datePicker.style.display = "block"; // Affiche le date picker
-                        if (toggleMessage) {
-                            toggleMessage.style.display = "none"; // Cache le message
-                        }
-                    } else {
-                        datePicker.style.display = "none"; // Cache le date picker
-                        if (toggleMessage) {
-                            toggleMessage.style.display = "block"; // Affiche à nouveau le message
-                        }
-                    }
-                });
-            });
+            //         if (this.checked) {
+            //             datePicker.style.display = "block"; // Affiche le date picker
+            //             if (toggleMessage) {
+            //                 toggleMessage.style.display = "none"; // Cache le message
+            //             }
+            //         } else {
+            //             datePicker.style.display = "none"; // Cache le date picker
+            //             if (toggleMessage) {
+            //                 toggleMessage.style.display = "block"; // Affiche à nouveau le message
+            //             }
+            //         }
+            //     });
+            // });
 
             const tabs = document.querySelectorAll('.tab');
             const contents = document.querySelectorAll('.contentPop');
