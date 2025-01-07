@@ -103,10 +103,15 @@
     </head>
     <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
-            <a id="retour" href="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
+            <form action="login.php" method="post">
                 <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
                 Retour
-            </a>
+            </form>
+            <script>
+                document.getElementById("asideRetour").addEventListener("click", () => {
+                    document.getElementById("asideRetour").submit();
+                });
+            </script>
         </aside>
         
         <h1 id="inscriptionTitre">Inscription membre</h1>
