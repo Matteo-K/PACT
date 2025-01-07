@@ -91,7 +91,7 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 }
 
 // Traitement des données envoyées par le formulaire
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($GET["membre"]) && isset($_POST["note"])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET["membre"]) && isset($_POST["note"])) {
     $_SESSION['review_success'] = "Avis soumis avec succès!";
     // Préparation des données
     $note = $_POST['note'];
