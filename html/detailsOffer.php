@@ -329,10 +329,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </section>
                     <section class="contentPop active" id="content-1">
                         <?php
-                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'ALaUne' ORDER BY datefin DESC");
+                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'ALaUne' ORDER BY datefin ASC");
                         $option->execute([$idOffre]);
                         $optionUne = $option->fetchAll(PDO::FETCH_ASSOC);
-                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'EnRelief' ORDER BY datefin DESC");
+                        $option = $conn->prepare("SELECT * FROM pact.option WHERE idoffre=? and (datefin>CURRENT_DATE OR datefin is null) and nomoption = 'EnRelief' ORDER BY datefin ASC");
                         $option->execute([$idOffre]);
                         $optionRelief = $option->fetchAll(PDO::FETCH_ASSOC);
                         $mesOtion = [];
