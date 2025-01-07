@@ -12,7 +12,7 @@ if (!$idOffre) {
 }
 
 // Consulté récemment
-if ($_SESSION["typeUser"] == 'membre') {
+if ($_SESSION["typeUser"] == 'membre' && isset($_SESSION["typeUser"])) {
     $stmt = $conn->prepare("SELECT * from pact._consulter where idu = ? and idoffre = ?");
     $stmt->execute([$_SESSION['idUser'], $idOffre]);
     $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
