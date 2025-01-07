@@ -5093,8 +5093,8 @@ button[id="boutonChangerMDP"] {
   cursor: pointer;
 }
 
-a[id="boutonLienMembre"],
-a[id="boutonLienPro"] {
+input[id="boutonLienMembre"],
+input[id="boutonLienPro"] {
   width: 300px;
   padding: 15px 10px;
   font-size: 20px;
