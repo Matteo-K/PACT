@@ -5215,7 +5215,7 @@ label[id="labelPFP"]:hover {
 /*+++++++++++++++++++++++*/
 /* Css filtres, Antoine */
 /*+++++++++++++++++++++*/
-#blocStar{
+.blocStar{
   display: flex;
   flex-direction: row;
 }
