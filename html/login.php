@@ -135,8 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 <body id="body_connexion" class="connexion-compte">
     <aside id="asideRetour">
         <?php echo $_POST["fileDirection"] . " " . $_POST["idoffre"]?>
-        <form action="login.php" method="post">
-            <input type="hidden" name="fileDirection" value="<?= $_POST["fileDirection"] ?>">
+        <form action="<?= isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
             <?php
             if (isset($_POST["idoffre"])) { ?>
                 <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">

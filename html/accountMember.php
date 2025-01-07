@@ -104,7 +104,7 @@
     <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
             <form action="login.php" method="post">
-                <input type="hidden" name="fileDirection" value="<?= $_POST["fileDirection"] ?>">
+                <input type="hidden" name="fileDirection" value="<?= isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
                 <?php
                 if (isset($_POST["idoffre"])) { ?>
                     <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
