@@ -104,15 +104,17 @@
     <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
             <form action="login.php" method="post">
-                <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
-                Retour
+                <input type="hidden" name="fileDirection" value="<?= $_POST["fileDirection"] ?>">
+                <?php
+                if (isset($_POST["idoffre"])) { ?>
+                    <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
+                <?php }
+                ?>
+                <button id="retour" type="submit">
+                    <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
+                    Retour
+                </button>
             </form>
-            <script>
-                let form = document.querySelector("#asideRetour form");
-                form.addEventListener("click", () => {
-                    form.querySelector("#asideRetour form").submit();
-                });
-            </script>
         </aside>
         
         <h1 id="inscriptionTitre">Inscription membre</h1>

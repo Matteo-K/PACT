@@ -135,10 +135,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 <body id="body_connexion" class="connexion-compte">
     <aside id="asideRetour">
         <?php echo $_POST["fileDirection"] . " " . $_POST["idoffre"]?>
-        <a id="retour" href="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
-            <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
-            Retour
-        </a>
+        <form action="login.php" method="post">
+            <input type="hidden" name="fileDirection" value="<?= $_POST["fileDirection"] ?>">
+            <?php
+            if (isset($_POST["idoffre"])) { ?>
+                <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
+            <?php }
+            ?>
+            <button id="retour" type="submit">
+                <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
+                Retour
+            </button>
+        </form>
     </aside>
 
     <main id="mainConnexion">
