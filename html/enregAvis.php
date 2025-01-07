@@ -66,7 +66,6 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_GET['membre'])) {
-        $_SESSION['review_success'] = "Avis soumis avec succès!";
 
         $note = $_POST['note'] ?? null;
         $dateAvis = $_POST['date'] ?? null;
@@ -122,10 +121,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $idAvis = $_POST['hiddenInputIdAvis'] ?? null;
         $idOffre = $_POST['idoffre'];
 
-        if (!$contenuReponse || !$idAvis || !$idOffre) {
-            die("Données manquantes ou invalides.");
-        }
-
         $stmt = $conn->prepare("INSERT INTO pact.reponse (idpro, contenureponse, idc_avis) VALUES (?, ?, ?)");
         $stmt->execute([$idUser, $contenuReponse, $idAvis]);
 
@@ -134,6 +129,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
     <script>
         let form = document.createElement('form');
         form.action = "detailsOffer.php";
@@ -148,6 +151,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         document.body.appendChild(form);
         form.submit();
     </script>
+    </body>
+    </html>
     <?php
 }
 ?>
