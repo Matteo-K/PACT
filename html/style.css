@@ -1834,12 +1834,12 @@ header ul + div {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-#filtre h3 {
+#note, #prix, #statut, #categorie, #date{
   padding-inline: 20px;
 }
 
-#note, #prix, #statut, #categorie, #date{
-  padding-inline: 20px;
+#idCategorie {
+  padding-left: 0;
 }
 
 .openAside {
