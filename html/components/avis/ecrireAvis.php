@@ -1,5 +1,5 @@
 <section>
-    <form id="formCreationAvis" action="/enregAvis.php?membre" method="post" enctype="multipart/form-data">
+    <form id="formCreationAvis" action="/enregAvis.php?membre=true" method="post" enctype="multipart/form-data">
         <div class="note">
             <!-- Étoiles pour la notation -->
             <?php for ($i = 1; $i <= 5; $i++) { ?>
