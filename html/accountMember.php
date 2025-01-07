@@ -108,8 +108,9 @@
                 Retour
             </form>
             <script>
-                document.getElementById("asideRetour").addEventListener("click", () => {
-                    document.getElementById("asideRetour").submit();
+                let form = document.querySelector("#asideRetour form");
+                form.addEventListener("click", () => {
+                    form.querySelector("#asideRetour form").submit();
                 });
             </script>
         </aside>

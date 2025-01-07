@@ -19,9 +19,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
-            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            header("Location: index.php");
-            exit();
+            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
+            ?>
+            <form id="connecteFormAdmin" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
+                <?php
+                if (isset($_POST["idoffre"])) {
+                    ?>
+                    <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
+                    <?php
+                }
+                ?>
+            </form>
+            <script>
+                document.getElementById("connecteFormAdmin").submit();
+            </script>
+            <?php
         }
 
         // Vérification pour le compte privé
@@ -33,9 +45,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
-            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            header("Location: index.php");
-            exit();
+            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
+            ?>
+            <form id="connecteFormProPriv" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
+                <?php
+                if (isset($_POST["idoffre"])) {
+                    ?>
+                    <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
+                    <?php
+                }
+                ?>
+            </form>
+            <script>
+                document.getElementById("connecteFormProPriv").submit();
+            </script>
+            <?php
         }
 
         // Vérification pour le compte public
@@ -47,9 +71,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
-            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-            header("Location: index.php");
-            exit();
+            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
+            ?>
+            <form id="connecteFormProPub" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
+                <?php
+                if (isset($_POST["idoffre"])) {
+                    ?>
+                    <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
+                    <?php
+                }
+                ?>
+            </form>
+            <script>
+                document.getElementById("connecteFormProPub").submit();
+            </script>
+            <?php
         }
 
         // Vérification pour le compte membre
@@ -61,11 +97,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
-            // Préparer la redirection avec POST vers detailsOffer.php si idOffre est présent
-                header("Location: index.php");
-                exit();
-            
-            exit();
+            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
+            ?>
+            <form id="connecteFormMembre" action="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>" method="post">
+                <?php
+                if (isset($_POST["idoffre"])) {
+                    ?>
+                    <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
+                    <?php
+                }
+                ?>
+            </form>
+            <script>
+                document.getElementById("connecteFormMembre").submit();
+            </script>
+            <?php
         } else {
             $error = "Identifiant ou mot de passe incorrect.";
         }
@@ -76,8 +122,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 ?>
 
 <!-- Le reste de votre HTML pour le formulaire de connexion -->
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -90,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 </head>
 <body id="body_connexion" class="connexion-compte">
     <aside id="asideRetour">
-        <?php echo $_POST["fileDirection"] ?>
+        <?php echo $_POST["fileDirection"] . " " . $_POST["idoffre"]?>
         <a id="retour" href="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
             <img src="img/logo.png" alt="Logo" title="Retour page précédente"/>
             Retour
