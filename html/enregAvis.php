@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET["membre"])) {
 ?>
     <script>
         let form = document.createElement('form');
-        form.action = "detailsOffer";
+        form.action = "detailsOffer.phpm";
         form.method = "post";
 
         let input = document.createElement('input');
