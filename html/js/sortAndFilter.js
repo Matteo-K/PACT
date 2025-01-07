@@ -692,8 +692,8 @@ function createCard(offer) {
 
   infoOffre.appendChild(resume);
 
-  //card.appendChild(infoOffre);
-  //card.appendChild(avisSearch(offer));
+  back.appendChild(infoOffre);
+  back.appendChild(avisSearch(offer));
 
   return card;
 }
