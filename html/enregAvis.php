@@ -56,12 +56,28 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 
         if (rename($image, $newFilePath)) {
             $result['success'][] = $newFilePath;
+            if (file_exists($tempFolder)) {
+                if(is_dir_empty($tempFolder)){
+                    rmdir($tempFolder);
+                }
+            }
         } else {
             $result['errors'][] = "Erreur lors du déplacement de l'image : $image";
         }
     }
 
     return $result;
+}
+
+function is_dir_empty($dir) {
+    if (!is_readable($dir)) return false;
+    $handle = opendir($dir);
+    while (false !== ($entry = readdir($handle))) {
+        if ($entry != "." && $entry != "..") {
+            return false;
+        }
+    }
+    return true;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
