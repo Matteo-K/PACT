@@ -65,8 +65,6 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    session_start();
-
     if (isset($_GET['membre'])) {
         $_SESSION['review_success'] = "Avis soumis avec succès!";
 
