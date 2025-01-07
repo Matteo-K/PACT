@@ -194,15 +194,7 @@
         <?php
         } else {
         ?>
-            <form action="../login.php" method="post">
-                <input type="hidden" name="fileDirection" value="<?= htmlspecialchars(basename($_SERVER['PHP_SELF'])) ?>">
-                <?php 
-                if (isset($idOffre)) {?>
-                    <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
-                <?php }
-                ?>
-                <input type="submit" id="btnConn" value="Connexion">
-            </form>
+            <a href="../login.php" id="btnConn">Connexion</a>
         <?php
         }
         ?>
