@@ -1653,14 +1653,6 @@ header ul + div {
   margin: 1%;
 }
 
-#aboutOffer {
-  flex: 2;
-}
-
-#blcImg {
-  flex: 1;
-}
-
 #artDetailOffer > div > label:not(.buttonDetailOffer),
 #choixImage label,
 #choixImage2 label,
@@ -1681,14 +1673,10 @@ header ul + div {
   text-indent: 10px;
   padding: 5px;
   height: 30px;
-  width: 90%;
 }
 
 #artDetailOffer textarea,
 #choixPhoto2 textarea {
-  width: 90%;
-  max-width: 90%;
-  min-width: 90%;
   font-size: 16px;
   padding: 5px;
 }
@@ -1732,10 +1720,6 @@ header ul + div {
   border: 2px solid var(--bloc);
   background-color: #ffffff;
   font-size: 20px;
-}
-
-#inputTag {
-  width: 100%;
 }
 
 #inputTag:focus {
