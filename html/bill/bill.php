@@ -67,11 +67,19 @@ p{
 header strong{
     text-align: right;
 }
-h1, h2{
+h1{
     text-align: center;
     background-color: lightgray;
     margin: 0;
     padding: 10px;
+}
+
+h2{
+    text-align: center;
+    background-color: lightgray;
+    margin: 0;
+    padding: 10px;
+    font-size: 1.9rem;
 }
 
 table{
@@ -85,11 +93,14 @@ table{
 td{
     text-align: center;
 }
+.pr{
+    text-align: right !important;
+}
 th{
     background-color: lightgray;
 }
-#v3,#v5{
-    width: 70px;
+#v3,#v5,#v1{
+    width: 20px;
 }
 
 th,td{
@@ -142,7 +153,7 @@ footer{
             </section>
         </strong>
         <h1>Facture du mois de <?php echo $mois . " " . $annee ?></h1>
-        <h1><?php echo $denominationL ?></h1>
+        <h2><?php echo $denominationL ?></h2>
     </header>
     <main>
         <section>
@@ -183,10 +194,10 @@ footer{
                                     <td><?php echo $value['option'] ?></td>
                                     <td><?php echo $value['duree'] ?></td>
                                     <td>Semaine</td>
-                                    <td><?php echo $value['prixBase'] ?></td>
+                                    <td class="pr"><?php echo $value['prixBase'] . " €"  ?></td>
                                     <td><?php echo $tva ?> %</td>
-                                    <td><?php echo $v1 * $v2 ?> €</td>
-                                    <td><?php echo round($v1*$v2+($v1*$v2*20/100),2) ?> €</td>
+                                    <td class="pr"><?php echo $v1 * $v2 ?> €</td>
+                                    <td class="pr"><?php echo round($v1*$v2+($v1*$v2*20/100),2) ?> €</td>
                                 </tr>
                             <?php
                         }
@@ -196,10 +207,10 @@ footer{
                     <td>Abonnement <?php echo $tarif['option'] ?></td>
                     <td><?php echo $nbEnLigne ?></td>
                     <td>Jour</td>
-                    <td><?php echo $v3 ?></td>
+                    <td class="pr"><?php echo $v3 . " €" ?></td>
                     <td><?php echo $tva ?> %</td>
-                    <td><?php echo $nbEnLigne*$v3 ?> €</td>
-                    <td><?php echo round($nbEnLigne*$v3+($nbEnLigne*$v3*20/100),2) ?> €</td>
+                    <td class="pr"><?php echo $nbEnLigne*$v3 ?> €</td>
+                    <td class="pr"><?php echo round($nbEnLigne*$v3+($nbEnLigne*$v3*20/100),2) ?> €</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -221,8 +232,8 @@ footer{
                 </tr>
                 <tr>
                     <th colspan="5">Total</th>
-                    <th>HT : <?php echo $total ?> €</th>
-                    <th>TTC : <?php echo round($total*20/100+$total,2) ?> €</th>
+                    <th class="pr">HT : <?php echo $total ?> €</th>
+                    <th class="pr">TTC : <?php echo round($total*20/100+$total,3) ?> €</th>
                 </tr>
             </tbody>
         </table>
