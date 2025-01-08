@@ -1859,6 +1859,7 @@ header ul + div {
 #prix div {
   display: inline-flex;
   justify-content: space-around;
+  align-items: center;
   width: 100px;
 }
 
@@ -1867,19 +1868,31 @@ header ul + div {
 }
 
 /* Statut */
-#statut div {
+#statut label {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
   margin-bottom: 20px;
+  align-items: center;
   width: 100px;
 }
 
 #statut input {
   width: 30px;
   height: 30px;
+  margin: 0 8px 0 4px;
 }
 
 /* Catégorie */
+
+#categorie label {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  align-items: center;
+  width: 100px;
+}
+
 #idCategorie {
   padding-left: 0;
 }
