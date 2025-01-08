@@ -1919,6 +1919,10 @@ header ul + div {
 }
 
 #tri > .blcTriFiltre > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-inline: 20px;
   height: 30px;
 }
 
