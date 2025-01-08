@@ -4004,11 +4004,8 @@ details .nonRepondu {
   border-radius: 25px;
 }
 
-#like{
-  transform: scaleX(-1);
-}
-#dislike{
-  transform: scaleY(-1);
+#dislike > img{
+  transform: scale(-1);
 }
 
 
