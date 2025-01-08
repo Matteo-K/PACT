@@ -99,8 +99,8 @@ td{
 th{
     background-color: lightgray;
 }
-#v3,#v5{
-    width: 20px;
+#v3,#v5,#v1{
+    width: fit-content;
 }
 
 th,td{
