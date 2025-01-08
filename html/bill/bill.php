@@ -50,11 +50,13 @@ $v3=$results[0]['tarif'];
 
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
 $prix = 0 ;
+$nbjour = 0;
 if ($results[0]['historiquestatut']) {
     $abonnement = explode(';',$results[0]['historiquestatut']);
     foreach ($abonnement as $key => $value) {
         $result = json_decode($value,true);
         $prix = $prix + $result['Prix'];
+        $nbjour = $nbjour + $result['Duree'];
     }
 }
 
@@ -203,7 +205,7 @@ footer{
                 ?>
                 <tr>
                     <td>Abonnement <?php echo $tarif['option'] ?></td>
-                    <td><?php echo $prix ?></td>
+                    <td><?php echo $nbjour ?></td>
                     <td>Jour</td>
                     <td class="pr"><?php echo number_format($v3,2,'.','') . " €" ?></td>
                     <td><?php echo $tva ?> %</td>
