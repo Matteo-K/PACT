@@ -101,7 +101,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $listeTags[] = str_replace("_", " ",$result["nomtag"]);
 }
 ?>
-<form id="detailsOffer" action="post.php" method="post" enctype="multipart/form-data">
+<form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
         <div id="aboutOffer">
             <div>
