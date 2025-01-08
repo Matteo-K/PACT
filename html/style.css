@@ -1096,7 +1096,7 @@ header ul + div {
 }
 
 #manageOffer aside + section {
-  min-height: 70vh;
+  min-height: 56vh;
 }
 
 /* Bouton suivant précédent */
@@ -2088,6 +2088,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   margin-top: 50px;
   flex-direction: column;
   justify-content: center;
+  margin: 20px;
 }
 
 #localisationOffer {
