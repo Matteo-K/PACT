@@ -1884,12 +1884,17 @@ header ul + div {
 }
 
 /* Catégorie */
-
 #idCategorie li {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
   align-items: center;
+}
+
+#idCategorie input {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px;
 }
 
 #idCategorie {
