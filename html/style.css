@@ -1956,7 +1956,7 @@ header ul + div {
   cursor: pointer;
 }
 
-/* test média query 600px */
+/* test média query  */
 @media (max-width: 600px) {
   #trifiltre {
       position: sticky;
@@ -2039,6 +2039,7 @@ header ul + div {
       padding-top: 10px;
   }
 }
+
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
