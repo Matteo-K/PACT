@@ -90,11 +90,11 @@ foreach ($avis as $a) {
                         <section>
                             <p><?= $a['content'] ?></p>
                             <article>
-                                <figure>
+                                <figure id="like">
                                     <img src="img/icone/like1.png">
                                     <figcaption>10</figcaption>
                                 </figure>
-                                <figure>
+                                <figure id="dislike">
                                     <img src="img/icone/like1.png">
                                     <figcaption>10</figcaption>
                                 </figure>

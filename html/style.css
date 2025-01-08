@@ -3989,21 +3989,19 @@ details .nonRepondu {
   border-radius: 5px;
 }
 
-.load-more {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  text-align: center;
-  background-color: #007BFF;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+.user + article section > article {
+  display: flex;
+  background-color: red;
+  border-radius: 25px;
 }
 
-.load-more:hover {
-  background-color: #0056b3;
+#like{
+  transform: scaleX(-1);
 }
+#dislike{
+  transform: scaleY(-1);
+}
+
 
 
 @media screen and (max-width: 768px) {
