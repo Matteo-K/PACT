@@ -1927,8 +1927,16 @@ header ul + div {
 }
 
 #tri label {
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px 20px; /* Ajout de padding pour mieux centrer */
+  font-size: 25px;
+  font-weight: bold;
+  
   margin: 10px 0;
+  height: 50px;
 }
 
 #tri input:checked + label {
