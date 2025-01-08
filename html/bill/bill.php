@@ -100,7 +100,7 @@ th{
     background-color: lightgray;
 }
 #v3,#v5{
-    width: 70px;
+    width: 20px;
 }
 
 th,td{
@@ -194,7 +194,7 @@ footer{
                                     <td><?php echo $value['option'] ?></td>
                                     <td><?php echo $value['duree'] ?></td>
                                     <td>Semaine</td>
-                                    <td class="pr"><?php echo $value['prixBase'] . "€"  ?></td>
+                                    <td class="pr"><?php echo $value['prixBase'] . " €"  ?></td>
                                     <td><?php echo $tva ?> %</td>
                                     <td class="pr"><?php echo $v1 * $v2 ?> €</td>
                                     <td class="pr"><?php echo round($v1*$v2+($v1*$v2*20/100),2) ?> €</td>
@@ -207,7 +207,7 @@ footer{
                     <td>Abonnement <?php echo $tarif['option'] ?></td>
                     <td><?php echo $nbEnLigne ?></td>
                     <td>Jour</td>
-                    <td class="pr"><?php echo $v3 . "€" ?></td>
+                    <td class="pr"><?php echo $v3 . " €" ?></td>
                     <td><?php echo $tva ?> %</td>
                     <td class="pr"><?php echo $nbEnLigne*$v3 ?> €</td>
                     <td class="pr"><?php echo round($nbEnLigne*$v3+($nbEnLigne*$v3*20/100),2) ?> €</td>
