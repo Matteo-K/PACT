@@ -1872,10 +1872,15 @@ header ul + div {
   width: 100px;
 }
 
-#ouvert, #ferme {
+#statut input {
+  display: none;
+}
+
+#statut .checkmark {
   width: 30px;
   height: 30px;
   margin: 0 8px 0 4px;
+  background-color: red;
 }
 
 /* Catégorie */
