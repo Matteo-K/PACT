@@ -1757,7 +1757,6 @@ header ul + div {
 #artDetailOffer section,
 #afficheImages,
 #afficheImages2 {
-  min-height: 100px;
   margin: 10px 0 5px 0;
   padding: 7px;
   display: flex;
@@ -1898,6 +1897,10 @@ header ul + div {
 }
 
 /* Date */
+#date input {
+  height: 30px;
+}
+
 #date div {
   margin-bottom: 20px;
 }
@@ -2006,45 +2009,14 @@ header ul + div {
   }
 
   /* Note */
-  .blocStar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 3px;
-  }
   
   /* Prix */
-  #prix div {
-    display: inline-flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100px;
-  }
-
-  #prixMin, #prixMax {
-    width: 80%;
-    height: 40px;
-  }
 
   /* Statut */
 
   /* Catégorie */
-  #idCategorie label {
-    font-size: 16px;
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 100%;
-  }
 
   /* Date */
-  #date input {
-    width: 80%;
-    height: 40px;
-  }
-
-  .blocStar {
-    gap: 2px;
-  }
 
   #titreAside img {
     width: 25px;
@@ -2053,6 +2025,7 @@ header ul + div {
 
   .blcTriFiltre {
     padding-top: 10px;
+    margin-left: 20px;
   }
 }
 
@@ -4482,21 +4455,29 @@ details .nonRepondu {
 
 /*------------------------ CSS OFFRE PARTICULIERE -----------------------------------------*/
 
-#choixCategorie input[type="radio"] {
-  display: none;
-}
+#choixCategorie select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 
-#choixCategorie input[type="radio"]:checked + label {
-  border-bottom: 2px solid var(--bloc);
-}
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23666' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
 
-#choixCategorie input[type="radio"]:disabled + label {
-  border-bottom: 2px solid var(--bloc);
-}
-
-#choixCategorie label {
-  padding: 10px 50px;
   cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#choixCategorie select:hover {
+  border-color: #888;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
