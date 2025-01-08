@@ -26,7 +26,6 @@ else{
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    try {
         $input = json_decode(file_get_contents('php://input'), true);
     
 
