@@ -460,7 +460,6 @@ VALUES ('2024-11-01','2024-11-08',1,16.68),
 INSERT INTO _option_offre (idOption, idOffre, nomOption) 
 VALUES (3, 1, 'EnRelief'), 
        (2, 2, 'ALaUne'),
-       (2, 2, 'EnRelief'),
        (1, 3, 'ALaUne'),
        (4, 5, 'EnRelief'), 
        (5, 4, 'ALaUne'),
