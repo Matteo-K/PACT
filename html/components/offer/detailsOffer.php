@@ -174,30 +174,34 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
         <span id="msgCategorie" class="msgError"></span>
         <section id="choixCategorie">
-            <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required 
-            <?php echo $categorie["_restauration"] ? "checked" : "" ?> 
-            <?php echo $disableCategorie && !$categorie["_restauration"] ? "disabled" : "" ?>> 
-            <label for="radioRestaurant">Restaurant</label>
-            
-            <input type="radio" name="categorie" id="radioParc" value="parc" 
-            <?php echo $categorie["_parcattraction"] ? "checked" : "" ?>
-            <?php echo $disableCategorie && !$categorie["_parcattraction"] ? "disabled" : "" ?>> 
-            <label for="radioParc">Parc d'attraction</label>
-
-            <input type="radio" name="categorie" id="radioActivite" value="activite" 
-            <?php echo $categorie["_activite"] ? "checked" : "" ?>
-            <?php echo $disableCategorie && !$categorie["_activite"] ? "disabled" : "" ?>> 
-            <label for="radioActivite" >Activite</label>
-            
-            <input type="radio" name="categorie" id="radioSpectacle" value="spectacle" 
-            <?php echo $categorie["_spectacle"] ? "checked" : "" ?>
-            <?php echo $disableCategorie && !$categorie["_spectacle"] ? "disabled" : "" ?>> 
-            <label for="radioSpectacle">Spectacle</label>
-
-            <input type="radio" name="categorie" id="radioVisite" value="visite" 
-            <?php echo $categorie["_visite"] ? "checked" : "" ?>
-            <?php echo $disableCategorie && !$categorie["_visite"] ? "disabled" : "" ?>>
-            <label for="radioVisite">Visite</label>
+            <label for="page-select">Sélectionnez une catégorie :</label>
+            <select name="categorie" id="selectCategorie">
+                <option value="restaurant"
+                <?php echo $categorie["_restauration"] ? "selected" : "" ?> 
+                <?php echo $disableCategorie && !$categorie["_restauration"] ? "disabled" : "" ?>> 
+                    Restaurant
+                </option>
+                <option value="parc"
+                <?php echo $categorie["_parcattraction"] ? "selected" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_parcattraction"] ? "disabled" : "" ?>>
+                    Parc d'attraction
+                </option>
+                <option value="activite"
+                <?php echo $categorie["_activite"] ? "selected" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_activite"] ? "disabled" : "" ?>> 
+                    Activite
+                </option>
+                <option value="spectacle"
+                <?php echo $categorie["_spectacle"] ? "selected" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_spectacle"] ? "disabled" : "" ?>> 
+                    Spectacle
+                </option>
+                <option value="visite"
+                <?php echo $categorie["_visite"] ? "selected" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_visite"] ? "disabled" : "" ?>>
+                    Visite
+                </option>
+            </select>
         </section>
         <?php
             $source = "details/";
@@ -211,6 +215,49 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     </article>
     
     <script>
+        // CATEGORIES DE L'OFFRE
+        /* Affichage pour un type d'offre particulier */
+        // Sélection des éléments du formulaire et des radios
+        const select = document.getElementById("selectCategorie");
+        
+        const RestaurantOffer = document.getElementById("restaurant");
+        const ParkOffer = document.getElementById("park");
+        const ActiviteOffer = document.getElementById("activity");
+        const SpectacleOffer = document.getElementById("show");
+        const VisiteOffer = document.getElementById("visit");
+        
+        function hidenOffer() {
+            RestaurantOffer.style.display = "none";
+            ParkOffer.style.display = "none";
+            ActiviteOffer.style.display = "none";
+            SpectacleOffer.style.display = "none";
+            VisiteOffer.style.display = "none";
+        }
+        
+        // Fonction pour afficher ou masquer la div des require_once
+        hidenOffer();
+        function toggleSpecialOffer() {
+            hidenOffer();
+            if (select.value == "parc") {
+                ParkOffer.style.display = "block";
+            } else if (select.value == "activite") {
+                ActiviteOffer.style.display = "block";
+            } else if (select.value == "spectacle") {
+                SpectacleOffer.style.display = "block";
+            } else if (select.value == "visite") {
+                VisiteOffer.style.display = "block";
+            } else if (select.value == "restaurant") {
+                RestaurantOffer.style.display = "block";
+            }
+        }
+        
+        // Associe la fonction de toggle au clic sur tous les boutons radio
+        select.addEventListener("input", toggleSpecialOffer);
+        
+        // Appel initial de la fonction pour vérifier l'état initial
+        toggleSpecialOffer();
+
+        // TAGS
         const maxTags = 6;
         const maxImages = 10;
 
