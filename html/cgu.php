@@ -14,7 +14,7 @@
 <body>
   <script src="js/setColor.js"></script>
   <?php require_once "components/header.php" ?>
-  <main id="cgu">
+  <main id="pageCgu">
 
     <h1>Conditions Générales d'Utilisation</h1>
 
@@ -37,11 +37,10 @@
     <p>Nous ne saurions être tenus responsables des dommages résultant de l'utilisation du site.</p>
 
     <h2>5. Modification des CGU</h2>
-    <p>Nous nous réservons le droit de modifier ces CGU à tout moment. Les utilisateurs seront informés des mises à
-      jour.</p>
+    <p>Nous nous réservons le droit de modifier ces CGU à tout moment.</p>
 
     <h2>6. Contact</h2>
-    <p>Pour toute question concernant ces CGU, vous pouvez nous contacter à l'adresse suivante : contact@exemple.com</p>
+    <p>Pour toute question concernant ces CGU, vous pouvez nous contacter à l'adresse suivante : ewen@jain-etudiants.univ-rennes1.com </p>
   </main>
   <?php require_once "components/footer.php"; ?>
 </body>
