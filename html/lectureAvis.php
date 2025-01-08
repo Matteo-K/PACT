@@ -31,10 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id = htmlspecialchars($input['id']); // Sécurisation de l'ID
 
         // Simuler un traitement (exemple : recherche en base de données)
-        $response = [
-            'message' => "ID reçu : $id",
-            'success' => true
-        ];
+        $stmt = $conn->prepare("UPDATE pact._avis SET lu = true WHERE idc = ?");
+        $stmt = $conn->prepare("INSERT INTO pact._tag (nomtag) VALUES (?)");
+        $stmt->execute($input['id']);
+        $result = $stmt->fetch();
 
         // Retourner une réponse JSON
         header('Content-Type: application/json');
