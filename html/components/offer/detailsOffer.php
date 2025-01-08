@@ -375,6 +375,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Recharger la liste des images pour restaurer l'état
                 loadExistingImages();
             });
+
+            checkImg();
         }
 
         // Fonction pour gérer les fichiers sélectionnés
@@ -575,7 +577,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
          */
         function checkNom() {
             let res = true;
-            console.log(divImg.childElementCount);
             if (nom.value == "") {
                 msgNom.textContent = 
                     "Ajouter un nom à l'offre";
@@ -594,7 +595,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
          */
         function checkDescription() {
             let res = true;
-            console.log(divImg.childElementCount);
             if (description.value == "") {
                 msgDescription.textContent = 
                     "Ajouter une description";
@@ -613,7 +613,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
          */
         function checkImg() {
             let res = true;
-            console.log(divImg.childElementCount);
             if (divImg.childElementCount == 0) {
                 msgImage.textContent = 
                     "Ajouter une image";
@@ -623,8 +622,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             }
             return res;
         }
-
-        inputFile.addEventListener("input", () => checkImg());
 
     </script>
 
