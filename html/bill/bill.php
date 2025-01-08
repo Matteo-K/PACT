@@ -91,7 +91,10 @@ table{
 }
 
 td{
-    text-align: right;
+    text-align: center;
+}
+.pr{
+    text-align: right !important;
 }
 th{
     background-color: lightgray;
@@ -191,10 +194,10 @@ footer{
                                     <td><?php echo $value['option'] ?></td>
                                     <td><?php echo $value['duree'] ?></td>
                                     <td>Semaine</td>
-                                    <td><?php echo $value['prixBase'] ?></td>
+                                    <td class="pr"><?php echo $value['prixBase'] ?></td>
                                     <td><?php echo $tva ?> %</td>
-                                    <td><?php echo $v1 * $v2 ?> €</td>
-                                    <td><?php echo round($v1*$v2+($v1*$v2*20/100),2) ?> €</td>
+                                    <td class="pr"><?php echo $v1 * $v2 ?> €</td>
+                                    <td class="pr"><?php echo round($v1*$v2+($v1*$v2*20/100),2) ?> €</td>
                                 </tr>
                             <?php
                         }
@@ -204,10 +207,10 @@ footer{
                     <td>Abonnement <?php echo $tarif['option'] ?></td>
                     <td><?php echo $nbEnLigne ?></td>
                     <td>Jour</td>
-                    <td><?php echo $v3 ?></td>
+                    <td class="pr"><?php echo $v3 . "€" ?></td>
                     <td><?php echo $tva ?> %</td>
-                    <td><?php echo $nbEnLigne*$v3 ?> €</td>
-                    <td><?php echo round($nbEnLigne*$v3+($nbEnLigne*$v3*20/100),2) ?> €</td>
+                    <td class="pr"><?php echo $nbEnLigne*$v3 ?> €</td>
+                    <td class="pr"><?php echo round($nbEnLigne*$v3+($nbEnLigne*$v3*20/100),2) ?> €</td>
                 </tr>
                 <tr>
                     <td></td>
