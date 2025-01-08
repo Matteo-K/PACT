@@ -1958,84 +1958,101 @@ header ul + div {
 /* test média query  */
 @media (max-width: 600px) {
   #trifiltre {
-      position: sticky;
-      top: 0;
-      height: 100%;
-      flex-flow: column nowrap;
-      width: 100%;
+    position: sticky;
+    top: 0;
+    height: 100%;
+    flex-flow: column nowrap;
+    width: 100%;
   }
 
   #tri, #filtre {
-      width: 100% !important;
-      height: 100% !important;
-      transform: translateX(0) !important;
-      opacity: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: translateX(0) !important;
+    opacity: 1 !important;
   }
 
   #btnAside {
-      width: 100%;
-      flex-flow: row nowrap;
-      gap: 10px;
-      justify-content: center;
+    width: 100%;
+    flex-flow: row nowrap;
+    gap: 10px;
+    justify-content: center;
   }
 
   #btnAside img {
-      width: 50px;
-      height: auto;
+    width: 50px;
+    height: auto;
   }
 
   #btnFiltre img {
-      width: 40px;
-      height: auto;
+    width: 40px;
+    height: auto;
   }
 
+  #btnAside a {
+    background-color: var(--bloc25);
+    border-radius: 1.5rem;
+    transition: padding 0.1s linear;
+    cursor: pointer;
+  }
+
+
   #note, #prix, #statut, #categorie, #date {
-      padding-inline: 15px;
+    padding-inline: 20px;
   }
 
   #note label, #prix label, #statut label, #idCategorie label, #date label {
-      font-size: 16px;
+    font-size: 16px;
   }
 
-  #idCategorie label {
-      font-size: 16px;
-      flex-direction: row;
-      justify-content: flex-start;
-      width: 100%;
+  /* Note */
+  .blocStar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3px;
   }
-
-  #idCategorie input {
-      width: 25px;
-      height: 25px;
-      margin: 0 10px 0 0;
+  
+  /* Prix */
+  #prix div {
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100px;
   }
 
   #prixMin, #prixMax {
-      width: 80%;
-      height: 40px;
+    width: 80%;
+    height: 40px;
   }
 
+  /* Statut */
+
+  /* Catégorie */
+  #idCategorie label {
+    font-size: 16px;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  /* Date */
   #date input {
-      width: 80%;
-      height: 40px;
+    width: 80%;
+    height: 40px;
   }
 
   .blocStar {
-      gap: 2px;
-  }
-
-  .blcTriFiltre div {
-      margin-bottom: 15px;
-      margin-left: 20px;
+    gap: 2px;
   }
 
   #titreAside img {
-      width: 25px;
-      height: 25px;
+    width: 25px;
+    height: 25px;
   }
 
   .blcTriFiltre {
-      padding-top: 10px;
+    padding-top: 10px;
   }
 }
 
