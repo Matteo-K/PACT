@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Simuler un traitement (exemple : recherche en base de données)
         $stmt = $conn->prepare("UPDATE pact._avis SET lu = true WHERE idc = ?");
-        $stmt = $conn->prepare("INSERT INTO pact._tag (nomtag) VALUES (?)");
         $stmt->execute($input['id']);
         $result = $stmt->fetch();
 
