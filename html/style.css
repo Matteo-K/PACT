@@ -1630,7 +1630,7 @@ header ul + div {
   display: inline-block;
   font-size: 22px;
   padding: 5px 30px;
-  border-radius: 50px;
+  border-radius: 10px;
   color: #000;
   margin: 0 5px;
   border: none;
@@ -1748,14 +1748,25 @@ header ul + div {
   box-shadow: none;
   background-color: var(--secondary);
   height: 30px;
-  margin: 5px;
-  padding: 5px 15px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
+
 
 #artDetailOffer .tag img {
   width: 12px;
   height: 12px;
   margin: auto 0 auto 5px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+}
+
+#artDetailOffer .tag:hover img {
+  display: block;
 }
 
 #artDetailOffer section,
@@ -1768,6 +1779,7 @@ header ul + div {
   flex-flow: wrap row;
   align-items: center;
   justify-content: flex-start;
+  gap: 10px;
 }
 
 #inputAutoComplete {
