@@ -91,7 +91,7 @@ table{
 }
 
 td{
-    text-align: center;
+    text-align: right;
 }
 th{
     background-color: lightgray;
