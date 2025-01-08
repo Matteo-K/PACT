@@ -6,3 +6,6 @@
 
 <h2>Serveur</h2>
 <?php print_r($_SERVER); ?>
+
+<h2>Files</h2>
+<?php print_r($_FILES); ?>
