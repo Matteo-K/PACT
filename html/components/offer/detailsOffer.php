@@ -377,6 +377,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Recharger la liste des images pour restaurer l'état
                 loadExistingImages();
             });
+            checkImg();
         }
 
         // Fonction pour gérer les fichiers sélectionnés
