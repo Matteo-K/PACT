@@ -235,7 +235,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
         
         // Fonction pour afficher ou masquer la div des require_once
-        hidenOffer();
         function toggleSpecialOffer() {
             hidenOffer();
             if (select.value == "parc") {
