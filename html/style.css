@@ -1832,6 +1832,7 @@ header ul + div {
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
+  color: white;
 }
 
 #note, #prix, #statut, #categorie, #date{
