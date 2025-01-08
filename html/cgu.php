@@ -1,6 +1,7 @@
-<?php  require_once 'config.php'; ?>
+<?php require_once 'config.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,31 +10,40 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <script src="js/setColor.js"></script>
   <?php require_once "components/header.php" ?>
   <main id="cgu">
-    <h1>Page des CGU</h1>
-    <h2>Source site du gouvernement</h2>
-    <p>
-      Vous devez preciser l’objectif du site et decrire les services que vous
-      proposez. Preferez une description suffisamment large pour ne pas avoir a
-      completer vos CGU a chaque evolution de votre offre. Les droits de
-      l’utilisateur doivent être precises, par exemple dans le cas de la
-      creation d’un espace personnel. Parmi les obligations qui peuvent lui être
-      imposees, on peut citer celle : de maintenir le caractere confidentiel de
-      ses identifiants de connexion, d’utiliser le site conformement à sa
-      destination, de ne pas tenter de nuire au bon fonctionnement du site… Ces
-      dispositions des conditions generales d’utilisation permettent d’engager
-      la responsabilite de l'utilisateur en cas de dommage resultant du
-      non-respect desdites obligations. Par exemple, si le site se compose d’un
-      espace adherant, les CGU peuvent indiquer comment se deroule une creation
-      de compte , son role, les utilisations permises et interdites et son
-      fonctionnement, jusqu’a sa suppression. De meme, si l’utilisateur a la
-      possibilite de poster des informations sur le site, il peut être
-      interessant d’indiquer les regles d’utilisation.
-    </p>
+
+    <h1>Conditions Générales d'Utilisation</h1>
+
+    <h2>1. Introduction</h2>
+    <p>Bienvenue sur notre site web. En accédant et en utilisant ce site, vous acceptez les présentes Conditions
+      Générales d'Utilisation.</p>
+
+    <h2>2. Utilisation du site</h2>
+    <p>Vous vous engagez à utiliser ce site conformément aux lois en vigueur et à respecter les règles suivantes :</p>
+    <ul>
+      <li>Ne pas publier de contenu illicite ou offensant.</li>
+      <li>Respecter la vie privée des autres utilisateurs.</li>
+      <li>Ne pas tenter de compromettre la sécurité du site.</li>
+    </ul>
+
+    <h2>3. Propriété Intellectuelle</h2>
+    <p>Tous les contenus présents sur ce site (textes, images, logos) sont protégés par le droit d'auteur.</p>
+
+    <h2>4. Responsabilité</h2>
+    <p>Nous ne saurions être tenus responsables des dommages résultant de l'utilisation du site.</p>
+
+    <h2>5. Modification des CGU</h2>
+    <p>Nous nous réservons le droit de modifier ces CGU à tout moment. Les utilisateurs seront informés des mises à
+      jour.</p>
+
+    <h2>6. Contact</h2>
+    <p>Pour toute question concernant ces CGU, vous pouvez nous contacter à l'adresse suivante : contact@exemple.com</p>
   </main>
   <?php require_once "components/footer.php"; ?>
 </body>
+
 </html>

@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 /*
 
 $data = json_decode(file_get_contents('php://input'));
@@ -32,8 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Simuler un traitement (exemple : recherche en base de données)
         $stmt = $conn->prepare("UPDATE pact._avis SET lu = true WHERE idc = ?");
-        $stmt->execute($input['id']);
-        $result = $stmt->fetch();
+        $stmt->execute([$id]);
 
         // Retourner une réponse JSON
         header('Content-Type: application/json');
