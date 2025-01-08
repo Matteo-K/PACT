@@ -4026,9 +4026,15 @@ details .nonRepondu {
 }
 
 .user + article section > article {
+  width: 10vw;
+  justify-content: center;
   display: flex;
-  background-color: red;
   border-radius: 25px;
+}
+
+.user + article section > article > figure{
+  border-radius: 50%;
+  background-color: red;
 }
 
 #dislike > img{
