@@ -1827,7 +1827,7 @@ header ul + div {
 #tri, #filtre {
   display: none;
   width: 20vw;
-  height: calc(110vh - var(--header-size));
+  height: calc(140vh - var(--header-size));
   background-color: var(--bloc);
   opacity: 0;
   transform: translateX(-100%);
@@ -1884,7 +1884,7 @@ header ul + div {
 }
 
 /* Catégorie */
-#idCategorie li {
+#idCategorie label {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
