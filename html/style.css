@@ -1827,11 +1827,78 @@ header ul + div {
 #tri, #filtre {
   display: none;
   width: 20vw;
-  height: calc(100vh - var(--header-size));
+  height: calc(140vh - var(--header-size));
   background-color: var(--bloc);
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
+  color: white;
+}
+
+/*+++++++++++++++++++++++*/
+/* Css filtres, Antoine */
+/*+++++++++++++++++++++*/
+#note, #prix, #statut, #categorie, #date {
+  padding-inline: 20px;
+}
+
+/* Note */
+.blocStar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+}
+
+#note input {
+  width: 30px;
+  height: 30px;
+}
+
+/* Prix */
+#prix div {
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100px;
+}
+
+#prixMin, #prixMax {
+  height: 30px;
+}
+
+/* Statut */
+#statut label {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  margin-bottom: 20px;
+  align-items: center;
+  width: 100px;
+}
+
+#statut input {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px;
+}
+
+/* Catégorie */
+#idCategorie label {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+#idCategorie input {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px;
+}
+
+#idCategorie {
+  padding-left: 0;
 }
 
 .openAside {
@@ -3975,21 +4042,28 @@ details .nonRepondu {
   border-radius: 5px;
 }
 
-.load-more {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  text-align: center;
-  background-color: #007BFF;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+.user + article section > article {
+  width: 10vw;
+  justify-content: center;
+  display: flex;
+  border-radius: 25px;
 }
 
-.load-more:hover {
-  background-color: #0056b3;
+.user + article section > article > figure{
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: red;
 }
+
+.user + article section > article > figure > img{
+  width: 30px;
+}
+
+#dislike > img{
+  transform: scale(-1);
+}
+
 
 
 @media screen and (max-width: 768px) {
@@ -5051,18 +5125,4 @@ label[id="labelPFP"] {
 
 label[id="labelPFP"]:hover {
   color: var(--accent);
-}
-
-
-/*+++++++++++++++++++++++*/
-/* Css filtres, Antoine */
-/*+++++++++++++++++++++*/
-.blocStar{
-  display: flex;
-  flex-direction: row;
-}
-
-#note input{
-  width: 30px;
-  height: 30px;
 }

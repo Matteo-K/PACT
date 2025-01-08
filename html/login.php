@@ -19,8 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
-            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            header('Location: login.php');
+            header('Location: index.php');
             exit;
         }
 
@@ -34,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            header('Location: login.php');
+            header('Location: index.php');
             exit;
         }
 
@@ -48,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            header('Location: login.php');
+            header('Location: index.php');
             exit;
         }
 
@@ -62,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            header('Location: login.php');
+            header('Location: index.php');
             exit;
         } else {
             $error = "Identifiant ou mot de passe incorrect.";
@@ -111,11 +110,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             <button id="boutonConnexion" type="submit">Connexion</button>
 
             <a id="lienMotDePasseOublie" href="#"> Mot de passe oublié ?</a>
-
-            <input type="hidden" name="<?php echo isset($_POST["fileDirection"]) ? $_POST["fileDirection"] : "index.php" ?>">
-            <?php if (isset($_POST["idoffre"])) { ?>
-                <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
-            <?php } ?>
         </form>
         
         <h1 id="pasDeCompteTitre">Vous n'avez pas de compte ? Créez-en un !</h1>

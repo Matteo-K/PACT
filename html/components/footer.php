@@ -8,7 +8,7 @@
       <p>Toute ressemblance avec un site web existant ou ayant existé serait purement fortuite et ne pourrait être que le fruit d'une pure coïncidence.</p>
     </div>
     <address>
-      <h4><a href="mentionsLegales.php">Mentions légales</a></h4>
+      <h4><a href="cgu.html">Mentions légales</a></h4>
       <div>
         Equipe de conception / dev “ The Void - A21 “<br>
         Rue Edouard Branly, 22300 Lannion, France <br>

@@ -87,7 +87,19 @@ foreach ($avis as $a) {
                         <p class="tag"><?= $a['companie'] ?></p>
                     </div>
                     <div>
-                        <p><?= $a['content'] ?></p>
+                        <section>
+                            <p><?= $a['content'] ?></p>
+                            <article>
+                                <figure id="like">
+                                    <img src="img/icone/like1.png">
+                                    <figcaption>10</figcaption>
+                                </figure>
+                                <figure id="dislike">
+                                    <img src="img/icone/like1.png">
+                                    <figcaption>10</figcaption>
+                                </figure>
+                            </article>
+                        </section>
                         <?php if ($a['listimage'] != null) {
                             $listimage = trim($a['listimage'], '{}');
                             $pictures = explode(',', $listimage);
