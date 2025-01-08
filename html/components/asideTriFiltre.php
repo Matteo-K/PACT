@@ -152,7 +152,7 @@
                 </div>
                 <div id="categorie">
                     <h3>Par catégorie</h3>
-                    <ul>
+                    <ul id="idCategorie">
                         <li>
                             <label for="Visite">
                                 <input type="checkbox" name="categorie" id="Visite">

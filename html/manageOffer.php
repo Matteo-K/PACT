@@ -41,8 +41,8 @@
   <?php require_once "components/header.php" ?>
   <main>
     <aside>
-      <div>
-      <span class="circleManageOffer"></span>
+      <div id="navigationOffre">
+        <span class="circleManageOffer"></span>
         <ul>
           <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
           <?php for ($i=1; $i < count($stepManageOffer); $i++) { ?>

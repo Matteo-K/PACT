@@ -49,12 +49,12 @@ $tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>$results[0]['tarif']]
 $v3=$results[0]['tarif'];
 
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
-$nbEnLigne = 0 ;
+$prix = 0 ;
 if ($results[0]['historiquestatut']) {
     $abonnement = explode(';',$results[0]['historiquestatut']);
     foreach ($abonnement as $key => $value) {
         $result = json_decode($value,true);
-    $nbEnLigne = $nbEnLigne + intval($result['Duree']);
+        $prix = $prix + $result['prix'];
     }
 }
 
@@ -74,6 +74,14 @@ h1{
     padding: 10px;
 }
 
+h2{
+    text-align: center;
+    background-color: lightgray;
+    margin: 0;
+    padding: 10px;
+    font-size: 1.9rem;
+}
+
 table{
     width: 100%;
     margin-top: 10px;
@@ -85,11 +93,14 @@ table{
 td{
     text-align: center;
 }
+.pr{
+    text-align: right !important;
+}
 th{
     background-color: lightgray;
 }
-#v3,#v5{
-    width: 70px;
+#v3,#v5,#v1{
+    width: 20px;
 }
 
 th,td{
@@ -142,13 +153,12 @@ footer{
             </section>
         </strong>
         <h1>Facture du mois de <?php echo $mois . " " . $annee ?></h1>
+        <h2><?php echo $denominationL ?></h2>
     </header>
     <main>
         <section>
             <strong>
-                <p>Numéro de facture : <?php echo $idFacture ?></p>
                 <p>Date de facture : <?php echo($newDate)  ?></p>
-                <p>Numéro Client : <?php echo $idU ?></p>
             </strong>
         </section>
         <aside>
@@ -170,22 +180,22 @@ footer{
             </thead>
             <tbody>
                 <?php
-                    $total=$nbEnLigne*$v3;
+                    $total=$prix;
                     if ($results[0]['historiqueoption']) {
                         
                         foreach ($resultat as $key => $value) {
                             $v1 = intval($value['duree']);
                             $v2 = ($value['prixBase']);
-                            $total += $v1 * $v2;
+                            $total .= $value['prix'];
                             ?>
                                 <tr>
                                     <td><?php echo $value['option'] ?></td>
                                     <td><?php echo $value['duree'] ?></td>
                                     <td>Semaine</td>
-                                    <td><?php echo $value['prixBase'] ?></td>
+                                    <td class="pr"><?php echo number_format($value['prixBase'],2,'.','') . " €"  ?></td>
                                     <td><?php echo $tva ?> %</td>
-                                    <td><?php echo $v1 * $v2 ?> €</td>
-                                    <td><?php echo round($v1*$v2+($v1*$v2*20/100),2) ?> €</td>
+                                    <td class="pr"><?php echo number_format($value['prix'],2,'.','') ?> €</td>
+                                    <td class="pr"><?php echo number_format(round($value['prix']+($value['prix']*20/100),2),2,'.','') ?> €</td>
                                 </tr>
                             <?php
                         }
@@ -193,12 +203,12 @@ footer{
                 ?>
                 <tr>
                     <td>Abonnement <?php echo $tarif['option'] ?></td>
-                    <td><?php echo $nbEnLigne ?></td>
+                    <td><?php echo $prix ?></td>
                     <td>Jour</td>
-                    <td><?php echo $v3 ?></td>
+                    <td class="pr"><?php echo number_format($v3,2,'.','') . " €" ?></td>
                     <td><?php echo $tva ?> %</td>
-                    <td><?php echo $nbEnLigne*$v3 ?> €</td>
-                    <td><?php echo round($nbEnLigne*$v3+($nbEnLigne*$v3*20/100),2) ?> €</td>
+                    <td class="pr"><?php echo number_format($prix*$v3, 2, '.', '') ?> €</td>
+                    <td class="pr"><?php echo number_format(round($prix*$v3+($prix*$v3*20/100),2),2,'.','') ?> €</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -220,8 +230,8 @@ footer{
                 </tr>
                 <tr>
                     <th colspan="5">Total</th>
-                    <th>HT : <?php echo $total ?> €</th>
-                    <th>TTC : <?php echo round($total*20/100+$total,2) ?> €</th>
+                    <th class="pr">HT : <?php echo number_format($total, 2, '.', '') ?> €</th>
+                    <th class="pr">TTC : <?php echo number_format(round($total*20/100+$total,2), 2, '.', '') ?> €</th>
                 </tr>
             </tbody>
         </table>

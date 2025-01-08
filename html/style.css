@@ -1003,6 +1003,10 @@ header ul + div {
   }
 }
 
+#navigationOffre {
+  position: relative;
+}
+
 .circleManageOffer {
   position: absolute;
   top: 31%;
@@ -1018,8 +1022,8 @@ header ul + div {
   position: absolute;
   top: 31%;
   right: 20px;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 50px;
   transform: translateY(-50%);
   background-color: black;
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%);
@@ -1093,11 +1097,6 @@ header ul + div {
 
 #manageOffer aside + section {
   min-height: 70vh;
-}
-
-#manageOffer fieldset {
-  width: 100%;
-  margin: 30px;
 }
 
 /* Bouton suivant précédent */
@@ -1631,7 +1630,7 @@ header ul + div {
   display: inline-block;
   font-size: 22px;
   padding: 5px 30px;
-  border-radius: 50px;
+  border-radius: 10px;
   color: #000;
   margin: 0 5px;
   border: none;
@@ -1644,22 +1643,14 @@ header ul + div {
   flex-wrap: nowrap;
 }
 
+#aboutOffer div {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
 #artDetailOffer > div {
   width: 48%;
   margin: 1%;
-}
-
-#artDetailOffer fieldset {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-#aboutOffer {
-  flex: 2;
-}
-
-#blcImg {
-  flex: 1;
 }
 
 #artDetailOffer > div > label:not(.buttonDetailOffer),
@@ -1682,14 +1673,10 @@ header ul + div {
   text-indent: 10px;
   padding: 5px;
   height: 30px;
-  width: 90%;
 }
 
 #artDetailOffer textarea,
 #choixPhoto2 textarea {
-  width: 90%;
-  max-width: 90%;
-  min-width: 90%;
   font-size: 16px;
   padding: 5px;
 }
@@ -1718,13 +1705,14 @@ header ul + div {
 }
 
 #detailsOffer img {
-  max-width: 150px;
-  max-height: 120px;
   margin: 5px;
   overflow: hidden;
   cursor: pointer;
   border-radius: 3px;
   position: static;
+  width: 150px;
+  height: 100px;
+  object-fit: contain;
 }
 
 #tagsSelect {
@@ -1733,10 +1721,6 @@ header ul + div {
   border: 2px solid var(--bloc);
   background-color: #ffffff;
   font-size: 20px;
-}
-
-#inputTag {
-  width: 100%;
 }
 
 #inputTag:focus {
@@ -1749,29 +1733,38 @@ header ul + div {
   box-shadow: none;
   background-color: var(--secondary);
   height: 30px;
-  margin: 5px;
-  padding: 5px 15px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
+
 
 #artDetailOffer .tag img {
   width: 12px;
   height: 12px;
   margin: auto 0 auto 5px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+}
+
+#artDetailOffer .tag:hover img {
+  display: block;
 }
 
 #artDetailOffer section,
 #afficheImages,
 #afficheImages2 {
-  width: 90%;
-  /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
   min-height: 100px;
   margin: 10px 0 5px 0;
-  background: white;
   padding: 7px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: wrap row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 #inputAutoComplete {
@@ -1810,8 +1803,7 @@ header ul + div {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/****** TRI ET FILTRE  INDEX ******/
-
+/****** TRI ET FILTRE INDEX ******/
 #blcSearch {
   display: flex;
 }
@@ -1827,19 +1819,87 @@ header ul + div {
 #tri, #filtre {
   display: none;
   width: 20vw;
-  height: calc(100vh - var(--header-size));
+  height: calc(125vh - var(--header-size));
   background-color: var(--bloc);
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
+  color: white;
 }
 
-#filtre h3 {
+/*+++++++++++++++++++++++*/
+/* Css filtres, Antoine */
+/*+++++++++++++++++++++*/
+#note, #prix, #statut, #categorie, #date {
   padding-inline: 20px;
 }
 
-#note, #prix, #statut, #categorie, #date{
-  padding-inline: 20px;
+#note label, #prix label, #statut label, #idCategorie label, #date label {
+    font-size: 18px;
+}
+
+/* Note */
+.blocStar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+}
+
+#note input {
+  width: 30px;
+  height: 30px;
+}
+
+/* Prix */
+#prix div {
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100px;
+}
+
+#prixMin, #prixMax {
+  height: 30px;
+}
+
+/* Statut */
+#statut label {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  margin-bottom: 20px;
+  align-items: center;
+  width: 100px;
+}
+
+#statut input {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px;
+}
+
+/* Catégorie */
+#idCategorie label {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+#idCategorie input {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px;
+}
+
+#idCategorie {
+  padding-left: 0;
+}
+
+/* Date */
+#date div {
+  margin-bottom: 20px;
 }
 
 .openAside {
@@ -1849,7 +1909,6 @@ header ul + div {
 }
 
 /* Bouton de tri et filtre */
-
 #btnAside {
   width: 60px;
   display: flex;
@@ -1880,7 +1939,6 @@ header ul + div {
 }
 
 /* Bloc tri et filtre */
-
 /* titre */
 #titreAside {
   display: flex;
@@ -1896,6 +1954,91 @@ header ul + div {
   object-fit: contain;
   cursor: pointer;
 }
+
+/* test média query  */
+@media (max-width: 600px) {
+  #trifiltre {
+      position: sticky;
+      top: 0;
+      height: 100%;
+      flex-flow: column nowrap;
+      width: 100%;
+  }
+
+  #tri, #filtre {
+      width: 100% !important;
+      height: 100% !important;
+      transform: translateX(0) !important;
+      opacity: 1 !important;
+  }
+
+  #btnAside {
+      width: 100%;
+      flex-flow: row nowrap;
+      gap: 10px;
+      justify-content: center;
+  }
+
+  #btnAside img {
+      width: 50px;
+      height: auto;
+  }
+
+  #btnFiltre img {
+      width: 40px;
+      height: auto;
+  }
+
+  #note, #prix, #statut, #categorie, #date {
+      padding-inline: 15px;
+  }
+
+  #note label, #prix label, #statut label, #idCategorie label, #date label {
+      font-size: 16px;
+  }
+
+  #idCategorie label {
+      font-size: 16px;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 100%;
+  }
+
+  #idCategorie input {
+      width: 25px;
+      height: 25px;
+      margin: 0 10px 0 0;
+  }
+
+  #prixMin, #prixMax {
+      width: 80%;
+      height: 40px;
+  }
+
+  #date input {
+      width: 80%;
+      height: 40px;
+  }
+
+  .blocStar {
+      gap: 2px;
+  }
+
+  .blcTriFiltre div {
+      margin-bottom: 15px;
+      margin-left: 20px;
+  }
+
+  #titreAside img {
+      width: 25px;
+      height: 25px;
+  }
+
+  .blcTriFiltre {
+      padding-top: 10px;
+  }
+}
+
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
@@ -3983,21 +4126,28 @@ details .nonRepondu {
   border-radius: 5px;
 }
 
-.load-more {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  text-align: center;
-  background-color: #007BFF;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+.user + article section > article {
+  width: 10vw;
+  justify-content: center;
+  display: flex;
+  border-radius: 25px;
 }
 
-.load-more:hover {
-  background-color: #0056b3;
+.user + article section > article > figure{
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: red;
 }
+
+.user + article section > article > figure > img{
+  width: 30px;
+}
+
+#dislike > img{
+  transform: scale(-1);
+}
+
 
 
 @media screen and (max-width: 768px) {
@@ -4323,8 +4473,13 @@ details .nonRepondu {
   border-bottom: 2px solid var(--bloc);
 }
 
+#choixCategorie input[type="radio"]:disabled + label {
+  border-bottom: 2px solid var(--bloc);
+}
+
 #choixCategorie label {
   padding: 10px 50px;
+  cursor: pointer;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
@@ -5054,18 +5209,4 @@ label[id="labelPFP"] {
 
 label[id="labelPFP"]:hover {
   color: var(--accent);
-}
-
-
-/*+++++++++++++++++++++++*/
-/* Css filtres, Antoine */
-/*+++++++++++++++++++++*/
-.blocStar{
-  display: flex;
-  flex-direction: row;
-}
-
-#note input{
-  width: 30px;
-  height: 30px;
 }

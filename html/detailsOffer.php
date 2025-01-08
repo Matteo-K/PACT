@@ -32,9 +32,6 @@ if (isset($_SESSION["typeUser"]) && $_SESSION["typeUser"] == 'membre'){
     }
 }
 
-$monOffre = new ArrayOffer($idOffre);
-$ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
-
 $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = :idoffre");
 $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
@@ -60,6 +57,9 @@ if (!$result) {
 } else {
     $typeOffer = $result[0]['categorie'];
 }
+
+$monOffre = new ArrayOffer($idOffre);
+$ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
 
 // Fonction pour récupérer les horaires
 
