@@ -1903,6 +1903,60 @@ header ul + div {
   margin-bottom: 20px;
 }
 
+.openAside {
+  display: block !important;
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* Bouton de tri et filtre */
+#btnAside {
+  width: 60px;
+  display: flex;
+  flex-flow: column;
+  gap: 5px;
+}
+
+#btnAside img {
+  width: 70px;
+}
+
+#btnFiltre img {
+  width: 50px;
+  padding: 10px;
+}
+
+#btnAside a {
+  width: fit-content;
+  padding: 10px;
+  background-color: var(--bloc25);
+  border-radius: 0 1.5rem 1.5rem 0;
+  transition: padding 0.1s linear;
+  cursor: pointer;
+}
+
+#btnAside a:hover, .btnAsideOpen {
+  padding-left: 30px !important;
+}
+
+/* Bloc tri et filtre */
+/* titre */
+#titreAside {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 20px;
+}
+
+#titreAside img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+/* test média query 600px */
 @media (max-width: 600px) {
   #trifiltre {
       position: sticky;
@@ -1944,10 +1998,6 @@ header ul + div {
       font-size: 16px;
   }
 
-  #note label, #prix label, #statut label, #idCategorie label, #date label {
-      font-size: 16px;
-  }
-
   #idCategorie label {
       font-size: 16px;
       flex-direction: row;
@@ -1977,6 +2027,7 @@ header ul + div {
 
   .blcTriFiltre div {
       margin-bottom: 15px;
+      margin-left: 20px;
   }
 
   #titreAside img {
@@ -1989,60 +2040,88 @@ header ul + div {
   }
 }
 
+/* test média query 375px */
+@media (max-width: 375px) {
+  #trifiltre {
+      position: sticky;
+      top: 0;
+      height: 100%;
+      flex-flow: column nowrap;
+      width: 100%;
+  }
 
-.openAside {
-  display: block !important;
-  opacity: 1 !important;
-  transform: translateX(0) !important;
-}
+  #tri, #filtre {
+      width: 100% !important;
+      height: 100% !important;
+      transform: translateX(0) !important;
+      opacity: 1 !important;
+  }
 
-/* Bouton de tri et filtre */
+  #btnAside {
+      width: 100%;
+      flex-flow: row nowrap;
+      gap: 5px;
+      justify-content: center;
+  }
 
-#btnAside {
-  width: 60px;
-  display: flex;
-  flex-flow: column;
-  gap: 5px;
-}
+  #btnAside img {
+      width: 40px;
+      height: auto;
+  }
 
-#btnAside img {
-  width: 70px;
-}
+  #btnFiltre img {
+      width: 35px;
+      height: auto;
+  }
 
-#btnFiltre img {
-  width: 50px;
-  padding: 10px;
-}
+  #note, #prix, #statut, #categorie, #date {
+      padding-inline: 10px;
+  }
 
-#btnAside a {
-  width: fit-content;
-  padding: 10px;
-  background-color: var(--bloc25);
-  border-radius: 0 1.5rem 1.5rem 0;
-  transition: padding 0.1s linear;
-  cursor: pointer;
-}
+  #note label, #prix label, #statut label, #idCategorie label, #date label {
+      font-size: 14px;
+  }
 
-#btnAside a:hover, .btnAsideOpen {
-  padding-left: 30px !important;
-}
+  #idCategorie label {
+      font-size: 14px;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 100%;
+  }
 
-/* Bloc tri et filtre */
+  #idCategorie input {
+      width: 20px;
+      height: 20px;
+      margin: 0 8px 0 0;
+  }
 
-/* titre */
-#titreAside {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-between;
-  padding-inline: 20px;
-}
+  #prixMin, #prixMax {
+      width: 80%;
+      height: 35px;
+  }
 
-#titreAside img {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  cursor: pointer;
+  #date input {
+      width: 80%;
+      height: 35px;
+  }
+
+  .blocStar {
+      gap: 1px;
+  }
+
+  .blcTriFiltre div {
+      margin-bottom: 10px;
+      margin-left: 15px;
+  }
+
+  #titreAside img {
+      width: 20px;
+      height: 20px;
+  }
+
+  .blcTriFiltre {
+      padding-top: 5px;
+  }
 }
 
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
