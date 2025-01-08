@@ -99,7 +99,7 @@ VALUES (4, '321654987');
 INSERT INTO _adresse (numeroRue, rue, ville, pays, codePostal) 
 VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
        (4, 'Allée des acacias', 'Fréhel', 'France', '22000'),
-	     (123, 'rue de l ananas au fond de la mer', 'Fond de l eau', 'France', '22300'),
+	     (2, 'Rue de Kerniflet', 'Lannion', 'France', '22300'),
 	     ('1','Route du cap', 'Fréhel', 'France','22000'),
 	     ('5','Rue Beauchamp','Lannion','France','22300'),
 	     ('1','Rue du port','Erquy','France','22430');

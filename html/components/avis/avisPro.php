@@ -301,7 +301,7 @@ function afficheAvisSelect(idAvis) {
         fetch('lectureAvis.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: idAvis })
+            body: JSON.stringify({ 'id': idAvis })
         })
         .then(response => {
             if (!response.ok) {
@@ -313,7 +313,7 @@ function afficheAvisSelect(idAvis) {
             console.log('Réponse du serveur :', data);
         })
         .catch(error => {
-            console.error('Erreur :', error);
+            console.error('Erreurrrr :', error);
         });
 
 
