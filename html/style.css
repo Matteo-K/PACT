@@ -1902,6 +1902,15 @@ header ul + div {
   margin-bottom: 20px;
 }
 
+#note label,
+#prix label,
+#statut label,
+#idCategorie label,
+#date label {
+    font-size: 18px;
+}
+
+
 .openAside {
   display: block !important;
   opacity: 1 !important;
