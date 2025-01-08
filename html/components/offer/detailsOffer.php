@@ -343,7 +343,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     });
                     existingImagesCount = data.images.length; // Met à jour le compteur d'images existantes
                 })
-                .catch(error => console.error('Erreur de chargement des images:', error));
+                .catch(error => console.error('Erreur de chargement des images:', error)
+            );
+            checkImg();
         }
 
         // Fonction pour supprimer une image existante
@@ -375,8 +377,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Recharger la liste des images pour restaurer l'état
                 loadExistingImages();
             });
-
-            checkImg();
         }
 
         // Fonction pour gérer les fichiers sélectionnés
