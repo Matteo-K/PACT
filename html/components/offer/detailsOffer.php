@@ -105,7 +105,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <article id="artDetailOffer">
         <div id="aboutOffer">
             <div>
-                <label for="nom" id="nomOffre">Nom de votre offre* <span id="msgNomOffre"></span></label>
+                <label for="nom">Nom de votre offre* <span id="msgNomOffre"></span></label>
                 <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
             </div>
             <div>
@@ -113,7 +113,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
             </div>
             <div>
-                <label for="description" id="descriptionLabel">Description de votre offre* <span id="msgDescription"></span></label>
+                <label for="description">Description de votre offre* <span id="msgDescription"></span></label>
                 <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
             </div>
             <div id="tagsOffer">
@@ -549,8 +549,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         // }
 
 
-        const nom = document.querySelector("#nomOffre");
-        const description = document.querySelector("#descriptionLabel");
+        const nom = document.querySelector("#nom");
+        const description = document.querySelector("#description");
         const divImg = document.querySelector("#afficheImages");
         const inputFile = document.querySelector("#ajoutPhoto");
         
