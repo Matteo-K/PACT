@@ -1842,10 +1842,6 @@ header ul + div {
   padding-inline: 20px;
 }
 
-#filtre {
-  font-size: 25px;
-}
-
 /* Note */
 .blocStar {
   display: flex;
