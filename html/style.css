@@ -1885,12 +1885,11 @@ header ul + div {
 
 /* Catégorie */
 
-#categorie label {
+#idCategorie li {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
   align-items: center;
-  width: 100px;
 }
 
 #idCategorie {
