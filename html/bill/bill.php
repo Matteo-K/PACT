@@ -158,9 +158,7 @@ footer{
     <main>
         <section>
             <strong>
-                <p>Numéro de facture : <?php echo $idFacture ?></p>
                 <p>Date de facture : <?php echo($newDate)  ?></p>
-                <p>Numéro Client : <?php echo $idU ?></p>
             </strong>
         </section>
         <aside>
