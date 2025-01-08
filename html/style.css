@@ -1834,6 +1834,10 @@ header ul + div {
   padding-inline: 20px;
 }
 
+#note label, #prix label, #statut label, #idCategorie label, #date label {
+    font-size: 18px;
+}
+
 /* Note */
 .blocStar {
   display: flex;
@@ -1898,12 +1902,90 @@ header ul + div {
   margin-bottom: 20px;
 }
 
-#note label,
-#prix label,
-#statut label,
-#idCategorie label,
-#date label {
-    font-size: 18px;
+@media (max-width: 600px) {
+  #trifiltre {
+      position: sticky;
+      top: 0;
+      height: 100%;
+      flex-flow: column nowrap;
+      width: 100%;
+  }
+
+  #tri, #filtre {
+      width: 100% !important;
+      height: 100% !important;
+      transform: translateX(0) !important;
+      opacity: 1 !important;
+  }
+
+  #btnAside {
+      width: 100%;
+      flex-flow: row nowrap;
+      gap: 10px;
+      justify-content: center;
+  }
+
+  #btnAside img {
+      width: 50px;
+      height: auto;
+  }
+
+  #btnFiltre img {
+      width: 40px;
+      height: auto;
+  }
+
+  #note, #prix, #statut, #categorie, #date {
+      padding-inline: 15px;
+  }
+
+  #note label, #prix label, #statut label, #idCategorie label, #date label {
+      font-size: 16px;
+  }
+
+  #note label, #prix label, #statut label, #idCategorie label, #date label {
+      font-size: 16px;
+  }
+
+  #idCategorie label {
+      font-size: 16px;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 100%;
+  }
+
+  #idCategorie input {
+      width: 25px;
+      height: 25px;
+      margin: 0 10px 0 0;
+  }
+
+  #prixMin, #prixMax {
+      width: 80%;
+      height: 40px;
+  }
+
+  #date input {
+      width: 80%;
+      height: 40px;
+  }
+
+  .blocStar {
+      gap: 2px;
+  }
+
+  .blcTriFiltre div {
+      margin-bottom: 15px;
+  }
+
+  #titreAside img {
+      width: 25px;
+      height: 25px;
+  }
+
+  .blcTriFiltre {
+      padding-top: 10px;
+  }
 }
 
 
