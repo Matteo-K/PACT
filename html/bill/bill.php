@@ -54,7 +54,7 @@ if ($results[0]['historiquestatut']) {
     $abonnement = explode(';',$results[0]['historiquestatut']);
     foreach ($abonnement as $key => $value) {
         $result = json_decode($value,true);
-        $prix = $prix + $result['prix'];
+        $prix = $prix + $result['Prix'];
     }
 }
 
