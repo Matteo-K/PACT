@@ -126,12 +126,12 @@ footer{
 </head>
 <body>
     <header>
+        <section>
+            <p>Pact TripEnArvor</p>
+            <p>Rue Edouard Branly</p>
+            <p>22300 Lannion</p>
+        </section>
         <strong>
-            <section>
-                <p>Pact TripEnArvor</p>
-                <p>Rue Edouard Branly</p>
-                <p>22300 Lannion</p>
-            </section>
             <section>
                 <p><?php echo $denomination ?></p>
                 <p><?php echo $rue ?></p>
