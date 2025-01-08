@@ -136,7 +136,6 @@ footer{
                 <p><?php echo $denomination ?></p>
                 <p><?php echo $rue ?></p>
                 <p><?php echo $codePostal . " " . $ville ?></p>
-                <br>
                 <p><?php echo $denominationL ?></p>
                 <p><?php echo $rueL ?></p>
                 <p><?php echo $codePostalL . " " . $villeL ?></p>
