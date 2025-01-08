@@ -4454,6 +4454,12 @@ details .nonRepondu {
 
 /*------------------------ CSS OFFRE PARTICULIERE -----------------------------------------*/
 
+#choixCategorie {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 #choixCategorie select {
   appearance: none;
   -webkit-appearance: none;
