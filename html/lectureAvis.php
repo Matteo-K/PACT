@@ -28,9 +28,6 @@ else{
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
         $input = json_decode(file_get_contents('php://input'), true);
-    } catch (\Throwable $th) {
-        http_response_code(response_code: 400);
-    }
     
 
     if (isset($input['id'])) {

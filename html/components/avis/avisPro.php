@@ -307,7 +307,7 @@ function afficheAvisSelect(idAvis) {
             if (!response.ok) {
                 throw new Error('Erreur HTTP : ' + response.status);
             }
-            return response.json();
+            return response.text();
         })
         .then(data => {
             console.log('Réponse du serveur :', data);
