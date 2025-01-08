@@ -287,6 +287,14 @@ function afficheAvisSelect(idAvis) {
         let divNonRep = document.createElement("div");
         divNonRep.classList.add("nonRepondu");
         avisSelect.querySelector("div").appendChild(divNonRep);
+
+
+        fetch('lectureAvis.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id })
+        });
+
     }
 
     avisPrecedent = document.getElementById(`avis${idAvis}`);
