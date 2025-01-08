@@ -1840,6 +1840,15 @@ header ul + div {
 }
 
 #prix > div {
+  display: inline-flex;
+  justify-content: space-around;
+  width: 100px;
+}
+
+#statut > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: 100px;
 }
 
