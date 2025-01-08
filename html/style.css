@@ -5225,3 +5225,9 @@ label[id="labelPFP"] {
 label[id="labelPFP"]:hover {
   color: var(--accent);
 }
+
+/* Css de la page des CGU */
+
+#cgu {
+  background-color: yellow;
+}

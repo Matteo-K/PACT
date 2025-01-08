@@ -288,12 +288,30 @@ function afficheAvisSelect(idAvis) {
         divNonRep.classList.add("nonRepondu");
         avisSelect.querySelector("div").appendChild(divNonRep);
 
-
+/*
         fetch('lectureAvis.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(idAvis)
         });
+*/
+
+        // Envoi de la requête AJAX avec fetch
+        fetch('lectureAvis.php', {
+            method: 'POST', // Méthode HTTP
+            headers: {
+                'Content-Type': 'application/json' // Type de contenu envoyé
+            },
+            body: JSON.stringify({ id: idAvis }) // Conversion de l'ID en JSON
+        })
+            .then(response => response.json()) // Convertir la réponse en JSON
+            .then(data => {
+                console.log('Réponse du serveur :', data);
+            })
+            .catch(error => {
+                console.error('Erreur :', error);
+            });
+
 
     }
 
