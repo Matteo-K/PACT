@@ -2068,7 +2068,7 @@ GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
 .sectionLoca {
-  width: 1000px;
+  width: 800px;
   font-size: 25px;
   display: flex;
   flex-direction: column;
@@ -2081,6 +2081,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
   gap: 50px;
   margin-top: 50px;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #localisationOffer {
@@ -2106,11 +2108,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .codeP {
-  width: 25%;
+  width: 40%;
 }
 
 .villeL {
-  width: 68%;
+  width: 100%;
 }
 
 .map {
@@ -2124,7 +2126,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #map {
-  height: 30vh;
+  height: 50vh;
   width: 90%;
 }
 
