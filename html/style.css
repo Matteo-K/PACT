@@ -1003,6 +1003,10 @@ header ul + div {
   }
 }
 
+#navigationOffre {
+  position: relative;
+}
+
 .circleManageOffer {
   position: absolute;
   top: 31%;
