@@ -1921,16 +1921,17 @@ header ul + div {
 #tri > .blcTriFiltre > div {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: baseline;
   padding-inline: 20px;
-  height: 30px;
+  margin-bottom: 50px;
 }
 
 #tri label {
   font-size: 20px;
+  margin: 10px 0;
 }
 
-input:checked + label {
+#tri input:checked + label {
   background: red;
 }
 
