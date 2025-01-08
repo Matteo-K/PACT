@@ -1918,6 +1918,10 @@ header ul + div {
   display: none;
 }
 
+#tri > .blcTriFiltre > div {
+  color: #007bff;
+}
+
 input:checked + label {
   background: red;
 }
