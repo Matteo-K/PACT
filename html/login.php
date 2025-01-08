@@ -4,7 +4,6 @@ session_start();
 
 // fichier de connexion à la BDD
 require_once 'db.php';
-echo $_SERVER['REQUEST_METHOD'];
 // Vérification de la connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_POST['motdepasseConnexion'])) {
     $login = $_POST['login'];
@@ -20,8 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
-            // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            header('Location: login.php');
+            header('Location: index.php');
             exit;
         }
 
@@ -35,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            header('Location: login.php');
+            header('Location: index.php');
             exit;
         }
 
@@ -49,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            header('Location: login.php');
+            header('Location: index.php');
             exit;
         }
 
@@ -63,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            header('Location: login.php');
+            header('Location: index.php');
             exit;
         } else {
             $error = "Identifiant ou mot de passe incorrect.";
