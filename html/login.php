@@ -4,6 +4,7 @@ session_start();
 
 // fichier de connexion à la BDD
 require_once 'db.php';
+echo $_SERVER['REQUEST_METHOD'];
 // Vérification de la connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_POST['motdepasseConnexion'])) {
     $login = $_POST['login'];
