@@ -67,7 +67,7 @@ p{
 header strong{
     text-align: right;
 }
-h1{
+h1, h2{
     text-align: center;
     background-color: lightgray;
     margin: 0;
@@ -126,22 +126,24 @@ footer{
 </head>
 <body>
     <header>
-        <section>
-            <p>Pact TripEnArvor</p>
-            <p>Rue Edouard Branly</p>
-            <p>22300 Lannion</p>
-        </section>
         <strong>
+            <section>
+                <p>Pact TripEnArvor</p>
+                <p>Rue Edouard Branly</p>
+                <p>22300 Lannion</p>
+            </section>
             <section>
                 <p><?php echo $denomination ?></p>
                 <p><?php echo $rue ?></p>
                 <p><?php echo $codePostal . " " . $ville ?></p>
+                <br>
                 <p><?php echo $denominationL ?></p>
                 <p><?php echo $rueL ?></p>
                 <p><?php echo $codePostalL . " " . $villeL ?></p>
             </section>
         </strong>
         <h1>Facture du mois de <?php echo $mois . " " . $annee ?></h1>
+        <h2><?php echo $denominationL ?></h2>
     </header>
     <main>
         <section>
