@@ -232,8 +232,8 @@ footer{
                 </tr>
                 <tr>
                     <th colspan="5">Total</th>
-                    <th>HT : <?php echo $total ?> €</th>
-                    <th>TTC : <?php echo round($total*20/100+$total,2) ?> €</th>
+                    <th class="pr">HT : <?php echo $total ?> €</th>
+                    <th class="pr">TTC : <?php echo round($total*20/100+$total,3) ?> €</th>
                 </tr>
             </tbody>
         </table>
