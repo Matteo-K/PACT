@@ -6,7 +6,9 @@ $id = json_decode($data[0]) ?? null;
 // Vérification si 'id' est bien défini
 if ($id != null) {
 
-    $stmt = $conn->prepare("UPDATE pact._avis SET lu=true WHERE idc = ?");
+    echo $id;
+
+    $stmt = $conn->prepare("UPDATE pact._avis SET lu = true WHERE idc = ?");
     $stmt->execute($id);
     $result = $stmt->fetch();
 
