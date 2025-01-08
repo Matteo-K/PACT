@@ -67,7 +67,7 @@ p{
 header strong{
     text-align: right;
 }
-h1{
+h1, h2{
     text-align: center;
     background-color: lightgray;
     margin: 0;
@@ -142,6 +142,7 @@ footer{
             </section>
         </strong>
         <h1>Facture du mois de <?php echo $mois . " " . $annee ?></h1>
+        <h1><?php echo $denominationL ?></h1>
     </header>
     <main>
         <section>
