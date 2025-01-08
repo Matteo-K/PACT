@@ -4046,6 +4046,8 @@ details .nonRepondu {
 }
 
 .user + article section > article > figure{
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   background-color: red;
 }
