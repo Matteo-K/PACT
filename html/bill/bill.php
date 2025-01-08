@@ -51,6 +51,7 @@ $v3=$results[0]['tarif'];
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
 $prix = 0 ;
 $nbjour = 0;
+$ttc = 0;
 if ($results[0]['historiquestatut']) {
     $abonnement = explode(';',$results[0]['historiquestatut']);
     foreach ($abonnement as $key => $value) {
@@ -182,13 +183,15 @@ footer{
             </thead>
             <tbody>
                 <?php
-                    $total=$prix;
+                    $total = $prix;
+                    $ttc = number_format(round($prix+($prix*20/100),2),2,'.','');
                     if ($results[0]['historiqueoption']) {
                         
                         foreach ($resultat as $key => $value) {
                             $v1 = intval($value['duree']);
                             $v2 = ($value['prixBase']);
                             $total += $value['prix'];
+                            $ttc += number_format(round($value['prix']+($value['prix']*20/100),2),2,'.','');
                             ?>
                                 <tr>
                                     <td><?php echo $value['option'] ?></td>
@@ -233,7 +236,7 @@ footer{
                 <tr>
                     <th colspan="5">Total</th>
                     <th class="pr">HT : <?php echo number_format($total, 2, '.', '') ?> €</th>
-                    <th class="pr">TTC : <?php echo number_format(round($total*20/100+$total,2), 2, '.', '') ?> €</th>
+                    <th class="pr">TTC : <?php echo $ttc ?> €</th>
                 </tr>
             </tbody>
         </table>

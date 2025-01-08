@@ -1,13 +1,13 @@
 <?php
 
-$data = json_decode(file_get_contents('php://input'), true);
-$id = $data['id'] ?? null;
+$data = json_decode(file_get_contents('php://input'));
+$id = json_decode($data[0]) ?? null;
 
 // Vérification si 'id' est bien défini
 if ($id != null) {
 
     $stmt = $conn->prepare("UPDATE pact._avis SET lu=true WHERE idc = ?");
-    $stmt->execute($input[$id]);
+    $stmt->execute($id);
     $result = $stmt->fetch();
 
 }
