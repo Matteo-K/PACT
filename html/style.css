@@ -1095,11 +1095,6 @@ header ul + div {
   min-height: 70vh;
 }
 
-#manageOffer fieldset {
-  width: 100%;
-  margin: 30px;
-}
-
 /* Bouton suivant précédent */
 #manageOffer aside + section + div {
   position: absolute;
@@ -1647,11 +1642,6 @@ header ul + div {
 #artDetailOffer > div {
   width: 48%;
   margin: 1%;
-}
-
-#artDetailOffer fieldset {
-  display: flex;
-  justify-content: space-evenly;
 }
 
 #aboutOffer {

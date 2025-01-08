@@ -103,107 +103,102 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 ?>
 <form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
-        <fieldset>
-            <legend>A propos de votre offre</legend>
-            <div id="aboutOffer">
+        <div id="aboutOffer">
+            <div>
+                <label for="nom">Nom de votre offre*</label>
+                <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
+            </div>
+            <div>
+                <label for="resume">Résumé de l'offre</label>
+                <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
+            </div>
+            <div>
+                <label for="description">Description de votre offre*</label>
+                <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
+            </div>
+            <div id="tagsOffer">
+                <div id="inputAutoComplete">
+                    <label for="inputTag">Tags supplémentaires </label>
+                    <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
+                    <!--<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
+                    <ul id="autocompletion"></ul>
+                </div>
+                <section id="sectionTag">
+                    <!-- Les tags ajoutés apparaîtront ici -->
+                </section>
+                <p>
+                    Vous pouvez entrer jusqu'à 6 tags
+                </p>
+            </div>
+        </div>
+        <div id="blcImg">
+            <div id="choixImage">
+                <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
+                <p>
+                    Vous pouvez insérer jusqu'à 10 photos<br>
+                    Cliquez sur une image pour la supprimer
+                </p>
+            </div>
+            <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+            <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
+            <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
+            <input 
+                type="file" 
+                id="ajoutPhoto" 
+                name="images[]" 
+                accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
+                multiple 
+                onchange="handleFiles(this)"
+            />
+            <div id="afficheImages"></div>
+            <div>
                 <div>
-                    <label for="nom">Nom de votre offre*</label>
-                    <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
+                    <figure class="bigImgOffer"></figure>
                 </div>
                 <div>
-                    <label for="resume">Résumé de l'offre</label>
-                    <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
-                </div>
-                <div>
-                    <label for="description">Description de votre offre*</label>
-                    <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
-                </div>
-                <div id="tagsOffer">
-                    <div id="inputAutoComplete">
-                        <label for="inputTag">Tags supplémentaires </label>
-                        <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
-                        <!--<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
-                        <ul id="autocompletion"></ul>
-                    </div>
-                    <section id="sectionTag">
-                        <!-- Les tags ajoutés apparaîtront ici -->
-                    </section>
-                    <p>
-                        Vous pouvez entrer jusqu'à 6 tags
-                    </p>
+                    <figure class="imgOffer"></figure>
+                    <figure class="imgOffer"></figure>
+                    <figure class="imgOffer"></figure>
+                    <figure class="imgOffer"></figure>
+                    <figure class="imgOffer"></figure>
+                    <figure class="imgOffer"></figure>
+                    <figure class="imgOffer"></figure>
+                    <figure class="imgOffer"></figure>
+                    <figure class="imgOffer"></figure>
+                    <figure class="imgOffer"></figure>
                 </div>
             </div>
-            <div id="blcImg">
-                <div id="choixImage">
-                    <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
-                    <p>
-                        Vous pouvez insérer jusqu'à 10 photos<br>
-                        Cliquez sur une image pour la supprimer
-                    </p>
-                </div>
-                <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
-                <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
-                <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
-                <input 
-                    type="file" 
-                    id="ajoutPhoto" 
-                    name="images[]" 
-                    accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
-                    multiple 
-                    onchange="handleFiles(this)"
-                />
-                <div id="afficheImages"></div>
-                <div>
-                    <div>
-                        <figure class="bigImgOffer"></figure>
-                    </div>
-                    <div>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
+        </div>
     </article>
     
     <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
-        <fieldset>
-            <legend>Catégorie de l'offre</legend>
-            <span id="msgCategorie" class="msgError"></span>
-            <section id="choixCategorie">
-                <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required 
-                <?php echo $categorie["_restauration"] ? "checked" : "" ?> 
-                <?php echo $disableCategorie && !$categorie["_restauration"] ? "disabled" : "" ?>> 
-                <label for="radioRestaurant">Restaurant</label>
-                
-                <input type="radio" name="categorie" id="radioParc" value="parc" 
-                <?php echo $categorie["_parcattraction"] ? "checked" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_parcattraction"] ? "disabled" : "" ?>> 
-                <label for="radioParc">Parc d'attraction</label>
+        <span id="msgCategorie" class="msgError"></span>
+        <section id="choixCategorie">
+            <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required 
+            <?php echo $categorie["_restauration"] ? "checked" : "" ?> 
+            <?php echo $disableCategorie && !$categorie["_restauration"] ? "disabled" : "" ?>> 
+            <label for="radioRestaurant">Restaurant</label>
+            
+            <input type="radio" name="categorie" id="radioParc" value="parc" 
+            <?php echo $categorie["_parcattraction"] ? "checked" : "" ?>
+            <?php echo $disableCategorie && !$categorie["_parcattraction"] ? "disabled" : "" ?>> 
+            <label for="radioParc">Parc d'attraction</label>
 
-                <input type="radio" name="categorie" id="radioActivite" value="activite" 
-                <?php echo $categorie["_activite"] ? "checked" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_activite"] ? "disabled" : "" ?>> 
-                <label for="radioActivite" >Activite</label>
-                
-                <input type="radio" name="categorie" id="radioSpectacle" value="spectacle" 
-                <?php echo $categorie["_spectacle"] ? "checked" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_spectacle"] ? "disabled" : "" ?>> 
-                <label for="radioSpectacle">Spectacle</label>
+            <input type="radio" name="categorie" id="radioActivite" value="activite" 
+            <?php echo $categorie["_activite"] ? "checked" : "" ?>
+            <?php echo $disableCategorie && !$categorie["_activite"] ? "disabled" : "" ?>> 
+            <label for="radioActivite" >Activite</label>
+            
+            <input type="radio" name="categorie" id="radioSpectacle" value="spectacle" 
+            <?php echo $categorie["_spectacle"] ? "checked" : "" ?>
+            <?php echo $disableCategorie && !$categorie["_spectacle"] ? "disabled" : "" ?>> 
+            <label for="radioSpectacle">Spectacle</label>
 
-                <input type="radio" name="categorie" id="radioVisite" value="visite" 
-                <?php echo $categorie["_visite"] ? "checked" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_visite"] ? "disabled" : "" ?>>
-                <label for="radioVisite">Visite</label>
-            </section>
+            <input type="radio" name="categorie" id="radioVisite" value="visite" 
+            <?php echo $categorie["_visite"] ? "checked" : "" ?>
+            <?php echo $disableCategorie && !$categorie["_visite"] ? "disabled" : "" ?>>
+            <label for="radioVisite">Visite</label>
+        </section>
         <?php
             $source = "details/";
             require_once $source . "detailsRestaurant.php";
@@ -213,7 +208,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             require_once $source . "detailsActivity.php";
             
         ?>
-        </fieldset>
     </article>
     
     <script>
