@@ -376,6 +376,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Recharger la liste des images pour restaurer l'état
                 loadExistingImages();
             });
+            checkImg();
         }
 
         // Fonction pour gérer les fichiers sélectionnés
@@ -405,7 +406,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             });
 
             input.value = ""; // Réinitialise l'input
-            checkImg();
         }
 
         // Fonction pour envoyer un fichier au serveur
@@ -606,7 +606,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
 
         description.addEventListener("blur", () => checkDescription());
-
+        
         /**
          * Vérifie si l'offre contient au moins une image
          * @returns {boolean} - Renvoie true si l'offre contient au moins une image. false sinon
@@ -615,14 +615,17 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             let res = true;
             if (divImg.childElementCount == 0) {
                 msgImage.textContent = 
-                    "Ajouter une image";
+                "Ajouter une image";
                 res = false;
             } else {
                 msgImage.textContent = "";
             }
             return res;
         }
-
+        
+        inputFile.addEventListener("input", () => {
+            msgImage.textContent = "";
+        });
     </script>
 
 
