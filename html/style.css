@@ -1096,7 +1096,7 @@ header ul + div {
 }
 
 #manageOffer aside + section {
-  min-height: 70vh;
+  min-height: 56vh;
 }
 
 /* Bouton suivant précédent */
@@ -1834,7 +1834,7 @@ header ul + div {
 }
 
 #note label, #prix label, #statut label, #idCategorie label, #date label {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 /* Note */
@@ -1873,9 +1873,14 @@ header ul + div {
 }
 
 #statut input {
+  display: none;
+}
+
+#statut .checkmark {
   width: 30px;
   height: 30px;
   margin: 0 8px 0 4px;
+  background-color: red;
 }
 
 /* Catégorie */
@@ -1923,16 +1928,25 @@ header ul + div {
   flex-direction: column;
   align-items: baseline;
   padding-inline: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 #tri label {
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 20px;
+  font-size: 25px;
+  font-weight: bold;
+
   margin: 10px 0;
+  height: 40px;
 }
 
 #tri input:checked + label {
-  background: red;
+  background: var(--accent-border);
+  border-radius: 3px;
 }
 
 
@@ -2059,7 +2073,7 @@ GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
 .sectionLoca {
-  width: 1000px;
+  width: 800px;
   font-size: 25px;
   display: flex;
   flex-direction: column;
@@ -2072,10 +2086,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
   gap: 50px;
   margin-top: 50px;
-}
-
-#localisationOffer {
-  height: 750px;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
 }
 
 .sectionLoca input {
@@ -2097,16 +2110,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .codeP {
-  width: 25%;
+  width: 40%;
 }
 
 .villeL {
-  width: 68%;
+  width: 100%;
 }
 
 .map {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   height: fit-content;
@@ -2115,7 +2128,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #map {
-  height: 30vh;
+  height: 50vh;
   width: 90%;
 }
 

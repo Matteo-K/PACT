@@ -301,19 +301,19 @@ function afficheAvisSelect(idAvis) {
         fetch('lectureAvis.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: idAvis })
+            body: JSON.stringify({ 'id': idAvis })
         })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erreur HTTP : ' + response.status);
             }
-            return response.json();
+            return response.text();
         })
         .then(data => {
             console.log('Réponse du serveur :', data);
         })
         .catch(error => {
-            console.error('Erreur :', error);
+            console.error('Erreurrrr :', error);
         });
 
 
