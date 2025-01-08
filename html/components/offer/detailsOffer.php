@@ -101,11 +101,11 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $listeTags[] = str_replace("_", " ",$result["nomtag"]);
 }
 ?>
-<form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
+<form id="detailsOffer" action="post.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
         <div id="aboutOffer">
             <div>
-                <label for="nom">Nom de votre offre* <span id="msgNomOffre"></span></label>
+                <label for="nom">Nom de votre offre* <span id="msgNomOffre" class="msgError"></span></label>
                 <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
             </div>
             <div>
@@ -113,7 +113,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
             </div>
             <div>
-                <label for="description">Description de votre offre* <span id="msgDescription"></span></label>
+                <label for="description">Description de votre offre* <span id="msgDescription" class="msgError"></span></label>
                 <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
             </div>
             <div id="tagsOffer">
