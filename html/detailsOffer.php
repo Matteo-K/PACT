@@ -32,9 +32,6 @@ if (isset($_SESSION["typeUser"]) && $_SESSION["typeUser"] == 'membre'){
     }
 }
 
-$monOffre = new ArrayOffer($idOffre);
-$ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
-
 $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = :idoffre");
 $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
@@ -46,6 +43,23 @@ $stmt->bindParam(':idoffre', $idOffre);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+if (!$result) {
+?>
+    <form id="manageOfferAuto" action="manageOffer.php" method="post">
+        <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
+        <input type="hidden" name="page" value="2">
+    </form>
+    <script>
+        document.getElementById("manageOfferAuto").submit();
+    </script>
+<?php
+
+} else {
+    $typeOffer = $result[0]['categorie'];
+}
+
+$monOffre = new ArrayOffer($idOffre);
+$ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
 
 // Fonction pour récupérer les horaires
 
@@ -181,21 +195,6 @@ function convertionMinuteHeure($tempsEnMinute)
     } else {
         return $heures . "h " . $minutes . "min";
     }
-}
-
-if (!$result) {
-?>
-    <form id="manageOfferAuto" action="manageOffer.php" method="post">
-        <input type="hidden" name="idOffre" value="<?php echo $idOffre ?>">
-        <input type="hidden" name="page" value="2">
-    </form>
-    <script>
-        document.getElementById("manageOfferAuto").submit();
-    </script>
-<?php
-
-} else {
-    $typeOffer = $result[0]['categorie'];
 }
 
 ?>
