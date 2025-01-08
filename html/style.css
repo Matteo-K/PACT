@@ -1923,7 +1923,7 @@ header ul + div {
   flex-direction: column;
   align-items: baseline;
   padding-inline: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 #tri label {
@@ -1931,16 +1931,17 @@ header ul + div {
   justify-content: center;
   align-items: center;
 
-  padding: 10px 20px; /* Ajout de padding pour mieux centrer */
+  padding: 0 20px;
   font-size: 25px;
   font-weight: bold;
-  
+
   margin: 10px 0;
-  height: 50px;
+  height: 40px;
 }
 
 #tri input:checked + label {
-  background: red;
+  background: var(--accent-border);
+  border-radius: 3px;
 }
 
 
