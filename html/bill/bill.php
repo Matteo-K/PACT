@@ -188,7 +188,7 @@ footer{
                         foreach ($resultat as $key => $value) {
                             $v1 = intval($value['duree']);
                             $v2 = ($value['prixBase']);
-                            $total .= $value['prix'];
+                            $total += $value['prix'];
                             ?>
                                 <tr>
                                     <td><?php echo $value['option'] ?></td>
@@ -209,8 +209,8 @@ footer{
                     <td>Jour</td>
                     <td class="pr"><?php echo number_format($v3,2,'.','') . " €" ?></td>
                     <td><?php echo $tva ?> %</td>
-                    <td class="pr"><?php echo number_format($prix*$v3, 2, '.', '') ?> €</td>
-                    <td class="pr"><?php echo number_format(round($prix*$v3+($prix*$v3*20/100),2),2,'.','') ?> €</td>
+                    <td class="pr"><?php echo number_format($prix, 2, '.', '') ?> €</td>
+                    <td class="pr"><?php echo number_format(round($prix+($prix*20/100),2),2,'.','') ?> €</td>
                 </tr>
                 <tr>
                     <td></td>
