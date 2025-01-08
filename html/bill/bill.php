@@ -79,7 +79,7 @@ h2{
     background-color: lightgray;
     margin: 0;
     padding: 10px;
-    font-size: 2rem;
+    font-size: 1.9rem;
 }
 
 table{
