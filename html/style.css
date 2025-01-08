@@ -1705,13 +1705,14 @@ header ul + div {
 }
 
 #detailsOffer img {
-  max-width: 150px;
-  max-height: 120px;
   margin: 5px;
   overflow: hidden;
   cursor: pointer;
   border-radius: 3px;
   position: static;
+  width: 150px;
+  height: 100px;
+  object-fit: contain;
 }
 
 #tagsSelect {
