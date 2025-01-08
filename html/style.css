@@ -1872,7 +1872,7 @@ header ul + div {
   width: 100px;
 }
 
-#statut input {
+#ouvert, #ferme {
   width: 30px;
   height: 30px;
   margin: 0 8px 0 4px;
