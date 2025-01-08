@@ -1803,6 +1803,9 @@ header ul + div {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /****** TRI ET FILTRE INDEX ******/
+/*+++++++++++++++++++++++*/
+/* Css filtres, Antoine */
+/*+++++++++++++++++++++*/
 #blcSearch {
   display: flex;
 }
@@ -1826,9 +1829,6 @@ header ul + div {
   color: white;
 }
 
-/*+++++++++++++++++++++++*/
-/* Css filtres, Antoine */
-/*+++++++++++++++++++++*/
 #note, #prix, #statut, #categorie, #date {
   padding-inline: 20px;
 }
@@ -1910,6 +1910,18 @@ header ul + div {
   opacity: 1 !important;
   transform: translateX(0) !important;
 }
+
+/*++++++++++++++++++++*/
+/* Css tris, Antoine */
+/*++++++++++++++++++*/
+#miseEnAvant {
+  display: none;
+}
+
+input:checked + label {
+  background: red;
+}
+
 
 /* Bouton de tri et filtre */
 #btnAside {
