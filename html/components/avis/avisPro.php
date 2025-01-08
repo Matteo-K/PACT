@@ -297,20 +297,24 @@ function afficheAvisSelect(idAvis) {
 */
 
         // Envoi de la requête AJAX avec fetch
+        console.log(idAvis);
         fetch('lectureAvis.php', {
-            method: 'POST', // Méthode HTTP
-            headers: {
-                'Content-Type': 'application/json' // Type de contenu envoyé
-            },
-            body: JSON.stringify({ id: idAvis }) // Conversion de l'ID en JSON
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: idAvis })
         })
-            .then(response => response.json()) // Convertir la réponse en JSON
-            .then(data => {
-                console.log('Réponse du serveur :', data);
-            })
-            .catch(error => {
-                console.error('Erreur :', error);
-            });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erreur HTTP : ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Réponse du serveur :', data);
+        })
+        .catch(error => {
+            console.error('Erreur :', error);
+        });
 
 
     }
