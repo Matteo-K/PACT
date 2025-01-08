@@ -1022,8 +1022,8 @@ header ul + div {
   position: absolute;
   top: 31%;
   right: 20px;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 50px;
   transform: translateY(-50%);
   background-color: black;
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%);
