@@ -1834,7 +1834,7 @@ header ul + div {
 }
 
 #note label, #prix label, #statut label, #idCategorie label, #date label {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 /* Note */
@@ -1921,17 +1921,27 @@ header ul + div {
 #tri > .blcTriFiltre > div {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: baseline;
   padding-inline: 20px;
-  height: 30px;
+  margin-bottom: 40px;
 }
 
 #tri label {
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 20px;
+  font-size: 25px;
+  font-weight: bold;
+
+  margin: 10px 0;
+  height: 40px;
 }
 
-input:checked + label {
-  background: red;
+#tri input:checked + label {
+  background: var(--accent-border);
+  border-radius: 3px;
 }
 
 
@@ -2105,7 +2115,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .map {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   height: fit-content;
