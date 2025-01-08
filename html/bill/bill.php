@@ -142,7 +142,7 @@ footer{
             </section>
         </strong>
         <h1>Facture du mois de <?php echo $mois . " " . $annee ?></h1>
-        <h2><?php echo $denominationL ?></h2>
+        <h1><?php echo $denominationL ?></h1>
     </header>
     <main>
         <section>
