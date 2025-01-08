@@ -1914,7 +1914,7 @@ header ul + div {
 /*++++++++++++++++++++*/
 /* Css tris, Antoine */
 /*++++++++++++++++++*/
-#miseEnAvant {
+#miseEnAvant, #noteCroissant, #noteDecroissant, #prixCroissant, #prixDecroissant, #avisCroissant, #avisDecroissant, #dateCreationRecent, #dateCreationAncien {
   display: none;
 }
 
