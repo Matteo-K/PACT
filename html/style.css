@@ -5234,10 +5234,46 @@ label[id="labelPFP"]:hover {
   color: var(--accent);
 }
 
-/* Css de la page des CGU */
+/* Css de la page des CGU ----------------------------------------*/
 
 #cgu{
-  background-color: yellow;
+  min-height: 80vh;
+  main {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+h1, h2, h3 {
+    color: #222;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+h2 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+p {
+    margin: 10px 0;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
 }
 
 
