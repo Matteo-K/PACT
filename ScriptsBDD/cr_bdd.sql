@@ -151,7 +151,7 @@ CREATE TABLE _photo_profil (
 CREATE TABLE _consulter (
   idU INT,
   idOffre INT,
-  dateConsultation DATE,
+  dateConsultation TIMESTAMP,
   PRIMARY KEY (idU, idOffre),
   CONSTRAINT _consulter_fk_membre
       FOREIGN KEY (idU)
@@ -466,6 +466,8 @@ CREATE TABLE _commentaire(
   idC SERIAL PRIMARY KEY,
   content VARCHAR(1000) NOT NULL,
   datePublie TIMESTAMP NOT NULL,
+  nbLike INT DEFAULT 0,
+  nbDislike INT DEFAULT 0,
   CONSTRAINT _commentaire_fk_idU
       FOREIGN KEY (idU)
       REFERENCES _nonAdmin(idU)
