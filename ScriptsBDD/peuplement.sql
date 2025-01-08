@@ -239,8 +239,9 @@ VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attracti
        (4, 'actif', 'Thomas Angelvy', 'Un spectacle incroyable avec des performances éblouissantes.', 'spectacle@mail.com', '0123456791', TRUE, 'http://spectacle.com', 'Divertissement exceptionnel', CURRENT_TIMESTAMP),
        (4, 'actif', 'La Potinière', 'Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. ', 'restaurant@mail.com', '0123456793', TRUE, NULL, 'Cuisine raffinée', CURRENT_TIMESTAMP),
        (3, 'actif', 'Activité Culturelle', 'Explorez la culture locale à travers une activité immersive.', 'activite@mail.com', '0123456794', TRUE, 'http://activite.com', 'Immersion culturelle aves la population local', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP);
-
+       (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP),
+       (4, 'inactif', 'Brain l escape game', 'L unique escape game de Lannion.', 'escape.game@mail.com', '0987654321', TRUE, 'http://escape-game.com', 'Divertissement familial', CURRENT_TIMESTAMP),
+       (4, 'inactif', 'Bain de Lannion', 'Venez voir la mangnifique Baie de Lannion', 'baie-lannuin@mail.com', '0987654321', TRUE, 'http://baiedelannion.com', 'Divertissement familial', CURRENT_TIMESTAMP);
 -- Peuplement de la table _image
 INSERT INTO _image (url, nomImage) 
 VALUES ('./img/profile_picture/default.svg', 'default.svg'), 
@@ -403,7 +404,7 @@ VALUES (5, 'culturel');
 INSERT INTO _habite (idU, codePostal, ville, pays, rue, numeroRue) 
 VALUES (5, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
     (3, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
-		(4, '22300', 'Fond de l eau', 'France', 'rue de l ananas au fond de la mer', 123),
+		(4, '22300', 'Lannion', 'France', 'Rue de Kerniflet', 2),
 		(6, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 		(7, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 		(8, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
