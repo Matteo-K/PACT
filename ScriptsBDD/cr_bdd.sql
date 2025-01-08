@@ -917,7 +917,8 @@ CREATE VIEW facture AS
     STRING_AGG(DISTINCT JSONB_BUILD_OBJECT(
         'ID', ht.idStatut,
         'Lancement', ht.dateLancement,
-        'Duree', ht.dureeEnLigne
+        'Duree', ht.dureeEnLigne,
+        'Prix', ht.prixduree
     )::TEXT, ';') FILTER (WHERE ht.idStatut IS NOT NULL 
       AND ht.dateLancement IS NOT NULL
       AND ht.dureeEnLigne IS NOT NULL

@@ -49,12 +49,14 @@ $tarif=['option'=>$results[0]['nomabonnement'],'prixBase'=>$results[0]['tarif']]
 $v3=$results[0]['tarif'];
 
 // {"ID": 1, "Duree": 6, "Lancement": "2024-11-01"};{"ID": 2, "Duree": null, "Lancement": "2024-11-15"}
-$nbEnLigne = 0 ;
+$prix = 0 ;
+$nbjour = 0;
 if ($results[0]['historiquestatut']) {
     $abonnement = explode(';',$results[0]['historiquestatut']);
     foreach ($abonnement as $key => $value) {
         $result = json_decode($value,true);
-    $nbEnLigne = $nbEnLigne + intval($result['Duree']);
+        $prix = $prix + $result['Prix'];
+        $nbjour = $nbjour + $result['Duree'];
     }
 }
 
@@ -180,13 +182,13 @@ footer{
             </thead>
             <tbody>
                 <?php
-                    $total=$nbEnLigne*$v3;
+                    $total=$prix;
                     if ($results[0]['historiqueoption']) {
                         
                         foreach ($resultat as $key => $value) {
                             $v1 = intval($value['duree']);
                             $v2 = ($value['prixBase']);
-                            $total += $v1 * $v2;
+                            $total += $value['prix'];
                             ?>
                                 <tr>
                                     <td><?php echo $value['option'] ?></td>
@@ -194,8 +196,8 @@ footer{
                                     <td>Semaine</td>
                                     <td class="pr"><?php echo number_format($value['prixBase'],2,'.','') . " €"  ?></td>
                                     <td><?php echo $tva ?> %</td>
-                                    <td class="pr"><?php echo number_format($v1 * $v2,2,'.','') ?> €</td>
-                                    <td class="pr"><?php echo number_format(round($v1*$v2+($v1*$v2*20/100),2),2,'.','') ?> €</td>
+                                    <td class="pr"><?php echo number_format($value['prix'],2,'.','') ?> €</td>
+                                    <td class="pr"><?php echo number_format(round($value['prix']+($value['prix']*20/100),2),2,'.','') ?> €</td>
                                 </tr>
                             <?php
                         }
@@ -203,12 +205,12 @@ footer{
                 ?>
                 <tr>
                     <td>Abonnement <?php echo $tarif['option'] ?></td>
-                    <td><?php echo $nbEnLigne ?></td>
+                    <td><?php echo $nbjour ?></td>
                     <td>Jour</td>
                     <td class="pr"><?php echo number_format($v3,2,'.','') . " €" ?></td>
                     <td><?php echo $tva ?> %</td>
-                    <td class="pr"><?php echo number_format($nbEnLigne*$v3, 2, '.', '') ?> €</td>
-                    <td class="pr"><?php echo number_format(round($nbEnLigne*$v3+($nbEnLigne*$v3*20/100),2),2,'.','') ?> €</td>
+                    <td class="pr"><?php echo number_format($prix, 2, '.', '') ?> €</td>
+                    <td class="pr"><?php echo number_format(round($prix+($prix*20/100),2),2,'.','') ?> €</td>
                 </tr>
                 <tr>
                     <td></td>
