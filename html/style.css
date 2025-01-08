@@ -4315,8 +4315,13 @@ details .nonRepondu {
   border-bottom: 2px solid var(--bloc);
 }
 
+#choixCategorie input[type="radio"]:disabled + label {
+  border-bottom: 2px solid var(--bloc);
+}
+
 #choixCategorie label {
   padding: 10px 50px;
+  cursor: pointer;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
