@@ -4050,6 +4050,10 @@ details .nonRepondu {
   background-color: red;
 }
 
+.user + article section > article > figure > img{
+  width: 30px;
+}
+
 #dislike > img{
   transform: scale(-1);
 }
