@@ -1919,7 +1919,11 @@ header ul + div {
 }
 
 #tri > .blcTriFiltre > div {
-  color: #007bff;
+  height: 30px;
+}
+
+#tri label {
+  font-size: 20px;
 }
 
 input:checked + label {
