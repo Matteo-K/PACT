@@ -1914,7 +1914,7 @@ header ul + div {
 /*++++++++++++++++++++*/
 /* Css tris, Antoine */
 /*++++++++++++++++++*/
-#miseEnAvant {
+#miseEnAvant, #noteCroissant, #noteDecroissant, #prixCroissant, #prixDecroissant, #avisCroissant, #avisDecroissant, #dateCreationRecent, #dateCreationAncien {
   display: none;
 }
 
@@ -5228,6 +5228,6 @@ label[id="labelPFP"]:hover {
 
 /* Css de la page des CGU */
 
-#cgu >body{
+#cgu{
   background-color: yellow;
 }
