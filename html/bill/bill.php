@@ -194,10 +194,10 @@ footer{
                                     <td><?php echo $value['option'] ?></td>
                                     <td><?php echo $value['duree'] ?></td>
                                     <td>Semaine</td>
-                                    <td class="pr"><?php echo $value['prixBase'] . " €"  ?></td>
+                                    <td class="pr"><?php echo number_format($value['prixBase'],2,'.','') . " €"  ?></td>
                                     <td><?php echo $tva ?> %</td>
-                                    <td class="pr"><?php echo $v1 * $v2 ?> €</td>
-                                    <td class="pr"><?php echo round($v1*$v2+($v1*$v2*20/100),2) ?> €</td>
+                                    <td class="pr"><?php echo number_format($v1 * $v2,2,'.','') ?> €</td>
+                                    <td class="pr"><?php echo number_format(round($v1*$v2+($v1*$v2*20/100),2),2,'.','') ?> €</td>
                                 </tr>
                             <?php
                         }
@@ -207,10 +207,10 @@ footer{
                     <td>Abonnement <?php echo $tarif['option'] ?></td>
                     <td><?php echo $nbEnLigne ?></td>
                     <td>Jour</td>
-                    <td class="pr"><?php echo $v3 . " €" ?></td>
+                    <td class="pr"><?php echo number_format($v3,2,'.','') . " €" ?></td>
                     <td><?php echo $tva ?> %</td>
-                    <td class="pr"><?php echo $nbEnLigne*$v3 ?> €</td>
-                    <td class="pr"><?php echo round($nbEnLigne*$v3+($nbEnLigne*$v3*20/100),2) ?> €</td>
+                    <td class="pr"><?php echo number_format($nbEnLigne*$v3, 2, '.', '') ?> €</td>
+                    <td class="pr"><?php echo number_format(round($nbEnLigne*$v3+($nbEnLigne*$v3*20/100),2),2,'.','') ?> €</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -232,8 +232,8 @@ footer{
                 </tr>
                 <tr>
                     <th colspan="5">Total</th>
-                    <th class="pr">HT : <?php echo $total ?> €</th>
-                    <th class="pr">TTC : <?php echo round($total*20/100+$total,3) ?> €</th>
+                    <th class="pr">HT : <?php echo number_format($total, 2, '.', '') ?> €</th>
+                    <th class="pr">TTC : <?php echo number_format(round($total*20/100+$total,2), 2, '.', '') ?> €</th>
                 </tr>
             </tbody>
         </table>
