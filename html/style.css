@@ -1898,6 +1898,10 @@ header ul + div {
 }
 
 /* Date */
+#date input {
+  height: 30px;
+}
+
 #date div {
   margin-bottom: 20px;
 }
@@ -2006,45 +2010,14 @@ header ul + div {
   }
 
   /* Note */
-  .blocStar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 3px;
-  }
   
   /* Prix */
-  #prix div {
-    display: inline-flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100px;
-  }
-
-  #prixMin, #prixMax {
-    width: 80%;
-    height: 40px;
-  }
 
   /* Statut */
 
   /* Catégorie */
-  #idCategorie label {
-    font-size: 16px;
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 100%;
-  }
 
   /* Date */
-  #date input {
-    width: 80%;
-    height: 40px;
-  }
-
-  .blocStar {
-    gap: 2px;
-  }
 
   #titreAside img {
     width: 25px;
@@ -2053,6 +2026,7 @@ header ul + div {
 
   .blcTriFiltre {
     padding-top: 10px;
+    margin-left: 20px;
   }
 }
 
