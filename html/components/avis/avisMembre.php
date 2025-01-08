@@ -90,8 +90,14 @@ foreach ($avis as $a) {
                         <section>
                             <p><?= $a['content'] ?></p>
                             <article>
-                                <img src="img/icone/like1.png">
-                                <img src="img/icone/like1.png">
+                                <figure>
+                                    <img src="img/icone/like1.png">
+                                    <figcaption>10</figcaption>
+                                </figure>
+                                <figure>
+                                    <img src="img/icone/like1.png">
+                                    <figcaption>10</figcaption>
+                                </figure>
                             </article>
                         </section>
                         <?php if ($a['listimage'] != null) {
