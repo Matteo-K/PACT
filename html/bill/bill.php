@@ -194,7 +194,7 @@ footer{
                                     <td><?php echo $value['option'] ?></td>
                                     <td><?php echo $value['duree'] ?></td>
                                     <td>Semaine</td>
-                                    <td class="pr"><?php echo $value['prixBase'] ?></td>
+                                    <td class="pr"><?php echo $value['prixBase'] . "€"  ?></td>
                                     <td><?php echo $tva ?> %</td>
                                     <td class="pr"><?php echo $v1 * $v2 ?> €</td>
                                     <td class="pr"><?php echo round($v1*$v2+($v1*$v2*20/100),2) ?> €</td>
