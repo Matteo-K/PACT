@@ -345,7 +345,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 })
                 .catch(error => console.error('Erreur de chargement des images:', error)
             );
-            checkImg();
         }
 
         // Fonction pour supprimer une image existante
@@ -377,7 +376,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Recharger la liste des images pour restaurer l'état
                 loadExistingImages();
             });
-            checkImg();
         }
 
         // Fonction pour gérer les fichiers sélectionnés
@@ -407,6 +405,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             });
 
             input.value = ""; // Réinitialise l'input
+            checkImg();
         }
 
         // Fonction pour envoyer un fichier au serveur
