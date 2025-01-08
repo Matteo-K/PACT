@@ -7,7 +7,7 @@ $id = json_decode($data[0]) ?? null;
 if ($id != null) {
 
     $stmt = $conn->prepare("UPDATE pact._avis SET lu=true WHERE idc = ?");
-    $stmt->execute($input[$id]);
+    $stmt->execute($id);
     $result = $stmt->fetch();
 
 }
