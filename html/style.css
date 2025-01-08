@@ -1823,7 +1823,7 @@ header ul + div {
 #tri, #filtre {
   display: none;
   width: 20vw;
-  height: calc(140vh - var(--header-size));
+  height: calc(120vh - var(--header-size));
   background-color: var(--bloc);
   opacity: 0;
   transform: translateX(-100%);
@@ -1895,6 +1895,11 @@ header ul + div {
 
 #idCategorie {
   padding-left: 0;
+}
+
+/* Date */
+#date div {
+  margin-bottom: 20px;
 }
 
 .openAside {
