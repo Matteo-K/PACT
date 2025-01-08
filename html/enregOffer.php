@@ -273,7 +273,7 @@ if (isset($_POST['pageBefore'])) {
         switch ($categorie) {
           case 'restaurant':
             // Obtention des données
-            $gammeDePrix = $_POST["gamme_prix"];
+            $gammeDePrix = $_POST["rest_gamme_prix"];
 
             $stmt = $conn->prepare("SELECT * from pact._restauration where idoffre=?");
             $stmt->execute([$idOffre]);
@@ -287,6 +287,8 @@ if (isset($_POST['pageBefore'])) {
               $stmt = $conn->prepare("UPDATE pact._restauration SET gammedeprix=? where idoffre=?");
               $stmt->execute([$gammeDePrix, $idOffre]);
             }
+
+            // Menu
             break;
           case 'parc':
             // Obtention des données

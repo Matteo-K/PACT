@@ -1655,7 +1655,7 @@ header ul + div {
 
 #artDetailOffer > div > label:not(.buttonDetailOffer),
 #choixImage label,
-#choixImage2 label,
+#park_planTitres label,
 #inputAutoComplete label {
   display: inline-block;
   font-size: 25px;
@@ -1688,19 +1688,19 @@ header ul + div {
 }
 
 #choixImage,
-#choixImage2 {
+#park_planTitres {
   display: inline-block;
   width: 70%;
   margin-right: 14px;
 }
 
 #ajoutPhoto,
-#ajoutPhoto2 {
+#park_plan {
   background-color: var(--primary);
 }
 
 #detailsOffer input[type="file"],
-#ajoutPhoto2 input[type="file"] {
+#park_plan input[type="file"] {
   display: none;
 }
 
