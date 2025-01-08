@@ -581,16 +581,12 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     "Ajouter un nom à l'offre";
                 res = false;
             } else {
-                clearNom();
+                msgNom.textContent = "";
             }
             return res;
         }
 
-        function clearNom() {
-            msgNom.textContent = "";
-        }
-
-        nom.addEventListener("blur", () => clearNom());
+        nom.addEventListener("blur", () => checkNom());
         
         /**
          * Vérifie si la description de l'offre est correct
@@ -604,16 +600,12 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     "Ajouter une description";
                 res = false;
             } else {
-                clearDescription();
+                msgDescription.textContent = "";
             }
             return res;
         }
-        
-        function clearDescription() {
-            msgDescription.textContent = "";
-        }
 
-        description.addEventListener("blur", () => clearDescription());
+        description.addEventListener("blur", () => checkDescription());
 
         /**
          * Vérifie si l'offre contient au moins une image
@@ -627,16 +619,12 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     "Ajouter une image";
                 res = false;
             } else {
-                clearImg();
+                msgImage.textContent = "";
             }
             return res;
         }
 
-        function clearImg() {
-            msgImage.textContent = "";
-        }
-
-        inputFile.addEventListener("input", () => clearImg());
+        inputFile.addEventListener("input", () => checkImg());
 
     </script>
 
