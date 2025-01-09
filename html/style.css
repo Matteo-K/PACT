@@ -1862,8 +1862,7 @@ header ul+div {
   flex-flow: row-reverse nowrap;
 }
 
-#tri,
-#filtre {
+#tri, #filtre {
   display: none;
   width: 20vw;
   /* height: calc(100vh - var(--header-size)); */
@@ -1909,11 +1908,7 @@ header ul+div {
   transform: scale(1.1);
 }
 
-#note,
-#prix,
-#statut,
-#categorie,
-#date {
+#note, #prix, #statut, #categorie, #date {
   padding-inline: 20px;
 }
 
@@ -1996,9 +1991,7 @@ header ul+div {
 
 #statut [type="checkbox"]:checked+.checkmark {
   background-color: #1ca4ed;
-  /* Bleu clair */
   box-shadow: 0 0 10px rgba(28, 164, 237, 0.6);
-  /* Effet lumineux autour */
 }
 
 #statut [type="checkbox"]:checked+.checkmark::after {
@@ -2011,12 +2004,10 @@ header ul+div {
   color: white;
   font-weight: bold;
   transform: scale(1.2);
-  /* Agrandir la coche */
 }
 
 #statut .checkmark:hover {
   transform: scale(1.1);
-  /* Agrandissement léger au survol */
 }
 
 
@@ -2059,19 +2050,11 @@ header ul+div {
 /*++++++++++++++++++++*/
 /* Css tris, Antoine */
 /*++++++++++++++++++*/
-#miseEnAvant,
-#noteCroissant,
-#noteDecroissant,
-#prixCroissant,
-#prixDecroissant,
-#avisCroissant,
-#avisDecroissant,
-#dateCreationRecent,
-#dateCreationAncien {
+#miseEnAvant, #noteCroissant, #noteDecroissant,#prixCroissant, #prixDecroissant, #avisCroissant, #avisDecroissant, #dateCreationRecent, #dateCreationAncien {
   display: none;
 }
 
-#tri>.blcTriFiltre>div {
+#tri > .blcTriFiltre > div {
   display: flex;
   flex-direction: column;
   align-items: baseline;
@@ -2160,8 +2143,7 @@ header ul+div {
     width: 100%;
   }
 
-  #tri,
-  #filtre {
+  #tri, #filtre {
     width: 100% !important;
     height: 100% !important;
     transform: translateX(0) !important;
@@ -2193,19 +2175,11 @@ header ul+div {
   }
 
 
-  #note,
-  #prix,
-  #statut,
-  #categorie,
-  #date {
+  #note, #prix, #statut, #categorie, #date {
     padding-inline: 20px;
   }
 
-  #note label,
-  #prix label,
-  #statut label,
-  #idCategorie label,
-  #date label {
+  #note label, #prix label, #statut label, #idCategorie label, #date label {
     font-size: 16px;
   }
 
