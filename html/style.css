@@ -1828,7 +1828,6 @@ header ul + div {
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  color: white;
 }
 
 #filtre .checkmark {
@@ -1896,6 +1895,7 @@ header ul + div {
 
 #prixMin, #prixMax {
   height: 30px;
+  border: solid 2px #1ca4ed;
 }
 
 /* Statut */
@@ -1949,8 +1949,8 @@ header ul + div {
 
 /* Date */
 #date input {
-  display: none;
-  /* height: 30px; */
+  height: 30px;
+  border: solid 2px #1ca4ed;
 }
 
 #date div {
