@@ -1896,7 +1896,6 @@ header ul + div {
 #prix div {
   display: inline-flex;
   justify-content: space-around;
-  align-items: center;
   width: 100px;
 }
 
