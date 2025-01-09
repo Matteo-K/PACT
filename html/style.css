@@ -2022,7 +2022,7 @@ header ul + div {
 }
 
 #tri input:checked + label {
-  background-color: var(--accent-border);
+  background-color: #1ca4ed;
   border-radius: 3px;
 }
 
