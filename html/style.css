@@ -570,7 +570,6 @@ header > div > a > div {
 .liFact {
   color: #000;
   text-decoration: none;
-  transition: color 0.5s;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
