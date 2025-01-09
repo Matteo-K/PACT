@@ -843,6 +843,8 @@ CREATE VIEW avis AS
     a.annee,
     a.titre,
     a.lu,
+	c.nblike,
+	c.nbdislike,
     ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage
     FROM _avis a 
     JOIN _commentaire c ON a.idC = c.idC
@@ -859,7 +861,9 @@ CREATE VIEW avis AS
     a.mois,
     a.annee,
     a.lu,
-    a.titre;
+    a.titre,
+	c.nblike,
+	c.nbdislike;
 
 CREATE VIEW reponse AS
     SELECT  
@@ -871,7 +875,9 @@ CREATE VIEW reponse AS
     r.ref as idC_avis,
     c2.content as contenuAvis,
     c2.datePublie as avisDate,
-    a.note
+    a.note,
+	c2.nblike as nblikepro,
+	c2.nbdislike as nbdislikepro
     FROM _reponse r 
     JOIN _commentaire c1 ON r.idC = c1.idC
     JOIN _pro p ON c1.idU = p.idU
