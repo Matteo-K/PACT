@@ -226,19 +226,18 @@ function afficheAvisSelect(idAvis) {
 
     avisSelect = document.getElementById(`avis${idAvis}`);
 
+    avisSelect.classList.add("avisSelect");
+
     conteneurAvis.style.display = "flex";
     aucunAvisSelect.style.display = "none";
     if(blocDetails && blocDetails.open){
         blocDetails.open = false;
     }
 
-    //On remet l'ancien avis sélectionné en gris
+    //On remet l'ancien avis sélectionné en normal
     if (avisPrecedent != -1) {
-        avisPrecedent.style.background = `linear-gradient(90deg, ${secondaryColor} 0%, ${secondaryColor} 80%, transparent 100%)`;
+        avisPrecedent.classList.remove("avisSelect");
     }
-    //Et l'avis actuel en évidence
-    avisSelect.style.background = `linear-gradient(90deg, ${primaryColor} 0%, ${primaryColor} 90%, transparent 100%)`;
-
     
     //changement photo auteur
     photoAuteurAvis.src = listeAvis[idAvis]['membre_url'];
@@ -291,6 +290,9 @@ function afficheAvisSelect(idAvis) {
         divNonRep.classList.add("nonRepondu");
         avisSelect.querySelector("div").appendChild(divNonRep);
 
+        txtNbAvis.textContent = parseInt(txtNbAvis.textContent) - 1;
+
+        listeAvis[idavis][lu] = true;
 
         fetch('lectureAvis.php', {
             method: 'POST',
