@@ -1895,7 +1895,7 @@ header ul + div {
   width: 30px;
   height: 30px;
   margin: 0 8px 0 4px;
-  border-radius: 50%; /* Rond */
+  border-radius: 10%;
   border: solid 2px #1ca4ed;
   display: inline-block;
   position: relative;
@@ -1908,11 +1908,13 @@ header ul + div {
 }
 
 #statut [type="checkbox"]:checked + .checkmark::after {
-  content: "✔"; /* Coche */
+  content: "";
   position: absolute;
   top: 4px;
   left: 4px;
-  font-size: 18px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
   color: white;
   font-weight: bold;
   transform: scale(1.2); /* Agrandir la coche */
