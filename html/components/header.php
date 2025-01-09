@@ -97,7 +97,7 @@
                             <li><a href="manageOffer.php">Créer une offre</a></li>
                             <li class="liFact">Mes Factures</li>
                         <?php } else if ($typeUser === "membre") {?>
-                            <li><a href="changeAccountMember.php">Gérer mon compte</a></li>
+                            <li><a href="changeAccountMember.php">Mon compte</a></li>
                         <?php } ?>
                     </ul>
                     <div>
