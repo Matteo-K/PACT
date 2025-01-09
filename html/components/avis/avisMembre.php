@@ -214,6 +214,9 @@ foreach ($avis as $a) {
                 const likeCheckbox = likeButton.closest('.messageAvis').querySelector('input[type="checkbox"][id^="like_"]');
                 const likeCountElement = likeButton.closest('.messageAvis').querySelector('.likes');
 
+                // Ajout d'une classe active au bouton Like
+                likeButton.classList.toggle('active');
+
                 if (likeCheckbox.checked) {
                     // L'utilisateur a aimé l'avis
                     let currentCount = parseInt(likeCountElement.getAttribute('data-like-count'), 10);
@@ -228,6 +231,9 @@ foreach ($avis as $a) {
             dislikeButton.addEventListener('click', () => {
                 const dislikeCheckbox = dislikeButton.closest('.messageAvis').querySelector('input[type="checkbox"][id^="dislike_"]');
                 const dislikeCountElement = dislikeButton.closest('.messageAvis').querySelector('.dislikes');
+
+                // Ajout d'une classe active au bouton Dislike
+                dislikeButton.classList.toggle('active');
 
                 if (dislikeCheckbox.checked) {
                     // L'utilisateur a disliké l'avis
