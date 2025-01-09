@@ -1898,7 +1898,7 @@ header ul + div {
 }
 
 #note label, #prix label, #statut label, #idCategorie label, #date label {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 /* Note */
@@ -1913,6 +1913,10 @@ header ul + div {
   display: none;
   /* width: 30px;
   height: 30px; */
+}
+
+#note label {
+  margin-bottom: 20px;
 }
 
 /* Prix */
