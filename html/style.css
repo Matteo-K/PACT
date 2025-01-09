@@ -1935,8 +1935,6 @@ header ul + div {
   background-color: red;
 } */
 
-
-
 /* Catégorie */
 #idCategorie label {
   display: flex;
@@ -2002,10 +2000,14 @@ header ul + div {
 }
 
 #tri input:checked + label {
-  background: var(--accent-border);
+  background-color: var(--accent-border);
   border-radius: 3px;
 }
 
+#tri input:hover + label {
+  background-color: var(--secondary);
+  border-radius: 3px;
+}
 
 /* Bouton de tri et filtre */
 #btnAside {
