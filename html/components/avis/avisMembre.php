@@ -3,6 +3,11 @@ $stmt = $conn->prepare("SELECT * from pact.proprive where idu = ?");
 $stmt->execute([$offre[0]['idu']]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$stmt = $conn->prepare("SELECT nblike,nbdislike from pact._commentaire where idc = 1");
+$stmt->execute();
+
+$commentaire = $stmt->fetch(PDO::FETCH_ASSOC);
+
 function nbChiffreNombre($number)
 {
     return strlen((string)$number);
@@ -133,8 +138,8 @@ foreach ($avis as $a) {
                         </label>
                         <div class="count likes">
                             <?php
-                            $nbLike = (string)$result["nblike"];
-                            for ($i = 0; $i < nbChiffreNombre($result["nblike"]); $i++) {
+                            $nbLike = (string)$commentaire["nblike"];
+                            for ($i = 0; $i < nbChiffreNombre($commentaire["nblike"]); $i++) {
                             ?>
                                 <div class="number" style="transform: var(--nb<?= $nbLike[$i] ?>);">
                                     <span>0</span>
@@ -155,10 +160,10 @@ foreach ($avis as $a) {
                         <div class="count dislikes">
                             <?php
                             // Conversion du nombre en chaîne
-                            $nbDislike = (string)$result["nbdislike"];
+                            $nbDislike = (string)$commentaire["nbdislike"];
 
                             // Boucle sur chaque chiffre
-                            for ($i = 0; $i < strlen($nbDislike); $i++) {
+                            for ($i = 0; $i < strlen($commentaire["nbdislike"]); $i++) {
                             ?>
                                 <div class="number" style="transform: var(--nb<?= $nbDislike[$i] ?>);">
                                     <span>0</span>
