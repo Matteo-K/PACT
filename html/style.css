@@ -1843,6 +1843,7 @@ header ul + div {
   margin: 0 8px 0 4px;
   border-radius: 10%;
   border: solid 2px #1ca4ed;
+  background-color: white;
   display: inline-block;
   position: relative;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -1903,6 +1904,7 @@ header ul + div {
 #prixMin, #prixMax {
   height: 30px;
   border: solid 2px #1ca4ed;
+  background-color: white;
 }
 
 /* Statut */
@@ -1958,6 +1960,7 @@ header ul + div {
 #date input {
   height: 30px;
   border: solid 2px #1ca4ed;
+  background-color: white;
 }
 
 #date div {
