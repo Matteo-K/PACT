@@ -15,8 +15,8 @@ require_once "config.php";
   <?php require_once "components/header.php"; ?>
   <main>
     <div id="index">
-      <div id="ALaUne">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
+      <div id="ALaUne">
         <div>
           <?php 
             $elementStart = 0;
