@@ -315,7 +315,7 @@ function afficheAvisSelect(idAvis) {
         .catch(error => {
             console.error('Erreurrrr :', error);
         });
-
+*/
 
     }
 
