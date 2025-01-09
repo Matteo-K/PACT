@@ -23,7 +23,7 @@ if ($categorie["_parcattraction"]) {
 }
 
 ?>
-<section id="park"> <!-- Section pour le CSS -->
+<section id="park">
     <!-- Gestion de l'âge -->
     <label for="park_ageMin">Age minimum :</label>
     <input type="number" id="park_ageMin" name="park_ageMin" min="0"  placeholder="0" value="<?= $parc["agemin"] ?>">
@@ -35,7 +35,7 @@ if ($categorie["_parcattraction"]) {
     <input type="number" id="park_prixMin" name="park_prixMin" min="0" placeholder="0" value="<?= $parc["prixminimal"] ?>">
     <label for="park_prixMin">€</label>
 
-    <!-- Pour ajouter le plan du parc -->
+    <!-- Plan du parc -->
     <div id="park_planTitres">
         <label class="labelPhotos">Photo du plan* </label>
         <label class="labNbPhotos">Vous pouvez insérer 1 photo de votre plan</label> <!-- Indication pour l'utilisateur -->

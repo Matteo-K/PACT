@@ -288,6 +288,42 @@ if (isset($_POST['pageBefore'])) {
               $stmt->execute([$gammeDePrix, $idOffre]);
             }
 
+            // Gestion des images
+            $dossierImg = "img/imageMenu/". $idOffre . "/";
+
+            // Vérifie si le dossier existe, sinon le crée
+            if (!is_dir($dossierImg)) {
+              mkdir($dossierImg, 0777, true);
+            }
+
+            $nbImage = count($_FILES['park_plan']['name']);
+            for ($i=0; $i < $nbImage; $i++) {
+              
+              // Boucle à travers chaque fichier uploadé
+              $fileTmpPath = $_FILES['rest_ajoutPhotoMenu']['tmp_name'][$i];
+              $fileName = $_FILES['rest_ajoutPhotoMenu']['name'][$i];
+              $fileError = $_FILES['rest_ajoutPhotoMenu']['error'][$i];
+
+              // Vérifie si l'image a été uploadée sans erreur
+              if ($fileError === UPLOAD_ERR_OK) {
+                // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
+                $fileName = $idOffre . '-' . $i . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+                $dossierImgNom = $dossierImg . $fileName;
+
+                // Déplace l'image vers le dossier cible
+                move_uploaded_file($fileTmpPath, $dossierImgNom);
+
+                try {
+                  $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
+                  $stmt->execute([$dossierImgNom, $fileName]);
+
+                  $stmt = $conn->prepare("INSERT INTO pact._menu (menu, idoffre) VALUES (?, ?)");
+                  $stmt->execute([$dossierImgNom, $idOffre]);
+                } catch (PDOException $e) {
+                }
+              }
+            }
+
             // Menu
 
             break;
