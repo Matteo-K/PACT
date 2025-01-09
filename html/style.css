@@ -1823,6 +1823,7 @@ header ul + div {
   width: 20vw;
   height: calc(125vh - var(--header-size));
   background-color: var(--bloc);
+  border-right: solid 4px #1ca4ed;
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
