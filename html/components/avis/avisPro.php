@@ -288,13 +288,13 @@ function afficheAvisSelect(idAvis) {
         divNonRep.classList.add("nonRepondu");
         avisSelect.querySelector("div").appendChild(divNonRep);
 
-/*
+
         fetch('lectureAvis.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(idAvis)
         });
-*/
+/*
 
         // Envoi de la requête AJAX avec fetch
         console.log(idAvis);
