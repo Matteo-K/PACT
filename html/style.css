@@ -1838,7 +1838,6 @@ header ul + div {
 }
 
 #tri, #filtre {
-#tri, #filtre {
   display: none;
   width: 20vw;
   height: calc(125vh - var(--header-size));
@@ -2093,7 +2092,7 @@ header ul + div {
     width: 100%;
   }
 
-  #tri, #filtre {
+
   #tri, #filtre {
     width: 100% !important;
     height: 100% !important;
@@ -4368,10 +4367,7 @@ details .nonRepondu {
   50% {
       transform: scale(1.1) rotate(-10deg);
   }
-}test
-
-
-
+}
 
 @media screen and (max-width: 768px) {
   :root {
