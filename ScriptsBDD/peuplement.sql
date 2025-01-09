@@ -252,7 +252,7 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
        ('./img/imageOffre/3/4.png', 'laPotiniere4'),
        ('./img/imageOffre/4/0.png', 'activite4'),
        ('./img/imageOffre/1/0.png', 'parc0'),
-       ('./img/imageOffre/1/1.png', 'parc1'),-
+       ('./img/imageOffre/1/1.png', 'parc1'),
        ('./img/imageOffre/1/2.png', 'parc2'),
        ('./img/imageOffre/2/0.png', 'spectacle0'),
        ('./img/imageOffre/5/0.png', 'visite0'),
