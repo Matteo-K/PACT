@@ -608,6 +608,7 @@ header ul + div {
 }
 
 #changeDataAccount {
+  border: 2px solid #1ca4ed;
   background-color: #1Ca4ed;
 }
 
@@ -619,6 +620,7 @@ header ul + div {
 
 #changeAccount {
   background-color: #1ca4ed;
+  border: 2px solid #1ca4ed;
 }
 
 #changeAccount:hover {
