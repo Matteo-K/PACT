@@ -42,76 +42,76 @@ $avis = $avisTemp;
                 </h2>
             </summary>
             <div class="contentDetails">
-            <?php 
-                if($avis) {
-            ?>
-            <h3>
-                <div class="nonLu"></div>
-                Non lus
-                <input type="checkbox" name="fltAvisNonLus" id="fltAvisNonLus">
-                <label for="fltAvisNonLus">Filtrer par</label>
-            </h3>
-            <h3>
-                <?php echo $avisN0["avisnonlus"] ?>
-            </h3>
-            <h3>
-                <div class="nonRepondu"></div>
-                Non répondus
-                <input type="checkbox" name="fltAvisNonRep" id="fltAvisNonRep">
-                <label for="fltAvisNonRep">Filtrer par</label>
-            </h3>
-            <h3>
-                <?php echo $avisN0["avisnonrepondus"] ?>
-            </h3>
-                <?php
-                    $etoilesPleines = floor($avisN0['moynote']); // Nombre entier d'étoiles pleines
-                    $reste = $avisN0['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
+                <?php 
+                    if($avis) {
                 ?>
-                    <div class="notation">
-                        <div>
-                            <?php
-                            // Étoiles pleines
-                            for ($i = 1; $i <= $etoilesPleines; $i++) {
-                                echo '<div class="star pleine"></div>';
-                            }
-                            // Étoile partielle
-                            if ($reste > 0) {
-                                $pourcentageRempli = $reste * 100; // Pourcentage rempli
-                                echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
-                            }
-                            // Étoiles vides
-                            for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
-                                echo '<div class="star vide"></div>';
-                            }
-                            ?>
-                            <p><?php echo number_format($avisN0['moynote'], 1); ?> / 5 (<?php echo $avisN0['nbnote']; ?> avis)</p>
-                        </div>
-                        <div class="notedetaille">
-                            <?php
-                            // Adjectifs pour les notes
-                            $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
-                            for ($i = 5; $i >= 1; $i--) {
-                                // Largeur simulée pour chaque barre en fonction de vos données
-                                $pourcentageParNote = isset($avisN0["note_$i"]) ? ($avisN0["note_$i"] / $avisN0['nbnote']) * 100 : 0;
-                            ?>
-                                <div class="ligneNotation">
-                                    <span><?= $listNoteAdjectif[$i-1]; ?></span>
-                                    <div class="barreDeNotationBlanche">
-                                        <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
+                <h3>
+                    <div class="nonLu"></div>
+                    Non lus
+                    <input type="checkbox" name="fltAvisNonLus" id="fltAvisNonLus">
+                    <label for="fltAvisNonLus">Filtrer par</label>
+                </h3>
+                <h3>
+                    <?php echo $avisN0["avisnonlus"] ?>
+                </h3>
+                <h3>
+                    <div class="nonRepondu"></div>
+                    Non répondus
+                    <input type="checkbox" name="fltAvisNonRep" id="fltAvisNonRep">
+                    <label for="fltAvisNonRep">Filtrer par</label>
+                </h3>
+                <h3>
+                    <?php echo $avisN0["avisnonrepondus"] ?>
+                </h3>
+                    <?php
+                        $etoilesPleines = floor($avisN0['moynote']); // Nombre entier d'étoiles pleines
+                        $reste = $avisN0['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
+                    ?>
+                        <div class="notation">
+                            <div>
+                                <?php
+                                // Étoiles pleines
+                                for ($i = 1; $i <= $etoilesPleines; $i++) {
+                                    echo '<div class="star pleine"></div>';
+                                }
+                                // Étoile partielle
+                                if ($reste > 0) {
+                                    $pourcentageRempli = $reste * 100; // Pourcentage rempli
+                                    echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
+                                }
+                                // Étoiles vides
+                                for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
+                                    echo '<div class="star vide"></div>';
+                                }
+                                ?>
+                                <p><?php echo number_format($avisN0['moynote'], 1); ?> / 5 (<?php echo $avisN0['nbnote']; ?> avis)</p>
+                            </div>
+                            <div class="notedetaille">
+                                <?php
+                                // Adjectifs pour les notes
+                                $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
+                                for ($i = 5; $i >= 1; $i--) {
+                                    // Largeur simulée pour chaque barre en fonction de vos données
+                                    $pourcentageParNote = isset($avisN0["note_$i"]) ? ($avisN0["note_$i"] / $avisN0['nbnote']) * 100 : 0;
+                                ?>
+                                    <div class="ligneNotation">
+                                        <span><?= $listNoteAdjectif[$i-1]; ?></span>
+                                        <div class="barreDeNotationBlanche">
+                                            <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
+                                        </div>
+                                        <span>(<?= isset($avisN0["note_$i"]) ? $avisN0["note_$i"] : 0; ?> avis)</span>
                                     </div>
-                                    <span>(<?= isset($avisN0["note_$i"]) ? $avisN0["note_$i"] : 0; ?> avis)</span>
-                                </div>
-                            <?php
-                            }
-                            ?>
+                                <?php
+                                }
+                                ?>
+                            </div>
                         </div>
-                    </div>
-            <?php
-                }
-                else {
-                    echo "<p> Aucune donnée a afficher : vous n'avez pas encore d'avis </p>";
-                }
-            ?>
+                <?php
+                    }
+                    else {
+                        echo "<p> Aucune donnée a afficher : vous n'avez pas encore d'avis </p>";
+                    }
+                ?>
             </div>
         </details> 
         <p id="aucunAvisSelect"> Cliquez sur un avis de la liste pour l'afficher ici. </p>
@@ -216,6 +216,9 @@ const formReponseAvis = document.querySelector("#blocReponsePro form");
 const titreReponseAvis = document.querySelector("#avisproS2 form h2");
 const inputIdAvis = document.querySelector('#avisproS2 form input[type="hidden"]');
 
+const txtNbAvis = document.querySelector('#avisproS2 > details > h3:nth-child(3)');
+
+
 
 
 
@@ -294,28 +297,6 @@ function afficheAvisSelect(idAvis) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 'id': idAvis })
         });
-/*
-
-        // Envoi de la requête AJAX avec fetch
-        console.log(idAvis);
-        fetch('lectureAvis.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 'id': idAvis })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erreur HTTP : ' + response.status);
-            }
-            return response.text();
-        })
-        .then(data => {
-            console.log('Réponse du serveur :', data);
-        })
-        .catch(error => {
-            console.error('Erreurrrr :', error);
-        });
-*/
 
     }
 
