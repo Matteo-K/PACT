@@ -612,7 +612,9 @@ header ul + div {
 }
 
 #changeDataAccount:hover {
-  background-color: #034d7c;
+  background-color: white;
+  border: 2px solid #1ca4ed;
+  color: #1ca4ed;
 }
 
 #changeAccount {
@@ -620,7 +622,9 @@ header ul + div {
 }
 
 #changeAccount:hover {
-  background-color: #034d7c;
+  background-color: white;
+  border: 2px solid #1ca4ed;
+  color: #1ca4ed;
 }
 
 #logoutButton {
