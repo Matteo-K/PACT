@@ -273,7 +273,7 @@ if (isset($_POST['pageBefore'])) {
         switch ($categorie) {
           case 'restaurant':
             // Obtention des données
-            $gammeDePrix = $_POST["gamme_prix"];
+            $gammeDePrix = $_POST["rest_gamme_prix"];
 
             $stmt = $conn->prepare("SELECT * from pact._restauration where idoffre=?");
             $stmt->execute([$idOffre]);
@@ -287,13 +287,81 @@ if (isset($_POST['pageBefore'])) {
               $stmt = $conn->prepare("UPDATE pact._restauration SET gammedeprix=? where idoffre=?");
               $stmt->execute([$gammeDePrix, $idOffre]);
             }
+
+            // Gestion des images
+            $dossierImg = "img/imageMenu/". $idOffre . "/";
+
+            // Vérifie si le dossier existe, sinon le crée
+            if (!is_dir($dossierImg)) {
+              mkdir($dossierImg, 0777, true);
+            }
+
+            $nbImage = count($_FILES['park_plan']['name']);
+            for ($i=0; $i < $nbImage; $i++) {
+              
+              // Boucle à travers chaque fichier uploadé
+              $fileTmpPath = $_FILES['rest_ajoutPhotoMenu']['tmp_name'][$i];
+              $fileName = $_FILES['rest_ajoutPhotoMenu']['name'][$i];
+              $fileError = $_FILES['rest_ajoutPhotoMenu']['error'][$i];
+
+              // Vérifie si l'image a été uploadée sans erreur
+              if ($fileError === UPLOAD_ERR_OK) {
+                // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
+                $fileName = $idOffre . '-' . $i . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+                $dossierImgNom = $dossierImg . $fileName;
+
+                // Déplace l'image vers le dossier cible
+                move_uploaded_file($fileTmpPath, $dossierImgNom);
+
+                try {
+                  $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
+                  $stmt->execute([$dossierImgNom, $fileName]);
+
+                  $stmt = $conn->prepare("INSERT INTO pact._menu (menu, idoffre) VALUES (?, ?)");
+                  $stmt->execute([$dossierImgNom, $idOffre]);
+                } catch (PDOException $e) {
+                }
+              }
+            }
+
+            // Menu
+
             break;
           case 'parc':
             // Obtention des données
-            $ageMin = 0;
-            $nbAttraction = 0;
-            $prixMinimale = 0;
-            $urlPlan = null;
+            $ageMin = $_POST["park_ageMin"];
+            $nbAttraction = $_POST["park_nbAttrac"];
+            $prixMinimale = $_POST["park_prixMin"];
+            $dossierImgNom = ""; // urlPlan
+
+            // Gestion des images
+            $dossierImg = "img/imagePlan/". $idOffre . "/";
+
+            // Vérifie si le dossier existe, sinon le crée
+            if (!is_dir($dossierImg)) {
+              mkdir($dossierImg, 0777, true);
+            }
+
+            // Boucle à travers chaque fichier uploadé
+            $fileTmpPath = $_FILES['park_plan']['tmp_name'][0];
+            $fileName = $_FILES['park_plan']['name'][0];
+            $fileError = $_FILES['park_plan']['error'][0];
+
+            // Vérifie si l'image a été uploadée sans erreur
+            if ($fileError === UPLOAD_ERR_OK) {
+              // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
+              $fileName = 'plan' . $idOffre . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+              $dossierImgNom = $dossierImg . $fileName;
+
+              // Déplace l'image vers le dossier cible
+              move_uploaded_file($fileTmpPath, $dossierImgNom);
+
+              try {
+                $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
+                $stmt->execute([$dossierImgNom, $fileName]);
+              } catch (PDOException $e) {
+              }
+            }
 
             $stmt = $conn->prepare("SELECT * from pact._parcattraction where idoffre=?");
             $stmt->execute([$idOffre]);
@@ -301,54 +369,22 @@ if (isset($_POST['pageBefore'])) {
             // Si pas de donnée, on créer
             if ($result === false) {
               $stmt = $conn->prepare("INSERT INTO pact._parcattraction (idoffre, agemin, nbattraction, prixminimal, urlplan) VALUES (?, ?, ?, ?, ?)");
-              //$stmt->execute([$idOffre, $ageMin, $nbAttraction, $prixMinimale, $urlPlan]);
+              $stmt->execute([$idOffre, $ageMin, $nbAttraction, $prixMinimale, $dossierImgNom]);
             } else {
               // sinon modifie
               $stmt = $conn->prepare("UPDATE pact._parcattraction SET agemin=?, nbattraction=?, prixminimal=?, urlplan=? WHERE idoffre=?");
-              //$stmt->execute([$ageMin, $nbAttraction, $prixMinimale, $urlPlan, $idOffre]);
-            }
-
-            // Gestion des images
-            $dossierImg = "img/imageOffre/";
-            $imageCounter = 0;
-
-            $nbImages = count($_FILES['image1Park']['name']);
-
-            // Boucle à travers chaque fichier uploadé
-            for ($i = 0; $i < $nbImages; $i++) {
-              $fileTmpPath = $_FILES['image1Park']['tmp_name'][$i];
-              $fileName = $_FILES['image1Park']['name'][$i];
-              $fileError = $_FILES['image1Park']['error'][$i];
-
-              // Vérifie si l'image a été uploadée sans erreur
-              if ($fileError === UPLOAD_ERR_OK) {
-                // Renommage de l'image (idOffre3image0, idOffre3image1, etc.)
-                $fileName = $idOffre . '-' . $imageCounter . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-                $dossierImgNom = $dossierImg . $fileName;
-
-                // Déplace l'image vers le dossier cible
-                if (move_uploaded_file($fileTmpPath, $dossierImgNom)) {
-                  $imageCounter++;
-                }
-
-                try {
-                  $stmt = $conn->prepare("INSERT INTO pact._image (url, nomImage) VALUES (?, ?)");
-                  //$stmt->execute([$dossierImgNom, $fileName]);
-
-                  $stmt = $conn->prepare("INSERT INTO pact._illustre (idoffre, url) VALUES (?, ?)");
-                  //$stmt->execute([$idOffre, $dossierImgNom]);
-                } catch (PDOException $e) {
-                }
-              }
+              $stmt->execute([$ageMin, $nbAttraction, $prixMinimale, $dossierImgNom, $idOffre]);
             }
             break;
           case 'activite':
             // Obtention des données
-            $duree = $_POST["duréeAct"] ?? null;
-            $ageMin = $_POST["ageAct"] ?? null;
-            $accessibilite = $_POST["Accessibilite"] == "Acces" ? true : null;
-            $prixMinimale = null;
-            $prestation = null;
+            $duree = $_POST["actv_min"];
+            $ageMin = $_POST["actv_ageMin"];
+            $prixMinimale = $_POST["actv_prixMin"];
+            $accessibilite = [];
+            $acces = count($accessibilite) > 0;
+            $prestationInclus = [];
+            $prestationNonInclus = [];
 
             $stmt = $conn->prepare("SELECT * from pact._activite where idoffre=?");
             $stmt->execute([$idOffre]);
@@ -362,12 +398,37 @@ if (isset($_POST['pageBefore'])) {
               $stmt = $conn->prepare("UPDATE pact._activite SET duree=?, agemin=?, prixminimal=?, prestation=? WHERE idoffre=?");
               //$stmt->execute([$duree, $ageMin, $prixMinimale, $prestation, $idOffre]);
             }
+
+            // Accessibilité
+            $stmt = $conn->prepare("DELETE FROM pact._offreaccess WHERE idoffre = ?");
+            $stmt->execute([$idOffre]);
+            foreach ($accessibilite as $value) {
+              $stmt = $conn->prepare("INSERT INTO pact._offreaccess (idoffre, nomaccess) VALUES (? , ?) ");
+              $stmt->execute([$idOffre, $value]);
+            }
+            
+            // Prestation inclus
+            $stmt = $conn->prepare("DELETE FROM pact._offreprestation_inclu WHERE idoffre = ?");
+            $stmt->execute([$idOffre]);
+            foreach ($prestationInclus as $value) {
+              $stmt = $conn->prepare("INSERT INTO pact._offreaccess (idoffre, nompresta) VALUES (? , ?) ");
+              $stmt->execute([$idOffre, $value]);
+            }
+            
+            // Prestation non inclus
+            $stmt = $conn->prepare("DELETE FROM pact._offreprestation_non_inclu WHERE idoffre = ?");
+            $stmt->execute([$idOffre]);
+            foreach ($prestationNonInclus as $value) {
+              $stmt = $conn->prepare("INSERT INTO pact._offreprestation_non_inclu (idoffre, nompresta) VALUES (? , ?) ");
+              $stmt->execute([$idOffre, $value]);
+            }
+
             break;
           case 'spectacle':
             // Obtention des données
-            $duree = $_POST["nbMin"];
-            $nbPlace = $_POST["nbPlaceShow"];
-            $prixMinimale = $_POST["PrixMinShow"];
+            $duree = $_POST["show_min"];
+            $nbPlace = $_POST["show_nbPlace"];
+            $prixMinimale = $_POST["show_prixMin"];
 
             $stmt = $conn->prepare("SELECT * from pact._spectacle where idoffre=?");
             $stmt->execute([$idOffre]);
@@ -385,11 +446,12 @@ if (isset($_POST['pageBefore'])) {
 
           case 'visite':
             // Obtention des données
-            $guideTemp = $_POST["VisiteGuidee"];
-            $guide = ($guideTemp === "Guidee") ? true : false;
-            $duree = $_POST["numberHVisit"];
-            $prixMinimale = $_POST["PrixMinVisit"];
-            $accessibilite = ($_POST["AccesPersHandi"] === "access") ? true : false;
+            $guide = $_POST["VisiteGuidee"] === "guidee";
+            $duree = $_POST["visit_duree"];
+            $prixMinimale = $_POST["visit_minPrix"];
+            $accessibilite = [];
+            $access = count($accessibilite) > 0;
+
             // Création/Modification d'une offre de visite
             $stmt = $conn->prepare("SELECT * from pact._visite where idoffre=?");
             $stmt->execute([$idOffre]);
@@ -397,11 +459,11 @@ if (isset($_POST['pageBefore'])) {
             // Si pas de donnée, on créer
             if ($result === false) {
               $stmt = $conn->prepare("INSERT INTO pact._visite (idoffre, guide, duree, prixminimal, accessibilite) VALUES (?, ?, ?, ?, ?)");
-              //$stmt->execute([$idOffre, $guide, $duree, $prixMinimale, $accessibilite]);
+              $stmt->execute([$idOffre, $guide, $duree, $prixMinimale, $access]);
             } else {
               // sinon modifie
               $stmt = $conn->prepare("UPDATE pact._visite SET guide=?, duree=?, prixminimal=?, accessibilite=? WHERE idoffre=?");
-              //$stmt->execute([$guide, $duree, $prixMinimale, $accessibilite, $idOffre]);
+              $stmt->execute([$guide, $duree, $prixMinimale, $access, $idOffre]);
             }
 
             // Ajout des langues
@@ -413,6 +475,14 @@ if (isset($_POST['pageBefore'])) {
             foreach ($tabLangue as $langue) {
               $stmt = $conn->prepare("INSERT INTO pact._visite_langue (idoffre, langue) VALUES (?,?)");
               //$stmt->execute([$idoffre, $langue]);
+            }
+
+            // Accessibilité
+            $stmt = $conn->prepare("DELETE FROM pact._offreaccess WHERE idoffre = ?");
+            $stmt->execute([$idOffre]);
+            foreach ($accessibilite as $value) {
+              $stmt = $conn->prepare("INSERT INTO pact._offreaccess (idoffre, nomaccess) VALUES (? , ?) ");
+              $stmt->execute([$idOffre, $value]);
             }
             break;
 

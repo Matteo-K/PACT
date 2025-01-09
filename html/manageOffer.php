@@ -41,8 +41,8 @@
   <?php require_once "components/header.php" ?>
   <main>
     <aside>
-      <div>
-      <span class="circleManageOffer"></span>
+      <div id="navigationOffre">
+        <span class="circleManageOffer"></span>
         <ul>
           <!-- Redirige vers une page qui va sauvegarder les données puis redirige à la bonne page -->
           <?php for ($i=1; $i < count($stepManageOffer); $i++) { ?>
@@ -61,12 +61,10 @@
         <span class="arrowManageOffer"></span>
       </div>
       <div id="leaveButtonBloc">
-        <?php if ($step != 1) { ?>
           <!-- Si 0 on enregistre et retourne au menu du professionnel -->
           <button type="submit" onclick="submitForm(event,0)">Sauvegarder & Quitter</button>
-        <?php } ?>
-        <!-- Si -1 on retourne au menu du professionnel sans enregistrer -->
-        <button type="submit" onclick="submitForm(event,-1)">Quitter</button>
+          <!-- Si -1 on retourne au menu du professionnel sans enregistrer -->
+          <button type="submit" onclick="submitForm(event,-1)">Quitter</button>
     </aside>
     <section>
       <?php

@@ -408,12 +408,13 @@ header > div > a > div {
   transition: transform 1s ease-in-out;
   visibility: hidden;
   opacity: 0;
-  color: #fff;
+  color: #000;
+  border-left: 3px solid #1ca4ed;
 }
 
 /* Style général du menu de profil */
 .menuHeader {
-  background: linear-gradient(to bottom, #034d7c, #1ca4ed);
+  background-color: #fff;
   display: flex;
   width: 276px;
   flex-direction: column;
@@ -550,12 +551,11 @@ header > div > a > div {
 
 /* Styles pour le pseudo ou le nom */
 #imagProfil figcaption {
-  text-shadow: black -2px 2px;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
   margin: 0;
-  color: #fff;
+  color: #000;
 }
 
 #backButton {
@@ -587,12 +587,13 @@ header > div > a > div {
 
 .menuHeader a,
 .liFact {
-  color: #fff;
+  color: #000;
   text-decoration: none;
-  transition: color 0.5s;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
+  padding-left: 20px;
+  transition: background-color 0.3s ease;
 }
 
 .liFact {
@@ -626,19 +627,25 @@ header ul + div {
 }
 
 #changeDataAccount {
-  background-color: #034d7ccc;
+  border: 2px solid #1ca4ed;
+  background-color: #1Ca4ed;
 }
 
 #changeDataAccount:hover {
-  background-color: #034d7c;
+  background-color: white;
+  border: 2px solid #1ca4ed;
+  color: #1ca4ed;
 }
 
 #changeAccount {
-  background-color: #034d7ccc;
+  background-color: #1ca4ed;
+  border: 2px solid #1ca4ed;
 }
 
 #changeAccount:hover {
-  background-color: #034d7c;
+  background-color: white;
+  border: 2px solid #1ca4ed;
+  color: #1ca4ed;
 }
 
 #logoutButton {
@@ -1022,6 +1029,10 @@ header ul + div {
   }
 }
 
+#navigationOffre {
+  position: relative;
+}
+
 .circleManageOffer {
   position: absolute;
   top: 31%;
@@ -1037,8 +1048,8 @@ header ul + div {
   position: absolute;
   top: 31%;
   right: 20px;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 50px;
   transform: translateY(-50%);
   background-color: black;
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%);
@@ -1111,12 +1122,7 @@ header ul + div {
 }
 
 #manageOffer aside + section {
-  min-height: 70vh;
-}
-
-#manageOffer fieldset {
-  width: 100%;
-  margin: 30px;
+  min-height: 56vh;
 }
 
 /* Bouton suivant précédent */
@@ -1650,7 +1656,7 @@ header ul + div {
   display: inline-block;
   font-size: 22px;
   padding: 5px 30px;
-  border-radius: 50px;
+  border-radius: 10px;
   color: #000;
   margin: 0 5px;
   border: none;
@@ -1663,27 +1669,19 @@ header ul + div {
   flex-wrap: nowrap;
 }
 
+#aboutOffer div {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
 #artDetailOffer > div {
   width: 48%;
   margin: 1%;
 }
 
-#artDetailOffer fieldset {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-#aboutOffer {
-  flex: 2;
-}
-
-#blcImg {
-  flex: 1;
-}
-
 #artDetailOffer > div > label:not(.buttonDetailOffer),
 #choixImage label,
-#choixImage2 label,
+#park_planTitres label,
 #inputAutoComplete label {
   display: inline-block;
   font-size: 25px;
@@ -1701,14 +1699,10 @@ header ul + div {
   text-indent: 10px;
   padding: 5px;
   height: 30px;
-  width: 90%;
 }
 
 #artDetailOffer textarea,
 #choixPhoto2 textarea {
-  width: 90%;
-  max-width: 90%;
-  min-width: 90%;
   font-size: 16px;
   padding: 5px;
 }
@@ -1720,30 +1714,31 @@ header ul + div {
 }
 
 #choixImage,
-#choixImage2 {
+#park_planTitres {
   display: inline-block;
   width: 70%;
   margin-right: 14px;
 }
 
 #ajoutPhoto,
-#ajoutPhoto2 {
+#park_plan {
   background-color: var(--primary);
 }
 
 #detailsOffer input[type="file"],
-#ajoutPhoto2 input[type="file"] {
+#park_plan input[type="file"] {
   display: none;
 }
 
 #detailsOffer img {
-  max-width: 150px;
-  max-height: 120px;
   margin: 5px;
   overflow: hidden;
   cursor: pointer;
   border-radius: 3px;
   position: static;
+  width: 150px;
+  height: 100px;
+  object-fit: contain;
 }
 
 #tagsSelect {
@@ -1752,10 +1747,6 @@ header ul + div {
   border: 2px solid var(--bloc);
   background-color: #ffffff;
   font-size: 20px;
-}
-
-#inputTag {
-  width: 100%;
 }
 
 #inputTag:focus {
@@ -1768,29 +1759,37 @@ header ul + div {
   box-shadow: none;
   background-color: var(--secondary);
   height: 30px;
-  margin: 5px;
-  padding: 5px 15px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
+
 
 #artDetailOffer .tag img {
   width: 12px;
   height: 12px;
   margin: auto 0 auto 5px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+}
+
+#artDetailOffer .tag:hover img {
+  display: block;
 }
 
 #artDetailOffer section,
 #afficheImages,
 #afficheImages2 {
-  width: 90%;
-  /*calcul pour que la taille corresponde a la ligne au dessus (l'input + le bouton + les margin, padding et border) */
-  min-height: 100px;
   margin: 10px 0 5px 0;
-  background: white;
   padding: 7px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: wrap row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 #inputAutoComplete {
@@ -1829,8 +1828,10 @@ header ul + div {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/****** TRI ET FILTRE  INDEX ******/
-
+/****** TRI ET FILTRE INDEX ******/
+/*+++++++++++++++++++++++*/
+/* Css filtres, Antoine */
+/*+++++++++++++++++++++*/
 #blcSearch {
   display: flex;
 }
@@ -1846,19 +1847,56 @@ header ul + div {
 #tri, #filtre {
   display: none;
   width: 20vw;
-  height: calc(110vh - var(--header-size));
-  background-color: var(--bloc);
+  /* height: calc(100vh - var(--header-size)); */
+  height: fit-content;
+  background-color: var(--background);
+  border-right: solid 4px #1ca4ed;
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  color: white;
 }
 
-/*+++++++++++++++++++++++*/
-/* Css filtres, Antoine */
-/*+++++++++++++++++++++*/
+#filtre .checkmark {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px;
+  border-radius: 10%;
+  border: solid 2px #1ca4ed;
+  background-color: white;
+  display: inline-block;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#filtre [type="checkbox"]:checked + .checkmark {
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(28, 164, 237, 0.6);
+}
+
+#filtre [type="checkbox"]:checked + .checkmark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  font-weight: bold;
+  background-color: #1ca4ed;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+#filtre .checkmark:hover {
+  transform: scale(1.1);
+}
+
 #note, #prix, #statut, #categorie, #date {
   padding-inline: 20px;
+}
+
+#note label, #prix label, #statut label, #idCategorie label, #date label {
+    font-size: 20px;
+    margin-bottom: 20px;
 }
 
 /* Note */
@@ -1870,20 +1908,22 @@ header ul + div {
 }
 
 #note input {
-  width: 30px;
-  height: 30px;
+  display: none;
+  /* width: 30px;
+  height: 30px; */
 }
 
 /* Prix */
 #prix div {
   display: inline-flex;
   justify-content: space-around;
-  align-items: center;
   width: 100px;
 }
 
 #prixMin, #prixMax {
   height: 30px;
+  border: solid 2px #1ca4ed;
+  background-color: white;
 }
 
 /* Statut */
@@ -1893,26 +1933,57 @@ header ul + div {
   flex-direction: row-reverse;
   margin-bottom: 20px;
   align-items: center;
-  width: 100px;
+  width: 120px;
 }
 
 #statut input {
+  display: none;
+  /* width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px; */
+}
+
+/* #statut .checkmark {
   width: 30px;
   height: 30px;
   margin: 0 8px 0 4px;
+  border: solid 1px #1ca4ed;
 }
 
-/* Catégorie */
+#statut [type="checkbox"]:checked + .checkmark {
+  background-color: red;
+} */
 
-#idCategorie li {
+
+
+/* Catégorie */
+#idCategorie label {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
   align-items: center;
 }
 
+#idCategorie input {
+  display: none;
+  /* width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px; */
+}
+
 #idCategorie {
   padding-left: 0;
+}
+
+/* Date */
+#date input {
+  height: 30px;
+  border: solid 2px #1ca4ed;
+  background-color: white;
+}
+
+#date div {
+  margin-bottom: 20px;
 }
 
 .openAside {
@@ -1921,8 +1992,41 @@ header ul + div {
   transform: translateX(0) !important;
 }
 
-/* Bouton de tri et filtre */
+/*++++++++++++++++++++*/
+/* Css tris, Antoine */
+/*++++++++++++++++++*/
+#miseEnAvant, #noteCroissant, #noteDecroissant, #prixCroissant, #prixDecroissant, #avisCroissant, #avisDecroissant, #dateCreationRecent, #dateCreationAncien {
+  display: none;
+}
 
+#tri > .blcTriFiltre > div {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  padding-inline: 20px;
+  margin-bottom: 40px;
+}
+
+#tri label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 20px;
+  font-size: 25px;
+  font-weight: bold;
+
+  margin: 10px 0;
+  height: 40px;
+}
+
+#tri input:checked + label {
+  background: var(--accent-border);
+  border-radius: 3px;
+}
+
+
+/* Bouton de tri et filtre */
 #btnAside {
   width: 60px;
   display: flex;
@@ -1953,7 +2057,6 @@ header ul + div {
 }
 
 /* Bloc tri et filtre */
-
 /* titre */
 #titreAside {
   display: flex;
@@ -1970,12 +2073,83 @@ header ul + div {
   cursor: pointer;
 }
 
+/* test média query  */
+@media (max-width: 600px) {
+  #trifiltre {
+    position: sticky;
+    top: 0;
+    height: 100%;
+    flex-flow: column nowrap;
+    width: 100%;
+  }
+
+  #tri, #filtre {
+    width: 100% !important;
+    height: 100% !important;
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+  }
+
+  #btnAside {
+    width: 100%;
+    flex-flow: row nowrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  #btnAside img {
+    width: 50px;
+    height: auto;
+  }
+
+  #btnFiltre img {
+    width: 40px;
+    height: auto;
+  }
+
+  #btnAside a {
+    background-color: var(--bloc25);
+    border-radius: 1.5rem;
+    transition: padding 0.1s linear;
+    cursor: pointer;
+  }
+
+
+  #note, #prix, #statut, #categorie, #date {
+    padding-inline: 20px;
+  }
+
+  #note label, #prix label, #statut label, #idCategorie label, #date label {
+    font-size: 16px;
+  }
+
+  /* Note */
+  
+  /* Prix */
+
+  /* Statut */
+
+  /* Catégorie */
+
+  /* Date */
+
+  #titreAside img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .blcTriFiltre {
+    padding-top: 10px;
+    margin-left: 20px;
+  }
+}
+
 /* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
 .sectionLoca {
-  width: 1000px;
+  width: 800px;
   font-size: 25px;
   display: flex;
   flex-direction: column;
@@ -1988,10 +2162,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
   gap: 50px;
   margin-top: 50px;
-}
-
-#localisationOffer {
-  height: 750px;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
 }
 
 .sectionLoca input {
@@ -2013,16 +2186,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .codeP {
-  width: 25%;
+  width: 40%;
 }
 
 .villeL {
-  width: 68%;
+  width: 100%;
 }
 
 .map {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   height: fit-content;
@@ -2031,7 +2204,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #map {
-  height: 30vh;
+  height: 50vh;
   width: 90%;
 }
 
@@ -4522,16 +4695,35 @@ details .nonRepondu {
 
 /*------------------------ CSS OFFRE PARTICULIERE -----------------------------------------*/
 
-#choixCategorie input[type="radio"] {
-  display: none;
+#choixCategorie {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-#choixCategorie input[type="radio"]:checked + label {
-  border-bottom: 2px solid var(--bloc);
+#choixCategorie select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23666' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-#choixCategorie label {
-  padding: 10px 50px;
+#choixCategorie select:hover {
+  border-color: #888;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++*/
@@ -5262,3 +5454,48 @@ label[id="labelPFP"] {
 label[id="labelPFP"]:hover {
   color: var(--accent);
 }
+
+/* Css de la page des CGU ----------------------------------------*/
+
+#pageCgu{
+  min-height: 80vh;
+  main {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+#pageCgu h1, #pageCgu h2, #pageCgu h3 {
+    color: #222;
+}
+
+#pageCgu h1 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+#pageCgu h2 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+#pageCgu p {
+    margin: 10px 0;
+}
+
+#pageCgu ul {
+    padding-left: 20px;
+}
+
+#pageCgu li {
+    margin-bottom: 10px;
+}
+
+}
+
+
+/* Fin CSS page CGU */

@@ -103,107 +103,89 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 ?>
 <form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
-        <fieldset>
-            <legend>A propos de votre offre</legend>
-            <div id="aboutOffer">
-                <div>
-                    <label for="nom">Nom de votre offre*</label>
-                    <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
-                </div>
-                <div>
-                    <label for="resume">Résumé de l'offre</label>
-                    <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
-                </div>
-                <div>
-                    <label for="description">Description de votre offre*</label>
-                    <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
-                </div>
-                <div id="tagsOffer">
-                    <div id="inputAutoComplete">
-                        <label for="inputTag">Tags supplémentaires </label>
-                        <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
-                        <!--<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
-                        <ul id="autocompletion"></ul>
-                    </div>
-                    <section id="sectionTag">
-                        <!-- Les tags ajoutés apparaîtront ici -->
-                    </section>
-                    <p>
-                        Vous pouvez entrer jusqu'à 6 tags
-                    </p>
-                </div>
+        <div id="aboutOffer">
+            <div>
+                <label for="nom">Nom de votre offre* <span id="msgNomOffre" class="msgError"></span></label>
+                <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
             </div>
-            <div id="blcImg">
-                <div id="choixImage">
-                    <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
-                    <p>
-                        Vous pouvez insérer jusqu'à 10 photos<br>
-                        Cliquez sur une image pour la supprimer
-                    </p>
-                </div>
-                <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
-                <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
-                <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
-                <input 
-                    type="file" 
-                    id="ajoutPhoto" 
-                    name="images[]" 
-                    accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
-                    multiple 
-                    onchange="handleFiles(this)"
-                />
-                <div id="afficheImages"></div>
-                <div>
-                    <div>
-                        <figure class="bigImgOffer"></figure>
-                    </div>
-                    <div>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                        <figure class="imgOffer"></figure>
-                    </div>
-                </div>
+            <div>
+                <label for="resume">Résumé de l'offre</label>
+                <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
             </div>
-        </fieldset>
+            <div>
+                <label for="description">Description de votre offre* <span id="msgDescription" class="msgError"></span></label>
+                <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
+            </div>
+            <div id="tagsOffer">
+                <div id="inputAutoComplete">
+                    <label for="inputTag">Tags supplémentaires </label>
+                    <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
+                    <!--<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
+                    <ul id="autocompletion"></ul>
+                </div>
+                <section id="sectionTag">
+                    <!-- Les tags ajoutés apparaîtront ici -->
+                </section>
+                <p>
+                    Vous pouvez entrer jusqu'à 6 tags
+                </p>
+            </div>
+        </div>
+        <div id="blcImg">
+            <div id="choixImage">
+                <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
+                <p>
+                    Vous pouvez insérer jusqu'à 10 photos<br>
+                    Cliquez sur une image pour la supprimer
+                </p>
+            </div>
+            <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+            <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
+            <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
+            <input 
+                type="file" 
+                id="ajoutPhoto" 
+                name="images[]" 
+                accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
+                multiple 
+                onchange="handleFiles(this)"
+            />
+            <div id="afficheImages"></div>
+        </div>
     </article>
     
     <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
-        <fieldset>
-            <legend>Catégorie de l'offre</legend>
-            <span id="msgCategorie" class="msgError"></span>
-            <section id="choixCategorie">
-                <input type="radio" name="categorie" id="radioRestaurant" value="restaurant" required 
-                <?php echo $categorie["_restauration"] ? "checked" : "" ?> 
+        <span id="msgCategorie" class="msgError"></span>
+        <section id="choixCategorie">
+            <label for="page-select">Sélectionnez une catégorie :</label>
+            <select name="categorie" id="selectCategorie">
+                <option value="restaurant"
+                <?php echo $categorie["_restauration"] ? "selected" : "" ?> 
                 <?php echo $disableCategorie && !$categorie["_restauration"] ? "disabled" : "" ?>> 
-                <label for="radioRestaurant">Restaurant</label>
-                
-                <input type="radio" name="categorie" id="radioParc" value="parc" 
-                <?php echo $categorie["_parcattraction"] ? "checked" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_parcattraction"] ? "disabled" : "" ?>> 
-                <label for="radioParc">Parc d'attraction</label>
-
-                <input type="radio" name="categorie" id="radioActivite" value="activite" 
-                <?php echo $categorie["_activite"] ? "checked" : "" ?>
+                    Restaurant
+                </option>
+                <option value="parc"
+                <?php echo $categorie["_parcattraction"] ? "selected" : "" ?>
+                <?php echo $disableCategorie && !$categorie["_parcattraction"] ? "disabled" : "" ?>>
+                    Parc d'attraction
+                </option>
+                <option value="activite"
+                <?php echo $categorie["_activite"] ? "selected" : "" ?>
                 <?php echo $disableCategorie && !$categorie["_activite"] ? "disabled" : "" ?>> 
-                <label for="radioActivite" >Activite</label>
-                
-                <input type="radio" name="categorie" id="radioSpectacle" value="spectacle" 
-                <?php echo $categorie["_spectacle"] ? "checked" : "" ?>
+                    Activite
+                </option>
+                <option value="spectacle"
+                <?php echo $categorie["_spectacle"] ? "selected" : "" ?>
                 <?php echo $disableCategorie && !$categorie["_spectacle"] ? "disabled" : "" ?>> 
-                <label for="radioSpectacle">Spectacle</label>
-
-                <input type="radio" name="categorie" id="radioVisite" value="visite" 
-                <?php echo $categorie["_visite"] ? "checked" : "" ?>
+                    Spectacle
+                </option>
+                <option value="visite"
+                <?php echo $categorie["_visite"] ? "selected" : "" ?>
                 <?php echo $disableCategorie && !$categorie["_visite"] ? "disabled" : "" ?>>
-                <label for="radioVisite">Visite</label>
-            </section>
+                    Visite
+                </option>
+            </select>
+        </section>
         <?php
             $source = "details/";
             require_once $source . "detailsRestaurant.php";
@@ -213,10 +195,51 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             require_once $source . "detailsActivity.php";
             
         ?>
-        </fieldset>
     </article>
     
     <script>
+        // CATEGORIES DE L'OFFRE
+        /* Affichage pour un type d'offre particulier */
+        // Sélection des éléments du formulaire et des radios
+        const select = document.getElementById("selectCategorie");
+        
+        const RestaurantOffer = document.getElementById("restaurant");
+        const ParkOffer = document.getElementById("park");
+        const ActiviteOffer = document.getElementById("activity");
+        const SpectacleOffer = document.getElementById("show");
+        const VisiteOffer = document.getElementById("visit");
+        
+        function hidenOffer() {
+            RestaurantOffer.style.display = "none";
+            ParkOffer.style.display = "none";
+            ActiviteOffer.style.display = "none";
+            SpectacleOffer.style.display = "none";
+            VisiteOffer.style.display = "none";
+        }
+        
+        // Fonction pour afficher ou masquer la div des require_once
+        function toggleSpecialOffer() {
+            hidenOffer();
+            if (select.value == "parc") {
+                ParkOffer.style.display = "block";
+            } else if (select.value == "activite") {
+                ActiviteOffer.style.display = "block";
+            } else if (select.value == "spectacle") {
+                SpectacleOffer.style.display = "block";
+            } else if (select.value == "visite") {
+                VisiteOffer.style.display = "block";
+            } else if (select.value == "restaurant") {
+                RestaurantOffer.style.display = "block";
+            }
+        }
+        
+        // Associe la fonction de toggle au clic sur tous les boutons radio
+        select.addEventListener("input", toggleSpecialOffer);
+        
+        // Appel initial de la fonction pour vérifier l'état initial
+        toggleSpecialOffer();
+
+        // TAGS
         const maxTags = 6;
         const maxImages = 10;
 
@@ -320,7 +343,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     });
                     existingImagesCount = data.images.length; // Met à jour le compteur d'images existantes
                 })
-                .catch(error => console.error('Erreur de chargement des images:', error));
+                .catch(error => console.error('Erreur de chargement des images:', error)
+            );
         }
 
         // Fonction pour supprimer une image existante
@@ -352,11 +376,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Recharger la liste des images pour restaurer l'état
                 loadExistingImages();
             });
+            checkImg();
         }
-
-
-
-
 
         // Fonction pour gérer les fichiers sélectionnés
         function handleFiles(input) {
@@ -530,64 +551,81 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         // }
 
 
-        const radBtnRestaurant = document.querySelector("#radioRestaurant");
-        const radBtnParc = document.querySelector("#radioParc");
-        const radBtnActivite = document.querySelector("#radioActivite");
-        const radBtnSpectacle = document.querySelector("#radioSpectacle");
-        const radBtnVisite = document.querySelector("#radioVisite");
-
+        const nom = document.querySelector("#nom");
+        const description = document.querySelector("#description");
         const divImg = document.querySelector("#afficheImages");
-
-        const msgCategorie = document.querySelector("#msgCategorie");
+        const inputFile = document.querySelector("#ajoutPhoto");
+        
+        const msgNom = document.querySelector("#msgNomOffre");
+        const msgDescription = document.querySelector("#msgDescription");
         const msgImage = document.querySelector("#msgImage");
-
-        radBtnRestaurant.addEventListener("click", removeMsgCategorie);
-        radBtnParc.addEventListener("click", removeMsgCategorie);
-        radBtnActivite.addEventListener("click", removeMsgCategorie);
-        radBtnSpectacle.addEventListener("click", removeMsgCategorie);
-        radBtnVisite.addEventListener("click", removeMsgCategorie);
 
         /**
          * Vérifie si les input sont conforme pour être enregistrer
          * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
          */
         function checkOfferValidity(event) {
-            let rabBtnCategorie = checkCategorie();
-            let img = checkImg();
-            return rabBtnCategorie && img;
+            let nomCheck = checkNom();
+            let descriptionCheck = checkDescription();
+            let imgCheck = checkImg();
+            return nomCheck && descriptionCheck && imgCheck;
         }
 
         /**
-         * Vérifie si une catégorie à été tapé 
-         * @returns {boolean} - Renvoie true si l'input est conforme. False sinon.
+         * Vérifie si le nom de l'offre est correct
+         * @returns {boolean} - Renvoie true si le nom est correcte. false sinon
          */
-        function checkCategorie() {
-            let res = radBtnRestaurant.checked || radBtnParc.checked || radBtnActivite.checked || radBtnSpectacle.checked || radBtnVisite.checked;
-            if (!res) {
-                msgCategorie.textContent = 
-                    "Sélectionner une catégorie";
+        function checkNom() {
+            let res = true;
+            if (nom.value == "") {
+                msgNom.textContent = 
+                    "Ajouter un nom à l'offre";
+                res = false;
             } else {
-                msgCategorie.textContent = "";
+                msgNom.textContent = "";
             }
             return res;
         }
 
-        function removeMsgCategorie() {
-            msgCategorie.textContent = "";
+        nom.addEventListener("blur", () => checkNom());
+        
+        /**
+         * Vérifie si la description de l'offre est correct
+         * @returns {boolean} - Renvoie true si la description est correcte. false sinon
+         */
+        function checkDescription() {
+            let res = true;
+            if (description.value == "") {
+                msgDescription.textContent = 
+                    "Ajouter une description";
+                res = false;
+            } else {
+                msgDescription.textContent = "";
+            }
+            return res;
         }
 
+        description.addEventListener("blur", () => checkDescription());
+        
+        /**
+         * Vérifie si l'offre contient au moins une image
+         * @returns {boolean} - Renvoie true si l'offre contient au moins une image. false sinon
+         */
         function checkImg() {
             let res = true;
-            console.log(divImg.childElementCount);
             if (divImg.childElementCount == 0) {
                 msgImage.textContent = 
-                    "Ajouter une image";
+                "Ajouter une image";
                 res = false;
             } else {
                 msgImage.textContent = "";
             }
             return res;
         }
+        
+        inputFile.addEventListener("input", () => {
+            msgImage.textContent = "";
+        });
     </script>
 
 

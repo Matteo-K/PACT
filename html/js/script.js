@@ -2,70 +2,13 @@
 try {
 
   document.addEventListener("DOMContentLoaded", () => {
+      
+    // Variables de sélection des éléments
+    const inputTag = document.getElementById("inputTag");
+    const autocompleteList = document.getElementById("autocompletion");
     
-    /* Affichage pour un type d'offre particulier */
-    // Sélection des éléments du formulaire et des radios
-    const radioRestaurant = document.getElementById("radioRestaurant");
-    const radioPark = document.getElementById("radioParc");
-    const radioActivite = document.getElementById("radioActivite");
-  const radioSpectacle = document.getElementById("radioSpectacle");
-  const radioVisite = document.getElementById("radioVisite");
-  
-  const RestaurantOffer = document.getElementById("restaurant");
-  const ParkOffer = document.getElementById("park");
-  const ActiviteOffer = document.getElementById("activity");
-  const SpectacleOffer = document.getElementById("show");
-  const VisiteOffer = document.getElementById("visit");
-  
-  function hidenOffer() {
-    RestaurantOffer.style.display = "none";
-    ParkOffer.style.display = "none";
-    ActiviteOffer.style.display = "none";
-    SpectacleOffer.style.display = "none";
-    VisiteOffer.style.display = "none";
-  }
-  
-  // Fonction pour afficher ou masquer la div des require_once
-  hidenOffer();
-  function toggleSpecialOffer() {
-    hidenOffer();
-    if (radioPark.checked) {
-      ParkOffer.style.display = "block";
-    } else if (radioActivite.checked) {
-      ActiviteOffer.style.display = "block";
-    } else if (radioSpectacle.checked) {
-      SpectacleOffer.style.display = "block";
-    } else if (radioVisite.checked) {
-      VisiteOffer.style.display = "block";
-    } else if (radioRestaurant.checked) {
-      RestaurantOffer.style.display = "block";
-    }
-  }
-  
-  // Associe la fonction de toggle au clic sur tous les boutons radio
-  radioRestaurant.addEventListener("input", toggleSpecialOffer);
-  radioPark.addEventListener("input", toggleSpecialOffer);
-  radioActivite.addEventListener("input", toggleSpecialOffer);
-  radioSpectacle.addEventListener("input", toggleSpecialOffer);
-  radioVisite.addEventListener("input", toggleSpecialOffer);
-
-  // autresCategories.forEach(radio => radio.addEventListener('click', toggleSpecialOffer));
-  
-  // Appel initial de la fonction pour vérifier l'état initial
-  toggleSpecialOffer();
-  
-  
-  
-  
-  
-  
-  
-  // Variables de sélection des éléments
-  const inputTag = document.getElementById("inputTag");
-  const autocompleteList = document.getElementById("autocompletion");
-  
-  // Fonction pour filtrer et afficher les suggestions
-  function updateSuggestions(val) {
+    // Fonction pour filtrer et afficher les suggestions
+    function updateSuggestions(val) {
 
       // Nettoyer les suggestions précédentes
       autocompleteList.innerText = "";  

@@ -287,6 +287,36 @@ function afficheAvisSelect(idAvis) {
         let divNonRep = document.createElement("div");
         divNonRep.classList.add("nonRepondu");
         avisSelect.querySelector("div").appendChild(divNonRep);
+
+
+        fetch('lectureAvis.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 'id': idAvis })
+        });
+/*
+
+        // Envoi de la requête AJAX avec fetch
+        console.log(idAvis);
+        fetch('lectureAvis.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 'id': idAvis })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erreur HTTP : ' + response.status);
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log('Réponse du serveur :', data);
+        })
+        .catch(error => {
+            console.error('Erreurrrr :', error);
+        });
+*/
+
     }
 
     avisPrecedent = document.getElementById(`avis${idAvis}`);

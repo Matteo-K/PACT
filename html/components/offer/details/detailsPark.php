@@ -22,40 +22,29 @@ if ($categorie["_parcattraction"]) {
     }
 }
 
-
-
 ?>
-
-<section id="park"> <!-- Section pour le CSS -->
-    <!-- Gestion de l'àge -->
-        <div class="ageMinP">
-            <label class="labelGauche">Age minimum :</label>
-            <input type="number" id="agePark" name="AgePark" min="0"  placeholder="0">
-        </div>
-    <!--Gestion du nombre d'actration -->
-        <div class="NbEtPrixPark">
-            <label class="labelGauche">Nombre d'attractions :</label>
-            <input type="number" id="nbAttrac" name="nbAttrac"min="0"placeholder="0"  class="nbAttrac">
+<section id="park">
+    <!-- Gestion de l'âge -->
+    <label for="park_ageMin">Age minimum :</label>
+    <input type="number" id="park_ageMin" name="park_ageMin" min="0"  placeholder="0" value="<?= $parc["agemin"] ?>">
+    <!--Gestion du nombre d'acttration -->
+    <label for="park_nbAttrac">Nombre d'attractions :</label>
+    <input type="number" id="park_nbAttrac" name="park_nbAttrac" min="0"placeholder="0"  class="nbAttrac" value="<?= $parc["nbattraction"] ?>">
     <!-- Gestion du prix minimum -->
-            <label class="labelGauche">Prix Minimum :</label>
-            <input type="number" id="prixMinPark" name="prixMinPark" min="0" placeholder="0">
-            <label class="labelEuro">€</label>
-        </div>
+    <label for="park_prixMin">Prix Minimum :</label>
+    <input type="number" id="park_prixMin" name="park_prixMin" min="0" placeholder="0" value="<?= $parc["prixminimal"] ?>">
+    <label for="park_prixMin">€</label>
 
-    
-    <!-- Pour ajouter le plan du parc -->
-        <div id="choixImage2">
-            <h3>Plan : </h3>
-            <p>
-                Vous pouvez insérer jusqu'à 1 photo
+    <!-- Plan du parc -->
+    <div id="park_planTitres">
+        <label class="labelPhotos">Photo du plan* </label>
+        <label class="labNbPhotos">Vous pouvez insérer 1 photo de votre plan</label> <!-- Indication pour l'utilisateur -->
+        <label class="labelSuppPhotos"> Cliquez sur l'image pour la supprimer</label>
+    </div>
 
-            </p>
-        </div>
-        <label for="ajoutPhoto2" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
-        <input type="file" id="ajoutPhoto2" name="ajoutPhoto2[]"
-            accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple class="zoneImages" >
-        <div id="afficheImages2" class="afficheImages2"></div>
+    <label for="park_plan" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+    <input type="file" id="park_plan" name="park_plan[]"
+        accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple class="zoneImages" >
 
-
-
+    <div id="afficheImages2" class="afficheImages2"></div>
 </section>

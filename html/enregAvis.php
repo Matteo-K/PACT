@@ -142,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt = $conn->prepare("UPDATE pact._avis SET lu = true WHERE idc = ?");
         $stmt->execute([$idAvis]);
+
     }
 
     ?>
