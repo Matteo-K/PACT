@@ -233,7 +233,7 @@ VALUES ('Anglais'),
        ('Français'), 
        ('Espagnol');
 
--- Peuplement de la table _offre (une offre par catégorie)
+-- Peuplement de la table _offre
 INSERT INTO _offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume, dateCrea) 
 VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attractions de la ville.', 'parc@mail.com', '0123456790', TRUE, 'http://parc.com', 'Divertissement familial', CURRENT_TIMESTAMP),
        (4, 'actif', 'Thomas Angelvy', 'Un spectacle incroyable avec des performances éblouissantes.', 'spectacle@mail.com', '0123456791', TRUE, 'http://spectacle.com', 'Divertissement exceptionnel', CURRENT_TIMESTAMP),
@@ -241,7 +241,7 @@ VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attracti
        (3, 'actif', 'Activité Culturelle', 'Explorez la culture locale à travers une activité immersive.', 'activite@mail.com', '0123456794', TRUE, 'http://activite.com', 'Immersion culturelle aves la population local', CURRENT_TIMESTAMP),
        (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP),
      /*ajout de benj*/  (4, 'inactif', 'Brain l escape game', 'L unique escape game de Lannion.', 'escape.game@mail.com', '0987654321', TRUE, 'http://escape-game.com', 'Divertissement familial', CURRENT_TIMESTAMP),
-      /* ajout*/ (4, 'inactif', 'Baie de Lannion', 'Venez voir la mangnifique Baie de Lannion', 'baie-lannuin@mail.com', '0987654321', TRUE, 'http://baiedelannion.com', 'Divertissement familial', CURRENT_TIMESTAMP);
+      /* ajout*/ (4, 'inactif', 'Baie de Lannion', 'Venez voir la mangnifique Baie de Lannion', 'baie-lannuin@mail.com', '0267842542', TRUE, 'http://baiedelannion.com', 'Divertissement familial', CURRENT_TIMESTAMP);
 -- Peuplement de la table _image
 INSERT INTO _image (url, nomImage) 
 VALUES ('./img/profile_picture/default.svg', 'default.svg'), 
