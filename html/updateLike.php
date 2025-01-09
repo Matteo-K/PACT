@@ -6,7 +6,6 @@ header('Content-Type: application/json');
 // Récupération de l'action depuis la requête POST
 $data = json_decode(file_get_contents('php://input'), true);
 $action = isset($data['action']) ? $data['action'] : '';
-$idavis = isset($data['idavis']) ? $data['idavis'] : '';
 
 // Vérifier si l'action est valide
 if (!in_array($action, ['like', 'dislike', 'unlike', 'undislike'])) {
@@ -19,7 +18,7 @@ try {
     $conn->beginTransaction();
 
     // Préparer la requête pour récupérer le nombre de likes et de dislikes
-    $stmt = $conn->prepare("SELECT nblike, nbdislike FROM pact._commentaire WHERE idc = $idavis");
+    $stmt = $conn->prepare("SELECT nblike, nbdislike FROM pact._commentaire WHERE idc = 1");
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
