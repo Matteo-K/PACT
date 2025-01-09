@@ -389,12 +389,13 @@ header > div > a > div {
   transition: transform 1s ease-in-out;
   visibility: hidden;
   opacity: 0;
-  color: #fff;
+  color: #000;
+  border-left: 3px solid #1ca4ed;
 }
 
 /* Style général du menu de profil */
 .menuHeader {
-  background: linear-gradient(to bottom, #034d7c, #1ca4ed);
+  background-color: #fff;
   display: flex;
   width: 276px;
   flex-direction: column;
@@ -531,12 +532,11 @@ header > div > a > div {
 
 /* Styles pour le pseudo ou le nom */
 #imagProfil figcaption {
-  text-shadow: black -2px 2px;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
   margin: 0;
-  color: #fff;
+  color: #000;
 }
 
 #backButton {
@@ -574,6 +574,7 @@ header > div > a > div {
   padding: 10px;
   text-align: center;
   border-radius: 10px;
+  padding-left: 20px;
 }
 
 .liFact {
@@ -1823,6 +1824,7 @@ header ul + div {
   width: 20vw;
   height: calc(125vh - var(--header-size));
   background-color: var(--bloc);
+  border-right: solid 4px #1ca4ed;
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -1869,21 +1871,60 @@ header ul + div {
   flex-direction: row-reverse;
   margin-bottom: 20px;
   align-items: center;
-  width: 100px;
+  width: 120px;
 }
 
 #statut input {
-  /* display: none; */
-  width: 30px;
-  height: 30px;
-}
-
-/* #statut .checkmark { */
+  display: none;
   /* width: 30px;
   height: 30px;
+  margin: 0 8px 0 4px; */
+}
+
+/* #statut .checkmark {
+  width: 30px;
+  height: 30px;
   margin: 0 8px 0 4px;
-  background-color: red; */
-/* } */
+  border: solid 1px #1ca4ed;
+}
+
+#statut [type="checkbox"]:checked + .checkmark {
+  background-color: red;
+} */
+
+#statut .checkmark {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px;
+  border-radius: 10%;
+  border: solid 2px #1ca4ed;
+  display: inline-block;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Animation douce */
+}
+
+#statut [type="checkbox"]:checked + .checkmark {
+  background-color: #1ca4ed; /* Bleu clair */
+  box-shadow: 0 0 10px rgba(28, 164, 237, 0.6); /* Effet lumineux autour */
+}
+
+#statut [type="checkbox"]:checked + .checkmark::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  transform: scale(1.2); /* Agrandir la coche */
+}
+
+#statut .checkmark:hover {
+  transform: scale(1.1); /* Agrandissement léger au survol */
+}
+
 
 /* Catégorie */
 #idCategorie label {

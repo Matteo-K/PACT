@@ -292,7 +292,7 @@ function afficheAvisSelect(idAvis) {
         fetch('lectureAvis.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(idAvis)
+            body: JSON.stringify({ 'id': idAvis })
         });
 /*
 
@@ -315,7 +315,7 @@ function afficheAvisSelect(idAvis) {
         .catch(error => {
             console.error('Erreurrrr :', error);
         });
-
+*/
 
     }
 

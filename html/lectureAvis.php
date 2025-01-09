@@ -1,21 +1,16 @@
 <?php
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 require_once "config.php";  
 
 
-$data = json_decode(file_get_contents('php://input'));
-$id = json_decode($data[0]) ?? null;
+$donnees = json_decode(file_get_contents('php://input'), true);
+$id = $donnees['id']; // Sécurisation de l'ID
 
 // Vérification si 'id' est bien défini
 if ($id != null) {
-
+    
     $stmt = $conn->prepare("UPDATE pact._avis SET lu = true WHERE idc = ?");
-    $stmt->execute($id);
-    $result = $stmt->fetch();
-
+    $stmt->execute([$id]); // Passe l'ID sous forme de tableau
 }
 else{
     http_response_code(400); // Aucun contenu, succès
