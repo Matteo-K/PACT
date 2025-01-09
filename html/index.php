@@ -16,15 +16,13 @@ require_once "config.php";
   <main>
     <div id="index">
       <div id="ALaUne">
-        <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
-          <h2>Vos offres</h2>
-        <?php } ?>
+      <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
         <div>
           <?php 
-          $elementStart = 0;
-          $nbElement = 20;
-          $offres = new ArrayOffer();
-          $offres->displayCardALaUne($offres->filtre($idUser, $typeUser), $typeUser, $elementStart, $nbElement);
+            $elementStart = 0;
+            $nbElement = 20;
+            $offres = new ArrayOffer();
+            $offres->displayCardALaUne($offres->filtre($idUser, $typeUser), $typeUser, $elementStart, $nbElement);
           ?>
         </div>
       </div>
@@ -34,7 +32,11 @@ require_once "config.php";
         $idOffres = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
           $idOffres[] = $row['idoffre'];
-      } ?>
+          }
+        } elseif ($typeUser == "visiteur") {
+          $idOffres = $_SESSION["recent"] ?? [];
+        }
+      ?>
       <div id="consultationRecente">
         <h2>Consulté récemment</h2>
         <div>
@@ -45,10 +47,10 @@ require_once "config.php";
             ?>
           <?php } else { ?>
             <p>Aucune offre consultée récemment</p>
-          <?php } ?>
+            <?php } ?>
+          </div>
         </div>
-      </div>
-      <?php } ?>
+        <?php } ?>
       <div id="voirPlus">
         <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
           <a href="manageOffer.php" class="modifierBut">Créer une offre</a>  
