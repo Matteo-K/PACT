@@ -409,7 +409,7 @@ header > div > a > div {
   visibility: hidden;
   opacity: 0;
   color: #000;
-  border-left: 3px solid #1ca4ed;
+  border-left: inset 3px solid #1ca4ed;
 }
 
 /* Style général du menu de profil */
