@@ -5069,7 +5069,7 @@ a[id="lienMotDePasseOublie"] {
 }
 
 a[id="lienMotDePasseOublie"]:hover {
-  color: #edae14;
+  color: #1ca4ed;
 }
 
 .connexion-compte a {
@@ -5178,7 +5178,7 @@ button[id="boutonChangerMDP"] {
   /* box-shadow: inset -4px -4px 4px var(--accent-border); */
   margin: 5px auto;
   margin-top: 30px;
-  background-color: var(--bloc);
+  background-color: #1ca4ed;
   cursor: pointer;
 }
 
@@ -5193,7 +5193,7 @@ input[id="boutonLienPro"] {
   margin: 5px auto;
   margin-top: 30px;
   color: var(--text-dark);
-  background-color: var(--bloc);
+  background-color: #1ca4ed;
   text-decoration: none;
   cursor: pointer;
 }
