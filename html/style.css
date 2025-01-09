@@ -1828,7 +1828,8 @@ header ul + div {
 #tri, #filtre {
   display: none;
   width: 20vw;
-  height: calc(145vh - var(--header-size));
+  /* height: calc(100vh - var(--header-size)); */
+  height: fit-content;
   background-color: var(--background);
   border-right: solid 4px #1ca4ed;
   opacity: 0;
