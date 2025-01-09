@@ -30,7 +30,7 @@ if (isset($_SESSION["typeUser"]) && $_SESSION["typeUser"] == 'membre'){
     }
 } elseif (!isset($_SESSION["typeUser"])) {
     $_SESSION["recent"][] = $idOffre;
-    $_SESSION["recent"] = array_slice($_SESSION["recent"], -5);
+    $_SESSION["recent"] = array_slice($_SESSION["recent"], -10);
 }
 
 $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = :idoffre");

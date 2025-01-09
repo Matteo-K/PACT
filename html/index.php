@@ -27,8 +27,9 @@ require_once "config.php";
         </div>
       </div>
       <?php if ($typeUser == "membre") {
-        $stmt = $conn->prepare("SELECT idoffre FROM pact._consulter where idu = ? and dateconsultation = CURRENT_DATE;");
-        $stmt->execute([$_SESSION['idUser']]);
+        $nbElement = 10;
+        $stmt = $conn->prepare("SELECT * FROM pact._consulter WHERE idu = ? ORDER BY dateconsultation LIMIT ?");
+        $stmt->execute([$_SESSION['idUser'], $nbElement]);
         $idOffres = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
           $idOffres[] = $row['idoffre'];
@@ -41,7 +42,6 @@ require_once "config.php";
         <h2>Consulté récemment</h2>
         <div>
           <?php if (count($idOffres) > 0) {
-            $nbElement = 20;
             $consultRecent = new ArrayOffer($idOffres);
             $consultRecent->displayConsulteRecemment($nbElement);
             ?>
