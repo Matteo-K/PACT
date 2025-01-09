@@ -3,9 +3,6 @@ $stmt = $conn->prepare("SELECT * from pact.proprive where idu = ?");
 $stmt->execute([$offre[0]['idu']]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $conn->prepare("SELECT nblike,nbdislike from pact._commentaire");
-$stmt->execute();
-
 $commentaire = $stmt->fetch(PDO::FETCH_ASSOC);
 
 function nbChiffreNombre($number)
@@ -57,6 +54,10 @@ function formatDateDiff($date)
 }
 
 foreach ($avis as $a) {
+
+    $likeId = 'like_' . $a['idavis'];
+    $dislikeId = 'dislike_' . $a['idavis'];
+?>
 ?>
     <div class="messageAvisReponse">
         <div class="messageAvis">
@@ -125,7 +126,7 @@ foreach ($avis as $a) {
                     </div>
                     <div class="container">
                         <label for="like">
-                            <input type="checkbox" name="evaluation" id="like" />
+                            <input type="checkbox" name="evaluation" id="<?= $likeId?>" />
                             <svg
                                 class="icon like"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -138,8 +139,8 @@ foreach ($avis as $a) {
                         </label>
                         <div class="count likes">
                             <?php
-                            $nbLike = (string)$commentaire["nblike"];
-                            for ($i = 0; $i < nbChiffreNombre($commentaire["nblike"]); $i++) {
+                            $nbLike = (string)$a["nblike"];
+                            for ($i = 0; $i < nbChiffreNombre($a["nblike"]); $i++) {
                             ?>
                                 <div class="number" style="transform: var(--nb<?= $nbLike[$i] ?>);">
                                     <span>0</span>
@@ -160,10 +161,10 @@ foreach ($avis as $a) {
                         <div class="count dislikes">
                             <?php
                             // Conversion du nombre en chaîne
-                            $nbDislike = (string)$commentaire["nbdislike"];
+                            $nbDislike = (string)$a["nbdislike"];
 
                             // Boucle sur chaque chiffre
-                            for ($i = 0; $i < strlen($commentaire["nbdislike"]); $i++) {
+                            for ($i = 0; $i < strlen($a["nbdislike"]); $i++) {
                             ?>
                                 <div class="number" style="transform: var(--nb<?= $nbDislike[$i] ?>);">
                                     <span>0</span>
@@ -183,7 +184,7 @@ foreach ($avis as $a) {
 
                         </div>
                         <label for="dislike">
-                            <input type="checkbox" name="evaluation" id="dislike" />
+                            <input type="checkbox" name="evaluation" id="<?= $dislikeId?>" />
                             <svg
                                 class="icon dislike"
                                 xmlns="http://www.w3.org/2000/svg"
