@@ -3,6 +3,16 @@ $stmt = $conn->prepare("SELECT * from pact.proprive where idu = ?");
 $stmt->execute([$offre[0]['idu']]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$stmt = $conn->prepare("SELECT nblike,nbdislike from pact._commentaire");
+$stmt->execute();
+
+$commentaire = $stmt->fetch(PDO::FETCH_ASSOC);
+
+function nbChiffreNombre($number)
+{
+    return strlen((string)$number);
+}
+
 function formatDateDiff($date)
 {
     // Créer des objets DateTime à partir de la date passée en paramètre
@@ -89,16 +99,6 @@ foreach ($avis as $a) {
                     <div>
                         <section>
                             <p><?= $a['content'] ?></p>
-                            <article>
-                                <figure id="like">
-                                    <img src="img/icone/like1.png">
-                                    <figcaption>10</figcaption>
-                                </figure>
-                                <figure id="dislike">
-                                    <img src="img/icone/like1.png">
-                                    <figcaption>10</figcaption>
-                                </figure>
-                            </article>
                         </section>
                         <?php if ($a['listimage'] != null) {
                             $listimage = trim($a['listimage'], '{}');
@@ -119,8 +119,81 @@ foreach ($avis as $a) {
                                     </div>
                                 </div>
                                 <div class="swiper-pagination"></div>
+
                             </div>
                         <?php } ?>
+                    </div>
+                    <div class="container">
+                        <label for="like">
+                            <input type="checkbox" name="evaluation" id="like" />
+                            <svg
+                                class="icon like"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
+                            </svg>
+                        </label>
+                        <div class="count likes">
+                            <?php
+                            $nbLike = (string)$commentaire["nblike"];
+                            for ($i = 0; $i < nbChiffreNombre($commentaire["nblike"]); $i++) {
+                            ?>
+                                <div class="number" style="transform: var(--nb<?= $nbLike[$i] ?>);">
+                                    <span>0</span>
+                                    <span>1</span>
+                                    <span>2</span>
+                                    <span>3</span>
+                                    <span>4</span>
+                                    <span>5</span>
+                                    <span>6</span>
+                                    <span>7</span>
+                                    <span>8</span>
+                                    <span>9</span>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                        <div class="count dislikes">
+                            <?php
+                            // Conversion du nombre en chaîne
+                            $nbDislike = (string)$commentaire["nbdislike"];
+
+                            // Boucle sur chaque chiffre
+                            for ($i = 0; $i < strlen($commentaire["nbdislike"]); $i++) {
+                            ?>
+                                <div class="number" style="transform: var(--nb<?= $nbDislike[$i] ?>);">
+                                    <span>0</span>
+                                    <span>1</span>
+                                    <span>2</span>
+                                    <span>3</span>
+                                    <span>4</span>
+                                    <span>5</span>
+                                    <span>6</span>
+                                    <span>7</span>
+                                    <span>8</span>
+                                    <span>9</span>
+                                </div>
+                            <?php
+                            }
+                            ?>
+
+                        </div>
+                        <label for="dislike">
+                            <input type="checkbox" name="evaluation" id="dislike" />
+                            <svg
+                                class="icon dislike"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M20 3H6.693A2.01 2.01 0 0 0 4.82 4.298l-2.757 7.351A1 1 0 0 0 2 12v2c0 1.103.897 2 2 2h5.612L8.49 19.367a2.004 2.004 0 0 0 .274 1.802c.376.52.982.831 1.624.831H12c.297 0 .578-.132.769-.36l4.7-5.64H20c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm-8.469 17h-1.145l1.562-4.684A1 1 0 0 0 11 14H4v-1.819L6.693 5H16v9.638L11.531 20zM18 14V5h2l.001 9H18z"></path>
+                            </svg>
+                        </label>
                     </div>
                 </div>
             </article>
@@ -162,3 +235,81 @@ foreach ($avis as $a) {
 <?php
 }
 ?>
+<script>
+    function updateCount(action) {
+        // Envoyer une requête à `update.php`
+        fetch('updateLike.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    action: action
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Mettre à jour les chiffres pour "likes"
+                    updateNumberDisplay('.count.likes .number', data.nblike);
+
+                    // Mettre à jour les chiffres pour "dislikes"
+                    updateNumberDisplay('.count.dislikes .number', data.nbdislike);
+                } else {
+                    alert('Erreur lors de la mise à jour.');
+                }
+            })
+            .catch(error => console.error('Erreur:', error));
+    }
+
+    function updateNumberDisplay(selector, number) {
+        // Convertir le nombre en chaîne
+        const numberStr = number.toString();
+
+        // Récupérer tous les éléments .number à l'intérieur du selector
+        const numbers = document.querySelectorAll(selector);
+
+        // Parcourir chaque élément .number
+        numbers.forEach((el, index) => {
+            const digit = numberStr[index] || '0'; // Si il n'y a pas assez de chiffres, utiliser '0'
+
+            // Mettre à jour la position du chiffre
+            el.style.transform = `var(--nb${digit})`;
+
+            // Mettre à jour le contenu du chiffre
+            el.querySelector('span').textContent = digit;
+        });
+    }
+
+    // Récupérer les éléments des cases à cocher
+    const likeCheckbox = document.getElementById("like");
+    const dislikeCheckbox = document.getElementById("dislike");
+
+    // Ajouter un événement pour le bouton "like"
+    likeCheckbox.addEventListener("change", function() {
+        if (likeCheckbox.checked) {
+            if (dislikeCheckbox.checked) {
+                updateCount('undislike');
+            }
+            dislikeCheckbox.checked = false;
+            updateCount('like'); // Envoie l'action "like" pour la mise à jour
+
+        } else {
+            updateCount('unlike');
+        }
+
+    });
+
+    // Ajouter un événement pour le bouton "dislike"
+    dislikeCheckbox.addEventListener("change", function() {
+        if (dislikeCheckbox.checked) {
+            if (likeCheckbox.checked) {
+                updateCount('unlike');
+            }
+            likeCheckbox.checked = false;
+            updateCount('dislike'); // Envoie l'action "dislike" pour la mise à jour
+        } else {
+            updateCount('undislike');
+        }
+    });
+</script>

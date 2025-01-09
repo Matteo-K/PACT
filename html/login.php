@@ -61,6 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $member['idu'];
             $_SESSION['typeUser'] = 'membre';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
+            if (isset($_SESSION["recent"])) {
+                unset($_SESSION["recent"]);
+            }            
             header('Location: index.php');
             exit;
         } else {
