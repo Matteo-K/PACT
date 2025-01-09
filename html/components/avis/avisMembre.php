@@ -58,7 +58,7 @@ foreach ($avis as $a) {
     $likeId = 'like_' . $a['idc'];
     $dislikeId = 'dislike_' . $a['idc'];
 ?>
-?>
+    ?>
     <div class="messageAvisReponse">
         <div class="messageAvis">
             <article class="user">
@@ -126,7 +126,7 @@ foreach ($avis as $a) {
                     </div>
                     <div class="container">
                         <label for="like">
-                            <input type="checkbox" name="evaluation" id="<?= $likeId?>" />
+                            <input type="checkbox" name="evaluation" id="<?= $likeId ?>" />
                             <svg
                                 class="icon like"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -184,7 +184,7 @@ foreach ($avis as $a) {
 
                         </div>
                         <label for="dislike">
-                            <input type="checkbox" name="evaluation" id="<?= $dislikeId?>" />
+                            <input type="checkbox" name="evaluation" id="<?= $dislikeId ?>" />
                             <svg
                                 class="icon dislike"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -237,25 +237,63 @@ foreach ($avis as $a) {
 }
 ?>
 <script>
-    function updateCount(action) {
-        // Envoyer une requête à `update.php`
+    // Sélectionner tous les boutons "like" et "dislike" générés dynamiquement
+    const likeCheckboxes = document.querySelectorAll("[id^='like_']");
+    const dislikeCheckboxes = document.querySelectorAll("[id^='dislike_']");
+
+    likeCheckboxes.forEach(likeCheckbox => {
+        likeCheckbox.addEventListener("change", function() {
+            const idavis = likeCheckbox.id.split('_')[1]; // Récupérer l'ID de l'avis
+            const dislikeCheckbox = document.getElementById('dislike_' + idavis);
+
+            if (likeCheckbox.checked) {
+                if (dislikeCheckbox.checked) {
+                    updateCount('undislike', idavis); // Annuler le dislike si activé
+                }
+                dislikeCheckbox.checked = false;
+                updateCount('like', idavis); // Envoyer l'action "like" pour la mise à jour
+            } else {
+                updateCount('unlike', idavis); // Envoyer l'action "unlike" pour la mise à jour
+            }
+        });
+    });
+
+    dislikeCheckboxes.forEach(dislikeCheckbox => {
+        dislikeCheckbox.addEventListener("change", function() {
+            const idavis = dislikeCheckbox.id.split('_')[1]; // Récupérer l'ID de l'avis
+            const likeCheckbox = document.getElementById('like_' + idavis);
+
+            if (dislikeCheckbox.checked) {
+                if (likeCheckbox.checked) {
+                    updateCount('unlike', idavis); // Annuler le like si activé
+                }
+                likeCheckbox.checked = false;
+                updateCount('dislike', idavis); // Envoyer l'action "dislike" pour la mise à jour
+            } else {
+                updateCount('undislike', idavis); // Envoyer l'action "undislike" pour la mise à jour
+            }
+        });
+    });
+
+    function updateCount(action, idavis) {
         fetch('updateLike.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    action: action
+                    action: action,
+                    idavis: idavis
                 })
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     // Mettre à jour les chiffres pour "likes"
-                    updateNumberDisplay('.count.likes .number', data.nblike);
+                    updateNumberDisplay(`#${idavis} .count.likes .number`, data.nblike);
 
                     // Mettre à jour les chiffres pour "dislikes"
-                    updateNumberDisplay('.count.dislikes .number', data.nbdislike);
+                    updateNumberDisplay(`#${idavis} .count.dislikes .number`, data.nbdislike);
                 } else {
                     alert('Erreur lors de la mise à jour.');
                 }
@@ -264,53 +302,13 @@ foreach ($avis as $a) {
     }
 
     function updateNumberDisplay(selector, number) {
-        // Convertir le nombre en chaîne
         const numberStr = number.toString();
-
-        // Récupérer tous les éléments .number à l'intérieur du selector
         const numbers = document.querySelectorAll(selector);
 
-        // Parcourir chaque élément .number
         numbers.forEach((el, index) => {
-            const digit = numberStr[index] || '0'; // Si il n'y a pas assez de chiffres, utiliser '0'
-
-            // Mettre à jour la position du chiffre
+            const digit = numberStr[index] || '0';
             el.style.transform = `var(--nb${digit})`;
-
-            // Mettre à jour le contenu du chiffre
             el.querySelector('span').textContent = digit;
         });
     }
-
-    // Récupérer les éléments des cases à cocher
-    const likeCheckbox = document.getElementById("like");
-    const dislikeCheckbox = document.getElementById("dislike");
-
-    // Ajouter un événement pour le bouton "like"
-    likeCheckbox.addEventListener("change", function() {
-        if (likeCheckbox.checked) {
-            if (dislikeCheckbox.checked) {
-                updateCount('undislike');
-            }
-            dislikeCheckbox.checked = false;
-            updateCount('like'); // Envoie l'action "like" pour la mise à jour
-
-        } else {
-            updateCount('unlike');
-        }
-
-    });
-
-    // Ajouter un événement pour le bouton "dislike"
-    dislikeCheckbox.addEventListener("change", function() {
-        if (dislikeCheckbox.checked) {
-            if (likeCheckbox.checked) {
-                updateCount('unlike');
-            }
-            likeCheckbox.checked = false;
-            updateCount('dislike'); // Envoie l'action "dislike" pour la mise à jour
-        } else {
-            updateCount('undislike');
-        }
-    });
 </script>
