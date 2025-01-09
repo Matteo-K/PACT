@@ -3766,10 +3766,9 @@ section#infoComp div {
   display: inline-block;
   width: 17px;
   height: 17px;
-  background-color: var(--accent);
+  background-color: #edae14;
   border-radius: 50%;
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.5),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.4);
+  box-shadow: inset 2px 2px 10px var(--background60);
 }
 
 .nonRepondu {
@@ -3787,8 +3786,9 @@ section#infoComp div {
     59% 75%,
     0% 75%
   );
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.5);
+    
 }
 
 /* Liste des avis */
@@ -3888,12 +3888,13 @@ section#infoComp div {
 /* bloc fermable */
 #avisproS2 > details {
   width: 100%;
-  background-color: var(--bloc);
-  border-radius: 15px;
+  background-color: #ffffff5f;
+  border-radius: 10px;
   padding: 20px;
   position: relative;
   overflow: hidden;
-  color: white;
+  color: black;
+  border: 3px solid var(--primary);
 }
 
 #avisproS2 summary {
@@ -3913,7 +3914,7 @@ summary::marker {
   transform: rotate(0deg);
   transition: transform 0.5s ease;
   margin-right: 8px;
-  color: #fff;
+  color: #000;
   font-size: 30px;
 }
 
