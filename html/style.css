@@ -16,25 +16,6 @@
   --background-avis: #c9c9c9;
   --header-size: 100px;
   --header-size2: var(--header-size);
-  --col-gray: white;
-
-  /*variable pour les like et dislike */
-  --col-black: #000;
-  --col-like: #2196f3;
-  --col-dislike: #ff3232;
-  --transition: 200ms;
-
-  --nb0: translateY(calc(51% - 11px));
-  --nb1: translateY(calc(41% - 11px));
-  --nb2: translateY(calc(31% - 11px));
-  --nb3: translateY(calc(21% - 11px));
-  --nb4: translateY(calc(11% - 11px));
-  --nb5: translateY(calc(1% - 11px));
-  --nb6: translateY(calc(-9% - 11px));
-  --nb7: translateY(calc(-19% - 11px));
-  --nb8: translateY(calc(-29% - 11px));
-  --nb9: translateY(calc(-39% - 11px));
-
   scroll-behavior: smooth;
 }
 
@@ -408,13 +389,12 @@ header > div > a > div {
   transition: transform 1s ease-in-out;
   visibility: hidden;
   opacity: 0;
-  color: #000;
-  border-left: 3px solid #1ca4ed;
+  color: #fff;
 }
 
 /* Style général du menu de profil */
 .menuHeader {
-  background-color: #fff;
+  background: linear-gradient(to bottom, #034d7c, #1ca4ed);
   display: flex;
   width: 276px;
   flex-direction: column;
@@ -521,7 +501,7 @@ header > div > a > div {
 #profileMenu.hide {
   visibility: visible;
   opacity: 1;
-  transform: translateX(105vw);
+  transform: translateX(100vw);
 }
 
 #profileMenu.deplace {
@@ -551,11 +531,12 @@ header > div > a > div {
 
 /* Styles pour le pseudo ou le nom */
 #imagProfil figcaption {
+  text-shadow: black -2px 2px;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
   margin: 0;
-  color: #000;
+  color: #fff;
 }
 
 #backButton {
@@ -587,13 +568,12 @@ header > div > a > div {
 
 .menuHeader a,
 .liFact {
-  color: #000;
+  color: #fff;
   text-decoration: none;
+  transition: color 0.5s;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
-  padding-left: 20px;
-  transition: background-color 0.3s ease;
 }
 
 .liFact {
@@ -627,37 +607,28 @@ header ul + div {
 }
 
 #changeDataAccount {
-  border: 2px solid #1ca4ed;
-  background-color: #1Ca4ed;
+  background-color: #034d7ccc;
 }
 
 #changeDataAccount:hover {
-  background-color: white;
-  border: 2px solid #1ca4ed;
-  color: #1ca4ed;
+  background-color: #034d7c;
 }
 
 #changeAccount {
-  background-color: #1ca4ed;
-  border: 2px solid #1ca4ed;
+  background-color: #034d7ccc;
 }
 
 #changeAccount:hover {
-  background-color: white;
-  border: 2px solid #1ca4ed;
-  color: #1ca4ed;
+  background-color: #034d7c;
 }
 
 #logoutButton {
   background-color: #ff0000cc;
   margin-bottom: 2em;
-  border: 2px solid #ff0000;
 }
 
 #logoutButton:hover {
-  background-color: #fff;
-  border: 2px solid #ff0000;
-  color: #ff0000;
+  background-color: #ff0000;
 }
 
 @media (max-width: 804px) {
@@ -1850,47 +1821,13 @@ header ul + div {
 #tri, #filtre {
   display: none;
   width: 20vw;
-  /* height: calc(100vh - var(--header-size)); */
-  height: fit-content;
-  background-color: var(--background);
+  height: calc(125vh - var(--header-size));
+  background-color: var(--bloc);
   border-right: solid 4px #1ca4ed;
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-#filtre .checkmark {
-  width: 30px;
-  height: 30px;
-  margin: 0 8px 0 4px;
-  border-radius: 10%;
-  border: solid 2px #1ca4ed;
-  background-color: white;
-  display: inline-block;
-  position: relative;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-#filtre [type="checkbox"]:checked + .checkmark {
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(28, 164, 237, 0.6);
-}
-
-#filtre [type="checkbox"]:checked + .checkmark::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  font-weight: bold;
-  background-color: #1ca4ed;
-  transform: translate(-50%, -50%) scale(1.2);
-}
-
-#filtre .checkmark:hover {
-  transform: scale(1.1);
+  color: white;
 }
 
 #note, #prix, #statut, #categorie, #date {
@@ -1898,7 +1835,7 @@ header ul + div {
 }
 
 #note label, #prix label, #statut label, #idCategorie label, #date label {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 /* Note */
@@ -1910,9 +1847,8 @@ header ul + div {
 }
 
 #note input {
-  display: none;
-  /* width: 30px;
-  height: 30px; */
+  width: 30px;
+  height: 30px;
 }
 
 #note label {
@@ -1928,9 +1864,7 @@ header ul + div {
 }
 
 #prixMin, #prixMax {
-  height: 40px;
-  border: solid 2px #1ca4ed;
-  background-color: white;
+  height: 30px;
 }
 
 /* Statut */
@@ -1961,6 +1895,38 @@ header ul + div {
   background-color: red;
 } */
 
+#statut .checkmark {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px;
+  border-radius: 50%; /* Rond */
+  border: solid 2px #1ca4ed;
+  display: inline-block;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Animation douce */
+}
+
+#statut [type="checkbox"]:checked + .checkmark {
+  background-color: #1ca4ed; /* Bleu clair */
+  box-shadow: 0 0 10px rgba(28, 164, 237, 0.6); /* Effet lumineux autour */
+}
+
+#statut [type="checkbox"]:checked + .checkmark::after {
+  content: "✔"; /* Coche */
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  transform: scale(1.2); /* Agrandir la coche */
+}
+
+#statut .checkmark:hover {
+  transform: scale(1.1); /* Agrandissement léger au survol */
+}
+
+
 /* Catégorie */
 #idCategorie label {
   display: flex;
@@ -1970,10 +1936,9 @@ header ul + div {
 }
 
 #idCategorie input {
-  display: none;
-  /* width: 30px;
+  width: 30px;
   height: 30px;
-  margin: 0 8px 0 4px; */
+  margin: 0 8px 0 4px;
 }
 
 #idCategorie {
@@ -1982,9 +1947,7 @@ header ul + div {
 
 /* Date */
 #date input {
-  height: 40px;
-  border: solid 2px #1ca4ed;
-  background-color: white;
+  height: 30px;
 }
 
 #date div {
@@ -2026,14 +1989,10 @@ header ul + div {
 }
 
 #tri input:checked + label {
-  background-color: #1ca4ed;
+  background: var(--accent-border);
   border-radius: 3px;
 }
 
-#tri input:hover + label {
-  background-color: var(--secondary);
-  border-radius: 3px;
-}
 
 /* Bouton de tri et filtre */
 #btnAside {
@@ -3599,133 +3558,6 @@ section#infoComp div {
   rotate: -90deg;
 }
 
-/** Like Avis **/
-
-.container {background-color: var(--col-gray);
-  width: 15%;
-  border: var(--col-black) 2px solid;
-  border-radius: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 9px;
-  user-select: none;
-}
-
-.container:has(#like:checked) .count {
-  border-left-color: var(--col-like);
-  border-right-color: transparent;
-  border: none;
-}
-
-.container:has(#dislike:checked)>.count {
-  border-right-color: var(--col-dislike);
-  border-left-color: transparent;
-  border: none;
-}
-
-.container:has(#dislike:checked)>.count.dislikes,
-.container:has(#like:checked)>.count.likes {
-  border: none;
-}
-
-.container:has(#dislike:checked) .count.dislikes {
-  color: var(--col-dislike);
-  border-left: var(--col-dislike) 1px solid;
-  /* La couleur du texte devient bleue quand "like" est sélectionné */
-}
-
-.container:has(#like:checked) .count.likes {
-  color: var(--col-like);
-  border-right: var(--col-like) 1px solid;
-  /* La couleur du texte devient rouge quand "dislike" est sélectionné */
-}
-
-
-.container label input {
-  display: none;
-}
-
-.container #like:checked+svg {
-  animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
-  fill: var(--col-like);
-}
-
-.container #dislike:checked+svg {
-  animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
-  fill: var(--col-dislike);
-}
-
-.container .icon {
-  cursor: pointer;
-  fill: var(--col-white);
-  height: 24px;
-  width: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.container .icon.like {
-  margin-left: 9px;
-}
-
-.container .icon.dislike {
-  margin-right: 9px;
-}
-
-.container .count {
-  transition: var(--transition);
-  flex: 1;
-  position: relative;
-  height: 24px;
-  overflow: hidden;
-  margin: auto;
-  color: var(--col-black);
-  font-size: 17px;
-  font-family: sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.10px;
-  flex-direction: row;
-}
-
-.likes {
-  border-right: 1px solid var(--col-black);
-}
-
-.container .count .number {
-  display: flex;
-  flex-direction: column;
-  transform: translateY(calc(50% - 8px));
-  transition: 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-.container .count .number:first-child {
-  transition-delay: 200ms;
-}
-
-.container .count .number:nth-child(2) {
-  transition-delay: 150ms;
-}
-
-.container .count .number:last-child {
-  transition-delay: 50ms;
-}
-
-@keyframes evaluation-animation {
-
-  0%,
-  100% {
-      transform: scale(1) rotate(0deg);
-  }
-
-  50% {
-      transform: scale(1.1) rotate(-10deg);
-  }
-}
-
 /** Avis PRO **/
 
 #avisPro {
@@ -3762,7 +3594,7 @@ section#infoComp div {
 }
 
 #avisproS1 {
-  border-right: solid 2px black;
+  border-right: solid 2px var(--bloc);
   text-align: center;
 }
 
@@ -3772,7 +3604,7 @@ section#infoComp div {
   height: 17px;
   background-color: #edae14;
   border-radius: 50%;
-  box-shadow: inset 2px 2px 10px var(--background60);
+  box-shadow: inset 2px 2px 6px rgba(255, 255, 255, 0.4), -1px -1px 5px 0px #e7cd8d;
 }
 
 .nonRepondu {
@@ -3790,9 +3622,7 @@ section#infoComp div {
     59% 75%,
     0% 75%
   );
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.5);
-    
+  box-shadow: inset 2px 2px 10px var(--background60);
 }
 
 /* Liste des avis */
@@ -3817,7 +3647,6 @@ section#infoComp div {
   cursor: pointer;
   transition: background-color 0.2s;
   clip-path: polygon(7% 68%, 7% 0, 100% 0, 100% 90%, 30% 90%, 12% 90%, 0 100%);
-  background: var(--secondary);
   background: linear-gradient(
     90deg,
     var(--secondary) 0%,
@@ -3837,7 +3666,7 @@ section#infoComp div {
     var(--primary60) 80%,
     transparent 100%
   );
-  transition: background 0.3s;
+  transition: background 0.5s;
 }
 
 #avisPro li > div:first-of-type {
@@ -3998,10 +3827,16 @@ details .nonRepondu {
 
 #avisPro details label {
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   text-decoration: underline;
   font-style: italic;
   margin-left: 20px;
+  border-radius: 5px;
+}
+
+#avisPro details label:hover {
+  background-color: var(--primary50);
+  transition: 0.5s;
 }
 
 #avisPro .notation {
@@ -4374,10 +4209,18 @@ details .nonRepondu {
 }
 
 .user + article section > article > figure{
-  width: 100%;
+  width: 75px;
   height: 75px;
   border-radius: 50%;
   background-color: red;
+}
+
+.user + article section > article > figure > img{
+  width: 30px;
+}
+
+#dislike > img{
+  transform: scale(-1);
 }
 
 
