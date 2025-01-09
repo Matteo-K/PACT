@@ -1839,13 +1839,25 @@ header ul + div {
 #tri, #filtre {
   display: none;
   width: 20vw;
-  height: calc(125vh - var(--header-size));
-  background-color: var(--bloc);
+  /* height: calc(100vh - var(--header-size)); */
+  height: fit-content;
+  background-color: var(--background);
   border-right: solid 4px #1ca4ed;
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  color: white;
+}
+
+#filtre .checkmark {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px;
+  border-radius: 10%;
+  border: solid 2px #1ca4ed;
+  background-color: white;
+  display: inline-block;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #filtre [type="checkbox"]:checked + .checkmark {
@@ -1875,7 +1887,7 @@ header ul + div {
 }
 
 #note label, #prix label, #statut label, #idCategorie label, #date label {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 /* Note */
@@ -1887,8 +1899,9 @@ header ul + div {
 }
 
 #note input {
-  width: 30px;
-  height: 30px;
+  display: none;
+  /* width: 30px;
+  height: 30px; */
 }
 
 #note label {
@@ -1904,7 +1917,9 @@ header ul + div {
 }
 
 #prixMin, #prixMax {
-  height: 30px;
+  height: 40px;
+  border: solid 2px #1ca4ed;
+  background-color: white;
 }
 
 /* Statut */
@@ -1935,38 +1950,6 @@ header ul + div {
   background-color: red;
 } */
 
-#statut .checkmark {
-  width: 30px;
-  height: 30px;
-  margin: 0 8px 0 4px;
-  border-radius: 50%; /* Rond */
-  border: solid 2px #1ca4ed;
-  display: inline-block;
-  position: relative;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Animation douce */
-}
-
-#statut [type="checkbox"]:checked + .checkmark {
-  background-color: #1ca4ed; /* Bleu clair */
-  box-shadow: 0 0 10px rgba(28, 164, 237, 0.6); /* Effet lumineux autour */
-}
-
-#statut [type="checkbox"]:checked + .checkmark::after {
-  content: "✔"; /* Coche */
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  font-size: 18px;
-  color: white;
-  font-weight: bold;
-  transform: scale(1.2); /* Agrandir la coche */
-}
-
-#statut .checkmark:hover {
-  transform: scale(1.1); /* Agrandissement léger au survol */
-}
-
-
 /* Catégorie */
 #idCategorie label {
   display: flex;
@@ -1976,9 +1959,10 @@ header ul + div {
 }
 
 #idCategorie input {
-  width: 30px;
+  display: none;
+  /* width: 30px;
   height: 30px;
-  margin: 0 8px 0 4px;
+  margin: 0 8px 0 4px; */
 }
 
 #idCategorie {
@@ -1987,7 +1971,9 @@ header ul + div {
 
 /* Date */
 #date input {
-  height: 30px;
+  height: 40px;
+  border: solid 2px #1ca4ed;
+  background-color: white;
 }
 
 #date div {
@@ -2029,10 +2015,14 @@ header ul + div {
 }
 
 #tri input:checked + label {
-  background: var(--accent-border);
+  background-color: #1ca4ed;
   border-radius: 3px;
 }
 
+#tri input:hover + label {
+  background-color: var(--secondary);
+  border-radius: 3px;
+}
 
 /* Bouton de tri et filtre */
 #btnAside {
@@ -2090,7 +2080,6 @@ header ul + div {
     flex-flow: column nowrap;
     width: 100%;
   }
-
 
   #tri, #filtre {
     width: 100% !important;
