@@ -55,8 +55,8 @@ function formatDateDiff($date)
 
 foreach ($avis as $a) {
 
-    $likeId = 'like_' . $a['idavis'];
-    $dislikeId = 'dislike_' . $a['idavis'];
+    $likeId = 'like_' . $a['idc'];
+    $dislikeId = 'dislike_' . $a['idc'];
 ?>
 ?>
     <div class="messageAvisReponse">
