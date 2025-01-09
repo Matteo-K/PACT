@@ -3730,6 +3730,11 @@ section#infoComp div {
   right: -30px;
 }
 
+.avisSelect{
+  background : linear-gradient(90deg, var(--primary60) 0%,  var(--primary60) 90%, transparent 100%);
+  transition: 0.5s;
+}
+
 /* Scrollbar */
 
 #listeAvis::-webkit-scrollbar {
