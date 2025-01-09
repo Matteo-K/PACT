@@ -651,10 +651,13 @@ header ul + div {
 #logoutButton {
   background-color: #ff0000cc;
   margin-bottom: 2em;
+  border: 2px solid #ff0000;
 }
 
 #logoutButton:hover {
   background-color: #ff0000;
+  border: 2px solid #ff0000;
+  color: #ff0000;
 }
 
 @media (max-width: 804px) {
