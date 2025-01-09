@@ -101,11 +101,11 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $listeTags[] = str_replace("_", " ",$result["nomtag"]);
 }
 ?>
-<form id="detailsOffer" action="post.php" method="post" enctype="multipart/form-data">
+<form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
         <div id="aboutOffer">
             <div>
-                <label for="nom">Nom de votre offre*</label>
+                <label for="nom">Nom de votre offre* <span id="msgNomOffre" class="msgError"></span></label>
                 <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
             </div>
             <div>
@@ -113,7 +113,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
             </div>
             <div>
-                <label for="description">Description de votre offre*</label>
+                <label for="description">Description de votre offre* <span id="msgDescription" class="msgError"></span></label>
                 <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
             </div>
             <div id="tagsOffer">
@@ -151,23 +151,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 onchange="handleFiles(this)"
             />
             <div id="afficheImages"></div>
-            <div>
-                <div>
-                    <figure class="bigImgOffer"></figure>
-                </div>
-                <div>
-                    <figure class="imgOffer"></figure>
-                    <figure class="imgOffer"></figure>
-                    <figure class="imgOffer"></figure>
-                    <figure class="imgOffer"></figure>
-                    <figure class="imgOffer"></figure>
-                    <figure class="imgOffer"></figure>
-                    <figure class="imgOffer"></figure>
-                    <figure class="imgOffer"></figure>
-                    <figure class="imgOffer"></figure>
-                    <figure class="imgOffer"></figure>
-                </div>
-            </div>
         </div>
     </article>
     
@@ -360,7 +343,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     });
                     existingImagesCount = data.images.length; // Met à jour le compteur d'images existantes
                 })
-                .catch(error => console.error('Erreur de chargement des images:', error));
+                .catch(error => console.error('Erreur de chargement des images:', error)
+            );
         }
 
         // Fonction pour supprimer une image existante
@@ -392,11 +376,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Recharger la liste des images pour restaurer l'état
                 loadExistingImages();
             });
+            checkImg();
         }
-
-
-
-
 
         // Fonction pour gérer les fichiers sélectionnés
         function handleFiles(input) {
@@ -570,64 +551,81 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         // }
 
 
-        const radBtnRestaurant = document.querySelector("#radioRestaurant");
-        const radBtnParc = document.querySelector("#radioParc");
-        const radBtnActivite = document.querySelector("#radioActivite");
-        const radBtnSpectacle = document.querySelector("#radioSpectacle");
-        const radBtnVisite = document.querySelector("#radioVisite");
-
+        const nom = document.querySelector("#nom");
+        const description = document.querySelector("#description");
         const divImg = document.querySelector("#afficheImages");
-
-        const msgCategorie = document.querySelector("#msgCategorie");
+        const inputFile = document.querySelector("#ajoutPhoto");
+        
+        const msgNom = document.querySelector("#msgNomOffre");
+        const msgDescription = document.querySelector("#msgDescription");
         const msgImage = document.querySelector("#msgImage");
-
-        radBtnRestaurant.addEventListener("click", removeMsgCategorie);
-        radBtnParc.addEventListener("click", removeMsgCategorie);
-        radBtnActivite.addEventListener("click", removeMsgCategorie);
-        radBtnSpectacle.addEventListener("click", removeMsgCategorie);
-        radBtnVisite.addEventListener("click", removeMsgCategorie);
 
         /**
          * Vérifie si les input sont conforme pour être enregistrer
          * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
          */
         function checkOfferValidity(event) {
-            let rabBtnCategorie = checkCategorie();
-            let img = checkImg();
-            return rabBtnCategorie && img;
+            let nomCheck = checkNom();
+            let descriptionCheck = checkDescription();
+            let imgCheck = checkImg();
+            return nomCheck && descriptionCheck && imgCheck;
         }
 
         /**
-         * Vérifie si une catégorie à été tapé 
-         * @returns {boolean} - Renvoie true si l'input est conforme. False sinon.
+         * Vérifie si le nom de l'offre est correct
+         * @returns {boolean} - Renvoie true si le nom est correcte. false sinon
          */
-        function checkCategorie() {
-            let res = radBtnRestaurant.checked || radBtnParc.checked || radBtnActivite.checked || radBtnSpectacle.checked || radBtnVisite.checked;
-            if (!res) {
-                msgCategorie.textContent = 
-                    "Sélectionner une catégorie";
+        function checkNom() {
+            let res = true;
+            if (nom.value == "") {
+                msgNom.textContent = 
+                    "Ajouter un nom à l'offre";
+                res = false;
             } else {
-                msgCategorie.textContent = "";
+                msgNom.textContent = "";
             }
             return res;
         }
 
-        function removeMsgCategorie() {
-            msgCategorie.textContent = "";
+        nom.addEventListener("blur", () => checkNom());
+        
+        /**
+         * Vérifie si la description de l'offre est correct
+         * @returns {boolean} - Renvoie true si la description est correcte. false sinon
+         */
+        function checkDescription() {
+            let res = true;
+            if (description.value == "") {
+                msgDescription.textContent = 
+                    "Ajouter une description";
+                res = false;
+            } else {
+                msgDescription.textContent = "";
+            }
+            return res;
         }
 
+        description.addEventListener("blur", () => checkDescription());
+        
+        /**
+         * Vérifie si l'offre contient au moins une image
+         * @returns {boolean} - Renvoie true si l'offre contient au moins une image. false sinon
+         */
         function checkImg() {
             let res = true;
-            console.log(divImg.childElementCount);
             if (divImg.childElementCount == 0) {
                 msgImage.textContent = 
-                    "Ajouter une image";
+                "Ajouter une image";
                 res = false;
             } else {
                 msgImage.textContent = "";
             }
             return res;
         }
+        
+        inputFile.addEventListener("input", () => {
+            msgImage.textContent = "";
+        });
     </script>
 
 
