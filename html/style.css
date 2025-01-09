@@ -409,7 +409,7 @@ header > div > a > div {
   visibility: hidden;
   opacity: 0;
   color: #000;
-  border-left: inset 3px solid #1ca4ed;
+  border-left: 3px solid #1ca4ed;
 }
 
 /* Style général du menu de profil */
@@ -521,7 +521,7 @@ header > div > a > div {
 #profileMenu.hide {
   visibility: visible;
   opacity: 1;
-  transform: translateX(100vw);
+  transform: translateX(105vw);
 }
 
 #profileMenu.deplace {
@@ -1898,8 +1898,7 @@ header ul + div {
 }
 
 #note label, #prix label, #statut label, #idCategorie label, #date label {
-    font-size: 20px;
-    margin-bottom: 20px;
+  font-size: 20px;
 }
 
 /* Note */
@@ -1916,15 +1915,20 @@ header ul + div {
   height: 30px; */
 }
 
+#note label {
+  margin-bottom: 20px;
+}
+
 /* Prix */
 #prix div {
   display: inline-flex;
   justify-content: space-around;
+  align-items: center;
   width: 100px;
 }
 
 #prixMin, #prixMax {
-  height: 30px;
+  height: 40px;
   border: solid 2px #1ca4ed;
   background-color: white;
 }
@@ -1957,8 +1961,6 @@ header ul + div {
   background-color: red;
 } */
 
-
-
 /* Catégorie */
 #idCategorie label {
   display: flex;
@@ -1980,7 +1982,7 @@ header ul + div {
 
 /* Date */
 #date input {
-  height: 30px;
+  height: 40px;
   border: solid 2px #1ca4ed;
   background-color: white;
 }
@@ -2024,10 +2026,14 @@ header ul + div {
 }
 
 #tri input:checked + label {
-  background: var(--accent-border);
+  background-color: #1ca4ed;
   border-radius: 3px;
 }
 
+#tri input:hover + label {
+  background-color: var(--secondary);
+  border-radius: 3px;
+}
 
 /* Bouton de tri et filtre */
 #btnAside {
@@ -3764,10 +3770,9 @@ section#infoComp div {
   display: inline-block;
   width: 17px;
   height: 17px;
-  background-color: var(--accent);
+  background-color: #edae14;
   border-radius: 50%;
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.5),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.4);
+  box-shadow: inset 2px 2px 10px var(--background60);
 }
 
 .nonRepondu {
@@ -3785,8 +3790,9 @@ section#infoComp div {
     59% 75%,
     0% 75%
   );
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.5);
+    
 }
 
 /* Liste des avis */
@@ -3886,12 +3892,13 @@ section#infoComp div {
 /* bloc fermable */
 #avisproS2 > details {
   width: 100%;
-  background-color: var(--bloc);
-  border-radius: 15px;
+  background-color: #ffffff5f;
+  border-radius: 10px;
   padding: 20px;
   position: relative;
   overflow: hidden;
-  color: white;
+  color: black;
+  border: 3px solid var(--primary);
 }
 
 #avisproS2 summary {
@@ -3911,7 +3918,7 @@ summary::marker {
   transform: rotate(0deg);
   transition: transform 0.5s ease;
   margin-right: 8px;
-  color: #fff;
+  color: #000;
   font-size: 30px;
 }
 
