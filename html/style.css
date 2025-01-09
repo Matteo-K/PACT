@@ -598,6 +598,7 @@ header > div > a > div {
 
 .liFact {
   width: fit-content;
+  cursor: pointer;
 }
 
 #profileMenu ul a:hover,
