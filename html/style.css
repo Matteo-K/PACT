@@ -655,7 +655,7 @@ header ul + div {
 }
 
 #logoutButton:hover {
-  background-color: #ff0000;
+  background-color: #fff;
   border: 2px solid #ff0000;
   color: #ff0000;
 }
