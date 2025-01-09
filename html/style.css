@@ -1920,11 +1920,12 @@ header ul + div {
 #prix div {
   display: inline-flex;
   justify-content: space-around;
+  align-items: center;
   width: 100px;
 }
 
 #prixMin, #prixMax {
-  height: 30px;
+  height: 40px;
   border: solid 2px #1ca4ed;
   background-color: white;
 }
@@ -1978,7 +1979,7 @@ header ul + div {
 
 /* Date */
 #date input {
-  height: 30px;
+  height: 40px;
   border: solid 2px #1ca4ed;
   background-color: white;
 }
