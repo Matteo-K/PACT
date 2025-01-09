@@ -3,7 +3,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-/*
+require_once "config.php";  
+
 
 $data = json_decode(file_get_contents('php://input'));
 $id = json_decode($data[0]) ?? null;
@@ -12,7 +13,6 @@ $id = json_decode($data[0]) ?? null;
 if ($id != null) {
 
     $stmt = $conn->prepare("UPDATE pact._avis SET lu = true WHERE idc = ?");
-    $stmt = $conn->prepare("INSERT INTO pact._tag (nomtag) VALUES (?)");
     $stmt->execute($id);
     $result = $stmt->fetch();
 
@@ -22,7 +22,7 @@ else{
     exit;
 }
 
-*/
+/*
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -55,3 +55,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit;
 }
 
+*/
