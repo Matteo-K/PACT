@@ -137,9 +137,7 @@ foreach ($avis as $a) {
                                         // Boucle sur chaque chiffre
                                         for ($i = 0; $i < strlen($nbDislike); $i++) {
                                         ?>
-                                            <div class="number"
-                                                <?php if ($i == strlen($nbDislike) - 1) echo 'id="dernierdislike"'; ?>
-                                                style="transform: var(--nb<?= $nbDislike[$i] ?>);">
+                                            <div class="number" style="transform: var(--nb<?= $nbDislike[$i] ?>);">
                                                 <span>0</span>
                                                 <span>1</span>
                                                 <span>2</span>

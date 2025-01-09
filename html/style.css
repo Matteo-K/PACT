@@ -4356,28 +4356,6 @@ details .nonRepondu {
   border-radius: 5px;
 }
 
-.user + article section > article {
-  width: 10vw;
-  justify-content: center;
-  display: flex;
-  border-radius: 25px;
-}
-
-.user + article section > article > figure{
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  background-color: red;
-}
-
-.user + article section > article > figure > img{
-  width: 30px;
-}
-
-#dislike > img{
-  transform: scale(-1);
-}
-
 
 
 @media screen and (max-width: 768px) {
