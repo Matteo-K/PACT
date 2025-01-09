@@ -3,7 +3,7 @@ $stmt = $conn->prepare("SELECT * from pact.proprive where idu = ?");
 $stmt->execute([$offre[0]['idu']]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $conn->prepare("SELECT nblike,nbdislike from pact._commentaire where idc = 1");
+$stmt = $conn->prepare("SELECT nblike,nbdislike from pact._commentaire");
 $stmt->execute();
 
 $commentaire = $stmt->fetch(PDO::FETCH_ASSOC);
