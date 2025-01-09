@@ -36,7 +36,7 @@ $categorie = [
     "_visite" => false,
     "_activite" => false,
 ];
-
+$limitImgDtls = 10;
 
 $disableCategorie = false;
 
@@ -136,7 +136,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <div id="choixImage">
                     <label class="labelTitre">Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
                     <p>
-                        Vous pouvez insérer jusqu'à 10 photos<br>
+                        Vous pouvez insérer jusqu'à <?= $limitImgDtls ?> photos<br>
                         Cliquez sur une image pour la supprimer
                     </p>
                 </div>
@@ -149,7 +149,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     name="images[]" 
                     accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
                     multiple 
-                    onchange="handleFiles(this)"
                 />
                 <div id="afficheImages"></div>
             </div>
@@ -243,7 +242,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         // TAGS
         const maxTags = 6;
-        const maxImages = 10;
+        const maxImages = <?= $limitImgDtls ?>;
 
         //On récupère en JS la liste des tags pour le script 
         const listeTags = <?php echo json_encode($listeTags) ?>;
@@ -318,30 +317,37 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         const idOffre = <?php echo $idOffre ?>; // ID de l'offre, à remplacer par une valeur dynamique si nécessaire
 
         // Fonction pour charger les images existantes
-        function loadExistingImages() {
-            fetch('upload.php?idOffre=' + idOffre)
+        function loadExistingImages(dossierImg, zoneImg, limit) {
+            fetch('upload.php?dossierImg='+dossierImg+'&idOffre=' + idOffre)
                 .then(response => response.json())
                 .then(data => {
-                    const existingPreview = document.getElementById('afficheImages');
-                    existingPreview.innerHTML = ""; // Réinitialise la liste
+                    zoneImg.innerHTML = ""; // Réinitialise la liste
                     data.images.forEach((image, index) => {
+                        const div = document.createElement('div');
                         const img = document.createElement('img');
-                        img.src = `img/imageOffre/${idOffre}/${image}`;
+                        img.src = `${dossierImg}${idOffre}/${image}`;
                         img.alt = image;
                         img.title = `Cliquez pour supprimer ${image}`;
                         img.style.cursor = 'pointer';
-                    
+                        
                         // Ajouter un attribut data-index pour garder une référence unique de l'image
                         img.setAttribute('data-index', index);
                     
                         // Ajoute un gestionnaire de clic pour supprimer l'image
-                        img.onclick = () => {
+                        
+                        const croix = doucment.createElement('img');
+                        croix.src = `img/icone/croix_blanche.png`;
+                        croix.alt = image;
+                        croix.title = `Cliquez pour supprimer ${image}`;
+                        croix.onclick = () => {
                             if (confirm("Êtes-vous sûr de vouloir supprimer cette image ?")) {
-                                deleteImage(image, img, index); // Supprime l'image si l'utilisateur confirme
+                                deleteImage(image, div, index, dossierImg, zoneImg, limit); // Supprime l'image si l'utilisateur confirme
                             }
                         };
-                    
-                        existingPreview.appendChild(img);
+                        
+                        div.appendChild(img);
+                        div.appendChild(croix);
+                        zoneImg.appendChild(div);
                     });
                     existingImagesCount = data.images.length; // Met à jour le compteur d'images existantes
                 })
@@ -350,7 +356,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
 
         // Fonction pour supprimer une image existante
-        function deleteImage(fileName, imgElement, index) {
+        function deleteImage(fileName, imgElement, index, dossierImg, zoneImg, limit) {
             // Supprimer l'image du DOM immédiatement
             imgElement.remove();
 
@@ -360,7 +366,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `action=delete&fileName=${encodeURIComponent(fileName)}&idOffre=${idOffre}`,
+                body: `action=delete&fileName=${encodeURIComponent(fileName)}&idOffre=${idOffre}&dossierImg=${dossierImg}`,
             })
             .then(response => response.json())
             .then(data => {
@@ -368,22 +374,22 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     // En cas d'erreur côté serveur, restaurer l'image dans le DOM et afficher un message
                     alert('Erreur lors de la suppression de l\'image sur le serveur : ' + data.error);
                     // Recharger la liste des images pour restaurer l'état correct
-                    loadExistingImages();
-                } 
+                    loadExistingImages(dossierImg, zoneImg, limit);
+                }
             })
             .catch(error => {
                 // En cas de problème avec la requête, restaurer l'image et afficher un message d'erreur
                 alert('Erreur lors de la suppression de l\'image. Veuillez réessayer.');
                 console.log(error);
                 // Recharger la liste des images pour restaurer l'état
-                loadExistingImages();
+                loadExistingImages(dossierImg, zoneImg, limit);
             });
             checkImg();
         }
 
         // Fonction pour gérer les fichiers sélectionnés
-        function handleFiles(input) {
-            const maxFiles = 10;
+        function handleFiles(input, dossierImg, zoneImg, limit) {
+            const maxFiles = limit;
 
             // Vérifie la limite d'images
             const totalSelected = existingImagesCount + input.files.length;
@@ -402,7 +408,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 if (existingImagesCount < maxFiles) {
                     if (file.type.startsWith("image/")) {
                         // Envoyer directement chaque fichier pour importation
-                        uploadFile(file);
+                        uploadFile(file, dossierImg, zoneImg, limit);
                     }
                 }
             });
@@ -411,11 +417,13 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         }
 
         // Fonction pour envoyer un fichier au serveur
-        function uploadFile(file) {
+        function uploadFile(file, dossierImg, zoneImg, limit) {
             const formData = new FormData();
             formData.append('images[]', file);
             formData.append('action', 'upload');
             formData.append('idOffre', idOffre);
+            formData.append('dossierImg', dossierImg);
+            formData.append('limit', limit);
 
             fetch('upload.php', {
                 method: 'POST',
@@ -427,21 +435,30 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     if (errors.length > 0) {
                         alert(`Erreur lors du téléchargement de "${file.name}" :\n${errors.map(e => e.error).join('\n')}`);
                     } else {
-                        loadExistingImages(); // Recharge la liste des images existantes
+                        loadExistingImages(dossierImg, zoneImg, limit); // Recharge la liste des images existantes
                     }
                 })
                 .catch(error => console.error('Erreur lors de l\'envoi du fichier:', error));
         }
 
         // Charger les images existantes au chargement de la page
-        window.onload = loadExistingImages();
+        function loadEventLoadImg(inputFile, dossierImg, zoneImg, limit) {
+            // Rafraîchir la liste manuellement
+            window.onload = loadExistingImages(dossierImg, zoneImg, limit);
 
-        // Rafraîchir la liste manuellement
+            // Gestion des fichiers sélectionnés (liaison de l'événement onchange)
+            inputFile.addEventListener('change', function () {
+                handleFiles(inputFile, dossierImg, zoneImg, limit);
+            });
+        }
 
-        // Gestion des fichiers sélectionnés (liaison de l'événement onchange)
-        document.getElementById('ajoutPhoto').addEventListener('change', function () {
-            handleFiles(this);
-        });
+        // Chargement pour les images de l'offre
+        loadEventLoadImg(
+            document.getElementById('ajoutPhoto'),
+            'img/imageOffre/',
+            document.getElementById('afficheImages'),
+            <?= $limitImgDtls ?>
+        );
 
         //Affichage des images a leur selection
         // const pImage = document.querySelector("#choixImage > p");

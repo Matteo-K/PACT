@@ -1,5 +1,6 @@
 <?php
-$uploadDir = 'img/imageOffre/';
+$uploadDir = $_POST["dossierImg"] ?? $_GET["dossierImg"];
+$limit = $_POST["limit"] ?? 0;
 $response = [];
 
 // Vérifiez si l'idOffre est défini
@@ -46,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (!empty($_FILES['images']['name'][0])) {
             foreach ($_FILES['images']['tmp_name'] as $key => $tmpName) {
-                if ($imageCount >= 10) {
+                if ($imageCount >= $limit) {
                     $response[] = ['error' => "Limite maximale de $imageCount images atteinte."];
                     break;
                 }
