@@ -568,7 +568,7 @@ header > div > a > div {
 
 .menuHeader a,
 .liFact {
-  color: #fff;
+  color: #000;
   text-decoration: none;
   transition: color 0.5s;
   padding: 10px;
