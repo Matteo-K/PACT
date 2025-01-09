@@ -1653,15 +1653,13 @@ header ul + div {
 
 #aboutOffer div {
   width: 30%;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
-#artDetailOffer > div > label:not(.buttonDetailOffer),
-#choixImage label,
-#park_planTitres label,
-#inputAutoComplete label {
+.labelTitre {
   display: inline-block;
   font-size: 25px;
-  width: 90%;
   margin: 15px 0 5px 0;
 }
 
