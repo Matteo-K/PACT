@@ -329,6 +329,17 @@ class ArrayOffer {
     }
   }
 
+  public function displayNouvelle() {
+    $array = $this->arrayOffer;
+    if (count($array) > 0) {
+      foreach ($array as $key => $elem) {
+        $elem->displayCardALaUne();
+      }
+    } else {
+      echo "<p>Aucune nouvelle offres ont été posté</p>";
+    }
+  }
+
   public function displayArrayCard($array_, $typeUser_, $elementStart_, $nbElement_) {
     $array = $this->pagination($array_, $elementStart_, $nbElement_);
     if (count($array) > 0) {
