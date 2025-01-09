@@ -105,22 +105,22 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <article id="artDetailOffer">
         <div id="aboutOffer">
             <div>
-                <label for="nom">Nom de votre offre* <span id="msgNomOffre" class="msgError"></span></label>
+                <label for="nom" class="labelTitre">Nom de votre offre* <span id="msgNomOffre" class="msgError"></span></label>
                 <input type="text" id="nom" name="nom" placeholder="Nom" maxlength=35 value="<?php echo $titre; ?>" required>
             </div>
             <div>
-                <label for="resume">Résumé de l'offre</label>
+                <label for="resume" class="labelTitre">Résumé de l'offre</label>
                 <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
             </div>
         </div>
         <div id="blcDescription">
-            <label for="description">Description de votre offre* <span id="msgDescription" class="msgError"></span></label>
+            <label for="description" class="labelTitre">Description de votre offre* <span id="msgDescription" class="msgError"></span></label>
             <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
         </div>
         <div id="blcTagImg">
             <div id="tagsOffer">
                 <div id="inputAutoComplete">
-                    <label for="inputTag">Tags supplémentaires </label>
+                    <label for="inputTag" class="labelTitre">Tags supplémentaires </label>
                     <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
                     <!--<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
                     <ul id="autocompletion"></ul>
@@ -134,7 +134,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             </div>
             <div id="blcImg">
                 <div id="choixImage">
-                    <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
+                    <label class="labelTitre">Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
                     <p>
                         Vous pouvez insérer jusqu'à 10 photos<br>
                         Cliquez sur une image pour la supprimer
@@ -159,7 +159,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
         <span id="msgCategorie" class="msgError"></span>
         <section id="choixCategorie">
-            <label for="page-select">Sélectionnez une catégorie :</label>
+            <label for="page-select" class="labelTitre">Sélectionnez une catégorie :</label>
             <select name="categorie" id="selectCategorie">
                 <option value="restaurant"
                 <?php echo $categorie["_restauration"] ? "selected" : "" ?> 

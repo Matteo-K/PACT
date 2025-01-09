@@ -173,7 +173,7 @@ foreach ($avis as $a) {
                         <label for="dislike">
                             <input type="checkbox" name="evaluation" id="<?= $dislikeId ?>" />
                             <svg class="icon dislike" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M20 3H6.693A2.01 2.01 0 0 0 4.82 4.298l-2.757 7.351A1 1 0 0 0 2 12v2c0 1.103.897 2 2 2h5.612L8.49 19.367a2.004 2.004 0 0 0 .274 1.802c.283.374.686.605 1.138.605h1.612c.297 0 .578-.132.769-.36L17.469 16H20c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zM6 13V4h2v9H6zm16-1.819L17.307 5H8v6.638L12.468 20h1.146l-1.562-4.683A.998.998 0 0 0 13 14h7v-1.819z"></path>
+                                <path d="M20 3H6.693A2.01 2.01 0 0 0 4.82 4.298l-2.757 7.351A1 1 0 0 0 2 12v2c0 1.103.897 2 2 2h5.612L8.49 19.367a2.004 2.004 0 0 0 .274 1.802c.376.52.982.831 1.624.831H12c.297 0 .578-.132.769-.36l4.7-5.64H20c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm-8.469 17h-1.145l1.562-4.684A1 1 0 0 0 11 14H4v-1.819L6.693 5H16v9.638L11.531 20zM18 14V5h2l.001 9H18z"></path>
                             </svg>
                         </label>
                     </div>
@@ -207,6 +207,36 @@ foreach ($avis as $a) {
         const dislikeCount = dislikeCountElement.getAttribute('data-dislike-count');
         updateNumber(dislikeCountElement, dislikeCount);
     });
+    function updateCount(action, idAvis) {
+        // Envoyer une requête à `update.php`
+        fetch('updateLike.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    action: action,  // <-- Add a comma here
+                    idAvis: idAvis
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Mettre à jour les chiffres pour "likes"
+                    updateNumberDisplay('.count.likes .number', data.nblike);
+
+                    // Mettre à jour les chiffres pour "dislikes"
+                    updateNumberDisplay('.count.dislikes .number', data.nbdislike);
+                } else {
+                    alert('Erreur lors de la mise à jour.');
+                }
+            })
+            .catch(error => console.error('Erreur:', error));
+    }
+
+    function updateNumberDisplay(selector, number) {
+        // Convertir le nombre en chaîne
+        const numberStr = number.toString();
 
     // Gérer les événements de clic pour les boutons like et dislike
     document.querySelectorAll('.like').forEach(likeButton => {

@@ -17,6 +17,25 @@
   --header-size: 100px;
   --header-size2: var(--header-size);
   scroll-behavior: smooth;
+
+  
+  /*variable pour les like et dislike */
+  --col-gray: white;
+  --col-black: #000;
+  --col-like: #2196f3;
+  --col-dislike: #ff3232;
+  --transition: 200ms;
+
+  --nb0: translateY(calc(51% - 11px));
+  --nb1: translateY(calc(41% - 11px));
+  --nb2: translateY(calc(31% - 11px));
+  --nb3: translateY(calc(21% - 11px));
+  --nb4: translateY(calc(11% - 11px));
+  --nb5: translateY(calc(1% - 11px));
+  --nb6: translateY(calc(-9% - 11px));
+  --nb7: translateY(calc(-19% - 11px));
+  --nb8: translateY(calc(-29% - 11px));
+  --nb9: translateY(calc(-39% - 11px));
 }
 
 /* pre sprint 3 */
@@ -1653,15 +1672,13 @@ header ul + div {
 
 #aboutOffer div {
   width: 30%;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
-#artDetailOffer > div > label:not(.buttonDetailOffer),
-#choixImage label,
-#park_planTitres label,
-#inputAutoComplete label {
+.labelTitre {
   display: inline-block;
   font-size: 25px;
-  width: 90%;
   margin: 15px 0 5px 0;
 }
 
@@ -1822,13 +1839,47 @@ header ul + div {
 #tri, #filtre {
   display: none;
   width: 20vw;
-  height: calc(125vh - var(--header-size));
-  background-color: var(--bloc);
+  /* height: calc(100vh - var(--header-size)); */
+  height: fit-content;
+  background-color: var(--background);
   border-right: solid 4px #1ca4ed;
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  color: white;
+}
+
+#filtre .checkmark {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px;
+  border-radius: 10%;
+  border: solid 2px #1ca4ed;
+  background-color: white;
+  display: inline-block;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#filtre [type="checkbox"]:checked + .checkmark {
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(28, 164, 237, 0.6);
+}
+
+#filtre [type="checkbox"]:checked + .checkmark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  font-weight: bold;
+  background-color: #1ca4ed;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+#filtre .checkmark:hover {
+  transform: scale(1.1);
 }
 
 #note, #prix, #statut, #categorie, #date {
@@ -1836,7 +1887,7 @@ header ul + div {
 }
 
 #note label, #prix label, #statut label, #idCategorie label, #date label {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 /* Note */
@@ -1848,8 +1899,9 @@ header ul + div {
 }
 
 #note input {
-  width: 30px;
-  height: 30px;
+  display: none;
+  /* width: 30px;
+  height: 30px; */
 }
 
 #note label {
@@ -1865,7 +1917,9 @@ header ul + div {
 }
 
 #prixMin, #prixMax {
-  height: 30px;
+  height: 40px;
+  border: solid 2px #1ca4ed;
+  background-color: white;
 }
 
 /* Statut */
@@ -1896,38 +1950,6 @@ header ul + div {
   background-color: red;
 } */
 
-#statut .checkmark {
-  width: 30px;
-  height: 30px;
-  margin: 0 8px 0 4px;
-  border-radius: 50%; /* Rond */
-  border: solid 2px #1ca4ed;
-  display: inline-block;
-  position: relative;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Animation douce */
-}
-
-#statut [type="checkbox"]:checked + .checkmark {
-  background-color: #1ca4ed; /* Bleu clair */
-  box-shadow: 0 0 10px rgba(28, 164, 237, 0.6); /* Effet lumineux autour */
-}
-
-#statut [type="checkbox"]:checked + .checkmark::after {
-  content: "✔"; /* Coche */
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  font-size: 18px;
-  color: white;
-  font-weight: bold;
-  transform: scale(1.2); /* Agrandir la coche */
-}
-
-#statut .checkmark:hover {
-  transform: scale(1.1); /* Agrandissement léger au survol */
-}
-
-
 /* Catégorie */
 #idCategorie label {
   display: flex;
@@ -1937,9 +1959,10 @@ header ul + div {
 }
 
 #idCategorie input {
-  width: 30px;
+  display: none;
+  /* width: 30px;
   height: 30px;
-  margin: 0 8px 0 4px;
+  margin: 0 8px 0 4px; */
 }
 
 #idCategorie {
@@ -1948,7 +1971,9 @@ header ul + div {
 
 /* Date */
 #date input {
-  height: 30px;
+  height: 40px;
+  border: solid 2px #1ca4ed;
+  background-color: white;
 }
 
 #date div {
@@ -1990,10 +2015,14 @@ header ul + div {
 }
 
 #tri input:checked + label {
-  background: var(--accent-border);
+  background-color: #1ca4ed;
   border-radius: 3px;
 }
 
+#tri input:hover + label {
+  background-color: var(--secondary);
+  border-radius: 3px;
+}
 
 /* Bouton de tri et filtre */
 #btnAside {
@@ -4202,29 +4231,131 @@ details .nonRepondu {
   border-radius: 5px;
 }
 
-.user + article section > article {
-  width: 10vw;
-  justify-content: center;
+.container{
+  background-color: var(--col-gray);
+  width: 15%;
+  border: var(--col-black) 2px solid;
+  border-radius: 50px;
   display: flex;
-  border-radius: 25px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px;
+  user-select: none;
 }
 
-.user + article section > article > figure{
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  background-color: red;
+.container:has(#like:checked) .count {
+  border-left-color: var(--col-like);
+  border-right-color: transparent;
+  border: none;
 }
 
-.user + article section > article > figure > img{
-  width: 30px;
+.container:has(#dislike:checked)>.count {
+  border-right-color: var(--col-dislike);
+  border-left-color: transparent;
+  border: none;
 }
 
-#dislike > img{
-  transform: scale(-1);
+.container:has(#dislike:checked)>.count.dislikes,
+.container:has(#like:checked)>.count.likes {
+  border: none;
+}
+
+.container:has(#dislike:checked) .count.dislikes {
+  color: var(--col-dislike);
+  border-left: var(--col-dislike) 1px solid;
+  /* La couleur du texte devient bleue quand "like" est sélectionné */
+}
+
+.container:has(#like:checked) .count.likes {
+  color: var(--col-like);
+  border-right: var(--col-like) 1px solid;
+  /* La couleur du texte devient rouge quand "dislike" est sélectionné */
 }
 
 
+.container label input {
+  display: none;
+}
+
+.container #like:checked+svg {
+  animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
+  fill: var(--col-like);
+}
+
+.container #dislike:checked+svg {
+  animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
+  fill: var(--col-dislike);
+}
+
+.container .icon {
+  cursor: pointer;
+  fill: var(--col-white);
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container .icon.like {
+  margin-left: 9px;
+}
+
+.container .icon.dislike {
+  margin-right: 9px;
+}
+
+.container .count {
+  transition: var(--transition);
+  flex: 1;
+  position: relative;
+  height: 24px;
+  overflow: hidden;
+  margin: auto;
+  color: var(--col-black);
+  font-size: 17px;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.10px;
+  flex-direction: row;
+}
+
+.likes {
+  border-right: 1px solid var(--col-black);
+}
+
+.container .count .number {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(calc(50% - 8px));
+  transition: 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.container .count .number:first-child {
+  transition-delay: 200ms;
+}
+
+.container .count .number:nth-child(2) {
+  transition-delay: 150ms;
+}
+
+.container .count .number:last-child {
+  transition-delay: 50ms;
+}
+
+@keyframes evaluation-animation {
+
+  0%,
+  100% {
+      transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+      transform: scale(1.1) rotate(-10deg);
+  }
+}
 
 @media screen and (max-width: 768px) {
   :root {
@@ -5070,7 +5201,7 @@ a[id="lienMotDePasseOublie"] {
 }
 
 a[id="lienMotDePasseOublie"]:hover {
-  color: #1ca4ed;
+  color: #edae14;
 }
 
 .connexion-compte a {
@@ -5155,7 +5286,7 @@ input[id="login"] {
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  border: 3px solid #1ca4ed;
+  border: 3px solid var(--accent);
 }
 
 input[id="motdepasseConnexion"],
@@ -5166,7 +5297,7 @@ input[id="confirmerNouveauMDP"] {
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  border: 3px solid #1ca4ed;
+  border: 3px solid var(--accent);
 }
 
 button[id="boutonConnexion"],
@@ -5174,12 +5305,12 @@ button[id="boutonChangerMDP"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
-  border-radius: 10px;
+  border-radius: 15px;
   border: none;
-  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
+  box-shadow: inset -4px -4px 4px var(--accent-border);
   margin: 5px auto;
   margin-top: 30px;
-  background-color: #1ca4ed;
+  background-color: var(--accent);
   cursor: pointer;
 }
 
@@ -5188,13 +5319,13 @@ input[id="boutonLienPro"] {
   width: 300px;
   padding: 15px 10px;
   font-size: 20px;
-  border-radius: 10px;
+  border-radius: 15px;
   border: none;
-  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
+  box-shadow: inset -4px -4px 4px var(--accent-border);
   margin: 5px auto;
   margin-top: 30px;
   color: var(--text-dark);
-  background-color: #1ca4ed;
+  background-color: var(--accent);
   text-decoration: none;
   cursor: pointer;
 }
