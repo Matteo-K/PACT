@@ -1851,6 +1851,10 @@ header ul + div {
   height: 30px;
 }
 
+#note label {
+  margin-bottom: 20px;
+}
+
 /* Prix */
 #prix div {
   display: inline-flex;
@@ -5150,7 +5154,7 @@ input[id="login"] {
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  border: 3px solid var(--accent);
+  border: 3px solid #1ca4ed;
 }
 
 input[id="motdepasseConnexion"],
@@ -5161,7 +5165,7 @@ input[id="confirmerNouveauMDP"] {
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  border: 3px solid var(--accent);
+  border: 3px solid #1ca4ed;
 }
 
 button[id="boutonConnexion"],
@@ -5169,12 +5173,12 @@ button[id="boutonChangerMDP"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
-  border-radius: 15px;
+  border-radius: 10px;
   border: none;
-  box-shadow: inset -4px -4px 4px var(--accent-border);
+  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
   margin: 5px auto;
   margin-top: 30px;
-  background-color: var(--accent);
+  background-color: var(--bloc);
   cursor: pointer;
 }
 
@@ -5183,13 +5187,13 @@ input[id="boutonLienPro"] {
   width: 300px;
   padding: 15px 10px;
   font-size: 20px;
-  border-radius: 15px;
+  border-radius: 10px;
   border: none;
-  box-shadow: inset -4px -4px 4px var(--accent-border);
+  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
   margin: 5px auto;
   margin-top: 30px;
   color: var(--text-dark);
-  background-color: var(--accent);
+  background-color: var(--bloc);
   text-decoration: none;
   cursor: pointer;
 }

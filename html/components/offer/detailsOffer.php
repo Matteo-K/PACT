@@ -112,10 +112,10 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <label for="resume">Résumé de l'offre</label>
                 <input type="text" id="resume" name="resume" placeholder="Accroche de l'offre, 50 caractères maximum" maxlength=50 value="<?php echo $resume;?>">
             </div>
-            <div>
-                <label for="description">Description de votre offre* <span id="msgDescription" class="msgError"></span></label>
-                <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
-            </div>
+        </div>
+        <label for="description">Description de votre offre* <span id="msgDescription" class="msgError"></span></label>
+        <textarea id="description" name="description" placeholder="Description détaillée, 900 caractères maximum" maxlength=900 required><?php echo $description; ?></textarea>
+        <div id="blcTagImg">
             <div id="tagsOffer">
                 <div id="inputAutoComplete">
                     <label for="inputTag">Tags supplémentaires </label>
@@ -130,27 +130,27 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     Vous pouvez entrer jusqu'à 6 tags
                 </p>
             </div>
-        </div>
-        <div id="blcImg">
-            <div id="choixImage">
-                <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
-                <p>
-                    Vous pouvez insérer jusqu'à 10 photos<br>
-                    Cliquez sur une image pour la supprimer
-                </p>
+            <div id="blcImg">
+                <div id="choixImage">
+                    <label>Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
+                    <p>
+                        Vous pouvez insérer jusqu'à 10 photos<br>
+                        Cliquez sur une image pour la supprimer
+                    </p>
+                </div>
+                <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+                <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
+                <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
+                <input 
+                    type="file" 
+                    id="ajoutPhoto" 
+                    name="images[]" 
+                    accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
+                    multiple 
+                    onchange="handleFiles(this)"
+                />
+                <div id="afficheImages"></div>
             </div>
-            <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
-            <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
-            <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
-            <input 
-                type="file" 
-                id="ajoutPhoto" 
-                name="images[]" 
-                accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF"
-                multiple 
-                onchange="handleFiles(this)"
-            />
-            <div id="afficheImages"></div>
         </div>
     </article>
     
