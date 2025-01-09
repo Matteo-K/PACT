@@ -5201,7 +5201,7 @@ a[id="lienMotDePasseOublie"] {
 }
 
 a[id="lienMotDePasseOublie"]:hover {
-  color: #1ca4ed;
+  color: #edae14;
 }
 
 .connexion-compte a {
@@ -5286,7 +5286,7 @@ input[id="login"] {
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  border: 3px solid #1ca4ed;
+  border: 3px solid var(--accent);
 }
 
 input[id="motdepasseConnexion"],
@@ -5297,7 +5297,7 @@ input[id="confirmerNouveauMDP"] {
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  border: 3px solid #1ca4ed;
+  border: 3px solid var(--accent);
 }
 
 button[id="boutonConnexion"],
@@ -5305,12 +5305,12 @@ button[id="boutonChangerMDP"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
-  border-radius: 10px;
+  border-radius: 15px;
   border: none;
-  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
+  box-shadow: inset -4px -4px 4px var(--accent-border);
   margin: 5px auto;
   margin-top: 30px;
-  background-color: #1ca4ed;
+  background-color: var(--accent);
   cursor: pointer;
 }
 
@@ -5319,13 +5319,13 @@ input[id="boutonLienPro"] {
   width: 300px;
   padding: 15px 10px;
   font-size: 20px;
-  border-radius: 10px;
+  border-radius: 15px;
   border: none;
-  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
+  box-shadow: inset -4px -4px 4px var(--accent-border);
   margin: 5px auto;
   margin-top: 30px;
   color: var(--text-dark);
-  background-color: #1ca4ed;
+  background-color: var(--accent);
   text-decoration: none;
   cursor: pointer;
 }
