@@ -51,8 +51,8 @@ if ($categorie["_spectacle"]) {
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const minutesInput = document.getElementById("nbMin");
-    const hoursInput = document.getElementById("nbMinutesHeure");
+    const minutesInput = document.getElementById("show_min");
+    const hoursInput = document.getElementById("show_hrMin");
 
     // Synchroniser les minutes avec les heures
     minutesInput.addEventListener("input", function () {
