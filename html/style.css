@@ -598,7 +598,6 @@ header > div > a > div {
 
 .liFact {
   width: fit-content;
-  cursor: pointer;
 }
 
 #profileMenu ul a:hover,
@@ -4355,6 +4354,20 @@ details .nonRepondu {
   background-color: var(--accent);
   height: 100%;
   border-radius: 5px;
+}
+
+.user + article section > article {
+  width: 10vw;
+  justify-content: center;
+  display: flex;
+  border-radius: 25px;
+}
+
+.user + article section > article > figure{
+  width: 100%;
+  height: 75px;
+  border-radius: 50%;
+  background-color: red;
 }
 
 
