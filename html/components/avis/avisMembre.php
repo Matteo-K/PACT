@@ -216,50 +216,41 @@ foreach ($avis as $a) {
         // Convertir le nombre en chaîne
         const numberStr = number.toString();
 
-        // Récupérer tous les éléments .number à l'intérieur du selector
-        const numbers = document.querySelectorAll(selector);
+        // Gérer les événements de clic pour les boutons like et dislike
+        document.querySelectorAll('.like').forEach(likeButton => {
+            likeButton.addEventListener('click', () => {
+                const likeCheckbox = likeButton.closest('.messageAvis').querySelector('input[type="checkbox"][id^="like_"]');
+                const likeCountElement = likeButton.closest('.messageAvis').querySelector('.likes');
 
-        // Parcourir chaque élément .number
-        numbers.forEach((el, index) => {
-            const digit = numberStr[index] || '0'; // Si il n'y a pas assez de chiffres, utiliser '0'
+                // Ajout d'une classe active au bouton Like
+                likeButton.classList.toggle('active');
 
-            // Mettre à jour la position du chiffre
-            el.style.transform = `var(--nb${digit})`;
-
-            // Mettre à jour le contenu du chiffre
-            el.querySelector('span').textContent = digit;
+                if (likeCheckbox.checked) {
+                    // L'utilisateur a aimé l'avis
+                    let currentCount = parseInt(likeCountElement.getAttribute('data-like-count'), 10);
+                    currentCount++;
+                    likeCountElement.setAttribute('data-like-count', currentCount);
+                    updateNumber(likeCountElement, currentCount);
+                }
+            });
         });
-    }
 
-    // Récupérer les éléments des cases à cocher
-    const likeCheckbox = document.getElementById("like");
-    const dislikeCheckbox = document.getElementById("dislike");
+        document.querySelectorAll('.dislike').forEach(dislikeButton => {
+            dislikeButton.addEventListener('click', () => {
+                const dislikeCheckbox = dislikeButton.closest('.messageAvis').querySelector('input[type="checkbox"][id^="dislike_"]');
+                const dislikeCountElement = dislikeButton.closest('.messageAvis').querySelector('.dislikes');
 
-    // Ajouter un événement pour le bouton "like"
-    likeCheckbox.addEventListener("change", function() {
-        if (likeCheckbox.checked) {
-            if (dislikeCheckbox.checked) {
-                updateCount('undislike');
-            }
-            dislikeCheckbox.checked = false;
-            updateCount('like'); // Envoie l'action "like" pour la mise à jour
+                // Ajout d'une classe active au bouton Dislike
+                dislikeButton.classList.toggle('active');
 
-        } else {
-            updateCount('unlike');
-        }
-
-    });
-
-    // Ajouter un événement pour le bouton "dislike"
-    dislikeCheckbox.addEventListener("change", function() {
-        if (dislikeCheckbox.checked) {
-            if (likeCheckbox.checked) {
-                updateCount('unlike');
-            }
-            likeCheckbox.checked = false;
-            updateCount('dislike'); // Envoie l'action "dislike" pour la mise à jour
-        } else {
-            updateCount('undislike');
-        }
+                if (dislikeCheckbox.checked) {
+                    // L'utilisateur a disliké l'avis
+                    let currentCount = parseInt(dislikeCountElement.getAttribute('data-dislike-count'), 10);
+                    currentCount++;
+                    dislikeCountElement.setAttribute('data-dislike-count', currentCount);
+                    updateNumber(dislikeCountElement, currentCount);
+                }
+            });
+        });
     });
 </script>
