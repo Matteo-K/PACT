@@ -332,6 +332,11 @@ VALUES (4, 180, 10, 20.0, 'Immersion culturelle');
 -- Visite (idOffre 5)
 INSERT INTO _visite (idOffre, guide, duree, prixMinimal, accessibilite) 
 VALUES (5, TRUE, 120, 30.0, TRUE);
+/* benji */
+
+-- Activite (idOffre 6)
+INSERT INTO _activite (idOffre, duree, ageMin, prixMinimal, prestation) 
+VALUES (6, 120, 14, 20.0, 'en_intérieur');
 
 -- Peuplement de la table _horaireSoir
 INSERT INTO _horaireSoir (jour, idOffre, heureOuverture, heureFermeture) 

@@ -16,6 +16,25 @@
   --background-avis: #c9c9c9;
   --header-size: 100px;
   --header-size2: var(--header-size);
+  --col-gray: white;
+
+  /*variable pour les like et dislike */
+  --col-black: #000;
+  --col-like: #2196f3;
+  --col-dislike: #ff3232;
+  --transition: 200ms;
+
+  --nb0: translateY(calc(51% - 11px));
+  --nb1: translateY(calc(41% - 11px));
+  --nb2: translateY(calc(31% - 11px));
+  --nb3: translateY(calc(21% - 11px));
+  --nb4: translateY(calc(11% - 11px));
+  --nb5: translateY(calc(1% - 11px));
+  --nb6: translateY(calc(-9% - 11px));
+  --nb7: translateY(calc(-19% - 11px));
+  --nb8: translateY(calc(-29% - 11px));
+  --nb9: translateY(calc(-39% - 11px));
+
   scroll-behavior: smooth;
 }
 
@@ -390,7 +409,7 @@ header > div > a > div {
   visibility: hidden;
   opacity: 0;
   color: #000;
-  border-left: 3px solid #1ca4ed;
+  border-left: inset 3px solid #1ca4ed;
 }
 
 /* Style général du menu de profil */
@@ -632,10 +651,13 @@ header ul + div {
 #logoutButton {
   background-color: #ff0000cc;
   margin-bottom: 2em;
+  border: 2px solid #ff0000;
 }
 
 #logoutButton:hover {
-  background-color: #ff0000;
+  background-color: #fff;
+  border: 2px solid #ff0000;
+  color: #ff0000;
 }
 
 @media (max-width: 804px) {
@@ -3573,6 +3595,133 @@ section#infoComp div {
   rotate: -90deg;
 }
 
+/** Like Avis **/
+
+.container {background-color: var(--col-gray);
+  width: 15%;
+  border: var(--col-black) 2px solid;
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px;
+  user-select: none;
+}
+
+.container:has(#like:checked) .count {
+  border-left-color: var(--col-like);
+  border-right-color: transparent;
+  border: none;
+}
+
+.container:has(#dislike:checked)>.count {
+  border-right-color: var(--col-dislike);
+  border-left-color: transparent;
+  border: none;
+}
+
+.container:has(#dislike:checked)>.count.dislikes,
+.container:has(#like:checked)>.count.likes {
+  border: none;
+}
+
+.container:has(#dislike:checked) .count.dislikes {
+  color: var(--col-dislike);
+  border-left: var(--col-dislike) 1px solid;
+  /* La couleur du texte devient bleue quand "like" est sélectionné */
+}
+
+.container:has(#like:checked) .count.likes {
+  color: var(--col-like);
+  border-right: var(--col-like) 1px solid;
+  /* La couleur du texte devient rouge quand "dislike" est sélectionné */
+}
+
+
+.container label input {
+  display: none;
+}
+
+.container #like:checked+svg {
+  animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
+  fill: var(--col-like);
+}
+
+.container #dislike:checked+svg {
+  animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
+  fill: var(--col-dislike);
+}
+
+.container .icon {
+  cursor: pointer;
+  fill: var(--col-white);
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container .icon.like {
+  margin-left: 9px;
+}
+
+.container .icon.dislike {
+  margin-right: 9px;
+}
+
+.container .count {
+  transition: var(--transition);
+  flex: 1;
+  position: relative;
+  height: 24px;
+  overflow: hidden;
+  margin: auto;
+  color: var(--col-black);
+  font-size: 17px;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.10px;
+  flex-direction: row;
+}
+
+.likes {
+  border-right: 1px solid var(--col-black);
+}
+
+.container .count .number {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(calc(50% - 8px));
+  transition: 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.container .count .number:first-child {
+  transition-delay: 200ms;
+}
+
+.container .count .number:nth-child(2) {
+  transition-delay: 150ms;
+}
+
+.container .count .number:last-child {
+  transition-delay: 50ms;
+}
+
+@keyframes evaluation-animation {
+
+  0%,
+  100% {
+      transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+      transform: scale(1.1) rotate(-10deg);
+  }
+}
+
 /** Avis PRO **/
 
 #avisPro {
@@ -4220,18 +4369,10 @@ details .nonRepondu {
 }
 
 .user + article section > article > figure{
-  width: 75px;
+  width: 100%;
   height: 75px;
   border-radius: 50%;
   background-color: red;
-}
-
-.user + article section > article > figure > img{
-  width: 30px;
-}
-
-#dislike > img{
-  transform: scale(-1);
 }
 
 
