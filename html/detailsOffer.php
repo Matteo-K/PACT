@@ -11,7 +11,6 @@ if (!$idOffre) {
     exit();
 }
 
-print_r($_SESSION);
 // Consulté récemment
 if (isset($_SESSION["typeUser"]) && $_SESSION["typeUser"] == 'membre'){
     $stmt = $conn->prepare("SELECT * from pact._consulter where idu = ? and idoffre = ?");
