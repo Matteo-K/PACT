@@ -17,6 +17,25 @@
   --header-size: 100px;
   --header-size2: var(--header-size);
   scroll-behavior: smooth;
+
+  
+  /*variable pour les like et dislike */
+  --col-gray: white;
+  --col-black: #000;
+  --col-like: #2196f3;
+  --col-dislike: #ff3232;
+  --transition: 200ms;
+
+  --nb0: translateY(calc(51% - 11px));
+  --nb1: translateY(calc(41% - 11px));
+  --nb2: translateY(calc(31% - 11px));
+  --nb3: translateY(calc(21% - 11px));
+  --nb4: translateY(calc(11% - 11px));
+  --nb5: translateY(calc(1% - 11px));
+  --nb6: translateY(calc(-9% - 11px));
+  --nb7: translateY(calc(-19% - 11px));
+  --nb8: translateY(calc(-29% - 11px));
+  --nb9: translateY(calc(-39% - 11px));
 }
 
 /* pre sprint 3 */
@@ -4225,22 +4244,16 @@ details .nonRepondu {
   border-radius: 5px;
 }
 
-.user + article section > article {
-  width: 10vw;
-  justify-content: center;
+.container{
+  background-color: var(--col-gray);
+  width: 15%;
+  border: var(--col-black) 2px solid;
+  border-radius: 50px;
   display: flex;
-  border-radius: 25px;
-}
-
-.user + article section > article > figure{
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  background-color: red;
-}
-
-.user + article section > article > figure > img{
-  width: 30px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px;
+  user-select: none;
 }
 
 #dislike > img{
