@@ -1838,6 +1838,7 @@ header ul + div {
 }
 
 #tri, #filtre {
+#tri, #filtre {
   display: none;
   width: 20vw;
   height: calc(125vh - var(--header-size));
@@ -1847,6 +1848,28 @@ header ul + div {
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
   color: white;
+}
+
+#filtre [type="checkbox"]:checked + .checkmark {
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(28, 164, 237, 0.6);
+}
+
+#filtre [type="checkbox"]:checked + .checkmark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  font-weight: bold;
+  background-color: #1ca4ed;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+#filtre .checkmark:hover {
+  transform: scale(1.1);
 }
 
 #note, #prix, #statut, #categorie, #date {
@@ -2070,6 +2093,7 @@ header ul + div {
     width: 100%;
   }
 
+  #tri, #filtre {
   #tri, #filtre {
     width: 100% !important;
     height: 100% !important;
