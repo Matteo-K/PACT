@@ -92,7 +92,7 @@
                     </figure>
                     <ul>
                         <?php if ($typeUser === "pro_public" || $typeUser === "pro_prive") {?>
-                            <li><a href="changeAccountPro.php">Gérer mon compte</a></li>
+                            <li><a href="changeAccountPro.php">Mon compte</a></li>
                             <li><a href="index.php#searchIndex">Mes offres</a></li>
                             <li><a href="manageOffer.php">Créer une offre</a></li>
                             <li class="liFact">Mes Factures</li>
