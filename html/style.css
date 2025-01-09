@@ -1880,16 +1880,48 @@ header ul + div {
   margin: 0 8px 0 4px; */
 }
 
-#statut .checkmark {
+/* #statut .checkmark {
   width: 30px;
   height: 30px;
   margin: 0 8px 0 4px;
-  border: #1ca4ed;
+  border: solid 1px #1ca4ed;
 }
 
 #statut [type="checkbox"]:checked + .checkmark {
   background-color: red;
+} */
+
+#statut .checkmark {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px;
+  border-radius: 50%; /* Rond */
+  border: solid 2px #1ca4ed;
+  display: inline-block;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Animation douce */
 }
+
+#statut [type="checkbox"]:checked + .checkmark {
+  background-color: #1ca4ed; /* Bleu clair */
+  box-shadow: 0 0 10px rgba(28, 164, 237, 0.6); /* Effet lumineux autour */
+}
+
+#statut [type="checkbox"]:checked + .checkmark::after {
+  content: "✔"; /* Coche */
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  transform: scale(1.2); /* Agrandir la coche */
+}
+
+#statut .checkmark:hover {
+  transform: scale(1.1); /* Agrandissement léger au survol */
+}
+
 
 /* Catégorie */
 #idCategorie label {
