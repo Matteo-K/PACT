@@ -1873,15 +1873,17 @@ header ul + div {
 }
 
 #statut input {
-  display: none;
-}
-
-#statut .checkmark {
+  /* display: none; */
   width: 30px;
   height: 30px;
-  margin: 0 8px 0 4px;
-  background-color: red;
 }
+
+/* #statut .checkmark { */
+  /* width: 30px;
+  height: 30px;
+  margin: 0 8px 0 4px;
+  background-color: red; */
+/* } */
 
 /* Catégorie */
 #idCategorie label {
