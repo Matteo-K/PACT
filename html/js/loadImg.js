@@ -25,7 +25,7 @@ function loadExistingImages(dossierImg, zoneImg, limit, idOffre, indexCountImg) 
             
                 // Ajoute un gestionnaire de clic pour supprimer l'image
                 
-                const croix = doucment.createElement('img');
+                const croix = document.createElement('img');
                 croix.src = `img/icone/croix_blanche.png`;
                 croix.alt = image;
                 croix.title = `Cliquez pour supprimer ${image}`;
