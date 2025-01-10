@@ -735,7 +735,8 @@ header ul + div {
 }
 
 #ALaUne > div,
-#consultationRecente > div {
+#consultationRecente > div,
+#consultationNouvelle > div {
   display: flex;
   flex-flow: row wrap;
   align-items: left;

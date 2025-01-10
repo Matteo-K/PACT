@@ -52,7 +52,7 @@ require_once "config.php";
       </div>
       <?php
         // Toute les nouvelles offres inférieurs à 2 semaines
-        $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE datecrea >= NOW() - INTERVAL '14 days' ORDER BY datecrea");
+        $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE datecrea >= NOW() - INTERVAL '14 days' AND statut = 'actif' ORDER BY datecrea");
 
         $stmt->execute();
         $idOffres = [];
