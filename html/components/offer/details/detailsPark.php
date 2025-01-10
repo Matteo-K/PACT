@@ -7,6 +7,7 @@ $parc = [
     "prixminimal" => "",
     "urlplan" => ""
 ];
+$limitImgPlan = 1;
 
 // Si le parc d'attraction était déà existante, on récupère les données
 if ($categorie["_parcattraction"]) {
@@ -38,7 +39,7 @@ if ($categorie["_parcattraction"]) {
     <!-- Plan du parc -->
     <div id="park_planTitres">
         <label class="labelPhotos">Photo du plan* </label>
-        <label class="labNbPhotos">Vous pouvez insérer 1 photo de votre plan</label> <!-- Indication pour l'utilisateur -->
+        <label class="labNbPhotos">Vous pouvez insérer <?= $limitImgPlan ?> photo de votre plan</label> <!-- Indication pour l'utilisateur -->
         <label class="labelSuppPhotos"> Cliquez sur l'image pour la supprimer</label>
     </div>
 
@@ -46,5 +47,14 @@ if ($categorie["_parcattraction"]) {
     <input type="file" id="park_plan" name="park_plan[]"
         accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple class="zoneImages" >
 
-    <div id="afficheImages2" class="afficheImages2"></div>
+    <div id="park_zoneImg"></div>
 </section>
+<script>
+    // Chargement pour l'image du plan
+    loadEventLoadImg(
+        document.getElementById('park_plan'),
+        'img/imagePlan/',
+        document.getElementById('park_zoneImg'),
+        <?= $limitImgPlan ?>
+    );
+</script>

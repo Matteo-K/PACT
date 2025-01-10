@@ -33,10 +33,10 @@ require_once "config.php";
         $idOffres = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
           $idOffres[] = $row['idoffre'];
-          }
-        } elseif ($typeUser == "visiteur") {
-          $idOffres = $_SESSION["recent"] ?? [];
         }
+      } elseif ($typeUser == "visiteur") {
+        $idOffres = $_SESSION["recent"] ?? [];
+      }
       ?>
       <div id="consultationRecente">
         <h2>Consulté récemment</h2>
@@ -44,13 +44,35 @@ require_once "config.php";
           <?php if (count($idOffres) > 0) {
             $consultRecent = new ArrayOffer($idOffres);
             $consultRecent->displayConsulteRecemment($nbElement);
+          ?>
+          <?php } else { ?>
+          <p>Aucune offre consultée récemment</p>
+          <?php } ?>
+        </div>
+      </div>
+      <?php
+        // Toute les nouvelles offres inférieurs à 2 semaines
+        $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE datecrea >= NOW() - INTERVAL '14 days' ORDER BY datecrea");
+
+        $stmt->execute();
+        $idOffres = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          $idOffres[] = $row['idoffre'];
+        }
+      ?>
+      <div id="consultationNouvelle">
+        <h2>Offre Nouvelle</h2>
+        <div>
+          <?php if (count($idOffres) > 0) {
+            $consultNouvelle = new ArrayOffer($idOffres);
+            $consultNouvelle->displayNouvelle();
             ?>
           <?php } else { ?>
-            <p>Aucune offre consultée récemment</p>
-            <?php } ?>
-          </div>
+            <p>Aucune nouvelle offres ont été posté</p>
+          <?php } ?>
         </div>
-        <?php } ?>
+      </div>
+      <?php } ?>
       <div id="voirPlus">
         <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
           <a href="manageOffer.php" class="modifierBut">Créer une offre</a>  
