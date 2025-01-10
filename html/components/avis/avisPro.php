@@ -290,7 +290,7 @@ function afficheAvisSelect(idAvis) {
         divNonRep.classList.add("nonRepondu");
         avisSelect.querySelector("div").appendChild(divNonRep);
 
-        listeAvis[idavis][lu] = true;
+        listeAvis[idAvis]['lu'] = true;
 
         fetch('lectureAvis.php', {
             method: 'POST',
