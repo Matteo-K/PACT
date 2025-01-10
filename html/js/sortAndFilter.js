@@ -8,11 +8,11 @@ let currentPage = 1;
 let nbElement = 12;
 
 let arrayOffer, page;
+const userDataElement = document.getElementById('user-data');
 const userType = userDataElement.getAttribute('data-user');
 document.addEventListener('DOMContentLoaded', function() {
 
   const offersDataElement = document.getElementById('offers-data');
-  const userDataElement = document.getElementById('user-data');
   
   const offersData = offersDataElement.getAttribute('data-offers');
   // console.log(offersData); // Débugger
