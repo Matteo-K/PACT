@@ -111,5 +111,10 @@ if ($categorie["_activite"]) {
     // Ajouté des prestations
     // Ajouté des accessibilités
 
+    function ajoutAccessibilite(nomAccess) {
+    }
+
+    const access = document.getElementById("actv_access");
+
     // Vérification des champs
 </script>
