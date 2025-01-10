@@ -50,6 +50,25 @@
                 <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet filtre" onclick="fermeAside()">
             </div>
             <div class="blcTriFiltre">
+                <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
+                    <div id="statut">
+                        <h3>En ligne / Hors ligne</h3>
+                        <div>
+                            <label for="enLigne">
+                                En ligne
+                                <input type="checkbox" name="statutEnLigneHorsLigne" id="enLigne">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="horsLigne">
+                                Hors ligne
+                                <input type="checkbox" name="statutEnLigneHorsLigne" id="horsLigne">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                   <?php } ?>
                 <div id="note">
                     <h3>Par note</h3>
                     <div>
