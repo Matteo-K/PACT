@@ -216,7 +216,7 @@ const formReponseAvis = document.querySelector("#blocReponsePro form");
 const titreReponseAvis = document.querySelector("#avisproS2 form h2");
 const inputIdAvis = document.querySelector('#avisproS2 form input[type="hidden"]');
 
-const txtNbAvis = document.querySelector('#avisproS2 > details > h3:nth-child(3)');
+const txtNbAvis = document.querySelector('#avisPro details h3:nth-child(2)');
 
 
 
@@ -290,8 +290,6 @@ function afficheAvisSelect(idAvis) {
         divNonRep.classList.add("nonRepondu");
         avisSelect.querySelector("div").appendChild(divNonRep);
 
-        txtNbAvis.textContent = parseInt(txtNbAvis.textContent) - 1;
-
         listeAvis[idavis][lu] = true;
 
         fetch('lectureAvis.php', {
@@ -299,6 +297,12 @@ function afficheAvisSelect(idAvis) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 'id': idAvis })
         });
+
+        alert(txtNbAvis.textContent);
+
+        alert(parseInt(txtNbAvis) -1);
+        
+        txtNbAvis.textContent = parseInt(txtNbAvis.textContent) - 1;
 
     }
 
