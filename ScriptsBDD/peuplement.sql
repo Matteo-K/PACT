@@ -241,8 +241,8 @@ VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attracti
        (4, 'actif', 'La Potinière', 'Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. ', 'restaurant@mail.com', '0123456793', TRUE, NULL, 'Cuisine raffinée', CURRENT_TIMESTAMP),
        (3, 'actif', 'Activité Culturelle', 'Explorez la culture locale à travers une activité immersive.', 'activite@mail.com', '0123456794', TRUE, 'http://activite.com', 'Immersion culturelle aves la population local', CURRENT_TIMESTAMP),
        (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP),
-       (4, 'inactif', 'Brain l escape game', 'L unique escape game de Lannion.', 'escape.game@mail.com', '0987654321', TRUE, 'http://escape-game.com', 'Divertissement familial', CURRENT_TIMESTAMP),
-       (4, 'inactif', 'Baie de Lannion', 'Venez voir la mangnifique Baie de Lannion', 'baie-lannuin@mail.com', '0267842542', TRUE, 'http://baiedelannion.com', 'Divertissement familial', CURRENT_TIMESTAMP);
+     /*ajout de benj*/  (4, 'inactif', 'Brain l escape game', 'L unique escape game de Lannion.', 'escape.game@mail.com', '0987654321', TRUE, 'http://escape-game.com', 'Divertissement familial', CURRENT_TIMESTAMP),
+      /* ajout*/ (4, 'inactif', 'Baie de Lannion', 'Venez voir la mangnifique Baie de Lannion', 'baie-lannuin@mail.com', '0267842542', TRUE, 'http://baiedelannion.com', 'Divertissement familial', CURRENT_TIMESTAMP);
 -- Peuplement de la table _image
 INSERT INTO _image (url, nomImage) 
 VALUES ('./img/profile_picture/default.svg', 'default.svg'), 
@@ -259,7 +259,7 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
        ('./img/imageOffre/5/0.png', 'visite0'),
        ('./img/imageOffre/5/1.png', 'visite0'),
        ('./img/imageOffre/5/2.png', 'visite0'),
-       ('./img/imageOffre/6/1.png', 'brain1'), /* ajout brain */
+       ('./img/imageOffre/6/1.jpeg', 'brain1'), /* ajout brain */
        ('./img/imageAvis/1/0.png','Avis1-0'),
        ('./img/imageAvis/3/0.png','Avis3-0'),
        ('./img/imageAvis/7/0.png','Avis7-0');
@@ -279,7 +279,7 @@ VALUES (3, './img/imageOffre/3/0.png'),
        (5, './img/imageOffre/5/0.png'),
        (5,'./img/imageOffre/5/1.png'),
        (5,'./img/imageOffre/5/2.png'),
-       (6,'./img/imageOffre/6/1.png'); /* essaie pour brain */
+       (6,'./img/imageOffre/6/1.jpeg'); /* essaie pour brain */
 -- Peuplement de la table _photo_profil
 INSERT INTO _photo_profil (idU, url) 
 VALUES (1, './img/profile_picture/default.svg'),
