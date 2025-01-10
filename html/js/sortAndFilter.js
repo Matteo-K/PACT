@@ -9,6 +9,12 @@ let nbElement = 12;
 
 let userType, arrayOffer, page;
 document.addEventListener('DOMContentLoaded', function() {
+
+  if (userType == "pro_public" || userType == "pro_prive") {
+    chkBxEnLigne = document.querySelector("#enLigne");
+    chkBxHorsLigne = document.querySelector("#horsLigne");
+  }
+
   const offersDataElement = document.getElementById('offers-data');
   const userDataElement = document.getElementById('user-data');
   
@@ -83,15 +89,9 @@ const selectPrixMax = document.querySelector("#prixMax");
 const chkBxOuvert = document.querySelector("#ouvert");
 const chkBxFerme = document.querySelector("#ferme");
 
-
 // en ligne / hors ligne (pro)
-try {
-  const chkBxEnLigne = document.querySelector("#enLigne");
-  const chkBxHorsLigne = document.querySelector("#horsLigne");
-  
-} catch (error) {
-
-}
+let chkBxEnLigne;
+let chkBxHorsLigne;
 
 // catégories
 const chkBxParc = document.querySelector("#Parc");
@@ -569,7 +569,9 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  //array = filtrerParStatutEnLigneHorsLigne(array);
+  if (userType == "pro_public" || userType == "pro_prive") {
+    array = filtrerParStatutEnLigneHorsLigne(array);
+  }
   //array = filtrerParPeriode(array);
 
   // Tris
@@ -808,65 +810,63 @@ function displayStar(note) {
 
 /* ### Evènements ### */
 
-// Événements de recherche
-searchInput.addEventListener("input", () => goToPage(currentPage));
-
-// Événements des tris
-radBtnEnAvant.addEventListener("click", () => goToPage(currentPage));
-
-// notes
-radBtnNoteCroissant.addEventListener("click", () => goToPage(currentPage));
-radBtnNoteDecroissant.addEventListener("click", () => goToPage(currentPage));
-
-// prix
-radBtnprixCroissant.addEventListener("click", () => goToPage(currentPage));
-radBtnPrixDecroissant.addEventListener("click", () => goToPage(currentPage));
-
-// avis
-radBtnAvisCroissant.addEventListener("click", () => goToPage(currentPage));
-radBtnAvisDecroissant.addEventListener("click", () => goToPage(currentPage));
-
-// date création
-radBtnDateCreationRecent.addEventListener("click", () => goToPage(currentPage));
-radBtnDateCreationAncien.addEventListener("click", () => goToPage(currentPage));
-
-
-
-// Événements des filtres
-// notes
-chkBxNote1.addEventListener("click", () => goToPage(1));
-chkBxNote2.addEventListener("click", () => goToPage(1));
-chkBxNote3.addEventListener("click", () => goToPage(1));
-chkBxNote4.addEventListener("click", () => goToPage(1));
-chkBxNote5.addEventListener("click", () => goToPage(1));
-
-// prix
-selectPrixMin.addEventListener("change", () => goToPage(1));
-selectPrixMax.addEventListener("change", () => goToPage(1));
-
-// statuts
-chkBxOuvert.addEventListener("click", () => goToPage(1));
-chkBxFerme .addEventListener("click", () => goToPage(1));
-
-// catégories
-chkBxParc.addEventListener("click", () => goToPage(1));
-chkBxVisite.addEventListener("click", () => goToPage(1));
-chkBxActivite.addEventListener("click", () => goToPage(1));
-chkBxSpectacle.addEventListener("click", () => goToPage(1));
-chkBxRestauration.addEventListener("click", () => goToPage(1));
-
-// dates
-// dateDepart.addEventListener("change", () => goToPage(1));
-// dateFin.addEventListener("change", () => goToPage(1));
-heureDebut.addEventListener("change", () => goToPage(1));
-heureFin.addEventListener("change", () => goToPage(1));
-
-
-// en ligne / hors ligne (pro)
-try {
-  chkBxEnLigne.addEventListener("click", () => goToPage(1));
-  chkBxHorsLigne.addEventListener("click", () => goToPage(1));
+document.addEventListener('DOMContentLoaded', function() {
+  // Événements de recherche
+  searchInput.addEventListener("input", () => goToPage(currentPage));
   
-} catch (error) {
+  // Événements des tris
+  radBtnEnAvant.addEventListener("click", () => goToPage(currentPage));
   
-}
+  // notes
+  radBtnNoteCroissant.addEventListener("click", () => goToPage(currentPage));
+  radBtnNoteDecroissant.addEventListener("click", () => goToPage(currentPage));
+  
+  // prix
+  radBtnprixCroissant.addEventListener("click", () => goToPage(currentPage));
+  radBtnPrixDecroissant.addEventListener("click", () => goToPage(currentPage));
+  
+  // avis
+  radBtnAvisCroissant.addEventListener("click", () => goToPage(currentPage));
+  radBtnAvisDecroissant.addEventListener("click", () => goToPage(currentPage));
+  
+  // date création
+  radBtnDateCreationRecent.addEventListener("click", () => goToPage(currentPage));
+  radBtnDateCreationAncien.addEventListener("click", () => goToPage(currentPage));
+  
+
+  // Événements des filtres
+  // notes
+  chkBxNote1.addEventListener("click", () => goToPage(1));
+  chkBxNote2.addEventListener("click", () => goToPage(1));
+  chkBxNote3.addEventListener("click", () => goToPage(1));
+  chkBxNote4.addEventListener("click", () => goToPage(1));
+  chkBxNote5.addEventListener("click", () => goToPage(1));
+  
+  // prix
+  selectPrixMin.addEventListener("change", () => goToPage(1));
+  selectPrixMax.addEventListener("change", () => goToPage(1));
+  
+  // statuts
+  chkBxOuvert.addEventListener("click", () => goToPage(1));
+  chkBxFerme .addEventListener("click", () => goToPage(1));
+  
+  // catégories
+  chkBxParc.addEventListener("click", () => goToPage(1));
+  chkBxVisite.addEventListener("click", () => goToPage(1));
+  chkBxActivite.addEventListener("click", () => goToPage(1));
+  chkBxSpectacle.addEventListener("click", () => goToPage(1));
+  chkBxRestauration.addEventListener("click", () => goToPage(1));
+  
+  // dates
+  // dateDepart.addEventListener("change", () => goToPage(1));
+  // dateFin.addEventListener("change", () => goToPage(1));
+  heureDebut.addEventListener("change", () => goToPage(1));
+  heureFin.addEventListener("change", () => goToPage(1));
+  
+  
+  // en ligne / hors ligne (pro)
+  if (userType == "pro_public" || userType == "pro_prive") {
+    chkBxEnLigne.addEventListener("click", () => goToPage(1));
+    chkBxHorsLigne.addEventListener("click", () => goToPage(1));
+  }
+});
