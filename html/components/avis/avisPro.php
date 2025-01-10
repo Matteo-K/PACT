@@ -216,7 +216,7 @@ const formReponseAvis = document.querySelector("#blocReponsePro form");
 const titreReponseAvis = document.querySelector("#avisproS2 form h2");
 const inputIdAvis = document.querySelector('#avisproS2 form input[type="hidden"]');
 
-const txtNbAvis = document.querySelector('#avisproS2 > details > h3:nth-child(3)');
+const txtNbAvis = document.querySelector('#avisPro details h3:nth-child(2)');
 
 
 
