@@ -58,6 +58,7 @@ if ($categorie["_restauration"]) {
     document.getElementById('rest_ajoutPhotoMenu'),
     'img/imageMenu/',
     document.getElementById('rest_zoneImg'),
-    <?= $limitImgMenu ?>
+    <?= $limitImgMenu ?>,
+    <?= $idOffre ?>
   );
 </script>

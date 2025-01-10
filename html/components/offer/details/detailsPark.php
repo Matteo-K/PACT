@@ -55,6 +55,7 @@ if ($categorie["_parcattraction"]) {
         document.getElementById('park_plan'),
         'img/imagePlan/',
         document.getElementById('park_zoneImg'),
-        <?= $limitImgPlan ?>
+        <?= $limitImgPlan ?>,
+        <?= $idOffre ?>
     );
 </script>
