@@ -28,13 +28,14 @@
       <li>Ne pas publier de contenu illicite ou offensant.</li>
       <li>Respecter la vie privée des autres utilisateurs.</li>
       <li>Ne pas tenter de compromettre la sécurité du site.</li>
+      <li>Soyez respecteux lors de la rédaction de vos avis</li>
     </ul>
 
     <h2>3. Propriété Intellectuelle</h2>
     <p>Tous les contenus présents sur ce site (textes, images, logos) sont protégés par le droit d'auteur.</p>
 
     <h2>4. Responsabilité</h2>
-    <p>Nous ne saurions être tenus responsables des dommages résultant de l'utilisation du site.</p>
+    <p>Nous déclinons toute responsabilité sur les dommages résultant de l'utilisation du site.</p>
 
     <h2>5. Modification des CGU</h2>
     <p>Nous nous réservons le droit de modifier ces CGU à tout moment.</p>
