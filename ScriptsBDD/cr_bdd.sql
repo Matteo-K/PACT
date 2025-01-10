@@ -189,7 +189,6 @@ CREATE TABLE _activite (
   duree INT NOT NULL,
   ageMin INT NOT NULL,
   prixMinimal FLOAT NOT NULL,
-  prestation VARCHAR(255) NOT NULL,
   CONSTRAINT _activite_fk_offre
       FOREIGN KEY (idOffre)
       REFERENCES _offre(idOffre)

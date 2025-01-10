@@ -296,7 +296,19 @@ if (isset($_POST['pageBefore'])) {
               mkdir($dossierImg, 0777, true);
             }
 
-            $nbImage = count($_FILES['park_plan']['name']);
+            $stmt = $conn->prepare("SELECT * FROM pact._menu WHERE idoffre = ?");
+            $stmt->execute([$idOffre]);
+            $imgASuppr = $stmt->fetchAll();
+            
+            $stmtmenu = $conn->prepare("DELETE FROM pact._menu WHERE url = ?");
+            $stmtimg = $conn->prepare("DELETE FROM pact._image WHERE url = ?");
+            foreach ($imgASuppr as $key => $value) {
+              $urlImgSupp = $value['url'];
+              $stmtmenu->execute([$urlImgSupp]);
+              $stmtimg->execute([$urlImgSupp]);
+            }
+
+            $nbImage = count($_FILES['rest_ajoutPhotoMenu']['name']);
             for ($i=0; $i < $nbImage; $i++) {
               
               // Boucle à travers chaque fichier uploadé

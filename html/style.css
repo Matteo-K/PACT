@@ -406,14 +406,16 @@ header > div > a > div {
   /* Dégradé du haut vers le bas */
   transform: translateX(100%);
   transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
   visibility: hidden;
   opacity: 0;
-  color: #fff;
+  color: #000;
+  border-left: 3px solid #1ca4ed;
 }
 
 /* Style général du menu de profil */
 .menuHeader {
-  background: linear-gradient(to bottom, #034d7c, #1ca4ed);
+  background-color: #fff;
   display: flex;
   width: 276px;
   flex-direction: column;
@@ -520,7 +522,7 @@ header > div > a > div {
 #profileMenu.hide {
   visibility: visible;
   opacity: 1;
-  transform: translateX(100vw);
+  transform: translateX(105vw);
 }
 
 #profileMenu.deplace {
@@ -550,12 +552,11 @@ header > div > a > div {
 
 /* Styles pour le pseudo ou le nom */
 #imagProfil figcaption {
-  text-shadow: black -2px 2px;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
   margin: 0;
-  color: #fff;
+  color: #000;
 }
 
 #backButton {
@@ -587,12 +588,13 @@ header > div > a > div {
 
 .menuHeader a,
 .liFact {
-  color: #fff;
+  color: #000;
   text-decoration: none;
-  transition: color 0.5s;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
+  padding-left: 20px;
+  transition: background-color 0.3s ease;
 }
 
 .liFact {
@@ -626,28 +628,37 @@ header ul + div {
 }
 
 #changeDataAccount {
-  background-color: #034d7ccc;
+  border: 2px solid #1ca4ed;
+  background-color: #1Ca4ed;
 }
 
 #changeDataAccount:hover {
-  background-color: #034d7c;
+  background-color: white;
+  border: 2px solid #1ca4ed;
+  color: #1ca4ed;
 }
 
 #changeAccount {
-  background-color: #034d7ccc;
+  background-color: #1ca4ed;
+  border: 2px solid #1ca4ed;
 }
 
 #changeAccount:hover {
-  background-color: #034d7c;
+  background-color: white;
+  border: 2px solid #1ca4ed;
+  color: #1ca4ed;
 }
 
 #logoutButton {
   background-color: #ff0000cc;
   margin-bottom: 2em;
+  border: 2px solid #ff0000;
 }
 
 #logoutButton:hover {
-  background-color: #ff0000;
+  background-color: #fff;
+  border: 2px solid #ff0000;
+  color: #ff0000;
 }
 
 @media (max-width: 804px) {
@@ -735,7 +746,8 @@ header ul + div {
 }
 
 #ALaUne > div,
-#consultationRecente > div {
+#consultationRecente > div,
+#consultationNouvelle > div {
   display: flex;
   flex-flow: row wrap;
   align-items: left;
@@ -1929,7 +1941,7 @@ header ul + div {
   flex-direction: row-reverse;
   margin-bottom: 20px;
   align-items: center;
-  width: 120px;
+  width: 150px;
 }
 
 #statut input {
