@@ -38,6 +38,7 @@
 </head>
 <body id="manageOffer">
 <script src="js/setColor.js"></script>
+<script src="js/loadImg.js"></script>
   <?php require_once "components/header.php" ?>
   <main>
     <aside>
