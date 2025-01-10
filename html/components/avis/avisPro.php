@@ -290,8 +290,6 @@ function afficheAvisSelect(idAvis) {
         divNonRep.classList.add("nonRepondu");
         avisSelect.querySelector("div").appendChild(divNonRep);
 
-        txtNbAvis.textContent = parseInt(txtNbAvis.textContent) - 1;
-
         listeAvis[idavis][lu] = true;
 
         fetch('lectureAvis.php', {
@@ -299,6 +297,12 @@ function afficheAvisSelect(idAvis) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 'id': idAvis })
         });
+
+        alert(txtNbAvis.textContent);
+
+        alert(parseInt(txtNbAvis) -1);
+        
+        txtNbAvis.textContent = parseInt(txtNbAvis.textContent) - 1;
 
     }
 
