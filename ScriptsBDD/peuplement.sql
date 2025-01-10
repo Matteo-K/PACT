@@ -790,6 +790,15 @@ VALUES (11,3),
        (12,5),
        (13,9);
 
+-- On fait en sorte que les avis qui ont une réponse soient considérés comme lus
+UPDATE pact._avis 
+       SET lu = true 
+       where idc in 
+              (select a.idc 
+              from pact.avis AS a 
+              join pact._reponse AS r 
+              on a.idc = r.ref);
+       
 INSERT INTO _avisImage(idC,url)
 VALUES (1,'./img/imageAvis/1/0.png'),
        (3,'./img/imageAvis/3/0.png'),

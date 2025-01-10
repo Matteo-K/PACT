@@ -224,17 +224,22 @@ const txtNbAvis = document.querySelector('#avisPro details h3:nth-child(2)');
 
 function afficheAvisSelect(idAvis) {
 
+    //Selection de l'avis de la liste qui sera traité 
     avisSelect = document.getElementById(`avis${idAvis}`);
 
+    //Ajout d'une classe pour le style
     avisSelect.classList.add("avisSelect");
 
+    //Affichage des détails de l'avis à droite de l'écran
     conteneurAvis.style.display = "flex";
     aucunAvisSelect.style.display = "none";
+
+    //On ferme l'affichage du bloc avec les nb d'avis
     if(blocDetails && blocDetails.open){
         blocDetails.open = false;
     }
 
-    //On remet l'ancien avis sélectionné en normal
+    //On enlève la classe de l'encien avis sélectionnée
     if (avisPrecedent != -1) {
         avisPrecedent.classList.remove("avisSelect");
     }
@@ -265,21 +270,21 @@ function afficheAvisSelect(idAvis) {
     //changement date publication et visite
     dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
 
-    //On modifie le bloc de réponse (titre + inputs caché) ou la réponse
+    //On modifie le bloc de rédaction réponse (titre + inputs caché) 
     if(avisSelect.classList.contains("avisNonRepondu") || avisSelect.classList.contains("avisNonLu")){
         formReponseAvis.style.display = "flex";
         titreReponseAvis.textContent = "Répondre à " + listeAvis[idAvis]['pseudo'];
         inputIdAvis.value = idAvis;
         conteneurReponseAvis.style.display = "none";
     }
+    //Ou la réponse à afficher si il y en à déjà une 
     else{
         conteneurReponseAvis.style.display = "flex";
         contenuReponseAvis.textContent = listeAvis[idAvis]['contenureponse'];
         formReponseAvis.style.display = "none";
     }
     
-
-    //On passe l'avis de non lu a lu
+    //On passe l'avis de non lu a lu (en affichage et en BDD)
     if(avisSelect.classList.contains("avisNonLu")){
         avisSelect.classList.remove("avisNonLu");
         iconeNonLu = avisSelect.querySelector(".nonLu");
@@ -297,15 +302,11 @@ function afficheAvisSelect(idAvis) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 'id': idAvis })
         });
-
-        alert(txtNbAvis.textContent);
-
-        alert(parseInt(txtNbAvis) -1);
         
         txtNbAvis.textContent = parseInt(txtNbAvis.textContent) - 1;
-
     }
 
+    //On référence l'avis actuel comme avis précédent pour la suite 
     avisPrecedent = document.getElementById(`avis${idAvis}`);
 }
 
@@ -363,24 +364,22 @@ blocDetails.addEventListener("toggle", () => {
     }
 });
 
-    // Fonction pour ouvrir avec une animation
+    // Fonction pour ouvrir le bloc du nb de réponses avec une animation
 function openDetails() {
-    // Obtenir la hauteur réelle
     let height = contenuDetails.scrollHeight;
-    contenuDetails.style.maxHeight = `${height}px`; // Définit la hauteur pour l'animation
+    contenuDetails.style.maxHeight = `${height}px`; // Définit la hauteur
     contenuDetails.addEventListener("transitionend", () => {
         if (blocDetails.open) {
             contenuDetails.style.maxHeight = "none"; // Supprime maxHeight après l'animation
         }
     }, { once: true });
-    conteneurAvis.style.display = "none"; // Masquer le conteneur principal
-    blocReponseAvis.style.display = "none"; // et le conteneur de réponse
-
+    conteneurAvis.style.display = "none"; // Masquer l'avis affiché
+    blocReponseAvis.style.display = "none"; // Masquer la réponse / la rédaction de réponse
 }
 
 function closeDetails() {
     let height = contenuDetails.scrollHeight;
-    contenuDetails.style.maxHeight = `${height}px`; // Définit temporairement la hauteur actuelle
+    contenuDetails.style.maxHeight = `${height}px`; // Définit temporairement la hauteur
     requestAnimationFrame(() => {
         contenuDetails.style.maxHeight = "0"; // Réduit à 0 pour l'animation
     });
