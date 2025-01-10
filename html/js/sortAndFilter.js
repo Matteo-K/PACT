@@ -569,7 +569,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  array = filtrerParStatutEnLigneHorsLigne(array);
+  //array = filtrerParStatutEnLigneHorsLigne(array);
   //array = filtrerParPeriode(array);
 
   // Tris
