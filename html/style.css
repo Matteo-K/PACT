@@ -3675,14 +3675,8 @@ section#infoComp div {
 #avisPro li {
   padding: 10px 5px 10px 9%;
   cursor: pointer;
-  transition: background-color 0.2s;
   clip-path: polygon(7% 68%, 7% 0, 100% 0, 100% 90%, 30% 90%, 12% 90%, 0 100%);
-  background: linear-gradient(
-    90deg,
-    var(--secondary) 0%,
-    var(--secondary) 80%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary) 80%, transparent 100%);
   margin: 5px 0 10px 15px;
   border-bottom-left-radius: 5px;
   width: 90%;
@@ -3690,13 +3684,7 @@ section#infoComp div {
 }
 
 #avisPro li:hover {
-  background: linear-gradient(
-    90deg,
-    var(--primary60) 0%,
-    var(--primary60) 80%,
-    transparent 100%
-  );
-  transition: background 0.5s;
+  background: linear-gradient(90deg, var(--primary60) 0%, var(--primary60) 80%, transparent 100%);
 }
 
 #avisPro li > div:first-of-type {
@@ -3731,8 +3719,7 @@ section#infoComp div {
 }
 
 .avisSelect{
-  background : linear-gradient(90deg, var(--primary60) 0%,  var(--primary60) 90%, transparent 100%);
-  transition: 0.5s;
+  background : linear-gradient(90deg, var(--primary60) 0%,  var(--primary60) 90%, transparent 100%) !important;
 }
 
 /* Scrollbar */
@@ -3826,6 +3813,11 @@ details.animating .contentDetails {
   width: 60%;
 }
 
+
+#avisProS2 h3 input:checked + label {
+  background-color: var(--primary60);
+}
+
 /* tri et filtre */
 #avisPro select {
   margin-bottom: 10px;
@@ -3867,10 +3859,11 @@ details .nonRepondu {
   font-style: italic;
   margin-left: 20px;
   border-radius: 5px;
+  padding: 0px 10px;
 }
 
 #avisPro details label:hover {
-  background-color: var(--primary50);
+  background-color: var(--primary40);
   transition: 0.5s;
 }
 
