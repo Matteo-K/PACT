@@ -66,26 +66,26 @@ VALUES (3, 'EntreprisePro1'),
 -- Peuplement de la table _membre
 INSERT INTO _membre (idU, pseudo, nom, prenom) 
 VALUES (5, 'membre1', 'Dupont', 'Jean'),
-       (6, 'Les kheys', 'tk', '76'),
-       (7, 'le kyks', 'kyky', 'bapé'),
-       (8, 'nono53', 'laden', 'nolan'),
-       (9, 'jean2', '2macour', 'Jean'),
+       (6, 'Paul29', 'Durant', 'Paul'),
+       (7, 'chantal47', 'Langlois', 'Chantal'),
+       (8, 'nono53', 'Broux', 'Nolan'),
+       (9, 'jean2', 'Kerebel', 'Jean'),
        (10, 'Redwin', 'Jain', 'Ewen'),
-       (11, 'alolo12', 'histe', 'rique'),
-       (12, 'Arkade', 'guillerm', 'Antoine'),
+       (11, 'gab', 'Froc', 'Gabriel'),
+       (12, 'Arkade', 'Guillerm', 'Antoine'),
        (13, 'Traxsab', 'Cochet', 'Iwan'),
        (14, 'mattaque', 'Kervadec', 'mattéo'),
        (15, 'BZHKylian', 'Houedec', 'kylian'),
-       (16, 'totoWolf', 'Wolf', 'toto'),
-       (17, 'Wolf2.0', 'Wolf', 'James'),
-       (18, 'chili', 'Sainz', 'Carlos'),
+       (16, 'Marcdu89', 'Durand', 'Marc'),
+       (17, 'James04', 'legrand', 'James'),
+       (18, 'Amelielp', 'lePetit', 'Amelie'),
        (19, 'benji35', 'Girard', 'Benjamin'),
-       (20, 'latigoat', 'Latifi', 'Nicholas'),
-       (21, 'jojoBernard', 'Bernard', 'jojo'),
+       (20, 'nico', 'Latifi', 'Nicolas'),
+       (21, 'Bernard', 'jojo', 'Bernard'),
        (22, 'IbraTV', 'ibra', 'tv'),
-       (23, 'Lasalle', 'lasalle', 'Jean'),
-       (24, 'FuriousJumper', 'furious', 'jumper'),
-       (25, 'Siphano', 'siph', 'ano');
+       (23, 'Marius', 'Duclos', 'Marius'),
+       (24, 'HenryDu56', 'legurrec', 'Henry'),
+       (25, 'Jacques1', 'lebris', 'Jacques');
 
 -- Peuplement de la table _public
 INSERT INTO _public (idU) 
@@ -99,7 +99,7 @@ VALUES (4, '321654987');
 INSERT INTO _adresse (numeroRue, rue, ville, pays, codePostal) 
 VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
        (4, 'Allée des acacias', 'Fréhel', 'France', '22000'),
-	     (123, 'rue de l ananas au fond de la mer', 'Fond de l eau', 'France', '22300'),
+	     (2, 'Rue de Kerniflet', 'Lannion', 'France', '22300'),
 	     ('1','Route du cap', 'Fréhel', 'France','22000'),
 	     ('5','Rue Beauchamp','Lannion','France','22300'),
 	     ('1','Rue du port','Erquy','France','22430');
@@ -234,13 +234,15 @@ VALUES ('Anglais'),
        ('Espagnol');
 
 -- Peuplement de la table _offre (une offre par catégorie)
+-- Peuplement de la table _offre
 INSERT INTO _offre (idU, statut, nom, description, mail, telephone, affiche, urlSite, resume, dateCrea) 
 VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attractions de la ville.', 'parc@mail.com', '0123456790', TRUE, 'http://parc.com', 'Divertissement familial', CURRENT_TIMESTAMP),
        (4, 'actif', 'Thomas Angelvy', 'Un spectacle incroyable avec des performances éblouissantes.', 'spectacle@mail.com', '0123456791', TRUE, 'http://spectacle.com', 'Divertissement exceptionnel', CURRENT_TIMESTAMP),
        (4, 'actif', 'La Potinière', 'Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. Découvrez la gastronomie locale. ', 'restaurant@mail.com', '0123456793', TRUE, NULL, 'Cuisine raffinée', CURRENT_TIMESTAMP),
        (3, 'actif', 'Activité Culturelle', 'Explorez la culture locale à travers une activité immersive.', 'activite@mail.com', '0123456794', TRUE, 'http://activite.com', 'Immersion culturelle aves la population local', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP);
-
+       (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP),
+     /*ajout de benj*/  (4, 'inactif', 'Brain l escape game', 'L unique escape game de Lannion.', 'escape.game@mail.com', '0987654321', TRUE, 'http://escape-game.com', 'Divertissement familial', CURRENT_TIMESTAMP),
+      /* ajout*/ (4, 'inactif', 'Baie de Lannion', 'Venez voir la mangnifique Baie de Lannion', 'baie-lannuin@mail.com', '0267842542', TRUE, 'http://baiedelannion.com', 'Divertissement familial', CURRENT_TIMESTAMP);
 -- Peuplement de la table _image
 INSERT INTO _image (url, nomImage) 
 VALUES ('./img/profile_picture/default.svg', 'default.svg'), 
@@ -257,10 +259,11 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
        ('./img/imageOffre/5/0.png', 'visite0'),
        ('./img/imageOffre/5/1.png', 'visite0'),
        ('./img/imageOffre/5/2.png', 'visite0'),
+       ('./img/imageOffre/6/1.png', 'brain1'), /* ajout brain */
        ('./img/imageAvis/1/0.png','Avis1-0'),
        ('./img/imageAvis/3/0.png','Avis3-0'),
        ('./img/imageAvis/7/0.png','Avis7-0');
-  
+
 -- Peuplement de la table _illustre
 INSERT INTO _illustre (idOffre, url) 
 VALUES (3, './img/imageOffre/3/0.png'),
@@ -275,8 +278,8 @@ VALUES (3, './img/imageOffre/3/0.png'),
        (4, './img/imageOffre/4/0.png'),
        (5, './img/imageOffre/5/0.png'),
        (5,'./img/imageOffre/5/1.png'),
-       (5,'./img/imageOffre/5/2.png');
-
+       (5,'./img/imageOffre/5/2.png'),
+       (6,'./img/imageOffre/6/1.png'); /* essaie pour brain */
 -- Peuplement de la table _photo_profil
 INSERT INTO _photo_profil (idU, url) 
 VALUES (1, './img/profile_picture/default.svg'),
@@ -339,7 +342,7 @@ VALUES ('Lundi', 3, '19:00', '21:00'),
        ('Jeudi', 3, '19:00', '21:00'), 
        ('Vendredi', 3, '19:00', '21:00'),
        ('Samedi', 3, '19:00', '21:00');
-       
+
 --peuplement horaire precise
 INSERT INTO _horairePrecise (jour, idOffre, heureDebut, heureFin, DateRepresentation) 
 VALUES ('Lundi', 2, '16:00', '21:00', '2024-12-02'),
@@ -389,7 +392,7 @@ INSERT INTO _tag_restaurant (idOffre, nomTag)
 VALUES (3, 'cuisine_locale');
 
 
- 
+
 
 -- Peuplement de la table _tag_Act
 INSERT INTO _tag_Act (idOffre, nomTag) 
@@ -403,7 +406,7 @@ VALUES (5, 'culturel');
 INSERT INTO _habite (idU, codePostal, ville, pays, rue, numeroRue) 
 VALUES (5, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
     (3, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
-		(4, '22300', 'Fond de l eau', 'France', 'rue de l ananas au fond de la mer', 123),
+		(4, '22300', 'Lannion', 'France', 'Rue de Kerniflet', 2),
 		(6, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 		(7, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 		(8, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
@@ -440,7 +443,7 @@ VALUES (1, 'Premium'),
        (3, 'Premium'), 
        (4, 'Basique'), 
        (5, 'Premium');
-       
+
 
 INSERT INTO _dateOption(dateLancement,dateFin,duree,prix)
 VALUES ('2024-11-01','2024-11-08',1,16.68),
@@ -470,11 +473,11 @@ VALUES (3, 1, 'EnRelief'),
        (10, 2, 'EnRelief'),
        (11, 5, 'ALaUne'),
        (12, 3, 'ALaUne');
-       
+
 INSERT INTO _visite_langue (idOffre, langue) 
 VALUES (5, 'Français'), 
        (5, 'Anglais');
-   
+
 INSERT INTO _menu(idOffre, menu)
 VALUES (3,'./img/imageMenu/3/0.png');
 
@@ -628,7 +631,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
 (25, 'Une journée au parc qui restera gravée dans ma mémoire.', '2024-12-03 15:15:00'),
 (25, 'Merci pour cette visite intéressante et bien animée.', '2024-12-04 13:45:00'),
 (25, 'Une activité ludique et très divertissante.', '2024-12-05 16:00:00');
-       
+
 INSERT INTO _avis(idC,idOffre,note,companie,mois,annee,titre,lu)
 VALUES (1,1,5,'solo','novembre','2024','ouai pas mal',FALSE),
        (2,1,4,'solo','novembre','2024','ouai pas mal',FALSE),
@@ -779,26 +782,17 @@ VALUES (1,1,5,'solo','novembre','2024','ouai pas mal',FALSE),
 (112, 5, 5, 'solo', 'novembre', '2024', 'Visite très enrichissante', FALSE),
 (113, 4, 4, 'solo', 'novembre', '2024', 'Activité sympa et agréable', FALSE);
 
-       
+
 INSERT INTO _reponse(idC,ref)
 VALUES (11,3),
        (12,5),
        (13,9);
 
--- On fait en sorte que les avis qui ont une réponse soient considérés comme lus
-UPDATE pact._avis 
-       SET lu = true 
-       where idc in 
-              (select a.idc 
-              from pact.avis AS a 
-              join pact._reponse AS r 
-              on a.idc = r.ref);
-       
 INSERT INTO _avisImage(idC,url)
 VALUES (1,'./img/imageAvis/1/0.png'),
        (3,'./img/imageAvis/3/0.png'),
        (7,'./img/imageAvis/7/0.png');
-       
+
 INSERT INTO _historiqueStatut(idOffre,dateLancement,dureeEnLigne,prixDuree)
 VALUES (1,'2024-11-01',6,20.04),
        (1,'2024-11-15',NULL,NULL),
@@ -821,7 +815,7 @@ VALUES (1,'2024-11-01',6,20.04),
        (3,'2024-09-10',20,66.8),
        (4,'2024-09-01',30,50.1),
        (5,'2024-09-01',30,100.20);
-       
+
 INSERT INTO _facturation(dateFactue,idOffre)
 VALUES ('2024-12-01',1),
        ('2024-12-01',2),
@@ -838,23 +832,23 @@ VALUES ('2024-12-01',1),
        ('2024-10-01',3),
        ('2024-10-01',4),
        ('2024-10-01',5);
-       
+
 INSERT INTO _accessibilite(nomAccess)
 VALUES ('sourd'),
        ('malentendant'),
        ('muet');
-       
+
 INSERT INTO _offreAccess(idOffre,nomAccess)
 VALUES (4,'malentendant'),
        (4,'sourd'),
        (5,'muet');
-       
+
 INSERT INTO _prestation(nomPresta)
 VALUES ('Repas'),
        ('Transport');
-       
+
 INSERT INTO _offrePrestation_non_inclu(idOffre,nomPresta)
 VALUES (4,'Transport');
-       
+
 INSERT INTO _offrePrestation_inclu(idOffre,nomPresta)
 VALUES (4,'Repas');

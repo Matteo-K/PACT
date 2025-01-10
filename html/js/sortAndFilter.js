@@ -83,6 +83,16 @@ const selectPrixMax = document.querySelector("#prixMax");
 const chkBxOuvert = document.querySelector("#ouvert");
 const chkBxFerme = document.querySelector("#ferme");
 
+
+// en ligne / hors ligne (pro)
+try {
+  const chkBxEnLigne = document.querySelector("#enLigne");
+  const chkBxHorsLigne = document.querySelector("#horsLigne");
+  
+} catch (error) {
+
+}
+
 // catégories
 const chkBxParc = document.querySelector("#Parc");
 const chkBxVisite = document.querySelector("#Visite");
@@ -312,7 +322,6 @@ function filtrerParStatuts(offers) {
   if (chkBxFerme.checked) statutsSelection.push("EstFermé");
 
   if (statutsSelection.length == 0) {
-    // statutsSelection = ["ouvert", "ferme"];
     return offers;
   }
 
@@ -320,6 +329,19 @@ function filtrerParStatuts(offers) {
 }
 
 
+// Fonction de filtre par statuts
+function filtrerParStatutEnLigneHorsLigne(offers) {
+  const statutEnLigneHorsLigne = [];
+
+  if (chkBxEnLigne.checked) statutEnLigneHorsLigne.push("actif");
+  if (chkBxHorsLigne.checked) statutEnLigneHorsLigne.push("inactif");
+
+  if (statutEnLigneHorsLigne.length == 0) {
+    return offers;
+  }
+
+  return offers.filter(offer => statutEnLigneHorsLigne.includes(offer.statut));
+}
 
 
 
@@ -480,12 +502,12 @@ function filtrerParPeriode(offers) {
 
 
 // Fonction de filtre par lieu
-function filtrerParLieu(offers) {
-  const lieuSelection = [];
+// function filtrerParLieu(offers) {
+//   const lieuSelection = [];
 
 
-  return offers.filter(offer => lieuSelection.includes(offer.note));
-}
+//   return offers.filter(offer => lieuSelection.includes(offer.note));
+// }
 
 /**
  * Filtre la liste d'offres suivant le mot clé de recherche pour correspondre
@@ -547,6 +569,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
+  //array = filtrerParStatutEnLigneHorsLigne(array);
   //array = filtrerParPeriode(array);
 
   // Tris
@@ -837,3 +860,13 @@ chkBxRestauration.addEventListener("click", () => goToPage(1));
 // dateFin.addEventListener("change", () => goToPage(1));
 heureDebut.addEventListener("change", () => goToPage(1));
 heureFin.addEventListener("change", () => goToPage(1));
+
+
+// en ligne / hors ligne (pro)
+try {
+  chkBxEnLigne.addEventListener("click", () => goToPage(1));
+  chkBxHorsLigne.addEventListener("click", () => goToPage(1));
+  
+} catch (error) {
+  
+}

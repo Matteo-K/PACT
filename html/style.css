@@ -1929,7 +1929,7 @@ header ul + div {
   flex-direction: row-reverse;
   margin-bottom: 20px;
   align-items: center;
-  width: 120px;
+  width: 150px;
 }
 
 #statut input {
