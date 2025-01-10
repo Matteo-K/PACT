@@ -259,6 +259,8 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
        ('./img/imageOffre/5/0.png', 'visite0'),
        ('./img/imageOffre/5/1.png', 'visite0'),
        ('./img/imageOffre/5/2.png', 'visite0'),
+       ('./img/imageOffre/6/1.jpeg', 'brain1'), /* ajout brain */
+       ('./img/imageOffre/7/0.jpeg', 'brain1') /* baie de lannion*/
        ('./img/imageOffre/6/1.png', 'brain1'), /* ajout brain */
        ('./img/imageAvis/1/0.png','Avis1-0'),
        ('./img/imageAvis/3/0.png','Avis3-0'),
@@ -536,7 +538,7 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
        ('./img/imageOffre/5/1.png', 'visite0'),
        ('./img/imageOffre/5/2.png', 'visite0'),
        ('./img/imageOffre/6/1.jpeg', 'brain1'), /* ajout brain */
-       ('./img/imageOffre/7/1.jpeg', 'baieLannion'), /* ajout baie de lannion */
+       ('./img/imageOffre/7/0.jpeg', 'baieLannion1'), /* ajout baie de lannion */
        ('./img/imageAvis/1/0.png','Avis1-0'),
        ('./img/imageAvis/3/0.png','Avis3-0'),
        ('./img/imageAvis/7/0.png','Avis7-0');
@@ -557,7 +559,7 @@ VALUES (3, './img/imageOffre/3/0.png'),
        (5,'./img/imageOffre/5/1.png'),
        (5,'./img/imageOffre/5/2.png'),
        (6,'./img/imageOffre/6/1.jpeg'), /* image pour brain */
-       (7,'./img/imageOffre/7/1.jpeg'); /* image Baie de Lannion */
+       (7,'./img/imageOffre/7/0.jpeg'); /* image Baie de Lannion */
 -- Peuplement de la table _photo_profil
 INSERT INTO _photo_profil (idU, url) 
 VALUES (1, './img/profile_picture/default.svg'),
