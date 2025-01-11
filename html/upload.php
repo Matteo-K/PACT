@@ -1,46 +1,4 @@
 <?php
-function afficherArbreFichiers($repertoire, $niveau = 0, $prefix = '') {
-    // Ouvrir le répertoire
-    $handle = opendir($repertoire);
-    
-    // Si le répertoire ne peut pas être ouvert, on retourne
-    if (!$handle) {
-        echo "Impossible d'ouvrir le répertoire: $repertoire";
-        return;
-    }
-
-    // Parcourir tous les éléments dans le répertoire
-    while (($fichier = readdir($handle)) !== false) {
-        // Ignorer les répertoires '.' et '..'
-        if ($fichier == '.' || $fichier == '..') {
-            continue;
-        }
-
-        // Définir le chemin complet du fichier ou du répertoire
-        $cheminComplet = $repertoire . '/' . $fichier;
-
-        // Afficher le fichier ou répertoire avec un préfixe pour l'arborescence
-        if (is_dir($cheminComplet)) {
-            // Afficher le répertoire
-            echo $prefix . "|-- " . $fichier . "/<br>";
-
-            // Appel récursif pour afficher le contenu du répertoire
-            afficherArbreFichiers($cheminComplet, $niveau + 1, $prefix . "    ");
-        } else {
-            // Afficher le fichier
-            echo $prefix . "|-- " . $fichier . "<br>";
-        }
-    }
-
-    // Fermer le répertoire
-    closedir($handle);
-}
-
-// Appeler la fonction pour afficher l'arbre des fichiers dans le répertoire voulu
-$repertoireInitial = '/'; // Remplace ceci par le répertoire que tu veux explorer
-afficherArbreFichiers($repertoireInitial);
-
-
 
 $uploadDir = $_POST["dossierImg"] ?? $_GET["dossierImg"];
 $limit = $_POST["limit"] ?? 0;
