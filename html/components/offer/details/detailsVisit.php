@@ -33,7 +33,7 @@ if ($categorie["_visite"]) {
         $visite["guide"] = $result["guide"];
         $visite["duree"] = $result["duree"];
         $visite["prixminimal"] = $result["prixminimal"];
-        $visite["nomAccess"] = $result["nomAccess"];
+        $visite["accessibilite"] = $result["accessibilite"];
     }
     // Langue
     $stmt = $conn->prepare("SELECT langue from pact._visite_langue where idoffre=?");

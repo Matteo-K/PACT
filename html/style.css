@@ -1792,6 +1792,10 @@ header ul + div {
   display: block;
 }
 
+#afficheImages {
+  width: 140%;
+}
+
 #artDetailOffer section,
 #afficheImages,
 #afficheImages2 {
@@ -1799,10 +1803,9 @@ header ul + div {
   padding: 7px;
   display: flex;
   flex-flow: wrap row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: 10px;
-  min-height: 150px;
   overflow-y: scroll;
 }
 
@@ -1831,6 +1834,7 @@ header ul + div {
   overflow-y: scroll;
   top: 100%;
   left: 0;
+  z-index: 5;
 }
 
 #autocompletion li {
