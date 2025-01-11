@@ -12,27 +12,22 @@ function nbChiffreNombre($number)
 
 function formatDateDiff($date)
 {
-    // Créer des objets DateTime à partir de la date passée en paramètre
     $dateDB = new DateTime($date);
     $dateNow = new DateTime();
 
-    // Fixer les objets DateTime à minuit pour la différence en jours
     $dateDBMidnight = clone $dateDB;
     $dateDBMidnight->setTime(0, 0, 0);
 
     $dateNowMidnight = clone $dateNow;
     $dateNowMidnight->setTime(0, 0, 0);
 
-    // Calculer la différence en jours (à partir de minuit)
     $intervalDays = $dateDBMidnight->diff($dateNowMidnight);
-    $diffInDays = (int)$intervalDays->format('%r%a'); // %r pour prendre en compte les jours négatifs
+    $diffInDays = (int)$intervalDays->format('%r%a');
 
-    // Calculer la différence en heures et minutes
     $interval = $dateDB->diff($dateNow);
-    $diffInHours = $interval->h + ($interval->days * 24); // Ajouter les heures des jours entiers
+    $diffInHours = $interval->h + ($interval->days * 24);
     $diffInMinutes = $interval->i;
 
-    // Déterminer le message à afficher
     if ($diffInDays === 0) {
         if ($diffInMinutes === 0) {
             return "Rédigé à l'instant";
@@ -42,13 +37,10 @@ function formatDateDiff($date)
             return "Rédigé il y a $diffInMinutes minute" . ($diffInMinutes > 1 ? 's' : '');
         }
     } elseif ($diffInDays === 1) {
-        // La date est hier
         return "Rédigé hier";
     } elseif ($diffInDays > 1 && $diffInDays <= 7) {
-        // La date est dans les 7 derniers jours
         return "Rédigé il y a " . abs($diffInDays) . " jour" . (abs($diffInDays) > 1 ? 's' : '');
     } else {
-        // La date est plus ancienne que 7 jours ou dans le futur
         return "Rédigé le " . $dateDB->format("d/m/Y à H:i");
     }
 }
@@ -78,7 +70,6 @@ foreach ($avis as $a) {
                         ?>
                         <p><?= $a['note'] ?> / 5</p>
                     </div>
-                    <!-- Icône de 3 points pour ouvrir la popup -->
                     <img src="./img/icone/trois-points.png" alt="icone de parametre" class="openPopup" />
                 </div>
             </article>
@@ -173,7 +164,7 @@ foreach ($avis as $a) {
                         <label for="dislike">
                             <input type="checkbox" name="evaluation" id="<?= $dislikeId ?>" />
                             <svg class="icon dislike" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M20 3H6.693A2.01 2.01 0 0 0 4.82 4.298l-2.757 7.351A1 1 0 0 0 2 12v2c0 1.103.897 2 2 2h5.612L8.49 19.367a2.004 2.004 0 0 0 .274 1.802c.376.52.982.831 1.624.831H12c.297 0 .578-.132.769-.36l4.7-5.64H20c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm-8.469 17h-1.145l1.562-4.684A1 1 0 0 0 11 14H4v-1.819L6.693 5H16v9.638L11.531 20zM18 14V5h2l.001 9H18z"></path>
+                                <path d="M20 3H6.693A2.01 2.01 0 0 0 4.82 4.298l-2.757 7.351A1 1 0 0 0 2 12v2c0 1.103.897 2 2 2h5.612L8.49 19.367a2.004 2.004 0 0 0 .274 1.802c.376.52.982.831 1.624.831H12c.297 0 .578-.132.769-.36l4.7-5.64H20c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm-8.469 17h-1.145l1.562-4.684A1 1 0 0 0 11 14H4v-1.819L6.693 5H16v9.638L11.531 20zM18 14V5h2l.002 9H18z"></path>
                             </svg>
                         </label>
                     </div>
@@ -185,76 +176,87 @@ foreach ($avis as $a) {
 }
 ?>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Fonction pour mettre à jour les compteurs "like" et "dislike"
-        function updateCount(action, avisId) {
-            fetch('updateLike.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        action: action,
-                        avisId: avisId // Envoi de l'ID de l'avis
-                    })
+    function updateCount(action, idAvis) {
+        // Envoyer une requête à `update_evaluation.php`
+        fetch('update_evaluation.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    action: action,
+                    idAvis: idAvis
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Mettre à jour les chiffres pour "likes"
-                        updateNumberDisplay(`[data-id="${avisId}"] .count.likes .number`, data.nblike);
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Mettre à jour les chiffres pour "likes"
+                    updateNumberDisplay('.count.likes .number', data.nblike);
 
-                        // Mettre à jour les chiffres pour "dislikes"
-                        updateNumberDisplay(`[data-id="${avisId}"] .count.dislikes .number`, data.nbdislike);
-                    } else {
-                        alert('Erreur lors de la mise à jour.');
-                    }
-                })
-                .catch(error => console.error('Erreur:', error));
-        }
-
-        // Fonction pour mettre à jour l'affichage des chiffres
-        function updateNumberDisplay(selector, number) {
-            const numberStr = number.toString();
-            const numbers = document.querySelectorAll(selector);
-            numbers.forEach((el, index) => {
-                const digit = numberStr[index] || '0';
-                el.style.setProperty('--nb' + index, digit); // Utiliser une variable CSS ou autre méthode
-                el.textContent = digit; // Mettre à jour le contenu
-            });
-        }
-
-        // Gestion des boutons "like" et "dislike" pour chaque avis
-        document.querySelectorAll('.avis').forEach(avis => {
-            const avisId = avis.dataset.id; // ID unique pour chaque avis
-            const likeCheckbox = avis.querySelector('.like-checkbox');
-            const dislikeCheckbox = avis.querySelector('.dislike-checkbox');
-
-            // Événement pour le bouton "like"
-            likeCheckbox.addEventListener('change', () => {
-                if (likeCheckbox.checked) {
-                    if (dislikeCheckbox.checked) {
-                        updateCount('undislike', avisId);
-                    }
-                    dislikeCheckbox.checked = false;
-                    updateCount('like', avisId);
+                    // Mettre à jour les chiffres pour "dislikes"
+                    updateNumberDisplay('.count.dislikes .number', data.nbdislike);
                 } else {
-                    updateCount('unlike', avisId);
+                    alert('Erreur lors de la mise à jour.');
                 }
-            });
+            })
+            .catch(error => console.error('Erreur:', error));
+    }
 
-            // Événement pour le bouton "dislike"
-            dislikeCheckbox.addEventListener('change', () => {
+    function updateNumberDisplay(selector, number) {
+        // Convertir le nombre en chaîne
+        const numberStr = number.toString();
+
+        // Récupérer tous les éléments .number à l'intérieur du selector
+        const numbers = document.querySelectorAll(selector);
+
+        // Parcourir chaque élément .number
+        numbers.forEach((el, index) => {
+            const digit = numberStr[index] || '0'; // Si il n'y a pas assez de chiffres, utiliser '0'
+
+            // Mettre à jour la position du chiffre
+            el.style.transform = `var(--nb${digit})`;
+
+            // Mettre à jour le contenu du chiffre
+            el.querySelector('span').textContent = digit;
+        });
+    }
+
+    // Sélectionner toutes les cases à cocher "like" et "dislike"
+    const likeCheckboxes = document.querySelectorAll("input[type='checkbox'][id^='like_']");
+    const dislikeCheckboxes = document.querySelectorAll("input[type='checkbox'][id^='dislike_']");
+
+    // Ajouter des écouteurs d'événements pour chaque case à cocher "like"
+    likeCheckboxes.forEach(likeCheckbox => {
+        likeCheckbox.addEventListener("change", function() {
+            const idAvis = likeCheckbox.id.split('_')[1]; // Extraire l'id d'avis
+            if (likeCheckbox.checked) {
+                const dislikeCheckbox = document.getElementById('dislike_' + idAvis);
                 if (dislikeCheckbox.checked) {
-                    if (likeCheckbox.checked) {
-                        updateCount('unlike', avisId);
-                    }
-                    likeCheckbox.checked = false;
-                    updateCount('dislike', avisId);
-                } else {
-                    updateCount('undislike', avisId);
+                    updateCount('undislike', idAvis);
                 }
-            });
+                dislikeCheckbox.checked = false;
+                updateCount('like', idAvis); // Envoie l'action "like"
+            } else {
+                updateCount('unlike', idAvis); // Envoie l'action "unlike"
+            }
+        });
+    });
+
+    // Ajouter des écouteurs d'événements pour chaque case à cocher "dislike"
+    dislikeCheckboxes.forEach(dislikeCheckbox => {
+        dislikeCheckbox.addEventListener("change", function() {
+            const idAvis = dislikeCheckbox.id.split('_')[1]; // Extraire l'id d'avis
+            if (dislikeCheckbox.checked) {
+                const likeCheckbox = document.getElementById('like_' + idAvis);
+                if (likeCheckbox.checked) {
+                    updateCount('unlike', idAvis);
+                }
+                likeCheckbox.checked = false;
+                updateCount('dislike', idAvis); // Envoie l'action "dislike"
+            } else {
+                updateCount('undislike', idAvis); // Envoie l'action "undislike"
+            }
         });
     });
 </script>

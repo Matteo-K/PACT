@@ -1,65 +1,74 @@
 <?php
+require_once 'connect_bdd.php';
+
 header('Content-Type: application/json');
 
-// Inclure le script de connexion à la base de données
-require_once 'connect_params.php'; // Assurez-vous que ce fichier contient votre connexion $conn
+// Récupération de l'action depuis la requête POST
+$data = json_decode(file_get_contents('php://input'), true);
+$action = isset($data['action']) ? $data['action'] : '';
 
-// Vérifier que la requête est POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer le corps de la requête
-    $data = json_decode(file_get_contents('php://input'), true);
+// Vérifier si l'action est valide
+if (!in_array($action, ['like', 'dislike', 'unlike', 'undislike'])) {
+    echo json_encode(['success' => false, 'message' => 'Action invalide']);
+    exit();
+}
 
-    // Vérifier que les données nécessaires sont présentes
-    if (!isset($data['action']) || !isset($data['avisId'])) {
-        echo json_encode(['success' => false, 'message' => 'Paramètres manquants']);
-        exit;
+try {
+    // Début de la transaction pour garantir l'intégrité des données
+    $conn->beginTransaction();
+
+    // Récupérer l'ID du commentaire à partir des données POST
+    $idc = isset($data['idc']) ? (int)$data['idc'] : 0;
+    if ($idc <= 0) {
+        echo json_encode(['success' => false, 'message' => 'ID de commentaire invalide']);
+        exit();
     }
 
-    $action = $data['action'];
-    $avisId = (int)$data['avisId']; // Sécurisation en cas d'entrée incorrecte
+    // Préparer la requête pour récupérer le nombre de likes et de dislikes
+    $stmt = $conn->prepare("SELECT nblike, nbdislike FROM pact._commentaire WHERE idc = :idc");
+    $stmt->bindParam(':idc', $idc, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Vérification de l'action et exécution de la requête correspondante
-    try {
-        switch ($action) {
-            case 'like':
-                $stmt = $conn->prepare("UPDATE avis SET nblike = nblike + 1 WHERE id = :avisId");
-                break;
-            case 'unlike':
-                $stmt = $conn->prepare("UPDATE avis SET nblike = nblike - 1 WHERE id = :avisId AND nblike > 0");
-                break;
-            case 'dislike':
-                $stmt = $conn->prepare("UPDATE avis SET nbdislike = nbdislike + 1 WHERE id = :avisId");
-                break;
-            case 'undislike':
-                $stmt = $conn->prepare("UPDATE avis SET nbdislike = nbdislike - 1 WHERE id = :avisId AND nbdislike > 0");
-                break;
-            default:
-                echo json_encode(['success' => false, 'message' => 'Action non reconnue']);
-                exit;
+    if ($result) {
+        // Récupérer les valeurs actuelles
+        $nbLike = $result['nblike'];
+        $nbDislike = $result['nbdislike'];
+
+        // Mettre à jour les compteurs en fonction de l'action
+        if ($action === 'like') {
+            $nbLike++;
+        } elseif ($action === 'dislike') {
+            $nbDislike++;
+        } elseif($action === 'unlike'){
+            $nbLike--;
+        } elseif($action === 'undislike'){
+            $nbDislike--;
         }
 
-        // Exécuter la requête
-        $stmt->bindParam(':avisId', $avisId, PDO::PARAM_INT);
+        // Mettre à jour la base de données avec les nouvelles valeurs
+        $stmt = $conn->prepare("UPDATE pact._commentaire SET nblike = :nblike, nbdislike = :nbdislike WHERE idc = :idc");
+        $stmt->bindParam(':nblike', $nbLike, PDO::PARAM_INT);
+        $stmt->bindParam(':nbdislike', $nbDislike, PDO::PARAM_INT);
+        $stmt->bindParam(':idc', $idc, PDO::PARAM_INT);
         $stmt->execute();
 
-        // Récupérer les nouveaux compteurs pour cet avis
-        $stmt = $conn->prepare("SELECT nblike, nbdislike FROM avis WHERE id = :avisId");
-        $stmt->bindParam(':avisId', $avisId, PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Validation de la transaction
+        $conn->commit();
 
-        // Retourner les nouveaux compteurs
+        // Retourner les nouvelles valeurs au format JSON
         echo json_encode([
             'success' => true,
-            'nblike' => $result['nblike'] ?? 0,
-            'nbdislike' => $result['nbdislike'] ?? 0,
+            'nblike' => $nbLike,
+            'nbdislike' => $nbDislike
         ]);
-    } catch (Exception $e) {
-        // Gérer les erreurs
-        echo json_encode(['success' => false, 'message' => 'Erreur serveur: ' . $e->getMessage()]);
+    } else {
+        // Si le commentaire n'existe pas
+        echo json_encode(['success' => false, 'message' => 'Commentaire introuvable']);
     }
-} else {
-    // Requête non autorisée
-    echo json_encode(['success' => false, 'message' => 'Requête invalide']);
+} catch (PDOException $e) {
+    // Annuler la transaction en cas d'erreur
+    $conn->rollBack();
+    echo json_encode(['success' => false, 'message' => 'Erreur de mise à jour: ' . $e->getMessage()]);
 }
 ?>
