@@ -1,4 +1,41 @@
 <?php
+function afficherArbreFichiers($repertoire, $niveau = 0) {
+    // Ouvrir le répertoire
+    $handle = opendir($repertoire);
+    
+    // Si le répertoire ne peut pas être ouvert, on retourne
+    if (!$handle) {
+        echo "Impossible d'ouvrir le répertoire: $repertoire";
+        return;
+    }
+
+    // Parcourir tous les éléments dans le répertoire
+    while (($fichier = readdir($handle)) !== false) {
+        // Ignorer les répertoires '.' et '..'
+        if ($fichier == '.' || $fichier == '..') {
+            continue;
+        }
+
+        // Afficher le fichier ou le répertoire
+        echo str_repeat('  ', $niveau) . $fichier . "<br>";
+
+        // Si c'est un répertoire, appel récursif pour afficher son contenu
+        $cheminComplet = $repertoire . '/' . $fichier;
+        if (is_dir($cheminComplet)) {
+            afficherArbreFichiers($cheminComplet, $niveau + 1);
+        }
+    }
+
+    // Fermer le répertoire
+    closedir($handle);
+}
+
+// Appeler la fonction pour afficher l'arbre des fichiers dans le répertoire voulu
+$repertoireInitial = '/'; // Remplace ceci par le répertoire que tu veux explorer
+afficherArbreFichiers($repertoireInitial);
+
+
+
 $uploadDir = $_POST["dossierImg"] ?? $_GET["dossierImg"];
 $limit = $_POST["limit"] ?? 0;
 $response = [];
