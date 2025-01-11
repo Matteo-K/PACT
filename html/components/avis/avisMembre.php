@@ -185,51 +185,74 @@ foreach ($avis as $a) {
 }
 ?>
 <script>
-    // Initialisation de Swiper pour les carrousels d'images
     document.addEventListener('DOMContentLoaded', () => {
-        // Gestion des interactions utilisateur
-        const likeButtons = document.querySelectorAll('.like');
-        const dislikeButtons = document.querySelectorAll('.dislike');
+        // Fonction pour mettre à jour les compteurs "like" et "dislike"
+        function updateCount(action, avisId) {
+            fetch('updateLike.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: action,
+                        avisId: avisId // Envoi de l'ID de l'avis
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Mettre à jour les chiffres pour "likes"
+                        updateNumberDisplay(`[data-id="${avisId}"] .count.likes .number`, data.nblike);
 
-        likeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const countElement = button.closest('.container').querySelector('.likes .count');
-                incrementCount(countElement);
-            });
-        });
+                        // Mettre à jour les chiffres pour "dislikes"
+                        updateNumberDisplay(`[data-id="${avisId}"] .count.dislikes .number`, data.nbdislike);
+                    } else {
+                        alert('Erreur lors de la mise à jour.');
+                    }
+                })
+                .catch(error => console.error('Erreur:', error));
+        }
 
-        dislikeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const countElement = button.closest('.container').querySelector('.dislikes .count');
-                incrementCount(countElement);
-            });
-        });
-
-        // Fonction pour incrémenter les compteurs (likes/dislikes)
-        function incrementCount(countElement) {
-            const numbers = countElement.querySelectorAll('.number');
-            numbers.forEach((number, index) => {
-                let current = parseInt(number.style.getPropertyValue('--nb' + index) || 0);
-                current = (current + 1) % 10; // Remet à zéro après 9
-                number.style.setProperty('--nb' + index, current);
+        // Fonction pour mettre à jour l'affichage des chiffres
+        function updateNumberDisplay(selector, number) {
+            const numberStr = number.toString();
+            const numbers = document.querySelectorAll(selector);
+            numbers.forEach((el, index) => {
+                const digit = numberStr[index] || '0';
+                el.style.setProperty('--nb' + index, digit); // Utiliser une variable CSS ou autre méthode
+                el.textContent = digit; // Mettre à jour le contenu
             });
         }
 
-        // Gestion des popups pour les paramètres (icône trois points)
-        const popupButtons = document.querySelectorAll('.openPopup');
-        popupButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const popup = button.closest('.messageAvis').querySelector('.popup'); // Supposons que vous avez une classe popup
-                popup.classList.toggle('visible'); // Affiche ou masque la popup
-            });
-        });
+        // Gestion des boutons "like" et "dislike" pour chaque avis
+        document.querySelectorAll('.avis').forEach(avis => {
+            const avisId = avis.dataset.id; // ID unique pour chaque avis
+            const likeCheckbox = avis.querySelector('.like-checkbox');
+            const dislikeCheckbox = avis.querySelector('.dislike-checkbox');
 
-        // Fermeture des popups en cliquant à l'extérieur
-        document.addEventListener('click', (e) => {
-            const popups = document.querySelectorAll('.popup.visible');
-            popups.forEach(popup => {
-                if (!popup.contains(e.target) && !e.target.classList.contains('openPopup')) {
-                    popup.classList.remove('visible');
+            // Événement pour le bouton "like"
+            likeCheckbox.addEventListener('change', () => {
+                if (likeCheckbox.checked) {
+                    if (dislikeCheckbox.checked) {
+                        updateCount('undislike', avisId);
+                    }
+                    dislikeCheckbox.checked = false;
+                    updateCount('like', avisId);
+                } else {
+                    updateCount('unlike', avisId);
+                }
+            });
+
+            // Événement pour le bouton "dislike"
+            dislikeCheckbox.addEventListener('change', () => {
+                if (dislikeCheckbox.checked) {
+                    if (likeCheckbox.checked) {
+                        updateCount('unlike', avisId);
+                    }
+                    likeCheckbox.checked = false;
+                    updateCount('dislike', avisId);
+                } else {
+                    updateCount('undislike', avisId);
                 }
             });
         });
