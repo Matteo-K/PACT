@@ -14,6 +14,8 @@ if (empty($_GET['idOffre']) && empty($_POST['idOffre'])) {
 $idOffre = $_GET['idOffre'] ?? $_POST['idOffre'];
 $uploadDir .= $idOffre . '/'; // Répertoire spécifique à l'offre
 
+echo $uploadDir;
+
 // Crée le dossier s'il n'existe pas
 if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0777, true);
