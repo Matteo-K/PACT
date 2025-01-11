@@ -179,7 +179,7 @@ foreach ($avis as $a) {
     // Fonction pour envoyer les données de like/dislike au serveur
     function updateCount(action, id) {
         // Envoyer une requête à `update_evaluation.php` avec l'ID de l'avis
-        fetch('update_evaluation.php', {
+        fetch('updateLike.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
