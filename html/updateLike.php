@@ -17,16 +17,8 @@ try {
     // Début de la transaction pour garantir l'intégrité des données
     $conn->beginTransaction();
 
-    // Récupérer l'ID du commentaire à partir des données POST
-    $idc = isset($data['idc']) ? (int)$data['idc'] : 0;
-    if ($idc <= 0) {
-        echo json_encode(['success' => false, 'message' => 'ID de commentaire invalide']);
-        exit();
-    }
-
     // Préparer la requête pour récupérer le nombre de likes et de dislikes
-    $stmt = $conn->prepare("SELECT nblike, nbdislike FROM pact._commentaire WHERE idc = :idc");
-    $stmt->bindParam(':idc', $idc, PDO::PARAM_INT);
+    $stmt = $conn->prepare("SELECT nblike, nbdislike FROM pact._commentaire WHERE idc = 1");
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -47,10 +39,9 @@ try {
         }
 
         // Mettre à jour la base de données avec les nouvelles valeurs
-        $stmt = $conn->prepare("UPDATE pact._commentaire SET nblike = :nblike, nbdislike = :nbdislike WHERE idc = :idc");
+        $stmt = $conn->prepare("UPDATE pact._commentaire SET nblike = :nblike, nbdislike = :nbdislike WHERE idc = 1");
         $stmt->bindParam(':nblike', $nbLike, PDO::PARAM_INT);
         $stmt->bindParam(':nbdislike', $nbDislike, PDO::PARAM_INT);
-        $stmt->bindParam(':idc', $idc, PDO::PARAM_INT);
         $stmt->execute();
 
         // Validation de la transaction

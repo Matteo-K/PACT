@@ -176,87 +176,79 @@ foreach ($avis as $a) {
 }
 ?>
 <script>
-    function updateCount(action, idAvis) {
-        // Envoyer une requête à `update_evaluation.php`
-        fetch('update_evaluation.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    action: action,
-                    idAvis: idAvis
+    function updateCount(action) {
+            // Envoyer une requête à `update.php`
+            fetch('updateLike.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: action
+                    })
                 })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Mettre à jour les chiffres pour "likes"
-                    updateNumberDisplay('.count.likes .number', data.nblike);
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Mettre à jour les chiffres pour "likes"
+                        updateNumberDisplay('.count.likes .number', data.nblike);
 
-                    // Mettre à jour les chiffres pour "dislikes"
-                    updateNumberDisplay('.count.dislikes .number', data.nbdislike);
-                } else {
-                    alert('Erreur lors de la mise à jour.');
-                }
-            })
-            .catch(error => console.error('Erreur:', error));
-    }
+                        // Mettre à jour les chiffres pour "dislikes"
+                        updateNumberDisplay('.count.dislikes .number', data.nbdislike);
+                    } else {
+                        alert('Erreur lors de la mise à jour.');
+                    }
+                })
+                .catch(error => console.error('Erreur:', error));
+        }
 
-    function updateNumberDisplay(selector, number) {
-        // Convertir le nombre en chaîne
-        const numberStr = number.toString();
+        function updateNumberDisplay(selector, number) {
+            // Convertir le nombre en chaîne
+            const numberStr = number.toString();
 
-        // Récupérer tous les éléments .number à l'intérieur du selector
-        const numbers = document.querySelectorAll(selector);
+            // Récupérer tous les éléments .number à l'intérieur du selector
+            const numbers = document.querySelectorAll(selector);
 
-        // Parcourir chaque élément .number
-        numbers.forEach((el, index) => {
-            const digit = numberStr[index] || '0'; // Si il n'y a pas assez de chiffres, utiliser '0'
+            // Parcourir chaque élément .number
+            numbers.forEach((el, index) => {
+                const digit = numberStr[index] || '0'; // Si il n'y a pas assez de chiffres, utiliser '0'
 
-            // Mettre à jour la position du chiffre
-            el.style.transform = `var(--nb${digit})`;
+                // Mettre à jour la position du chiffre
+                el.style.transform = `var(--nb${digit})`;
 
-            // Mettre à jour le contenu du chiffre
-            el.querySelector('span').textContent = digit;
-        });
-    }
+                // Mettre à jour le contenu du chiffre
+                el.querySelector('span').textContent = digit;
+            });
+        }
 
-    // Sélectionner toutes les cases à cocher "like" et "dislike"
-    const likeCheckboxes = document.querySelectorAll("input[type='checkbox'][id^='like_']");
-    const dislikeCheckboxes = document.querySelectorAll("input[type='checkbox'][id^='dislike_']");
+        // Récupérer les éléments des cases à cocher
+        const likeCheckbox = document.getElementById("like");
+        const dislikeCheckbox = document.getElementById("dislike");
 
-    // Ajouter des écouteurs d'événements pour chaque case à cocher "like"
-    likeCheckboxes.forEach(likeCheckbox => {
+        // Ajouter un événement pour le bouton "like"
         likeCheckbox.addEventListener("change", function() {
-            const idAvis = likeCheckbox.id.split('_')[1]; // Extraire l'id d'avis
             if (likeCheckbox.checked) {
-                const dislikeCheckbox = document.getElementById('dislike_' + idAvis);
-                if (dislikeCheckbox.checked) {
-                    updateCount('undislike', idAvis);
+                if(dislikeCheckbox.checked){
+                    updateCount('undislike');
                 }
                 dislikeCheckbox.checked = false;
-                updateCount('like', idAvis); // Envoie l'action "like"
-            } else {
-                updateCount('unlike', idAvis); // Envoie l'action "unlike"
+                updateCount('like'); // Envoie l'action "like" pour la mise à jour
+                
+            }else{
+                updateCount('unlike');
             }
         });
-    });
 
-    // Ajouter des écouteurs d'événements pour chaque case à cocher "dislike"
-    dislikeCheckboxes.forEach(dislikeCheckbox => {
+        // Ajouter un événement pour le bouton "dislike"
         dislikeCheckbox.addEventListener("change", function() {
-            const idAvis = dislikeCheckbox.id.split('_')[1]; // Extraire l'id d'avis
             if (dislikeCheckbox.checked) {
-                const likeCheckbox = document.getElementById('like_' + idAvis);
-                if (likeCheckbox.checked) {
-                    updateCount('unlike', idAvis);
+                if(likeCheckbox.checked){
+                    updateCount('unlike');
                 }
                 likeCheckbox.checked = false;
-                updateCount('dislike', idAvis); // Envoie l'action "dislike"
-            } else {
-                updateCount('undislike', idAvis); // Envoie l'action "undislike"
+                updateCount('dislike'); // Envoie l'action "dislike" pour la mise à jour
+            } else{
+                updateCount('undislike');
             }
         });
-    });
 </script>
