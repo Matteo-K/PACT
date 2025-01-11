@@ -1761,6 +1761,10 @@ header ul + div {
   font-size: 20px;
 }
 
+#inputTag {
+  width: 100%;
+}
+
 #inputTag:focus {
   border-bottom: none;
   border-bottom-left-radius: 0;
@@ -1806,6 +1810,8 @@ header ul + div {
 
 #inputAutoComplete {
   position: relative;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 #autocompletion {
