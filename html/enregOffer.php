@@ -735,19 +735,21 @@ if ($pageDirection >= 1) {
   </form>
   <?php
 } else {
-  $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
-  $stmt->bindParam(':idoffre', $idOffre);
-  $stmt->execute();
-  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  if ($result) {
-    ?>
-    <form action="detailsOffer.php" id="toDetailsOffer" method="post">
-      <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
-    </form>
-    <script>
-      document.getElementById("toDetailsOffer").submit();
-    </script>
-    <?php
+  if (!empty($idOffre)) {
+    $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
+    $stmt->bindParam(':idoffre', $idOffre);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($result) {
+      ?>
+      <form action="detailsOffer.php" id="toDetailsOffer" method="post">
+        <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
+      </form>
+      <script>
+        document.getElementById("toDetailsOffer").submit();
+        </script>
+      <?php
+    }
   }
   header("Location: index.php");
   exit();
