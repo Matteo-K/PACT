@@ -1845,7 +1845,7 @@ header ul + div {
   background-color: var(--text-dark15);
 }
 
-#autocompletion li:nth-child(even) {
+#autocompletion li:nth-child(even):hover {
   background-color: var(--text-dark25);
 }
 
