@@ -177,65 +177,82 @@ foreach ($avis as $a) {
 ?>
 <script>
     // Fonction pour envoyer les données de like/dislike au serveur
-    function updateLikeDislike(action, idAvis) {
-        // Envoi de la requête pour mettre à jour le like ou dislike
-        fetch('updateLike.php', {
+    function updateCount(action, id) {
+        // Envoyer une requête à `update_evaluation.php` avec l'ID de l'avis
+        fetch('update_evaluation.php', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     action: action,
-                    idavis: idAvis
+                    id: id
                 })
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    console.log(`Le compteur de ${action} pour l'avis ${idAvis} a été mis à jour.`);
+                    // Mettre à jour les chiffres pour "likes"
+                    updateNumberDisplay(`#${id} .count.likes .number`, data.nblike);
+
+                    // Mettre à jour les chiffres pour "dislikes"
+                    updateNumberDisplay(`#${id} .count.dislikes .number`, data.nbdislike);
                 } else {
-                    console.log('Erreur lors de la mise à jour des données.');
+                    alert('Erreur lors de la mise à jour.');
                 }
             })
-            .catch(error => {
-                console.error('Erreur de connexion:', error);
-            });
+            .catch(error => console.error('Erreur:', error));
     }
 
-    // Fonction pour gérer l'activation ou la désactivation du like/dislike
-    function toggleLikeDislike(buttonId) {
-        const [action, idAvis] = buttonId.split('_'); // Ex: like_1 ou dislike_2
-        if (action === 'like') {
-            // Toggle du like
-            updateLikeDislike('like', idAvis);
-        } else if (action === 'dislike') {
-            // Toggle du dislike
-            updateLikeDislike('dislike', idAvis);
-        }
-    }
+    function updateNumberDisplay(selector, number) {
+        // Convertir le nombre en chaîne
+        const numberStr = number.toString();
 
-    // Fonction pour initialiser les événements pour les boutons
-    function initializeLikeDislikeButtons() {
-        // Exemple d'initialisation des boutons : ici les boutons sont supposés avoir des ID comme "like_1", "dislike_2", etc.
-        const likeButtons = document.querySelectorAll('[id^="like_"]');
-        const dislikeButtons = document.querySelectorAll('[id^="dislike_"]');
+        // Récupérer tous les éléments .number à l'intérieur du selector
+        const numbers = document.querySelectorAll(selector);
 
-        // Ajout des écouteurs d'événements
-        likeButtons.forEach(button => {
-            button.addEventListener('change', function() {
-                toggleLikeDislike(this.id);
-            });
-        });
+        // Parcourir chaque élément .number
+        numbers.forEach((el, index) => {
+            const digit = numberStr[index] || '0'; // Si il n'y a pas assez de chiffres, utiliser '0'
 
-        dislikeButtons.forEach(button => {
-            button.addEventListener('change', function() {
-                toggleLikeDislike(this.id);
-            });
+            // Mettre à jour la position du chiffre
+            el.style.transform = `var(--nb${digit})`;
+
+            // Mettre à jour le contenu du chiffre
+            el.querySelector('span').textContent = digit;
         });
     }
 
-    // Initialisation au chargement du script
-    document.addEventListener('DOMContentLoaded', function() {
-        initializeLikeDislikeButtons();
+    // Récupérer tous les avis (chaque élément ayant un ID unique)
+    document.querySelectorAll('.evaluation').forEach(evaluation => {
+        const likeCheckbox = evaluation.querySelector('.like-checkbox');
+        const dislikeCheckbox = evaluation.querySelector('.dislike-checkbox');
+        const id = evaluation.id; // L'ID unique pour chaque évaluation
+
+        // Ajouter un événement pour le bouton "like"
+        likeCheckbox.addEventListener("change", function() {
+            if (likeCheckbox.checked) {
+                if (dislikeCheckbox.checked) {
+                    updateCount('undislike', id); // Annuler "dislike"
+                }
+                dislikeCheckbox.checked = false;
+                updateCount('like', id); // Envoie l'action "like" pour la mise à jour
+            } else {
+                updateCount('unlike', id); // Envoie l'action "unlike" pour la mise à jour
+            }
+        });
+
+        // Ajouter un événement pour le bouton "dislike"
+        dislikeCheckbox.addEventListener("change", function() {
+            if (dislikeCheckbox.checked) {
+                if (likeCheckbox.checked) {
+                    updateCount('unlike', id); // Annuler "like"
+                }
+                likeCheckbox.checked = false;
+                updateCount('dislike', id); // Envoie l'action "dislike" pour la mise à jour
+            } else {
+                updateCount('undislike', id); // Envoie l'action "undislike" pour la mise à jour
+            }
+        });
     });
 </script>
