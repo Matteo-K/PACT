@@ -1,5 +1,5 @@
 <?php
-function afficherArbreFichiers($repertoire, $niveau = 0) {
+function afficherArbreFichiers($repertoire, $niveau = 0, $prefix = '') {
     // Ouvrir le répertoire
     $handle = opendir($repertoire);
     
@@ -16,13 +16,19 @@ function afficherArbreFichiers($repertoire, $niveau = 0) {
             continue;
         }
 
-        // Afficher le fichier ou le répertoire
-        echo str_repeat('  ', $niveau) . $fichier . "<br>";
-
-        // Si c'est un répertoire, appel récursif pour afficher son contenu
+        // Définir le chemin complet du fichier ou du répertoire
         $cheminComplet = $repertoire . '/' . $fichier;
+
+        // Afficher le fichier ou répertoire avec un préfixe pour l'arborescence
         if (is_dir($cheminComplet)) {
-            afficherArbreFichiers($cheminComplet, $niveau + 1);
+            // Afficher le répertoire
+            echo $prefix . "|-- " . $fichier . "/<br>";
+
+            // Appel récursif pour afficher le contenu du répertoire
+            afficherArbreFichiers($cheminComplet, $niveau + 1, $prefix . "    ");
+        } else {
+            // Afficher le fichier
+            echo $prefix . "|-- " . $fichier . "<br>";
         }
     }
 
