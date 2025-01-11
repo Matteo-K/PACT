@@ -1674,16 +1674,17 @@ header ul + div {
 
 }
 
-#aboutOffer {
+#aboutOffer, #blcDescription {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
   gap: 3em;
+  margin-inline: 15%;
 }
 
 #aboutOffer div {
-  width: 30%;
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
 }
@@ -1713,8 +1714,7 @@ header ul + div {
 
 #artDetailOffer textarea[id="description"] {
   height: 250px;
-  min-height: 250px;
-  max-height: 400px;
+  resize: none;
 }
 
 #choixImage,
