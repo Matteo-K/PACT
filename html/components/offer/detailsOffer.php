@@ -200,7 +200,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         ?>
     </article>
     <a href="#specialOffer" class="scrollDown">
-        <img alt="scroll" src="https://cdn.dribbble.com/users/1459765/screenshots/3563580/media/2efa855db7bb66a0981f4a5acdc1d88f.gif">
+        <img alt="scroll" src="../../img/icone/scroll.gif">
     </a>
     <script>
         // CATEGORIES DE L'OFFRE

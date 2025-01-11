@@ -1761,10 +1761,6 @@ header ul + div {
   font-size: 20px;
 }
 
-#inputTag {
-  width: 100%;
-}
-
 #inputTag:focus {
   border-bottom: none;
   border-bottom-left-radius: 0;
@@ -1806,6 +1802,8 @@ header ul + div {
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
+  min-height: 150px;
+  overflow-y: scroll;
 }
 
 #inputAutoComplete {
@@ -1814,32 +1812,41 @@ header ul + div {
   flex-flow: column nowrap;
 }
 
+#inputTag {
+  border-radius: 0;
+}
+
 #autocompletion {
   display: none;
   padding: 2px 0;
   margin: 0;
   width: 100%;
   background-color: #fff;
-  border: 2px solid var(--bloc);
+  box-sizing: border-box;
+  border: 2px solid var(--secondary);
   border-top: none;
   border-radius: 2px;
   max-height: 200px;
   position: absolute;
   overflow-y: scroll;
+  top: 100%;
+  left: 0;
 }
 
 #autocompletion li {
   padding: 1px 0 1px 10px;
 }
 
+#autocompletion li:hover {
+  background-color: var(--text-dark20);
+}
+
 #autocompletion li:nth-child(even) {
-  background-color: var(--accent30);
-  background: linear-gradient(
-    90deg,
-    var(--accent30) 0%,
-    var(--accent30) 80%,
-    #fff 100%
-  );
+  background-color: var(--text-dark15);
+}
+
+#autocompletion li:nth-child(even) {
+  background-color: var(--text-dark25);
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
