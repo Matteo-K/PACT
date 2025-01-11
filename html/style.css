@@ -1668,6 +1668,12 @@ header ul + div {
   cursor: pointer;
 }
 
+.scrollDown {
+  position: absolute;
+  top: 40%;
+  right: 0;
+}
+
 #artDetailOffer {
   display: flex;
   flex-flow: column nowrap;
@@ -1684,13 +1690,15 @@ header ul + div {
   margin-inline: 15%;
 }
 
-#blcDescription {
+/* priorisation du style */
+#artDetailOffer > #blcDescription {
   flex-direction: column;
   align-items: normal;
   gap: 0;
 }
 
-#aboutOffer div {
+#aboutOffer > div,
+#blcTagImg > div {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
