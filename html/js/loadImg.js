@@ -8,6 +8,7 @@ let existingImagesCount = []; // Compteur des images existantes sur le serveur
 
 // Fonction pour charger les images existantes
 function loadExistingImages(dossierImg, zoneImg, limit, idOffre, indexCountImg) {
+    console.log('upload.php?dossierImg='+dossierImg+'&idOffre=' + idOffre);
     fetch('upload.php?dossierImg='+dossierImg+'&idOffre=' + idOffre)
         .then(response => response.json())
         .then(data => {
