@@ -6,7 +6,7 @@ $idUser = $_POST["idUser"];
 
 $stepManageOffer = unserialize($_POST['ArrayStepManageOffer']);
 
-if ($pageDirection == -1) {
+if ($pageDirection != -1) {
   if (isset($_POST['pageBefore'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['pageBefore'] > -1) {
       $pageBefore = $_POST['pageBefore'];
