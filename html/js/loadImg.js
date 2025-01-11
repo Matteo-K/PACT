@@ -108,6 +108,7 @@ function handleFiles(input, dossierImg, zoneImg, limit, idOffre, indexCountImg) 
 
 // Fonction pour envoyer un fichier au serveur
 function uploadFile(file, dossierImg, zoneImg, limit, idOffre, indexCountImg) {
+    console.table(file, dossierImg, zoneImg, limit, idOffre, indexCountImg);
     const formData = new FormData();
     formData.append('images[]', file);
     formData.append('action', 'upload');
