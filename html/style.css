@@ -1671,7 +1671,7 @@ header ul + div {
 .scrollDown {
   position: absolute;
   top: 40%;
-  right: 0;
+  right: 2em;
 }
 
 #artDetailOffer {
@@ -1730,13 +1730,6 @@ header ul + div {
 #artDetailOffer textarea[id="description"] {
   height: 250px;
   resize: none;
-}
-
-#choixImage,
-#park_planTitres {
-  display: inline-block;
-  width: 70%;
-  margin-right: 14px;
 }
 
 #ajoutPhoto,
