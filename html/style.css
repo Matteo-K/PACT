@@ -2411,7 +2411,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* Information des cartes */
 
-/* Image et titre */
+/* Front */
 .flip-card-front figure, 
 .flip-card-back figure {
   margin: 0;
@@ -2426,20 +2426,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   object-fit: cover;
 }
 
-figcaption {
-  padding: 10px;
-  text-align: left;
+.flip-card-front figcaption {
+  display: flex;
+  flex-flow: row nowrap;
+  background-color: var(--col-black);
 }
 
-figcaption h4.title {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 5px 0;
-}
-
-figcaption .ville {
-  font-size: 14px;
-  color: #666;
+.flip-card-front figcaption > div {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 /* Bloc étoiles */
