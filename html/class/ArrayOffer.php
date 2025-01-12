@@ -305,10 +305,10 @@ class ArrayOffer {
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
         if ($typeUser_ == "pro_public" || $typeUser_ == "pro_prive") {
-          $elem->displayCardALaUnePro();
+          $elem->displayCardOfferPro();
           $nbOffre ++;
         } else if (in_array("ALaUne", $elem->getData()["option"])) {
-          $elem->displayCardALaUne();
+          $elem->displayCardOffer();
           $nbOffre++;
         }
       }
@@ -322,7 +322,7 @@ class ArrayOffer {
     $array = array_slice($array, 0, $nbElement_);
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
-        $elem->displayCardALaUne();
+        $elem->displayCardOffer();
       }
     } else {
       echo "<p>Aucune offre consultée récemment</p>";
@@ -333,7 +333,7 @@ class ArrayOffer {
     $array = $this->arrayOffer;
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
-        $elem->displayCardALaUne();
+        $elem->displayCardOffer();
       }
     } else {
       echo "<p>Aucune nouvelle offres ont été posté</p>";

@@ -54,7 +54,7 @@ class Offer {
     $this->categorie = $categorie_;
   }
 
-  public function displayCardALaUne() {
+  public function displayCardOffer() {
     $idOffre = $this->idOffre;
     $nomOffre = $this->nomOffre;
     $resume = $this->resume;
@@ -68,7 +68,7 @@ class Offer {
     require __DIR__."/../components/cardALaUne.php";
   }
 
-  public function displayCardALaUnePro() {
+  public function displayCardOfferPro() {
     $idOffre = $this->idOffre;
     $nomOffre = $this->nomOffre;
     $urlImg = $this->images[0] ?? "";

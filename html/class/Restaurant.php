@@ -33,7 +33,7 @@ class Restaurant extends Offer {
     ]);
   }
 
-  public function displayCardALaUne() {
+  public function displayCardOffer() {
     $offre = parent::getData();
     $idOffre = $offre["idOffre"];
     $nomOffre = $offre["nomOffre"];
