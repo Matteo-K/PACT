@@ -738,7 +738,7 @@ function createFront(offer) {
   let h4 = document.createElement("h4");
   h4.classList.add("title");
   if (userType == "pro_public" || userType == "pro_prive") {
-    h4.classList.add("titlePro");
+    h4.classList.add("StatutAffiche");
   }
   h4.textContent = offer.nomOffre ?? "";
 

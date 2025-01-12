@@ -1890,13 +1890,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Back side */
-.flip-card-back figure {
+.flip-card-back figure, .flip-card-back .StatutAffiche {
   display: flex;
   align-items: center;
   position: absolute;
   top: 10px;
-  left: 10px;
   margin: 10px;
+}
+
+.flip-card-back figure {
+  left: 10px;
 }
 
 .flip-card-back img {
@@ -1907,6 +1910,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .flip-card-back figcaption {
   margin-left: 10px;
   font-size: 1.3rem;
+}
+
+.flip-card-back .StatutAffiche {
+  right: 10px;
 }
 
 .flip-card-back .content {
