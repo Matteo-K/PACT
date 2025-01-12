@@ -75,8 +75,8 @@ require_once "config.php";
       <?php } ?>
       <div id="voirPlus">
         <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
-          <h2>Vous avez une <span class="underline">activité à partager ?</span></h2>
-          <p><span class="underline">Rejoignez notre communauté</span> et proposez vos activités, événements, ou services en quelques clics.</p>
+          <h2>Vous avez une activité à partager ?</h2>
+          <p>Rejoignez notre communauté et proposez vos activités, événements, ou services en quelques clics.</p>
           <a href="manageOffer.php" class="modifierBut">Créer une offre</a>  
         <?php } ?>
       </div>

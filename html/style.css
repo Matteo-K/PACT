@@ -1737,6 +1737,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   min-height: 30vh !important;
 }
 
+#voirPlus {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
 #voirPlus h2 {
   font-size: 2.5rem;
   margin: 1rem;
@@ -1748,10 +1754,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #voirPlus a {
   margin-top: 30px;
-}
-
-.underline {
-  text-decoration: underline var(--bloc) 5px;
 }
 
 #ALaUne > div,
