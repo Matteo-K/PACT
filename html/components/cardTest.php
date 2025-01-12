@@ -1,7 +1,7 @@
 <form action="/detailsOffer.php" method="post" class="searchA">
   <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
   <section class="carteOffre flip-card <?= in_array("EnRelief", $options) ? "optionEnRelief" : "" ?>">
-    <!-- <article class="flip-card-inner"> -->
+    <div class="flip-card-inner">
       <article>
         <figure class="flip-card-front">
           <img src="<?= $urlImg ?>" alt="<?= $nomOffre ?>" title="<?= $nomOffre ?>">
@@ -122,6 +122,6 @@
             ?> 
           </div>
       </article>
-    <!-- </article> -->
+    </div>
   </section>
 </form>
