@@ -739,6 +739,9 @@ function createFront(offer) {
   h4.classList.add("title");
   if (userType == "pro_public" || userType == "pro_prive") {
     h4.classList.add("StatutAffiche");
+    if (offer.statut != "actif") {
+      h4.classList.add("horslgnOffre");
+    }
   }
   h4.textContent = offer.nomOffre ?? "";
 

@@ -1837,6 +1837,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: flex-end;
   background-position: center;
   color: white;
+  background-color: var(--primary);
   background-size: cover;
 }
 
