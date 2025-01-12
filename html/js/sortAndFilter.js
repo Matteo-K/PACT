@@ -800,6 +800,7 @@ function createBack(offer) {
   information.classList.add("information");
 
   let resume = document.createElement("div");
+  resume.classList.add("resume");
   resume.textContent = offer.resume ?? "";
 
   let adresse = document.createElement("address");
