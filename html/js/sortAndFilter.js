@@ -859,6 +859,7 @@ function createLogoCategorie(offer) {
   let figure = document.createElement("figure");
 
   let imageCategorie;
+  let chemin = "../img/icone/offerCategory/";
   switch (offer.categorie) {
     case 'Activité':
       imageCategorie = "activity.png";
