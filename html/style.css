@@ -1814,9 +1814,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .flip-card-back {
   background: var(--primary);
-  color: white;
+  color: var(--text-dark);
   transform: rotateY(180deg);
   position: relative;
+  font-size: 1.1em;
 }
 
 /* Information des cartes */
@@ -1878,7 +1879,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .flip-card-back figcaption {
   margin-left: 10px;
   font-size: 0.8rem;
-  color: #555;
 }
 
 .flip-card-back .content {
@@ -1886,7 +1886,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .flip-card-back .title {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
@@ -1901,6 +1901,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .flip-card-back .nomPro {
   margin-bottom: 10px;
+  font-size: 1.2em;
+  padding-inline: 20px;
 }
 
 .flip-card-back .information {
@@ -1908,15 +1910,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+  padding-inline: 20px;
 }
 
 .flip-card-back .resume {
   flex: 1;
+  padding-right: 5px;
 }
 
 .flip-card-back address {
   flex: 1;
-  text-align: right;
+  text-align: left;
   font-style: normal;
 }
 
