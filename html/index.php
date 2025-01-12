@@ -14,7 +14,7 @@ require_once "config.php";
   <script src="js/setColor.js"></script>
   <?php require_once "components/header.php"; ?>
   <main>
-    <div id="index">
+    <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
       <div id="ALaUne">
         <div>
@@ -75,6 +75,8 @@ require_once "config.php";
       <?php } ?>
       <div id="voirPlus">
         <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
+          <h2>Vous avez une <span class="underline">activité à partager ?</span></h2>
+          <p><span class="underline">Rejoignez notre communauté</span> et proposez vos activités, événements, ou services en quelques clics.</p>
           <a href="manageOffer.php" class="modifierBut">Créer une offre</a>  
         <?php } ?>
       </div>

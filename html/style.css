@@ -1721,10 +1721,37 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #index {
   margin-top: 20px;
   min-height: calc(100vh - var(--header-size));
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
 }
 
 #index h2 {
   text-align: center;
+}
+
+.indexPro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30vh !important;
+}
+
+#voirPlus h2 {
+  font-size: 2.5rem;
+  margin: 1rem;
+}
+
+#voirPlus p {
+  font-size: 1.2rem;
+}
+
+#voirPlus a {
+  margin-top: 30px;
+}
+
+.underline {
+  text-decoration: underline var(--bloc) 5px;
 }
 
 #ALaUne > div,
@@ -1794,7 +1821,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .flip-card-front, .flip-card-back {
-  box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -1878,7 +1904,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .flip-card-back figcaption {
   margin-left: 10px;
-  font-size: 0.8rem;
+  font-size: 1.3rem;
 }
 
 .flip-card-back .content {
@@ -1901,7 +1927,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .flip-card-back .nomPro {
   margin-bottom: 10px;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   padding-inline: 20px;
 }
 
