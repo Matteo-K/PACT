@@ -113,9 +113,10 @@
           <div class="tagsCard">
             <?php
               if (count($tags) > 0) {
-                foreach ($tags as $key => $tag) { ?>
-                  <a href="index.php?search=<?php echo $tag ?>#searchIndex" class="tagIndex"><?php echo $tag ?></a>
-                  <?php 
+                foreach ($tags as $key => $tag) { 
+                  if (!empty($tag)) { ?>
+                    <a href="index.php?search=<?php echo $tag ?>#searchIndex" class="tagIndex"><?php echo $tag ?></a>
+                  <?php }
                 } 
               }
             ?> 

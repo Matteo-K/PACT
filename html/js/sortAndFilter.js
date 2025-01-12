@@ -914,11 +914,13 @@ function ajouterTag(offer) {
   if (offer.tags.length > 0) { 
     offer.tags.forEach(element => {
       
-      let tag = document.createElement("a");
-      tag.classList.add("tagIndex");
-      tag.textContent = element.replace("_", " ");
-      tag.setAttribute("href", "index.php?search="+element.replace("_", "+")+"#searchIndex");
-      tags.appendChild(tag);
+      if (element != "") {
+        let tag = document.createElement("a");
+        tag.classList.add("tagIndex");
+        tag.textContent = element.replace("_", " ");
+        tag.setAttribute("href", "index.php?search="+element.replace("_", "+")+"#searchIndex");
+        tags.appendChild(tag);
+      }
     });
   }
 
