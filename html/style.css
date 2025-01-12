@@ -1879,6 +1879,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .flip-card-front .title {
   font-size: 1.2rem;
   font-weight: bold;
+  text-wrap: auto;
 }
 
 .flip-card-front .ville {

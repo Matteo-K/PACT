@@ -882,7 +882,7 @@ function createLogoCategorie(offer) {
       break;
 
     case 'Visite':
-      imageCategorie = "Visit.png";
+      imageCategorie = "visit.png";
       break;
 
     default:
@@ -909,7 +909,7 @@ function createLogoCategorie(offer) {
 function ajouterTag(offer) {
   let tags = document.createElement("div");
 
-  if (tags.length > 0) { 
+  if (offer.tags.length > 0) { 
     offer.tags.forEach(element => {
       
       let tag = document.createElement("a");

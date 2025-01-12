@@ -58,7 +58,7 @@
               break;
 
             case 'Visite':
-              $imageCategorie = "Visit.png";
+              $imageCategorie = "visit.png";
               break;
 
             default:
