@@ -121,7 +121,6 @@
               }
             ?> 
           </div>
-        </div>
       </article>
     <!-- </article> -->
   </section>
