@@ -909,6 +909,8 @@ function createLogoCategorie(offer) {
 function ajouterTag(offer) {
   let tags = document.createElement("div");
 
+  console.log(offer.tags);
+
   if (offer.tags.length > 0) { 
     offer.tags.forEach(element => {
       
