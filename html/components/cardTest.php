@@ -24,7 +24,7 @@
                 // Étoile partielle
                 if ($reste > 0) {
                   $pourcentageRempli = $reste * 100; // Pourcentage rempli ?>
-                  <div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>
+                  <div class="star partielle" style="--pourcentage: <?= $pourcentageRempli ?>%;"></div>
                 <?php }
                 // Étoiles vides
                 for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) { ?>
@@ -86,7 +86,7 @@
                 // Étoile partielle
                 if ($reste > 0) {
                   $pourcentageRempli = $reste * 100; // Pourcentage rempli ?>
-                  <div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>
+                  <div class="star partielle" style="--pourcentage: <?= $pourcentageRempli ?>%;"></div>
                 <?php }
                 // Étoiles vides
                 for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) { ?>
