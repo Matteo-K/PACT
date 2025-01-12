@@ -1727,23 +1727,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   text-align: center;
 }
 
-/*
-.carteIndex figcaption > h3 {
-  text-align: center;
-}
-
-.carteIndexPro,
-.carteIndex {
-  display: flex;
-  flex-flow: column wrap;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-  margin: 20px;
-  width: 30%;
-  min-width: 450px;
-  height: 304px;
-}
-
 #ALaUne > div,
 #consultationRecente > div,
 #consultationNouvelle > div {
@@ -1752,260 +1735,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: left;
   justify-content: space-evenly;
 }
-
-.hrlBlocIndex,
-.information {
-  display: flex;
-  flex-flow: row nowrap;
-  padding: 0 20px;
-}
-
-#index figure {
-  margin: 0;
-  position: relative;
-  height: 304px;
-}
-
-#index img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-
-#index figcaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: var(--text-light);
-  width: 100%;
-}
-
-.detailsCardOffer {
-  flex: 2;
-  padding-bottom: 10px;
-}
-
-.detailsCardOffer h3 {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.noteALaUne {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.875em;
-  flex-flow: row wrap;
-}
-
-.blcStarALaUne {
-  display: flex;
-  gap: 4px;
-}
-
-.adresse {
-  font-size: 0.875em;
-  margin-top: 8px;
-}
-
-.dataOffre {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-#index .StatutAffiche {
-  font-size: 0.875em;
-  font-weight: bold;
-  padding: 4px 10px;
-  border-radius: 4px;
-  background-color: green;
-}
-
-#index .horslgnOffre {
-  background-color: red !important;
-}
-
-#index .StatutAffiche::after {
-  content: none;
-}
-
-.abonnement {
-  font-size: 0.875em;
-  font-weight: bold;
-  padding: 5px 10px;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-
-.dataOffre div {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 8px;
-  margin-bottom: 10px;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.blcTag h4,
-.localisationCard h4 {
-  font-size: 1em;
-  font-weight: bold;
-  margin-bottom: 10px;
-  padding-left: 20px;
-}
-
-.localisationCard h4 {
-  padding: 0;
-}
-
-.localisationCard {
-  flex: 1.5;
-}
-
-.tagsCard {
-  display: flex;
-  flex-flow: row wrap-reverse;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  margin: 10px;
-  width: 80%;
-}
-
-.carteIndex .tagsCard {
-  width: 150%;
-  margin-left: -50%;
-}
-
-.carteIndex .noteALaUne + p {
-  width: 90%;
-}
-
-.tagIndex {
-  background-color: var(--accent);
-  color: var(--text-dark);
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.875em;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.tagIndex:hover {
-  background-color: var(--secondary);
-}
-
-.blcTag,
-.information {
-  display: none;
-}
-
-#index form:hover .information,
-#index form:hover .blcTag {
-  display: flex !important;
-}
-
-#voirPlus {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  gap: 20px;
-}
-
-#voirPlus a {
-  width: 150px;
-} */
-
-
-/* Responsiveness */
-/*
-@media (max-width: 768px) {
-  #index {
-    padding-top: 0;
-  }
-
-  .carteIndex {
-    height: 200px;
-    min-width: 300px;
-  }
-
-  .carteIndex h3 {
-    font-size: 1rem;
-    margin: 0;
-    margin-top: 10px;
-  }
-
-  #index img {
-    height: 200px;
-  }
-
-  .detailsCardOffer h3 {
-    font-size: 1.25em;
-  }
-
-  .noteALaUne span {
-    font-size: 0.75em;
-  }
-
-  .dataOffre {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .tagsCard {
-    justify-content: flex-start;
-  }
-
-  .StatutAffiche {
-    margin-bottom: 10px;
-  }
-
-  .carteIndex address {
-    text-wrap: nowrap;
-    font-size: 0.8rem;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  #index .star {
-    width: 1.1rem;
-    height: 1.1rem;
-  }
-
-  .blcTag,
-  .information {
-    display: flex;
-    padding: 0 10px;
-  }
-
-  .blcStarALaUne + span {
-    font-size: 0.85rem;
-  }
-
-  .blcStarALaUne+span+span,
-  /* nb avis */
-  /*.blcStarALaUne+span+span+span,
-  /* gamme de prix */
-  /*.carteIndex p,
-  .localisationCard h4,
-  .tagsCard {
-    display: none;
-  }
-}
-
-.searchTitre,
-.villesearch,
-.avgNote,
-.searchResume {
-  color: #000;
-  text-decoration: none;
-}*/
 
 .search {
   position: relative;
@@ -2056,7 +1785,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
   transition: transform 0.5s cubic-bezier(.65,.05,.36,1);
   transform-style: preserve-3d;
 }
@@ -2088,6 +1816,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background: var(--primary);
   color: white;
   transform: rotateY(180deg);
+  position: relative;
 }
 
 /* Information des cartes */
@@ -2101,42 +1830,44 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .flip-card-front img {
-  height: 80%;
+  height: 85%;
   width: 100%;
   object-fit: cover;
 }
 
 .flip-card-front figcaption {
-  background: rgba(0, 0, 0, 0.8);
+  background-color: var(--bloc);
   color: #fff;
-  padding: 10px;
+  padding: 10px 15px;
   display: flex;
-  flex-direction: column;
+  flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
-  height: 20%;
+  height: 15%;
 }
 
 .flip-card-front .title {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
 .flip-card-front .ville {
-  font-size: 0.9rem;
+  margin: 0;
 }
 
 .flip-card-front .blocStar {
   display: flex;
   align-items: center;
-  font-size: 0.8rem;
 }
 
 /* Back side */
 .flip-card-back figure {
   display: flex;
   align-items: center;
-  padding: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  margin: 10px;
 }
 
 .flip-card-back img {
@@ -2155,7 +1886,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .flip-card-back .title {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
@@ -2169,8 +1900,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .flip-card-back .nomPro {
-  font-size: 0.9rem;
-  color: #333;
   margin-bottom: 10px;
 }
 
@@ -2179,8 +1908,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  font-size: 0.8rem;
-  color: #555;
 }
 
 .flip-card-back .resume {
@@ -2199,19 +1926,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: center;
   gap: 5px;
   margin-top: 10px;
-}
-
-.flip-card-back .tagsCard a {
-  padding: 5px 10px;
-  background: #007bff;
-  color: #fff;
-  font-size: 0.8rem;
-  border-radius: 15px;
-  text-decoration: none;
-}
-
-.flip-card-back .tagsCard a:hover {
-  background: #0056b3;
 }
 
 .tagIndex {
