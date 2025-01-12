@@ -1924,6 +1924,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 
 /* Responsiveness */
+/*
 @media (max-width: 768px) {
   #index {
     padding-top: 0;
@@ -1989,9 +1990,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   .blcStarALaUne+span+span,
   /* nb avis */
-  .blcStarALaUne+span+span+span,
+  /*.blcStarALaUne+span+span+span,
   /* gamme de prix */
-  .carteIndex p,
+  /*.carteIndex p,
   .localisationCard h4,
   .tagsCard {
     display: none;
@@ -2004,7 +2005,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .searchResume {
   color: #000;
   text-decoration: none;
-}
+}*/
 
 .search {
   position: relative;
