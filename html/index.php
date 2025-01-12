@@ -66,7 +66,7 @@ require_once "config.php";
           <?php if (count($idOffres) > 0) {
             $consultNouvelle = new ArrayOffer($idOffres);
             $consultNouvelle->displayNouvelle();
-            ?>
+          ?>
           <?php } else { ?>
             <p>Aucune nouvelle offres ont été posté</p>
           <?php } ?>

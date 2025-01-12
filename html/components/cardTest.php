@@ -122,7 +122,7 @@
               }
             ?> 
           </div>
-        </div>
+        </div> <!-- Fermeture correcte du div de flip-card-back -->
       </div>
     </div>
   </div>
