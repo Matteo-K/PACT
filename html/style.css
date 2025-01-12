@@ -1763,6 +1763,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   flex-flow: row wrap;
   align-items: left;
   justify-content: space-evenly;
+  gap: 20px;
 }
 
 .search {
