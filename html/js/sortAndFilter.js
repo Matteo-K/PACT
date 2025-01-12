@@ -142,9 +142,8 @@ function selectSort(array) {
   return array;
 }
 
-function sortEnAvant(array) {
-  return array.sort((offre1, offre2) => {
-    const containsEnReliefA = offre1.option.includes('EnRelief');
+function prioriserEnRelief(offre1, offre2) {
+  const containsEnReliefA = offre1.option.includes('EnRelief');
     const containsEnReliefB = offre2.option.includes('EnRelief');
     
     if (containsEnReliefA && !containsEnReliefB) {
@@ -153,15 +152,30 @@ function sortEnAvant(array) {
         return 1;
     }
     return 0;
+}
+
+function sortEnAvant(array) {
+  return array.sort((offre1, offre2) => {
+    return prioriserEnRelief(offre1, offre2);
   });
 }
 
 function sortNoteCroissant(array) {
-  return array.sort((a, b) => parseFloat(a.noteAvg) - parseFloat(b.noteAvg));
+  return array.sort((a, b) => {
+    return (
+      parseFloat(a.noteAvg) - parseFloat(b.noteAvg) || 
+      prioriserEnRelief(a, b)
+    );
+  });
 }
 
 function sortNoteDecroissant(array) {
-  return array.sort((a, b) => parseFloat(b.noteAvg) - parseFloat(a.noteAvg));
+  return array.sort((a, b) => {
+    return (
+      parseFloat(b.noteAvg) - parseFloat(a.noteAvg) || 
+      prioriserEnRelief(a, b)
+    );
+  });
 }
 
 function attribuerEtoiles(note) {
@@ -181,7 +195,10 @@ function sortprixCroissant(array) {
       ? getPrixRangeRestaurant(offre2.gammeDePrix)[0] 
       : (offre2.prixMinimal || 0);
     
-    return prix1 - prix2;
+    return (
+      prix1 - prix2 ||
+      prioriserEnRelief(offre1, offre2)
+    );
   });
 }
 
@@ -194,7 +211,10 @@ function sortPrixDecroissant(array) {
       ? getPrixRangeRestaurant(offre2.gammeDePrix)[0] 
       : (offre2.prixMinimal || 0);
     
-    return prix2 - prix1;
+      return (
+        prix2 - prix1 ||
+        prioriserEnRelief(offre1, offre2)
+      );
   });
 }
 
@@ -203,7 +223,10 @@ function sortAvisCroissant(array) {
     const note1 = offre1.nbNote ? parseInt(offre1.nbNote) : 0;
     const note2 = offre2.nbNote ? parseInt(offre2.nbNote) : 0;
 
-    return note1 - note2;
+    return (
+      note1 - note2 || 
+      prioriserEnRelief(offre1, offre2)
+    );
   });
 }
 
@@ -212,7 +235,10 @@ function sortAvisDecroissant(array) {
     const note1 = offre1.nbNote ? parseInt(offre1.nbNote) : 0;
     const note2 = offre2.nbNote ? parseInt(offre2.nbNote) : 0;
 
-    return note2 - note1;
+    return (
+      note2 - note1 ||
+      prioriserEnRelief(offre1, offre2)
+    );
   });
 }
 
@@ -221,7 +247,10 @@ function sortDateCreaRecent(array) {
     const date1 = new Date(offre1.dateCreation);
     const date2 = new Date(offre2.dateCreation);
 
-    return date2.getTime() - date1.getTime()
+    return (
+      date2.getTime() - date1.getTime() ||
+      prioriserEnRelief(offre1, offre2)
+    );
   });
 }
 
@@ -230,7 +259,10 @@ function sortDateCreaAncien(array) {
     const date1 = new Date(offre1.dateCreation);
     const date2 = new Date(offre2.dateCreation);
     
-    return date1.getTime() - date2.getTime()
+    return (
+      prioriserEnRelief(offre1, offre2) ||
+      date1.getTime() - date2.getTime()
+    );
   });
 }
 
@@ -669,7 +701,7 @@ function displayOffer(offer) {
 }
 
 function createCard(offer) {
-  let card = document.createElement("div");
+  let card = document.createElement("section");
   card.classList.add("carteOffre");
   card.classList.add("flip-card");
   if (offer.option.includes('EnRelief')) {
@@ -678,104 +710,216 @@ function createCard(offer) {
 
   let content = document.createElement("div");
   content.classList.add("flip-card-inner");
-  
-  let front = document.createElement("div");
-  front.classList.add("flip-card-front");
-  front.style.backgroundImage = 'url("' +offer.images[0]+'")';
-  
-  let titre = document.createElement("h4");
-  titre.textContent = offer.nomOffre;
-  titre.classList.add("title");
 
-  let back = document.createElement("div");
-  back.classList.add("flip-card-back");
+  let front = createFront(offer);
+  let back = createBack(offer);
 
-  front.appendChild(titre.cloneNode(true));
-  
   content.appendChild(front);
-  
-  
-  let infoOffre = document.createElement("div");
-  infoOffre.classList.add("infoOffre");
-  
-  infoOffre.appendChild(proStatut(offer));
-  infoOffre.appendChild(localisation(offer));
-  infoOffre.appendChild(ajouterTag(offer));
-  
-  let resume = document.createElement("p");
-  resume.classList.add("searchResume");
-  if (offer.resume != "") {
-    resume.textContent = offer.resume;
-  } else {
-    resume.textContent = "";
-  }
-  
-  infoOffre.appendChild(resume);
-  
-  back.appendChild(titre.cloneNode(true));
-  back.appendChild(infoOffre);
   content.appendChild(back);
+
   card.appendChild(content);
 
   return card;
 }
 
-function proStatut(offer) {
-  let proStatut = document.createElement("div");
-  proStatut.classList.add("ProStatut");
+function createFront(offer) {
+  let article = document.createElement("article");
+  article.classList.add("flip-card-front");
 
-  // statut de l'offre si professionnel
+  let figure = document.createElement("figure");
+
+  let img = document.createElement("img");
+  img.setAttribute("src", offer.images?.[0] ?? "");
+  img.setAttribute("alt", offer.nomOffre);
+  img.setAttribute("title", offer.nomOffre);
+
+  let figcaption = document.createElement("figcaption");
+
+  let h4 = document.createElement("h4");
+  h4.classList.add("title");
   if (userType == "pro_public" || userType == "pro_prive") {
-
-    let span = document.createElement("span");
-    span.classList.add("StatutAffiche");
-    if (offer.statut != 'actif') {
-      span.classList.add("horslgnOffre");
-      span.textContent = "Hors-Ligne";
-    } else {
-      span.textContent = "En-Ligne";
-    }
-
-    proStatut.appendChild(span);
+    h4.classList.add("titlePro");
   }
-  return proStatut;
-}
+  h4.textContent = offer.nomOffre ?? "";
 
-function localisation(offer) {
-  let gras = document.createElement("strong");
-
-  let gammeDePrix = "";
-  if (typeof offer.gammeDePrix !== 'undefined') {
-    gammeDePrix = offer.gammeDePrix;
-  }
+  let div = document.createElement("div");
 
   let p = document.createElement("p");
-  p.textContent = offer.ville + " " + gammeDePrix + " ⋅ " + offer.categorie;
+  p.classList.add("ville");
+  p.textContent = offer.ville + ", " + offer.codePostal;
 
-  gras.appendChild(p);
+  let stars = displayStar(offer.noteAvg);
+  stars.classList.add("blocStar");
 
-  return gras;
+  let note = document.createElement("span");
+  note.textContent = offer.noteAvg + "/5";
+
+  stars.appendChild(note);
+
+  div.appendChild(p);
+  div.appendChild(stars);
+
+  figcaption.appendChild(h4);
+  figcaption.appendChild(div);
+
+  figure.appendChild(img);
+  figure.appendChild(figcaption);
+
+  article.appendChild(figure);
+
+  return article;
+}
+
+function createBack(offer) {
+  let article = document.createElement("article");
+  article.classList.add("flip-card-back");
+
+  let figure = createLogoCategorie(offer);
+
+  let content = document.createElement("div");
+  content.classList.add("content");
+  
+  let h4 = document.createElement("h4");
+  h4.classList.add("title");
+  h4.textContent = offer.nomOffre;
+
+  let stars = displayStar(offer.noteAvg);
+  stars.classList.add("blocStar");
+
+  let note = document.createElement("span");
+  note.textContent = offer.noteAvg + "/5";
+
+  let blcNbNote = document.createElement("span");
+  let nbNote = offer.nbNote ?? 0;
+  blcNbNote.textContent = "("+nbNote + "note" + (nbNote > 1 ? "s" : "") + ")";
+
+  let information = document.createElement("div");
+  information.classList.add("information");
+
+  let resume = document.createElement("div");
+  resume.textContent = offer.resume ?? "";
+
+  let adresse = document.createElement("address");
+
+  let ville = document.createElement("div");
+  ville.textContent = (offer.ville ?? "") + ", " + (offer.codePostal ?? "");
+
+  let adressePostal = document.createElement("div");
+  adressePostal.textContent = (offer.numeroRue ?? "") + " " + (offer.rue ?? "");
+
+  let tags = ajouterTag(offer);
+  tags.classList.add("tagsCard");
+
+  adresse.appendChild(ville);
+  adresse.appendChild(adressePostal);
+
+  information.appendChild(resume);
+  information.appendChild(adresse);
+
+  stars.appendChild(note);
+  stars.appendChild(blcNbNote);
+
+  content.appendChild(h4);
+  content.appendChild(stars);
+
+  let infoTypeUser = document.createElement("div");
+  if (userType == "pro_public" || userType == "pro_prive") {
+    infoTypeUser.classList.add("typeOffre");
+    // Décrit le type de l'offre (premium, en relief, a la une)
+  } else {
+    infoTypeUser.classList.add("nomPro");
+    infoTypeUser.textContent = "Proposé par " + offer.nomUser;
+  }
+
+  content.appendChild(infoTypeUser);
+  content.appendChild(information);
+  content.appendChild(tags);
+
+  article.appendChild(figure);
+
+  if (userType == "pro_public" || userType == "pro_prive") {
+    let enLigne = document.createElement("p");
+    enLigne.classList.add("StatutAffiche");
+    if (offer.statut == "actif") {
+      enLigne.textContent = "En ligne";
+    } else {
+      enLigne.classList.add("horslgnOffre");
+      enLigne.textContent = "Hors ligne";
+    }
+    article.appendChild(enLigne);
+  }
+
+  article.appendChild(content);
+
+  return article;
+}
+
+function createLogoCategorie(offer) {
+
+  let figure = document.createElement("figure");
+
+  let imageCategorie;
+  switch (offer.categorie) {
+    case 'Activité':
+      imageCategorie = "activity.png";
+      break;
+      
+    case 'Parc Attraction':
+      imageCategorie = "park.png";
+      break;
+
+    case 'Restaurant':
+      imageCategorie = "restaurant.png";
+      break;
+
+    case 'Spectacle':
+      imageCategorie = "show2.png";
+      break;
+
+    case 'Visite':
+      imageCategorie = "Visit.png";
+      break;
+
+    default:
+      imageCategorie = "interrogation.png";
+      break;
+  }
+
+  let img = document.createElement("img");
+  img.setAttribute("src", chemin + imageCategorie);
+  img.setAttribute("alt", offer.categorie);
+  img.setAttribute("title", offer.categorie);
+
+  figure.appendChild(img);
+
+  if (offer.categorie == "Restaurant") {
+    let figcaption = document.createElement("figcaption");
+    figcaption.textContent = offer.gammeDePrix;
+
+    figure.appendChild(figcaption);
+  }
+  return figure;
 }
 
 function ajouterTag(offer) {
   let tags = document.createElement("div");
-  tags.classList.add("searchCategorie");
 
-  offer.tags.forEach(element => {
-
-    let tag = document.createElement("a");
-    tag.classList.add("searchTag");
-    tag.textContent = element.replace("_", " ");
-    tag.setAttribute("href", "index.php?search="+element.replace("_", "+")+"#searchIndex");
-    tags.appendChild(tag);
-  });
+  if (tags.length > 0) { 
+    offer.tags.forEach(element => {
+      
+      let tag = document.createElement("a");
+      tag.classList.add("tagIndex");
+      tag.textContent = element.replace("_", " ");
+      tag.setAttribute("href", "index.php?search="+element.replace("_", "+")+"#searchIndex");
+      tags.appendChild(tag);
+    });
+  }
 
   return tags;
 }
 
 function displayStar(note) {
-  let container = document.createElement("span");
-  container.classList.add("blcStarSearch");
+  let container = document.createElement("div");
 
   const etoilesPleines = Math.floor(note);
   const reste = note - etoilesPleines;
