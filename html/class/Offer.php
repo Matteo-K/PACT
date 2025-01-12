@@ -197,6 +197,7 @@ class Offer {
   public function getData() {
     return [
       "idU" => $this->idUser, 
+      "nomUser" => $this->nomUser, 
       "idOffre" => $this->idOffre,
       "statut" => $this->statut, 
       "abonnement" => $this->abonnement,

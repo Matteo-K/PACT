@@ -42,14 +42,14 @@ class Restaurant extends Offer {
     $urlImg = $offre["images"][0] ?? "";
     $gammeDePrix = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
     $ville = $offre["ville"];
-    $numerorue = $offre["numerorue"];
+    $numerorue = $offre["numeroRue"];
     $rue = $offre["rue"];
     $codePostal = $offre["codePostal"];
     $categorie = $offre["categorie"];
     $tags = $offre["tags"];
     $noteAvg = $offre["noteAvg"];
     $nbNote = $offre["nbNote"];
-    $options = $offre["options"];
+    $options = $offre["option"];
     require __DIR__."/../components/cardTest.php";
   }
 }
