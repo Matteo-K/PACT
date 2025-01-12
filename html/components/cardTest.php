@@ -2,8 +2,8 @@
   <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
   <section class="carteOffre flip-card <?= in_array("EnRelief", $options) ? "optionEnRelief" : "" ?>">
     <div class="flip-card-inner">
-      <article>
-        <figure class="flip-card-front">
+      <article class="flip-card-front">
+        <figure>
           <img src="<?= $urlImg ?>" alt="<?= $nomOffre ?>" title="<?= $nomOffre ?>">
           <figcaption>
             <h4 class="title"><?= $nomOffre ?></h4>
@@ -98,29 +98,29 @@
                 (<?= empty($nbNote) ? 0 : $nbNote ?> note<?= $nbNote > 1 ? "s" : "" ?>)
               </span>
             </div>
-          </div>
-          <div class="nomPro">
-            Proposé par <?= $nomUser ?>
-          </div>
-          <div class="information">
-            <div class="resume">
-              <?= $resume ?>
+            <div class="nomPro">
+              Proposé par <?= $nomUser ?>
             </div>
-            <address>
-              <div><?= $ville . ", " . $codePostal ?></div>
-              <div><?= $numerorue . " " . $rue ?></div>
-            </address>
-          </div>
-          <div class="tagsCard">
-            <?php
+            <div class="information">
+              <div class="resume">
+                <?= $resume ?>
+              </div>
+              <address>
+                <div><?= $ville . ", " . $codePostal ?></div>
+                <div><?= $numerorue . " " . $rue ?></div>
+              </address>
+            </div>
+            <div class="tagsCard">
+              <?php
               if (count($tags) > 0) {
                 foreach ($tags as $key => $tag) { ?>
                   <a href="index.php?search=<?php echo $tag ?>#searchIndex" class="tagIndex"><?php echo $tag ?></a>
-                <?php 
+                  <?php 
                 } 
               }
-            ?> 
+              ?> 
           </div>
+        </div>
       </article>
     </div>
   </section>
