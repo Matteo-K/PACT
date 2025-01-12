@@ -197,6 +197,11 @@ class ArrayOffer {
             break;
         }
 
+        $stmt = $conn->prepare("SELECT denomination FROM pact._pro WHERE idu = ?");
+        $stmt->execute([$offre['idu']]);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        $nomUser = $res ? $res['denomination'] : "" ;
+
         $options = [];
         $stmt = $conn->prepare("SELECT * from pact._option_offre natural join pact._dateoption where idoffre = ? and datefin >= CURRENT_DATE and datelancement <= CURRENT_DATE");
         $stmt->execute([$offre['idoffre']]);
@@ -217,7 +222,7 @@ class ArrayOffer {
         }
 
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
-          $offre['idu'], $offre['nom'],
+          $offre['idu'], $nomUser, $offre['nom'],
           $offre['nomabonnement'], $options, 
           $offre['description'], $offre['resume'],
           $offre['mail'], $offre['telephone'],
@@ -239,6 +244,8 @@ class ArrayOffer {
 
   /**
    * Prend les bonnes offres suivant l'utilisateur
+   * @param idUser_ id référence de l'utilisateur
+   * @param typeUser_ type de l'utilisateur
    */
   public function filtre($idUser_, $typeUser_) {
     return array_filter($this->arrayOffer, function($offer) use ($idUser_, $typeUser_) {
@@ -268,8 +275,12 @@ class ArrayOffer {
     });
   }
 
-
-
+  /**
+   * Vérifie si l'élément de recherche est dans un des tags de l'offre
+   * @param tags liste de tag d'une offre
+   * @param recherche chaine de caracrère saisit par l'utilisateur
+   * @return bool si le mot de recherche est dans la liste de tags
+   */
   public function offreContientTag($tags, $recherche) {
     foreach ($tags as $tag) {
       if (strpos(strtolower($tag), strtolower($recherche)) !== false) {
@@ -282,11 +293,20 @@ class ArrayOffer {
   /**
    * Renvoie le nombre d'élément dela liste
    * Et la liste avec les éléments suivant le nombre d'élément sélectionner
+   * @param array_ liste d'offre
+   * @param elementStart_ indice de l'élément de départ
+   * @param nbElement_ nombre d'élément à prendre
+   * @return array extrait de la liste qui convient à la pagination
    */
   public function pagination($array_, $elementStart_ , $nbElement_) {
     return array_slice($array_, $elementStart_, $nbElement_); 
   }
 
+  /**
+   * Obtention de la liste d'offre pour la manipuler
+   * @param array_ liste d'offre
+   * @return array liste des informations des offres de la liste
+   */
   public function getArray($array_ = 0) {
     if ($array_ == 0) {
       $array_ = $this->arrayOffer;
@@ -299,16 +319,23 @@ class ArrayOffer {
     return $arrayWithData;
   }
 
+  /**
+   * Affiche les offres à la une
+   * @param array_ liste d'offre
+   * @param typeUser_ type de l'utilisateur
+   * @param elementStart_ indice de l'élément de départ
+   * @param nbElement_ nombre d'élément à prendre
+   */
   public function displayCardALaUne($array_, $typeUser_, $elementStart_, $nbElement_) {
     $array = $this->pagination($array_, $elementStart_, $nbElement_);
     $nbOffre = 0;
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
         if ($typeUser_ == "pro_public" || $typeUser_ == "pro_prive") {
-          $elem->displayCardALaUnePro();
+          $elem->displayCardOfferPro();
           $nbOffre ++;
         } else if (in_array("ALaUne", $elem->getData()["option"])) {
-          $elem->displayCardALaUne();
+          $elem->displayCardOffer();
           $nbOffre++;
         }
       }
@@ -317,29 +344,43 @@ class ArrayOffer {
     }
   }
 
+  /**
+   * Affiche les offres consulter récemment par l'utilisateur
+   * @param nbElement_ nombre d'élément à prendre
+   */
   public function displayConsulteRecemment($nbElement_) {
     $array = $this->arrayOffer;
     $array = array_slice($array, 0, $nbElement_);
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
-        $elem->displayCardALaUne();
+        $elem->displayCardOffer();
       }
     } else {
       echo "<p>Aucune offre consultée récemment</p>";
     }
   }
 
+  /**
+   * Affiche les offres nouvelles par l'utilisateur
+   */
   public function displayNouvelle() {
     $array = $this->arrayOffer;
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
-        $elem->displayCardALaUne();
+        $elem->displayCardOffer();
       }
     } else {
       echo "<p>Aucune nouvelle offres ont été posté</p>";
     }
   }
 
+  /**
+   * Affiche une liste d'offre convenant à l'utilisateur
+   * @param array_ liste d'offre
+   * @param typeUser_ type de l'utilisateur
+   * @param elementStart_ indice de l'élément de départ
+   * @param nbElement_ nombre d'élément à prendre
+   */
   public function displayArrayCard($array_, $typeUser_, $elementStart_, $nbElement_) {
     $array = $this->pagination($array_, $elementStart_, $nbElement_);
     if (count($array) > 0) {

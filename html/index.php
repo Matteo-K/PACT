@@ -14,7 +14,7 @@ require_once "config.php";
   <script src="js/setColor.js"></script>
   <?php require_once "components/header.php"; ?>
   <main>
-    <div id="index">
+    <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
       <div id="ALaUne">
         <div>
@@ -66,7 +66,7 @@ require_once "config.php";
           <?php if (count($idOffres) > 0) {
             $consultNouvelle = new ArrayOffer($idOffres);
             $consultNouvelle->displayNouvelle();
-            ?>
+          ?>
           <?php } else { ?>
             <p>Aucune nouvelle offres ont été posté</p>
           <?php } ?>
@@ -75,6 +75,8 @@ require_once "config.php";
       <?php } ?>
       <div id="voirPlus">
         <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
+          <h2>Vous avez une activité à partager ?</h2>
+          <p>Rejoignez notre communauté et proposez vos activités, événements, ou services en quelques clics.</p>
           <a href="manageOffer.php" class="modifierBut">Créer une offre</a>  
         <?php } ?>
       </div>

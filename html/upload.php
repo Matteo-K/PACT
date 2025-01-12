@@ -1,4 +1,5 @@
 <?php
+
 $uploadDir = $_POST["dossierImg"] ?? $_GET["dossierImg"];
 $limit = $_POST["limit"] ?? 0;
 $response = [];

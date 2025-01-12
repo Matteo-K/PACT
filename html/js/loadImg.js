@@ -64,7 +64,7 @@ function deleteImage(fileName, imgElement, index, dossierImg, zoneImg, limit, id
             // En cas d'erreur côté serveur, restaurer l'image dans le DOM et afficher un message
             alert('Erreur lors de la suppression de l\'image sur le serveur : ' + data.error);
             // Recharger la liste des images pour restaurer l'état correct
-            loadExistingImages(dossierImg, zoneImg, limit, idOffre);
+            loadExistingImages(dossierImg, zoneImg, limit, idOffre, indexCountImg);
         }
     })
     .catch(error => {
@@ -72,7 +72,7 @@ function deleteImage(fileName, imgElement, index, dossierImg, zoneImg, limit, id
         alert('Erreur lors de la suppression de l\'image. Veuillez réessayer.');
         console.log(error);
         // Recharger la liste des images pour restaurer l'état
-        loadExistingImages(dossierImg, zoneImg, limit, idOffre);
+        loadExistingImages(dossierImg, zoneImg, limit, idOffre, indexCountImg);
     });
     checkImg();
 }
@@ -98,7 +98,7 @@ function handleFiles(input, dossierImg, zoneImg, limit, idOffre, indexCountImg) 
         if (existingImagesCount[indexCountImg] < maxFiles) {
             if (file.type.startsWith("image/")) {
                 // Envoyer directement chaque fichier pour importation
-                uploadFile(file, dossierImg, zoneImg, limit, idOffre);
+                uploadFile(file, dossierImg, zoneImg, limit, idOffre, indexCountImg);
             }
         }
     });

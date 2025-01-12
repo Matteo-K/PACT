@@ -7,16 +7,12 @@
 let currentPage = 1;
 let nbElement = 12;
 
-let userType, arrayOffer, page;
+let arrayOffer, page;
+const userDataElement = document.getElementById('user-data');
+const userType = userDataElement.getAttribute('data-user');
 document.addEventListener('DOMContentLoaded', function() {
 
-  if (userType == "pro_public" || userType == "pro_prive") {
-    chkBxEnLigne = document.querySelector("#enLigne");
-    chkBxHorsLigne = document.querySelector("#horsLigne");
-  }
-
   const offersDataElement = document.getElementById('offers-data');
-  const userDataElement = document.getElementById('user-data');
   
   const offersData = offersDataElement.getAttribute('data-offers');
   // console.log(offersData); // Débugger
@@ -27,8 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
   } catch (error) {
     console.error("Erreur de parsing JSON :", error);
   }
-  
-  userType = userDataElement.getAttribute('data-user');
 
   const params = new URLSearchParams(window.location.search);
 
@@ -92,6 +86,10 @@ const chkBxFerme = document.querySelector("#ferme");
 // en ligne / hors ligne (pro)
 let chkBxEnLigne;
 let chkBxHorsLigne;
+if (userType == "pro_public" || userType == "pro_prive") {
+  chkBxEnLigne = document.querySelector("#enLigne");
+  chkBxHorsLigne = document.querySelector("#horsLigne");
+}
 
 // catégories
 const chkBxParc = document.querySelector("#Parc");
