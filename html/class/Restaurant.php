@@ -37,16 +37,20 @@ class Restaurant extends Offer {
     $offre = parent::getData();
     $idOffre = $offre["idOffre"];
     $nomOffre = $offre["nomOffre"];
+    $nomUser = $offre["nomUser"];
     $resume = $offre["resume"];
     $urlImg = $offre["images"][0] ?? "";
     $gammeDePrix = isset($this->gammeDePrix) ? $this->gammeDePrix : "";
     $ville = $offre["ville"];
+    $numerorue = $offre["numerorue"];
+    $rue = $offre["rue"];
+    $codePostal = $offre["codePostal"];
     $categorie = $offre["categorie"];
     $tags = $offre["tags"];
     $noteAvg = $offre["noteAvg"];
     $nbNote = $offre["nbNote"];
-    $codePostal = $offre["codePostal"];
-    require __DIR__."/../components/cardALaUne.php";
+    $options = $offre["options"];
+    require __DIR__."/../components/cardTest.php";
   }
 }
 ?>

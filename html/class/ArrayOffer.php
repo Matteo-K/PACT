@@ -197,6 +197,11 @@ class ArrayOffer {
             break;
         }
 
+        $stmt = $conn->prepare("SELECT denomination FROM pact._pro WHERE idu = ?");
+        $stmt->execute([$offre['idu']]);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        $nomUser = $res ? $res['denomination'] : "" ;
+
         $options = [];
         $stmt = $conn->prepare("SELECT * from pact._option_offre natural join pact._dateoption where idoffre = ? and datefin >= CURRENT_DATE and datelancement <= CURRENT_DATE");
         $stmt->execute([$offre['idoffre']]);
@@ -217,7 +222,7 @@ class ArrayOffer {
         }
 
         $this->arrayOffer[$offre['idoffre']]->setData($offre['idoffre'], 
-          $offre['idu'], $offre['nom'],
+          $offre['idu'], $nomUser, $offre['nom'],
           $offre['nomabonnement'], $options, 
           $offre['description'], $offre['resume'],
           $offre['mail'], $offre['telephone'],

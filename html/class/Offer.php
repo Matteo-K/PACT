@@ -25,6 +25,7 @@ $currentTime = new DateTime(date('H:i'));
 
 class Offer {
   private $idUser;
+  private $nomUser;
   private $idOffre;
   private $statut;
   private $abonnement;
@@ -57,15 +58,19 @@ class Offer {
   public function displayCardOffer() {
     $idOffre = $this->idOffre;
     $nomOffre = $this->nomOffre;
+    $nomUser = $this->nomUser;
     $resume = $this->resume;
     $urlImg = $this->images[0] ?? "";
     $ville = $this->ville;
+    $numerorue = $this->numerorue;
+    $rue = $this->rue;
+    $codePostal = $this->codePostal;
     $categorie = $this->categorie;
     $tags = $this->tags;
     $noteAvg = $this->noteAvg;
     $nbNote = $this->nbNote;
-    $codePostal = $this->codePostal;
-    require __DIR__."/../components/cardALaUne.php";
+    $options = $this->options;
+    require __DIR__."/../components/cardTest.php";
   }
 
   public function displayCardOfferPro() {
@@ -152,10 +157,11 @@ class Offer {
     }
   }
 
-  public function setData($idOffre_, $idUser_, $nomOffre_, $abonnement_, $options_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $noteAvg_, $nbNote_) {
+  public function setData($idOffre_, $idUser_, $nomUser_, $nomOffre_, $abonnement_, $options_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $noteAvg_, $nbNote_) {
     $this->idOffre = $idOffre_;
     $this->statut = $statut_;
     $this->idUser = $idUser_;
+    $this->nomUser = $nomUser_;
     $this->nomOffre = empty($nomOffre_) ? "Offre ". $this->idOffre : $nomOffre_;
     $this->resume = empty($resume_) ? "" : $resume_;
     $this->description = empty($description_) ? "" : $description_;
