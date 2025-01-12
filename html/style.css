@@ -2092,6 +2092,128 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* Information des cartes */
 
+/* Front side */
+.flip-card-front figure {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.flip-card-front img {
+  height: 80%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.flip-card-front figcaption {
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 20%;
+}
+
+.flip-card-front .title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.flip-card-front .ville {
+  font-size: 0.9rem;
+}
+
+.flip-card-front .blocStar {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+/* Back side */
+.flip-card-back figure {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.flip-card-back img {
+  height: 50px;
+  width: 50px;
+}
+
+.flip-card-back figcaption {
+  margin-left: 10px;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.flip-card-back .content {
+  padding: 10px;
+}
+
+.flip-card-back .title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.flip-card-back .blocStar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.flip-card-back .nomPro {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.flip-card-back .information {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.flip-card-back .resume {
+  flex: 1;
+}
+
+.flip-card-back address {
+  flex: 1;
+  text-align: right;
+  font-style: normal;
+}
+
+.flip-card-back .tagsCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.flip-card-back .tagsCard a {
+  padding: 5px 10px;
+  background: #007bff;
+  color: #fff;
+  font-size: 0.8rem;
+  border-radius: 15px;
+  text-decoration: none;
+}
+
+.flip-card-back .tagsCard a:hover {
+  background: #0056b3;
+}
+
 .tagIndex {
   background-color: var(--accent);
   color: var(--text-dark);
@@ -2105,6 +2227,24 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .tagIndex:hover {
   background-color: var(--secondary);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .carteOffre {
+    max-width: 90%;
+    height: auto;
+  }
+
+  .flip-card-front img,
+  .flip-card-front figcaption {
+    height: auto;
+  }
+
+  .flip-card-back {
+    padding: 5px;
+  }
+}
+
 
 @media (max-width: 700px) {
   .searchResume {
