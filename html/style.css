@@ -5226,13 +5226,13 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
     margin: 10px 0;
   }
 
-  a[id="boutonLienMembre"], p[id="legendeBoutonLienMembre"] {
+  input[id="boutonLienMembre"], p[id="legendeBoutonLienMembre"] {
     display: block;
     max-width: 350px;
     margin-top: 20px;
   }
 
-  a[id="boutonLienPro"],
+  input[id="boutonLienPro"],
   p[id="legendeBoutonLienPro"] {
     display: none;
   }
