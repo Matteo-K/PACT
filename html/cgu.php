@@ -115,9 +115,13 @@
 
         <?php break;
         
-        default:
-          
-          break;
+        default:?>
+          <article>
+            <h2>
+              Page inconnue
+            </h2>
+          </article>
+          <?php break;
       }
     ?>
     <div class="pagination">
