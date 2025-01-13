@@ -2279,7 +2279,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 /*++++++++++++++++++++*/
 /* Css tris, Antoine */
 /*++++++++++++++++++*/
-#blcTriFiltre > div input{
+#miseEnAvant, #noteCroissant, #noteDecroissant, #prixCroissant, #prixDecroissant, #avisCroissant, #avisDecroissant, #dateCreationRecent, #dateCreationAncien {
   display: none;
 }
 
