@@ -184,6 +184,8 @@ foreach ($avis as $a) {
         const likeCheckbox = document.getElementById(likeId);
         const dislikeCheckbox = document.getElementById(dislikeId);
 
+        console.log(checkbox.id);
+
         if (action === 'like') {
             if (checkbox.checked) {
                 // Si "like" est coché, décocher "dislike" si nécessaire
