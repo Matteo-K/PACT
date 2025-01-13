@@ -132,12 +132,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
           if (radio.checked) {
             carte.style.transform = 'skewX(-1deg)';
-            if (index === 0) {
-              carte.style.boxShadow = 'inset 4px 4px 4px rgba(255, 255, 255, 0.5), inset -4px -4px 4px var(--secondary60), 4px 4px 12px var(--text-dark30)';
-            } else if (index === 1) {
-              carte.style.boxShadow = 'inset 4px 4px 4px rgba(255, 255, 255, 0.5), inset -4px -4px 4px var(--accent60), 4px 4px 12px var(--accent30)';
-            } else if (index === 2) {
+            if (index%2 === 1) {
               carte.style.boxShadow = 'inset 4px 4px 4px rgba(255, 255, 255, 0.5), inset -4px -4px 4px var(--primary60), 4px 4px 12px var(--bloc)';
+            } else {
+              carte.style.boxShadow = 'inset 4px 4px 4px rgba(255, 255, 255, 0.5), inset -4px -4px 4px var(--secondary60), 4px 4px 12px var(--text-dark30)';
             }
           }
         });
