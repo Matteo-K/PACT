@@ -254,7 +254,7 @@ foreach ($avis as $a) {
         const numberStr = number.toString();
 
         // Récupérer tous les éléments .number à l'intérieur du selector
-        const numbers = document.querySelectorAll(selector + " .number");
+        let numbers = document.querySelectorAll(selector + " .number");
 
         // Si le nombre a plus de chiffres que les éléments .number existants, ajouter des éléments .number
         if (numberStr.length > numbers.length) {
