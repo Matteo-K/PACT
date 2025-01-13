@@ -58,6 +58,7 @@ try {
         // Retourner les nouvelles valeurs au format JSON
         echo json_encode([
             'success' => true,
+            'message' => 'Ajout avec succès',
             'nblike' => $nbLike,
             'nbdislike' => $nbDislike
         ]);
