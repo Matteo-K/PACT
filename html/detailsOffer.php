@@ -12,7 +12,7 @@ if (!$idOffre) {
 }
 
 // Consulté récemment
-if (isset($_SESSION["typeUser"]) && $_SESSION["typeUser"] == 'membre'){
+if (isset($_SESSION["typeUser"]) && $_SESSION["typeUser"] == 'membre') {
     $stmt = $conn->prepare("SELECT * from pact._consulter where idu = ? and idoffre = ?");
     $stmt->execute([$_SESSION['idUser'], $idOffre]);
     $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -22,7 +22,7 @@ if (isset($_SESSION["typeUser"]) && $_SESSION["typeUser"] == 'membre'){
         $stmt->execute([$_SESSION['idUser'], $idOffre]);
         $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Sinon on la créer
+        // Sinon on la créer
     } else {
         $stmt = $conn->prepare("INSERT INTO pact._consulter (idu, idoffre, dateconsultation) values (?, ?, CURRENT_TIMESTAMP)");
         $stmt->execute([$_SESSION['idUser'], $idOffre]);
@@ -500,7 +500,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
             ?>
         
-        <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
+        <h2 id=" titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
                     <h3 id="typeOffer"><?php echo $typeOffer ?> à <?php echo $result[0]['ville'] ?></h3>
                     <?php
                     if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
@@ -961,6 +961,94 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php
     require_once "./components/footer.php";
     ?>
+
+    <script>
+        // Fonction pour envoyer les données de like/dislike au serveur
+        function updateCount(action, id) {
+            // Envoyer une requête à `update_evaluation.php` avec l'ID de l'avis
+            fetch('updateLike.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: action,
+                        id: id
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Mettre à jour les chiffres pour "likes"
+                        updateNumberDisplay(`#${id} .count.likes .number`, data.nblike);
+
+                        // Mettre à jour les chiffres pour "dislikes"
+                        updateNumberDisplay(`#${id} .count.dislikes .number`, data.nbdislike);
+                    } else {
+                        alert('Erreur lors de la mise à jour.');
+                    }
+                })
+                .catch(error => console.error('Erreur:', error));
+        }
+
+        function updateNumberDisplay(selector, number) {
+            // Convertir le nombre en chaîne
+            const numberStr = number.toString();
+
+            // Récupérer tous les éléments .number à l'intérieur du selector
+            const numbers = document.querySelectorAll(selector);
+
+            // Parcourir chaque élément .number
+            numbers.forEach((el, index) => {
+                const digit = numberStr[index] || '0'; // Si il n'y a pas assez de chiffres, utiliser '0'
+
+                // Mettre à jour la position du chiffre
+                el.style.transform = `var(--nb${digit})`;
+
+                // Mettre à jour le contenu du chiffre
+                el.querySelector('span').textContent = digit;
+            });
+        }
+
+        document.querySelectorAll('.checkboxes').forEach(evaluation => {
+            const likeCheckbox = evaluation.querySelector('.likes');
+            const dislikeCheckbox = evaluation.querySelector('.dislikes');
+
+            // Vérifier si les checkboxes existent
+            if (likeCheckbox && dislikeCheckbox) {
+                const id = evaluation.id; // L'ID unique pour chaque évaluation
+
+                // Ajouter un événement pour le bouton "like"
+                likeCheckbox.addEventListener("change", function() {
+                    if (likeCheckbox.checked) {
+                        if (dislikeCheckbox.checked) {
+                            updateCount('undislike', id); // Annuler "dislike"
+                        }
+                        dislikeCheckbox.checked = false;
+                        updateCount('like', id); // Envoie l'action "like" pour la mise à jour
+                    } else {
+                        updateCount('unlike', id); // Envoie l'action "unlike" pour la mise à jour
+                    }
+                });
+
+                // Ajouter un événement pour le bouton "dislike"
+                dislikeCheckbox.addEventListener("change", function() {
+                    if (dislikeCheckbox.checked) {
+                        if (likeCheckbox.checked) {
+                            updateCount('unlike', id); // Annuler "like"
+                        }
+                        likeCheckbox.checked = false;
+                        updateCount('dislike', id); // Envoie l'action "dislike" pour la mise à jour
+                    } else {
+                        updateCount('undislike', id); // Envoie l'action "undislike" pour la mise à jour
+                    }
+                });
+            } else {
+                console.error("Les éléments like/dislike sont manquants pour l'ID :", evaluation.id);
+            }
+        });
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
