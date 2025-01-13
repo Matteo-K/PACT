@@ -191,6 +191,7 @@ foreach ($avis as $a) {
             if (checkbox.checked) {
                 // Si "like" est coché, décocher "dislike" si nécessaire
                 if (dislikeCheckbox.checked) {
+                    dislikeCheckbox.classList.remove("adislike");
                     updateCount('undislike', checkbox.id);
                     dislikeCheckbox.checked = false;
                 }
@@ -203,6 +204,7 @@ foreach ($avis as $a) {
             if (checkbox.checked) {
                 // Si "dislike" est coché, décocher "like" si nécessaire
                 if (likeCheckbox.checked) {
+                    likeCheckbox.classList.remove("alike");
                     updateCount('unlike', checkbox.id);
                     likeCheckbox.checked = false;
                 }
