@@ -2140,11 +2140,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-[type="checkbox"]:checked + .checkmark {
+[type="checkbox"] + .checkmark {
   border-radius: 10%;
 }
 
-[type="radio"]:checked + .checkmark {
+[type="radio"] + .checkmark {
   border-radius: 50%;
 }
 
