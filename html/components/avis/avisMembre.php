@@ -233,8 +233,8 @@ foreach ($avis as $a) {
             .then(data => {
                 console.log('Réponse du serveur :', data); // Ajoutez cette ligne pour afficher la réponse du serveur
                 if (data.success) {
-                    updateNumberDisplay(`#container_${id.split(_)[1]} .count.likes .number`, data.nblike);
-                    updateNumberDisplay(`#container_${id.split(_)[1]} .count.dislikes .number`, data.nbdislike);
+                    updateNumberDisplay(`#container_${id.split('_')[1]} .count.likes .number`, data.nblike);
+                    updateNumberDisplay(`#container_${id.split('_')[1]} .count.dislikes .number`, data.nbdislike);
                 } else {
                     alert('Erreur lors de la mise à jour des likes/dislikes.');
                 }
