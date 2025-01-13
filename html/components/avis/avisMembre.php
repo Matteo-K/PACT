@@ -267,7 +267,7 @@ foreach ($avis as $a) {
                     span.textContent = j;
                     newNumberDiv.appendChild(span);
                 }
-                newNumberDiv.style.transform = `var(--nb9)`;
+                
                 document.querySelector(selector).appendChild(newNumberDiv);
             }
         } else if (numberStr.length < numbers.length) {
