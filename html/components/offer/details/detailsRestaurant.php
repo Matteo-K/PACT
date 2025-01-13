@@ -22,7 +22,7 @@ if ($categorie["_restauration"]) {
 ?>
 <section id="restaurant"> <!-- Section pour le CSS -->
   <div>
-    <h4 class="labelTitre">Gamme de prix : </h4>
+    <h4 class="labelTitre">Gamme de prix</h4>
     
     <!-- Gamme de prix -->
     <ul>
@@ -47,7 +47,7 @@ if ($categorie["_restauration"]) {
   <!-- Partie pour l'ajout des photos du menu du restaurant-->
   <div class="photosR">
     <div id="insereImg">
-      <label class="labelTitre">Photos du menu* </label>
+      <label class="labelTitre">Photos du menu*</label>
       <label for="rest_ajoutPhotoMenu" class="modifierBut">Ajouter</label>
     </div>
     <label class="labelSousTitre">Vous pouvez insérer <?= $limitImgMenu ?> photos de votre menu</label> <!-- Indication pour l'utilisateur -->

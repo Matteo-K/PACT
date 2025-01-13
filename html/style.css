@@ -1637,6 +1637,7 @@ label[for="rest_ajoutPhotoMenu"] {
 #restaurant ul {
   margin: 0;
   margin-left: 1.5rem;
+  padding: 0;
 }
 
 #restaurant li {
