@@ -4,7 +4,7 @@ require_once 'connect_params.php'; // Assurez-vous que $conn est initialisé ave
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérifier et récupérer les données envoyées
-    $itemId = isset($_POST['item_id']) ? (int) $_POST['item_id'] : null;
+    $itemId = isset($_POST['id']) ? (int) $_POST['id'] : null;
     $action = isset($_POST['action']) ? $_POST['action'] : null;
 
     if (!$itemId || !$action) {
