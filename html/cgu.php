@@ -128,7 +128,10 @@
       <?php if ($page < $nbPage) { ?>
         <a href="cgu.php?page=<?= $page+1 ?>">Suivant</a>
       <?php } ?>
-      <a href="cgu.php?page=1">Retour page 1</a>
+
+      <?php if ($page != 1) { ?>
+        <a href="cgu.php?page=1>">Retour page 1</a>
+      <?php } ?>
     </div>
   </main>
   <?php require_once "components/footer.php"; ?>
