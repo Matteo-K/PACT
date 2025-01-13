@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Valider les données reçues
     if (!$itemId || $itemId <= 0 || !$action) {
+        echo "pablo";
         echo json_encode(['success' => false, 'message' => 'Données invalides.']);
         exit;
     }
@@ -16,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Enumération des actions valides
     $validActions = ['like', 'unlike', 'dislike', 'undislike'];
     if (!in_array($action, $validActions)) {
+        echo "pablo";
         echo json_encode(['success' => false, 'message' => 'Action non valide.']);
         exit;
     }
@@ -63,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn->commit();
 
         // Réponse JSON avec les nouveaux compteurs
+        echo "pablo";
         echo json_encode([
             'success' => true,
             'message' => 'Action effectuée avec succès.',
@@ -80,5 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode(['success' => false, 'message' => 'Une erreur s\'est produite.']);
     }
 } else {
+    echo "pablo";
     echo json_encode(['success' => false, 'message' => 'Méthode non autorisée.']);
 }
