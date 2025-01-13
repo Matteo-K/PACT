@@ -255,11 +255,25 @@ foreach ($avis as $a) {
 
         // Récupérer tous les éléments .number à l'intérieur du selector
         const numbers = document.querySelectorAll(selector);
-        console.log(document.querySelectorAll(selector));
 
-        // Parcourir chaque élément .number
+        // Si le nombre a plus de chiffres que les éléments .number existants, ajouter des éléments .number
+        if (numberStr.length > numbers.length) {
+            // Ajouter des .number pour chaque chiffre supplémentaire
+            for (let i = numbers.length; i < numberStr.length; i++) {
+                const newNumberDiv = document.createElement('div');
+                newNumberDiv.classList.add('number');
+                for (let j = 0; j < 10; j++) { // Ajouter les chiffres de 0 à 9 dans chaque div
+                    const span = document.createElement('span');
+                    span.textContent = j;
+                    newNumberDiv.appendChild(span);
+                }
+                document.querySelector(selector).appendChild(newNumberDiv);
+            }
+        }
+
+        // Mettre à jour les chiffres affichés
         numbers.forEach((el, index) => {
-            const digit = numberStr[index] || '0'; // Si il n'y a pas assez de chiffres, utiliser '0'
+            const digit = numberStr[index] || '0'; // Si le nombre a moins de chiffres que prévu, utiliser '0'
 
             // Mettre à jour la position du chiffre
             el.style.transform = `var(--nb${digit})`;
