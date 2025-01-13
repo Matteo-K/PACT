@@ -718,286 +718,6 @@ header ul + div {
   }
 }
 
-/* ### Index ### */
-
-#index {
-  margin-top: 20px;
-  min-height: calc(100vh - var(--header-size));
-}
-
-#index h2 {
-  text-align: center;
-}
-
-.carteIndex figcaption > h3 {
-  text-align: center;
-}
-
-.carteIndexPro,
-.carteIndex {
-  display: flex;
-  flex-flow: column wrap;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-  margin: 20px;
-  width: 30%;
-  min-width: 450px;
-  height: 304px;
-}
-
-#ALaUne > div,
-#consultationRecente > div,
-#consultationNouvelle > div {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: left;
-  justify-content: space-evenly;
-}
-
-.hrlBlocIndex,
-.information {
-  display: flex;
-  flex-flow: row nowrap;
-  padding: 0 20px;
-}
-
-#index figure {
-  margin: 0;
-  position: relative;
-  height: 304px;
-}
-
-#index img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-
-#index figcaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: var(--text-light);
-  width: 100%;
-}
-
-.detailsCardOffer {
-  flex: 2;
-  padding-bottom: 10px;
-}
-
-.detailsCardOffer h3 {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.noteALaUne {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.875em;
-  flex-flow: row wrap;
-}
-
-.blcStarALaUne {
-  display: flex;
-  gap: 4px;
-}
-
-.adresse {
-  font-size: 0.875em;
-  margin-top: 8px;
-}
-
-.dataOffre {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-#index .StatutAffiche {
-  font-size: 0.875em;
-  font-weight: bold;
-  padding: 4px 10px;
-  border-radius: 4px;
-  background-color: green;
-}
-
-#index .horslgnOffre {
-  background-color: red !important;
-}
-
-#index .StatutAffiche::after {
-  content: none;
-}
-
-.abonnement {
-  font-size: 0.875em;
-  font-weight: bold;
-  padding: 5px 10px;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-
-.dataOffre div {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 8px;
-  margin-bottom: 10px;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.blcTag h4,
-.localisationCard h4 {
-  font-size: 1em;
-  font-weight: bold;
-  margin-bottom: 10px;
-  padding-left: 20px;
-}
-
-.localisationCard h4 {
-  padding: 0;
-}
-
-.localisationCard {
-  flex: 1.5;
-}
-
-.tagsCard {
-  display: flex;
-  flex-flow: row wrap-reverse;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  margin: 10px;
-  width: 80%;
-}
-
-.carteIndex .tagsCard {
-  width: 150%;
-  margin-left: -50%;
-}
-
-.carteIndex .noteALaUne + p {
-  width: 90%;
-}
-
-.tagIndex {
-  background-color: var(--accent);
-  color: var(--text-dark);
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.875em;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.tagIndex:hover {
-  background-color: var(--secondary);
-}
-
-#voirPlus {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  gap: 20px;
-}
-
-#voirPlus a {
-  width: 150px;
-}
-
-.blcTag,
-.information {
-  display: none;
-}
-
-#index form:hover .information,
-#index form:hover .blcTag {
-  display: flex !important;
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-  #index {
-    padding-top: 0;
-  }
-
-  .carteIndex {
-    height: 200px;
-    min-width: 300px;
-  }
-
-  .carteIndex h3 {
-    font-size: 1rem;
-    margin: 0;
-    margin-top: 10px;
-  }
-
-  #index img {
-    height: 200px;
-  }
-
-  .detailsCardOffer h3 {
-    font-size: 1.25em;
-  }
-
-  .noteALaUne span {
-    font-size: 0.75em;
-  }
-
-  .dataOffre {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .tagsCard {
-    justify-content: flex-start;
-  }
-
-  .StatutAffiche {
-    margin-bottom: 10px;
-  }
-
-  .carteIndex address {
-    text-wrap: nowrap;
-    font-size: 0.8rem;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  #index .star {
-    width: 1.1rem;
-    height: 1.1rem;
-  }
-
-  .blcTag,
-  .information {
-    display: flex;
-    padding: 0 10px;
-  }
-
-  .blcStarALaUne + span {
-    font-size: 0.85rem;
-  }
-
-  .blcStarALaUne+span+span,
-  /* nb avis */
-  .blcStarALaUne+span+span+span,
-  /* gamme de prix */
-  .carteIndex p,
-  .localisationCard h4,
-  .tagsCard {
-    display: none;
-  }
-}
-
 /* ### Offer ### */
 
 /* Gestion de l'offre */
@@ -1668,22 +1388,38 @@ header ul + div {
   cursor: pointer;
 }
 
+.scrollDown {
+  position: absolute;
+  top: 40%;
+  right: 2em;
+}
+
 #artDetailOffer {
   display: flex;
   flex-flow: column nowrap;
 
 }
 
-#aboutOffer {
+/* bloc de champ */
+#artDetailOffer > div {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
   gap: 3em;
+  margin-inline: 15%;
 }
 
-#aboutOffer div {
-  width: 30%;
+/* priorisation du style */
+#artDetailOffer > #blcDescription {
+  flex-direction: column;
+  align-items: normal;
+  gap: 0;
+}
+
+#aboutOffer > div,
+#blcTagImg > div {
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
 }
@@ -1713,15 +1449,7 @@ header ul + div {
 
 #artDetailOffer textarea[id="description"] {
   height: 250px;
-  min-height: 250px;
-  max-height: 400px;
-}
-
-#choixImage,
-#park_planTitres {
-  display: inline-block;
-  width: 70%;
-  margin-right: 14px;
+  resize: none;
 }
 
 #ajoutPhoto,
@@ -1784,6 +1512,10 @@ header ul + div {
   display: block;
 }
 
+#afficheImages {
+  width: 140%;
+}
+
 #artDetailOffer section,
 #afficheImages,
 #afficheImages2 {
@@ -1791,13 +1523,20 @@ header ul + div {
   padding: 7px;
   display: flex;
   flex-flow: wrap row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: 10px;
+  overflow-y: scroll;
 }
 
 #inputAutoComplete {
   position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#inputTag {
+  border-radius: 0;
 }
 
 #autocompletion {
@@ -1806,31 +1545,538 @@ header ul + div {
   margin: 0;
   width: 100%;
   background-color: #fff;
-  border: 2px solid var(--bloc);
+  box-sizing: border-box;
+  border: 2px solid var(--secondary);
   border-top: none;
   border-radius: 2px;
   max-height: 200px;
   position: absolute;
   overflow-y: scroll;
+  top: 100%;
+  left: 0;
+  z-index: 5;
 }
 
 #autocompletion li {
   padding: 1px 0 1px 10px;
 }
 
+#autocompletion li:hover {
+  background-color: var(--text-dark20);
+}
+
 #autocompletion li:nth-child(even) {
-  background-color: var(--accent30);
-  background: linear-gradient(
-    90deg,
-    var(--accent30) 0%,
-    var(--accent30) 80%,
-    #fff 100%
-  );
+  background-color: var(--text-dark15);
+}
+
+#autocompletion li:nth-child(even):hover {
+  background-color: var(--text-dark25);
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
+GABRIEL
+OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
+
+.sectionLoca {
+  width: 800px;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 5px;
+}
+
+.sectionParent {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-top: 50px;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+}
+
+.sectionLoca input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+  border: solid 2px;
+  border-color: var(--secondary);
+  padding-left: 10px;
+}
+
+.sectionLoca section {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+}
+
+.codeP {
+  width: 40%;
+}
+
+.villeL {
+  width: 100%;
+}
+
+.map {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: 100%;
+  gap: 50px;
+}
+
+#map {
+  height: 50vh;
+  width: 90%;
+}
+
+/* A suppr pre sprint 3 */
+#disabledSelect {
+  background-color: #666 !important;
+  border: solid #666 1px !important;
+  cursor: not-allowed !important;
+}
+
+.modifierBut.disabled,
+#disabledSelect {
+  background-color: #ccc;
+  color: #666;
+  border: solid #ccc 1px;
+  cursor: not-allowed;
+}
+
+/* Supprimer l'effet hover pour les boutons désactivés */
+.modifierBut.disabled:hover {
+  background-color: #ccc;
+  color: #666;
+  border: solid #ccc 1px;
+}
+
+.hover-message {
+  display: none;
+  /* Caché par défaut */
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.9);
+  /* Fond blanc semi-transparent */
+  padding: 10px 20px;
+  border: 2px solid red;
+  border-radius: 8px;
+  margin: 10px auto;
+  z-index: 1000;
+  /* Toujours au-dessus */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Optionnel */
+}
+
+#checkAddressBtn,
+.modifierBut {
+  background-color: #1ca4ed;
+  color: black;
+  border: solid #1ca4ed 1px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#checkAddressBtn:hover,
+.modifierBut:hover {
+  background-color: white;
+  border: solid #1ca4ed 1px;
+  color: #1ca4ed;
+}
+
+#checkAddressBtn:focus,
+.modifierBut:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#checkAddressBtn:active {
+  background-color: #034d7c;
+}
+
+/* ###### Index ###### */
+
+#index {
+  margin-top: 20px;
+  min-height: calc(100vh - var(--header-size));
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+}
+
+#index h2 {
+  text-align: center;
+}
+
+.indexPro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30vh !important;
+}
+
+#voirPlus {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+#voirPlus h2 {
+  font-size: 2.5rem;
+  margin: 1rem;
+}
+
+#voirPlus p {
+  font-size: 1.2rem;
+}
+
+#voirPlus a {
+  margin-top: 30px;
+}
+
+#ALaUne > div,
+#consultationRecente > div,
+#consultationNouvelle > div {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: left;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.search {
+  position: relative;
+  min-height: 1000px;
+  padding-bottom: 20px;
+  background-color: var(--background);
+}
+
+.searchoffre {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+  gap: 20px;
+  margin-left: 380px;
+  flex: 4;
+}
+
+.searchoffre:not(#search .searchoffre) {
+  margin-left: 0;
+}
+
+/* Filp card */
+/* From Uiverse.io by joe-watson-sbf */ 
+.searchA {
+  width: fit-content;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+
+.carteOffre {
+  display: flex;
+  border-radius: 20px;
+  /* border:solid 2px #034d7c; */
+  position: relative;
+}
+.flip-card {
+  background-color: transparent;
+  width: 25vw;
+  height: 254px;
+  perspective: 1000px;
+  font-family: sans-serif;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(.65,.05,.36,1);
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  justify-content: flex-end;
+  background-position: center;
+  color: white;
+  background-color: var(--primary);
+  background-size: cover;
+}
+
+.flip-card-back {
+  background: var(--primary);
+  color: var(--text-dark);
+  transform: rotateY(180deg);
+  position: relative;
+  font-size: 1.1em;
+}
+
+/* Information des cartes */
+
+/* Front side */
+.flip-card-front figure {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.flip-card-front img {
+  height: 85%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.flip-card-front figcaption {
+  background-color: var(--bloc);
+  color: #fff;
+  padding: 10px 15px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 15%;
+}
+
+.flip-card-front .title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-wrap: auto;
+}
+
+.flip-card-front .ville {
+  margin: 0;
+}
+
+.flip-card-front .blocStar {
+  display: flex;
+  align-items: center;
+}
+
+/* Back side */
+.flip-card-back figure, .flip-card-back .StatutAffiche {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  margin: 10px;
+}
+
+.flip-card-back figure {
+  left: 10px;
+}
+
+.flip-card-back img {
+  height: 50px;
+  width: 50px;
+}
+
+.flip-card-back figcaption {
+  margin-left: 10px;
+  font-size: 1.3rem;
+}
+
+.flip-card-back .StatutAffiche {
+  right: 10px;
+}
+
+.flip-card-back .content {
+  padding: 10px;
+}
+
+.flip-card-back .title {
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.flip-card-back .blocStar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.flip-card-back .nomPro {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  padding-inline: 20px;
+}
+
+.flip-card-back .information {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-inline: 20px;
+}
+
+.flip-card-back .resume {
+  flex: 1;
+  padding-right: 5px;
+}
+
+.flip-card-back address {
+  flex: 1;
+  text-align: left;
+  font-style: normal;
+}
+
+.flip-card-back .tagsCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.tagIndex {
+  background-color: var(--accent);
+  color: var(--text-dark);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.875em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tagIndex:hover {
+  background-color: var(--secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .carteOffre {
+    max-width: 90%;
+    height: auto;
+  }
+
+  .flip-card-front img,
+  .flip-card-front figcaption {
+    height: auto;
+  }
+
+  .flip-card-back {
+    padding: 5px;
+  }
+}
+
+
+@media (max-width: 700px) {
+  .searchResume {
+    display: none;
+  }
+
+  .searchCategorie {
+    display: none;
+  }
+
+  .searchAvis {
+    display: none;
+  }
+
+  .carteOffre {
+    flex-direction: column;
+    width: fit-content;
+  }
+
+  .infoOffre {
+    width: auto;
+    padding: 5px;
+  }
+
+  .searchImage {
+    margin: 0;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
+  .searchA {
+    text-decoration: none;
+    width: fit-content;
+  }
+
+  .ProStatut {
+    flex-direction: column !important;
+  }
+}
+
+.searchStatutO {
+  background-color: #008000;
+  color: white;
+  padding: 5px 5px;
+  border-radius: 10px;
+  font-size: 1em;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.searchStatutF {
+  background-color: #b01111;
+  color: white;
+  padding: 5px 5px;
+  border-radius: 10px;
+  font-size: 1em;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.blcStarSearch {
+  display: flex;
+  margin-bottom: 2%;
+}
+
+.noteSearch {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.search .star.vide {
+  background-color: var(--secondary);
+}
+
+/* ###### Index FIN ######  */
 
 /****** TRI ET FILTRE INDEX ******/
 /*+++++++++++++++++++++++*/
@@ -2152,419 +2398,6 @@ header ul + div {
     padding-top: 10px;
     margin-left: 20px;
   }
-}
-
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
-GABRIEL
-OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
-
-.sectionLoca {
-  width: 800px;
-  font-size: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 5px;
-}
-
-.sectionParent {
-  display: flex;
-  align-items: center;
-  gap: 50px;
-  margin-top: 50px;
-  flex-direction: column;
-  justify-content: center;
-  margin: 20px;
-}
-
-.sectionLoca input {
-  display: block;
-  width: 100%;
-  height: 40px;
-  font-size: 20px;
-  font-weight: 500;
-  color: #000;
-  border: solid 2px;
-  border-color: var(--secondary);
-  padding-left: 10px;
-}
-
-.sectionLoca section {
-  display: flex;
-  gap: 50px;
-  width: 100%;
-}
-
-.codeP {
-  width: 40%;
-}
-
-.villeL {
-  width: 100%;
-}
-
-.map {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  width: 100%;
-  gap: 50px;
-}
-
-#map {
-  height: 50vh;
-  width: 90%;
-}
-
-/* A suppr pre sprint 3 */
-#disabledSelect {
-  background-color: #666 !important;
-  border: solid #666 1px !important;
-  cursor: not-allowed !important;
-}
-
-.modifierBut.disabled,
-#disabledSelect {
-  background-color: #ccc;
-  color: #666;
-  border: solid #ccc 1px;
-  cursor: not-allowed;
-}
-
-/* Supprimer l'effet hover pour les boutons désactivés */
-.modifierBut.disabled:hover {
-  background-color: #ccc;
-  color: #666;
-  border: solid #ccc 1px;
-}
-
-.hover-message {
-  display: none;
-  /* Caché par défaut */
-  color: red;
-  font-size: 16px;
-  font-weight: bold;
-  background: rgba(255, 255, 255, 0.9);
-  /* Fond blanc semi-transparent */
-  padding: 10px 20px;
-  border: 2px solid red;
-  border-radius: 8px;
-  margin: 10px auto;
-  z-index: 1000;
-  /* Toujours au-dessus */
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  /* Optionnel */
-}
-
-#checkAddressBtn,
-.modifierBut {
-  background-color: #1ca4ed;
-  color: black;
-  border: solid #1ca4ed 1px;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 0;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-#checkAddressBtn:hover,
-.modifierBut:hover {
-  background-color: white;
-  border: solid #1ca4ed 1px;
-  color: #1ca4ed;
-}
-
-#checkAddressBtn:focus,
-.modifierBut:focus {
-  outline: none;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-#checkAddressBtn:active {
-  background-color: #034d7c;
-}
-
-.searchTitre,
-.villesearch,
-.avgNote,
-.searchResume {
-  color: #000;
-  text-decoration: none;
-}
-
-.search {
-  position: relative;
-  min-height: 1000px;
-  padding-bottom: 20px;
-  background-color: var(--background);
-}
-
-.searchoffre {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  padding-top: 30px;
-  gap: 20px;
-  margin-left: 380px;
-  flex: 4;
-}
-
-.searchoffre:not(#search .searchoffre) {
-  margin-left: 0;
-}
-
-/* Filp card */
-/* From Uiverse.io by joe-watson-sbf */ 
-.flip-card {
-  background-color: transparent;
-  width: 25vw;
-  height: 254px;
-  perspective: 1000px;
-  font-family: sans-serif;
-}
-
-.flip-card .title {
-  font-size: 1.5em;
-  font-weight: 900;
-  text-align: center;
-  margin: 0;
-}
-
-.flip-card-front .title {
-  background-color: #000;
-  padding: 10px;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.5s cubic-bezier(.65,.05,.36,1);
-  transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front, .flip-card-back {
-  box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.flip-card-front {
-  justify-content: flex-end;
-  background-position: center;
-  color: white;
-  background-size: cover;
-}
-
-.flip-card-back {
-  background: var(--primary);
-  color: white;
-  transform: rotateY(180deg);
-}
-
-/* Ancien css search */
-/* Information des cartes */
-
-.carteOffre {
-  display: flex;
-  border-radius: 20px;
-  /* border:solid 2px #034d7c; */
-  position: relative;
-}
-
-.carteOffre p {
-  margin: 2px;
-}
-
-.carteOffre a {
-  height: fit-content;
-}
-
-.searchImage {
-  object-fit: cover;
-  width: 290px;
-  height: 173px;
-  margin-right: 15px;
-  margin-left: 0;
-  border-radius: 20px 0 0 20px;
-}
-
-.infoOffre {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-  justify-content: space-around;
-}
-
-.searchTitre {
-  font-size: 24px;
-  color: #000;
-}
-
-.searchResume {
-  font-size: 1.1rem;
-}
-
-.searchTag {
-  background-color: var(--accent);
-  color: #000;
-  padding: 5px 5px;
-  border-radius: 10px;
-  font-size: 0.85em;
-  margin-right: 5px;
-  display: inline-block;
-}
-
-.searchTag:hover {
-  background-color: var(--secondary);
-}
-
-.searchNote {
-  display: flex;
-  justify-content: space-between;
-}
-
-.searchAvis {
-  padding: 5px;
-  width: 600px;
-}
-
-.searchAvis > div:nth-child(1) {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.blcAvis {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.avisSearch {
-  font-size: 1em;
-  width: 50%;
-  margin-inline: 10px;
-}
-
-.avisSearch .star {
-  width: 1.2rem;
-  height: 1.2rem;
-}
-
-.avisSearch h5 {
-  margin: 0;
-  margin-top: 2px;
-}
-
-.searchUser {
-  font-size: 12px;
-}
-
-.optionEnRelief {
-  background-color: var(--primary50);
-}
-
-.searchA {
-  width: fit-content;
-  text-decoration: none;
-  color: #000;
-  cursor: pointer;
-}
-
-@media (max-width: 700px) {
-  .searchResume {
-    display: none;
-  }
-
-  .searchCategorie {
-    display: none;
-  }
-
-  .searchAvis {
-    display: none;
-  }
-
-  .carteOffre {
-    flex-direction: column;
-    width: fit-content;
-  }
-
-  .infoOffre {
-    width: auto;
-    padding: 5px;
-  }
-
-  .searchImage {
-    margin: 0;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-  }
-
-  .searchA {
-    text-decoration: none;
-    width: fit-content;
-  }
-
-  .ProStatut {
-    flex-direction: column !important;
-  }
-}
-
-.searchStatutO {
-  background-color: #008000;
-  color: white;
-  padding: 5px 5px;
-  border-radius: 10px;
-  font-size: 1em;
-  margin-right: 5px;
-  display: inline-block;
-}
-
-.searchStatutF {
-  background-color: #b01111;
-  color: white;
-  padding: 5px 5px;
-  border-radius: 10px;
-  font-size: 1em;
-  margin-right: 5px;
-  display: inline-block;
-}
-
-.blcStarSearch {
-  display: flex;
-  margin-bottom: 2%;
-}
-
-.noteSearch {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-}
-
-.search .star.vide {
-  background-color: var(--secondary);
 }
 
 /*##### Pagination #####*/
@@ -5446,13 +5279,12 @@ label[id="labelPFP"]:hover {
 
 #pageCgu{
   min-height: 80vh;
-  main {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
 #pageCgu h1, #pageCgu h2, #pageCgu h3 {
@@ -5480,8 +5312,6 @@ label[id="labelPFP"]:hover {
 
 #pageCgu li {
     margin-bottom: 10px;
-}
-
 }
 
 

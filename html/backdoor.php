@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </style>
 </head>
 <body>
+  <a href="logout.php">Déconnexion</a>
   <table class="studentInfo">
     <tbody>
       <!-- Admin -->

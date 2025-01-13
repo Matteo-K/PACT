@@ -121,7 +121,7 @@ $avis = $avisTemp;
                 <h2>
                     Auteur
                 </h2>
-                <img src="./img/icone/trois-points.png" alt="icone de parametre">
+                <img src="./img/icone/trois-points.png" alt="icone de parametre" id="signalerAvis">
             </div>
             <div class="noteEtoile">
                 <?php
@@ -165,6 +165,16 @@ $avis = $avisTemp;
         
     </section>
 </div>
+
+<div class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Ma fenêtre pop-up</h2>
+        <p>Voici le contenu de votre pop-up.</p>
+        <button id="confirmBtn">Confirmer</button>
+    </div>
+</div>
+
 
 
 <script>
@@ -581,4 +591,36 @@ function displayStar(note) {
   }
   return container;
 }
+
+
+// Sélection des éléments
+const ouvrePopup = document.getElementById('signalerAvis');
+const popup = document.getElementsByClassName('modal')[0];
+const btnFermer = document.querySelector('.close-btn');
+const btnConfirmer = document.getElementById('confirmBtn');
+
+// Afficher le pop-up
+ouvrePopup.addEventListener('click', () => {
+    popup.style.display = 'block';
+});
+
+// Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
+btnFermer.addEventListener('click', () => {
+    popup.style.display = 'none';
+});
+
+// Masquer le pop-up après confirmation
+btnConfirmer.addEventListener('click', () => {
+    alert('Confirmation enregistrée.');
+    popup.style.display = 'none';
+});
+
+// Masquer le pop-up si on clique en dehors de son contenu
+window.addEventListener('click', (event) => {
+    if (event.target === popup) {
+        popup.style.display = 'none';
+    }
+});
+
+
 </script>
