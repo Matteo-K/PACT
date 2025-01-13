@@ -1567,7 +1567,9 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #artDetailOffer section,
 #afficheImages,
-#afficheImages2 {
+#afficheImages2,
+#park_zoneImg,
+#rest_zoneImg {
   margin: 10px 0 5px 0;
   padding: 7px;
   display: flex;
@@ -1625,14 +1627,26 @@ label[for="rest_ajoutPhotoMenu"] {
 /* ##### Catégorie d'offre ##### */
 /* ### Restaurant ### */
 
+#restaurant {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+#restaurant ul {
+  margin: 0;
+  margin-left: 1.5rem;
+}
+
 #restaurant li {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: left;
   margin-bottom: 10px;
-  margin-left: 1.5rem;
 }
+
 
 #restaurant input {
   display: none;
