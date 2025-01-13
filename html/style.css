@@ -1524,6 +1524,14 @@ header ul + div {
   width: 140%;
 }
 
+label[for="ajoutPhoto"],
+label[for="park_plan"],
+label[for="rest_ajoutPhotoMenu"] {
+  width: 120px;
+  padding: 10px;
+  margin-left: 1rem;
+}
+
 #artDetailOffer section,
 #afficheImages,
 #afficheImages2 {
