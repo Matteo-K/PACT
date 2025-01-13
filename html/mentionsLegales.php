@@ -67,7 +67,7 @@
         <a href="mentionsLegales.php?page=<?= $page+1 ?>">Suivant</a>
       <?php } ?>
 
-      <?php if ($page != 1) { ?>
+      <?php if ($page != 1 || empty($page)) { ?>
         <a href="cgu.php?page=1">Retour page 1</a>
       <?php } ?>
     </div>

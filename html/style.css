@@ -950,9 +950,6 @@ header ul + div {
   align-items: center;
   /* offre gratuite */
   color: var(--text-dark);
-  background-color: var(--secondary20);
-  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
-    inset -4px -4px 4px var(--secondary60);
   transition: all 0.3s;
 }
 
@@ -984,18 +981,17 @@ header ul + div {
   list-style: disc;
 }
 
-/* offre premium */
-#selectOffer > div:first-child > div:nth-child(2) {
-  background-color: var(--accent20);
-  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
-    inset -4px -4px 4px var(--accent60);
-}
-
 /* offre standard */
-#selectOffer > div:first-child > div:nth-child(3) {
-  background-color: var(--primary20);
+#selectOffer > div:first-child > div:nth-child(odd) {
+  background-color: var(--primary50);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--primary60);
+}
+
+#selectOffer > div:first-child > div:nth-child(even) {
+  background-color: var(--secondary20);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--secondary60);
 }
 
 #selectOffer input[type="radio"],
