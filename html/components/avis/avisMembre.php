@@ -245,7 +245,7 @@ foreach ($avis as $a) {
 
     }
 
-    function updateNumberDisplay(selector, number) {
+    /*function updateNumberDisplay(selector, number) {
         // Convertir le nombre en chaîne
         const numberStr = number.toString();
 
@@ -263,5 +263,5 @@ foreach ($avis as $a) {
             // Mettre à jour le contenu du chiffre
             el.querySelector('span').textContent = digit;
         });
-    }
+    }*/
 </script>
