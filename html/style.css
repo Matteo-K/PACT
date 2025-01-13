@@ -4082,30 +4082,30 @@ details .nonRepondu {
   user-select: none;
 }
 
-.container:has(#like:checked) .count {
+.container:has(.alike:checked) .count {
   border-left-color: var(--col-like);
   border-right-color: transparent;
   border: none;
 }
 
-.container:has(#dislike:checked)>.count {
+.container:has(.adislike:checked)>.count {
   border-right-color: var(--col-dislike);
   border-left-color: transparent;
   border: none;
 }
 
-.container:has(#dislike:checked)>.count.dislikes,
+.container:has(.adislike:checked)>.count.dislikes,
 .container:has(#like:checked)>.count.likes {
   border: none;
 }
 
-.container:has(#dislike:checked) .count.dislikes {
+.container:has(.adislike:checked) .count.dislikes {
   color: var(--col-dislike);
   border-left: var(--col-dislike) 1px solid;
   /* La couleur du texte devient bleue quand "like" est sélectionné */
 }
 
-.container:has(#like:checked) .count.likes {
+.container:has(.alike:checked) .count.likes {
   color: var(--col-like);
   border-right: var(--col-like) 1px solid;
   /* La couleur du texte devient rouge quand "dislike" est sélectionné */
@@ -4116,12 +4116,12 @@ details .nonRepondu {
   display: none;
 }
 
-.container #like:checked+svg {
+.container .alike:checked+svg {
   animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
   fill: var(--col-like);
 }
 
-.container #dislike:checked+svg {
+.container .adislike:checked+svg {
   animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
   fill: var(--col-dislike);
 }
@@ -4723,7 +4723,7 @@ input[id="confirmer"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
 input[id="email"],
@@ -4731,21 +4731,21 @@ input[id="adresse"] {
   width: 830px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
 input[id="code"] {
   width: 210px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
 input[id="ville"] {
   width: 596px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
 input[id="radioPublic"],
@@ -4760,25 +4760,27 @@ input[id="siren"] {
   height: 40px;
   margin-right: 0;
   margin-left: 10px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
 .creation-compte input[type="checkbox"] {
   width: 25px;
   height: 25px;
   margin: 0 5px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
 button[id="boutonInscription"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
-  border-radius: 15px;
+  border-radius: 10px;
   margin: 5px auto;
   border: none;
-  box-shadow: inset -4px -4px 4px var(--accent-border);
+  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
   background-color: var(--accent);
+  border: solid 2px var(--accent);
+  transition: background-color 0.2s;
   cursor: pointer;
 }
 
@@ -4809,9 +4811,7 @@ div[id="messageErreur"] {
 /*++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte membre, Antoine */
 /*++++++++++++++++++++++++++++++++++++++++++++*/
-.creation-compte div.ligne1 > label,
-div.ligne1_1 > label,
-div.ligne6 > label {
+.creation-compte div.ligne1 > label, div.ligne1_1 > label, div.ligne6 > label {
   display: inline-block;
   width: 408px;
 }
@@ -4886,7 +4886,7 @@ div.ligne6 > label {
     height: 40px;
     margin-bottom: 15px;
     padding: 5px;
-    border: 2px solid var(--accent);
+    border: 2px solid var(--secondary);
     border-radius: 5px;
     font-size: 16px;
   }
@@ -5035,15 +5035,15 @@ main[id="mainConnexion"] {
   margin-top: 0;
 }
 
-a[id="lienMotDePasseOublie"] {
+/* a[id="lienMotDePasseOublie"] {
   color: white;
   font-size: 25px;
   margin: 30px 0;
-}
+} */
 
-a[id="lienMotDePasseOublie"]:hover {
+/* a[id="lienMotDePasseOublie"]:hover {
   color: #edae14;
-}
+} */
 
 .connexion-compte a {
   text-decoration: underline;
@@ -5052,8 +5052,7 @@ a[id="lienMotDePasseOublie"]:hover {
   margin-top: 30px;
 }
 
-h1[id="connexionTitre"],
-h1[id="changerMDPTitre"] {
+h1[id="connexionTitre"], h1[id="changerMDPTitre"] {
   text-align: center;
   margin: 30px 10px;
   color: var(--bloc);
@@ -5079,7 +5078,7 @@ h1[id="pasDeCompteTitre"] {
   padding: 15px;
   margin: auto;
   width: 500px;
-  height: auto;
+  height: 330px;
   background-color: var(--bloc);
   color: white;
 }
@@ -5122,57 +5121,47 @@ div.ligne1 > label {
   font-size: 20px;
 }
 
-input[id="login"] {
+input[id="login"], input[id="motdepasseConnexion"], [id="ancienMDP"], input[id="nouveauMDP"], input[id="confirmerNouveauMDP"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
-input[id="motdepasseConnexion"],
-[id="ancienMDP"],
-input[id="nouveauMDP"],
-input[id="confirmerNouveauMDP"] {
-  width: 403px;
-  height: 40px;
-  margin: 0 5px;
-  margin-top: 30px;
-  border: 3px solid var(--accent);
-}
-
-button[id="boutonConnexion"],
-button[id="boutonChangerMDP"] {
+button[id="boutonConnexion"], button[id="boutonChangerMDP"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
-  border-radius: 15px;
+  border-radius: 10px;
   border: none;
-  box-shadow: inset -4px -4px 4px var(--accent-border);
+  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
   margin: 5px auto;
   margin-top: 30px;
   background-color: var(--accent);
+  border: solid 2px var(--accent);
+  transition: background-color 0.2s;
   cursor: pointer;
 }
 
-input[id="boutonLienMembre"],
-input[id="boutonLienPro"] {
+input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   width: 300px;
   padding: 15px 10px;
   font-size: 20px;
-  border-radius: 15px;
+  border-radius: 10px;
   border: none;
-  box-shadow: inset -4px -4px 4px var(--accent-border);
+  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
   margin: 5px auto;
   margin-top: 30px;
   color: var(--text-dark);
   background-color: var(--accent);
+  border: solid 2px var(--accent);
+  transition: background-color 0.2s;
   text-decoration: none;
   cursor: pointer;
 }
 
-p[id="legendeBoutonLienMembre"],
-p[id="legendeBoutonLienPro"] {
+p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
   font-size: 20px;
   color: var(--bloc);
   width: 520px;
@@ -5184,6 +5173,10 @@ p[id="legendeBoutonLienPro"] {
     min-width: 200px;
     max-width: 280px;
     width: 230px;
+  }
+
+  input[id="boutonLienPro"] {
+    display: none;
   }
 }
 
@@ -5229,18 +5222,28 @@ p[id="legendeBoutonLienPro"] {
     margin: 10px 0;
   }
 
-  a[id="boutonLienMembre"],
-  p[id="legendeBoutonLienMembre"] {
+  input[id="boutonLienMembre"], p[id="legendeBoutonLienMembre"] {
     display: block;
     max-width: 350px;
     margin-top: 20px;
   }
 
-  a[id="boutonLienPro"],
+  input[id="boutonLienPro"],
   p[id="legendeBoutonLienPro"] {
     display: none;
   }
 }
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++*/
+/* Css hover des boutons des formulaires, Antoine */
+/*+++++++++++++++++++++++++++++++++++++++++++++++*/
+button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover {
+  background-color: white;
+  border: solid 2px var(--accent);
+}
+
+
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page changement de mot de passe, Antoine */

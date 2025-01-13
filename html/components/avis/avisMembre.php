@@ -187,9 +187,11 @@ foreach ($avis as $a) {
         console.log(checkbox.id);
 
         if (action === 'like') {
+            checkbox.classList.toggle("alike");
             if (checkbox.checked) {
                 // Si "like" est coché, décocher "dislike" si nécessaire
                 if (dislikeCheckbox.checked) {
+                    dislikeCheckbox.classList.remove("adislike");
                     updateCount('undislike', checkbox.id);
                     dislikeCheckbox.checked = false;
                 }
@@ -198,9 +200,11 @@ foreach ($avis as $a) {
                 updateCount('unlike', checkbox.id); // Annuler le "like"
             }
         } else if (action === 'dislike') {
+            checkbox.classList.toggle("adislike");
             if (checkbox.checked) {
                 // Si "dislike" est coché, décocher "like" si nécessaire
                 if (likeCheckbox.checked) {
+                    likeCheckbox.classList.remove("alike");
                     updateCount('unlike', checkbox.id);
                     likeCheckbox.checked = false;
                 }
@@ -221,7 +225,7 @@ foreach ($avis as $a) {
                 },
                 body: JSON.stringify({
                     action: action,
-                    id: id.split(_)[1]
+                    id: id.split("_")[1]
                 })
             })
             .then(response => {
@@ -233,8 +237,8 @@ foreach ($avis as $a) {
             .then(data => {
                 console.log('Réponse du serveur :', data); // Ajoutez cette ligne pour afficher la réponse du serveur
                 if (data.success) {
-                    updateNumberDisplay(`#container_${id.split(_)[1]} .count.likes .number`, data.nblike);
-                    updateNumberDisplay(`#container_${id.split(_)[1]} .count.dislikes .number`, data.nbdislike);
+                    updateNumberDisplay(`#container_${id.split("_")[1]} .count.likes`, data.nblike);
+                    updateNumberDisplay(`#container_${id.split("_")[1]} .count.dislikes`, data.nbdislike);
                 } else {
                     alert('Erreur lors de la mise à jour des likes/dislikes.');
                 }
@@ -250,12 +254,39 @@ foreach ($avis as $a) {
         const numberStr = number.toString();
 
         // Récupérer tous les éléments .number à l'intérieur du selector
-        const numbers = document.querySelectorAll(selector);
+        let numbers = document.querySelectorAll(selector + " .number");
 
-        // Parcourir chaque élément .number
+        // Si le nombre a plus de chiffres que les éléments .number existants, ajouter des éléments .number
+        if (numberStr.length > numbers.length) {
+            // Ajouter des .number pour chaque chiffre supplémentaire
+            for (let i = numbers.length; i < numberStr.length; i++) {
+                const newNumberDiv = document.createElement('div');
+                newNumberDiv.style.transform = 'var(--nb9)';
+                newNumberDiv.classList.add('number');
+                for (let j = 0; j < 10; j++) { // Ajouter les chiffres de 0 à 9 dans chaque div
+                    const span = document.createElement('span');
+                    span.textContent = j;
+                    newNumberDiv.appendChild(span);
+                }
+                
+                document.querySelector(selector).appendChild(newNumberDiv);
+            }
+        } else if (numberStr.length < numbers.length) {
+            // Si le nombre a moins de chiffres, supprimer des .number
+            for (let i = numbers.length - 1; i >= numberStr.length; i--) {
+                numbers[i].remove();
+            }
+        }
+    
+        numbers = document.querySelectorAll(selector + " .number");
+
+        // Mettre à jour les chiffres affichés
         numbers.forEach((el, index) => {
-            const digit = numberStr[index] || '0'; // Si il n'y a pas assez de chiffres, utiliser '0'
-
+           
+            const digit = numberStr[index] || '0'; // Si le nombre a moins de chiffres que prévu, utiliser '0'
+            if(digit == 0){
+                el.style.transform = `var(--nb9)`;
+            }
             // Mettre à jour la position du chiffre
             el.style.transform = `var(--nb${digit})`;
 
