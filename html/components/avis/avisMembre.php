@@ -228,7 +228,7 @@ foreach ($avis as $a) {
             })
             .then(data => {
                 // Vérifier si les données contiennent success
-                if (!data.success) {
+                if (data.success) {
                     // Mettre à jour les chiffres pour "likes"
                     updateNumberDisplay(`#${id} .count.likes .number`, data.nblike);
 
@@ -236,7 +236,7 @@ foreach ($avis as $a) {
                     updateNumberDisplay(`#${id} .count.dislikes .number`, data.nbdislike);
                 } else {
                     // Si la réponse ne contient pas success, afficher une erreur
-                    alert('Erreur lors de la mise à jour des likes/dislikes. erreur : ', data.message);
+                    alert('Erreur lors de la mise à jour des likes/dislikes. erreur : ', error.message);
                 }
             })
             .catch(error => {
