@@ -49,9 +49,13 @@
 
         <?php break;
         
-        default:
-          
-          break;
+        default: ?>
+          <article>
+            <h2>
+              Page inconnue
+            </h2>
+          </article>
+          <?php break;
       }
     ?>
     <div class="pagination">
@@ -61,6 +65,10 @@
 
       <?php if ($page < $nbPage) { ?>
         <a href="mentionsLegales.php?page=<?= $page+1 ?>">Suivant</a>
+      <?php } ?>
+
+      <?php if ($page != 1) { ?>
+        <a href="cgu.php?page=1">Retour page 1</a>
       <?php } ?>
     </div>
   </main>
