@@ -25,10 +25,10 @@ function loadExistingImages(dossierImg, zoneImg, limit, idOffre, indexCountImg) 
                 // Ajoute un gestionnaire de clic pour supprimer l'image
                 
                 const croix = document.createElement('img');
-                croix.src = `img/icone/croix_blanche.png`;
+                croix.src = `img/icone/croix.png`;
                 croix.alt = image;
                 croix.title = `Cliquez pour supprimer ${image}`;
-                croix.onclick = () => {
+                img.onclick = () => {
                     if (confirm("Êtes-vous sûr de vouloir supprimer cette image ?")) {
                         deleteImage(image, div, index, dossierImg, zoneImg, limit, idOffre, indexCountImg); // Supprime l'image si l'utilisateur confirme
                     }

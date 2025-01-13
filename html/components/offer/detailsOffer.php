@@ -139,11 +139,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 </div>
                 <div id="afficheImages">
                     <!-- Les images ajoutés apparaîtront ici -->
-                </div>
-                <p>
-                    Vous pouvez insérer jusqu'à <?= $limitImgDtls ?> photos<br>
-                    Cliquez sur une image pour la supprimer
-                </p>
+                </div> 
+                <label class="labelSousTitre">Vous pouvez insérer jusqu'à <?= $limitImgDtls ?> photos<br></label> <!-- Indication pour l'utilisateur -->
+                <label class="labelSousTitre"> Cliquez sur l'image pour la supprimer</label>
                 <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
                 <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
                 <input 
