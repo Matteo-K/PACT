@@ -169,8 +169,18 @@ $avis = $avisTemp;
 <section class="modal">
     <section class="modal-content">
         <span class="close">&times;</span>
-        <h2>Ma fenêtre pop-up</h2>
-        <p>Voici le contenu de votre pop-up.</p>
+        <h2>Signe allemand d'un avis</h2>
+        <form action="signaleAvis.php">
+            <input type="radio" name="signalement" id="inapproprie">
+            <label for="">Contenu inapproprié (injures, menaces, contenu explicite...)</label>
+            <input type="radio" name="signalement" id="frauduleux">
+            <label for="">Avis frauduleux ou trompeur (faux avis, publicité déguisée...) </label>
+            <input type="radio" name="signalement" id="spam">
+            <label for="">Spam ou contenu hors-sujet (multipostage, indésirable...)</label>
+            <input type="radio" name="signalement" id="violation">
+            <label for="">Violation des règles de la plateforme (données personnelles...)</label>
+            <textarea name="motifSignalement" id="motifSignalement" placeholder="Motif du signelement"></textarea>
+        </form>
         <button id="confirmBtn">Confirmer</button>
     </section>
 </section>
