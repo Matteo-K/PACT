@@ -1,65 +1,72 @@
 <?php
-// Connexion à la base de données
-include 'connect_params.php'; // Assurez-vous que ce fichier contient les bonnes informations de connexion à la base de données
+// Inclure les paramètres de connexion à la base de données
+require_once 'connect_params.php'; // Assurez-vous que $conn est initialisé avec PDO
 
-// Récupérer les données envoyées via JSON
-$data = json_decode(file_get_contents('php://input'), true);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Vérifier et récupérer les données envoyées
+    $itemId = isset($_POST['item_id']) ? (int) $_POST['item_id'] : null;
+    $action = isset($_POST['action']) ? $_POST['action'] : null;
 
-// Vérifier que les données sont bien reçues
-if (isset($data['action']) && isset($data['id'])) {
-    $action = $data['action'];
-    $id = $data['id'];
-
-    // Initialiser les variables pour les likes et dislikes
-    $nblike = 0;
-    $nbdislike = 0;
-
-    // Mettre à jour les compteurs en fonction de l'action
-    switch ($action) {
-        case 'like':
-            $query = "UPDATE pact._commentaire SET nblike = nblikes + 1 WHERE id = :id";
-            break;
-        case 'unlike':
-            $query = "UPDATE pact._commentaire SET nblike = nblike - 1 WHERE id = :id";
-            break;
-        case 'dislike':
-            $query = "UPDATE pact._commentaire SET nbdislike = nbdislike + 1 WHERE id = :id";
-            break;
-        case 'undislike':
-            $query = "UPDATE pact._commentaire SET nbdislike = nbdislike - 1 WHERE id = :id";
-            break;
-        default:
-            // Si l'action est invalide, on renvoie une erreur
-            echo json_encode(['success' => false, 'message' => 'Action invalide']);
-            exit;
+    if (!$itemId || !$action) {
+        echo json_encode(['success' => false, 'message' => 'Données invalides.']);
+        exit;
     }
 
-    // Préparer la requête SQL
-    $stmt = $conn->prepare($query);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    try {
+        // Initialiser une transaction
+        $conn->beginTransaction();
 
-    // Exécuter la requête
-    if ($stmt->execute()) {
-        // Récupérer les nouvelles valeurs des likes et dislikes
-        $stmt = $conn->prepare("SELECT nblike, nbdislike FROM pact._commentaire WHERE id = :id");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Vérifier si l'élément existe
+        $query = $conn->prepare('SELECT * FROM pact._commentaire WHERE id = :id');
+        $query->execute(['id' => $itemId]);
+        $evaluation = $query->fetch(PDO::FETCH_ASSOC);
 
-        if ($result) {
-            // Renvoyer les données mises à jour
-            echo json_encode([
-                'success' => true,
-                'nblike' => $result['likes'],
-                'nbdislike' => $result['dislikes']
-            ]);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Évaluation introuvable']);
+        if (!$evaluation) {
+            echo json_encode(['success' => false, 'message' => 'Évaluation introuvable.']);
+            exit;
         }
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Erreur lors de la mise à jour']);
+
+        // Mettre à jour le compteur en fonction de l'action
+        switch ($action) {
+            case 'like':
+                $updateQuery = 'UPDATE pact._commentaire SET likes = likes + 1 WHERE id = :id';
+                break;
+            case 'unlike':
+                $updateQuery = 'UPDATE pact._commentaire SET likes = GREATEST(likes - 1, 0) WHERE id = :id';
+                break;
+            case 'dislike':
+                $updateQuery = 'UPDATE pact._commentaire SET dislikes = dislikes + 1 WHERE id = :id';
+                break;
+            case 'undislike':
+                $updateQuery = 'UPDATE pact._commentaire SET dislikes = GREATEST(dislikes - 1, 0) WHERE id = :id';
+                break;
+            default:
+                echo json_encode(['success' => false, 'message' => 'Action non valide.']);
+                exit;
+        }
+
+        // Exécuter la mise à jour
+        $updateStmt = $conn->prepare($updateQuery);
+        $updateStmt->execute(['id' => $itemId]);
+
+        // Valider la transaction
+        $conn->commit();
+
+        // Envoyer une réponse JSON
+        echo json_encode([
+            'success' => true,
+            'message' => 'Action effectuée avec succès.',
+            'action' => $action,
+            'item_id' => $itemId,
+        ]);
+    } catch (Exception $e) {
+        // Annuler la transaction en cas d'erreur
+        $conn->rollBack();
+
+        // Envoyer une réponse JSON en cas d'erreur
+        echo json_encode(['success' => false, 'message' => 'Erreur : ' . $e->getMessage()]);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => 'Données manquantes']);
+    echo json_encode(['success' => false, 'message' => 'Méthode non autorisée.']);
 }
 ?>
