@@ -115,9 +115,13 @@
 
         <?php break;
         
-        default:
-          
-          break;
+        default:?>
+          <article>
+            <h2>
+              Page inconnue
+            </h2>
+          </article>
+          <?php break;
       }
     ?>
     <div class="pagination">
@@ -130,7 +134,7 @@
       <?php } ?>
 
       <?php if ($page != 1) { ?>
-        <a href="cgu.php?page=1>">Retour page 1</a>
+        <a href="cgu.php?page=1">Retour page 1</a>
       <?php } ?>
     </div>
   </main>
