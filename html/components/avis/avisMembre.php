@@ -267,8 +267,8 @@ foreach ($avis as $a) {
                     span.textContent = j;
                     newNumberDiv.appendChild(span);
                 }
-                document.querySelector(selector).appendChild(newNumberDiv);
                 newNumberDiv.style.transform = `var(--nb9)`;
+                document.querySelector(selector).appendChild(newNumberDiv);
             }
         } else if (numberStr.length < numbers.length) {
             // Si le nombre a moins de chiffres, supprimer des .number
