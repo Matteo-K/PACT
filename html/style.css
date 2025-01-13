@@ -5142,7 +5142,7 @@ button[id="boutonConnexion"], button[id="boutonChangerMDP"] {
   margin-top: 30px;
   background-color: var(--accent);
   border: solid 2px var(--accent);
-  transition: background-color;
+  transition: background-color 0.2s;
   cursor: pointer;
 }
 
@@ -5158,7 +5158,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   color: var(--text-dark);
   background-color: var(--accent);
   border: solid 2px var(--accent);
-  transition: background-color;
+  transition: background-color 0.2s;
   text-decoration: none;
   cursor: pointer;
 }
