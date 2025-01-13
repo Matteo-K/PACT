@@ -1813,8 +1813,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 .flip-card {
   background-color: transparent;
-  width: 25vw;
-  height: 254px;
+  width: 520px;
+  aspect-ratio: 16/9;
   perspective: 1000px;
   font-family: sans-serif;
 }
