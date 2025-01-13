@@ -5141,7 +5141,8 @@ button[id="boutonConnexion"], button[id="boutonChangerMDP"] {
   margin: 5px auto;
   margin-top: 30px;
   background-color: var(--accent);
-  box-sizing: border-box;
+  border: solid 2px var(--accent);
+  transition: background-color;
   cursor: pointer;
 }
 
@@ -5156,6 +5157,8 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   margin-top: 30px;
   color: var(--text-dark);
   background-color: var(--accent);
+  border: solid 2px var(--accent);
+  transition: background-color;
   text-decoration: none;
   cursor: pointer;
 }
