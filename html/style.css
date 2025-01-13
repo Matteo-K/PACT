@@ -2141,7 +2141,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #note, #prix, #statut, #categorie, #date {
-  padding-inline: 20px;
+  padding-inline: 40px;
 }
 
 #note label, #prix label, #statut label, #idCategorie label, #date label {
@@ -2255,7 +2255,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: flex;
   flex-direction: column;
   align-items: baseline;
-  padding-inline: 20px;
+  padding-inline: 40px;
   margin-bottom: 40px;
 }
 
@@ -2675,7 +2675,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .modal {
-  display: none !important;
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
