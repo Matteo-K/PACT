@@ -114,7 +114,7 @@ foreach ($avis as $a) {
                     </div>
                     <div class="container">
                         <label for="like_<?= $a['idc'] ?>">
-                            <input type="checkbox" name="evaluation" id="<?= $likeId ?>" />
+                            <input type="checkbox" name="evaluation" class="checkboxes likes" onchange="likeAndDislike(this, 'like')" id="<?= $likeId ?>" />
                             <svg class="icon like" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <path d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
                             </svg>
@@ -162,7 +162,7 @@ foreach ($avis as $a) {
                             ?>
                         </div>
                         <label for="dislike_<?= $a['idc'] ?>">
-                            <input type="checkbox" name="evaluation" id="<?= $dislikeId ?>" />
+                            <input type="checkbox" name="evaluation" class="checkboxes dislikes" onchange="likeAndDislike(this, 'dislike')" id="<?= $dislikeId ?>" />
                             <svg class="icon dislike" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <path d="M20 3H6.693A2.01 2.01 0 0 0 4.82 4.298l-2.757 7.351A1 1 0 0 0 2 12v2c0 1.103.897 2 2 2h5.612L8.49 19.367a2.004 2.004 0 0 0 .274 1.802c.376.52.982.831 1.624.831H12c.297 0 .578-.132.769-.36l4.7-5.64H20c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm-8.469 17h-1.145l1.562-4.684A1 1 0 0 0 11 14H4v-1.819L6.693 5H16v9.638L11.531 20zM18 14V5h2l.002 9H18z"></path>
                             </svg>
@@ -176,9 +176,44 @@ foreach ($avis as $a) {
 }
 ?>
 <script>
-    // Fonction pour envoyer les données de like/dislike au serveur
+    function likeAndDislike(checkbox, action) {
+        const container = document.getElementById(checkbox.id);
+        const likeId = "like_" + checkbox.id.split("_")[1];
+        const dislikeId = "dislike_" + checkbox.id.split("_")[1];
+
+        const likeCheckbox = document.getElementById(likeId);
+        const dislikeCheckbox = document.getElementById(dislikeId);
+
+        console.log(checkbox.id);
+
+        if (action === 'like') {
+            if (checkbox.checked) {
+                // Si "like" est coché, décocher "dislike" si nécessaire
+                if (dislikeCheckbox.checked) {
+                    updateCount('undislike', checkbox.id);
+                    dislikeCheckbox.checked = false;
+                }
+                updateCount('like', checkbox.id); // Enregistrer le "like"
+            } else {
+                updateCount('unlike', checkbox.id); // Annuler le "like"
+            }
+        } else if (action === 'dislike') {
+            if (checkbox.checked) {
+                // Si "dislike" est coché, décocher "like" si nécessaire
+                if (likeCheckbox.checked) {
+                    updateCount('unlike', checkbox.id);
+                    likeCheckbox.checked = false;
+                }
+                updateCount('dislike', checkbox.id); // Enregistrer le "dislike"
+            } else {
+                updateCount('undislike', checkbox.id); // Annuler le "dislike"
+            }
+        }
+    }
+
+
     function updateCount(action, id) {
-        // Envoyer une requête à `update_evaluation.php` avec l'ID de l'avis
+        // Envoyer une requête à `updateLike.php` avec l'ID de l'avis
         fetch('updateLike.php', {
                 method: 'POST',
                 headers: {
@@ -186,22 +221,28 @@ foreach ($avis as $a) {
                 },
                 body: JSON.stringify({
                     action: action,
-                    id: id
+                    id: id.split(_)[1]
                 })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
+                console.log('Réponse du serveur :', data); // Ajoutez cette ligne pour afficher la réponse du serveur
                 if (data.success) {
-                    // Mettre à jour les chiffres pour "likes"
                     updateNumberDisplay(`#${id} .count.likes .number`, data.nblike);
-
-                    // Mettre à jour les chiffres pour "dislikes"
                     updateNumberDisplay(`#${id} .count.dislikes .number`, data.nbdislike);
                 } else {
-                    alert('Erreur lors de la mise à jour.');
+                    alert('Erreur lors de la mise à jour des likes/dislikes.');
                 }
             })
-            .catch(error => console.error('Erreur:', error));
+            .catch(error => {
+                alert('Une erreur est survenue. Veuillez réessayer plus tard.');
+            });
+
     }
 
     function updateNumberDisplay(selector, number) {
@@ -222,37 +263,4 @@ foreach ($avis as $a) {
             el.querySelector('span').textContent = digit;
         });
     }
-
-    // Récupérer tous les avis (chaque élément ayant un ID unique)
-    document.querySelectorAll('.evaluation').forEach(evaluation => {
-        const likeCheckbox = evaluation.querySelector('.like-checkbox');
-        const dislikeCheckbox = evaluation.querySelector('.dislike-checkbox');
-        const id = evaluation.id; // L'ID unique pour chaque évaluation
-
-        // Ajouter un événement pour le bouton "like"
-        likeCheckbox.addEventListener("change", function() {
-            if (likeCheckbox.checked) {
-                if (dislikeCheckbox.checked) {
-                    updateCount('undislike', id); // Annuler "dislike"
-                }
-                dislikeCheckbox.checked = false;
-                updateCount('like', id); // Envoie l'action "like" pour la mise à jour
-            } else {
-                updateCount('unlike', id); // Envoie l'action "unlike" pour la mise à jour
-            }
-        });
-
-        // Ajouter un événement pour le bouton "dislike"
-        dislikeCheckbox.addEventListener("change", function() {
-            if (dislikeCheckbox.checked) {
-                if (likeCheckbox.checked) {
-                    updateCount('unlike', id); // Annuler "like"
-                }
-                likeCheckbox.checked = false;
-                updateCount('dislike', id); // Envoie l'action "dislike" pour la mise à jour
-            } else {
-                updateCount('undislike', id); // Envoie l'action "undislike" pour la mise à jour
-            }
-        });
-    });
 </script>

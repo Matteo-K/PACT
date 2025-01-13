@@ -595,7 +595,7 @@ function displayStar(note) {
 
 // Sélection des éléments
 const ouvrePopup = document.getElementById('signalerAvis');
-const popup = document.getElementsByClassName('modal')[0];
+const popup = document.getElementsByClassName('modal')[1];
 const btnFermer = document.querySelector('.close-btn');
 const btnConfirmer = document.getElementById('confirmBtn');
 

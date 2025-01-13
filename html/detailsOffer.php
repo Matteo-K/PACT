@@ -961,6 +961,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php
     require_once "./components/footer.php";
     ?>
+    
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
