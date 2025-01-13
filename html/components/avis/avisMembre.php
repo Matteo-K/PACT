@@ -220,30 +220,25 @@ foreach ($avis as $a) {
                 })
             })
             .then(response => {
-                // Vérifier si la réponse est OK (code HTTP 200)
                 if (!response.ok) {
                     throw new Error(`Erreur HTTP ${response.status}`);
                 }
-                return response.json(); // Tenter de convertir la réponse en JSON
+                return response.json();
             })
             .then(data => {
-                // Vérifier si les données contiennent success
+                console.log('Réponse du serveur :', data); // Ajoutez cette ligne pour afficher la réponse du serveur
                 if (data.success) {
-                    // Mettre à jour les chiffres pour "likes"
                     updateNumberDisplay(`#${id} .count.likes .number`, data.nblike);
-
-                    // Mettre à jour les chiffres pour "dislikes"
                     updateNumberDisplay(`#${id} .count.dislikes .number`, data.nbdislike);
                 } else {
-                    // Si la réponse ne contient pas success, afficher une erreur
                     alert('Erreur lors de la mise à jour des likes/dislikes. erreur : ', data.message);
                 }
             })
             .catch(error => {
-                // Afficher une erreur détaillée dans la console
                 console.error('Erreur:', error.message);
                 alert('Une erreur est survenue. Veuillez réessayer plus tard.');
             });
+
     }
 
     function updateNumberDisplay(selector, number) {
