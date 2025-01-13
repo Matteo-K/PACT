@@ -4727,7 +4727,7 @@ input[id="confirmer"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
 input[id="email"],
@@ -4735,21 +4735,21 @@ input[id="adresse"] {
   width: 830px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
 input[id="code"] {
   width: 210px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
 input[id="ville"] {
   width: 596px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
 input[id="radioPublic"],
@@ -4764,25 +4764,27 @@ input[id="siren"] {
   height: 40px;
   margin-right: 0;
   margin-left: 10px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
 .creation-compte input[type="checkbox"] {
   width: 25px;
   height: 25px;
   margin: 0 5px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
 button[id="boutonInscription"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
-  border-radius: 15px;
+  border-radius: 10px;
   margin: 5px auto;
   border: none;
-  box-shadow: inset -4px -4px 4px var(--accent-border);
+  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
   background-color: var(--accent);
+  border: solid 2px var(--accent);
+  transition: background-color 0.2s;
   cursor: pointer;
 }
 
@@ -4888,7 +4890,7 @@ div[id="messageErreur"] {
     height: 40px;
     margin-bottom: 15px;
     padding: 5px;
-    border: 2px solid var(--accent);
+    border: 2px solid var(--secondary);
     border-radius: 5px;
     font-size: 16px;
   }
@@ -5236,7 +5238,7 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 /*+++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css hover des boutons des formulaires, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
-input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover {
+button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover {
   background-color: white;
   border: solid 2px var(--accent);
 }
