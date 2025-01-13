@@ -188,6 +188,7 @@ foreach ($avis as $a) {
             // Ajouter un événement pour le bouton "like"
             likeCheckbox.addEventListener("change", function() {
                 if (likeCheckbox.checked) {
+                    console.log("hey patati patata ")
                     if (dislikeCheckbox.checked) {
                         updateCount('undislike', id); // Annuler "dislike"
                     }
