@@ -10,7 +10,7 @@ $id = isset($data['id']) ? (int)$data['id'] : 0;
 
 // Vérifier si l'action et l'ID sont valides
 if (!$id || !in_array($action, ['like', 'dislike', 'unlike', 'undislike'])) {
-    echo json_encode(['success' => false, 'message' => 'Action ou ID invalide']);
+    echo json_encode(['success' => false,'action'=>$action, 'id'=> $id,'message' => 'Action ou ID invalide']);
     exit();
 }
 
