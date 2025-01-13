@@ -228,7 +228,7 @@ foreach ($avis as $a) {
             })
             .then(data => {
                 // Vérifier si les données contiennent success
-                if (data.success) {
+                if (!data.success) {
                     // Mettre à jour les chiffres pour "likes"
                     updateNumberDisplay(`#${id} .count.likes .number`, data.nblike);
 
