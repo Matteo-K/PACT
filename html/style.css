@@ -4086,30 +4086,30 @@ details .nonRepondu {
   user-select: none;
 }
 
-.container:has(#like:checked) .count {
+.container:has(.alike:checked) .count {
   border-left-color: var(--col-like);
   border-right-color: transparent;
   border: none;
 }
 
-.container:has(#dislike:checked)>.count {
+.container:has(.adislike:checked)>.count {
   border-right-color: var(--col-dislike);
   border-left-color: transparent;
   border: none;
 }
 
-.container:has(#dislike:checked)>.count.dislikes,
+.container:has(.adislike:checked)>.count.dislikes,
 .container:has(#like:checked)>.count.likes {
   border: none;
 }
 
-.container:has(#dislike:checked) .count.dislikes {
+.container:has(.adislike:checked) .count.dislikes {
   color: var(--col-dislike);
   border-left: var(--col-dislike) 1px solid;
   /* La couleur du texte devient bleue quand "like" est sélectionné */
 }
 
-.container:has(#like:checked) .count.likes {
+.container:has(.alike:checked) .count.likes {
   color: var(--col-like);
   border-right: var(--col-like) 1px solid;
   /* La couleur du texte devient rouge quand "dislike" est sélectionné */
@@ -4120,12 +4120,12 @@ details .nonRepondu {
   display: none;
 }
 
-.container #like:checked+svg {
+.container .alike:checked+svg {
   animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
   fill: var(--col-like);
 }
 
-.container #dislike:checked+svg {
+.container .adislike:checked+svg {
   animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
   fill: var(--col-dislike);
 }
