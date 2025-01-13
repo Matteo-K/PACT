@@ -1625,7 +1625,7 @@ label[for="rest_ajoutPhotoMenu"] {
 /* ##### Catégorie d'offre ##### */
 /* ### Restaurant ### */
 
-#restaurant ul {
+#restaurant li {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
