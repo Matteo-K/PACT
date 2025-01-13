@@ -1,6 +1,6 @@
 <?php
 // Inclure les paramètres de connexion à la base de données
-require_once 'connect_params.php'; // Assurez-vous que $conn est initialisé avec PDO
+require_once 'config.php'; // Assurez-vous que $conn est initialisé avec PDO
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérifier et récupérer les données envoyées
