@@ -95,6 +95,7 @@ button {
 .msgError {
   color: red;
   font-size: 0.8em;
+  padding-left: 20px;
 }
 
 .tag {
@@ -4593,6 +4594,10 @@ details .nonRepondu {
   align-items: flex-start;
   justify-content: flex-start;
   margin: 30px 15%;
+}
+
+#choixCategorie + section {
+  margin-bottom: 10vh;
 }
 
 #choixCategorie select {
