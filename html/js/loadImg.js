@@ -49,7 +49,7 @@ function loadExistingImages(dossierImg, zoneImg, limit, idOffre, indexCountImg) 
 function deleteImage(fileName, imgElement, index, dossierImg, zoneImg, limit, idOffre, indexCountImg) {
     // Supprimer l'image du DOM immédiatement
     imgElement.remove();
-
+    console.log(`action=delete&fileName=${encodeURIComponent(fileName)}&idOffre=${idOffre}&dossierImg=${dossierImg}`);
     // Faire la requête de suppression côté serveur
     fetch('upload.php', {
         method: 'POST',
@@ -114,6 +114,8 @@ function uploadFile(file, dossierImg, zoneImg, limit, idOffre, indexCountImg) {
     formData.append('idOffre', idOffre);
     formData.append('dossierImg', dossierImg);
     formData.append('limit', limit);
+
+    console.table([file, 'upload', idOffre, dossierImg, limit]);
 
     fetch('upload.php', {
         method: 'POST',

@@ -860,13 +860,25 @@ header ul + div {
   gap: 3%;
 }
 
-#manageOffer aside + section + div button {
+#manageOffer .suivant, #manageOffer .precedent {
   text-align: center;
   width: 150px;
   padding: 10px;
   border-radius: 20px;
   border: none;
 }
+
+/* #manageOffer .suivant {
+  color: #fff;
+  background-color: var(--primary);
+}
+
+#manageOffer .precedent {
+  color: var(--);
+  background-color: #fff;
+  border: 2px solid var(--primary);
+
+} */
 
 /* Feedback Save */
 #save-offer {
