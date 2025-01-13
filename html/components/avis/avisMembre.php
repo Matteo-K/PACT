@@ -112,7 +112,7 @@ foreach ($avis as $a) {
                             </div>
                         <?php } ?>
                     </div>
-                    <div class="container">
+                    <div class="container" id=container_<?= $a['idc'] ?>>
                         <label for="like_<?= $a['idc'] ?>">
                             <input type="checkbox" name="evaluation" class="checkboxes likes" onchange="likeAndDislike(this, 'like')" id="<?= $likeId ?>" />
                             <svg class="icon like" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -233,8 +233,8 @@ foreach ($avis as $a) {
             .then(data => {
                 console.log('Réponse du serveur :', data); // Ajoutez cette ligne pour afficher la réponse du serveur
                 if (data.success) {
-                    updateNumberDisplay(`#${id} .count.likes .number`, data.nblike);
-                    updateNumberDisplay(`#${id} .count.dislikes .number`, data.nbdislike);
+                    updateNumberDisplay(`#container_${id.split('_')[1]} .count.likes .number`, data.nblike);
+                    updateNumberDisplay(`#container_${id.split('_')[1]} .count.dislikes .number`, data.nbdislike);
                 } else {
                     alert('Erreur lors de la mise à jour des likes/dislikes.');
                 }
@@ -251,6 +251,7 @@ foreach ($avis as $a) {
 
         // Récupérer tous les éléments .number à l'intérieur du selector
         const numbers = document.querySelectorAll(selector);
+        console.log(document.querySelectorAll(selector));
 
         // Parcourir chaque élément .number
         numbers.forEach((el, index) => {
