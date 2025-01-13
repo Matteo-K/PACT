@@ -1625,7 +1625,7 @@ label[for="rest_ajoutPhotoMenu"] {
 /* ##### Catégorie d'offre ##### */
 /* ### Restaurant ### */
 
-#restaurant div {
+#gamme_prix div {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;

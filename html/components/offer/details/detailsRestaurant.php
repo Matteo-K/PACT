@@ -21,7 +21,7 @@ if ($categorie["_restauration"]) {
 
 ?>
 <section id="restaurant"> <!-- Section pour le CSS -->
-  <div>
+  <div id="gamme_prix">
     <h4 class="labelTitre">Gamme de prix : </h4>
     
     <!-- Gamme de prix -->
