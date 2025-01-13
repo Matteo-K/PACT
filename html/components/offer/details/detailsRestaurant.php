@@ -27,21 +27,21 @@ if ($categorie["_restauration"]) {
     <!-- Gamme de prix -->
     <ul>
       <li>
-        <label for="€">
+        <label class="labelSousTitre" for="€">
           <input type="radio" name="rest_gamme_prix" id="€" value="€" <?php echo $gamme["€"] ? "checked" : "" ?>>
           <span class="checkmark"></span>
           &euro; (menu à moins de 25€)
         </label>
       </li>
       <li>
-        <label for="€€">
+        <label class="labelSousTitre" for="€€">
           <input type="radio" name="rest_gamme_prix" id="€€" value="€€" <?php echo $gamme["€€"] ? "checked" : "" ?>>
           <span class="checkmark"></span>
           &euro;&euro; (menu de 25€ à 40€)
         </label>
       </li>
       <li>
-        <label for="€€€">
+        <label class="labelSousTitre" for="€€€">
           <input type="radio" name="rest_gamme_prix" id="€€€" value="€€€" <?php echo $gamme["€€€"] ? "checked" : "" ?>>
           <span class="checkmark"></span>
           &euro;&euro;&euro; (menu à plus de 40€)
