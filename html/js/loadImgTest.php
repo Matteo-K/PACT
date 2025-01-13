@@ -10,8 +10,8 @@
   <fieldset>
     <legend>Delete</legend>
 
-    <input type="text" name="fileName" value="<?php $_GET["fileName"] ?? "" ?>">
-    <input type="text" name="idOffre" value="<?php $_GET["idOffre"] ?? "" ?>">
+    <input type="text" name="fileName" value="<?php $_GET["fileName"] ?? "" ?>" placeholder="fileName">
+    <input type="text" name="idOffre" value="<?php $_GET["idOffre"] ?? "" ?>" placeholder="idOffre">
     <select name="dossierImg">
       <option value="img/imageOffre/">img/imageOffre/</option>
       <option value="img/imageMenu/">img/imageMenu/</option>
