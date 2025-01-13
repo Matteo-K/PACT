@@ -223,42 +223,41 @@ foreach ($avis as $a) {
         });
     }
 
-    document.querySelectorAll('.checkboxes').forEach(evaluation => {
-    const likeCheckbox = evaluation.querySelector('.likes');
-    const dislikeCheckbox = evaluation.querySelector('.dislikes');
+    document.querySelectorAll('.container').forEach(evaluation => {
+        const likeCheckbox = evaluation.querySelector('.likes');
+        const dislikeCheckbox = evaluation.querySelector('.dislikes');
 
-    // Vérifier si les checkboxes existent
-    if (likeCheckbox && dislikeCheckbox) {
-        const id = evaluation.id; // L'ID unique pour chaque évaluation
+        // Vérifier si les checkboxes existent
+        if (likeCheckbox && dislikeCheckbox) {
+            const id = evaluation.id; // L'ID unique pour chaque évaluation
 
-        // Ajouter un événement pour le bouton "like"
-        likeCheckbox.addEventListener("change", function() {
-            if (likeCheckbox.checked) {
-                if (dislikeCheckbox.checked) {
-                    updateCount('undislike', id); // Annuler "dislike"
-                }
-                dislikeCheckbox.checked = false;
-                updateCount('like', id); // Envoie l'action "like" pour la mise à jour
-            } else {
-                updateCount('unlike', id); // Envoie l'action "unlike" pour la mise à jour
-            }
-        });
-
-        // Ajouter un événement pour le bouton "dislike"
-        dislikeCheckbox.addEventListener("change", function() {
-            if (dislikeCheckbox.checked) {
+            // Ajouter un événement pour le bouton "like"
+            likeCheckbox.addEventListener("change", function() {
                 if (likeCheckbox.checked) {
-                    updateCount('unlike', id); // Annuler "like"
+                    if (dislikeCheckbox.checked) {
+                        updateCount('undislike', id); // Annuler "dislike"
+                    }
+                    dislikeCheckbox.checked = false;
+                    updateCount('like', id); // Envoie l'action "like" pour la mise à jour
+                } else {
+                    updateCount('unlike', id); // Envoie l'action "unlike" pour la mise à jour
                 }
-                likeCheckbox.checked = false;
-                updateCount('dislike', id); // Envoie l'action "dislike" pour la mise à jour
-            } else {
-                updateCount('undislike', id); // Envoie l'action "undislike" pour la mise à jour
-            }
-        });
-    } else {
-        console.error("Les éléments like/dislike sont manquants pour l'ID :", evaluation.id);
-    }
-});
+            });
 
+            // Ajouter un événement pour le bouton "dislike"
+            dislikeCheckbox.addEventListener("change", function() {
+                if (dislikeCheckbox.checked) {
+                    if (likeCheckbox.checked) {
+                        updateCount('unlike', id); // Annuler "like"
+                    }
+                    likeCheckbox.checked = false;
+                    updateCount('dislike', id); // Envoie l'action "dislike" pour la mise à jour
+                } else {
+                    updateCount('undislike', id); // Envoie l'action "undislike" pour la mise à jour
+                }
+            });
+        } else {
+            console.error("Les éléments like/dislike sont manquants pour l'ID :", evaluation.id);
+        }
+    });
 </script>
