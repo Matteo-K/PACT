@@ -180,6 +180,7 @@ foreach ($avis as $a) {
     // Fonction pour envoyer les données de like/dislike au serveur
     document.querySelectorAll('.container').forEach(evaluation => {
         const likeCheckbox = evaluation.querySelector('.likes');
+        console.log("hey patati patata ");
         const dislikeCheckbox = evaluation.querySelector('.dislikes');
 
         // Vérifier si les checkboxes existent
