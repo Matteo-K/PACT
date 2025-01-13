@@ -853,12 +853,11 @@ header ul + div {
 
 /* Bouton suivant précédent */
 #manageOffer aside + section + div {
-  position: absolute;
-  bottom: 5px;
-  right: 3%;
   display: flex;
   flex-flow: row nowrap;
-  gap: 3%;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 20px;
 }
 
 #manageOffer .suivant, #manageOffer .precedent {
@@ -4594,10 +4593,6 @@ details .nonRepondu {
   align-items: flex-start;
   justify-content: flex-start;
   margin: 30px 15%;
-}
-
-#choixCategorie + section {
-  margin-bottom: 10vh;
 }
 
 #choixCategorie select {
