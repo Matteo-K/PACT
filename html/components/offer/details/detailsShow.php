@@ -73,10 +73,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Synchroniser les minutes avec les heures
-    minutesInput.addEventListener("change", minuteToHours());
+    minutesInput.addEventListener("change", () => minuteToHours());
 
     // Synchroniser les heures avec les minutes
-    hoursInput.addEventListener("change", hoursToMinutes());
+    hoursInput.addEventListener("change", () => hoursToMinutes());
 
     minuteToHours();
 });
