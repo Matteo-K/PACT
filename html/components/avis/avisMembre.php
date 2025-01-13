@@ -282,8 +282,11 @@ foreach ($avis as $a) {
 
         // Mettre à jour les chiffres affichés
         numbers.forEach((el, index) => {
+           
             const digit = numberStr[index] || '0'; // Si le nombre a moins de chiffres que prévu, utiliser '0'
-
+            if(digit == 0){
+                el.style.transform = `var(--nb9)`;
+            }
             // Mettre à jour la position du chiffre
             el.style.transform = `var(--nb${digit})`;
 
