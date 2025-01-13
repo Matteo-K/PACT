@@ -5228,6 +5228,17 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
   }
 }
 
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++*/
+/* Css hover des boutons des formulaires, Antoine */
+/*+++++++++++++++++++++++++++++++++++++++++++++++*/
+input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover {
+  background-color: white;
+  border: solid 2px var(--accent);
+}
+
+
+
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page changement de mot de passe, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++*/
