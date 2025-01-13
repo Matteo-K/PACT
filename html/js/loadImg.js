@@ -26,9 +26,9 @@ function loadExistingImages(dossierImg, zoneImg, limit, idOffre, indexCountImg) 
                 
                 const croix = document.createElement('img');
                 croix.src = `img/icone/croix.png`;
-                croix.alt = image;
+                croix.alt = 'supprimer l\'image';
                 croix.title = `Cliquez pour supprimer ${image}`;
-                img.onclick = () => {
+                croix.onclick = () => {
                     if (confirm("Êtes-vous sûr de vouloir supprimer cette image ?")) {
                         deleteImage(image, div, index, dossierImg, zoneImg, limit, idOffre, indexCountImg); // Supprime l'image si l'utilisateur confirme
                     }
