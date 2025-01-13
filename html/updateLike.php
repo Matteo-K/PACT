@@ -6,7 +6,7 @@ header('Content-Type: application/json');
 // Récupération de l'action depuis la requête POST
 $data = json_decode(file_get_contents('php://input'), true);
 $action = isset($data['action']) ? $data['action'] : '';
-$id = isset($data['id']) ? (int)$data['id'] : 0;
+$id = isset($data['id']) ? (string)$data['id'] : null;
 
 // Vérifier si l'action et l'ID sont valides
 if (!$id || !in_array($action, ['like', 'dislike', 'unlike', 'undislike'])) {
