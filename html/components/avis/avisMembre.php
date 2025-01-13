@@ -236,7 +236,7 @@ foreach ($avis as $a) {
                     updateNumberDisplay(`#${id} .count.dislikes .number`, data.nbdislike);
                 } else {
                     // Si la réponse ne contient pas success, afficher une erreur
-                    alert('Erreur lors de la mise à jour des likes/dislikes. erreur : ', error.message);
+                    alert('Erreur lors de la mise à jour des likes/dislikes. erreur : ', data.message);
                 }
             })
             .catch(error => {
