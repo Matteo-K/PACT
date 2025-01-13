@@ -261,6 +261,7 @@ foreach ($avis as $a) {
             // Ajouter des .number pour chaque chiffre supplémentaire
             for (let i = numbers.length; i < numberStr.length; i++) {
                 const newNumberDiv = document.createElement('div');
+                newNumberDiv.style.transform = 'var(--nb9)';
                 newNumberDiv.classList.add('number');
                 for (let j = 0; j < 10; j++) { // Ajouter les chiffres de 0 à 9 dans chaque div
                     const span = document.createElement('span');
