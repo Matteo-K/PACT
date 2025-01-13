@@ -1434,13 +1434,13 @@ header ul + div {
 
 .labelTitre {
   display: inline-block;
-  font-size: 25px;
+  font-size: 1.6rem;
   margin: 15px 0 5px 0;
 }
 
-#artDetailOffer p {
-  font-size: 20px;
-  margin: 5px 0 0;
+.labelSousTitre {
+  display: inline-block;
+  font-size: 1.2rem;
 }
 
 #artDetailOffer input[type="text"] {
