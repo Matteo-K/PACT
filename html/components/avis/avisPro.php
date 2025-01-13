@@ -168,7 +168,7 @@ $avis = $avisTemp;
 
 <div class="modal">
     <div class="modal-content">
-        <span class="close-btn">&times;</span>
+        <span class="close">&times;</span>
         <h2>Ma fenêtre pop-up</h2>
         <p>Voici le contenu de votre pop-up.</p>
         <button id="confirmBtn">Confirmer</button>
