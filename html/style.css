@@ -1525,18 +1525,24 @@ header ul + div {
   width: 140%;
 }
 
-#afficheImages div {
+#afficheImages div,
+#park_zoneImg div,
+#rest_zoneImg div {
   position: relative;
   background-color: #fff;
 }
 
-#afficheImages img {
+#afficheImages img,
+#park_zoneImg img,
+#rest_zoneImg img {
   position: relative;
   background-color: #fff;
   cursor: pointer;
 }
 
-#afficheImages img + img {
+#afficheImages img + img,
+#park_zoneImg img + img,
+#rest_zoneImg img + img {
   display: none;
   position: absolute;
   top: 5px;
@@ -1545,7 +1551,9 @@ header ul + div {
   height: 30px;
 }
 
-#afficheImages div:hover img + img {
+#afficheImages div:hover img + img,
+#park_zoneImg div:hover img + img,
+#rest_zoneImg div:hover img + img {
   display: block !important;
 }
 
@@ -1613,6 +1621,22 @@ label[for="rest_ajoutPhotoMenu"] {
 #autocompletion li:nth-child(even):hover {
   background-color: var(--text-dark25);
 }
+
+/* ##### Catégorie d'offre ##### */
+/* ### Restaurant ### */
+
+#restaurant div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 10px;
+}
+
+#restaurant input {
+  display: none;
+}
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

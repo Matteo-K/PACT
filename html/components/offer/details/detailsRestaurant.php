@@ -21,25 +21,27 @@ if ($categorie["_restauration"]) {
 
 ?>
 <section id="restaurant"> <!-- Section pour le CSS -->
-  <h4 class="labelTitre">Gamme de prix : </h4>
-
-  <!-- Gamme de prix -->
   <div>
-    <input type="radio" name="rest_gamme_prix" id="€" value="€" <?php echo $gamme["€"] ? "checked" : "" ?>>
-    <span class="checkmark"></span>
-    <label for="€">&euro; (menu à moins de 25€)</label>
+    <h4 class="labelTitre">Gamme de prix : </h4>
+    
+    <!-- Gamme de prix -->
+    <div>
+      <input type="radio" name="rest_gamme_prix" id="€" value="€" <?php echo $gamme["€"] ? "checked" : "" ?>>
+      <span class="checkmark"></span>
+      <label for="€">&euro; (menu à moins de 25€)</label>
+    </div>
+    <div>
+      <input type="radio" name="rest_gamme_prix" id="€€" value="€€" <?php echo $gamme["€€"] ? "checked" : "" ?>>
+      <span class="checkmark"></span>
+      <label for="€€">&euro;&euro; (menu de 25€ à 40€)</label>
+    </div>
+    <div>
+      <input type="radio" name="rest_gamme_prix" id="€€€" value="€€€" <?php echo $gamme["€€€"] ? "checked" : "" ?>>
+      <span class="checkmark"></span>
+      <label for="€€€">&euro;&euro;&euro; (menu à plus de 40€)</label>
+    </div>
   </div>
-  <div>
-    <input type="radio" name="rest_gamme_prix" id="€€" value="€€" <?php echo $gamme["€€"] ? "checked" : "" ?>>
-    <span class="checkmark"></span>
-    <label for="€€">&euro;&euro; (menu de 25€ à 40€)</label>
-  </div>
-  <div>
-    <input type="radio" name="rest_gamme_prix" id="€€€" value="€€€" <?php echo $gamme["€€€"] ? "checked" : "" ?>>
-    <span class="checkmark"></span>
-    <label for="€€€">&euro;&euro;&euro; (menu à plus de 40€)</label>
-  </div>
-
+    
   <!-- Partie pour l'ajout des photos du menu du restaurant-->
   <div class="photosR">
     <div id="insereImg">
