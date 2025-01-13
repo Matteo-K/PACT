@@ -56,11 +56,11 @@
     ?>
     <div class="pagination">
       <?php if ($page > 1) { ?>
-        <a href="mentionsLegales.php?page<?= $page-1 ?>">Précédent</a>
+        <a href="mentionsLegales.php?page=<?= $page-1 ?>">Précédent</a>
       <?php } ?>
 
       <?php if ($page < $nbPage) { ?>
-        <a href="mentionsLegales.php?page<?= $page+1 ?>">Suivant</a>
+        <a href="mentionsLegales.php?page=<?= $page+1 ?>">Suivant</a>
       <?php } ?>
     </div>
   </main>
