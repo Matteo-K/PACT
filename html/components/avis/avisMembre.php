@@ -112,7 +112,7 @@ foreach ($avis as $a) {
                             </div>
                         <?php } ?>
                     </div>
-                    <div class="container" id=container_<?= $a['idc'] ?>>
+                    <div class="container" id="container_<?= $a['idc'] ?>">
                         <label for="like_<?= $a['idc'] ?>">
                             <input type="checkbox" name="evaluation" class="checkboxes likes" onchange="likeAndDislike(this, 'like')" id="<?= $likeId ?>" />
                             <svg class="icon like" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -175,92 +175,49 @@ foreach ($avis as $a) {
 <?php
 }
 ?>
+
 <script>
-    function likeAndDislike(checkbox, action) {
-        const container = document.getElementById(checkbox.id);
-        const likeId = "like_" + checkbox.id.split("_")[1];
-        const dislikeId = "dislike_" + checkbox.id.split("_")[1];
-
-        const likeCheckbox = document.getElementById(likeId);
-        const dislikeCheckbox = document.getElementById(dislikeId);
-
-        console.log(checkbox.id);
-
-        if (action === 'like') {
-            if (checkbox.checked) {
-                // Si "like" est coché, décocher "dislike" si nécessaire
-                if (dislikeCheckbox.checked) {
-                    updateCount('undislike', checkbox.id);
-                    dislikeCheckbox.checked = false;
-                }
-                updateCount('like', checkbox.id); // Enregistrer le "like"
-            } else {
-                updateCount('unlike', checkbox.id); // Annuler le "like"
-            }
-        } else if (action === 'dislike') {
-            if (checkbox.checked) {
-                // Si "dislike" est coché, décocher "like" si nécessaire
-                if (likeCheckbox.checked) {
-                    updateCount('unlike', checkbox.id);
-                    likeCheckbox.checked = false;
-                }
-                updateCount('dislike', checkbox.id); // Enregistrer le "dislike"
-            } else {
-                updateCount('undislike', checkbox.id); // Annuler le "dislike"
-            }
-        }
-    }
-
-
     function updateCount(action, id) {
-        // Envoyer une requête à `updateLike.php` avec l'ID de l'avis
         fetch('updateLike.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    action: action,
-                    id: id.split(_)[1]
-                })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Erreur HTTP ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Réponse du serveur :', data); // Ajoutez cette ligne pour afficher la réponse du serveur
-                if (data.success) {
-                    updateNumberDisplay(`#container_${id.split(_)[1]} .count.likes .number`, data.nblike);
-                    updateNumberDisplay(`#container_${id.split(_)[1]} .count.dislikes .number`, data.nbdislike);
-                } else {
-                    alert('Erreur lors de la mise à jour des likes/dislikes.');
-                }
-            })
-            .catch(error => {
-                alert('Une erreur est survenue. Veuillez réessayer plus tard.');
-            });
-
-    }
-
-    function updateNumberDisplay(selector, number) {
-        // Convertir le nombre en chaîne
-        const numberStr = number.toString();
-
-        // Récupérer tous les éléments .number à l'intérieur du selector
-        const numbers = document.querySelectorAll(selector);
-
-        // Parcourir chaque élément .number
-        numbers.forEach((el, index) => {
-            const digit = numberStr[index] || '0'; // Si il n'y a pas assez de chiffres, utiliser '0'
-
-            // Mettre à jour la position du chiffre
-            el.style.transform = `var(--nb${digit})`;
-
-            // Mettre à jour le contenu du chiffre
-            el.querySelector('span').textContent = digit;
+            method: 'POST',
+            body: JSON.stringify({
+                action: action,
+                id: id
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json()).then(data => {
+            if (data.success) {
+                updateNumberDisplay('.likes', data.likes);
+                updateNumberDisplay('.dislikes', data.dislikes);
+            }
+        }).catch(error => {
+            console.error('Error updating like/dislike:', error);
         });
+    }
+    
+    function updateNumberDisplay(selector, number) {
+        const elements = document.querySelectorAll(selector + ' .number');
+        elements.forEach((element, index) => {
+            const digit = number.toString().charAt(index);
+            element.style.transform = `var(--nb${digit})`;
+        });
+    }
+    
+    function likeAndDislike(checkbox, action) {
+        const id = checkbox.id.split('_')[1];
+        const isLike = action === 'like';
+        const isDislike = action === 'dislike';
+        
+        if (isLike) {
+            document.getElementById('dislike_' + id).checked = false;
+        }
+        
+        if (isDislike) {
+            document.getElementById('like_' + id).checked = false;
+        }
+        
+        updateCount(action, id);
     }
 </script>
