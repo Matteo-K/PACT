@@ -1625,12 +1625,13 @@ label[for="rest_ajoutPhotoMenu"] {
 /* ##### Catégorie d'offre ##### */
 /* ### Restaurant ### */
 
-#gamme_prix div {
+#restaurant ul {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: left;
   margin-bottom: 10px;
+  margin-left: 1.5rem;
 }
 
 #restaurant input {
