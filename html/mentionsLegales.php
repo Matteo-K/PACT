@@ -23,7 +23,7 @@
           <article>
             <section>
               <h2>
-                Données à cractère personnel
+                Données à caractère personnel
               </h2>
             </section>
             <section>

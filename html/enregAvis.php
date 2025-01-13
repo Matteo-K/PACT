@@ -154,18 +154,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <title>Document</title>
     </head>
     <body>
+
+        <form action="detailsOffer.php<?= (isset($_GET['pro'])) ? "#avis".$idAvis : "" ?>" method="post">
+            <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
+        </form>
+        
     <script>
-        let form = document.createElement('form');
-        form.action = "detailsOffer.php";
-        form.method = "post";
-
-        let input = document.createElement('input');
-        input.type = "hidden";
-        input.name = "idoffre";
-        input.value = <?= $idOffre ?>;
-
-        form.appendChild(input);
-        document.body.appendChild(form);
+        let form = document.querySelector('form');
         form.submit();
     </script>
     </body>
