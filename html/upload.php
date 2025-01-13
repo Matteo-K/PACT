@@ -88,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $response[] = ['error' => "Fichier non trouvé : " . $_POST['fileName']];
         }
+        echo "interruption, observation de l'erreur";
     }    
 } // Action pour lister les images existantes
 elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
