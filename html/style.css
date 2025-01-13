@@ -1641,7 +1641,7 @@ label[for="rest_ajoutPhotoMenu"] {
   padding: 0;
 }
 
-#restaurant li {
+#restaurant li label{
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
