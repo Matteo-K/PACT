@@ -224,7 +224,7 @@ foreach ($avis as $a) {
     }
 
     // Récupérer tous les avis (chaque élément ayant un ID unique)
-    document.querySelectorAll('.checkboxes').forEach(evaluation => {
+    document.getElementsByClassName('checkboxes').forEach(evaluation => {
         const likeCheckbox = evaluation.querySelector('.likes');
         const dislikeCheckbox = evaluation.querySelector('.dislikes');
         const id = evaluation.id; // L'ID unique pour chaque évaluation
