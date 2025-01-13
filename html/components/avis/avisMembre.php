@@ -187,6 +187,7 @@ foreach ($avis as $a) {
         console.log(checkbox.id);
 
         if (action === 'like') {
+            checkbox.classList.toggle("alike");
             if (checkbox.checked) {
                 // Si "like" est coché, décocher "dislike" si nécessaire
                 if (dislikeCheckbox.checked) {
@@ -198,6 +199,7 @@ foreach ($avis as $a) {
                 updateCount('unlike', checkbox.id); // Annuler le "like"
             }
         } else if (action === 'dislike') {
+            checkbox.classList.toggle("adislike");
             if (checkbox.checked) {
                 // Si "dislike" est coché, décocher "like" si nécessaire
                 if (likeCheckbox.checked) {
