@@ -1,5 +1,5 @@
 <?php
-require_once 'connect_bdd.php';
+require_once 'config.php';
 
 header('Content-Type: application/json');
 

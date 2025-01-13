@@ -238,7 +238,6 @@ foreach ($avis as $a) {
                 }
             })
             .catch(error => {
-                console.error('Erreur:', error.message);
                 alert('Une erreur est survenue. Veuillez réessayer plus tard.');
             });
 
