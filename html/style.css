@@ -5039,15 +5039,15 @@ main[id="mainConnexion"] {
   margin-top: 0;
 }
 
-a[id="lienMotDePasseOublie"] {
+/* a[id="lienMotDePasseOublie"] {
   color: white;
   font-size: 25px;
   margin: 30px 0;
-}
+} */
 
-a[id="lienMotDePasseOublie"]:hover {
+/* a[id="lienMotDePasseOublie"]:hover {
   color: #edae14;
-}
+} */
 
 .connexion-compte a {
   text-decoration: underline;

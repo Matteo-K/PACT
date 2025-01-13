@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
     
             <button id="boutonConnexion" type="submit">Connexion</button>
 
-            <a id="lienMotDePasseOublie" href="#"> Mot de passe oublié ?</a>
+            <!-- <a id="lienMotDePasseOublie" href="#"> Mot de passe oublié ?</a> -->
         </form>
         
         <h1 id="pasDeCompteTitre">Vous n'avez pas de compte ? Créez-en un !</h1>
