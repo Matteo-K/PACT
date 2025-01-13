@@ -135,7 +135,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             <div id="blcImg">
                 <div id="insereImg">
                     <label class="labelTitre">Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
-                    <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+                    <label for="ajoutPhoto" class="modifierBut">Ajouter</label>
                 </div>
                 <div id="afficheImages">
                     <!-- Les images ajoutés apparaîtront ici -->
