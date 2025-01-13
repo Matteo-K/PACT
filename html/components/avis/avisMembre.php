@@ -269,6 +269,11 @@ foreach ($avis as $a) {
                 }
                 document.querySelector(selector).appendChild(newNumberDiv);
             }
+        } else if (numberStr.length < numbers.length) {
+            // Si le nombre a moins de chiffres, supprimer des .number
+            for (let i = numbers.length - 1; i >= numberStr.length; i--) {
+                numbers[i].remove();
+            }
         }
 
         // Mettre à jour les chiffres affichés
