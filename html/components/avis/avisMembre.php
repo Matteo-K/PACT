@@ -178,8 +178,11 @@ foreach ($avis as $a) {
 <script>
     function likeAndDislike(checkbox, action) {
         const container = document.getElementById(checkbox.id);
-        const likeCheckbox = container.querySelector('.likes');
-        const dislikeCheckbox = container.querySelector('.dislikes');
+        const likeId = "like_" + checkbox.id.split("_")[1];
+        const dislikeId = "dislike_" + checkbox.id.split("_")[1];
+
+        const likeCheckbox = document.getElementById(likeId);
+        const dislikeCheckbox = document.getElementById(dislikeId);
 
         if (action === 'like') {
             if (checkbox.checked) {
