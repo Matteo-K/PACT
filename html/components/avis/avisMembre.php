@@ -276,6 +276,8 @@ foreach ($avis as $a) {
                 numbers[i].remove();
             }
         }
+    
+        numbers = document.querySelectorAll(selector + " .number");
 
         // Mettre à jour les chiffres affichés
         numbers.forEach((el, index) => {
