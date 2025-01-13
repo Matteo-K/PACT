@@ -176,6 +176,7 @@ foreach ($avis as $a) {
 }
 ?>
 <script>
+    console.log(document.querySelectorAll('.container'));
     // Fonction pour envoyer les données de like/dislike au serveur
     document.querySelectorAll('.container').forEach(evaluation => {
         const likeCheckbox = evaluation.querySelector('.likes');
@@ -187,12 +188,14 @@ foreach ($avis as $a) {
 
             // Ajouter un événement pour le bouton "like"
             likeCheckbox.addEventListener("change", function() {
+                console.log("hey patati patata ");
                 if (likeCheckbox.checked) {
-                    console.log("hey patati patata ")
+                    console.log("hey patati patata ");
                     if (dislikeCheckbox.checked) {
                         updateCount('undislike', id); // Annuler "dislike"
                     }
                     dislikeCheckbox.checked = false;
+                    console.log("hey patati patata ");
                     updateCount('like', id); // Envoie l'action "like" pour la mise à jour
                 } else {
                     updateCount('unlike', id); // Envoie l'action "unlike" pour la mise à jour
