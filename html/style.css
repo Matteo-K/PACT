@@ -5039,15 +5039,15 @@ main[id="mainConnexion"] {
   margin-top: 0;
 }
 
-a[id="lienMotDePasseOublie"] {
+/* a[id="lienMotDePasseOublie"] {
   color: white;
   font-size: 25px;
   margin: 30px 0;
-}
+} */
 
-a[id="lienMotDePasseOublie"]:hover {
+/* a[id="lienMotDePasseOublie"]:hover {
   color: #edae14;
-}
+} */
 
 .connexion-compte a {
   text-decoration: underline;
@@ -5082,7 +5082,7 @@ h1[id="pasDeCompteTitre"] {
   padding: 15px;
   margin: auto;
   width: 500px;
-  height: auto;
+  height: 330px;
   background-color: var(--bloc);
   color: white;
 }
@@ -5178,6 +5178,10 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
     max-width: 280px;
     width: 230px;
   }
+
+  input[id="boutonLienPro"] {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -5222,13 +5226,13 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
     margin: 10px 0;
   }
 
-  a[id="boutonLienMembre"], p[id="legendeBoutonLienMembre"] {
+  input[id="boutonLienMembre"], p[id="legendeBoutonLienMembre"] {
     display: block;
     max-width: 350px;
     margin-top: 20px;
   }
 
-  a[id="boutonLienPro"],
+  input[id="boutonLienPro"],
   p[id="legendeBoutonLienPro"] {
     display: none;
   }
