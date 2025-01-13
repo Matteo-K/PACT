@@ -15,9 +15,6 @@ if (!$id || !in_array($action, ['like', 'dislike', 'unlike', 'undislike'])) {
 }
 
 try {
-    // Début de la transaction pour garantir l'intégrité des données
-    $conn->beginTransaction();
-
     // Préparer la requête pour récupérer le nombre de likes et de dislikes
     $stmt = $conn->prepare("SELECT nblike, nbdislike FROM pact._commentaire WHERE idc = :id");
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -52,12 +49,10 @@ try {
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
-        // Validation de la transaction
-        $conn->commit();
-
         // Retourner les nouvelles valeurs au format JSON
         echo json_encode([
             'success' => true,
+            'message' => 'Ajout avec succès',
             'nblike' => $nbLike,
             'nbdislike' => $nbDislike
         ]);
@@ -66,8 +61,6 @@ try {
         echo json_encode(['success' => false, 'message' => 'Commentaire introuvable']);
     }
 } catch (PDOException $e) {
-    // Annuler la transaction en cas d'erreur
-    $conn->rollBack();
     echo json_encode(['success' => false, 'message' => 'Erreur de mise à jour: ' . $e->getMessage()]);
 }
 ?>
