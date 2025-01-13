@@ -59,8 +59,10 @@ if ($categorie["_visite"]) {
         <label class="labelTitre" for="visit_guide">Visite Guidée</label>
         <div>
             <input type="radio" id="guidee" name="visit_guidee" value="guidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
+            <span class="checkmark"></span>
             <label for="guidee"> Oui</label>
             <input type="radio" id="pasGuidee" name="visit_guidee" value="pasGuidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
+            <span class="checkmark"></span>
             <label for="pasGuidee"> Non </label>
         </div>
 

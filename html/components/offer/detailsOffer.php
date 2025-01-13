@@ -128,9 +128,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <section id="sectionTag">
                     <!-- Les tags ajoutés apparaîtront ici -->
                 </section>
-                <p>
+                <label class="labelSousTitre">
                     Vous pouvez entrer jusqu'à 6 tags
-                </p>
+                </label>
             </div>
             <div id="blcImg">
                 <div id="insereImg">

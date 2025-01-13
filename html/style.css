@@ -1438,7 +1438,9 @@ header ul + div {
   margin: 15px 0 5px 0;
 }
 
-.labelSousTitre {
+.labelSousTitre,
+#manageOffer input + span + label,
+#manageOffer input + label {
   display: inline-block;
   font-size: 1.2rem;
 }
@@ -2127,7 +2129,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-#filtre .checkmark {
+.checkmark {
   width: 30px;
   height: 30px;
   margin: 0 8px 0 4px;
@@ -2139,12 +2141,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#filtre [type="checkbox"]:checked + .checkmark {
+[type="checkbox"]:checked + .checkmark {
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(28, 164, 237, 0.6);
 }
 
-#filtre [type="checkbox"]:checked + .checkmark::after {
+[type="checkbox"]:checked + .checkmark::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -2157,7 +2159,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transform: translate(-50%, -50%) scale(1.2);
 }
 
-#filtre .checkmark:hover {
+.checkmark:hover {
   transform: scale(1.1);
 }
 
