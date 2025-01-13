@@ -1473,7 +1473,6 @@ header ul + div {
 #detailsOffer img {
   margin: 5px;
   overflow: hidden;
-  cursor: pointer;
   border-radius: 3px;
   position: static;
   width: 150px;
@@ -1522,6 +1521,23 @@ header ul + div {
 
 #afficheImages {
   width: 140%;
+}
+
+#afficheImages div {
+  position: relative;
+  background-color: #fff;
+}
+
+#afficheImages img + img {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+
+#afficheImages div:hover img + img {
+  display: block !important;
 }
 
 label[for="ajoutPhoto"],
