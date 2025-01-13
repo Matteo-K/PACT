@@ -4813,9 +4813,7 @@ div[id="messageErreur"] {
 /*++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte membre, Antoine */
 /*++++++++++++++++++++++++++++++++++++++++++++*/
-.creation-compte div.ligne1 > label,
-div.ligne1_1 > label,
-div.ligne6 > label {
+.creation-compte div.ligne1 > label, div.ligne1_1 > label, div.ligne6 > label {
   display: inline-block;
   width: 408px;
 }
@@ -5056,8 +5054,7 @@ a[id="lienMotDePasseOublie"]:hover {
   margin-top: 30px;
 }
 
-h1[id="connexionTitre"],
-h1[id="changerMDPTitre"] {
+h1[id="connexionTitre"], h1[id="changerMDPTitre"] {
   text-align: center;
   margin: 30px 10px;
   color: var(--bloc);
@@ -5126,47 +5123,34 @@ div.ligne1 > label {
   font-size: 20px;
 }
 
-input[id="login"] {
+input[id="login"], input[id="motdepasseConnexion"], [id="ancienMDP"], input[id="nouveauMDP"], input[id="confirmerNouveauMDP"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
 }
 
-input[id="motdepasseConnexion"],
-[id="ancienMDP"],
-input[id="nouveauMDP"],
-input[id="confirmerNouveauMDP"] {
-  width: 403px;
-  height: 40px;
-  margin: 0 5px;
-  margin-top: 30px;
-  border: 3px solid var(--accent);
-}
-
-button[id="boutonConnexion"],
-button[id="boutonChangerMDP"] {
+button[id="boutonConnexion"], button[id="boutonChangerMDP"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
-  border-radius: 15px;
+  border-radius: 10px;
   border: none;
-  box-shadow: inset -4px -4px 4px var(--accent-border);
+  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
   margin: 5px auto;
   margin-top: 30px;
   background-color: var(--accent);
   cursor: pointer;
 }
 
-input[id="boutonLienMembre"],
-input[id="boutonLienPro"] {
+input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   width: 300px;
   padding: 15px 10px;
   font-size: 20px;
-  border-radius: 15px;
+  border-radius: 10px;
   border: none;
-  box-shadow: inset -4px -4px 4px var(--accent-border);
+  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
   margin: 5px auto;
   margin-top: 30px;
   color: var(--text-dark);
@@ -5175,8 +5159,7 @@ input[id="boutonLienPro"] {
   cursor: pointer;
 }
 
-p[id="legendeBoutonLienMembre"],
-p[id="legendeBoutonLienPro"] {
+p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
   font-size: 20px;
   color: var(--bloc);
   width: 520px;
@@ -5233,8 +5216,7 @@ p[id="legendeBoutonLienPro"] {
     margin: 10px 0;
   }
 
-  a[id="boutonLienMembre"],
-  p[id="legendeBoutonLienMembre"] {
+  a[id="boutonLienMembre"], p[id="legendeBoutonLienMembre"] {
     display: block;
     max-width: 350px;
     margin-top: 20px;
