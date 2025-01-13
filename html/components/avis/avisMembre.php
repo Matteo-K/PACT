@@ -221,7 +221,7 @@ foreach ($avis as $a) {
                 },
                 body: JSON.stringify({
                     action: action,
-                    id: id.split(_)[1]
+                    id: id.split("_")[1]
                 })
             })
             .then(response => {
