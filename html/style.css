@@ -2133,7 +2133,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: 30px;
   height: 30px;
   margin: 0 8px 0 4px;
-  border-radius: 10%;
   border: solid 2px #1ca4ed;
   background-color: white;
   display: inline-block;
@@ -2142,11 +2141,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 [type="checkbox"]:checked + .checkmark {
+  border-radius: 10%;
+}
+
+[type="radio"]:checked + .checkmark {
+  border-radius: 50%;
+}
+
+[type="checkbox"]:checked + .checkmark,
+[type="radio"]:checked + .checkmark {
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(28, 164, 237, 0.6);
 }
 
-[type="checkbox"]:checked + .checkmark::after {
+[type="checkbox"]:checked + .checkmark::after,
+[type="radio"]:checked + .checkmark::after {
   content: "";
   position: absolute;
   top: 50%;
