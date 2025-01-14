@@ -56,33 +56,37 @@ if ($categorie["_visite"]) {
     <!-- Visite guidée ou non  -->
     <div>
         <!-- Par défaut la visite est guidée-->
-        <label for="visit_guide">Visite Guidée</label>
-        <input type="radio" id="guidee" name="visit_guidee" value="guidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
-        <label for="guidee"> Oui</label>
-        <input type="radio" id="pasGuidee" name="visit_guidee" value="pasGuidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
-        <label for="pasGuidee"> Non </label>
+        <label class="labelTitre" for="visit_guide">Visite Guidée</label>
+        <div>
+            <input type="radio" id="guidee" name="visit_guidee" value="guidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
+            <span class="checkmark"></span>
+            <label for="guidee"> Oui</label>
+            <input type="radio" id="pasGuidee" name="visit_guidee" value="pasGuidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
+            <span class="checkmark"></span>
+            <label for="pasGuidee"> Non </label>
+        </div>
 
-        <label for="visit_duree">Durée :</label> <!-- Label durée -->
+        <label class="labelTitre" for="visit_duree">Durée :</label> <!-- Label durée -->
 
         <input type="number" id="visit_duree" name="visit_duree" min="0" placeholder="0" value="<?= $visite["duree"]; ?>"/>
         <label for="visit_duree">h</label>
     </div>
 
-    <!-- Gestion de l'accessibilité (handicap) depuis la BDD -->
+    <!-- Accessibilité -->
     <div>
+        <label class="labelTitre" for="visit_access">Accessibilité(s) : </label>
         <select name="visit_access" id="visit_access">
-            <option value="defaultAccessVisit" selected>-- Sélectionner un handicap --</option>
-            <?php foreach ($accessibilite as $key => $value) { ?>
-                <option value="<?php echo $value ?>"><?php echo $value ?></option>
+            <option value="defaultPrestaVisit">-- Sélectionner un handicap --</option>
+            <?php foreach ($accessibilite as $value) { ?>
+                <option value="<?= $value ?>"><?= $value ?></option>
             <?php } ?>
         </select>
-        <!-- Zone d'handicap -->
-        <div id="zoneHandicap">
+        <div id="visit_Zoneaccess">
         </div>
     </div>
 
     <!-- Gestion du prix minimum pour une visite -->
-    <label for="visit_minPrix">Prix minimum</label>
+    <label class="labelTitre" for="visit_minPrix">Prix minimum</label>
     <div>
         <input type="number" id="visit_minPrix" name="visit_minPrix" min="0" placeholder="0" value="<?= $visite["prixminimal"] ?>">
         <label for="visit_minPrix">€</label>
@@ -90,8 +94,10 @@ if ($categorie["_visite"]) {
 
     <!-- Partie pour la gestion des langues proposer par la visite -->
     <div>
-        <label>Langues proposée(s) :</label>
-        <label>Sélectionner les langue(s) proposée(s) par votre visite."</label>
+        <div>
+            <label class="labelTitre">Langues proposée(s) :</label>
+            <label class="labelSousTitre">Sélectionner les langue(s) proposée(s) par votre visite.</label>
+        </div>
 
         <!-- Proposition des langues disponible à partir de la BDD -->
         <select name="visit_langue" id="visit_langue">
