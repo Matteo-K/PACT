@@ -70,7 +70,7 @@ foreach ($avis as $a) {
                         ?>
                         <p><?= $a['note'] ?> / 5</p>
                     </div>
-                    <img src="./img/icone/trois-points.png" alt="icone de parametre" class="openPopup" />
+                    <img src="./img/icone/trois-points.png" alt="Signalement de l'avis" title="Signaler l'avis" class="signalerAvis" />
                 </div>
             </article>
             <article>
@@ -191,7 +191,7 @@ foreach ($avis as $a) {
                                 echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
                             }
                             ?>
-                            <img src="./img/icone/trois-points.png" alt="icone de parametre">
+                            <img src="./img/icone/trois-points.png" alt="Signalement de la réponse" title="Signaler la réponse" class="signalerAvis">
                         </div>
 
                     </div>
