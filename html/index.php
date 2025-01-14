@@ -127,10 +127,10 @@ require_once "config.php";
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         const swiperWrapper = document.querySelector('.swiper-wrapper');
-            
+
         // Récupérer tous les formulaires à l'intérieur du swiper-wrapper
         const forms = swiperWrapper.querySelectorAll('form');
-            
+
         // Pour chaque formulaire, créer une div avec la classe 'swiper-slide' et y insérer le formulaire
         forms.forEach(form => {
           const swiperSlide = document.createElement('div');  // Créer une div
@@ -148,9 +148,9 @@ require_once "config.php";
           loop: true,
           slidesPerView: 1,
           spaceBetween: 10,
-          autoplay: {
-            delay: 3000,
-          },
+          // autoplay: {
+          //   delay: 3000,
+          // },
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -161,7 +161,7 @@ require_once "config.php";
           },
         });
       });
-      
+
     </script>
 </body>
 </html>
