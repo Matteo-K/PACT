@@ -233,6 +233,8 @@ $stmt = $conn->prepare("SELECT a.*,
     r.idc_reponse,
     r.denomination AS reponse_denomination,
     r.contenureponse,
+    r.nblikepro,
+    r.nbdislikepro,
     r.reponsedate,
     r.idpro
 FROM 
