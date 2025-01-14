@@ -392,9 +392,16 @@ header > div > a > div {
   height: 2em;
   width: 10em;
   background-color: var(--accent);
+  border: solid 2px var(--accent);
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+
+#btnConn:hover {
+  background-color: white;
+  border: solid 2px var(--accent);
+  color: black;
 }
 
 #profileMenu {
