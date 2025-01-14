@@ -1,5 +1,5 @@
 <?php
-require_once "config.php";  
+require_once "config.php"; 
 
 // Fonction pour lister les images dans un dossier
 function listImage($idOffre, $idComment)
@@ -143,9 +143,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("UPDATE pact._avis SET lu = true WHERE idc = ?");
         $stmt->execute([$idAvis]);
 
-    }elseif(isset($_GET['pro']) && $_POST["action"] === "supprimerAvis"){
+    }elseif($_POST["action"] === "supprimerAvis"){
         $idAvis = $_POST['id'] ?? null;
         $idOffre = $_POST['idoffre'];
+
+        $stmt = $conn->prepare("SELECT * FROM pact._avis WHERE idc = $idAvis");
+        $stmt -> execute();
+
+        $stmt = $conn->prepare("DELETE FROM pact._reponse WHERE ref = $idAvis");
+        $stmt -> execute();
+
+        $stmt = $conn->prepare("DELETE FROM pact._avisimage WHERE idc = $idAvis");
+        $stmt -> execute();
+
+        $stmt = $conn->prepare("DELETE FROM pact._avis WHERE idc = $idAvis");
+        $stmt -> execute();
 
         $stmt = $conn->prepare("DELETE FROM pact._commentaire WHERE idc = $idAvis");
         $stmt -> execute();

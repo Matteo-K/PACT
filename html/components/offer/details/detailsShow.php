@@ -46,7 +46,7 @@ if ($categorie["_spectacle"]) {
         <div>
             <label for="show_hrMin" class="labelTitre">Durée du Spectacle</label>
             <div>
-                <input type="number" style="display : none;" id="show_min" name="show_min" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
+                <input type="hidden" id="show_min" name="show_min" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
                 <input type="time" id="show_hrMin" name="show_hrMin" placeholder="0">
             </div>
         </div>
@@ -56,34 +56,13 @@ if ($categorie["_spectacle"]) {
 </section>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const minutesInput = document.getElementById("show_min");
-    const hoursInput = document.getElementById("show_hrMin");
+    document.addEventListener("DOMContentLoaded", function () {
+        const minutesInput = document.getElementById("show_min");
+        const hoursInput = document.getElementById("show_hrMin");
+        
+        minutesInput.addEventListener("change", () => minutesToHours(minutesInput, hoursInput));
+        hoursInput.addEventListener("change", () => hoursToMinutes(minutesInput, hoursInput));
 
-    function minutesToHours() {
-        const totalMinutes = parseInt(minutesInput.value) || 0;
-        const hours = Math.floor(totalMinutes / 60);
-        const minutes = totalMinutes % 60;
-
-        hoursInput.value = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-    }
-
-    function hoursToMinutes() {
-        const timeParts = hoursInput.value.split(":");
-        const hours = parseInt(timeParts[0]) || 0; // Récupérer les heures
-        const minutes = parseInt(timeParts[1]) || 0; // Si minutes non saisies, elles valent 0
-
-        const totalMinutes = hours * 60 + minutes;
-
-        minutesInput.value = totalMinutes;
-    }
-
-    // Synchroniser les minutes avec les heures
-    minutesInput.addEventListener("change", () => minutesToHours());
-
-    // Synchroniser les heures avec les minutes
-    hoursInput.addEventListener("change", () => hoursToMinutes());
-
-    minutesToHours();
-});
+        minutesToHours(minutesInput, hoursInput);
+    });
 </script>

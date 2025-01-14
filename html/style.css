@@ -1464,7 +1464,7 @@ header ul + div {
 
 .scrollDown {
   position: absolute;
-  top: 40%;
+  top: 35vh;
   right: 2em;
 }
 
@@ -1545,7 +1545,7 @@ header ul + div {
   border-radius: 3px;
   position: static;
   width: 150px;
-  height: 100px;
+  height: 150px;
   object-fit: contain;
 }
 
@@ -1746,6 +1746,12 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: flex-start;  
 }
 
+#park_zoneImg img:not(img + img) {
+  width: 100%;
+  height: 100%;
+  max-height: 250px;
+}
+
 /* ### Spectacle ### */
 #show {
   display: flex;
@@ -1896,7 +1902,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {
-    height: 310px; /* Ajuste la hauteur selon ton besoin */
+    height: 250px; /* Ajuste la hauteur selon ton besoin */
     position: relative;
     margin: auto;
   }
@@ -2476,11 +2482,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transform: scale(1.1);
 }
 
-#note, #prix, #statut, #categorie, #date {
+#note, #prix, #statut, #categorie, #date, #heure {
   padding-inline: 40px;
 }
 
-#note label, #prix label, #statut label, #idCategorie label, #date label {
+#note label, #prix label, #statut label, #idCategorie label, #date label, #heure label {
   font-size: 20px;
 }
 
@@ -2564,13 +2570,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Date */
-#date input {
+#date input, #heure input {
   height: 40px;
   border: solid 2px #1ca4ed;
   background-color: white;
 }
 
-#date div {
+#date div, #heure div{
   margin-bottom: 20px;
 }
 
@@ -2707,11 +2713,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
 
-  #note, #prix, #statut, #categorie, #date {
+  #note, #prix, #statut, #categorie, #date, #heure {
     padding-inline: 20px;
   }
 
-  #note label, #prix label, #statut label, #idCategorie label, #date label {
+  #note label, #prix label, #statut label, #idCategorie label, #date label, #heure label {
     font-size: 16px;
   }
 
@@ -3604,7 +3610,9 @@ section#infoComp div {
   color: var(--bloc);
   font-weight: 600;
 }
-
+.avis{
+  width:100%;
+}
 .messageAvisReponse {
   width: 45%;
 }
