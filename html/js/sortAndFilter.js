@@ -321,7 +321,9 @@ function filtrerParPrix(offers) {
       const prixMaxOffreRestaurant = prixRange[0];
 
       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
-    } else {
+    } 
+    
+    else {
       const prixMinOffreAutres = (offer.prixMinimal || 0);
       return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
     }
@@ -373,104 +375,100 @@ function filtrerParStatutEnLigneHorsLigne(offers) {
   return offers.filter(offer => statutEnLigneHorsLigne.includes(offer.statut));
 }
 
+// Fonction de filtre par heure
 
+// function filtrerParHeure(offers) {
+//   const heureDebut = ;
+//   const heureFin = ;
 
-// function filtrerParPeriode(offers) {
-//   const heureDepart = heureDebut.value ? new Date(`2024-12-05T${heureDebut.value}:00`) : null;
-//   const heureFin = heureFin.value ? new Date(`2024-12-05T${heureFin.value}:00`) : null;
+//   return offers.filter(offer => {
+//     if (offer.categorie === 'Restaurant') {
+//       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
+//       const prixMinOffreRestaurant = prixRange[0];
+//       const prixMaxOffreRestaurant = prixRange[0];
 
-//   if (!heureDepart || !heureFin) {
-//     return offers;
-//   }
-
-//   const offresFiltrees = [];
-
-//   offers.forEach(offer => {
-//     let offreEstVisible = false;
-
-//     if (offer.categorie === 'Restaurant' || offer.categorie === 'Visite' || offer.categorie === 'Parc' || offer.categorie === 'Activite') {
-
-//       const ouverture = new Date(`2024-12-05T${offer.heureOuverture}:00`);
-//       const fermeture = new Date(`2024-12-05T${offer.heureFermeture}:00`);
-
-//       if ((ouverture >= heureDepart && ouverture <= heureFin) || 
-//           (fermeture >= heureDepart && fermeture <= heureFin) || 
-//           (ouverture <= heureDepart && fermeture >= heureFin)) {
-//         offreEstVisible = true;
-//       }
-//     }
-
-//     if (offer.categorie === 'Spectacle') {
-//       const heureOffre = new Date(`2024-12-05T${offer.horaire}:00`);
-
-//       if (heureOffre >= heureDepart && heureOffre <= heureFin) {
-//         offreEstVisible = true;
-//       }
-//     }
-
-//     if (offreEstVisible) {
-//       offresFiltrees.push(offer);
+//       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
+//     } 
+    
+//     else {
+//       const prixMinOffreAutres = (offer.prixMinimal || 0);
+//       return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
 //     }
 //   });
-
-//   return offresFiltrees;
 // }
+
+// Fonction de filtre par date
+
 
 
 
 // Fonction de filtre par période
-function filtrerParPeriode(offers) {
-  const dateDepartValue = new Date(dateDepart.value);
-  const dateFinValue = new Date(dateFin.value);
-  const heureDebutValue = heureDebut.value;
-  const heureFinValue = heureFin.value;
+// function filtrerParPeriode(offers) {
+//   const dateDepartValue = new Date(dateDepart.value);
+//   const dateFinValue = new Date(dateFin.value);
+//   const heureDebutValue = heureDebut.value;
+//   const heureFinValue = heureFin.value;
 
-  // test console
-  // autre: console.log(offers[0].horaireMidi);
-  // autre: console.log(offers[0].horaireSoir);
-  console.log(offers[0].horaire); // spectacle
-  
-  let data = [];
-  offers[0].horaire.forEach(element => {
-    data.push(JSON.parse(element));
-  });
+//   // Spectacle
+//   console.table(data);
+//   console.log(data[0].daterepresentation);
+//   console.log(data[0].heureouverture);
+//   console.log(data[0].heurefermeture);
 
-  console.table(data);
-  console.log(data[0].daterepresentation);
+//   console.table(data);
+//   console.log(data[1].heureouverture);
+//   console.log(data[1].heurefermeture);
 
-  if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
-    return offers;
-  }
+  // Si un des input est invalide, on retourne toutes les offres
+  // if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
+  //   return offers;
+  // }
 
-  return offers.filter(offer => {
-    if (!offer.heureOuverture || !offer.heureFermeture) {
-      return false;
-    }
+  // return offers.filter(offer => {
+  //   let data = [];
 
-    let heureValide = true;
-    if (heureDebutValue && heureFinValue) {
-      const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
-      const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
+  //   offer.horaire.forEach(element => {
+  //     data.push(JSON.parse(element));
+  //   });
 
-      const debutRange = heureDebutH * 60 + heureDebutM;
-      const finRange = heureFinH * 60 + heureFinM;
+  //   if(offer.categorie == "Spectacle") {
 
-      const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
-      const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
+  //   }
 
-      const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
-      const fermetureMinutes = fermetureH * 60 + fermetureM;
+  //   else {
 
-      if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
-        heureValide = true;
-      } else {
-        heureValide = false;
-      }
-    }
+  //   }
 
-    return heureValide;
-  });
-}
+
+  //   if (!offer.heureOuverture || !offer.heureFermeture) {
+  //     return false;
+  //   }
+
+    // let heureValide = true;
+    // if (heureDebutValue && heureFinValue) {
+    //   const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
+    //   const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
+
+    //   const debutRange = heureDebutH * 60 + heureDebutM;
+    //   const finRange = heureFinH * 60 + heureFinM;
+
+    //   const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
+    //   const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
+
+    //   const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
+    //   const fermetureMinutes = fermetureH * 60 + fermetureM;
+
+    //   if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
+    //     heureValide = true;
+    //   } else {
+    //     heureValide = false;
+    //   }
+    // }
+
+    // return heureValide;
+//   });
+// }
+
 
 
 
@@ -612,7 +610,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  array = filtrerParPeriode(array);
+  // array = filtrerParPeriode(array);
 
   if (userType == "pro_public" || userType == "pro_prive") {
     array = filtrerParStatutEnLigneHorsLigne(array);

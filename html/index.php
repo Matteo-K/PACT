@@ -187,14 +187,17 @@
               slidesPerView: 3, // Nombre de slides visibles
               centeredSlides: false, // Définit si la slide actuelle est centrée
               watchOverflow: true, 
-              autoplay: {
-                delay: 5000,
-              },
+              // autoplay: {
+              //   delay: 5000,
+              // },
               navigation: {
                 nextEl: '.swiper-button-next.gb',
                 prevEl: '.swiper-button-prev.gb',
               },
               breakpoints: {
+                1024: {
+                  slidesPerView: 3, // 3 slides visibles pour écran de bureau
+                },
                 // Quand l'écran fait moins de 768px (téléphone)
                 768: {
                   slidesPerView: 1, // 2 slides visibles pour tablette
@@ -232,14 +235,17 @@
                 slidesPerView: 3, // Nombre de slides visibles
                 centeredSlides: false, // Définit si la slide actuelle est centrée
                 watchOverflow: true, 
-                autoplay: {
-                  delay: 5000,
-                },
+                // autoplay: {
+                //   delay: 5000,
+                // },
                 navigation: {
                   nextEl: '.swiper-button-next.gb2',
                   prevEl: '.swiper-button-prev.gb2',
                 },
                 breakpoints: {
+                  1024: {
+                    slidesPerView: 3, // 3 slides visibles pour écran de bureau
+                  },
                   // Quand l'écran fait moins de 768px (téléphone)
                   768: {
                     slidesPerView: 1, // 2 slides visibles pour tablette
@@ -278,20 +284,24 @@
               slidesPerView: 3, // Nombre de slides visibles
               centeredSlides: false, // Définit si la slide actuelle est centrée
               watchOverflow: true, 
-              autoplay: {
-                delay: 5000,
-              },
+              // autoplay: {
+              //   delay: 5000,
+              // },
               navigation: {
                 nextEl: '.swiper-button-next.gb3',
                 prevEl: '.swiper-button-prev.gb3',
               },
                breakpoints: {
+                1024: {
+                  slidesPerView: 3, // 3 slides visibles pour écran de bureau
+                },
                 // Quand l'écran fait moins de 768px (téléphone)
                 768: {
                   slidesPerView: 1, // 2 slides visibles pour tablette
                 },
                 // Quand l'écran fait moins de 480px (téléphone)
                 480: {
+                  spaceBetween : 0,
                   slidesPerView: 1, // 1 slide visible pour téléphone
                 },
               },
@@ -299,7 +309,7 @@
           } catch (error) {
 
           }
-          
+
       });
       
       

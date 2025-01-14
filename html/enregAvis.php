@@ -81,7 +81,7 @@ function is_dir_empty($dir) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_GET['membre'])) {
+    if (isset($_GET['membre']) && $_POST["action"] === "ecrireAvis") {
 
         $note = $_POST['note'] ?? null;
         $dateAvis = $_POST['date'] ?? null;
@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-    } elseif (isset($_GET['pro'])) {
+    } elseif (isset($_GET['pro']) && $_POST["action"] === "ecrireReponse") {
         $contenuReponse = $_POST['reponsePro'] ?? null;
         $idAvis = $_POST['hiddenInputIdAvis'] ?? null;
         $idOffre = $_POST['idoffre'];
@@ -143,6 +143,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("UPDATE pact._avis SET lu = true WHERE idc = ?");
         $stmt->execute([$idAvis]);
 
+    }elseif(isset($_GET['pro']) && $_POST["action"] === "supprimerAvis"){
+        $idAvis = $_POST['id'] ?? null;
+        $idOffre = $_POST['idoffre'];
+
+        $stmt = $conn->prepare("DELETE FROM pact._commentaire WHERE idc = $idAvis");
+        $stmt -> execute();
     }
 
     ?>
@@ -151,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Enregistrer l'avis</title>
     </head>
     <body>
 

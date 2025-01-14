@@ -1892,43 +1892,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Rounded corners for the prev button */
 }
 
-@media (max-width: 768px) {
-  .swiper-container.gb, 
-  .swiper-container.gb2, 
-  .swiper-container.gb3 {
-    height: 310px; /* Ajuste la hauteur selon ton besoin */
-    position: relative;
-    margin: auto;
-  }
 
-  .swiper.gb, 
-  .swiper.gb2,
-  .swiper.gb3{
-    width: 520px;
-    height: 100%;
-    overflow: hidden;
-    margin: auto;
-  }
-
-  .swiper-button-next.gb2,
-  .swiper-button-next.gb3{
-    transform: translateX(-10%);
-    /* Rounded corners for the next button */
-  }
-  
-  .swiper-button-prev.gb2,
-  .swiper-button-prev.gb3 {
-    transform: translateX(10%);
-  
-    /* Rounded corners for the prev button */
-  }
-}
 
 @media (max-width: 480px) {
+  .searchA{
+    zoom: 0.6;
+  }
+
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {
-    height: 310px; /* Ajuste la hauteur selon ton besoin */
+    height: 250px; /* Ajuste la hauteur selon ton besoin */
     position: relative;
     margin: auto;
   }
@@ -1936,7 +1910,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .swiper.gb, 
   .swiper.gb2,
   .swiper.gb3{
-    width: 520px;
+    width: 316px;
     height: 100%;
     overflow: hidden;
     margin: auto;
@@ -2508,11 +2482,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transform: scale(1.1);
 }
 
-#note, #prix, #statut, #categorie, #date {
+#note, #prix, #statut, #categorie, #date, #heure {
   padding-inline: 40px;
 }
 
-#note label, #prix label, #statut label, #idCategorie label, #date label {
+#note label, #prix label, #statut label, #idCategorie label, #date label, #heure label {
   font-size: 20px;
 }
 
@@ -2596,13 +2570,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Date */
-#date input {
+#date input, #heure input {
   height: 40px;
   border: solid 2px #1ca4ed;
   background-color: white;
 }
 
-#date div {
+#date div, #heure div{
   margin-bottom: 20px;
 }
 
@@ -2739,11 +2713,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
 
-  #note, #prix, #statut, #categorie, #date {
+  #note, #prix, #statut, #categorie, #date, #heure {
     padding-inline: 20px;
   }
 
-  #note label, #prix label, #statut label, #idCategorie label, #date label {
+  #note label, #prix label, #statut label, #idCategorie label, #date label, #heure label {
     font-size: 16px;
   }
 
@@ -3636,7 +3610,9 @@ section#infoComp div {
   color: var(--bloc);
   font-weight: 600;
 }
-
+.avis{
+  width:100%;
+}
 .messageAvisReponse {
   width: 45%;
 }
