@@ -24,7 +24,7 @@ function ajoutElement(valeurElement, indiceListElem, input, zoneElement, msgErre
 
   // Ajoute une condition supplémentaires si spécifiés
   let check;
-  if (typeof checkOfferValidity === 'function') {
+  if (typeof checkFunction === 'function') {
     check = checkFunction(...params);
   } else {
     check = true;
