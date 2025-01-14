@@ -1,5 +1,5 @@
 <?php
-require_once "config.php";
+  require_once "config.php";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -10,9 +10,10 @@ require_once "config.php";
   <link rel="icon" href="img/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <title>PACT</title>
+  <script src="js/setColor.js"></script>
 </head>
 <body id="sansScroll">
-  <script src="js/setColor.js"></script>
+  <?php require_once __DIR__."/components/ecranChargement.php"; ?>
   <?php require_once "components/header.php"; ?>
   <main>
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
@@ -159,10 +160,6 @@ require_once "config.php";
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
-          },
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
           },
         });
       });

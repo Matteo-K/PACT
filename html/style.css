@@ -720,6 +720,49 @@ header ul + div {
   }
 }
 
+/* ### Ecran de chargement ### */
+
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#loading-screen div {
+  width: 50vw;
+  height: 40vh;
+  background-color: #007bff;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  #loading-screen div {
+    width: 90vw;
+    height: 80vh;
+  } 
+}
+
 /* ### Offer ### */
 
 /* Gestion de l'offre */
@@ -1723,7 +1766,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Style pour les boutons de navigation */
-.swiper-button-next.kylian, .swiper-button-prev.kylian {
+.swiper-button-next, .swiper-button-prev {
   color: #000;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
@@ -2989,8 +3032,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Navigation Buttons */
-.swiper-button-next,
-.swiper-button-prev {
+.swiper-button-next.kylian,
+.swiper-button-prev.kylian {
   top: 40%;
   background-color: var(--accent60);
   padding: 3em 0.5em;
@@ -3002,13 +3045,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Horizontal positioning */
-.swiper-button-next {
+.swiper-button-next.kylian{
   transform: translateX(120%);
   border-radius: 0 1em 1em 0;
   /* Rounded corners for the next button */
 }
 
-.swiper-button-prev {
+.swiper-button-prev.kylian {
   transform: translateX(-120%);
   border-radius: 1em 0 0 1em;
   /* Rounded corners for the prev button */
@@ -3049,8 +3092,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transform: scale(1.05);
 }
 
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
+.swiper-button-next.kylian:hover,
+.swiper-button-prev.kylian:hover {
   background-color: var(--accent);
 }
 
