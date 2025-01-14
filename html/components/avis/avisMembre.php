@@ -91,7 +91,7 @@ foreach ($avis as $a) {
                     <?php
                     if($a['idu'] == $idUser){
                     ?>
-                        <img onclick="supAvis(<?=$a['idc']?>)" class="signalementSupp" src="./img/icone/bin.png" alt="Poubelle" title="Supprimer son avis" class="supprimerAvis" />
+                        <img onclick="supAvis(<?=$a['idc']?>, <?=$idOffre?>)" class="signalementSupp" src="./img/icone/bin.png" alt="Poubelle" title="Supprimer son avis" class="supprimerAvis" />
                     <?php
                     } else{
                         ?>
@@ -294,7 +294,7 @@ foreach ($avis as $a) {
 }
 ?>
 <script>
-    function supAvis(id){
+    function supAvis(id, idOffre){
         const confirmSupp = confirm("Êtes-vous sûr de vouloir supprimer votre avis ?");
         if (confirmSupp) {
             let form = document.createElement("form");
@@ -315,7 +315,7 @@ foreach ($avis as $a) {
 
             let offre = document.createElement("input");
             offre.type = "hidden";
-            offre.value = $idOffre;
+            offre.value = idOffre;
             offre.name = "idoffre";
             form.appendChild(offre);
 
