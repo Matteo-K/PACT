@@ -156,6 +156,12 @@ textarea:focus {
   outline-color: var(--bloc);
 }
 
+#formPro input:focus,
+#formMember input:focus,
+#formConnexion input:focus {
+  outline-color: none;
+}
+
 /* ##### Components ##### */
 
 /* ### Footer ### */
@@ -1710,16 +1716,16 @@ label[for="rest_ajoutPhotoMenu"] {
 /* popup signalement avis */
 
 
-.avis > .modal h2{
+.avis .modal h2{
   width: 100%;
 }
 
-.avis > .modal input[type="checkbox"] + label{
+.avis .modal input[type="checkbox"] + label{
   width: 100%;
 }
 
 
-.avis > .modal textarea{
+.avis .modal textarea{
   width: 100%;
   resize: none;
   height: 200px;
@@ -1747,6 +1753,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 300px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
+  overflow: hidden;
 }
 
 .swiper-slide {
@@ -3367,7 +3374,7 @@ section#infoComp div {
 
 /** AVIS **/
 
-.avis {
+.avisMembre {
   width: 95%;
   display: flex;
   flex-direction: column;
@@ -3377,7 +3384,7 @@ section#infoComp div {
   margin-bottom: 2em;
 }
 
-.avis > nav {
+.avisMembre > nav {
   display: flex;
   width: 95%;
   flex-direction: row;
@@ -3451,7 +3458,7 @@ section#infoComp div {
   justify-content: center;
 }
 
-.avis > nav > h3 {
+.avisMembre > nav > h3 {
   font-size: 2.5em;
   color: var(--bloc);
   font-weight: 600;
@@ -4477,12 +4484,12 @@ details .nonRepondu {
 
   /** Responsive Avis **/
 
-  .avis > nav > h3 {
+  .avisMembre > nav > h3 {
     font-size: clamp(0.5em, 10vw, 2.5em);
     font-weight: 500;
   }
 
-  .avis > div {
+  .avisMembre > div {
     flex-direction: column;
   }
 
@@ -4739,7 +4746,7 @@ body[id="body_creation_compte"] {
 }
 
 a[id="lienCGU"] {
-  color: white;
+  color: var(--bloc);
   text-decoration: underline;
 }
 
@@ -4748,7 +4755,7 @@ a[id="lienCGU"]:hover {
 }
 
 a[id="lienConnexion"] {
-  color: white;
+  color: var(--bloc);
   text-decoration: underline;
   font-family: "Belanosima", sans-serif;
 }
@@ -4807,8 +4814,9 @@ aside[id="asideRetour"] {
   margin: 30px auto;
   width: 900px;
   height: auto;
-  background-color: var(--bloc);
-  color: white;
+  background-color: white;
+  border: solid 4px var(--primary);
+  color: var(--bloc);
 }
 
 body[id="body_creation_compte"] ::placeholder {
@@ -4907,7 +4915,9 @@ input[id="confirmer"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 input[id="email"],
@@ -4915,21 +4925,27 @@ input[id="adresse"] {
   width: 830px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 input[id="code"] {
   width: 210px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 input[id="ville"] {
   width: 596px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 input[id="radioPublic"],
@@ -4944,7 +4960,9 @@ input[id="siren"] {
   height: 40px;
   margin-right: 0;
   margin-left: 10px;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 .creation-compte input[type="checkbox"] {
@@ -5263,8 +5281,9 @@ h1[id="pasDeCompteTitre"] {
   margin: auto;
   width: 500px;
   height: auto;
-  background-color: var(--bloc);
-  color: white;
+  background-color: white;
+  border: solid 4px var(--primary);
+  color: var(--bloc);
 }
 
 .connexion-compte ::placeholder {
@@ -5310,7 +5329,9 @@ input[id="login"], input[id="motdepasseConnexion"], [id="ancienMDP"], input[id="
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 button[id="boutonConnexion"], button[id="boutonChangerMDP"] {

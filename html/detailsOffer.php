@@ -233,9 +233,9 @@ $stmt = $conn->prepare("SELECT a.*,
     r.idc_reponse,
     r.denomination AS reponse_denomination,
     r.contenureponse,
-    r.nblikepro as likeReponse,
-    r.nbdislikepro as dislikeReponse,
-    r.reponsedate 
+    r.nblikepro as likereponse,
+    r.nbdislikepro as dislikereponse,
+    r.reponsedate,
     r.idpro
 FROM 
     pact.avis a
@@ -250,6 +250,8 @@ ORDER BY
 ");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+print_r($avis);
 ?>
 
 <!DOCTYPE html>
@@ -916,14 +918,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                 </div>
                             </div>
+                    <div class="avis">
                         <?php
 
                         }
                     }
+                    
                     if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
                         require_once __DIR__ . "/components/avis/avisPro.php";
                     } else {
-                        ?> <div class="avis">
+                        ?> <div class="avisMembre">
                             <nav id="tab-container">
                                 <h3 id="tab-avis">Avis</h3>
                                 <h3 id="tab-publiez">Publiez un avis</h3>
@@ -981,6 +985,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php
                     }
                     ?>
+                    </div>
     </main>
     <?php
     require_once "./components/footer.php";
@@ -1346,8 +1351,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         //Script de gestion du pop-up de signalement
         const ouvrePopup = document.getElementById('signalerAvis');
-        const popup = document.querySelector('.avis > .modal');
-        const btnFermer = document.getElementsByClassName('.avis > .modal .close');
+        const popup = document.querySelector('.avis .modal');
+        const btnFermer = document.getElementsByClassName('.avis .modal .close');
         const btnConfirmer = document.getElementById('confirmBtn');
 
         // Afficher le pop-up
