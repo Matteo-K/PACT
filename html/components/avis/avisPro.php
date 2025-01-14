@@ -160,6 +160,7 @@ $avis = $avisTemp;
                 <textarea name="reponsePro" id="reponsePro" placeholder="Entrez votre réponse à propos de cet avis"></textarea>
                 <input type="hidden" name="hiddenInputIdAvis" value="">
                 <input type="hidden" name="idoffre" value="<?=$idOffre?>">
+                <input type="hidden" name="action" value="ecrireReponse">
             </form>
         </div>
         
