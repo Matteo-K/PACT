@@ -1662,6 +1662,31 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 
+
+
+/* popup signalement avis */
+
+
+.avis > .modal h2{
+  width: 100%;
+}
+
+.avis > .modal input[type="checkbox"] + label{
+  width: 100%;
+}
+
+
+.avis > .modal textarea{
+  width: 100%;
+  resize: none;
+  height: 200px;
+  font-size: 16px;
+}
+
+
+/* fin popup signalement avis */
+
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -4187,7 +4212,7 @@ details .nonRepondu {
 
 .container{
   background-color: var(--col-gray);
-  width: 175px;
+  width: 175px !important;
   border: var(--col-black) 2px solid;
   border-radius: 50px;
   display: flex;

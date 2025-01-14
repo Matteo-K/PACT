@@ -166,24 +166,6 @@ $avis = $avisTemp;
     </section>
 </div>
 
-<section class="modal">
-    <section class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Signe allemand d'un avis</h2>
-        <form action="signaleAvis.php">
-            <input type="radio" name="signalement" id="inapproprie">
-            <label for="">Contenu inapproprié (injures, menaces, contenu explicite...)</label>
-            <input type="radio" name="signalement" id="frauduleux">
-            <label for="">Avis frauduleux ou trompeur (faux avis, publicité déguisée...) </label>
-            <input type="radio" name="signalement" id="spam">
-            <label for="">Spam ou contenu hors-sujet (multipostage, indésirable...)</label>
-            <input type="radio" name="signalement" id="violation">
-            <label for="">Violation des règles de la plateforme (données personnelles...)</label>
-            <textarea name="motifSignalement" id="motifSignalement" placeholder="Motif du signelement"></textarea>
-        </form>
-        <button id="confirmBtn">Confirmer</button>
-    </section>
-</section>
 
 
 
@@ -601,36 +583,6 @@ function displayStar(note) {
   }
   return container;
 }
-
-
-// Sélection des éléments
-const ouvrePopup = document.getElementById('signalerAvis');
-const popup = document.getElementsByClassName('modal')[1];
-const btnFermer = document.getElementsByClassName('close')[1];
-const btnConfirmer = document.getElementById('confirmBtn');
-
-// Afficher le pop-up
-ouvrePopup.addEventListener('click', () => {
-    popup.style.display = 'block';
-});
-
-// Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
-btnFermer.addEventListener('click', () => {
-    popup.style.display = 'none';
-});
-
-// Masquer le pop-up après confirmation
-btnConfirmer.addEventListener('click', () => {
-    alert('Confirmation enregistrée.');
-    popup.style.display = 'none';
-});
-
-// Masquer le pop-up si on clique en dehors de son contenu
-window.addEventListener('click', (event) => {
-    if (event.target === popup) {
-        popup.style.display = 'none';
-    }
-});
 
 
 </script>
