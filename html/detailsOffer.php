@@ -1350,18 +1350,21 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
         //Script de gestion du pop-up de signalement
-        const ouvrePopup = document.querySelectorAll('.avis .signalerAvis');
+        let ouvrePopup = document.querySelectorAll('.signalerAvis');
         const popup = document.querySelector('.avis .signalementPopup');
-        const btnFermer = document.querySelector('.avis .signalementPopup .close');
-        const btnConfirmer = document.querySelector('.avis .signalementPopup confirmeSignalement');
+        const btnFermer = document.querySelectorAll('.signalementPopup .close')[0];
+        const btnConfirmer = document.querySelector('.avis .signalementPopup .confirmeSignalement');
+
+        console.log(ouvrePopup);
 
         // Afficher le pop-up
         ouvrePopup.forEach(boutonOuvrePopup => {
             boutonOuvrePopup.addEventListener('click', () => {
+                console.log("popup");
                 popup.style.display = 'block';
+                console.log("popupAffichée");
             });
         });
-        
 
         // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
         btnFermer.addEventListener('click', () => {

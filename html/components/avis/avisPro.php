@@ -121,7 +121,7 @@ $avis = $avisTemp;
                 <h2>
                     Auteur
                 </h2>
-                <img src="./img/icone/trois-points.png" alt="icone de parametre" id="signalerAvis">
+                <img src="./img/icone/trois-points.png" alt="icone de parametre" class="signalerAvis">
             </div>
             <div class="noteEtoile">
                 <?php
@@ -160,6 +160,7 @@ $avis = $avisTemp;
                 <textarea name="reponsePro" id="reponsePro" placeholder="Entrez votre réponse à propos de cet avis"></textarea>
                 <input type="hidden" name="hiddenInputIdAvis" value="">
                 <input type="hidden" name="idoffre" value="<?=$idOffre?>">
+                <input type="hidden" name="action" value="ecrireReponse">
             </form>
         </div>
         
