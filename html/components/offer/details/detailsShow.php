@@ -24,6 +24,7 @@ if ($categorie["_spectacle"]) {
 <section id="show"> 
     <!-- Gestion du nombre de place pour le parc d'attraction -->
     <div id="show_nbPlacePrixMin">
+        <!-- Gestion nombre d'attraction -->
         <div>
             <label class="labelTitre" for="show_nbPlace">Nombre de places : </label> <!-- Label nombre de place -->
             <div>
@@ -41,15 +42,15 @@ if ($categorie["_spectacle"]) {
                 <label for="show_prixMin">€</label>
             </div>
         </div>
+        <!-- Gestion de la durée -->
+        <div>
+            <label for="show_hrMin" class="labelTitre">Durée du Spectacle : </label>
+            <input type="number" style="display : none;" id="show_min" name="show_min" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
+            
+            <input type="time" id="show_hrMin" name="show_hrMin" placeholder="0">
+        </div>
     </div>
 
-    <div>
-    <!-- Gestion de la durée -->
-        <label for="show_hrMin" class="labelTitre">Durée du Spectacle : </label>
-        <input type="number" style="display : none;" id="show_min" name="show_min" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
-        
-        <input type="time" id="show_hrMin" name="show_hrMin" placeholder="0">
-    </div>
 
 </section>
 
