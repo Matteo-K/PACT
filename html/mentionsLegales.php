@@ -27,76 +27,83 @@
             <h2>
               1. Responsable du traitement
             </h2>
-            Equipe A21 The Void
-            <br>
-            Adresse : Rue Edouard Branly 22300 Lannion
-            <br>
-            Email : ewen@jain-etudiants.univ-rennes1.com
-            <br>
-          </section>
-          <section>
-            <h2>
-              2. Finalités du traitement des données
-            </h2>
-            Les données à caractère personnel que nous collectons sont utilisées pour les finalités suivantes :
-            <ul>
-              <li>Fournir les services proposés sur le site (ex : création de compte, gestion des offres, des avis). </li>
-              <li>Améliorer l’expérience utilisateur et assurer la sécurité du site. </li>
-            </ul>
-          </section>
-          <section>
-            <h2>
-              3. Catégories de données collectées
-            </h2>
-            Nous pouvons être amenés à collecter les données suivantes :
-            <ul>
-              <li>Données d'identification : nom, prénom, pseudonyme, adresse e-mail, adresse postale, numéro de téléphone.
-              </li>
-              <li>Pour une entreprise sa dénomination et son numéro de SIREN </li>
-            </ul>
-          </section>
-          <section>
-            <h2>
-              4. Partage des données personnelles
-            </h2>
-            Nous nous engageons à ne pas vendre ou céder vos données à des tiers sans votre consentement explicite,
-            à l'exception des services nécessaire pour la gestion du site.
-          </section>
-          <section>
-            <h2>
-              5. Durée de conservation des données
-            </h2>
-            Nous conservons vos données personnelles pendant la durée nécessaire à l’accomplissement des services de PACT
-            pour lesquelles elles ont été collectées dans le respect des obligations légales.
-          </section>
-          <section>
-            <h2>
-              6. Vos droits
-            </h2>
-            Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :
-            <ul>
-              <li>Droit d'accès : vous pouvez obtenir une copie des données personnelles que nous détenons à votre sujet.
-              </li>
-              <li>Droit de rectification : vous pouvez demander que vos données soient corrigées si elles sont inexactes.
-              </li>
-              <li>Droit à l’effacement : vous pouvez demander la suppression de vos données personnelles, sous certaines
-                conditions. </li>
-              <li>Droit d’opposition : vous pouvez vous opposer à l'utilisation de vos données. </li>
-            </ul>
-            Pour exercer ces droits, vous pouvez nous contacter à l’adresse suivante : ewen@jain-etudiants.univ-rennes1.com.
-          </section>
-          <section>
-            <h2>
-              7. Cookies
-            </h2>
-          </section>
-          <section>
-            <h2>
-              8. Modifications des mentions légales
-            </h2>
-            Nous nous réservons le droit de modifier ces mentions légales à tout moment.
-            Nous vous invitons donc à les consulter régulièrement.
-          </section>
+            <p> Equipe A21 The Void
+              
+              Adresse : Rue Edouard Branly 22300 Lannion
+              <br>
+              Email : ewen@jain-etudiants.univ-rennes1.com
+              <br>
+            </p>
+            </section>
+            <section>
+              <h2>
+                2. Finalités du traitement des données
+              </h2>
+              <p>Les données à caractère personnel que nous collectons sont utilisées pour les finalités suivantes :</p>
+              <ul>
+                <li>Fournir les services proposés sur le site (ex : création de compte, gestion des offres, des avis). </li>
+                <li>Améliorer l’expérience utilisateur et assurer la sécurité du site. </li>
+              </ul>
+            </section>
+            <section>
+              <h2>
+                3. Catégories de données collectées
+              </h2>
+              <p>Nous pouvons être amenés à collecter les données suivantes :</p>
+              <ul>
+                <li>Données d'identification : nom, prénom, pseudonyme, adresse e-mail, adresse postale, numéro de
+                  téléphone.
+                </li>
+                <li>Pour une entreprise sa dénomination et son numéro de SIREN </li>
+              </ul>
+            </section>
+            <section>
+              <h2>
+                4. Partage des données personnelles
+              </h2>
+              <p>Nous nous engageons à ne pas vendre ou céder vos données à des tiers sans votre consentement explicite,
+                à l'exception des services nécessaire pour la gestion du site.</p>
+            </section>
+            <section>
+              <h2>
+                5. Durée de conservation des données
+              </h2>
+              <p>Nous conservons vos données personnelles pendant la durée nécessaire à l’accomplissement des services de
+                PACT
+                pour lesquelles elles ont été collectées dans le respect des obligations légales.</p>
+            </section>
+            <section>
+              <h2>
+                6. Vos droits
+              </h2>
+              <p>Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :</p>
+              <ul>
+                <li>Droit d'accès : vous pouvez obtenir une copie des données personnelles que nous détenons à votre sujet.
+                </li>
+                <li>Droit de rectification : vous pouvez demander que vos données soient corrigées si elles sont inexactes.
+                </li>
+                <li>Droit à l’effacement : vous pouvez demander la suppression de vos données personnelles, sous certaines
+                  conditions. </li>
+                <li>Droit d’opposition : vous pouvez vous opposer à l'utilisation de vos données. </li>
+              </ul>
+              <p> Pour exercer ces droits, vous pouvez nous contacter à l’adresse suivante :</p>
+              ewen@jain-etudiants.univ-rennes1.com.
+            </section>
+            <section>
+              <h2>
+                7. Cookies
+              </h2>
+              <p>Nous utilisons des cookies pour améliorer l’expérience de navigation et analyser l’utilisation de notre
+                site.
+                Vous pouvez gérer vos préférences de cookies via les paramètres de votre navigateur. </p>
+            </section>
+            <section>
+              <h2>
+                8. Modifications des mentions légales
+              </h2>
+              <p> Nous nous réservons le droit de modifier ces mentions légales à tout moment.
+                Nous vous invitons donc à les consulter régulièrement.</p>
+            </section>
         </article>
         <?php break;
 
