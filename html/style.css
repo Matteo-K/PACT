@@ -1753,6 +1753,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 300px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
+  overflow: hidden;
 }
 
 .swiper-slide {

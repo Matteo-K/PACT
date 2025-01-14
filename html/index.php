@@ -154,9 +154,9 @@
           slidesPerView: 3, // Nombre de slides visibles
           centeredSlides: false, // Définit si la slide actuelle est centrée
           watchOverflow: true, 
-          // autoplay: {
-          //   delay: 3000,
-          // },
+          autoplay: {
+            delay: 3000,
+          },
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
