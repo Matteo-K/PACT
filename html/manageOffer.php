@@ -39,6 +39,7 @@
 <body id="manageOffer">
 <script src="js/setColor.js"></script>
 <script src="js/loadImg.js"></script>
+<script src="js/autoCompletion.js"></script>
   <?php require_once "components/header.php" ?>
   <main>
     <aside>
@@ -111,7 +112,6 @@
   </main>
   <?php require_once "components/footer.php"; ?>
 </body>
-<script src="js/script.js"></script>
 <script>
   // FeedBack visuel sauvegarde
 

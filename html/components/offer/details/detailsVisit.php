@@ -56,7 +56,7 @@ if ($categorie["_visite"]) {
     <!-- Visite guidée ou non  -->
     <div>
         <!-- Par défaut la visite est guidée-->
-        <label class="labelTitre" for="visit_guide">Visite Guidée</label>
+        <label class="labelTitre" for="visit_guide">Visite Guidée*</label>
         <div>
             <input type="radio" id="guidee" name="visit_guidee" value="guidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
             <span class="checkmark"></span>
@@ -65,50 +65,48 @@ if ($categorie["_visite"]) {
             <span class="checkmark"></span>
             <label for="pasGuidee"> Non </label>
         </div>
-        <label for="visit_hrMin" class="labelTitre">Durée de la visite</label>
+        <label for="visit_hrMin" class="labelTitre">Durée de la visite*</label>
         <div>
             <input type="hidden" id="visit_min" name="visit_min" placeholder="0" value="<?php echo $visite["duree"] ?>">
             <input type="time" id="visit_hrMin" name="visit_hrMin" placeholder="0">
         </div>
-    </div>
-
-    <!-- Accessibilité -->
-    <div>
-        <label class="labelTitre" for="visit_access">Accessibilité(s) : </label>
-        <select name="visit_access" id="visit_access">
-            <option value="defaultPrestaVisit">-- Sélectionner un handicap --</option>
-            <?php foreach ($accessibilite as $value) { ?>
-                <option value="<?= $value ?>"><?= $value ?></option>
-            <?php } ?>
-        </select>
-        <div id="visit_Zoneaccess">
-        </div>
-    </div>
-
-    <!-- Gestion du prix minimum pour une visite -->
-    <label class="labelTitre" for="visit_minPrix">Prix minimum</label>
-    <div>
-        <input type="number" id="visit_minPrix" name="visit_minPrix" min="0" placeholder="0" value="<?= $visite["prixminimal"] ?>">
-        <label for="visit_minPrix">€</label>
-    </div>
-
-    <!-- Partie pour la gestion des langues proposer par la visite -->
-    <div>
+        <!-- Gestion du prix minimum pour une visite -->
+        <label class="labelTitre" for="visit_minPrix">Prix minimum*</label>
         <div>
-            <label class="labelTitre">Langues proposée(s) :</label>
-            <label class="labelSousTitre">Sélectionner les langue(s) proposée(s) par votre visite.</label>
+            <input type="number" id="visit_minPrix" name="visit_minPrix" min="0" placeholder="0" value="<?= $visite["prixminimal"] ?>">
+            <label for="visit_minPrix">€</label>
+        </div>
+    </div>
+
+    <div>
+        <!-- Accessibilité -->
+        <div>
+            <label class="labelTitre" for="visit_access">Accessibilité(s)</label>
+            <select name="visit_access" id="visit_access">
+                <option value="defaultPrestaVisit">-- Sélectionner un handicap --</option>
+                <?php foreach ($accessibilite as $value) { ?>
+                    <option value="<?= $value ?>"><?= $value ?></option>
+                <?php } ?>
+            </select>
+            <div id="visit_Zoneaccess">
+            </div>
         </div>
 
-        <!-- Proposition des langues disponible à partir de la BDD -->
-        <select name="visit_langue" id="visit_langue">
-            <option value="defaultLangueVisit">-- Sélectionner une langue --</option>
-            <?php foreach ($langue as $key => $value) { ?>
-                <option value="<?php echo $value ?>"><?php echo $value ?></option>
-            <?php } ?>
-        </select>
+        <!-- Partie pour la gestion des langues proposer par la visite -->
+        <div>
+            <div id="visit_inputLangue">
+                <label class="labelTitre" for="visit_langue">Langue(s) proposée(s)<span id="msgLangue" class="msgError"></span></label>
+                <input type="text" id="visit_langue" 
+                name="visit_langue" 
+                placeholder="Entrez & sélectionnez les langue(s) proposée(s) par votre visite">
 
-        <div id="zoneLangue">
+                <ul id="visit_autocompletionLangue"></ul>
+            </div>
+
+            <ul id="visit_zoneLangue">
+            </ul>
         </div>
+    </div>
 </section>
 <script>
     // Durée

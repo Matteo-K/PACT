@@ -142,7 +142,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <div id="inputAutoComplete">
                     <label for="inputTag" class="labelTitre">Tags supplémentaires<span id="msgTag" class="msgError"></span></label>
                     <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
-                    <!--<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
                     <ul id="autocompletion"></ul>
                 </div>
                 <section id="sectionTag">
@@ -268,20 +267,29 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         //Récupération des tags déjà présents sur l'offre puis affichage (semblable a la fonction ajouTag())
         const loadedTags = <?php echo json_encode($loadedTags) ?>;
 
-        /**
-         * Gestion des TAGS
-         */
+        createAutoCompletion(
+            document.getElementById("inputTag"),
+            document.getElementById("autocompletion"),
+            msgTag,
+            listeTags,
+            ajoutElement,
+            document.getElementById("inputTag"), //-- paramètres de la fonction ajoutElement
+            document.getElementById("autocompletion"),
+            msgTag,
+            'tags[]',
+            maxTags,
+            "span",
+            ["tag"]
+        );
 
          // Variables de sélection des éléments
         const sectionTag = document.getElementById("sectionTag");
-        const pTag = document.querySelector("#sectionTag + p");
-        let tags = []; // Tableau pour stocker les tags, comprenant les tags déjà présents
 
         loadedTags.forEach(valeurTag => {
-            ajoutTag(valeurTag);
+            ajoutElement(valeurTag);
         });
 
-        function ajoutTag(valeurTag) {
+        function ajoutElement(valeurTag) {
 
             if (valeurTag && !tags.includes(valeurTag) && tags.length < maxTags) {
 
@@ -307,7 +315,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     tags.splice(tags.indexOf(valeurTag), 1); // Retire le tag du tableau
                     sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
                     sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
-                    pTag.style.color = "black"; // Remet la couleur par défaut si besoin
                 });
 
                 // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel

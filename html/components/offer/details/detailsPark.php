@@ -27,17 +27,17 @@ if ($categorie["_parcattraction"]) {
 <section id="park">
     <div>
         <!-- Gestion de l'âge -->
-        <label class="labelTitre" for="park_ageMin">Age minimum</label>
+        <label class="labelTitre" for="park_ageMin">Age minimum*</label>
         <div>
             <input type="number" id="park_ageMin" name="park_ageMin" min="0"  placeholder="0" value="<?= $parc["agemin"] ?>">
         </div>
         <!--Gestion du nombre d'acttration -->
-        <label class="labelTitre" for="park_nbAttrac">Nombre d'attractions</label>
+        <label class="labelTitre" for="park_nbAttrac">Nombre d'attraction(s)*</label>
         <div>
             <input type="number" id="park_nbAttrac" name="park_nbAttrac" min="0"placeholder="0"  class="nbAttrac" value="<?= $parc["nbattraction"] ?>">
         </div>
         <!-- Gestion du prix minimum -->
-        <label class="labelTitre" for="park_prixMin">Prix Minimum</label>
+        <label class="labelTitre" for="park_prixMin">Prix Minimum*</label>
         <div>
             <input type="number" id="park_prixMin" name="park_prixMin" min="0" placeholder="0" value="<?= $parc["prixminimal"] ?>">
             <label for="park_prixMin">€</label>
@@ -48,7 +48,7 @@ if ($categorie["_parcattraction"]) {
      <div>
          <div id="park_planTitres">
             <div id="insereImg">
-                <label class="labelTitre">Photo du plan* </label>
+                <label class="labelTitre">Photo du plan</label>
                 <label for="park_plan" class="modifierBut">Ajouter</label>
             </div>
             <div id="park_zoneImg"></div>
