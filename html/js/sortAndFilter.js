@@ -426,9 +426,9 @@ function filtrerParPeriode(offers) {
   const heureFinValue = heureFin.value;
 
   // test console
-  console.log(offers[0].horaireMidi);
-  console.log(offers[0].horaireSoir);
-  console.log(offers[0].horaire); // spectacle: 
+  // autre: console.log(offers[0].horaireMidi);
+  // autre: console.log(offers[0].horaireSoir);
+  console.log(offers[0].horaire); // spectacle
 
   let data = [];
   offers[0].horaire.forEach(element => {
@@ -612,7 +612,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  // array = filtrerParPeriode(array);
+  array = filtrerParPeriode(array);
 
   if (userType == "pro_public" || userType == "pro_prive") {
     array = filtrerParStatutEnLigneHorsLigne(array);
