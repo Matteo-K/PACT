@@ -31,6 +31,7 @@ function ajoutElement(valeurElement, input, zoneElement, msgErreur, nomPost, nbM
     elementTag.textContent = valeurElement;
 
     console.log(elementTag);
+    console.log(elementTag.textContent);
 
     //On créé une image pour guider l'utilisateur sur le suppression du tag
     let imgCroix = document.createElement("img");
