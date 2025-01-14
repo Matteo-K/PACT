@@ -1733,6 +1733,13 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: flex-start;
 }
 
+#park div:nth-child(1) div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 5px;
+}
+
 #park_planTitres {
   display: flex;
   flex-flow: column nowrap;

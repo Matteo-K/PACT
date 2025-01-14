@@ -28,10 +28,14 @@ if ($categorie["_parcattraction"]) {
     <div>
         <!-- Gestion de l'âge -->
         <label class="labelTitre" for="park_ageMin">Age minimum</label>
-        <input type="number" id="park_ageMin" name="park_ageMin" min="0"  placeholder="age" value="<?= $parc["agemin"] ?>">
+        <div>
+            <input type="number" id="park_ageMin" name="park_ageMin" min="0"  placeholder="age" value="<?= $parc["agemin"] ?>">
+        </div>
         <!--Gestion du nombre d'acttration -->
         <label class="labelTitre" for="park_nbAttrac">Nombre d'attractions</label>
-        <input type="number" id="park_nbAttrac" name="park_nbAttrac" min="0"placeholder="0"  class="nbAttrac" value="<?= $parc["nbattraction"] ?>">
+        <div>
+            <input type="number" id="park_nbAttrac" name="park_nbAttrac" min="0"placeholder="0"  class="nbAttrac" value="<?= $parc["nbattraction"] ?>">
+        </div>
         <!-- Gestion du prix minimum -->
         <label class="labelTitre" for="park_prixMin">Prix Minimum</label>
         <div>
