@@ -4335,6 +4335,9 @@ details .nonRepondu {
     --header-size2: 0;
   }
 
+  .container{
+    width: 100%;
+  }
   .mainOffer {
     margin-top: 0;
   }
