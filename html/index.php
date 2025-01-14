@@ -51,8 +51,8 @@
       </div>
       <?php 
       }
+      $nbElement = 10;
       if ($typeUser == "membre") {
-        $nbElement = 10;
         $stmt = $conn->prepare("SELECT * FROM pact._consulter WHERE idu = ? ORDER BY dateconsultation LIMIT ?");
         $stmt->execute([$_SESSION['idUser'], $nbElement]);
         $idOffres = [];

@@ -1711,10 +1711,11 @@ label[for="rest_ajoutPhotoMenu"] {
   margin-bottom: 10px;
 }
 
-
 #restaurant input {
   display: none;
 }
+
+/* ### parc d'attraction ### */
 
 #park {
   display: flex;
@@ -1741,8 +1742,20 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: flex-start;  
 }
 
+/* ### Spectacle ### */
+#show {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
 
-
+/* #show > div:nth-child(1) {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+} */
 
 /* popup signalement avis */
 
