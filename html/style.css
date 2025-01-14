@@ -4240,23 +4240,6 @@ details .nonRepondu {
   color: var(--col-like);
 }
 
-.container:has(.alike:checked) {
-  position: relative; /* Nécessaire pour positionner le pseudo-élément */
-  border-radius: 25px; /* Applique l'arrondi aux coins */
-  background-color: white; /* Assurez-vous que l'élément a une couleur de fond */
-  z-index: 1; /* Assure que l'élément principal soit au-dessus */
-}
-
-.container:has(.alike:checked)::before {
-  content: ""; /* Nécessaire pour créer l'élément pseudo */
-  position: absolute; /* Positionne l'élément pseudo de manière absolue */
-  top: 0; left: 0; right: 0; bottom: 0; /* Recouvre toute la surface de la bordure */
-  background: linear-gradient(to right, red 50%, black 50%); /* Divise la bordure en deux couleurs */
-  border-radius: 25px; /* Applique le même rayon d'arrondi que l'élément principal */
-  z-index: -1; /* Positionne le pseudo-élément derrière le contenu */
-  padding: 4px; /* Contrôle l'épaisseur de la bordure simulée */
-}
-
 
 
 .container label input {
