@@ -143,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("UPDATE pact._avis SET lu = true WHERE idc = ?");
         $stmt->execute([$idAvis]);
 
-    }elseif(isset($_GET['membre']) && $_POST["action"] == "supprimerAvis"){
+    }elseif($_POST["action"] === "supprimerAvis"){
         $idAvis = $_POST['id'] ?? null;
         $idOffre = $_POST['idoffre'];
 
