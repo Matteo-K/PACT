@@ -436,6 +436,7 @@ function filtrerParPeriode(offers) {
   });
 
   console.table(data);
+  console.log(data[0].daterepresentation);
 
   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
     return offers;
