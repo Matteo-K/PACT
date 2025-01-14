@@ -3562,7 +3562,7 @@ section#infoComp div {
 .reponseAvis {
   background-color: #fff;
   border-radius: 1em;
-  border: var(--accent) 2px solid;
+  border: var(--primary) 2px solid;
   padding-inline: 1em;
   width: 100%;
 }
