@@ -739,6 +739,7 @@ header ul + div {
 #loading-screen div {
   width: 50vw;
   height: 40vh;
+  background-color: #007bff;
 }
 
 .spinner {
