@@ -1,4 +1,4 @@
-<form class="searchA" action="/detailsOffer.php?&ouvert=<?php echo $restaurantOuvert; ?>" method="post">
+<form class="searchA swiper-slide" action="/detailsOffer.php?&ouvert=<?php echo $restaurantOuvert; ?>" method="post">
     <input type="hidden" name="idoffre" value="<?php echo $idOffre; ?>">
     <div class="carteOffre">
         <?php $alt = !empty($urlImg) ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre"; ?>

@@ -8,15 +8,16 @@ require_once "config.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="img/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <title>PACT</title>
 </head>
-<body>
+<body id="sansScroll">
   <script src="js/setColor.js"></script>
   <?php require_once "components/header.php"; ?>
   <main>
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
-      <div id="ALaUne">
+      <div id="ALaUne" class="swiper-container-une">
         <div>
           <?php 
             $elementStart = 0;
@@ -25,6 +26,11 @@ require_once "config.php";
             $offres->displayCardALaUne($offres->filtre($idUser, $typeUser), $typeUser, $elementStart, $nbElement);
           ?>
         </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <!-- Pagination: Points -->
+        <div class="swiper-pagination"></div>
       </div>
       <?php if ($typeUser == "membre") {
         $nbElement = 10;
@@ -113,6 +119,27 @@ require_once "config.php";
           event.preventDefault();
           form.submit();
         });
+      });
+    </script>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+      var swiper = new Swiper('.swiper-container-une', {
+        loop: true, // Activer la boucle infinie
+        slidesPerView: 1, // Nombre de slides visibles à la fois
+        spaceBetween: 10, // Espace entre les slides
+        autoplay: {
+          delay: 3000, // Délai entre chaque slide (en ms)
+        },
+        navigation: {
+          nextEl: '.swiper-button-next', // Bouton suivant
+          prevEl: '.swiper-button-prev', // Bouton précédent
+        },
+        pagination: {
+          el: '.swiper-pagination', // Élément de pagination
+          clickable: true, // Permet de cliquer sur les points
+        },
       });
     </script>
 </body>
