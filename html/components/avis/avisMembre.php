@@ -45,7 +45,7 @@ function formatDateDiff($date)
     }
 }
 
-usort($avis, function($a, $b) use ($connectedUserId) {
+usort($avis, function($a, $b) use ($idUser) {
     // Si l'ID de l'utilisateur connecté correspond à l'auteur du commentaire, placez-le en premier
     if ($a['idu'] == $idUser) {
         return -1;  // Le commentaire de l'utilisateur connecté vient en premier
