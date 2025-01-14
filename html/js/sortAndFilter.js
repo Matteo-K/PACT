@@ -426,8 +426,8 @@ function filtrerParPeriode(offers) {
   const heureFinValue = heureFin.value;
 
   // test console
-  console.log(offers[0].horaireMidi);
-  console.log(offers[0].horaireSoir);
+  // autre: console.log(offers[0].horaireMidi);
+  // autre: console.log(offers[0].horaireSoir);
   console.log(offers[0].horaire); // spectacle: 
 
   let data = [];
