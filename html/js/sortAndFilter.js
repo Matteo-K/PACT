@@ -426,10 +426,10 @@ function filtrerParPeriode(offers) {
   const heureFinValue = heureFin.value;
 
   // test console
-  console.log(offers[0]);
-  console.log(offers[0].horaireMidi);
-  console.log(offers[0].horaireSoir);
-  console.log(offers[0].horaire);
+  // autre: console.log(offers[0].horaireMidi);
+  // autre: console.log(offers[0].horaireSoir);
+  // spectacle: console.log(offers[0].horaire);
+  console.log(offers[0].horaire.jour);
 
   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
     return offers;
