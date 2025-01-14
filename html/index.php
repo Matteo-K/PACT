@@ -146,7 +146,7 @@
         });
       
         // Initialiser Swiper après avoir enveloppé les formulaires dans des divs
-        const swiper = new Swiper('.swiper-container', {
+        const swiper = new Swiper('.swiper', {
           loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
           speed: 600, // La vitesse de transition entre les slides
           spaceBetween: 10, // L'espace entre les slides
