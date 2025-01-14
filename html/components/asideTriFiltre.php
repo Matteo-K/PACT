@@ -214,11 +214,21 @@
                     <div>
                         <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
                         <input type="date" name="dateDepart" id="dateDepart" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>">
-                        <input type="time" name="heureDebut" id="heureDebut" value="08:00">
                     </div>
                     <div>
                         <label for="dateDepart">Fin&nbsp;:&nbsp;</label>
                         <input type="date" name="dateFin" id="dateFin" value="<?php echo date('Y-m-d', strtotime('+7 day')); ?>" min="<?php echo date('Y-m-d'); ?>">
+                    </div>
+                </div>
+
+                <div id="heure">
+                    <h3>Par date</h3>
+                    <div>
+                        <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
+                        <input type="time" name="heureDebut" id="heureDebut" value="08:00">
+                    </div>
+                    <div>
+                        <label for="dateDepart">Fin&nbsp;:&nbsp;</label>
                         <input type="time" name="heureFin" id="heureFin" value="23:00">
                     </div>
                 </div>
