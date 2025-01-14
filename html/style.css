@@ -4239,10 +4239,19 @@ details .nonRepondu {
 
 .container:has(.adislike:checked) .count.dislikes, .container:has(.adislike:checked) #pipe{
   color: var(--col-dislike);
+  g
 }
 
 .container:has(.alike:checked) .count.likes, .container:has(.alike:checked) #pipe{
   color: var(--col-like);
+}
+
+.container:has(.alike:checked){
+  border-color: linear-gradient(var(--col-like) 52%, black 48%);
+}
+
+.container:has(.adislike:checked){
+  border-color: linear-gradient(black 48%, var(--col-dislike) 52%);
 }
 
 
