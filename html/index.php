@@ -17,7 +17,7 @@ require_once "config.php";
   <main>
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
-      <div id="ALaUne" class="swiper-container-une">
+      <div id="ALaUne" class="swiper-container">
         <div class="swiper-wrapper">
           <?php 
             $elementStart = 0;
@@ -126,7 +126,7 @@ require_once "config.php";
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        var swiper = new Swiper('.swiper-container-une', {
+        var swiper = new Swiper('.swiper-container', {
           loop: true, // Activer la boucle infinie
           slidesPerView: 1, // Nombre de slides visibles à la fois
           spaceBetween: 10, // Espace entre les slides
