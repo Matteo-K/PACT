@@ -975,7 +975,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <input type="radio" name="signalement" id="violation">
                                         <label for="">Violation des règles de la plateforme (données personnelles...)</label>
                                         <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
-                                        <input type="submit" value="confirmeSignelement" id="confirmieSignalement">
+                                        <input type="submit" value="confirmeSignelement" id="confirmeSignalement">
                                     </form>
                                 </section>
                             </section>
@@ -1353,7 +1353,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         const ouvrePopup = document.getElementsByClassName('signalerAvis');
         const popup = document.querySelector('.avis .signalementPopup');
         const btnFermer = document.querySelector('.avis .signalementPopup .close');
-        const btnConfirmer = document.querySelector('.avis .signalementPopup confirmieSignalement');
+        const btnConfirmer = document.querySelector('.avis .signalementPopup confirmeSignalement');
 
         // Afficher le pop-up
         ouvrePopup.forEach(boutonOuvrePopup => {
