@@ -91,11 +91,11 @@ foreach ($avis as $a) {
                     <?php
                     if($a['idu'] == $idUser){
                     ?>
-                        <img src="./img/icone/bin.png" alt="Poubelle" title="Supprimer son avis" class="supprimerAvis" />
+                        <img class="signalementSupp" src="./img/icone/bin.png" alt="Poubelle" title="Supprimer son avis" class="supprimerAvis" />
                     <?php
                     } else{
                         ?>
-                        <img src="./img/icone/signalement.png" alt="Signalement" title="signaler un avis" class="signalerAvis" />
+                        <img class="signalementSupp" src="./img/icone/signalement.png" alt="Signalement" title="signaler un avis" class="signalerAvis" />
                         <?php
                     }
                     ?>
@@ -219,7 +219,7 @@ foreach ($avis as $a) {
                                 echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
                             }
                             ?>
-                            <img src="./img/icone/trois-points.png" alt="Signalement de la réponse" title="Signaler la réponse" class="signalerAvis">
+                            <img class="signalementSupp" src="./img/icone/signalement.png" alt="Signalement" title="signaler un avis" class="signalerAvis" />
                         </div>
 
                     </div>

@@ -67,9 +67,9 @@
       ?>
       <div id="consultationRecente">
         <h2>Consulté récemment</h2>
-        <div class="swiper-container gb">
+        <div class="swiper-container gb2">
           <div class="swiper gb2">
-            <div class="swiper-wrapper gb">
+            <div class="swiper-wrapper gb2">
               <?php if (count($idOffres) > 0) {
                 $consultRecent = new ArrayOffer($idOffres);
                 $consultRecent->displayConsulteRecemment($nbElement);
@@ -79,8 +79,8 @@
                 <?php } ?>
             </div>
           </div>
-          <div class="swiper-button-next gb"></div>
-          <div class="swiper-button-prev gb"></div>
+          <div class="swiper-button-next gb2"></div>
+          <div class="swiper-button-prev gb2"></div>
         </div>
       </div>
       <?php
@@ -157,17 +157,30 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const swiperWrapper = document.querySelector('.swiper-wrapper');
+      try {
+        document.addEventListener('DOMContentLoaded', function () {
+        const swiperWrapper = document.querySelector('.swiper-wrapper.gb');
+        const swiperWrapper2 = document.querySelector('.swiper-wrapper.gb2');
 
         // Récupérer tous les formulaires à l'intérieur du swiper-wrapper
         const forms = swiperWrapper.querySelectorAll('form');
-
+        const forms2 = swiperWrapper2.querySelectorAll('form');
         // Pour chaque formulaire, créer une div avec la classe 'swiper-slide' et y insérer le formulaire
         forms.forEach(form => {
           const swiperSlide = document.createElement('div');  // Créer une div
           swiperSlide.classList.add('swiper-slide');
           swiperSlide.classList.add('gb');  // Ajouter la classe 'swiper-slide'
+        
+          // Déplacer le formulaire dans la nouvelle div
+          swiperSlide.appendChild(form);
+        
+          // Ajouter la div contenant le formulaire dans le swiper-wrapper
+          swiperWrapper.appendChild(swiperSlide);
+        });
+        forms2.forEach(form => {
+          const swiperSlide = document.createElement('div');  // Créer une div
+          swiperSlide.classList.add('swiper-slide');
+          swiperSlide.classList.add('gb2');  // Ajouter la classe 'swiper-slide'
         
           // Déplacer le formulaire dans la nouvelle div
           swiperSlide.appendChild(form);
@@ -189,8 +202,8 @@
           //   delay: 3000,
           // },
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.swiper-button-next.gb',
+            prevEl: '.swiper-button-prev.gb',
           },
         });
         const swiper2 = new Swiper('.swiper.gb2', {
@@ -205,12 +218,16 @@
           //   delay: 3000,
           // },
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.swiper-button-next.gb2',
+            prevEl: '.swiper-button-prev.gb2',
           },
         });
       });
 
+      } catch (error) {
+        console.log(error)
+      }
+      
     </script>
 </body>
 </html>

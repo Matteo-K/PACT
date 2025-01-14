@@ -1754,9 +1754,9 @@ label[for="rest_ajoutPhotoMenu"] {
 #show {
   display: flex;
   flex-flow: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  margin-inline: 20%;
+  margin-inline: 28%;
 }
 
 #show_nbPlacePrixMin {
@@ -1764,6 +1764,7 @@ label[for="rest_ajoutPhotoMenu"] {
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-evenly;
+  width: 100%;
 }
 
 /* popup signalement avis */
@@ -1801,13 +1802,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   overflow-x: hidden;
 }
 
-.swiper-container.gb {
+.swiper-container.gb, .swiper-container.gb2 {
   height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
 }
 
-.swiper.gb .swiper.gb2{
+.swiper.gb, .swiper.gb2{
   width: 1610px;
   height: 100%;
   overflow: hidden;
@@ -1826,13 +1827,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color: var(--background);
   color: #1Ca4ed;
 }
+.swiper-slide.gb2 {
+  width: fit-content !important;
+  background-color: var(--background);
+  color: #1Ca4ed;
+}
 
 .searchA {
   width: 100%;
 }
 
 /* Style pour les boutons de navigation */
-.swiper-button-next.gb, .swiper-button-prev.gb {
+.swiper-button-next.gb, .swiper-button-prev.gb, .swiper-button-next.gb2, .swiper-button-prev.gb2 {
   position: absolute;
   top: var(--swiper-navigation-top-offset, 50%);
   width: calc(var(--swiper-navigation-size)/ 44 * 27);
@@ -1846,22 +1852,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   color: var(--swiper-navigation-color, var(--swiper-theme-color));
 }
 
-.swiper-button-next.gb{
+.swiper-button-next.gb, .swiper-button-next.gb2{
   transform: translateX(150%);
   /* Rounded corners for the next button */
 }
 
-.swiper-button-prev.gb {
+.swiper-button-prev.gb, .swiper-button-prev.gb2 {
   transform: translateX(-150%);
 
   /* Rounded corners for the prev button */
 }
-
-/* Style pour la pagination */
-.swiper-pagination-bullet {
-  background-color: #000;
-}
-
 
 
 .sectionLoca {
@@ -3569,6 +3569,13 @@ section#infoComp div {
   width: 2.2em;
   height: 2.2em;
   border-radius: 50%;
+  object-fit: cover;
+}
+
+.user > div img.signalementSupp {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0%;
   object-fit: cover;
 }
 
