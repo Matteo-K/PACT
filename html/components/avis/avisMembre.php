@@ -51,9 +51,6 @@ foreach ($avis as $a) {
     
     $likeIdPro = 'like_' . $a['idc_reponse'];
     $dislikeIdPro = 'dislike_' . $a['idc_reponse'];
-
-    print_r($likeIdPro);
-    print_r($dislikeIdPro);
 ?>
     <div class="messageAvisReponse">
         <div class="messageAvis">
@@ -214,7 +211,6 @@ foreach ($avis as $a) {
                         <div class="count likes">
                             <?php
                             $nbLikePro = (string)$a["likereponse"];
-                            print_r($nbLikePro);
                             for ($i = 0; $i < nbChiffreNombre($a["likereponse"]); $i++) {
                             ?>
                                 <div class="number" style="transform: var(--nb<?= $nbLikePro[$i] ?>);">
@@ -237,7 +233,6 @@ foreach ($avis as $a) {
                         <div class="count dislikes">
                             <?php
                             $nbDislikePro = (string)$a["dislikereponse"];
-                            print_r($nbDislikePro);
                             for ($i = 0; $i < strlen($nbDislikePro); $i++) {
                             ?>
                                 <div class="number" style="transform: var(--nb<?= $nbDislikePro[$i] ?>);">
