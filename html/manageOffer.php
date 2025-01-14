@@ -85,7 +85,7 @@
       // Précédent
       if ($step > 2) {
         ?>
-        <button type="submit" onclick="submitForm(event,<?php echo $step-1?>)" class="blueBtnOffer precedent">Précédent</button>
+        <button type="submit" onclick="submitForm(event,<?php echo $step-1?>)" class="modifierBut precedent">Précédent</button>
         <?php
       }
       ?>
@@ -93,7 +93,7 @@
       <?php
       if ($step < count($stepManageOffer)) {
         ?>
-        <button type="submit" onclick="submitForm(event,<?php echo $step+1?>)" class="guideSelect suivant">Suivant</button>
+        <button type="submit" onclick="submitForm(event,<?php echo $step+1?>)" class="modifierBut suivant">Suivant</button>
         <?php
       }
       ?>
