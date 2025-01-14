@@ -112,7 +112,7 @@ foreach ($avis as $a) {
                             </div>
                         <?php } ?>
                     </div>
-                    < class="container" id=container_<?= $a['idc'] ?>>
+                    <div class="container" id=container_<?= $a['idc'] ?>>
                         <label for="like_<?= $a['idc'] ?>">
                             <input type="checkbox" name="evaluation" class="checkboxes likes" onchange="likeAndDislike(this, 'like')" id="<?= $likeId ?>" />
                             <svg class="icon like" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -140,9 +140,7 @@ foreach ($avis as $a) {
                             }
                             ?>
                         </div>
-                        <div id="pipe">
-                            |
-                        </div>
+                        <div id="pipe">|</div>
                         <div class="count dislikes">
                             <?php
                             $nbDislike = (string)$a["nbdislike"];
