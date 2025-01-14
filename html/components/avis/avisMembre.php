@@ -45,14 +45,19 @@ function formatDateDiff($date)
     }
 }
 
-usort($avis, function($a, $b) use ($idUser) {
-    // Si l'ID de l'utilisateur connecté correspond à l'auteur du commentaire, placez-le en premier
-    if ($a['idu'] == $idUser) {
-        return -1;  // Le commentaire de l'utilisateur connecté vient en premier
-    } elseif ($b['idu'] == $idUser) {
-        return 1;   // Le commentaire de l'utilisateur connecté vient en premier
+usort($avis, function($a, $b) use ($currentUserId) {
+    // D'abord, comparer si l'utilisateur a écrit l'avis
+    if ($a['idu'] == $currentUserId && $b['idu'] != $currentUserId) {
+        return -1; // $a avant $b (l'avis de l'utilisateur connecté est prioritaire)
+    } elseif ($a['idu'] != $currentUserId && $b['idu'] == $currentUserId) {
+        return 1; // $b avant $a (l'avis de l'utilisateur connecté est prioritaire)
+    } else {
+        // Si les deux avis ont le même auteur ou si aucun des deux n'est de l'utilisateur connecté,
+        // trier par date de publication descendante
+        $dateA = new DateTime($a['datepublie']);
+        $dateB = new DateTime($b['datepublie']);
+        return $dateB <=> $dateA; // Comparaison par date de publication
     }
-    return 0;  // Sinon, ne modifiez pas l'ordre
 });
 
 foreach ($avis as $a) {
