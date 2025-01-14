@@ -4809,6 +4809,7 @@ aside[id="asideRetour"] {
   width: 900px;
   height: auto;
   background-color: white;
+  border: solid 4px var(--primary);
   color: var(--bloc);
 }
 
