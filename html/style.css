@@ -4148,7 +4148,7 @@ details .nonRepondu {
 
 .container{
   background-color: var(--col-gray);
-  width: 175px;
+  width: 175px !important;
   border: var(--col-black) 2px solid;
   border-radius: 50px;
   display: flex;
