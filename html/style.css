@@ -1780,24 +1780,29 @@ label[for="rest_ajoutPhotoMenu"] {
 /* popup signalement avis */
 
 .signalementPopup h2{
+  text-align: center;
   width: 100%;
 }
 
-.signalementPopup input[type="checkbox"] + label{
-  width: 100%;
+.signalementPopup form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-
 
 .signalementPopup textarea{
   width: 100%;
   resize: none;
   height: 200px;
-  font-size: 16px;
+  font-size: 1.1em;
+  max-width: 600px;
 }
 
 .signalementPopup ul {
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .signalementPopup li label{
@@ -1808,8 +1813,24 @@ label[for="rest_ajoutPhotoMenu"] {
   margin-bottom: 10px;
 }
 
-.signalementPopup input {
+.signalementPopup input[type="radio"] {
   display: none;
+}
+
+#confirmeSignalement{
+  font-size: 25px;
+  border-radius: 10px;
+  height: 2em;
+  width: 7em;
+  background-color: var(--accent);
+  border: solid 2px var(--accent);
+  text-align: center;
+  margin: 20px 30% 0;
+}
+
+#confirmeSignalement{
+  background-color: white;
+  border: solid 2px var(--accent);
 }
 
 
