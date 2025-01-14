@@ -1774,7 +1774,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .swiper-slide.gb {
   width: fit-content !important;
-  background-color: var(--background);
   color: #1Ca4ed;
 }
 
@@ -1790,13 +1789,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .swiper-button-next.gb{
-  transform: translateX(120%);
+  transform: translateX(150%);
   border-radius: 0 1em 1em 0;
   /* Rounded corners for the next button */
 }
 
 .swiper-button-prev.gb {
-  transform: translateX(-120%);
+  transform: translateX(-150%);
   border-radius: 1em 0 0 1em;
   /* Rounded corners for the prev button */
 }
