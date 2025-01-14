@@ -45,9 +45,10 @@ if ($categorie["_spectacle"]) {
         <!-- Gestion de la durée -->
         <div>
             <label for="show_hrMin" class="labelTitre">Durée du Spectacle : </label>
-            <input type="number" style="display : none;" id="show_min" name="show_min" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
-            
-            <input type="time" id="show_hrMin" name="show_hrMin" placeholder="0">
+            <div>
+                <input type="number" style="display : none;" id="show_min" name="show_min" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
+                <input type="time" id="show_hrMin" name="show_hrMin" placeholder="0">
+            </div>
         </div>
     </div>
 
