@@ -50,7 +50,7 @@ if ($categorie["_activite"]) {
 
     <!-- Gestion des prestations proposée dans l'activité -->
     <div>
-        <label class="labelTitre" for="actv_presta">Préstation(s) : </label>
+        <label class="labelTitre" for="actv_presta">Préstation(s)</label>
         <select name="actv_presta" id="actv_presta">
             <option value="defaultPrestaActv">-- Sélectionner une prestation --</option>
             <?php foreach ($prestation as $value) { ?>
@@ -86,21 +86,21 @@ if ($categorie["_activite"]) {
     <div>
         <div>
             <!-- Zone pour l'age minimum pour l'activité -->
-            <label class="labelTitre" for="actv_ageMin">Age</label>
+            <label class="labelTitre" for="actv_ageMin">Age*</label>
             <div>
                 <input type="number" id="actv_ageMin" name="actv_ageMin" min="0" placeholder="0" value="<?= $activite["agemin"] ?>"/>
                 <label for="actv_ageMin"> ans </label>
             </div>
         
             <!-- Prix -->
-            <label class="labelTitre" for="actv_prixMin">Prix minimum</label>
+            <label class="labelTitre" for="actv_prixMin">Prix minimum*</label>
             <div>
                 <input type="number" id="actv_prixMin" name="actv_prixMin" min="0" placeholder="0" value="<?= $activite["agemin"]; ?>">
                 <label for="actv_prixMin">€</label>
             </div>
 
             <!-- Gestion de la durée -->
-            <label for="actv_hrMin" class="labelTitre">Durée de l'activité</label>
+            <label for="actv_hrMin" class="labelTitre">Durée de l'activité*</label>
             <div>
                 <input type="number" style="display : none;" id="actv_min" name="actv_min" placeholder="0" value="<?php echo $activite["duree"] ?>">
                 <input type="time" id="actv_hrMin" name="actv_hrMin" placeholder="0">
@@ -109,7 +109,7 @@ if ($categorie["_activite"]) {
 
         <!-- Accessibilité -->
         <div>
-            <label class="labelTitre" for="actv_access">Accessibilité(s) : </label>
+            <label class="labelTitre" for="actv_access">Accessibilité(s)</label>
             <select name="actv_access" id="actv_access">
                 <option value="defaultPrestaActv">-- Sélectionner un handicap --</option>
                 <?php foreach ($accessibilite as $value) { ?>
@@ -136,7 +136,6 @@ if ($categorie["_activite"]) {
         minutesToHours(minutesInput, hoursInput);
     });
 
-    // Ajouté des prestations
     // Ajouté des accessibilités
 
     function ajoutAccessibilite(nomAccess) {

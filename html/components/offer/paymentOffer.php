@@ -99,8 +99,44 @@
     </div>
   </div>
   <script>
+
     const asidePayment = document.querySelector("#removeCB");
     function toggleAsidePayment() {
       asidePayment.classList.toggle("hidenAside");
     }
+
+    const radBtnCB = document.querySelector("#carte_bancaire");
+    const radBtnVB = document.querySelector("#virement_bancaire");
+    const radBtnPaypal = document.querySelector("#paypal");
+
+    const Form_CB = document.getElementById("Form_CB");
+    const Form_VB = document.getElementById("Form_VB");
+    const Form_paypal = document.getElementById("Form_paypal");
+
+    /**
+     * @brief set-up tout les formulaires des moyens de payment
+     */
+    function updateForms() {
+      hideCB();
+
+      // Afficher le formulaire correspondant au bouton radio sélectionné
+      if (radBtnCB.checked) {
+        Form_CB.classList.remove("payment_hide");
+      } else if (radBtnVB.checked) {
+        Form_VB.classList.remove("payment_hide");
+      } else if (radBtnPaypal.checked) {
+        Form_paypal.classList.remove("payment_hide");
+      }
+    }
+
+    function hideCB() {
+      Form_CB.classList.add("payment_hide");
+      Form_VB.classList.add("payment_hide");
+      Form_paypal.classList.add("payment_hide");
+    }
+    radBtnCB.addEventListener("input", updateForms);
+    radBtnVB.addEventListener("input", updateForms);
+    radBtnPaypal.addEventListener("input", updateForms);
+
+    updateForms();
   </script>
