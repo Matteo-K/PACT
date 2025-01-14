@@ -1,30 +1,6 @@
 <?php
 require_once "config.php"; 
 
-function deleteFolder($folderPath) {
-    // Vérifie si le dossier existe
-    if (!is_dir($folderPath)) {
-        return false; // Retourne false si le chemin n'est pas un dossier
-    }
-
-    // Parcourt tous les fichiers et sous-dossiers du dossier
-    $files = array_diff(scandir($folderPath), ['.', '..']);
-    foreach ($files as $file) {
-        $filePath = $folderPath . DIRECTORY_SEPARATOR . $file;
-
-        // Si c'est un dossier, appel récursif
-        if (is_dir($filePath)) {
-            deleteFolder($filePath);
-        } else {
-            // Si c'est un fichier, suppression
-            unlink($filePath);
-        }
-    }
-
-    // Supprime le dossier une fois qu'il est vide
-    return rmdir($folderPath);
-}
-
 // Fonction pour lister les images dans un dossier
 function listImage($idOffre, $idComment)
 {
@@ -170,9 +146,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }elseif($_POST["action"] === "supprimerAvis"){
         $idAvis = $_POST['id'] ?? null;
         $idOffre = $_POST['idoffre'];
-
-        $folderPath = "/img/imageAvis/" . $idAvis . "/";
-        deleteFolder($folderPath);
 
         $stmt = $conn->prepare("SELECT * FROM pact._avis WHERE idc = $idAvis");
         $stmt -> execute();
