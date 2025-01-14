@@ -3042,7 +3042,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 10px;
 }
 
-.swiper-slide img {
+.swiper-slide.imageSwiper img {
   display: block;
   width: 100%;
   height: 100%;

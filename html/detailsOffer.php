@@ -604,7 +604,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <?php
                                 foreach ($photos as $picture) {
                                 ?>
-                                    <div class="swiper-slide">
+                                    <div class="swiper-slide imageSwiper">
                                         <img src="<?php echo $picture['url']; ?>" />
                                     </div>
                                 <?php
