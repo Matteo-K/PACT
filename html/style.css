@@ -165,7 +165,15 @@ textarea:focus {
 #formPro input:focus,
 #formMember input:focus,
 #formConnexion input:focus {
-  outline-color: none;
+  outline: none;
+  background-color: var(--background80);
+}
+
+#formPro input:hover,
+#formMember input:hover,
+#formConnexion input:hover {
+  outline: none;
+  background-color: var(--background40);
 }
 
 /* ##### Components ##### */
@@ -431,7 +439,7 @@ header > div > a > div {
   visibility: hidden;
   opacity: 0;
   color: #000;
-  border-left: 3px solid #1ca4ed;
+  border-left: 4px solid #1ca4ed;
 }
 
 /* Style général du menu de profil */
