@@ -613,7 +613,7 @@ CREATE VIEW spectacles AS
 -- Vue pour les activités
 CREATE VIEW activites AS
     SELECT o.idU,o.idOffre, o.nom AS nom_offre, o.description, o.statut, o.mail, o.telephone, o.affiche, o.urlSite, o.resume, 
-           a.duree, a.ageMin, a.prixMinimal, a.prestation, ab.nomAbonnement AS abonnement, ab.tarif 
+           a.duree, a.ageMin, a.prixMinimal, ab.nomAbonnement AS abonnement, ab.tarif 
     FROM _offre o 
     JOIN _activite a ON o.idOffre = a.idOffre 
     JOIN _abonner abo ON o.idOffre = abo.idOffre 
@@ -875,8 +875,8 @@ CREATE VIEW reponse AS
     c2.content as contenuAvis,
     c2.datePublie as avisDate,
     a.note,
-	c2.nblike as nblikepro,
-	c2.nbdislike as nbdislikepro
+	c1.nblike as nblikepro,
+	c1.nbdislike as nbdislikepro
     FROM _reponse r 
     JOIN _commentaire c1 ON r.idC = c1.idC
     JOIN _pro p ON c1.idU = p.idU
