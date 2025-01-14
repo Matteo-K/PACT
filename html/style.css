@@ -95,6 +95,7 @@ button {
 .msgError {
   color: red;
   font-size: 0.8em;
+  padding-left: 20px;
 }
 
 .tag {
@@ -852,21 +853,32 @@ header ul + div {
 
 /* Bouton suivant précédent */
 #manageOffer aside + section + div {
-  position: absolute;
-  bottom: 5px;
-  right: 3%;
   display: flex;
   flex-flow: row nowrap;
-  gap: 3%;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 20px;
 }
 
-#manageOffer aside + section + div button {
+#manageOffer .suivant, #manageOffer .precedent {
   text-align: center;
   width: 150px;
   padding: 10px;
   border-radius: 20px;
   border: none;
 }
+
+/* #manageOffer .suivant {
+  color: #fff;
+  background-color: var(--primary);
+}
+
+#manageOffer .precedent {
+  color: var(--);
+  background-color: #fff;
+  border: 2px solid var(--primary);
+
+} */
 
 /* Feedback Save */
 #save-offer {
@@ -950,9 +962,6 @@ header ul + div {
   align-items: center;
   /* offre gratuite */
   color: var(--text-dark);
-  background-color: var(--secondary20);
-  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
-    inset -4px -4px 4px var(--secondary60);
   transition: all 0.3s;
 }
 
@@ -984,18 +993,17 @@ header ul + div {
   list-style: disc;
 }
 
-/* offre premium */
-#selectOffer > div:first-child > div:nth-child(2) {
-  background-color: var(--accent20);
-  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
-    inset -4px -4px 4px var(--accent60);
-}
-
 /* offre standard */
-#selectOffer > div:first-child > div:nth-child(3) {
-  background-color: var(--primary20);
+#selectOffer > div:first-child > div:nth-child(odd) {
+  background-color: var(--primary50);
   box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
     inset -4px -4px 4px var(--primary60);
+}
+
+#selectOffer > div:first-child > div:nth-child(even) {
+  background-color: var(--secondary20);
+  box-shadow: inset 4px 4px 4px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 4px var(--secondary60);
 }
 
 #selectOffer input[type="radio"],
@@ -1404,7 +1412,7 @@ header ul + div {
 #artDetailOffer > div {
   display: flex;
   flex-flow: row nowrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 3em;
   margin-inline: 15%;
@@ -1426,13 +1434,15 @@ header ul + div {
 
 .labelTitre {
   display: inline-block;
-  font-size: 25px;
+  font-size: 1.6rem;
   margin: 15px 0 5px 0;
 }
 
-#artDetailOffer p {
-  font-size: 20px;
-  margin: 5px 0 0;
+.labelSousTitre,
+#manageOffer input + span + label,
+#manageOffer input + label {
+  display: inline-block;
+  font-size: 1.2rem;
 }
 
 #artDetailOffer input[type="text"] {
@@ -1465,7 +1475,6 @@ header ul + div {
 #detailsOffer img {
   margin: 5px;
   overflow: hidden;
-  cursor: pointer;
   border-radius: 3px;
   position: static;
   width: 150px;
@@ -1516,9 +1525,51 @@ header ul + div {
   width: 140%;
 }
 
+#afficheImages div,
+#park_zoneImg div,
+#rest_zoneImg div {
+  position: relative;
+  background-color: #fff;
+}
+
+#afficheImages img,
+#park_zoneImg img,
+#rest_zoneImg img {
+  position: relative;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+#afficheImages img + img,
+#park_zoneImg img + img,
+#rest_zoneImg img + img {
+  display: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+#afficheImages div:hover img + img,
+#park_zoneImg div:hover img + img,
+#rest_zoneImg div:hover img + img {
+  display: block !important;
+}
+
+label[for="ajoutPhoto"],
+label[for="park_plan"],
+label[for="rest_ajoutPhotoMenu"] {
+  width: 120px;
+  padding: 10px;
+  margin-left: 1rem;
+}
+
 #artDetailOffer section,
 #afficheImages,
-#afficheImages2 {
+#afficheImages2,
+#park_zoneImg,
+#rest_zoneImg {
   margin: 10px 0 5px 0;
   padding: 7px;
   display: flex;
@@ -1572,6 +1623,36 @@ header ul + div {
 #autocompletion li:nth-child(even):hover {
   background-color: var(--text-dark25);
 }
+
+/* ##### Catégorie d'offre ##### */
+/* ### Restaurant ### */
+
+#restaurant {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+#restaurant ul {
+  margin: 0;
+  margin-left: 1.5rem;
+  padding: 0;
+}
+
+#restaurant li label{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 10px;
+}
+
+
+#restaurant input {
+  display: none;
+}
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1805,8 +1886,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 .flip-card {
   background-color: transparent;
-  width: 25vw;
-  height: 254px;
+  width: 520px;
+  aspect-ratio: 16/9;
   perspective: 1000px;
   font-family: sans-serif;
 }
@@ -1984,24 +2065,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color: var(--secondary);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .carteOffre {
-    max-width: 90%;
-    height: auto;
-  }
-
-  .flip-card-front img,
-  .flip-card-front figcaption {
-    height: auto;
-  }
-
-  .flip-card-back {
-    padding: 5px;
-  }
-}
-
-
 @media (max-width: 700px) {
   .searchResume {
     display: none;
@@ -2106,11 +2169,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-#filtre .checkmark {
+.checkmark {
   width: 30px;
   height: 30px;
   margin: 0 8px 0 4px;
-  border-radius: 10%;
   border: solid 2px #1ca4ed;
   background-color: white;
   display: inline-block;
@@ -2118,12 +2180,22 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#filtre [type="checkbox"]:checked + .checkmark {
+[type="checkbox"] + .checkmark {
+  border-radius: 10%;
+}
+
+[type="radio"] + .checkmark {
+  border-radius: 50%;
+}
+
+[type="checkbox"]:checked + .checkmark,
+[type="radio"]:checked + .checkmark {
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(28, 164, 237, 0.6);
 }
 
-#filtre [type="checkbox"]:checked + .checkmark::after {
+[type="checkbox"]:checked + .checkmark::after,
+[type="radio"]:checked + .checkmark::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -2136,7 +2208,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transform: translate(-50%, -50%) scale(1.2);
 }
 
-#filtre .checkmark:hover {
+.checkmark:hover {
   transform: scale(1.1);
 }
 

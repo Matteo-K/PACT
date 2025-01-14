@@ -18,7 +18,6 @@ function loadExistingImages(dossierImg, zoneImg, limit, idOffre, indexCountImg) 
                 img.src = `${dossierImg}${idOffre}/${image}`;
                 img.alt = image;
                 img.title = `Cliquez pour supprimer ${image}`;
-                img.style.cursor = 'pointer';
                 
                 // Ajouter un attribut data-index pour garder une référence unique de l'image
                 img.setAttribute('data-index', index);
@@ -26,8 +25,8 @@ function loadExistingImages(dossierImg, zoneImg, limit, idOffre, indexCountImg) 
                 // Ajoute un gestionnaire de clic pour supprimer l'image
                 
                 const croix = document.createElement('img');
-                croix.src = `img/icone/croix_blanche.png`;
-                croix.alt = image;
+                croix.src = `img/icone/croix.png`;
+                croix.alt = 'supprimer l\'image';
                 croix.title = `Cliquez pour supprimer ${image}`;
                 croix.onclick = () => {
                     if (confirm("Êtes-vous sûr de vouloir supprimer cette image ?")) {
@@ -49,7 +48,6 @@ function loadExistingImages(dossierImg, zoneImg, limit, idOffre, indexCountImg) 
 function deleteImage(fileName, imgElement, index, dossierImg, zoneImg, limit, idOffre, indexCountImg) {
     // Supprimer l'image du DOM immédiatement
     imgElement.remove();
-
     // Faire la requête de suppression côté serveur
     fetch('upload.php', {
         method: 'POST',

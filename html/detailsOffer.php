@@ -961,8 +961,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php
     require_once "./components/footer.php";
     ?>
-    
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -1011,7 +1009,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             const forms2 = document.querySelectorAll('.confirmation-form-arr');
             forms2.forEach(form => {
                 form.addEventListener('submit', (event) => {
-                    const confirmation = confirm("Êtes-vous sûr de vouloir arrêter cette option ?\nVous serez facturé pour le nombre de semaines entamées, sauf arrêt le jour du lancement");
+                    const confirmation = confirm("Êtes-vous sûr de vouloir arrêter cette option ?\nVous serez facturé pour toutes les semaines");
                     if (!confirmation) {
                         event.preventDefault(); // Empêche la soumission si l'utilisateur annule
                     }
