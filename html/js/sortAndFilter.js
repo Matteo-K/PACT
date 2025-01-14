@@ -419,32 +419,36 @@ function filtrerParStatutEnLigneHorsLigne(offers) {
 
 
 // Fonction de filtre par période
+// Fonction de filtre par période
 function filtrerParPeriode(offers) {
   const dateDepartValue = new Date(dateDepart.value);
   const dateFinValue = new Date(dateFin.value);
   const heureDebutValue = heureDebut.value;
   const heureFinValue = heureFin.value;
 
-  // test console
-  // autre: console.log(offers[0].horaireMidi);
-  // autre: console.log(offers[0].horaireSoir);
-  console.log(offers[0].horaire); // spectacle: 
-
-  let data = [];
-  offers[0].horaire.forEach(element => {
-    data.push(JSON.parse(element));
-  });
-
-  console.table(data);
-  console.log(data[0].daterepresentation);
-
   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
-    return offers;
+    return offers; // Retourne toutes les offres si les dates sont invalides
   }
 
-  return offers.filter(offer => {
+  // Filtrer les offres en fonction des dates (si l'offre a une date de représentation)
+  let data = [];
+  offers.forEach(offer => {
+    offer.horaire.forEach(element => {
+      const horaires = JSON.parse(element);
+      horaires.forEach(horaire => {
+        // Vérification si l'horaire correspond à la période définie
+        const dateRepresentation = new Date(horaire.daterepresentation);
+        if (dateRepresentation >= dateDepartValue && dateRepresentation <= dateFinValue) {
+          data.push(offer);
+        }
+      });
+    });
+  });
+
+  // Filtrage des offres par horaire
+  return data.filter(offer => {
     if (!offer.heureOuverture || !offer.heureFermeture) {
-      return false;
+      return false; // Exclut les offres sans horaire valide
     }
 
     let heureValide = true;
@@ -471,6 +475,7 @@ function filtrerParPeriode(offers) {
     return heureValide;
   });
 }
+
 
 
 
@@ -612,7 +617,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
-  // array = filtrerParPeriode(array);
+  array = filtrerParPeriode(array);
 
   if (userType == "pro_public" || userType == "pro_prive") {
     array = filtrerParStatutEnLigneHorsLigne(array);
