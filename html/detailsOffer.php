@@ -918,11 +918,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                 </div>
                             </div>
-                    <div class="avis">
+                    
                         <?php
 
                         }
                     }
+
+                    ?>
+
+                    <div class="avis">
+
+                    <?php 
+
                     
                     if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
                         require_once __DIR__ . "/components/avis/avisPro.php";
