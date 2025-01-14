@@ -4740,7 +4740,7 @@ body[id="body_creation_compte"] {
 }
 
 a[id="lienCGU"] {
-  color: white;
+  color: var(--bloc);
   text-decoration: underline;
 }
 
@@ -4908,7 +4908,9 @@ input[id="confirmer"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 input[id="email"],
@@ -4916,21 +4918,27 @@ input[id="adresse"] {
   width: 830px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 input[id="code"] {
   width: 210px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 input[id="ville"] {
   width: 596px;
   height: 40px;
   margin: 0 5px;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 input[id="radioPublic"],
@@ -4945,7 +4953,9 @@ input[id="siren"] {
   height: 40px;
   margin-right: 0;
   margin-left: 10px;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 .creation-compte input[type="checkbox"] {
