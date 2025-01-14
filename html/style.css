@@ -1705,7 +1705,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   position: relative;
 }
 
-.swiper-slide {
+.swiper-slide.gb {
   display: flex;
   justify-content: center;
   align-items: center;
