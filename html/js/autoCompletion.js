@@ -19,7 +19,6 @@ let listElements = [];
  * @param {Integer} indiceListElem indice de listElements qui correspond à la liste d'élément traité
  */
 function ajoutElement(valeurElement, input, zoneElement, msgErreur, nomPost, nbMaxElements, typeElement, classElement, indiceListElem) {
-
   if (valeurElement && !listElements[indiceListElem].includes(valeurElement) && listElements[indiceListElem].length < nbMaxElements) {
 
     listElements[indiceListElem].push(valeurElement); // Ajoute le tag dans le tableau
@@ -36,24 +35,29 @@ function ajoutElement(valeurElement, input, zoneElement, msgErreur, nomPost, nbM
     imgCroix.setAttribute("src", "../img/icone/croix.png");
 
     // Crée l'input caché pour soumettre le tag avec le formulaire
-    const hiddenInputTag = document.createElement("input");
-    hiddenInputTag.type = "hidden";
-    hiddenInputTag.value = valeurElement;
-    hiddenInputTag.name = nomPost;
+    const hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+    hiddenInput.value = valeurElement;
+    hiddenInput.name = nomPost;
 
     // Ajoute un événement pour supprimer le tag au clic
     elementTag.addEventListener("click", function () {
       listElements[indiceListElem].splice(
         listElements[indiceListElem].indexOf(valeurElement), 1
       ); // Retire le tag du tableau
-      zoneElement.removeChild(hiddenInputTag); // Supprime l'input caché
+      zoneElement.removeChild(hiddenInput); // Supprime l'input caché
       zoneElement.removeChild(elementTag); // Supprime l'élément visuel du tag
     });
+
+    console.log(zoneElement);
 
     // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel
     elementTag.appendChild(imgCroix);
     zoneElement.appendChild(elementTag); 
-    zoneElement.appendChild(hiddenInputTag);
+    zoneElement.appendChild(hiddenInput);
+
+    console.log(elementTag);
+    console.log(zoneElement);
 
     // Réinitialise l'input
     input.value = "";
@@ -62,7 +66,7 @@ function ajoutElement(valeurElement, input, zoneElement, msgErreur, nomPost, nbM
   } else if (listElements[indiceListElem].length >= nbMaxElements) {
     msgErreur.textContent = "Vous êtes limité à " + nbMaxElements + " éléments";
   } else if (listElements[indiceListElem].includes(valeurElement)) {
-    msgErreur.textContent = "l'élément " + valeurElement + " a déjà été ajouté !";
+    msgErreur.textContent = valeurElement + " a déjà été ajouté !";
   }
 }
 
