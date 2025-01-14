@@ -1827,6 +1827,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color: var(--background);
   color: #1Ca4ed;
 }
+.swiper-slide.gb2 {
+  width: fit-content !important;
+  background-color: var(--background);
+  color: #1Ca4ed;
+}
 
 .searchA {
   width: 100%;
@@ -3564,6 +3569,13 @@ section#infoComp div {
   width: 2.2em;
   height: 2.2em;
   border-radius: 50%;
+  object-fit: cover;
+}
+
+.user > div img.signalementSupp {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0%;
   object-fit: cover;
 }
 
