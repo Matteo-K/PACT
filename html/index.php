@@ -67,9 +67,9 @@
       ?>
       <div id="consultationRecente">
         <h2>Consulté récemment</h2>
-        <div class="swiper-container gb">
+        <div class="swiper-container gb2">
           <div class="swiper gb2">
-            <div class="swiper-wrapper gb">
+            <div class="swiper-wrapper gb2">
               <?php if (count($idOffres) > 0) {
                 $consultRecent = new ArrayOffer($idOffres);
                 $consultRecent->displayConsulteRecemment($nbElement);
@@ -79,8 +79,8 @@
                 <?php } ?>
             </div>
           </div>
-          <div class="swiper-button-next gb"></div>
-          <div class="swiper-button-prev gb"></div>
+          <div class="swiper-button-next gb2"></div>
+          <div class="swiper-button-prev gb2"></div>
         </div>
       </div>
       <?php
@@ -189,8 +189,8 @@
           //   delay: 3000,
           // },
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.swiper-button-next.gb',
+            prevEl: '.swiper-button-prev.gb',
           },
         });
         const swiper2 = new Swiper('.swiper.gb2', {
@@ -205,8 +205,8 @@
           //   delay: 3000,
           // },
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.swiper-button-next.gb2',
+            prevEl: '.swiper-button-prev.gb2',
           },
         });
       });
