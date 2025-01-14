@@ -227,7 +227,7 @@
           breakpoints: {
             // Quand l'écran fait moins de 768px (téléphone)
             768: {
-              slidesPerView: 2, // 2 slides visibles pour tablette
+              slidesPerView: 1, // 2 slides visibles pour tablette
             },
             // Quand l'écran fait moins de 480px (téléphone)
             480: {
@@ -253,7 +253,7 @@
           breakpoints: {
             // Quand l'écran fait moins de 768px (téléphone)
             768: {
-              slidesPerView: 2, // 2 slides visibles pour tablette
+              slidesPerView: 1, // 2 slides visibles pour tablette
             },
             // Quand l'écran fait moins de 480px (téléphone)
             480: {
@@ -279,7 +279,7 @@
            breakpoints: {
             // Quand l'écran fait moins de 768px (téléphone)
             768: {
-              slidesPerView: 2, // 2 slides visibles pour tablette
+              slidesPerView: 1, // 2 slides visibles pour tablette
             },
             // Quand l'écran fait moins de 480px (téléphone)
             480: {
