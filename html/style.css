@@ -1848,13 +1848,24 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   color: var(--swiper-navigation-color, var(--swiper-theme-color));
 }
 
-.swiper-button-next.gb, .swiper-button-next.gb2{
+.swiper-button-next.gb{
   transform: translateX(150%);
   /* Rounded corners for the next button */
 }
 
-.swiper-button-prev.gb, .swiper-button-prev.gb2 {
+.swiper-button-prev.gb {
   transform: translateX(-150%);
+
+  /* Rounded corners for the prev button */
+}
+
+.swiper-button-next.gb2{
+  transform: translateX(-650%);
+  /* Rounded corners for the next button */
+}
+
+.swiper-button-prev.gb2 {
+  transform: translateX(650%);
 
   /* Rounded corners for the prev button */
 }
@@ -3545,8 +3556,9 @@ section#infoComp div {
 
 .messageAvis,
 .reponseAvis {
-  background-color: var(--background-avis);
+  background-color: #fff;
   border-radius: 1em;
+  border: var(--accent) 2px solid;
   padding-inline: 1em;
   width: 100%;
 }

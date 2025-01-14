@@ -219,7 +219,7 @@ foreach ($avis as $a) {
                                 echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
                             }
                             ?>
-                            <img src="./img/icone/trois-points.png" alt="Signalement de la réponse" title="Signaler la réponse" class="signalerAvis">
+                            <img class="signalementSupp" src="./img/icone/signalement.png" alt="Signalement" title="signaler un avis" class="signalerAvis" />
                         </div>
 
                     </div>
