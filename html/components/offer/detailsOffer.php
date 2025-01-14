@@ -159,30 +159,25 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <span id="msgCategorie" class="msgError"></span>
         <section id="choixCategorie">
             <label for="page-select" class="labelTitre">Sélectionnez une catégorie</label>
-            <select name="categorie" id="selectCategorie">
+            <select name="categorie" id="selectCategorie" <?= $disableCategorie ? "disabled" : "" ?>>
                 <option value="restaurant"
-                <?php echo $categorie["_restauration"] ? "selected" : "" ?> 
-                <?php echo $disableCategorie && !$categorie["_restauration"] ? "disabled" : "" ?>> 
+                <?php echo $categorie["_restauration"] ? "selected" : "" ?>>
                     Restaurant
                 </option>
                 <option value="parc"
-                <?php echo $categorie["_parcattraction"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_parcattraction"] ? "disabled" : "" ?>>
+                <?php echo $categorie["_parcattraction"] ? "selected" : "" ?>>
                     Parc d'attraction
                 </option>
                 <option value="activite"
-                <?php echo $categorie["_activite"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_activite"] ? "disabled" : "" ?>> 
+                <?php echo $categorie["_activite"] ? "selected" : "" ?>> 
                     Activite
                 </option>
                 <option value="spectacle"
-                <?php echo $categorie["_spectacle"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_spectacle"] ? "disabled" : "" ?>> 
+                <?php echo $categorie["_spectacle"] ? "selected" : "" ?>> 
                     Spectacle
                 </option>
                 <option value="visite"
-                <?php echo $categorie["_visite"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_visite"] ? "disabled" : "" ?>>
+                <?php echo $categorie["_visite"] ? "selected" : "" ?>>
                     Visite
                 </option>
             </select>

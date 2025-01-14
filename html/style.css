@@ -144,6 +144,7 @@ body {
 }
 
 input[type="text"],
+input[type="number"],
 textarea {
   border: 2px solid var(--secondary);
   border-radius: 2px;
@@ -1434,7 +1435,7 @@ header ul + div {
 
 .labelTitre {
   display: inline-block;
-  font-size: 1.6rem;
+  font-size: 1.6rem !important;
   margin: 15px 0 5px 0;
 }
 
@@ -1445,7 +1446,8 @@ header ul + div {
   font-size: 1.2rem;
 }
 
-#artDetailOffer input[type="text"] {
+#detailsOffer input[type="text"],
+#detailsOffer input[type="number"] {
   font-size: 15px;
   text-indent: 10px;
   padding: 5px;
@@ -1532,19 +1534,12 @@ header ul + div {
   background-color: #fff;
 }
 
-#afficheImages img,
-#park_zoneImg img,
-#rest_zoneImg img {
-  position: relative;
-  background-color: #fff;
-  cursor: pointer;
-}
-
 #afficheImages img + img,
 #park_zoneImg img + img,
 #rest_zoneImg img + img {
   display: none;
   position: absolute;
+  cursor: pointer;
   top: 5px;
   right: 5px;
   width: 30px;
@@ -4595,6 +4590,10 @@ details .nonRepondu {
   margin: 30px 15%;
 }
 
+#choixCategorie select:disabled {
+  background-image: none;
+}
+
 #choixCategorie select {
   appearance: none;
   -webkit-appearance: none;
@@ -4856,7 +4855,7 @@ button[id="boutonInscription"] {
   /* box-shadow: inset -4px -4px 4px var(--accent-border); */
   background-color: var(--accent);
   border: solid 2px var(--accent);
-  transition: background-color 0.2s;
+  transition: background-color 0.4s;
   cursor: pointer;
 }
 
@@ -5314,9 +5313,12 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 /*+++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css hover des boutons des formulaires, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
-button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover {
-  background-color: white;
-  border: solid 2px var(--accent);
+button[id="boutonConnexion"]:hover, 
+input[id="boutonLienMembre"]:hover, 
+input[id="boutonLienPro"]:hover, 
+button[id="boutonInscription"]:hover {
+  background-color: var(--accent);
+  border: solid 4px var(--accent);
 }
 
 
