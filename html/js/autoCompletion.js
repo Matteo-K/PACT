@@ -49,15 +49,10 @@ function ajoutElement(valeurElement, input, zoneElement, msgErreur, nomPost, nbM
       zoneElement.removeChild(elementTag); // Supprime l'élément visuel du tag
     });
 
-    console.log(zoneElement);
-
     // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel
     elementTag.appendChild(imgCroix);
     zoneElement.appendChild(elementTag); 
     zoneElement.appendChild(hiddenInput);
-
-    console.log(elementTag);
-    console.log(zoneElement);
 
     // Réinitialise l'input
     input.value = "";
