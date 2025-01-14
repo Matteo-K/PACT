@@ -430,10 +430,12 @@ function filtrerParPeriode(offers) {
   // autre: console.log(offers[0].horaireSoir);
   console.log(offers[0].horaire); // spectacle: 
 
-  let data = JSON.parse(offers[0].horaire);
-  console.log(data.jour);
+  let data = [];
+  offers[0].horaire.forEach(element => {
+    data.push(JSON.parse(element));
+  });
 
-  console.log(offers[0].horaire);
+  console.table(data);
 
   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
     return offers;
