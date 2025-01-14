@@ -974,15 +974,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <h2>Signalement d'un avis</h2>
                                     <form action="signaleAvis.php">
                                         <input type="radio" name="signalement" id="inapproprie">
-                                        <label for="">Contenu inapproprié (injures, menaces, contenu explicite...)</label>
+                                        <label for="inapproprie">Contenu inapproprié (injures, menaces, contenu explicite...)</label>
                                         <input type="radio" name="signalement" id="frauduleux">
-                                        <label for="">Avis frauduleux ou trompeur (faux avis, publicité déguisée...) </label>
+                                        <label for="frauduleux">Avis frauduleux ou trompeur (faux avis, publicité déguisée...) </label>
                                         <input type="radio" name="signalement" id="spam">
-                                        <label for="">Spam ou contenu hors-sujet (multipostage, indésirable...)</label>
+                                        <label for="spam">Spam ou contenu hors-sujet (multipostage, indésirable...)</label>
                                         <input type="radio" name="signalement" id="violation">
-                                        <label for="">Violation des règles de la plateforme (données personnelles...)</label>
+                                        <label for="violation">Violation des règles de la plateforme (données personnelles...)</label>
                                         <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
-                                        <input type="submit" value="confirmeSignelement" id="confirmeSignalement">
+                                        <input type="submit" value="Envoyer" id="confirmeSignalement">
                                     </form>
                                 </section>
                             </section>
@@ -1357,10 +1357,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
         //Script de gestion du pop-up de signalement
-        let ouvrePopup = document.querySelectorAll('.signalerAvis');
+        let ouvrePopup = document.querySelectorAll('.avis .signalerAvis');
         const popup = document.querySelector('.avis .signalementPopup');
-        const btnFermer = document.querySelectorAll('.signalementPopup .close')[0];
-        const btnConfirmer = document.querySelector('.avis .signalementPopup .confirmeSignalement');
+        const btnFermer = document.querySelector('.signalementPopup .close');
+        const btnConfirmer = document.getElementById('confirmeSignalement');
 
         console.log(ouvrePopup);
 
