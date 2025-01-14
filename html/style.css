@@ -1786,7 +1786,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .swiper.gb{
-  width: 1590px;
+  width: 1580px;
+  height: 100%;
   overflow: hidden;
   margin: auto;
 }
