@@ -44,8 +44,8 @@
           </div>
         </div>
         
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next gb"></div>
+        <div class="swiper-button-prev gb"></div>
         <!-- Pagination: Points -->
 
       </div>
