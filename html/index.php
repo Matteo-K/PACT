@@ -18,7 +18,7 @@ require_once "config.php";
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
       <div id="ALaUne" class="swiper-container-une">
-        <div>
+        <div class="swiper-wrapper">
           <?php 
             $elementStart = 0;
             $nbElement = 20;
