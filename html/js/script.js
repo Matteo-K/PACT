@@ -10,6 +10,9 @@ try {
     // Fonction pour filtrer et afficher les suggestions
     function updateSuggestions(val) {
 
+      // vide le message d'erreur
+      document.getElementById("msgTag").textContent = "";
+
       // Nettoyer les suggestions précédentes
       autocompleteList.innerText = "";  
       autocompleteList.style.display = "block";    

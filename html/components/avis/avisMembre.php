@@ -140,6 +140,7 @@ foreach ($avis as $a) {
                             }
                             ?>
                         </div>
+                        <div id="pipe">|</div>
                         <div class="count dislikes">
                             <?php
                             $nbDislike = (string)$a["nbdislike"];
@@ -171,6 +172,37 @@ foreach ($avis as $a) {
                 </div>
             </article>
         </div>
+        <?php
+        if ($a['idc_reponse']) {
+        ?>
+            <div>
+                <img src="./img/icone/reponse.png" alt="icone de reponse">
+                <div class="reponseAvis">
+                    <div class="user">
+                        <div class="infoProReponse">
+                            <div>
+                                <img src="<?= $result[0]['url'] ?>" alt="image de profile du pro">
+                                <p><?= ucfirst(strtolower($a['reponse_denomination'])) ?> </p>
+                            </div>
+                        </div>
+                        <div class="autreInfoAvis">
+                            <?php
+                            if (isset($a['reponsedate'])) {
+                                echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
+                            }
+                            ?>
+                            <img src="./img/icone/trois-points.png" alt="icone de parametre">
+                        </div>
+
+                    </div>
+                    <article>
+                        <p><?= $a['contenureponse'] ?></p>
+                    </article>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
     </div>
 <?php
 }
@@ -254,27 +286,39 @@ foreach ($avis as $a) {
         const numberStr = number.toString();
 
         // Récupérer tous les éléments .number à l'intérieur du selector
-        const numbers = document.querySelectorAll(selector + " .number");
+        let numbers = document.querySelectorAll(selector + " .number");
 
         // Si le nombre a plus de chiffres que les éléments .number existants, ajouter des éléments .number
         if (numberStr.length > numbers.length) {
             // Ajouter des .number pour chaque chiffre supplémentaire
             for (let i = numbers.length; i < numberStr.length; i++) {
                 const newNumberDiv = document.createElement('div');
+                newNumberDiv.style.transform = 'var(--nb9)';
                 newNumberDiv.classList.add('number');
                 for (let j = 0; j < 10; j++) { // Ajouter les chiffres de 0 à 9 dans chaque div
                     const span = document.createElement('span');
                     span.textContent = j;
                     newNumberDiv.appendChild(span);
                 }
+                
                 document.querySelector(selector).appendChild(newNumberDiv);
             }
+        } else if (numberStr.length < numbers.length) {
+            // Si le nombre a moins de chiffres, supprimer des .number
+            for (let i = numbers.length - 1; i >= numberStr.length; i--) {
+                numbers[i].remove();
+            }
         }
+    
+        numbers = document.querySelectorAll(selector + " .number");
 
         // Mettre à jour les chiffres affichés
         numbers.forEach((el, index) => {
+           
             const digit = numberStr[index] || '0'; // Si le nombre a moins de chiffres que prévu, utiliser '0'
-
+            if(digit == 0){
+                el.style.transform = `var(--nb9)`;
+            }
             // Mettre à jour la position du chiffre
             el.style.transform = `var(--nb${digit})`;
 

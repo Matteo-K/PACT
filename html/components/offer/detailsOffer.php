@@ -120,7 +120,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <div id="blcTagImg">
             <div id="tagsOffer">
                 <div id="inputAutoComplete">
-                    <label for="inputTag" class="labelTitre">Tags supplémentaires </label>
+                    <label for="inputTag" class="labelTitre">Tags supplémentaires<span id="msgTag" class="msgError"></span></label>
                     <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
                     <!--<button type="button" id="ajoutTag" value = ajoutTag class="buttonDetailOffer blueBtnOffer">Ajouter</button> -->
                     <ul id="autocompletion"></ul>
@@ -128,22 +128,20 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <section id="sectionTag">
                     <!-- Les tags ajoutés apparaîtront ici -->
                 </section>
-                <p>
+                <label class="labelSousTitre">
                     Vous pouvez entrer jusqu'à 6 tags
-                </p>
+                </label>
             </div>
             <div id="blcImg">
                 <div id="insereImg">
-                    <label class="labelTitre">Photos de votre offre*  <span id="msgImage" class="msgError"></span></label>
-                    <label for="ajoutPhoto" class="buttonDetailOffer blueBtnOffer">Ajouter</label>
+                    <label class="labelTitre">Photos de votre offre*<span id="msgImage" class="msgError"></span></label>
+                    <label for="ajoutPhoto" class="modifierBut">Ajouter</label>
                 </div>
                 <div id="afficheImages">
                     <!-- Les images ajoutés apparaîtront ici -->
-                </div>
-                <p>
-                    Vous pouvez insérer jusqu'à <?= $limitImgDtls ?> photos<br>
-                    Cliquez sur une image pour la supprimer
-                </p>
+                </div> 
+                <label class="labelSousTitre">Vous pouvez insérer jusqu'à <?= $limitImgDtls ?> photos<br></label> <!-- Indication pour l'utilisateur -->
+                <label class="labelSousTitre"> Cliquez sur l'image pour la supprimer</label>
                 <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
                 <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
                 <input 
@@ -160,31 +158,26 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     <article id="specialOffer"> <!-- id pour pouvoir le modifier separement dans le css -->
         <span id="msgCategorie" class="msgError"></span>
         <section id="choixCategorie">
-            <label for="page-select" class="labelTitre">Sélectionnez une catégorie :</label>
-            <select name="categorie" id="selectCategorie">
+            <label for="page-select" class="labelTitre">Sélectionnez une catégorie</label>
+            <select name="categorie" id="selectCategorie" <?= $disableCategorie ? "disabled" : "" ?>>
                 <option value="restaurant"
-                <?php echo $categorie["_restauration"] ? "selected" : "" ?> 
-                <?php echo $disableCategorie && !$categorie["_restauration"] ? "disabled" : "" ?>> 
+                <?php echo $categorie["_restauration"] ? "selected" : "" ?>>
                     Restaurant
                 </option>
                 <option value="parc"
-                <?php echo $categorie["_parcattraction"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_parcattraction"] ? "disabled" : "" ?>>
+                <?php echo $categorie["_parcattraction"] ? "selected" : "" ?>>
                     Parc d'attraction
                 </option>
                 <option value="activite"
-                <?php echo $categorie["_activite"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_activite"] ? "disabled" : "" ?>> 
+                <?php echo $categorie["_activite"] ? "selected" : "" ?>> 
                     Activite
                 </option>
                 <option value="spectacle"
-                <?php echo $categorie["_spectacle"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_spectacle"] ? "disabled" : "" ?>> 
+                <?php echo $categorie["_spectacle"] ? "selected" : "" ?>> 
                     Spectacle
                 </option>
                 <option value="visite"
-                <?php echo $categorie["_visite"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && !$categorie["_visite"] ? "disabled" : "" ?>>
+                <?php echo $categorie["_visite"] ? "selected" : "" ?>>
                     Visite
                 </option>
             </select>
@@ -234,7 +227,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             } else if (select.value == "visite") {
                 VisiteOffer.style.display = "block";
             } else if (select.value == "restaurant") {
-                RestaurantOffer.style.display = "block";
+                RestaurantOffer.style.display = "flex";
             }
         }
         
@@ -247,6 +240,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         // TAGS
         const maxTags = 6;
         const maxImages = <?= $limitImgDtls ?>;
+        const msgTag = document.getElementById("msgTag");
 
         //On récupère en JS la liste des tags pour le script 
         const listeTags = <?php echo json_encode($listeTags) ?>;
@@ -304,9 +298,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Réinitialise l'input
                 inputTag.value = "";
             } else if (tags.length >= maxTags) {
-                pTag.style.color = "red"; // Change la couleur du texte pour signaler la limite atteinte
+                msgTag.textContent = "Vous êtes limité à 6 tags"; // Change la couleur du texte pour signaler la limite atteinte
             } else if (tags.includes(valeurTag)) {
-                alert("Ce tag a déjà été ajouté !");
+                msgTag.textContent = "Ce tag a déjà été ajouté !";
             }
         }
 
@@ -444,6 +438,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
          * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
          */
         function checkOfferValidity(event) {
+            msgTag.textContent = "";
             let nomCheck = checkNom();
             let descriptionCheck = checkDescription();
             let imgCheck = checkImg();
