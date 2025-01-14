@@ -125,22 +125,25 @@ require_once "config.php";
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
-      var swiper = new Swiper('.swiper-container-une', {
-        loop: true, // Activer la boucle infinie
-        slidesPerView: 1, // Nombre de slides visibles à la fois
-        spaceBetween: 10, // Espace entre les slides
-        autoplay: {
-          delay: 3000, // Délai entre chaque slide (en ms)
-        },
-        navigation: {
-          nextEl: '.swiper-button-next', // Bouton suivant
-          prevEl: '.swiper-button-prev', // Bouton précédent
-        },
-        pagination: {
-          el: '.swiper-pagination', // Élément de pagination
-          clickable: true, // Permet de cliquer sur les points
-        },
+      document.addEventListener('DOMContentLoaded', function () {
+        var swiper = new Swiper('.swiper-container-une', {
+          loop: true, // Activer la boucle infinie
+          slidesPerView: 1, // Nombre de slides visibles à la fois
+          spaceBetween: 10, // Espace entre les slides
+          autoplay: {
+            delay: 3000, // Délai entre chaque slide (en ms)
+          },
+          navigation: {
+            nextEl: '.swiper-button-next', // Bouton suivant
+            prevEl: '.swiper-button-prev', // Bouton précédent
+          },
+          pagination: {
+            el: '.swiper-pagination', // Élément de pagination
+            clickable: true, // Permet de cliquer sur les points
+          },
+        });
       });
+      
     </script>
 </body>
 </html>
