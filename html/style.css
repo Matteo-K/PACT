@@ -4237,11 +4237,11 @@ details .nonRepondu {
 }
 
 .container:has(.alike:checked){
-  border-image: linear-gradient(var(--col-like) 52%, black 48%);
+  border-image: linear-gradient(var(--col-like) 52%, black 48%) 1;
 }
 
 .container:has(.adislike:checked){
-  border-image: linear-gradient(black 48%, var(--col-dislike) 52%);
+  border-image: linear-gradient(black 48%, var(--col-dislike) 52%) 1;
 }
 
 
