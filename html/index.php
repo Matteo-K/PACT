@@ -110,26 +110,16 @@ require_once "config.php";
     <script src="js/sortAndFilter.js"></script>
     <?php require_once "components/footer.php"; ?>
     <script>
-      // Gérer l'envoi du formulaire via JavaScript
-document.querySelectorAll('.searchA').forEach(function(item) {
-  item.addEventListener('click', function() {
-    const idOffre = item.getAttribute('data-idoffre');
-    const restaurantOuvert = item.getAttribute('data-ouvert');
-    const form = document.createElement('form');
-    form.action = '/detailsOffer.php?&ouvert=' + restaurantOuvert;
-    form.method = 'post';
-
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'idoffre';
-    input.value = idOffre;
-    form.appendChild(input);
-
-    document.body.appendChild(form);
-    form.submit(); // Soumettre le formulaire via JS
-  });
-});
-
+      const forms = document.querySelectorAll("#index form");
+      forms.forEach(form => {
+        form.addEventListener("click", (event) => {
+          if (event.target.tagName.toLowerCase() === "a") {
+            return;
+          }
+          event.preventDefault();
+          form.submit();
+        });
+      });
     </script>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

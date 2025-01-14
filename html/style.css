@@ -1648,6 +1648,19 @@ label[for="rest_ajoutPhotoMenu"] {
   display: none;
 }
 
+#park {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+#park > div {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+
 
 
 
@@ -1688,8 +1701,22 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .swiper-container-une {
   width: 100%;
-  height: 300px; /* Hauteur du carrousel */
+  height: 300px; /* Ajuste la hauteur selon ton besoin */
+  position: relative;
 }
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Assure-toi que les slides prennent la bonne taille */
+}
+
+.searchA {
+  width: 100%;
+  height: 100%;
+}
+
 
 .swiper-slide {
   background-color: #f4f4f4;
@@ -4041,7 +4068,7 @@ details .nonRepondu {
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 16px;
   box-sizing: border-box;
 }
 
@@ -4627,6 +4654,10 @@ details .nonRepondu {
 
 #choixCategorie select:disabled {
   background-image: none;
+  color: var(--text-dark);
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
 }
 
 #choixCategorie select {

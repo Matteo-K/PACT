@@ -426,7 +426,16 @@ function filtrerParPeriode(offers) {
   const heureFinValue = heureFin.value;
 
   // test console
-  console.log(offers[0].heureOuverture);
+  // autre: console.log(offers[0].horaireMidi);
+  // autre: console.log(offers[0].horaireSoir);
+  console.log(offers[0].horaire); // spectacle: 
+
+  let data = [];
+  offers[0].horaire.forEach(element => {
+    data.push(JSON.parse(element));
+  });
+
+  console.table(data);
 
   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
     return offers;
@@ -602,10 +611,11 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
+  array = filtrerParPeriode(array);
+
   if (userType == "pro_public" || userType == "pro_prive") {
     array = filtrerParStatutEnLigneHorsLigne(array);
   }
-  //array = filtrerParPeriode(array);
 
   // Tris
   array = selectSort(array);

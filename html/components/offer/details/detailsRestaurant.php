@@ -52,15 +52,15 @@ if ($categorie["_restauration"]) {
     
   <!-- Partie pour l'ajout des photos du menu du restaurant-->
   <div class="photosR">
-    <div id="insereImg">
-      <label class="labelTitre">Photos du menu*</label>
-      <label for="rest_ajoutPhotoMenu" class="modifierBut">Ajouter</label>
-    </div>
-    <label class="labelSousTitre">Vous pouvez insérer <?= $limitImgMenu ?> photos de votre menu</label> <!-- Indication pour l'utilisateur -->
-    <label class="labelSousTitre"> Cliquez sur une image pour la supprimer</label>
-    <input type="file" id="rest_ajoutPhotoMenu" name="rest_ajoutPhotoMenu[]"
+      <div id="insereImg">
+          <label class="labelTitre">Photos du menu*</label>
+          <label for="rest_ajoutPhotoMenu" class="modifierBut">Ajouter</label>
+      </div>
+      <div id="rest_zoneImg"></div> <!-- Zone pour afficher les images -->
+      <label class="labelSousTitre">Vous pouvez insérer <?= $limitImgMenu ?> photos de votre menu</label> <!-- Indication pour l'utilisateur -->
+      <label class="labelSousTitre"> Cliquez sur une image pour la supprimer</label>
+      <input type="file" id="rest_ajoutPhotoMenu" name="rest_ajoutPhotoMenu[]"
       accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple> <!-- Les différents type d'images acceptée -->
-    <div id="rest_zoneImg"></div> <!-- Zone pour afficher les images -->
   </div>
 
 </section>
