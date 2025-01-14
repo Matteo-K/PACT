@@ -1773,6 +1773,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .swiper-slide.gb {
   width: fit-content !important;
   background-color: var(--background);
+  color: #1Ca4ed;
 }
 
 .searchA {
