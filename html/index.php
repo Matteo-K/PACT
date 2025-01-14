@@ -224,6 +224,16 @@
             nextEl: '.swiper-button-next.gb',
             prevEl: '.swiper-button-prev.gb',
           },
+          breakpoints: {
+            // Quand l'écran fait moins de 768px (téléphone)
+            768: {
+              slidesPerView: 1, // 2 slides visibles pour tablette
+            },
+            // Quand l'écran fait moins de 480px (téléphone)
+            480: {
+              slidesPerView: 1, // 1 slide visible pour téléphone
+            },
+          },
         });
         const swiper2 = new Swiper('.swiper.gb2', {
           loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
@@ -240,6 +250,16 @@
             nextEl: '.swiper-button-next.gb2',
             prevEl: '.swiper-button-prev.gb2',
           },
+          breakpoints: {
+            // Quand l'écran fait moins de 768px (téléphone)
+            768: {
+              slidesPerView: 1, // 2 slides visibles pour tablette
+            },
+            // Quand l'écran fait moins de 480px (téléphone)
+            480: {
+              slidesPerView: 1, // 1 slide visible pour téléphone
+            },
+          },
         });
         const swiper3 = new Swiper('.swiper.gb3', {
           loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
@@ -255,6 +275,16 @@
           navigation: {
             nextEl: '.swiper-button-next.gb3',
             prevEl: '.swiper-button-prev.gb3',
+          },
+           breakpoints: {
+            // Quand l'écran fait moins de 768px (téléphone)
+            768: {
+              slidesPerView: 1, // 2 slides visibles pour tablette
+            },
+            // Quand l'écran fait moins de 480px (téléphone)
+            480: {
+              slidesPerView: 1, // 1 slide visible pour téléphone
+            },
           },
         });
       });

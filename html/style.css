@@ -1806,13 +1806,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   overflow-x: hidden;
 }
 
-.swiper-container.gb, .swiper-container.gb2, .swiper-container.gb3 {
+.swiper-container.gb, 
+.swiper-container.gb2, 
+.swiper-container.gb3 {
   height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
 }
 
-.swiper.gb, .swiper.gb2,.swiper.gb3{
+.swiper.gb, 
+.swiper.gb2,
+.swiper.gb3{
   width: 1610px;
   height: 100%;
   overflow: hidden;
@@ -1826,7 +1830,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Assure-toi que les slides prennent la bonne taille */
 }
 
-.swiper-slide.gb,.swiper-slide.gb3,.swiper-slide.gb2 {
+.swiper-slide.gb,
+.swiper-slide.gb2,
+.swiper-slide.gb3 {
   width: fit-content !important;
   background-color: var(--background);
   color: #1Ca4ed;
@@ -1837,7 +1843,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Style pour les boutons de navigation */
-.swiper-button-next.gb, .swiper-button-prev.gb, .swiper-button-next.gb2, .swiper-button-prev.gb2,  .swiper-button-next.gb3, .swiper-button-prev.gb3 {
+.swiper-button-next.gb, 
+.swiper-button-prev.gb, 
+.swiper-button-next.gb2, 
+.swiper-button-prev.gb2,  
+.swiper-button-next.gb3, 
+.swiper-button-prev.gb3 {
   position: absolute;
   top: var(--swiper-navigation-top-offset, 50%);
   width: calc(var(--swiper-navigation-size)/ 44 * 27);
@@ -1862,17 +1873,82 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Rounded corners for the prev button */
 }
 
-.swiper-button-next.gb2,.swiper-button-next.gb3{
+.swiper-button-next.gb2,
+.swiper-button-next.gb3{
   transform: translateX(-650%);
   /* Rounded corners for the next button */
 }
 
-.swiper-button-prev.gb2,.swiper-button-prev.gb3 {
+.swiper-button-prev.gb2,
+.swiper-button-prev.gb3 {
   transform: translateX(650%);
 
   /* Rounded corners for the prev button */
 }
 
+@media (max-width: 768px) {
+  .swiper-container.gb, 
+  .swiper-container.gb2, 
+  .swiper-container.gb3 {
+    height: 310px; /* Ajuste la hauteur selon ton besoin */
+    position: relative;
+    margin: auto;
+  }
+
+  .swiper.gb, 
+  .swiper.gb2,
+  .swiper.gb3{
+    width: 520px;
+    height: 100%;
+    overflow: hidden;
+    margin: auto;
+  }
+
+  .swiper-button-next.gb2,
+  .swiper-button-next.gb3{
+    transform: translateX(-10%);
+    /* Rounded corners for the next button */
+  }
+  
+  .swiper-button-prev.gb2,
+  .swiper-button-prev.gb3 {
+    transform: translateX(10%);
+  
+    /* Rounded corners for the prev button */
+  }
+}
+
+@media (max-width: 480px) {
+  .swiper-container.gb, 
+  .swiper-container.gb2, 
+  .swiper-container.gb3 {
+    height: 310px; /* Ajuste la hauteur selon ton besoin */
+    position: relative;
+    margin: auto;
+  }
+
+  .swiper.gb, 
+  .swiper.gb2,
+  .swiper.gb3{
+    width: 520px;
+    height: 100%;
+    overflow: hidden;
+    margin: auto;
+  }
+
+  .swiper-button-next.gb2,
+  .swiper-button-next.gb3{
+    transform: translateX(-10%);
+    /* Rounded corners for the next button */
+  }
+  
+  .swiper-button-prev.gb2,
+  .swiper-button-prev.gb3 {
+    transform: translateX(10%);
+  
+    /* Rounded corners for the prev button */
+  }
+}
 
 .sectionLoca {
   width: 800px;
@@ -3631,7 +3707,6 @@ section#infoComp div {
   margin: -0.5em;
 }
 
-.user + article > div > div + div,
 .user + article > div > div + div {
   justify-content: flex-start;
   gap: 20px;
@@ -3654,7 +3729,7 @@ section#infoComp div {
 }
 
 .user + article > div > div + div {
-  margin-bottom: 1.5em;
+  margin-bottom: 0.5em;
 }
 
 .autreInfoAvis {
@@ -4351,6 +4426,12 @@ details .nonRepondu {
   font-weight: 600;
 }
 
+.tag:not(.mainOffer > div > .tag) {
+  border-radius: 0 !important;
+  border-bottom: solid 3px var(--accent) !important;
+  padding: 2px 20px !important;
+}
+
 .notedetaille .barreDeNotationBlanche {
   background-color: var(--background-avis);
   width: 100%;
@@ -4370,8 +4451,6 @@ details .nonRepondu {
   gap: 0 !important;
   background-color: var(--col-gray);
   width: 175px !important;
-  border: var(--col-black) 2px solid;
-  border-radius: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
