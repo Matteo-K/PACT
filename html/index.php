@@ -218,7 +218,7 @@
           centeredSlides: false, // Définit si la slide actuelle est centrée
           watchOverflow: true, 
           autoplay: {
-            delay: 3000,
+            delay: 5000,
           },
           navigation: {
             nextEl: '.swiper-button-next.gb',
@@ -234,7 +234,7 @@
           centeredSlides: false, // Définit si la slide actuelle est centrée
           watchOverflow: true, 
           autoplay: {
-            delay: 3000,
+            delay: 5000,
           },
           navigation: {
             nextEl: '.swiper-button-next.gb2',
@@ -250,7 +250,7 @@
           centeredSlides: false, // Définit si la slide actuelle est centrée
           watchOverflow: true, 
           autoplay: {
-            delay: 3000,
+            delay: 5000,
           },
           navigation: {
             nextEl: '.swiper-button-next.gb3',
