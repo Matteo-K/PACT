@@ -17,8 +17,8 @@ require_once "config.php";
   <main>
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
+      <div class="swiper-container gb">
+        <div class="swiper-wrapper gb">
           <?php 
             $elementStart = 0;
             $nbElement = 20;
@@ -149,9 +149,9 @@ require_once "config.php";
           loop: true,
           slidesPerView: 2,
           spaceBetween: 10,
-          autoplay: {
-            delay: 3000,
-          },
+          // autoplay: {
+          //   delay: 3000,
+          // },
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
