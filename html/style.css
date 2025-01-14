@@ -145,6 +145,7 @@ body {
 
 input[type="text"],
 input[type="number"],
+input[type="time"],
 textarea {
   border: 2px solid var(--secondary);
   border-radius: 2px;
@@ -1503,6 +1504,7 @@ header ul + div {
 }
 
 #detailsOffer input[type="text"],
+#detailsOffer input[type="time"],
 #detailsOffer input[type="number"] {
   font-size: 15px;
   text-indent: 10px;
@@ -1721,6 +1723,12 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
+}
+
+#park_planTitres {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;  
 }
 
 
