@@ -613,8 +613,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                         </div>
 
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next kylian"></div>
+                        <div class="swiper-button-prev kylian"></div>
                     </div>
 
                     <div thumbsSlider="" class="swiper myThumbSlider">

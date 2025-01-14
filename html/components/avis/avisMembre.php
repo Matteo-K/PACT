@@ -233,7 +233,7 @@ foreach ($avis as $a) {
                         <div class="count dislikes">
                             <?php
                             $nbDislikePro = (string)$a["nbdislikepro"];
-                            for ($i = 0; $i < strlen($nbDislike); $i++) {
+                            for ($i = 0; $i < strlen($nbDislikePro); $i++) {
                             ?>
                                 <div class="number" style="transform: var(--nb<?= $nbDislikePro[$i] ?>);">
                                     <span>0</span>
