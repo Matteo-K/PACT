@@ -111,24 +111,31 @@ require_once "config.php";
     <?php require_once "components/footer.php"; ?>
     <script>
       // Gérer l'envoi du formulaire via JavaScript
-document.querySelectorAll('.searchA').forEach(function(item) {
-  item.addEventListener('click', function() {
+      document.querySelectorAll('.searchA').forEach(function(item) {
+  item.addEventListener('click', function(event) {
+    event.preventDefault();  // Empêcher l'action par défaut du clic, pour ne pas interférer avec Swiper
+
     const idOffre = item.getAttribute('data-idoffre');
     const restaurantOuvert = item.getAttribute('data-ouvert');
-    const form = document.createElement('form');
-    form.action = '/detailsOffer.php?&ouvert=' + restaurantOuvert;
-    form.method = 'post';
 
+    // Créer un formulaire dynamique
+    const form = document.createElement('form');
+    form.action = '/detailsOffer.php?&ouvert=' + restaurantOuvert;  // URL de destination avec le paramètre
+    form.method = 'POST';
+
+    // Créer un champ caché pour l'id de l'offre
     const input = document.createElement('input');
     input.type = 'hidden';
     input.name = 'idoffre';
     input.value = idOffre;
     form.appendChild(input);
 
+    // Ajouter le formulaire à la page et le soumettre
     document.body.appendChild(form);
     form.submit(); // Soumettre le formulaire via JS
   });
 });
+
 
     </script>
 
