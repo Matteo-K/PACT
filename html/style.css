@@ -1711,10 +1711,11 @@ label[for="rest_ajoutPhotoMenu"] {
   margin-bottom: 10px;
 }
 
-
 #restaurant input {
   display: none;
 }
+
+/* ### parc d'attraction ### */
 
 #park {
   display: flex;
@@ -1741,8 +1742,20 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: flex-start;  
 }
 
+/* ### Spectacle ### */
+#show {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
 
-
+/* #show > div:nth-child(1) {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+} */
 
 /* popup signalement avis */
 
@@ -1786,7 +1799,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .swiper.gb{
-  width: 1580px;
+  width: 1610px;
   height: 100%;
   overflow: hidden;
   margin: auto;
@@ -1816,7 +1829,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   width: calc(var(--swiper-navigation-size)/ 44 * 27);
   height: var(--swiper-navigation-size);
   margin-top: calc(0px - (var(--swiper-navigation-size)/ 2));
-  z-index: 10;
+  z-index: 1;
   cursor: pointer;
   display: flex;
   align-items: center;

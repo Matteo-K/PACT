@@ -51,8 +51,8 @@
       </div>
       <?php 
       }
+      $nbElement = 10;
       if ($typeUser == "membre") {
-        $nbElement = 10;
         $stmt = $conn->prepare("SELECT * FROM pact._consulter WHERE idu = ? ORDER BY dateconsultation LIMIT ?");
         $stmt->execute([$_SESSION['idUser'], $nbElement]);
         $idOffres = [];
@@ -174,7 +174,7 @@
         const swiper = new Swiper('.swiper', {
           loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
           speed: 600, // La vitesse de transition entre les slides
-          spaceBetween: 10, // L'espace entre les slides
+          spaceBetween: 25, // L'espace entre les slides
           effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
           slidesPerView: 3, // Nombre de slides visibles
           centeredSlides: false, // Définit si la slide actuelle est centrée
