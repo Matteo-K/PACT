@@ -159,7 +159,7 @@ textarea:focus {
 #formPro input:focus,
 #formMember input:focus,
 #formConnexion input:focus {
-  outline: none;
+  outline-color: none;
 }
 
 /* ##### Components ##### */
@@ -396,7 +396,7 @@ header > div > a > div {
   font-size: 25px;
   border-radius: 10px;
   height: 2em;
-  width: 10em;
+  width: 8em;
   background-color: var(--accent);
   border: solid 2px var(--accent);
   text-align: center;
@@ -1714,10 +1714,16 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 #park > div {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+
+#park [type="number"] {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
@@ -1760,13 +1766,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #sansScroll {
   overflow-x: hidden;
 }
-.swiper.gb{
-  overflow: hidden;
-}
+
 .swiper-container.gb {
-  width: 1580px !important;
   height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
+  margin: auto;
+}
+
+.swiper.gb{
+  width: 1590px;
+  overflow: hidden;
   margin: auto;
 }
 
@@ -1789,9 +1798,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* Style pour les boutons de navigation */
 .swiper-button-next.gb, .swiper-button-prev.gb {
-  color: #1Ca4ed;
+  color: #000;
   background-color: rgba(255, 255, 255, 0.5);
-  font-size: 20px;
 }
 
 .swiper-button-next.gb{
@@ -4766,10 +4774,7 @@ details .nonRepondu {
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
-
-#formPro input,
-#formMember input,
-#formConnexion input {
+#formPro input, #formMember input, #formConnexion input {
   text-indent: 5px;
 }
 
@@ -5474,7 +5479,7 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 /*+++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css hover des boutons des formulaires, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
-button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover {
+button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover, button[id="boutonChangerMDP"]:hover {
   background-color: white;
   border: solid 2px var(--accent);
 }
