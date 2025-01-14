@@ -29,10 +29,11 @@
             </h2>
           </section>
           Equipe A21 The Void
-
+        <br>
           Adresse : Rue Edouard Branly 22300 Lannion
-
+        <br>
           Email : ewen@jain-etudiants.univ-rennes1.com
+          <br>
           <section>
             <h2>
               Droit d'auteur
