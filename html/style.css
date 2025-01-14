@@ -2005,7 +2005,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 /* ###### Index ###### */
 
 #index {
-  margin-top: 20px;
+  margin-top: 100px;
   min-height: calc(100vh - var(--header-size));
   display: flex;
   flex-flow: column nowrap;
