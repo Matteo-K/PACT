@@ -3605,10 +3605,10 @@ section#infoComp div {
   font-weight: 600;
 }
 .avis{
-  width:55%;
+  width:100%;
 }
 .messageAvisReponse {
-  width: 90%;
+  width: 45%;
 }
 
 .messageAvis,
