@@ -608,9 +608,14 @@ header > div > a > div {
   text-decoration: none;
   padding: 10px;
   text-align: center;
-  border-radius: 10px;
   padding-left: 20px;
+  border-left: 0px solid var(--primary);
+  transition: 0.3s;
+}
+
+#changeDataAccount, #changeAccount, #logoutButton{
   transition: background-color 0.3s ease;
+  border-radius: 10px;
 }
 
 .liFact {
@@ -619,7 +624,8 @@ header > div > a > div {
 
 #profileMenu ul a:hover,
 .liFact:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  border-left: 15px solid var(--primary);
+  transition: 0.3s;
 }
 
 header ul + div {
@@ -1770,11 +1776,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .swiper-container.gb {
-  width: 1590px !important;
   height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
+}
+
+.swiper.gb{
+  width: 1590px;
   overflow: hidden;
+  margin: auto;
 }
 
 .swiper-slide {
