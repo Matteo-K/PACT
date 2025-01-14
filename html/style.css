@@ -3604,7 +3604,9 @@ section#infoComp div {
   color: var(--bloc);
   font-weight: 600;
 }
-
+.avis{
+  width:55%;
+}
 .messageAvisReponse {
   width: 90%;
 }
