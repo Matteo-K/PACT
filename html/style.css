@@ -1864,12 +1864,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .swiper-button-next.gb2{
-  transform: translateX(-200%);
+  transform: translateX(-650%);
   /* Rounded corners for the next button */
 }
 
 .swiper-button-prev.gb2 {
-  transform: translateX(200%);
+  transform: translateX(650%);
 
   /* Rounded corners for the prev button */
 }
