@@ -78,9 +78,9 @@
                 <p>Aucune offre consultée récemment</p>
                 <?php } ?>
             </div>
+            <div class="swiper-button-next gb2"></div>
+            <div class="swiper-button-prev gb2"></div>
           </div>
-          <div class="swiper-button-next gb2"></div>
-          <div class="swiper-button-prev gb2"></div>
         </div>
       </div>
       <?php
