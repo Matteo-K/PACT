@@ -301,6 +301,7 @@
                 },
                 // Quand l'écran fait moins de 480px (téléphone)
                 480: {
+                  spaceBetween : 0,
                   slidesPerView: 1, // 1 slide visible pour téléphone
                 },
               },
