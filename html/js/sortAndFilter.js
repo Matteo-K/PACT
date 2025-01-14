@@ -321,7 +321,9 @@ function filtrerParPrix(offers) {
       const prixMaxOffreRestaurant = prixRange[0];
 
       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
-    } else {
+    } 
+    
+    else {
       const prixMinOffreAutres = (offer.prixMinimal || 0);
       return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
     }
@@ -373,10 +375,30 @@ function filtrerParStatutEnLigneHorsLigne(offers) {
   return offers.filter(offer => statutEnLigneHorsLigne.includes(offer.statut));
 }
 
+// Fonction de filtre par heure
+
+// function filtrerParHeure(offers) {
+//   const heureDebut = ;
+//   const heureFin = ;
+
+//   return offers.filter(offer => {
+//     if (offer.categorie === 'Restaurant') {
+//       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
+//       const prixMinOffreRestaurant = prixRange[0];
+//       const prixMaxOffreRestaurant = prixRange[0];
+
+//       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
+//     } 
+    
+//     else {
+//       const prixMinOffreAutres = (offer.prixMinimal || 0);
+//       return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
+//     }
+//   });
+// }
+
 // Fonction de filtre par date
 
-
-// Fonction de filtre par heure
 
 
 

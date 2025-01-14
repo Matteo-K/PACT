@@ -2711,9 +2711,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     padding-inline: 20px;
   }
 
-  /* #note label, #prix label, #statut label, #idCategorie label, #date label, #heure label{
+  #note label, #prix label, #statut label, #idCategorie label, #date label, #heure label {
     font-size: 16px;
-  } */
+  }
 
   /* Note */
   
