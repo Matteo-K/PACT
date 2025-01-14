@@ -3002,13 +3002,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Horizontal positioning */
-.swiper-button-next {
+.swiper-button-next.kylian{
   transform: translateX(120%);
   border-radius: 0 1em 1em 0;
   /* Rounded corners for the next button */
 }
 
-.swiper-button-prev {
+.swiper-button-prev.kylian {
   transform: translateX(-120%);
   border-radius: 1em 0 0 1em;
   /* Rounded corners for the prev button */
@@ -5376,12 +5376,9 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 /*+++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css hover des boutons des formulaires, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
-button[id="boutonConnexion"]:hover, 
-input[id="boutonLienMembre"]:hover, 
-input[id="boutonLienPro"]:hover, 
-button[id="boutonInscription"]:hover {
-  background-color: var(--accent);
-  border: solid 4px var(--accent);
+button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover {
+  background-color: white;
+  border: solid 2px var(--accent);
 }
 
 
