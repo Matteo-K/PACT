@@ -394,13 +394,20 @@ header > div > a > div {
   display: flex;
   color: #000;
   font-size: 25px;
-  border-radius: 2em;
+  border-radius: 10px;
   height: 2em;
-  width: 10em;
+  width: 8em;
   background-color: var(--accent);
+  border: solid 2px var(--accent);
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+
+#btnConn:hover {
+  background-color: white;
+  border: solid 2px var(--accent);
+  color: black;
 }
 
 #profileMenu {
@@ -1755,8 +1762,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .swiper-container.gb {
-  width: 1580px !important;
-  height: 300px; /* Ajuste la hauteur selon ton besoin */
+  width: 1590px !important;
+  height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
   overflow: hidden;
@@ -1771,7 +1778,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .swiper-slide.gb {
   width: fit-content !important;
-  background-color: none;
+  background-color: var(--background);
+  color: #1Ca4ed;
 }
 
 .searchA {
@@ -1779,10 +1787,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Style pour les boutons de navigation */
-.swiper-button-next, .swiper-button-prev {
+.swiper-button-next.gb, .swiper-button-prev.gb {
   color: #000;
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
+}
+
+.swiper-button-next.gb{
+  transform: translateX(120%);
+  border-radius: 0 1em 1em 0;
+  /* Rounded corners for the next button */
+}
+
+.swiper-button-prev.gb {
+  transform: translateX(-120%);
+  border-radius: 1em 0 0 1em;
+  /* Rounded corners for the prev button */
 }
 
 /* Style pour la pagination */
@@ -5446,7 +5465,7 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 /*+++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css hover des boutons des formulaires, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
-button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover {
+button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover, button[id="boutonChangerMDP"]:hover {
   background-color: white;
   border: solid 2px var(--accent);
 }
