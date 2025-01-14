@@ -1717,15 +1717,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 100%;
 }
 
-
-.swiper-slide {
-  background-color: #f4f4f4;
-  text-align: center;
-  line-height: 300px; /* Centrage du texte dans les slides */
-  font-size: 24px;
-  color: #333;
-}
-
 /* Style pour les boutons de navigation */
 .swiper-button-next, .swiper-button-prev {
   color: #000;
