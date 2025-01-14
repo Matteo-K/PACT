@@ -219,7 +219,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         function toggleSpecialOffer() {
             hidenOffer();
             if (select.value == "parc") {
-                ParkOffer.style.display = "block";
+                ParkOffer.style.display = "flex";
             } else if (select.value == "activite") {
                 ActiviteOffer.style.display = "block";
             } else if (select.value == "spectacle") {
