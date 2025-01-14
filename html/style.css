@@ -1863,6 +1863,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Rounded corners for the prev button */
 }
 
+.swiper-button-next.gb2{
+  transform: translateX(-200%);
+  /* Rounded corners for the next button */
+}
+
+.swiper-button-prev.gb2 {
+  transform: translateX(200%);
+
+  /* Rounded corners for the prev button */
+}
+
 
 .sectionLoca {
   width: 800px;
