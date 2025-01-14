@@ -149,6 +149,11 @@ input[type="time"],
 textarea {
   border: 2px solid var(--secondary);
   border-radius: 2px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
   text-indent: 5px;
 }
 
@@ -1513,7 +1518,6 @@ header ul + div {
 #detailsOffer input[type="time"],
 #detailsOffer input[type="number"] {
   font-size: 15px;
-  text-indent: 10px;
   padding: 5px;
   height: 30px;
 }
