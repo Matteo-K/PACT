@@ -396,7 +396,7 @@ header > div > a > div {
   font-size: 25px;
   border-radius: 10px;
   height: 2em;
-  width: 8em;
+  width: 10em;
   background-color: var(--accent);
   border: solid 2px var(--accent);
   text-align: center;
@@ -1756,11 +1756,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .swiper-container.gb {
-  width: 1580px !important;
+  width: 1620px !important;
   height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
   overflow: hidden;
+  padding: 0 20px 0 20px;
 }
 
 .swiper-slide {
@@ -1782,12 +1783,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* Style pour les boutons de navigation */
 .swiper-button-next.gb, .swiper-button-prev.gb {
-  top: 40%;
-    background-color: var(--accent60);
-    padding: 3em 0.5em;
-    color: #1Ca4ed;
-    font-size: 20px;
-    z-index: 1;
+  color: #1Ca4ed;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
 }
 
 .swiper-button-next.gb{
