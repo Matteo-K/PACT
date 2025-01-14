@@ -4193,12 +4193,12 @@ details .nonRepondu {
   display: none;
 }
 
-.container .alike:checked+svg {
+.container .alike:checked+svg , #pipe{
   animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
   fill: var(--col-like);
 }
 
-.container .adislike:checked+svg {
+.container .adislike:checked+svg , #pipe{
   animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
   fill: var(--col-dislike);
 }
@@ -4237,11 +4237,11 @@ details .nonRepondu {
   gap: 0.10px;
   flex-direction: row;
 }
-
+/*
 .likes {
   border-right: 1px solid var(--col-black);
 }
-
+*/*
 .container .count .number {
   display: flex;
   flex-direction: column;
