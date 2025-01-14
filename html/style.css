@@ -4749,7 +4749,7 @@ a[id="lienCGU"]:hover {
 }
 
 a[id="lienConnexion"] {
-  color: white;
+  color: var(--bloc);
   text-decoration: underline;
   font-family: "Belanosima", sans-serif;
 }
@@ -4808,8 +4808,8 @@ aside[id="asideRetour"] {
   margin: 30px auto;
   width: 900px;
   height: auto;
-  background-color: var(--bloc);
-  color: white;
+  background-color: white;
+  color: var(--bloc);
 }
 
 body[id="body_creation_compte"] ::placeholder {
