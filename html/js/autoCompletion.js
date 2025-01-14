@@ -19,7 +19,6 @@ let listElements = [];
  * @param {Integer} indiceListElem indice de listElements qui correspond à la liste d'élément traité
  */
 function ajoutElement(valeurElement, input, zoneElement, msgErreur, nomPost, nbMaxElements, typeElement, classElement, indiceListElem) {
-
   if (valeurElement && !listElements[indiceListElem].includes(valeurElement) && listElements[indiceListElem].length < nbMaxElements) {
 
     listElements[indiceListElem].push(valeurElement); // Ajoute le tag dans le tableau
@@ -30,6 +29,8 @@ function ajoutElement(valeurElement, input, zoneElement, msgErreur, nomPost, nbM
       elementTag.classList.add(element); // tag
     });
     elementTag.textContent = valeurElement;
+
+    console.log(elementTag);
 
     //On créé une image pour guider l'utilisateur sur le suppression du tag
     let imgCroix = document.createElement("img");
@@ -62,7 +63,7 @@ function ajoutElement(valeurElement, input, zoneElement, msgErreur, nomPost, nbM
   } else if (listElements[indiceListElem].length >= nbMaxElements) {
     msgErreur.textContent = "Vous êtes limité à " + nbMaxElements + " éléments";
   } else if (listElements[indiceListElem].includes(valeurElement)) {
-    msgErreur.textContent = "l'élément " + valeurElement + " a déjà été ajouté !";
+    msgErreur.textContent = valeurElement + " a déjà été ajouté !";
   }
 }
 
