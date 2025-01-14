@@ -159,7 +159,7 @@ textarea:focus {
 #formPro input:focus,
 #formMember input:focus,
 #formConnexion input:focus {
-  outline-color: none;
+  outline: none;
 }
 
 /* ##### Components ##### */
@@ -600,7 +600,7 @@ header > div > a > div {
   text-decoration: none;
   padding: 10px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 0;
   padding-left: 20px;
   transition: background-color 0.3s ease;
 }
@@ -611,7 +611,8 @@ header > div > a > div {
 
 #profileMenu ul a:hover,
 .liFact:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  border-left: 15px solid var(--primary);
+  transition: ease-in-out;
 }
 
 header ul + div {
@@ -4738,6 +4739,13 @@ details .nonRepondu {
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
+
+#formPro input,
+#formMember input,
+#formConnexion input {
+  text-indent: 5px;
+}
+
 body[id="body_creation_compte"] {
   background-image: url("img/fond.png");
   background-repeat: no-repeat;

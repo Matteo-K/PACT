@@ -961,7 +961,7 @@ print_r($avis);
                             </div>
 
                             <!-- Pop-up de signalement d'un avis -->
-                            <section class="modal">
+                            <section class="modal signalementPopup">
                                 <section class="modal-content">
                                     <span class="close">&times;</span>
                                     <h2>Signalement d'un avis</h2>
@@ -1351,7 +1351,7 @@ print_r($avis);
 
         //Script de gestion du pop-up de signalement
         const ouvrePopup = document.getElementById('signalerAvis');
-        const popup = document.querySelector('.avis .modal');
+        const popup = document.querySelector('.avis .signalementPopup');
         const btnFermer = document.getElementsByClassName('.avis .modal .close');
         const btnConfirmer = document.getElementById('confirmBtn');
 
