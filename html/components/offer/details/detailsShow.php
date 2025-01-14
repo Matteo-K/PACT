@@ -23,7 +23,7 @@ if ($categorie["_spectacle"]) {
 ?>
 <section id="show"> 
     <!-- Gestion du nombre de place pour le parc d'attraction -->
-    <div>
+    <div id="show_nbPlacePrixMin">
         <label class="labelTitre" for="show_nbPlace">Nombre de places : </label> <!-- Label nombre de place -->
         <div>
             <input type="number" id="show_nbPlace" name="show_nbPlace" min="0" placeholder="0" value="<?php echo $spectacle["nbplace"] ?>">
