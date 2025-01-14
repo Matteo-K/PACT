@@ -1827,6 +1827,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color: var(--background);
   color: #1Ca4ed;
 }
+.swiper-slide.gb2 {
+  width: fit-content !important;
+  background-color: var(--background);
+  color: #1Ca4ed;
+}
 
 .searchA {
   width: 100%;
