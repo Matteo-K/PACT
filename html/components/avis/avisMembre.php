@@ -46,10 +46,10 @@ function formatDateDiff($date)
 }
 
 foreach ($avis as $a) {
-    $likeId = 'like_' . $a['idc_reponse'];
+    $likeId = 'like_' . $a['idc'];
     $dislikeId = 'dislike_' . $a['idc'];
     
-    $likeIdPro = 'like_' . $a['idc'];
+    $likeIdPro = 'like_' . $a['idc_reponse'];
     $dislikeIdPro = 'dislike_' . $a['idc_reponse'];
 ?>
     <div class="messageAvisReponse">
@@ -233,7 +233,7 @@ foreach ($avis as $a) {
                         <div class="count dislikes">
                             <?php
                             $nbDislikePro = (string)$a["nbdislikepro"];
-                            for ($i = 0; $i < strlen($nbDislike); $i++) {
+                            for ($i = 0; $i < strlen($nbDislikePro); $i++) {
                             ?>
                                 <div class="number" style="transform: var(--nb<?= $nbDislikePro[$i] ?>);">
                                     <span>0</span>

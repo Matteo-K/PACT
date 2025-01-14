@@ -146,9 +146,13 @@ require_once "config.php";
       
         // Initialiser Swiper après avoir enveloppé les formulaires dans des divs
         const swiper = new Swiper('.swiper-container', {
-          loop: true,
-          slidesPerView: 3,
-          spaceBetween: 10,
+          loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
+          speed: 600, // La vitesse de transition entre les slides
+          spaceBetween: 10, // L'espace entre les slides
+          effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
+          slidesPerView: 3, // Nombre de slides visibles
+          centeredSlides: false, // Définit si la slide actuelle est centrée
+          watchOverflow: true, 
           // autoplay: {
           //   delay: 3000,
           // },
