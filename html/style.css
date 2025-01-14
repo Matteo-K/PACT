@@ -4427,8 +4427,9 @@ details .nonRepondu {
 }
 
 .tag:not(.mainOffer > div > .tag) {
-  border-radius: 0;
-  border: solid 3px var(--accent);
+  border-radius: 0 !important;
+  border-bottom: solid 3px var(--accent) !important;
+  padding: 2px 20px !important;
 }
 
 .notedetaille .barreDeNotationBlanche {
