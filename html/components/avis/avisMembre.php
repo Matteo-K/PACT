@@ -140,6 +140,7 @@ foreach ($avis as $a) {
                             }
                             ?>
                         </div>
+                        <div id="pipe">|</div>
                         <div class="count dislikes">
                             <?php
                             $nbDislike = (string)$a["nbdislike"];

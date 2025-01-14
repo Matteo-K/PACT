@@ -500,7 +500,7 @@ header > div > a > div {
 
 /* Interaction sur les liens */
 .details-form:hover {
-  background-color: #f0f0f0;
+  background-color: var(--secondary);
   color: #007bff;
 }
 
@@ -1657,6 +1657,37 @@ label[for="rest_ajoutPhotoMenu"] {
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
+#sansScroll {
+  overflow-x: hidden;
+}
+
+.swiper-container-une {
+  width: 100%;
+  height: 300px; /* Hauteur du carrousel */
+}
+
+.swiper-slide {
+  background-color: #f4f4f4;
+  text-align: center;
+  line-height: 300px; /* Centrage du texte dans les slides */
+  font-size: 24px;
+  color: #333;
+}
+
+/* Style pour les boutons de navigation */
+.swiper-button-next, .swiper-button-prev {
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+}
+
+/* Style pour la pagination */
+.swiper-pagination-bullet {
+  background-color: #000;
+}
+
+
+
 .sectionLoca {
   width: 800px;
   font-size: 25px;
@@ -1762,7 +1793,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .modifierBut {
   background-color: #1ca4ed;
   color: black;
-  border: solid #1ca4ed 1px;
+  border: solid #1ca4ed 2px;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -1771,14 +1802,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-weight: bold;
   margin: 0;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 10px;
   transition: background-color 0.3s ease;
 }
 
 #checkAddressBtn:hover,
 .modifierBut:hover {
   background-color: white;
-  border: solid #1ca4ed 1px;
+  border: solid #1ca4ed 2px;
   color: #1ca4ed;
 }
 
@@ -4143,7 +4174,7 @@ details .nonRepondu {
 
 .container{
   background-color: var(--col-gray);
-  width: 15%;
+  width: 175px;
   border: var(--col-black) 2px solid;
   border-radius: 50px;
   display: flex;
@@ -4153,33 +4184,12 @@ details .nonRepondu {
   user-select: none;
 }
 
-.container:has(.alike:checked) .count {
-  border-left-color: var(--col-like);
-  border-right-color: transparent;
-  border: none;
-}
-
-.container:has(.adislike:checked)>.count {
-  border-right-color: var(--col-dislike);
-  border-left-color: transparent;
-  border: none;
-}
-
-.container:has(.adislike:checked)>.count.dislikes,
-.container:has(#like:checked)>.count.likes {
-  border: none;
-}
-
-.container:has(.adislike:checked) .count.dislikes {
+.container:has(.adislike:checked) .count.dislikes, .container:has(.adislike:checked) #pipe{
   color: var(--col-dislike);
-  border-left: var(--col-dislike) 1px solid;
-  /* La couleur du texte devient bleue quand "like" est sélectionné */
 }
 
-.container:has(.alike:checked) .count.likes {
+.container:has(.alike:checked) .count.likes, .container:has(.alike:checked) #pipe{
   color: var(--col-like);
-  border-right: var(--col-like) 1px solid;
-  /* La couleur du texte devient rouge quand "dislike" est sélectionné */
 }
 
 
@@ -4187,12 +4197,12 @@ details .nonRepondu {
   display: none;
 }
 
-.container .alike:checked+svg {
+.container .alike:checked+svg{
   animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
   fill: var(--col-like);
 }
 
-.container .adislike:checked+svg {
+.container .adislike:checked+svg{
   animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
   fill: var(--col-dislike);
 }
@@ -4231,11 +4241,11 @@ details .nonRepondu {
   gap: 0.10px;
   flex-direction: row;
 }
-
+/*
 .likes {
   border-right: 1px solid var(--col-black);
 }
-
+*/*
 .container .count .number {
   display: flex;
   flex-direction: column;
@@ -5153,7 +5163,7 @@ h1[id="pasDeCompteTitre"] {
   padding: 15px;
   margin: auto;
   width: 500px;
-  height: 330px;
+  height: auto;
   background-color: var(--bloc);
   color: white;
 }
@@ -5248,10 +5258,6 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
     min-width: 200px;
     max-width: 280px;
     width: 230px;
-  }
-
-  input[id="boutonLienPro"] {
-    display: none;
   }
 }
 
