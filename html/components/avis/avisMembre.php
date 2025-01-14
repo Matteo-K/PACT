@@ -299,7 +299,7 @@ foreach ($avis as $a) {
         if (confirmSupp) {
             let form = document.createElement("form");
             form.method = 'POST';
-            form.action = "/enregAvis.php"
+            form.action = "/enregAvis.php";
             
             let idAvis = document.createElement('input');
             idAvis.type = "hidden";
