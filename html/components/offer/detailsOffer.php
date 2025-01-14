@@ -269,7 +269,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         createAutoCompletion(
             document.getElementById("inputTag"),
-            document.getElementById("autocompletion"),
+            "autocompletion",
             msgTag,
             listeTags,
             ajoutElement,
@@ -288,49 +288,6 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         loadedTags.forEach(valeurTag => {
             ajoutElement(valeurTag);
         });
-
-        function ajoutElement(valeurTag) {
-
-            if (valeurTag && !tags.includes(valeurTag) && tags.length < maxTags) {
-
-                tags.push(valeurTag); // Ajoute le tag dans le tableau
-
-                // Crée l'élément visuel pour afficher le tag
-                const elementTag = document.createElement("span");
-                elementTag.classList.add("tag");
-                elementTag.textContent = valeurTag;
-
-                //On créé une image pour guider l'utilisateur sur le suppression du tag
-                let imgCroix = document.createElement("img");
-                imgCroix.setAttribute("src", "../img/icone/croix.png");
-
-                // Crée l'input caché pour soumettre le tag avec le formulaire
-                const hiddenInputTag = document.createElement("input");
-                hiddenInputTag.type = "hidden";
-                hiddenInputTag.value = valeurTag;
-                hiddenInputTag.name = "tags[]"; // Utilise un tableau pour les tags
-
-                // Ajoute un événement pour supprimer le tag au clic
-                elementTag.addEventListener("click", function () {
-                    tags.splice(tags.indexOf(valeurTag), 1); // Retire le tag du tableau
-                    sectionTag.removeChild(hiddenInputTag); // Supprime l'input caché
-                    sectionTag.removeChild(elementTag); // Supprime l'élément visuel du tag
-                });
-
-                // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel
-                elementTag.appendChild(imgCroix);
-                sectionTag.appendChild(elementTag); 
-                sectionTag.appendChild(hiddenInputTag);
-
-                // Réinitialise l'input
-                inputTag.value = "";
-            } else if (tags.length >= maxTags) {
-                msgTag.textContent = "Vous êtes limité à 6 tags"; // Change la couleur du texte pour signaler la limite atteinte
-            } else if (tags.includes(valeurTag)) {
-                msgTag.textContent = "Ce tag a déjà été ajouté !";
-            }
-        }
-
 
         // Chargement pour les images de l'offre
         loadEventLoadImg(

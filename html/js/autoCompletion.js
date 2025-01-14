@@ -131,19 +131,21 @@ function createAutoCompletion(input, blocAutocomplete, msgErreur, listeSuggestio
   const indiceListElem = listElements.length;
   listElements.push([]);
 
+  let zone = document.getElementById(blocAutocomplete);
+
   // On detecte chaque saisie de caractère dans l'input
   input.addEventListener("input", (event) => {
-    updateSuggestions(event.target.value, indiceListElem, blocAutocomplete, msgErreur, listeSuggestion, nomFonction, ...params);
+    updateSuggestions(event.target.value, indiceListElem, zone, msgErreur, listeSuggestion, nomFonction, ...params);
   });
   
   // On detecte le focus de l'input
   input.addEventListener("focus", () => {
-    updateSuggestions(input.value, indiceListElem, blocAutocomplete, msgErreur, listeSuggestion, nomFonction, ...params);
+    updateSuggestions(input.value, indiceListElem, zone, msgErreur, listeSuggestion, nomFonction, ...params);
   });
 
   // Cacher les suggestions si on clique ailleurs
   document.addEventListener("click", (event) => {
-    if (!event.target.closest(blocAutocomplete) && event.target !== inputTag) {
+    if (!event.target.closest("#"+blocAutocomplete) && event.target !== inputTag) {
       autocompleteList.innerText = "";
       autocompleteList.style.display = "none"; 
     }
