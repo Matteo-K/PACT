@@ -217,9 +217,9 @@
           slidesPerView: 3, // Nombre de slides visibles
           centeredSlides: false, // Définit si la slide actuelle est centrée
           watchOverflow: true, 
-          // autoplay: {
-          //   delay: 3000,
-          // },
+          autoplay: {
+            delay: 3000,
+          },
           navigation: {
             nextEl: '.swiper-button-next.gb',
             prevEl: '.swiper-button-prev.gb',
@@ -233,9 +233,9 @@
           slidesPerView: 3, // Nombre de slides visibles
           centeredSlides: false, // Définit si la slide actuelle est centrée
           watchOverflow: true, 
-          // autoplay: {
-          //   delay: 3000,
-          // },
+          autoplay: {
+            delay: 3000,
+          },
           navigation: {
             nextEl: '.swiper-button-next.gb2',
             prevEl: '.swiper-button-prev.gb2',
@@ -249,9 +249,9 @@
           slidesPerView: 3, // Nombre de slides visibles
           centeredSlides: false, // Définit si la slide actuelle est centrée
           watchOverflow: true, 
-          // autoplay: {
-          //   delay: 3000,
-          // },
+          autoplay: {
+            delay: 3000,
+          },
           navigation: {
             nextEl: '.swiper-button-next.gb3',
             prevEl: '.swiper-button-prev.gb3',
