@@ -1389,9 +1389,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Afficher le pop-up
         ouvrePopup.forEach(boutonOuvrePopup => {
             boutonOuvrePopup.addEventListener('click', () => {
-                console.log("popup");
                 popup.style.display = 'block';
-                console.log("popupAffichée");
             });
         });
 
