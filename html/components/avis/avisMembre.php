@@ -213,9 +213,9 @@ foreach ($avis as $a) {
                         </label>
                         <div class="count likes">
                             <?php
-                            $nbLikePro = (string)$a["likeReponse"];
+                            $nbLikePro = (string)$a["likereponse"];
                             print_r($nbLikePro);
-                            for ($i = 0; $i < nbChiffreNombre($a["likeReponse"]); $i++) {
+                            for ($i = 0; $i < nbChiffreNombre($a["likereponse"]); $i++) {
                             ?>
                                 <div class="number" style="transform: var(--nb<?= $nbLikePro[$i] ?>);">
                                     <span>0</span>
@@ -236,7 +236,7 @@ foreach ($avis as $a) {
                         <div id="pipe">|</div>
                         <div class="count dislikes">
                             <?php
-                            $nbDislikePro = (string)$a["dislikeReponse"];
+                            $nbDislikePro = (string)$a["dislikereponse"];
                             print_r($nbDislikePro);
                             for ($i = 0; $i < strlen($nbDislikePro); $i++) {
                             ?>
