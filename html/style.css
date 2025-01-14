@@ -4085,7 +4085,7 @@ details .nonRepondu {
   padding: 9px;
   user-select: none;
 }
-
+/*
 .container:has(.alike:checked) .count {
   border-left-color: var(--col-like);
   border-right-color: transparent;
@@ -4097,21 +4097,22 @@ details .nonRepondu {
   border-left-color: transparent;
   border: none;
 }
-
 .container:has(.adislike:checked)>.count.dislikes,
 .container:has(#like:checked)>.count.likes {
   border: none;
 }
 
-.container:has(.adislike:checked) .count.dislikes {
+*/
+.container:has(.adislike:checked) .count.dislikes, #pipe{
   color: var(--col-dislike);
-  border-left: var(--col-dislike) 1px solid;
+  /*border-left: var(--col-dislike) 1px solid;*/
+
   /* La couleur du texte devient bleue quand "like" est sélectionné */
 }
 
-.container:has(.alike:checked) .count.likes {
+.container:has(.alike:checked) .count.likes, #pipe{
   color: var(--col-like);
-  border-right: var(--col-like) 1px solid;
+  /* border-right: var(--col-like) 1px solid;*/
   /* La couleur du texte devient rouge quand "dislike" est sélectionné */
 }
 
