@@ -1898,7 +1898,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .swiper.gb, 
   .swiper.gb2,
   .swiper.gb3{
-    width: 1065px;
+    width: 520px;
     height: 100%;
     overflow: hidden;
     margin: auto;
@@ -2212,11 +2212,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .flip-card-back {
-  background: var(--primary);
+  background: #fff;
   color: var(--text-dark);
   transform: rotateY(180deg);
   position: relative;
   font-size: 1.1em;
+  border: 4px solid var(--primary);
+  box-sizing: border-box;
 }
 
 /* Information des cartes */

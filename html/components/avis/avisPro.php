@@ -121,7 +121,7 @@ $avis = $avisTemp;
                 <h2>
                     Auteur
                 </h2>
-                <img src="./img/icone/trois-points.png" alt="icone de parametre" id="signalerAvis">
+                <img src="./img/icone/trois-points.png" alt="icone de parametre" class="signalerAvis">
             </div>
             <div class="noteEtoile">
                 <?php
