@@ -78,25 +78,30 @@
             </h2>
             <p>Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :</p>
             <ul>
-              <li>Droit d'accès : vous pouvez obtenir une copie des données personnelles que nous détenons à votre sujet.
+              <li>
+                Droit d'accès : vous pouvez obtenir une copie des données personnelles que nous détenons à votre sujet.
               </li>
-              <li>Droit de rectification : vous pouvez demander que vos données soient corrigées si elles sont inexactes.
+              <li>
+                Droit de rectification : vous pouvez demander que vos données soient corrigées si elles sont inexactes.
               </li>
-              <li>Droit à l’effacement : vous pouvez demander la suppression de vos données personnelles, sous certaines
-                conditions. </li>
-              <li>Droit d’opposition : vous pouvez vous opposer à l'utilisation de vos données. </li>
+              <li>
+                Droit à l’effacement : vous pouvez demander la suppression de vos données personnelles, sous certaines
+                conditions.
+              </li>
+              <li>
+                Droit d’opposition : vous pouvez vous opposer à l'utilisation de vos données.
+              </li>
             </ul>
-            <p> Pour exercer ces droits, vous pouvez nous contacter à l’adresse suivante :</p>
-            ewen@jain-etudiants.univ-rennes1.com.
+            <p> Pour exercer ces droits, vous pouvez nous contacter à l’adresse suivante :
+              ewen@jain-etudiants.univ-rennes1.com.
+            </p>
           </section>
           <section>
             <h2>
               7. Cookies
             </h2>
             <p>Nous utilisons des cookies pour améliorer l’expérience de navigation et analyser l’utilisation de notre site.
-              <br>
-              Vous pouvez gérer vos préférences de cookies via les paramètres de votre navigateur.
-            </p>
+              <br Vous pouvez gérer vos préférences de cookies via les paramètres de votre navigateur. </p>
           </section>
           <section>
             <h2>
