@@ -19,13 +19,15 @@
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
       <div class="swiper-container gb">
-        <div class="swiper-wrapper gb">
-          <?php 
-            $elementStart = 0;
-            $nbElement = 20;
-            $offres = new ArrayOffer();
-            $offres->displayCardALaUne($offres->filtre($idUser, $typeUser), $typeUser, $elementStart, $nbElement);
-          ?>
+        <div class="swiper gb">
+          <div class="swiper-wrapper gb">
+            <?php 
+              $elementStart = 0;
+              $nbElement = 20;
+              $offres = new ArrayOffer();
+              $offres->displayCardALaUne($offres->filtre($idUser, $typeUser), $typeUser, $elementStart, $nbElement);
+            ?>
+          </div>
         </div>
 
         <div class="swiper-button-next gb"></div>
