@@ -3572,6 +3572,13 @@ section#infoComp div {
   object-fit: cover;
 }
 
+.user > div img.signalementSupp {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0%;
+  object-fit: cover;
+}
+
 .user,
 .noteEtoile,
 .infoUser,

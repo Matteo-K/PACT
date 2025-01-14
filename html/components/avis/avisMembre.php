@@ -91,11 +91,11 @@ foreach ($avis as $a) {
                     <?php
                     if($a['idu'] == $idUser){
                     ?>
-                        <img src="./img/icone/bin.png" alt="Poubelle" title="Supprimer son avis" class="supprimerAvis" />
+                        <img class="signalementSupp" src="./img/icone/bin.png" alt="Poubelle" title="Supprimer son avis" class="supprimerAvis" />
                     <?php
                     } else{
                         ?>
-                        <img src="./img/icone/signalement.png" alt="Signalement" title="signaler un avis" class="signalerAvis" />
+                        <img class="signalementSupp" src="./img/icone/signalement.png" alt="Signalement" title="signaler un avis" class="signalerAvis" />
                         <?php
                     }
                     ?>
