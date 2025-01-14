@@ -3049,7 +3049,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   object-fit: cover;
 }
 
-.swiper-slide:hover img {
+.swiper-slide.imageSwiper:hover img {
   transform: scale(1.05);
 }
 
