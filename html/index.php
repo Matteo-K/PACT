@@ -17,7 +17,7 @@ require_once "config.php";
   <main>
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
-      <div class="swiper-container-une">
+      <div class="swiper-container">
         <div class="swiper-wrapper">
           <?php 
             $elementStart = 0;
@@ -110,40 +110,23 @@ require_once "config.php";
     <script src="js/sortAndFilter.js"></script>
     <?php require_once "components/footer.php"; ?>
     <script>
-      // Gérer l'envoi du formulaire via JavaScript
-      document.querySelectorAll('.searchA').forEach(function(item) {
-  item.addEventListener('click', function(event) {
-    event.preventDefault();  // Empêcher l'action par défaut du clic, pour ne pas interférer avec Swiper
-
-    const idOffre = item.getAttribute('data-idoffre');
-    const restaurantOuvert = item.getAttribute('data-ouvert');
-
-    // Créer un formulaire dynamique
-    const form = document.createElement('form');
-    form.action = '/detailsOffer.php?&ouvert=' + restaurantOuvert;  // URL de destination avec le paramètre
-    form.method = 'POST';
-
-    // Créer un champ caché pour l'id de l'offre
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'idoffre';
-    input.value = idOffre;
-    form.appendChild(input);
-
-    // Ajouter le formulaire à la page et le soumettre
-    document.body.appendChild(form);
-    form.submit(); // Soumettre le formulaire via JS
-  });
-});
-
-
+      const forms = document.querySelectorAll("#index form");
+      forms.forEach(form => {
+        form.addEventListener("click", (event) => {
+          if (event.target.tagName.toLowerCase() === "a") {
+            return;
+          }
+          event.preventDefault();
+          form.submit();
+        });
+      });
     </script>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        var swiper = new Swiper('.swiper-container-une', {
+        var swiper = new Swiper('.swiper-container', {
           loop: true, // Activer la boucle infinie
           slidesPerView: 1, // Nombre de slides visibles à la fois
           spaceBetween: 10, // Espace entre les slides

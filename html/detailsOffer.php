@@ -1346,8 +1346,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         //Script de gestion du pop-up de signalement
         const ouvrePopup = document.getElementById('signalerAvis');
-        const popup = document.getElementsByClassName('modal')[1];
-        const btnFermer = document.getElementsByClassName('close')[1];
+        const popup = document.querySelector('.avis > .modal');
+        const btnFermer = document.getElementsByClassName('.avis > .modal .close');
         const btnConfirmer = document.getElementById('confirmBtn');
 
         // Afficher le pop-up

@@ -1701,8 +1701,22 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .swiper-container-une {
   width: 100%;
-  height: 300px; /* Hauteur du carrousel */
+  height: 300px; /* Ajuste la hauteur selon ton besoin */
+  position: relative;
 }
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Assure-toi que les slides prennent la bonne taille */
+}
+
+.searchA {
+  width: 100%;
+  height: 100%;
+}
+
 
 .swiper-slide {
   background-color: #f4f4f4;
