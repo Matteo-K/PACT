@@ -233,8 +233,8 @@ $stmt = $conn->prepare("SELECT a.*,
     r.idc_reponse,
     r.denomination AS reponse_denomination,
     r.contenureponse,
-    r.nblikepro,
-    r.nbdislikepro,
+    r.nblikepro as likereponse,
+    r.nbdislikepro as dislikereponse,
     r.reponsedate,
     r.idpro
 FROM 
@@ -250,6 +250,8 @@ ORDER BY
 ");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+print_r($avis);
 ?>
 
 <!DOCTYPE html>
@@ -598,13 +600,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     </div>
 
-                    <div class="swiper-container">
+                    <div class="swiper-container detailSwiper">
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 <?php
                                 foreach ($photos as $picture) {
                                 ?>
-                                    <div class="swiper-slide">
+                                    <div class="swiper-slide imageSwiper">
                                         <img src="<?php echo $picture['url']; ?>" />
                                     </div>
                                 <?php
@@ -613,8 +615,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                         </div>
 
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next kylian"></div>
+                        <div class="swiper-button-prev kylian"></div>
                     </div>
 
                     <div thumbsSlider="" class="swiper myThumbSlider">
