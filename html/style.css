@@ -945,18 +945,6 @@ header ul + div {
   border: none;
 }
 
-/* #manageOffer .suivant {
-  color: #fff;
-  background-color: var(--primary);
-}
-
-#manageOffer .precedent {
-  color: var(--);
-  background-color: #fff;
-  border: 2px solid var(--primary);
-
-} */
-
 /* Feedback Save */
 #save-offer {
   position: fixed;
@@ -1765,6 +1753,14 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
+}
+
+#show input {
+  width: 100px;
+}
+
+#show [type="time"] {
+  text-align: center;
 }
 
 /* popup signalement avis */
