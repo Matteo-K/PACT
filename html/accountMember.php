@@ -8,7 +8,7 @@
     // Initialisation du tableau pour stocker les erreurs
     $errors = []; 
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["nom"])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["nomMembre"])) {
         // Récupérer les données du formulaire
         $nom = trim($_POST['nomMembre']);
         $prenom = trim($_POST['prenomMembre']);

@@ -112,12 +112,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // Récupérer le nom du fichier actuel
     let currentFile;
 
-    if (sirenInput && sirenLabel) {
+    // if (sirenInput && sirenLabel) {
+    //     currentFile = 'accountPro.php';
+    // }
+    
+    // else {
+    //     currentFile = 'accountMember.php';
+    // }
+
+    if (window.location.pathname.includes("accountPro")) {
         currentFile = 'accountPro.php';
     } 
     
-    else {
+    else if (window.location.pathname.includes("accountMember")) {
         currentFile = 'accountMember.php';
+    } 
+    
+    else if (window.location.pathname.includes("changeAccountPro")) {
+        currentFile = 'changeAccountPro.php';
+    } 
+    
+    else if (window.location.pathname.includes("changeAccountMember")) {
+        currentFile = 'changeAccountMember.php';
     }
 
 
