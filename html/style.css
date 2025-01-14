@@ -5275,8 +5275,9 @@ h1[id="pasDeCompteTitre"] {
   margin: auto;
   width: 500px;
   height: auto;
-  background-color: var(--bloc);
-  color: white;
+  background-color: white;
+  border: solid 4px var(--primary);
+  color: var(--bloc);
 }
 
 .connexion-compte ::placeholder {
@@ -5322,7 +5323,9 @@ input[id="login"], input[id="motdepasseConnexion"], [id="ancienMDP"], input[id="
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 button[id="boutonConnexion"], button[id="boutonChangerMDP"] {
