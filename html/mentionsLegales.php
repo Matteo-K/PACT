@@ -23,12 +23,12 @@
     switch ($page) {
       case 1: ?>
         <article>
-          <>
+          <section>
             <h2>
               1. Responsable du traitement
             </h2>
             <p> Equipe A21 The Void
-              <br>
+              
               Adresse : Rue Edouard Branly 22300 Lannion
               <br>
               Email : ewen@jain-etudiants.univ-rennes1.com
