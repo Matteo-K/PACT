@@ -3549,8 +3549,9 @@ section#infoComp div {
 
 .messageAvis,
 .reponseAvis {
-  background-color: var(--background-avis);
+  background-color: #fff;
   border-radius: 1em;
+  border: var(--accent) 2px solid;
   padding-inline: 1em;
   width: 100%;
 }
