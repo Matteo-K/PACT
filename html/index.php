@@ -10,9 +10,10 @@ require_once "config.php";
   <link rel="icon" href="img/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <title>PACT</title>
+  <script src="js/setColor.js"></script>
 </head>
 <body id="sansScroll">
-  <script src="js/setColor.js"></script>
+  <?php require_once __DIR__."/components/ecranChargement.php"; ?>
   <?php require_once "components/header.php"; ?>
   <main>
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
