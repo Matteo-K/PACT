@@ -1699,8 +1699,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   overflow-x: hidden;
 }
 
-.swiper-container-une {
-  width: 100%;
+.swiper-container.gb {
+  width: 520px !important;
   height: 300px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
 }
