@@ -5380,8 +5380,8 @@ button[id="boutonConnexion"]:hover,
 input[id="boutonLienMembre"]:hover, 
 input[id="boutonLienPro"]:hover, 
 button[id="boutonInscription"]:hover {
-  background-color: var(--accent);
-  border: solid 4px var(--accent);
+  background-color: white;
+  border: solid 2px var(--accent);
 }
 
 
