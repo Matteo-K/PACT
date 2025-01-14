@@ -1648,6 +1648,44 @@ label[for="rest_ajoutPhotoMenu"] {
   display: none;
 }
 
+#park {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+#park > div {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+
+
+
+
+/* popup signalement avis */
+
+
+.avis > .modal h2{
+  width: 100%;
+}
+
+.avis > .modal input[type="checkbox"] + label{
+  width: 100%;
+}
+
+
+.avis > .modal textarea{
+  width: 100%;
+  resize: none;
+  height: 200px;
+  font-size: 16px;
+}
+
+
+/* fin popup signalement avis */
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -4016,7 +4054,7 @@ details .nonRepondu {
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 16px;
   box-sizing: border-box;
 }
 
@@ -4602,6 +4640,10 @@ details .nonRepondu {
 
 #choixCategorie select:disabled {
   background-image: none;
+  color: var(--text-dark);
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
 }
 
 #choixCategorie select {

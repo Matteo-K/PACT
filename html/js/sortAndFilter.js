@@ -99,8 +99,8 @@ const chkBxSpectacle = document.querySelector("#Spectacle");
 const chkBxRestauration = document.querySelector("#Restauration");
 
 // dates
-// const dateDepart = document.querySelector("#dateDepart");
-// const dateFin = document.querySelector("#dateFin");
+const dateDepart = document.querySelector("#dateDepart");
+const dateFin = document.querySelector("#dateFin");
 const heureDebut = document.querySelector("#heureDebut");
 const heureFin = document.querySelector("#heureFin");
 
@@ -425,6 +425,12 @@ function filtrerParPeriode(offers) {
   const heureDebutValue = heureDebut.value;
   const heureFinValue = heureFin.value;
 
+  // test console
+  console.log(offers[0]);
+  console.log(offers[0].horaireMidi);
+  console.log(offers[0].horaireSoir);
+  console.log(offers[0].horaire);
+
   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
     return offers;
   }
@@ -599,10 +605,11 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
+  array = filtrerParPeriode(array);
+
   if (userType == "pro_public" || userType == "pro_prive") {
     array = filtrerParStatutEnLigneHorsLigne(array);
   }
-  //array = filtrerParPeriode(array);
 
   // Tris
   array = selectSort(array);
@@ -1007,8 +1014,8 @@ document.addEventListener('DOMContentLoaded', function() {
   chkBxRestauration.addEventListener("click", () => goToPage(1));
   
   // dates
-  // dateDepart.addEventListener("change", () => goToPage(1));
-  // dateFin.addEventListener("change", () => goToPage(1));
+  dateDepart.addEventListener("change", () => goToPage(1));
+  dateFin.addEventListener("change", () => goToPage(1));
   heureDebut.addEventListener("change", () => goToPage(1));
   heureFin.addEventListener("change", () => goToPage(1));
   

@@ -43,18 +43,16 @@ if ($categorie["_parcattraction"]) {
     <!-- Plan du parc -->
      <div>
          <div id="park_planTitres">
-            <div>
+            <div id="insereImg">
                 <label class="labelTitre">Photo du plan* </label>
                 <label for="park_plan" class="modifierBut">Ajouter</label>
             </div>
+            <div id="park_zoneImg"></div>
             <label class="labelSousTitre">Vous pouvez insérer <?= $limitImgPlan ?> photo de votre plan</label> <!-- Indication pour l'utilisateur -->
             <label class="labelSousTitre"> Cliquez sur l'image pour la supprimer</label>
+            <input type="file" id="park_plan" name="park_plan[]"
+            accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple class="zoneImages" >
         </div>
-
-        <input type="file" id="park_plan" name="park_plan[]"
-        accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple class="zoneImages" >
-        
-        <div id="park_zoneImg"></div>
     </div>
 </section>
 <script>
