@@ -416,61 +416,112 @@ function filtrerParStatutEnLigneHorsLigne(offers) {
 //   return offresFiltrees;
 // }
 
-
-
-// Fonction de filtre par période
 function filtrerParPeriode(offers) {
   const dateDepartValue = new Date(dateDepart.value);
   const dateFinValue = new Date(dateFin.value);
-  const heureDebutValue = heureDebut.value;
-  const heureFinValue = heureFin.value;
 
-  // test console
-  // autre: console.log(offers[0].horaireMidi);
-  // autre: console.log(offers[0].horaireSoir);
-  // console.log(offers[0].horaire); // spectacle
-  
-  let data = [];
-  offers[0].horaire.forEach(element => {
-    data.push(JSON.parse(element));
-  });
+  const heureDebutValue = heureDebut.value ? heureDebut.value.split(':').map(Number) : null;
+  const heureFinValue = heureFin.value ? heureFin.value.split(':').map(Number) : null;
 
-  console.table(data);
-  console.log(data[0].daterepresentation);
-
+  // Vérification de la validité des dates
   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
     return offers;
   }
 
   return offers.filter(offer => {
-    if (!offer.heureOuverture || !offer.heureFermeture) {
+    // Vérifier si l'offre a des horaires et une date valide
+    if (!offer.dateRepresentation || !offer.horaire) {
       return false;
     }
 
-    let heureValide = true;
-    if (heureDebutValue && heureFinValue) {
-      const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
-      const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
-
-      const debutRange = heureDebutH * 60 + heureDebutM;
-      const finRange = heureFinH * 60 + heureFinM;
-
-      const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
-      const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
-
-      const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
-      const fermetureMinutes = fermetureH * 60 + fermetureM;
-
-      if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
-        heureValide = true;
-      } else {
-        heureValide = false;
-      }
+    // Vérifier si l'offre est dans la plage de dates
+    const dateRepresentation = new Date(offer.dateRepresentation);
+    if (dateRepresentation < dateDepartValue || dateRepresentation > dateFinValue) {
+      return false;
     }
 
-    return heureValide;
+    // Vérifier si l'offre est dans la plage horaire
+    if (heureDebutValue && heureFinValue) {
+      const [debutH, debutM] = heureDebutValue;
+      const [finH, finM] = heureFinValue;
+
+      const debutMinutes = debutH * 60 + debutM;
+      const finMinutes = finH * 60 + finM;
+
+      return offer.horaire.some(horaire => {
+        const [heureOuvertureH, heureOuvertureM] = horaire.heureOuverture.split(':').map(Number);
+        const [heureFermetureH, heureFermetureM] = horaire.heureFermeture.split(':').map(Number);
+
+        const ouvertureMinutes = heureOuvertureH * 60 + heureOuvertureM;
+        const fermetureMinutes = heureFermetureH * 60 + heureFermetureM;
+
+        return (
+          (debutMinutes <= fermetureMinutes && finMinutes >= ouvertureMinutes)
+        );
+      });
+    }
+
+    // Si aucune heure n'est définie, on considère que l'offre est valide
+    return true;
   });
 }
+
+
+
+
+// Fonction de filtre par période
+// function filtrerParPeriode(offers) {
+//   const dateDepartValue = new Date(dateDepart.value);
+//   const dateFinValue = new Date(dateFin.value);
+//   const heureDebutValue = heureDebut.value;
+//   const heureFinValue = heureFin.value;
+
+  // test console
+  // autre: console.log(offers[0].horaireMidi);
+  // autre: console.log(offers[0].horaireSoir);
+  
+//   console.log(offers[0].horaire); // spectacle
+//   let data = [];
+//   offers[0].horaire.forEach(element => {
+//     data.push(JSON.parse(element));
+//   });
+
+//   console.table(data);
+//   console.log(data[0].daterepresentation);
+
+//   if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
+//     return offers;
+//   }
+
+//   return offers.filter(offer => {
+//     if (!offer.heureOuverture || !offer.heureFermeture) {
+//       return false;
+//     }
+
+//     let heureValide = true;
+//     if (heureDebutValue && heureFinValue) {
+//       const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
+//       const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
+
+//       const debutRange = heureDebutH * 60 + heureDebutM;
+//       const finRange = heureFinH * 60 + heureFinM;
+
+//       const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
+//       const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
+
+//       const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
+//       const fermetureMinutes = fermetureH * 60 + fermetureM;
+
+//       if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
+//         heureValide = true;
+//       } else {
+//         heureValide = false;
+//       }
+//     }
+
+//     return heureValide;
+//   });
+// }
 
 
 
