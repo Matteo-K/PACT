@@ -250,6 +250,8 @@ ORDER BY
 ");
 $stmt->execute([$idOffre]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+print_r($avis);
 ?>
 
 <!DOCTYPE html>
