@@ -30,32 +30,34 @@ function ajoutElement(valeurElement, input, zoneElement, msgErreur, nomPost, nbM
     });
     elementTag.textContent = valeurElement;
 
-    console.log(elementTag);
-    console.log(elementTag.textContent);
-
     //On créé une image pour guider l'utilisateur sur le suppression du tag
     let imgCroix = document.createElement("img");
     imgCroix.setAttribute("src", "../img/icone/croix.png");
 
     // Crée l'input caché pour soumettre le tag avec le formulaire
-    const hiddenInputTag = document.createElement("input");
-    hiddenInputTag.type = "hidden";
-    hiddenInputTag.value = valeurElement;
-    hiddenInputTag.name = nomPost;
+    const hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+    hiddenInput.value = valeurElement;
+    hiddenInput.name = nomPost;
 
     // Ajoute un événement pour supprimer le tag au clic
     elementTag.addEventListener("click", function () {
       listElements[indiceListElem].splice(
         listElements[indiceListElem].indexOf(valeurElement), 1
       ); // Retire le tag du tableau
-      zoneElement.removeChild(hiddenInputTag); // Supprime l'input caché
+      zoneElement.removeChild(hiddenInput); // Supprime l'input caché
       zoneElement.removeChild(elementTag); // Supprime l'élément visuel du tag
     });
+
+    console.log(zoneElement);
 
     // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel
     elementTag.appendChild(imgCroix);
     zoneElement.appendChild(elementTag); 
-    zoneElement.appendChild(hiddenInputTag);
+    zoneElement.appendChild(hiddenInput);
+
+    console.log(elementTag);
+    console.log(zoneElement);
 
     // Réinitialise l'input
     input.value = "";
