@@ -428,8 +428,8 @@ function filtrerParPeriode(offers) {
   // test console
   // autre: console.log(offers[0].horaireMidi);
   // autre: console.log(offers[0].horaireSoir);
-  console.log(offers[0].horaire); // spectacle
-
+  // console.log(offers[0].horaire); // spectacle
+  
   let data = [];
   offers[0].horaire.forEach(element => {
     data.push(JSON.parse(element));
