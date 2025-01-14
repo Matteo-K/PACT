@@ -159,7 +159,7 @@ textarea:focus {
 #formPro input:focus,
 #formMember input:focus,
 #formConnexion input:focus {
-  outline: none;
+  outline-color: none;
 }
 
 /* ##### Components ##### */
@@ -396,7 +396,7 @@ header > div > a > div {
   font-size: 25px;
   border-radius: 10px;
   height: 2em;
-  width: 10em;
+  width: 8em;
   background-color: var(--accent);
   border: solid 2px var(--accent);
   text-align: center;
@@ -607,7 +607,7 @@ header > div > a > div {
   text-decoration: none;
   padding: 10px;
   text-align: center;
-  border-radius: 0;
+  border-radius: 10px;
   padding-left: 20px;
   transition: background-color 0.3s ease;
 }
@@ -618,8 +618,7 @@ header > div > a > div {
 
 #profileMenu ul a:hover,
 .liFact:hover {
-  border-left: 15px solid var(--primary);
-  transition: ease-in-out;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 header ul + div {
@@ -1755,14 +1754,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #sansScroll {
   overflow-x: hidden;
 }
-.swiper.gb{
-  overflow: hidden;
-}
+
 .swiper-container.gb {
   width: 1580px !important;
   height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
+  overflow: hidden;
 }
 
 .swiper-slide {
@@ -1774,6 +1772,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .swiper-slide.gb {
   width: fit-content !important;
+  background-color: var(--background);
   color: #1Ca4ed;
 }
 
@@ -1783,19 +1782,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* Style pour les boutons de navigation */
 .swiper-button-next.gb, .swiper-button-prev.gb {
-  color: #1Ca4ed;
+  color: #000;
   background-color: rgba(255, 255, 255, 0.5);
-  font-size: 20px;
 }
 
 .swiper-button-next.gb{
-  transform: translateX(150%);
+  transform: translateX(120%);
   border-radius: 0 1em 1em 0;
   /* Rounded corners for the next button */
 }
 
 .swiper-button-prev.gb {
-  transform: translateX(-150%);
+  transform: translateX(-120%);
   border-radius: 1em 0 0 1em;
   /* Rounded corners for the prev button */
 }
@@ -4760,13 +4758,6 @@ details .nonRepondu {
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
-
-#formPro input,
-#formMember input,
-#formConnexion input {
-  text-indent: 5px;
-}
-
 body[id="body_creation_compte"] {
   background-image: url("img/fond.png");
   background-repeat: no-repeat;
