@@ -78,6 +78,7 @@
         </div>
 
         <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
+        <input type="hidden" name="action" value="ecrireAvis">
         <div class="soumission">
             <button type="submit">Soumettre l'avis</button>
         </div>

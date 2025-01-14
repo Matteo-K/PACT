@@ -91,7 +91,7 @@ foreach ($avis as $a) {
                     <?php
                     if($a['idu'] == $idUser){
                     ?>
-                        <img class="signalementSupp" src="./img/icone/bin.png" alt="Poubelle" title="Supprimer son avis" class="supprimerAvis" />
+                        <img onclick="supAvis($a['idc'])" class="signalementSupp" src="./img/icone/bin.png" alt="Poubelle" title="Supprimer son avis" class="supprimerAvis" />
                     <?php
                     } else{
                         ?>
@@ -294,6 +294,35 @@ foreach ($avis as $a) {
 }
 ?>
 <script>
+    function supAvis(id){
+        const confirmSupp = confirm("Êtes-vous sûr de vouloir supprimer votre avis ?");
+        if (confirmSupp) {
+            let form = document.createElement("form");
+            form.method = 'POST';
+            form.action = "/enregAvis.php"
+            
+            let idAvis = document.createElement('input');
+            idAvis.type = "hidden";
+            idAvis.value = id;
+            idAvis.name = "id";
+            form.appendChild(idAvis);
+
+            let action = document.createElement("input");
+            action.type = "hidden";
+            action.value = "supprimerAvis";
+            action.name = "action";
+            form.appendChild(action);
+
+            let offre = document.createElement("input");
+            offre.type = "hidden";
+            offre.value = $idOffre;
+            offre.name = "idoffre";
+            form.appendChild(offre);
+
+            form.submit();
+        }
+    }
+
     function likeAndDislike(checkbox, action) {
         const container = document.getElementById(checkbox.id);
         const likeId = "like_" + checkbox.id.split("_")[1];
