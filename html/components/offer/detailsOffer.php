@@ -274,7 +274,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             listeTags,
             ajoutElement,
             document.getElementById("inputTag"), //-- paramètres de la fonction ajoutElement
-            document.getElementById("autocompletion"),
+            document.getElementById("sectionTag"),
             msgTag,
             'tags[]',
             maxTags,

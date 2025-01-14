@@ -125,7 +125,7 @@ function supprAccents(txt) {
 /**
  * Initialise l'autocomplétion
  * @param {document} input input du filtrage et sélections d'éléments
- * @param {document} blocAutocomplete bloc contenant une liste de suggestion
+ * @param {String} blocAutocomplete id du bloc contenant une liste de suggestion
  * @param {document} msgErreur bloc de message d'erreur
  * @param {Array} listeSuggestion liste des suggestions de type String
  * @param {*} nomFonction fonction enclenchés dès le click sur un suggestion
