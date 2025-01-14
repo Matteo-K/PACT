@@ -196,7 +196,7 @@
           // Ajouter la div contenant le formulaire dans le swiper-wrapper
           swiperWrapper2.appendChild(swiperSlide2);
         });
-        forms2.forEach(form => {
+        forms3.forEach(form => {
           const swiperSlide3 = document.createElement('div');  // Créer une div
           swiperSlide3.classList.add('swiper-slide');
           swiperSlide3.classList.add('gb3');  // Ajouter la classe 'swiper-slide'
