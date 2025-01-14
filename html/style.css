@@ -945,18 +945,6 @@ header ul + div {
   border: none;
 }
 
-/* #manageOffer .suivant {
-  color: #fff;
-  background-color: var(--primary);
-}
-
-#manageOffer .precedent {
-  color: var(--);
-  background-color: #fff;
-  border: 2px solid var(--primary);
-
-} */
-
 /* Feedback Save */
 #save-offer {
   position: fixed;
@@ -1754,8 +1742,9 @@ label[for="rest_ajoutPhotoMenu"] {
 #show {
   display: flex;
   flex-flow: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  margin-inline: 28%;
 }
 
 #show_nbPlacePrixMin {
@@ -1763,6 +1752,15 @@ label[for="rest_ajoutPhotoMenu"] {
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-evenly;
+  width: 100%;
+}
+
+#show input {
+  width: 100px;
+}
+
+#show [type="time"] {
+  text-align: center;
 }
 
 /* popup signalement avis */
@@ -1800,13 +1798,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   overflow-x: hidden;
 }
 
-.swiper-container.gb {
+.swiper-container.gb, .swiper-container.gb2 {
   height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
 }
 
-.swiper.gb{
+.swiper.gb, .swiper.gb2{
   width: 1610px;
   height: 100%;
   overflow: hidden;
@@ -1825,13 +1823,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color: var(--background);
   color: #1Ca4ed;
 }
+.swiper-slide.gb2 {
+  width: fit-content !important;
+  background-color: var(--background);
+  color: #1Ca4ed;
+}
 
 .searchA {
   width: 100%;
 }
 
 /* Style pour les boutons de navigation */
-.swiper-button-next.gb, .swiper-button-prev.gb {
+.swiper-button-next.gb, .swiper-button-prev.gb, .swiper-button-next.gb2, .swiper-button-prev.gb2 {
   position: absolute;
   top: var(--swiper-navigation-top-offset, 50%);
   width: calc(var(--swiper-navigation-size)/ 44 * 27);
@@ -1856,11 +1859,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Rounded corners for the prev button */
 }
 
-/* Style pour la pagination */
-.swiper-pagination-bullet {
-  background-color: #000;
+.swiper-button-next.gb2{
+  transform: translateX(-650%);
+  /* Rounded corners for the next button */
 }
 
+.swiper-button-prev.gb2 {
+  transform: translateX(650%);
+
+  /* Rounded corners for the prev button */
+}
 
 
 .sectionLoca {
@@ -3548,8 +3556,9 @@ section#infoComp div {
 
 .messageAvis,
 .reponseAvis {
-  background-color: var(--background-avis);
+  background-color: #fff;
   border-radius: 1em;
+  border: var(--primary) 2px solid;
   padding-inline: 1em;
   width: 100%;
 }
@@ -3568,6 +3577,13 @@ section#infoComp div {
   width: 2.2em;
   height: 2.2em;
   border-radius: 50%;
+  object-fit: cover;
+}
+
+.user > div img.signalementSupp {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0%;
   object-fit: cover;
 }
 
@@ -4453,63 +4469,6 @@ details .nonRepondu {
       transform: scale(1.1) rotate(-10deg);
   }
 }
-
-.bin-button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 55px;
-  height: 55px;
-  border-radius: 12px;
-  background-color: rgb(255, 95, 95);
-  cursor: pointer;
-  border: 2px solid rgb(255, 201, 201);
-  transition-duration: 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.bin-bottom {
-  width: 15px;
-  z-index: 2;
-}
-.bin-top {
-  width: 17px;
-  transform-origin: right;
-  transition-duration: 0.3s;
-  z-index: 2;
-}
-.bin-button:hover .bin-top {
-  transform: rotate(45deg);
-}
-.bin-button:hover {
-  background-color: rgb(255, 0, 0);
-}
-.bin-button:active {
-  transform: scale(0.9);
-}
-.garbage {
-  position: absolute;
-  width: 14px;
-  height: auto;
-  z-index: 1;
-  opacity: 0;
-  transition: all 0.3s;
-}
-.bin-button:hover .garbage {
-  animation: throw 0.4s linear;
-}
-@keyframes throw {
-  from {
-    transform: translate(-400%, -700%);
-    opacity: 0;
-  }
-  to {
-    transform: translate(0%, 0%);
-    opacity: 1;
-  }
-}
-
 
 @media screen and (max-width: 768px) {
   :root {

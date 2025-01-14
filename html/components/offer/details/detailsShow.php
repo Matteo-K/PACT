@@ -24,8 +24,9 @@ if ($categorie["_spectacle"]) {
 <section id="show"> 
     <!-- Gestion du nombre de place pour le parc d'attraction -->
     <div id="show_nbPlacePrixMin">
+        <!-- Gestion nombre d'attraction -->
         <div>
-            <label class="labelTitre" for="show_nbPlace">Nombre de places : </label> <!-- Label nombre de place -->
+            <label class="labelTitre" for="show_nbPlace">Nombre de places</label> <!-- Label nombre de place -->
             <div>
                 <input type="number" id="show_nbPlace" name="show_nbPlace" min="0" placeholder="0" value="<?php echo $spectacle["nbplace"] ?>">
                 <!-- Pour le nombre de place -->
@@ -34,22 +35,23 @@ if ($categorie["_spectacle"]) {
         </div>
         <!-- Gestion du prix -->
          <div>
-            <label class="labelTitre" for="show_prixMin">Prix minimum : </label>
+            <label class="labelTitre" for="show_prixMin">Prix minimum</label>
             <div>
                 <input type="number" id="show_prixMin" name="show_prixMin" min="0" placeholder="0" value="<?php echo $spectacle["prixminimal"] ?>">
                 <!-- Pour entrer un prix minimum -->
                 <label for="show_prixMin">€</label>
             </div>
         </div>
+        <!-- Gestion de la durée -->
+        <div>
+            <label for="show_hrMin" class="labelTitre">Durée du Spectacle</label>
+            <div>
+                <input type="number" style="display : none;" id="show_min" name="show_min" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
+                <input type="time" id="show_hrMin" name="show_hrMin" placeholder="0">
+            </div>
+        </div>
     </div>
 
-    <div>
-    <!-- Gestion de la durée -->
-        <label for="show_hrMin" class="labelTitre">Durée du Spectacle : </label>
-        <input type="number" style="display : none;" id="show_min" name="show_min" placeholder="0" value="<?php echo $spectacle["duree"] ?>">
-        
-        <input type="time" id="show_hrMin" name="show_hrMin" placeholder="0">
-    </div>
 
 </section>
 
