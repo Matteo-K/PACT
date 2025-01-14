@@ -27,17 +27,19 @@
             <h2>
               1. Responsable du traitement
             </h2>
+            Equipe A21 The Void
+            <br>
+            Adresse : Rue Edouard Branly 22300 Lannion
+            <br>
+            Email : ewen@jain-etudiants.univ-rennes1.com
+            <br>
           </section>
-          Equipe A21 The Void
-        <br>
-          Adresse : Rue Edouard Branly 22300 Lannion
-        <br>
-          Email : ewen@jain-etudiants.univ-rennes1.com
-          <br>
           <section>
             <h2>
-              Droit d'auteur
+            2. Finalités du traitement des données 
             </h2>
+            Les données à caractère personnel que nous collectons sont utilisées pour les finalités suivantes : 
+            
           </section>
           <section>
             <h2>
