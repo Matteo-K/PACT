@@ -1754,9 +1754,9 @@ label[for="rest_ajoutPhotoMenu"] {
 #show {
   display: flex;
   flex-flow: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  margin-inline: 20%;
+  margin-inline: 28%;
 }
 
 #show_nbPlacePrixMin {
@@ -1764,6 +1764,7 @@ label[for="rest_ajoutPhotoMenu"] {
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-evenly;
+  width: 100%;
 }
 
 /* popup signalement avis */
