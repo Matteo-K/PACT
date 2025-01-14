@@ -938,11 +938,12 @@ header ul + div {
 }
 
 #manageOffer .suivant, #manageOffer .precedent {
-  text-align: center;
-  width: 150px;
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+#manageOffer .suivant:hover, #manageOffer .precedent:hover {
+  background-color: #fff;
 }
 
 /* Feedback Save */
@@ -3558,14 +3559,14 @@ section#infoComp div {
 .reponseAvis {
   background-color: #fff;
   border-radius: 1em;
-  border: var(--primary) 2px solid;
+  border: var(--primary) 3px solid;
   padding-inline: 1em;
   width: 100%;
 }
 
 .reponseAvis {
   width: 90%;
-  background-color: var(--primary20);
+  border: var(--accent) 3px solid;
 }
 
 .infoUser > p,
