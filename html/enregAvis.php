@@ -145,6 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     }elseif(isset($_GET['pro']) && $_POST["action"] === "supprimerAvis"){
         $idAvis = $_POST['id'] ?? null;
+        $idOffre = $_POST['idoffre'];
 
         $stmt = $conn->prepare("DELETE FROM pact._commentaire WHERE idc = $idAvis");
         $stmt -> execute();

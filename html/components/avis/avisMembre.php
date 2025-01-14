@@ -313,6 +313,12 @@ foreach ($avis as $a) {
             action.name = "action";
             form.appendChild(action);
 
+            let offre = document.createElement("input");
+            offre.type = "hidden";
+            offre.value = $idOffre;
+            offre.name = "idoffre";
+            form.appendChild(offre);
+
             form.submit();
         }
     }
