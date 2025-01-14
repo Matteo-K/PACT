@@ -1799,13 +1799,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   overflow-x: hidden;
 }
 
-.swiper-container.gb, .swiper-container.gb2 {
+.swiper-container.gb, .swiper-container.gb2, .swiper-container.gb3 {
   height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
 }
 
-.swiper.gb, .swiper.gb2{
+.swiper.gb, .swiper.gb2,.swiper.gb3{
   width: 1610px;
   height: 100%;
   overflow: hidden;
@@ -1819,12 +1819,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Assure-toi que les slides prennent la bonne taille */
 }
 
-.swiper-slide.gb {
-  width: fit-content !important;
-  background-color: var(--background);
-  color: #1Ca4ed;
-}
-.swiper-slide.gb2 {
+.swiper-slide.gb,.swiper-slide.gb3,.swiper-slide.gb2 {
   width: fit-content !important;
   background-color: var(--background);
   color: #1Ca4ed;
@@ -1835,7 +1830,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Style pour les boutons de navigation */
-.swiper-button-next.gb, .swiper-button-prev.gb, .swiper-button-next.gb2, .swiper-button-prev.gb2 {
+.swiper-button-next.gb, .swiper-button-prev.gb, .swiper-button-next.gb2, .swiper-button-prev.gb2,  .swiper-button-next.gb3, .swiper-button-prev.gb3 {
   position: absolute;
   top: var(--swiper-navigation-top-offset, 50%);
   width: calc(var(--swiper-navigation-size)/ 44 * 27);
@@ -1860,12 +1855,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Rounded corners for the prev button */
 }
 
-.swiper-button-next.gb2{
+.swiper-button-next.gb2,.swiper-button-next.gb3{
   transform: translateX(-650%);
   /* Rounded corners for the next button */
 }
 
-.swiper-button-prev.gb2 {
+.swiper-button-prev.gb2,.swiper-button-prev.gb3 {
   transform: translateX(650%);
 
   /* Rounded corners for the prev button */
