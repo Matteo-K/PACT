@@ -1767,7 +1767,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .modifierBut {
   background-color: #1ca4ed;
   color: black;
-  border: solid #1ca4ed 1px;
+  border: solid #1ca4ed 2px;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -1776,14 +1776,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-weight: bold;
   margin: 0;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 10px;
   transition: background-color 0.3s ease;
 }
 
 #checkAddressBtn:hover,
 .modifierBut:hover {
   background-color: white;
-  border: solid #1ca4ed 1px;
+  border: solid #1ca4ed 2px;
   color: #1ca4ed;
 }
 
