@@ -157,7 +157,8 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
+      try {
+        document.addEventListener('DOMContentLoaded', function () {
         const swiperWrapper = document.querySelector('.swiper-wrapper.gb');
         const swiperWrapper2 = document.querySelector('.swiper-wrapper.gb2');
 
@@ -223,6 +224,10 @@
         });
       });
 
+      } catch (error) {
+        console.log(error)
+      }
+      
     </script>
 </body>
 </html>
