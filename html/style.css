@@ -1662,6 +1662,37 @@ label[for="rest_ajoutPhotoMenu"] {
 GABRIEL
 OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
 
+#sansScroll {
+  overflow-x: hidden;
+}
+
+.swiper-container-une {
+  width: 100%;
+  height: 300px; /* Hauteur du carrousel */
+}
+
+.swiper-slide {
+  background-color: #f4f4f4;
+  text-align: center;
+  line-height: 300px; /* Centrage du texte dans les slides */
+  font-size: 24px;
+  color: #333;
+}
+
+/* Style pour les boutons de navigation */
+.swiper-button-next, .swiper-button-prev {
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+}
+
+/* Style pour la pagination */
+.swiper-pagination-bullet {
+  background-color: #000;
+}
+
+
+
 .sectionLoca {
   width: 800px;
   font-size: 25px;
