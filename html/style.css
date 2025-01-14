@@ -1919,6 +1919,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 @media (max-width: 480px) {
+  .searchA{
+    zoom: 0.6;
+  }
+
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {
@@ -1930,7 +1934,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .swiper.gb, 
   .swiper.gb2,
   .swiper.gb3{
-    width: 520px;
+    width: 316px;
     height: 100%;
     overflow: hidden;
     margin: auto;
