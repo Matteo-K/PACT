@@ -65,11 +65,11 @@ if ($categorie["_visite"]) {
             <span class="checkmark"></span>
             <label for="pasGuidee"> Non </label>
         </div>
-
-        <label class="labelTitre" for="visit_duree">Durée :</label> <!-- Label durée -->
-
-        <input type="number" id="visit_duree" name="visit_duree" min="0" placeholder="0" value="<?= $visite["duree"]; ?>"/>
-        <label for="visit_duree">h</label>
+        <label for="visit_hrMin" class="labelTitre">Durée de la visite</label>
+        <div>
+            <input type="hidden" id="visit_min" name="visit_min" placeholder="0" value="<?php echo $visite["duree"] ?>">
+            <input type="time" id="visit_hrMin" name="visit_hrMin" placeholder="0">
+        </div>
     </div>
 
     <!-- Accessibilité -->
@@ -111,6 +111,17 @@ if ($categorie["_visite"]) {
         </div>
 </section>
 <script>
+    // Durée
+    document.addEventListener("DOMContentLoaded", function () {
+        const minutesInput = document.getElementById("show_min");
+        const hoursInput = document.getElementById("show_hrMin");
+        
+        minutesInput.addEventListener("change", () => minutesToHours(minutesInput, hoursInput));
+        hoursInput.addEventListener("change", () => hoursToMinutes(minutesInput, hoursInput));
+
+        minutesToHours(minutesInput, hoursInput);
+    });
+
     // Ajout des accessibilités
     // Ajout des langues
 
