@@ -1713,7 +1713,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .swiper-slide.gb {
-  width: fit-content;
+  width: fit-content !important;
 }
 
 .searchA {
