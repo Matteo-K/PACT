@@ -150,6 +150,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("SELECT * FROM pact._avis WHERE idc = $idAvis");
         $stmt -> execute();
 
+        $stmt = $conn->prepare("DELETE FROM pact._reponse WHERE idc = $idAvis");
+        $stmt -> execute();
+
         $stmt = $conn->prepare("DELETE FROM pact._avisimage WHERE idc = $idAvis");
         $stmt -> execute();
 
