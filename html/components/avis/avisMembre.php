@@ -45,11 +45,11 @@ function formatDateDiff($date)
     }
 }
 
-usort($avis, function($a, $b) use ($currentUserId) {
+usort($avis, function($a, $b) use ($idUser) {
     // D'abord, comparer si l'utilisateur a écrit l'avis
-    if ($a['idu'] == $currentUserId && $b['idu'] != $currentUserId) {
+    if ($a['idu'] == $idUser && $b['idu'] != $idUser) {
         return -1; // $a avant $b (l'avis de l'utilisateur connecté est prioritaire)
-    } elseif ($a['idu'] != $currentUserId && $b['idu'] == $currentUserId) {
+    } elseif ($a['idu'] != $idUser && $b['idu'] == $idUser) {
         return 1; // $b avant $a (l'avis de l'utilisateur connecté est prioritaire)
     } else {
         // Si les deux avis ont le même auteur ou si aucun des deux n'est de l'utilisateur connecté,
