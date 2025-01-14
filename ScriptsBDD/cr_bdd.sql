@@ -613,7 +613,7 @@ CREATE VIEW spectacles AS
 -- Vue pour les activités
 CREATE VIEW activites AS
     SELECT o.idU,o.idOffre, o.nom AS nom_offre, o.description, o.statut, o.mail, o.telephone, o.affiche, o.urlSite, o.resume, 
-           a.duree, a.ageMin, a.prixMinimal, a.prestation, ab.nomAbonnement AS abonnement, ab.tarif 
+           a.duree, a.ageMin, a.prixMinimal, ab.nomAbonnement AS abonnement, ab.tarif 
     FROM _offre o 
     JOIN _activite a ON o.idOffre = a.idOffre 
     JOIN _abonner abo ON o.idOffre = abo.idOffre 
