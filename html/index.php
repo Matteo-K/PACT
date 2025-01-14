@@ -17,8 +17,8 @@ require_once "config.php";
   <main>
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
-      <div class="swiper-container-une">
-        <div class="swiper-wrapper">
+      <div class="swiper-container gb">
+        <div class="swiper-wrapper gb">
           <?php 
             $elementStart = 0;
             $nbElement = 20;
@@ -110,57 +110,59 @@ require_once "config.php";
     <script src="js/sortAndFilter.js"></script>
     <?php require_once "components/footer.php"; ?>
     <script>
-      // Gérer l'envoi du formulaire via JavaScript
-      document.querySelectorAll('.searchA').forEach(function(item) {
-  item.addEventListener('click', function(event) {
-    event.preventDefault();  // Empêcher l'action par défaut du clic, pour ne pas interférer avec Swiper
-
-    const idOffre = item.getAttribute('data-idoffre');
-    const restaurantOuvert = item.getAttribute('data-ouvert');
-
-    // Créer un formulaire dynamique
-    const form = document.createElement('form');
-    form.action = '/detailsOffer.php?&ouvert=' + restaurantOuvert;  // URL de destination avec le paramètre
-    form.method = 'POST';
-
-    // Créer un champ caché pour l'id de l'offre
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'idoffre';
-    input.value = idOffre;
-    form.appendChild(input);
-
-    // Ajouter le formulaire à la page et le soumettre
-    document.body.appendChild(form);
-    form.submit(); // Soumettre le formulaire via JS
-  });
-});
-
-
+      const forms = document.querySelectorAll("#index form");
+      forms.forEach(form => {
+        form.addEventListener("click", (event) => {
+          if (event.target.tagName.toLowerCase() === "a") {
+            return;
+          }
+          event.preventDefault();
+          form.submit();
+        });
+      });
     </script>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        var swiper = new Swiper('.swiper-container-une', {
-          loop: true, // Activer la boucle infinie
-          slidesPerView: 1, // Nombre de slides visibles à la fois
-          spaceBetween: 10, // Espace entre les slides
-          autoplay: {
-            delay: 3000, // Délai entre chaque slide (en ms)
-          },
+        const swiperWrapper = document.querySelector('.swiper-wrapper');
+
+        // Récupérer tous les formulaires à l'intérieur du swiper-wrapper
+        const forms = swiperWrapper.querySelectorAll('form');
+
+        // Pour chaque formulaire, créer une div avec la classe 'swiper-slide' et y insérer le formulaire
+        forms.forEach(form => {
+          const swiperSlide = document.createElement('div');  // Créer une div
+          swiperSlide.classList.add('swiper-slide');
+          swiperSlide.classList.add('gb');  // Ajouter la classe 'swiper-slide'
+        
+          // Déplacer le formulaire dans la nouvelle div
+          swiperSlide.appendChild(form);
+        
+          // Ajouter la div contenant le formulaire dans le swiper-wrapper
+          swiperWrapper.appendChild(swiperSlide);
+        });
+      
+        // Initialiser Swiper après avoir enveloppé les formulaires dans des divs
+        const swiper = new Swiper('.swiper-container', {
+          loop: true,
+          slidesPerView: 3,
+          spaceBetween: 10,
+          // autoplay: {
+          //   delay: 3000,
+          // },
           navigation: {
-            nextEl: '.swiper-button-next', // Bouton suivant
-            prevEl: '.swiper-button-prev', // Bouton précédent
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
           },
           pagination: {
-            el: '.swiper-pagination', // Élément de pagination
-            clickable: true, // Permet de cliquer sur les points
+            el: '.swiper-pagination',
+            clickable: true,
           },
         });
       });
-      
+
     </script>
 </body>
 </html>

@@ -598,13 +598,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     </div>
 
-                    <div class="swiper-container">
+                    <div class="swiper-container detailSwiper">
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 <?php
                                 foreach ($photos as $picture) {
                                 ?>
-                                    <div class="swiper-slide">
+                                    <div class="swiper-slide imageSwiper">
                                         <img src="<?php echo $picture['url']; ?>" />
                                     </div>
                                 <?php
@@ -1346,8 +1346,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         //Script de gestion du pop-up de signalement
         const ouvrePopup = document.getElementById('signalerAvis');
-        const popup = document.getElementsByClassName('modal')[1];
-        const btnFermer = document.getElementsByClassName('close')[1];
+        const popup = document.querySelector('.avis > .modal');
+        const btnFermer = document.getElementsByClassName('.avis > .modal .close');
         const btnConfirmer = document.getElementById('confirmBtn');
 
         // Afficher le pop-up

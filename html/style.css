@@ -1699,10 +1699,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   overflow-x: hidden;
 }
 
-.swiper-container-une {
-  width: 100%;
+.swiper-container.gb {
+  width: 1580px !important;
   height: 300px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
+  margin: auto;
 }
 
 .swiper-slide {
@@ -1712,18 +1713,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Assure-toi que les slides prennent la bonne taille */
 }
 
+.swiper-slide.gb {
+  width: fit-content !important;
+}
+
 .searchA {
   width: 100%;
   height: 100%;
-}
-
-
-.swiper-slide {
-  background-color: #f4f4f4;
-  text-align: center;
-  line-height: 300px; /* Centrage du texte dans les slides */
-  font-size: 24px;
-  color: #333;
 }
 
 /* Style pour les boutons de navigation */
@@ -2975,7 +2971,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Swiper Styles */
-.swiper-container {
+.swiper-container.detailSwiper {
   position: relative;
   /* Allow positioning of buttons */
   width: 90%;
@@ -3042,14 +3038,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 10px;
 }
 
-.swiper-slide img {
+.swiper-slide.imageSwiper img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.swiper-slide:hover img {
+.swiper-slide.imageSwiper:hover img {
   transform: scale(1.05);
 }
 
@@ -4225,6 +4221,7 @@ details .nonRepondu {
 }
 
 .container{
+  gap: 0 !important;
   background-color: var(--col-gray);
   width: 175px !important;
   border: var(--col-black) 2px solid;
@@ -4243,6 +4240,7 @@ details .nonRepondu {
 .container:has(.alike:checked) .count.likes, .container:has(.alike:checked) #pipe{
   color: var(--col-like);
 }
+
 
 
 .container label input {
@@ -4334,6 +4332,9 @@ details .nonRepondu {
     --header-size2: 0;
   }
 
+  .container{
+    width: 100% !important;
+  }
   .mainOffer {
     margin-top: 0;
   }
