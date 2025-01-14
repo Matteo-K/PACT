@@ -5459,7 +5459,7 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 /*+++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css hover des boutons des formulaires, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
-button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover {
+button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover, button[id="boutonChangerMDP"]:hover {
   background-color: white;
   border: solid 2px var(--accent);
 }
