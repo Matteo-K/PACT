@@ -178,15 +178,15 @@
           swiperWrapper.appendChild(swiperSlide);
         });
         forms2.forEach(form => {
-          const swiperSlide = document.createElement('div');  // Créer une div
-          swiperSlide.classList.add('swiper-slide');
-          swiperSlide.classList.add('gb2');  // Ajouter la classe 'swiper-slide'
+          const swiperSlide2 = document.createElement('div');  // Créer une div
+          swiperSlide2.classList.add('swiper-slide');
+          swiperSlide2.classList.add('gb2');  // Ajouter la classe 'swiper-slide'
         
           // Déplacer le formulaire dans la nouvelle div
-          swiperSlide.appendChild(form);
+          swiperSlide2.appendChild(form);
         
           // Ajouter la div contenant le formulaire dans le swiper-wrapper
-          swiperWrapper.appendChild(swiperSlide);
+          swiperWrapper2.appendChild(swiperSlide);
         });
       
         // Initialiser Swiper après avoir enveloppé les formulaires dans des divs
