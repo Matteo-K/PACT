@@ -1756,6 +1756,7 @@ label[for="rest_ajoutPhotoMenu"] {
   flex-flow: column;
   align-items: center;
   justify-content: center;
+  margin-inline: 20%;
 }
 
 #show_nbPlacePrixMin {
