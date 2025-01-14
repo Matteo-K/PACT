@@ -23,7 +23,12 @@ let listElements = [];
 function ajoutElement(valeurElement, indiceListElem, input, zoneElement, msgErreur, nomPost, nbMaxElements, typeElement, classElement, checkFunction, ...params) {
 
   // Ajoute une condition supplémentaires si spécifiés
-  const check = checkFunction(...params) || true;
+  let check;
+  if (typeof checkOfferValidity === 'function') {
+    check = checkFunction(...params);
+  } else {
+    check = true;
+  }
 
   if (valeurElement 
     && !listElements[indiceListElem].includes(valeurElement) 
