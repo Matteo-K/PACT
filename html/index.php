@@ -195,6 +195,9 @@
                 prevEl: '.swiper-button-prev.gb',
               },
               breakpoints: {
+                1024: {
+                  slidesPerView: 3, // 3 slides visibles pour écran de bureau
+                },
                 // Quand l'écran fait moins de 768px (téléphone)
                 768: {
                   slidesPerView: 1, // 2 slides visibles pour tablette
@@ -240,6 +243,9 @@
                   prevEl: '.swiper-button-prev.gb2',
                 },
                 breakpoints: {
+                  1024: {
+                    slidesPerView: 3, // 3 slides visibles pour écran de bureau
+                  },
                   // Quand l'écran fait moins de 768px (téléphone)
                   768: {
                     slidesPerView: 1, // 2 slides visibles pour tablette
@@ -286,6 +292,9 @@
                 prevEl: '.swiper-button-prev.gb3',
               },
                breakpoints: {
+                1024: {
+                  slidesPerView: 3, // 3 slides visibles pour écran de bureau
+                },
                 // Quand l'écran fait moins de 768px (téléphone)
                 768: {
                   slidesPerView: 1, // 2 slides visibles pour tablette
@@ -299,7 +308,7 @@
           } catch (error) {
 
           }
-          
+
       });
       
       
