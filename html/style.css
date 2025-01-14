@@ -1757,7 +1757,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .swiper-container.gb {
   width: 1580px !important;
-  height: 300px; /* Ajuste la hauteur selon ton besoin */
+  height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
   overflow: hidden;
@@ -1773,6 +1773,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .swiper-slide.gb {
   width: fit-content !important;
   background-color: var(--background);
+  color: #1Ca4ed;
 }
 
 .searchA {
@@ -1780,10 +1781,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Style pour les boutons de navigation */
-.swiper-button-next, .swiper-button-prev {
+.swiper-button-next.gb, .swiper-button-prev.gb {
   color: #000;
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
+}
+
+.swiper-button-next.gb{
+  transform: translateX(120%);
+  border-radius: 0 1em 1em 0;
+  /* Rounded corners for the next button */
+}
+
+.swiper-button-prev.gb {
+  transform: translateX(-120%);
+  border-radius: 1em 0 0 1em;
+  /* Rounded corners for the prev button */
 }
 
 /* Style pour la pagination */
