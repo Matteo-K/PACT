@@ -2970,7 +2970,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Swiper Styles */
-.swiper-container {
+.swiper-container.detailSwiper {
   position: relative;
   /* Allow positioning of buttons */
   width: 90%;

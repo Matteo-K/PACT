@@ -598,7 +598,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     </div>
 
-                    <div class="swiper-container">
+                    <div class="swiper-container detailSwiper">
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 <?php
