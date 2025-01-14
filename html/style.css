@@ -145,6 +145,7 @@ body {
 
 input[type="text"],
 input[type="number"],
+input[type="time"],
 textarea {
   border: 2px solid var(--secondary);
   border-radius: 2px;
@@ -607,9 +608,14 @@ header > div > a > div {
   text-decoration: none;
   padding: 10px;
   text-align: center;
-  border-radius: 10px;
   padding-left: 20px;
+  border-left: 0px solid var(--primary);
+  transition: 0.3s;
+}
+
+#changeDataAccount, #changeAccount, #logoutButton{
   transition: background-color 0.3s ease;
+  border-radius: 10px;
 }
 
 .liFact {
@@ -618,7 +624,8 @@ header > div > a > div {
 
 #profileMenu ul a:hover,
 .liFact:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  border-left: 15px solid var(--primary);
+  transition: 0.3s;
 }
 
 header ul + div {
@@ -1503,6 +1510,7 @@ header ul + div {
 }
 
 #detailsOffer input[type="text"],
+#detailsOffer input[type="time"],
 #detailsOffer input[type="number"] {
   font-size: 15px;
   text-indent: 10px;
@@ -1721,6 +1729,12 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
+}
+
+#park_planTitres {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;  
 }
 
 
