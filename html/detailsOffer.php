@@ -1350,7 +1350,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
         //Script de gestion du pop-up de signalement
-        let ouvrePopup = document.querySelectorAll('.avis .signalerAvis');
+        let ouvrePopup = document.querySelectorAll('.signalerAvis');
         const popup = document.querySelector('.avis .signalementPopup');
         const btnFermer = document.querySelectorAll('.signalementPopup .close')[0];
         const btnConfirmer = document.querySelector('.avis .signalementPopup .confirmeSignalement');
