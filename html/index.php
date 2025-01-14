@@ -147,11 +147,11 @@ require_once "config.php";
         // Initialiser Swiper après avoir enveloppé les formulaires dans des divs
         const swiper = new Swiper('.swiper-container', {
           loop: true,
-          slidesPerView: 1,
+          slidesPerView: 2,
           spaceBetween: 10,
-          // autoplay: {
-          //   delay: 3000,
-          // },
+          autoplay: {
+            delay: 3000,
+          },
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
