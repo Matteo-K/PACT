@@ -68,7 +68,7 @@
       <div id="consultationRecente">
         <h2>Consulté récemment</h2>
         <div class="swiper-container gb">
-          <div class="swiper gb">
+          <div class="swiper gb2">
             <div class="swiper-wrapper gb">
               <?php if (count($idOffres) > 0) {
                 $consultRecent = new ArrayOffer($idOffres);
@@ -177,7 +177,23 @@
         });
       
         // Initialiser Swiper après avoir enveloppé les formulaires dans des divs
-        const swiper = new Swiper('.swiper', {
+        const swiper = new Swiper('.swiper.gb', {
+          loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
+          speed: 600, // La vitesse de transition entre les slides
+          spaceBetween: 25, // L'espace entre les slides
+          effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
+          slidesPerView: 3, // Nombre de slides visibles
+          centeredSlides: false, // Définit si la slide actuelle est centrée
+          watchOverflow: true, 
+          // autoplay: {
+          //   delay: 3000,
+          // },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+        const swiper2 = new Swiper('.swiper.gb2', {
           loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
           speed: 600, // La vitesse de transition entre les slides
           spaceBetween: 25, // L'espace entre les slides
