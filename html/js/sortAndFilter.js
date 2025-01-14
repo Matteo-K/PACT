@@ -605,7 +605,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   if (userType == "pro_public" || userType == "pro_prive") {
     array = filtrerParStatutEnLigneHorsLigne(array);
   }
-  //array = filtrerParPeriode(array);
+  array = filtrerParPeriode(array);
 
   // Tris
   array = selectSort(array);
