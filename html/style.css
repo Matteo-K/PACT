@@ -149,6 +149,11 @@ input[type="time"],
 textarea {
   border: 2px solid var(--secondary);
   border-radius: 2px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
   text-indent: 5px;
 }
 
@@ -1513,7 +1518,6 @@ header ul + div {
 #detailsOffer input[type="time"],
 #detailsOffer input[type="number"] {
   font-size: 15px;
-  text-indent: 10px;
   padding: 5px;
   height: 30px;
 }
@@ -1782,7 +1786,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .swiper.gb{
-  width: 1590px;
+  width: 1580px;
+  height: 100%;
   overflow: hidden;
   margin: auto;
 }
@@ -1806,19 +1811,27 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* Style pour les boutons de navigation */
 .swiper-button-next.gb, .swiper-button-prev.gb {
-  color: #000;
-  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: var(--swiper-navigation-top-offset, 50%);
+  width: calc(var(--swiper-navigation-size)/ 44 * 27);
+  height: var(--swiper-navigation-size);
+  margin-top: calc(0px - (var(--swiper-navigation-size)/ 2));
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--swiper-navigation-color, var(--swiper-theme-color));
 }
 
 .swiper-button-next.gb{
-  transform: translateX(120%);
-  border-radius: 0 1em 1em 0;
+  transform: translateX(150%);
   /* Rounded corners for the next button */
 }
 
 .swiper-button-prev.gb {
-  transform: translateX(-120%);
-  border-radius: 1em 0 0 1em;
+  transform: translateX(-150%);
+
   /* Rounded corners for the prev button */
 }
 

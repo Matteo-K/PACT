@@ -45,6 +45,21 @@ function formatDateDiff($date)
     }
 }
 
+usort($avis, function($a, $b) use ($idUser) {
+    // D'abord, comparer si l'utilisateur a écrit l'avis
+    if ($a['idu'] == $idUser && $b['idu'] != $idUser) {
+        return -1; // $a avant $b (l'avis de l'utilisateur connecté est prioritaire)
+    } elseif ($a['idu'] != $idUser && $b['idu'] == $idUser) {
+        return 1; // $b avant $a (l'avis de l'utilisateur connecté est prioritaire)
+    } else {
+        // Si les deux avis ont le même auteur ou si aucun des deux n'est de l'utilisateur connecté,
+        // trier par date de publication descendante
+        $dateA = new DateTime($a['datepublie']);
+        $dateB = new DateTime($b['datepublie']);
+        return $dateB <=> $dateA; // Comparaison par date de publication
+    }
+});
+
 foreach ($avis as $a) {
     $likeId = 'like_' . $a['idc'];
     $dislikeId = 'dislike_' . $a['idc'];
