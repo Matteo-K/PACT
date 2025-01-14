@@ -394,7 +394,7 @@ header > div > a > div {
   display: flex;
   color: #000;
   font-size: 25px;
-  border-radius: 2em;
+  border-radius: 10px;
   height: 2em;
   width: 10em;
   background-color: var(--accent);
