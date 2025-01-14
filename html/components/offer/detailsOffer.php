@@ -223,7 +223,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             } else if (select.value == "activite") {
                 ActiviteOffer.style.display = "block";
             } else if (select.value == "spectacle") {
-                SpectacleOffer.style.display = "block";
+                SpectacleOffer.style.display = "flex";
             } else if (select.value == "visite") {
                 VisiteOffer.style.display = "block";
             } else if (select.value == "restaurant") {

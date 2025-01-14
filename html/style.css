@@ -1750,12 +1750,12 @@ label[for="rest_ajoutPhotoMenu"] {
   justify-content: center;
 }
 
-/* #show > div:nth-child(1) {
+#show_nbPlacePrixMin {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-evenly;
-} */
+}
 
 /* popup signalement avis */
 
