@@ -126,7 +126,7 @@ require_once "config.php";
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        const swiperWrapper = document.querySelector('.swiper-wrapper.gb');
+        const swiperWrapper = document.querySelector('.swiper-wrapper');
 
         // Récupérer tous les formulaires à l'intérieur du swiper-wrapper
         const forms = swiperWrapper.querySelectorAll('form');
@@ -134,7 +134,8 @@ require_once "config.php";
         // Pour chaque formulaire, créer une div avec la classe 'swiper-slide' et y insérer le formulaire
         forms.forEach(form => {
           const swiperSlide = document.createElement('div');  // Créer une div
-          swiperSlide.classList.add('swiper-slide');  // Ajouter la classe 'swiper-slide'
+          swiperSlide.classList.add('swiper-slide');
+          swiperSlide.classList.add('gb');  // Ajouter la classe 'swiper-slide'
         
           // Déplacer le formulaire dans la nouvelle div
           swiperSlide.appendChild(form);

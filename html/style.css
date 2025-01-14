@@ -1705,11 +1705,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   position: relative;
 }
 
-.swiper-slide.gb {
+.swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
   /* Assure-toi que les slides prennent la bonne taille */
+}
+
+.swiper-slide.gb {
+  width: fit-content !important;
 }
 
 .searchA {
