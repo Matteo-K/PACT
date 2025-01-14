@@ -4336,7 +4336,7 @@ details .nonRepondu {
   }
 
   .container{
-    width: 100%;
+    width: 100% !important;
   }
   .mainOffer {
     margin-top: 0;
