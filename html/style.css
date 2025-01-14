@@ -156,6 +156,12 @@ textarea:focus {
   outline-color: var(--bloc);
 }
 
+#formPro input:focus,
+#formMember input:focus,
+#formConnexion input:focus {
+  outline-color: none;
+}
+
 /* ##### Components ##### */
 
 /* ### Footer ### */
@@ -1710,16 +1716,16 @@ label[for="rest_ajoutPhotoMenu"] {
 /* popup signalement avis */
 
 
-.avis > .modal h2{
+.avis .modal h2{
   width: 100%;
 }
 
-.avis > .modal input[type="checkbox"] + label{
+.avis .modal input[type="checkbox"] + label{
   width: 100%;
 }
 
 
-.avis > .modal textarea{
+.avis .modal textarea{
   width: 100%;
   resize: none;
   height: 200px;
@@ -1747,6 +1753,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   height: 300px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
+  overflow: hidden;
 }
 
 .swiper-slide {
@@ -1762,7 +1769,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .searchA {
   width: 100%;
-  height: 100%;
 }
 
 /* Style pour les boutons de navigation */
@@ -3368,7 +3374,7 @@ section#infoComp div {
 
 /** AVIS **/
 
-.avis {
+.avisMembre {
   width: 95%;
   display: flex;
   flex-direction: column;
@@ -3378,7 +3384,7 @@ section#infoComp div {
   margin-bottom: 2em;
 }
 
-.avis > nav {
+.avisMembre > nav {
   display: flex;
   width: 95%;
   flex-direction: row;
@@ -3452,7 +3458,7 @@ section#infoComp div {
   justify-content: center;
 }
 
-.avis > nav > h3 {
+.avisMembre > nav > h3 {
   font-size: 2.5em;
   color: var(--bloc);
   font-weight: 600;
@@ -4478,12 +4484,12 @@ details .nonRepondu {
 
   /** Responsive Avis **/
 
-  .avis > nav > h3 {
+  .avisMembre > nav > h3 {
     font-size: clamp(0.5em, 10vw, 2.5em);
     font-weight: 500;
   }
 
-  .avis > div {
+  .avisMembre > div {
     flex-direction: column;
   }
 
