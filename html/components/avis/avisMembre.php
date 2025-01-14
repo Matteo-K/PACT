@@ -382,9 +382,6 @@ foreach ($avis as $a) {
             }
             // Mettre à jour la position du chiffre
             el.style.transform = `var(--nb${digit})`;
-
-            // Mettre à jour le contenu du chiffre
-            el.querySelector('span').textContent = digit;
         });
     }
 </script>

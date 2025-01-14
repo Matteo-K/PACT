@@ -13,25 +13,25 @@
   <script src="js/setColor.js"></script>
 </head>
 <body id="sansScroll">
-  <?php require_once __DIR__."/components/ecranChargement.php"; ?>
+  <?php //require_once __DIR__."/components/ecranChargement.php"; ?>
   <?php require_once "components/header.php"; ?>
   <main>
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
       <div class="swiper-container gb">
-        <div class="swiper-wrapper gb">
-          <?php 
-            $elementStart = 0;
-            $nbElement = 20;
-            $offres = new ArrayOffer();
-            $offres->displayCardALaUne($offres->filtre($idUser, $typeUser), $typeUser, $elementStart, $nbElement);
-          ?>
+        <div class="swiper gb">
+          <div class="swiper-wrapper gb">
+            <?php 
+              $elementStart = 0;
+              $nbElement = 20;
+              $offres = new ArrayOffer();
+              $offres->displayCardALaUne($offres->filtre($idUser, $typeUser), $typeUser, $elementStart, $nbElement);
+            ?>
+          </div>
         </div>
 
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <!-- Pagination: Points -->
-        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next gb"></div>
+        <div class="swiper-button-prev gb"></div>
       </div>
       <?php if ($typeUser == "membre") {
         $nbElement = 10;
