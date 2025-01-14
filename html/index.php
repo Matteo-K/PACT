@@ -18,8 +18,8 @@ require_once "config.php";
   <main>
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
-      <div id="ALaUne" class="swiper-container-une">
-        <div class="swiper-wrapper">
+      <div class="swiper-container gb">
+        <div class="swiper-wrapper gb">
           <?php 
             $elementStart = 0;
             $nbElement = 20;
@@ -127,24 +127,43 @@ require_once "config.php";
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        var swiper = new Swiper('.swiper-container-une', {
-          loop: true, // Activer la boucle infinie
-          slidesPerView: 1, // Nombre de slides visibles à la fois
-          spaceBetween: 10, // Espace entre les slides
-          autoplay: {
-            delay: 3000, // Délai entre chaque slide (en ms)
-          },
+        const swiperWrapper = document.querySelector('.swiper-wrapper');
+
+        // Récupérer tous les formulaires à l'intérieur du swiper-wrapper
+        const forms = swiperWrapper.querySelectorAll('form');
+
+        // Pour chaque formulaire, créer une div avec la classe 'swiper-slide' et y insérer le formulaire
+        forms.forEach(form => {
+          const swiperSlide = document.createElement('div');  // Créer une div
+          swiperSlide.classList.add('swiper-slide');
+          swiperSlide.classList.add('gb');  // Ajouter la classe 'swiper-slide'
+        
+          // Déplacer le formulaire dans la nouvelle div
+          swiperSlide.appendChild(form);
+        
+          // Ajouter la div contenant le formulaire dans le swiper-wrapper
+          swiperWrapper.appendChild(swiperSlide);
+        });
+      
+        // Initialiser Swiper après avoir enveloppé les formulaires dans des divs
+        const swiper = new Swiper('.swiper-container', {
+          loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
+          speed: 600, // La vitesse de transition entre les slides
+          spaceBetween: 10, // L'espace entre les slides
+          effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
+          slidesPerView: 3, // Nombre de slides visibles
+          centeredSlides: false, // Définit si la slide actuelle est centrée
+          watchOverflow: true, 
+          // autoplay: {
+          //   delay: 3000,
+          // },
           navigation: {
-            nextEl: '.swiper-button-next', // Bouton suivant
-            prevEl: '.swiper-button-prev', // Bouton précédent
-          },
-          pagination: {
-            el: '.swiper-pagination', // Élément de pagination
-            clickable: true, // Permet de cliquer sur les points
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
           },
         });
       });
-      
+
     </script>
 </body>
 </html>

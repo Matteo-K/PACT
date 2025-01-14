@@ -1741,10 +1741,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   overflow-x: hidden;
 }
 
-.swiper-container-une {
-  width: 100%;
+.swiper-container.gb {
+  width: 1580px !important;
   height: 300px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
+  margin: auto;
 }
 
 .swiper-slide {
@@ -1754,18 +1755,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Assure-toi que les slides prennent la bonne taille */
 }
 
+.swiper-slide.gb {
+  width: fit-content !important;
+}
+
 .searchA {
   width: 100%;
   height: 100%;
-}
-
-
-.swiper-slide {
-  background-color: #f4f4f4;
-  text-align: center;
-  line-height: 300px; /* Centrage du texte dans les slides */
-  font-size: 24px;
-  color: #333;
 }
 
 /* Style pour les boutons de navigation */
@@ -3017,7 +3013,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Swiper Styles */
-.swiper-container {
+.swiper-container.detailSwiper {
   position: relative;
   /* Allow positioning of buttons */
   width: 90%;
@@ -3035,8 +3031,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Navigation Buttons */
-.swiper-button-next,
-.swiper-button-prev {
+.swiper-button-next.kylian,
+.swiper-button-prev.kylian {
   top: 40%;
   background-color: var(--accent60);
   padding: 3em 0.5em;
@@ -3048,13 +3044,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Horizontal positioning */
-.swiper-button-next {
+.swiper-button-next.kylian{
   transform: translateX(120%);
   border-radius: 0 1em 1em 0;
   /* Rounded corners for the next button */
 }
 
-.swiper-button-prev {
+.swiper-button-prev.kylian {
   transform: translateX(-120%);
   border-radius: 1em 0 0 1em;
   /* Rounded corners for the prev button */
@@ -3084,19 +3080,19 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-radius: 10px;
 }
 
-.swiper-slide img {
+.swiper-slide.imageSwiper img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.swiper-slide:hover img {
+.swiper-slide.imageSwiper:hover img {
   transform: scale(1.05);
 }
 
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
+.swiper-button-next.kylian:hover,
+.swiper-button-prev.kylian:hover {
   background-color: var(--accent);
 }
 
@@ -4267,6 +4263,7 @@ details .nonRepondu {
 }
 
 .container{
+  gap: 0 !important;
   background-color: var(--col-gray);
   width: 175px !important;
   border: var(--col-black) 2px solid;
@@ -4285,6 +4282,7 @@ details .nonRepondu {
 .container:has(.alike:checked) .count.likes, .container:has(.alike:checked) #pipe{
   color: var(--col-like);
 }
+
 
 
 .container label input {
@@ -4376,6 +4374,9 @@ details .nonRepondu {
     --header-size2: 0;
   }
 
+  .container{
+    width: 100% !important;
+  }
   .mainOffer {
     margin-top: 0;
   }
@@ -5417,12 +5418,9 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 /*+++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css hover des boutons des formulaires, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
-button[id="boutonConnexion"]:hover, 
-input[id="boutonLienMembre"]:hover, 
-input[id="boutonLienPro"]:hover, 
-button[id="boutonInscription"]:hover {
-  background-color: var(--accent);
-  border: solid 4px var(--accent);
+button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover {
+  background-color: white;
+  border: solid 2px var(--accent);
 }
 
 
