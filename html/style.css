@@ -4758,6 +4758,10 @@ details .nonRepondu {
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
+#formPro input, #formMember input, #formConnexion input {
+  text-indent: 5px;
+}
+
 body[id="body_creation_compte"] {
   background-image: url("img/fond.png");
   background-repeat: no-repeat;
