@@ -3049,8 +3049,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transform: scale(1.05);
 }
 
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
+.swiper-button-next.kylian:hover,
+.swiper-button-prev.kylian:hover {
   background-color: var(--accent);
 }
 
