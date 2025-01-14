@@ -145,6 +145,7 @@ body {
 
 input[type="text"],
 input[type="number"],
+input[type="time"],
 textarea {
   border: 2px solid var(--secondary);
   border-radius: 2px;
@@ -394,13 +395,20 @@ header > div > a > div {
   display: flex;
   color: #000;
   font-size: 25px;
-  border-radius: 2em;
+  border-radius: 10px;
   height: 2em;
-  width: 10em;
+  width: 8em;
   background-color: var(--accent);
+  border: solid 2px var(--accent);
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+
+#btnConn:hover {
+  background-color: white;
+  border: solid 2px var(--accent);
+  color: black;
 }
 
 #profileMenu {
@@ -600,9 +608,14 @@ header > div > a > div {
   text-decoration: none;
   padding: 10px;
   text-align: center;
-  border-radius: 10px;
   padding-left: 20px;
+  border-left: 0px solid var(--primary);
+  transition: 0.3s;
+}
+
+#changeDataAccount, #changeAccount, #logoutButton{
   transition: background-color 0.3s ease;
+  border-radius: 10px;
 }
 
 .liFact {
@@ -611,7 +624,8 @@ header > div > a > div {
 
 #profileMenu ul a:hover,
 .liFact:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  border-left: 15px solid var(--primary);
+  transition: 0.3s;
 }
 
 header ul + div {
@@ -1496,6 +1510,7 @@ header ul + div {
 }
 
 #detailsOffer input[type="text"],
+#detailsOffer input[type="time"],
 #detailsOffer input[type="number"] {
   font-size: 15px;
   text-indent: 10px;
@@ -1701,13 +1716,25 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 #park > div {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
+}
+
+#park [type="number"] {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+
+#park_planTitres {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;  
 }
 
 
@@ -1749,11 +1776,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .swiper-container.gb {
-  width: 1580px !important;
-  height: 300px; /* Ajuste la hauteur selon ton besoin */
+  height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
+}
+
+.swiper.gb{
+  width: 1590px;
   overflow: hidden;
+  margin: auto;
 }
 
 .swiper-slide {
@@ -1765,7 +1796,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .swiper-slide.gb {
   width: fit-content !important;
-  background-color: none;
+  background-color: var(--background);
+  color: #1Ca4ed;
 }
 
 .searchA {
@@ -1773,10 +1805,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Style pour les boutons de navigation */
-.swiper-button-next, .swiper-button-prev {
+.swiper-button-next.gb, .swiper-button-prev.gb {
   color: #000;
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
+}
+
+.swiper-button-next.gb{
+  transform: translateX(120%);
+  border-radius: 0 1em 1em 0;
+  /* Rounded corners for the next button */
+}
+
+.swiper-button-prev.gb {
+  transform: translateX(-120%);
+  border-radius: 1em 0 0 1em;
+  /* Rounded corners for the prev button */
 }
 
 /* Style pour la pagination */
@@ -4739,6 +4782,10 @@ details .nonRepondu {
 /*+++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte pro, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++*/
+#formPro input, #formMember input, #formConnexion input {
+  text-indent: 5px;
+}
+
 body[id="body_creation_compte"] {
   background-image: url("img/fond.png");
   background-repeat: no-repeat;
@@ -5440,7 +5487,7 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 /*+++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css hover des boutons des formulaires, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
-button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover {
+button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover, button[id="boutonChangerMDP"]:hover {
   background-color: white;
   border: solid 2px var(--accent);
 }
