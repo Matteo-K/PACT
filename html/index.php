@@ -186,7 +186,7 @@
           swiperSlide2.appendChild(form);
         
           // Ajouter la div contenant le formulaire dans le swiper-wrapper
-          swiperWrapper2.appendChild(swiperSlide);
+          swiperWrapper2.appendChild(swiperSlide2);
         });
       
         // Initialiser Swiper après avoir enveloppé les formulaires dans des divs
