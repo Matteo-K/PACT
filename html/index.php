@@ -67,14 +67,20 @@
       ?>
       <div id="consultationRecente">
         <h2>Consulté récemment</h2>
-        <div>
-          <?php if (count($idOffres) > 0) {
-            $consultRecent = new ArrayOffer($idOffres);
-            $consultRecent->displayConsulteRecemment($nbElement);
-          ?>
-          <?php } else { ?>
-          <p>Aucune offre consultée récemment</p>
-          <?php } ?>
+        <div class="swiper-container gb">
+          <div class="swiper gb">
+            <div class="swiper-wrapper gb">
+              <?php if (count($idOffres) > 0) {
+                $consultRecent = new ArrayOffer($idOffres);
+                $consultRecent->displayConsulteRecemment($nbElement);
+                ?>
+                <?php } else { ?>
+                <p>Aucune offre consultée récemment</p>
+                <?php } ?>
+            </div>
+          </div>
+          <div class="swiper-button-next gb"></div>
+          <div class="swiper-button-prev gb"></div>
         </div>
       </div>
       <?php

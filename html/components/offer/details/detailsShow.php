@@ -23,19 +23,23 @@ if ($categorie["_spectacle"]) {
 ?>
 <section id="show"> 
     <!-- Gestion du nombre de place pour le parc d'attraction -->
-    <div>
-        <label class="labelTitre" for="show_nbPlace">Nombre de places : </label> <!-- Label nombre de place -->
+    <div id="show_nbPlacePrixMin">
         <div>
-            <input type="number" id="show_nbPlace" name="show_nbPlace" min="0" placeholder="0" value="<?php echo $spectacle["nbplace"] ?>">
-            <!-- Pour le nombre de place -->
-            <label for="show_nbPlace">places</label>
+            <label class="labelTitre" for="show_nbPlace">Nombre de places : </label> <!-- Label nombre de place -->
+            <div>
+                <input type="number" id="show_nbPlace" name="show_nbPlace" min="0" placeholder="0" value="<?php echo $spectacle["nbplace"] ?>">
+                <!-- Pour le nombre de place -->
+                <label for="show_nbPlace">places</label>
+            </div>
         </div>
         <!-- Gestion du prix -->
-        <label class="labelTitre" for="show_prixMin">Prix minimum : </label>
-        <div>
-            <input type="number" id="show_prixMin" name="show_prixMin" min="0" placeholder="0" value="<?php echo $spectacle["prixminimal"] ?>">
-            <!-- Pour entrer un prix minimum -->
-            <label for="show_prixMin">€</label>
+         <div>
+            <label class="labelTitre" for="show_prixMin">Prix minimum : </label>
+            <div>
+                <input type="number" id="show_prixMin" name="show_prixMin" min="0" placeholder="0" value="<?php echo $spectacle["prixminimal"] ?>">
+                <!-- Pour entrer un prix minimum -->
+                <label for="show_prixMin">€</label>
+            </div>
         </div>
     </div>
 
