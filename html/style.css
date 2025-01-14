@@ -1825,13 +1825,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .swiper-button-next.gb{
   transform: translateX(120%);
-  border-radius: 0 1em 1em 0;
   /* Rounded corners for the next button */
 }
 
 .swiper-button-prev.gb {
   transform: translateX(-120%);
-  border-radius: 1em 0 0 1em;
+
   /* Rounded corners for the prev button */
 }
 
