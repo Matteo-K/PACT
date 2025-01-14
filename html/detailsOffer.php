@@ -974,7 +974,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <input type="radio" name="signalement" id="violation">
                                         <label for="">Violation des règles de la plateforme (données personnelles...)</label>
                                         <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
-                                        <input type="submit" value="confirmeSignelement" id="confirmBtn">
+                                        <input type="submit" value="confirmeSignelement" id="confirmieSignalement">
                                     </form>
                                 </section>
                             </section>
@@ -1349,15 +1349,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
         //Script de gestion du pop-up de signalement
-        const ouvrePopup = document.getElementById('signalerAvis');
+        const ouvrePopup = document.getElementsByClassName('signalerAvis');
         const popup = document.querySelector('.avis .signalementPopup');
-        const btnFermer = document.getElementsByClassName('.avis .modal .close');
-        const btnConfirmer = document.getElementById('confirmBtn');
+        const btnFermer = document.querySelector('.avis .signalementPopup .close');
+        const btnConfirmer = document.querySelector('.avis .signalementPopup confirmieSignalement');
 
         // Afficher le pop-up
-        ouvrePopup.addEventListener('click', () => {
-            popup.style.display = 'block';
+        ouvrePopup.forEach(boutonOuvrePopup => {
+            boutonOuvrePopup.addEventListener('click', () => {
+                popup.style.display = 'block';
+            });
         });
+        
 
         // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
         btnFermer.addEventListener('click', () => {
