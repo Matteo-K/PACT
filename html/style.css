@@ -396,7 +396,7 @@ header > div > a > div {
   font-size: 25px;
   border-radius: 10px;
   height: 2em;
-  width: 10em;
+  width: 8em;
   background-color: var(--accent);
   border: solid 2px var(--accent);
   text-align: center;
