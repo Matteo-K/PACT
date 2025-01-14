@@ -126,7 +126,7 @@ require_once "config.php";
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        const swiperWrapper = document.querySelector('.swiper-wrapper');
+        const swiperWrapper = document.querySelector('.swiper-wrapper.gb');
 
         // Récupérer tous les formulaires à l'intérieur du swiper-wrapper
         const forms = swiperWrapper.querySelectorAll('form');
