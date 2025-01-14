@@ -270,14 +270,14 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         createAutoCompletion(
             document.getElementById("inputTag"),
             document.getElementById("autocompletion"),
-            document.getElementById("msgTag"),
+            msgTag,
             listeTags,
             ajoutElement,
             document.getElementById("inputTag"), //-- paramètres de la fonction ajoutElement
             document.getElementById("autocompletion"),
-            document.getElementById("msgTag"),
+            msgTag,
             'tags[]',
-            6,
+            maxTags,
             "span",
             ["tag"]
         );
