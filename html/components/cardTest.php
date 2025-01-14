@@ -1,4 +1,4 @@
-<form action="/detailsOffer.php" method="post" class="searchA swiper-slide">
+<form action="/detailsOffer.php" method="post" class="searchA">
   <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
   <section class="carteOffre flip-card <?= in_array("EnRelief", $options) ? "optionEnRelief" : "" ?>">
     <div class="flip-card-inner">
