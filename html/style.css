@@ -938,11 +938,12 @@ header ul + div {
 }
 
 #manageOffer .suivant, #manageOffer .precedent {
-  text-align: center;
-  width: 150px;
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+#manageOffer .suivant:hover, #manageOffer .precedent:hover {
+  background-color: #fff;
 }
 
 /* Feedback Save */
