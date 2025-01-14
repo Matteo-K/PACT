@@ -1,6 +1,3 @@
-<?php
-require_once "config.php";
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,6 +11,9 @@ require_once "config.php";
 </head>
 <body id="sansScroll">
   <?php require_once __DIR__."/components/ecranChargement.php"; ?>
+  <?php
+    require_once "config.php";
+  ?>
   <?php require_once "components/header.php"; ?>
   <main>
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
