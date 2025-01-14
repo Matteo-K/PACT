@@ -967,31 +967,53 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </div>
 
-                            <!-- Pop-up de signalement d'un avis -->
-                            <section class="modal signalementPopup">
-                                <section class="modal-content">
-                                    <span class="close">&times;</span>
-                                    <h2>Signalement d'un avis</h2>
-                                    <form action="signaleAvis.php">
-                                        <input type="radio" name="signalement" id="inapproprie">
-                                        <label for="">Contenu inapproprié (injures, menaces, contenu explicite...)</label>
-                                        <input type="radio" name="signalement" id="frauduleux">
-                                        <label for="">Avis frauduleux ou trompeur (faux avis, publicité déguisée...) </label>
-                                        <input type="radio" name="signalement" id="spam">
-                                        <label for="">Spam ou contenu hors-sujet (multipostage, indésirable...)</label>
-                                        <input type="radio" name="signalement" id="violation">
-                                        <label for="">Violation des règles de la plateforme (données personnelles...)</label>
-                                        <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
-                                        <input type="submit" value="confirmeSignelement" id="confirmeSignalement">
-                                    </form>
-                                </section>
-                            </section>
-
-
                         </div>
                     <?php
                     }
                     ?>
+
+
+                        <!-- Pop-up de signalement d'un avis -->
+                        <section class="modal signalementPopup">
+                            <section class="modal-content">
+                                <span class="close">&times;</span>
+                                <h2>Signalement d'un avis</h2>
+                                <form action="signaleAvis.php">
+                                <ul>
+                                    <li>
+                                        <label for="inapproprie">
+                                            <input type="radio" name="signalement" id="inapproprie" value="innaproprie">
+                                            <span class="checkmark"></span>
+                                            Contenu inapproprié (injures, menaces, contenu explicite...)
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label for="frauduleux">
+                                            <input type="radio" name="signalement" id="frauduleux" value="frauduleux">
+                                            <span class="checkmark"></span>
+                                            Avis frauduleux ou trompeur (faux avis, publicité déguisée...)
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label for="spam">
+                                            <input type="radio" name="signalement" id="spam" value="spam">
+                                            <span class="checkmark"></span>
+                                            Spam ou contenu hors-sujet (multipostage, indésirable...)
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label for="violation">
+                                            <input type="radio" name="signalement" id="violation" value="violation">
+                                            <span class="checkmark"></span>
+                                            Violation des règles de la plateforme (vie privée, données seneibles...)
+                                        </label>
+                                    </li>
+                                </ul>
+                                    <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
+                                    <input type="submit" value="Envoyer" id="confirmeSignalement">
+                                </form>
+                            </section>
+                        </section>
                     </div>
     </main>
     <?php
@@ -1357,10 +1379,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
         //Script de gestion du pop-up de signalement
-        let ouvrePopup = document.querySelectorAll('.signalerAvis');
+        let ouvrePopup = document.querySelectorAll('.avis .signalerAvis');
         const popup = document.querySelector('.avis .signalementPopup');
-        const btnFermer = document.querySelectorAll('.signalementPopup .close')[0];
-        const btnConfirmer = document.querySelector('.avis .signalementPopup .confirmeSignalement');
+        const btnFermer = document.querySelector('.signalementPopup .close');
+        const btnConfirmer = document.getElementById('confirmeSignalement');
 
         console.log(ouvrePopup);
 

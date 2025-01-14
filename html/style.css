@@ -1779,26 +1779,41 @@ label[for="rest_ajoutPhotoMenu"] {
 
 /* popup signalement avis */
 
-
-.avis .modal h2{
+.signalementPopup h2{
   width: 100%;
 }
 
-.avis .modal input[type="checkbox"] + label{
+.signalementPopup input[type="checkbox"] + label{
   width: 100%;
 }
 
 
-.avis .modal textarea{
+.signalementPopup textarea{
   width: 100%;
   resize: none;
   height: 200px;
   font-size: 16px;
 }
 
+.signalementPopup ul {
+  margin: 0;
+  padding: 0;
+}
+
+.signalementPopup li label{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 10px;
+}
+
+.signalementPopup input {
+  display: none;
+}
+
 
 /* fin popup signalement avis */
-
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3936,7 +3951,11 @@ section#infoComp div {
   background: var(--background);
 }
 
-/* bloc fermable */
+#avisproS2 {
+  margin-left: 3%;
+}
+
+/* bloc fermable avec les nombres d'avis*/
 #avisproS2 > details {
   width: 100%;
   background-color: #ffffff5f;
