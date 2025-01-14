@@ -321,29 +321,18 @@ class ArrayOffer {
 
   /**
    * Affiche les offres à la une
-   * @param array_ liste d'offre
-   * @param typeUser_ type de l'utilisateur
-   * @param elementStart_ indice de l'élément de départ
-   * @param nbElement_ nombre d'élément à prendre
    */
-  public function displayCardALaUne($array_, $typeUser_, $elementStart_, $nbElement_) {
-    $array = $this->pagination($array_, $elementStart_, $nbElement_);
-    $nbOffre = 0;
+  public function displayCardALaUne() {
+    $array = $this->arrayOffer;
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
-        if ($typeUser_ == "pro_public" || $typeUser_ == "pro_prive") {
-          $elem->displayCardOfferPro();
-          $nbOffre ++;
-        } else if (in_array("ALaUne", $elem->getData()["option"])) {
-          $elem->displayCardOffer();
-          $nbOffre++;
-        }
+        $elem->displayCardOffer();
       }
-    } if ($nbOffre == 0) {
+    } else {
       echo "<p>Aucune offre à la une </p>";
     }
   }
-
+  
   /**
    * Affiche les offres consulter récemment par l'utilisateur
    * @param nbElement_ nombre d'élément à prendre

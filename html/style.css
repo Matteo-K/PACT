@@ -1701,10 +1701,16 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 #park > div {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+
+#park [type="number"] {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
