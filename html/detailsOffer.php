@@ -233,9 +233,9 @@ $stmt = $conn->prepare("SELECT a.*,
     r.idc_reponse,
     r.denomination AS reponse_denomination,
     r.contenureponse,
-    r.nblikepro,
-    r.nbdislikepro as likeReponse,
-    r.reponsedate as dislikeReponse,
+    r.nblikepro as likeReponse,
+    r.nbdislikepro as dislikeReponse,
+    r.reponsedate 
     r.idpro
 FROM 
     pact.avis a
