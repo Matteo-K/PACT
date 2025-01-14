@@ -1765,6 +1765,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .swiper-slide.gb {
   width: fit-content !important;
+  background-color: none;
 }
 
 .searchA {
