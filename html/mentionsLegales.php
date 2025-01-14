@@ -23,7 +23,7 @@
     switch ($page) {
       case 1: ?>
         <article>
-          <>
+          <section>
             <h2>
               1. Responsable du traitement
             </h2>
