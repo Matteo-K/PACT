@@ -1762,11 +1762,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .swiper-container.gb {
-  width: 1590px !important;
   height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
+}
+
+.swiper.gb{
+  width: 1590px;
   overflow: hidden;
+  margin: auto;
 }
 
 .swiper-slide {
