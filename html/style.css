@@ -3629,7 +3629,6 @@ section#infoComp div {
   margin: -0.5em;
 }
 
-.user + article > div > div + div,
 .user + article > div > div + div {
   justify-content: flex-start;
   gap: 20px;
@@ -3652,7 +3651,7 @@ section#infoComp div {
 }
 
 .user + article > div > div + div {
-  margin-bottom: 1.5em;
+  margin-bottom: 0.5em;
 }
 
 .autreInfoAvis {
@@ -4349,6 +4348,11 @@ details .nonRepondu {
   font-weight: 600;
 }
 
+.tag:not(.mainOffer > div > .tag) {
+  border-radius: 0;
+  border: solid 3px var(--accent);
+}
+
 .notedetaille .barreDeNotationBlanche {
   background-color: var(--background-avis);
   width: 100%;
@@ -4368,8 +4372,6 @@ details .nonRepondu {
   gap: 0 !important;
   background-color: var(--col-gray);
   width: 175px !important;
-  border: var(--col-black) 2px solid;
-  border-radius: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
