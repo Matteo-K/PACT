@@ -28,10 +28,8 @@
           ?>
         </div>
 
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <!-- Pagination: Points -->
-        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next gb"></div>
+        <div class="swiper-button-prev gb"></div>
       </div>
       <?php if ($typeUser == "membre") {
         $nbElement = 10;
