@@ -607,9 +607,14 @@ header > div > a > div {
   text-decoration: none;
   padding: 10px;
   text-align: center;
-  border-radius: 0;
   padding-left: 20px;
+  border-left: 0px solid var(--primary);
+  transition: 0.3s;
+}
+
+#changeDataAccount, #changeAccount, #logoutButton{
   transition: background-color 0.3s ease;
+  border-radius: 10px;
 }
 
 .liFact {
@@ -619,7 +624,7 @@ header > div > a > div {
 #profileMenu ul a:hover,
 .liFact:hover {
   border-left: 15px solid var(--primary);
-  transition: ease-in-out;
+  transition: 0.3s;
 }
 
 header ul + div {
