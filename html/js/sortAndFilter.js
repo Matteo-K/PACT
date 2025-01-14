@@ -602,10 +602,11 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
+  //array = filtrerParPeriode(array);
+
   if (userType == "pro_public" || userType == "pro_prive") {
     array = filtrerParStatutEnLigneHorsLigne(array);
   }
-  array = filtrerParPeriode(array);
 
   // Tris
   array = selectSort(array);
