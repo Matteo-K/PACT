@@ -267,7 +267,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         //Récupération des tags déjà présents sur l'offre puis affichage (semblable a la fonction ajouTag())
         const loadedTags = <?php echo json_encode($loadedTags) ?>;
 
-        createAutoCompletion(
+        const indexTag = createAutoCompletion(
             document.getElementById("inputTag"),
             "autocompletion",
             msgTag,
@@ -286,7 +286,16 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         const sectionTag = document.getElementById("sectionTag");
 
         loadedTags.forEach(valeurTag => {
-            ajoutElement(valeurTag);
+            ajoutElement(valeurTag,
+                indexTag,
+                document.getElementById("inputTag"),
+                document.getElementById("sectionTag"),
+                msgTag,
+                'tags[]',
+                maxTags,
+                "span",
+                ["tag"]
+            );
         });
 
         // Chargement pour les images de l'offre

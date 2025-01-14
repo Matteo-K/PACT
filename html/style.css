@@ -944,6 +944,7 @@ header ul + div {
 
 #manageOffer .suivant:hover, #manageOffer .precedent:hover {
   background-color: #fff;
+  color: var(--text-dark);
 }
 
 /* Feedback Save */

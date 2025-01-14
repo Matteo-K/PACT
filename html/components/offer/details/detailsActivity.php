@@ -7,6 +7,8 @@ $activite = [
     "prixminimal" => "",
     "accessibilite" => true,
     "nomAccess" => [],
+    "prestationInclu" => [],
+    "prestationNonInclu" => [],
 ];
 $accessibilite = [];
 $prestation = [];
@@ -35,6 +37,20 @@ if ($categorie["_activite"]) {
         $activite["agemin"] = $result["agemin"];
         $activite["prixminimal"] = $result["prixminimal"];
     }
+
+    // Prestation
+    $stmt = $conn->prepare("SELECT nompresta FROM pact._offreprestation_non_inclu ni where idoffre = ?");
+    $stmt->execute([$idOffre]);
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $activite["prestationNonInclu"][] = $row["nompresta"];
+    }
+
+    $stmt = $conn->prepare("SELECT nompresta FROM pact._offreprestation_inclu ni where idoffre = ?");
+    $stmt->execute([$idOffre]);
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $activite["prestationInclu"][] = $row["nompresta"];
+    }
+    
 
     // Accessibilité
     $stmt = $conn->prepare("SELECT * from pact._offreAccess where idoffre=?");
@@ -125,6 +141,8 @@ if ($categorie["_activite"]) {
 
 
 <script>
+    const listePrestation = <?= json_encode($prestation); ?>
+    const prestationInclu = <?= json_encode($activite["prestationInclu"]); ?>
     // Durée
     document.addEventListener("DOMContentLoaded", function () {
         const minutesInput = document.getElementById("actv_min");
