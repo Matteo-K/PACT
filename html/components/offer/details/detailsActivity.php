@@ -48,13 +48,6 @@ if ($categorie["_activite"]) {
 
 <section id="activity">
 
-    <!-- Zone pour l'age minimum pour l'activité -->
-    <label class="labelTitre" for="actv_ageMin"> Âge : </label>
-    <div>
-        <input type="number" id="actv_ageMin" name="actv_ageMin" min="0" placeholder="0" value="<?= $activite["agemin"] ?>"/>
-        <label for="actv_ageMin"> ans </label>
-    </div>
-    
     <!-- Gestion des prestations proposée dans l'activité -->
     <div>
         <label class="labelTitre" for="actv_presta">Préstation(s) : </label>
@@ -65,49 +58,84 @@ if ($categorie["_activite"]) {
             <?php } ?>
         </select>
         <div>
-            <label class="labelSousTitre" for="actv_presta">Préstation inclus : </label>
-            <div id="zonePrestationInclusAtcv">
+            <div id="actv_inputAutoCompletePrestaInclu">
+                <label class="labelSousTitre" for="actv_prestaInclu">Préstation inclus<span id="msgPrestaInclus" class="msgError"></span></label>
+                <input type="text" id="actv_inputPrestaInclus" 
+                name="actv_inputPrestaInclus" 
+                placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
+
+                <ul id="actv_autocompletionInclus"></ul>
             </div>
+            <ul id="atcv_zonePrestationInclusAtcv">
+            </ul>
         </div>
         <div>
-            <label class="labelSousTitre" for="actv_presta">Préstation non-inclus : </label>
-            <div id="zonePrestationNonInclusAtcv">
+            <div id="actv_inputAutoCompletePrestaNonInclu">
+                <label class="labelSousTitre" for="actv_prestaNonInclu">Préstation non-inclus<span id="msgPrestaNonInclus" class="msgError"></span></label>
+                <input type="text" id="actv_inputPrestaNonInclus" 
+                name="actv_inputPrestaNonInclus" 
+                placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
+
+                <ul id="actv_autocompletionNonInclus"></ul>
+            </div>
+            <ul id="atcv_zonePrestationNonInclusAtcv">
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <!-- Zone pour l'age minimum pour l'activité -->
+            <label class="labelTitre" for="actv_ageMin">Age</label>
+            <div>
+                <input type="number" id="actv_ageMin" name="actv_ageMin" min="0" placeholder="0" value="<?= $activite["agemin"] ?>"/>
+                <label for="actv_ageMin"> ans </label>
+            </div>
+        
+            <!-- Prix -->
+            <label class="labelTitre" for="actv_prixMin">Prix minimum</label>
+            <div>
+                <input type="number" id="actv_prixMin" name="actv_prixMin" min="0" placeholder="0" value="<?= $activite["agemin"]; ?>">
+                <label for="actv_prixMin">€</label>
+            </div>
+
+            <!-- Gestion de la durée -->
+            <label for="actv_hrMin" class="labelTitre">Durée de l'activité</label>
+            <div>
+                <input type="number" style="display : none;" id="actv_min" name="actv_min" placeholder="0" value="<?php echo $activite["duree"] ?>">
+                <input type="time" id="actv_hrMin" name="actv_hrMin" placeholder="0">
             </div>
         </div>
-    </div>
 
-    <!-- Prix -->
-    <label class="labelTitre" for="actv_prixMin">Prix minimum</label>
-    <div>
-        <input type="number" id="actv_prixMin" name="actv_prixMin" min="0" placeholder="0" value="<?= $activite["agemin"]; ?>">
-        <label for="actv_prixMin">€</label>
-    </div>
-
-    <!-- Accessibilité -->
-    <div>
-        <label class="labelTitre" for="actv_access">Accessibilité(s) : </label>
-        <select name="actv_access" id="actv_access">
-            <option value="defaultPrestaActv">-- Sélectionner un handicap --</option>
-            <?php foreach ($accessibilite as $value) { ?>
-                <option value="<?= $value ?>"><?= $value ?></option>
-            <?php } ?>
-        </select>
-        <div id="actv_Zoneaccess">
+        <!-- Accessibilité -->
+        <div>
+            <label class="labelTitre" for="actv_access">Accessibilité(s) : </label>
+            <select name="actv_access" id="actv_access">
+                <option value="defaultPrestaActv">-- Sélectionner un handicap --</option>
+                <?php foreach ($accessibilite as $value) { ?>
+                    <option value="<?= $value ?>"><?= $value ?></option>
+                <?php } ?>
+            </select>
+            <div id="actv_Zoneaccess">
+            </div>
         </div>
-    </div>
-
-    <div>
-    <!-- Gestion de la durée -->
-        <label for="actv_hrMin" class="labelTitre">Durée de l'activité : </label>
-        <input type="number" style="display : none;" id="actv_min" name="actv_min" placeholder="0" value="<?php echo $activite["duree"] ?>">
-        
-        <input type="time" id="actv_hrMin" name="actv_hrMin" placeholder="0">
     </div>
 
 </section>
 
 
 <script>
+    // Durée
+    document.addEventListener("DOMContentLoaded", function () {
+        const minutesInput = document.getElementById("actv_min");
+        const hoursInput = document.getElementById("actv_hrMin");
+        
+        minutesInput.addEventListener("change", () => minutesToHours(minutesInput, hoursInput));
+        hoursInput.addEventListener("change", () => hoursToMinutes(minutesInput, hoursInput));
+
+        minutesToHours(minutesInput, hoursInput);
+    });
+
     // Ajouté des prestations
     // Ajouté des accessibilités
 
@@ -117,4 +145,20 @@ if ($categorie["_activite"]) {
     const access = document.getElementById("actv_access");
 
     // Vérification des champs
+
+    function checkActivity() {
+        return true;
+    }
+
+    function checkActvAgeMin() {
+        
+    }
+
+    function checkActvPrixMin() {
+        
+    }
+
+    function checkActvDuree() {
+        
+    }
 </script>

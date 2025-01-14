@@ -29,7 +29,7 @@ if ($categorie["_parcattraction"]) {
         <!-- Gestion de l'âge -->
         <label class="labelTitre" for="park_ageMin">Age minimum</label>
         <div>
-            <input type="number" id="park_ageMin" name="park_ageMin" min="0"  placeholder="age" value="<?= $parc["agemin"] ?>">
+            <input type="number" id="park_ageMin" name="park_ageMin" min="0"  placeholder="0" value="<?= $parc["agemin"] ?>">
         </div>
         <!--Gestion du nombre d'acttration -->
         <label class="labelTitre" for="park_nbAttrac">Nombre d'attractions</label>
@@ -68,4 +68,21 @@ if ($categorie["_parcattraction"]) {
         <?= $limitImgPlan ?>,
         <?= $idOffre ?>
     );
+
+    function checkPark() {
+        return true;
+    }
+
+    function checkparkAgeMin() {
+        
+    }
+
+    function checkParkNbAttrac() {
+        
+    }
+
+    function checkParkPrixMin() {
+        
+    }
+
 </script>

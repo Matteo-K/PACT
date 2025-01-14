@@ -101,6 +101,26 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $listeTags[] = str_replace("_", " ",$result["nomtag"]);
 }
 ?>
+<script>
+    // Durée des activitées
+    function minutesToHours(minutesInput, hoursInput) {
+        const totalMinutes = parseInt(minutesInput.value) || 0;
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+
+        hoursInput.value = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    }
+
+    function hoursToMinutes(minutesInput, hoursInput) {
+        const timeParts = hoursInput.value.split(":");
+        const hours = parseInt(timeParts[0]) || 0; // Récupérer les heures
+        const minutes = parseInt(timeParts[1]) || 0; // Si minutes non saisies, elles valent 0
+
+        const totalMinutes = hours * 60 + minutes;
+
+        minutesInput.value = totalMinutes;
+    }
+</script>
 <form id="detailsOffer" action="enregOffer.php" method="post" enctype="multipart/form-data">
     <article id="artDetailOffer">
         <div id="aboutOffer">
@@ -442,7 +462,32 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             let nomCheck = checkNom();
             let descriptionCheck = checkDescription();
             let imgCheck = checkImg();
-            return nomCheck && descriptionCheck && imgCheck;
+
+            // Info catégorie
+            let categorie;
+            switch (select.value) {
+                case "parc":
+                    categorie = checkPark();
+                    break;
+                case "activite":
+                    categorie = checkActivity();
+                    break;
+                case "spectacle":
+                    categorie = checkSpectacle();
+                    break;
+                case "visite":
+                    categorie = checkVisit();
+                    break;
+                case "restaurant":
+                    categorie = true;
+                    break;
+            
+                default:
+                    categorie = false;
+                    break;
+            }
+
+            return nomCheck && descriptionCheck && imgCheck && categorie;
         }
 
         /**
