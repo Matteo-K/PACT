@@ -1708,10 +1708,16 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 #park > div {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+
+#park [type="number"] {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
@@ -1756,11 +1762,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .swiper-container.gb {
-  width: 1590px !important;
   height: 310px; /* Ajuste la hauteur selon ton besoin */
   position: relative;
   margin: auto;
+}
+
+.swiper.gb{
+  width: 1590px;
   overflow: hidden;
+  margin: auto;
 }
 
 .swiper-slide {

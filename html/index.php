@@ -17,23 +17,41 @@
   <?php require_once "components/header.php"; ?>
   <main>
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
-      <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") { ?>
+      <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") {
+
+        $stmt = $conn->prepare("SELECT idoffre FROM pact._option_offre o 
+          natural join pact._dateoption d 
+          where d.datelancement <= CURRENT_DATE 
+            AND d.datefin > CURRENT_DATE 
+            AND nomoption = 'ALaUne';"
+        );
+        $stmt->execute();
+        $idOffres = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          $idOffres[] = $row['idoffre'];
+        }
+        if (count($idOffres) > 0) {
+          ?>
       <div class="swiper-container gb">
         <div class="swiper gb">
           <div class="swiper-wrapper gb">
             <?php 
               $elementStart = 0;
               $nbElement = 20;
-              $offres = new ArrayOffer();
-              $offres->displayCardALaUne($offres->filtre($idUser, $typeUser), $typeUser, $elementStart, $nbElement);
-            ?>
+              $offres = new ArrayOffer($idOffres);
+              $offres->displayCardALaUne();
+              ?>
           </div>
         </div>
-
+        
         <div class="swiper-button-next gb"></div>
         <div class="swiper-button-prev gb"></div>
+        <!-- Pagination: Points -->
+
       </div>
-      <?php if ($typeUser == "membre") {
+      <?php 
+      }
+      if ($typeUser == "membre") {
         $nbElement = 10;
         $stmt = $conn->prepare("SELECT * FROM pact._consulter WHERE idu = ? ORDER BY dateconsultation LIMIT ?");
         $stmt->execute([$_SESSION['idUser'], $nbElement]);
@@ -44,6 +62,8 @@
       } elseif ($typeUser == "visiteur") {
         $idOffres = $_SESSION["recent"] ?? [];
       }
+
+      if (count($idOffres) > 0) {
       ?>
       <div id="consultationRecente">
         <h2>Consulté récemment</h2>
@@ -58,6 +78,7 @@
         </div>
       </div>
       <?php
+        }
         // Toute les nouvelles offres inférieurs à 2 semaines
         $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE datecrea >= NOW() - INTERVAL '14 days' AND statut = 'actif' ORDER BY datecrea");
 
@@ -66,6 +87,7 @@
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
           $idOffres[] = $row['idoffre'];
         }
+        if (count($idOffres) > 0) {
       ?>
       <div id="consultationNouvelle">
         <h2>Offre Nouvelle</h2>
@@ -79,7 +101,10 @@
           <?php } ?>
         </div>
       </div>
-      <?php } ?>
+      <?php 
+          }
+        } 
+      ?>
       <div id="voirPlus">
         <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
           <h2>Vous avez une activité à partager ?</h2>
