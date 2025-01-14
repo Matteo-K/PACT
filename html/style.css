@@ -1573,6 +1573,31 @@ header ul + div {
   background-color: var(--text-dark25);
 }
 
+
+
+/* popup signalement avis */
+
+
+.avis > .modal h2{
+  width: 100%;
+}
+
+.avis > .modal input[type="checkbox"] + label{
+  width: 100%;
+}
+
+
+.avis > .modal textarea{
+  width: 100%;
+  resize: none;
+  height: 200px;
+  font-size: 16px;
+}
+
+
+/* fin popup signalement avis */
+
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
