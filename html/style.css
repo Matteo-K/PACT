@@ -4781,13 +4781,6 @@ details .nonRepondu {
   margin-bottom: 20px;
 }
 
-#previewOffer .tag {
-  background-color: var(--accent);
-  color: var(--background);
-  padding: 8px 16px;
-  border-radius: 5px;
-  text-decoration: none;
-}
 
 #previewOffer .ouvert {
   background-color: #008000;
