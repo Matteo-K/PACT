@@ -386,6 +386,7 @@ function filtrerParHeure(offers) {
 
   // Convertir l'heure en minutes depuis minuit pour faciliter la comparaison
   const convertirEnMinutes = (heure) => {
+    console.log(heure);
     const [hours, minutes] = heure.split(":").map(Number);
     return hours * 60 + minutes;
   };
@@ -411,9 +412,8 @@ function filtrerParHeure(offers) {
       // Pour chaque horaire précis de spectacle
       return data.some(horaire => {
         const heureDebutSpectacle = convertirEnMinutes(horaire.horaire);
-        const dureeSpectacle = convertirEnMinutes(horaire.duree);
+        const heureFinSpectacle = heureDebutSpectacle + horaire.duree;
 
-        const heureFinSpectacle = heureDebutSpectacle + dureeSpectacle;
         // Vérifier si l'horaire du spectacle chevauche l'intervalle de l'utilisateur
         return (heureDebutSpectacle < heureFinMinutes && heureFinSpectacle > heureDebutMinutes);
       });
