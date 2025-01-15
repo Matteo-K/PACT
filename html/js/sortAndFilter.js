@@ -412,7 +412,7 @@ function filtrerParHeure(offers) {
         // Vérifier si l'horaire du spectacle chevauche l'intervalle de l'utilisateur
         return (heureDebutSpectacle < heureFinMinutes && heureFinSpectacle > heureDebutMinutes);
       });
-    } 
+    }
     
     // Vérifier les horaires pour les autres types d'offres
     else {
