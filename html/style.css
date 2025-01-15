@@ -4258,6 +4258,13 @@ details .nonRepondu {
   border-radius: 20px;
 }
 
+.conteneurReponsePro > article > img {
+  width: 1.5em;
+  height: 1.5em;
+  top: 20px;
+  right: 20px;
+}
+
 .conteneurReponsePro h3 {
   margin: 0 !important;
 }
