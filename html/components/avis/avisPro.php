@@ -291,9 +291,20 @@ function afficheAvisSelect(idAvis) {
         titreReponseAvisEcrit.textContent = "Votre réponse à " + listeAvis[idAvis]['pseudo'];
         formReponseAvis.style.display = "none";
 
-        bin.addEventListener("click", function(e){
-            supAvis(listeAvis[idAvis]['idc_reponse'], idOffre);
-        })
+        bin.addEventListener("click", function() {
+            if (listeAvis[idAvis] && listeAvis[idAvis]['idc_reponse']) {
+                supAvis(listeAvis[idAvis]['idc_reponse'], idOffre)
+                    .then(response => {
+                        console.log("Review deleted successfully:", response);
+                        // Optionally update the UI here
+                    })
+                    .catch(error => {
+                        console.error("Failed to delete review:", error);
+                    });
+            } else {
+                console.error("Invalid review or response ID");
+            }
+        });
     }
     
     //On passe l'avis de non lu a lu (en affichage et en BDD)

@@ -165,7 +165,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("DELETE FROM pact._reponse WHERE ref = $idAvis");
         $stmt -> execute();
     }
-
     ?>
     <!DOCTYPE html>
     <html lang="en">
