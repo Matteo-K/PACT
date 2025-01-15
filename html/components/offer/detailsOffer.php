@@ -200,6 +200,40 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     Visite
                 </option>
             </select>
+            <?php
+            $categorie = [
+                "_restauration" => false,
+                "_spectacle" => false,
+                "_parcattraction" => false,
+                "_visite" => false,
+                "_activite" => false,
+            ];
+                foreach ($categorie as $key => $value) {
+                    if ($value) {
+                        $catgr;
+                        switch ($key) {
+                            case '_restauration':
+                                $catgr = 'restaurant';
+                                break;
+                            case '_spectacle':
+                                $catgr = 'spectacle';
+                                break;
+                            case '_parcattraction':
+                                $catgr = 'parc';
+                                break;
+                            case '_visite':
+                                $catgr = 'visite';
+                                break;
+                            case '_activite':
+                                $catgr = 'activite';
+                                break;
+                        }
+                        ?>
+                        <input type="hidden" name="categorie" value="<?= $catgr ?>">
+                        <?php
+                    }
+                }
+            ?>
         </section>
         <?php
             $source = "details/";
