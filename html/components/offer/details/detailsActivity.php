@@ -213,8 +213,40 @@ if ($categorie["_activite"]) {
         "li",
         [],
         checkAddPrestation,
-        "inclu"
+        "nonInclu"
     );
+
+    /* Initialisation de prestation inclus */
+    prestationInclu.forEach(valeur => {
+        ajoutElement(valeur,
+            indexPrestaInclu,
+            inputNonInclu, //-- paramètres de la fonction ajoutElement
+            zoneNonInclu,
+            msgNonInclu,
+            'prestationNonInclu[]',
+            maxPrestation,
+            "li",
+            [],
+            checkAddPrestation,
+            "inclu"
+        );
+    });
+
+    /* Initialisation de prestation inclus */
+    prestationNonInclu.forEach(valeur => {
+            ajoutElement(valeur,
+            indexPrestaNonInclu,
+            inputNonInclu,
+            zoneNonInclu,
+            msgNonInclu,
+            'prestationNonInclu[]',
+            maxPrestation,
+            "li",
+            [],
+            checkAddPrestation,
+            "nonInclu"
+        );
+    });
 
     // Ajouté des accessibilités
 
