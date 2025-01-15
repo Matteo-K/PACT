@@ -4954,7 +4954,6 @@ label#btnAjoutPhoto:hover {
 /* Effet au survol du lien */
 #login-prompt a:hover {
   color: var(--primary);
-  text-decoration: underline;
 }
 
 
