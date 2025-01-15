@@ -2402,8 +2402,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   position: absolute;
   top: 0;
   right: 0;
-  width: 25px; /* Ajustez selon vos besoins */
-  height: auto; /* Maintient le ratio de l'image */
+  width: 25px !important; /* Ajustez selon vos besoins */
+  height: auto !important; /* Maintient le ratio de l'image */
 }
 
 .searchA {
