@@ -101,6 +101,8 @@ const chkBxRestauration = document.querySelector("#Restauration");
 // dates
 const dateDepart = document.querySelector("#dateDepart");
 const dateFin = document.querySelector("#dateFin");
+
+// heures
 const heureDebut = document.querySelector("#heureDebut");
 const heureFin = document.querySelector("#heureFin");
 
@@ -375,27 +377,68 @@ function filtrerParStatutEnLigneHorsLigne(offers) {
   return offers.filter(offer => statutEnLigneHorsLigne.includes(offer.statut));
 }
 
+
 // Fonction de filtre par heure
+function filtrerParHeure(offers) {
+  // Récupérer les heures sélectionnées par l'utilisateur
+  const heureDebutValue = heureDebut.value;
+  const heureFinValue = heureFin.value;
+  
+  console.log("Heure de début sélectionnée : ", heureDebutValue);
+  console.log("Heure de fin sélectionnée : ", heureFinValue);
 
-// function filtrerParHeure(offers) {
-//   const heureDebut = ;
-//   const heureFin = ;
+  // Convertir l'heure en minutes depuis minuit pour faciliter la comparaison
+  const convertirEnMinutes = (heure) => {
+    const [hours, minutes] = heure.split(":").map(Number);
+    return hours * 60 + minutes;
+  };
 
-//   return offers.filter(offer => {
-//     if (offer.categorie === 'Restaurant') {
-//       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
-//       const prixMinOffreRestaurant = prixRange[0];
-//       const prixMaxOffreRestaurant = prixRange[0];
+  const heureDebutMinutes = convertirEnMinutes(heureDebutValue);
+  const heureFinMinutes = convertirEnMinutes(heureFinValue);
 
-//       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
-//     } 
+  console.log("Heure de début en minutes : ", heureDebutMinutes);
+  console.log("Heure de fin en minutes : ", heureFinMinutes);
+
+  return offers.filter(offer => {
+    console.log("Vérification de l'offre :", offer);
+
+    if (offer.categorie === 'Spectacle') {
+      // Pour un spectacle, on ne vérifie que l'heure de début
+      const heureDebutSpectacle = convertirEnMinutes(offer.heureouverture);
+      console.log("Heure d'ouverture du spectacle en minutes : ", heureDebutSpectacle);
+
+      // Si l'heure de début du spectacle est après l'heure de début du filtre, ne pas afficher
+      const resultat = heureDebutSpectacle >= heureDebutMinutes && heureDebutSpectacle <= heureFinMinutes;
+      console.log("Spectacle filtré ? ", resultat);
+      return resultat;
+    } 
     
-//     else {
-//       const prixMinOffreAutres = (offer.prixMinimal || 0);
-//       return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
-//     }
-//   });
-// }
+    else {
+      // Pour d'autres types d'offres, vérifier si elles ont des horaires qui se chevauchent avec la plage horaire sélectionnée
+      const horaires = offer.horaireMidi;
+      console.log("Horaires pour cette offre : ", horaires);
+
+      const resultat = horaires.some(horaire => {
+        const heureOuvertureMinutes = convertirEnMinutes(horaire.heureouverture);
+        const heureFermetureMinutes = convertirEnMinutes(horaire.heurefermeture);
+
+        console.log(`Comparaison des horaires: ouverture ${heureOuvertureMinutes}, fermeture ${heureFermetureMinutes}`);
+        
+        // Vérifier le chevauchement des horaires
+        const chevauchement = (heureOuvertureMinutes >= heureDebutMinutes && heureOuvertureMinutes <= heureFinMinutes) ||
+                              (heureFermetureMinutes >= heureDebutMinutes && heureFermetureMinutes <= heureFinMinutes) ||
+                              (heureOuvertureMinutes <= heureDebutMinutes && heureFermetureMinutes >= heureFinMinutes);
+
+        console.log("Le chevauchement des horaires est-il vrai ? ", chevauchement);
+        return chevauchement;
+      });
+
+      console.log("Offre filtrée ? ", resultat);
+      return resultat;
+    }
+  });
+}
+
 
 // Fonction de filtre par date
 
@@ -610,6 +653,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
+  array = filtrerParHeure(array);
   // array = filtrerParPeriode(array);
 
   if (userType == "pro_public" || userType == "pro_prive") {
@@ -1021,6 +1065,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // dates
   dateDepart.addEventListener("change", () => goToPage(1));
   dateFin.addEventListener("change", () => goToPage(1));
+
+  // heures
   heureDebut.addEventListener("change", () => goToPage(1));
   heureFin.addEventListener("change", () => goToPage(1));
   
