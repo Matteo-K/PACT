@@ -1932,7 +1932,34 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Rounded corners for the prev button */
 }
 
+/* @media (max-width: 768px) {
+  .swiper-container.gb, 
+  .swiper-container.gb2, 
+  .swiper-container.gb3 {
+    height: 310px;
+    position: relative;
+    margin: auto;
+  }
 
+  .swiper.gb, 
+  .swiper.gb2,
+  .swiper.gb3{
+    width: 520px;
+    height: 100%;
+    overflow: hidden;
+    margin: auto;
+  }
+
+  .swiper-button-next.gb2,
+  .swiper-button-next.gb3{
+    transform: translateX(-10%);
+  }
+  
+  .swiper-button-prev.gb2,
+  .swiper-button-prev.gb3 {
+    transform: translateX(10%);
+  }
+} */
 
 @media (max-width: 480px) {
   .searchA{
@@ -2522,11 +2549,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transform: scale(1.1);
 }
 
-#note, #prix, #statut, #categorie, #date, #heure {
+#note, #prix, #statut, #categorie, #date {
   padding-inline: 40px;
 }
 
-#note label, #prix label, #statut label, #idCategorie label, #date label, #heure label {
+#note label, #prix label, #statut label, #idCategorie label, #date label {
   font-size: 20px;
 }
 
@@ -2610,13 +2637,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Date */
-#date input, #heure input {
+#date input {
   height: 40px;
   border: solid 2px #1ca4ed;
   background-color: white;
 }
 
-#date div, #heure div{
+#date div {
   margin-bottom: 20px;
 }
 
@@ -2753,7 +2780,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
 
-  #note, #prix, #statut, #categorie, #date, #heure {
+  #note, #prix, #statut, #categorie, #date {
     padding-inline: 20px;
   }
 
