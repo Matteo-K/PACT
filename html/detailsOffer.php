@@ -978,40 +978,38 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <section class="modal-content">
                                 <span class="close">&times;</span>
                                 <h2>Signalement d'un avis</h2>
-                                <form action="signaleAvis.php">
-                                    <ul>
-                                        <li>
-                                            <label for="inapproprie">
-                                                <input type="radio" name="signalement" id="inapproprie" value="innaproprie">
-                                                <span class="checkmark"></span>
-                                                Contenu inapproprié (injures, menaces, contenu explicite...)
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label for="frauduleux">
-                                                <input type="radio" name="signalement" id="frauduleux" value="frauduleux">
-                                                <span class="checkmark"></span>
-                                                Avis frauduleux ou trompeur (faux avis, publicité déguisée...)
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label for="spam">
-                                                <input type="radio" name="signalement" id="spam" value="spam">
-                                                <span class="checkmark"></span>
-                                                Spam ou contenu hors-sujet (multipostage, indésirable...)
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label for="violation">
-                                                <input type="radio" name="signalement" id="violation" value="violation">
-                                                <span class="checkmark"></span>
-                                                Violation des règles de la plateforme (vie privée, données seneibles...)
-                                            </label>
-                                        </li>
-                                    </ul>
-                                    <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
-                                    <input type="submit" value="Envoyer" id="confirmeSignalement">
-                                </form>
+                                <ul>
+                                    <li>
+                                        <label for="inapproprie">
+                                            <input type="radio" name="signalement" id="inapproprie" value="innaproprie">
+                                            <span class="checkmark"></span>
+                                            Contenu inapproprié (injures, menaces, contenu explicite...)
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label for="frauduleux">
+                                            <input type="radio" name="signalement" id="frauduleux" value="frauduleux">
+                                            <span class="checkmark"></span>
+                                            Avis frauduleux ou trompeur (faux avis, publicité déguisée...)
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label for="spam">
+                                            <input type="radio" name="signalement" id="spam" value="spam">
+                                            <span class="checkmark"></span>
+                                            Spam ou contenu hors-sujet (multipostage, indésirable...)
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label for="violation">
+                                            <input type="radio" name="signalement" id="violation" value="violation">
+                                            <span class="checkmark"></span>
+                                            Violation des règles de la plateforme (vie privée, données seneibles...)
+                                        </label>
+                                    </li>
+                                </ul>
+                                <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
+                                <button id="confirmeSignalement"> Envoyer </button>
                             </section>
                         </section>
                     </div>
