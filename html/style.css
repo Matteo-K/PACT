@@ -1599,6 +1599,13 @@ header ul + div {
   background-color: var(--primary);
 }
 
+#btnAjoutPhoto {
+  border: 3px solid var(--primary);
+  border-radius: 10px;
+  margin: 0;
+  cursor: pointer;
+}
+
 #detailsOffer input[type="file"],
 #park_plan input[type="file"] {
   display: none;
@@ -4700,9 +4707,9 @@ details .nonRepondu {
 }
 
 #enCompagnie label {
-  background-color: #e0e0e0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid var(--primary) !important;
+  border-radius: 10px;
   padding: 5px 10px;
   cursor: pointer;
   transition: background-color 0.3s;
