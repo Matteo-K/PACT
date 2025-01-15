@@ -121,7 +121,7 @@ $avis = $avisTemp;
                 <h2>
                     Auteur
                 </h2>
-                <img src="./img/icone/signalement.png" alt="icone de parametre" class="signalerAvis">
+                <img src="./img/icone/signalement.png" alt="icone de parametre" class="signalementSupp signaler signalerAvis signaler_<?= $a['idc'] ?>">
             </div>
             <div class="noteEtoile">
                 <?php
@@ -216,7 +216,6 @@ const blocReponseAvis = document.getElementById("blocReponsePro");
 const conteneurReponseAvis = document.querySelector("#blocReponsePro .conteneurReponsePro");
 const contenuReponseAvis = document.querySelector("#blocReponsePro .conteneurReponsePro p");
 const titreReponseAvisEcrit =  document.querySelector("#blocReponsePro .conteneurReponsePro h3");
-const bin = document.querySelector("#blocReponsePro .conteneurReponsePro article img");
 
 const formReponseAvis = document.querySelector("#blocReponsePro form");
 const titreReponseAvis = document.querySelector("#avisproS2 form h2");
@@ -224,7 +223,7 @@ const inputIdAvis = document.querySelector('#avisproS2 form input[type="hidden"]
 
 const txtNbAvis = document.querySelector('#avisPro details h3:nth-child(2)');
 
-
+const btnConfirmerSignalement = document.getElementById('confirmeSignalement');
 
 
 
@@ -290,21 +289,6 @@ function afficheAvisSelect(idAvis) {
         contenuReponseAvis.textContent = listeAvis[idAvis]['contenureponse'];
         titreReponseAvisEcrit.textContent = "Votre réponse à " + listeAvis[idAvis]['pseudo'];
         formReponseAvis.style.display = "none";
-
-        bin.addEventListener("click", function() {
-            if (listeAvis[idAvis] && listeAvis[idAvis]['idc_reponse']) {
-                supAvis(listeAvis[idAvis]['idc_reponse'], <?=$idOffre?>, 'supprimerReponse')
-                    .then(response => {
-                        console.log("Review deleted successfully:", response);
-                        // Optionally update the UI here
-                    })
-                    .catch(error => {
-                        console.error("Failed to delete review:", error);
-                    });
-            } else {
-                console.error("Invalid review or response ID");
-            }
-        });
     }
     
     //On passe l'avis de non lu a lu (en affichage et en BDD)
@@ -328,6 +312,17 @@ function afficheAvisSelect(idAvis) {
         
         txtNbAvis.textContent = parseInt(txtNbAvis.textContent) - 1;
     }
+
+    // Traiter le signalement en BDD après confirmation et fermer le popup
+    btnConfirmerSignalement.addEventListener('click', () => {
+        popup.style.display = 'none';
+        fetch('signalement.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 'id': idAvis, 'type': 'avis' })
+        });
+        alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme!');
+    });
 
     //On référence l'avis actuel comme avis précédent pour la suite 
     avisPrecedent = document.getElementById(`avis${idAvis}`);
@@ -568,41 +563,6 @@ function displayAvis(avis) {
     return li;
 }
 
-function supAvis(id, idOffre) {
-    // Affiche une boîte de dialogue pour confirmer la suppression
-    const confirmSupp = confirm("Êtes-vous sûr de vouloir supprimer votre avis ?");
-    if (!confirmSupp) return;
-
-    // Crée un formulaire dynamique
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = "/enregAvis.php";
-
-    // Ajoute le champ caché pour l'ID de l'avis
-    const idAvis = document.createElement("input");
-    idAvis.type = "hidden";
-    idAvis.name = "id";
-    idAvis.value = id;
-    form.appendChild(idAvis);
-
-    // Ajoute le champ caché pour spécifier l'action
-    const action = document.createElement("input");
-    action.type = "hidden";
-    action.name = "action";
-    action.value = "supprimerReponse";
-    form.appendChild(action);
-
-    // Ajoute le champ caché pour l'ID de l'offre
-    const offre = document.createElement("input");
-    offre.type = "hidden";
-    offre.name = "idoffre";
-    offre.value = idOffre;
-    form.appendChild(offre);
-
-    // Ajoute le formulaire au document et le soumet
-    document.body.appendChild(form);
-    form.submit();
-}
 /**
  * interprète le nombre d'étoile colorié affiché
  * @param {Integer} note nombre d'étoile colorié correpondant à la note de l'avis
@@ -639,5 +599,6 @@ function displayStar(note) {
   }
   return container;
 }
+
 
 </script>

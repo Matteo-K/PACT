@@ -1057,35 +1057,51 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             form.submit();
         }
 
-        //Script de gestion du pop-up de signalement
-        let ouvrePopup = document.querySelectorAll('.avis .signalerAvis');
+        //Script de gestion du pop-up de signalement (traitement de l'envoi du formulaire dans les fichiers avisPro.php / avisMembre.php / signalement.php)
+        let ouvrePopup = document.querySelectorAll('.avis .signaler');
         const popup = document.querySelector('.avis .signalementPopup');
         const btnFermer = document.querySelector('.signalementPopup .close');
         const btnConfirmer = document.getElementById('confirmeSignalement');
-
-        console.log(ouvrePopup);
+        
 
         // Afficher le pop-up
         ouvrePopup.forEach(boutonOuvrePopup => {
             boutonOuvrePopup.addEventListener('click', () => {
                 popup.style.display = 'block';
             });
+        });        
+        
+        // Traiter le signalement en BDD après confirmation et fermer le popup
+        btnConfirmer.addEventListener('click', () => {
+
+            if (motifSignal) {
+                popup.style.display = 'none';
+
+                idAvisSignal = ouvrePopup.classList[2].split("_")[1];
+                let motifSignal = document.querySelector('input[name="signalement"]:checked');
+                let texteComplement = document.querySelector('.signalementPopup form textarea');
+
+                fetch('signalement.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        'idC': idAvisSignal,
+                        'idU' : <?= json_encode($_SESSION['idUser']) ?>,
+                        'motif' : motifSignal.value,
+                        'complement' : texteComplement.textContent
+                    });
+                });
+
+                alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme!');
+            }
+
+            alert('Veuillez séléctionner un motif pour le signalement')
+            
         });
 
         // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
         btnFermer.addEventListener('click', () => {
             popup.style.display = 'none';
-        });
-
-        // Traiter le signalement en BDD après confirmation et fermer le popup
-        btnConfirmer.addEventListener('click', () => {
-            alert('Signalement enregistré');
-            popup.style.display = 'none';
-            fetch('signaleAvis.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 'id': idAvis })
-            });
         });
 
         // Masquer le pop-up si on clique en dehors
