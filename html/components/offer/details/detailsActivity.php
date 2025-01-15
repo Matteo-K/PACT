@@ -330,11 +330,9 @@ if ($categorie["_activite"]) {
         let res = true;
         const prixPattern = /^\d+$/;
 
-        if () {
-            if (!prixPattern.test(actv_inputPrix.value.trim())) {
-                actv_msgPrix.textContent = "Le champ doit contenir uniquement des chiffres";
-                res = false;
-            }
+        if (!prixPattern.test(actv_inputPrix.value.trim())) {
+            actv_msgPrix.textContent = "Le champ doit contenir uniquement des chiffres";
+            res = false;
         } else {
             if (actv_inputPrix.value.trim() < 0) {
                 actv_msgPrix.textContent = "Le champ doit contenir des chiffres positifs";
