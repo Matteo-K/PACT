@@ -1868,6 +1868,10 @@ label[for="rest_ajoutPhotoMenu"] {
   margin-inline: 15%;
 }
 
+#activity > div:nth-child(1) > label {
+  margin-left: -5%;
+}
+
 #activity > div > div {
   display: flex;
   flex-flow: row nowrap;
