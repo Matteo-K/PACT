@@ -1461,7 +1461,7 @@ header ul + div {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .buttonDetailOffer,
-.tag:not(#previewOffer .tag),
+.tag,
 .ouvert,
 .ferme {
   display: inline-block;
@@ -4987,13 +4987,7 @@ details .nonRepondu {
   margin-bottom: 20px;
 }
 
-#previewOffer .tag {
-  background-color: var(--accent);
-  color: var(--background);
-  padding: 8px 16px;
-  border-radius: 5px;
-  text-decoration: none;
-}
+
 
 #previewOffer .ouvert {
   background-color: #008000;
