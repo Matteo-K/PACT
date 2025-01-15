@@ -1039,13 +1039,6 @@ header ul + div {
   }
 }
 
-.blueBtnOffer {
-  background-color: var(--primary);
-  box-shadow: inset -4px -4px 4px #1883bc;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  transform: translateY(-100%);
-}
-
 /* # selection de l'offre # */
 
 /* Bloc de chaque type d'offre*/
@@ -1215,19 +1208,6 @@ header ul + div {
   width: fit-content;
   padding: 15px 30px;
   margin-left: 10px;
-}
-
-/* en cas de survol des boutons */
-#hourlyOffer input[type="button"]:hover,
-.blueBtnOffer:hover {
-  box-shadow: none;
-}
-
-/* en cas de clic sur les  boutons */
-#hourlyOffer input[type="button"]:active,
-.blueBtnOffer:active {
-  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
-    inset 4px 4px 4px #1883bc;
 }
 
 .hourlyHide {

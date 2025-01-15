@@ -69,7 +69,7 @@
         <label for="CBNomCarte">Nom sur la carte*&nbsp;:&nbsp;</label>
         <input type="text" name="CBDateExpir" id="CBDateExpir" placeholder="Prénom et nom">
 
-        <button class="blueBtnOffer">Valider le moyen de paiement</button>
+        <button class="modifierBut">Valider le moyen de paiement</button>
       </div>
       <!-- Virement bancaire -->
       <div id="Form_VB" class="payment_hide">
@@ -78,7 +78,7 @@
         <label for="VBTitulaire">Nom du titulaire du compte*&nbsp;:&nbsp;</label>
         <input type="text" name="VBTitulaire" id="VBTitulaire" placeholder="Prénom et nom">
 
-        <button class="blueBtnOffer">Valider le moyen de paiement</button>
+        <button class="modifierBut">Valider le moyen de paiement</button>
       </div>
       <!-- Paypal -->
       <div id="Form_paypal" class="payment_hide">
@@ -87,7 +87,7 @@
         <input type="text" name="PaypalAdress" id="PaypalAdress" placeholder="Mail">
         <label for="PaypalPassword">Mot de passe*&nbsp;:&nbsp;</label>
         <input type="password" name="PaypalPassword" id="PaypalPassword" placeholder="Mot de passe">
-        <button class="blueBtnOffer">Se connecter</button>
+        <button class="modifierBut">Se connecter</button>
       </div>
     </article>
   </section>
