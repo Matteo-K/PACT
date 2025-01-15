@@ -4984,13 +4984,6 @@ details .nonRepondu {
   margin: auto;
 }
 
-#titleOfferPreview {
-  font-size: 3.5em;
-  color: var(--bloc);
-  text-align: center;
-  margin-bottom: 0.5em;
-}
-
 #tagPreview {
   display: flex;
   flex-wrap: wrap;
