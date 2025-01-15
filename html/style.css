@@ -1903,7 +1903,7 @@ label[for="rest_ajoutPhotoMenu"] {
   display: none;
 }
 
-#confirmeSignalement{
+.btnSignalAvis{
   font-size: 25px;
   border-radius: 10px;
   height: 2em;
@@ -1912,10 +1912,12 @@ label[for="rest_ajoutPhotoMenu"] {
   border: solid 2px var(--accent);
   text-align: center;
   margin: 30px 0 0;
+  align-content: center;
+  color: black;
   transition: background-color 0.3s;
 }
 
-#confirmeSignalement:hover{
+.btnSignalAvis:hover{
   background-color: white;
   border: solid 2px var(--accent);
 }
@@ -4941,6 +4943,29 @@ label#btnAjoutPhoto:hover {
   }
 }
 
+/* Style général pour le paragraphe avec l'ID login-prompt */
+#login-prompt {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Style pour le lien dans le paragraphe login-prompt */
+#login-prompt a {
+  color: var(--primary); /* Bleu pour le lien */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Effet au survol du lien */
+#login-prompt a:hover {
+  color: var(--primary);
+}
+
+
 @media screen and (max-width: 768px) {
   :root {
     --header-size2: 0;
@@ -5050,7 +5075,7 @@ label#btnAjoutPhoto:hover {
   /** Responsive Avis **/
 
   .avisMembre > nav > h3 {
-    font-size: clamp(0.5em, 10vw, 2.5em);
+    font-size: clamp(0.5em, 7vw, 2em);
     font-weight: 500;
   }
 
@@ -5061,6 +5086,19 @@ label#btnAjoutPhoto:hover {
   .messageAvisReponse {
     width: 90%;
   }
+
+  .avisMembre > nav{
+    width: 90%;
+  }
+
+  #formCreationAvis{
+    width: 90%;
+  }
+
+  #publiez-component > section .star {
+    width: 2em;
+    height: 2em;
+}
 }
 
 /* ========================= */
