@@ -876,9 +876,8 @@ header ul + div {
   margin: 0;
 }
 #manageOffer figcaption {
-  font-size: 1.1rem;
+  font-size: 2rem;
   width: 200px;
-  height: 30px;
 }
 
 .currentStep figcaption {
@@ -1210,6 +1209,12 @@ header ul + div {
   align-items: center;
   gap: 10px;
   font-size: 1.3rem;
+}
+
+#horaireNonSelect {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 #msgHoraireSupr {
@@ -1783,9 +1788,10 @@ label[for="rest_ajoutPhotoMenu"] {
 .signalementPopup h2{
   text-align: center;
   width: 100%;
+  margin-top: 0;
 }
 
-.signalementPopup form{
+.avis .modal-content{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2047,7 +2053,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .swiper.gb, 
   .swiper.gb2,
   .swiper.gb3{
-    width: 316px;
+    width: 300px;
     height: 100%;
     overflow: hidden;
     margin: auto;
@@ -2590,6 +2596,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: inline-block;
   position: relative;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 [type="checkbox"] + .checkmark {
@@ -3315,6 +3322,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
+  align-self: flex-end;
 }
 
 .close:hover,

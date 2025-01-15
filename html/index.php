@@ -93,7 +93,7 @@
         if (count($idOffres) > 0) {
       ?>
       <div id="consultationNouvelle">
-        <h2>Offre Nouvelle</h2>
+        <h2>Offres nouvelles</h2>
         <div class="swiper-container gb3">
           <div class="swiper gb3">
             <div class="swiper-wrapper gb3">
