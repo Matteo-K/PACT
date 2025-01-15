@@ -194,14 +194,17 @@
               },
               breakpoints: {
                 1024: {
+                  spaceBetween: 25,
                   slidesPerView: 3, // 3 slides visibles pour écran de bureau
                 },
                 // Quand l'écran fait moins de 768px (téléphone)
                 768: {
+                  spaceBetween: 0,
                   slidesPerView: 1, // 2 slides visibles pour tablette
                 },
                 // Quand l'écran fait moins de 480px (téléphone)
                 480: {
+                  spaceBetween: 0,
                   slidesPerView: 1, // 1 slide visible pour téléphone
                 },
               },
@@ -242,14 +245,17 @@
                 },
                 breakpoints: {
                   1024: {
+                    spaceBetween: 25,
                     slidesPerView: 3, // 3 slides visibles pour écran de bureau
                   },
                   // Quand l'écran fait moins de 768px (téléphone)
                   768: {
+                    spaceBetween: 0,
                     slidesPerView: 1, // 2 slides visibles pour tablette
                   },
                   // Quand l'écran fait moins de 480px (téléphone)
                   480: {
+                    spaceBetween: 0,
                     slidesPerView: 1, // 1 slide visible pour téléphone
                   },
                 },
@@ -291,10 +297,12 @@
               },
                breakpoints: {
                 1024: {
+                  spaceBetween: 25,
                   slidesPerView: 3, // 3 slides visibles pour écran de bureau
                 },
                 // Quand l'écran fait moins de 768px (téléphone)
                 768: {
+                  spaceBetween: 0,
                   slidesPerView: 1, // 2 slides visibles pour tablette
                 },
                 // Quand l'écran fait moins de 480px (téléphone)
