@@ -4,6 +4,13 @@
     <div class="flip-card-inner">
       <article class="flip-card-front">
         <figure>
+          <?php
+            if (in_array("EnRelief", $options)) {
+              ?>
+                <img class="premiumImg" src="../img/icone/service-premium.png" alt="icone premium">
+              <?php
+            }
+          ?>
           <img src="<?= $urlImg ?>" alt="<?= $nomOffre ?>" title="<?= $nomOffre ?>">
           <figcaption>
             <h4 class="title"><?= $nomOffre ?></h4>

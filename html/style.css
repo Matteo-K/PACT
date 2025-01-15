@@ -2147,6 +2147,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     font-size: 0.75em !important;
     padding: 4px 8px !important;
   }
+
+  .premiumImg{
+    width: 25px !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2401,6 +2405,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* Filp card */
 /* From Uiverse.io by joe-watson-sbf */ 
+
+.premiumImg{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 50px !important; /* Ajustez selon vos besoins */
+  height: auto !important; /* Maintient le ratio de l'image */
+}
+
 .searchA {
   width: fit-content;
   text-decoration: none;
