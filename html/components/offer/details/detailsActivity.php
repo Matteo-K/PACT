@@ -316,16 +316,11 @@ if ($categorie["_activite"]) {
 
     function checkActvAgeMin() {
         let res = true;
-        
-        if (actv_inputAge.value === "") {
-            actv_msgAge.textContent = "Le champ âge doit être complété";
+        const agePattern = /^\d+$/;
+
+        if (!agePattern.test(actv_inputAge.value.trim())) {
+            actv_msgAge.textContent = "Le champ doit contenir uniquement des chiffres";
             res = false;
-        } else {
-            const agePattern = /^\d+$/;
-            if (!agePattern.test(actv_inputAge.value.trim())) {
-                actv_msgAge.textContent = "Le champ doit contenir uniquement des chiffres";
-                res = false;
-            }
         }
         return res;
     }
@@ -333,36 +328,26 @@ if ($categorie["_activite"]) {
 
     function checkActvPrixMin() {
         let res = true;
-        
-        if (actv_inputPrix.value === "") {
-            actv_msgPrix.textContent = "Le champ prix doit être complété";
+        const prixPattern = /^\d+$/;
+
+        if (!prixPattern.test(actv_inputPrix.value.trim())) {
+            actv_msgPrix.textContent = "Le champ doit contenir uniquement des chiffres";
             res = false;
-        } else {
-            const prixPattern = /^\d+$/;
-            if (!prixPattern.test(actv_inputPrix.value.trim())) {
-                actv_msgPrix.textContent = "Le champ doit contenir uniquement des chiffres";
-                res = false;
-            }
         }
+
         return res;
     }
 
     function checkActvDuree() {
         let res = true;
-        
         const duree = actv_inputDuree.value.trim();
+        const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
 
-        if (duree === "") {
-            actv_msgDuree.textContent = "Le champ durée doit être complété";
+        if (!timePattern.test(duree)) {
+            actv_msgDuree.textContent = "Le champ doit être au format HH:MM";
             res = false;
-        } else {
-            const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
-
-            if (!timePattern.test(duree)) {
-                actv_msgDuree.textContent = "Le champ doit être au format HH:MM";
-                res = false;
-            }
         }
+        
         return res;
     }
 </script>
