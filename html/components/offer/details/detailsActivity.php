@@ -167,6 +167,7 @@ if ($categorie["_activite"]) {
             } else {
                 msgErreur.textContent = value + " est déjà présent dans les prestations incluses";
             }
+            console.log(listElements[index]);
         }
 
         return res;
