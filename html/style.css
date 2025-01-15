@@ -1984,9 +1984,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .nomPro {
-    font-size: 1rem !important; /* Réduit la taille de la police du nom du professionnel */
-    padding-inline: 5px !important; /* Réduit les espacements horizontaux */
-    margin-bottom: 8px !important;
+    display: none;
   }
 
   .flip-card-back .information {
