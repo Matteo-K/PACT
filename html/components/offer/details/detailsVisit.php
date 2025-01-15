@@ -81,21 +81,22 @@ if ($categorie["_visite"]) {
     <div>
         <!-- Accessibilité -->
         <div>
-            <label class="labelTitre" for="visit_access">Accessibilité(s)</label>
-            <select name="visit_access" id="visit_access">
-                <option value="defaultPrestaVisit">-- Sélectionner un handicap --</option>
-                <?php foreach ($accessibilite as $value) { ?>
-                    <option value="<?= $value ?>"><?= $value ?></option>
-                <?php } ?>
-            </select>
-            <div id="visit_Zoneaccess">
+            <div id="visit_inputAutoCompleteAccess">
+                <label class="labelSousTitre" for="visit_inputAccess">Accessibilités<span id="visit_msgAccess" class="msgError"></span></label>
+                <input type="text" id="visit_inputAccess" 
+                name="*visit_inputAccess"
+                placeholder="Entrez & selectionnez une accessibilité correspondant à votre activité">
+
+                <ul id="visit_autocompletionAccess"></ul>
             </div>
+            <ul id="visit_zonePrestationAccess">
+            </ul>
         </div>
 
         <!-- Partie pour la gestion des langues proposer par la visite -->
         <div>
             <div id="visit_inputLangue">
-                <label class="labelTitre" for="visit_langue">Langue(s) proposée(s)<span id="msgLangue" class="msgError"></span></label>
+                <label class="labelTitre" for="visit_langue">Langues proposées<span id="msgLangue" class="msgError"></span></label>
                 <input type="text" id="visit_langue" 
                 name="visit_langue" 
                 placeholder="Entrez & sélectionnez les langue(s) proposée(s) par votre visite">

@@ -126,7 +126,7 @@ if ($categorie["_activite"]) {
         <!-- Accessibilité -->
         <div>
             <div id="actv_inputAutoCompleteAccess">
-                <label class="labelSousTitre" for="actv_inputAccess">Accessibilités<span id="msgAccess" class="msgError"></span></label>
+                <label class="labelSousTitre" for="actv_inputAccess">Accessibilités<span id="actv_msgAccess" class="msgError"></span></label>
                 <input type="text" id="actv_inputAccess" 
                 name="actv_inputAccess"
                 placeholder="Entrez & selectionnez une accessibilité correspondant à votre activité">
@@ -288,19 +288,6 @@ if ($categorie["_activite"]) {
             []
         );
     });
-
-    <div>
-            <div id="actv_inputAutoCompleteAccess">
-                <label class="labelSousTitre" for="actv_inputAccess">Accessibilités<span id="actv_msgAccess" class="msgError"></span></label>
-                <input type="text" id="actv_inputAccess" 
-                name="actv_inputAccess"
-                placeholder="Entrez & selectionnez une accessibilité correspondant à votre activité">
-
-                <ul id="actv_autocompletionAccess"></ul>
-            </div>
-            <ul id="atcv_zonePrestationAccess">
-            </ul>
-        </div>
 
     // Vérification des champs
 
