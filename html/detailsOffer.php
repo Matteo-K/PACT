@@ -1084,6 +1084,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 idAvisSignal = btnSelectionne.classList[2].split("_")[1];
                 let texteComplement = document.querySelector('.signalementPopup textarea');
 
+                console.log(idAvisSignal);
+                console.log(<?= json_encode($_SESSION['idUser']) ?>);
+                console.log(motifSignal.value);
+                console.log( texteComplement.textContent);
+
                 fetch('signalement.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1097,8 +1102,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme!');
             }
-
-            alert('Veuillez séléctionner un motif pour le signalement')
+            else{
+                alert('Veuillez séléctionner un motif pour le signalement');
+            }
             
         });
 
