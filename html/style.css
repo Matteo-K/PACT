@@ -1960,12 +1960,67 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     transform: translateX(10%);
   }
 } */
-
-@media (max-width: 480px) {
-  .searchA{
-    zoom: 0.6;
+@media (max-width: 700px) {
+  .flip-card {
+    width: 300px !important; /* Réduit la largeur à 300px sur les petits écrans */
   }
 
+  .flip-card-back {
+    font-size: 1em !important; /* Ajuste la taille de la police */
+    padding: 10px !important; /* Ajuste les marges internes */
+    border: 2px solid var(--primary) !important; /* Réduit la taille de la bordure */
+  }
+
+  .flip-card-back .title {
+    font-size: 1.3rem !important; /* Réduit la taille du titre */
+    text-align: center !important;
+  }
+
+  .flip-card-back .blocStar {
+    margin: 0;
+  }
+
+  .flip-card-back .blocStar .star {
+    width: 15px;
+    height: 15px;
+  }
+
+  .flip-card-back .nomPro {
+    display: none;
+  }
+
+  .flip-card-back .information {
+    display: none;
+    /* flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding-inline: 5px !important;  */
+  }
+
+  .flip-card-back .resume {
+    display: none;
+  }
+
+  .flip-card-back address {
+    font-size: 0.9rem !important; /* Réduit la taille de la police pour l'adresse */
+  }
+
+  .flip-card-back .tagsCard {
+    display: none;
+    /* flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 3px !important;
+    margin-top: 5px !important; */
+  }
+
+  .tagIndex {
+    display: none;
+    /* font-size: 0.75em !important;
+    padding: 4px 8px !important; */
+  }
+}
+
+@media (max-width: 480px) {
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {

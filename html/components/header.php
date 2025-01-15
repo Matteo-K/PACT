@@ -31,40 +31,20 @@
         // Vérifie la page actuelle
         const currentFile = window.location.pathname.split('/').pop();
 
-        const params = new URLSearchParams(window.location.search);
-
-        function deplacementRecherche() {
-            const searchTarget = document.getElementById("searchIndex");
-            searchTarget.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            console.table(params);
-            if (typeof params["search"] !== 'undefined') {
-                
-            }
-        });
-
-        params.forEach((value, key) => {
-            console.log(`${key}: ${value}`);
-        });
-        
         /**
          * On soumet le formulaire dès que l'on sort de l'input
          */
         input.addEventListener("blur", (event) => {
-            event.preventDefault();
-            if (currentFile !== 'index.php') {
-                window.location.href = 'index.php'; 
-            }
+            form.submit();
         });
 
         input.addEventListener("change", () => {
             if (currentFile === 'index.php') {
-                deplacementRecherche();
+                const searchTarget = document.getElementById("searchIndex");
+                searchTarget.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
 
