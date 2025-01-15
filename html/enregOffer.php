@@ -304,7 +304,7 @@ if ($pageDirection != -1) {
               $stmtmenu = $conn->prepare("DELETE FROM pact._menu WHERE menu = ?");
               $stmtimg = $conn->prepare("DELETE FROM pact._image WHERE url = ?");
               foreach ($imgASuppr as $key => $value) {
-                $urlImgSupp = $value['url'];
+                $urlImgSupp = $value['menu'];
                 $stmtmenu->execute([$urlImgSupp]);
                 $stmtimg->execute([$urlImgSupp]);
               }
