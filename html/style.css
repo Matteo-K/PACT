@@ -1857,6 +1857,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .signalementPopup h2{
   text-align: center;
   width: 100%;
+  margin-top: 0;
 }
 
 .signalementPopup form{
@@ -2838,9 +2839,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   padding: 0 20px;
   font-size: 25px;
   font-weight: bold;
-
+  
   margin: 10px 0;
   height: 40px;
+
+  width: calc(100% - 10px);
+  justify-content: left;
+  border-radius: 20px 0 0 20px;
+  border-right: 0px solid var(--primary);
+  transition: 0.5s;
 }
 
 #tri input:checked + label {
@@ -2849,8 +2856,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #tri input:hover + label {
-  background-color: var(--secondary);
-  border-radius: 3px;
+  border-right: 10px;
 }
 
 /* Bouton de tri et filtre */
@@ -4407,6 +4413,8 @@ details.animating .contentDetails {
   font-weight: 600;
   font-family: "Belanosima";
   color: var(--bloc);
+  border-bottom: 2px solid var(--bloc);
+  padding: 5px 5%;
 }
 
 #avisPro option {
