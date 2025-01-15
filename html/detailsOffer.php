@@ -1066,6 +1066,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ouvrePopup.forEach(boutonOuvrePopup => {
             boutonOuvrePopup.addEventListener('click', () => {
                 popup.style.display = 'block';
+                let btnSelectionne = boutonOuvrePopup;
             });
         });        
         
@@ -1077,9 +1078,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (motifSignal) {
                 popup.style.display = 'none';
 
-                console.log(boutonOuvrePopup.classList);
+                console.log(btnSelectionne.classList);
 
-                idAvisSignal = boutonOuvrePopup.classList[2].split("_")[1];
+                idAvisSignal = btnSelectionne.classList[2].split("_")[1];
                 let texteComplement = document.querySelector('.signalementPopup textarea');
 
                 fetch('signalement.php', {
