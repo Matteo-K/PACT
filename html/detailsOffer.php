@@ -764,7 +764,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 // Récupérer les horaires à partir de la fonction getSchedules
                                 $schedules = getSchedules();
                                 // Afficher les horaires pour chaque jour de la semaine
-                                if ($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
+                                if ($result[0]['categorie'] == 'Spectacle' ) {
                                     $horaireSpectacle = [];
                                     if ($schedules['spectacle']) {
                                         usort($schedules['spectacle'], function ($a, $b) {
@@ -1087,7 +1087,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 console.log(idAvisSignal);
                 console.log(<?= json_encode($_SESSION['idUser']) ?>);
                 console.log(motifSignal.value);
-                console.log( texteComplement.textContent);
+                console.log(texteComplement.textContent);
 
                 fetch('signalement.php', {
                     method: 'POST',
@@ -1096,7 +1096,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         'idC': idAvisSignal,
                         'idU' : <?= json_encode($_SESSION['idUser']) ?>,
                         'motif' : motifSignal.value,
-                        'complement' : texteComplement.textContent
+                        'complement' : texteComplement.value
                     })
                 });
 
