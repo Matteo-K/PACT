@@ -6,7 +6,8 @@
 function getSchedules()
 {
 
-    global $result;
+    global $data;
+    global $idOffre;
     $schedules = [
         'midi' => [],
         'soir' => [],
@@ -15,11 +16,11 @@ function getSchedules()
 
 
     // Vérifier si les résultats existent
-    if ($result) {
+    if ($data) {
         // Traitement des horaires midi
-        if ($result[0]['listhorairemidi']) {
+        if ($data[$idOffre]['listhorairemidi']) {
             // Remplacer les { et } uniquement dans les parties de l'objet qui ne sont pas des horaires
-            $listhorairemidi = $result[0]['listhorairemidi'];
+            $listhorairemidi = $data[$idOffre]['listhorairemidi'];
 
             // Remplacer les { par [ et les } par ] pour le reste
             $listhorairemidi = str_replace(
@@ -37,8 +38,8 @@ function getSchedules()
         }
 
         // Traitement des horaires soir
-        if ($result[0]['listhorairesoir']) {
-            $listhorairesoir = $result[0]['listhorairesoir'];
+        if ($data[$idOffre]['listhorairesoir']) {
+            $listhorairesoir = $data[$idOffre]['listhorairesoir'];
 
             // Remplacer les { par [ et les } par ] pour le reste
             $listhorairesoir = str_replace(
@@ -55,8 +56,8 @@ function getSchedules()
             $listhorairesoir = [];
         }
 
-        if ($result[0]['listehoraireprecise']) {
-            $listhorairespectacle = $result[0]['listehoraireprecise'];
+        if ($data[$idOffre]['listehoraireprecise']) {
+            $listhorairespectacle = $data[$idOffre]['listehoraireprecise'];
 
             $listhorairespectacle = str_replace(
                 ['{', '}', ':', ';'],
@@ -413,7 +414,7 @@ $data = $ar->getArray();
                     // Récupérer les horaires à partir de la fonction getSchedules
                     $schedules = getSchedules();
                     // Afficher les horaires pour chaque jour de la semaine
-                    if ($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
+                    if ($data[$idOffre]['categorie'] == 'Spectacle') {
                         $horaireSpectacle = [];
                         if ($schedules['spectacle']) {
                             usort($schedules['spectacle'], function ($a, $b) {
