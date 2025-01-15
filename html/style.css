@@ -3595,6 +3595,7 @@ section#infoComp div {
   gap: 1em;
   align-items: center;
   justify-content: center;
+  margin: auto;
   margin-bottom: 2em;
 }
 
