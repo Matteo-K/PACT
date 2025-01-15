@@ -127,7 +127,7 @@ if ($categorie["_visite"]) {
     const visit_access = <?= json_encode($visite["nomAccess"]); ?>;
 
     const visit_inputAccess = document.getElementById("visit_inputAccess");
-    const visit_zone = document.getElementById("visit_zonePrestationAccess");
+    const visit_zoneAccess = document.getElementById("visit_zonePrestationAccess");
     const visit_msgAccess = document.getElementById("visit_msgAccess");
 
     const visit_maxAccess = 20;
@@ -139,7 +139,7 @@ if ($categorie["_visite"]) {
         visit_accessGeneral,
         ajoutElement,
         visit_inputAccess, //-- paramètres de la fonction ajoutElement
-        visit_zone,
+        visit_zoneAccess,
         visit_msgAccess,
         'visit_access[]',
         visit_maxAccess,
@@ -152,7 +152,7 @@ if ($categorie["_visite"]) {
         ajoutElement(valeur,
             visit_indexAccess,
             visit_inputAccess, //-- paramètres de la fonction ajoutElement
-            visit_zone,
+            visit_zoneAccess,
             visit_msgAccess,
             'visit_access[]',
             visit_maxAccess,
@@ -166,7 +166,7 @@ if ($categorie["_visite"]) {
     const visit_langue = <?= json_encode($visite["langue"]); ?>;
 
     const visit_inputLangue = document.getElementById("visit_langue");
-    const visit_zone = document.getElementById("visit_zoneLangue");
+    const visit_zoneLangue = document.getElementById("visit_zoneLangue");
     const visit_msgAccess = document.getElementById("msgLangue");
 
     const visit_maxAccess = 40;
@@ -178,7 +178,7 @@ if ($categorie["_visite"]) {
         visit_accessGeneral,
         ajoutElement,
         visit_inputAccess, //-- paramètres de la fonction ajoutElement
-        visit_zone,
+        visit_zoneLangue,
         visit_msgAccess,
         'visit_access[]',
         visit_maxAccess,
@@ -191,7 +191,7 @@ if ($categorie["_visite"]) {
         ajoutElement(valeur,
             visit_indexAccess,
             visit_inputAccess, //-- paramètres de la fonction ajoutElement
-            visit_zone,
+            visit_zoneLangue,
             visit_msgAccess,
             'visit_access[]',
             visit_maxAccess,

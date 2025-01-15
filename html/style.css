@@ -822,7 +822,7 @@ header ul + div {
 }
 
 .inputErreur {
-  border-color: red;
+  border-color: red !important;
 }
 
 #manageOffer aside {
