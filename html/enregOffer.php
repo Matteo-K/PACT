@@ -111,6 +111,7 @@ if ($pageDirection != -1) {
           $stmt = $conn->prepare("UPDATE pact._offre SET nom= ?, description= ?, resume= ? WHERE idoffre= ?");
           $stmt->execute([$titre, $description, $resume, $idOffre]);
 
+          print_r($_POST);
           $categorie = $_POST["categorie"];
 
 
