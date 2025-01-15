@@ -27,7 +27,7 @@
         </div>
 
         <!-- Qui vous accompagnait -->
-        <div>
+        <div id='accompagnant'>
             <label>Qui vous accompagnait ? *</label>
             <div id="enCompagnie">
                 <input type="radio" id="seul" name="compagnie" value="Seul" required>

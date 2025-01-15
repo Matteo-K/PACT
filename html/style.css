@@ -5089,7 +5089,10 @@ label#btnAjoutPhoto:hover {
   #publiez-component > section .star {
     width: 2em;
     height: 2em;
-}
+  }
+  #accompagnant{
+    flex-direction: column;
+  }
 }
 
 /* ========================= */
