@@ -43,15 +43,8 @@
               ?>
           </div>
         </div>
-        <?php
-        if (count($idOffres) > 3) { 
-          ?>
-          <div class="swiper-button-next gb"></div>
-          <div class="swiper-button-prev gb"></div>
-          <?php
-        }
-        ?>
-
+        <div class="swiper-button-next gb"></div>
+        <div class="swiper-button-prev gb"></div>
       </div>
       <?php 
       }
@@ -83,14 +76,8 @@
                 <?php } ?>
             </div>
           </div>
-          <?php
-          if (count($idOffres) > 3) { 
-            ?>
-            <div class="swiper-button-next gb2"></div>
-            <div class="swiper-button-prev gb2"></div>
-            <?php
-          }
-          ?>
+          <div class="swiper-button-next gb2"></div>
+          <div class="swiper-button-prev gb2"></div>
         </div>
       </div>
       <?php
@@ -119,14 +106,8 @@
               <?php } ?>
             </div>
           </div>
-          <?php
-          if (count($idOffres) > 3) { 
-            ?>
-            <div class="swiper-button-next gb3"></div>
-            <div class="swiper-button-prev gb3"></div>
-            <?php
-          }
-          ?>
+          <div class="swiper-button-next gb3"></div>
+          <div class="swiper-button-prev gb3"></div>
         </div>
       </div>
       <?php 
