@@ -764,7 +764,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 // Récupérer les horaires à partir de la fonction getSchedules
                                 $schedules = getSchedules();
                                 // Afficher les horaires pour chaque jour de la semaine
-                                if ($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
+                                if ($result[0]['categorie'] == 'Spectacle' ) {
                                     $horaireSpectacle = [];
                                     if ($schedules['spectacle']) {
                                         usort($schedules['spectacle'], function ($a, $b) {
@@ -1061,11 +1061,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         const btnFermer = document.querySelector('.signalementPopup .close');
         const btnConfirmer = document.getElementById('confirmeSignalement');
 
+        let btnSelectionne;
 
         // Afficher le pop-up
         ouvrePopup.forEach(boutonOuvrePopup => {
             boutonOuvrePopup.addEventListener('click', () => {
                 popup.style.display = 'block';
+                btnSelectionne = boutonOuvrePopup;
             });
         });        
         
@@ -1077,10 +1079,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (motifSignal) {
                 popup.style.display = 'none';
 
-                console.log(boutonOuvrePopup.classList);
+                console.log(btnSelectionne.classList);
 
-                idAvisSignal = boutonOuvrePopup.classList[2].split("_")[1];
+                idAvisSignal = btnSelectionne.classList[2].split("_")[1];
                 let texteComplement = document.querySelector('.signalementPopup textarea');
+
+                console.log(idAvisSignal);
+                console.log(<?= json_encode($_SESSION['idUser']) ?>);
+                console.log(motifSignal.value);
+                console.log( texteComplement.textContent);
 
                 fetch('signalement.php', {
                     method: 'POST',
@@ -1095,8 +1102,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme!');
             }
-
-            alert('Veuillez séléctionner un motif pour le signalement')
+            else{
+                alert('Veuillez séléctionner un motif pour le signalement');
+            }
             
         });
 

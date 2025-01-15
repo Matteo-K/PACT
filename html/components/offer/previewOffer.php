@@ -1,24 +1,126 @@
 <?php
 // Fonction pour récupérer les horaires
-function getSchedules($conn, $idOffre)
+/**
+ * @return array{midi: array, soir: array, spectacle: array}
+ */
+function getSchedules()
 {
+
+    global $data;
+    global $idOffre;
     $schedules = [
         'midi' => [],
-        'soir' => []
+        'soir' => [],
+        'spectacle' => []
     ];
 
-    // Récupérer les horaires du midi et du soir
-    $stmtMidi = $conn->prepare("SELECT * FROM pact._horaireMidi WHERE idOffre = :idOffre");
-    $stmtMidi->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
-    $stmtMidi->execute();
-    $schedules['midi'] = $stmtMidi->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmtSoir = $conn->prepare("SELECT * FROM pact._horaireSoir WHERE idOffre = :idOffre");
-    $stmtSoir->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
-    $stmtSoir->execute();
-    $schedules['soir'] = $stmtSoir->fetchAll(PDO::FETCH_ASSOC);
+    // Vérifier si les résultats existent
+    if ($data) {
+        // Traitement des horaires midi
+        if ($data[$idOffre]['listhorairemidi']) {
+            // Remplacer les { et } uniquement dans les parties de l'objet qui ne sont pas des horaires
+            $listhorairemidi = $data[$idOffre]['listhorairemidi'];
+
+            // Remplacer les { par [ et les } par ] pour le reste
+            $listhorairemidi = str_replace(
+                ['{', '}', ':', ';'],
+                ['[', ']', '=>', ','],
+                $listhorairemidi
+            );
+
+            // Encapsuler dans des crochets pour créer un tableau
+            $listhorairemidi = '[' . $listhorairemidi . ']';
+            // Utiliser eval() pour transformer la chaîne en tableau PHP
+            eval('$listhorairemidi = ' . $listhorairemidi . ';');
+        } else {
+            $listhorairemidi = [];
+        }
+
+        // Traitement des horaires soir
+        if ($data[$idOffre]['listhorairesoir']) {
+            $listhorairesoir = $data[$idOffre]['listhorairesoir'];
+
+            // Remplacer les { par [ et les } par ] pour le reste
+            $listhorairesoir = str_replace(
+                ['{', '}', ':', ';'],
+                ['[', ']', '=>', ','],
+                $listhorairesoir
+            );
+
+            // Encapsuler dans des crochets pour créer un tableau
+            $listhorairesoir = '[' . $listhorairesoir . ']';
+            // Utiliser eval() pour transformer la chaîne en tableau PHP
+            eval('$listhorairesoir = ' . $listhorairesoir . ';');
+        } else {
+            $listhorairesoir = [];
+        }
+
+        if ($data[$idOffre]['listehoraireprecise']) {
+            $listhorairespectacle = $data[$idOffre]['listehoraireprecise'];
+
+            $listhorairespectacle = str_replace(
+                ['{', '}', ':', ';'],
+                ['[', ']', '=>', ','],
+                $listhorairespectacle
+            );
+
+            // Encapsuler dans des crochets pour créer un tableau
+            $listhorairespectacle = '[' . $listhorairespectacle . ']';
+            // Utiliser eval() pour transformer la chaîne en tableau PHP
+            eval('$listhorairespectacle = ' . $listhorairespectacle . ';');
+        } else {
+            $listhorairespectacle = [];
+        }
+
+        // Ajouter les horaires décodés aux tableaux de résultats
+        $schedules['midi'] = $listhorairemidi;
+        $schedules['soir'] = $listhorairesoir;
+        $schedules['spectacle'] = $listhorairespectacle;
+    }
 
     return $schedules;
+}
+
+$schedules = getSchedules();
+
+function formatDateEnFrancais(DateTime $date)
+{
+    // Traduction des jours de la semaine
+    $joursSemaine = [
+        'Monday' => 'Lundi',
+        'Tuesday' => 'Mardi',
+        'Wednesday' => 'Mercredi',
+        'Thursday' => 'Jeudi',
+        'Friday' => 'Vendredi',
+        'Saturday' => 'Samedi',
+        'Sunday' => 'Dimanche'
+    ];
+
+    // Traduction des mois
+    $moisAnnee = [
+        'January' => 'Janvier',
+        'February' => 'Février',
+        'March' => 'Mars',
+        'April' => 'Avril',
+        'May' => 'Mai',
+        'June' => 'Juin',
+        'July' => 'Juillet',
+        'August' => 'Août',
+        'September' => 'Septembre',
+        'October' => 'Octobre',
+        'November' => 'Novembre',
+        'December' => 'Décembre'
+    ];
+
+    // Extraire les composants de la date
+    $jour = $joursSemaine[$date->format('l')];  // Jour en français
+    $mois = $moisAnnee[$date->format('F')];     // Mois en français
+    $jourMois = $date->format('d');             // Jour du mois
+    $annee = $date->format('Y');                // Année
+
+    // Retourner la date formatée
+    return "$jour $jourMois $mois $annee";
 }
 
 function convertionMinuteHeure($tempsEnMinute)
@@ -298,6 +400,87 @@ $data = $ar->getArray();
             <?php
             }
             ?>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Horaires</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    // Tableau de tous les jours de la semaine
+                    $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+
+                    // Récupérer les horaires à partir de la fonction getSchedules
+                    $schedules = getSchedules();
+                    // Afficher les horaires pour chaque jour de la semaine
+                    if ($data[$idOffre]['categorie'] == 'Spectacle') {
+                        $horaireSpectacle = [];
+                        if ($schedules['spectacle']) {
+                            usort($schedules['spectacle'], function ($a, $b) {
+                                $dateA = new DateTime($a['dateRepresentation']);
+                                $dateB = new DateTime($b['dateRepresentation']);
+                                return $dateA <=> $dateB; // Trier du plus récent au plus ancien
+                            });
+
+                            foreach ($schedules['spectacle'] as $spec) {
+                                $dateSpectacle = new DateTime($spec['dateRepresentation']);
+                    ?>
+                                <tr>
+                                    <td class="jourSemaine"><?= ucwords(formatDateEnFrancais($dateSpectacle)) ?></td>
+                                    <td>
+                                        <?php
+                                        echo "à " . str_replace("=>", ":", $spec['heureOuverture']);
+                                        ?>
+                                    </td>
+                                </tr>
+                            <?php
+
+                            }
+                        }
+                    } else {
+                        foreach ($joursSemaine as $jour): ?>
+                            <tr>
+                                <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
+                                <td>
+                                    <?php
+
+                                    // Filtrer les horaires pour chaque jour spécifique
+                                    $horaireMidi = [];
+                                    $horaireSoir = [];
+
+                                    if ($schedules['midi']) {
+                                        $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
+                                    }
+                                    if ($schedules['soir']) {
+                                        $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
+                                    }
+
+                                    // Collecter les horaires à afficher
+                                    $horairesAffichage = [];
+                                    if (!empty($horaireMidi)) {
+                                        $horaireMidi = current($horaireMidi); // Prendre le premier élément du tableau filtré
+                                        $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":", $horaireMidi['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":", $horaireMidi['heureFermeture']));
+                                    }
+                                    if (!empty($horaireSoir)) {
+                                        $horaireSoir = current($horaireSoir); // Prendre le premier élément du tableau filtré
+                                        $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":", $horaireSoir['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":", $horaireSoir['heureFermeture']));
+                                    }
+                                    if (empty($horaireMidi) && empty($horaireSoir)) {
+                                        $horairesAffichage[] = "Fermé";
+                                    }
+
+                                    // Afficher les horaires ou "Fermé"
+                                    echo implode(' et ', $horairesAffichage);
+                                    ?>
+                                </td>
+                            </tr>
+                    <?php
+                        endforeach;
+                    }
+                    ?>
+                </tbody>
+            </table>
             <table>
                 <thead>
                     <tr>

@@ -2035,9 +2035,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {
-    height: 250px; /* Ajuste la hauteur selon ton besoin */
+    height: 190px; /* Ajuste la hauteur selon ton besoin */
     position: relative;
-    margin: auto;
+    margin: 0 auto 0 auto;
+  }
+
+  #index{
+    margin-top: 0 !important;
   }
 
   .swiper.gb, 
@@ -2046,7 +2050,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     width: 316px;
     height: 100%;
     overflow: hidden;
-    margin: auto;
+    margin: 0 auto 0 auto;
   }
 
   .swiper-button-next.gb2,
@@ -2811,7 +2815,135 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* test média query  */
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
+  #trifiltre {
+      flex-direction: column; /* Les boutons seront empilés */
+      position: relative;
+      width: 100%;
+  }
+
+  #btnAside {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 50%;
+    padding-bottom: 40%;
+    border-radius: 1.5em;
+  }
+
+  #btnAside a {
+      width: 50%;
+      padding: 15px;
+      background-color: var(--bloc25);
+      border-radius: 10px;
+      text-align: center;
+  }
+
+  #btnAside a:hover, .btnAsideOpen {
+      padding-left: 30px !important;
+  }
+
+  #tri, #filtre {
+      position: fixed; /* L'aside prendra toute la page */
+      top: 0;
+      left: 0;
+      width: 100vw; /* Prend toute la largeur de l'écran */
+      height: 100vh; /* Prend toute la hauteur de l'écran */
+      z-index: 999;
+      display: none;
+      background-color: var(--background);
+      border: none;
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  #tri.openAside, #filtre.openAside {
+      display: block !important;
+      opacity: 1 !important;
+      transform: translateX(0) !important;
+  }
+
+  #titreAside {
+      justify-content: space-between;
+      padding: 10px 15px;
+  }
+
+  #titreAside img {
+      width: 25px;
+      height: 25px;
+  }
+
+  #blcSearch {
+      flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  #trifiltre {
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+  }
+
+  #btnAside {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 50%;
+    padding-bottom: 40%;
+    border-radius: 1.5em;
+  }
+
+  #btnAside a {
+      width: 50%;
+      padding: 15px;
+      background-color: var(--bloc25);
+      border-radius: 10px;
+      text-align: center;
+  }
+
+  #btnAside a:hover, .btnAsideOpen {
+      padding-left: 30px !important;
+  }
+
+  #tri, #filtre {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
+      display: none;
+      background-color: var(--background);
+      border: none;
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  #tri.openAside, #filtre.openAside {
+      display: block !important;
+      opacity: 1 !important;
+      transform: translateX(0) !important;
+  }
+
+  #titreAside {
+      justify-content: space-between;
+      padding: 10px 15px;
+  }
+
+  #titreAside img {
+      width: 25px;
+      height: 25px;
+  }
+
+  #blcSearch {
+      flex-direction: column;
+  }
+}
+
+/* @media (max-width: 600px) {
   #trifiltre {
     position: sticky;
     top: 0;
