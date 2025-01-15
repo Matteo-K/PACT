@@ -65,4 +65,8 @@ if ($categorie["_spectacle"]) {
 
         minutesToHours(show_minutesInput, show_hoursInput);
     });
+
+    function checkSpectacle() {
+        return true;
+    }
 </script>

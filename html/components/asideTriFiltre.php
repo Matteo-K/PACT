@@ -222,7 +222,7 @@
                 </div>
 
                 <div id="heure">
-                    <h3>Par date</h3>
+                    <h3>Par heure</h3>
                     <div>
                         <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
                         <input type="time" name="heureDebut" id="heureDebut" value="08:00">
