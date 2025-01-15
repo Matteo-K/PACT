@@ -1060,7 +1060,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         const popup = document.querySelector('.avis .signalementPopup');
         const btnFermer = document.querySelector('.signalementPopup .close');
         const btnConfirmer = document.getElementById('confirmeSignalement');
-        
+
 
         // Afficher le pop-up
         ouvrePopup.forEach(boutonOuvrePopup => {
