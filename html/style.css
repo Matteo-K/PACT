@@ -1993,7 +1993,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card{
-    width: 250px;
+    width: 300px !important;
+    font-size: 8px !important;
   }
 }
 
