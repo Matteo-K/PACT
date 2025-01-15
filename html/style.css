@@ -1010,6 +1010,7 @@ header ul + div {
   background-color: var(--primary);
   box-shadow: inset -4px -4px 4px #1883bc;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(-100%);
 }
 
 /* # selection de l'offre # */
@@ -1282,6 +1283,7 @@ header ul + div {
 #paymentOffer section {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: center;
 }
 
 #paymentOffer section:nth-child(1) {
@@ -2289,9 +2291,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .searchoffre {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: 20px;
+  gap: 40px;
   margin-left: 380px;
   flex: 4;
 }
@@ -2733,6 +2735,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Date */
+#date {
+  display: none;
+}
+
 #date input, #heure input {
   height: 40px;
   border: solid 2px #1ca4ed;
@@ -2834,7 +2840,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   cursor: pointer;
 }
 
-/* test média query  */
+/* Média query 600px */
 @media screen and (max-width: 600px) {
   #trifiltre {
       flex-direction: column;
@@ -2852,6 +2858,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     justify-content: center;
     width: 50%;
     padding-bottom: 40%;
+    margin: auto;
   }
 
   #btnAside a {
@@ -2867,11 +2874,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   #tri, #filtre {
-      position: fixed; /* L'aside prendra toute la page */
+      position: fixed;
       top: 0;
       left: 0;
-      width: 100vw; /* Prend toute la largeur de l'écran */
-      height: 100vh; /* Prend toute la hauteur de l'écran */
+      width: 100vw;
+      height: 100vh;
       z-index: 999;
       display: none;
       background-color: var(--background);
@@ -2902,6 +2909,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 }
 
+/* Média query 375px */
 @media screen and (max-width: 375px) {
   #trifiltre {
       flex-direction: column;
@@ -2919,6 +2927,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     justify-content: center;
     width: 50%;
     padding-bottom: 40%;
+    margin: auto;
   }
 
   #btnAside a {
