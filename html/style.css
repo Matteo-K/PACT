@@ -2826,10 +2826,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   #btnAside {
-      display: flex;
-      justify-content: space-evenly;
-      width: 100%;
-      margin-bottom: 10px; /* Espacement entre les boutons */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 50%;
+    padding-bottom: 40%;
+    border-radius: 1.5em;
   }
 
   #btnAside a {
@@ -2888,10 +2890,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   #btnAside {
-      display: flex;
-      justify-content: space-evenly;
-      width: 100%;
-      margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 50%;
+    padding-bottom: 40%;
+    border-radius: 1.5em;
   }
 
   #btnAside a {
