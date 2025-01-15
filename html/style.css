@@ -2712,6 +2712,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Date */
+#date {
+  display: none;
+}
+
 #date input, #heure input {
   height: 40px;
   border: solid 2px #1ca4ed;
