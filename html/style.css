@@ -932,15 +932,16 @@ header ul + div {
   padding: 10px 15px;
 }
 
+#leaveButtonBloc button:nth-child(2) {
+  background-color: #c24d4d;
+  border-color: #c24d4d;
+}
+
 #leaveButtonBloc button:hover {
   background-color: #fff;
   color: var(--text-dark);
 }
 
-#leaveButtonBloc button:nth-child(2) {
-  background-color: #c24d4d;
-  border-color: #c24d4d;
-}
 
 
 #manageOffer aside ul + div {
