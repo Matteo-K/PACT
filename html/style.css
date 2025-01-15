@@ -2554,11 +2554,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transform: scale(1.1);
 }
 
-#note, #prix, #statut, #categorie, #date {
+#note, #prix, #statut, #categorie, #date, #heure {
   padding-inline: 40px;
 }
 
-#note label, #prix label, #statut label, #idCategorie label, #date label {
+#note label, #prix label, #statut label, #idCategorie label, #date label, #heure label{
   font-size: 20px;
 }
 
@@ -2642,13 +2642,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Date */
-#date input {
+#date input, #heure input {
   height: 40px;
   border: solid 2px #1ca4ed;
   background-color: white;
 }
 
-#date div {
+#date div, #heure div {
   margin-bottom: 20px;
 }
 
@@ -2785,7 +2785,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
 
-  #note, #prix, #statut, #categorie, #date {
+  #note, #prix, #statut, #categorie, #date, #heure {
     padding-inline: 20px;
   }
 
