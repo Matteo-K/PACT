@@ -162,6 +162,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+
+          const isMobile = window.innerWidth <= 700
+
           try {
             const swiperWrapper = document.querySelector('.swiper-wrapper.gb');    
             const forms = swiperWrapper.querySelectorAll('form');
@@ -177,38 +180,43 @@
               swiperWrapper.appendChild(swiperSlide);
             });
 
-            const swiper = new Swiper('.swiper.gb', {
-              loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
-              speed: 600, // La vitesse de transition entre les slides
-              spaceBetween: 25, // L'espace entre les slides
-              effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
-              slidesPerView: 3, // Nombre de slides visibles
-              centeredSlides: false, // Définit si la slide actuelle est centrée
-              watchOverflow: true, 
-              // autoplay: {
-              //   delay: 5000,
-              // },
-              navigation: {
-                nextEl: '.swiper-button-next.gb',
-                prevEl: '.swiper-button-prev.gb',
-              },
-              breakpoints: {
-                1024: {
-                  spaceBetween: 25,
-                  slidesPerView: 3, // 3 slides visibles pour écran de bureau
+            if (!isMobile) {
+              const swiper = new Swiper('.swiper.gb', {
+                loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
+                speed: 600, // La vitesse de transition entre les slides
+                spaceBetween: 25, // L'espace entre les slides
+                effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
+                slidesPerView: 3, // Nombre de slides visibles
+                centeredSlides: false, // Définit si la slide actuelle est centrée
+                watchOverflow: true, 
+                // autoplay: {
+                //   delay: 5000,
+                // },
+                navigation: {
+                  nextEl: '.swiper-button-next.gb',
+                  prevEl: '.swiper-button-prev.gb',
                 },
-                // Quand l'écran fait moins de 768px (téléphone)
-                768: {
-                  spaceBetween: 0,
-                  slidesPerView: 1, // 2 slides visibles pour tablette
+              });
+            }else{
+              const swiperT = new Swiper('.swiper.gb', {
+                loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
+                speed: 600, // La vitesse de transition entre les slides
+                spaceBetween: 25, // L'espace entre les slides
+                effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
+                slidesPerView: 1, // Nombre de slides visibles
+                centeredSlides: false, // Définit si la slide actuelle est centrée
+                watchOverflow: true, 
+                // autoplay: {
+                //   delay: 5000,
+                // },
+                navigation: {
+                  nextEl: '.swiper-button-next.gb',
+                  prevEl: '.swiper-button-prev.gb',
                 },
-                // Quand l'écran fait moins de 480px (téléphone)
-                480: {
-                  spaceBetween: 0,
-                  slidesPerView: 1, // 1 slide visible pour téléphone
-                },
-              },
-            });
+              });
+            }
+
+
             
           } catch (error) {
 
@@ -228,40 +236,47 @@
               // Ajouter la div contenant le formulaire dans le swiper-wrapper
               swiperWrapper2.appendChild(swiperSlide2);
 
-              const swiper2 = new Swiper('.swiper.gb2', {
-                loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
-                speed: 600, // La vitesse de transition entre les slides
-                spaceBetween: 25, // L'espace entre les slides
-                effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
-                slidesPerView: 3, // Nombre de slides visibles
-                centeredSlides: false, // Définit si la slide actuelle est centrée
-                watchOverflow: true, 
-                // autoplay: {
-                //   delay: 5000,
-                // },
-                navigation: {
-                  nextEl: '.swiper-button-next.gb2',
-                  prevEl: '.swiper-button-prev.gb2',
-                },
-                breakpoints: {
-                  1024: {
-                    spaceBetween: 25,
-                    slidesPerView: 3, // 3 slides visibles pour écran de bureau
+              if (!isMobile) {
+                const swiper2 = new Swiper('.swiper.gb2', {
+                  loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
+                  speed: 600, // La vitesse de transition entre les slides
+                  spaceBetween: 25, // L'espace entre les slides
+                  effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
+                  slidesPerView: 3, // Nombre de slides visibles
+                  centeredSlides: false, // Définit si la slide actuelle est centrée
+                  watchOverflow: true, 
+                  // autoplay: {
+                  //   delay: 5000,
+                  // },
+                  navigation: {
+                    nextEl: '.swiper-button-next.gb2',
+                    prevEl: '.swiper-button-prev.gb2',
                   },
-                  // Quand l'écran fait moins de 768px (téléphone)
-                  768: {
-                    spaceBetween: 0,
-                    slidesPerView: 1, // 2 slides visibles pour tablette
+                });
+              } else {
+                const swiper2T = new Swiper('.swiper.gb2', {
+                  loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
+                  speed: 600, // La vitesse de transition entre les slides
+                  spaceBetween: 0, // L'espace entre les slides
+                  effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
+                  slidesPerView: 1, // Nombre de slides visibles
+                  centeredSlides: false, // Définit si la slide actuelle est centrée
+                  watchOverflow: true, 
+                  // autoplay: {
+                  //   delay: 5000,
+                  // },
+                  navigation: {
+                    nextEl: '.swiper-button-next.gb2',
+                    prevEl: '.swiper-button-prev.gb2',
                   },
-                  // Quand l'écran fait moins de 480px (téléphone)
-                  480: {
-                    spaceBetween: 0,
-                    slidesPerView: 1, // 1 slide visible pour téléphone
-                  },
-                },
-              });
+                });  
+              }
+
+
+
             });
           } catch (error) {
+            
           }
 
           try {
@@ -280,48 +295,46 @@
               // Ajouter la div contenant le formulaire dans le swiper-wrapper
               swiperWrapper3.appendChild(swiperSlide3);
             });
-            const swiper3 = new Swiper('.swiper.gb3', {
-              loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
-              speed: 600, // La vitesse de transition entre les slides
-              spaceBetween: 25, // L'espace entre les slides
-              effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
-              slidesPerView: 3, // Nombre de slides visibles
-              centeredSlides: false, // Définit si la slide actuelle est centrée
-              watchOverflow: true, 
-              // autoplay: {
-              //   delay: 5000,
-              // },
-              navigation: {
-                nextEl: '.swiper-button-next.gb3',
-                prevEl: '.swiper-button-prev.gb3',
-              },
-               breakpoints: {
-                1024: {
-                  spaceBetween: 25,
-                  slidesPerView: 3, // 3 slides visibles pour écran de bureau
+
+            if (!isMobile) {
+              const swiper3 = new Swiper('.swiper.gb3', {
+                loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
+                speed: 600, // La vitesse de transition entre les slides
+                spaceBetween: 0, // L'espace entre les slides
+                effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
+                slidesPerView: 3, // Nombre de slides visibles
+                centeredSlides: false, // Définit si la slide actuelle est centrée
+                watchOverflow: true, 
+                // autoplay: {
+                //   delay: 5000,
+                // },
+                navigation: {
+                  nextEl: '.swiper-button-next.gb3',
+                  prevEl: '.swiper-button-prev.gb3',
                 },
-                // Quand l'écran fait moins de 768px (téléphone)
-                768: {
-                  spaceBetween: 0,
-                  slidesPerView: 1, // 2 slides visibles pour tablette
+              });
+            } else {
+              const swiper3T = new Swiper('.swiper.gb3', {
+                loop: true, // Si vous ne voulez pas que les slides bouclent, mettez 'loop: false'
+                speed: 600, // La vitesse de transition entre les slides
+                spaceBetween: 0, // L'espace entre les slides
+                effect: 'slide', // Effet par défaut (il peut aussi être 'fade', 'cube', etc.)
+                slidesPerView: 1, // Nombre de slides visibles
+                centeredSlides: false, // Définit si la slide actuelle est centrée
+                watchOverflow: true, 
+                // autoplay: {
+                //   delay: 5000,
+                // },
+                navigation: {
+                  nextEl: '.swiper-button-next.gb3',
+                  prevEl: '.swiper-button-prev.gb3',
                 },
-                // Quand l'écran fait moins de 480px (téléphone)
-                480: {
-                  spaceBetween : 0,
-                  slidesPerView: 1, // 1 slide visible pour téléphone
-                },
-              },
-            });
-            swiper.on('breakpoint', function(swiper) {
-              console.log('Slides per view updated:', swiper.params.slidesPerView);
-            });
+              }); 
+            }
           } catch (error) {
 
           }
-
-      });
-      
-      
+      });  
     </script>
 </body>
 </html>
