@@ -256,19 +256,19 @@ if ($categorie["_activite"]) {
 
     const actv_inputAccess = document.getElementById("actv_inputAccess");
     const actv_zone = document.getElementById("atcv_zonePrestationAccess");
-    const actv_msgInclu = document.getElementById("actv_msgAccess");
+    const actv_msgAccess = document.getElementById("actv_msgAccess");
 
     const actv_maxAccess = 20;
 
     const actv_indexAccess = createAutoCompletion(
         actv_inputAccess,
         "actv_autocompletionAccess",
-        actv_msgInclu,
+        actv_msgAccess,
         actv_accessGeneral,
         ajoutElement,
         actv_inputAccess, //-- paramètres de la fonction ajoutElement
         actv_zone,
-        actv_msgInclu,
+        actv_msgAccess,
         'actv_access[]',
         actv_maxAccess,
         "li",
@@ -281,7 +281,7 @@ if ($categorie["_activite"]) {
             actv_indexAccess,
             actv_inputAccess, //-- paramètres de la fonction ajoutElement
             actv_zone,
-            actv_msgInclu,
+            actv_msgAccess,
             'actv_access[]',
             actv_maxAccess,
             "li",
