@@ -1010,6 +1010,7 @@ header ul + div {
   background-color: var(--primary);
   box-shadow: inset -4px -4px 4px #1883bc;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(-100%);
 }
 
 /* # selection de l'offre # */
@@ -1282,6 +1283,7 @@ header ul + div {
 #paymentOffer section {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: center;
 }
 
 #paymentOffer section:nth-child(1) {
