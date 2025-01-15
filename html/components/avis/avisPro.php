@@ -215,6 +215,7 @@ const blocReponseAvis = document.getElementById("blocReponsePro");
 
 const conteneurReponseAvis = document.querySelector("#blocReponsePro .conteneurReponsePro");
 const contenuReponseAvis = document.querySelector("#blocReponsePro .conteneurReponsePro p");
+const titreReponseAvisEcrit =  document.querySelector("#blocReponsePro .conteneurReponsePro h3");
 
 const formReponseAvis = document.querySelector("#blocReponsePro form");
 const titreReponseAvis = document.querySelector("#avisproS2 form h2");
@@ -285,6 +286,7 @@ function afficheAvisSelect(idAvis) {
     else{
         conteneurReponseAvis.style.display = "flex";
         contenuReponseAvis.textContent = listeAvis[idAvis]['contenureponse'];
+        titreReponseAvisEcrit.textContent = "Votre réponse à " + listeAvis[idAvis]['pseudo'];
         formReponseAvis.style.display = "none";
     }
     
