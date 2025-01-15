@@ -1605,7 +1605,7 @@ header ul + div {
   border-radius: 10px;
   margin: 0;
   cursor: pointer;
-  transition: background-color 0.3 ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 }
 
 #detailsOffer input[type="file"],
@@ -4633,6 +4633,7 @@ details .nonRepondu {
   margin: 20px auto;
   padding: 20px;
   background-color: #f9f9f9;
+  border:3px solid var(--primary);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
@@ -4678,7 +4679,7 @@ details .nonRepondu {
 #formCreationAvis input:required,
 #formCreationAvis textarea:required {
   border: 1px solid #66afe9;
-  background-color: #eef5fc;
+  background-color: #fff;
 }
 
 /* Style pour les étoiles */
