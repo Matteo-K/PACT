@@ -390,6 +390,11 @@ function filtrerParHeure(offers) {
     return hours * 60 + minutes;
   };
 
+  // Si les heures saisies sont invalides, retourner toutes les offres
+  if (!heureDebutValue || !heureFinValue || isNaN(convertirEnMinutes(heureDebutValue)) || isNaN(convertirEnMinutes(heureFinValue))) {
+    return offers;
+  }
+
   const heureDebutMinutes = convertirEnMinutes(heureDebutValue);
   const heureFinMinutes = convertirEnMinutes(heureFinValue);
 
