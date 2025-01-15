@@ -804,6 +804,21 @@ header ul + div {
   position: relative;
 }
 
+#manageOffer [type="text"],
+#manageOffer [type="number"],
+#manageOffer [type="time"] {
+  outline: none;
+  border-radius: 0;
+  border: none;
+  border-bottom: solid 2px var(--primary);
+}
+
+#manageOffer textarea,
+#manageOffer select {
+  outline: none;
+  border: solid 2px var(--primary);
+}
+
 #manageOffer aside {
   width: 100%;
   padding-top: 20px;
@@ -1662,9 +1677,13 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #artDetailOffer section,
 #afficheImages,
-#afficheImages2,
 #park_zoneImg,
-#rest_zoneImg {
+#rest_zoneImg,
+#atcv_zonePrestationInclus,
+#atcv_zonePrestationNonInclus,
+#atcv_zonePrestationAccess,
+#visit_zonePrestationAccess,
+#visit_zoneLangue {
   margin: 10px 0 5px 0;
   padding: 7px;
   display: flex;
