@@ -4821,6 +4821,7 @@ label#btnAjoutPhoto:hover {
   border-radius: 0 !important;
   border-bottom: solid 3px var(--accent) !important;
   padding: 2px 20px !important;
+  font-size: 1.3em;
 }
 
 .notedetaille .barreDeNotationBlanche {
