@@ -124,6 +124,7 @@
     </div>
       <!-- Partie de recherche -->
     <div id="searchIndex" class="search">
+      <h2>Recherche</h2>
       <div id="blcSearch">
         <?php 
         require_once "components/asideTriFiltre.php";
