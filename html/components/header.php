@@ -42,9 +42,8 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            console.table(params);
-            if (typeof params["search"] !== 'undefined') {
-                
+            if (typeof params["search"] !== 'undefined' && currentFile === 'index.php') {
+                deplacementRecherche();
             }
         });
 
