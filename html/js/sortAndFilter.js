@@ -409,8 +409,11 @@ function filtrerParHeure(offers) {
         data.push(JSON.parse(element));
       });
 
+      console.table(data);
+
       // Pour chaque horaire précis de spectacle
       return data.some(horaire => {
+        console.log(horaire.horaire);
         const heureDebutSpectacle = convertirEnMinutes(horaire.horaire);
         const heureFinSpectacle = heureDebutSpectacle + horaire.duree;
 
