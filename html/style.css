@@ -4906,12 +4906,13 @@ details .nonRepondu {
   margin: 30px 15%;
 }
 
-#choixCategorie select:disabled {
+#choixCategorie .disabledSelect {
   background-image: none;
   color: var(--text-dark);
   text-align: center;
   font-weight: bold;
   font-size: larger;
+  pointer-events: none;
 }
 
 #choixCategorie select {
