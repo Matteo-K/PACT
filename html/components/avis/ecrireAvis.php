@@ -59,7 +59,7 @@
 
         <!-- Photos -->
         <div>
-            <label for="ajoutPhoto" class="classAjouterPhotos">Ajouter des Photos</label>
+            <label id="btnAjoutPhoto" for="ajoutPhoto" class="classAjouterPhotos">Ajouter des Photos</label>
             <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
             <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
             <input
