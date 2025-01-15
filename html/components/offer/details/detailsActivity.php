@@ -82,7 +82,7 @@ if ($categorie["_activite"]) {
 
                 <ul id="actv_autocompletionInclus"></ul>
             </div>
-            <ul id="atcv_zonePrestationInclusAtcv">
+            <ul id="atcv_zonePrestationInclus">
             </ul>
         </div>
         <div>
@@ -94,7 +94,7 @@ if ($categorie["_activite"]) {
 
                 <ul id="actv_autocompletionNonInclus"></ul>
             </div>
-            <ul id="atcv_zonePrestationNonInclusAtcv">
+            <ul id="atcv_zonePrestationNonInclus">
             </ul>
         </div>
     </div>
@@ -125,15 +125,16 @@ if ($categorie["_activite"]) {
 
         <!-- Accessibilité -->
         <div>
-            <label class="labelTitre" for="actv_access">Accessibilités</label>
-            <select name="actv_access" id="actv_access">
-                <option value="defaultPrestaActv">-- Sélectionner un handicap --</option>
-                <?php foreach ($accessibilite as $value) { ?>
-                    <option value="<?= $value ?>"><?= $value ?></option>
-                <?php } ?>
-            </select>
-            <div id="actv_Zoneaccess">
+            <div id="actv_inputAutoCompleteAccess">
+                <label class="labelSousTitre" for="actv_inputAccess">Accessibilités<span id="msgAccess" class="msgError"></span></label>
+                <input type="text" id="actv_inputAccess" 
+                name="actv_inputAccess"
+                placeholder="Entrez & selectionnez une accessibilité correspondant à votre activité">
+
+                <ul id="actv_autocompletionAccess"></ul>
             </div>
+            <ul id="atcv_zonePrestationAccess">
+            </ul>
         </div>
     </div>
 
@@ -141,18 +142,18 @@ if ($categorie["_activite"]) {
 
 
 <script>
-    // Durée
+    // ### Durée
     document.addEventListener("DOMContentLoaded", function () {
-        const minutesInput = document.getElementById("actv_min");
-        const hoursInput = document.getElementById("actv_hrMin");
+        const actv_minutesInput = document.getElementById("actv_min");
+        const actv_hoursInput = document.getElementById("actv_hrMin");
         
-        minutesInput.addEventListener("change", () => minutesToHours(minutesInput, hoursInput));
-        hoursInput.addEventListener("change", () => hoursToMinutes(minutesInput, hoursInput));
+        actv_minutesInput.addEventListener("change", () => minutesToHours(actv_minutesInput, actv_hoursInput));
+        actv_hoursInput.addEventListener("change", () => hoursToMinutes(actv_minutesInput, actv_hoursInput));
 
-        minutesToHours(minutesInput, hoursInput);
+        minutesToHours(actv_minutesInput, actv_hoursInput);
     });
 
-    // Prestation
+    // ### Prestation
     const listePrestation = <?= json_encode($prestation); ?>;
     const prestationInclu = <?= json_encode($activite["prestationInclu"]); ?>;
     const prestationNonInclu = <?= json_encode($activite["prestationNonInclu"]); ?>;
@@ -172,27 +173,27 @@ if ($categorie["_activite"]) {
         return res;
     }
 
-    const inputInclu = document.getElementById("actv_inputPrestaInclus");
-    const inputNonInclu = document.getElementById("actv_inputPrestaNonInclus");
+    const actv_inputInclu = document.getElementById("actv_inputPrestaInclus");
+    const actv_inputNonInclu = document.getElementById("actv_inputPrestaNonInclus");
 
-    const zoneInclu = document.getElementById("atcv_zonePrestationInclusAtcv");
-    const zoneNonInclu = document.getElementById("atcv_zonePrestationNonInclusAtcv");
+    const actv_zoneInclu = document.getElementById("atcv_zonePrestationInclus");
+    const actv_zoneNonInclu = document.getElementById("atcv_zonePrestationNonInclus");
 
-    const msgInclu = document.getElementById("msgPrestaInclus");
-    const msgNonInclu = document.getElementById("msgPrestaNonInclus");
-    const maxPrestation = 10;
+    const actv_msgInclu = document.getElementById("msgPrestaInclus");
+    const actv_msgNonInclu = document.getElementById("msgPrestaNonInclus");
+    const actv_maxPrestation = 10;
 
     const indexPrestaInclu = createAutoCompletion(
-        inputInclu,
+        actv_inputInclu,
         "actv_autocompletionInclus",
-        msgInclu,
+        actv_msgInclu,
         listePrestation,
         ajoutElement,
-        inputInclu, //-- paramètres de la fonction ajoutElement
-        zoneInclu,
-        msgInclu,
+        actv_inputInclu, //-- paramètres de la fonction ajoutElement
+        actv_zoneInclu,
+        actv_msgInclu,
         'prestationInclu[]',
-        maxPrestation,
+        actv_maxPrestation,
         "li",
         [],
         checkAddPrestation,
@@ -200,16 +201,16 @@ if ($categorie["_activite"]) {
     );
 
     const indexPrestaNonInclu = createAutoCompletion(
-        inputNonInclu,
+        actv_inputNonInclu,
         "actv_autocompletionNonInclus",
-        msgNonInclu,
+        actv_msgNonInclu,
         listePrestation,
         ajoutElement,
-        inputNonInclu, //-- paramètres de la fonction ajoutElement
-        zoneNonInclu,
-        msgNonInclu,
+        actv_inputNonInclu, //-- paramètres de la fonction ajoutElement
+        actv_zoneNonInclu,
+        actv_msgNonInclu,
         'prestationNonInclu[]',
-        maxPrestation,
+        actv_maxPrestation,
         "li",
         [],
         checkAddPrestation,
@@ -221,10 +222,10 @@ if ($categorie["_activite"]) {
         ajoutElement(valeur,
             indexPrestaInclu,
             inputNonInclu, //-- paramètres de la fonction ajoutElement
-            zoneNonInclu,
-            msgNonInclu,
+            actv_zoneNonInclu,
+            actv_msgNonInclu,
             'prestationNonInclu[]',
-            maxPrestation,
+            actv_maxPrestation,
             "li",
             [],
             checkAddPrestation,
@@ -236,11 +237,11 @@ if ($categorie["_activite"]) {
     prestationNonInclu.forEach(valeur => {
             ajoutElement(valeur,
             indexPrestaNonInclu,
-            inputNonInclu,
-            zoneNonInclu,
-            msgNonInclu,
+            actv_inputNonInclu,
+            actv_zoneNonInclu,
+            actv_msgNonInclu,
             'prestationNonInclu[]',
-            maxPrestation,
+            actv_maxPrestation,
             "li",
             [],
             checkAddPrestation,
@@ -248,46 +249,58 @@ if ($categorie["_activite"]) {
         );
     });
 
-    // Ajouté des accessibilités
+    // ### Accessibilités
 
-    const inputInclu = document.getElementById("actv_inputPrestaInclus");
-    const zoneInclu = document.getElementById("atcv_zonePrestationInclusAtcv");
-    const msgInclu = document.getElementById("msgPrestaInclus");
+    const actv_accessGeneral = <?= json_encode($accessibilite); ?>;
+    const actv_access = <?= json_encode($activite["nomAccess"]); ?>;
 
-    const maxPrestation = 20;
+    const actv_inputAccess = document.getElementById("actv_inputAccess");
+    const actv_zone = document.getElementById("atcv_zonePrestationAccess");
+    const actv_msgInclu = document.getElementById("actv_msgAccess");
 
-    const indexPrestaNonInclu = createAutoCompletion(
-        inputNonInclu,
-        "actv_autocompletionNonInclus",
-        msgNonInclu,
-        listePrestation,
+    const actv_maxAccess = 20;
+
+    const actv_indexAccess = createAutoCompletion(
+        actv_inputAccess,
+        "actv_autocompletionAccess",
+        actv_msgInclu,
+        actv_accessGeneral,
         ajoutElement,
-        inputNonInclu, //-- paramètres de la fonction ajoutElement
-        zoneNonInclu,
-        msgNonInclu,
-        'prestationNonInclu[]',
-        maxPrestation,
+        actv_inputAccess, //-- paramètres de la fonction ajoutElement
+        actv_zone,
+        actv_msgInclu,
+        'actv_access[]',
+        actv_maxAccess,
         "li",
-        [],
-        checkAddPrestation,
-        "nonInclu"
+        []
     );
 
     /* Initialisation de prestation inclus */
-    prestationInclu.forEach(valeur => {
+    access.forEach(valeur => {
         ajoutElement(valeur,
-            indexPrestaInclu,
-            inputNonInclu, //-- paramètres de la fonction ajoutElement
-            zoneNonInclu,
-            msgNonInclu,
-            'prestationNonInclu[]',
-            maxPrestation,
+            actv_indexAccess,
+            actv_inputAccess, //-- paramètres de la fonction ajoutElement
+            actv_zone,
+            actv_msgInclu,
+            'actv_access[]',
+            actv_maxAccess,
             "li",
-            [],
-            checkAddPrestation,
-            "inclu"
+            []
         );
     });
+
+    <div>
+            <div id="actv_inputAutoCompleteAccess">
+                <label class="labelSousTitre" for="actv_inputAccess">Accessibilités<span id="actv_msgAccess" class="msgError"></span></label>
+                <input type="text" id="actv_inputAccess" 
+                name="actv_inputAccess"
+                placeholder="Entrez & selectionnez une accessibilité correspondant à votre activité">
+
+                <ul id="actv_autocompletionAccess"></ul>
+            </div>
+            <ul id="atcv_zonePrestationAccess">
+            </ul>
+        </div>
 
     // Vérification des champs
 
