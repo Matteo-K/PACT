@@ -4932,6 +4932,31 @@ label#btnAjoutPhoto:hover {
   }
 }
 
+/* Style général pour le paragraphe avec l'ID login-prompt */
+#login-prompt {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Style pour le lien dans le paragraphe login-prompt */
+#login-prompt a {
+  color: #007BFF; /* Bleu pour le lien */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Effet au survol du lien */
+#login-prompt a:hover {
+  color: #0056b3;
+  text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  text-decoration: underline;
+}
+
+
 @media screen and (max-width: 768px) {
   :root {
     --header-size2: 0;
