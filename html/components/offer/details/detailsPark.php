@@ -32,7 +32,7 @@ if ($categorie["_parcattraction"]) {
             <input type="number" id="park_ageMin" name="park_ageMin" min="0"  placeholder="0" value="<?= $parc["agemin"] ?>">
         </div>
         <!--Gestion du nombre d'acttration -->
-        <label class="labelTitre" for="park_nbAttrac">Nombre d'attraction(s)*</label>
+        <label class="labelTitre" for="park_nbAttrac">Nombre d'attractions*</label>
         <div>
             <input type="number" id="park_nbAttrac" name="park_nbAttrac" min="0"placeholder="0"  class="nbAttrac" value="<?= $parc["nbattraction"] ?>">
         </div>

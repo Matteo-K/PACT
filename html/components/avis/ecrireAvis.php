@@ -27,7 +27,7 @@
         </div>
 
         <!-- Qui vous accompagnait -->
-        <div>
+        <div id='accompagnant'>
             <label>Qui vous accompagnait ? *</label>
             <div id="enCompagnie">
                 <input type="radio" id="seul" name="compagnie" value="Seul" required>
@@ -58,7 +58,7 @@
         </div>
 
         <!-- Photos -->
-        <div>
+        <div id="divAjoutPhoto">
             <label id="btnAjoutPhoto" for="ajoutPhoto" class="classAjouterPhotos">Ajouter des Photos</label>
             <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
             <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->

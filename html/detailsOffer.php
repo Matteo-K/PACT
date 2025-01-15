@@ -960,7 +960,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             }
                                         } else {
                                         ?>
-                                            <p>Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></p>
+                                            <p id="login-prompt"    >Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></p>
                                         <?php
                                         }
                                         ?>
