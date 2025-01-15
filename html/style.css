@@ -1995,6 +1995,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   
     /* Rounded corners for the prev button */
   }
+
+  .flip-card{
+    width: 400px;
+  }
 }
 
 .sectionLoca {
