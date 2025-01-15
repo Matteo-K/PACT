@@ -5099,7 +5099,7 @@ label#btnAjoutPhoto:hover {
     width: 2em;
     height: 2em;
   }
-  #accompagnant{
+  #accompagnant, #divAjoutPhoto{
     flex-direction: column;
   }
 }
