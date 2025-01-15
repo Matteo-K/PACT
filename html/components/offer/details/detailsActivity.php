@@ -161,13 +161,14 @@ if ($categorie["_activite"]) {
         const indexList = nomListe === "inclu" ? index + 1 : index - 1;
         const res = listElements[indexList].includes(value);
 
+        console.table([listElements[index], listElements[indexList], value]);
+
         if (!res) {
             if (nomListe == "inclu") {
                 msgErreur.textContent = value + " est déjà présent dans les prestations non-incluses";
             } else {
                 msgErreur.textContent = value + " est déjà présent dans les prestations incluses";
             }
-            console.log(listElements[index]);
         }
 
         return res;
