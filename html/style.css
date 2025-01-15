@@ -1894,7 +1894,7 @@ label[for="rest_ajoutPhotoMenu"] {
   display: none;
 }
 
-#confirmeSignalement{
+.btnSignalAvis{
   font-size: 25px;
   border-radius: 10px;
   height: 2em;

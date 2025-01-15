@@ -1009,7 +1009,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </li>
                                 </ul>
                                 <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
-                                <button id="confirmeSignalement"> Envoyer </button>
+                                <?php 
+                                if (isset($_SESSION["typeUser"])){ ?>
+                                    <button id="confirmeSignalement btnSignalAvis"> Envoyer </button>
+                                    <?php
+                                }else{ ?>
+                                    <button id="connexion btnSignalAvis" onclick="login.php"> Connexion </button>
+                                <?php
+                                }
+                                ?>
+                                
                             </section>
                         </section>
                     </div>
@@ -1074,37 +1083,35 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Traiter le signalement en BDD après confirmation et fermer le popup
         btnConfirmer.addEventListener('click', () => {
             
+            try {
+                
+                let motifSignal = document.querySelector('input[name="signalement"]:checked');
 
-            let motifSignal = document.querySelector('input[name="signalement"]:checked');
+                if (motifSignal) {
+                    popup.style.display = 'none';
 
-            if (motifSignal) {
-                popup.style.display = 'none';
+                    idAvisSignal = btnSelectionne.classList[2].split("_")[1];
+                    let texteComplement = document.querySelector('.signalementPopup textarea');
 
-                console.log(btnSelectionne.classList);
+                    fetch('signalement.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            'idC': idAvisSignal,
+                            'idU' : <?= json_encode(isset($_SESSION['idUser']) ? $_SESSION['idUser'] : 0) ?>,
+                            'motif' : motifSignal.value,
+                            'complement' : texteComplement.value
+                        })
+                    });
 
-                idAvisSignal = btnSelectionne.classList[2].split("_")[1];
-                let texteComplement = document.querySelector('.signalementPopup textarea');
+                    alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme!');
+                }
+                else{
+                    alert('Veuillez séléctionner un motif pour le signalement');
+                }
 
-                console.log(idAvisSignal);
-                console.log(<?= json_encode($_SESSION['idUser']) ?>);
-                console.log(motifSignal.value);
-                console.log(texteComplement.textContent);
-
-                fetch('signalement.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        'idC': idAvisSignal,
-                        'idU' : <?= json_encode($_SESSION['idUser']) ?>,
-                        'motif' : motifSignal.value,
-                        'complement' : texteComplement.value
-                    })
-                });
-
-                alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme!');
-            }
-            else{
-                alert('Veuillez séléctionner un motif pour le signalement');
+            } catch (error) {
+                alert("bug signalement avis");
             }
             
         });
@@ -1357,6 +1364,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (error) {
             
+
+
         }
     </script>
 
