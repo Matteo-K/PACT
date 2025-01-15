@@ -396,11 +396,19 @@ function filtrerParHeure(offers) {
   return offers.filter(offer => {
     // Vérifier les horaires pour les spectacles
     if (offer.categorie === 'Spectacle') {
-      const horairesSpectacle = offer.horairePrecise || [];
+      const horairesSpectacle = offer.horaire || [];
+
+      let data = [];
+      horairesSpectacle.forEach(element => {
+        data.push(JSON.parse(element));
+      });
+
       // Pour chaque horaire précis de spectacle
-      return horairesSpectacle.some(horaire => {
-        const heureDebutSpectacle = convertirEnMinutes(horaire.heureouverture);
-        const heureFinSpectacle = convertirEnMinutes(horaire.heurefermeture);
+      return data.some(horaire => {
+        const heureDebutSpectacle = convertirEnMinutes(horaire.horaire);
+        const dureeSpectacle = convertirEnMinutes(horaire.duree);
+
+        const heureFinSpectacle = heureDebutSpectacle + dureeSpectacle;
         // Vérifier si l'horaire du spectacle chevauche l'intervalle de l'utilisateur
         return (heureDebutSpectacle < heureFinMinutes && heureFinSpectacle > heureDebutMinutes);
       });
@@ -408,11 +416,23 @@ function filtrerParHeure(offers) {
     
     // Vérifier les horaires pour les autres types d'offres
     else {
-      const horaires = offer.horaires || [];
+
+      const horaireMidi = offer.horaireMidi || [];
+      const horaireSoir = offer.horaireSoir || [];
+
+      let data = [];
+      horaireMidi.forEach(element => {
+        data.push(JSON.parse(element));
+      });
+
+      horaireSoir.forEach(element => {
+        data.push(JSON.parse(element));
+      });
+
       // Pour chaque horaire de l'offre
-      return horaires.some(horaire => {
-        const heureDebut = convertirEnMinutes(horaire.heureouverture);
-        const heureFin = convertirEnMinutes(horaire.heurefermeture);
+      return data.some(horaire => {
+        const heureDebut = convertirEnMinutes(horaire.heureOuverture);
+        const heureFin = convertirEnMinutes(horaire.heureFermeture);
         // Vérifier si l'horaire de l'offre chevauche l'intervalle de l'utilisateur
         return (heureDebut < heureFinMinutes && heureFin > heureDebutMinutes);
       });
