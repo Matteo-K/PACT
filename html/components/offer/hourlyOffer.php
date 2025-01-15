@@ -134,7 +134,7 @@ $is_show;
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
         <div>
-            <h4>Ajouter une date pour le spectacle&nbsp;:&nbsp;</h4><span id="msgHoraireSupr"></span>          
+            <h4>Ajouter une date pour le spectacle</h4><span id="msgHoraireSupr"></span>          
         </div>
         <div id="Representation">
         </div>

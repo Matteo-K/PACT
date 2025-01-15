@@ -1231,6 +1231,7 @@ header ul + div {
 
 #addRep:hover {
   color: var(--accent) !important;
+  background-color: #fff !important;
 }
 
 #msgHoraireSupr {
