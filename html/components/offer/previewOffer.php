@@ -243,7 +243,7 @@ $data = $ar->getArray();
             </section>
         </article>
 
-        <section id="InfoCompPreview">
+        <section id="InfoComp">
             <h2>Informations Complémentaires</h2>
             <?php if ($data[$idOffre]["categorie"] == "Visite") { ?>
                 <div>
@@ -342,7 +342,7 @@ $data = $ar->getArray();
 
     </section>
 
-    script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
