@@ -19,10 +19,11 @@
 <form id="paymentOffer" action="enregOffer.php" method="post">
   <section>
     <!-- Saisi du type de moyen de paiement -->
-    <article>
+    <article id="selectPayment">
       <div>
-        <input type="radio" name="typePaiement" id="carte_bancaire" checked>
         <label for="carte_bancaire">
+          <input type="radio" name="typePaiement" id="carte_bancaire" checked>
+          <span class="checkmark"></span>
           <figure>
             <figcaption>CARTE BANCAIRE</figcaption>
             <img src="../../img/logo/visa-mastercard.png" alt="logo visa-mastercard">
@@ -30,16 +31,18 @@
         </label>
       </div>
       <div>
-        <input type="radio" name="typePaiement" id="virement_bancaire">
         <label for="virement_bancaire">
+          <input type="radio" name="typePaiement" id="virement_bancaire">
+          <span class="checkmark"></span>
           <figure>
             <figcaption>VIREMENT BANCAIRE</figcaption>
           </figure>
         </label>
       </div>
       <div>
-        <input type="radio" name="typePaiement" id="paypal">
         <label for="paypal">
+          <input type="radio" name="typePaiement" id="paypal">
+          <span class="checkmark"></span>
           <figure>
             <figcaption>PAYPAL</figcaption>
             <img src="../../img/logo/paypal.png" alt="logo paypal">

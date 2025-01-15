@@ -119,7 +119,7 @@
         const villePattern = /^[a-zA-ZÀ-ÿ '-]+$/g;
         if (!villePattern.test(inputVille.value.trim())) {
           msgVille.textContent = 
-              "Nom de ville incorrecte. Exemple Lannion";
+              "Nom de ville incorrecte. Exemple Lannion.<br> Pas d'accent, ni caractère spéciale";
           res = false;
           inputVille.classList.add("inputErreur");
         }

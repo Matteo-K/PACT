@@ -1161,6 +1161,7 @@ header ul + div {
 #hourlyOffer {
   padding: 20px;
   padding-bottom: 6%;
+  margin-left: 5%;
 }
 
 #hourlyOffer input {
@@ -1305,11 +1306,9 @@ header ul + div {
 #contactOffer input[type="text"],
 #contactOffer input[type="email"],
 #contactOffer input[type="tel"] {
-  text-indent: 0;
   padding: 10px;
   width: 70%;
   min-width: 300px;
-  border: solid 2px var(--secondary);
 }
 
 #contactOffer input[type="email"] {
@@ -1350,8 +1349,14 @@ header ul + div {
 }
 
 #paymentOffer input[type="radio"] {
-  width: 20px;
-  height: 20px;
+  display: none;
+}
+
+#selectPayment label {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: left;
 }
 
 /* Chaque moyen de payment */
@@ -1579,6 +1584,9 @@ header ul + div {
 
 #detailsOffer input[type="text"],
 #detailsOffer input[type="time"],
+#detailsOffer input[type="email"],
+#detailsOffer input[type="tel"],
+#detailsOffer input[type="password"],
 #detailsOffer input[type="number"] {
   font-size: 15px;
   padding: 5px;
