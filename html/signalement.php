@@ -9,10 +9,9 @@ $idUser = $donnees['idU'];
 $raison = $donnees['motif'];
 $complement = $donnees['complement'];
 
-if ($id != null) {
-    
-    $stmt = $conn->prepare("INSERT INTO pact._signalementC(idu, idc, dtsignalement, raison, complement) VALUES (?, ?, current_timestamp, ?, ?");
-    $stmt->execute([$idAvis, $idUser, $raison, $complement]); // Passe l'ID sous forme de tableau
+if ($idAvis != null) {
+    $stmt = $conn->prepare("INSERT INTO pact._signalementC(idu, idc, dtsignalement, raison, complement) VALUES (?, ?, current_timestamp, ?, ?)");
+    $stmt->execute([$idUser, $idAvis, $raison, $complement]); // Passe l'ID sous forme de tableau
     http_response_code(200); //succès
 }
 else{

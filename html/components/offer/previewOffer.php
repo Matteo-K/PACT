@@ -1,4 +1,10 @@
 <?php
+
+$stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = :idoffre");
+$stmt->bindParam(':idoffre', $idOffre);
+$stmt->execute();
+$offre = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 // Fonction pour récupérer les horaires
 /**
  * @return array{midi: array, soir: array, spectacle: array}
@@ -6,7 +12,7 @@
 function getSchedules()
 {
 
-    global $data;
+    global $offre;
     global $idOffre;
     $schedules = [
         'midi' => [],
@@ -16,11 +22,11 @@ function getSchedules()
 
 
     // Vérifier si les résultats existent
-    if ($data) {
+    if ($offre) {
         // Traitement des horaires midi
-        if ($data[$idOffre]['listhorairemidi']) {
+        if ($offre[0]['listhorairemidi']) {
             // Remplacer les { et } uniquement dans les parties de l'objet qui ne sont pas des horaires
-            $listhorairemidi = $data[$idOffre]['listhorairemidi'];
+            $listhorairemidi = $offre[0]['listhorairemidi'];
 
             // Remplacer les { par [ et les } par ] pour le reste
             $listhorairemidi = str_replace(
@@ -38,8 +44,8 @@ function getSchedules()
         }
 
         // Traitement des horaires soir
-        if ($data[$idOffre]['listhorairesoir']) {
-            $listhorairesoir = $data[$idOffre]['listhorairesoir'];
+        if ($offre[0]['listhorairesoir']) {
+            $listhorairesoir = $offre[0]['listhorairesoir'];
 
             // Remplacer les { par [ et les } par ] pour le reste
             $listhorairesoir = str_replace(
@@ -56,8 +62,8 @@ function getSchedules()
             $listhorairesoir = [];
         }
 
-        if ($data[$idOffre]['listehoraireprecise']) {
-            $listhorairespectacle = $data[$idOffre]['listehoraireprecise'];
+        if ($offre[0]['listehoraireprecise']) {
+            $listhorairespectacle = $offre[0]['listehoraireprecise'];
 
             $listhorairespectacle = str_replace(
                 ['{', '}', ':', ';'],
@@ -479,44 +485,6 @@ $data = $ar->getArray();
                         endforeach;
                     }
                     ?>
-                </tbody>
-            </table>
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="2">Horaires</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    // Tableau de tous les jours de la semaine
-                    $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-
-                    // Afficher les horaires pour chaque jour de la semaine
-                    foreach ($joursSemaine as $jour): ?>
-                        <tr>
-                            <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
-                            <td>
-                                <?php
-                                $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
-                                $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
-
-                                // Collect hours
-                                $horairesAffichage = [];
-                                if (!empty($horaireMidi)) {
-                                    $horairesAffichage[] = htmlspecialchars(current($horaireMidi)['heureouverture']) . " à " . htmlspecialchars(current($horaireMidi)['heurefermeture']);
-                                }
-                                if (!empty($horaireSoir)) {
-                                    $horairesAffichage[] = htmlspecialchars(current($horaireSoir)['heureouverture']) . " à " . htmlspecialchars(current($horaireSoir)['heurefermeture']);
-                                }
-                                if (empty($horaireMidi) && empty($horaireSoir)) {
-                                    $horairesAffichage[] = "Fermé";
-                                }
-                                echo implode(' et ', $horairesAffichage);
-                                ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
                 </tbody>
             </table>
         </section>

@@ -1010,6 +1010,7 @@ header ul + div {
   background-color: var(--primary);
   box-shadow: inset -4px -4px 4px #1883bc;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(-100%);
 }
 
 /* # selection de l'offre # */
@@ -1291,6 +1292,7 @@ header ul + div {
 #paymentOffer section {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: center;
 }
 
 #paymentOffer section:nth-child(1) {
@@ -1470,7 +1472,7 @@ header ul + div {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .buttonDetailOffer,
-.tag:not(#previewOffer .tag),
+.tag,
 .ouvert,
 .ferme {
   display: inline-block;
@@ -1799,6 +1801,11 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 /* popup signalement avis */
+.avis .modal-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .signalementPopup h2{
   text-align: center;
@@ -1987,20 +1994,34 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   .flip-card-back {
     font-size: 1em !important; /* Ajuste la taille de la police */
-    padding: 10px !important; /* Ajuste les marges internes */
+    padding: 5px !important; /* Ajuste les marges internes */
     border: 2px solid var(--primary) !important; /* Réduit la taille de la bordure */
   }
 
   .flip-card-back .title {
     font-size: 1.3rem !important; /* Réduit la taille du titre */
     text-align: right !important;
+    margin: 0 !important;
+  }
+
+  .flip-card-front .title {
+    font-size: 1.3rem !important; /* Réduit la taille du titre */
+  }
+
+  .flip-card-back .blocStar,.flip-card-front .blocStar {
+    margin: 0 !important;
+    font-size: 0.8em !important;
+  }
+
+  #numRue{
+    display: none;
   }
 
   .flip-card-back .blocStar {
-    margin: 0;
+    justify-content: flex-end !important;
   }
 
-  .flip-card-back .blocStar .star,.flip-card-front.blocStar .star {
+  .flip-card-back .blocStar .star,.flip-card-front .blocStar .star {
     width: 15px;
     height: 15px;
   }
@@ -2010,11 +2031,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .information {
-    display: none;
-    /* flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-    padding-inline: 5px !important;  */
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-inline: 5px !important;
+    margin-top: 20px !important; 
   }
 
   .flip-card-back .resume {
@@ -2026,17 +2047,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .tagsCard {
-    display: none;
-    /* flex-direction: row !important;
+    flex-direction: row !important;
     justify-content: flex-start !important;
-    gap: 3px !important;
-    margin-top: 5px !important; */
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-inline: 5px !important;
+    margin-top: 5px !important;
   }
 
   .tagIndex {
-    display: none;
-    /* font-size: 0.75em !important;
-    padding: 4px 8px !important; */
+    font-size: 0.75em !important;
+    padding: 4px 8px !important;
   }
 }
 
@@ -2056,7 +2078,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .swiper.gb, 
   .swiper.gb2,
   .swiper.gb3{
-    width: 316px;
+    width: 300px;
     height: 100%;
     overflow: hidden;
     margin: 0 auto 0 auto;
@@ -2278,9 +2300,9 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .searchoffre {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: 20px;
+  gap: 40px;
   margin-left: 380px;
   flex: 4;
 }
@@ -2722,6 +2744,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Date */
+#date {
+  display: none;
+}
+
 #date input, #heure input {
   height: 40px;
   border: solid 2px #1ca4ed;
@@ -2823,12 +2849,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   cursor: pointer;
 }
 
-/* test média query  */
+/* Média query 600px */
 @media screen and (max-width: 600px) {
   #trifiltre {
-      flex-direction: column; /* Les boutons seront empilés */
+      flex-direction: column;
       position: relative;
       width: 100%;
+  }
+
+  #tri, #filtre {
+    overflow: scroll;
   }
 
   #btnAside {
@@ -2837,14 +2867,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     justify-content: center;
     width: 50%;
     padding-bottom: 40%;
-    border-radius: 1.5em;
+    margin: auto;
   }
 
   #btnAside a {
       width: 50%;
       padding: 15px;
       background-color: var(--bloc25);
-      border-radius: 10px;
+      border-radius: 1.5em;
       text-align: center;
   }
 
@@ -2853,11 +2883,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   #tri, #filtre {
-      position: fixed; /* L'aside prendra toute la page */
+      position: fixed;
       top: 0;
       left: 0;
-      width: 100vw; /* Prend toute la largeur de l'écran */
-      height: 100vh; /* Prend toute la hauteur de l'écran */
+      width: 100vw;
+      height: 100vh;
       z-index: 999;
       display: none;
       background-color: var(--background);
@@ -2888,11 +2918,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 }
 
+/* Média query 375px */
 @media screen and (max-width: 375px) {
   #trifiltre {
       flex-direction: column;
       position: relative;
       width: 100%;
+  }
+
+  #tri, #filtre {
+    overflow: scroll;
   }
 
   #btnAside {
@@ -2901,14 +2936,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     justify-content: center;
     width: 50%;
     padding-bottom: 40%;
-    border-radius: 1.5em;
+    margin: auto;
   }
 
   #btnAside a {
       width: 50%;
       padding: 15px;
       background-color: var(--bloc25);
-      border-radius: 10px;
+      border-radius: 1.5em;
       text-align: center;
   }
 
@@ -3325,6 +3360,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
+  align-self: end;
 }
 
 .close:hover,
@@ -3686,6 +3722,11 @@ tbody td:last-child {
   text-decoration: none;
 }
 
+#sectionPreview #infoComp {
+  width: 55%;
+  margin: auto;
+}
+
 #infoPro img,
 #afficheLoc img {
   width: 25px;
@@ -3706,6 +3747,7 @@ article#descriptionOffre {
 article#descriptionOffre {
   border-radius: 10px;
   padding: 20px 0;
+  margin: auto;
   margin-bottom: 20px;
   align-items: flex-end;
 }
@@ -4229,7 +4271,7 @@ section#infoComp div {
 /* bloc fermable avec les nombres d'avis*/
 #avisproS2 > details {
   width: 100%;
-  background-color: #ffffff5f;
+  background-color: #fff;
   border-radius: 10px;
   padding: 20px;
   position: relative;
@@ -4502,7 +4544,8 @@ details .nonRepondu {
 .conteneurReponsePro > article {
   width: 90%;
   padding: 20px;
-  background-color: var(--secondary60);
+  background-color: #fff;
+  border:var(--primary) 3px solid;
   border-radius: 20px;
 }
 
@@ -4707,7 +4750,7 @@ details .nonRepondu {
   font-weight: 600;
 }
 
-.tag:not(.mainOffer > div > .tag) {
+.avis .tag:not(.mainOffer > div > .tag) {
   border-radius: 0 !important;
   border-bottom: solid 3px var(--accent) !important;
   padding: 2px 20px !important;
@@ -4972,13 +5015,11 @@ details .nonRepondu {
 }
 
 #sectionPreview p,
-#sectionPreview h4,
-#sectionPreview h2 {
+#sectionPreview h4{
   font-size: 25px;
 }
 
-#sectionPreview h4,
-#sectionPreview h2 {
+#sectionPreview h4{
   font-size: 35px;
 }
 
@@ -4997,13 +5038,7 @@ details .nonRepondu {
   margin-bottom: 20px;
 }
 
-#previewOffer .tag {
-  background-color: var(--accent);
-  color: var(--background);
-  padding: 8px 16px;
-  border-radius: 5px;
-  text-decoration: none;
-}
+
 
 #previewOffer .ouvert {
   background-color: #008000;
