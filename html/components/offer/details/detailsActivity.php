@@ -14,14 +14,14 @@ $accessibilite = [];
 $prestation = [];
 
 // accessibilité
-$stmt = $conn->prepare("SELECT * from pact._accessibilite");
+$stmt = $conn->prepare("SELECT nomaccess from pact._accessibilite");
 $stmt->execute();
 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $accessibilite[] = $result["nomaccess"];
 }
 
 // prestation
-$stmt = $conn->prepare("SELECT * from pact._prestation");
+$stmt = $conn->prepare("SELECT nompresta from pact._prestation");
 $stmt->execute();
 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $prestation[] = $result["nompresta"];
@@ -29,7 +29,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 // Si l'activité était déà existante, on récupère les données
 if ($categorie["_activite"]) {
-    $stmt = $conn->prepare("SELECT * from pact._activite where idoffre=?");
+    $stmt = $conn->prepare("SELECT duree, agemin, prixminimal from pact._activite where idoffre=?");
     $stmt->execute([$idOffre]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($result) {
@@ -53,11 +53,10 @@ if ($categorie["_activite"]) {
     
 
     // Accessibilité
-    $stmt = $conn->prepare("SELECT * from pact._offreAccess where idoffre=?");
+    $stmt = $conn->prepare("SELECT nomaccess from pact._offreAccess where idoffre=?");
     $stmt->execute([$idOffre]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        print_r($row);
-        $activite["nomAccess"][] = $row["nomAccess"];
+        $activite["nomAccess"][] = $row["nomaccess"];
     }
 }
 
