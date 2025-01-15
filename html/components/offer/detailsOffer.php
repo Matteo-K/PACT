@@ -178,7 +178,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <span id="msgCategorie" class="msgError"></span>
         <section id="choixCategorie">
             <label for="page-select" class="labelTitre">Sélectionnez une catégorie</label>
-            <select name="categorie" id="selectCategorie" <?= $disableCategorie ? "disabled" : "" ?>>
+            <select name="categorie" id="selectCategorie">
                 <option value="restaurant"
                 <?php echo $categorie["_restauration"] ? "selected" : "" ?>>
                     Restaurant
@@ -200,40 +200,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     Visite
                 </option>
             </select>
-            <?php
-            $categorie = [
-                "_restauration" => false,
-                "_spectacle" => false,
-                "_parcattraction" => false,
-                "_visite" => false,
-                "_activite" => false,
-            ];
-                foreach ($categorie as $key => $value) {
-                    if ($value) {
-                        $catgr;
-                        switch ($key) {
-                            case '_restauration':
-                                $catgr = 'restaurant';
-                                break;
-                            case '_spectacle':
-                                $catgr = 'spectacle';
-                                break;
-                            case '_parcattraction':
-                                $catgr = 'parc';
-                                break;
-                            case '_visite':
-                                $catgr = 'visite';
-                                break;
-                            case '_activite':
-                                $catgr = 'activite';
-                                break;
-                        }
-                        ?>
-                        <input type="hidden" name="categorie" value="<?= $catgr ?>">
-                        <?php
-                    }
-                }
-            ?>
+            <?php print_r($categorie); ?>
         </section>
         <?php
             $source = "details/";
