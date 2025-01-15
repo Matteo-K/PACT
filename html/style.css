@@ -811,12 +811,14 @@ header ul + div {
   border-radius: 0;
   border: none;
   border-bottom: solid 2px var(--primary);
+  background-color: transparent;
 }
 
 #manageOffer textarea,
 #manageOffer select {
   outline: none;
   border: solid 2px var(--primary);
+  background-color: transparent;
 }
 
 #manageOffer aside {
@@ -920,14 +922,20 @@ header ul + div {
 }
 
 #leaveButtonBloc button {
-  width: 150px;
-  height: 35px;
   background-color: #28a745;
   color: var(--text-light);
+  border-color: #28a745;
+  padding: 10px 15px;
+}
+
+#leaveButtonBloc button:hover {
+  background-color: #fff;
+  color: var(--text-dark);
 }
 
 #leaveButtonBloc button:nth-child(2) {
   background-color: #c24d4d;
+  border-color: #c24d4d;
 }
 
 
@@ -1629,9 +1637,10 @@ header ul + div {
   height: 12px;
   margin: auto 0 auto 5px;
   position: absolute;
-  top: 10px;
+  top: 50%;
   right: 10px;
   display: none;
+  transform: translateY(-50%);
 }
 
 #artDetailOffer .tag:hover img {
@@ -1691,7 +1700,6 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 10px;
-  overflow-y: scroll;
 }
 
 #inputAutoComplete {
