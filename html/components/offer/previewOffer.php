@@ -559,4 +559,10 @@ $data = $ar->getArray();
                 swiper: swiper,
             },
         });
+        var swiper2 = new Swiper(".menu", {
+            loop: true,
+            spaceBetween: 10,
+            slidesPerView: 3,
+            freeMode: true
+        });
     </script>
