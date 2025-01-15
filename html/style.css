@@ -1962,10 +1962,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 } */
 
 @media (max-width: 480px) {
-  .searchA{
-    zoom: 0.6;
-  }
-
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {
