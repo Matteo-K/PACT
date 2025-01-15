@@ -430,36 +430,6 @@ CREATE TABLE _offrePrestation_inclu (
       REFERENCES _offre(idOffre)
 );
 
-CREATE OR REPLACE FUNCTION compte_langue_offre()
-RETURNS TRIGGER AS $$
-BEGIN
-    IF (SELECT COUNT(*) FROM _visite_langue WHERE idOffre = NEW.idOffre) = 1 THEN
-        RAISE EXCEPTION 'Vous ne pouvez pas avoir 0 langue pour une visite';
-    END IF;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trigger_compte_langue_offre
-BEFORE DELETE ON _visite_langue
-FOR EACH ROW
-EXECUTE FUNCTION compte_langue_offre();
-
-CREATE OR REPLACE FUNCTION compte_langue()
-RETURNS TRIGGER AS $$
-BEGIN
-    IF (SELECT COUNT(*) FROM _visite_langue WHERE langue = NEW.langue) = 1 THEN
-        RAISE EXCEPTION 'Vous ne pouvez pas avoir des langues avec 0 visite';
-    END IF;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trigger_compte_langue
-BEFORE DELETE ON _visite_langue
-FOR EACH ROW
-EXECUTE FUNCTION compte_langue();
-
 CREATE TABLE _commentaire(
   idU INT NOT NULL,
   idC SERIAL PRIMARY KEY,
@@ -572,7 +542,6 @@ CREATE TABLE _signalementC(
       FOREIGN KEY (idC)
       REFERENCES _commentaire(idC)
 );
-
 
 -- Création des vues pour chaque catégorie d'offres
 
@@ -996,6 +965,36 @@ CREATE VIEW facture AS
     a.tarif,
     h.codePostal,
     h.pays;
+
+CREATE OR REPLACE FUNCTION compte_langue_offre()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (SELECT COUNT(*) FROM _visite_langue WHERE idOffre = NEW.idOffre) = 1 THEN
+        RAISE EXCEPTION 'Vous ne pouvez pas avoir 0 langue pour une visite';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_compte_langue_offre
+BEFORE DELETE ON _visite_langue
+FOR EACH ROW
+EXECUTE FUNCTION compte_langue_offre();
+
+CREATE OR REPLACE FUNCTION compte_langue()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (SELECT COUNT(*) FROM _visite_langue WHERE langue = NEW.langue) = 1 THEN
+        RAISE EXCEPTION 'Vous ne pouvez pas avoir des langues avec 0 visite';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_compte_langue
+BEFORE DELETE ON _visite_langue
+FOR EACH ROW
+EXECUTE FUNCTION compte_langue();
 
 CREATE OR REPLACE FUNCTION ajout_pro_prive()
 RETURNS TRIGGER AS $$
