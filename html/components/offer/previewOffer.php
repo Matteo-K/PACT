@@ -553,9 +553,6 @@ $data = $ar->getArray();
         });
         var swiper2 = new Swiper(".mySwiper", {
             loop: true,
-            autoplay: {
-                delay: 5000,
-            },
             spaceBetween: 10,
             navigation: {
                 nextEl: ".swiper-button-next",
