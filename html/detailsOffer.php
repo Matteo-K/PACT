@@ -1020,41 +1020,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
     <script>
-        function supAvis(id, idOffre) {
-            // Affiche une boîte de dialogue pour confirmer la suppression
-            const confirmSupp = confirm("Êtes-vous sûr de vouloir supprimer votre avis ?");
-            if (!confirmSupp) return;
-
-            // Crée un formulaire dynamique
-            const form = document.createElement("form");
-            form.method = "POST";
-            form.action = "/enregAvis.php";
-
-            // Ajoute le champ caché pour l'ID de l'avis
-            const idAvis = document.createElement("input");
-            idAvis.type = "hidden";
-            idAvis.name = "id";
-            idAvis.value = id;
-            form.appendChild(idAvis);
-
-            // Ajoute le champ caché pour spécifier l'action
-            const action = document.createElement("input");
-            action.type = "hidden";
-            action.name = "action";
-            action.value = "supprimerAvis";
-            form.appendChild(action);
-
-            // Ajoute le champ caché pour l'ID de l'offre
-            const offre = document.createElement("input");
-            offre.type = "hidden";
-            offre.name = "idoffre";
-            offre.value = idOffre;
-            form.appendChild(offre);
-
-            // Ajoute le formulaire au document et le soumet
-            document.body.appendChild(form);
-            form.submit();
-        }
         
         document.addEventListener('DOMContentLoaded', function() {
 

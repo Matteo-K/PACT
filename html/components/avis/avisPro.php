@@ -216,12 +216,14 @@ const blocReponseAvis = document.getElementById("blocReponsePro");
 const conteneurReponseAvis = document.querySelector("#blocReponsePro .conteneurReponsePro");
 const contenuReponseAvis = document.querySelector("#blocReponsePro .conteneurReponsePro p");
 const titreReponseAvisEcrit =  document.querySelector("#blocReponsePro .conteneurReponsePro h3");
+const bin = document.querySelector("#blocReponsePro .conteneurReponsePro article img");
 
 const formReponseAvis = document.querySelector("#blocReponsePro form");
 const titreReponseAvis = document.querySelector("#avisproS2 form h2");
 const inputIdAvis = document.querySelector('#avisproS2 form input[type="hidden"]');
 
 const txtNbAvis = document.querySelector('#avisPro details h3:nth-child(2)');
+
 
 
 
@@ -288,6 +290,10 @@ function afficheAvisSelect(idAvis) {
         contenuReponseAvis.textContent = listeAvis[idAvis]['contenureponse'];
         titreReponseAvisEcrit.textContent = "Votre réponse à " + listeAvis[idAvis]['pseudo'];
         formReponseAvis.style.display = "none";
+
+        bin.addEventListener("click", function(e){
+            supAvis(listeAvis[idAvis]['idc_reponse'], idOffre);
+        })
     }
     
     //On passe l'avis de non lu a lu (en affichage et en BDD)
@@ -588,5 +594,40 @@ function displayStar(note) {
   return container;
 }
 
+function supAvis(id, idOffre) {
+    // Affiche une boîte de dialogue pour confirmer la suppression
+    const confirmSupp = confirm("Êtes-vous sûr de vouloir supprimer votre avis ?");
+    if (!confirmSupp) return;
+
+    // Crée un formulaire dynamique
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/enregAvis.php";
+
+    // Ajoute le champ caché pour l'ID de l'avis
+    const idAvis = document.createElement("input");
+    idAvis.type = "hidden";
+    idAvis.name = "id";
+    idAvis.value = id;
+    form.appendChild(idAvis);
+
+    // Ajoute le champ caché pour spécifier l'action
+    const action = document.createElement("input");
+    action.type = "hidden";
+    action.name = "action";
+    action.value = "supprimerReponse";
+    form.appendChild(action);
+
+    // Ajoute le champ caché pour l'ID de l'offre
+    const offre = document.createElement("input");
+    offre.type = "hidden";
+    offre.name = "idoffre";
+    offre.value = idOffre;
+    form.appendChild(offre);
+
+    // Ajoute le formulaire au document et le soumet
+    document.body.appendChild(form);
+    form.submit();
+}
 
 </script>
