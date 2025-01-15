@@ -806,6 +806,10 @@ header ul + div {
 
 #manageOffer [type="text"],
 #manageOffer [type="number"],
+#manageOffer [type="month"],
+#manageOffer [type="email"],
+#manageOffer [type="tel"],
+#manageOffer [type="password"],
 #manageOffer [type="time"] {
   outline: none;
   border-radius: 0;
@@ -1412,7 +1416,6 @@ header ul + div {
 /* tout les input du moyen de payment */
 #paymentOffer article:nth-child(2) input {
   height: 20px;
-  border: var(--secondary) 3px solid;
   padding: 5px;
   margin-bottom: 15px;
 }
@@ -1584,9 +1587,6 @@ header ul + div {
 
 #detailsOffer input[type="text"],
 #detailsOffer input[type="time"],
-#detailsOffer input[type="email"],
-#detailsOffer input[type="tel"],
-#detailsOffer input[type="password"],
 #detailsOffer input[type="number"] {
   font-size: 15px;
   padding: 5px;
