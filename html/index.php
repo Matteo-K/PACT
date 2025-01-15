@@ -32,19 +32,22 @@
         }
         if (count($idOffres) > 0) {
           ?>
-      <div class="swiper-container gb">
-        <div class="swiper gb">
-          <div class="swiper-wrapper gb">
-            <?php 
-              $elementStart = 0;
-              $nbElement = 20;
-              $offres = new ArrayOffer($idOffres);
-              $offres->displayCardALaUne();
-              ?>
+      <div>
+        <h2>Offres à la Une</h2>
+        <div class="swiper-container gb">
+          <div class="swiper gb">
+            <div class="swiper-wrapper gb">
+              <?php 
+                $elementStart = 0;
+                $nbElement = 20;
+                $offres = new ArrayOffer($idOffres);
+                $offres->displayCardALaUne();
+                ?>
+            </div>
           </div>
+          <div class="swiper-button-next gb"></div>
+          <div class="swiper-button-prev gb"></div>
         </div>
-        <div class="swiper-button-next gb"></div>
-        <div class="swiper-button-prev gb"></div>
       </div>
       <?php 
       }
