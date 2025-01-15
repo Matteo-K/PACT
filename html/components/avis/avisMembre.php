@@ -45,7 +45,7 @@ function formatDateDiff($date)
     }
 }
 
-usort($avis, function($a, $b) use ($idUser) {
+usort($avis, function ($a, $b) use ($idUser) {
     // D'abord, comparer si l'utilisateur a écrit l'avis
     if ($a['idu'] == $idUser && $b['idu'] != $idUser) {
         return -1; // $a avant $b (l'avis de l'utilisateur connecté est prioritaire)
@@ -63,7 +63,7 @@ usort($avis, function($a, $b) use ($idUser) {
 foreach ($avis as $a) {
     $likeId = 'like_' . $a['idc'];
     $dislikeId = 'dislike_' . $a['idc'];
-    
+
     $likeIdPro = 'like_' . $a['idc_reponse'];
     $dislikeIdPro = 'dislike_' . $a['idc_reponse'];
 ?>
@@ -89,14 +89,14 @@ foreach ($avis as $a) {
                         <p><?= $a['note'] ?> / 5</p>
                     </div>
                     <?php
-                    if($a['idu'] == $idUser){
+                    if ($a['idu'] == $idUser) {
                     ?>
-                        <img onclick="supAvis(<?=$a['idc']?>, <?=$idOffre?>)" class="signalementSupp supprimerAvis" src="./img/icone/bin.png" alt="Poubelle" title="Supprimer son avis" />
+                        <img onclick="supAvis(<?= $a['idc'] ?>, <?= $idOffre ?>)" class="signalementSupp supprimerAvis" src="./img/icone/bin.png" alt="Poubelle" title="Supprimer son avis" />
                     <?php
-                    } else{
-                        ?>
+                    } else {
+                    ?>
                         <img class="signalementSupp signalerAvis" src="./img/icone/signalement.png" alt="Signalement" title="signaler un avis" />
-                        <?php
+                    <?php
                     }
                     ?>
                 </div>
@@ -219,7 +219,7 @@ foreach ($avis as $a) {
                                 echo "<p>" . formatDateDiff($a["reponsedate"]) . "</p>";
                             }
                             ?>
-                            <img class="signalementSupp signalerAvis" src="./img/icone/signalement.png" alt="Signalement" title="signaler un avis"/>
+                            <img class="signalementSupp signalerAvis" src="./img/icone/signalement.png" alt="Signalement" title="signaler un avis" />
                         </div>
 
                     </div>
@@ -294,42 +294,6 @@ foreach ($avis as $a) {
 }
 ?>
 <script>
-    function supAvis(id, idOffre) {
-    // Affiche une boîte de dialogue pour confirmer la suppression
-    const confirmSupp = confirm("Êtes-vous sûr de vouloir supprimer votre avis ?");
-    if (!confirmSupp) return;
-    
-    // Crée un formulaire dynamique
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = "/enregAvis.php";
-
-    // Ajoute le champ caché pour l'ID de l'avis
-    const idAvis = document.createElement("input");
-    idAvis.type = "hidden";
-    idAvis.name = "id";
-    idAvis.value = id;
-    form.appendChild(idAvis);
-
-    // Ajoute le champ caché pour spécifier l'action
-    const action = document.createElement("input");
-    action.type = "hidden";
-    action.name = "action";
-    action.value = "supprimerAvis";
-    form.appendChild(action);
-
-    // Ajoute le champ caché pour l'ID de l'offre
-    const offre = document.createElement("input");
-    offre.type = "hidden";
-    offre.name = "idoffre";
-    offre.value = idOffre;
-    form.appendChild(offre);
-
-    // Ajoute le formulaire au document et le soumet
-    document.body.appendChild(form);
-    form.submit();
-}
-
     function likeAndDislike(checkbox, action) {
         const container = document.getElementById(checkbox.id);
         const likeId = "like_" + checkbox.id.split("_")[1];
@@ -422,7 +386,7 @@ foreach ($avis as $a) {
                     span.textContent = j;
                     newNumberDiv.appendChild(span);
                 }
-                
+
                 document.querySelector(selector).appendChild(newNumberDiv);
             }
         } else if (numberStr.length < numbers.length) {
@@ -431,14 +395,14 @@ foreach ($avis as $a) {
                 numbers[i].remove();
             }
         }
-    
+
         numbers = document.querySelectorAll(selector + " .number");
 
         // Mettre à jour les chiffres affichés
         numbers.forEach((el, index) => {
-           
+
             const digit = numberStr[index] || '0'; // Si le nombre a moins de chiffres que prévu, utiliser '0'
-            if(digit == 0){
+            if (digit == 0) {
                 el.style.transform = `var(--nb9)`;
             }
             // Mettre à jour la position du chiffre
