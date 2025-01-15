@@ -4,7 +4,7 @@ $langue = [];
 $accessibilite = [];
 $visite = [
     "guide" => true,
-    "duree" => "",
+    "duree" => "0",
     "prixminimal" => "",
     "accessibilite" => true,
     "nomAccess" => [],
@@ -46,7 +46,7 @@ if ($categorie["_visite"]) {
     $stmt = $conn->prepare("SELECT * from pact._offreAccess where idoffre=?");
     $stmt->execute([$idOffre]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $visite["nomAccess"][] = $row["nomAccess"];
+        $visite["nomAccess"][] = $row["nomaccess"];
     }
 }
 
@@ -162,18 +162,18 @@ if ($categorie["_visite"]) {
     });
     
     // Ajout des langues
-    const visit_accessGeneral = <?= json_encode($accessibilite); ?>;
-    const visit_access = <?= json_encode($visite["nomAccess"]); ?>;
+    const visit_langueGeneral = <?= json_encode($accessibilite); ?>;
+    const visit_langue = <?= json_encode($visite["langue"]); ?>;
 
-    const visit_inputAccess = document.getElementById("visit_inputAccess");
-    const visit_zone = document.getElementById("visit_zonePrestationAccess");
-    const visit_msgAccess = document.getElementById("visit_msgAccess");
+    const visit_inputLangue = document.getElementById("visit_langue");
+    const visit_zone = document.getElementById("visit_zoneLangue");
+    const visit_msgAccess = document.getElementById("msgLangue");
 
-    const visit_maxAccess = 20;
+    const visit_maxAccess = 40;
 
     const visit_indexAccess = createAutoCompletion(
         visit_inputAccess,
-        "visit_autocompletionAccess",
+        "visit_autocompletionLangue",
         visit_msgAccess,
         visit_accessGeneral,
         ajoutElement,

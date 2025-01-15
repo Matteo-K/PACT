@@ -2,7 +2,7 @@
 <?php
 // Initialisation des données à vide
 $spectacle = [
-    "duree" => "",
+    "duree" => "0",
     "nbplace" => "",
     "prixminimal" => ""
 ];
