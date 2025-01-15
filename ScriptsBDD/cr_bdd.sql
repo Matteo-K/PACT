@@ -558,6 +558,21 @@ CREATE TABLE _facturation(
       REFERENCES _offre(idOffre)
 );
 
+CREATE TABLE _signalementC(
+  idU INT NOT NULL,
+  idC INT NOT NULL,
+  dtSignalement TIMESTAMP NOT NULL,
+  raison VARCHAR(255) NOT NULL,
+  complement VARCHAR(499),
+  CONSTRAINT _pk_signalementC PRIMARY KEY (idU,idC),
+  CONSTRAINT _signalementC_fk_user
+      FOREIGN KEY (idU)
+      REFERENCES _nonAdmin(idU),
+  CONSTRAINT _signalementC_fk_commentaire
+      FOREIGN KEY (idC)
+      REFERENCES _commentaire(idC)
+);
+
 
 -- Création des vues pour chaque catégorie d'offres
 
