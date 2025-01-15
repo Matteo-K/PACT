@@ -2851,21 +2851,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   
   margin: 10px 0;
   height: 40px;
-
   width: calc(100% - 10px);
+
   justify-content: left;
   border-radius: 20px 0 0 20px;
   border-right: 0px solid var(--primary);
-  transition: 0.5s;
+  transition: border-right-width 0.5s ease-out;
 }
 
 #tri input:checked + label {
   background-color: #1ca4ed;
-  border-radius: 3px;
+  border-right-width: 10px;
 }
 
 #tri input:hover + label {
-  border-right: 10px;
+ border-right-width: 10px ;
 }
 
 /* Bouton de tri et filtre */
