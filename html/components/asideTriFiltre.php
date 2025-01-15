@@ -225,11 +225,11 @@
                     <h3>Par heure</h3>
                     <div>
                         <label for="dateDepart">Départ&nbsp;:&nbsp;</label>
-                        <input type="time" name="heureDebut" id="heureDebut" value="08:00">
+                        <input type="time" name="heureDebut" id="heureDebut">
                     </div>
                     <div>
                         <label for="dateDepart">Fin&nbsp;:&nbsp;</label>
-                        <input type="time" name="heureFin" id="heureFin" value="23:00">
+                        <input type="time" name="heureFin" id="heureFin">
                     </div>
                 </div>
             </div>
