@@ -293,7 +293,7 @@ function afficheAvisSelect(idAvis) {
 
         bin.addEventListener("click", function() {
             if (listeAvis[idAvis] && listeAvis[idAvis]['idc_reponse']) {
-                supAvis(listeAvis[idAvis]['idc_reponse'], idOffre)
+                supAvis(listeAvis[idAvis]['idc_reponse'], <?=$idOffre?>)
                     .then(response => {
                         console.log("Review deleted successfully:", response);
                         // Optionally update the UI here
