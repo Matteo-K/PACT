@@ -1061,12 +1061,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         const btnFermer = document.querySelector('.signalementPopup .close');
         const btnConfirmer = document.getElementById('confirmeSignalement');
 
+        let btnSelectionne;
 
         // Afficher le pop-up
         ouvrePopup.forEach(boutonOuvrePopup => {
             boutonOuvrePopup.addEventListener('click', () => {
                 popup.style.display = 'block';
-                let btnSelectionne = boutonOuvrePopup;
+                btnSelectionne = boutonOuvrePopup;
             });
         });        
         
