@@ -191,12 +191,18 @@
             <div class="ligne5">
                 <div class="ligne5_1">
                     <!-- Radio bouton public -->
-                    <input type="radio" id="radioPublic" name="secteur" value="public">
-                    <label for="public">Public</label>
+                    <label for="public">
+                        <input type="radio" id="radioPublic" name="secteur" value="public">
+                        <span class="checkmark"></span>
+                        Public
+                    </label>
             
                     <!-- Radio bouton privée -->
-                    <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
-                    <label for="prive">Privé</label>
+                    <label for="prive">
+                        <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
+                        <span class="checkmark"></span>
+                        Privé
+                    </label>
                 </div>
 
                 <div class="ligne5_2">

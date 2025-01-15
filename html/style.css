@@ -2627,6 +2627,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .checkmark {
+  cursor: pointer;
   width: 30px;
   height: 30px;
   margin: 0 8px 0 4px;
@@ -5466,9 +5467,7 @@ input[id="ville"] {
 
 input[id="radioPublic"],
 input[id="radioPrive"] {
-  width: 25px;
-  height: 25px;
-  margin: 0 5px;
+  display: none;
 }
 
 input[id="siren"] {
