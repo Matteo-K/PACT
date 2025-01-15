@@ -1313,6 +1313,10 @@ header ul + div {
   align-items: center;
 }
 
+#acceptPhone div {
+  margin-bottom: 10px;
+}
+
 /* ------------------------- END Contact OFFER CSS --------------------------------*/
 /* ------------------------- Payment OFFER CSS --------------------------------*/
 
@@ -1767,7 +1771,6 @@ label[for="rest_ajoutPhotoMenu"] {
 /* ### Restaurant ### */
 
 #restaurant {
-  display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
   justify-content: space-evenly;
@@ -1794,7 +1797,6 @@ label[for="rest_ajoutPhotoMenu"] {
 /* ### parc d'attraction ### */
 
 #park {
-  display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
   justify-content: space-evenly;
@@ -1833,7 +1835,6 @@ label[for="rest_ajoutPhotoMenu"] {
 
 /* ### Spectacle ### */
 #show {
-  display: flex;
   flex-flow: column;
   align-items: flex-start;
   justify-content: center;
@@ -1854,6 +1855,29 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #show [type="time"] {
   text-align: center;
+}
+
+/* Activité */
+
+#activity {
+  flex-direction: column;
+  gap: 10vh;
+}
+
+#activity > div {
+  margin-inline: 15%;
+}
+
+#activity > div > div {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 20%;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+#activity > div > div > div {
+  flex: 1;
 }
 
 /* popup signalement avis */
