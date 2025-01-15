@@ -25,13 +25,13 @@ function ajoutElement(valeurElement, indiceListElem, input, zoneElement, msgErre
   // Ajoute une condition supplémentaires si spécifiés
   let check;
   if (typeof checkFunction === 'function') {
-    check = checkFunction(...params);
+    check = checkFunction(valeurElement, indiceListElem, msgErreur, ...params);
   } else {
     check = true;
   }
 
   if (valeurElement 
-    && !listElements[indiceListElem].includes(valeurElement) 
+    && !listElements[indiceListElem].includes(valeurElement)
     && listElements[indiceListElem].length < nbMaxElements 
     && check) {
 

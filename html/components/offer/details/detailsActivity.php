@@ -75,7 +75,7 @@ if ($categorie["_activite"]) {
         </select>
         <div>
             <div id="actv_inputAutoCompletePrestaInclu">
-                <label class="labelSousTitre" for="actv_prestaInclu">Préstation inclus<span id="msgPrestaInclus" class="msgError"></span></label>
+                <label class="labelSousTitre" for="actv_prestaInclu">Prestations incluses<span id="msgPrestaInclus" class="msgError"></span></label>
                 <input type="text" id="actv_inputPrestaInclus" 
                 name="actv_inputPrestaInclus" 
                 placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
@@ -87,7 +87,7 @@ if ($categorie["_activite"]) {
         </div>
         <div>
             <div id="actv_inputAutoCompletePrestaNonInclu">
-                <label class="labelSousTitre" for="actv_prestaNonInclu">Préstation non-inclus<span id="msgPrestaNonInclus" class="msgError"></span></label>
+                <label class="labelSousTitre" for="actv_prestaNonInclu">Prestations non-incluses<span id="msgPrestaNonInclus" class="msgError"></span></label>
                 <input type="text" id="actv_inputPrestaNonInclus" 
                 name="actv_inputPrestaNonInclus" 
                 placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
@@ -125,7 +125,7 @@ if ($categorie["_activite"]) {
 
         <!-- Accessibilité -->
         <div>
-            <label class="labelTitre" for="actv_access">Accessibilité(s)</label>
+            <label class="labelTitre" for="actv_access">Accessibilités</label>
             <select name="actv_access" id="actv_access">
                 <option value="defaultPrestaActv">-- Sélectionner un handicap --</option>
                 <?php foreach ($accessibilite as $value) { ?>
@@ -141,8 +141,6 @@ if ($categorie["_activite"]) {
 
 
 <script>
-    const listePrestation = <?= json_encode($prestation); ?>
-    const prestationInclu = <?= json_encode($activite["prestationInclu"]); ?>
     // Durée
     document.addEventListener("DOMContentLoaded", function () {
         const minutesInput = document.getElementById("actv_min");
@@ -154,10 +152,71 @@ if ($categorie["_activite"]) {
         minutesToHours(minutesInput, hoursInput);
     });
 
-    // Ajouté des accessibilités
+    // Prestation
+    const listePrestation = <?= json_encode($prestation); ?>;
+    const prestationInclu = <?= json_encode($activite["prestationInclu"]); ?>;
+    const prestationNonInclu = <?= json_encode($activite["prestationNonInclu"]); ?>;
 
-    function ajoutAccessibilite(nomAccess) {
+    function checkAddPrestation(value, index, msgErreur, nomListe) {
+        const indexList = nomListe === "inclu" ? index + 1 : index - 1;
+        const res = listElements[indexList].includes(value);
+
+        if (!res) {
+            if (nomListe == "inclu") {
+                msgErreur.textContent = value + " est déjà présent dans les prestations non-incluses";
+            } else {
+                msgErreur.textContent = value + " est déjà présent dans les prestations incluses";
+            }
+        }
+
+        return res;
     }
+
+    const inputInclu = document.getElementById("actv_inputPrestaInclus");
+    const inputNonInclu = document.getElementById("actv_inputPrestaNonInclus");
+
+    const zoneInclu = document.getElementById("atcv_zonePrestationInclusAtcv");
+    const zoneNonInclu = document.getElementById("atcv_zonePrestationNonInclusAtcv");
+
+    const msgInclu = document.getElementById("msgPrestaInclus");
+    const msgNonInclu = document.getElementById("msgPrestaNonInclus");
+    const maxPrestation = 10;
+
+    const indexPrestaInclu = createAutoCompletion(
+        inputInclu,
+        "actv_autocompletionInclus",
+        msgInclu,
+        listePrestation,
+        ajoutElement,
+        inputInclu, //-- paramètres de la fonction ajoutElement
+        zoneInclu,
+        msgInclu,
+        'prestationInclu[]',
+        maxPrestation,
+        "li",
+        [],
+        checkAddPrestation,
+        "inclu"
+    );
+
+    const indexPrestaNonInclu = createAutoCompletion(
+        inputNonInclu,
+        "actv_autocompletionNonInclus",
+        msgNonInclu,
+        listePrestation,
+        ajoutElement,
+        inputNonInclu, //-- paramètres de la fonction ajoutElement
+        zoneNonInclu,
+        msgNonInclu,
+        'prestationNonInclu[]',
+        maxPrestation,
+        "li",
+        [],
+        checkAddPrestation,
+        "inclu"
+    );
+
+    // Ajouté des accessibilités
 
     const access = document.getElementById("actv_access");
 
