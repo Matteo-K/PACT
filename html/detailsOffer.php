@@ -1011,7 +1011,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
                                 <?php 
                                 if (isset($_SESSION["typeUser"])){ ?>
-                                    <button id="confirmeSignalement btnSignalAvis"> Envoyer </button>
+                                    <button id="confirmeSignalement" class="btnSignalAvis"> Envoyer </button>
                                     <?php
                                 }else{ ?>
                                     <a href="login.php" class="btnSignalAvis"> Connexion </a>
@@ -1064,27 +1064,27 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             form.submit();
         }
 
-        //Script de gestion du pop-up de signalement (traitement de l'envoi du formulaire dans les fichiers avisPro.php / avisMembre.php / signalement.php)
-        let ouvrePopup = document.querySelectorAll('.avis .signaler');
-        const popup = document.querySelector('.avis .signalementPopup');
-        const btnFermer = document.querySelector('.signalementPopup .close');
-        const btnConfirmer = document.getElementById('confirmeSignalement');
-
-        let btnSelectionne;
-
-        // Afficher le pop-up
-        ouvrePopup.forEach(boutonOuvrePopup => {
-            boutonOuvrePopup.addEventListener('click', () => {
-                popup.style.display = 'block';
-                btnSelectionne = boutonOuvrePopup;
-            });
-        });        
-        
-        // Traiter le signalement en BDD après confirmation et fermer le popup
-        btnConfirmer.addEventListener('click', () => {
+        try {
             
-            try {
-                
+            //Script de gestion du pop-up de signalement (traitement de l'envoi du formulaire dans les fichiers avisPro.php / avisMembre.php / signalement.php)
+            let ouvrePopup = document.querySelectorAll('.avis .signaler');
+            const popup = document.querySelector('.avis .signalementPopup');
+            const btnFermer = document.querySelector('.signalementPopup .close');
+            const btnConfirmer = document.getElementById('confirmeSignalement');
+
+            let btnSelectionne;
+
+            // Afficher le pop-up
+            ouvrePopup.forEach(boutonOuvrePopup => {
+                boutonOuvrePopup.addEventListener('click', () => {
+                    popup.style.display = 'block';
+                    btnSelectionne = boutonOuvrePopup;
+                });
+            });        
+            
+            // Traiter le signalement en BDD après confirmation et fermer le popup
+            btnConfirmer.addEventListener('click', () => {
+                                
                 let motifSignal = document.querySelector('input[name="signalement"]:checked');
 
                 if (motifSignal) {
@@ -1109,24 +1109,24 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 else{
                     alert('Veuillez séléctionner un motif pour le signalement');
                 }
+                
+            });
 
-            } catch (error) {
-                alert("bug signalement avis");
-            }
-            
-        });
-
-        // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
-        btnFermer.addEventListener('click', () => {
-            popup.style.display = 'none';
-        });
-
-        // Masquer le pop-up si on clique en dehors
-        window.addEventListener('click', (event) => {
-            if (event.target === popup) {
+            // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
+            btnFermer.addEventListener('click', () => {
                 popup.style.display = 'none';
-            }
-        });
+            });
+
+            // Masquer le pop-up si on clique en dehors
+            window.addEventListener('click', (event) => {
+                if (event.target === popup) {
+                    popup.style.display = 'none';
+                }
+            });
+
+        } catch (error) {
+            
+        }
         
         document.addEventListener('DOMContentLoaded', function() {
 
