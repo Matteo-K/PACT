@@ -1072,11 +1072,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Traiter le signalement en BDD après confirmation et fermer le popup
         btnConfirmer.addEventListener('click', () => {
 
+            let motifSignal = document.querySelector('input[name="signalement"]:checked');
+
             if (motifSignal) {
                 popup.style.display = 'none';
 
                 idAvisSignal = ouvrePopup.classList[2].split("_")[1];
-                let motifSignal = document.querySelector('input[name="signalement"]:checked');
                 let texteComplement = document.querySelector('.signalementPopup form textarea');
 
                 fetch('signalement.php', {
