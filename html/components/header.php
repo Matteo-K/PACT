@@ -47,6 +47,11 @@
         form.addEventListener('submit', (event) => {
             if (currentFile === 'index.php') {
                 event.preventDefault();
+                const searchTarget = document.getElementById("searchIndex");
+                searchTarget.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
 
