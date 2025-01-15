@@ -2053,7 +2053,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .swiper.gb, 
   .swiper.gb2,
   .swiper.gb3{
-    width: 316px;
+    width: 300px;
     height: 100%;
     overflow: hidden;
     margin: auto;
@@ -4895,10 +4895,6 @@ details .nonRepondu {
     width: 95% !important;
   }
 
-  #sectionPreview #infoComp {
-    width: 65%;
-    margin: auto;
-}
 
   #infoComp {
     width: 90%;
@@ -4983,11 +4979,9 @@ details .nonRepondu {
   font-size: 35px;
 }
 
-#titleOfferPreview {
-  font-size: 3.5em;
-  color: var(--bloc);
-  text-align: center;
-  margin-bottom: 0.5em;
+#sectionPreview #infoComp {
+  width: 55%;
+  margin: auto;
 }
 
 #tagPreview {
