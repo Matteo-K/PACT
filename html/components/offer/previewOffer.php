@@ -1,24 +1,125 @@
 <?php
 // Fonction pour récupérer les horaires
-function getSchedules($conn, $idOffre)
+/**
+ * @return array{midi: array, soir: array, spectacle: array}
+ */
+function getSchedules()
 {
+
+    global $result;
     $schedules = [
         'midi' => [],
-        'soir' => []
+        'soir' => [],
+        'spectacle' => []
     ];
 
-    // Récupérer les horaires du midi et du soir
-    $stmtMidi = $conn->prepare("SELECT * FROM pact._horaireMidi WHERE idOffre = :idOffre");
-    $stmtMidi->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
-    $stmtMidi->execute();
-    $schedules['midi'] = $stmtMidi->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmtSoir = $conn->prepare("SELECT * FROM pact._horaireSoir WHERE idOffre = :idOffre");
-    $stmtSoir->bindParam(':idOffre', $idOffre, PDO::PARAM_INT);
-    $stmtSoir->execute();
-    $schedules['soir'] = $stmtSoir->fetchAll(PDO::FETCH_ASSOC);
+    // Vérifier si les résultats existent
+    if ($result) {
+        // Traitement des horaires midi
+        if ($result[0]['listhorairemidi']) {
+            // Remplacer les { et } uniquement dans les parties de l'objet qui ne sont pas des horaires
+            $listhorairemidi = $result[0]['listhorairemidi'];
+
+            // Remplacer les { par [ et les } par ] pour le reste
+            $listhorairemidi = str_replace(
+                ['{', '}', ':', ';'],
+                ['[', ']', '=>', ','],
+                $listhorairemidi
+            );
+
+            // Encapsuler dans des crochets pour créer un tableau
+            $listhorairemidi = '[' . $listhorairemidi . ']';
+            // Utiliser eval() pour transformer la chaîne en tableau PHP
+            eval('$listhorairemidi = ' . $listhorairemidi . ';');
+        } else {
+            $listhorairemidi = [];
+        }
+
+        // Traitement des horaires soir
+        if ($result[0]['listhorairesoir']) {
+            $listhorairesoir = $result[0]['listhorairesoir'];
+
+            // Remplacer les { par [ et les } par ] pour le reste
+            $listhorairesoir = str_replace(
+                ['{', '}', ':', ';'],
+                ['[', ']', '=>', ','],
+                $listhorairesoir
+            );
+
+            // Encapsuler dans des crochets pour créer un tableau
+            $listhorairesoir = '[' . $listhorairesoir . ']';
+            // Utiliser eval() pour transformer la chaîne en tableau PHP
+            eval('$listhorairesoir = ' . $listhorairesoir . ';');
+        } else {
+            $listhorairesoir = [];
+        }
+
+        if ($result[0]['listehoraireprecise']) {
+            $listhorairespectacle = $result[0]['listehoraireprecise'];
+
+            $listhorairespectacle = str_replace(
+                ['{', '}', ':', ';'],
+                ['[', ']', '=>', ','],
+                $listhorairespectacle
+            );
+
+            // Encapsuler dans des crochets pour créer un tableau
+            $listhorairespectacle = '[' . $listhorairespectacle . ']';
+            // Utiliser eval() pour transformer la chaîne en tableau PHP
+            eval('$listhorairespectacle = ' . $listhorairespectacle . ';');
+        } else {
+            $listhorairespectacle = [];
+        }
+
+        // Ajouter les horaires décodés aux tableaux de résultats
+        $schedules['midi'] = $listhorairemidi;
+        $schedules['soir'] = $listhorairesoir;
+        $schedules['spectacle'] = $listhorairespectacle;
+    }
 
     return $schedules;
+}
+
+$schedules = getSchedules();
+
+function formatDateEnFrancais(DateTime $date)
+{
+    // Traduction des jours de la semaine
+    $joursSemaine = [
+        'Monday' => 'Lundi',
+        'Tuesday' => 'Mardi',
+        'Wednesday' => 'Mercredi',
+        'Thursday' => 'Jeudi',
+        'Friday' => 'Vendredi',
+        'Saturday' => 'Samedi',
+        'Sunday' => 'Dimanche'
+    ];
+
+    // Traduction des mois
+    $moisAnnee = [
+        'January' => 'Janvier',
+        'February' => 'Février',
+        'March' => 'Mars',
+        'April' => 'Avril',
+        'May' => 'Mai',
+        'June' => 'Juin',
+        'July' => 'Juillet',
+        'August' => 'Août',
+        'September' => 'Septembre',
+        'October' => 'Octobre',
+        'November' => 'Novembre',
+        'December' => 'Décembre'
+    ];
+
+    // Extraire les composants de la date
+    $jour = $joursSemaine[$date->format('l')];  // Jour en français
+    $mois = $moisAnnee[$date->format('F')];     // Mois en français
+    $jourMois = $date->format('d');             // Jour du mois
+    $annee = $date->format('Y');                // Année
+
+    // Retourner la date formatée
+    return "$jour $jourMois $mois $annee";
 }
 
 function convertionMinuteHeure($tempsEnMinute)
