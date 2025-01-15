@@ -1974,16 +1974,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .flip-card-back .title {
     font-size: 1.3rem !important; /* Réduit la taille du titre */
     text-align: right !important;
-    margin: 0;
+    margin: 0 !important;
   }
 
   .flip-card-back .blocStar,.flip-card-front .blocStar {
-    margin: 0;
-    font-size: 0.8em;
+    margin: 0 !important;
+    font-size: 0.8em !important;
   }
 
   .flip-card-back .blocStar {
-    justify-content: flex-end;
+    justify-content: flex-end !important;
   }
 
   .flip-card-back .blocStar .star,.flip-card-front.blocStar .star {
