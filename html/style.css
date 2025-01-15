@@ -4850,10 +4850,15 @@ details .nonRepondu {
 
 #previewOffer .tag {
   background-color: var(--accent);
-  color: var(--background);
-  padding: 8px 16px;
-  border-radius: 5px;
   text-decoration: none;
+  display: inline-block;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 10px;
+  color: #000;
+  margin: 0 5px;
+  border: none;
+  cursor: none;
 }
 
 #previewOffer .ouvert {
