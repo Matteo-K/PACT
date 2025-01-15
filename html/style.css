@@ -2321,7 +2321,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #index {
   margin-top: 150px;
   margin-bottom: 50px;
-  min-height: calc(100vh - var(--header-size));
+  min-height: calc(100vh - var(--header-size) - 180px);
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-evenly;
