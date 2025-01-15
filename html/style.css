@@ -2187,6 +2187,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   min-height: 1000px;
   padding-bottom: 20px;
   background-color: var(--background);
+  margin-top: 10vh;
+  border-top: 4px solid var(--bloc);
+}
+
+#searchIndex > h2 {
+  text-align: center;
 }
 
 .searchoffre {
