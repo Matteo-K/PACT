@@ -1759,6 +1759,7 @@ label[for="rest_ajoutPhotoMenu"] {
   flex-flow: column;
   align-items: flex-start;
   justify-content: center;
+  margin-inline: 28%;
 }
 
 #show_nbPlacePrixMin {
@@ -1972,15 +1973,16 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   .flip-card-back .title {
     font-size: 1.3rem !important; /* Réduit la taille du titre */
-    text-align: center !important;
+    text-align: right !important;
   }
 
   .flip-card-back .blocStar {
-    
+    margin: 0;
   }
 
-  .flip-card-back .blocStar .star {
-
+  .flip-card-back .blocStar .star,.flip-card-front.blocStar .star {
+    width: 15px;
+    height: 15px;
   }
 
   .flip-card-back .nomPro {
@@ -3262,7 +3264,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #titleOffer {
   text-align: center;
-  font-size: 5em ;
+  font-size: 5em;
   color: var(--bloc);
   margin: 0.2em;
   font-weight: 600;
@@ -4347,8 +4349,7 @@ details .nonRepondu {
 .conteneurReponsePro > article {
   width: 90%;
   padding: 20px;
-  background-color: #fff;
-  border: var(--primary) 3px solid;
+  background-color: var(--secondary60);
   border-radius: 20px;
 }
 
@@ -4818,12 +4819,21 @@ details .nonRepondu {
 }
 
 #sectionPreview p,
-#sectionPreview h4{
+#sectionPreview h4,
+#sectionPreview h2 {
   font-size: 25px;
 }
 
-#sectionPreview h4{
+#sectionPreview h4,
+#sectionPreview h2 {
   font-size: 35px;
+}
+
+#titleOfferPreview {
+  font-size: 3.5em;
+  color: var(--bloc);
+  text-align: center;
+  margin-bottom: 0.5em;
 }
 
 #tagPreview {
@@ -4834,6 +4844,13 @@ details .nonRepondu {
   margin-bottom: 20px;
 }
 
+#previewOffer .tag {
+  background-color: var(--accent);
+  color: var(--background);
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+}
 
 #previewOffer .ouvert {
   background-color: #008000;
