@@ -5085,6 +5085,11 @@ label#btnAjoutPhoto:hover {
   #formCreationAvis{
     width: 90%;
   }
+
+  #publiez-component > section .star {
+    width: 2em;
+    height: 2em;
+}
 }
 
 /* ========================= */
