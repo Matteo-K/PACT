@@ -43,10 +43,14 @@
               ?>
           </div>
         </div>
-        
-        <div class="swiper-button-next gb"></div>
-        <div class="swiper-button-prev gb"></div>
-        <!-- Pagination: Points -->
+        <?php
+        if (count($idOffres) > 3) { 
+          ?>
+          <div class="swiper-button-next gb"></div>
+          <div class="swiper-button-prev gb"></div>
+          <?php
+        }
+        ?>
 
       </div>
       <?php 
@@ -79,8 +83,14 @@
                 <?php } ?>
             </div>
           </div>
-          <div class="swiper-button-next gb2"></div>
-          <div class="swiper-button-prev gb2"></div>
+          <?php
+          if (count($idOffres) > 3) { 
+            ?>
+            <div class="swiper-button-next gb2"></div>
+            <div class="swiper-button-prev gb2"></div>
+            <?php
+          }
+          ?>
         </div>
       </div>
       <?php
@@ -109,8 +119,14 @@
               <?php } ?>
             </div>
           </div>
-          <div class="swiper-button-next gb3"></div>
-          <div class="swiper-button-prev gb3"></div>
+          <?php
+          if (count($idOffres) > 3) { 
+            ?>
+            <div class="swiper-button-next gb3"></div>
+            <div class="swiper-button-prev gb3"></div>
+            <?php
+          }
+          ?>
         </div>
       </div>
       <?php 
