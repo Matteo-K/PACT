@@ -414,8 +414,8 @@ function filtrerParHeure(offers) {
       // Pour chaque horaire précis de spectacle
       return data.some(horaire => {
         console.log(horaire.horaire);
-        const heureDebutSpectacle = convertirEnMinutes(horaire.horaire);
-        const heureFinSpectacle = heureDebutSpectacle + horaire.duree;
+        const heureDebutSpectacle = convertirEnMinutes(horaire.heureouverture);  
+        const heureFinSpectacle = convertirEnMinutes(horaire.heurefermeture); 
 
         // Vérifier si l'horaire du spectacle chevauche l'intervalle de l'utilisateur
         return (heureDebutSpectacle < heureFinMinutes && heureFinSpectacle > heureDebutMinutes);
