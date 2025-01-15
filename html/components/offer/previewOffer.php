@@ -83,7 +83,7 @@ $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     // Fetch tags associated with the offer   
                     foreach ($data[$idOffre]["tags"] as $tag) {
                     ?>
-                        <a class="tag" href="index.php?search=<?php echo htmlspecialchars(ucfirst(strtolower($tag))) ?>#searchIndex"><?php echo htmlspecialchars(ucfirst(strtolower($tag))); ?></a>
+                        <a class="tag"><?php echo htmlspecialchars(ucfirst(strtolower($tag))); ?></a>
                     <?php 
                         }
                     ?>

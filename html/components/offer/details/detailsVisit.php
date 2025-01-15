@@ -125,4 +125,8 @@ if ($categorie["_visite"]) {
     // Ajout des langues
 
     // Validation des champs
+
+    function checkVisit() {
+        return true;
+    }
 </script>
