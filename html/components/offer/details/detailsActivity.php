@@ -276,7 +276,7 @@ if ($categorie["_activite"]) {
     );
 
     /* Initialisation de prestation inclus */
-    access.forEach(valeur => {
+    actv_access.forEach(valeur => {
         ajoutElement(valeur,
             actv_indexAccess,
             actv_inputAccess, //-- paramètres de la fonction ajoutElement
