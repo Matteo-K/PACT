@@ -1972,14 +1972,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   .flip-card-back .title {
     font-size: 1.3rem !important; /* Réduit la taille du titre */
-    text-align: center !important;
+    text-align: right !important;
   }
 
   .flip-card-back .blocStar {
     margin: 0;
   }
 
-  .flip-card-back .blocStar .star {
+  .flip-card-back .blocStar .star,.flip-card-front.blocStar .star {
     width: 15px;
     height: 15px;
   }
