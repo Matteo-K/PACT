@@ -5041,7 +5041,7 @@ label#btnAjoutPhoto:hover {
   /** Responsive Avis **/
 
   .avisMembre > nav > h3 {
-    font-size: clamp(0.5em, 10vw, 2.5em);
+    font-size: clamp(0.5em, 10vw, 2em);
     font-weight: 500;
   }
 
