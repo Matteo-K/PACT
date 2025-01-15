@@ -64,9 +64,9 @@
       </div>
       <div id="leaveButtonBloc">
           <!-- Si 0 on enregistre et retourne au menu du professionnel -->
-          <button type="submit" onclick="submitForm(event,0)">Sauvegarder & Quitter</button>
+          <button type="submit" onclick="submitForm(event,0)" class="modifierBut">Sauvegarder & Quitter</button>
           <!-- Si -1 on retourne au menu du professionnel sans enregistrer -->
-          <button type="submit" onclick="submitForm(event,-1)">Quitter</button>
+          <button type="submit" onclick="submitForm(event,-1)" class="modifierBut">Quitter</button>
     </aside>
     <section>
       <?php
