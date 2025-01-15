@@ -164,6 +164,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt = $conn->prepare("DELETE FROM pact._reponse WHERE ref = $idAvis");
         $stmt -> execute();
+
+        $stmt = $conn->prepare("DELETE FROM pact._commentaire WHERE idc = $idAvis");
+        $stmt -> execute();
     }
     ?>
     <!DOCTYPE html>
