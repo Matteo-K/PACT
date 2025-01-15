@@ -3608,6 +3608,10 @@ section#infoComp div {
   justify-content: space-between;
 }
 
+.selected.active{
+  border-bottom: var(--bloc) 3px solid;
+}
+
 #avis-section,
 #avis-section > #avis-component {
   width: 95%;
