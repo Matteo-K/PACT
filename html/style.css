@@ -2404,8 +2404,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .premiumImg{
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 5px;
+  right: 5px;
   width: 50px !important; /* Ajustez selon vos besoins */
   height: auto !important; /* Maintient le ratio de l'image */
 }
