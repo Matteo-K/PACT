@@ -1098,7 +1098,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ 
                             'idC': idAvisSignal,
-                            'idU' : <?= json_encode($_SESSION['idUser']) ?>,
+                            'idU' : <?= json_encode(isset($_SESSION['idUser']) ? $_SESSION['idUser'] : 0) ?>,
                             'motif' : motifSignal.value,
                             'complement' : texteComplement.value
                         })
