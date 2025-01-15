@@ -2050,6 +2050,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     margin: 0 auto 0 auto;
   }
 
+  #index{
+    margin-top: 0;
+  }
+
   .swiper.gb, 
   .swiper.gb2,
   .swiper.gb3{
