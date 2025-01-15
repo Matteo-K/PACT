@@ -935,6 +935,7 @@ header ul + div {
   justify-content: flex-end;
   align-items: center;
   margin: 20px;
+  gap: 20px;
 }
 
 #manageOffer .suivant, #manageOffer .precedent {
@@ -1180,7 +1181,6 @@ header ul + div {
   border-radius: 15px;
   width: fit-content;
   padding: 15px 30px;
-  border: none;
   margin-left: 10px;
 }
 
@@ -1535,6 +1535,7 @@ header ul + div {
 .labelTitre {
   display: inline-block;
   font-size: 1.6rem !important;
+  font-weight: normal !important;
   margin: 15px 0 5px 0;
 }
 
@@ -2316,6 +2317,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 40px;
   margin-left: 380px;
   flex: 4;
+  height: fit-content;
 }
 
 .searchoffre:not(#search .searchoffre) {
@@ -5253,6 +5255,10 @@ body[id="body_creation_compte"] {
   background-size: cover;
 }
 
+#cgu {
+  display: none;
+}
+
 a[id="lienCGU"] {
   color: var(--bloc);
   text-decoration: underline;
@@ -5341,6 +5347,8 @@ body[id="body_creation_compte"] ::placeholder {
   font-size: 25px;
   margin: 5px;
   text-align: left;
+  display: flex;
+  align-items: center;
 }
 
 .creation-compte div.ligne1 > label,

@@ -17,26 +17,33 @@
 ?>
 <!-- Construction du formulaire -->
 <form id="contactOffer" action="enregOffer.php" method="post">
-  <label for="mail">Adresse mail de contact pour votre offre*&nbsp;:&nbsp;</label>
+  <label for="mail" class="labelTitre">Adresse mail de contact pour votre offre*</label>
   <input type="email" name="mail" id="mail" required="required" placeholder="Adresse mail - (exemple@mail.com)" value="<?php echo $mail; ?>">
   <span id="msgEmail" class="msgError"></span>
-  <label for="phone">Numéro de fixe&nbsp;:&nbsp;</label>
+  <label for="phone" class="labelTitre">Numéro de fixe&nbsp;:&nbsp;</label>
   <div>
     <input type="tel" name="phone" id="phone" placeholder="Numéro fixe" 
     value="<?php echo $phone; ?>"> <span id="msgTel" class="msgError"></span>
   </div>
   <div>
-    <h4>Consentez vous à afficher votre numéro de portable sur l’offre &nbsp;?&nbsp;</h4>
+    <h4 class="labelTitre">Consentez vous à afficher votre numéro de portable sur l’offre &nbsp;?&nbsp;</h4>
     <div>
-      <input type="radio" name="DisplayNumber" id="Oui" value="Oui" <?php echo $displayNumber?"checked":""?>>
-      <label for="Oui">Oui</label>
+      <label for="Oui">
+        <input type="radio" name="DisplayNumber" id="Oui" value="Oui" <?php echo $displayNumber?"checked":""?>>
+        <span class="checkmark"></span>
+        Oui
+      </label>
     </div>
     <div>
-      <input type="radio" name="DisplayNumber" id="Non" value="Non" <?php echo !$displayNumber?"checked":""?>>
-      <label for="Non">Non</label>
+      <label for="Non">
+        <input type="radio" name="DisplayNumber" id="Non" value="Non" <?php echo !$displayNumber?"checked":""?>>
+        <span class="checkmark"></span>
+        Non
+      </label>
     </div>
   </div>
-  <label for="webSide">Si vous avez un site web pour votre offre, vous pouvez insérer son lien ici pour qu’il apparaîsse sur l’offre&nbsp;:&nbsp;</label>
+  <label class="labelTitre" for="webSide">Site web</label>
+  <label class="labelSousTitre" for="webSide">Si vous avez un site web pour votre offre, vous pouvez insérer son lien ici pour qu’il apparaîsse sur l’offre</label>
   <input type="text" name="webSide" id="webSide" 
   placeholder="Lien vers votre site web" value="<?php echo $linkWeb; ?>">
 
