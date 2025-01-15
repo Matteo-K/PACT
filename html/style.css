@@ -4906,7 +4906,7 @@ details .nonRepondu {
   margin: 30px 15%;
 }
 
-.disabledSelect {
+#choixCategorie select.disabledSelect {
   background-image: none !important;
   color: var(--text-dark) !important;
   text-align: center !important;
