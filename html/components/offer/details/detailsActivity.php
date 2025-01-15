@@ -317,7 +317,7 @@ if ($categorie["_activite"]) {
     function checkActvAgeMin() {
         let res = true;
         
-        if (actv_inputAge.value != "") {
+        if (actv_inputAge.value === "") {
             actv_msgAge.textContent = "Le champ âge doit être complété";
             res = false;
         } else {
@@ -334,7 +334,7 @@ if ($categorie["_activite"]) {
     function checkActvPrixMin() {
         let res = true;
         
-        if (actv_inputPrix.value != "") {
+        if (actv_inputPrix.value === "") {
             actv_msgPrix.textContent = "Le champ prix doit être complété";
             res = false;
         } else {
