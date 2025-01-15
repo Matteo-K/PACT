@@ -1960,64 +1960,67 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     transform: translateX(10%);
   }
 } */
-.flip-card {
-  width: 300px; /* Réduit la largeur à 300px sur les petits écrans */
+@media (max-width: 700px) {
+  .flip-card {
+    width: 300px !important; /* Réduit la largeur à 300px sur les petits écrans */
+  }
+
+  .flip-card-back {
+    font-size: 1em !important; /* Ajuste la taille de la police */
+    padding: 10px !important; /* Ajuste les marges internes */
+    border: 2px solid var(--primary) !important; /* Réduit la taille de la bordure */
+  }
+
+  .flip-card-back .title {
+    font-size: 1.3rem !important; /* Réduit la taille du titre */
+    text-align: center !important;
+  }
+
+  .flip-card-back .blocStar {
+    flex-direction: column !important; /* Empile les étoiles verticalement pour économiser de l'espace */
+    justify-content: flex-start !important;
+    margin-bottom: 10px !important;
+  }
+
+  .flip-card-back .blocStar .star {
+    margin: 0 2px !important; /* Réduit l'espace entre les étoiles */
+  }
+
+  .flip-card-back .nomPro {
+    font-size: 1rem !important; /* Réduit la taille de la police du nom du professionnel */
+    padding-inline: 5px !important; /* Réduit les espacements horizontaux */
+    margin-bottom: 8px !important;
+  }
+
+  .flip-card-back .information {
+    flex-direction: column !important; /* Empile les informations horizontalement */
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding-inline: 5px !important; /* Réduit les espacements internes */
+  }
+
+  .flip-card-back .resume {
+    font-size: 0.9rem !important; /* Réduit la taille de la police du résumé */
+    margin-bottom: 8px !important;
+  }
+
+  .flip-card-back address {
+    font-size: 0.9rem !important; /* Réduit la taille de la police pour l'adresse */
+  }
+
+  .flip-card-back .tagsCard {
+    flex-direction: row !important; /* Affiche les tags en ligne pour économiser de l'espace */
+    justify-content: flex-start !important;
+    gap: 3px !important; /* Réduit l'espace entre les tags */
+    margin-top: 5px !important;
+  }
+
+  .tagIndex {
+    font-size: 0.75em !important; /* Réduit la taille des tags */
+    padding: 4px 8px !important;
+  }
 }
 
-.flip-card-back {
-  font-size: 1em; /* Ajuste la taille de la police */
-  padding: 10px; /* Ajuste les marges internes */
-  border: 2px solid var(--primary); /* Réduit la taille de la bordure */
-}
-
-.flip-card-back .title {
-  font-size: 1.3rem; /* Réduit la taille du titre */
-  text-align: center;
-}
-
-.flip-card-back .blocStar {
-  flex-direction: column; /* Empile les étoiles verticalement pour économiser de l'espace */
-  justify-content: flex-start;
-  margin-bottom: 10px;
-}
-
-.flip-card-back .blocStar .star {
-  margin: 0 2px; /* Réduit l'espace entre les étoiles */
-}
-
-.flip-card-back .nomPro {
-  font-size: 1rem; /* Réduit la taille de la police du nom du professionnel */
-  padding-inline: 5px; /* Réduit les espacements horizontaux */
-  margin-bottom: 8px;
-}
-
-.flip-card-back .information {
-  flex-direction: column; /* Empile les informations horizontalement */
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding-inline: 5px; /* Réduit les espacements internes */
-}
-
-.flip-card-back .resume {
-  font-size: 0.9rem; /* Réduit la taille de la police du résumé */
-  margin-bottom: 8px;
-}
-
-.flip-card-back address {
-  font-size: 0.9rem; /* Réduit la taille de la police pour l'adresse */
-}
-
-.flip-card-back .tagsCard {
-  flex-direction: row; /* Affiche les tags en ligne pour économiser de l'espace */
-  justify-content: flex-start;
-  gap: 3px; /* Réduit l'espace entre les tags */
-  margin-top: 5px;
-}
-
-.tagIndex {
-  font-size: 0.75em; /* Réduit la taille des tags */
-  padding: 4px 8px;
-}
 @media (max-width: 480px) {
   .swiper-container.gb, 
   .swiper-container.gb2, 
