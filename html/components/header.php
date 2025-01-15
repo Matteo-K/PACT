@@ -38,7 +38,12 @@
             event.preventDefault();
             if (currentFile !== 'index.php') {
                 window.location.href = 'index.php'; 
-            } else {
+            }
+        });
+
+        input.addEventListener("change", () => {
+            if (currentFile === 'index.php') {
+                const searchTarget = document.getElementById("searchIndex");
                 searchTarget.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
@@ -52,7 +57,6 @@
         form.addEventListener('submit', (event) => {
             if (currentFile === 'index.php') {
                 event.preventDefault();
-                const searchTarget = document.getElementById("searchIndex");
             }
         });
 
