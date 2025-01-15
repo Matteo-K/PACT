@@ -383,6 +383,9 @@ function filtrerParHeure(offers) {
   // Récupérer les heures sélectionnées par l'utilisateur
   const heureDebutValue = heureDebut.value;
   const heureFinValue = heureFin.value;
+  
+  console.log("Heure de début sélectionnée : ", heureDebutValue);
+  console.log("Heure de fin sélectionnée : ", heureFinValue);
 
   // Convertir l'heure en minutes depuis minuit pour faciliter la comparaison
   const convertirEnMinutes = (heure) => {
@@ -393,29 +396,49 @@ function filtrerParHeure(offers) {
   const heureDebutMinutes = convertirEnMinutes(heureDebutValue);
   const heureFinMinutes = convertirEnMinutes(heureFinValue);
 
+  console.log("Heure de début en minutes : ", heureDebutMinutes);
+  console.log("Heure de fin en minutes : ", heureFinMinutes);
+
   return offers.filter(offer => {
+    console.log("Vérification de l'offre :", offer);
+
     if (offer.categorie === 'Spectacle') {
       // Pour un spectacle, on ne vérifie que l'heure de début
       const heureDebutSpectacle = convertirEnMinutes(offer.heureouverture);
+      console.log("Heure d'ouverture du spectacle en minutes : ", heureDebutSpectacle);
+
       // Si l'heure de début du spectacle est après l'heure de début du filtre, ne pas afficher
-      return heureDebutSpectacle >= heureDebutMinutes && heureDebutSpectacle <= heureFinMinutes;
+      const resultat = heureDebutSpectacle >= heureDebutMinutes && heureDebutSpectacle <= heureFinMinutes;
+      console.log("Spectacle filtré ? ", resultat);
+      return resultat;
     } 
     
     else {
       // Pour d'autres types d'offres, vérifier si elles ont des horaires qui se chevauchent avec la plage horaire sélectionnée
       const horaires = offer.horaireMidi;
-      return horaires.some(horaire => {
+      console.log("Horaires pour cette offre : ", horaires);
+
+      const resultat = horaires.some(horaire => {
         const heureOuvertureMinutes = convertirEnMinutes(horaire.heureouverture);
         const heureFermetureMinutes = convertirEnMinutes(horaire.heurefermeture);
 
+        console.log(`Comparaison des horaires: ouverture ${heureOuvertureMinutes}, fermeture ${heureFermetureMinutes}`);
+        
         // Vérifier le chevauchement des horaires
-        return (heureOuvertureMinutes >= heureDebutMinutes && heureOuvertureMinutes <= heureFinMinutes) ||
-               (heureFermetureMinutes >= heureDebutMinutes && heureFermetureMinutes <= heureFinMinutes) ||
-               (heureOuvertureMinutes <= heureDebutMinutes && heureFermetureMinutes >= heureFinMinutes);
+        const chevauchement = (heureOuvertureMinutes >= heureDebutMinutes && heureOuvertureMinutes <= heureFinMinutes) ||
+                              (heureFermetureMinutes >= heureDebutMinutes && heureFermetureMinutes <= heureFinMinutes) ||
+                              (heureOuvertureMinutes <= heureDebutMinutes && heureFermetureMinutes >= heureFinMinutes);
+
+        console.log("Le chevauchement des horaires est-il vrai ? ", chevauchement);
+        return chevauchement;
       });
+
+      console.log("Offre filtrée ? ", resultat);
+      return resultat;
     }
   });
 }
+
 
 // Fonction de filtre par date
 
