@@ -2001,9 +2001,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   .flip-card-back .information {
     flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-    padding-inline: 5px !important; 
+    align-items: center !important;
+    justify-content: center !important;
+    padding-inline: 5px !important;
+    margin-top: 20px !important; 
   }
 
   .flip-card-back .resume {
@@ -2018,8 +2019,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     flex-direction: row !important;
     justify-content: flex-start !important;
     flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
+    align-items: center !important;
+    justify-content: center !important;
     padding-inline: 5px !important;
     margin-top: 5px !important;
   }
