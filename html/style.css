@@ -876,9 +876,8 @@ header ul + div {
   margin: 0;
 }
 #manageOffer figcaption {
-  font-size: 1.1rem;
+  font-size: 2rem;
   width: 200px;
-  height: 30px;
 }
 
 .currentStep figcaption {
@@ -1210,6 +1209,12 @@ header ul + div {
   align-items: center;
   gap: 10px;
   font-size: 1.3rem;
+}
+
+#horaireNonSelect {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 #msgHoraireSupr {

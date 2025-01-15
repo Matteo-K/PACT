@@ -67,15 +67,16 @@ if ($categorie["_activite"]) {
     <!-- Gestion des prestations proposée dans l'activité -->
     <div>
         <label class="labelTitre" for="actv_presta">Préstation(s)</label>
-        <div>
-            <div id="actv_inputAutoCompletePrestaInclu">
-                <label class="labelSousTitre" for="actv_prestaInclu">Prestations incluses<span id="msgPrestaInclus" class="msgError"></span></label>
-                <input type="text" id="actv_inputPrestaInclus" 
-                name="actv_inputPrestaInclus" 
-                placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
-
-                <ul id="actv_autocompletionInclus"></ul>
-            </div>
+        <div id="actv_blocPresta">
+            <div>
+                <div id="actv_inputAutoCompletePrestaInclu">
+                    <label class="labelSousTitre" for="actv_prestaInclu">Prestations incluses<span id="msgPrestaInclus" class="msgError"></span></label>
+                    <input type="text" id="actv_inputPrestaInclus" 
+                    name="actv_inputPrestaInclus" 
+                    placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
+                    
+                    <ul id="actv_autocompletionInclus"></ul>
+                </div>
             <ul id="atcv_zonePrestationInclus">
             </ul>
         </div>
@@ -85,14 +86,15 @@ if ($categorie["_activite"]) {
                 <input type="text" id="actv_inputPrestaNonInclus" 
                 name="actv_inputPrestaNonInclus" 
                 placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
-
+                
                 <ul id="actv_autocompletionNonInclus"></ul>
             </div>
             <ul id="atcv_zonePrestationNonInclus">
-            </ul>
+                </ul>
+            </div>
         </div>
     </div>
-
+        
     <div>
         <div>
             <!-- Zone pour l'age minimum pour l'activité -->
