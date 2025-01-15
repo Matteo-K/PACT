@@ -181,27 +181,27 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             <select name="categorie" id="selectCategorie">
                 <option value="restaurant"
                 <?php echo $categorie["_restauration"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && $categorie["_restauration"] ? 'style="display: none;"' : "" ?>>
+                <?php echo $disableCategorie && !$categorie["_restauration"] ? 'style="display: none;"' : "" ?>>
                     Restaurant
                 </option>
                 <option value="parc"
                 <?php echo $categorie["_parcattraction"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && $categorie["_parcattraction"] ? 'style="display: none;"' : "" ?>>
+                <?php echo $disableCategorie && !$categorie["_parcattraction"] ? 'style="display: none;"' : "" ?>>
                     Parc d'attraction
                 </option>
                 <option value="activite"
                 <?php echo $categorie["_activite"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && $categorie["_activite"] ? 'style="display: none;"' : "" ?>> 
+                <?php echo $disableCategorie && !$categorie["_activite"] ? 'style="display: none;"' : "" ?>> 
                     Activite
                 </option>
                 <option value="spectacle"
                 <?php echo $categorie["_spectacle"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && $categorie["_spectacle"] ? 'style="display: none;"' : "" ?>> 
+                <?php echo $disableCategorie && !$categorie["_spectacle"] ? 'style="display: none;"' : "" ?>> 
                     Spectacle
                 </option>
                 <option value="visite"
                 <?php echo $categorie["_visite"] ? "selected" : "" ?>
-                <?php echo $disableCategorie && $categorie["_visite"] ? 'style="display: none;"' : "" ?>>
+                <?php echo $disableCategorie && !$categorie["_visite"] ? 'style="display: none;"' : "" ?>>
                     Visite
                 </option>
             </select>
