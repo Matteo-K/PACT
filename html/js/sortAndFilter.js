@@ -394,21 +394,16 @@ function filtrerParHeure(offers) {
   const heureFinMinutes = convertirEnMinutes(heureFinValue);
 
   return offers.filter(offer => {
-    if (offer.categorie === 'Restaurant') {
-      // Récupérer les horaires du restaurant
-      const horaires = offer.horaires;
-      return horaires.some(horaire => {
-        const heureOuvertureMinutes = convertirEnMinutes(horaire.heureouverture);
-        const heureFermetureMinutes = convertirEnMinutes(horaire.heurefermeture);
-
-        // Vérifier si l'heure d'ouverture et l'heure de fermeture de l'offre se chevauchent avec la plage horaire sélectionnée
-        return (heureOuvertureMinutes >= heureDebutMinutes && heureOuvertureMinutes <= heureFinMinutes) ||
-               (heureFermetureMinutes >= heureDebutMinutes && heureFermetureMinutes <= heureFinMinutes) ||
-               (heureOuvertureMinutes <= heureDebutMinutes && heureFermetureMinutes >= heureFinMinutes);
-      });
-    } else {
-      // Pour les autres offres, vérifier si elles ont des horaires qui se chevauchent avec la plage horaire sélectionnée
-      const horaires = offer.horaires;
+    if (offer.categorie === 'Spectacle') {
+      // Pour un spectacle, on ne vérifie que l'heure de début
+      const heureDebutSpectacle = convertirEnMinutes(offer.heureouverture);
+      // Si l'heure de début du spectacle est après l'heure de début du filtre, ne pas afficher
+      return heureDebutSpectacle >= heureDebutMinutes && heureDebutSpectacle <= heureFinMinutes;
+    } 
+    
+    else {
+      // Pour d'autres types d'offres, vérifier si elles ont des horaires qui se chevauchent avec la plage horaire sélectionnée
+      const horaires = offer.horaireMidi;
       return horaires.some(horaire => {
         const heureOuvertureMinutes = convertirEnMinutes(horaire.heureouverture);
         const heureFermetureMinutes = convertirEnMinutes(horaire.heurefermeture);
