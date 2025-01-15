@@ -2000,11 +2000,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .information {
-    
-    /* flex-direction: column !important;
+    flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: flex-start !important;
-    padding-inline: 5px !important;  */
+    padding-inline: 5px !important; 
   }
 
   .flip-card-back .resume {
@@ -2016,17 +2015,18 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .tagsCard {
-    display: none;
-    /* flex-direction: row !important;
+    flex-direction: row !important;
     justify-content: flex-start !important;
-    gap: 3px !important;
-    margin-top: 5px !important; */
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding-inline: 5px !important;
+    margin-top: 5px !important;
   }
 
   .tagIndex {
-    display: none;
-    /* font-size: 0.75em !important;
-    padding: 4px 8px !important; */
+    font-size: 0.75em !important;
+    padding: 4px 8px !important;
   }
 }
 
