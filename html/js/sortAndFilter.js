@@ -425,7 +425,6 @@ function filtrerParHeure(offers) {
 
 
 
-
 // Fonction de filtre par période
 // function filtrerParPeriode(offers) {
 //   const dateDepartValue = new Date(dateDepart.value);
