@@ -804,6 +804,31 @@ header ul + div {
   position: relative;
 }
 
+#manageOffer [type="text"],
+#manageOffer [type="number"],
+#manageOffer [type="month"],
+#manageOffer [type="email"],
+#manageOffer [type="tel"],
+#manageOffer [type="password"],
+#manageOffer [type="time"] {
+  outline: none;
+  border-radius: 0;
+  border: none;
+  border-bottom: solid 2px var(--primary);
+  background-color: transparent;
+}
+
+#manageOffer textarea,
+#manageOffer select {
+  outline: none;
+  border: solid 2px var(--primary);
+  background-color: transparent;
+}
+
+.inputErreur {
+  border-color: red !important;
+}
+
 #manageOffer aside {
   width: 100%;
   padding-top: 20px;
@@ -905,15 +930,22 @@ header ul + div {
 }
 
 #leaveButtonBloc button {
-  width: 150px;
-  height: 35px;
   background-color: #28a745;
   color: var(--text-light);
+  border-color: #28a745;
+  padding: 10px 15px;
 }
 
 #leaveButtonBloc button:nth-child(2) {
   background-color: #c24d4d;
+  border-color: #c24d4d;
 }
+
+#leaveButtonBloc button:hover {
+  background-color: #fff;
+  color: var(--text-dark);
+}
+
 
 
 #manageOffer aside ul + div {
@@ -935,6 +967,7 @@ header ul + div {
   justify-content: flex-end;
   align-items: center;
   margin: 20px;
+  gap: 20px;
 }
 
 #manageOffer .suivant, #manageOffer .precedent {
@@ -1004,13 +1037,6 @@ header ul + div {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.blueBtnOffer {
-  background-color: var(--primary);
-  box-shadow: inset -4px -4px 4px #1883bc;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  transform: translateY(-100%);
 }
 
 /* # selection de l'offre # */
@@ -1132,6 +1158,7 @@ header ul + div {
 #hourlyOffer {
   padding: 20px;
   padding-bottom: 6%;
+  margin-left: 5%;
 }
 
 #hourlyOffer input {
@@ -1180,21 +1207,7 @@ header ul + div {
   border-radius: 15px;
   width: fit-content;
   padding: 15px 30px;
-  border: none;
   margin-left: 10px;
-}
-
-/* en cas de survol des boutons */
-#hourlyOffer input[type="button"]:hover,
-.blueBtnOffer:hover {
-  box-shadow: none;
-}
-
-/* en cas de clic sur les  boutons */
-#hourlyOffer input[type="button"]:active,
-.blueBtnOffer:active {
-  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
-    inset 4px 4px 4px #1883bc;
 }
 
 .hourlyHide {
@@ -1224,8 +1237,28 @@ header ul + div {
   align-items: center;
 }
 
+#addRep {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+#addRep:hover {
+  color: var(--accent) !important;
+  background-color: #fff !important;
+}
+
 #msgHoraireSupr {
   color: red;
+}
+
+.labelHourky {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.labelHourky input {
+  display: none;
 }
 
 /* ------------------------- END HOURLY OFFER CSS --------------------------------*/
@@ -1257,11 +1290,9 @@ header ul + div {
 #contactOffer input[type="text"],
 #contactOffer input[type="email"],
 #contactOffer input[type="tel"] {
-  text-indent: 0;
   padding: 10px;
   width: 70%;
   min-width: 300px;
-  border: solid 2px var(--secondary);
 }
 
 #contactOffer input[type="email"] {
@@ -1295,6 +1326,7 @@ header ul + div {
   display: flex;
   flex-flow: column nowrap;
   width: 40%;
+  position: relative;
 }
 
 #paymentOffer article:nth-child(1) {
@@ -1302,8 +1334,14 @@ header ul + div {
 }
 
 #paymentOffer input[type="radio"] {
-  width: 20px;
-  height: 20px;
+  display: none;
+}
+
+#selectPayment label {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: left;
 }
 
 /* Chaque moyen de payment */
@@ -1359,7 +1397,6 @@ header ul + div {
 /* tout les input du moyen de payment */
 #paymentOffer article:nth-child(2) input {
   height: 20px;
-  border: var(--secondary) 3px solid;
   padding: 5px;
   margin-bottom: 15px;
 }
@@ -1378,11 +1415,10 @@ header ul + div {
 
 #paymentOffer button {
   position: absolute;
-  bottom: 11vh;
-  border: none;
+  bottom: 50px;
   padding: 15px 10px;
   border-radius: 10px;
-  width: 250px;
+  width: 300px;
 }
 
 #removeCB {
@@ -1506,7 +1542,10 @@ header ul + div {
 }
 
 #aboutOffer > div,
-#blcTagImg > div {
+#blcTagImg > div,
+#actv_blocAccess,
+#actv_blocPrestaInclu,
+#actv_blocPrestaNonInclu {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
@@ -1515,6 +1554,7 @@ header ul + div {
 .labelTitre {
   display: inline-block;
   font-size: 1.6rem !important;
+  font-weight: normal !important;
   margin: 15px 0 5px 0;
 }
 
@@ -1546,6 +1586,14 @@ header ul + div {
 #ajoutPhoto,
 #park_plan {
   background-color: var(--primary);
+}
+
+#btnAjoutPhoto {
+  border: 3px solid var(--primary);
+  border-radius: 10px;
+  margin: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
 #detailsOffer input[type="file"],
@@ -1593,9 +1641,10 @@ header ul + div {
   height: 12px;
   margin: auto 0 auto 5px;
   position: absolute;
-  top: 10px;
+  top: 50%;
   right: 10px;
   display: none;
+  transform: translateY(-50%);
 }
 
 #artDetailOffer .tag:hover img {
@@ -1641,9 +1690,13 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #artDetailOffer section,
 #afficheImages,
-#afficheImages2,
 #park_zoneImg,
-#rest_zoneImg {
+#rest_zoneImg,
+#atcv_zonePrestationInclus,
+#atcv_zonePrestationNonInclus,
+#atcv_zonePrestationAccess,
+#visit_zonePrestationAccess,
+#visit_zoneLangue {
   margin: 10px 0 5px 0;
   padding: 7px;
   display: flex;
@@ -1651,10 +1704,12 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 10px;
-  overflow-y: scroll;
 }
 
-#inputAutoComplete {
+#inputAutoComplete,
+#actv_inputAutoCompletePrestaInclu,
+#actv_inputAutoCompletePrestaNonInclu,
+#actv_inputAutoCompleteAccess {
   position: relative;
   display: flex;
   flex-flow: column nowrap;
@@ -1664,7 +1719,10 @@ label[for="rest_ajoutPhotoMenu"] {
   border-radius: 0;
 }
 
-#autocompletion {
+#autocompletion,
+#actv_autocompletionInclus,
+#actv_autocompletionNonInclus,
+#atcv_zonePrestationAccess {
   display: none;
   padding: 2px 0;
   margin: 0;
@@ -1680,22 +1738,20 @@ label[for="rest_ajoutPhotoMenu"] {
   top: 100%;
   left: 0;
   z-index: 5;
-}
 
-#autocompletion li {
-  padding: 1px 0 1px 10px;
-}
+  li {
+    padding: 1px 0 1px 10px;
+    &:hover {
+      background-color: var(--text-dark20);
+    }
+    &:nth-child(even) {
+      background-color: var(--text-dark15);
+    }
+    &:nth-child(even):hover {
+      background-color: var(--text-dark25);
+    }
+  }
 
-#autocompletion li:hover {
-  background-color: var(--text-dark20);
-}
-
-#autocompletion li:nth-child(even) {
-  background-color: var(--text-dark15);
-}
-
-#autocompletion li:nth-child(even):hover {
-  background-color: var(--text-dark25);
 }
 
 /* ##### Catégorie d'offre ##### */
@@ -1990,13 +2046,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .title {
-    font-size: 1.3rem !important; /* Réduit la taille du titre */
+    font-size: 1.1rem !important; /* Réduit la taille du titre */
     text-align: right !important;
     margin: 0 !important;
   }
 
   .flip-card-front .title {
-    font-size: 1.3rem !important; /* Réduit la taille du titre */
+    font-size: 1rem !important; /* Réduit la taille du titre */
   }
 
   .flip-card-back .blocStar,.flip-card-front .blocStar {
@@ -2296,6 +2352,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   gap: 40px;
   margin-left: 380px;
   flex: 4;
+  height: fit-content;
 }
 
 .searchoffre:not(#search .searchoffre) {
@@ -2377,7 +2434,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .flip-card-front img {
-  height: 85%;
+  height: 80%;
   width: 100%;
   object-fit: cover;
 }
@@ -2385,12 +2442,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .flip-card-front figcaption {
   background-color: var(--bloc);
   color: #fff;
-  padding: 10px 15px;
+  padding: 0 15px;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
-  height: 15%;
+  height: 20%;
 }
 
 .flip-card-front .title {
@@ -2605,6 +2662,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .checkmark {
+  cursor: pointer;
   width: 30px;
   height: 30px;
   margin: 0 8px 0 4px;
@@ -2813,7 +2871,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #btnAside a {
   width: fit-content;
   padding: 10px;
-  background-color: var(--bloc25);
+  background-color: var(--primary60);
   border-radius: 0 1.5rem 1.5rem 0;
   transition: padding 0.1s linear;
   cursor: pointer;
@@ -4563,6 +4621,7 @@ details .nonRepondu {
   margin: 20px auto;
   padding: 20px;
   background-color: #f9f9f9;
+  border:3px solid var(--primary);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
@@ -4608,7 +4667,7 @@ details .nonRepondu {
 #formCreationAvis input:required,
 #formCreationAvis textarea:required {
   border: 1px solid #66afe9;
-  background-color: #eef5fc;
+  background-color: #fff;
 }
 
 /* Style pour les étoiles */
@@ -4639,12 +4698,17 @@ details .nonRepondu {
 }
 
 #enCompagnie label {
-  background-color: #e0e0e0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid var(--primary) !important;
+  border-radius: 10px !important;
   padding: 5px 10px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease-in-out;
+}
+
+label#btnAjoutPhoto:hover {
+  background-color: var(--primary);
+  color: #fff;
 }
 
 #enCompagnie input[type="radio"]:checked + label {
@@ -4745,6 +4809,7 @@ details .nonRepondu {
   border-radius: 0 !important;
   border-bottom: solid 3px var(--accent) !important;
   padding: 2px 20px !important;
+  font-size: 1.3em;
 }
 
 .notedetaille .barreDeNotationBlanche {
@@ -4985,6 +5050,10 @@ details .nonRepondu {
   }
 
   .messageAvisReponse {
+    width: 90%;
+  }
+
+  .avisMembre > nav{
     width: 90%;
   }
 }
@@ -5233,6 +5302,10 @@ body[id="body_creation_compte"] {
   background-size: cover;
 }
 
+#cgu {
+  display: none;
+}
+
 a[id="lienCGU"] {
   color: var(--bloc);
   text-decoration: underline;
@@ -5321,6 +5394,8 @@ body[id="body_creation_compte"] ::placeholder {
   font-size: 25px;
   margin: 5px;
   text-align: left;
+  display: flex;
+  align-items: center;
 }
 
 .creation-compte div.ligne1 > label,
@@ -5438,9 +5513,7 @@ input[id="ville"] {
 
 input[id="radioPublic"],
 input[id="radioPrive"] {
-  width: 25px;
-  height: 25px;
-  margin: 0 5px;
+  display: none;
 }
 
 input[id="siren"] {

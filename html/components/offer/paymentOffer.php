@@ -19,10 +19,11 @@
 <form id="paymentOffer" action="enregOffer.php" method="post">
   <section>
     <!-- Saisi du type de moyen de paiement -->
-    <article>
+    <article id="selectPayment">
       <div>
-        <input type="radio" name="typePaiement" id="carte_bancaire" checked>
         <label for="carte_bancaire">
+          <input type="radio" name="typePaiement" id="carte_bancaire" checked>
+          <span class="checkmark"></span>
           <figure>
             <figcaption>CARTE BANCAIRE</figcaption>
             <img src="../../img/logo/visa-mastercard.png" alt="logo visa-mastercard">
@@ -30,16 +31,18 @@
         </label>
       </div>
       <div>
-        <input type="radio" name="typePaiement" id="virement_bancaire">
         <label for="virement_bancaire">
+          <input type="radio" name="typePaiement" id="virement_bancaire">
+          <span class="checkmark"></span>
           <figure>
             <figcaption>VIREMENT BANCAIRE</figcaption>
           </figure>
         </label>
       </div>
       <div>
-        <input type="radio" name="typePaiement" id="paypal">
         <label for="paypal">
+          <input type="radio" name="typePaiement" id="paypal">
+          <span class="checkmark"></span>
           <figure>
             <figcaption>PAYPAL</figcaption>
             <img src="../../img/logo/paypal.png" alt="logo paypal">
@@ -66,7 +69,7 @@
         <label for="CBNomCarte">Nom sur la carte*&nbsp;:&nbsp;</label>
         <input type="text" name="CBDateExpir" id="CBDateExpir" placeholder="Prénom et nom">
 
-        <button class="blueBtnOffer">Valider le moyen de paiement</button>
+        <button class="modifierBut">Valider le moyen de paiement</button>
       </div>
       <!-- Virement bancaire -->
       <div id="Form_VB" class="payment_hide">
@@ -75,7 +78,7 @@
         <label for="VBTitulaire">Nom du titulaire du compte*&nbsp;:&nbsp;</label>
         <input type="text" name="VBTitulaire" id="VBTitulaire" placeholder="Prénom et nom">
 
-        <button class="blueBtnOffer">Valider le moyen de paiement</button>
+        <button class="modifierBut">Valider le moyen de paiement</button>
       </div>
       <!-- Paypal -->
       <div id="Form_paypal" class="payment_hide">
@@ -84,7 +87,7 @@
         <input type="text" name="PaypalAdress" id="PaypalAdress" placeholder="Mail">
         <label for="PaypalPassword">Mot de passe*&nbsp;:&nbsp;</label>
         <input type="password" name="PaypalPassword" id="PaypalPassword" placeholder="Mot de passe">
-        <button class="blueBtnOffer">Se connecter</button>
+        <button class="modifierBut">Se connecter</button>
       </div>
     </article>
   </section>

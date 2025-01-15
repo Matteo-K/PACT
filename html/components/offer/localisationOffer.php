@@ -58,12 +58,15 @@
       // Vérificationdes champs conforme
       inputAdresse.addEventListener("focus", () => {
         msgAdresse.textContent = "";
+        inputAdresse.classList.remove("inputErreur");
       });
       inputCodePostal.addEventListener("focus", () => {
         msgCodePostal.textContent = "";
+        inputCodePostal.classList.remove("inputErreur");
       });
       inputVille.addEventListener("focus", () => {
         msgVille.textContent = "";
+        inputVille.classList.remove("inputErreur");
       });
       inputAdresse.addEventListener("blur", checkAdresse);
       inputCodePostal.addEventListener("blur", checkCodePostal);
@@ -94,6 +97,7 @@
           msgAdresse.textContent = 
               "Adresse incorrecte. Exemple 123 Rue de la Liberté";
           res = false;
+          inputAdresse.classList.add("inputErreur");
         }
         return res;
       }
@@ -105,6 +109,7 @@
           msgCodePostal.textContent = 
               "Ex : 22300";
           res = false;
+          inputCodePostal.classList.add("inputErreur");
         }
         return res;
       }
@@ -114,8 +119,9 @@
         const villePattern = /^[a-zA-ZÀ-ÿ '-]+$/g;
         if (!villePattern.test(inputVille.value.trim())) {
           msgVille.textContent = 
-              "Nom de ville incorrecte. Exemple Lannion";
+              "Nom de ville incorrecte. Exemple Lannion.<br> Pas d'accent, ni caractère spéciale";
           res = false;
+          inputVille.classList.add("inputErreur");
         }
         return res;
       }

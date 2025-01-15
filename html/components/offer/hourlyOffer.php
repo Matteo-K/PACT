@@ -64,8 +64,11 @@ $is_show;
             <h4><?php echo $value?>&nbsp;:&nbsp;</h4>
         </div>
         <div>
-            <input type="checkbox" id="check<?php echo $value?>" name="check<?php echo $value?>" onclick="toggleInputs(this)"/>
-            <label for="check<?php echo $value?>">Fermé</label>
+            <label for="check<?php echo $value?>" class="labelHourky">
+                <input type="checkbox" id="check<?php echo $value?>" name="check<?php echo $value?>" onclick="toggleInputs(this)" />
+                <span class="checkmark"></span>
+                Fermé
+            </label>
             <span>
                 <span class="hourly1">
                     <label for="horairesOuv1<?php echo $value?>">Ouvert de</label>
@@ -75,7 +78,7 @@ $is_show;
                     <input type="time" name="horairesF1<?php echo $value?>" id="horairesF1<?php echo $value?>" value="<?php echo $horairesFerm1; ?>">
                     <!-- Zone de texte de type time pour saisir uniquement des heures -->
                 </span>
-                <input type="button" value="Ajouter un horaire" name="btnAjout<?php echo $value?>" id="btnAjout<?php echo $value?>" class="blueBtnOffer btnAddOffer <?php echo $soir?"hourlyHide" : ""?>">
+                <input type="button" value="Ajouter un horaire" name="btnAjout<?php echo $value?>" id="btnAjout<?php echo $value?>" class="modifierBut btnAddOffer <?php echo $soir?"hourlyHide" : ""?>">
                 <!-- Partie avec les horaire de l'après midi du Lundi-->
                 <span class="hourly2 <?php echo $soir?"" : "hourlyHide"?>">
                     <label for="horairesOuv2<?php echo $value?>">et de</label>
@@ -85,7 +88,7 @@ $is_show;
                     <input type="time" name="horairesF2<?php echo $value?>" id="horairesF2<?php echo $value?>" value="<?php  echo $horairesFerm2;  ?>">
                     <!-- Zone de texte de type time pour saisir uniquement des heures -->
                 </span>
-                <input type="button" value="Retirer" name="btnRetirer<?php echo $value?>" id="btnRetirer<?php echo $value?>" value="<?php echo $horairesFerm2; ?>" class="blueBtnOffer btnRmOffer <?php echo $soir?"" : "hourlyHide"?>">
+                <input type="button" value="Retirer" name="btnRetirer<?php echo $value?>" id="btnRetirer<?php echo $value?>" value="<?php echo $horairesFerm2; ?>" class="modifierBut btnRmOffer <?php echo $soir?"" : "hourlyHide"?>">
                 <!-- bouton pour retirer les horaires -->
             </span>
         </div>
@@ -131,11 +134,11 @@ $is_show;
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
         <div>
-            <h4>Ajouter une date pour le spectacle&nbsp;:&nbsp;</h4><span id="msgHoraireSupr"></span>          
+            <h4>Ajouter une date pour le spectacle</h4><span id="msgHoraireSupr"></span>          
         </div>
         <div id="Representation">
         </div>
-        <input type="button" value="Ajouter une date" name="addRep" id="addRep" class="guideSelect" onclick="addDateRep()">
+        <input type="button" value="Ajouter une date" name="addRep" id="addRep" class="modifierBut" onclick="addDateRep()">
         <?php 
             $ar = new ArrayOffer($idOffre);
             $data = $ar->getArray();
@@ -229,7 +232,7 @@ $is_show;
                     ajouterDate.setAttribute("value", "Retirer");
                     ajouterDate.setAttribute("name", "btnRetirerRepN"+counterRep);
                     ajouterDate.id = "btnRetirerRepN"+counterRep;
-                    ajouterDate.classList.add("blueBtnOffer");
+                    ajouterDate.classList.add("modifierBut");
                     ajouterDate.setAttribute("onclick", "removeDateRep(this)");
                     
                     newBlock.appendChild(date);

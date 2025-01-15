@@ -12,6 +12,8 @@ $activite = [
 ];
 $accessibilite = [];
 $prestation = [];
+$maxPresta = 10;
+$maxAccess = 10;
 
 // accessibilité
 $stmt = $conn->prepare("SELECT nomaccess from pact._accessibilite");
@@ -67,20 +69,22 @@ if ($categorie["_activite"]) {
     <!-- Gestion des prestations proposée dans l'activité -->
     <div>
         <label class="labelTitre" for="actv_presta">Préstation(s)</label>
-        <div id="actv_blocPresta">
-            <div>
-                <div id="actv_inputAutoCompletePrestaInclu">
-                    <label class="labelSousTitre" for="actv_prestaInclu">Prestations incluses<span id="msgPrestaInclus" class="msgError"></span></label>
-                    <input type="text" id="actv_inputPrestaInclus" 
-                    name="actv_inputPrestaInclus" 
-                    placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
-                    
-                    <ul id="actv_autocompletionInclus"></ul>
-                </div>
+        <div id="actv_blocPrestaInclu">
+            <div id="actv_inputAutoCompletePrestaInclu">
+                <label class="labelSousTitre" for="actv_prestaInclu">Prestations incluses<span id="msgPrestaInclus" class="msgError"></span></label>
+                <input type="text" id="actv_inputPrestaInclus" 
+                name="actv_inputPrestaInclus" 
+                placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
+                
+                <ul id="actv_autocompletionInclus"></ul>
+            </div>
             <ul id="atcv_zonePrestationInclus">
             </ul>
+            <label class="labelSousTitre">
+                Vous pouvez entrer jusqu'à <?= $maxPresta ?> prestations inclus
+            </label>
         </div>
-        <div>
+        <div id="actv_blocPrestaNonInclu">
             <div id="actv_inputAutoCompletePrestaNonInclu">
                 <label class="labelSousTitre" for="actv_prestaNonInclu">Prestations non-incluses<span id="msgPrestaNonInclus" class="msgError"></span></label>
                 <input type="text" id="actv_inputPrestaNonInclus" 
@@ -90,8 +94,10 @@ if ($categorie["_activite"]) {
                 <ul id="actv_autocompletionNonInclus"></ul>
             </div>
             <ul id="atcv_zonePrestationNonInclus">
-                </ul>
-            </div>
+            </ul>
+            <label class="labelSousTitre">
+                Vous pouvez entrer jusqu'à <?= $maxPresta ?> prestations non inclus
+            </label>
         </div>
     </div>
         
@@ -120,7 +126,7 @@ if ($categorie["_activite"]) {
         </div>
 
         <!-- Accessibilité -->
-        <div>
+        <div id="actv_blocAccess">
             <div id="actv_inputAutoCompleteAccess">
                 <label class="labelSousTitre" for="actv_inputAccess">Accessibilités<span id="actv_msgAccess" class="msgError"></span></label>
                 <input type="text" id="actv_inputAccess" 
@@ -131,6 +137,9 @@ if ($categorie["_activite"]) {
             </div>
             <ul id="atcv_zonePrestationAccess">
             </ul>
+            <label class="labelSousTitre">
+                Vous pouvez entrer jusqu'à <?= $maxAccess ?> accessibilités
+            </label>
         </div>
     </div>
 
@@ -177,7 +186,7 @@ if ($categorie["_activite"]) {
 
     const actv_msgInclu = document.getElementById("msgPrestaInclus");
     const actv_msgNonInclu = document.getElementById("msgPrestaNonInclus");
-    const actv_maxPrestation = 10;
+    const actv_maxPrestation = <?= $maxPresta ?>;
 
     const indexPrestaInclu = createAutoCompletion(
         actv_inputInclu,
@@ -254,7 +263,7 @@ if ($categorie["_activite"]) {
     const actv_zone = document.getElementById("atcv_zonePrestationAccess");
     const actv_msgAccess = document.getElementById("actv_msgAccess");
 
-    const actv_maxAccess = 20;
+    const actv_maxAccess = <?= $maxAccess ?>;
 
     const actv_indexAccess = createAutoCompletion(
         actv_inputAccess,

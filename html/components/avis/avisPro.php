@@ -157,7 +157,7 @@ $avis = $avisTemp;
                 <h2>
                     Répondre a membre
                 </h2>
-                <input type="submit" class="blueBtnOffer">
+                <input type="submit" class="modifierBut">
                 <textarea name="reponsePro" id="reponsePro" placeholder="Entrez votre réponse à propos de cet avis"></textarea>
                 <input type="hidden" name="hiddenInputIdAvis" value="">
                 <input type="hidden" name="idoffre" value="<?=$idOffre?>">

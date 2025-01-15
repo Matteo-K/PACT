@@ -31,6 +31,7 @@ function loadExistingImages(dossierImg, zoneImg, limit, idOffre, indexCountImg) 
                 croix.onclick = () => {
                     if (confirm("Êtes-vous sûr de vouloir supprimer cette image ?")) {
                         deleteImage(image, div, index, dossierImg, zoneImg, limit, idOffre, indexCountImg); // Supprime l'image si l'utilisateur confirme
+                        existingImagesCount[indexCountImg] -= 1;
                     }
                 };
                 

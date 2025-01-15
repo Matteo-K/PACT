@@ -191,12 +191,18 @@
             <div class="ligne5">
                 <div class="ligne5_1">
                     <!-- Radio bouton public -->
-                    <input type="radio" id="radioPublic" name="secteur" value="public">
-                    <label for="public">Public</label>
+                    <label for="radioPublic">
+                        <input type="radio" id="radioPublic" name="secteur" value="public">
+                        <span class="checkmark"></span>
+                        Public
+                    </label>
             
                     <!-- Radio bouton privée -->
-                    <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
-                    <label for="prive">Privé</label>
+                    <label for="radioPrive">
+                        <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
+                        <span class="checkmark"></span>
+                        Privé
+                    </label>
                 </div>
 
                 <div class="ligne5_2">
@@ -225,8 +231,11 @@
 
             <div class="ligne7">
                 <!-- Checkbox des CGU -->
-                <input type="checkbox" id="cgu" name="cgu" value="cgu" />
-                <label for="cgu">J’accepte les <a id="lienCGU" href= "cgu.php" target="_blank">conditions générales d’utilisation</a> de la PACT</label>
+                <label for="cgu">
+                    <input type="checkbox" id="cgu" name="cgu" value="cgu" />
+                    <span class="checkmark"></span>
+                    J’accepte les <a id="lienCGU" href= "cgu.php" target="_blank">conditions générales d’utilisation</a> de la PACT
+                </label>
             </div>
             
             <button type="submit" id="boutonInscription">S'inscrire</button>

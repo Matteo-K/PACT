@@ -268,7 +268,7 @@ $data = $ar->getArray();
                     <?php
                     foreach ($photos as $picture) {
                     ?>
-                        <div class="swiper-slide">
+                        <div class="swiper-slide imageSwiper">
                             <img src="<?php echo $picture['url']; ?>" />
                         </div>
                     <?php
@@ -276,9 +276,6 @@ $data = $ar->getArray();
                     ?>
                 </div>
             </div>
-
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
 
         <div thumbsSlider="" class="swiper myThumbSlider">
@@ -490,7 +487,52 @@ $data = $ar->getArray();
         </section>
         <!-- Carte Google Maps -->
         <div id="mapPreview" class="carte"></div>
+        <?php
+        if ($data[$idOffre]['categorie'] == "Parc Attraction") {
+            if ($data[$idOffre]['urlplan']) {
+        ?>
+                <div class="planParc">
+                    <h2>Plan du parc :</h2>
+                    <div>
+                        <img src="<?php echo $result[0]["urlplan"] ?>">
+                    </div>
+                </div>
+            <?php
+            }
+        } else if ($data[$idOffre]['categorie'] == "Restaurant") {
+            $stmt = $conn->prepare("SELECT * from pact._menu where idoffre = $idOffre");
+            $stmt->execute();
+            $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            if ($menus) {
+            ?>
+
+                <div class="divMenu">
+                    <h2>Menu :</h2>
+                    <div class="swiper-container menu-container">
+                        <div class="swiper menu">
+                            <div class="swiper-wrapper">
+                                <?php
+                                foreach ($menus as $menu) {
+                                ?>
+                                    <div class="swiper-slide">
+                                        <img src="<?php echo $menu['menu']; ?>" />
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+        <?php
+
+            }
+        }
+
+        ?>
     </section>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
@@ -508,9 +550,6 @@ $data = $ar->getArray();
         });
         var swiper2 = new Swiper(".mySwiper", {
             loop: true,
-            autoplay: {
-                delay: 5000,
-            },
             spaceBetween: 10,
             navigation: {
                 nextEl: ".swiper-button-next",
@@ -519,5 +558,11 @@ $data = $ar->getArray();
             thumbs: {
                 swiper: swiper,
             },
+        });
+        var swiper2 = new Swiper(".menu", {
+            loop: true,
+            spaceBetween: 10,
+            slidesPerView: 3,
+            freeMode: true
         });
     </script>
