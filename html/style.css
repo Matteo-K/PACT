@@ -2045,9 +2045,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {
-    height: 250px; /* Ajuste la hauteur selon ton besoin */
+    height: fit-content; /* Ajuste la hauteur selon ton besoin */
     position: relative;
-    margin: auto;
+    margin: 0 auto 0 auto;
+  }
+
+  #index{
+    margin-top: 0;
   }
 
   .swiper.gb, 
@@ -2056,7 +2060,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     width: 300px;
     height: 100%;
     overflow: hidden;
-    margin: auto;
+    margin: 0 auto 0 auto;
   }
 
   .swiper-button-next.gb2,
