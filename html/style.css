@@ -1238,7 +1238,13 @@ header ul + div {
   color: red;
 }
 
-.inputHourly {
+.labelHourky {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.labelHourky input {
   display: none;
 }
 

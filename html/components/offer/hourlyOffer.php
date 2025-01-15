@@ -64,8 +64,8 @@ $is_show;
             <h4><?php echo $value?>&nbsp;:&nbsp;</h4>
         </div>
         <div>
-            <label for="check<?php echo $value?>">
-                <input type="checkbox" id="check<?php echo $value?>" name="check<?php echo $value?>" onclick="toggleInputs(this)" class="inputHourly" />
+            <label for="check<?php echo $value?>" class="labelHourky">
+                <input type="checkbox" id="check<?php echo $value?>" name="check<?php echo $value?>" onclick="toggleInputs(this)" />
                 <span class="checkmark"></span>
                 Fermé
             </label>
