@@ -262,7 +262,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
     <title><?php echo htmlspecialchars($result[0]["nom"]); ?></title>
 </head>
 
@@ -978,40 +978,38 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <section class="modal-content">
                                 <span class="close">&times;</span>
                                 <h2>Signalement d'un avis</h2>
-                                <form action="signaleAvis.php">
-                                    <ul>
-                                        <li>
-                                            <label for="inapproprie">
-                                                <input type="radio" name="signalement" id="inapproprie" value="innaproprie">
-                                                <span class="checkmark"></span>
-                                                Contenu inapproprié (injures, menaces, contenu explicite...)
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label for="frauduleux">
-                                                <input type="radio" name="signalement" id="frauduleux" value="frauduleux">
-                                                <span class="checkmark"></span>
-                                                Avis frauduleux ou trompeur (faux avis, publicité déguisée...)
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label for="spam">
-                                                <input type="radio" name="signalement" id="spam" value="spam">
-                                                <span class="checkmark"></span>
-                                                Spam ou contenu hors-sujet (multipostage, indésirable...)
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label for="violation">
-                                                <input type="radio" name="signalement" id="violation" value="violation">
-                                                <span class="checkmark"></span>
-                                                Violation des règles de la plateforme (vie privée, données seneibles...)
-                                            </label>
-                                        </li>
-                                    </ul>
-                                    <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
-                                    <input type="submit" value="Envoyer" id="confirmeSignalement">
-                                </form>
+                                <ul>
+                                    <li>
+                                        <label for="inapproprie">
+                                            <input type="radio" name="signalement" id="inapproprie" value="innaproprie">
+                                            <span class="checkmark"></span>
+                                            Contenu inapproprié (injures, menaces, contenu explicite...)
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label for="frauduleux">
+                                            <input type="radio" name="signalement" id="frauduleux" value="frauduleux">
+                                            <span class="checkmark"></span>
+                                            Avis frauduleux ou trompeur (faux avis, publicité déguisée...)
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label for="spam">
+                                            <input type="radio" name="signalement" id="spam" value="spam">
+                                            <span class="checkmark"></span>
+                                            Spam ou contenu hors-sujet (multipostage, indésirable...)
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label for="violation">
+                                            <input type="radio" name="signalement" id="violation" value="violation">
+                                            <span class="checkmark"></span>
+                                            Violation des règles de la plateforme (vie privée, données seneibles...)
+                                        </label>
+                                    </li>
+                                </ul>
+                                <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
+                                <button id="confirmeSignalement"> Envoyer </button>
                             </section>
                         </section>
                     </div>
@@ -1039,11 +1037,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             form.appendChild(idAvis);
 
             // Ajoute le champ caché pour spécifier l'action
-            const action = document.createElement("input");
-            action.type = "hidden";
-            action.name = "action";
-            action.value = action;
-            form.appendChild(action);
+            const actionReaction = document.createElement("input");
+            actionReaction.type = "hidden";
+            actionReaction.name = "action";
+            actionReaction.value = action;
+            form.appendChild(actionReaction);
 
             // Ajoute le champ caché pour l'ID de l'offre
             const offre = document.createElement("input");
@@ -1062,7 +1060,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         const popup = document.querySelector('.avis .signalementPopup');
         const btnFermer = document.querySelector('.signalementPopup .close');
         const btnConfirmer = document.getElementById('confirmeSignalement');
-        
+
 
         // Afficher le pop-up
         ouvrePopup.forEach(boutonOuvrePopup => {
@@ -1074,12 +1072,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Traiter le signalement en BDD après confirmation et fermer le popup
         btnConfirmer.addEventListener('click', () => {
 
+            let motifSignal = document.querySelector('input[name="signalement"]:checked');
+
             if (motifSignal) {
                 popup.style.display = 'none';
 
+                console.log(ouvrePopup.classList);
+
                 idAvisSignal = ouvrePopup.classList[2].split("_")[1];
-                let motifSignal = document.querySelector('input[name="signalement"]:checked');
-                let texteComplement = document.querySelector('.signalementPopup form textarea');
+                let texteComplement = document.querySelector('.signalementPopup textarea');
 
                 fetch('signalement.php', {
                     method: 'POST',
@@ -1089,7 +1090,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         'idU' : <?= json_encode($_SESSION['idUser']) ?>,
                         'motif' : motifSignal.value,
                         'complement' : texteComplement.textContent
-                    });
+                    })
                 });
 
                 alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme!');
@@ -1283,7 +1284,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     closeModal(); // Fermer la fenêtre modale après soumission
                 }
             } catch (error) {
-
+                console.log(error)
             }
         });
     </script>
@@ -1345,7 +1346,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
 
     <!-- Inclure l'API Google Maps avec votre clé API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
