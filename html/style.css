@@ -1982,6 +1982,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     font-size: 0.8em !important;
   }
 
+  #numRue{
+    display: none;
+  }
+
   .flip-card-back .blocStar {
     justify-content: flex-end !important;
   }
@@ -1996,7 +2000,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .information {
-    display: none;
+    
     /* flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: flex-start !important;
