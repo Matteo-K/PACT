@@ -4895,10 +4895,6 @@ details .nonRepondu {
     width: 95% !important;
   }
 
-  #sectionPreview #infoComp {
-    width: 65%;
-    margin: auto;
-  }
 
   #infoComp {
     width: 90%;
@@ -4981,6 +4977,11 @@ details .nonRepondu {
 
 #sectionPreview h4{
   font-size: 35px;
+}
+
+#sectionPreview #infoComp {
+  width: 55%;
+  margin: auto;
 }
 
 #titleOfferPreview {
