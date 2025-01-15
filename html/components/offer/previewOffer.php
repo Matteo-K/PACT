@@ -243,7 +243,7 @@ $data = $ar->getArray();
             </section>
         </article>
 
-        <section id="InfoComp">
+        <section id="infoComp">
             <h2>Informations Complémentaires</h2>
             <?php if ($data[$idOffre]["categorie"] == "Visite") { ?>
                 <div>
