@@ -1238,6 +1238,10 @@ header ul + div {
   color: red;
 }
 
+.inputHourly {
+  display: none;
+}
+
 /* ------------------------- END HOURLY OFFER CSS --------------------------------*/
 /* ------------------------- Contact OFFER CSS --------------------------------*/
 

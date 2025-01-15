@@ -65,7 +65,7 @@ $is_show;
         </div>
         <div>
             <label for="check<?php echo $value?>">
-                <input type="checkbox" id="check<?php echo $value?>" name="check<?php echo $value?>" onclick="toggleInputs(this)"/>
+                <input type="checkbox" id="check<?php echo $value?>" name="check<?php echo $value?>" onclick="toggleInputs(this)" class="inputHourly" />
                 <span class="checkmark"></span>
                 Fermé
             </label>
