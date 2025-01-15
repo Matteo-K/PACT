@@ -239,7 +239,7 @@ $data = $ar->getArray();
             ?>
             <section>
                 <h3>Description</h3>
-                <p><?php echo htmlspecialchars($result[0]["description"]); ?></p>
+                <p><?php echo htmlspecialchars($data[$idOffre]["description"]); ?></p>
             </section>
         </article>
 
