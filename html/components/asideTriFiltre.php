@@ -38,7 +38,7 @@
                 </div>
                 <div>
                     <input type="radio" name="tri" id="dateCreationRecent">
-                    <label for="dateCreationRecent">Créé récemment</label>
+                    <label for="dateCreationRecent">Creé récemment</label>
                     <input type="radio" name="tri" id="dateCreationAncien">
                     <label for="dateCreationAncien">Plus anciennne</label>
                 </div>
