@@ -293,6 +293,20 @@ if ($categorie["_activite"]) {
     const actv_msgPrix = document.getElementById("actv_msgPrix");
     const actv_msgDuree = document.getElementById("actv_msgDuree");
 
+    actv_inputAge.addEventListener("focus", () => {
+        actv_msgAge.textContent = "";
+    });
+    actv_inputPrix.addEventListener("focus", () => {
+        actv_msgPrix.textContent = "";
+    });
+    actv_inputDuree.addEventListener("focus", () => {
+        actv_msgDuree.textContent = "";
+    });
+
+    actv_inputAge.addEventListener("blur", checkActvAgeMin);
+    actv_inputPrix.addEventListener("blur", checkActvPrixMin);
+    actv_inputDuree.addEventListener("blur", checkActvDuree);
+
     function checkActivity() {
         let age = checkActvAgeMin();
         let prix = checkActvPrixMin();
@@ -304,7 +318,7 @@ if ($categorie["_activite"]) {
         let res = true;
         
         if (actv_inputAge.value != "") {
-            actv_msgAge.textContent = "Le champ age doit être complété";
+            actv_msgAge.textContent = "Le champ âge doit être complété";
             res = false;
         } else {
             const agePattern = /^\d+$/;
