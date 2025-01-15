@@ -1037,11 +1037,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             form.appendChild(idAvis);
 
             // Ajoute le champ caché pour spécifier l'action
-            const action = document.createElement("input");
+            const actionReaction = document.createElement("input");
             action.type = "hidden";
             action.name = "action";
             action.value = action;
-            form.appendChild(action);
+            form.appendChild(actionReaction);
 
             // Ajoute le champ caché pour l'ID de l'offre
             const offre = document.createElement("input");
@@ -1060,7 +1060,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         const popup = document.querySelector('.avis .signalementPopup');
         const btnFermer = document.querySelector('.signalementPopup .close');
         const btnConfirmer = document.getElementById('confirmeSignalement');
-        
+
 
         // Afficher le pop-up
         ouvrePopup.forEach(boutonOuvrePopup => {
@@ -1266,9 +1266,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     body.classList.remove("no-scroll");
                 }
                 // Ouvrir le popup lorsque le bouton est cliqué
-                openModalBtn.onclick = openModal();
+                openModalBtn.onclick = openModal;
                 // Fermer le popup lorsqu'on clique sur la croix
-                closeModalBtn.onclick = closeModal();
+                closeModalBtn.onclick = closeModal;
                 // Fermer le popup lorsqu'on clique en dehors du contenu
                 // window.onclick = function(event) {
                 //   if (event.target === modal) {
@@ -1281,7 +1281,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     closeModal(); // Fermer la fenêtre modale après soumission
                 }
             } catch (error) {
-
+                console.log(error)
             }
         });
     </script>
