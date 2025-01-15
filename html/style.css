@@ -1326,6 +1326,7 @@ header ul + div {
   display: flex;
   flex-flow: column nowrap;
   width: 40%;
+  position: relative;
 }
 
 #paymentOffer article:nth-child(1) {
@@ -1414,11 +1415,10 @@ header ul + div {
 
 #paymentOffer button {
   position: absolute;
-  bottom: 11vh;
-  border: none;
+  bottom: 50px;
   padding: 15px 10px;
   border-radius: 10px;
-  width: 250px;
+  width: 300px;
 }
 
 #removeCB {
