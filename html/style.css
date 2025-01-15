@@ -4289,10 +4289,9 @@ details .nonRepondu {
 }
 
 .conteneurReponsePro > article > img {
-  width: 1.5em;
-  height: 1.5em;
-  top: 20px;
-  right: 20px;
+  width: 2em;
+  height: 2em;
+  float: right;
 }
 
 .conteneurReponsePro h3 {
