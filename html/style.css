@@ -1980,7 +1980,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .blocStar .star {
-    margin: 0 2px !important; /* Réduit l'espace entre les étoiles */
+
   }
 
   .flip-card-back .nomPro {
@@ -1988,15 +1988,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .information {
-    flex-direction: column !important; /* Empile les informations horizontalement */
+    display: none;
+    /* flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: flex-start !important;
-    padding-inline: 5px !important; /* Réduit les espacements internes */
+    padding-inline: 5px !important;  */
   }
 
   .flip-card-back .resume {
-    font-size: 0.9rem !important; /* Réduit la taille de la police du résumé */
-    margin-bottom: 8px !important;
+    display: none;
   }
 
   .flip-card-back address {
@@ -2004,15 +2004,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .tagsCard {
-    flex-direction: row !important; /* Affiche les tags en ligne pour économiser de l'espace */
+    display: none;
+    /* flex-direction: row !important;
     justify-content: flex-start !important;
-    gap: 3px !important; /* Réduit l'espace entre les tags */
-    margin-top: 5px !important;
+    gap: 3px !important;
+    margin-top: 5px !important; */
   }
 
   .tagIndex {
-    font-size: 0.75em !important; /* Réduit la taille des tags */
-    padding: 4px 8px !important;
+    display: none;
+    /* font-size: 0.75em !important;
+    padding: 4px 8px !important; */
   }
 }
 
