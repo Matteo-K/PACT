@@ -25,7 +25,7 @@
     <input type="tel" name="phone" id="phone" placeholder="Numéro fixe" 
     value="<?php echo $phone; ?>"> <span id="msgTel" class="msgError"></span>
   </div>
-  <div>
+  <div id="acceptPhone">
     <h4 class="labelTitre">Consentez vous à afficher votre numéro de portable sur l’offre &nbsp;?&nbsp;</h4>
     <div>
       <label for="Oui">
