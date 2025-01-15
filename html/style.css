@@ -5101,6 +5101,7 @@ label#btnAjoutPhoto:hover {
   }
   #accompagnant, #divAjoutPhoto{
     flex-direction: column;
+    justify-content: flex-start;
   }
 }
 
