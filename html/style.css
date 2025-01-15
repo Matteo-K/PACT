@@ -3683,6 +3683,11 @@ tbody td:last-child {
   text-decoration: none;
 }
 
+#sectionPreview #infoComp {
+  width: 55%;
+  margin: auto;
+}
+
 #infoPro img,
 #afficheLoc img {
   width: 25px;
@@ -3703,6 +3708,7 @@ article#descriptionOffre {
 article#descriptionOffre {
   border-radius: 10px;
   padding: 20px 0;
+  margin: auto;
   margin-bottom: 20px;
   align-items: flex-end;
 }
