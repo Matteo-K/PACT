@@ -91,7 +91,7 @@ foreach ($avis as $a) {
                     <?php
                     if ($a['idu'] == $idUser) {
                     ?>
-                        <img onclick="supAvis(<?= $a['idc'] ?>, <?= $idOffre ?>)" class="signalementSupp supprimerAvis" src="./img/icone/bin.png" alt="Poubelle" title="Supprimer son avis" />
+                        <img onclick="supAvis(<?= $a['idc'] ?>, <?= $idOffre ?>, 'supprimerAvis')" class="signalementSupp supprimerAvis" src="./img/icone/bin.png" alt="Poubelle" title="Supprimer son avis" />
                     <?php
                     } else {
                     ?>
@@ -294,6 +294,7 @@ foreach ($avis as $a) {
 }
 ?>
 <script>
+
     function likeAndDislike(checkbox, action) {
         const container = document.getElementById(checkbox.id);
         const likeId = "like_" + checkbox.id.split("_")[1];

@@ -936,7 +936,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         } else {
                         ?> <div class="avisMembre">
                                 <nav id="tab-container">
-                                    <h3 id="tab-avis">Avis</h3>
+                                    <h3 id="tab-avis" class="selected active">Avis</h3>
                                     <h3 id="tab-publiez">Publiez un avis</h3>
                                 </nav>
 
@@ -1020,7 +1020,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
     <script>
-        function supAvis(id, idOffre) {
+
+        function supAvis(id, idOffre, action) {
             // Affiche une boîte de dialogue pour confirmer la suppression
             const confirmSupp = confirm("Êtes-vous sûr de vouloir supprimer votre avis ?");
             if (!confirmSupp) return;
@@ -1041,7 +1042,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             const action = document.createElement("input");
             action.type = "hidden";
             action.name = "action";
-            action.value = "supprimerAvis";
+            action.value = action;
             form.appendChild(action);
 
             // Ajoute le champ caché pour l'ID de l'offre

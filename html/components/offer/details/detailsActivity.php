@@ -319,7 +319,7 @@ if ($categorie["_activite"]) {
         const agePattern = /^\d+$/;
 
         if (!agePattern.test(actv_inputAge.value.trim())) {
-            actv_msgAge.textContent = "Le champ doit contenir uniquement des chiffres";
+            actv_msgAge.textContent = "Le champ ge doit contenir uniquement des chiffres positifs";
             res = false;
         }
         return res;
@@ -330,16 +330,9 @@ if ($categorie["_activite"]) {
         let res = true;
         const prixPattern = /^\d+$/;
 
-        if () {
-            if (!prixPattern.test(actv_inputPrix.value.trim())) {
-                actv_msgPrix.textContent = "Le champ doit contenir uniquement des chiffres";
-                res = false;
-            }
-        } else {
-            if (actv_inputPrix.value.trim() < 0) {
-                actv_msgPrix.textContent = "Le champ doit contenir des chiffres positifs";
-                res = false;
-            }
+        if (!prixPattern.test(actv_inputPrix.value.trim())) {
+            actv_msgPrix.textContent = "Le champ prix doit contenir uniquement des chiffres positifs";
+            res = false;
         }
 
         return res;
@@ -351,7 +344,7 @@ if ($categorie["_activite"]) {
         const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
 
         if (!timePattern.test(duree)) {
-            actv_msgDuree.textContent = "Le champ doit être au format HH:MM";
+            actv_msgDuree.textContent = "Le champ durée doit être au format HH:MM";
             res = false;
         }
         return res;
