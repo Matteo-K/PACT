@@ -1223,6 +1223,15 @@ header ul + div {
   align-items: center;
 }
 
+#addRep {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+#addRep:hover {
+  color: var(--accent) !important;
+}
+
 #msgHoraireSupr {
   color: red;
 }
