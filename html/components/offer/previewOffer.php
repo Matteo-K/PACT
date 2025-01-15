@@ -309,6 +309,87 @@ $data = $ar->getArray();
                     // Tableau de tous les jours de la semaine
                     $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
+                    // Récupérer les horaires à partir de la fonction getSchedules
+                    $schedules = getSchedules();
+                    // Afficher les horaires pour chaque jour de la semaine
+                    if ($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
+                        $horaireSpectacle = [];
+                        if ($schedules['spectacle']) {
+                            usort($schedules['spectacle'], function ($a, $b) {
+                                $dateA = new DateTime($a['dateRepresentation']);
+                                $dateB = new DateTime($b['dateRepresentation']);
+                                return $dateA <=> $dateB; // Trier du plus récent au plus ancien
+                            });
+
+                            foreach ($schedules['spectacle'] as $spec) {
+                                $dateSpectacle = new DateTime($spec['dateRepresentation']);
+                    ?>
+                                <tr>
+                                    <td class="jourSemaine"><?= ucwords(formatDateEnFrancais($dateSpectacle)) ?></td>
+                                    <td>
+                                        <?php
+                                        echo "à " . str_replace("=>", ":", $spec['heureOuverture']);
+                                        ?>
+                                    </td>
+                                </tr>
+                            <?php
+
+                            }
+                        }
+                    } else {
+                        foreach ($joursSemaine as $jour): ?>
+                            <tr>
+                                <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
+                                <td>
+                                    <?php
+
+                                    // Filtrer les horaires pour chaque jour spécifique
+                                    $horaireMidi = [];
+                                    $horaireSoir = [];
+
+                                    if ($schedules['midi']) {
+                                        $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
+                                    }
+                                    if ($schedules['soir']) {
+                                        $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
+                                    }
+
+                                    // Collecter les horaires à afficher
+                                    $horairesAffichage = [];
+                                    if (!empty($horaireMidi)) {
+                                        $horaireMidi = current($horaireMidi); // Prendre le premier élément du tableau filtré
+                                        $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":", $horaireMidi['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":", $horaireMidi['heureFermeture']));
+                                    }
+                                    if (!empty($horaireSoir)) {
+                                        $horaireSoir = current($horaireSoir); // Prendre le premier élément du tableau filtré
+                                        $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":", $horaireSoir['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":", $horaireSoir['heureFermeture']));
+                                    }
+                                    if (empty($horaireMidi) && empty($horaireSoir)) {
+                                        $horairesAffichage[] = "Fermé";
+                                    }
+
+                                    // Afficher les horaires ou "Fermé"
+                                    echo implode(' et ', $horairesAffichage);
+                                    ?>
+                                </td>
+                            </tr>
+                    <?php
+                        endforeach;
+                    }
+                    ?>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Horaires</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    // Tableau de tous les jours de la semaine
+                    $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+
                     // Afficher les horaires pour chaque jour de la semaine
                     foreach ($joursSemaine as $jour): ?>
                         <tr>
