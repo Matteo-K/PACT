@@ -62,12 +62,15 @@
     // Vérificationdes champs conforme
     inputEmail.addEventListener("focus", () => {
       msgEmail.textContent = "";
+      inputEmail.classList.remove("inputErreur");
     });
     inputTel.addEventListener("focus", () => {
       msgTel.textContent = "";
+      inputTel.classList.remove("inputErreur");
     });
     inputUrl.addEventListener("focus", () => {
       msgUrl.textContent = "";
+      inputUrl.classList.remove("inputErreur");
     });
     inputEmail.addEventListener("blur", checkEmail);
     inputTel.addEventListener("blur", checkPhoneNumber);
@@ -98,6 +101,7 @@
         msgEmail.textContent = 
             "Email incorrecte. Exemple ewen@jain-etudiants.univ-rennes1.com";
         res = false;
+        inputEmail.classList.add("inputErreur");
       }
       return res;
     }
@@ -115,6 +119,7 @@
           msgTel.textContent =
               "Numéro de téléphone incorrecte. Exemple 07.28.39.17.28 ou +33123456789";
           res = false;
+          inputTel.classList.add("inputErreur");
         }
       }
       return res;
@@ -133,6 +138,7 @@
           msgUrl.textContent =
               "Site web incorrecte. Exemple https://www.creperie-le-dundee.fr";
           res = false;
+          inputUrl.classList.add("inputErreur");
         }
       }
       return res;

@@ -80,7 +80,7 @@ if ($categorie["_visite"]) {
 
     <div>
         <!-- Accessibilité -->
-        <div>
+        <div id="visit_blocAccess">
             <div id="visit_inputAutoCompleteAccess">
                 <label class="labelSousTitre" for="visit_inputAccess">Accessibilités<span id="visit_msgAccess" class="msgError"></span></label>
                 <input type="text" id="visit_inputAccess" 
@@ -94,7 +94,7 @@ if ($categorie["_visite"]) {
         </div>
 
         <!-- Partie pour la gestion des langues proposer par la visite -->
-        <div>
+        <div id="visit_blocLangue">
             <div id="visit_inputLangue">
                 <label class="labelTitre" for="visit_langue">Langues proposées<span id="msgLangue" class="msgError"></span></label>
                 <input type="text" id="visit_langue" 

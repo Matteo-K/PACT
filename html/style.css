@@ -821,6 +821,10 @@ header ul + div {
   background-color: transparent;
 }
 
+.inputErreur {
+  border-color: red;
+}
+
 #manageOffer aside {
   width: 100%;
   padding-top: 20px;
@@ -1549,7 +1553,10 @@ header ul + div {
 }
 
 #aboutOffer > div,
-#blcTagImg > div {
+#blcTagImg > div,
+#actv_blocAccess,
+#actv_blocPrestaInclu,
+#actv_blocPrestaNonInclu {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
@@ -1709,7 +1716,10 @@ label[for="rest_ajoutPhotoMenu"] {
   gap: 10px;
 }
 
-#inputAutoComplete {
+#inputAutoComplete,
+#actv_inputAutoCompletePrestaInclu,
+#actv_inputAutoCompletePrestaNonInclu,
+#actv_inputAutoCompleteAccess {
   position: relative;
   display: flex;
   flex-flow: column nowrap;
@@ -1719,7 +1729,10 @@ label[for="rest_ajoutPhotoMenu"] {
   border-radius: 0;
 }
 
-#autocompletion {
+#autocompletion,
+#actv_autocompletionInclus,
+#actv_autocompletionNonInclus,
+#atcv_zonePrestationAccess {
   display: none;
   padding: 2px 0;
   margin: 0;
@@ -1735,22 +1748,20 @@ label[for="rest_ajoutPhotoMenu"] {
   top: 100%;
   left: 0;
   z-index: 5;
-}
 
-#autocompletion li {
-  padding: 1px 0 1px 10px;
-}
+  li {
+    padding: 1px 0 1px 10px;
+    &:hover {
+      background-color: var(--text-dark20);
+    }
+    &:nth-child(even) {
+      background-color: var(--text-dark15);
+    }
+    &:nth-child(even):hover {
+      background-color: var(--text-dark25);
+    }
+  }
 
-#autocompletion li:hover {
-  background-color: var(--text-dark20);
-}
-
-#autocompletion li:nth-child(even) {
-  background-color: var(--text-dark15);
-}
-
-#autocompletion li:nth-child(even):hover {
-  background-color: var(--text-dark25);
 }
 
 /* ##### Catégorie d'offre ##### */
