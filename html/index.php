@@ -53,7 +53,7 @@
       }
       $nbElement = 10;
       if ($typeUser == "membre") {
-        $stmt = $conn->prepare("SELECT * FROM pact._consulter WHERE idu = ? ORDER BY dateconsultation LIMIT ?");
+        $stmt = $conn->prepare("SELECT idoffre FROM pact._consulter WHERE idu = ? ORDER BY dateconsultation LIMIT ?");
         $stmt->execute([$_SESSION['idUser'], $nbElement]);
         $idOffres = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -86,7 +86,7 @@
       <?php
         }
         // Toute les nouvelles offres inférieurs à 2 semaines
-        $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE datecrea >= NOW() - INTERVAL '14 days' AND statut = 'actif' ORDER BY datecrea");
+        $stmt = $conn->prepare("SELECT idoffre FROM pact.offres WHERE datecrea >= NOW() - INTERVAL '14 days' AND statut = 'actif' ORDER BY datecrea");
 
         $stmt->execute();
         $idOffres = [];

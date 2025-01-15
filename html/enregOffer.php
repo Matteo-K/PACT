@@ -394,10 +394,10 @@ if ($pageDirection != -1) {
               $duree = $_POST["actv_min"];
               $ageMin = $_POST["actv_ageMin"];
               $prixMinimale = $_POST["actv_prixMin"];
-              $accessibilite = [];
+              $accessibilite = $_POST["actv_access"] ?? [];
               $acces = count($accessibilite) > 0;
-              $prestationInclus = [];
-              $prestationNonInclus = [];
+              $prestationInclus = $_POST["prestationInclu"] ?? [];
+              $prestationNonInclus = $_POST["prestationNonInclu"] ?? [];
 
               $stmt = $conn->prepare("SELECT * from pact._activite where idoffre=?");
               $stmt->execute([$idOffre]);
@@ -424,7 +424,7 @@ if ($pageDirection != -1) {
               $stmt = $conn->prepare("DELETE FROM pact._offreprestation_inclu WHERE idoffre = ?");
               $stmt->execute([$idOffre]);
               foreach ($prestationInclus as $value) {
-                $stmt = $conn->prepare("INSERT INTO pact._offreaccess (idoffre, nompresta) VALUES (? , ?) ");
+                $stmt = $conn->prepare("INSERT INTO pact._offreprestation_inclu (idoffre, nompresta) VALUES (? , ?) ");
                 $stmt->execute([$idOffre, $value]);
               }
               

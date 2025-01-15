@@ -9,6 +9,7 @@ let listElements = [];
 /**
  * Génère un nouvelle élément dans une zone d'éléments avec un input caché pour le post
  * @param {String} valeurElement Valeur de l'élément à indiquer sur l'élément générer
+ * @param {Integer} indiceListElem indice de listElements qui correspond à la liste d'élément traité
  * @param {document} input Input de saisie de champ qui contient la valeur de l'élément
  * @param {document} zoneElement Zone final de l'élément généré
  * @param {document} msgErreur Zone de message d'erreur pour le retour utilisateur
@@ -16,10 +17,23 @@ let listElements = [];
  * @param {Integer} nbMaxElements limite maximum d'éléments de la zone
  * @param {String} typeElement le type de balide utilisé pour l'élément 
  * @param {Array} classElement liste de class à rajouter sur l'éléments
- * @param {Integer} indiceListElem indice de listElements qui correspond à la liste d'élément traité
+ * @param {function} checkFunction fonction de vérification pas obligatoire. Pour une potentielle condition supplémentaire
+ * @param  {...any} params paramètre de la fonction de vérification
  */
-function ajoutElement(valeurElement, input, zoneElement, msgErreur, nomPost, nbMaxElements, typeElement, classElement, indiceListElem) {
-  if (valeurElement && !listElements[indiceListElem].includes(valeurElement) && listElements[indiceListElem].length < nbMaxElements) {
+function ajoutElement(valeurElement, indiceListElem, input, zoneElement, msgErreur, nomPost, nbMaxElements, typeElement, classElement, checkFunction, ...params) {
+
+  // Ajoute une condition supplémentaires si spécifiés
+  let check;
+  if (typeof checkFunction === 'function') {
+    check = checkFunction(valeurElement, indiceListElem, msgErreur, ...params);
+  } else {
+    check = true;
+  }
+
+  if (valeurElement 
+    && !listElements[indiceListElem].includes(valeurElement)
+    && listElements[indiceListElem].length < nbMaxElements 
+    && check) {
 
     listElements[indiceListElem].push(valeurElement); // Ajoute le tag dans le tableau
 
@@ -49,15 +63,10 @@ function ajoutElement(valeurElement, input, zoneElement, msgErreur, nomPost, nbM
       zoneElement.removeChild(elementTag); // Supprime l'élément visuel du tag
     });
 
-    console.log(zoneElement);
-
     // Ajoute l'élément visuel et l'input caché au à la section, et l'image à l'élément visuel
     elementTag.appendChild(imgCroix);
     zoneElement.appendChild(elementTag); 
     zoneElement.appendChild(hiddenInput);
-
-    console.log(elementTag);
-    console.log(zoneElement);
 
     // Réinitialise l'input
     input.value = "";
@@ -77,7 +86,7 @@ function ajoutElement(valeurElement, input, zoneElement, msgErreur, nomPost, nbM
  * @param {document} blocAutocomplete bloc contenant une liste de suggestion
  * @param {document} msgErreur bloc de message d'erreur
  * @param {Array} listeSuggestion liste des suggestions de type String
- * @param {*} nomFonction fonction enclenchés dès le click sur un suggestion
+ * @param {function} nomFonction fonction enclenchés dès le click sur un suggestion
  * @param  {...any} params paramètre de la fonction
  */
 function updateSuggestions(val, indiceListElem, blocAutocomplete, msgErreur, listeSuggestion, nomFonction, ...params) {
@@ -104,7 +113,7 @@ function updateSuggestions(val, indiceListElem, blocAutocomplete, msgErreur, lis
     
     // Quand un utilisateur clique sur une suggestion
     itemAutoComplete.addEventListener("click", () => {
-      nomFonction(element, ...params, indiceListElem);
+      nomFonction(element, indiceListElem, ...params);
       blocAutocomplete.innerText = ""; // Vide les suggestions
       blocAutocomplete.style.display = "none"; 
     });
@@ -125,7 +134,7 @@ function supprAccents(txt) {
 /**
  * Initialise l'autocomplétion
  * @param {document} input input du filtrage et sélections d'éléments
- * @param {document} blocAutocomplete bloc contenant une liste de suggestion
+ * @param {String} blocAutocomplete id du bloc contenant une liste de suggestion
  * @param {document} msgErreur bloc de message d'erreur
  * @param {Array} listeSuggestion liste des suggestions de type String
  * @param {*} nomFonction fonction enclenchés dès le click sur un suggestion
@@ -154,4 +163,6 @@ function createAutoCompletion(input, blocAutocomplete, msgErreur, listeSuggestio
       zone.style.display = "none"; 
     }
   });
+
+  return indiceListElem;
 }

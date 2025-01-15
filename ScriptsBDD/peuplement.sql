@@ -436,10 +436,8 @@ VALUES (1, '22300', 'Lannion', 'France', 'Rue Édouard Branly', '1'),
        (2, '22430', 'Erquy', 'France', 'Rue du port', '1'),
        (3, '22000', 'Fréhel', 'France', 'Allée des acacias', '4'),
        (4, '22300', 'Lannion', 'France', 'Rue Beauchamp', '5'),
-       (5, '22000', 'Fréhel', 'France', 'Route du cap', '1'),
-       (6, '22300', 'Lannion', 'France', 'Rue Goas Congar','8') ;/* brain */
-
-
+       (5, '22000', 'Fréhel', 'France', 'Route du cap', '1');
+       
 
 -- Peuplement de la table _abonner
 INSERT INTO _abonner (idOffre, nomAbonnement) 

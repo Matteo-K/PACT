@@ -178,7 +178,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <span id="msgCategorie" class="msgError"></span>
         <section id="choixCategorie">
             <label for="page-select" class="labelTitre">Sélectionnez une catégorie</label>
-            <select name="categorie" id="selectCategorie" <?= $disableCategorie ? "disabled" : "" ?>>
+            <select name="categorie" id="selectCategorie" class="<?= $disableCategorie ? "disabledSelect" : "" ?>">
                 <option value="restaurant"
                 <?php echo $categorie["_restauration"] ? "selected" : "" ?>>
                     Restaurant
@@ -267,14 +267,14 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         //Récupération des tags déjà présents sur l'offre puis affichage (semblable a la fonction ajouTag())
         const loadedTags = <?php echo json_encode($loadedTags) ?>;
 
-        createAutoCompletion(
+        const indexTag = createAutoCompletion(
             document.getElementById("inputTag"),
             "autocompletion",
             msgTag,
             listeTags,
             ajoutElement,
             document.getElementById("inputTag"), //-- paramètres de la fonction ajoutElement
-            document.getElementById("autocompletion"),
+            document.getElementById("sectionTag"),
             msgTag,
             'tags[]',
             maxTags,
@@ -286,7 +286,16 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         const sectionTag = document.getElementById("sectionTag");
 
         loadedTags.forEach(valeurTag => {
-            ajoutElement(valeurTag);
+            ajoutElement(valeurTag,
+                indexTag,
+                document.getElementById("inputTag"),
+                document.getElementById("sectionTag"),
+                msgTag,
+                'tags[]',
+                maxTags,
+                "span",
+                ["tag"]
+            );
         });
 
         // Chargement pour les images de l'offre

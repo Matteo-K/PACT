@@ -57,12 +57,12 @@ if ($categorie["_spectacle"]) {
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const minutesInput = document.getElementById("show_min");
-        const hoursInput = document.getElementById("show_hrMin");
+        const show_minutesInput = document.getElementById("show_min");
+        const show_hoursInput = document.getElementById("show_hrMin");
         
-        minutesInput.addEventListener("change", () => minutesToHours(minutesInput, hoursInput));
-        hoursInput.addEventListener("change", () => hoursToMinutes(minutesInput, hoursInput));
+        show_minutesInput.addEventListener("change", () => minutesToHours(show_minutesInput, show_hoursInput));
+        show_hoursInput.addEventListener("change", () => hoursToMinutes(show_minutesInput, show_hoursInput));
 
-        minutesToHours(minutesInput, hoursInput);
+        minutesToHours(show_minutesInput, show_hoursInput);
     });
 </script>
