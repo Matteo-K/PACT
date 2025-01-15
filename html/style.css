@@ -4169,7 +4169,8 @@ details .nonRepondu {
   display: none;
   width: 100%;
   padding: 0 20px;
-  background-color: var(--primary40);
+  background-color: #fff;
+  border: var(--accent) 3px solid;
   overflow-y: auto;
   /*display: flex;*/
   flex-wrap: wrap;

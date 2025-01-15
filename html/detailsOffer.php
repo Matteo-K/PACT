@@ -1020,6 +1020,80 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
     <script>
+
+        function supAvis(id, idOffre, action) {
+            // Affiche une boîte de dialogue pour confirmer la suppression
+            const confirmSupp = confirm("Êtes-vous sûr de vouloir supprimer votre avis ?");
+            if (!confirmSupp) return;
+
+            // Crée un formulaire dynamique
+            const form = document.createElement("form");
+            form.method = "POST";
+            form.action = "/enregAvis.php";
+
+            // Ajoute le champ caché pour l'ID de l'avis
+            const idAvis = document.createElement("input");
+            idAvis.type = "hidden";
+            idAvis.name = "id";
+            idAvis.value = id;
+            form.appendChild(idAvis);
+
+            // Ajoute le champ caché pour spécifier l'action
+            const action = document.createElement("input");
+            action.type = "hidden";
+            action.name = "action";
+            action.value = action;
+            form.appendChild(action);
+
+            // Ajoute le champ caché pour l'ID de l'offre
+            const offre = document.createElement("input");
+            offre.type = "hidden";
+            offre.name = "idoffre";
+            offre.value = idOffre;
+            form.appendChild(offre);
+
+            // Ajoute le formulaire au document et le soumet
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        //Script de gestion du pop-up de signalement
+        let ouvrePopup = document.querySelectorAll('.avis .signalerAvis');
+        const popup = document.querySelector('.avis .signalementPopup');
+        const btnFermer = document.querySelector('.signalementPopup .close');
+        const btnConfirmer = document.getElementById('confirmeSignalement');
+
+        console.log(ouvrePopup);
+
+        // Afficher le pop-up
+        ouvrePopup.forEach(boutonOuvrePopup => {
+            boutonOuvrePopup.addEventListener('click', () => {
+                popup.style.display = 'block';
+            });
+        });
+
+        // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
+        btnFermer.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        // Traiter le signalement en BDD après confirmation et fermer le popup
+        btnConfirmer.addEventListener('click', () => {
+            alert('Signalement enregistré');
+            popup.style.display = 'none';
+            fetch('signaleAvis.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 'id': idAvis })
+            });
+        });
+
+        // Masquer le pop-up si on clique en dehors
+        window.addEventListener('click', (event) => {
+            if (event.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
         
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -1369,38 +1443,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch {}
 
 
-        //Script de gestion du pop-up de signalement
-        let ouvrePopup = document.querySelectorAll('.avis .signalerAvis');
-        const popup = document.querySelector('.avis .signalementPopup');
-        const btnFermer = document.querySelector('.signalementPopup .close');
-        const btnConfirmer = document.getElementById('confirmeSignalement');
-
-        console.log(ouvrePopup);
-
-        // Afficher le pop-up
-        ouvrePopup.forEach(boutonOuvrePopup => {
-            boutonOuvrePopup.addEventListener('click', () => {
-                popup.style.display = 'block';
-            });
-        });
-
-        // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
-        btnFermer.addEventListener('click', () => {
-            popup.style.display = 'none';
-        });
-
-        // Masquer le pop-up après confirmation
-        btnConfirmer.addEventListener('click', () => {
-            alert('Signalement enregistré');
-            popup.style.display = 'none';
-        });
-
-        // Masquer le pop-up si on clique en dehors de son contenu
-        window.addEventListener('click', (event) => {
-            if (event.target === popup) {
-                popup.style.display = 'none';
-            }
-        });
+        
     </script>
     <script src="js/setColor.js"></script>
 </body>
