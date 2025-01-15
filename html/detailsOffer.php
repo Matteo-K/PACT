@@ -1078,7 +1078,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 popup.style.display = 'none';
 
                 idAvisSignal = ouvrePopup.classList[2].split("_")[1];
-                let texteComplement = document.querySelector('.signalementPopup form textarea');
+                let texteComplement = document.querySelector('.signalementPopup textarea');
 
                 fetch('signalement.php', {
                     method: 'POST',
