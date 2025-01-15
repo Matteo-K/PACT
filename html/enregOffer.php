@@ -424,7 +424,7 @@ if ($pageDirection != -1) {
               $stmt = $conn->prepare("DELETE FROM pact._offreprestation_inclu WHERE idoffre = ?");
               $stmt->execute([$idOffre]);
               foreach ($prestationInclus as $value) {
-                $stmt = $conn->prepare("INSERT INTO pact._offreaccess (idoffre, nompresta) VALUES (? , ?) ");
+                $stmt = $conn->prepare("INSERT INTO pact._offreprestation_inclu (idoffre, nompresta) VALUES (? , ?) ");
                 $stmt->execute([$idOffre, $value]);
               }
               
