@@ -101,6 +101,8 @@ const chkBxRestauration = document.querySelector("#Restauration");
 // dates
 const dateDepart = document.querySelector("#dateDepart");
 const dateFin = document.querySelector("#dateFin");
+
+// heures
 const heureDebut = document.querySelector("#heureDebut");
 const heureFin = document.querySelector("#heureFin");
 
@@ -375,27 +377,50 @@ function filtrerParStatutEnLigneHorsLigne(offers) {
   return offers.filter(offer => statutEnLigneHorsLigne.includes(offer.statut));
 }
 
+
 // Fonction de filtre par heure
+function filtrerParHeure(offers) {
+  // Récupérer les heures sélectionnées par l'utilisateur
+  const heureDebutValue = heureDebut.value;
+  const heureFinValue = heureFin.value;
 
-// function filtrerParHeure(offers) {
-//   const heureDebut = ;
-//   const heureFin = ;
+  // Convertir l'heure en minutes depuis minuit pour faciliter la comparaison
+  const convertirEnMinutes = (heure) => {
+    const [hours, minutes] = heure.split(":").map(Number);
+    return hours * 60 + minutes;
+  };
 
-//   return offers.filter(offer => {
-//     if (offer.categorie === 'Restaurant') {
-//       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
-//       const prixMinOffreRestaurant = prixRange[0];
-//       const prixMaxOffreRestaurant = prixRange[0];
+  const heureDebutMinutes = convertirEnMinutes(heureDebutValue);
+  const heureFinMinutes = convertirEnMinutes(heureFinValue);
 
-//       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
-//     } 
-    
-//     else {
-//       const prixMinOffreAutres = (offer.prixMinimal || 0);
-//       return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
-//     }
-//   });
-// }
+  return offers.filter(offer => {
+    if (offer.categorie === 'Restaurant') {
+      // Récupérer les horaires du restaurant
+      const horaires = offer.horaires;
+      return horaires.some(horaire => {
+        const heureOuvertureMinutes = convertirEnMinutes(horaire.heureouverture);
+        const heureFermetureMinutes = convertirEnMinutes(horaire.heurefermeture);
+
+        // Vérifier si l'heure d'ouverture et l'heure de fermeture de l'offre se chevauchent avec la plage horaire sélectionnée
+        return (heureOuvertureMinutes >= heureDebutMinutes && heureOuvertureMinutes <= heureFinMinutes) ||
+               (heureFermetureMinutes >= heureDebutMinutes && heureFermetureMinutes <= heureFinMinutes) ||
+               (heureOuvertureMinutes <= heureDebutMinutes && heureFermetureMinutes >= heureFinMinutes);
+      });
+    } else {
+      // Pour les autres offres, vérifier si elles ont des horaires qui se chevauchent avec la plage horaire sélectionnée
+      const horaires = offer.horaires;
+      return horaires.some(horaire => {
+        const heureOuvertureMinutes = convertirEnMinutes(horaire.heureouverture);
+        const heureFermetureMinutes = convertirEnMinutes(horaire.heurefermeture);
+
+        // Vérifier le chevauchement des horaires
+        return (heureOuvertureMinutes >= heureDebutMinutes && heureOuvertureMinutes <= heureFinMinutes) ||
+               (heureFermetureMinutes >= heureDebutMinutes && heureFermetureMinutes <= heureFinMinutes) ||
+               (heureOuvertureMinutes <= heureDebutMinutes && heureFermetureMinutes >= heureFinMinutes);
+      });
+    }
+  });
+}
 
 // Fonction de filtre par date
 
@@ -610,6 +635,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
+  array = filtrerParHeure(array);
   // array = filtrerParPeriode(array);
 
   if (userType == "pro_public" || userType == "pro_prive") {
@@ -1021,6 +1047,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // dates
   dateDepart.addEventListener("change", () => goToPage(1));
   dateFin.addEventListener("change", () => goToPage(1));
+
+  // heures
   heureDebut.addEventListener("change", () => goToPage(1));
   heureFin.addEventListener("change", () => goToPage(1));
   
