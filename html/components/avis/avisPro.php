@@ -263,7 +263,7 @@ function afficheAvisSelect(idAvis) {
     
     if (listeAvis[idAvis]['note'] < 5) {
         for (i = 4; i >= listeAvis[idAvis]['note']; i--) {
-            etoilesAvis[i].style.backgroundColor = "#fff";
+            etoilesAvis[i].style.backgroundColor = "var(--background-avis)";
         }
     }
     

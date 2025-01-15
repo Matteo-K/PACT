@@ -101,6 +101,8 @@ const chkBxRestauration = document.querySelector("#Restauration");
 // dates
 const dateDepart = document.querySelector("#dateDepart");
 const dateFin = document.querySelector("#dateFin");
+
+// heures
 const heureDebut = document.querySelector("#heureDebut");
 const heureFin = document.querySelector("#heureFin");
 
@@ -375,30 +377,51 @@ function filtrerParStatutEnLigneHorsLigne(offers) {
   return offers.filter(offer => statutEnLigneHorsLigne.includes(offer.statut));
 }
 
+
 // Fonction de filtre par heure
+function filtrerParHeure(offers) {
+  // Récupérer les heures sélectionnées par l'utilisateur
+  const heureDebutValue = heureDebut.value;
+  const heureFinValue = heureFin.value;
 
-// function filtrerParHeure(offers) {
-//   const heureDebut = ;
-//   const heureFin = ;
+  // Convertir l'heure en minutes depuis minuit pour faciliter la comparaison
+  const convertirEnMinutes = (heure) => {
+    const [hours, minutes] = heure.split(":").map(Number);
+    return hours * 60 + minutes;
+  };
 
-//   return offers.filter(offer => {
-//     if (offer.categorie === 'Restaurant') {
-//       const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
-//       const prixMinOffreRestaurant = prixRange[0];
-//       const prixMaxOffreRestaurant = prixRange[0];
+  const heureDebutMinutes = convertirEnMinutes(heureDebutValue);
+  const heureFinMinutes = convertirEnMinutes(heureFinValue);
 
-//       return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
-//     } 
+  return offers.filter(offer => {
+    // Vérifier les horaires pour les spectacles
+    if (offer.categorie === 'Spectacle') {
+      const horairesSpectacle = offer.horairePrecise || [];
+      // Pour chaque horaire précis de spectacle
+      return horairesSpectacle.some(horaire => {
+        const heureDebutSpectacle = convertirEnMinutes(horaire.heureouverture);
+        const heureFinSpectacle = convertirEnMinutes(horaire.heurefermeture);
+        // Vérifier si l'horaire du spectacle chevauche l'intervalle de l'utilisateur
+        return (heureDebutSpectacle < heureFinMinutes && heureFinSpectacle > heureDebutMinutes);
+      });
+    } 
     
-//     else {
-//       const prixMinOffreAutres = (offer.prixMinimal || 0);
-//       return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
-//     }
-//   });
-// }
+    // Vérifier les horaires pour les autres types d'offres
+    else {
+      const horaires = offer.horaires || [];
+      // Pour chaque horaire de l'offre
+      return horaires.some(horaire => {
+        const heureDebut = convertirEnMinutes(horaire.heureouverture);
+        const heureFin = convertirEnMinutes(horaire.heurefermeture);
+        // Vérifier si l'horaire de l'offre chevauche l'intervalle de l'utilisateur
+        return (heureDebut < heureFinMinutes && heureFin > heureDebutMinutes);
+      });
+    }
+  });
+}
+
 
 // Fonction de filtre par date
-
 
 
 
@@ -610,6 +633,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtrerParNotes(array);
   array = filtrerParPrix(array);
   array = filtrerParStatuts(array);
+  array = filtrerParHeure(array);
   // array = filtrerParPeriode(array);
 
   if (userType == "pro_public" || userType == "pro_prive") {
@@ -1021,6 +1045,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // dates
   dateDepart.addEventListener("change", () => goToPage(1));
   dateFin.addEventListener("change", () => goToPage(1));
+
+  // heures
   heureDebut.addEventListener("change", () => goToPage(1));
   heureFin.addEventListener("change", () => goToPage(1));
   

@@ -85,7 +85,7 @@ if ($categorie["_visite"]) {
                 <label class="labelSousTitre" for="visit_inputAccess">Accessibilités<span id="visit_msgAccess" class="msgError"></span></label>
                 <input type="text" id="visit_inputAccess" 
                 name="*visit_inputAccess"
-                placeholder="Entrez & selectionnez une accessibilité correspondant à votre activité">
+                placeholder="Entrez & selectionnez une accessibilité correspondant à votre visite">
 
                 <ul id="visit_autocompletionAccess"></ul>
             </div>
@@ -112,17 +112,101 @@ if ($categorie["_visite"]) {
 <script>
     // Durée
     document.addEventListener("DOMContentLoaded", function () {
-        const minutesInput = document.getElementById("show_min");
-        const hoursInput = document.getElementById("show_hrMin");
+        const visit_minutesInput = document.getElementById("visit_min");
+        const visit_hoursInput = document.getElementById("visit_hrMin");
         
-        minutesInput.addEventListener("change", () => minutesToHours(minutesInput, hoursInput));
-        hoursInput.addEventListener("change", () => hoursToMinutes(minutesInput, hoursInput));
+        visit_minutesInput.addEventListener("change", () => minutesToHours(visit_minutesInput, visit_hoursInput));
+        visit_hoursInput.addEventListener("change", () => hoursToMinutes(visit_minutesInput, visit_hoursInput));
 
-        minutesToHours(minutesInput, hoursInput);
+        minutesToHours(visit_minutesInput, visit_hoursInput);
     });
 
     // Ajout des accessibilités
+    // ### Accessibilités
+    const visit_accessGeneral = <?= json_encode($accessibilite); ?>;
+    const visit_access = <?= json_encode($visite["nomAccess"]); ?>;
+
+    const visit_inputAccess = document.getElementById("visit_inputAccess");
+    const visit_zone = document.getElementById("visit_zonePrestationAccess");
+    const visit_msgAccess = document.getElementById("visit_msgAccess");
+
+    const visit_maxAccess = 20;
+
+    const visit_indexAccess = createAutoCompletion(
+        visit_inputAccess,
+        "visit_autocompletionAccess",
+        visit_msgAccess,
+        visit_accessGeneral,
+        ajoutElement,
+        visit_inputAccess, //-- paramètres de la fonction ajoutElement
+        visit_zone,
+        visit_msgAccess,
+        'visit_access[]',
+        visit_maxAccess,
+        "li",
+        []
+    );
+
+    /* Initialisation de prestation inclus */
+    actv_access.forEach(valeur => {
+        ajoutElement(valeur,
+            visit_indexAccess,
+            visit_inputAccess, //-- paramètres de la fonction ajoutElement
+            visit_zone,
+            visit_msgAccess,
+            'visit_access[]',
+            visit_maxAccess,
+            "li",
+            []
+        );
+    });
+    
     // Ajout des langues
+    const visit_accessGeneral = <?= json_encode($accessibilite); ?>;
+    const visit_access = <?= json_encode($visite["nomAccess"]); ?>;
+
+    const visit_inputAccess = document.getElementById("visit_inputAccess");
+    const visit_zone = document.getElementById("visit_zonePrestationAccess");
+    const visit_msgAccess = document.getElementById("visit_msgAccess");
+
+    const visit_maxAccess = 20;
+
+    const visit_indexAccess = createAutoCompletion(
+        visit_inputAccess,
+        "visit_autocompletionAccess",
+        visit_msgAccess,
+        visit_accessGeneral,
+        ajoutElement,
+        visit_inputAccess, //-- paramètres de la fonction ajoutElement
+        visit_zone,
+        visit_msgAccess,
+        'visit_access[]',
+        visit_maxAccess,
+        "li",
+        []
+    );
+
+    /* Initialisation de prestation inclus */
+    actv_access.forEach(valeur => {
+        ajoutElement(valeur,
+            visit_indexAccess,
+            visit_inputAccess, //-- paramètres de la fonction ajoutElement
+            visit_zone,
+            visit_msgAccess,
+            'visit_access[]',
+            visit_maxAccess,
+            "li",
+            []
+        );
+    });
 
     // Validation des champs
+
+    function checkVisit() {
+        return true;
+    }
+
+    function checkVisitDuree() {
+        
+    }
 </script>

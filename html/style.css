@@ -1759,7 +1759,6 @@ label[for="rest_ajoutPhotoMenu"] {
   flex-flow: column;
   align-items: flex-start;
   justify-content: center;
-  margin-inline: 28%;
 }
 
 #show_nbPlacePrixMin {
@@ -1960,12 +1959,66 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     transform: translateX(10%);
   }
 } */
-
-@media (max-width: 480px) {
-  .searchA{
-    zoom: 0.6;
+@media (max-width: 700px) {
+  .flip-card {
+    width: 300px !important; /* Réduit la largeur à 300px sur les petits écrans */
   }
 
+  .flip-card-back {
+    font-size: 1em !important; /* Ajuste la taille de la police */
+    padding: 10px !important; /* Ajuste les marges internes */
+    border: 2px solid var(--primary) !important; /* Réduit la taille de la bordure */
+  }
+
+  .flip-card-back .title {
+    font-size: 1.3rem !important; /* Réduit la taille du titre */
+    text-align: center !important;
+  }
+
+  .flip-card-back .blocStar {
+    
+  }
+
+  .flip-card-back .blocStar .star {
+
+  }
+
+  .flip-card-back .nomPro {
+    display: none;
+  }
+
+  .flip-card-back .information {
+    display: none;
+    /* flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding-inline: 5px !important;  */
+  }
+
+  .flip-card-back .resume {
+    display: none;
+  }
+
+  .flip-card-back address {
+    font-size: 0.9rem !important; /* Réduit la taille de la police pour l'adresse */
+  }
+
+  .flip-card-back .tagsCard {
+    display: none;
+    /* flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 3px !important;
+    margin-top: 5px !important; */
+  }
+
+  .tagIndex {
+    display: none;
+    /* font-size: 0.75em !important;
+    padding: 4px 8px !important; */
+  }
+}
+
+@media (max-width: 480px) {
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {
@@ -2187,6 +2240,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   min-height: 1000px;
   padding-bottom: 20px;
   background-color: var(--background);
+  margin-top: 10vh;
+  border-top: 4px solid var(--bloc);
+}
+
+#searchIndex > h2 {
+  text-align: center;
 }
 
 .searchoffre {
@@ -2548,11 +2607,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transform: scale(1.1);
 }
 
-#note, #prix, #statut, #categorie, #date {
+#note, #prix, #statut, #categorie, #date, #heure {
   padding-inline: 40px;
 }
 
-#note label, #prix label, #statut label, #idCategorie label, #date label {
+#note label, #prix label, #statut label, #idCategorie label, #date label, #heure label{
   font-size: 20px;
 }
 
@@ -2636,13 +2695,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Date */
-#date input {
+#date input, #heure input {
   height: 40px;
   border: solid 2px #1ca4ed;
   background-color: white;
 }
 
-#date div {
+#date div, #heure div {
   margin-bottom: 20px;
 }
 
@@ -2779,7 +2838,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
 
-  #note, #prix, #statut, #categorie, #date {
+  #note, #prix, #statut, #categorie, #date, #heure {
     padding-inline: 20px;
   }
 
@@ -3203,7 +3262,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 #titleOffer {
   text-align: center;
-  font-size: 5em;
+  font-size: 5em ;
   color: var(--bloc);
   margin: 0.2em;
   font-weight: 600;
@@ -4163,7 +4222,8 @@ details .nonRepondu {
   display: none;
   width: 100%;
   padding: 0 20px;
-  background-color: var(--primary40);
+  background-color: #fff;
+  border: var(--accent) 3px solid;
   overflow-y: auto;
   /*display: flex;*/
   flex-wrap: wrap;
@@ -4287,7 +4347,8 @@ details .nonRepondu {
 .conteneurReponsePro > article {
   width: 90%;
   padding: 20px;
-  background-color: var(--secondary60);
+  background-color: #fff;
+  border: var(--primary) 3px solid;
   border-radius: 20px;
 }
 
@@ -4757,21 +4818,12 @@ details .nonRepondu {
 }
 
 #sectionPreview p,
-#sectionPreview h4,
-#sectionPreview h2 {
+#sectionPreview h4{
   font-size: 25px;
 }
 
-#sectionPreview h4,
-#sectionPreview h2 {
+#sectionPreview h4{
   font-size: 35px;
-}
-
-#titleOfferPreview {
-  font-size: 3.5em;
-  color: var(--bloc);
-  text-align: center;
-  margin-bottom: 0.5em;
 }
 
 #tagPreview {
@@ -4782,13 +4834,6 @@ details .nonRepondu {
   margin-bottom: 20px;
 }
 
-#previewOffer .tag {
-  background-color: var(--accent);
-  color: var(--background);
-  padding: 8px 16px;
-  border-radius: 5px;
-  text-decoration: none;
-}
 
 #previewOffer .ouvert {
   background-color: #008000;
