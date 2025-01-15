@@ -56,7 +56,7 @@ if ($categorie["_activite"]) {
     $stmt = $conn->prepare("SELECT * from pact._offreAccess where idoffre=?");
     $stmt->execute([$idOffre]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $visite["nomAccess"][] = $row["nomAccess"];
+        $activite["nomAccess"][] = $row["nomAccess"];
     }
 }
 
@@ -250,7 +250,44 @@ if ($categorie["_activite"]) {
 
     // Ajouté des accessibilités
 
-    const access = document.getElementById("actv_access");
+    const inputInclu = document.getElementById("actv_inputPrestaInclus");
+    const zoneInclu = document.getElementById("atcv_zonePrestationInclusAtcv");
+    const msgInclu = document.getElementById("msgPrestaInclus");
+
+    const maxPrestation = 20;
+
+    const indexPrestaNonInclu = createAutoCompletion(
+        inputNonInclu,
+        "actv_autocompletionNonInclus",
+        msgNonInclu,
+        listePrestation,
+        ajoutElement,
+        inputNonInclu, //-- paramètres de la fonction ajoutElement
+        zoneNonInclu,
+        msgNonInclu,
+        'prestationNonInclu[]',
+        maxPrestation,
+        "li",
+        [],
+        checkAddPrestation,
+        "nonInclu"
+    );
+
+    /* Initialisation de prestation inclus */
+    prestationInclu.forEach(valeur => {
+        ajoutElement(valeur,
+            indexPrestaInclu,
+            inputNonInclu, //-- paramètres de la fonction ajoutElement
+            zoneNonInclu,
+            msgNonInclu,
+            'prestationNonInclu[]',
+            maxPrestation,
+            "li",
+            [],
+            checkAddPrestation,
+            "inclu"
+        );
+    });
 
     // Vérification des champs
 
