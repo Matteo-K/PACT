@@ -1977,6 +1977,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     margin: 0 !important;
   }
 
+  .flip-card-front .title {
+    font-size: 1.3rem !important; /* Réduit la taille du titre */
+  }
+
   .flip-card-back .blocStar,.flip-card-front .blocStar {
     margin: 0 !important;
     font-size: 0.8em !important;
@@ -1990,7 +1994,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     justify-content: flex-end !important;
   }
 
-  .flip-card-back .blocStar .star,.flip-card-front.blocStar .star {
+  .flip-card-back .blocStar .star,.flip-card-front .blocStar .star {
     width: 15px;
     height: 15px;
   }
@@ -2001,9 +2005,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   .flip-card-back .information {
     flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-    padding-inline: 5px !important; 
+    align-items: center !important;
+    justify-content: center !important;
+    padding-inline: 5px !important;
+    margin-top: 20px !important; 
   }
 
   .flip-card-back .resume {
@@ -2018,8 +2023,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     flex-direction: row !important;
     justify-content: flex-start !important;
     flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
+    align-items: center !important;
+    justify-content: center !important;
     padding-inline: 5px !important;
     margin-top: 5px !important;
   }
@@ -2263,7 +2268,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .searchoffre {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 20px;
   margin-left: 380px;
@@ -2707,6 +2712,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* Date */
+#date {
+  display: none;
+}
+
 #date input, #heure input {
   height: 40px;
   border: solid 2px #1ca4ed;
@@ -3557,12 +3566,12 @@ article#descriptionOffre {
   align-items: center;
   justify-content: center;
   width: 60%;
-  flex-wrap: wrap;
 }
 
 article#descriptionOffre {
   border-radius: 10px;
   padding: 20px 0;
+  margin:auto;
   margin-bottom: 20px;
   align-items: flex-end;
 }
@@ -4359,8 +4368,7 @@ details .nonRepondu {
 .conteneurReponsePro > article {
   width: 90%;
   padding: 20px;
-  background-color: #fff;
-  border: var(--primary) 3px solid;
+  background-color: var(--secondary60);
   border-radius: 20px;
 }
 

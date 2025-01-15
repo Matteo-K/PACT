@@ -155,7 +155,7 @@ $data = $ar->getArray();
         </div>
 
         <div class="swiper-container">
-            <div class="swiper mySwiperPreview">
+            <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <?php
                     foreach ($photos as $picture) {
@@ -173,7 +173,7 @@ $data = $ar->getArray();
             <div class="swiper-button-prev"></div>
         </div>
 
-        <div thumbsSlider="" class="swiper myThumbSliderPreview">
+        <div thumbsSlider="" class="swiper myThumbSlider">
             <div class="swiper-wrapper">
                 <?php
                 foreach ($photos as $picture) {
@@ -243,7 +243,7 @@ $data = $ar->getArray();
             </section>
         </article>
 
-        <section id="InfoCompPreview">
+        <section id="infoComp">
             <h2>Informations Complémentaires</h2>
             <?php if ($data[$idOffre]["categorie"] == "Visite") { ?>
                 <div>
@@ -342,20 +342,20 @@ $data = $ar->getArray();
 
     </section>
 
-    script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- Initialize Swiper -->
     <script>
-        var swiper = new Swiper(".myThumbSliderPreview", {
+        var swiper = new Swiper(".myThumbSlider", {
             loop: true,
             spaceBetween: 10,
             slidesPerView: 4,
             freeMode: true,
             watchSlidesProgress: true,
         });
-        var swiper2 = new Swiper(".mySwiperPreview", {
+        var swiper2 = new Swiper(".mySwiper", {
             loop: true,
             autoplay: {
                 delay: 5000,

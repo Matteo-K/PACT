@@ -386,6 +386,7 @@ function filtrerParHeure(offers) {
 
   // Convertir l'heure en minutes depuis minuit pour faciliter la comparaison
   const convertirEnMinutes = (heure) => {
+    console.log(heure);
     const [hours, minutes] = heure.split(":").map(Number);
     return hours * 60 + minutes;
   };
@@ -408,12 +409,14 @@ function filtrerParHeure(offers) {
         data.push(JSON.parse(element));
       });
 
+      console.table(data);
+
       // Pour chaque horaire précis de spectacle
       return data.some(horaire => {
-        const heureDebutSpectacle = convertirEnMinutes(horaire.horaire);
-        const dureeSpectacle = convertirEnMinutes(horaire.duree);
+        console.log(horaire.horaire);
+        const heureDebutSpectacle = convertirEnMinutes(horaire.heureouverture);  
+        const heureFinSpectacle = convertirEnMinutes(horaire.heurefermeture); 
 
-        const heureFinSpectacle = heureDebutSpectacle + dureeSpectacle;
         // Vérifier si l'horaire du spectacle chevauche l'intervalle de l'utilisateur
         return (heureDebutSpectacle < heureFinMinutes && heureFinSpectacle > heureDebutMinutes);
       });
@@ -450,153 +453,6 @@ function filtrerParHeure(offers) {
 
 
 
-// Fonction de filtre par période
-// function filtrerParPeriode(offers) {
-//   const dateDepartValue = new Date(dateDepart.value);
-//   const dateFinValue = new Date(dateFin.value);
-//   const heureDebutValue = heureDebut.value;
-//   const heureFinValue = heureFin.value;
-
-//   // Spectacle
-//   console.table(data);
-//   console.log(data[0].daterepresentation);
-//   console.log(data[0].heureouverture);
-//   console.log(data[0].heurefermeture);
-
-//   console.table(data);
-//   console.log(data[1].heureouverture);
-//   console.log(data[1].heurefermeture);
-
-  // Si un des input est invalide, on retourne toutes les offres
-  // if (isNaN(dateDepartValue.getTime()) || isNaN(dateFinValue.getTime())) {
-  //   return offers;
-  // }
-
-  // return offers.filter(offer => {
-  //   let data = [];
-
-  //   offer.horaire.forEach(element => {
-  //     data.push(JSON.parse(element));
-  //   });
-
-  //   if(offer.categorie == "Spectacle") {
-
-  //   }
-
-  //   else {
-
-  //   }
-
-
-  //   if (!offer.heureOuverture || !offer.heureFermeture) {
-  //     return false;
-  //   }
-
-    // let heureValide = true;
-    // if (heureDebutValue && heureFinValue) {
-    //   const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
-    //   const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
-
-    //   const debutRange = heureDebutH * 60 + heureDebutM;
-    //   const finRange = heureFinH * 60 + heureFinM;
-
-    //   const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
-    //   const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
-
-    //   const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
-    //   const fermetureMinutes = fermetureH * 60 + fermetureM;
-
-    //   if (debutRange <= fermetureMinutes && finRange >= ouvertureMinutes) {
-    //     heureValide = true;
-    //   } else {
-    //     heureValide = false;
-    //   }
-    // }
-
-    // return heureValide;
-//   });
-// }
-
-
-
-
-// 1- récup la date et l'heure de début
-// 2- récup la date et l'heure de fin
-// 3- si l'utilisateur ne chage rien, on affiche toute les offres de base (entre 8h et 23h de base)
-// 4- si l'utilisateur change une valeur dans l'input, on prend cette valeur et on met à jour l'affichage
-
-// Fonction de filtre par période
-// function filtrerParPeriode(offers) {
-//   const dateDepartValue = new Date(dateDepart.value);
-//   const dateFinValue = new Date(dateFin.value);
-//   const heureDebutValue = heureDebut.value;
-//   const heureFinValue = heureFin.value;
-
-//   console.log("Date de départ sélectionnée: ", dateDepartValue);
-//   console.log("Date de fin sélectionnée: ", dateFinValue);
-
-//   const debutRange = dateDepartValue && heureDebutValue;
-//   const finRange = dateFinValue && heureFinValue;
-
-//   console.log("Heure de début sélectionnée: ", debutRange);
-//   console.log("Heure de fin sélectionnée: ", finRange);
-
-//   const [heureDebutH, heureDebutM] = heureDebutValue.split(':').map(Number);
-//   const [heureFinH, heureFinM] = heureFinValue.split(':').map(Number);
-
-//   const debutRangeMinutes = heureDebutH * 60 + heureDebutM;
-//   const finRangeMinutes = heureFinH * 60 + heureFinM;
-
-//   console.log("Plage horaire de début en minutes: ", debutRangeMinutes);
-//   console.log("Plage horaire de fin en minutes: ", finRangeMinutes);
-
-//   return offers.filter(offer => {
-//     const dateOffer = new Date(offer.date);
-//     console.log("Date de l'offre: ", dateOffer);
-
-//     if (isNaN(dateOffer.getTime())) {
-//       console.log("Offre avec date invalide, exclue");
-//       return false;
-//     }
-
-//     if ((dateDepartValue && dateOffer < dateDepartValue) || (dateFinValue && dateOffer > dateFinValue)) {
-//       console.log("Offre hors de la plage de dates, exclue");
-//       return false;
-//     }
-
-//     if (offer.heureOuverture && offer.heureFermeture) {
-//       const [ouvertureH, ouvertureM] = offer.heureOuverture.split(':').map(Number);
-//       const [fermetureH, fermetureM] = offer.heureFermeture.split(':').map(Number);
-
-//       const ouvertureMinutes = ouvertureH * 60 + ouvertureM;
-//       const fermetureMinutes = fermetureH * 60 + fermetureM;
-
-//       console.log("Heure d'ouverture de l'offre en minutes: ", ouvertureMinutes);
-//       console.log("Heure de fermeture de l'offre en minutes: ", fermetureMinutes);
-
-//       if (debutRangeMinutes <= fermetureMinutes && finRangeMinutes >= ouvertureMinutes) {
-//         console.log("Les horaires de l'offre chevauchent avec les horaires demandés");
-//         return true;
-//       } else {
-//         console.log("Les horaires de l'offre ne correspondent pas aux horaires demandés, exclue");
-//       }
-//     } else {
-//       console.log("Offre sans horaires valides, exclue");
-//     }
-
-//     return false;
-//   });
-// }
-
-
-
-// Fonction de filtre par lieu
-// function filtrerParLieu(offers) {
-//   const lieuSelection = [];
-
-
-//   return offers.filter(offer => lieuSelection.includes(offer.note));
-// }
 
 /**
  * Filtre la liste d'offres suivant le mot clé de recherche pour correspondre
