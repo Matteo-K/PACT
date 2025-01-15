@@ -1037,11 +1037,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             form.appendChild(idAvis);
 
             // Ajoute le champ caché pour spécifier l'action
-            const action = document.createElement("input");
+            const actionReaction = document.createElement("input");
             action.type = "hidden";
             action.name = "action";
             action.value = action;
-            form.appendChild(action);
+            form.appendChild(actionReaction);
 
             // Ajoute le champ caché pour l'ID de l'offre
             const offre = document.createElement("input");
