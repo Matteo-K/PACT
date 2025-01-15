@@ -4231,7 +4231,7 @@ section#infoComp div {
 /* bloc fermable avec les nombres d'avis*/
 #avisproS2 > details {
   width: 100%;
-  background-color: #ffffff5f;
+  background-color: #fff;
   border-radius: 10px;
   padding: 20px;
   position: relative;
