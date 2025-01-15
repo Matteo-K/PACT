@@ -487,44 +487,6 @@ $data = $ar->getArray();
                     ?>
                 </tbody>
             </table>
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="2">Horaires</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    // Tableau de tous les jours de la semaine
-                    $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-
-                    // Afficher les horaires pour chaque jour de la semaine
-                    foreach ($joursSemaine as $jour): ?>
-                        <tr>
-                            <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
-                            <td>
-                                <?php
-                                $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
-                                $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
-
-                                // Collect hours
-                                $horairesAffichage = [];
-                                if (!empty($horaireMidi)) {
-                                    $horairesAffichage[] = htmlspecialchars(current($horaireMidi)['heureouverture']) . " à " . htmlspecialchars(current($horaireMidi)['heurefermeture']);
-                                }
-                                if (!empty($horaireSoir)) {
-                                    $horairesAffichage[] = htmlspecialchars(current($horaireSoir)['heureouverture']) . " à " . htmlspecialchars(current($horaireSoir)['heurefermeture']);
-                                }
-                                if (empty($horaireMidi) && empty($horaireSoir)) {
-                                    $horairesAffichage[] = "Fermé";
-                                }
-                                echo implode(' et ', $horairesAffichage);
-                                ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
         </section>
         <!-- Carte Google Maps -->
         <div id="mapPreview" class="carte"></div>
