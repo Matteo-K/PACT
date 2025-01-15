@@ -107,7 +107,7 @@
             </div>
             <address>
               <div><?= $ville . ", " . $codePostal ?></div>
-              <div><?= $numerorue . " " . $rue ?></div>
+              <div id="numRue"><?= $numerorue . " " . $rue ?></div>
             </address>
           </div>
           <div class="tagsCard">
