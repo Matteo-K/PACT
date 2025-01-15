@@ -221,7 +221,7 @@ if ($categorie["_activite"]) {
     prestationInclu.forEach(valeur => {
         ajoutElement(valeur,
             indexPrestaInclu,
-            inputNonInclu, //-- paramètres de la fonction ajoutElement
+            actv_inputNonInclu, //-- paramètres de la fonction ajoutElement
             actv_zoneNonInclu,
             actv_msgNonInclu,
             'prestationNonInclu[]',
