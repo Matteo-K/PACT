@@ -67,12 +67,6 @@ if ($categorie["_activite"]) {
     <!-- Gestion des prestations proposée dans l'activité -->
     <div>
         <label class="labelTitre" for="actv_presta">Préstation(s)</label>
-        <select name="actv_presta" id="actv_presta">
-            <option value="defaultPrestaActv">-- Sélectionner une prestation --</option>
-            <?php foreach ($prestation as $value) { ?>
-                <option value="<?= $value ?>"><?= $value ?></option>
-            <?php } ?>
-        </select>
         <div>
             <div id="actv_inputAutoCompletePrestaInclu">
                 <label class="labelSousTitre" for="actv_prestaInclu">Prestations incluses<span id="msgPrestaInclus" class="msgError"></span></label>
@@ -102,21 +96,21 @@ if ($categorie["_activite"]) {
     <div>
         <div>
             <!-- Zone pour l'age minimum pour l'activité -->
-            <label class="labelTitre" for="actv_ageMin">Age*</label>
+            <label class="labelTitre" for="actv_ageMin">Age*<span id="actv_msgAge" class="msgError"></span></label>
             <div>
                 <input type="number" id="actv_ageMin" name="actv_ageMin" min="0" placeholder="0" value="<?= $activite["agemin"] ?>"/>
                 <label for="actv_ageMin"> ans </label>
             </div>
         
             <!-- Prix -->
-            <label class="labelTitre" for="actv_prixMin">Prix minimum*</label>
+            <label class="labelTitre" for="actv_prixMin">Prix minimum*<span id="actv_msgPrix" class="msgError"></span></label>
             <div>
                 <input type="number" id="actv_prixMin" name="actv_prixMin" min="0" placeholder="0" value="<?= $activite["agemin"]; ?>">
                 <label for="actv_prixMin">€</label>
             </div>
 
             <!-- Gestion de la durée -->
-            <label for="actv_hrMin" class="labelTitre">Durée de l'activité*</label>
+            <label for="actv_hrMin" class="labelTitre">Durée de l'activité*<span id="actv_msgDuree" class="msgError"></span></label>
             <div>
                 <input type="number" style="display : none;" id="actv_min" name="actv_min" placeholder="0" value="<?php echo $activite["duree"] ?>">
                 <input type="time" id="actv_hrMin" name="actv_hrMin" placeholder="0">
@@ -221,10 +215,10 @@ if ($categorie["_activite"]) {
     prestationInclu.forEach(valeur => {
         ajoutElement(valeur,
             indexPrestaInclu,
-            actv_inputNonInclu, //-- paramètres de la fonction ajoutElement
-            actv_zoneNonInclu,
-            actv_msgNonInclu,
-            'prestationNonInclu[]',
+            actv_inputInclu, //-- paramètres de la fonction ajoutElement
+            actv_zoneInclu,
+            actv_msgInclu,
+            'prestationInclu[]',
             actv_maxPrestation,
             "li",
             [],
@@ -291,19 +285,70 @@ if ($categorie["_activite"]) {
 
     // Vérification des champs
 
+    const actv_inputAge = document.getElementById("actv_ageMin");
+    const actv_inputPrix = document.getElementById("actv_prixMin");
+    const actv_inputDuree = document.getElementById("actv_hrMin");
+
+    const actv_msgAge = document.getElementById("actv_msgAge");
+    const actv_msgPrix = document.getElementById("actv_msgPrix");
+    const actv_msgDuree = document.getElementById("actv_msgDuree");
+
     function checkActivity() {
-        return true;
+        let age = checkActvAgeMin();
+        let prix = checkActvPrixMin();
+        let duree = checkActvDuree();
+        return age && prix && duree;
     }
 
     function checkActvAgeMin() {
+        let res = true;
         
+        if (actv_inputAge.value != "") {
+            actv_msgAge.textContent = "Le champ age doit être complété";
+            res = false;
+        } else {
+            const agePattern = /^\d+$/;
+            if (!agePattern.test(actv_inputAge.value.trim())) {
+                actv_msgAge.textContent = "Le champ doit contenir uniquement des chiffres";
+                res = false;
+            }
+        }
+        return res;
     }
 
+
     function checkActvPrixMin() {
+        let res = true;
         
+        if (actv_inputPrix.value != "") {
+            actv_msgPrix.textContent = "Le champ prix doit être complété";
+            res = false;
+        } else {
+            const prixPattern = /^\d+$/;
+            if (!prixPattern.test(actv_inputPrix.value.trim())) {
+                actv_msgPrix.textContent = "Le champ doit contenir uniquement des chiffres";
+                res = false;
+            }
+        }
+        return res;
     }
 
     function checkActvDuree() {
+        let res = true;
         
+        const duree = actv_inputDuree.value.trim();
+
+        if (duree === "") {
+            actv_msgDuree.textContent = "Le champ durée doit être complété";
+            res = false;
+        } else {
+            const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
+
+            if (!timePattern.test(duree)) {
+                actv_msgDuree.textContent = "Le champ doit être au format HH:MM";
+                res = false;
+            }
+        }
+        return res;
     }
 </script>
