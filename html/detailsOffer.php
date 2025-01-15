@@ -1089,7 +1089,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         'idU' : <?= json_encode($_SESSION['idUser']) ?>,
                         'motif' : motifSignal.value,
                         'complement' : texteComplement.textContent
-                    });
+                    })
                 });
 
                 alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme!');
