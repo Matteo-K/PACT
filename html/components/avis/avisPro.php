@@ -216,6 +216,7 @@ const blocReponseAvis = document.getElementById("blocReponsePro");
 const conteneurReponseAvis = document.querySelector("#blocReponsePro .conteneurReponsePro");
 const contenuReponseAvis = document.querySelector("#blocReponsePro .conteneurReponsePro p");
 const titreReponseAvisEcrit =  document.querySelector("#blocReponsePro .conteneurReponsePro h3");
+const bin =  document.querySelector("#blocReponsePro .conteneurReponsePro article img");
 
 const formReponseAvis = document.querySelector("#blocReponsePro form");
 const titreReponseAvis = document.querySelector("#avisproS2 form h2");
@@ -290,6 +291,21 @@ function afficheAvisSelect(idAvis) {
         contenuReponseAvis.textContent = listeAvis[idAvis]['contenureponse'];
         titreReponseAvisEcrit.textContent = "Votre réponse à " + listeAvis[idAvis]['pseudo'];
         formReponseAvis.style.display = "none";
+
+        bin.addEventListener("click", function() {
+            if (listeAvis[idAvis] && listeAvis[idAvis]['idc_reponse']) {
+                supAvis(listeAvis[idAvis]['idc_reponse'], <?=$idOffre?>, "supprimerReponse")
+                    .then(response => {
+                        console.log("Review deleted successfully:", response);
+                        // Optionally update the UI here
+                    })
+                    .catch(error => {
+                        console.error("Failed to delete review:", error);
+                    });
+            } else {
+                console.error("Invalid review or response ID");
+            }
+        });
     }
     
     //On passe l'avis de non lu a lu (en affichage et en BDD)

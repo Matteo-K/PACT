@@ -1890,6 +1890,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .signalementPopup h2{
   text-align: center;
   width: 100%;
+  margin-top: 0;
 }
 
 .signalementPopup form{
@@ -2871,19 +2872,24 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   padding: 0 20px;
   font-size: 25px;
   font-weight: bold;
-
+  
   margin: 10px 0;
   height: 40px;
+  width: calc(100% - 10px);
+
+  justify-content: left;
+  border-radius: 20px 0 0 20px;
+  border-right: 0px solid var(--primary);
+  transition: border-right-width 0.5s ease-out;
 }
 
 #tri input:checked + label {
   background-color: #1ca4ed;
-  border-radius: 3px;
+  border-right-width: 10px;
 }
 
 #tri input:hover + label {
-  background-color: var(--secondary);
-  border-radius: 3px;
+ border-right-width: 10px ;
 }
 
 /* Bouton de tri et filtre */
@@ -4440,6 +4446,8 @@ details.animating .contentDetails {
   font-weight: 600;
   font-family: "Belanosima";
   color: var(--bloc);
+  border-bottom: 2px solid var(--bloc);
+  padding: 5px 5%;
 }
 
 #avisPro option {
@@ -5122,7 +5130,12 @@ label#btnAjoutPhoto:hover {
   #publiez-component > section .star {
     width: 2em;
     height: 2em;
-}
+  }
+  #accompagnant, #divAjoutPhoto{
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start !important;
+  }
 }
 
 /* ========================= */

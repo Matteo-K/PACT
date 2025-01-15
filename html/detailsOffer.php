@@ -1071,6 +1071,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             const popup = document.querySelector('.avis .signalementPopup');
             const btnFermer = document.querySelector('.signalementPopup .close');
             const btnConfirmer = document.getElementById('confirmeSignalement');
+            
+            const radioMotif = document.querySelectorAll('input[name="choix"]');
 
             let btnSelectionne;
 
@@ -1104,6 +1106,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         })
                     });
 
+                    radioMotif.forEach(radio => radio.checked = false); // On désélectionne le motif choisi
+                    texteComplement.value = "" //On vide le textarea
+
                     alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme!');
                 }
                 else{
@@ -1115,9 +1120,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
             btnFermer.addEventListener('click', () => {
                 popup.style.display = 'none';
+                radioMotif.forEach(radio => radio.checked = false); // On désélectionne le motif choisi
+                texteComplement.value = "" //On vide le textarea
             });
 
-            // Masquer le pop-up si on clique en dehors
+            // Masquer le pop-up si on clique en dehors, et on laisse les input tels quels en cas de missclick
             window.addEventListener('click', (event) => {
                 if (event.target === popup) {
                     popup.style.display = 'none';
