@@ -4945,7 +4945,7 @@ label#btnAjoutPhoto:hover {
 
 /* Style pour le lien dans le paragraphe login-prompt */
 #login-prompt a {
-  color: #007BFF; /* Bleu pour le lien */
+  color: var(--primary); /* Bleu pour le lien */
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease, text-shadow 0.3s ease;
@@ -4953,8 +4953,7 @@ label#btnAjoutPhoto:hover {
 
 /* Effet au survol du lien */
 #login-prompt a:hover {
-  color: #0056b3;
-  text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  color: var(--primary);
   text-decoration: underline;
 }
 
