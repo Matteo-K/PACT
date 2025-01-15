@@ -85,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="backdoor.php" method="post">
               <input type="hidden" name="idU" value="<?php echo $result["idu"] ?>">
               <input type="hidden" name="typeUser" value="pro_prive">
+              <input type="text" name="idoffre" placeholder="idOffre">
               <input type="submit" value="Connexion">
             </form>
           </td>
@@ -107,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="backdoor.php" method="post">
               <input type="hidden" name="idU" value="<?php echo $result["idu"] ?>">
               <input type="hidden" name="typeUser" value="pro_public">
+              <input type="text" name="idoffre" placeholder="idOffre">
               <input type="submit" value="Connexion">
             </form>
           </td>
@@ -129,6 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="backdoor.php" method="post">
               <input type="hidden" name="idU" value="<?php echo $result["idu"] ?>">
               <input type="hidden" name="typeUser" value="membre">
+              <input type="text" name="idoffre" placeholder="idOffre">
               <input type="submit" value="Connexion">
             </form>
           </td>
