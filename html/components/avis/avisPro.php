@@ -121,7 +121,7 @@ $avis = $avisTemp;
                 <h2>
                     Auteur
                 </h2>
-                <img src="./img/icone/trois-points.png" alt="icone de parametre" class="signalerAvis">
+                <img src="./img/icone/signalement.png" alt="icone de parametre" class="signalerAvis">
             </div>
             <div class="noteEtoile">
                 <?php
@@ -147,6 +147,7 @@ $avis = $avisTemp;
             <div class="conteneurReponsePro">
                 <img src="./img/icone/reponse.png" alt="icone de reponse">
                 <article>
+                    <img src="img/icone/bin.png" alt="icône de suppression" title="supprimer ma réponse">
                     <h3> Votre réponse à membre </h3>
                     <p> Contenu de la réponse </p>
                 </article>
