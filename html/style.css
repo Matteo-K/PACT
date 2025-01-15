@@ -1759,7 +1759,6 @@ label[for="rest_ajoutPhotoMenu"] {
   flex-flow: column;
   align-items: flex-start;
   justify-content: center;
-  margin-inline: 28%;
 }
 
 #show_nbPlacePrixMin {
@@ -1977,9 +1976,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .blocStar {
-    flex-direction: column !important; /* Empile les étoiles verticalement pour économiser de l'espace */
-    justify-content: flex-start !important;
-    margin-bottom: 10px !important;
+    
   }
 
   .flip-card-back .blocStar .star {
