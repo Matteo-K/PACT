@@ -1266,9 +1266,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     body.classList.remove("no-scroll");
                 }
                 // Ouvrir le popup lorsque le bouton est cliqué
-                openModalBtn.onclick = openModal;
+                openModalBtn.onclick = openModal();
                 // Fermer le popup lorsqu'on clique sur la croix
-                closeModalBtn.onclick = closeModal;
+                closeModalBtn.onclick = closeModal();
                 // Fermer le popup lorsqu'on clique en dehors du contenu
                 // window.onclick = function(event) {
                 //   if (event.target === modal) {
