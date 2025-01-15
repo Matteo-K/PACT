@@ -1022,189 +1022,179 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            const nbWeekInput = document.getElementById('nbWeekALaUne');
-            const totalPriceElement = document.getElementById('totalPrice');
-            const pricePerWeek = 20; // Prix par semaine
+            try {
+                const nbWeekInput = document.getElementById('nbWeekALaUne');
+                const totalPriceElement = document.getElementById('totalPrice');
+                const pricePerWeek = 20; // Prix par semaine
 
-            function updatePrice() {
-                const nbWeeks = parseInt(nbWeekInput.value) || 0; // Récupère la valeur ou 0 si vide
-                const totalPrice = nbWeeks * pricePerWeek;
-                totalPriceElement.textContent = `Prix total : ${totalPrice}€`;
+                function updatePrice() {
+                    const nbWeeks = parseInt(nbWeekInput.value) || 0; // Récupère la valeur ou 0 si vide
+                    const totalPrice = nbWeeks * pricePerWeek;
+                    totalPriceElement.textContent = `Prix total : ${totalPrice}€`;
+                }
+
+                // Mise à jour initiale
+                updatePrice();
+                // Ajout d'un écouteur d'événement sur le champ de saisie
+                nbWeekInput.addEventListener('input', updatePrice);
+
+                const nbWeekInput2 = document.getElementById('nbWeekEnRelief');
+                const totalPriceElement2 = document.getElementById('totalPrice2');
+                const pricePerWeek2 = 10; // Prix par semaine
+
+                function updatePrice2() {
+                    const nbWeeks2 = parseInt(nbWeekInput2.value) || 0; // Récupère la valeur ou 0 si vide
+                    const totalPrice2 = nbWeeks2 * pricePerWeek2;
+                    totalPriceElement2.textContent = `Prix total : ${totalPrice2}€`;
+                }
+
+                // Mise à jour initiale
+                updatePrice2();
+
+                // Ajout d'un écouteur d'événement sur le champ de saisie
+                nbWeekInput2.addEventListener('input', updatePrice2);
+            } catch (error) {
+                
             }
-
-            // Mise à jour initiale
-            updatePrice();
-
-            // Ajout d'un écouteur d'événement sur le champ de saisie
-            nbWeekInput.addEventListener('input', updatePrice);
-
-            const nbWeekInput2 = document.getElementById('nbWeekEnRelief');
-            const totalPriceElement2 = document.getElementById('totalPrice2');
-            const pricePerWeek2 = 10; // Prix par semaine
-
-            function updatePrice2() {
-                const nbWeeks2 = parseInt(nbWeekInput2.value) || 0; // Récupère la valeur ou 0 si vide
-                const totalPrice2 = nbWeeks2 * pricePerWeek2;
-                totalPriceElement2.textContent = `Prix total : ${totalPrice2}€`;
-            }
-
-            // Mise à jour initiale
-            updatePrice2();
-
-            // Ajout d'un écouteur d'événement sur le champ de saisie
-            nbWeekInput2.addEventListener('input', updatePrice2);
-
-            const forms = document.querySelectorAll('.confirmation-form');
-            forms.forEach(form => {
-                form.addEventListener('submit', (event) => {
-                    const confirmation = confirm("Êtes-vous sûr de vouloir resilier cette option ?\nVous ne serez pas facturé pour cette option");
-                    if (!confirmation) {
-                        event.preventDefault(); // Empêche la soumission si l'utilisateur annule
-                    }
+            
+            try {
+                const forms = document.querySelectorAll('.confirmation-form');
+                forms.forEach(form => {
+                    form.addEventListener('submit', (event) => {
+                        const confirmation = confirm("Êtes-vous sûr de vouloir resilier cette option ?\nVous ne serez pas facturé pour cette option");
+                        if (!confirmation) {
+                            event.preventDefault(); // Empêche la soumission si l'utilisateur annule
+                        }
+                    });
                 });
-            });
 
-            const forms2 = document.querySelectorAll('.confirmation-form-arr');
-            forms2.forEach(form => {
-                form.addEventListener('submit', (event) => {
-                    const confirmation = confirm("Êtes-vous sûr de vouloir arrêter cette option ?\nVous serez facturé pour toutes les semaines");
-                    if (!confirmation) {
-                        event.preventDefault(); // Empêche la soumission si l'utilisateur annule
-                    }
+                const forms2 = document.querySelectorAll('.confirmation-form-arr');
+                forms2.forEach(form => {
+                    form.addEventListener('submit', (event) => {
+                        const confirmation = confirm("Êtes-vous sûr de vouloir arrêter cette option ?\nVous serez facturé pour toutes les semaines");
+                        if (!confirmation) {
+                            event.preventDefault(); // Empêche la soumission si l'utilisateur annule
+                        }
+                    });
                 });
-            });
+            } catch (error) {
+                
+            }    
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            const button1 = document.getElementById("button1");
-            const button2 = document.getElementById("button2");
-            const form1 = document.getElementById("formOpt1");
-            const form2 = document.getElementById("formOpt2");
 
-            if (button1 && form1) {
-                // Ajouter un listener de clic au bouton
-                button1.addEventListener("click", (event) => {
-                    const confirmation = confirm("Êtes-vous sûr de vouloir ajouter cette option ?\nVous serez facturé pour toutes les options en cours, sauf si arrêté le jour du lancement");
-                    if (confirmation) {
-                        event.preventDefault(); // Empêche l'action par défaut du bouton
-                        form1.submit(); // Soumet le formulaire correspondant
-                    }
-                });
-            }
-
-            if (button2 && form2) {
-                // Ajouter un listener de clic au bouton
-                button2.addEventListener("click", (event) => {
-                    const confirmation = confirm("Êtes-vous sûr de vouloir ajouter cette option ?\nVous serez facturé pour toutes les options en cours, sauf si arrêté le jour du lancement");
-                    if (confirmation) {
-                        event.preventDefault(); // Empêche l'action par défaut du bouton
-                        form2.submit(); // Soumet le formulaire correspondant
-                    }
-                });
-            }
-
-            // const toggles = document.querySelectorAll(".datePickerToggle");
-
-            // toggles.forEach(toggle => {
-            //     toggle.addEventListener("change", function() {
-            //         const form = this.closest("form");
-            //         const datePicker = form.querySelector(".datePicker");
-            //         const toggleMessage = form.closest("aside").querySelector(".toggleMessage");
-
-            //         if (this.checked) {
-            //             datePicker.style.display = "block"; // Affiche le date picker
-            //             if (toggleMessage) {
-            //                 toggleMessage.style.display = "none"; // Cache le message
-            //             }
-            //         } else {
-            //             datePicker.style.display = "none"; // Cache le date picker
-            //             if (toggleMessage) {
-            //                 toggleMessage.style.display = "block"; // Affiche à nouveau le message
-            //             }
-            //         }
-            //     });
-            // });
-
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.contentPop');
-            const trait = document.querySelector('.traitBouge'); // Trait qui se déplace
-
-            // Fonction pour mettre à jour la position et la taille du trait sous les onglets
-            function updateUnderline() {
-                const activeTab = document.querySelector('.tab.active');
-                const tabWidth = activeTab.offsetWidth;
-                const tabOffset = activeTab.offsetLeft;
-                trait.style.width = `40%`; // Ajuste la largeur du trait
-                trait.style.transform = `translateX(${tabOffset}px)`; // Déplace le trait sous l'onglet actif
-            }
-
-            // Ajoute l'événement click sur chaque onglet
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const targetTab = this; // Onglet cliqué
-
-                    // Active l'onglet et désactive les autres
-                    tabs.forEach(t => t.classList.remove('active'));
-                    targetTab.classList.add('active');
-
-                    // Affiche le contenu associé et cache les autres
-                    const targetContent = document.getElementById(`content-${targetTab.dataset.tab}`);
-                    contents.forEach(content => {
-                        if (content === targetContent) {
-                            content.classList.add('active');
-                        } else {
-                            content.classList.remove('active');
+            try {
+                const button1 = document.getElementById("button1");
+                const button2 = document.getElementById("button2");
+                const form1 = document.getElementById("formOpt1");
+                const form2 = document.getElementById("formOpt2");
+                
+                if (button1 && form1) {
+                    // Ajouter un listener de clic au bouton
+                    button1.addEventListener("click", (event) => {
+                        const confirmation = confirm("Êtes-vous sûr de vouloir ajouter cette option ?\nVous serez facturé pour toutes les options en cours, sauf si arrêté le jour du lancement");
+                        if (confirmation) {
+                            event.preventDefault(); // Empêche l'action par défaut du bouton
+                            form1.submit(); // Soumet le formulaire correspondant
                         }
                     });
+                }
+            
+                if (button2 && form2) {
+                    // Ajouter un listener de clic au bouton
+                    button2.addEventListener("click", (event) => {
+                        const confirmation = confirm("Êtes-vous sûr de vouloir ajouter cette option ?\nVous serez facturé pour toutes les options en cours, sauf si arrêté le jour du lancement");
+                        if (confirmation) {
+                            event.preventDefault(); // Empêche l'action par défaut du bouton
+                            form2.submit(); // Soumet le formulaire correspondant
+                        }
+                    });
+                }
+            } catch (error) {
+                
+            }
+                
+            try{
+                const tabs = document.querySelectorAll('.tab');
+                const contents = document.querySelectorAll('.contentPop');
+                const trait = document.querySelector('.traitBouge'); // Trait qui se déplace
 
-                    // Met à jour la position et la largeur du trait
-                    updateUnderline();
+                // Fonction pour mettre à jour la position et la taille du trait sous les onglets
+                function updateUnderline() {
+                    const activeTab = document.querySelector('.tab.active');
+                    const tabWidth = activeTab.offsetWidth;
+                    const tabOffset = activeTab.offsetLeft;
+                    trait.style.width = `40%`; // Ajuste la largeur du trait
+                    trait.style.transform = `translateX(${tabOffset}px)`; // Déplace le trait sous l'onglet actif
+                }
+
+                // Ajoute l'événement click sur chaque onglet
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        const targetTab = this; // Onglet cliqué
+
+                        // Active l'onglet et désactive les autres
+                        tabs.forEach(t => t.classList.remove('active'));
+                        targetTab.classList.add('active');
+
+                        // Affiche le contenu associé et cache les autres
+                        const targetContent = document.getElementById(`content-${targetTab.dataset.tab}`);
+                        contents.forEach(content => {
+                            if (content === targetContent) {
+                                content.classList.add('active');
+                            } else {
+                                content.classList.remove('active');
+                            }
+                        });
+
+                        // Met à jour la position et la largeur du trait
+                        updateUnderline();
+                    });
                 });
-            });
 
-            // Initialiser le premier onglet comme actif
-            updateUnderline(); // Met à jour la position du trait dès que la page est chargée
+                // Initialiser le premier onglet comme actif
+                updateUnderline(); // Met à jour la position du trait dès que la page est chargée
+            } catch (error){
+
+            }
+
+            try {
+                const modal = document.getElementById("myModal");
+                const openModalBtn = document.getElementById("openModalBtn");
+                const closeModalBtn = document.querySelector(".close");
+                const popupForm = document.getElementById("popupForm");
+                const body = document.body;
+                // Fonction pour afficher le modal
+                function openModal() {
+                    console.log("hop");
+                    modal.style.display = "block";
+                    body.classList.add("no-scroll");
+                }
+                // Fonction pour fermer le modal
+                function closeModal() {
+                    modal.style.display = "none";
+                    body.classList.remove("no-scroll");
+                }
+                // Ouvrir le popup lorsque le bouton est cliqué
+                openModalBtn.onclick = openModal;
+                // Fermer le popup lorsqu'on clique sur la croix
+                closeModalBtn.onclick = closeModal;
+                // Fermer le popup lorsqu'on clique en dehors du contenu
+                // window.onclick = function(event) {
+                //   if (event.target === modal) {
+                //     closeModal();
+                //   }
+                // }
+            
+                // Soumettre le formulaire
+                function confirmation() {
+                    closeModal(); // Fermer la fenêtre modale après soumission
+                }
+            } catch (error) {
+                
+            }
         });
-
-
-
-        const modal = document.getElementById("myModal");
-        const openModalBtn = document.getElementById("openModalBtn");
-        const closeModalBtn = document.querySelector(".close");
-        const popupForm = document.getElementById("popupForm");
-        const body = document.body;
-        console.log("js1");
-        // Fonction pour afficher le modal
-        function openModal() {
-            console.log("hop");
-            modal.style.display = "block";
-            body.classList.add("no-scroll");
-        }
-        console.log("js2");
-        // Fonction pour fermer le modal
-        function closeModal() {
-            modal.style.display = "none";
-            body.classList.remove("no-scroll");
-        }
-        console.log("js3");
-        // Ouvrir le popup lorsque le bouton est cliqué
-        openModalBtn.onclick = openModal;
-        console.log("js4");
-        // Fermer le popup lorsqu'on clique sur la croix
-        closeModalBtn.onclick = closeModal;
-        console.log("js5");
-        // Fermer le popup lorsqu'on clique en dehors du contenu
-        // window.onclick = function(event) {
-        //   if (event.target === modal) {
-        //     closeModal();
-        //   }
-        // }
-
-        // Soumettre le formulaire
-        function confirmation() {
-            closeModal(); // Fermer la fenêtre modale après soumission
-        }
-        console.log("js6");
     </script>
     <script>
         let map;
