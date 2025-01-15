@@ -1790,6 +1790,11 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 /* popup signalement avis */
+.avis .modal-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .signalementPopup h2{
   text-align: center;
@@ -3337,6 +3342,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
+  align-self: end;
 }
 
 .close:hover,

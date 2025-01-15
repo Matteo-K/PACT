@@ -1297,59 +1297,65 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         });
     </script>
     <script>
-        let map;
-        let geocoder;
-        let marker; // Variable pour stocker le marqueur actuel
+        try {
+            
+            let map;
+            let geocoder;
+            let marker; // Variable pour stocker le marqueur actuel
 
-        // Initialisation de la carte Google
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("carte"), {
-                center: {
-                    lat: 48.8566,
-                    lng: 2.3522
-                }, // Paris comme point de départ
-                zoom: 8,
-            });
-            geocoder = new google.maps.Geocoder();
+            // Initialisation de la carte Google
+            function initMap() {
+                map = new google.maps.Map(document.getElementById("carte"), {
+                    center: {
+                        lat: 48.8566,
+                        lng: 2.3522
+                    }, // Paris comme point de départ
+                    zoom: 8,
+                });
+                geocoder = new google.maps.Geocoder();
 
-            // Effectuer le géocodage dès que la carte est chargée
-            checkInputsAndGeocode();
-        }
-
-        function checkInputsAndGeocode() {
-            const adresse = "<?php echo $lieu['numerorue'] . ' ' . $lieu['rue'] . ', ' . $lieu['codepostal'] . ' ' . $lieu['ville']; ?>";
-
-            if (!adresse || adresse.trim() === "") {
-                alert("L'adresse est manquante.");
-            } else {
-                geocodeadresse(adresse);
+                // Effectuer le géocodage dès que la carte est chargée
+                checkInputsAndGeocode();
             }
-        }
 
-        function geocodeadresse(fulladresse) {
-            console.log("Adresse envoyée pour géocodage : ", fulladresse);
-            geocoder.geocode({
-                'address': fulladresse
-            }, function(results, status) {
-                if (status === google.maps.GeocoderStatus.OK && results[0]) {
-                    console.log("Résultat du géocodage : ", results[0]);
+            function checkInputsAndGeocode() {
+                const adresse = "<?php echo $lieu['numerorue'] . ' ' . $lieu['rue'] . ', ' . $lieu['codepostal'] . ' ' . $lieu['ville']; ?>";
 
-                    // Supprimer l'ancien marqueur s'il existe
-                    if (marker) {
-                        marker.setMap(null);
-                    }
-
-                    // Centrer la carte et placer le marqueur
-                    map.setCenter(results[0].geometry.location);
-                    map.setZoom(15);
-                    marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location
-                    });
+                if (!adresse || adresse.trim() === "") {
+                    alert("L'adresse est manquante.");
                 } else {
-                    console.error("Échec du géocodage : ", status, results); // Affichez plus d'informations
+                    geocodeadresse(adresse);
                 }
-            });
+            }
+
+            function geocodeadresse(fulladresse) {
+                console.log("Adresse envoyée pour géocodage : ", fulladresse);
+                geocoder.geocode({
+                    'address': fulladresse
+                }, function(results, status) {
+                    if (status === google.maps.GeocoderStatus.OK && results[0]) {
+                        console.log("Résultat du géocodage : ", results[0]);
+
+                        // Supprimer l'ancien marqueur s'il existe
+                        if (marker) {
+                            marker.setMap(null);
+                        }
+
+                        // Centrer la carte et placer le marqueur
+                        map.setCenter(results[0].geometry.location);
+                        map.setZoom(15);
+                        marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                    } else {
+                        console.error("Échec du géocodage : ", status, results); // Affichez plus d'informations
+                    }
+                });
+            }
+
+        } catch (error) {
+            
         }
     </script>
 
