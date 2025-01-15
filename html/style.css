@@ -1994,7 +1994,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     justify-content: flex-end !important;
   }
 
-  .flip-card-back .blocStar .star,.flip-card-front.blocStar .star {
+  .flip-card-back .blocStar .star,.flip-card-front .blocStar .star {
     width: 15px;
     height: 15px;
   }
