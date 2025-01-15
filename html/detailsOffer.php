@@ -764,7 +764,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 // Récupérer les horaires à partir de la fonction getSchedules
                                 $schedules = getSchedules();
                                 // Afficher les horaires pour chaque jour de la semaine
-                                if ($result[0]['categorie'] == 'Spectacle' || $result[0]['categorie'] == 'Activité') {
+                                if ($result[0]['categorie'] == 'Spectacle' ) {
                                     $horaireSpectacle = [];
                                     if ($schedules['spectacle']) {
                                         usort($schedules['spectacle'], function ($a, $b) {
