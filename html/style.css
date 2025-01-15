@@ -2817,9 +2817,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 /* test média query  */
 @media screen and (max-width: 600px) {
   #trifiltre {
-      flex-direction: column; /* Les boutons seront empilés */
+      flex-direction: column;
       position: relative;
       width: 100%;
+  }
+
+  #tri, #filtre {
+    overflow: scroll;
   }
 
   #btnAside {
@@ -2828,14 +2832,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     justify-content: center;
     width: 50%;
     padding-bottom: 40%;
-    border-radius: 1.5em;
   }
 
   #btnAside a {
       width: 50%;
       padding: 15px;
       background-color: var(--bloc25);
-      border-radius: 10px;
+      border-radius: 1.5em;
       text-align: center;
   }
 
@@ -2886,20 +2889,23 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
       width: 100%;
   }
 
+  #tri, #filtre {
+    overflow: scroll;
+  }
+
   #btnAside {
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 50%;
     padding-bottom: 40%;
-    border-radius: 1.5em;
   }
 
   #btnAside a {
       width: 50%;
       padding: 15px;
       background-color: var(--bloc25);
-      border-radius: 10px;
+      border-radius: 1.5em;
       text-align: center;
   }
 
