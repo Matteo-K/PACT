@@ -1976,11 +1976,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .blocStar {
-    
+    margin: 0;
   }
 
   .flip-card-back .blocStar .star {
-
+    width: 15px;
+    height: 15px;
   }
 
   .flip-card-back .nomPro {
