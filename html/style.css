@@ -2000,11 +2000,11 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .information {
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding-inline: 5px !important;
-    margin-top: 20px !important; 
+    
+    /* flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding-inline: 5px !important;  */
   }
 
   .flip-card-back .resume {
@@ -2016,18 +2016,17 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .tagsCard {
-    flex-direction: row !important;
+    display: none;
+    /* flex-direction: row !important;
     justify-content: flex-start !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding-inline: 5px !important;
-    margin-top: 5px !important;
+    gap: 3px !important;
+    margin-top: 5px !important; */
   }
 
   .tagIndex {
-    font-size: 0.75em !important;
-    padding: 4px 8px !important;
+    display: none;
+    /* font-size: 0.75em !important;
+    padding: 4px 8px !important; */
   }
 }
 
@@ -3564,7 +3563,6 @@ article#descriptionOffre {
 article#descriptionOffre {
   border-radius: 10px;
   padding: 20px 0;
-  margin: auto;
   margin-bottom: 20px;
   align-items: flex-end;
 }
@@ -4361,8 +4359,7 @@ details .nonRepondu {
 .conteneurReponsePro > article {
   width: 90%;
   padding: 20px;
-  background-color: #fff;
-  border: var(--primary) 3px solid;
+  background-color: var(--secondary60);
   border-radius: 20px;
 }
 
@@ -4567,7 +4564,7 @@ details .nonRepondu {
   font-weight: 600;
 }
 
-.avis .tag:not(.mainOffer > div > .tag) {
+.tag:not(.mainOffer > div > .tag) {
   border-radius: 0 !important;
   border-bottom: solid 3px var(--accent) !important;
   padding: 2px 20px !important;
