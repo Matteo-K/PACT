@@ -2045,13 +2045,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {
-    height: fit-content; /* Ajuste la hauteur selon ton besoin */
+    height: 190px; /* Ajuste la hauteur selon ton besoin */
     position: relative;
     margin: 0 auto 0 auto;
   }
 
   #index{
-    margin-top: 0;
+    margin-top: 0 !important;
   }
 
   .swiper.gb, 
@@ -2837,10 +2837,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   #btnAside {
-      display: flex;
-      justify-content: space-evenly;
-      width: 100%;
-      margin-bottom: 10px; /* Espacement entre les boutons */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 50%;
+    padding-bottom: 40%;
+    border-radius: 1.5em;
   }
 
   #btnAside a {
@@ -2899,10 +2901,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   #btnAside {
-      display: flex;
-      justify-content: space-evenly;
-      width: 100%;
-      margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 50%;
+    padding-bottom: 40%;
+    border-radius: 1.5em;
   }
 
   #btnAside a {
