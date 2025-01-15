@@ -12,7 +12,7 @@ if (!$idOffre) {
 }
 
 // Consulté récemment
-if (isset($_SESSION["typeUser"]) && $_SESSION["typeUser"] == 'membre'){
+if (isset($_SESSION["typeUser"]) && $_SESSION["typeUser"] == 'membre') {
     $stmt = $conn->prepare("SELECT * from pact._consulter where idu = ? and idoffre = ?");
     $stmt->execute([$_SESSION['idUser'], $idOffre]);
     $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -22,7 +22,7 @@ if (isset($_SESSION["typeUser"]) && $_SESSION["typeUser"] == 'membre'){
         $stmt->execute([$_SESSION['idUser'], $idOffre]);
         $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Sinon on la créer
+        // Sinon on la créer
     } else {
         $stmt = $conn->prepare("INSERT INTO pact._consulter (idu, idoffre, dateconsultation) values (?, ?, CURRENT_TIMESTAMP)");
         $stmt->execute([$_SESSION['idUser'], $idOffre]);
@@ -504,7 +504,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
             ?>
         
-        <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
+        <h2 id=" titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
                     <h3 id="typeOffer"><?php echo $typeOffer ?> à <?php echo $result[0]['ville'] ?></h3>
                     <?php
                     if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
@@ -918,8 +918,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                 </div>
                             </div>
-                    
-                        <?php
+
+                    <?php
 
                         }
                     }
@@ -928,49 +928,49 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="avis">
 
-                    <?php 
+                        <?php
 
-                    
-                    if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
-                        require_once __DIR__ . "/components/avis/avisPro.php";
-                    } else {
+
+                        if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
+                            require_once __DIR__ . "/components/avis/avisPro.php";
+                        } else {
                         ?> <div class="avisMembre">
-                            <nav id="tab-container">
-                                <h3 id="tab-avis">Avis</h3>
-                                <h3 id="tab-publiez">Publiez un avis</h3>
-                            </nav>
+                                <nav id="tab-container">
+                                    <h3 id="tab-avis">Avis</h3>
+                                    <h3 id="tab-publiez">Publiez un avis</h3>
+                                </nav>
 
-                            <div id="avis-section">
-                                <!-- Contenu chargé dynamiquement -->
-                                <div id="avis-component" style="display: flex;">
-                                    <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
-                                </div>
-                                <div id="publiez-component" style="display: none;">
-                                    <?php
-                                    if ($isLoggedIn) {
-                                        $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ? AND idu = ?");
-                                        $stmt->execute([$idOffre, $idUser]);
-                                        $existingReview = $stmt->fetch();
+                                <div id="avis-section">
+                                    <!-- Contenu chargé dynamiquement -->
+                                    <div id="avis-component" style="display: flex;">
+                                        <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
+                                    </div>
+                                    <div id="publiez-component" style="display: none;">
+                                        <?php
+                                        if ($isLoggedIn) {
+                                            $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ? AND idu = ?");
+                                            $stmt->execute([$idOffre, $idUser]);
+                                            $existingReview = $stmt->fetch();
 
-                                        if ($existingReview) {
-                                            // L'utilisateur a déjà laissé un avis pour cette offre
-                                            echo '<p>Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre</p>';
+                                            if ($existingReview) {
+                                                // L'utilisateur a déjà laissé un avis pour cette offre
+                                                echo '<p>Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre</p>';
+                                            } else {
+                                                require_once __DIR__ . "/components/avis/ecrireAvis.php";
+                                            }
                                         } else {
-                                            require_once __DIR__ . "/components/avis/ecrireAvis.php";
+                                        ?>
+                                            <p>Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></p>
+                                        <?php
                                         }
-                                    } else {
-                                    ?>
-                                        <p>Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></p>
-                                    <?php
-                                    }
-                                    ?>
+                                        ?>
+                                    </div>
                                 </div>
-                            </div>
 
-                        </div>
-                    <?php
-                    }
-                    ?>
+                            </div>
+                        <?php
+                        }
+                        ?>
 
 
                         <!-- Pop-up de signalement d'un avis -->
@@ -979,36 +979,36 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <span class="close">&times;</span>
                                 <h2>Signalement d'un avis</h2>
                                 <form action="signaleAvis.php">
-                                <ul>
-                                    <li>
-                                        <label for="inapproprie">
-                                            <input type="radio" name="signalement" id="inapproprie" value="innaproprie">
-                                            <span class="checkmark"></span>
-                                            Contenu inapproprié (injures, menaces, contenu explicite...)
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="frauduleux">
-                                            <input type="radio" name="signalement" id="frauduleux" value="frauduleux">
-                                            <span class="checkmark"></span>
-                                            Avis frauduleux ou trompeur (faux avis, publicité déguisée...)
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="spam">
-                                            <input type="radio" name="signalement" id="spam" value="spam">
-                                            <span class="checkmark"></span>
-                                            Spam ou contenu hors-sujet (multipostage, indésirable...)
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="violation">
-                                            <input type="radio" name="signalement" id="violation" value="violation">
-                                            <span class="checkmark"></span>
-                                            Violation des règles de la plateforme (vie privée, données seneibles...)
-                                        </label>
-                                    </li>
-                                </ul>
+                                    <ul>
+                                        <li>
+                                            <label for="inapproprie">
+                                                <input type="radio" name="signalement" id="inapproprie" value="innaproprie">
+                                                <span class="checkmark"></span>
+                                                Contenu inapproprié (injures, menaces, contenu explicite...)
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label for="frauduleux">
+                                                <input type="radio" name="signalement" id="frauduleux" value="frauduleux">
+                                                <span class="checkmark"></span>
+                                                Avis frauduleux ou trompeur (faux avis, publicité déguisée...)
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label for="spam">
+                                                <input type="radio" name="signalement" id="spam" value="spam">
+                                                <span class="checkmark"></span>
+                                                Spam ou contenu hors-sujet (multipostage, indésirable...)
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label for="violation">
+                                                <input type="radio" name="signalement" id="violation" value="violation">
+                                                <span class="checkmark"></span>
+                                                Violation des règles de la plateforme (vie privée, données seneibles...)
+                                            </label>
+                                        </li>
+                                    </ul>
                                     <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
                                     <input type="submit" value="Envoyer" id="confirmeSignalement">
                                 </form>
@@ -1020,6 +1020,42 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
     <script>
+        function supAvis(id, idOffre) {
+            // Affiche une boîte de dialogue pour confirmer la suppression
+            const confirmSupp = confirm("Êtes-vous sûr de vouloir supprimer votre avis ?");
+            if (!confirmSupp) return;
+
+            // Crée un formulaire dynamique
+            const form = document.createElement("form");
+            form.method = "POST";
+            form.action = "/enregAvis.php";
+
+            // Ajoute le champ caché pour l'ID de l'avis
+            const idAvis = document.createElement("input");
+            idAvis.type = "hidden";
+            idAvis.name = "id";
+            idAvis.value = id;
+            form.appendChild(idAvis);
+
+            // Ajoute le champ caché pour spécifier l'action
+            const action = document.createElement("input");
+            action.type = "hidden";
+            action.name = "action";
+            action.value = "supprimerAvis";
+            form.appendChild(action);
+
+            // Ajoute le champ caché pour l'ID de l'offre
+            const offre = document.createElement("input");
+            offre.type = "hidden";
+            offre.name = "idoffre";
+            offre.value = idOffre;
+            form.appendChild(offre);
+
+            // Ajoute le formulaire au document et le soumet
+            document.body.appendChild(form);
+            form.submit();
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
 
             try {
@@ -1054,9 +1090,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 // Ajout d'un écouteur d'événement sur le champ de saisie
                 nbWeekInput2.addEventListener('input', updatePrice2);
             } catch (error) {
-                
+
             }
-            
+
             try {
                 const forms = document.querySelectorAll('.confirmation-form');
                 forms.forEach(form => {
@@ -1078,8 +1114,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     });
                 });
             } catch (error) {
-                
-            }    
+
+            }
         });
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -1089,7 +1125,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const button2 = document.getElementById("button2");
                 const form1 = document.getElementById("formOpt1");
                 const form2 = document.getElementById("formOpt2");
-                
+
                 if (button1 && form1) {
                     // Ajouter un listener de clic au bouton
                     button1.addEventListener("click", (event) => {
@@ -1100,7 +1136,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         }
                     });
                 }
-            
+
                 if (button2 && form2) {
                     // Ajouter un listener de clic au bouton
                     button2.addEventListener("click", (event) => {
@@ -1112,10 +1148,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     });
                 }
             } catch (error) {
-                
+
             }
-                
-            try{
+
+            try {
                 const tabs = document.querySelectorAll('.tab');
                 const contents = document.querySelectorAll('.contentPop');
                 const trait = document.querySelector('.traitBouge'); // Trait qui se déplace
@@ -1155,7 +1191,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 // Initialiser le premier onglet comme actif
                 updateUnderline(); // Met à jour la position du trait dès que la page est chargée
-            } catch (error){
+            } catch (error) {
 
             }
 
@@ -1186,13 +1222,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 //     closeModal();
                 //   }
                 // }
-            
+
                 // Soumettre le formulaire
                 function confirmation() {
                     closeModal(); // Fermer la fenêtre modale après soumission
                 }
             } catch (error) {
-                
+
             }
         });
     </script>
