@@ -38,6 +38,11 @@
             event.preventDefault();
             if (currentFile !== 'index.php') {
                 window.location.href = 'index.php'; 
+            } else {
+                searchTarget.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
 
@@ -48,10 +53,6 @@
             if (currentFile === 'index.php') {
                 event.preventDefault();
                 const searchTarget = document.getElementById("searchIndex");
-                searchTarget.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
             }
         });
 
