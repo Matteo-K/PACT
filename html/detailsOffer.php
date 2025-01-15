@@ -262,7 +262,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
     <title><?php echo htmlspecialchars($result[0]["nom"]); ?></title>
 </head>
 
@@ -1038,9 +1038,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             // Ajoute le champ caché pour spécifier l'action
             const actionReaction = document.createElement("input");
-            action.type = "hidden";
-            action.name = "action";
-            action.value = action;
+            actionReaction.type = "hidden";
+            actionReaction.name = "action";
+            actionReaction.value = action;
             form.appendChild(actionReaction);
 
             // Ajoute le champ caché pour l'ID de l'offre
@@ -1072,12 +1072,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Traiter le signalement en BDD après confirmation et fermer le popup
         btnConfirmer.addEventListener('click', () => {
 
+            let motifSignal = document.querySelector('input[name="signalement"]:checked');
+
             if (motifSignal) {
                 popup.style.display = 'none';
 
                 idAvisSignal = ouvrePopup.classList[2].split("_")[1];
-                let motifSignal = document.querySelector('input[name="signalement"]:checked');
-                let texteComplement = document.querySelector('.signalementPopup form textarea');
+                let texteComplement = document.querySelector('.signalementPopup textarea');
 
                 fetch('signalement.php', {
                     method: 'POST',
@@ -1343,7 +1344,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
 
     <!-- Inclure l'API Google Maps avec votre clé API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
