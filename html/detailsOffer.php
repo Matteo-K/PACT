@@ -1056,6 +1056,44 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             document.body.appendChild(form);
             form.submit();
         }
+
+        //Script de gestion du pop-up de signalement
+        let ouvrePopup = document.querySelectorAll('.avis .signalerAvis');
+        const popup = document.querySelector('.avis .signalementPopup');
+        const btnFermer = document.querySelector('.signalementPopup .close');
+        const btnConfirmer = document.getElementById('confirmeSignalement');
+
+        console.log(ouvrePopup);
+
+        // Afficher le pop-up
+        ouvrePopup.forEach(boutonOuvrePopup => {
+            boutonOuvrePopup.addEventListener('click', () => {
+                popup.style.display = 'block';
+            });
+        });
+
+        // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
+        btnFermer.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        // Traiter le signalement en BDD après confirmation et fermer le popup
+        btnConfirmer.addEventListener('click', () => {
+            alert('Signalement enregistré');
+            popup.style.display = 'none';
+            fetch('signaleAvis.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 'id': idAvis })
+            });
+        });
+
+        // Masquer le pop-up si on clique en dehors
+        window.addEventListener('click', (event) => {
+            if (event.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
         
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -1405,38 +1443,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch {}
 
 
-        //Script de gestion du pop-up de signalement
-        let ouvrePopup = document.querySelectorAll('.avis .signalerAvis');
-        const popup = document.querySelector('.avis .signalementPopup');
-        const btnFermer = document.querySelector('.signalementPopup .close');
-        const btnConfirmer = document.getElementById('confirmeSignalement');
-
-        console.log(ouvrePopup);
-
-        // Afficher le pop-up
-        ouvrePopup.forEach(boutonOuvrePopup => {
-            boutonOuvrePopup.addEventListener('click', () => {
-                popup.style.display = 'block';
-            });
-        });
-
-        // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
-        btnFermer.addEventListener('click', () => {
-            popup.style.display = 'none';
-        });
-
-        // Masquer le pop-up après confirmation
-        btnConfirmer.addEventListener('click', () => {
-            alert('Signalement enregistré');
-            popup.style.display = 'none';
-        });
-
-        // Masquer le pop-up si on clique en dehors de son contenu
-        window.addEventListener('click', (event) => {
-            if (event.target === popup) {
-                popup.style.display = 'none';
-            }
-        });
+        
     </script>
     <script src="js/setColor.js"></script>
 </body>
