@@ -2011,13 +2011,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .title {
-    font-size: 1.3rem !important; /* Réduit la taille du titre */
+    font-size: 1.1rem !important; /* Réduit la taille du titre */
     text-align: right !important;
     margin: 0 !important;
   }
 
   .flip-card-front .title {
-    font-size: 1.3rem !important; /* Réduit la taille du titre */
+    font-size: 1rem !important; /* Réduit la taille du titre */
   }
 
   .flip-card-back .blocStar,.flip-card-front .blocStar {
@@ -2399,7 +2399,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 .flip-card-front img {
-  height: 85%;
+  height: 80%;
   width: 100%;
   object-fit: cover;
 }
@@ -2407,12 +2407,12 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .flip-card-front figcaption {
   background-color: var(--bloc);
   color: #fff;
-  padding: 10px 15px;
+  padding: 0 15px;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
-  height: 15%;
+  height: 20%;
 }
 
 .flip-card-front .title {
@@ -2836,7 +2836,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #btnAside a {
   width: fit-content;
   padding: 10px;
-  background-color: var(--bloc25);
+  background-color: var(--primary60);
   border-radius: 0 1.5rem 1.5rem 0;
   transition: padding 0.1s linear;
   cursor: pointer;
