@@ -4964,13 +4964,11 @@ details .nonRepondu {
 }
 
 #sectionPreview p,
-#sectionPreview h4,
-#sectionPreview h2 {
+#sectionPreview h4{
   font-size: 25px;
 }
 
-#sectionPreview h4,
-#sectionPreview h2 {
+#sectionPreview h4{
   font-size: 35px;
 }
 
