@@ -111,7 +111,6 @@ if ($pageDirection != -1) {
           $stmt = $conn->prepare("UPDATE pact._offre SET nom= ?, description= ?, resume= ? WHERE idoffre= ?");
           $stmt->execute([$titre, $description, $resume, $idOffre]);
 
-          print_r($_POST);
           $categorie = $_POST["categorie"];
 
 
@@ -395,10 +394,10 @@ if ($pageDirection != -1) {
               $duree = $_POST["actv_min"];
               $ageMin = $_POST["actv_ageMin"];
               $prixMinimale = $_POST["actv_prixMin"];
-              $accessibilite = [];
+              $accessibilite = $_POST["actv_access"] ?? [];
               $acces = count($accessibilite) > 0;
-              $prestationInclus = [];
-              $prestationNonInclus = [];
+              $prestationInclus = $_POST["prestationInclu"] ?? [];
+              $prestationNonInclus = $_POST["prestationNonInclu"] ?? [];
 
               $stmt = $conn->prepare("SELECT * from pact._activite where idoffre=?");
               $stmt->execute([$idOffre]);
