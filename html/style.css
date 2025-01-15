@@ -4493,7 +4493,8 @@ details .nonRepondu {
 .conteneurReponsePro > article {
   width: 90%;
   padding: 20px;
-  background-color: var(--secondary60);
+  background-color: #fff;
+  border:var(--primary) 3px solid;
   border-radius: 20px;
 }
 
