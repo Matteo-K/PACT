@@ -56,6 +56,7 @@ if ($categorie["_activite"]) {
     $stmt = $conn->prepare("SELECT * from pact._offreAccess where idoffre=?");
     $stmt->execute([$idOffre]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        print_r($row);
         $activite["nomAccess"][] = $row["nomAccess"];
     }
 }
