@@ -2045,7 +2045,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {
-    height: fit-content; /* Ajuste la hauteur selon ton besoin */
+    height: 190px; /* Ajuste la hauteur selon ton besoin */
     position: relative;
     margin: 0 auto 0 auto;
   }
