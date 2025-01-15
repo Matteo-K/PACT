@@ -2818,127 +2818,114 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 /* test média query  */
+/* Media query pour les écrans de 600px (tablettes, petits téléphones) */
 @media screen and (max-width: 600px) {
   #trifiltre {
-      flex-direction: column; /* Les boutons seront empilés */
-      position: relative;
-      width: 100%;
+      flex-direction: column; /* Pour avoir le tri et le filtre l'un au-dessus de l'autre */
   }
 
   #btnAside {
       display: flex;
-      justify-content: space-evenly;
-      width: 100%;
-      margin-bottom: 10px; /* Espacement entre les boutons */
+      flex-direction: row; /* Les boutons côte à côte */
+      justify-content: space-evenly; /* Espace égal entre les boutons */
+      width: 100%; /* Prendre toute la largeur */
   }
 
   #btnAside a {
-      width: 50%;
-      padding: 15px;
+      padding: 15px 25px; /* Taille des boutons plus grande pour ressembler à celle sur PC */
       background-color: var(--bloc25);
-      border-radius: 10px;
-      text-align: center;
+      border-radius: 0 1.5rem 1.5rem 0;
+      transition: padding 0.1s linear;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
   }
 
-  #btnAside a:hover, .btnAsideOpen {
-      padding-left: 30px !important;
+  #btnAside img {
+      width: 70px; /* Conserver la taille de l'icône sur PC */
+      height: 70px;
   }
 
   #tri, #filtre {
-      position: fixed; /* L'aside prendra toute la page */
-      top: 0;
+      width: 100%; /* Prendre toute la largeur de l'écran */
+      height: 100vh; /* Prendre toute la hauteur de la page */
+      position: fixed; /* Fixer le aside en haut */
+      top: 0; /* Placer le aside tout en haut */
       left: 0;
-      width: 100vw; /* Prend toute la largeur de l'écran */
-      height: 100vh; /* Prend toute la hauteur de l'écran */
-      z-index: 999;
-      display: none;
-      background-color: var(--background);
-      border: none;
-      opacity: 0;
-      transform: translateX(-100%);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  #tri.openAside, #filtre.openAside {
-      display: block !important;
-      opacity: 1 !important;
-      transform: translateX(0) !important;
   }
 
   #titreAside {
-      justify-content: space-between;
-      padding: 10px 15px;
+      padding: 10px 20px;
+      font-size: 22px; /* Taille du titre plus petite */
   }
 
-  #titreAside img {
+  #tri label, #filtre label {
+      font-size: 18px; /* Réduire la taille des labels */
+  }
+
+  .checkmark {
       width: 25px;
       height: 25px;
   }
 
-  #blcSearch {
-      flex-direction: column;
+  /* Rendre la fermeture de l'aside plus accessible */
+  #titreAside img {
+      width: 35px;
+      height: 35px;
   }
 }
 
+/* Media query pour les petits écrans de 375px (téléphones très petits) */
 @media screen and (max-width: 375px) {
-  #trifiltre {
-      flex-direction: column;
-      position: relative;
-      width: 100%;
-  }
-
   #btnAside {
       display: flex;
+      flex-direction: row;
       justify-content: space-evenly;
       width: 100%;
-      margin-bottom: 10px;
   }
 
   #btnAside a {
-      width: 50%;
-      padding: 15px;
+      padding: 12px 20px;
       background-color: var(--bloc25);
-      border-radius: 10px;
-      text-align: center;
+      border-radius: 0 1.5rem 1.5rem 0;
+      transition: padding 0.1s linear;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
   }
 
-  #btnAside a:hover, .btnAsideOpen {
-      padding-left: 30px !important;
+  #btnAside img {
+      width: 60px;
+      height: 60px;
   }
 
   #tri, #filtre {
+      width: 100%;
+      height: 100vh;
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 999;
-      display: none;
-      background-color: var(--background);
-      border: none;
-      opacity: 0;
-      transform: translateX(-100%);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  #tri.openAside, #filtre.openAside {
-      display: block !important;
-      opacity: 1 !important;
-      transform: translateX(0) !important;
   }
 
   #titreAside {
-      justify-content: space-between;
       padding: 10px 15px;
+      font-size: 20px;
+  }
+
+  #tri label, #filtre label {
+      font-size: 16px; /* Réduire davantage la taille des labels */
+  }
+
+  .checkmark {
+      width: 20px;
+      height: 20px;
   }
 
   #titreAside img {
-      width: 25px;
-      height: 25px;
-  }
-
-  #blcSearch {
-      flex-direction: column;
+      width: 30px;
+      height: 30px;
   }
 }
 
