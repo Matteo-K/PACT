@@ -806,6 +806,10 @@ header ul + div {
 
 #manageOffer [type="text"],
 #manageOffer [type="number"],
+#manageOffer [type="month"],
+#manageOffer [type="email"],
+#manageOffer [type="tel"],
+#manageOffer [type="password"],
 #manageOffer [type="time"] {
   outline: none;
   border-radius: 0;
@@ -1035,13 +1039,6 @@ header ul + div {
   }
 }
 
-.blueBtnOffer {
-  background-color: var(--primary);
-  box-shadow: inset -4px -4px 4px #1883bc;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  transform: translateY(-100%);
-}
-
 /* # selection de l'offre # */
 
 /* Bloc de chaque type d'offre*/
@@ -1161,6 +1158,7 @@ header ul + div {
 #hourlyOffer {
   padding: 20px;
   padding-bottom: 6%;
+  margin-left: 5%;
 }
 
 #hourlyOffer input {
@@ -1210,19 +1208,6 @@ header ul + div {
   width: fit-content;
   padding: 15px 30px;
   margin-left: 10px;
-}
-
-/* en cas de survol des boutons */
-#hourlyOffer input[type="button"]:hover,
-.blueBtnOffer:hover {
-  box-shadow: none;
-}
-
-/* en cas de clic sur les  boutons */
-#hourlyOffer input[type="button"]:active,
-.blueBtnOffer:active {
-  box-shadow: inset -4px -4px 4px rgba(255, 255, 255, 0.4),
-    inset 4px 4px 4px #1883bc;
 }
 
 .hourlyHide {
@@ -1305,11 +1290,9 @@ header ul + div {
 #contactOffer input[type="text"],
 #contactOffer input[type="email"],
 #contactOffer input[type="tel"] {
-  text-indent: 0;
   padding: 10px;
   width: 70%;
   min-width: 300px;
-  border: solid 2px var(--secondary);
 }
 
 #contactOffer input[type="email"] {
@@ -1350,8 +1333,14 @@ header ul + div {
 }
 
 #paymentOffer input[type="radio"] {
-  width: 20px;
-  height: 20px;
+  display: none;
+}
+
+#selectPayment label {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: left;
 }
 
 /* Chaque moyen de payment */
@@ -1407,7 +1396,6 @@ header ul + div {
 /* tout les input du moyen de payment */
 #paymentOffer article:nth-child(2) input {
   height: 20px;
-  border: var(--secondary) 3px solid;
   padding: 5px;
   margin-bottom: 15px;
 }
