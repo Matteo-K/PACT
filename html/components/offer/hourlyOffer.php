@@ -413,9 +413,9 @@ $is_show;
     <?php
     } else {
         ?>
-        <div>
-            <h3>Veuillez sélectionner Le type d'offre</h3>
-            <button type="submit" onclick="submitForm(event,2)">Détails de l'offre</button>
+        <div id="horaireNonSelect">
+            <h2>Veuillez sélectionner la catégorie associer à l'offre</h2>
+            <button type="submit" onclick="submitForm(event,2)" class="modifierBut">Détails de l'offre</button>
         </div>
         <?php
     }

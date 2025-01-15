@@ -876,9 +876,8 @@ header ul + div {
   margin: 0;
 }
 #manageOffer figcaption {
-  font-size: 1.1rem;
+  font-size: 2rem;
   width: 200px;
-  height: 30px;
 }
 
 .currentStep figcaption {
@@ -1210,6 +1209,12 @@ header ul + div {
   align-items: center;
   gap: 10px;
   font-size: 1.3rem;
+}
+
+#horaireNonSelect {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 #msgHoraireSupr {
@@ -1783,9 +1788,10 @@ label[for="rest_ajoutPhotoMenu"] {
 .signalementPopup h2{
   text-align: center;
   width: 100%;
+  margin-top: 0;
 }
 
-.signalementPopup form{
+.avis .modal-content{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2039,18 +2045,22 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {
-    height: 250px; /* Ajuste la hauteur selon ton besoin */
+    height: 190px; /* Ajuste la hauteur selon ton besoin */
     position: relative;
-    margin: auto;
+    margin: 0 auto 0 auto;
+  }
+
+  #index{
+    margin-top: 0 !important;
   }
 
   .swiper.gb, 
   .swiper.gb2,
   .swiper.gb3{
-    width: 316px;
+    width: 300px;
     height: 100%;
     overflow: hidden;
-    margin: auto;
+    margin: 0 auto 0 auto;
   }
 
   .swiper-button-next.gb2,
@@ -2590,6 +2600,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: inline-block;
   position: relative;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 [type="checkbox"] + .checkmark {
@@ -3319,6 +3330,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
+  align-self: flex-end;
 }
 
 .close:hover,
@@ -4891,6 +4903,7 @@ details .nonRepondu {
     width: 95% !important;
   }
 
+
   #infoComp {
     width: 90%;
   }
@@ -4974,11 +4987,9 @@ details .nonRepondu {
   font-size: 35px;
 }
 
-#titleOfferPreview {
-  font-size: 3.5em;
-  color: var(--bloc);
-  text-align: center;
-  margin-bottom: 0.5em;
+#sectionPreview #infoComp {
+  width: 55%;
+  margin: auto;
 }
 
 #tagPreview {
