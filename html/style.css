@@ -4763,6 +4763,11 @@ details .nonRepondu {
     width: 95% !important;
   }
 
+  #sectionPreview #infoComp {
+    width: 65%;
+    margin: auto;
+}
+
   #infoComp {
     width: 90%;
   }
