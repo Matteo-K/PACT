@@ -672,7 +672,7 @@ function createFront(offer) {
   stars.classList.add("blocStar");
 
   let note = document.createElement("span");
-  let noteMoyenne = offer.noteAvg ?? 0;
+  let noteMoyenne = offer.noteAvg == "" ? 0 : offer.noteAvg;
   note.textContent = noteMoyenne + "/5";
 
   stars.appendChild(note);
@@ -708,7 +708,7 @@ function createBack(offer) {
   stars.classList.add("blocStar");
 
   let note = document.createElement("span");
-  let noteMoyenne = offer.noteAvg ?? 0;
+  let noteMoyenne = offer.noteAvg == "" ? 0 : offer.noteAvg;
   note.textContent = noteMoyenne + "/5";
 
   let blcNbNote = document.createElement("span");
