@@ -223,10 +223,6 @@ const inputIdAvis = document.querySelector('#avisproS2 form input[type="hidden"]
 
 const txtNbAvis = document.querySelector('#avisPro details h3:nth-child(2)');
 
-const btnConfirmerSignalement = document.getElementById('confirmeSignalement');
-
-
-
 
 function afficheAvisSelect(idAvis) {
 
@@ -312,17 +308,6 @@ function afficheAvisSelect(idAvis) {
         
         txtNbAvis.textContent = parseInt(txtNbAvis.textContent) - 1;
     }
-
-    // Traiter le signalement en BDD après confirmation et fermer le popup
-    btnConfirmerSignalement.addEventListener('click', () => {
-        popup.style.display = 'none';
-        fetch('signalement.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 'id': idAvis, 'type': 'avis' })
-        });
-        alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme!');
-    });
 
     //On référence l'avis actuel comme avis précédent pour la suite 
     avisPrecedent = document.getElementById(`avis${idAvis}`);

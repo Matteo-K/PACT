@@ -1967,17 +1967,27 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
   .flip-card-back {
     font-size: 1em !important; /* Ajuste la taille de la police */
-    padding: 10px !important; /* Ajuste les marges internes */
+    padding: 5px !important; /* Ajuste les marges internes */
     border: 2px solid var(--primary) !important; /* Réduit la taille de la bordure */
   }
 
   .flip-card-back .title {
     font-size: 1.3rem !important; /* Réduit la taille du titre */
     text-align: right !important;
+    margin: 0 !important;
+  }
+
+  .flip-card-back .blocStar,.flip-card-front .blocStar {
+    margin: 0 !important;
+    font-size: 0.8em !important;
+  }
+
+  #numRue{
+    display: none;
   }
 
   .flip-card-back .blocStar {
-    margin: 0;
+    justify-content: flex-end !important;
   }
 
   .flip-card-back .blocStar .star,.flip-card-front.blocStar .star {
@@ -1990,7 +2000,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .flip-card-back .information {
-    display: none;
+    
     /* flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: flex-start !important;
@@ -4819,13 +4829,11 @@ details .nonRepondu {
 }
 
 #sectionPreview p,
-#sectionPreview h4,
-#sectionPreview h2 {
+#sectionPreview h4 {
   font-size: 25px;
 }
 
-#sectionPreview h4,
-#sectionPreview h2 {
+#sectionPreview h4{
   font-size: 35px;
 }
 
@@ -4846,10 +4854,15 @@ details .nonRepondu {
 
 #previewOffer .tag {
   background-color: var(--accent);
-  color: var(--background);
-  padding: 8px 16px;
-  border-radius: 5px;
   text-decoration: none;
+  display: inline-block;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 10px;
+  color: #000;
+  margin: 0 5px;
+  border: none;
+  cursor: none;
 }
 
 #previewOffer .ouvert {
