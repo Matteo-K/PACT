@@ -2145,7 +2145,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 
   .premiumImg{
-    width: 50px !important;
+    width: 25px !important;
   }
 }
 
@@ -2406,7 +2406,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   position: absolute;
   top: 0;
   right: 0;
-  width: 100px !important; /* Ajustez selon vos besoins */
+  width: 50px !important; /* Ajustez selon vos besoins */
   height: auto !important; /* Maintient le ratio de l'image */
 }
 
