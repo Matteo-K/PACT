@@ -1014,7 +1014,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <button id="confirmeSignalement btnSignalAvis"> Envoyer </button>
                                     <?php
                                 }else{ ?>
-                                    <button id="connexion btnSignalAvis" onclick="login.php"> Connexion </button>
+                                    <a href="login.php" class="btnSignalAvis"> Connexion </a>
                                 <?php
                                 }
                                 ?>
