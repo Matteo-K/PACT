@@ -35,10 +35,7 @@
          * On soumet le formulaire dès que l'on sort de l'input
          */
         input.addEventListener("blur", (event) => {
-            event.preventDefault();
-            if (currentFile !== 'index.php' && currentFile !== 'index.php#searchIndex') {
-                window.location.href = 'index.php'; 
-            }
+            form.submit();
         });
 
         input.addEventListener("change", () => {
