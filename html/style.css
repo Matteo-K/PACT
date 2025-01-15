@@ -5052,6 +5052,10 @@ label#btnAjoutPhoto:hover {
   .messageAvisReponse {
     width: 90%;
   }
+
+  .avisMembre > nav{
+    width: 90%;
+  }
 }
 
 /* ========================= */
