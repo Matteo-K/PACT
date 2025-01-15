@@ -160,7 +160,7 @@ if ($categorie["_activite"]) {
     function checkAddPrestation(value, index, msgErreur, nomListe) {
         const indexList = nomListe === "inclu" ? index + 1 : index - 1;
         const res = listElements[indexList].includes(value);
-
+        console.log(listElements[index]);
         console.table([listElements[index], typeof listElements[index],listElements[indexList], typeof listElements[indexList], value]);
 
         if (!res) {
