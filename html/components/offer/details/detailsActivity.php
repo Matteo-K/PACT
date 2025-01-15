@@ -161,7 +161,7 @@ if ($categorie["_activite"]) {
         const indexList = nomListe === "inclu" ? index + 1 : index - 1;
         const res = listElements[indexList].includes(value);
 
-        console.table([listElements[index], listElements[indexList], value]);
+        console.table([listElements[index], typeof listElements[index],listElements[indexList], typeof listElements[indexList], value]);
 
         if (!res) {
             if (nomListe == "inclu") {
