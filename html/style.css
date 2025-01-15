@@ -3595,15 +3595,17 @@ section#infoComp div {
   gap: 1em;
   align-items: center;
   justify-content: center;
+  margin: auto;
   margin-bottom: 2em;
 }
 
 .avisMembre > nav {
   display: flex;
-  width: 95%;
+  width: 35%;
+  margin: auto;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 #avis-section,
@@ -3835,7 +3837,7 @@ section#infoComp div {
 }
 
 .starAvisIncolore {
-  background-color: #fff;
+  background-color: var(--background-avis);
 }
 
 .messageAvisReponse > div + div {
