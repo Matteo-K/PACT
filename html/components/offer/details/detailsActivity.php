@@ -330,9 +330,16 @@ if ($categorie["_activite"]) {
         let res = true;
         const prixPattern = /^\d+$/;
 
-        if (!prixPattern.test(actv_inputPrix.value.trim())) {
-            actv_msgPrix.textContent = "Le champ doit contenir uniquement des chiffres";
-            res = false;
+        if () {
+            if (!prixPattern.test(actv_inputPrix.value.trim())) {
+                actv_msgPrix.textContent = "Le champ doit contenir uniquement des chiffres";
+                res = false;
+            }
+        } else {
+            if (actv_inputPrix.value.trim() < 0) {
+                actv_msgPrix.textContent = "Le champ doit contenir des chiffres positifs";
+                res = false;
+            }
         }
 
         return res;
@@ -347,7 +354,6 @@ if ($categorie["_activite"]) {
             actv_msgDuree.textContent = "Le champ doit être au format HH:MM";
             res = false;
         }
-        
         return res;
     }
 </script>
