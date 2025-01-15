@@ -2143,6 +2143,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     font-size: 0.75em !important;
     padding: 4px 8px !important;
   }
+
+  .premiumImg{
+    width: 50px !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2402,7 +2406,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   position: absolute;
   top: 0;
   right: 0;
-  width: 25px !important; /* Ajustez selon vos besoins */
+  width: 100px !important; /* Ajustez selon vos besoins */
   height: auto !important; /* Maintient le ratio de l'image */
 }
 
