@@ -262,7 +262,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
     <title><?php echo htmlspecialchars($result[0]["nom"]); ?></title>
 </head>
 
@@ -1344,7 +1344,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
 
     <!-- Inclure l'API Google Maps avec votre clé API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script>
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
