@@ -205,7 +205,7 @@
                 },
               },
             });
-
+            
           } catch (error) {
 
           }
@@ -302,6 +302,9 @@
                   slidesPerView: 1, // 1 slide visible pour téléphone
                 },
               },
+            });
+            swiper.on('breakpoint', function(swiper) {
+              console.log('Slides per view updated:', swiper.params.slidesPerView);
             });
           } catch (error) {
 
