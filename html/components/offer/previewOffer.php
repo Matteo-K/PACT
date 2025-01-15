@@ -1,4 +1,10 @@
 <?php
+
+$stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = :idoffre");
+$stmt->bindParam(':idoffre', $idOffre);
+$stmt->execute();
+$offre = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 // Fonction pour récupérer les horaires
 /**
  * @return array{midi: array, soir: array, spectacle: array}
@@ -6,7 +12,7 @@
 function getSchedules()
 {
 
-    global $data;
+    global $offre;
     global $idOffre;
     $schedules = [
         'midi' => [],
@@ -16,11 +22,11 @@ function getSchedules()
 
 
     // Vérifier si les résultats existent
-    if ($data) {
+    if ($offre) {
         // Traitement des horaires midi
-        if ($data[$idOffre]['listhorairemidi']) {
+        if ($offre[0]['listhorairemidi']) {
             // Remplacer les { et } uniquement dans les parties de l'objet qui ne sont pas des horaires
-            $listhorairemidi = $data[$idOffre]['listhorairemidi'];
+            $listhorairemidi = $offre[0]['listhorairemidi'];
 
             // Remplacer les { par [ et les } par ] pour le reste
             $listhorairemidi = str_replace(
@@ -38,8 +44,8 @@ function getSchedules()
         }
 
         // Traitement des horaires soir
-        if ($data[$idOffre]['listhorairesoir']) {
-            $listhorairesoir = $data[$idOffre]['listhorairesoir'];
+        if ($offre[0]['listhorairesoir']) {
+            $listhorairesoir = $offre[0]['listhorairesoir'];
 
             // Remplacer les { par [ et les } par ] pour le reste
             $listhorairesoir = str_replace(
@@ -56,8 +62,8 @@ function getSchedules()
             $listhorairesoir = [];
         }
 
-        if ($data[$idOffre]['listehoraireprecise']) {
-            $listhorairespectacle = $data[$idOffre]['listehoraireprecise'];
+        if ($offre[0]['listehoraireprecise']) {
+            $listhorairespectacle = $offre[0]['listehoraireprecise'];
 
             $listhorairespectacle = str_replace(
                 ['{', '}', ':', ';'],
