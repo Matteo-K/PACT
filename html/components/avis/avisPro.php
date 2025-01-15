@@ -121,7 +121,7 @@ $avis = $avisTemp;
                 <h2>
                     Auteur
                 </h2>
-                <img src="./img/icone/signalement.png" alt="icone de parametre" class="signalementSupp signaler signalerAvis signaler_<?= $a['idc'] ?>">
+                <img src="./img/icone/signalement.png" alt="icone de parametre" class="signalementSupp signaler signalerAvis">
             </div>
             <div class="noteEtoile">
                 <?php
@@ -223,6 +223,8 @@ const inputIdAvis = document.querySelector('#avisproS2 form input[type="hidden"]
 
 const txtNbAvis = document.querySelector('#avisPro details h3:nth-child(2)');
 
+const imgSignaleAvis =document.querySelector("#avisProS2 .signaler");
+
 
 function afficheAvisSelect(idAvis) {
 
@@ -241,10 +243,13 @@ function afficheAvisSelect(idAvis) {
         blocDetails.open = false;
     }
 
-    //On enlève la classe de l'encien avis sélectionnée
+    //On enlève la classe de l'ancien avis sélectionnée
     if (avisPrecedent != -1) {
         avisPrecedent.classList.remove("avisSelect");
     }
+
+    //Modification de l'icone de signalement un avis pour qu'elle reste fonctionelle
+    imgSignaleAvis.classList = `signalementSupp signaler signaler_${idAvis}`;
     
     //changement photo auteur
     photoAuteurAvis.src = listeAvis[idAvis]['membre_url'];
