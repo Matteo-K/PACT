@@ -5081,6 +5081,10 @@ label#btnAjoutPhoto:hover {
   .avisMembre > nav{
     width: 90%;
   }
+
+  #formCreationAvis{
+    width: 90%;
+  }
 }
 
 /* ========================= */
