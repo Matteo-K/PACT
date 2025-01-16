@@ -476,7 +476,7 @@ if ($pageDirection != -1) {
               } else {
                 // sinon modifie
                 $stmt = $conn->prepare("UPDATE pact._visite SET guide=?, duree=?, prixminimal=?, accessibilite=? WHERE idoffre=?");
-                $stmt->execute([$guide, $duree, $prixMinimale, $access, $idOffre]);
+                $stmt->execute([$guide ? 1 : 0, $duree, $prixMinimale, $access, $idOffre]);
               }
 
               // Ajout des langues
