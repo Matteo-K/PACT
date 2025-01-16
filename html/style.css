@@ -1690,10 +1690,10 @@ header ul + div {
       }
     }
     &:nth-child(even) {
-      background-color: var(--text-dark15);
+      background-color: var(--text-dark15) !important;
     }
     &:nth-child(even):hover {
-      background-color: var(--text-dark25);
+      background-color: var(--text-dark25) !important;
     }
   }
 }
@@ -1733,24 +1733,6 @@ label[for="rest_ajoutPhotoMenu"] {
   width: 120px;
   padding: 10px;
   margin-left: 1rem;
-}
-
-#artDetailOffer section,
-#afficheImages,
-#park_zoneImg,
-#rest_zoneImg,
-#atcv_zonePrestationInclus,
-#atcv_zonePrestationNonInclus,
-#atcv_zonePrestationAccess,
-#visit_zonePrestationAccess,
-#visit_zoneLangue {
-  margin: 10px 0 5px 0;
-  padding: 7px;
-  display: flex;
-  flex-flow: wrap row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 10px;
 }
 
 #inputAutoComplete,
