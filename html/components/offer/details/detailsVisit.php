@@ -65,13 +65,13 @@ if ($categorie["_visite"]) {
             <span class="checkmark"></span>
             <label for="pasGuidee"> Non </label>
         </div>
-        <label for="visit_hrMin" class="labelTitre">Durée de la visite*</label>
+        <label for="visit_hrMin" class="labelTitre">Durée de la visite*<span id="visit_msgDuree" class="msgError"></span></label>
         <div>
             <input type="hidden" id="visit_min" name="visit_min" placeholder="0" value="<?php echo $visite["duree"] ?>">
             <input type="time" id="visit_hrMin" name="visit_hrMin" placeholder="0">
         </div>
         <!-- Gestion du prix minimum pour une visite -->
-        <label class="labelTitre" for="visit_minPrix">Prix minimum*</label>
+        <label class="labelTitre" for="visit_minPrix">Prix minimum*<span id="visit_msgPrix" class="msgError"></span></label>
         <div>
             <input type="number" id="visit_minPrix" name="visit_minPrix" min="0" placeholder="0" value="<?= $visite["prixminimal"] ?>">
             <label for="visit_minPrix">€</label>
@@ -131,7 +131,7 @@ if ($categorie["_visite"]) {
     const visit_msgAccess = document.getElementById("visit_msgAccess");
 
     const visit_maxAccess = 20;
-    const classLi = ["elementCategorie"];
+    const classLiVisit = ["elementCategorie"];
 
     const visit_indexAccess = createAutoCompletion(
         visit_inputAccess,
@@ -145,11 +145,11 @@ if ($categorie["_visite"]) {
         'visit_access[]',
         visit_maxAccess,
         "li",
-        []
+        classLiVisit
     );
 
     /* Initialisation de prestation inclus */
-    actv_access.forEach(valeur => {
+    visit_access.forEach(valeur => {
         ajoutElement(valeur,
             visit_indexAccess,
             visit_inputAccess, //-- paramètres de la fonction ajoutElement
@@ -158,7 +158,7 @@ if ($categorie["_visite"]) {
             'visit_access[]',
             visit_maxAccess,
             "li",
-            []
+            classLiVisit
         );
     });
     
@@ -184,11 +184,11 @@ if ($categorie["_visite"]) {
         'visit_langue[]',
         visit_maxLangue,
         "li",
-        []
+        classLiVisit
     );
 
     /* Initialisation de prestation inclus */
-    actv_access.forEach(valeur => {
+    visit_langue.forEach(valeur => {
         ajoutElement(valeur,
             visit_indexLangue,
             visit_inputLangue, //-- paramètres de la fonction ajoutElement
@@ -197,37 +197,58 @@ if ($categorie["_visite"]) {
             'visit_langue[]',
             visit_maxLangue,
             "li",
-            []
+            classLiVisit
         );
     });
 
     // Validation des champs
 
+    const visit_inputPrix = document.getElementById("visit_minPrix");
+    const visit_inputDuree = document.getElementById("visit_hrMin");
+
+    const visit_msgMin = document.getElementById("visit_msgPrix");
+    const visit_msgDuree = document.getElementById("visit_msgDuree");
+
     function checkVisit() {
-        return true;
+        let min = checkVisitPrixMin();
+        let duree = checkVisitDuree();
+        return min && duree;
     }
 
-    function checkActvPrixMin() {
+    function checkVisitPrixMin() {
         let res = true;
+        const prix = visit_inputPrix.value.trim();
         const prixPattern = /^\d+$/;
 
-        if (!prixPattern.test(actv_inputPrix.value.trim())) {
-            actv_msgPrix.textContent = "Le champ prix doit contenir uniquement des chiffres positifs";
+        if (!prixPattern.test(prix) && prix !== "") {
+            actv_msgPrix.textContent = "Le champ prix doit contenir des chiffres positifs";
             res = false;
         }
 
         return res;
     }
 
-    function checkActvDuree() {
+    visit_inputPrix.addEventListener("blur", () => checkVisitPrixMin());
+    visit_inputPrix.addEventListener("focus", () => {
+        visit_msgMin.textContent = "";
+        visit_inputPrix.classList.remove("inputErreur");
+    });
+
+    function checkVisitDuree() {
         let res = true;
-        const duree = actv_inputDuree.value.trim();
+        const duree = visit_inputDuree.value.trim();
         const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
 
-        if (!timePattern.test(duree)) {
-            actv_msgDuree.textContent = "Le champ durée doit être au format HH:MM";
+        if (!timePattern.test(duree) && duree !== "") {
+            visit_msgDuree.textContent = "Le champ durée doit être au format HH:MM";
             res = false;
         }
         return res;
     }
+
+    visit_inputDuree.addEventListener("blur", () => checkVisitDuree());
+    visit_inputDuree.addEventListener("focus", () => {
+        visit_msgDuree.textContent = "";
+        visit_inputDuree.classList.remove("inputErreur");
+    });
 </script>
