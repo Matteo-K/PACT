@@ -1678,7 +1678,8 @@ header ul + div {
   max-height: 200px;
   flex-direction: column !important;
   gap: 0 !important;
-  .elementCategorie {
+
+  li {
     width: 100%;
     padding: 5px 0;
     background-color: #fff;
