@@ -336,7 +336,7 @@ if ($categorie["_activite"]) {
         const agePattern = /^\d+$/;
 
         if (!agePattern.test(age) && age !== "") {
-            actv_msgAge.textContent = "Le champ ge doit contenir uniquement des chiffres positifs";
+            actv_msgAge.textContent = "Le champ âge doit contenir des chiffres positifs";
             res = false;
         }
         return res;
@@ -348,7 +348,7 @@ if ($categorie["_activite"]) {
         const prixPattern = /^\d+$/;
 
         if (!prixPattern.test(prix) && prix !== "") {
-            actv_msgPrix.textContent = "Le champ prix doit contenir uniquement des chiffres positifs";
+            actv_msgPrix.textContent = "Le champ prix doit contenir des chiffres positifs";
             res = false;
         }
 
