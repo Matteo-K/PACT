@@ -1649,21 +1649,6 @@ header ul + div {
   position: relative;
 }
 
-.elementCategorie {
-  width: 100%;
-  padding: 5px;
-  background-color: #fff;
-  &:hover {
-    background-color: var(--text-dark20);
-  }
-  &:nth-child(even) {
-    background-color: var(--text-dark15);
-  }
-  &:nth-child(even):hover {
-    background-color: var(--text-dark25);
-  }
-}
-
 #artDetailOffer .tag img,
 .elementCategorie img {
   width: 12px;
@@ -1689,6 +1674,21 @@ header ul + div {
   overflow-x: scroll;
   height: 200px;
   flex-direction: column !important;
+  gap: 0 !important;
+  .elementCategorie {
+    width: 100%;
+    padding: 5px;
+    background-color: #fff;
+    &:hover {
+      background-color: var(--text-dark20);
+    }
+    &:nth-child(even) {
+      background-color: var(--text-dark15);
+    }
+    &:nth-child(even):hover {
+      background-color: var(--text-dark25);
+    }
+  }
 }
 
 #afficheImages {
