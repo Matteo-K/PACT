@@ -88,7 +88,7 @@ if ($categorie["_visite"]) {
         <!-- Accessibilité -->
         <div id="visit_blocAccess">
             <div id="visit_inputAutoCompleteAccess">
-                <label class="labelSousTitre" for="visit_inputAccess">Accessibilités<span id="visit_msgAccess" class="msgError"></span></label>
+                <label class="labelSousTitre" for="visit_inputAccess" class="labelTitre">Accessibilités<span id="visit_msgAccess" class="msgError"></span></label>
                 <input type="text" id="visit_inputAccess" 
                 name="*visit_inputAccess"
                 placeholder="Entrez & selectionnez une accessibilité">
@@ -105,7 +105,7 @@ if ($categorie["_visite"]) {
         <!-- Partie pour la gestion des langues proposer par la visite -->
         <div id="visit_blocLangue">
             <div id="visit_inputAutoCompleteLangue">
-                <label class="labelTitre" for="visit_langue">Langues proposées<span id="msgLangue" class="msgError"></span></label>
+                <label class="labelTitre" for="visit_langue" class="labelTitre">Langues proposées<span id="msgLangue" class="msgError"></span></label>
                 <input type="text" id="visit_langue" 
                 name="visit_langue" 
                 placeholder="Entrez & sélectionnez une langue">
@@ -232,7 +232,7 @@ if ($categorie["_visite"]) {
         const prixPattern = /^\d+$/;
 
         if (!prixPattern.test(prix) && prix === "") {
-            actv_msgPrix.textContent = "Doit contenir des chiffres positifs";
+            visit_msgMin.textContent = "Doit contenir des chiffres positifs";
             visit_inputPrix.classList.add("inputErreur");
             res = false;
         }
