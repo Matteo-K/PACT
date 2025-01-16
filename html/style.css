@@ -1677,10 +1677,13 @@ header ul + div {
   gap: 0 !important;
   .elementCategorie {
     width: 100%;
-    padding: 5px;
+    padding: 5px 0;
     background-color: #fff;
     &:hover {
       background-color: var(--text-dark20);
+      img {
+        display: block;
+      }
     }
     &:nth-child(even) {
       background-color: var(--text-dark15);
