@@ -2082,7 +2082,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .swiper-button-next.gb,
 .swiper-button-next.gb2,
 .swiper-button-next.gb3{
-  transform: translateX(-650%);
+  transform: translateX(-180%);
   /* Rounded corners for the next button */
 }
 
@@ -2096,7 +2096,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .swiper-button-prev.gb,
 .swiper-button-prev.gb2,
 .swiper-button-prev.gb3 {
-  transform: translateX(650%);
+  transform: translateX(180%);
 
   /* Rounded corners for the prev button */
 }
