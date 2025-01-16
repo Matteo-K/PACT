@@ -131,6 +131,7 @@ if ($categorie["_visite"]) {
     const visit_msgAccess = document.getElementById("visit_msgAccess");
 
     const visit_maxAccess = 20;
+    const classLi = ["elementCategorie"];
 
     const visit_indexAccess = createAutoCompletion(
         visit_inputAccess,
@@ -169,19 +170,19 @@ if ($categorie["_visite"]) {
     const visit_zoneLangue = document.getElementById("visit_zoneLangue");
     const visit_msgLangue = document.getElementById("msgLangue");
 
-    const visit_maxAccess = 40;
+    const visit_maxLangue = 40;
 
-    const visit_indexAccess = createAutoCompletion(
-        visit_inputAccess,
+    const visit_indexLangue = createAutoCompletion(
+        visit_inputLangue,
         "visit_autocompletionLangue",
         visit_msgLangue,
-        visit_accessGeneral,
+        visit_langueGeneral,
         ajoutElement,
-        visit_inputAccess, //-- paramètres de la fonction ajoutElement
+        visit_inputLangue, //-- paramètres de la fonction ajoutElement
         visit_zoneLangue,
         visit_msgLangue,
-        'visit_access[]',
-        visit_maxAccess,
+        'visit_langue[]',
+        visit_maxLangue,
         "li",
         []
     );
@@ -189,12 +190,12 @@ if ($categorie["_visite"]) {
     /* Initialisation de prestation inclus */
     actv_access.forEach(valeur => {
         ajoutElement(valeur,
-            visit_indexAccess,
-            visit_inputAccess, //-- paramètres de la fonction ajoutElement
+            visit_indexLangue,
+            visit_inputLangue, //-- paramètres de la fonction ajoutElement
             visit_zoneLangue,
             visit_msgLangue,
-            'visit_access[]',
-            visit_maxAccess,
+            'visit_langue[]',
+            visit_maxLangue,
             "li",
             []
         );

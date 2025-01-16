@@ -191,6 +191,8 @@ if ($categorie["_activite"]) {
     const actv_msgNonInclu = document.getElementById("msgPrestaNonInclus");
     const actv_maxPrestation = <?= $maxPresta ?>;
 
+    const classLi = ["elementCategorie"];
+
     const indexPrestaInclu = createAutoCompletion(
         actv_inputInclu,
         "actv_autocompletionInclus",
@@ -203,7 +205,7 @@ if ($categorie["_activite"]) {
         'prestationInclu[]',
         actv_maxPrestation,
         "li",
-        [],
+        classLi,
         checkAddPrestation,
         "inclu"
     );
@@ -220,7 +222,7 @@ if ($categorie["_activite"]) {
         'prestationNonInclu[]',
         actv_maxPrestation,
         "li",
-        [],
+        classLi,
         checkAddPrestation,
         "nonInclu"
     );
@@ -235,7 +237,7 @@ if ($categorie["_activite"]) {
             'prestationInclu[]',
             actv_maxPrestation,
             "li",
-            [],
+            classLi,
             checkAddPrestation,
             "inclu"
         );
@@ -251,7 +253,7 @@ if ($categorie["_activite"]) {
             'prestationNonInclu[]',
             actv_maxPrestation,
             "li",
-            [],
+            classLi,
             checkAddPrestation,
             "nonInclu"
         );
@@ -280,7 +282,7 @@ if ($categorie["_activite"]) {
         'actv_access[]',
         actv_maxAccess,
         "li",
-        []
+        classLi
     );
 
     /* Initialisation de prestation inclus */
@@ -293,7 +295,7 @@ if ($categorie["_activite"]) {
             'actv_access[]',
             actv_maxAccess,
             "li",
-            []
+            classLi
         );
     });
 

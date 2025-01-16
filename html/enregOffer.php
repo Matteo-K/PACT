@@ -404,12 +404,12 @@ if ($pageDirection != -1) {
               $result = $stmt->fetch(PDO::FETCH_ASSOC);
               // Si pas de donnée, on créer
               if ($result === false) {
-                $stmt = $conn->prepare("INSERT INTO pact._activite (idoffre, duree, agemin, prixminimal, prestation) VALUES (?, ?, ?, ?, ?)");
-                //$stmt->execute([$idOffre, $duree, $ageMin, $prixMinimale, $prestation]);
+                $stmt = $conn->prepare("INSERT INTO pact._activite (idoffre, duree, agemin, prixminimal) VALUES (?, ?, ?, ?)");
+                $stmt->execute([$idOffre, $duree, $ageMin, $prixMinimale, $prestation]);
               } else {
                 // sinon modifie
-                $stmt = $conn->prepare("UPDATE pact._activite SET duree=?, agemin=?, prixminimal=?, prestation=? WHERE idoffre=?");
-                //$stmt->execute([$duree, $ageMin, $prixMinimale, $prestation, $idOffre]);
+                $stmt = $conn->prepare("UPDATE pact._activite SET duree=?, agemin=?, prixminimal=? WHERE idoffre=?");
+                $stmt->execute([$duree, $ageMin, $prixMinimale, $idOffre]);
               }
 
               // Accessibilité
@@ -462,7 +462,7 @@ if ($pageDirection != -1) {
               $guide = $_POST["VisiteGuidee"] === "guidee";
               $duree = $_POST["visit_duree"];
               $prixMinimale = $_POST["visit_minPrix"];
-              $accessibilite = [];
+              $accessibilite = $_POST["visit_access"] ?? [];
               $access = count($accessibilite) > 0;
 
               // Création/Modification d'une offre de visite
@@ -480,14 +480,14 @@ if ($pageDirection != -1) {
               }
 
               // Ajout des langues
-              $langues = $_POST["texteLangueVisit"] ?? "";
+              $langues = $_POST["visit_langue"] ?? [];
               $tabLangue = explode(" ", $langues);
               // Supprime toute les langues dans la table visite_langue
               $stmt = $conn->prepare("DELETE FROM pact._visite_langue WHERE idoffre= ?");
-              //$stmt->execute([$idOffre]);
+              $stmt->execute([$idOffre]);
               foreach ($tabLangue as $langue) {
                 $stmt = $conn->prepare("INSERT INTO pact._visite_langue (idoffre, langue) VALUES (?,?)");
-                //$stmt->execute([$idoffre, $langue]);
+                $stmt->execute([$idoffre, $langue]);
               }
 
               // Accessibilité
