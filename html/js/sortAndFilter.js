@@ -683,6 +683,14 @@ function createFront(offer) {
   figcaption.appendChild(h4);
   figcaption.appendChild(div);
 
+  if (offer.option.includes('EnRelief')) {
+    let imgRelief = document.createElement("img");
+    imgRelief.classList.add("premiumImg");
+    imgRelief.setAttribute("src", "../img/icone/service-premium.png");
+    imgRelief.setAttribute("src", "icone premium");
+    figure.appendChild(imgRelief);
+  }
+
   figure.appendChild(img);
   figure.appendChild(figcaption);
 
