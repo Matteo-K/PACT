@@ -4708,7 +4708,7 @@ details .nonRepondu {
 /* Affichage de la réponse de l'avis si existante */
 
 .conteneurReponsePro {
-  display: flex;
+  display: none;
   flex-wrap: nowrap;
   width: calc(100% + 40px);
   margin: 10px 0;
@@ -4723,7 +4723,6 @@ details .nonRepondu {
 }
 
 .conteneurReponsePro > article {
-  display: none;
   width: 90%;
   padding: 20px;
   background-color: #fff;
