@@ -338,7 +338,7 @@ if ($categorie["_activite"]) {
         const age = actv_inputAge.value.trim();
         const agePattern = /^\d+$/;
 
-        if (!agePattern.test(age) && age === "") {
+        if (!agePattern.test(age) || age === "") {
             actv_msgAge.textContent = "Doit contenir des chiffres positifs";
             actv_inputAge.classList.add("inputErreur");
             res = false;
@@ -351,7 +351,7 @@ if ($categorie["_activite"]) {
         const prix = actv_inputPrix.value.trim();
         const prixPattern = /^\d+$/;
 
-        if (!prixPattern.test(prix) && prix === "") {
+        if (!prixPattern.test(prix) || prix === "") {
             actv_msgPrix.textContent = "Doit contenir des chiffres positifs";
             actv_inputPrix.classList.add("inputErreur");
             res = false;

@@ -92,7 +92,7 @@ if ($categorie["_parcattraction"]) {
         const age = park_inputAge.value.trim();
         const agePattern = /^\d+$/;
     
-        if (!agePattern.test(age) && age === "") {
+        if (!agePattern.test(age) || age === "") {
             park_msgAge.textContent = "Doit contenir des chiffres positifs";
             park_inputAge.classList.add("inputErreur");
             res = false;
@@ -111,7 +111,7 @@ if ($categorie["_parcattraction"]) {
         const nbAttract = park_inputAttract.value.trim();
         const prixPattern = /^\d+$/;
     
-        if (!prixPattern.test(nbAttract) && nbAttract === "") {
+        if (!prixPattern.test(nbAttract) || nbAttract === "") {
             park_msgAttract.textContent = "Doit contenir des chiffres positifs";
             park_inputAttract.classList.add("inputErreur");
             res = false;
@@ -131,7 +131,7 @@ if ($categorie["_parcattraction"]) {
         const prix = park_inputPrix.value.trim();
         const prixPattern = /^\d+$/;
     
-        if (!prixPattern.test(prix) && prix === "") {
+        if (!prixPattern.test(prix) || prix === "") {
             park_msgPrix.textContent = "Doit contenir des chiffres positifs";
             park_inputPrix.classList.add("inputErreur");
             res = false;

@@ -100,7 +100,7 @@ if ($categorie["_spectacle"]) {
         const age = show_inputNbPlace.value.trim();
         const agePattern = /^\d+$/;
 
-        if (!agePattern.test(age) && age === "") {
+        if (!agePattern.test(age) || age === "") {
             show_msgNbPlace.textContent = "Doit contenir des chiffres positifs";
             show_inputNbPlace.classList.add("inputErreur");
             res = false;
@@ -113,7 +113,7 @@ if ($categorie["_spectacle"]) {
         const prix = show_inputPrix.value.trim();
         const prixPattern = /^\d+$/;
 
-        if (!prixPattern.test(prix) && prix === "") {
+        if (!prixPattern.test(prix) || prix === "") {
             show_msgPrix.textContent = "Doit contenir des chiffres positifs";
             show_inputPrix.classList.add("inputErreur");
             res = false;
@@ -127,7 +127,7 @@ if ($categorie["_spectacle"]) {
         const duree = show_inputDuree.value.trim();
         const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
 
-        if (!timePattern.test(duree) && duree === "") {
+        if (!timePattern.test(duree) || duree === "") {
             show_msgDuree.textContent = "Format HH:MM";
             show_inputDuree.classList.add("inputErreur");
             res = false;

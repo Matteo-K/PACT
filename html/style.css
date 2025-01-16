@@ -1925,6 +1925,8 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #visit {
   flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 #visit [type="radio"] {
@@ -2753,8 +2755,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .checkmark {
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 31px;
+  height: 31px;
   margin: 0 8px 0 4px;
   border: solid 2px #1ca4ed;
   background-color: white;

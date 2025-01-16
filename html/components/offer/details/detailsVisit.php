@@ -231,7 +231,7 @@ if ($categorie["_visite"]) {
         const prix = visit_inputPrix.value.trim();
         const prixPattern = /^\d+$/;
 
-        if (!prixPattern.test(prix) && prix === "") {
+        if (!prixPattern.test(prix) || prix === "") {
             visit_msgMin.textContent = "Doit contenir des chiffres positifs";
             visit_inputPrix.classList.add("inputErreur");
             res = false;
@@ -251,7 +251,7 @@ if ($categorie["_visite"]) {
         const duree = visit_inputDuree.value.trim();
         const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
 
-        if (!timePattern.test(duree) && duree === "") {
+        if (!timePattern.test(duree) || duree === "") {
             visit_msgDuree.textContent = "Format HH:MM";
             visit_inputDuree.classList.add("inputErreur");
             res = false;
