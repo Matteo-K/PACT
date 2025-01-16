@@ -162,6 +162,14 @@ textarea:focus {
   outline-color: var(--bloc);
 }
 
+#formPro input:hover,
+#formMember input:hover,
+#formConnexion input:hover {
+  outline: none;
+  background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);
+}
+
+
 #formPro input:focus,
 #formMember input:focus,
 #formConnexion input:focus {
@@ -1609,7 +1617,7 @@ header ul + div {
   border-radius: 10px;
   margin: 0;
   cursor: pointer;
-  color: #fff;
+  color: black !important;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -2007,6 +2015,13 @@ label[for="rest_ajoutPhotoMenu"] {
 .btnSignalAvis:hover{
   background-color: white;
   border: solid 2px var(--accent);
+}
+
+@media (max-width: 760px) {
+  .avis .modal-content{
+    width: 90%;
+    font-size: 1.1em;
+  }
 }
 
 
@@ -2780,6 +2795,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: inline-block;
   position: relative;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 [type="checkbox"] + .checkmark {
@@ -4675,8 +4691,7 @@ details .nonRepondu {
 #avisproS2 form input[type="submit"] {
   height: 45px;
   padding: 5px 30px;
-  border: none;
-  border-radius: 50px;
+  border-radius: 10px;
   font-size: 20px;
 }
 
@@ -4829,9 +4844,9 @@ label#btnAjoutPhoto:hover {
 }
 
 #enCompagnie input[type="radio"]:checked + label {
-  background-color: #66afe9;
-  color: white;
-  border-color: #66afe9;
+  background-color: var(--primary);
+  color: white !important;
+  border-color: var(--primary);
 }
 
 #enCompagnie input[type="radio"] {
@@ -4872,9 +4887,9 @@ label#btnAjoutPhoto:hover {
 
 /* Bouton Soumettre */
 #formCreationAvis button[type="submit"] {
-  background-color: #28a745;
-  color: white;
-  border: none;
+  background-color: var(--accent);
+  color: black;
+  border: 3px solid var(--accent);
   padding: 12px 20px;
   border-radius: 5px;
   font-size: 16px;
@@ -4883,7 +4898,7 @@ label#btnAjoutPhoto:hover {
 }
 
 #formCreationAvis button[type="submit"]:hover {
-  background-color: #218838;
+  background-color: #fff;
 }
 
 .soumission {
