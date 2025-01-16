@@ -31,13 +31,6 @@
         // Vérifie la page actuelle
         const currentFile = window.location.pathname.split('/').pop();
 
-        /**
-         * On soumet le formulaire dès que l'on sort de l'input
-         */
-        input.addEventListener("blur", (event) => {
-            form.submit();
-        });
-
         input.addEventListener("change", () => {
             if (currentFile === 'index.php') {
                 const searchTarget = document.getElementById("searchIndex");
