@@ -1617,6 +1617,7 @@ header ul + div {
 }
 
 #afficheImages img:not(img + img),
+#rest_zoneImg img:not(img + img),
 .scrollDown img {
   margin: 5px;
   overflow: hidden;
