@@ -5829,23 +5829,6 @@ div[id="messageErreur"] {
     max-width: 390px;
   }
 
-  .ligne7 {
-    display: flex;
-    align-items: center; /* Aligne verticalement la case à cocher et le texte */
-    gap: 8px; /* Espacement entre la case et le texte */
-  }
-
-  .ligne7 label {
-      display: flex;
-      flex-wrap: wrap; /* Permet au texte de passer à la ligne si nécessaire */
-      line-height: 1.5; /* Ajuste l'espacement entre les lignes */
-  }
-
-  .ligne7 input[type="checkbox"] {
-      margin-right: 8px; /* Espacement entre la case à cocher et le texte */
-      transform: scale(1.2); /* Augmente légèrement la taille de la case pour une meilleure visibilité */
-  }
-
 
   /* Gestion de l'ordre des éléments */
   #labelPrenom {
@@ -5922,6 +5905,23 @@ div[id="messageErreur"] {
 
   #conditionMotdepasse {
     order: 19;
+  }
+
+  .ligne7 {
+    display: flex;
+    align-items: center; /* Aligne verticalement la case à cocher et le texte */
+    gap: 8px; /* Espacement entre la case et le texte */
+  }
+
+  .ligne7 label {
+      display: flex;
+      flex-wrap: wrap; /* Permet au texte de passer à la ligne si nécessaire */
+      line-height: 1.5; /* Ajuste l'espacement entre les lignes */
+  }
+
+  .ligne7 input[type="checkbox"] {
+      margin-right: 8px; /* Espacement entre la case à cocher et le texte */
+      transform: scale(1.2); /* Augmente légèrement la taille de la case pour une meilleure visibilité */
   }
 
   /* Centrer la photo de profil et son label */
