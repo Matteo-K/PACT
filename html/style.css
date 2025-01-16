@@ -1928,6 +1928,22 @@ label[for="rest_ajoutPhotoMenu"] {
   justify-content: center;
 }
 
+#visit > div{
+  width: 500px;
+}
+
+#blocGuide {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+#blocGuide > div {
+  display: flex;
+  align-items: center;
+}
+
 #visit [type="radio"] {
   display: none;
 }
