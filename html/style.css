@@ -4844,9 +4844,9 @@ label#btnAjoutPhoto:hover {
 }
 
 #enCompagnie input[type="radio"]:checked + label {
-  background-color: #66afe9;
-  color: white;
-  border-color: #66afe9;
+  background-color: var(--primary);
+  color: white !important;
+  border-color: var(--primary);
 }
 
 #enCompagnie input[type="radio"] {
