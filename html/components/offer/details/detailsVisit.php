@@ -105,7 +105,7 @@ if ($categorie["_visite"]) {
         <!-- Partie pour la gestion des langues proposer par la visite -->
         <div id="visit_blocLangue">
             <div id="visit_inputAutoCompleteLangue">
-                <label class="labelTitre" for="visit_langue" class="labelTitre">Langues proposées<span id="msgLangue" class="msgError"></span></label>
+                <label class="labelTitre" for="visit_langue" class="labelTitre">Langues proposées*<span id="msgLangue" class="msgError"></span></label>
                 <input type="text" id="visit_langue" 
                 name="visit_langue" 
                 placeholder="Entrez & sélectionnez une langue">
@@ -223,7 +223,8 @@ if ($categorie["_visite"]) {
     function checkVisit() {
         let min = checkVisitPrixMin();
         let duree = checkVisitDuree();
-        return min && duree;
+        let langue = checkVisitLangue();
+        return min && duree && langue;
     }
 
     function checkVisitPrixMin() {
@@ -267,5 +268,22 @@ if ($categorie["_visite"]) {
     visit_inputDuree.addEventListener("focus", () => {
         visit_msgDuree.textContent = "";
         visit_inputDuree.classList.remove("inputErreur");
+    });
+
+    function checkVisitLangue() {
+        let res = true;
+    
+        if (visit_zoneLangue.childElementCount == 0) {
+            visit_msgLangue.textContent = "Ajouter une langue";
+            res = false;
+        } else {
+            visit_msgLangue.textContent = "";
+        }
+    
+        return res;
+    }
+
+    visit_inputLangue.addEventListener("input", () => {
+        visit_msgLangue.textContent = "";
     });
 </script>

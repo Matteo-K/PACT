@@ -482,8 +482,10 @@ if ($pageDirection != -1) {
               // Ajout des langues
               $langues = $_POST["visit_langue"] ?? [];
               // Supprime toute les langues dans la table visite_langue
-              $stmt = $conn->prepare("DELETE FROM pact._visite_langue WHERE idoffre= ?");
+              $stmt = $conn->prepare("SELECT langue FROM pact._visite_langue WHERE idoffre= ?");
               $stmt->execute([$idOffre]);
+              $result = $stmt->fetchAll();
+              print_r($result);
               foreach ($langues as $langue) {
                 $stmt = $conn->prepare("INSERT INTO pact._visite_langue (idoffre, langue) VALUES (?,?)");
                 $stmt->execute([$idOffre, $langue]);
