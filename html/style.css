@@ -162,6 +162,14 @@ textarea:focus {
   outline-color: var(--bloc);
 }
 
+#formPro input:hover,
+#formMember input:hover,
+#formConnexion input:hover {
+  outline: none;
+  background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);
+}
+
+
 #formPro input:focus,
 #formMember input:focus,
 #formConnexion input:focus {
@@ -2004,7 +2012,8 @@ label[for="rest_ajoutPhotoMenu"] {
 
 @media (max-width: 760px) {
   .avis .modal-content{
-    width: 95%;
+    width: 90%;
+    font-size: 1.1em;
   }
 }
 
@@ -2779,6 +2788,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   display: inline-block;
   position: relative;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 [type="checkbox"] + .checkmark {
@@ -4674,8 +4684,7 @@ details .nonRepondu {
 #avisproS2 form input[type="submit"] {
   height: 45px;
   padding: 5px 30px;
-  border: none;
-  border-radius: 50px;
+  border-radius: 10px;
   font-size: 20px;
 }
 
