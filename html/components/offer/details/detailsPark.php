@@ -27,20 +27,26 @@ if ($categorie["_parcattraction"]) {
 <section id="park">
     <div>
         <!-- Gestion de l'âge -->
-        <label class="labelTitre" for="park_ageMin">Age minimum*<span id="park_msgAge" class="msgError"></span></label>
-        <div>
-            <input type="number" id="park_ageMin" name="park_ageMin" min="0"  placeholder="0" value="<?= $parc["agemin"] ?>">
+         <div>
+            <label class="labelTitre" for="park_ageMin">Age minimum*<span id="park_msgAge" class="msgError"></span></label>
+            <div>
+                <input type="number" id="park_ageMin" name="park_ageMin" min="0"  placeholder="0" value="<?= $parc["agemin"] ?>">
+            </div>
         </div>
         <!--Gestion du nombre d'acttration -->
-        <label class="labelTitre" for="park_nbAttrac">Nombre d'attractions*<span id="park_msgAttract" class="msgError"></span></label>
         <div>
-            <input type="number" id="park_nbAttrac" name="park_nbAttrac" min="0"placeholder="0"  class="nbAttrac" value="<?= $parc["nbattraction"] ?>">
+            <label class="labelTitre" for="park_nbAttrac">Nombre d'attractions*<span id="park_msgAttract" class="msgError"></span></label>
+            <div>
+                <input type="number" id="park_nbAttrac" name="park_nbAttrac" min="0"placeholder="0"  class="nbAttrac" value="<?= $parc["nbattraction"] ?>">
+            </div>
         </div>
         <!-- Gestion du prix minimum -->
-        <label class="labelTitre" for="park_prixMin">Prix Minimum*<span id="park_msgPrix" class="msgError"></span></label>
         <div>
-            <input type="number" id="park_prixMin" name="park_prixMin" min="0" placeholder="0" value="<?= $parc["prixminimal"] ?>">
-            <label for="park_prixMin">€</label>
+            <label class="labelTitre" for="park_prixMin">Prix Minimum*<span id="park_msgPrix" class="msgError"></span></label>
+            <div>
+                <input type="number" id="park_prixMin" name="park_prixMin" min="0" placeholder="0" value="<?= $parc["prixminimal"] ?>">
+                <label for="park_prixMin">€</label>
+            </div>
         </div>
     </div>
 
