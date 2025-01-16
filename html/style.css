@@ -5925,19 +5925,19 @@ div[id="messageErreur"] {
 
   .ligne7 {
     display: flex;
-    align-items: center; /* Aligne verticalement la case à cocher et le texte */
-    gap: 8px; /* Espacement entre la case et le texte */
+    align-items: center;
+    gap: 8px;
   }
 
   .ligne7 label {
       display: flex;
-      flex-wrap: wrap; /* Permet au texte de passer à la ligne si nécessaire */
-      line-height: 1.5; /* Ajuste l'espacement entre les lignes */
+      flex-wrap: wrap;
+      line-height: 1.5;
   }
 
   .ligne7 input[type="checkbox"] {
-      margin-right: 8px; /* Espacement entre la case à cocher et le texte */
-      transform: scale(1.2); /* Augmente légèrement la taille de la case pour une meilleure visibilité */
+      margin-right: 8px;
+      transform: scale(1.2);
   }
 
   /* Centrer la photo de profil et son label */
