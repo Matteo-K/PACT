@@ -421,7 +421,7 @@ header > div > a > div {
 #btnConn:hover {
   background-color: white;
   border: solid 2px var(--accent);
-  color: black;
+  color: var(--primary) !important;
 }
 
 #profileMenu {
@@ -1604,10 +1604,12 @@ header ul + div {
 }
 
 #btnAjoutPhoto {
+  background-color:  var(--primary);
   border: 3px solid var(--primary);
   border-radius: 10px;
   margin: 0;
   cursor: pointer;
+  color: #fff !important;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -3034,7 +3036,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   #btnAside a {
       width: 50%;
       padding: 15px;
-      background-color: var(--bloc25);
+      background-color: var(--primary60);
       border-radius: 1.5em;
       text-align: center;
   }
@@ -4821,8 +4823,9 @@ details .nonRepondu {
 }
 
 label#btnAjoutPhoto:hover {
-  background-color: var(--primary);
-  color: #fff;
+  background-color: #fff;
+  color: var(--primary);
+  border: 3px solid var(--primary);
 }
 
 #enCompagnie input[type="radio"]:checked + label {
@@ -4869,8 +4872,9 @@ label#btnAjoutPhoto:hover {
 
 /* Bouton Soumettre */
 #formCreationAvis button[type="submit"] {
-  background-color: #28a745;
-  color: white;
+  background-color: var(--accent);
+  border: 3px solid var(--accent);
+  color: black;
   border: none;
   padding: 12px 20px;
   border-radius: 5px;
@@ -4880,7 +4884,8 @@ label#btnAjoutPhoto:hover {
 }
 
 #formCreationAvis button[type="submit"]:hover {
-  background-color: #218838;
+  background-color: white;
+  border: 3px solid var(--accent);
 }
 
 .soumission {
@@ -5460,6 +5465,7 @@ body[id="body_creation_compte"] {
 a[id="lienCGU"] {
   color: var(--bloc);
   text-decoration: underline;
+  margin: 0 5px;
 }
 
 a[id="lienCGU"]:hover {
