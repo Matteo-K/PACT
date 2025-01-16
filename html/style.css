@@ -1655,15 +1655,7 @@ header ul + div {
 .elementCategorie {
   width: 100%;
   background-color: #fff;
-  &:hover {
-    background-color: var(--text-dark20);
-  }
-  &:nth-child(even) {
-    background-color: var(--text-dark15);
-    &:hover {
-      background-color: var(--text-dark25);
-    }
-  }
+  font-size: 1.3rem;
 }
 
 #artDetailOffer .tag img,
@@ -1758,6 +1750,7 @@ label[for="rest_ajoutPhotoMenu"] {
   position: relative;
   display: flex;
   flex-flow: column nowrap;
+
 }
 
 #inputTag {
@@ -1785,6 +1778,7 @@ label[for="rest_ajoutPhotoMenu"] {
   top: 100%;
   left: 0;
   z-index: 5;
+  font-size: 1.3rem;
 
   li {
     padding: 1px 0 1px 10px;
