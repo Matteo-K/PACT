@@ -147,7 +147,7 @@ input[type="text"],
 input[type="number"],
 input[type="time"],
 textarea {
-  border: 2px solid var(--primary);
+  border: 2px solid var(--secondary);
   border-radius: 2px;
 }
 
@@ -160,13 +160,6 @@ textarea {
 input[type="text"]:focus,
 textarea:focus {
   outline-color: var(--bloc);
-}
-
-#formPro input:hover,
-#formMember input:hover,
-#formConnexion input:hover {
-  outline: none;
-  background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);;
 }
 
 #formPro input:focus,
@@ -816,6 +809,7 @@ header ul + div {
   border: none;
   border-bottom: solid 2px var(--primary);
   background-color: transparent;
+  font-size: 1.4rem !important;
 }
 
 #manageOffer textarea,
@@ -823,6 +817,7 @@ header ul + div {
   outline: none;
   border: solid 2px var(--primary);
   background-color: transparent;
+  font-size: 1.4rem !important;
 }
 
 .inputErreur {
@@ -901,7 +896,7 @@ header ul + div {
   margin: 0;
 }
 #manageOffer figcaption {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   width: 200px;
   height: 30px;
 }
@@ -917,7 +912,7 @@ header ul + div {
 }
 
 #manageOffer aside button:hover figcaption {
-  font-size: 1.2rem !important;
+  font-size: 1.4rem !important;
 }
 
 #leaveButtonBloc {
@@ -1566,7 +1561,7 @@ header ul + div {
 
 .labelTitre {
   display: inline-block;
-  font-size: 1.6rem !important;
+  font-size: 1.8rem !important;
   font-weight: normal !important;
   margin: 15px 0 5px 0;
 }
@@ -1575,7 +1570,7 @@ header ul + div {
 #manageOffer input + span + label,
 #manageOffer input + label {
   display: inline-block;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 #detailsOffer input[type="text"],
@@ -1602,10 +1597,12 @@ header ul + div {
 }
 
 #btnAjoutPhoto {
+  background-color:  var(--primary);
   border: 3px solid var(--primary);
   border-radius: 10px;
   margin: 0;
   cursor: pointer;
+  color: #fff !important;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -1614,7 +1611,9 @@ header ul + div {
   display: none;
 }
 
-#detailsOffer img {
+#afficheImages img:not(img + img),
+#rest_zoneImg img:not(img + img),
+.scrollDown img {
   margin: 5px;
   overflow: hidden;
   border-radius: 3px;
@@ -1648,8 +1647,14 @@ header ul + div {
   position: relative;
 }
 
+.elementCategorie {
+  width: 100%;
+  background-color: #fff;
+  font-size: 1.3rem;
+}
 
-#artDetailOffer .tag img {
+#artDetailOffer .tag img,
+.elementCategorie img {
   width: 12px;
   height: 12px;
   margin: auto 0 auto 5px;
@@ -1660,8 +1665,20 @@ header ul + div {
   transform: translateY(-50%);
 }
 
-#artDetailOffer .tag:hover img {
+#artDetailOffer .tag:hover img,
+.elementCategorie:hover img {
   display: block;
+}
+
+#atcv_zonePrestationInclus,
+#atcv_zonePrestationNonInclus,
+#atcv_zonePrestationAccess,
+#visit_zonePrestationAccess,
+#visit_zoneLangue {
+  overflow-x: scroll;
+  max-height: 200px;
+  flex-direction: column !important;
+  gap: 0 !important;
 }
 
 #afficheImages {
@@ -1722,10 +1739,13 @@ label[for="rest_ajoutPhotoMenu"] {
 #inputAutoComplete,
 #actv_inputAutoCompletePrestaInclu,
 #actv_inputAutoCompletePrestaNonInclu,
-#actv_inputAutoCompleteAccess {
+#actv_inputAutoCompleteAccess,
+#visit_inputAutoCompleteAccess,
+#visit_inputAutoCompleteLangue {
   position: relative;
   display: flex;
   flex-flow: column nowrap;
+
 }
 
 #inputTag {
@@ -1735,7 +1755,9 @@ label[for="rest_ajoutPhotoMenu"] {
 #autocompletion,
 #actv_autocompletionInclus,
 #actv_autocompletionNonInclus,
-#atcv_zonePrestationAccess {
+#actv_autocompletionAccess,
+#visit_autocompletionAccess,
+#visit_autocompletionLangue {
   display: none;
   padding: 2px 0;
   margin: 0;
@@ -1751,6 +1773,7 @@ label[for="rest_ajoutPhotoMenu"] {
   top: 100%;
   left: 0;
   z-index: 5;
+  font-size: 1.3rem;
 
   li {
     padding: 1px 0 1px 10px;
@@ -1799,26 +1822,21 @@ label[for="rest_ajoutPhotoMenu"] {
 #park {
   flex-flow: row nowrap;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 10%;
 }
 
 #park > div {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
+  width: 500px;
 }
 
-#park [type="number"] {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: flex-start;
-}
-
-#park div:nth-child(1) div {
+#park > div:nth-child(1) > div {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  gap: 5px;
 }
 
 #park_planTitres {
@@ -1833,18 +1851,23 @@ label[for="rest_ajoutPhotoMenu"] {
   max-height: 250px;
 }
 
+#park > div:nth-child(1) > div > div {
+  display: flex;
+  align-items: center;
+}
+
 /* ### Spectacle ### */
 #show {
   flex-flow: column;
   align-items: flex-start;
   justify-content: center;
-  margin-inline: 28%;
+  margin-inline: 20%;
 }
 
 #show_nbPlacePrixMin {
   display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
+  flex-flow: column nowrap;
+  align-items: flex-start;
   justify-content: space-evenly;
   width: 100%;
 }
@@ -1861,7 +1884,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #activity {
   flex-direction: column;
-  gap: 10vh;
+  gap: 5vh;
 }
 
 #activity > div {
@@ -1882,6 +1905,34 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #activity > div > div > div {
   flex: 1;
+}
+
+/* visite */
+
+#visit {
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#visit > div{
+  width: 500px;
+}
+
+#blocGuide {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+#blocGuide > div {
+  display: flex;
+  align-items: center;
+}
+
+#visit [type="radio"] {
+  display: none;
 }
 
 /* popup signalement avis */
@@ -2031,13 +2082,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .swiper-button-next.gb,
 .swiper-button-next.gb2,
 .swiper-button-next.gb3{
-  transform: translateX(-650%);
+  transform: translateX(-180%);
   /* Rounded corners for the next button */
 }
+
+.backdoor{
+  user-select: none;
+  -webkit-user-select: none; /* Support pour les navigateurs WebKit (Chrome, Safari) */
+  -moz-user-select: none; /* Support pour Firefox */
+  -ms-user-select: none; /* Support pour Internet Explorer */
+}
+
 .swiper-button-prev.gb,
 .swiper-button-prev.gb2,
 .swiper-button-prev.gb3 {
-  transform: translateX(650%);
+  transform: translateX(180%);
 
   /* Rounded corners for the prev button */
 }
@@ -2712,8 +2771,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .checkmark {
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 31px;
+  height: 31px;
   margin: 0 8px 0 4px;
   border: solid 2px #1ca4ed;
   background-color: white;
@@ -4615,7 +4674,8 @@ details .nonRepondu {
 #avisproS2 form input[type="submit"] {
   height: 45px;
   padding: 5px 30px;
-  border-radius: 10px;
+  border: none;
+  border-radius: 50px;
   font-size: 20px;
 }
 
@@ -4762,8 +4822,9 @@ details .nonRepondu {
 }
 
 label#btnAjoutPhoto:hover {
-  background-color: var(--primary);
-  color: #fff;
+  background-color: #fff;
+  color: var(--primary);
+  border: 3px solid var(--primary);
 }
 
 #enCompagnie input[type="radio"]:checked + label {
@@ -4811,8 +4872,9 @@ label#btnAjoutPhoto:hover {
 /* Bouton Soumettre */
 #formCreationAvis button[type="submit"] {
   background-color: var(--accent);
-  color: #000;
-  border: 2px solid var(--accent);
+  border: 3px solid var(--accent);
+  color: black;
+  border: none;
   padding: 12px 20px;
   border-radius: 5px;
   font-size: 16px;
@@ -4822,6 +4884,8 @@ label#btnAjoutPhoto:hover {
 
 #formCreationAvis button[type="submit"]:hover {
   background-color: #fff;
+  border: 3px solid var(--accent);
+  color:var(--primary) !important;
 }
 
 .soumission {
@@ -5143,7 +5207,7 @@ label#btnAjoutPhoto:hover {
     width: 2em;
     height: 2em;
   }
-  #accompagnant, #divAjoutPhoto{
+  #accompagnant, #divAjoutPhoto, #ajoutTitre, #ajoutCommentaire{
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start !important;
@@ -5401,6 +5465,7 @@ body[id="body_creation_compte"] {
 a[id="lienCGU"] {
   color: var(--bloc);
   text-decoration: underline;
+  margin: 0 5px;
 }
 
 a[id="lienCGU"]:hover {

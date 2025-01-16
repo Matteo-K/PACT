@@ -75,30 +75,30 @@ if ($categorie["_activite"]) {
                     <label class="labelSousTitre" for="actv_prestaInclu">Prestations incluses<span id="msgPrestaInclus" class="msgError"></span></label>
                     <input type="text" id="actv_inputPrestaInclus" 
                     name="actv_inputPrestaInclus" 
-                    placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
+                    placeholder="Entrez & selectionnez une prestation">
                     
                     <ul id="actv_autocompletionInclus"></ul>
                 </div>
-                <ul id="atcv_zonePrestationInclus">
-                </ul>
                 <label class="labelSousTitre">
                     Vous pouvez entrer jusqu'à <?= $maxPresta ?> prestations inclus
                 </label>
+                <ul id="atcv_zonePrestationInclus">
+                </ul>
             </div>
             <div id="actv_blocPrestaNonInclu">
                 <div id="actv_inputAutoCompletePrestaNonInclu">
                     <label class="labelSousTitre" for="actv_prestaNonInclu">Prestations non-incluses<span id="msgPrestaNonInclus" class="msgError"></span></label>
                     <input type="text" id="actv_inputPrestaNonInclus" 
                     name="actv_inputPrestaNonInclus" 
-                    placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
+                    placeholder="Entrez & selectionnez une prestation">
                     
                     <ul id="actv_autocompletionNonInclus"></ul>
                 </div>
-                <ul id="atcv_zonePrestationNonInclus">
-                </ul>
                 <label class="labelSousTitre">
                     Vous pouvez entrer jusqu'à <?= $maxPresta ?> prestations non inclus
                 </label>
+                <ul id="atcv_zonePrestationNonInclus">
+                </ul>
             </div>
         </div>
     </div>
@@ -133,15 +133,15 @@ if ($categorie["_activite"]) {
                     <label class="labelTitre" for="actv_inputAccess">Accessibilités<span id="actv_msgAccess" class="msgError"></span></label>
                     <input type="text" id="actv_inputAccess" 
                     name="actv_inputAccess"
-                    placeholder="Entrez & selectionnez une accessibilité correspondant à votre activité">
+                    placeholder="Entrez & selectionnez une accessibilité">
                     
                     <ul id="actv_autocompletionAccess"></ul>
                 </div>
-                <ul id="atcv_zonePrestationAccess">
-                </ul>
                 <label class="labelSousTitre">
                     Vous pouvez entrer jusqu'à <?= $maxAccess ?> accessibilités
                 </label>
+                <ul id="atcv_zonePrestationAccess">
+                </ul>
             </div>
         </div>
     </div>
@@ -311,12 +311,15 @@ if ($categorie["_activite"]) {
 
     actv_inputAge.addEventListener("focus", () => {
         actv_msgAge.textContent = "";
+        actv_inputAge.classList.remove("inputErreur");
     });
     actv_inputPrix.addEventListener("focus", () => {
         actv_msgPrix.textContent = "";
+        actv_inputPrix.classList.remove("inputErreur");
     });
     actv_inputDuree.addEventListener("focus", () => {
         actv_msgDuree.textContent = "";
+        actv_inputDuree.classList.remove("inputErreur");
     });
 
     actv_inputAge.addEventListener("blur", checkActvAgeMin);
@@ -335,8 +338,9 @@ if ($categorie["_activite"]) {
         const age = actv_inputAge.value.trim();
         const agePattern = /^\d+$/;
 
-        if (!agePattern.test(age) && age !== "") {
-            actv_msgAge.textContent = "Le champ ge doit contenir uniquement des chiffres positifs";
+        if (!agePattern.test(age) || age === "") {
+            actv_msgAge.textContent = "Doit contenir des chiffres positifs";
+            actv_inputAge.classList.add("inputErreur");
             res = false;
         }
         return res;
@@ -347,8 +351,9 @@ if ($categorie["_activite"]) {
         const prix = actv_inputPrix.value.trim();
         const prixPattern = /^\d+$/;
 
-        if (!prixPattern.test(prix) && prix !== "") {
-            actv_msgPrix.textContent = "Le champ prix doit contenir uniquement des chiffres positifs";
+        if (!prixPattern.test(prix) || prix === "") {
+            actv_msgPrix.textContent = "Doit contenir des chiffres positifs";
+            actv_inputPrix.classList.add("inputErreur");
             res = false;
         }
 
@@ -360,8 +365,13 @@ if ($categorie["_activite"]) {
         const duree = actv_inputDuree.value.trim();
         const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
 
-        if (!timePattern.test(duree) && duree !== "") {
-            actv_msgDuree.textContent = "Le champ durée doit être au format HH:MM";
+        if (!timePattern.test(duree)  || duree === "00:00") {
+            if (duree === "00:00") {
+                actv_msgDuree.textContent = "Valeur différent de 00:00";
+            } else {
+                actv_msgDuree.textContent = "Format HH:MM";
+            }
+            actv_inputDuree.classList.add("inputErreur");
             res = false;
         }
         return res;

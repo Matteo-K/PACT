@@ -49,11 +49,11 @@
 
         <!-- Titre et Avis -->
         <div>
-            <label for="titre">Donnez un titre à l'avis *</label>
+            <label id="ajoutTitre" for="titre">Donnez un titre à l'avis *</label>
             <input id="titre" name="titre" type="text" required>
         </div>
         <div>
-            <label for="avis">Ajoutez votre commentaire *</label>
+            <label id="ajoutCommentaire" for="avis">Ajoutez votre commentaire *</label>
             <textarea id="avis" name="avis" required></textarea>
         </div>
 
