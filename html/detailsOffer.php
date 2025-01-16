@@ -1104,7 +1104,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         })
                     });
 
-                    rmotifSignal.checked = false; // On désélectionne le motif choisi
+                    motifSignal.checked = false; // On désélectionne le motif choisi
                     texteComplement.value = ""; //On vide le textarea
 
                     alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme !');
