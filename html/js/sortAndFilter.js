@@ -687,7 +687,7 @@ function createFront(offer) {
     let imgRelief = document.createElement("img");
     imgRelief.classList.add("premiumImg");
     imgRelief.setAttribute("src", "../img/icone/service-premium.png");
-    imgRelief.setAttribute("src", "icone premium");
+    imgRelief.setAttribute("alt", "icone premium");
     figure.appendChild(imgRelief);
   }
 
