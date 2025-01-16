@@ -486,7 +486,7 @@ if ($pageDirection != -1) {
               $stmt->execute([$idOffre]);
               foreach ($langues as $langue) {
                 $stmt = $conn->prepare("INSERT INTO pact._visite_langue (idoffre, langue) VALUES (?,?)");
-                $stmt->execute([$idoffre, $langue]);
+                $stmt->execute([$idOffre, $langue]);
               }
 
               // Accessibilité
