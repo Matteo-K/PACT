@@ -1604,10 +1604,11 @@ header ul + div {
 }
 
 #btnAjoutPhoto {
-  border: 3px solid var(--primary);
+  background-color:  var(--primary);
   border-radius: 10px;
   margin: 0;
   cursor: pointer;
+  color: #fff;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -4821,8 +4822,9 @@ details .nonRepondu {
 }
 
 label#btnAjoutPhoto:hover {
-  background-color: var(--primary);
-  color: #fff;
+  background-color: #fff;
+  color: var(--primary);
+  border: 3px solid var(--primary);
 }
 
 #enCompagnie input[type="radio"]:checked + label {
