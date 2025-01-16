@@ -5460,6 +5460,7 @@ body[id="body_creation_compte"] {
 a[id="lienCGU"] {
   color: var(--bloc);
   text-decoration: underline;
+  margin: 0 5px;
 }
 
 a[id="lienCGU"]:hover {
