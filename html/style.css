@@ -4823,7 +4823,7 @@ details .nonRepondu {
 
 #btnAjoutPhoto:hover {
   background-color: #fff;
-  color: var(--primary) !important;
+  color: black !important;
   border: 3px solid var(--primary);
 }
 
