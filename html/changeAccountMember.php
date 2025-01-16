@@ -274,4 +274,6 @@
         </form>
     </body>
     <script src="js/validationFormInscription.js"></script>
+    <script src="js/setColor.js"></script>
+
 </html>

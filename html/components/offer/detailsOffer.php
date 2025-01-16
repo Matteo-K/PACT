@@ -240,11 +240,11 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if (select.value == "parc") {
                 ParkOffer.style.display = "flex";
             } else if (select.value == "activite") {
-                ActiviteOffer.style.display = "block";
+                ActiviteOffer.style.display = "flex";
             } else if (select.value == "spectacle") {
                 SpectacleOffer.style.display = "flex";
             } else if (select.value == "visite") {
-                VisiteOffer.style.display = "block";
+                VisiteOffer.style.display = "flex";
             } else if (select.value == "restaurant") {
                 RestaurantOffer.style.display = "flex";
             }

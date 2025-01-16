@@ -674,6 +674,8 @@ function createFront(offer) {
   let note = document.createElement("span");
   note.textContent = offer.noteAvg + "/5";
 
+  console.log(offer.noteAvg);
+
   stars.appendChild(note);
 
   div.appendChild(p);
@@ -681,6 +683,14 @@ function createFront(offer) {
 
   figcaption.appendChild(h4);
   figcaption.appendChild(div);
+
+  if (offer.option.includes('EnRelief')) {
+    let imgRelief = document.createElement("img");
+    imgRelief.classList.add("premiumImg");
+    imgRelief.setAttribute("src", "../img/icone/service-premium.png");
+    imgRelief.setAttribute("alt", "icone premium");
+    figure.appendChild(imgRelief);
+  }
 
   figure.appendChild(img);
   figure.appendChild(figcaption);

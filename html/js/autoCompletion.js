@@ -158,7 +158,7 @@ function createAutoCompletion(input, blocAutocomplete, msgErreur, listeSuggestio
 
   // Cacher les suggestions si on clique ailleurs
   document.addEventListener("click", (event) => {
-    if (!event.target.closest("#"+blocAutocomplete) && event.target !== inputTag) {
+    if (!event.target.closest("#"+blocAutocomplete) && event.target !== input) {
       zone.innerText = "";
       zone.style.display = "none"; 
     }

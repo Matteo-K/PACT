@@ -2,6 +2,8 @@
 <?php
 $langue = [];
 $accessibilite = [];
+$maxLangue = 10;
+$maxAcces = 10;
 $visite = [
     "guide" => true,
     "duree" => "0",
@@ -52,29 +54,33 @@ if ($categorie["_visite"]) {
 
 ?>
 <!-- Partie sur les informations de la visite -->
-<section id="visit"> <!-- donne un id a la section pour l'identifier dans le css -->
+<section id="visit">
     <!-- Visite guidée ou non  -->
     <div>
         <!-- Par défaut la visite est guidée-->
         <label class="labelTitre" for="visit_guide">Visite Guidée*</label>
-        <div>
-            <input type="radio" id="guidee" name="visit_guidee" value="guidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
-            <span class="checkmark"></span>
-            <label for="guidee"> Oui</label>
-            <input type="radio" id="pasGuidee" name="visit_guidee" value="pasGuidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
-            <span class="checkmark"></span>
-            <label for="pasGuidee"> Non </label>
+        <div id="blocGuide">
+            <label for="guidee" class="labelSousTitre"> 
+                <input type="radio" id="guidee" name="visit_guidee" value="guidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
+                <span class="checkmark"></span>
+                Oui
+            </label>
+            <label for="pasGuidee" class="labelSousTitre"> 
+                <input type="radio" id="pasGuidee" name="visit_guidee" value="pasGuidee" <?php echo !$visite["guide"] ? "checked" : "" ?>>
+                <span class="checkmark"></span>
+                Non
+            </label>
         </div>
-        <label for="visit_hrMin" class="labelTitre">Durée de la visite*</label>
+        <label for="visit_hrMin" class="labelTitre">Durée de la visite*<span id="visit_msgDuree" class="msgError"></span></label>
         <div>
             <input type="hidden" id="visit_min" name="visit_min" placeholder="0" value="<?php echo $visite["duree"] ?>">
             <input type="time" id="visit_hrMin" name="visit_hrMin" placeholder="0">
         </div>
         <!-- Gestion du prix minimum pour une visite -->
-        <label class="labelTitre" for="visit_minPrix">Prix minimum*</label>
+        <label class="labelTitre" for="visit_minPrix">Prix minimum*<span id="visit_msgPrix" class="msgError"></span></label>
         <div>
             <input type="number" id="visit_minPrix" name="visit_minPrix" min="0" placeholder="0" value="<?= $visite["prixminimal"] ?>">
-            <label for="visit_minPrix">€</label>
+            <label for="visit_minPrix" class="labelSousTitre">€</label>
         </div>
     </div>
 
@@ -82,28 +88,33 @@ if ($categorie["_visite"]) {
         <!-- Accessibilité -->
         <div id="visit_blocAccess">
             <div id="visit_inputAutoCompleteAccess">
-                <label class="labelSousTitre" for="visit_inputAccess">Accessibilités<span id="visit_msgAccess" class="msgError"></span></label>
+                <label class="labelTitre" for="visit_inputAccess" class="labelTitre">Accessibilités<span id="visit_msgAccess" class="msgError"></span></label>
                 <input type="text" id="visit_inputAccess" 
                 name="*visit_inputAccess"
-                placeholder="Entrez & selectionnez une accessibilité correspondant à votre visite">
+                placeholder="Entrez & selectionnez une accessibilité">
 
                 <ul id="visit_autocompletionAccess"></ul>
             </div>
+            <label class="labelSousTitre">
+                Vous pouvez entrer jusqu'à <?= $maxAcces ?> accessibilités
+            </label>
             <ul id="visit_zonePrestationAccess">
             </ul>
         </div>
 
         <!-- Partie pour la gestion des langues proposer par la visite -->
         <div id="visit_blocLangue">
-            <div id="visit_inputLangue">
-                <label class="labelTitre" for="visit_langue">Langues proposées<span id="msgLangue" class="msgError"></span></label>
+            <div id="visit_inputAutoCompleteLangue">
+                <label class="labelTitre" for="visit_langue" class="labelTitre">Langues proposées*<span id="msgLangue" class="msgError"></span></label>
                 <input type="text" id="visit_langue" 
                 name="visit_langue" 
-                placeholder="Entrez & sélectionnez les langue(s) proposée(s) par votre visite">
+                placeholder="Entrez & sélectionnez une langue">
 
                 <ul id="visit_autocompletionLangue"></ul>
             </div>
-
+            <label class="labelSousTitre">
+                Vous pouvez entrer jusqu'à <?= $maxLangue ?> langues
+            </label>
             <ul id="visit_zoneLangue">
             </ul>
         </div>
@@ -130,7 +141,8 @@ if ($categorie["_visite"]) {
     const visit_zoneAccess = document.getElementById("visit_zonePrestationAccess");
     const visit_msgAccess = document.getElementById("visit_msgAccess");
 
-    const visit_maxAccess = 20;
+    const visit_maxAccess = <?= $maxAcces ?>;
+    const classLiVisit = ["elementCategorie"];
 
     const visit_indexAccess = createAutoCompletion(
         visit_inputAccess,
@@ -144,11 +156,11 @@ if ($categorie["_visite"]) {
         'visit_access[]',
         visit_maxAccess,
         "li",
-        []
+        classLiVisit
     );
 
     /* Initialisation de prestation inclus */
-    actv_access.forEach(valeur => {
+    visit_access.forEach(valeur => {
         ajoutElement(valeur,
             visit_indexAccess,
             visit_inputAccess, //-- paramètres de la fonction ajoutElement
@@ -157,56 +169,121 @@ if ($categorie["_visite"]) {
             'visit_access[]',
             visit_maxAccess,
             "li",
-            []
+            classLiVisit
         );
     });
     
     // Ajout des langues
-    const visit_langueGeneral = <?= json_encode($accessibilite); ?>;
+    const visit_langueGeneral = <?= json_encode($langue); ?>;
     const visit_langue = <?= json_encode($visite["langue"]); ?>;
 
     const visit_inputLangue = document.getElementById("visit_langue");
     const visit_zoneLangue = document.getElementById("visit_zoneLangue");
-    const visit_msgAccess = document.getElementById("msgLangue");
+    const visit_msgLangue = document.getElementById("msgLangue");
 
-    const visit_maxAccess = 40;
+    const visit_maxLangue = <?= $maxLangue ?>;
 
-    const visit_indexAccess = createAutoCompletion(
-        visit_inputAccess,
+    const visit_indexLangue = createAutoCompletion(
+        visit_inputLangue,
         "visit_autocompletionLangue",
-        visit_msgAccess,
-        visit_accessGeneral,
+        visit_msgLangue,
+        visit_langueGeneral,
         ajoutElement,
-        visit_inputAccess, //-- paramètres de la fonction ajoutElement
+        visit_inputLangue, //-- paramètres de la fonction ajoutElement
         visit_zoneLangue,
-        visit_msgAccess,
-        'visit_access[]',
-        visit_maxAccess,
+        visit_msgLangue,
+        'visit_langue[]',
+        visit_maxLangue,
         "li",
-        []
+        classLiVisit
     );
 
     /* Initialisation de prestation inclus */
-    actv_access.forEach(valeur => {
+    visit_langue.forEach(valeur => {
         ajoutElement(valeur,
-            visit_indexAccess,
-            visit_inputAccess, //-- paramètres de la fonction ajoutElement
+            visit_indexLangue,
+            visit_inputLangue, //-- paramètres de la fonction ajoutElement
             visit_zoneLangue,
-            visit_msgAccess,
-            'visit_access[]',
-            visit_maxAccess,
+            visit_msgLangue,
+            'visit_langue[]',
+            visit_maxLangue,
             "li",
-            []
+            classLiVisit
         );
     });
 
     // Validation des champs
 
+    const visit_inputPrix = document.getElementById("visit_minPrix");
+    const visit_inputDuree = document.getElementById("visit_hrMin");
+
+    const visit_msgMin = document.getElementById("visit_msgPrix");
+    const visit_msgDuree = document.getElementById("visit_msgDuree");
+
     function checkVisit() {
-        return true;
+        let min = checkVisitPrixMin();
+        let duree = checkVisitDuree();
+        let langue = checkVisitLangue();
+        return min && duree && langue;
     }
 
-    function checkVisitDuree() {
-        
+    function checkVisitPrixMin() {
+        let res = true;
+        const prix = visit_inputPrix.value.trim();
+        const prixPattern = /^\d+$/;
+
+        if (!prixPattern.test(prix) || prix === "") {
+            visit_msgMin.textContent = "Doit contenir des chiffres positifs";
+            visit_inputPrix.classList.add("inputErreur");
+            res = false;
+        }
+
+        return res;
     }
+
+    visit_inputPrix.addEventListener("blur", () => checkVisitPrixMin());
+    visit_inputPrix.addEventListener("focus", () => {
+        visit_msgMin.textContent = "";
+        visit_inputPrix.classList.remove("inputErreur");
+    });
+
+    function checkVisitDuree() {
+        let res = true;
+        const duree = visit_inputDuree.value.trim();
+        const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
+
+        if (!timePattern.test(duree) || duree === "" || duree === "00:00") {
+            if (duree === "00:00") {
+                visit_msgDuree.textContent = "Valeur différent de 00:00";
+            } else {
+                visit_msgDuree.textContent = "Format HH:MM";
+            }
+            visit_inputDuree.classList.add("inputErreur");
+            res = false;
+        }
+        return res;
+    }
+
+    visit_inputDuree.addEventListener("blur", () => checkVisitDuree());
+    visit_inputDuree.addEventListener("focus", () => {
+        visit_msgDuree.textContent = "";
+        visit_inputDuree.classList.remove("inputErreur");
+    });
+
+    function checkVisitLangue() {
+        let res = true;
+    
+        if (visit_zoneLangue.childElementCount == 0) {
+            visit_msgLangue.textContent = "Ajouter une langue";
+            res = false;
+        } else {
+            visit_msgLangue.textContent = "";
+        }
+    
+        return res;
+    }
+
+    visit_inputLangue.addEventListener("input", () => {
+        visit_msgLangue.textContent = "";
+    });
 </script>

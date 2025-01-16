@@ -135,4 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
     </main>
 </body>
 <script src="js/validationFormInscription.js"></script>
+<script src="js/setColor.js"></script>
+
 </html>

@@ -404,12 +404,12 @@ if ($pageDirection != -1) {
               $result = $stmt->fetch(PDO::FETCH_ASSOC);
               // Si pas de donnée, on créer
               if ($result === false) {
-                $stmt = $conn->prepare("INSERT INTO pact._activite (idoffre, duree, agemin, prixminimal, prestation) VALUES (?, ?, ?, ?, ?)");
-                //$stmt->execute([$idOffre, $duree, $ageMin, $prixMinimale, $prestation]);
+                $stmt = $conn->prepare("INSERT INTO pact._activite (idoffre, duree, agemin, prixminimal) VALUES (?, ?, ?, ?)");
+                $stmt->execute([$idOffre, $duree, $ageMin, $prixMinimale]);
               } else {
                 // sinon modifie
-                $stmt = $conn->prepare("UPDATE pact._activite SET duree=?, agemin=?, prixminimal=?, prestation=? WHERE idoffre=?");
-                //$stmt->execute([$duree, $ageMin, $prixMinimale, $prestation, $idOffre]);
+                $stmt = $conn->prepare("UPDATE pact._activite SET duree=?, agemin=?, prixminimal=? WHERE idoffre=?");
+                $stmt->execute([$duree, $ageMin, $prixMinimale, $idOffre]);
               }
 
               // Accessibilité
@@ -459,11 +459,11 @@ if ($pageDirection != -1) {
 
             case 'visite':
               // Obtention des données
-              $guide = $_POST["VisiteGuidee"] === "guidee";
-              $duree = $_POST["visit_duree"];
+              $guide = isset($_POST["visit_guidee"]) && $_POST["visit_guidee"] === "guidee";
+              $duree = $_POST["visit_min"];
               $prixMinimale = $_POST["visit_minPrix"];
-              $accessibilite = [];
-              $access = count($accessibilite) > 0;
+              $accessibilite = $_POST["visit_access"];
+              $access = !empty($accessibilite); 
 
               // Création/Modification d'une offre de visite
               $stmt = $conn->prepare("SELECT * from pact._visite where idoffre=?");
@@ -472,22 +472,39 @@ if ($pageDirection != -1) {
               // Si pas de donnée, on créer
               if ($result === false) {
                 $stmt = $conn->prepare("INSERT INTO pact._visite (idoffre, guide, duree, prixminimal, accessibilite) VALUES (?, ?, ?, ?, ?)");
-                $stmt->execute([$idOffre, $guide, $duree, $prixMinimale, $access]);
+                $stmt->execute([$idOffre, $guide ? 1 : 0, $duree, $prixMinimale, $access]);
               } else {
                 // sinon modifie
                 $stmt = $conn->prepare("UPDATE pact._visite SET guide=?, duree=?, prixminimal=?, accessibilite=? WHERE idoffre=?");
-                $stmt->execute([$guide, $duree, $prixMinimale, $access, $idOffre]);
+                $stmt->execute([$guide ? 1 : 0, $duree, $prixMinimale, $access, $idOffre]);
               }
 
               // Ajout des langues
-              $langues = $_POST["texteLangueVisit"] ?? "";
-              $tabLangue = explode(" ", $langues);
+              $langues = $_POST["visit_langue"] ?? [];
               // Supprime toute les langues dans la table visite_langue
-              $stmt = $conn->prepare("DELETE FROM pact._visite_langue WHERE idoffre= ?");
-              //$stmt->execute([$idOffre]);
-              foreach ($tabLangue as $langue) {
-                $stmt = $conn->prepare("INSERT INTO pact._visite_langue (idoffre, langue) VALUES (?,?)");
-                //$stmt->execute([$idoffre, $langue]);
+              $stmt = $conn->prepare("SELECT langue FROM pact._visite_langue WHERE idoffre= ?");
+              $stmt->execute([$idOffre]);
+              $result = $stmt->fetchAll();
+              
+              $bddLangue = [];
+              foreach ($result as $value) {
+                $bddLangue[] = $value["langue"];
+              }
+              print_r($bddLangue);
+
+              foreach ($langues as $langue) {
+                if (!in_array($langue, $langues)) {
+                  $stmt = $conn->prepare("INSERT INTO pact._visite_langue (idoffre, langue) VALUES (?,?)");
+                  $stmt->execute([$idOffre, $langue]);
+                }
+              }
+
+              foreach ($bddLangue as $value) {
+                if (!in_array($value, $langues)) {
+                  print_r($value);
+                  $stmt = $conn->prepare("DELETE FROM pact._visite_langue WHERE idoffre = ? AND langue = ?");
+                  $stmt->execute([$idOffre, $value]);
+                }
               }
 
               // Accessibilité

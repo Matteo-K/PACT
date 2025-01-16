@@ -166,7 +166,7 @@ textarea:focus {
 #formMember input:focus,
 #formConnexion input:focus {
   outline: none;
-  background-color: var(--background80);
+  background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);
 }
 
 #formPro input:hover,
@@ -816,6 +816,7 @@ header ul + div {
   border: none;
   border-bottom: solid 2px var(--primary);
   background-color: transparent;
+  font-size: 1.4rem !important;
 }
 
 #manageOffer textarea,
@@ -823,6 +824,7 @@ header ul + div {
   outline: none;
   border: solid 2px var(--primary);
   background-color: transparent;
+  font-size: 1.4rem !important;
 }
 
 .inputErreur {
@@ -901,7 +903,7 @@ header ul + div {
   margin: 0;
 }
 #manageOffer figcaption {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   width: 200px;
   height: 30px;
 }
@@ -917,7 +919,7 @@ header ul + div {
 }
 
 #manageOffer aside button:hover figcaption {
-  font-size: 1.2rem !important;
+  font-size: 1.4rem !important;
 }
 
 #leaveButtonBloc {
@@ -1313,6 +1315,10 @@ header ul + div {
   align-items: center;
 }
 
+#acceptPhone div {
+  margin-bottom: 10px;
+}
+
 /* ------------------------- END Contact OFFER CSS --------------------------------*/
 /* ------------------------- Payment OFFER CSS --------------------------------*/
 
@@ -1562,7 +1568,7 @@ header ul + div {
 
 .labelTitre {
   display: inline-block;
-  font-size: 1.6rem !important;
+  font-size: 1.8rem !important;
   font-weight: normal !important;
   margin: 15px 0 5px 0;
 }
@@ -1571,7 +1577,7 @@ header ul + div {
 #manageOffer input + span + label,
 #manageOffer input + label {
   display: inline-block;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 #detailsOffer input[type="text"],
@@ -1610,7 +1616,9 @@ header ul + div {
   display: none;
 }
 
-#detailsOffer img {
+#afficheImages img:not(img + img),
+#rest_zoneImg img:not(img + img),
+.scrollDown img {
   margin: 5px;
   overflow: hidden;
   border-radius: 3px;
@@ -1644,8 +1652,14 @@ header ul + div {
   position: relative;
 }
 
+.elementCategorie {
+  width: 100%;
+  background-color: #fff;
+  font-size: 1.3rem;
+}
 
-#artDetailOffer .tag img {
+#artDetailOffer .tag img,
+.elementCategorie img {
   width: 12px;
   height: 12px;
   margin: auto 0 auto 5px;
@@ -1656,8 +1670,20 @@ header ul + div {
   transform: translateY(-50%);
 }
 
-#artDetailOffer .tag:hover img {
+#artDetailOffer .tag:hover img,
+.elementCategorie:hover img {
   display: block;
+}
+
+#atcv_zonePrestationInclus,
+#atcv_zonePrestationNonInclus,
+#atcv_zonePrestationAccess,
+#visit_zonePrestationAccess,
+#visit_zoneLangue {
+  overflow-x: scroll;
+  max-height: 200px;
+  flex-direction: column !important;
+  gap: 0 !important;
 }
 
 #afficheImages {
@@ -1718,10 +1744,13 @@ label[for="rest_ajoutPhotoMenu"] {
 #inputAutoComplete,
 #actv_inputAutoCompletePrestaInclu,
 #actv_inputAutoCompletePrestaNonInclu,
-#actv_inputAutoCompleteAccess {
+#actv_inputAutoCompleteAccess,
+#visit_inputAutoCompleteAccess,
+#visit_inputAutoCompleteLangue {
   position: relative;
   display: flex;
   flex-flow: column nowrap;
+
 }
 
 #inputTag {
@@ -1731,7 +1760,9 @@ label[for="rest_ajoutPhotoMenu"] {
 #autocompletion,
 #actv_autocompletionInclus,
 #actv_autocompletionNonInclus,
-#atcv_zonePrestationAccess {
+#actv_autocompletionAccess,
+#visit_autocompletionAccess,
+#visit_autocompletionLangue {
   display: none;
   padding: 2px 0;
   margin: 0;
@@ -1747,6 +1778,7 @@ label[for="rest_ajoutPhotoMenu"] {
   top: 100%;
   left: 0;
   z-index: 5;
+  font-size: 1.3rem;
 
   li {
     padding: 1px 0 1px 10px;
@@ -1767,7 +1799,6 @@ label[for="rest_ajoutPhotoMenu"] {
 /* ### Restaurant ### */
 
 #restaurant {
-  display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
   justify-content: space-evenly;
@@ -1794,29 +1825,23 @@ label[for="rest_ajoutPhotoMenu"] {
 /* ### parc d'attraction ### */
 
 #park {
-  display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 10%;
 }
 
 #park > div {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
+  width: 500px;
 }
 
-#park [type="number"] {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: flex-start;
-}
-
-#park div:nth-child(1) div {
+#park > div:nth-child(1) > div {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  gap: 5px;
 }
 
 #park_planTitres {
@@ -1831,19 +1856,23 @@ label[for="rest_ajoutPhotoMenu"] {
   max-height: 250px;
 }
 
+#park > div:nth-child(1) > div > div {
+  display: flex;
+  align-items: center;
+}
+
 /* ### Spectacle ### */
 #show {
-  display: flex;
   flex-flow: column;
   align-items: flex-start;
   justify-content: center;
-  margin-inline: 28%;
+  margin-inline: 20%;
 }
 
 #show_nbPlacePrixMin {
   display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
+  flex-flow: column nowrap;
+  align-items: flex-start;
   justify-content: space-evenly;
   width: 100%;
 }
@@ -1856,6 +1885,61 @@ label[for="rest_ajoutPhotoMenu"] {
   text-align: center;
 }
 
+/* Activité */
+
+#activity {
+  flex-direction: column;
+  gap: 5vh;
+}
+
+#activity > div {
+  margin-inline: 15%;
+}
+
+#activity > div:nth-child(1) > label {
+  margin-left: -5%;
+}
+
+#activity > div > div {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 20%;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+#activity > div > div > div {
+  flex: 1;
+}
+
+/* visite */
+
+#visit {
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#visit > div{
+  width: 500px;
+}
+
+#blocGuide {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+#blocGuide > div {
+  display: flex;
+  align-items: center;
+}
+
+#visit [type="radio"] {
+  display: none;
+}
+
 /* popup signalement avis */
 .avis .modal-content{
   display: flex;
@@ -1866,6 +1950,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .signalementPopup h2{
   text-align: center;
   width: 100%;
+  margin-top: 0;
 }
 
 .signalementPopup form{
@@ -1993,23 +2078,21 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   color: var(--swiper-navigation-color, var(--swiper-theme-color));
 }
 
-.swiper-button-next.gb{
-  transform: translateX(150%);
-  /* Rounded corners for the next button */
-}
-
-.swiper-button-prev.gb {
-  transform: translateX(-150%);
-
-  /* Rounded corners for the prev button */
-}
-
+.swiper-button-next.gb,
 .swiper-button-next.gb2,
 .swiper-button-next.gb3{
   transform: translateX(-650%);
   /* Rounded corners for the next button */
 }
 
+.backdoor{
+  user-select: none;
+  -webkit-user-select: none; /* Support pour les navigateurs WebKit (Chrome, Safari) */
+  -moz-user-select: none; /* Support pour Firefox */
+  -ms-user-select: none; /* Support pour Internet Explorer */
+}
+
+.swiper-button-prev.gb,
 .swiper-button-prev.gb2,
 .swiper-button-prev.gb3 {
   transform: translateX(650%);
@@ -2118,6 +2201,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     font-size: 0.75em !important;
     padding: 4px 8px !important;
   }
+
+  .premiumImg{
+    width: 25px !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2141,13 +2228,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     overflow: hidden;
     margin: 0 auto 0 auto;
   }
-
+  .swiper-button-next.gb,
   .swiper-button-next.gb2,
   .swiper-button-next.gb3{
     transform: translateX(-10%);
     /* Rounded corners for the next button */
   }
-  
+  .swiper-button-prev.gb,
   .swiper-button-prev.gb2,
   .swiper-button-prev.gb3 {
     transform: translateX(10%);
@@ -2296,7 +2383,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #index {
   margin-top: 150px;
   margin-bottom: 50px;
-  min-height: calc(100vh - var(--header-size));
+  min-height: calc(100vh - var(--header-size) - 180px);
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-evenly;
@@ -2372,6 +2459,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* Filp card */
 /* From Uiverse.io by joe-watson-sbf */ 
+
+.premiumImg{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 50px !important; /* Ajustez selon vos besoins */
+  height: auto !important; /* Maintient le ratio de l'image */
+}
+
 .searchA {
   width: fit-content;
   text-decoration: none;
@@ -2674,8 +2770,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 .checkmark {
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 31px;
+  height: 31px;
   margin: 0 8px 0 4px;
   border: solid 2px #1ca4ed;
   background-color: white;
@@ -2847,19 +2943,24 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   padding: 0 20px;
   font-size: 25px;
   font-weight: bold;
-
+  
   margin: 10px 0;
   height: 40px;
+  width: calc(100% - 15px);
+
+  justify-content: left;
+  border-radius: 20px 0 0 20px;
+  border-right: 0px solid var(--primary);
+  transition: border-right-width 0.5s linear(0 0%, 0 2.27%, 0.02 4.53%, 0.04 6.8%, 0.06 9.07%, 0.1 11.33%, 0.14 13.6%, 0.25 18.15%, 0.39 22.7%, 0.56 27.25%, 0.77 31.8%, 1 36.35%, 0.89 40.9%, 0.85 43.18%, 0.81 45.45%, 0.79 47.72%, 0.77 50%, 0.75 52.27%, 0.75 54.55%, 0.75 56.82%, 0.77 59.1%, 0.79 61.38%, 0.81 63.65%, 0.85 65.93%, 0.89 68.2%, 1 72.7%, 0.97 74.98%, 0.95 77.25%, 0.94 79.53%, 0.94 81.8%, 0.94 84.08%, 0.95 86.35%, 0.97 88.63%, 1 90.9%, 0.99 93.18%, 0.98 95.45%, 0.99 97.73%, 1 100%);
 }
 
 #tri input:checked + label {
   background-color: #1ca4ed;
-  border-radius: 3px;
+  border-right-width: 15px;
 }
 
 #tri input:hover + label {
-  background-color: var(--secondary);
-  border-radius: 3px;
+ border-right-width: 15px ;
 }
 
 /* Bouton de tri et filtre */
@@ -4416,6 +4517,8 @@ details.animating .contentDetails {
   font-weight: 600;
   font-family: "Belanosima";
   color: var(--bloc);
+  border-bottom: 2px solid var(--bloc);
+  padding: 5px 5%;
 }
 
 #avisPro option {
