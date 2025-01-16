@@ -1609,7 +1609,7 @@ header ul + div {
   border-radius: 10px;
   margin: 0;
   cursor: pointer;
-  color: #fff;
+  color: black !important;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -4872,9 +4872,9 @@ label#btnAjoutPhoto:hover {
 
 /* Bouton Soumettre */
 #formCreationAvis button[type="submit"] {
-  background-color: #28a745;
-  color: white;
-  border: none;
+  background-color: var(--accent);
+  color: black;
+  border: 3px solid var(--accent);
   padding: 12px 20px;
   border-radius: 5px;
   font-size: 16px;
@@ -4883,7 +4883,7 @@ label#btnAjoutPhoto:hover {
 }
 
 #formCreationAvis button[type="submit"]:hover {
-  background-color: #218838;
+  background-color: #fff;
 }
 
 .soumission {
