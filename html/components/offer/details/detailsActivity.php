@@ -69,77 +69,80 @@ if ($categorie["_activite"]) {
     <!-- Gestion des prestations proposée dans l'activité -->
     <div>
         <label class="labelTitre" for="actv_presta">Préstation(s)</label>
-        <div id="actv_blocPrestaInclu">
-            <div id="actv_inputAutoCompletePrestaInclu">
-                <label class="labelSousTitre" for="actv_prestaInclu">Prestations incluses<span id="msgPrestaInclus" class="msgError"></span></label>
-                <input type="text" id="actv_inputPrestaInclus" 
-                name="actv_inputPrestaInclus" 
-                placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
-                
-                <ul id="actv_autocompletionInclus"></ul>
+        <div id="actv_prestaGroup">
+            <div id="actv_blocPrestaInclu">
+                <div id="actv_inputAutoCompletePrestaInclu">
+                    <label class="labelSousTitre" for="actv_prestaInclu">Prestations incluses<span id="msgPrestaInclus" class="msgError"></span></label>
+                    <input type="text" id="actv_inputPrestaInclus" 
+                    name="actv_inputPrestaInclus" 
+                    placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
+                    
+                    <ul id="actv_autocompletionInclus"></ul>
+                </div>
+                <ul id="atcv_zonePrestationInclus">
+                </ul>
+                <label class="labelSousTitre">
+                    Vous pouvez entrer jusqu'à <?= $maxPresta ?> prestations inclus
+                </label>
             </div>
-            <ul id="atcv_zonePrestationInclus">
-            </ul>
-            <label class="labelSousTitre">
-                Vous pouvez entrer jusqu'à <?= $maxPresta ?> prestations inclus
-            </label>
-        </div>
-        <div id="actv_blocPrestaNonInclu">
-            <div id="actv_inputAutoCompletePrestaNonInclu">
-                <label class="labelSousTitre" for="actv_prestaNonInclu">Prestations non-incluses<span id="msgPrestaNonInclus" class="msgError"></span></label>
-                <input type="text" id="actv_inputPrestaNonInclus" 
-                name="actv_inputPrestaNonInclus" 
-                placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
-                
-                <ul id="actv_autocompletionNonInclus"></ul>
+            <div id="actv_blocPrestaNonInclu">
+                <div id="actv_inputAutoCompletePrestaNonInclu">
+                    <label class="labelSousTitre" for="actv_prestaNonInclu">Prestations non-incluses<span id="msgPrestaNonInclus" class="msgError"></span></label>
+                    <input type="text" id="actv_inputPrestaNonInclus" 
+                    name="actv_inputPrestaNonInclus" 
+                    placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
+                    
+                    <ul id="actv_autocompletionNonInclus"></ul>
+                </div>
+                <ul id="atcv_zonePrestationNonInclus">
+                </ul>
+                <label class="labelSousTitre">
+                    Vous pouvez entrer jusqu'à <?= $maxPresta ?> prestations non inclus
+                </label>
             </div>
-            <ul id="atcv_zonePrestationNonInclus">
-            </ul>
-            <label class="labelSousTitre">
-                Vous pouvez entrer jusqu'à <?= $maxPresta ?> prestations non inclus
-            </label>
         </div>
     </div>
         
     <div>
         <div>
-            <!-- Zone pour l'age minimum pour l'activité -->
-            <label class="labelTitre" for="actv_ageMin">Age*<span id="actv_msgAge" class="msgError"></span></label>
             <div>
-                <input type="number" id="actv_ageMin" name="actv_ageMin" min="0" placeholder="0" value="<?= $activite["agemin"] ?>"/>
-                <label for="actv_ageMin"> ans </label>
-            </div>
-        
-            <!-- Prix -->
-            <label class="labelTitre" for="actv_prixMin">Prix minimum*<span id="actv_msgPrix" class="msgError"></span></label>
-            <div>
-                <input type="number" id="actv_prixMin" name="actv_prixMin" min="0" placeholder="0" value="<?= $activite["agemin"]; ?>">
-                <label for="actv_prixMin">€</label>
-            </div>
+                <!-- Zone pour l'age minimum pour l'activité -->
+                <label class="labelTitre" for="actv_ageMin">Age*<span id="actv_msgAge" class="msgError"></span></label>
+                <div>
+                    <input type="number" id="actv_ageMin" name="actv_ageMin" min="0" placeholder="0" value="<?= $activite["agemin"] ?>"/>
+                    <label for="actv_ageMin"> ans </label>
+                </div>
+                
+                <!-- Prix -->
+                <label class="labelTitre" for="actv_prixMin">Prix minimum*<span id="actv_msgPrix" class="msgError"></span></label>
+                <div>
+                    <input type="number" id="actv_prixMin" name="actv_prixMin" min="0" placeholder="0" value="<?= $activite["agemin"]; ?>">
+                    <label for="actv_prixMin">€</label>
+                </div>
 
-            <!-- Gestion de la durée -->
-            <label for="actv_hrMin" class="labelTitre">Durée de l'activité*<span id="actv_msgDuree" class="msgError"></span></label>
-            <div>
-                <input type="number" style="display : none;" id="actv_min" name="actv_min" placeholder="0" value="<?php echo $activite["duree"] ?>">
-                <input type="time" id="actv_hrMin" name="actv_hrMin" placeholder="0">
+                <!-- Gestion de la durée -->
+                <label for="actv_hrMin" class="labelTitre">Durée de l'activité*<span id="actv_msgDuree" class="msgError"></span></label>
+                <div>
+                    <input type="number" style="display : none;" id="actv_min" name="actv_min" placeholder="0" value="<?php echo $activite["duree"] ?>">
+                    <input type="time" id="actv_hrMin" name="actv_hrMin" placeholder="0">
+                </div>
             </div>
-        </div>
-
-        <!-- Accessibilité -->
-        <div id="actv_blocAccess">
-            <div id="actv_inputAutoCompleteAccess">
-                <label class="labelSousTitre" for="actv_inputAccess">Accessibilités<span id="actv_msgAccess" class="msgError"></span></label>
-                <input type="text" id="actv_inputAccess" 
-                name="actv_inputAccess"
-                placeholder="Entrez & selectionnez une accessibilité correspondant à votre activité">
-
-                <ul id="actv_autocompletionAccess"></ul>
+            <!-- Accessibilité -->
+            <div id="actv_blocAccess">
+                <div id="actv_inputAutoCompleteAccess">
+                    <label class="labelTitre" for="actv_inputAccess">Accessibilités<span id="actv_msgAccess" class="msgError"></span></label>
+                    <input type="text" id="actv_inputAccess" 
+                    name="actv_inputAccess"
+                    placeholder="Entrez & selectionnez une accessibilité correspondant à votre activité">
+                    
+                    <ul id="actv_autocompletionAccess"></ul>
+                </div>
+                <ul id="atcv_zonePrestationAccess">
+                </ul>
+                <label class="labelSousTitre">
+                    Vous pouvez entrer jusqu'à <?= $maxAccess ?> accessibilités
+                </label>
             </div>
-            <ul id="atcv_zonePrestationAccess">
-            </ul>
-            <label class="labelSousTitre">
-                Vous pouvez entrer jusqu'à <?= $maxAccess ?> accessibilités
-            </label>
         </div>
     </div>
 
@@ -327,21 +330,22 @@ if ($categorie["_activite"]) {
 
     function checkActvAgeMin() {
         let res = true;
+        const age = actv_inputAge.value.trim();
         const agePattern = /^\d+$/;
 
-        if (!agePattern.test(actv_inputAge.value.trim())) {
+        if (!agePattern.test(age) && age !== "") {
             actv_msgAge.textContent = "Le champ ge doit contenir uniquement des chiffres positifs";
             res = false;
         }
         return res;
     }
 
-
     function checkActvPrixMin() {
         let res = true;
+        const prix = actv_inputPrix.value.trim();
         const prixPattern = /^\d+$/;
 
-        if (!prixPattern.test(actv_inputPrix.value.trim())) {
+        if (!prixPattern.test(prix) && prix !== "") {
             actv_msgPrix.textContent = "Le champ prix doit contenir uniquement des chiffres positifs";
             res = false;
         }
@@ -354,7 +358,7 @@ if ($categorie["_activite"]) {
         const duree = actv_inputDuree.value.trim();
         const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
 
-        if (!timePattern.test(duree)) {
+        if (!timePattern.test(duree) && duree !== "") {
             actv_msgDuree.textContent = "Le champ durée doit être au format HH:MM";
             res = false;
         }

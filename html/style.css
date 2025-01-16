@@ -1313,6 +1313,10 @@ header ul + div {
   align-items: center;
 }
 
+#acceptPhone div {
+  margin-bottom: 10px;
+}
+
 /* ------------------------- END Contact OFFER CSS --------------------------------*/
 /* ------------------------- Payment OFFER CSS --------------------------------*/
 
@@ -1767,7 +1771,6 @@ label[for="rest_ajoutPhotoMenu"] {
 /* ### Restaurant ### */
 
 #restaurant {
-  display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
   justify-content: space-evenly;
@@ -1794,7 +1797,6 @@ label[for="rest_ajoutPhotoMenu"] {
 /* ### parc d'attraction ### */
 
 #park {
-  display: flex;
   flex-flow: row nowrap;
   align-items: flex-start;
   justify-content: space-evenly;
@@ -1833,7 +1835,6 @@ label[for="rest_ajoutPhotoMenu"] {
 
 /* ### Spectacle ### */
 #show {
-  display: flex;
   flex-flow: column;
   align-items: flex-start;
   justify-content: center;
@@ -1854,6 +1855,33 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #show [type="time"] {
   text-align: center;
+}
+
+/* Activité */
+
+#activity {
+  flex-direction: column;
+  gap: 10vh;
+}
+
+#activity > div {
+  margin-inline: 15%;
+}
+
+#activity > div:nth-child(1) > label {
+  margin-left: -5%;
+}
+
+#activity > div > div {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 20%;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+#activity > div > div > div {
+  flex: 1;
 }
 
 /* popup signalement avis */
@@ -1994,23 +2022,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   color: var(--swiper-navigation-color, var(--swiper-theme-color));
 }
 
-.swiper-button-next.gb{
-  transform: translateX(150%);
-  /* Rounded corners for the next button */
-}
-
-.swiper-button-prev.gb {
-  transform: translateX(-150%);
-
-  /* Rounded corners for the prev button */
-}
-
+.swiper-button-next.gb,
 .swiper-button-next.gb2,
 .swiper-button-next.gb3{
   transform: translateX(-650%);
   /* Rounded corners for the next button */
 }
-
+.swiper-button-prev.gb,
 .swiper-button-prev.gb2,
 .swiper-button-prev.gb3 {
   transform: translateX(650%);
@@ -2119,6 +2137,10 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     font-size: 0.75em !important;
     padding: 4px 8px !important;
   }
+
+  .premiumImg{
+    width: 25px !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2142,13 +2164,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     overflow: hidden;
     margin: 0 auto 0 auto;
   }
-
+  .swiper-button-next.gb,
   .swiper-button-next.gb2,
   .swiper-button-next.gb3{
     transform: translateX(-10%);
     /* Rounded corners for the next button */
   }
-  
+  .swiper-button-prev.gb,
   .swiper-button-prev.gb2,
   .swiper-button-prev.gb3 {
     transform: translateX(10%);
@@ -2297,7 +2319,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 #index {
   margin-top: 150px;
   margin-bottom: 50px;
-  min-height: calc(100vh - var(--header-size));
+  min-height: calc(100vh - var(--header-size) - 180px);
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-evenly;
@@ -2373,6 +2395,15 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 
 /* Filp card */
 /* From Uiverse.io by joe-watson-sbf */ 
+
+.premiumImg{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 50px !important; /* Ajustez selon vos besoins */
+  height: auto !important; /* Maintient le ratio de l'image */
+}
+
 .searchA {
   width: fit-content;
   text-decoration: none;

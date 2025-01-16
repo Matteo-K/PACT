@@ -6,8 +6,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['idUser'] = htmlspecialchars($_POST['idU']);
     $_SESSION['typeUser'] = $_POST['typeUser'];
 
-    header("Location: index.php");
-    exit();
+    if (isset($_POST["idoffre"])) {
+      ?>
+      <form action="detailsOffer.php" method="post" id="goToOffer">
+        <input type="hidden" name="idoffre" value="<?= $_POST["idoffre"] ?>">
+      </form>
+      <script>
+        document.getElementById("goToOffer").submit();
+      </script>
+      <?php
+    } else {
+      header("Location: index.php");
+      exit();
+    }
+
   }
 }
 ?>
@@ -50,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="backdoor.php" method="post">
               <input type="hidden" name="idU" value="<?php echo $result["idu"] ?>">
               <input type="hidden" name="typeUser" value="admin">
+              <input type="text" name="idoffre" placeholder="idOffre">
               <input type="submit" value="Connexion">
             </form>
           </td>
@@ -72,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="backdoor.php" method="post">
               <input type="hidden" name="idU" value="<?php echo $result["idu"] ?>">
               <input type="hidden" name="typeUser" value="pro_prive">
+              <input type="text" name="idoffre" placeholder="idOffre">
               <input type="submit" value="Connexion">
             </form>
           </td>
@@ -94,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="backdoor.php" method="post">
               <input type="hidden" name="idU" value="<?php echo $result["idu"] ?>">
               <input type="hidden" name="typeUser" value="pro_public">
+              <input type="text" name="idoffre" placeholder="idOffre">
               <input type="submit" value="Connexion">
             </form>
           </td>
@@ -116,6 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="backdoor.php" method="post">
               <input type="hidden" name="idU" value="<?php echo $result["idu"] ?>">
               <input type="hidden" name="typeUser" value="membre">
+              <input type="text" name="idoffre" placeholder="idOffre">
               <input type="submit" value="Connexion">
             </form>
           </td>

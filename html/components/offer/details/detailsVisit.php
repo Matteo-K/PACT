@@ -167,19 +167,19 @@ if ($categorie["_visite"]) {
 
     const visit_inputLangue = document.getElementById("visit_langue");
     const visit_zoneLangue = document.getElementById("visit_zoneLangue");
-    const visit_msgAccess = document.getElementById("msgLangue");
+    const visit_msgLangue = document.getElementById("msgLangue");
 
     const visit_maxAccess = 40;
 
     const visit_indexAccess = createAutoCompletion(
         visit_inputAccess,
         "visit_autocompletionLangue",
-        visit_msgAccess,
+        visit_msgLangue,
         visit_accessGeneral,
         ajoutElement,
         visit_inputAccess, //-- paramètres de la fonction ajoutElement
         visit_zoneLangue,
-        visit_msgAccess,
+        visit_msgLangue,
         'visit_access[]',
         visit_maxAccess,
         "li",
@@ -192,7 +192,7 @@ if ($categorie["_visite"]) {
             visit_indexAccess,
             visit_inputAccess, //-- paramètres de la fonction ajoutElement
             visit_zoneLangue,
-            visit_msgAccess,
+            visit_msgLangue,
             'visit_access[]',
             visit_maxAccess,
             "li",
@@ -206,7 +206,27 @@ if ($categorie["_visite"]) {
         return true;
     }
 
-    function checkVisitDuree() {
-        
+    function checkActvPrixMin() {
+        let res = true;
+        const prixPattern = /^\d+$/;
+
+        if (!prixPattern.test(actv_inputPrix.value.trim())) {
+            actv_msgPrix.textContent = "Le champ prix doit contenir uniquement des chiffres positifs";
+            res = false;
+        }
+
+        return res;
+    }
+
+    function checkActvDuree() {
+        let res = true;
+        const duree = actv_inputDuree.value.trim();
+        const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
+
+        if (!timePattern.test(duree)) {
+            actv_msgDuree.textContent = "Le champ durée doit être au format HH:MM";
+            res = false;
+        }
+        return res;
     }
 </script>
