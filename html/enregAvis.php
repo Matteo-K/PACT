@@ -184,7 +184,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </head>
     <body>
 
-        <form action="detailsOffer.php<?= (isset($_GET['pro'])) ? "#avis".$idAvis : "" ?>" method="post">
+        <form action="detailsOffer.php<?php 
+            if($_POST["action"] == "ecrireReponse") {
+                echo "#avis".$idAvis;
+            }else if($_POST["action"] == "supprimerAvis" || $_POST["action"] == "ecrireAvis"){
+                echo "#avis-component";
+            } else if($_POST["action"] == "supprimerReponse"){
+                echo "#avisproS1";
+            }?>" method="post">
             <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
         </form>
         

@@ -166,6 +166,7 @@ textarea:focus {
 #formMember input:hover,
 #formConnexion input:hover {
   outline: none;
+  background-color: transparent;
   background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);
 }
 
@@ -174,7 +175,7 @@ textarea:focus {
 #formMember input:focus,
 #formConnexion input:focus {
   outline: none;
-  background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);
+  background: linear-gradient(0deg, var(--primary30) 0%, transparent 30%);
 }
 
 #formPro input:hover,
@@ -4722,6 +4723,7 @@ details .nonRepondu {
 }
 
 .conteneurReponsePro > article {
+  display: none;
   width: 90%;
   padding: 20px;
   background-color: #fff;
