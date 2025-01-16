@@ -88,7 +88,7 @@ if ($categorie["_visite"]) {
         <!-- Accessibilité -->
         <div id="visit_blocAccess">
             <div id="visit_inputAutoCompleteAccess">
-                <label class="labelSousTitre" for="visit_inputAccess" class="labelTitre">Accessibilités<span id="visit_msgAccess" class="msgError"></span></label>
+                <label class="labelTitre" for="visit_inputAccess" class="labelTitre">Accessibilités<span id="visit_msgAccess" class="msgError"></span></label>
                 <input type="text" id="visit_inputAccess" 
                 name="*visit_inputAccess"
                 placeholder="Entrez & selectionnez une accessibilité">
