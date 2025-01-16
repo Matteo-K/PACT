@@ -1614,7 +1614,8 @@ header ul + div {
   display: none;
 }
 
-#afficheImages img {
+#afficheImages img:not(img + img),
+.scrollDown img {
   margin: 5px;
   overflow: hidden;
   border-radius: 3px;
