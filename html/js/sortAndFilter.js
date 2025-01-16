@@ -675,6 +675,8 @@ function createFront(offer) {
   let noteMoyenne = offer.noteAvg == "" ? 0 : offer.noteAvg;
   note.textContent = noteMoyenne + "/5";
 
+  console.log(offer.noteAvg);
+
   stars.appendChild(note);
 
   div.appendChild(p);
