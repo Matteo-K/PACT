@@ -485,10 +485,24 @@ if ($pageDirection != -1) {
               $stmt = $conn->prepare("SELECT langue FROM pact._visite_langue WHERE idoffre= ?");
               $stmt->execute([$idOffre]);
               $result = $stmt->fetchAll();
-              print_r($result);
+              
+              $bddLangue = [];
+              foreach ($result as $value) {
+                $bddLangue[] = $value["langue"];
+              }
+
               foreach ($langues as $langue) {
-                $stmt = $conn->prepare("INSERT INTO pact._visite_langue (idoffre, langue) VALUES (?,?)");
-                $stmt->execute([$idOffre, $langue]);
+                if (!in_array($langue, $langues)) {
+                  $stmt = $conn->prepare("INSERT INTO pact._visite_langue (idoffre, langue) VALUES (?,?)");
+                  $stmt->execute([$idOffre, $langue]);
+                }
+              }
+
+              foreach ($bddLangue as $value) {
+                if (!in_array($value, $langues)) {
+                  $stmt = $conn->prepare("DELETE FROM pact._visite_langue WHERE idoffre = ? AND langue = ?");
+                  $stmt->execute([$idOffre, $value]);
+                }
               }
 
               // Accessibilité
