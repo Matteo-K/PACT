@@ -30,7 +30,6 @@
 
         // Vérifie la page actuelle
         const currentFile = window.location.pathname.split('/').pop();
-        console.log(currentFile);
 
         /**
          * On soumet le formulaire dès que l'on sort de l'input
