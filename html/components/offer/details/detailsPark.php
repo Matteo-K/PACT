@@ -27,26 +27,20 @@ if ($categorie["_parcattraction"]) {
 <section id="park">
     <div>
         <!-- Gestion de l'âge -->
-         <div>
-            <label class="labelTitre" for="park_ageMin">Age minimum*<span id="park_msgAge" class="msgError"></span></label>
-            <div>
-                <input type="number" id="park_ageMin" name="park_ageMin" min="0"  placeholder="0" value="<?= $parc["agemin"] ?>">
-            </div>
+        <label class="labelTitre" for="park_ageMin">Age minimum*<span id="park_msgAge" class="msgError"></span></label>
+        <div>
+            <input type="number" id="park_ageMin" name="park_ageMin" min="0"  placeholder="0" value="<?= $parc["agemin"] ?>">
         </div>
         <!--Gestion du nombre d'acttration -->
+        <label class="labelTitre" for="park_nbAttrac">Nombre d'attractions*<span id="park_msgAttract" class="msgError"></span></label>
         <div>
-            <label class="labelTitre" for="park_nbAttrac">Nombre d'attractions*<span id="park_msgAttract" class="msgError"></span></label>
-            <div>
-                <input type="number" id="park_nbAttrac" name="park_nbAttrac" min="0"placeholder="0"  class="nbAttrac" value="<?= $parc["nbattraction"] ?>">
-            </div>
+            <input type="number" id="park_nbAttrac" name="park_nbAttrac" min="0"placeholder="0"  class="nbAttrac" value="<?= $parc["nbattraction"] ?>">
         </div>
         <!-- Gestion du prix minimum -->
+        <label class="labelTitre" for="park_prixMin">Prix Minimum*<span id="park_msgPrix" class="msgError"></span></label>
         <div>
-            <label class="labelTitre" for="park_prixMin">Prix Minimum*<span id="park_msgPrix" class="msgError"></span></label>
-            <div>
-                <input type="number" id="park_prixMin" name="park_prixMin" min="0" placeholder="0" value="<?= $parc["prixminimal"] ?>">
-                <label for="park_prixMin">€</label>
-            </div>
+            <input type="number" id="park_prixMin" name="park_prixMin" min="0" placeholder="0" value="<?= $parc["prixminimal"] ?>">
+            <label for="park_prixMin">€</label>
         </div>
     </div>
 
@@ -99,7 +93,8 @@ if ($categorie["_parcattraction"]) {
         const agePattern = /^\d+$/;
     
         if (!agePattern.test(age) && age === "") {
-            park_msgAge.textContent = "Le champ âge doit contenir des chiffres positifs";
+            park_msgAge.textContent = "Doit contenir des chiffres positifs";
+            park_inputAge.classList.add("inputErreur");
             res = false;
         }
         return res;
@@ -117,7 +112,8 @@ if ($categorie["_parcattraction"]) {
         const prixPattern = /^\d+$/;
     
         if (!prixPattern.test(nbAttract) && nbAttract === "") {
-            park_msgAttract.textContent = "Le champ nombre d'attraction doit contenir des chiffres positifs";
+            park_msgAttract.textContent = "Doit contenir des chiffres positifs";
+            park_inputAttract.classList.add("inputErreur");
             res = false;
         }
     
@@ -136,7 +132,8 @@ if ($categorie["_parcattraction"]) {
         const prixPattern = /^\d+$/;
     
         if (!prixPattern.test(prix) && prix === "") {
-            park_msgPrix.textContent = "Le champ prix doit contenir des chiffres positifs";
+            park_msgPrix.textContent = "Doit contenir des chiffres positifs";
+            park_inputPrix.classList.add("inputErreur");
             res = false;
         }
     

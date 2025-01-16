@@ -147,7 +147,7 @@ input[type="text"],
 input[type="number"],
 input[type="time"],
 textarea {
-  border: 2px solid var(--primary);
+  border: 2px solid var(--secondary);
   border-radius: 2px;
 }
 
@@ -162,18 +162,18 @@ textarea:focus {
   outline-color: var(--bloc);
 }
 
-#formPro input:hover,
-#formMember input:hover,
-#formConnexion input:hover {
-  outline: none;
-  background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);;
-}
-
 #formPro input:focus,
 #formMember input:focus,
 #formConnexion input:focus {
   outline: none;
-  background: linear-gradient(0deg, var(--primary30) 0%, transparent 25%);
+  background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);
+}
+
+#formPro input:hover,
+#formMember input:hover,
+#formConnexion input:hover {
+  outline: none;
+  background-color: var(--background40);
 }
 
 /* ##### Components ##### */
@@ -1799,7 +1799,8 @@ label[for="rest_ajoutPhotoMenu"] {
 #park {
   flex-flow: row nowrap;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 10%;
 }
 
 #park > div {
@@ -1808,17 +1809,12 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: flex-start;
 }
 
-#park [type="number"] {
+#park > div:nth-child(1) > div {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
-}
-
-#park div:nth-child(1) div {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
   gap: 5px;
+  width: 550px;
 }
 
 #park_planTitres {
@@ -1831,6 +1827,11 @@ label[for="rest_ajoutPhotoMenu"] {
   width: 100%;
   height: 100%;
   max-height: 250px;
+}
+
+#park > div:nth-child(1) > div > div {
+  display: flex;
+  align-items: center;
 }
 
 /* ### Spectacle ### */
@@ -4609,7 +4610,8 @@ details .nonRepondu {
 #avisproS2 form input[type="submit"] {
   height: 45px;
   padding: 5px 30px;
-  border-radius: 10px;
+  border: none;
+  border-radius: 50px;
   font-size: 20px;
 }
 
@@ -4804,9 +4806,9 @@ label#btnAjoutPhoto:hover {
 
 /* Bouton Soumettre */
 #formCreationAvis button[type="submit"] {
-  background-color: var(--accent);
-  color: #000;
-  border: 2px solid var(--accent);
+  background-color: #28a745;
+  color: white;
+  border: none;
   padding: 12px 20px;
   border-radius: 5px;
   font-size: 16px;
@@ -4815,7 +4817,7 @@ label#btnAjoutPhoto:hover {
 }
 
 #formCreationAvis button[type="submit"]:hover {
-  background-color: #fff;
+  background-color: #218838;
 }
 
 .soumission {
