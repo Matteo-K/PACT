@@ -421,7 +421,7 @@ header > div > a > div {
 #btnConn:hover {
   background-color: white;
   border: solid 2px var(--accent);
-  color: black;
+  color: var(--primary) !important;
 }
 
 #profileMenu {
