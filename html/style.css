@@ -1650,7 +1650,8 @@ header ul + div {
 }
 
 
-#artDetailOffer .tag img {
+#artDetailOffer .tag img,
+.elementCategorie img {
   width: 12px;
   height: 12px;
   margin: auto 0 auto 5px;
