@@ -816,6 +816,7 @@ header ul + div {
   border: none;
   border-bottom: solid 2px var(--primary);
   background-color: transparent;
+  font-size: 1.4rem !important;
 }
 
 #manageOffer textarea,
@@ -823,6 +824,7 @@ header ul + div {
   outline: none;
   border: solid 2px var(--primary);
   background-color: transparent;
+  font-size: 1.4rem !important;
 }
 
 .inputErreur {
@@ -901,7 +903,7 @@ header ul + div {
   margin: 0;
 }
 #manageOffer figcaption {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   width: 200px;
   height: 30px;
 }
@@ -917,7 +919,7 @@ header ul + div {
 }
 
 #manageOffer aside button:hover figcaption {
-  font-size: 1.2rem !important;
+  font-size: 1.4rem !important;
 }
 
 #leaveButtonBloc {
@@ -1566,7 +1568,7 @@ header ul + div {
 
 .labelTitre {
   display: inline-block;
-  font-size: 1.6rem !important;
+  font-size: 1.8rem !important;
   font-weight: normal !important;
   margin: 15px 0 5px 0;
 }
@@ -1575,7 +1577,7 @@ header ul + div {
 #manageOffer input + span + label,
 #manageOffer input + label {
   display: inline-block;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 #detailsOffer input[type="text"],
@@ -1672,7 +1674,7 @@ header ul + div {
 #visit_zonePrestationAccess,
 #visit_zoneLangue {
   overflow-x: scroll;
-  height: 200px;
+  max-height: 200px;
   flex-direction: column !important;
   gap: 0 !important;
   .elementCategorie {
@@ -1890,7 +1892,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #activity {
   flex-direction: column;
-  gap: 10vh;
+  gap: 5vh;
 }
 
 #activity > div {
@@ -1911,6 +1913,16 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #activity > div > div > div {
   flex: 1;
+}
+
+/* visite */
+
+#visit {
+  flex-flow: row nowrap;
+}
+
+#visit [type="radio"] {
+  display: none;
 }
 
 /* popup signalement avis */

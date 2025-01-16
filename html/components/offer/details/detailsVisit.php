@@ -52,18 +52,22 @@ if ($categorie["_visite"]) {
 
 ?>
 <!-- Partie sur les informations de la visite -->
-<section id="visit"> <!-- donne un id a la section pour l'identifier dans le css -->
+<section id="visit">
     <!-- Visite guidée ou non  -->
     <div>
         <!-- Par défaut la visite est guidée-->
         <label class="labelTitre" for="visit_guide">Visite Guidée*</label>
         <div>
-            <input type="radio" id="guidee" name="visit_guidee" value="guidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
-            <span class="checkmark"></span>
-            <label for="guidee"> Oui</label>
-            <input type="radio" id="pasGuidee" name="visit_guidee" value="pasGuidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
-            <span class="checkmark"></span>
-            <label for="pasGuidee"> Non </label>
+            <label for="guidee"> 
+                <input type="radio" id="guidee" name="visit_guidee" value="guidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
+                <span class="checkmark"></span>
+                Oui
+            </label>
+            <label for="pasGuidee"> 
+                <input type="radio" id="pasGuidee" name="visit_guidee" value="pasGuidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
+                <span class="checkmark"></span>
+                Non
+            </label>
         </div>
         <label for="visit_hrMin" class="labelTitre">Durée de la visite*<span id="visit_msgDuree" class="msgError"></span></label>
         <div>
