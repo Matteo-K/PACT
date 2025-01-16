@@ -1735,7 +1735,7 @@ label[for="rest_ajoutPhotoMenu"] {
 #autocompletion,
 #actv_autocompletionInclus,
 #actv_autocompletionNonInclus,
-#atcv_zonePrestationAccess {
+#actv_autocompletionAccess {
   display: none;
   padding: 2px 0;
   margin: 0;
@@ -1811,10 +1811,8 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #park > div:nth-child(1) > div {
   display: flex;
-  flex-flow: column nowrap;
-  align-items: flex-start;
-  gap: 5px;
-  width: 550px;
+  flex-flow: row nowrap;
+  align-items: center;
 }
 
 #park_planTitres {
@@ -1839,13 +1837,13 @@ label[for="rest_ajoutPhotoMenu"] {
   flex-flow: column;
   align-items: flex-start;
   justify-content: center;
-  margin-inline: 28%;
+  margin-inline: 20%;
 }
 
 #show_nbPlacePrixMin {
   display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
+  flex-flow: column nowrap;
+  align-items: flex-start;
   justify-content: space-evenly;
   width: 100%;
 }
