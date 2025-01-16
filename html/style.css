@@ -4822,9 +4822,9 @@ details .nonRepondu {
   transition: background-color 0.3s ease-in-out;
 }
 
-#btnAjoutPhoto:hover {
+label#btnAjoutPhoto:hover {
   background-color: #fff;
-  color: black !important;
+  color: var(--primary);
   border: 3px solid var(--primary);
 }
 
@@ -5827,24 +5827,6 @@ div[id="messageErreur"] {
 
   h2[id="dejauncompte"] {
     max-width: 390px;
-  }
-
-  .ligne7 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start; /* Alignement à gauche pour les petits écrans */
-    gap: 8px; /* Réduction de l'espacement */
-  }
-
-  .ligne7 label {
-      font-size: 14px; /* Réduction de la taille du texte */
-      line-height: 1.4; /* Réduction de l'espacement vertical */
-  }
-
-  .ligne7 input[type="checkbox"] {
-      transform: scale(1); /* Taille normale de la case à cocher */
-      margin-right: 6px; /* Espacement réduit entre la case et le texte */
   }
 
   /* Gestion de l'ordre des éléments */
