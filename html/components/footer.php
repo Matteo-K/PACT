@@ -17,7 +17,7 @@
     </address>
   </div>
   <div>
-    <a href="../backdoor.php" style="color:var(--bloc)">Backdoor</a>
+    <a href="../backdoor.php" style="color:var(--bloc)" class="backdoor">Backdoor</a>
     <a href="../planDuSite.php">Plan du site</a>
     <p id="copyrightFooter">Copyright&nbsp;&copy;&nbsp;2024 TripEnArvor</p>
   </div>

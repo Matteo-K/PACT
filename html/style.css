@@ -2084,6 +2084,14 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transform: translateX(-650%);
   /* Rounded corners for the next button */
 }
+
+.backdoor{
+  user-select: none;
+  -webkit-user-select: none; /* Support pour les navigateurs WebKit (Chrome, Safari) */
+  -moz-user-select: none; /* Support pour Firefox */
+  -ms-user-select: none; /* Support pour Internet Explorer */
+}
+
 .swiper-button-prev.gb,
 .swiper-button-prev.gb2,
 .swiper-button-prev.gb3 {
