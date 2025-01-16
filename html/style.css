@@ -174,7 +174,14 @@ textarea:focus {
 #formMember input:focus,
 #formConnexion input:focus {
   outline: none;
-  background: linear-gradient(0deg, var(--primary30) 0%, transparent 30%);
+  background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);
+}
+
+#formPro input:hover,
+#formMember input:hover,
+#formConnexion input:hover {
+  outline: none;
+  background-color: var(--background40);
 }
 
 /* ##### Components ##### */
@@ -1610,7 +1617,7 @@ header ul + div {
   border-radius: 10px;
   margin: 0;
   cursor: pointer;
-  color: #fff !important;
+  color: #fff;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -2962,7 +2969,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   justify-content: left;
   border-radius: 20px 0 0 20px;
   border-right: 0px solid var(--primary);
-  transition: border-right-color 0.3s ease-in;
+  transition: border-right-width 0.5s linear(0 0%, 0 2.27%, 0.02 4.53%, 0.04 6.8%, 0.06 9.07%, 0.1 11.33%, 0.14 13.6%, 0.25 18.15%, 0.39 22.7%, 0.56 27.25%, 0.77 31.8%, 1 36.35%, 0.89 40.9%, 0.85 43.18%, 0.81 45.45%, 0.79 47.72%, 0.77 50%, 0.75 52.27%, 0.75 54.55%, 0.75 56.82%, 0.77 59.1%, 0.79 61.38%, 0.81 63.65%, 0.85 65.93%, 0.89 68.2%, 1 72.7%, 0.97 74.98%, 0.95 77.25%, 0.94 79.53%, 0.94 81.8%, 0.94 84.08%, 0.95 86.35%, 0.97 88.63%, 1 90.9%, 0.99 93.18%, 0.98 95.45%, 0.99 97.73%, 1 100%);
 }
 
 #tri input:checked + label {
@@ -2971,7 +2978,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 }
 
 #tri input:hover + label {
-  border-right-width: 15px;
+ border-right-width: 15px ;
 }
 
 /* Bouton de tri et filtre */
@@ -3045,7 +3052,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   #btnAside a {
       width: 50%;
       padding: 15px;
-      background-color: var(--bloc25);
+      background-color: var(--primary60);
       border-radius: 1.5em;
       text-align: center;
   }
@@ -4827,12 +4834,12 @@ details .nonRepondu {
   border-radius: 10px !important;
   padding: 5px 10px;
   cursor: pointer;
+  color: black !important;
   transition: background-color 0.3s ease-in-out;
 }
 
 label#btnAjoutPhoto:hover {
   background-color: #fff;
-  color: var(--primary);
   border: 3px solid var(--primary);
 }
 
@@ -4880,9 +4887,8 @@ label#btnAjoutPhoto:hover {
 
 /* Bouton Soumettre */
 #formCreationAvis button[type="submit"] {
-  background-color: var(--accent);
-  border: 3px solid var(--accent);
-  color: black;
+  background-color: #28a745;
+  color: white;
   border: none;
   padding: 12px 20px;
   border-radius: 5px;
@@ -4892,9 +4898,7 @@ label#btnAjoutPhoto:hover {
 }
 
 #formCreationAvis button[type="submit"]:hover {
-  background-color: #fff;
-  border: 3px solid var(--accent);
-  color:var(--primary) !important;
+  background-color: #218838;
 }
 
 .soumission {
@@ -5839,6 +5843,24 @@ div[id="messageErreur"] {
   h2[id="dejauncompte"] {
     max-width: 390px;
   }
+
+  .ligne7 {
+    display: flex;
+    align-items: center; /* Aligne verticalement la case à cocher et le texte */
+    gap: 8px; /* Espacement entre la case et le texte */
+  }
+
+  .ligne7 label {
+      display: flex;
+      flex-wrap: wrap; /* Permet au texte de passer à la ligne si nécessaire */
+      line-height: 1.5; /* Ajuste l'espacement entre les lignes */
+  }
+
+  .ligne7 input[type="checkbox"] {
+      margin-right: 8px; /* Espacement entre la case à cocher et le texte */
+      transform: scale(1.2); /* Augmente légèrement la taille de la case pour une meilleure visibilité */
+  }
+
 
   /* Gestion de l'ordre des éléments */
   #labelPrenom {
