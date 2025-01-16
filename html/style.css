@@ -421,7 +421,7 @@ header > div > a > div {
 #btnConn:hover {
   background-color: white;
   border: solid 2px var(--accent);
-  color: var(--primary) !important;
+  color: black;
 }
 
 #profileMenu {
@@ -3036,7 +3036,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   #btnAside a {
       width: 50%;
       padding: 15px;
-      background-color: var(--primary60);
+      background-color: var(--bloc25);
       border-radius: 1.5em;
       text-align: center;
   }
@@ -4884,8 +4884,9 @@ label#btnAjoutPhoto:hover {
 }
 
 #formCreationAvis button[type="submit"]:hover {
-  background-color: white;
+  background-color: #fff;
   border: 3px solid var(--accent);
+  color:var(--primary) !important;
 }
 
 .soumission {
