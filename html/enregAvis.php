@@ -184,7 +184,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </head>
     <body>
 
-        <form action="detailsOffer.php<?= (isset($_GET['pro'])) ? "#avis".$idAvis : "" ?>" method="post">
+        <form action="detailsOffer.php<?php 
+            if(isset($_GET['pro'])) {
+                echo "#avis".$idAvis;
+            }else if(isset($_GET['membre'])){
+                echo "#avis-component";
+            }?>" method="post">
             <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
         </form>
         
