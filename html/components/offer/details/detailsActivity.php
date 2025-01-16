@@ -2,7 +2,7 @@
 <?php
 // Initialisation des données à vide
 $activite = [
-    "duree" => "0",
+    "duree" => "",
     "agemin" => "",
     "prixminimal" => "",
     "accessibilite" => true,
