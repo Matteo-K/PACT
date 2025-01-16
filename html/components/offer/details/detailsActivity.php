@@ -335,7 +335,7 @@ if ($categorie["_activite"]) {
         const age = actv_inputAge.value.trim();
         const agePattern = /^\d+$/;
 
-        if (!agePattern.test(age) && age !== "") {
+        if (!agePattern.test(age) && age === "") {
             actv_msgAge.textContent = "Le champ âge doit contenir des chiffres positifs";
             res = false;
         }
@@ -347,7 +347,7 @@ if ($categorie["_activite"]) {
         const prix = actv_inputPrix.value.trim();
         const prixPattern = /^\d+$/;
 
-        if (!prixPattern.test(prix) && prix !== "") {
+        if (!prixPattern.test(prix) && prix === "") {
             actv_msgPrix.textContent = "Le champ prix doit contenir des chiffres positifs";
             res = false;
         }
@@ -360,7 +360,7 @@ if ($categorie["_activite"]) {
         const duree = actv_inputDuree.value.trim();
         const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
 
-        if (!timePattern.test(duree) && duree !== "") {
+        if (!timePattern.test(duree) && duree === "") {
             actv_msgDuree.textContent = "Le champ durée doit être au format HH:MM";
             res = false;
         }

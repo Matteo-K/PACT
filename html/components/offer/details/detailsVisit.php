@@ -220,7 +220,7 @@ if ($categorie["_visite"]) {
         const prix = visit_inputPrix.value.trim();
         const prixPattern = /^\d+$/;
 
-        if (!prixPattern.test(prix) && prix !== "") {
+        if (!prixPattern.test(prix) && prix === "") {
             actv_msgPrix.textContent = "Le champ prix doit contenir des chiffres positifs";
             res = false;
         }
@@ -239,7 +239,7 @@ if ($categorie["_visite"]) {
         const duree = visit_inputDuree.value.trim();
         const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
 
-        if (!timePattern.test(duree) && duree !== "") {
+        if (!timePattern.test(duree) && duree === "") {
             visit_msgDuree.textContent = "Le champ durée doit être au format HH:MM";
             res = false;
         }
