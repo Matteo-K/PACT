@@ -1115,12 +1115,22 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
             });
 
+        } catch (error) {
+            
+        }
+        
+
             // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
             btnFermer.addEventListener('click', () => {
                 popup.style.display = 'none';
-                let motifSignal = document.querySelector('input[name="signalement"]:checked');
-                motifSignal.checked = false; // On désélectionne le motif choisi
-                texteComplement.value = ""; //On vide le textarea
+
+                try {
+                    let motifSignal = document.querySelector('input[name="signalement"]:checked');
+                    motifSignal.checked = false; // On désélectionne le motif choisi
+                    texteComplement.value = ""; //On vide le textarea
+                } catch (error) {
+                    
+                }
             });
 
             // Masquer le pop-up si on clique en dehors, et on laisse les input tels quels en cas de missclick
@@ -1130,10 +1140,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
             });
 
-        } catch (error) {
-            
-        }
-        
+
         document.addEventListener('DOMContentLoaded', function() {
 
             try {

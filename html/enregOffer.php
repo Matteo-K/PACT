@@ -490,7 +490,7 @@ if ($pageDirection != -1) {
               foreach ($result as $value) {
                 $bddLangue[] = $value["langue"];
               }
-              print_r($bddLangue);
+              // print_r($bddLangue);
 
               foreach ($langues as $langue) {
                 if (!in_array($langue, $langues)) {
@@ -501,7 +501,7 @@ if ($pageDirection != -1) {
 
               foreach ($bddLangue as $value) {
                 if (!in_array($value, $langues)) {
-                  print_r($value);
+                  // print_r($value);
                   $stmt = $conn->prepare("DELETE FROM pact._visite_langue WHERE idoffre = ? AND langue = ?");
                   $stmt->execute([$idOffre, $value]);
                 }
