@@ -1072,8 +1072,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             const btnFermer = document.querySelector('.signalementPopup .close');
             const btnConfirmer = document.getElementById('confirmeSignalement');
             
-            const radioMotif = document.querySelectorAll('.signalement input[type="radio"]');
-
             let btnSelectionne;
 
             // Afficher le pop-up
@@ -1106,7 +1104,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         })
                     });
 
-                    radioMotif.forEach(radio => radio.checked = false); // On désélectionne le motif choisi
+                    rmotifSignal.checked = false; // On désélectionne le motif choisi
                     texteComplement.value = ""; //On vide le textarea
 
                     alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme !');
