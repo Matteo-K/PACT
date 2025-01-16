@@ -1649,6 +1649,20 @@ header ul + div {
   position: relative;
 }
 
+.elementCategorie {
+  width: 100%;
+  padding: 5px;
+  background-color: #fff;
+  &:hover {
+    background-color: var(--text-dark20);
+  }
+  &:nth-child(even) {
+    background-color: var(--text-dark15);
+  }
+  &:nth-child(even):hover {
+    background-color: var(--text-dark25);
+  }
+}
 
 #artDetailOffer .tag img,
 .elementCategorie img {
@@ -1662,8 +1676,19 @@ header ul + div {
   transform: translateY(-50%);
 }
 
-#artDetailOffer .tag:hover img {
+#artDetailOffer .tag:hover img,
+.elementCategorie:hover img {
   display: block;
+}
+
+#atcv_zonePrestationInclus,
+#atcv_zonePrestationNonInclus,
+#atcv_zonePrestationAccess,
+#visit_zonePrestationAccess,
+#visit_zoneLangue {
+  overflow-x: scroll;
+  height: 200px;
+  flex-direction: column !important;
 }
 
 #afficheImages {
