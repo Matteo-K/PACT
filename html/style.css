@@ -3035,7 +3035,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   #btnAside a {
       width: 50%;
       padding: 15px;
-      background-color: var(--bloc25);
+      background-color: var(--primary60);
       border-radius: 1.5em;
       text-align: center;
   }
