@@ -166,14 +166,14 @@ textarea:focus {
 #formMember input:focus,
 #formConnexion input:focus {
   outline: none;
-  background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);
+  background: linear-gradient(0deg, var(--primary30) 0%, transparent 25%);
 }
 
 #formPro input:hover,
 #formMember input:hover,
 #formConnexion input:hover {
   outline: none;
-  background-color: var(--background40);
+  background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);;
 }
 
 /* ##### Components ##### */
