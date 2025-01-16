@@ -1604,10 +1604,11 @@ header ul + div {
 }
 
 #btnAjoutPhoto {
-  border: 3px solid var(--primary);
+  background-color:  var(--primary);
   border-radius: 10px;
   margin: 0;
   cursor: pointer;
+  color: #fff;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -2081,7 +2082,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .swiper-button-next.gb,
 .swiper-button-next.gb2,
 .swiper-button-next.gb3{
-  transform: translateX(-650%);
+  transform: translateX(-180%);
   /* Rounded corners for the next button */
 }
 
@@ -2095,7 +2096,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 .swiper-button-prev.gb,
 .swiper-button-prev.gb2,
 .swiper-button-prev.gb3 {
-  transform: translateX(650%);
+  transform: translateX(180%);
 
   /* Rounded corners for the prev button */
 }
@@ -4821,8 +4822,9 @@ details .nonRepondu {
 }
 
 label#btnAjoutPhoto:hover {
-  background-color: var(--primary);
-  color: #fff;
+  background-color: #fff;
+  color: var(--primary);
+  border: 3px solid var(--primary);
 }
 
 #enCompagnie input[type="radio"]:checked + label {
@@ -5202,7 +5204,7 @@ label#btnAjoutPhoto:hover {
     width: 2em;
     height: 2em;
   }
-  #accompagnant, #divAjoutPhoto{
+  #accompagnant, #divAjoutPhoto, #ajoutTitre, #ajoutCommentaire{
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start !important;
