@@ -2028,7 +2028,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   transform: translateX(-650%);
   /* Rounded corners for the next button */
 }
-.swiper-button-next.gb,
+.swiper-button-prev.gb,
 .swiper-button-prev.gb2,
 .swiper-button-prev.gb3 {
   transform: translateX(650%);
@@ -2170,7 +2170,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
     transform: translateX(-10%);
     /* Rounded corners for the next button */
   }
-  .swiper-button-next.gb,
+  .swiper-button-prev.gb,
   .swiper-button-prev.gb2,
   .swiper-button-prev.gb3 {
     transform: translateX(10%);
