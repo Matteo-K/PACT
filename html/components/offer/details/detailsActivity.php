@@ -2,7 +2,7 @@
 <?php
 // Initialisation des données à vide
 $activite = [
-    "duree" => "",
+    "duree" => "0",
     "agemin" => "",
     "prixminimal" => "",
     "accessibilite" => true,
@@ -365,8 +365,12 @@ if ($categorie["_activite"]) {
         const duree = actv_inputDuree.value.trim();
         const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
 
-        if (!timePattern.test(duree) && duree === "") {
-            actv_msgDuree.textContent = "Format HH:MM";
+        if (!timePattern.test(duree)  || duree === "00:00") {
+            if (duree === "00:00") {
+                actv_msgDuree.textContent = "Valeur différent de 00:00";
+            } else {
+                actv_msgDuree.textContent = "Format HH:MM";
+            }
             actv_inputDuree.classList.add("inputErreur");
             res = false;
         }

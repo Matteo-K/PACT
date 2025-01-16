@@ -2,7 +2,7 @@
 <?php
 // Initialisation des données à vide
 $spectacle = [
-    "duree" => "",
+    "duree" => "0",
     "nbplace" => "",
     "prixminimal" => ""
 ];
@@ -127,8 +127,12 @@ if ($categorie["_spectacle"]) {
         const duree = show_inputDuree.value.trim();
         const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
 
-        if (!timePattern.test(duree) || duree === "") {
-            show_msgDuree.textContent = "Format HH:MM";
+        if (!timePattern.test(duree) || duree === "" || duree === "00:00") {
+            if (duree === "00:00") {
+                show_msgDuree.textContent = "Valeur différent de 00:00";
+            } else {
+                show_msgDuree.textContent = "Format HH:MM";
+            }
             show_inputDuree.classList.add("inputErreur");
             res = false;
         }

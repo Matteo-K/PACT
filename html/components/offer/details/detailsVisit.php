@@ -6,7 +6,7 @@ $maxLangue = 10;
 $maxAcces = 10;
 $visite = [
     "guide" => true,
-    "duree" => "",
+    "duree" => "0",
     "prixminimal" => "",
     "accessibilite" => true,
     "nomAccess" => [],
@@ -251,8 +251,12 @@ if ($categorie["_visite"]) {
         const duree = visit_inputDuree.value.trim();
         const timePattern = /^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$/;
 
-        if (!timePattern.test(duree) || duree === "") {
-            visit_msgDuree.textContent = "Format HH:MM";
+        if (!timePattern.test(duree) || duree === "" || duree === "00:00") {
+            if (duree === "00:00") {
+                visit_msgDuree.textContent = "Valeur différent de 00:00";
+            } else {
+                visit_msgDuree.textContent = "Format HH:MM";
+            }
             visit_inputDuree.classList.add("inputErreur");
             res = false;
         }
