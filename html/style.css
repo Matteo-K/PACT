@@ -147,7 +147,7 @@ input[type="text"],
 input[type="number"],
 input[type="time"],
 textarea {
-  border: 2px solid var(--secondary);
+  border: 2px solid var(--primary);
   border-radius: 2px;
 }
 
@@ -162,18 +162,18 @@ textarea:focus {
   outline-color: var(--bloc);
 }
 
-#formPro input:focus,
-#formMember input:focus,
-#formConnexion input:focus {
-  outline: none;
-  background: linear-gradient(0deg, var(--primary30) 0%, transparent 25%);
-}
-
 #formPro input:hover,
 #formMember input:hover,
 #formConnexion input:hover {
   outline: none;
   background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);;
+}
+
+#formPro input:focus,
+#formMember input:focus,
+#formConnexion input:focus {
+  outline: none;
+  background: linear-gradient(0deg, var(--primary30) 0%, transparent 25%);
 }
 
 /* ##### Components ##### */
@@ -4609,8 +4609,7 @@ details .nonRepondu {
 #avisproS2 form input[type="submit"] {
   height: 45px;
   padding: 5px 30px;
-  border: none;
-  border-radius: 50px;
+  border-radius: 10px;
   font-size: 20px;
 }
 
@@ -4805,9 +4804,9 @@ label#btnAjoutPhoto:hover {
 
 /* Bouton Soumettre */
 #formCreationAvis button[type="submit"] {
-  background-color: #28a745;
-  color: white;
-  border: none;
+  background-color: var(--accent);
+  color: #000;
+  border: 2px solid var(--accent);
   padding: 12px 20px;
   border-radius: 5px;
   font-size: 16px;
@@ -4816,7 +4815,7 @@ label#btnAjoutPhoto:hover {
 }
 
 #formCreationAvis button[type="submit"]:hover {
-  background-color: #218838;
+  background-color: #fff;
 }
 
 .soumission {
