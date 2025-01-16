@@ -4822,9 +4822,9 @@ details .nonRepondu {
   transition: background-color 0.3s ease-in-out;
 }
 
-label#btnAjoutPhoto:hover {
+#btnAjoutPhoto:hover {
   background-color: #fff;
-  color: var(--primary);
+  color: black !important;
   border: 3px solid var(--primary);
 }
 
