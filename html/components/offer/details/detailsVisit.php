@@ -66,7 +66,7 @@ if ($categorie["_visite"]) {
                 Oui
             </label>
             <label for="pasGuidee" class="labelSousTitre"> 
-                <input type="radio" id="pasGuidee" name="visit_guidee" value="pasGuidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
+                <input type="radio" id="pasGuidee" name="visit_guidee" value="pasGuidee" <?php echo !$visite["guide"] ? "checked" : "" ?>>
                 <span class="checkmark"></span>
                 Non
             </label>
