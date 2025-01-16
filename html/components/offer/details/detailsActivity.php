@@ -75,7 +75,7 @@ if ($categorie["_activite"]) {
                     <label class="labelSousTitre" for="actv_prestaInclu">Prestations incluses<span id="msgPrestaInclus" class="msgError"></span></label>
                     <input type="text" id="actv_inputPrestaInclus" 
                     name="actv_inputPrestaInclus" 
-                    placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
+                    placeholder="Entrez & selectionnez une prestation">
                     
                     <ul id="actv_autocompletionInclus"></ul>
                 </div>
@@ -90,7 +90,7 @@ if ($categorie["_activite"]) {
                     <label class="labelSousTitre" for="actv_prestaNonInclu">Prestations non-incluses<span id="msgPrestaNonInclus" class="msgError"></span></label>
                     <input type="text" id="actv_inputPrestaNonInclus" 
                     name="actv_inputPrestaNonInclus" 
-                    placeholder="Entrez & selectionnez une prestation correspondant à votre activité">
+                    placeholder="Entrez & selectionnez une prestation">
                     
                     <ul id="actv_autocompletionNonInclus"></ul>
                 </div>
@@ -133,7 +133,7 @@ if ($categorie["_activite"]) {
                     <label class="labelTitre" for="actv_inputAccess">Accessibilités<span id="actv_msgAccess" class="msgError"></span></label>
                     <input type="text" id="actv_inputAccess" 
                     name="actv_inputAccess"
-                    placeholder="Entrez & selectionnez une accessibilité correspondant à votre activité">
+                    placeholder="Entrez & selectionnez une accessibilité">
                     
                     <ul id="actv_autocompletionAccess"></ul>
                 </div>

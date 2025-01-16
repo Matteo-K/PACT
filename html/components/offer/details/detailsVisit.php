@@ -2,6 +2,8 @@
 <?php
 $langue = [];
 $accessibilite = [];
+$maxLangue = 10;
+$maxAcces = 10;
 $visite = [
     "guide" => true,
     "duree" => "0",
@@ -58,12 +60,12 @@ if ($categorie["_visite"]) {
         <!-- Par défaut la visite est guidée-->
         <label class="labelTitre" for="visit_guide">Visite Guidée*</label>
         <div>
-            <label for="guidee"> 
+            <label for="guidee" class="labelSousTitre"> 
                 <input type="radio" id="guidee" name="visit_guidee" value="guidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
                 <span class="checkmark"></span>
                 Oui
             </label>
-            <label for="pasGuidee"> 
+            <label for="pasGuidee" class="labelSousTitre"> 
                 <input type="radio" id="pasGuidee" name="visit_guidee" value="pasGuidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
                 <span class="checkmark"></span>
                 Non
@@ -78,7 +80,7 @@ if ($categorie["_visite"]) {
         <label class="labelTitre" for="visit_minPrix">Prix minimum*<span id="visit_msgPrix" class="msgError"></span></label>
         <div>
             <input type="number" id="visit_minPrix" name="visit_minPrix" min="0" placeholder="0" value="<?= $visite["prixminimal"] ?>">
-            <label for="visit_minPrix">€</label>
+            <label for="visit_minPrix" class="labelSousTitre">€</label>
         </div>
     </div>
 
@@ -89,25 +91,30 @@ if ($categorie["_visite"]) {
                 <label class="labelSousTitre" for="visit_inputAccess">Accessibilités<span id="visit_msgAccess" class="msgError"></span></label>
                 <input type="text" id="visit_inputAccess" 
                 name="*visit_inputAccess"
-                placeholder="Entrez & selectionnez une accessibilité correspondant à votre visite">
+                placeholder="Entrez & selectionnez une accessibilité">
 
                 <ul id="visit_autocompletionAccess"></ul>
             </div>
+            <label class="labelSousTitre">
+                Vous pouvez entrer jusqu'à <?= $maxAcces ?> accessibilités
+            </label>
             <ul id="visit_zonePrestationAccess">
             </ul>
         </div>
 
         <!-- Partie pour la gestion des langues proposer par la visite -->
         <div id="visit_blocLangue">
-            <div id="visit_inputLangue">
+            <div id="visit_inputAutoCompleteLangue">
                 <label class="labelTitre" for="visit_langue">Langues proposées<span id="msgLangue" class="msgError"></span></label>
                 <input type="text" id="visit_langue" 
                 name="visit_langue" 
-                placeholder="Entrez & sélectionnez les langue(s) proposée(s) par votre visite">
+                placeholder="Entrez & sélectionnez une langue">
 
                 <ul id="visit_autocompletionLangue"></ul>
             </div>
-
+            <label class="labelSousTitre">
+                Vous pouvez entrer jusqu'à <?= $maxLangue ?> langues
+            </label>
             <ul id="visit_zoneLangue">
             </ul>
         </div>
@@ -134,7 +141,7 @@ if ($categorie["_visite"]) {
     const visit_zoneAccess = document.getElementById("visit_zonePrestationAccess");
     const visit_msgAccess = document.getElementById("visit_msgAccess");
 
-    const visit_maxAccess = 20;
+    const visit_maxAccess = <?= $maxAcces ?>;
     const classLiVisit = ["elementCategorie"];
 
     const visit_indexAccess = createAutoCompletion(
@@ -174,7 +181,7 @@ if ($categorie["_visite"]) {
     const visit_zoneLangue = document.getElementById("visit_zoneLangue");
     const visit_msgLangue = document.getElementById("msgLangue");
 
-    const visit_maxLangue = 40;
+    const visit_maxLangue = <?= $maxLangue ?>;
 
     const visit_indexLangue = createAutoCompletion(
         visit_inputLangue,

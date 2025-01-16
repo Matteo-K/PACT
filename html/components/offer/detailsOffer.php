@@ -244,7 +244,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             } else if (select.value == "spectacle") {
                 SpectacleOffer.style.display = "flex";
             } else if (select.value == "visite") {
-                VisiteOffer.style.display = "block";
+                VisiteOffer.style.display = "flex";
             } else if (select.value == "restaurant") {
                 RestaurantOffer.style.display = "flex";
             }

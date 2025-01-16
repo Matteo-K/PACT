@@ -1754,7 +1754,9 @@ label[for="rest_ajoutPhotoMenu"] {
 #inputAutoComplete,
 #actv_inputAutoCompletePrestaInclu,
 #actv_inputAutoCompletePrestaNonInclu,
-#actv_inputAutoCompleteAccess {
+#actv_inputAutoCompleteAccess,
+#visit_inputAutoCompleteAccess,
+#visit_inputAutoCompleteLangue {
   position: relative;
   display: flex;
   flex-flow: column nowrap;
@@ -1767,7 +1769,9 @@ label[for="rest_ajoutPhotoMenu"] {
 #autocompletion,
 #actv_autocompletionInclus,
 #actv_autocompletionNonInclus,
-#actv_autocompletionAccess {
+#actv_autocompletionAccess,
+#visit_autocompletionAccess,
+#visit_autocompletionLangue {
   display: none;
   padding: 2px 0;
   margin: 0;
