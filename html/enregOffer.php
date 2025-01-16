@@ -459,8 +459,8 @@ if ($pageDirection != -1) {
 
             case 'visite':
               // Obtention des données
-              $guide = $_POST["VisiteGuidee"] === "guidee";
-              $duree = $_POST["visit_duree"];
+              $guide = $_POST["visit_guidee"] === "guidee";
+              $duree = $_POST["visit_min"];
               $prixMinimale = $_POST["visit_minPrix"];
               $accessibilite = $_POST["visit_access"] ?? [];
               $access = count($accessibilite) > 0;
