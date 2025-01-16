@@ -5829,6 +5829,14 @@ div[id="messageErreur"] {
     max-width: 390px;
   }
 
+  a[id="lienCGU"] {
+    display: flex;
+    flex-direction: row;
+    color: var(--bloc);
+    text-decoration: underline;
+    margin: 0 5px;
+  }
+
   /* Gestion de l'ordre des éléments */
   #labelPrenom {
     order: 1;
