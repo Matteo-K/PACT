@@ -174,7 +174,7 @@ if ($categorie["_visite"]) {
     });
     
     // Ajout des langues
-    const visit_langueGeneral = <?= json_encode($accessibilite); ?>;
+    const visit_langueGeneral = <?= json_encode($langue); ?>;
     const visit_langue = <?= json_encode($visite["langue"]); ?>;
 
     const visit_inputLangue = document.getElementById("visit_langue");
