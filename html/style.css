@@ -1680,9 +1680,7 @@ header ul + div {
   gap: 0 !important;
 
   li {
-    width: 100%;
-    padding: 5px 0;
-    background-color: #fff;
+    padding: 1px 0 1px 10px;
     &:hover {
       background-color: var(--text-dark20);
       img {
@@ -1690,10 +1688,10 @@ header ul + div {
       }
     }
     &:nth-child(even) {
-      background-color: var(--text-dark15) !important;
+      background-color: var(--text-dark15);
     }
     &:nth-child(even):hover {
-      background-color: var(--text-dark25) !important;
+      background-color: var(--text-dark25);
     }
   }
 }
@@ -1845,6 +1843,7 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
+  width: 500px;
 }
 
 #park > div:nth-child(1) > div {
