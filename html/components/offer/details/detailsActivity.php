@@ -79,11 +79,11 @@ if ($categorie["_activite"]) {
                     
                     <ul id="actv_autocompletionInclus"></ul>
                 </div>
-                <ul id="atcv_zonePrestationInclus">
-                </ul>
                 <label class="labelSousTitre">
                     Vous pouvez entrer jusqu'à <?= $maxPresta ?> prestations inclus
                 </label>
+                <ul id="atcv_zonePrestationInclus">
+                </ul>
             </div>
             <div id="actv_blocPrestaNonInclu">
                 <div id="actv_inputAutoCompletePrestaNonInclu">
@@ -94,11 +94,11 @@ if ($categorie["_activite"]) {
                     
                     <ul id="actv_autocompletionNonInclus"></ul>
                 </div>
-                <ul id="atcv_zonePrestationNonInclus">
-                </ul>
                 <label class="labelSousTitre">
                     Vous pouvez entrer jusqu'à <?= $maxPresta ?> prestations non inclus
                 </label>
+                <ul id="atcv_zonePrestationNonInclus">
+                </ul>
             </div>
         </div>
     </div>
@@ -137,11 +137,11 @@ if ($categorie["_activite"]) {
                     
                     <ul id="actv_autocompletionAccess"></ul>
                 </div>
-                <ul id="atcv_zonePrestationAccess">
-                </ul>
                 <label class="labelSousTitre">
                     Vous pouvez entrer jusqu'à <?= $maxAccess ?> accessibilités
                 </label>
+                <ul id="atcv_zonePrestationAccess">
+                </ul>
             </div>
         </div>
     </div>

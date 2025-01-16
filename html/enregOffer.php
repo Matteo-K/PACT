@@ -405,7 +405,7 @@ if ($pageDirection != -1) {
               // Si pas de donnée, on créer
               if ($result === false) {
                 $stmt = $conn->prepare("INSERT INTO pact._activite (idoffre, duree, agemin, prixminimal) VALUES (?, ?, ?, ?)");
-                $stmt->execute([$idOffre, $duree, $ageMin, $prixMinimale, $prestation]);
+                $stmt->execute([$idOffre, $duree, $ageMin, $prixMinimale]);
               } else {
                 // sinon modifie
                 $stmt = $conn->prepare("UPDATE pact._activite SET duree=?, agemin=?, prixminimal=? WHERE idoffre=?");
