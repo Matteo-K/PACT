@@ -8,7 +8,8 @@ SET SCHEMA 'pact';
 
 CREATE TABLE _utilisateur (
   idU SERIAL PRIMARY KEY,
-  password VARCHAR(255) NOT NULL
+  password VARCHAR(255) NOT NULL,
+  apikey VARCHAR(255) DEFAULT NULL
 );
 
 CREATE TABLE _admin (

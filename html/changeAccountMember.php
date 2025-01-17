@@ -270,9 +270,44 @@
             </div>
 
             <button type="submit" id="boutonInscription">Valider</button>
-
         </form>
+        <section id="apiKey">
+            <?php
+            $stmt = $con -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
+            $stmt -> execute();
+            $infoUtlisateur = $stmt -> fetch(PDO::FETCH_ASSOC);
+            ?>
+            <p>Votre Clé API :</p>
+            <?php if($infoUtlisateur["apikey"]){?>
+                <p id = "valueAPIkey"> <?=$infoUtlisateur["apikey"]?></p>
+                <p> Regénérer ma clé API</p>
+            <?php }?>
+
+            <p onclick="generateAPIkey()">Générer ma clé API</p>
+        </section>
     </body>
+    <script>
+        function generateAPIkey(){
+            apikeyElement = document.getElementById("valueAPIkey");
+            ajax({
+                type: 'POST',
+                url: 'generateApiKey.php', // Assurez-vous que le chemin est correct
+                dataType: 'json',
+                success: function(response) {
+                    // Afficher la réponse
+                    if (response.status === 'success') {
+                        alert('Clé API générée avec succès : ' + response.apikey);
+                        apikeyElement.innerHTML = 'Clé API générée : ' + response.apikey;
+                    } else {
+                        alert('Erreur : ' + response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('Erreur AJAX : ' + status + ' - ' + error);
+                }
+            });
+        }
+    </script>
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
 
