@@ -15,7 +15,7 @@ if($isLoggedIn){
     $newApiKey = generateApiKey();
 
     try{
-        $stmt = $conn -> prepare("UPDATE pact.utilisateur set apikey = $newApiKey WHERE idu = $idUser");
+        $stmt = $conn -> prepare("UPDATE pact._utilisateur set apikey = $newApiKey WHERE idu = $idUser");
         $stmt -> execute();
         json_encode(["status" => "success", "apikey" => $newApiKey]);
 
