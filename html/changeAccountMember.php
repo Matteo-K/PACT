@@ -281,33 +281,48 @@
             <?php if($infoUtlisateur["apikey"]){?>
                 <p id = "valueAPIkey"> <?=$infoUtlisateur["apikey"]?></p>
                 <p onclick="generateAPIkey()">Regénérer ma clé API</p>
-            <?php }?>
-
-            <p onclick="generateAPIkey()">Générer ma clé API</p>
+            <?php }else{?>
+                <p id = "valueAPIkey"></p>
+                <p onclick="generateAPIkey()">Générer ma clé API</p>
+            <?php } ?>
         </section>
     </body>
     <script>
-        function generateAPIkey(){
-            apikeyElement = document.getElementById("valueAPIkey");
-            ajax({
-                type: 'POST',
-                url: 'generateApiKey.php', // Assurez-vous que le chemin est correct
-                dataType: 'json',
-                success: function(response) {
-                    // Afficher la réponse
-                    if (response.status === 'success') {
-                        alert('Clé API générée avec succès : ' + response.apikey);
-                        apikeyElement.innerHTML = 'Clé API générée : ' + response.apikey;
-                    } else {
-                        alert('Erreur : ' + response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    alert('Erreur AJAX : ' + status + ' - ' + error);
+    function generateAPIkey() {
+        var apikeyElement = document.getElementById("valueAPIkey");
+
+        // Make the fetch request to generate API key
+        fetch('generateApiKey.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            // You can add additional options like body here if needed
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Display the response
+            if (data.status === 'success') {
+                alert('Clé API générée avec succès : ' + data.apikey);
+                if(apikeyElement){
+                    apikeyElement.innerHTML = 'Clé API générée : ' + data.apikey;
                 }
-            });
-        }
-    </script>
+                
+            } else {
+                alert('Erreur : ' + data.message);
+            }
+        })
+        .catch(error => {
+            alert('Erreur Fetch : ' + error.message);
+        });
+    }
+</script>
+
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
 
