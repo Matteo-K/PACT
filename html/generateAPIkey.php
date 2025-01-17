@@ -1,31 +1,37 @@
 <?php
 require_once "./config.php";
 
+header('Content-Type: application/json'); // Réponse JSON
+
 function generateApiKey() {
     // Générer 128 bits aléatoires (16 octets)
     $randomBytes = random_bytes(16);
-    
-    // Convertir en hexadécimal
-    $apiKey = bin2hex($randomBytes);
-    
-    return $apiKey;
+    return bin2hex($randomBytes); // Convertir en hexadécimal
 }
 
-if($isLoggedIn){
+// Vérifiez si l'utilisateur est connecté
+if ($isLoggedIn) {
     $newApiKey = generateApiKey();
 
-    try{
-        $stmt = $conn -> prepare("UPDATE pact._utilisateur set apikey = '$newApiKey' WHERE idu = $idUser");
-        $stmt -> execute();
-        json_encode(["status" => "success", "apikey" => $newApiKey]);
+    try {
+        // Mise à jour de la clé API dans la base
+        $stmt = $conn->prepare("UPDATE pact._utilisateur SET apikey = :apikey WHERE idu = :idu");
+        $stmt->bindParam(':apikey', $newApiKey);
+        $stmt->bindParam(':idu', $idUser);
+        $stmt->execute();
 
+        // Réponse JSON de succès
+        echo json_encode(['status' => 'success', 'apikey' => $newApiKey]);
         exit;
-    } catch(PDOException $e){
-        echo json_encode(["status" => "error", "message" => "Erreur lors de la mise à jour de la clé API : " . $e->getMessage()]);
+    } catch (PDOException $e) {
+        // Gestion des erreurs
+        echo json_encode(['status' => 'error', 'message' => 'Erreur SQL : ' . $e->getMessage()]);
         exit;
     }
+} else {
+    // Cas où l'utilisateur n'est pas connecté
+    echo json_encode(['status' => 'error', 'message' => 'Utilisateur non authentifié']);
+    exit;
 }
 
-header("location: /");
-exit;
 ?>
