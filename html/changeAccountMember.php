@@ -301,7 +301,7 @@
             // Traitement de la réponse
             if (data.status === 'success') {
                 alert('Clé API générée avec succès : ' + data.apikey);
-                document.getElementById("valueAPIkey").innerHTML = 'Clé API générée : ' + data.apikey;
+                document.getElementById("valueAPIkey").innerHTML = data.apikey;
             } else {
                 alert('Erreur : ' + data.message);
             }
@@ -316,4 +316,4 @@
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
 
-</html>
+</html> 
