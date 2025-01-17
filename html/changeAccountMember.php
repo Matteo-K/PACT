@@ -289,7 +289,7 @@
     </body>
     <script>
     function generateAPIkey() {
-        fetch('generateApiKey.php', {
+        fetch('generateAPIkey.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
