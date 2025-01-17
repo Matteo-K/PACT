@@ -289,36 +289,26 @@
     </body>
     <script>
     function generateAPIkey() {
-        var apikeyElement = document.getElementById("valueAPIkey");
-
-        // Make the fetch request to generate API key
         fetch('generateApiKey.php', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-            // You can add additional options like body here if needed
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ isLoggedIn: true }) // Envoyez toute donnée supplémentaire ici si nécessaire
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            // Display the response
+            // Traitement de la réponse
             if (data.status === 'success') {
                 alert('Clé API générée avec succès : ' + data.apikey);
-                if(apikeyElement){
-                    apikeyElement.innerHTML = 'Clé API générée : ' + data.apikey;
-                }
-                
+                document.getElementById("valueAPIkey").innerHTML = 'Clé API générée : ' + data.apikey;
             } else {
                 alert('Erreur : ' + data.message);
             }
         })
         .catch(error => {
-            alert('Erreur Fetch : ' + error.message);
+            console.error('Erreur lors de la requête fetch :', error);
+            alert('Erreur lors de la requête fetch : ' + error.message);
         });
     }
 </script>
