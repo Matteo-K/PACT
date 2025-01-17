@@ -280,7 +280,7 @@
             <p>Votre Clé API :</p>
             <?php if($infoUtlisateur["apikey"]){?>
                 <p id = "valueAPIkey"> <?=$infoUtlisateur["apikey"]?></p>
-                <p> Regénérer ma clé API</p>
+                <p onclick="generateAPIkey()">Regénérer ma clé API</p>
             <?php }?>
 
             <p onclick="generateAPIkey()">Générer ma clé API</p>
