@@ -273,7 +273,7 @@
         </form>
         <section id="apiKey">
             <?php
-            $stmt = $con -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
+            $stmt = $conn -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
             $stmt -> execute();
             $infoUtlisateur = $stmt -> fetch(PDO::FETCH_ASSOC);
             ?>
