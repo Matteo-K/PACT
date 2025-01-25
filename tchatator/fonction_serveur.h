@@ -3,8 +3,8 @@
  * @author Matteo-K, 
  */
 
-#ifndef FUNCTION_SERVEUR_H
-#define FUNCTION_SERVEUR_H
+#ifndef FONCTION_SERVEUR_H
+#define FONCTION_SERVEUR_H
 
 /// @brief Initialise le socket
 /// @return descripteur du socket
@@ -16,4 +16,4 @@ int init_socket();
 /// @return condition d'arrêt du serveur
 int gestion_commande(char buffer[], int sockfd);
 
-#endif // FUNCTION_SERVEUR_H
+#endif // FONCTION_SERVEUR_H
