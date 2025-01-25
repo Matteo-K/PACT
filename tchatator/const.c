@@ -3,6 +3,8 @@
  * @author Matteo-K, Gabriel-F, Kylian-H, Ewen-J
  */
 
+#include <stddef.h>
+
 #include "const.h"
 
 // connexion bdd

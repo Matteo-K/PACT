@@ -19,6 +19,9 @@
 /// @brief Character String: commande d'envoie de message
 #define COMMANDE_MESSAGE "MSG:"
 
+/// @brief Character String: Arrête le serveur
+#define COMMANDE_STOP "STOP"
+
 
 // connexion bdd
 extern const char *pgHost;

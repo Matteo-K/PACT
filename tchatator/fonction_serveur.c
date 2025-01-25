@@ -54,7 +54,6 @@ int gestion_commande(char buffer[], int sockfd) {
   } else if (strncmp(buffer, "BYE BYE\r", 8) == 0) {
       const char *response = "Au revoir !\n";
       write(sockfd, response, strlen(response));
-      running = 0;
 
   } else if (strncmp(buffer, "BONJOUR:", 8) == 0) {
       char *name_part = buffer + 8;
@@ -69,7 +68,7 @@ int gestion_commande(char buffer[], int sockfd) {
           char *first_name = trim(name_part);
           char *last_name = trim(comma + 1);
 
-          char response[256];
+          char response[BUFFER_SIZE];
           snprintf(response, sizeof(response), "Bonjour, %s %s !\n", first_name, last_name);
           write(sockfd, response, strlen(response));
       } else {
@@ -79,6 +78,11 @@ int gestion_commande(char buffer[], int sockfd) {
 
   } else if (strncmp(buffer, COMMANDE_CONNEXION, strlen(COMMANDE_CONNEXION)) == 0) {
     
+  } else if(strncmp(buffer, COMMANDE_STOP, strlen(COMMANDE_STOP)) == 0) {
+    const char *response = "Arrêt du serveur.\n";
+    printf("%s", response);
+    write(sockfd, response, strlen(response));
+    running = 0;
   } else {
       const char *response = "Commande inconnue.\n";
       write(sockfd, response, strlen(response));
