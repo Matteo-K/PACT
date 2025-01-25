@@ -2,16 +2,31 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <signal.h>
+#include <errno.h>
+
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <netinet/in.h>
 #include <sys/wait.h>
+
+#include <netinet/in.h>
 
 #include "bdd.h"
 #include "fonction_serveur.h"
 #include "const.h"
 
-int main() {
+int main(int argc, char *argv[]) {
+
+  if (argc > 1) {
+    gestion_option(argc, argv);
+  } else {
+    // signaux
+    struct sigaction sa;
+    memset(&sa, 0, sizeof(sa));
+    sa.sa_sigaction = killChld;
+    sa.sa_flags = SA_SIGINFO;
+    sigaction(SIGUSR1, &sa, NULL);
+
     int sockfd = init_socket();
 
     // Mise en écoute
@@ -28,7 +43,9 @@ int main() {
     char buffer[BUFFER_SIZE];
 
     int running = 1;
-    int nb_connexion = 0;
+
+    pid_t liste_attente[NB_CONNEXION_MAX];
+    int nb_liste_attente = 0;
 
     while (1) {
       // Acceptation d'une connexion
@@ -62,11 +79,17 @@ int main() {
         }
 
         close(newsockfd);
+
+        if (running == -1) {
+          kill(getppid(), SIGUSR1);
+        }
+
         exit(running);
 
       } else {
-        nb_connexion++;
-        printf("### Connexion reçu N°%d\n", nb_connexion);
+        liste_attente[nb_liste_attente] = pid;
+        nb_liste_attente++;
+        printf("### Connexion reçu N°%d\n", nb_liste_attente);
 
         close(newsockfd);
       }
@@ -74,6 +97,6 @@ int main() {
 
     // Fermeture des sockets
     close(sockfd);
-
-    return 0;
+  }
+  return 0;
 }

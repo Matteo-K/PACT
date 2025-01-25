@@ -7,12 +7,34 @@
 #define CONST_H
 
 #define BUFFER_SIZE 256
+#define NB_CONNEXION_MAX 50
 
-/// @brief Character String: port de connexion au serveur
+// paramètre
+/// @brief Integer: port de connexion au serveur
 #define PORT 8080
 
-// Commande
+/// @brief Integer: durée de ban
+extern const int DUREE_BAN;
 
+/// @brief Integer: durée de blocage
+extern const int DUREE_BLOCAGE;
+
+/// @brief Integer: nombre maximum de taille de message
+extern const int TAILLE_MAX_MSG;
+
+/// @brief Integer: nombre maximum de bloc de message
+extern const int NB_MAX_BLOC_MSQ;
+
+/// @brief Integer: nombre maximum de message envoyé par minute
+extern const int NB_MAX_MSQ_MIN;
+
+/// @brief Integer: nombre maximum de message envoyé par heure
+extern const int NB_MAX_MSQ_HR;
+
+/// @brief Character String: Chemin fichier logs
+extern const char *CHEMIN_LOGS;
+
+// Commande
 /// @brief Character String: commande de connexion
 #define COMMANDE_CONNEXION "LOGIN:"
 
@@ -24,12 +46,25 @@
 
 
 // connexion bdd
+/// @brief Character String: 
 extern const char *pgHost;
+
+/// @brief Character String: 
 extern const char *pgPort;
+
+/// @brief Character String: 
 extern const char *pgOptions;
+
+/// @brief Character String: 
 extern const char *pgTTY;
+
+/// @brief Character String: 
 extern const char *dbName;
+
+/// @brief Character String:
 extern const char *login;
+
+/// @brief Character String:
 extern const char *pwd;
 
 #endif // CONST_H

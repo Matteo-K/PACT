@@ -10,6 +10,9 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <getopt.h>
+#include <signal.h>
+#include <errno.h>
 
 #include "fonction_serveur.h"
 #include "const.h"
@@ -90,6 +93,62 @@ int gestion_commande(char buffer[], int sockfd) {
   }
 
   return running;
+}
+
+void afficher_aide() {
+    printf("Usage : ./tchatator [options]\n");
+    printf("Options :\n");
+    printf("  -h, --help        Afficher cette aide\n");
+    printf("  -v, --version     Afficher la version\n");
+    printf("  -vb, --verbose    Afficher les logs\n");
+}
+
+void afficher_logs() {
+    printf("Usage : ./tchatator [options]\n");
+    printf("Options :\n");
+    printf("  -h, --help        Afficher cette aide\n");
+    printf("  -v, --version     Afficher la version\n");
+    printf("  -vb, --verbose    Afficher les logs\n");
+}
+
+void ajouter_logs(char commande[]) {
+
+}
+
+void gestion_option(argc, argv) {
+    int opt;
+
+    // Définition des options longues
+    static struct option long_options[] = {
+        {"help",    no_argument,       0, 'h'},
+        {"version", no_argument,       0, 'v'},
+        {"verbose",  required_argument, 0, 'vb'},
+        {0, 0, 0, 0}
+    };
+
+    while ((opt = getopt_long(argc, argv, "hvs:", long_options, NULL)) != -1) {
+        switch (opt) {
+            case 'h': // Option -h ou --help
+                afficher_aide();
+                return 0;
+            case 'v': // Option -v ou --version
+                printf("Version 1.0.0\n");
+                return 0;
+            case 'vb': // Option -vb ou --verbose
+                afficher_logs();
+                return 0;
+            case '?':  // Option inconnue
+                printf("Commande inconnue, --help pour voir les options");
+                break;
+        }
+    }
+}
+
+void killChld(int sig, siginfo_t *info, void *context) {
+    if (sig == SIGUSR1) {
+        printf("Le processus enfant a signalé une fin avec -1, arrêt du serveur.\n");
+        kill(getpid(), SIGKILL);  // Envoie SIGKILL au processus parent pour l'arrêter
+    }
 }
 
 // trim(char[]) comme en php
