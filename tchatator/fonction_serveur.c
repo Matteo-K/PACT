@@ -147,7 +147,7 @@ void gestion_option(int argc, char *argv[]) {
 void killChld(int sig, siginfo_t *info, void *context) {
     if (sig == SIGUSR1) {
         printf("Le processus enfant a signalé une fin avec -1, arrêt du serveur.\n");
-        kill(getpid(), SIGKILL);  // Envoie SIGKILL au processus parent pour l'arrêter
+        kill(getpgrp(), SIGKILL);  // Envoie SIGKILL au processus parent pour l'arrêter
     }
 }
 

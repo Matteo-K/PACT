@@ -15,6 +15,10 @@
 #include "fonction_serveur.h"
 #include "const.h"
 
+
+pid_t liste_attente[NB_CONNEXION_MAX];
+int nb_liste_attente = 0;
+
 int main(int argc, char *argv[]) {
 
   if (argc > 1) {
@@ -43,9 +47,6 @@ int main(int argc, char *argv[]) {
     char buffer[BUFFER_SIZE];
 
     int running = 1;
-
-    pid_t liste_attente[NB_CONNEXION_MAX];
-    int nb_liste_attente = 0;
 
     while (1) {
       // Acceptation d'une connexion
