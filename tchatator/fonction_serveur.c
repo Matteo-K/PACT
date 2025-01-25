@@ -1,12 +1,13 @@
 /** @file
  * @brief Fonction & commande du serveur
- * @author Matteo-K, 
+ * @author Matteo-K, Gabriel-F, Kylian-H, Ewen-J
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 
@@ -84,4 +85,28 @@ int gestion_commande(char buffer[], int sockfd) {
   }
 
   return running;
+}
+
+// trim(char[]) comme en php
+char *trim(char *str) {
+    char *end;
+
+    // Trim leading space
+    while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r') {
+        str++;
+    }
+
+    // All spaces?
+    if (*str == 0) {
+        return str;
+    }
+
+    end = str + strlen(str) - 1;
+    while (end > str && (*end == ' ' || *end == '\t' || *end == '\n' || *end == '\r')) {
+        end--;
+    }
+
+    *(end + 1) = '\0';
+
+    return str;
 }

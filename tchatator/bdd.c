@@ -1,16 +1,16 @@
+/** @file
+ * @brief BDD postgreSQL
+ * @author Matteo-K, Gabriel-F, Kylian-H, Ewen-J
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <postgresql/libpq-fe.h>
 
-const char *pgHost = "the-void.ventsdouest.dev";
-const char *pgPort = "5432";
-const char *pgOptions = NULL;
-const char *pgTTY = NULL;
-const char *dbName = "sae";
-const char *login = "sae";
-const char *pwd = "digital-costaRd-sc0uts";
+#include "bdd.h"
+#include "const.h"
 
-int main() {
+void init_bdd() {
     PGconn *conn;  // Pointeur vers la structure de connexion PostgreSQL
 
     // Établir la connexion à la base de données
@@ -40,6 +40,4 @@ int main() {
 
     // Fermer la connexion à la fin
     PQfinish(conn);
-
-    return 0;
 }

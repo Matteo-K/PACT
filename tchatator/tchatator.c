@@ -6,42 +6,18 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#include "bdd.c"
+#include "bdd.h"
 #include "fonction_serveur.h"
 #include "const.h"
-
-// trim(char[]) comme en php
-char *trim(char *str) {
-    char *end;
-
-    // Trim leading space
-    while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r') {
-        str++;
-    }
-
-    // All spaces?
-    if (*str == 0) {
-        return str;
-    }
-
-    end = str + strlen(str) - 1;
-    while (end > str && (*end == ' ' || *end == '\t' || *end == '\n' || *end == '\r')) {
-        end--;
-    }
-
-    *(end + 1) = '\0';
-
-    return str;
-}
 
 int main() {
     int sockfd = init_socket();
 
     // Mise en écoute
     if (listen(sockfd, 1) < 0) {
-        perror("Erreur lors de l'écoute");
-        close(sockfd);
-        exit(EXIT_FAILURE);
+      perror("Erreur lors de l'écoute");
+      close(sockfd);
+      exit(EXIT_FAILURE);
     }
 
     printf("Serveur en attente de connexions sur le port %d...\n", PORT);
@@ -58,7 +34,7 @@ int main() {
 
     printf("Connexion acceptée.\n");
 
-    char buffer[256];
+    char buffer[BUFFER_SIZE];
     int running = 1;
 
     while (running) {
