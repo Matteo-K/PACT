@@ -8,11 +8,14 @@
 #include <string.h>
 #include <stdbool.h>
 #include <unistd.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
 #include <getopt.h>
 #include <signal.h>
 #include <errno.h>
+#include <fcntl.h>
+
+#include <sys/socket.h>
+
+#include <netinet/in.h>
 
 #include "fonction_serveur.h"
 #include "const.h"
@@ -104,7 +107,26 @@ void afficher_aide() {
 }
 
 void afficher_logs() {
-    open();
+
+    char buffer[BUFFER_SIZE];
+    ssize_t bytes_read;
+    int fd = open(CHEMIN_LOGS ,O_RDONLY);
+
+    if (fd < 0) {
+        perror("Erreur lors de l'ouverture du fichier");
+        exit(1);
+    }
+
+    while ((bytes_read = read(fd, buffer, sizeof(buffer) - 1)) > 0) {
+        buffer[bytes_read] = '\0';
+        printf("%s", buffer);
+    }
+
+    if (bytes_read < 0) {
+        perror("Erreur lors de la lecture du fichier");
+    }
+
+    close(fd);
 }
 
 void ajouter_logs(char commande[]) {
