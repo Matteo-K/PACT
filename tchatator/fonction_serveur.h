@@ -16,7 +16,7 @@ int init_socket();
 /// @param buffer in: buffer de la commande reçu
 /// @param sockfd in: descripteur du client
 /// @return condition d'arrêt du serveur
-int gestion_commande(PGconn *conn, char *tokken_connexion, char buffer[], int sockfd);
+int gestion_commande(PGconn *conn, char *tokken_connexion, char buffer[], int sockfd, struct sockaddr_in client_addr);
 
 /// @brief Affichage des commandes d'aide avec HELP côté client
 /// @param sockfd in: descripteur du client
@@ -32,7 +32,7 @@ void afficher_logs();
 /// @param sockfd in: descripteur du client
 /// @param commande in: commande du client
 /// @param type in: type de message. ex: info, error, debug
-void ajouter_logs(char *tokken_connexion, char *commande, char *type);
+void ajouter_logs(char *tokken_connexion, struct sockaddr_in client_addr, char *commande, char *type);
 
 void gestion_option(int argc, char *argv[]);
 

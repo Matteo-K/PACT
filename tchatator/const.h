@@ -6,7 +6,7 @@
 #ifndef CONST_H
 #define CONST_H
 
-#define BUFFER_SIZE 256
+#define BUFFER_SIZE 512
 #define NB_CONNEXION_MAX 50
 
 // paramètre

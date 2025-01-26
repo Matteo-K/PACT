@@ -83,7 +83,7 @@ int main(int argc, char *argv[]) {
             break;
           }
 
-          running = gestion_commande(conn, tokken_connexion, buffer, newsockfd);
+          running = gestion_commande(conn, tokken_connexion, buffer, newsockfd, client_addr);
         }
 
         close(newsockfd);
