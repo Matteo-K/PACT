@@ -7,6 +7,10 @@
 #define BDD_H
 
 /// @brief Initialise la bdd postgreSQL
-void init_bdd();
+PGconn *init_bdd();
+
+/// @brief Cherche en BDD l'existance de la clé API 
+int trouveAPI(PGconn *conn, const char *requete);
+
 
 #endif // BDD_H

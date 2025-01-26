@@ -10,7 +10,7 @@
 #include "bdd.h"
 #include "const.h"
 
-void init_bdd() {
+PGconn *init_bdd() {
     PGconn *conn;  // Pointeur vers la structure de connexion PostgreSQL
 
     // Établir la connexion à la base de données
@@ -39,32 +39,33 @@ void init_bdd() {
     }
 
     // Fermer la connexion à la fin
-    PQfinish(conn);
+    return conn;
 }
 
 
-void executer_requete(PGconn *conn, const char *requete) {
+int trouveAPI(PGconn *conn, const char *requete) {
+    int nb;
+    char *valeur_str;
+    int valeur;
+
     PGresult *res = PQexec(conn, requete);
 
     if (PQresultStatus(res) != PGRES_TUPLES_OK) {
         fprintf(stderr, "Erreur lors de l'exécution de la requête : %s\n", PQerrorMessage(conn));
         PQclear(res);
-        return;
+        return -1; // Retourne -1 en cas d'erreur
     }
 
-    // Afficher les résultats
-    int n = PQntuples(res);
-    int m = PQnfields(res);
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            printf("%s\t", PQgetvalue(res, i, j));
-        }
-        printf("\n");
+    nb = PQntuples(res); // Nombre de lignes dans le résultat
+    if (nb == 0) {
+        fprintf(stderr, "Aucun résultat trouvé pour la clé API.\n");
+        PQclear(res);
+        return -1; // Retourne -1 aussi si aucune donnée
     }
+
+    valeur_str = PQgetvalue(res, 0, 0);
+    valeur = atoi(valeur_str);
 
     PQclear(res); // Libérer la mémoire
-}
-
-int main() {
-    init_bdd();
+    return valeur; // Retourne la valeur entière
 }
