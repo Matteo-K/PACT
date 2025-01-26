@@ -12,6 +12,11 @@
 #include <signal.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <time.h>
+#include <netdb.h>
+#include <ifaddrs.h>
+
+#include <arpa/inet.h>
 
 #include <sys/socket.h>
 
@@ -54,6 +59,7 @@ int gestion_commande(PGconn *conn, char *tokken_connexion, char buffer[], int so
     int running = 1;
 
     printf("Commande reçu : %s\n", buffer);
+    ajouter_logs(tokken_connexion, buffer);
 
     // L'utilisateur doit se connecter pour utiliser le service
     if (strncmp(buffer, COMMANDE_AIDE, strlen(COMMANDE_AIDE)) == 0) {
@@ -162,7 +168,7 @@ void afficher_logs() {
     int fd = open(CHEMIN_LOGS ,O_RDONLY);
 
     if (fd < 0) {
-        perror("Erreur lors de l'ouverture du fichier");
+        perror("Erreur lors de l'ouverture du fichier %s en mode lecture\n", CHEMIN_LOGS);
         exit(1);
     }
 
@@ -178,8 +184,71 @@ void afficher_logs() {
     close(fd);
 }
 
-void ajouter_logs(char commande[]) {
+void ajouter_logs(char *tokken_connexion, char *commande, char *type) {
 
+    int fd = open(CHEMIN_LOGS, O_WRONLY | O_APPEND);
+    if (fd < 0) {
+        perror("Erreur lors de l'ouverture du fichier %s en mode ajout\n", CHEMIN_LOGS);
+        exit(1);
+    }
+
+    char buffer[BUFFER_SIZE];
+    // récupération de la date
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    char date_buff[BUFFER_SIZE];
+    snprintf(date_buff, sizeof(date_buff), "%d-%02d-%02d %02d:%02d:%02d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour + 1, tm.tm_min, tm.tm_sec);
+
+    // récupération de l'adresse ip
+    struct ifaddrs *ifaddr, *ifa;
+    int family, s;
+    char host[NI_MAXHOST];
+
+    if (getifaddrs(&ifaddr) == -1) {
+        perror("getifaddrs");
+        exit(EXIT_FAILURE);
+    }
+
+
+    for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next) {
+        if (ifa->ifa_addr == NULL)
+            continue;
+
+        s=getnameinfo(ifa->ifa_addr,sizeof(struct sockaddr_in),host, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
+
+        if((strcmp(ifa->ifa_name,"wlan0")==0)&&(ifa->ifa_addr->sa_family==AF_INET)) {
+            if (s != 0) {
+                printf("getnameinfo() failed: %s\n", gai_strerror(s));
+                break;
+            }
+            printf("\tInterface : <%s>\n",ifa->ifa_name );
+        }
+        printf("\t  Address : <%s>\n", host);
+    }
+    freeifaddrs(ifaddr);
+
+
+    if (strcmp(type, "info")) {
+        snprintf(buffer, sizeof(buffer), "%s [INFO]        Connexion au service\n", date_buff);
+    } else if (strcmp(type, "error")) {
+        snprintf(buffer, sizeof(buffer), "%s [ERROR]        Connexion au service\n", date_buff);
+    } else if (strcmp(type, "debug")) {
+        snprintf(buffer, sizeof(buffer), "%s [DEBUG]        Connexion au service\n", date_buff);
+    } else {
+        printf("Type de logs inconnue");
+    }
+
+    ssize_t bytes_written = write(fd, buffer, strlen(buffer));
+
+    if (bytes_written < 0) {
+        perror("Erreur lors de l'écriture dans le fichier %s\n", CHEMIN_LOGS);
+        close(fd);
+        exit(1);
+    }
+
+    close(fd);
+
+    return 0;
 }
 
 void gestion_option(int argc, char *argv[]) {

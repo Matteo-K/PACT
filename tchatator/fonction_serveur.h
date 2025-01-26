@@ -19,6 +19,7 @@ int init_socket();
 int gestion_commande(PGconn *conn, char *tokken_connexion, char buffer[], int sockfd);
 
 /// @brief Affichage des commandes d'aide avec HELP côté client
+/// @param sockfd in: descripteur du client
 void afficher_commande_aide(int sockfd);
 
 /// @brief Affichage de l'aide avec --help/-h
@@ -27,7 +28,11 @@ void afficher_aide();
 /// @brief Affichage des logs avec --verbose/-b
 void afficher_logs();
 
-void ajouter_logs(char *commande);
+/// @brief Ajoute dans les logs l'action du client
+/// @param sockfd in: descripteur du client
+/// @param commande in: commande du client
+/// @param type in: type de message. ex: info, error, debug
+void ajouter_logs(char *tokken_connexion, char *commande, char *type);
 
 void gestion_option(int argc, char *argv[]);
 
