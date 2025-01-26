@@ -108,21 +108,21 @@ void afficher_logs() {
     printf("Options :\n");
     printf("  -h, --help        Afficher cette aide\n");
     printf("  -v, --version     Afficher la version\n");
-    printf("  -vb, --verbose    Afficher les logs\n");
+    printf("  -b, --verbose    Afficher les logs\n");
 }
 
 void ajouter_logs(char commande[]) {
 
 }
 
-void gestion_option(argc, argv) {
+void gestion_option(int argc, char *argv[]) {
     int opt;
 
     // Définition des options longues
     static struct option long_options[] = {
         {"help",    no_argument,       0, 'h'},
         {"version", no_argument,       0, 'v'},
-        {"verbose",  required_argument, 0, 'vb'},
+        {"verbose",  required_argument, 0, 'b'},
         {0, 0, 0, 0}
     };
 
@@ -130,13 +130,13 @@ void gestion_option(argc, argv) {
         switch (opt) {
             case 'h': // Option -h ou --help
                 afficher_aide();
-                return 0;
+                break;
             case 'v': // Option -v ou --version
                 printf("Version 1.0.0\n");
-                return 0;
-            case 'vb': // Option -vb ou --verbose
+                break;
+            case 'b': // Option -b ou --verbose
                 afficher_logs();
-                return 0;
+                break;
             case '?':  // Option inconnue
                 printf("Commande inconnue, --help pour voir les options");
                 break;

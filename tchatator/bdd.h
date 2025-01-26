@@ -7,6 +7,8 @@
 #define BDD_H
 
 /// @brief Initialise la bdd postgreSQL
-void init_bdd();
+PGconn* init_bdd();
+
+void executer_requete(PGconn *conn, const char *requete);
 
 #endif // BDD_H

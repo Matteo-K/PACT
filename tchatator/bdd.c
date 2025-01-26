@@ -10,7 +10,7 @@
 #include "bdd.h"
 #include "const.h"
 
-void init_bdd() {
+PGconn* init_bdd() {
     PGconn *conn;  // Pointeur vers la structure de connexion PostgreSQL
 
     // Établir la connexion à la base de données
@@ -26,20 +26,19 @@ void init_bdd() {
     // Afficher le statut de la connexion
     switch (PQstatus(conn)) {
         case CONNECTION_STARTED:
-            printf("Connexion en cours...\n");
+            printf("Connexion BDD en cours...\n");
             break;
         case CONNECTION_MADE:
-            printf("Connexion établie avec succès !\n");
+            printf("Connexion BDD établie avec succès !\n");
             break;
         case CONNECTION_OK:
-            printf("Connexion OK.\n");
+            printf("Connexion BDD OK.\n");
             break;
         default:
-            printf("Statut de connexion inconnu.\n");
+            printf("Statut de connexion BDD inconnu.\n");
     }
 
-    // Fermer la connexion à la fin
-    PQfinish(conn);
+    return conn;
 }
 
 
@@ -63,8 +62,4 @@ void executer_requete(PGconn *conn, const char *requete) {
     }
 
     PQclear(res); // Libérer la mémoire
-}
-
-int main() {
-    init_bdd();
 }
