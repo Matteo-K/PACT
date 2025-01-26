@@ -71,6 +71,9 @@ int main(int argc, char *argv[]) {
       }
 
       if (pid == 0) {
+
+        char tokken_connexion[BUFFER_SIZE] = "";
+
         while (running > 0) {
           // Lecture de commande
           memset(buffer, 0, sizeof(buffer));
@@ -80,7 +83,7 @@ int main(int argc, char *argv[]) {
             break;
           }
 
-          running = gestion_commande(buffer, newsockfd);
+          running = gestion_commande(tokken_connexion, buffer, newsockfd);
         }
 
         close(newsockfd);
