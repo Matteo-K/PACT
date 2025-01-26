@@ -4,7 +4,7 @@ CREATE SCHEMA pact;
 
 SET SCHEMA 'pact';
 
--- Création de la partie des comptes --
+-- Création des comptes --
 
 CREATE TABLE _utilisateur (
   idU SERIAL PRIMARY KEY,
@@ -32,7 +32,6 @@ CREATE TABLE _nonAdmin (
 CREATE TABLE _pro (
   idU INT PRIMARY KEY,
   denomination VARCHAR(255) UNIQUE NOT NULL,
-  apikey VARCHAR(255) DEFAULT NULL,
   CONSTRAINT _pro_fk_nonAdmin
       FOREIGN KEY (idU) 
       REFERENCES _nonAdmin(idU)
@@ -46,6 +45,34 @@ CREATE TABLE _membre (
   CONSTRAINT _membre_fk_nonAdmin
       FOREIGN KEY (idU) 
       REFERENCES _nonAdmin(idU)
+);
+
+-- Mise à jour de la table historiqueMessage --
+CREATE TABLE _historiqueMessage (
+  id SERIAL PRIMARY KEY,
+  heure TIMESTAMP NOT NULL,
+  content VARCHAR(500) NOT NULL,
+  contentLength INT NOT NULL,
+  idExpediteur INT NOT NULL, -- Identifiant de l'expéditeur
+  typeExpediteur VARCHAR(10) NOT NULL, -- "membre" ou "pro"
+  CONSTRAINT _historiqueMessage_check_typeExpediteur
+      CHECK (typeExpediteur IN ('membre', 'pro'))
+);
+
+CREATE TABLE _tchatator (
+  idMembre INT NOT NULL,
+  idPro INT NOT NULL,
+  idMessage INT NOT NULL,
+  CONSTRAINT pk_tchatator PRIMARY KEY (idMembre, idPro, idMessage),
+  CONSTRAINT _tchatator_fk_idMembre
+      FOREIGN KEY (idMembre) 
+      REFERENCES _membre(idU),
+  CONSTRAINT _tchatator_fk_idPro
+      FOREIGN KEY (idPro) 
+      REFERENCES _pro(idU),
+  CONSTRAINT _tchatator_fk_idMessage
+      FOREIGN KEY (idMessage) 
+      REFERENCES _historiqueMessage(id)
 );
 
 CREATE TABLE _public (
@@ -967,6 +994,96 @@ CREATE VIEW facture AS
     a.tarif,
     h.codePostal,
     h.pays;
+
+CREATE OR REPLACE VIEW vueMessages AS
+SELECT 
+    hm.id AS idMessage,
+    hm.heure AS dateMessage,
+    hm.content AS contenuMessage,
+    hm.idExpediteur,
+    CASE 
+        WHEN hm.typeExpediteur = 'membre' THEN m1.pseudo
+        WHEN hm.typeExpediteur = 'pro' THEN p1.denomination
+    END AS nomExpediteur,
+    hm.typeExpediteur,
+    t.idMembre AS idReceveur,
+    CASE 
+        WHEN hm.typeExpediteur = 'membre' THEN p2.denomination
+        WHEN hm.typeExpediteur = 'pro' THEN m2.pseudo
+    END AS nomReceveur
+FROM 
+    _historiqueMessage hm
+LEFT JOIN _tchatator t ON t.idMessage = hm.id
+LEFT JOIN _membre m1 ON hm.idExpediteur = m1.idU
+LEFT JOIN _pro p1 ON hm.idExpediteur = p1.idU
+LEFT JOIN _membre m2 ON t.idMembre = m2.idU
+LEFT JOIN _pro p2 ON t.idPro = p2.idU;
+
+    
+-- Fonction associée au trigger
+CREATE OR REPLACE FUNCTION trigger_insert_into_vueMessages()
+RETURNS TRIGGER AS $$
+DECLARE
+    newMessageId INT;
+BEGIN
+    -- Insérer dans _historiqueMessage
+    INSERT INTO _historiqueMessage (heure, content, contentLength, idExpediteur, typeExpediteur)
+    VALUES (
+        NEW.dateMessage,
+        NEW.contenuMessage,
+        CHAR_LENGTH(NEW.contenuMessage),
+        NEW.idExpediteur,
+        NEW.typeExpediteur
+    )
+    RETURNING id INTO newMessageId;
+
+    -- Insérer dans _tchatator
+    IF NEW.typeExpediteur = 'membre' THEN
+        -- Si l'expéditeur est un membre, le receveur est un pro
+        INSERT INTO _tchatator (idMembre, idPro, idMessage)
+        VALUES (NEW.idExpediteur, NEW.idReceveur, newMessageId);
+    ELSIF NEW.typeExpediteur = 'pro' THEN
+        -- Si l'expéditeur est un pro, le receveur est un membre
+        INSERT INTO _tchatator (idMembre, idPro, idMessage)
+        VALUES (NEW.idReceveur, NEW.idExpediteur, newMessageId);
+    END IF;
+
+    RETURN NULL; -- La vue ne stocke pas directement les données
+END;
+$$ LANGUAGE plpgsql;
+
+-- Création du trigger sur la vue
+CREATE TRIGGER trigger_insert_vueMessages
+INSTEAD OF INSERT ON vueMessages
+FOR EACH ROW
+EXECUTE FUNCTION trigger_insert_into_vueMessages();
+
+CREATE OR REPLACE FUNCTION validate_expediteur()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.typeExpediteur = 'membre' THEN
+        -- Vérifier que idExpediteur existe dans _membre
+        IF NOT EXISTS (SELECT 1 FROM _membre WHERE idU = NEW.idExpediteur) THEN
+            RAISE EXCEPTION 'idExpediteur % not found in _membre', NEW.idExpediteur;
+        END IF;
+    ELSIF NEW.typeExpediteur = 'pro' THEN
+        -- Vérifier que idExpediteur existe dans _pro
+        IF NOT EXISTS (SELECT 1 FROM _pro WHERE idU = NEW.idExpediteur) THEN
+            RAISE EXCEPTION 'idExpediteur % not found in _pro', NEW.idExpediteur;
+        END IF;
+    ELSE
+        RAISE EXCEPTION 'Invalid typeExpediteur: %', NEW.typeExpediteur;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Associer le trigger à la table _historiqueMessage
+CREATE TRIGGER validate_expediteur_trigger
+BEFORE INSERT OR UPDATE ON _historiqueMessage
+FOR EACH ROW
+EXECUTE FUNCTION validate_expediteur();
+
 
 CREATE OR REPLACE FUNCTION compte_langue_offre()
 RETURNS TRIGGER AS $$
