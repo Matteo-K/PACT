@@ -41,3 +41,30 @@ void init_bdd() {
     // Fermer la connexion à la fin
     PQfinish(conn);
 }
+
+
+void executer_requete(PGconn *conn, const char *requete) {
+    PGresult *res = PQexec(conn, requete);
+
+    if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+        fprintf(stderr, "Erreur lors de l'exécution de la requête : %s\n", PQerrorMessage(conn));
+        PQclear(res);
+        return;
+    }
+
+    // Afficher les résultats
+    int n = PQntuples(res);
+    int m = PQnfields(res);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            printf("%s\t", PQgetvalue(res, i, j));
+        }
+        printf("\n");
+    }
+
+    PQclear(res); // Libérer la mémoire
+}
+
+int main() {
+    init_bdd();
+}
