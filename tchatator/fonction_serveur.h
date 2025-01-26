@@ -32,7 +32,7 @@ void afficher_logs();
 /// @param sockfd in: descripteur du client
 /// @param commande in: commande du client
 /// @param type in: type de message. ex: info, error, debug
-void ajouter_logs(char *tokken_connexion, struct sockaddr_in client_addr, char *commande, char *type);
+void ajouter_logs(PGconn *conn, char *tokken_connexion, struct sockaddr_in client_addr, char *commande, char *type);
 
 void gestion_option(int argc, char *argv[]);
 

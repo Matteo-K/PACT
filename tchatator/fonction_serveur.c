@@ -24,6 +24,7 @@
 
 #include "fonction_serveur.h"
 #include "const.h"
+#include "bdd.h"
 
 int init_socket() {
   int sockfd;
@@ -57,7 +58,7 @@ int gestion_commande(PGconn *conn, char *tokken_connexion, char buffer[], int so
     int running = 1;
 
     printf("Commande reçu : %s\n", buffer);
-    ajouter_logs(tokken_connexion, client_addr, buffer, "info");
+    ajouter_logs(conn, tokken_connexion, client_addr, buffer, "info");
 
     // L'utilisateur doit se connecter pour utiliser le service
     if (strncmp(buffer, COMMANDE_AIDE, strlen(COMMANDE_AIDE)) == 0) {
@@ -182,7 +183,7 @@ void afficher_logs() {
     close(fd);
 }
 
-void ajouter_logs(char *tokken_connexion, struct sockaddr_in client_addr, char *commande, char *type) {
+void ajouter_logs(PGconn *conn, char *tokken_connexion, struct sockaddr_in client_addr, char *commande, char *type) {
 
     int fd = open(CHEMIN_LOGS, O_WRONLY | O_APPEND);
     if (fd < 0) {
@@ -190,7 +191,7 @@ void ajouter_logs(char *tokken_connexion, struct sockaddr_in client_addr, char *
         exit(1);
     }
 
-    char buffer[BUFFER_SIZE];
+    char buffer[BUFFER_SIZE * 2];
     // récupération de la date
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
@@ -205,13 +206,26 @@ void ajouter_logs(char *tokken_connexion, struct sockaddr_in client_addr, char *
         exit(1);
     }
 
+    char identiteUser[BUFFER_SIZE / 3];
+    if (strcmp(tokken_connexion, "") != 0) {
+
+        const char *paramValues[] = {tokken_connexion};
+        char *result = execute_requete(conn, "SELECT idu FROM pact._utilisateur WHERE apikey = $1;", 1, paramValues);
+        strcpy(identiteUser, result);
+
+    } else {
+        strcpy(identiteUser, "inconnue");
+    }
+
+    char info[BUFFER_SIZE];
+    snprintf(info, sizeof(info), "%s - %s - %s", identiteUser, client_ip, commande);
 
     if (strcmp(type, "info") == 0) {
-        snprintf(buffer, sizeof(buffer), "%s [INFO] - %s - %s", date_buff, client_ip, commande);
+        snprintf(buffer, sizeof(buffer), "%s [INFO] %s", date_buff, info);
     } else if (strcmp(type, "error") == 0) {
-        snprintf(buffer, sizeof(buffer), "%s [ERROR] - %s - %s", date_buff, client_ip, commande);
+        snprintf(buffer, sizeof(buffer), "%s [ERROR] %s", date_buff, info);
     } else if (strcmp(type, "debug") == 0) {
-        snprintf(buffer, sizeof(buffer), "%s [DEBUG] - %s - %s", date_buff, client_ip, commande);
+        snprintf(buffer, sizeof(buffer), "%s [DEBUG] %s", date_buff, info);
     } else {
         printf("Type de logs inconnue");
     }

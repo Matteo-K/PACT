@@ -12,5 +12,7 @@ PGconn *init_bdd();
 /// @brief Cherche en BDD l'existance de la clé API 
 int trouveAPI(PGconn *conn, const char *requete);
 
+/// @brief Execute une requête avec des paramètres flexible
+char *execute_requete(PGconn *conn, const char *requete, int nbPram, const char *paramValues[]);
 
 #endif // BDD_H

@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <postgresql/libpq-fe.h>
 
@@ -68,4 +69,41 @@ int trouveAPI(PGconn *conn, const char *requete) {
 
     PQclear(res); // Libérer la mémoire
     return valeur; // Retourne la valeur entière
+}
+
+char *execute_requete(PGconn *conn, const char *requete, int nbPram, const char *paramValues[]) {
+    PGresult *res;
+    int nb, nbFields;
+    char *result_str = malloc(1024 * sizeof(char));
+    if (!result_str) {
+        fprintf(stderr, "Erreur d'allocation mémoire.\n");
+        exit(1);
+    }
+    result_str[0] = '\0';
+
+    res = PQexecParams(conn, requete, nbPram, NULL, paramValues, NULL, NULL, 0);
+
+    if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+        fprintf(stderr, "Erreur lors de l'exécution de la requête : %s\n", PQerrorMessage(conn));
+        PQclear(res);
+        exit(1);
+    }
+
+    nb = PQntuples(res);
+    nbFields = PQnfields(res);
+
+    if (nb == 0) {
+        strcat(result_str, "Aucun résultat trouvé.\n");
+    } else {
+        for (int i = 0; i < nb; i++) {
+            for (int j = 0; j < nbFields; j++) {
+                strcat(result_str, PQgetvalue(res, i, j));
+                strcat(result_str, "\t");
+            }
+            strcat(result_str, "\n");
+        }
+    }
+
+    PQclear(res);
+    return result_str;
 }
