@@ -48,54 +48,98 @@ int init_socket() {
   return sockfd;
 }
 
-int gestion_commande(char buffer[], int sockfd) {
-  int running = 1;
+int gestion_commande(char *tokken_connexion, char buffer[], int sockfd) {
+    int running = 1;
 
-  printf("Commande reçu : %s\n", buffer);
+    printf("Commande reçu : %s\n", buffer);
 
-  if (strncmp(buffer, "HELLO\r", 6) == 0) {
-      const char *response = "COUCOU LES GENS\n";
-      write(sockfd, response, strlen(response));
+    // L'utilisateur doit se connecter pour utiliser le service
+    if (strncmp(buffer, COMMANDE_AIDE, strlen(COMMANDE_AIDE)) == 0) {
+        afficher_commande_aide(sockfd);
 
-  } else if (strncmp(buffer, "BYE BYE\r", 8) == 0) {
-      const char *response = "Au revoir !\n";
-      write(sockfd, response, strlen(response));
-      running = 0;
+    // Aide de commande
+    } else if (strncmp(buffer, COMMANDE_CONNEXION, strlen(COMMANDE_CONNEXION)) == 0) {
+        strcpy(tokken_connexion, "tokken_test");
 
-  } else if (strncmp(buffer, "BONJOUR:", 8) == 0) {
-      char *name_part = buffer + 8;
-      char *newline = strstr(name_part, "\r");
-      if (newline) {
-          *newline = '\0';
-      }
+    // Déconnexion client
+    } else if (strncmp(buffer, "BYE BYE\r", 8) == 0) {
+        const char *response = "Au revoir !\n";
+        write(sockfd, response, strlen(response));
+        running = 0;
 
-      char *comma = strchr(name_part, ',');
-      if (comma) {
-          *comma = '\0';
-          char *first_name = trim(name_part);
-          char *last_name = trim(comma + 1);
+    // Arrêt serveur
+    } else if(strncmp(buffer, COMMANDE_STOP, strlen(COMMANDE_STOP)) == 0) {
+        const char *response = "Arrêt du serveur.\n";
+        printf("%s", response);
+        write(sockfd, response, strlen(response));
+        running = -1;
 
-          char response[BUFFER_SIZE];
-          snprintf(response, sizeof(response), "Bonjour, %s %s !\n", first_name, last_name);
-          write(sockfd, response, strlen(response));
-      } else {
-          const char *response = "Erreur : veuillez inclure une virgule entre le prénom et le nom.\n";
-          write(sockfd, response, strlen(response));
-      }
+    // Commande du service
+    } else if (tokken_connexion[0] != '\0') {
 
-  } else if (strncmp(buffer, COMMANDE_CONNEXION, strlen(COMMANDE_CONNEXION)) == 0) {
-    
-  } else if(strncmp(buffer, COMMANDE_STOP, strlen(COMMANDE_STOP)) == 0) {
-    const char *response = "Arrêt du serveur.\n";
-    printf("%s", response);
-    write(sockfd, response, strlen(response));
-    running = -1;
-  } else {
-      const char *response = "Commande inconnue.\n";
-      write(sockfd, response, strlen(response));
-  }
+        if (strncmp(buffer, "HELLO\r", 6) == 0) {
+            const char *response = "COUCOU LES GENS\n";
+            write(sockfd, response, strlen(response));
 
-  return running;
+        } else if (strncmp(buffer, "BONJOUR:", 8) == 0) {
+            char *name_part = buffer + 8;
+            char *newline = strstr(name_part, "\r");
+            if (newline) {
+                *newline = '\0';
+            }
+
+            char *comma = strchr(name_part, ',');
+            if (comma) {
+                *comma = '\0';
+                char *first_name = trim(name_part);
+                char *last_name = trim(comma + 1);
+
+                char response[BUFFER_SIZE];
+                snprintf(response, sizeof(response), "Bonjour, %s %s !\n", first_name, last_name);
+                write(sockfd, response, strlen(response));
+            } else {
+                const char *response = "Erreur : veuillez inclure une virgule entre le prénom et le nom.\n";
+                write(sockfd, response, strlen(response));
+            }
+
+        } else if (strncmp(buffer, COMMANDE_MESSAGE, strlen(COMMANDE_MESSAGE)) == 0) {
+
+        } else {
+            const char *response = "Commande inconnue.\nCommande d'aide : ";
+            write(sockfd, response, strlen(response));
+            write(sockfd, COMMANDE_AIDE, strlen(COMMANDE_AIDE));
+            write(sockfd, "\n", 1);
+        }
+
+    } else {
+        const char *response = "Vous devez vous connecter pour accéder au SERVICE\nCommande d'aide : ";
+        write(sockfd, response, strlen(response));
+        write(sockfd, COMMANDE_AIDE, strlen(COMMANDE_AIDE));
+        write(sockfd, "\n", 1);
+    }
+
+
+    return running;
+}
+
+void afficher_commande_aide(int sockfd) {
+    char buffer[BUFFER_SIZE];
+
+    // Construire et envoyer chaque partie du message
+    snprintf(buffer, sizeof(buffer), "Usage : [Commande]: [params]\n");
+    write(sockfd, buffer, strlen(buffer));
+
+    snprintf(buffer, sizeof(buffer), "Commandes :\n");
+    write(sockfd, buffer, strlen(buffer));
+
+    snprintf(buffer, sizeof(buffer), "  %s <clé api>        Connexion au service\n", COMMANDE_CONNEXION);
+    write(sockfd, buffer, strlen(buffer));
+
+    snprintf(buffer, sizeof(buffer), "  %s                  Afficher la version\n", COMMANDE_MESSAGE);
+    write(sockfd, buffer, strlen(buffer));
+
+    snprintf(buffer, sizeof(buffer), "  %s                  Afficher cette aide\n", COMMANDE_AIDE);
+    write(sockfd, buffer, strlen(buffer));
 }
 
 void afficher_aide() {
