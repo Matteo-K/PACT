@@ -66,7 +66,7 @@ int gestion_commande(PGconn *conn, char *tokken_connexion, char buffer[], int so
 
     // Aide de commande
     } else if (strncmp(buffer, COMMANDE_CONNEXION, strlen(COMMANDE_CONNEXION)) == 0) {
-        strcpy(tokken_connexion, "tokken_test");
+        strcpy(tokken_connexion, "467014f1de2617c186a0c35e6d512a2b");
 
     // Déconnexion client
     } else if (strncmp(buffer, "BYE BYE\r", 8) == 0) {
@@ -213,6 +213,7 @@ void ajouter_logs(PGconn *conn, char *tokken_connexion, struct sockaddr_in clien
         char *result = execute_requete(conn, "SELECT idu FROM pact._utilisateur WHERE apikey = $1;", 1, paramValues);
         strcpy(identiteUser, result);
 
+        identiteUser[strlen(identiteUser) - 1] = '\0';
     } else {
         strcpy(identiteUser, "inconnue");
     }
