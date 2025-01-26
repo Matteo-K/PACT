@@ -41,6 +41,12 @@ extern const char *CHEMIN_LOGS;
 /// @brief Character String: commande d'envoie de message
 #define COMMANDE_MESSAGE "MSG:"
 
+/// @brief Character String: Déconnexion utilisateur
+#define COMMANDE_DECONNECTE "BYE BYE"
+
+/// @brief Character String: Affiche l'aide des commandes
+#define COMMANDE_AIDE "AIDE"
+
 /// @brief Character String: Arrête le serveur
 #define COMMANDE_STOP "STOP"
 

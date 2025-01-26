@@ -32,6 +32,7 @@ CREATE TABLE _nonAdmin (
 CREATE TABLE _pro (
   idU INT PRIMARY KEY,
   denomination VARCHAR(255) UNIQUE NOT NULL,
+  apikey VARCHAR(255) DEFAULT NULL,
   CONSTRAINT _pro_fk_nonAdmin
       FOREIGN KEY (idU) 
       REFERENCES _nonAdmin(idU)

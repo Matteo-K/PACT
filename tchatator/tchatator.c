@@ -11,6 +11,8 @@
 
 #include <netinet/in.h>
 
+#include <postgresql/libpq-fe.h>
+
 #include "bdd.h"
 #include "fonction_serveur.h"
 #include "const.h"
@@ -32,6 +34,8 @@ int main(int argc, char *argv[]) {
     sigaction(SIGUSR1, &sa, NULL);
 
     int sockfd = init_socket();
+
+    PGconn *conn = init_bdd();
 
     // Mise en écoute
     if (listen(sockfd, 1) < 0) {
@@ -67,6 +71,9 @@ int main(int argc, char *argv[]) {
       }
 
       if (pid == 0) {
+
+        char tokken_connexion[BUFFER_SIZE] = "";
+
         while (running > 0) {
           // Lecture de commande
           memset(buffer, 0, sizeof(buffer));
@@ -76,7 +83,7 @@ int main(int argc, char *argv[]) {
             break;
           }
 
-          running = gestion_commande(buffer, newsockfd);
+          running = gestion_commande(conn, tokken_connexion, buffer, newsockfd);
         }
 
         close(newsockfd);
@@ -97,6 +104,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Fermeture des sockets
+    PQfinish(conn);
     close(sockfd);
   }
   return 0;

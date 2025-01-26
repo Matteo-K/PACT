@@ -13,10 +13,10 @@ fi
 
 # Exécution de tchatator
 echo "Exécution du programme tchatator"
-./tchatator
+./tchatator "$@"
 
 # Nettoyage des fichiers exécutables
 echo "Nettoyage : suppression des fichiers exécutables"
-rm -f tchatator "$@"
+rm -f tchatator
 
 echo "Fin du script."

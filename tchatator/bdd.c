@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include <postgresql/libpq-fe.h>
 
 #include "bdd.h"
@@ -26,19 +27,18 @@ PGconn *init_bdd() {
     // Afficher le statut de la connexion
     switch (PQstatus(conn)) {
         case CONNECTION_STARTED:
-            printf("Connexion en cours...\n");
+            printf("Connexion BDD en cours...\n");
             break;
         case CONNECTION_MADE:
-            printf("Connexion établie avec succès !\n");
+            printf("Connexion BDD établie avec succès !\n");
             break;
         case CONNECTION_OK:
-            printf("Connexion OK.\n");
+            printf("Connexion BDD OK.\n");
             break;
         default:
-            printf("Statut de connexion inconnu.\n");
+            printf("Statut de connexion BDD inconnu.\n");
     }
 
-    // Fermer la connexion à la fin
     return conn;
 }
 

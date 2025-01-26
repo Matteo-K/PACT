@@ -16,7 +16,7 @@ const int TAILLE_MAX_MSG = 300;
 const int NB_MAX_BLOC_MSQ = 20;
 const int NB_MAX_MSQ_MIN = 12;
 const int NB_MAX_MSQ_HR = 90;
-const char *CHEMIN_LOGS = "LOGS";
+const char *CHEMIN_LOGS = "LOGS.log";
 
 // connexion bdd
 const char *pgHost = "the-void.ventsdouest.dev";

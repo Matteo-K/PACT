@@ -294,7 +294,7 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ isLoggedIn: true }) // Envoyez toute donnée supplémentaire ici si nécessaire
+            body: JSON.stringify({ membre: true}) // Envoyez toute donnée supplémentaire ici si nécessaire
         })
         .then(response => response.json())
         .then(data => {
