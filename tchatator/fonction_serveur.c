@@ -17,6 +17,8 @@
 
 #include <netinet/in.h>
 
+#include <postgresql/libpq-fe.h>
+
 #include "fonction_serveur.h"
 #include "const.h"
 
@@ -48,7 +50,7 @@ int init_socket() {
   return sockfd;
 }
 
-int gestion_commande(char *tokken_connexion, char buffer[], int sockfd) {
+int gestion_commande(PGconn *conn, char *tokken_connexion, char buffer[], int sockfd) {
     int running = 1;
 
     printf("Commande reçu : %s\n", buffer);
@@ -133,6 +135,9 @@ void afficher_commande_aide(int sockfd) {
     write(sockfd, buffer, strlen(buffer));
 
     snprintf(buffer, sizeof(buffer), "  %s <clé api>        Connexion au service\n", COMMANDE_CONNEXION);
+    write(sockfd, buffer, strlen(buffer));
+
+    snprintf(buffer, sizeof(buffer), "  %s                  Déconnexion du service\n", COMMANDE_DECONNECTE);
     write(sockfd, buffer, strlen(buffer));
 
     snprintf(buffer, sizeof(buffer), "  %s                  Afficher la version\n", COMMANDE_MESSAGE);

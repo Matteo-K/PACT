@@ -11,11 +11,12 @@
 int init_socket();
 
 /// @brief Gestion des commandes du serveur
+/// @param conn in/out: connexion avec la bdd
 /// @param tokken_connexion in/out: tokken de connexion de l'utilisateur
 /// @param buffer in: buffer de la commande reçu
 /// @param sockfd in: descripteur du client
 /// @return condition d'arrêt du serveur
-int gestion_commande(char *tokken_connexion, char buffer[], int sockfd);
+int gestion_commande(PGconn *conn, char *tokken_connexion, char buffer[], int sockfd);
 
 /// @brief Affichage des commandes d'aide avec HELP côté client
 void afficher_commande_aide(int sockfd);

@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include <postgresql/libpq-fe.h>
 
 #include "bdd.h"
