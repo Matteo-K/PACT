@@ -281,7 +281,47 @@
             <button type="submit" id="boutonInscription">Valider</button>
             
         </form>
+        <section id="apiKey">
+            <?php
+            $stmt = $conn -> prepare ("SELECT * from pact._pro WHERE idu = $userId");
+            $stmt -> execute();
+            $infoPro = $stmt -> fetch(PDO::FETCH_ASSOC);
+            ?>
+            <p>Votre Clé API :</p>
+            <?php if($infoPro["apikey"]){?>
+                <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
+                <p onclick="generateAPIkey()">Regénérer ma clé API</p>
+            <?php }else{?>
+                <p id = "valueAPIkey"></p>
+                <p onclick="generateAPIkey()">Générer ma clé API</p>
+            <?php } ?>
+        </section>
     </body>
+    <script>
+        function generateAPIkey() {
+            fetch('generateAPIkey.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ membre: false }) // Envoyez toute donnée supplémentaire ici si nécessaire
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Traitement de la réponse
+                if (data.status === 'success') {
+                    alert('Clé API générée avec succès : ' + data.apikey);
+                    document.getElementById("valueAPIkey").innerHTML = data.apikey;
+                } else {
+                    alert('Erreur : ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la requête fetch :', error);
+                alert('Erreur lors de la requête fetch : ' + error.message);
+            });
+        }
+    </script>
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
 
