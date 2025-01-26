@@ -17,6 +17,6 @@ echo "Exécution du programme tchatator"
 
 # Nettoyage des fichiers exécutables
 echo "Nettoyage : suppression des fichiers exécutables"
-rm -f bdd tchatator
+rm -f tchatator "$@"
 
 echo "Fin du script."

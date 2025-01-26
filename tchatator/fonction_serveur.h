@@ -16,6 +16,18 @@ int init_socket();
 /// @return condition d'arrêt du serveur
 int gestion_commande(char buffer[], int sockfd);
 
+/// @brief Affichage de l'aide avec --help/-h
+void afficher_aide();
+
+/// @brief Affichage des logs avec --verbose/-b
+void afficher_logs();
+
+void ajouter_logs(char *commande);
+
+void gestion_option(int argc, char *argv[]);
+
+void killChld(int sig, siginfo_t *info, void *context);
+
 char *trim(char *str);
 
 #endif // FONCTION_SERVEUR_H
