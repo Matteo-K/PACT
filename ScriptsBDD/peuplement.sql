@@ -867,6 +867,6 @@ INSERT INTO _offrePrestation_inclu(idOffre,nomPresta)
 VALUES (4,'Repas');
 
 
-
-INSERT INTO vueMessages (nomExpediteur, idExpediteur, contenuMessage, dateMessage, typeExpediteur, nomReceveur, idReceveur)
-VALUES ('membre1', 5, 'Bonjour, avez-vous un devis ?', CURRENT_TIMESTAMP, 'membre', 'Patrick', 4);
+--EXEMPLE
+-- INSERT INTO vueMessages (nomExpediteur, idExpediteur, contenuMessage, dateMessage, typeExpediteur, nomReceveur, idReceveur)
+-- VALUES ('membre1', 5, 'Bonjour, avez-vous un devis ?', CURRENT_TIMESTAMP, 'membre', 'Patrick', 4); 
