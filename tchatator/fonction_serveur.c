@@ -119,7 +119,7 @@ int gestion_commande(PGconn *conn, char *tokken_connexion, char buffer[], int so
         }
 
     } else {
-        const char *response = "Vous devez vous connecter pour accéder au SERVICE\nCommande d'aide : ";
+        const char *response = "Vous devez vous authentifier pour accéder au SERVICE\nCommande d'aide : ";
         write(sockfd, response, strlen(response));
         write(sockfd, COMMANDE_AIDE, strlen(COMMANDE_AIDE));
         write(sockfd, "\n", 1);
@@ -213,6 +213,8 @@ void ajouter_logs(PGconn *conn, char *tokken_connexion, struct sockaddr_in clien
         char *result = execute_requete(conn, "SELECT idu FROM pact._utilisateur WHERE apikey = $1;", 1, paramValues);
         strcpy(identiteUser, result);
 
+        // retire \n puis \r
+        identiteUser[strlen(identiteUser) - 1] = '\0';
         identiteUser[strlen(identiteUser) - 1] = '\0';
     } else {
         strcpy(identiteUser, "inconnue");
