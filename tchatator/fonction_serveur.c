@@ -104,11 +104,7 @@ void afficher_aide() {
 }
 
 void afficher_logs() {
-    printf("Usage : ./tchatator [options]\n");
-    printf("Options :\n");
-    printf("  -h, --help        Afficher cette aide\n");
-    printf("  -v, --version     Afficher la version\n");
-    printf("  -b, --verbose    Afficher les logs\n");
+    open();
 }
 
 void ajouter_logs(char commande[]) {
@@ -122,23 +118,23 @@ void gestion_option(int argc, char *argv[]) {
     static struct option long_options[] = {
         {"help",    no_argument,       0, 'h'},
         {"version", no_argument,       0, 'v'},
-        {"verbose",  required_argument, 0, 'b'},
+        {"verbose",  no_argument, 0, 'b'},
         {0, 0, 0, 0}
     };
 
-    while ((opt = getopt_long(argc, argv, "hvs:", long_options, NULL)) != -1) {
+    while ((opt = getopt_long(argc, argv, "hvb", long_options, NULL)) != -1) {
         switch (opt) {
             case 'h': // Option -h ou --help
                 afficher_aide();
                 break;
             case 'v': // Option -v ou --version
-                printf("Version 1.0.0\n");
+                printf("Tchatator (The Void) - Version 1.0.0\n");
                 break;
             case 'b': // Option -b ou --verbose
                 afficher_logs();
                 break;
             case '?':  // Option inconnue
-                printf("Commande inconnue, --help pour voir les options");
+                printf("Commande inconnue, --help pour voir les options\n");
                 break;
         }
     }
