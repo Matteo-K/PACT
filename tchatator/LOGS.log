@@ -1,11 +1,1 @@
-# Exemple
-2025-01-25 14:33:12 [INFO] LOGIN: <clé api> 200 OK
-2025-01-25 14:34:02 [INFO] MSG: ...
-2025-01-25 14:34:15 [ERROR] Database connection failed: Timeout
-2025-01-25 14:34:50 [DEBUG] User login: username=johndoe
----
-
-2025-01-26 18:40:41 [INFO] 127.0.0.1 - LOGIN:
-2025-01-26 18:40:54 [INFO] 127.0.0.1 - HELLO
-2025-01-26 18:41:05 [INFO] 127.0.0.1 - BYE BYE
-2025-01-26 18:41:18 [INFO] 127.0.0.1 - BYE BYE
+2025-01-26 18:43:21 [INFO] - 127.0.0.1 - STOP
