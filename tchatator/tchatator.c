@@ -72,21 +72,37 @@ int main(int argc, char *argv[]) {
 
       if (pid == 0) {
 
-        char tokken_connexion[BUFFER_SIZE] = "";
+        // Récupérer l'adresse IP du client
+        char client_ip[INET_ADDRSTRLEN];
+
+        if (inet_ntop(AF_INET, &client_addr.sin_addr, client_ip, sizeof(client_ip)) == NULL) {
+            perror("Erreur lors de la conversion de l'adresse IP");
+            exit(1);
+        }
+
+        tClient utilisateur = {
+          .identiteUser = "inconnue",
+          .tokken_connexion = "",
+          .client_ip = "",
+          .type = "",
+          .client_addr = client_addr,
+          .sockfd = newsockfd
+        };
+
 
         while (running > 0) {
           // Lecture de commande
           memset(buffer, 0, sizeof(buffer));
-          int n = read(newsockfd, buffer, sizeof(buffer) - 1);
+          int n = read(utilisateur.sockfd, buffer, sizeof(buffer) - 1);
           if (n < 0) {
             perror("Erreur lors de la lecture du message");
             break;
           }
 
-          running = gestion_commande(conn, tokken_connexion, buffer, newsockfd, client_addr);
+          running = gestion_commande(conn, buffer, &utilisateur);
         }
 
-        close(newsockfd);
+        close(utilisateur.sockfd);
 
         if (running == -1) {
           kill(getppid(), SIGUSR1);

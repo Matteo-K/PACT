@@ -3,11 +3,30 @@
  * @author Matteo-K, Gabriel-F, Kylian-H, Ewen-J
  */
 
+#include <arpa/inet.h>
+
 #ifndef CONST_H
 #define CONST_H
 
 #define BUFFER_SIZE 512
 #define NB_CONNEXION_MAX 50
+
+// type
+typedef struct {
+  char identiteUser[BUFFER_SIZE / 3];
+  char tokken_connexion[BUFFER_SIZE];
+  char client_ip[INET_ADDRSTRLEN];
+  char type[BUFFER_SIZE];
+  struct sockaddr_in client_addr;
+  int sockfd;
+} tClient;
+
+// constante
+/// @brief Character String: type membre d'un client
+#define TYPE_MEMBRE "membre";
+
+/// @brief Character String: Chemin fichier logs
+#define TYPE_PRO "pro";
 
 // paramètre
 /// @brief Integer: port de connexion au serveur

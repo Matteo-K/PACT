@@ -3,6 +3,8 @@
  * @author Matteo-K, Gabriel-F, Kylian-H, Ewen-J
  */
 
+#include "const.h"
+
 #ifndef FONCTION_SERVEUR_H
 #define FONCTION_SERVEUR_H
 
@@ -12,15 +14,14 @@ int init_socket();
 
 /// @brief Gestion des commandes du serveur
 /// @param conn in/out: connexion avec la bdd
-/// @param tokken_connexion in/out: tokken de connexion de l'utilisateur
+/// @param utilisateur in/out: Information de l'utilisateur
 /// @param buffer in: buffer de la commande reçu
-/// @param sockfd in: descripteur du client
 /// @return condition d'arrêt du serveur
-int gestion_commande(PGconn *conn, char *tokken_connexion, char buffer[], int sockfd, struct sockaddr_in client_addr);
+int gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur);
 
 /// @brief Affichage des commandes d'aide avec HELP côté client
-/// @param sockfd in: descripteur du client
-void afficher_commande_aide(int sockfd);
+/// @param utilisateur in: information de l'utilisateur
+void afficher_commande_aide(tClient utilisateur);
 
 /// @brief Affichage de l'aide avec --help/-h
 void afficher_aide();
@@ -29,10 +30,10 @@ void afficher_aide();
 void afficher_logs();
 
 /// @brief Ajoute dans les logs l'action du client
-/// @param sockfd in: descripteur du client
+/// @param utilisateur in: information de l'utilisateur
 /// @param commande in: commande du client
 /// @param type in: type de message. ex: info, error, debug
-void ajouter_logs(PGconn *conn, char *tokken_connexion, struct sockaddr_in client_addr, char *commande, char *type);
+void ajouter_logs(PGconn *conn, tClient utilisateur, char *commande, char *type);
 
 void gestion_option(int argc, char *argv[]);
 

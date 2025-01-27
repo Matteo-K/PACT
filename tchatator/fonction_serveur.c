@@ -54,39 +54,39 @@ int init_socket() {
   return sockfd;
 }
 
-int gestion_commande(PGconn *conn, char *tokken_connexion, char buffer[], int sockfd, struct sockaddr_in client_addr) {
+int gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
     int running = 1;
 
     printf("Commande reçu : %s\n", buffer);
-    ajouter_logs(conn, tokken_connexion, client_addr, buffer, "info");
+    ajouter_logs(conn, *utilisateur, buffer, "info");
 
     // L'utilisateur doit se connecter pour utiliser le service
     if (strncmp(buffer, COMMANDE_AIDE, strlen(COMMANDE_AIDE)) == 0) {
-        afficher_commande_aide(sockfd);
+        afficher_commande_aide(*utilisateur);
 
     // Aide de commande
     } else if (strncmp(buffer, COMMANDE_CONNEXION, strlen(COMMANDE_CONNEXION)) == 0) {
-        strcpy(tokken_connexion, "467014f1de2617c186a0c35e6d512a2b");
+        strcpy(utilisateur->tokken_connexion, "467014f1de2617c186a0c35e6d512a2b");
 
     // Déconnexion client
     } else if (strncmp(buffer, "BYE BYE\r", 8) == 0) {
         const char *response = "Au revoir !\n";
-        write(sockfd, response, strlen(response));
+        write(utilisateur->sockfd, response, strlen(response));
         running = 0;
 
     // Arrêt serveur
     } else if(strncmp(buffer, COMMANDE_STOP, strlen(COMMANDE_STOP)) == 0) {
         const char *response = "Arrêt du serveur.\n";
         printf("%s", response);
-        write(sockfd, response, strlen(response));
+        write(utilisateur->sockfd, response, strlen(response));
         running = -1;
 
     // Commande du service
-    } else if (tokken_connexion[0] != '\0') {
+    } else if (utilisateur->tokken_connexion[0] != '\0') {
 
         if (strncmp(buffer, "HELLO\r", 6) == 0) {
             const char *response = "COUCOU LES GENS\n";
-            write(sockfd, response, strlen(response));
+            write(utilisateur->sockfd, response, strlen(response));
 
         } else if (strncmp(buffer, "BONJOUR:", 8) == 0) {
             char *name_part = buffer + 8;
@@ -103,53 +103,53 @@ int gestion_commande(PGconn *conn, char *tokken_connexion, char buffer[], int so
 
                 char response[BUFFER_SIZE];
                 snprintf(response, sizeof(response), "Bonjour, %s %s !\n", first_name, last_name);
-                write(sockfd, response, strlen(response));
+                write(utilisateur->sockfd, response, strlen(response));
             } else {
                 const char *response = "Erreur : veuillez inclure une virgule entre le prénom et le nom.\n";
-                write(sockfd, response, strlen(response));
+                write(utilisateur->sockfd, response, strlen(response));
             }
 
         } else if (strncmp(buffer, COMMANDE_MESSAGE, strlen(COMMANDE_MESSAGE)) == 0) {
 
         } else {
             const char *response = "Commande inconnue.\nCommande d'aide : ";
-            write(sockfd, response, strlen(response));
-            write(sockfd, COMMANDE_AIDE, strlen(COMMANDE_AIDE));
-            write(sockfd, "\n", 1);
+            write(utilisateur->sockfd, response, strlen(response));
+            write(utilisateur->sockfd, COMMANDE_AIDE, strlen(COMMANDE_AIDE));
+            write(utilisateur->sockfd, "\n", 1);
         }
 
     } else {
         const char *response = "Vous devez vous authentifier pour accéder au SERVICE\nCommande d'aide : ";
-        write(sockfd, response, strlen(response));
-        write(sockfd, COMMANDE_AIDE, strlen(COMMANDE_AIDE));
-        write(sockfd, "\n", 1);
+        write(utilisateur->sockfd, response, strlen(response));
+        write(utilisateur->sockfd, COMMANDE_AIDE, strlen(COMMANDE_AIDE));
+        write(utilisateur->sockfd, "\n", 1);
     }
 
 
     return running;
 }
 
-void afficher_commande_aide(int sockfd) {
+void afficher_commande_aide(tClient utilisateur) {
     char buffer[BUFFER_SIZE];
 
     // Construire et envoyer chaque partie du message
     snprintf(buffer, sizeof(buffer), "Usage : [Commande]: [params]\n");
-    write(sockfd, buffer, strlen(buffer));
+    write(utilisateur.sockfd, buffer, strlen(buffer));
 
     snprintf(buffer, sizeof(buffer), "Commandes :\n");
-    write(sockfd, buffer, strlen(buffer));
+    write(utilisateur.sockfd, buffer, strlen(buffer));
 
     snprintf(buffer, sizeof(buffer), "  %s <clé api>        Connexion au service\n", COMMANDE_CONNEXION);
-    write(sockfd, buffer, strlen(buffer));
+    write(utilisateur.sockfd, buffer, strlen(buffer));
 
     snprintf(buffer, sizeof(buffer), "  %s                  Déconnexion du service\n", COMMANDE_DECONNECTE);
-    write(sockfd, buffer, strlen(buffer));
+    write(utilisateur.sockfd, buffer, strlen(buffer));
 
     snprintf(buffer, sizeof(buffer), "  %s                  Afficher la version\n", COMMANDE_MESSAGE);
-    write(sockfd, buffer, strlen(buffer));
+    write(utilisateur.sockfd, buffer, strlen(buffer));
 
     snprintf(buffer, sizeof(buffer), "  %s                  Afficher cette aide\n", COMMANDE_AIDE);
-    write(sockfd, buffer, strlen(buffer));
+    write(utilisateur.sockfd, buffer, strlen(buffer));
 }
 
 void afficher_aide() {
@@ -183,7 +183,7 @@ void afficher_logs() {
     close(fd);
 }
 
-void ajouter_logs(PGconn *conn, char *tokken_connexion, struct sockaddr_in client_addr, char *commande, char *type) {
+void ajouter_logs(PGconn *conn, tClient utilisateur, char *commande, char *type) {
 
     int fd = open(CHEMIN_LOGS, O_WRONLY | O_APPEND);
     if (fd < 0) {
@@ -198,30 +198,22 @@ void ajouter_logs(PGconn *conn, char *tokken_connexion, struct sockaddr_in clien
     char date_buff[BUFFER_SIZE / 2];
     snprintf(date_buff, sizeof(date_buff), "%d-%02d-%02d %02d:%02d:%02d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour + 1, tm.tm_min, tm.tm_sec);
 
-    // Récupérer l'adresse IP du client
-    char client_ip[INET_ADDRSTRLEN];
+    // // récupération de l'idu
+    // if (strcmp(utilisateur.tokken_connexion, "") != 0) {
 
-    if (inet_ntop(AF_INET, &client_addr.sin_addr, client_ip, sizeof(client_ip)) == NULL) {
-        perror("Erreur lors de la conversion de l'adresse IP");
-        exit(1);
-    }
+    //     const char *paramValues[] = {utilisateur.tokken_connexion};
+    //     char *result = execute_requete(conn, "SELECT idu FROM pact._utilisateur WHERE apikey = $1;", 1, paramValues);
+    //     strcpy(identiteUser, result);
 
-    char identiteUser[BUFFER_SIZE / 3];
-    if (strcmp(tokken_connexion, "") != 0) {
-
-        const char *paramValues[] = {tokken_connexion};
-        char *result = execute_requete(conn, "SELECT idu FROM pact._utilisateur WHERE apikey = $1;", 1, paramValues);
-        strcpy(identiteUser, result);
-
-        // retire \n puis \r
-        identiteUser[strlen(identiteUser) - 1] = '\0';
-        identiteUser[strlen(identiteUser) - 1] = '\0';
-    } else {
-        strcpy(identiteUser, "inconnue");
-    }
+    //     // retire \n puis \r
+    //     identiteUser[strlen(identiteUser) - 1] = '\0';
+    //     identiteUser[strlen(identiteUser) - 1] = '\0';
+    // } else {
+    //     strcpy(identiteUser, "inconnue");
+    // }
 
     char info[BUFFER_SIZE];
-    snprintf(info, sizeof(info), "%s - %s - %s", identiteUser, client_ip, commande);
+    snprintf(info, sizeof(info), "%s - %s - %s", utilisateur.identiteUser, utilisateur.client_ip, commande);
 
     if (strcmp(type, "info") == 0) {
         snprintf(buffer, sizeof(buffer), "%s [INFO] %s", date_buff, info);
