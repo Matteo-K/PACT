@@ -157,7 +157,7 @@ void afficher_aide() {
     printf("Options :\n");
     printf("  -h, --help        Afficher cette aide\n");
     printf("  -v, --version     Afficher la version\n");
-    printf("  -vb, --verbose    Afficher les logs\n");
+    printf("  -b, --verbose    Afficher les logs\n");
 }
 
 void afficher_logs() {
