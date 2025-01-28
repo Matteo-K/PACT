@@ -17,7 +17,6 @@ typedef struct {
   char tokken_connexion[BUFFER_SIZE];
   char client_ip[INET_ADDRSTRLEN];
   char type[BUFFER_SIZE];
-  struct sockaddr_in client_addr;
   int sockfd;
 } tClient;
 

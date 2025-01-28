@@ -85,7 +85,6 @@ int main(int argc, char *argv[]) {
           .tokken_connexion = "",
           .client_ip = "",
           .type = "",
-          .client_addr = client_addr,
           .sockfd = newsockfd
         };
 

@@ -4,3 +4,6 @@ yyyy-mm-dd hh-mm-ss [TYPE] identité - adresse ip - Commande
 2025-01-26 19:32:42 [INFO] 15 - 127.0.0.1 - BYE BYE
 2025-01-26 19:33:31 [INFO] inconnue - 127.0.0.1 - STOP
 2025-01-26 19:52:39 [INFO] inconnue - 127.0.0.1 - STOP
+2025-01-28 23:48:37 [INFO] inconnue -  - LOGIN:
+2025-01-28 23:48:43 [INFO] inconnue -  - HELLO
+2025-01-28 23:49:56 [INFO] inconnue -  - MSG: destiantaire | message complet

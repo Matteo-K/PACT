@@ -110,7 +110,7 @@ int gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
             }
 
         } else if (strncmp(buffer, COMMANDE_MESSAGE, strlen(COMMANDE_MESSAGE)) == 0) {
-
+            saisit_message(conn, *utilisateur, buffer);
         } else {
             const char *response = "Commande inconnue.\nCommande d'aide : ";
             write(utilisateur->sockfd, response, strlen(response));
@@ -129,6 +129,17 @@ int gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
     return running;
 }
 
+void saisit_message(PGconn *conn, tClient utilisateur, char buffer[]) {
+    printf("buffer : %s\n", buffer);
+    // char *name_part = buffer + 8;
+    // char *newline = strstr(name_part, "\r");
+    // if (newline) {
+    //     *newline = '\0';
+    // }
+    // char *comma = strchr(name_part, '|');
+    // printf("comma : %s\n", comma);
+}
+
 void afficher_commande_aide(tClient utilisateur) {
     char buffer[BUFFER_SIZE];
 
@@ -139,13 +150,13 @@ void afficher_commande_aide(tClient utilisateur) {
     snprintf(buffer, sizeof(buffer), "Commandes :\n");
     write(utilisateur.sockfd, buffer, strlen(buffer));
 
-    snprintf(buffer, sizeof(buffer), "  %s <clé api>        Connexion au service\n", COMMANDE_CONNEXION);
+    snprintf(buffer, sizeof(buffer), "  %s <clé api>                   Connexion au service\n", COMMANDE_CONNEXION);
     write(utilisateur.sockfd, buffer, strlen(buffer));
 
-    snprintf(buffer, sizeof(buffer), "  %s                  Déconnexion du service\n", COMMANDE_DECONNECTE);
+    snprintf(buffer, sizeof(buffer), "  %s                             Déconnexion du service\n", COMMANDE_DECONNECTE);
     write(utilisateur.sockfd, buffer, strlen(buffer));
 
-    snprintf(buffer, sizeof(buffer), "  %s                  Afficher la version\n", COMMANDE_MESSAGE);
+    snprintf(buffer, sizeof(buffer), "  %s <destinataire> | <message>  Afficher la version\n", COMMANDE_MESSAGE);
     write(utilisateur.sockfd, buffer, strlen(buffer));
 
     snprintf(buffer, sizeof(buffer), "  %s                  Afficher cette aide\n", COMMANDE_AIDE);
@@ -197,20 +208,6 @@ void ajouter_logs(PGconn *conn, tClient utilisateur, char *commande, char *type)
     struct tm tm = *localtime(&t);
     char date_buff[BUFFER_SIZE / 2];
     snprintf(date_buff, sizeof(date_buff), "%d-%02d-%02d %02d:%02d:%02d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour + 1, tm.tm_min, tm.tm_sec);
-
-    // // récupération de l'idu
-    // if (strcmp(utilisateur.tokken_connexion, "") != 0) {
-
-    //     const char *paramValues[] = {utilisateur.tokken_connexion};
-    //     char *result = execute_requete(conn, "SELECT idu FROM pact._utilisateur WHERE apikey = $1;", 1, paramValues);
-    //     strcpy(identiteUser, result);
-
-    //     // retire \n puis \r
-    //     identiteUser[strlen(identiteUser) - 1] = '\0';
-    //     identiteUser[strlen(identiteUser) - 1] = '\0';
-    // } else {
-    //     strcpy(identiteUser, "inconnue");
-    // }
 
     char info[BUFFER_SIZE];
     snprintf(info, sizeof(info), "%s - %s - %s", utilisateur.identiteUser, utilisateur.client_ip, commande);

@@ -19,6 +19,8 @@ int init_socket();
 /// @return condition d'arrêt du serveur
 int gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur);
 
+void saisit_message(PGconn *conn, tClient utilisateur, char buffer[]);
+
 /// @brief Affichage des commandes d'aide avec HELP côté client
 /// @param utilisateur in: information de l'utilisateur
 void afficher_commande_aide(tClient utilisateur);
