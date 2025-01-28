@@ -121,21 +121,3 @@ int connexion(PGconn *conn, tClient *utilisateur){
     }
     return -1;
 }
-
-
-int main() {
-    PGconn *conn = init_bdd();
-
-    tClient user1 = {
-          .identiteUser = "inconnue",
-          .tokken_connexion = "",
-          .client_ip = "",
-          .type = "",
-          .client_addr = 123,
-          .sockfd = 123
-        };
-
-    connexion(conn, &user1);
-
-    PQfinish(conn);
-}

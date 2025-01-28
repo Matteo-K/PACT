@@ -3,6 +3,8 @@
  * @author Matteo-K, Gabriel-F, Kylian-H, Ewen-J
  */
 
+#include "const.h"
+
 #ifndef BDD_H
 #define BDD_H
 
