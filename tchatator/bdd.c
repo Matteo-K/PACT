@@ -71,39 +71,71 @@ int trouveAPI(PGconn *conn, const char *requete) {
     return valeur; // Retourne la valeur entière
 }
 
-char *execute_requete(PGconn *conn, const char *requete, int nbPram, const char *paramValues[]) {
-    PGresult *res;
-    int nb, nbFields;
-    char *result_str = malloc(1024 * sizeof(char));
-    if (!result_str) {
-        fprintf(stderr, "Erreur d'allocation mémoire.\n");
-        exit(1);
-    }
-    result_str[0] = '\0';
 
-    res = PQexecParams(conn, requete, nbPram, NULL, paramValues, NULL, NULL, 0);
+int connexion(PGconn *conn, tClient *utilisateur){
 
-    if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-        fprintf(stderr, "Erreur lors de l'exécution de la requête : %s\n", PQerrorMessage(conn));
-        PQclear(res);
-        exit(1);
-    }
+    char cleAPI[50];
+    char requete[125];
+    int idu;
+    char requeteMembre[150];
+    char requetePro[150];
+    char requeteAdmin[150];
 
-    nb = PQntuples(res);
-    nbFields = PQnfields(res);
+    printf("Bienvenue sur le service de discussion Tchatator \nEntrez votre clé API : ");
+    scanf("%s", cleAPI);
 
-    if (nb == 0) {
-        strcat(result_str, "Aucun résultat trouvé.\n");
-    } else {
-        for (int i = 0; i < nb; i++) {
-            for (int j = 0; j < nbFields; j++) {
-                strcat(result_str, PQgetvalue(res, i, j));
-                strcat(result_str, "\t");
-            }
-            strcat(result_str, "\n");
+    sprintf(requete, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", cleAPI);
+
+    idu = trouveAPI(conn, requete);
+
+    if(idu != -1){
+        printf("Connexion réussie, utilisateur n°%d", idu);
+        *utilisateur->identiteUser = idu;
+        strcpy(utilisateur->tokken_connexion, cleAPI);
+
+        sprintf(requeteMembre, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
+        sprintf(requetePro, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
+        sprintf(requeteAdmin, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
+
+        if (trouveAPI(conn, requeteMembre) > 0){
+            strcpy(utilisateur->type, "membre");
+            printf("Vous êtes un membre");
         }
-    }
+        else if(trouveAPI(conn, requetePro) > 0){
+            strcpy(utilisateur->type, "pro");
+            printf("Vous êtes un professionnel");
+        }
+        else if (trouveAPI(conn, requeteAdmin) > 0){
+            strcpy(utilisateur->type, "admin");
+            printf("Vous êtes un administrateur");
+        }
+        else{
+            strcpy(utilisateur->type, "inconnu");
+            printf("Vous êtes un individu sans catégorie");
+        }
 
-    PQclear(res);
-    return result_str;
+        return idu;
+    }
+    else{
+        printf("Clé API inexistante, veuillez la consulter sur le site PACT, dans la section 'Mon compte'");
+    }
+    return -1;
+}
+
+
+int main() {
+    PGconn *conn = init_bdd();
+
+    tClient user1 = {
+          .identiteUser = "inconnue",
+          .tokken_connexion = "",
+          .client_ip = "",
+          .type = "",
+          .client_addr = 123,
+          .sockfd = 123
+        };
+
+    connexion(conn, &user1);
+
+    PQfinish(conn);
 }
