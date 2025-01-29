@@ -104,7 +104,7 @@ void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
     // Commande MSG
     } else if (strncmp(buffer, COMMANDE_MESSAGE, strlen(COMMANDE_MESSAGE)) == 0) {
         printf("%s\n", buffer);
-        saisit_message(conn, *utilisateur, buffer + strlen(COMMANDE_MESSAGE));
+        saisit_message(conn, utilisateur, buffer + strlen(COMMANDE_MESSAGE));
     
     // Commande Inconnue
     } else {
@@ -158,28 +158,39 @@ void connexion(PGconn *conn, tClient *utilisateur, char buffer[]) {
     }
 }
 
-void saisit_message(PGconn *conn, tClient utilisateur, char buffer[]) {
+void saisit_message(PGconn *conn, tClient *utilisateur, char buffer[]) {
 
     tExplodeRes result = explode(buffer, "|");
 
-    if (result.nbElement == 3) {
+    if (result.nbElement != 3) {
+        // Manque d'argument
+        if (result.nbElement < 3) {
+            envoie_erreur(conn, *utilisateur, REP_400_MISSING_ARGS);
+        // Trop d'argument
+        } else {
+            envoie_erreur(conn, *utilisateur, REP_400_TOO_MANY_ARGS);
+        }
 
     } else {
-        ajouter_logs(conn, utilisateur, "", "error");
+        for (int i = 0; i < result.nbElement; i++) {
+            printf("elements[%d]: %s\n", i, result.elements[i]);
+        }
     }
 
-    for (int i = 0; i < result.nbElement; i++) {
-        printf("elements[%d]: %s\n", i, result.elements[i]);
-    }
     freeExplodeResult(&result);
 }
 
-void renvoie_erreur(int code) {
-    char err[BUFFER_SIZE];
-    switch (code) {
-        case 200:
-            strcpy(err, "200/OK");
-    }
+void envoie_erreur(PGconn *conn, tClient utilisateur, char code_e[]) {
+    // ajout dans les logs
+    ajouter_logs(conn, utilisateur, code_e, "error");
+
+    // réponse client
+    char json_data[BUFFER_SIZE];
+
+    snprintf(json_data, sizeof(json_data), "{\n  \"statut\": \"%s\"\n}", code_e);
+    send_json_request(utilisateur.sockfd, json_data);
+
+    close(utilisateur.sockfd);
 }
 
 void afficher_commande_aide(tClient utilisateur) {

@@ -28,7 +28,13 @@ void connexion(PGconn *conn, tClient *utilisateur, char buffer[]);
 /// @param conn in/out: connexion avec la bdd
 /// @param utilisateur in/out: Information de l'utilisateur
 /// @param buffer in: buffer de la commande reçu
-void saisit_message(PGconn *conn, tClient utilisateur, char buffer[]);
+void saisit_message(PGconn *conn, tClient *utilisateur, char buffer[]);
+
+/// @brief mets à jour les logs et envoie un message à l'utilisateur
+/// @param conn in/out: connexion avec la bdd
+/// @param utilisateur in: Information de l'utilisateur
+/// @param code_e in: code de l'erreur
+void envoie_erreur(PGconn *conn, tClient utilisateur, char code_e[]);
 
 /// @brief Affichage des commandes d'aide avec HELP côté client
 /// @param utilisateur in: information de l'utilisateur
