@@ -56,7 +56,6 @@ int init_socket() {
 
 void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
 
-    printf("Commande reçu : %s\n", buffer);
     ajouter_logs(conn, *utilisateur, buffer, "info");
 
     // L'utilisateur doit se connecter pour utiliser le service
@@ -104,7 +103,8 @@ void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
 
     // Commande MSG
     } else if (strncmp(buffer, COMMANDE_MESSAGE, strlen(COMMANDE_MESSAGE)) == 0) {
-        saisit_message(conn, *utilisateur, buffer);
+        printf("%s\n", buffer);
+        saisit_message(conn, *utilisateur, buffer + strlen(COMMANDE_MESSAGE));
     
     // Commande Inconnue
     } else {
@@ -115,7 +115,7 @@ void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
     }
 }
 
-int connexion(PGconn *conn, tClient *utilisateur, char buffer[]) {
+void connexion(PGconn *conn, tClient *utilisateur, char buffer[]) {
 
     char cleAPI[50];
     char requete[125];
@@ -153,23 +153,25 @@ int connexion(PGconn *conn, tClient *utilisateur, char buffer[]) {
             strcpy(utilisateur->type, "inconnu");
 
         }
-
-        return idu;
     } else{
         printf("Clé API inexistante, veuillez la consulter sur le site PACT, dans la section 'Mon compte'");
     }
-    return -1;
 }
 
 void saisit_message(PGconn *conn, tClient utilisateur, char buffer[]) {
-    printf("buffer : %s\n", buffer);
-    char *name_part = buffer + strlen(COMMANDE_MESSAGE);
 
-    tExplodeRes result = explode(name_part, "|");
+    tExplodeRes result = explode(buffer, "|");
+
+    if (result.nbElement == 3) {
+
+    } else {
+        ajouter_logs(conn, utilisateur, "", "error");
+    }
 
     for (int i = 0; i < result.nbElement; i++) {
         printf("elements[%d]: %s\n", i, result.elements[i]);
     }
+    freeExplodeResult(&result);
 }
 
 void renvoie_erreur(int code) {
@@ -193,7 +195,7 @@ void afficher_commande_aide(tClient utilisateur) {
     snprintf(buffer, sizeof(buffer), "  %s <clé api>                   Connexion au service\n", COMMANDE_CONNEXION);
     write(utilisateur.sockfd, buffer, strlen(buffer));
 
-    snprintf(buffer, sizeof(buffer), "  %s <tokken> | <destinataire> | <message>  Saisir un message\n", COMMANDE_MESSAGE);
+    snprintf(buffer, sizeof(buffer), "  %s <tokken> | <destinataire_api> | <message>  Saisir un message\n", COMMANDE_MESSAGE);
     write(utilisateur.sockfd, buffer, strlen(buffer));
 
     snprintf(buffer, sizeof(buffer), "  %s                  Afficher cette aide\n", COMMANDE_AIDE);
@@ -231,7 +233,7 @@ void afficher_logs() {
     close(fd);
 }
 
-void ajouter_logs(PGconn *conn, tClient utilisateur, char *commande, char *type) {
+void ajouter_logs(PGconn *conn, tClient utilisateur, char *message, char *type) {
 
     int fd = open(CHEMIN_LOGS, O_WRONLY | O_APPEND);
     if (fd < 0) {
@@ -247,7 +249,7 @@ void ajouter_logs(PGconn *conn, tClient utilisateur, char *commande, char *type)
     snprintf(date_buff, sizeof(date_buff), "%d-%02d-%02d %02d:%02d:%02d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour + 1, tm.tm_min, tm.tm_sec);
 
     char info[BUFFER_SIZE];
-    snprintf(info, sizeof(info), "%s - %s - %s", utilisateur.identiteUser, utilisateur.client_ip, commande);
+    snprintf(info, sizeof(info), "%s - %s - %s", utilisateur.identiteUser, utilisateur.client_ip, message);
 
     if (strcmp(type, "info") == 0) {
         snprintf(buffer, sizeof(buffer), "%s [INFO] %s", date_buff, info);
@@ -330,12 +332,10 @@ void send_json_request(int sock, const char *json_body) {
 char *trim(char *str) {
     char *end;
 
-    // Trim leading space
     while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r') {
         str++;
     }
 
-    // All spaces?
     if (*str == 0) {
         return str;
     }
@@ -350,23 +350,49 @@ char *trim(char *str) {
     return str;
 }
 
-tExplodeRes explode(char *buffer, char *separateur) {
-
-    // Initialisation des résultats
+tExplodeRes explode(char buffer[], const char *separateur) {
     tExplodeRes result;
-    result.elements = malloc(10 * sizeof(char *));
     result.nbElement = 0;
+    result.elements = NULL;
     
-    char *element = trim(strtok(buffer, separateur));
+    char *tempBuffer = strdup(buffer);
+    if (!tempBuffer) {
+        perror("Erreur d'allocation mémoire");
+        exit(EXIT_FAILURE);
+    }
+    
+    char *token = strtok(tempBuffer, separateur);
+    while (token != NULL) {
 
-    while (element != NULL) {
+        token = trim(token);
 
-        result.elements[result.nbElement] = element;
+        // Allouage dynamique de la mémoire
+        result.elements = realloc(result.elements, (result.nbElement + 1) * sizeof(char *));
+        if (!result.elements) {
+            perror("Erreur de réallocation mémoire");
+            free(tempBuffer);
+            exit(EXIT_FAILURE);
+        }
+
+        // Ajout d'un élément
+        result.elements[result.nbElement] = strdup(token);
+        if (!result.elements[result.nbElement]) {
+            perror("Erreur d'allocation mémoire");
+            free(tempBuffer);
+            exit(EXIT_FAILURE);
+        }
+
         result.nbElement++;
-
-        // Récupérer le prochain élément
-        element = trim(strtok(NULL, separateur));
+        token = strtok(NULL, separateur);
     }
 
+    free(tempBuffer);
     return result;
+}
+
+void freeExplodeResult(tExplodeRes *result) {
+    for (int i = 0; i < result->nbElement; i++) {
+        free(result->elements[i]);
+    }
+    free(result->elements);
 }

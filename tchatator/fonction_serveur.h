@@ -18,10 +18,16 @@ int init_socket();
 /// @param buffer in: buffer de la commande reçu
 void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur);
 
-/// @brief Vérifie si l'utilisateur existe (avec sa clé API) et l'identifie
-/// @return renvoie le résultat de la commande / erreur
-int connexion(PGconn *conn, tClient *utilisateur, char buffer[]);
+/// @brief Connecte l'utilisateur au service en lui envoyant un tokken
+/// @param conn in/out: connexion avec la bdd
+/// @param utilisateur in/out: Information de l'utilisateur
+/// @param buffer in: buffer de la commande reçu
+void connexion(PGconn *conn, tClient *utilisateur, char buffer[]);
 
+/// @brief Ajout d'un message par l'utilisateur entre un pro et membre
+/// @param conn in/out: connexion avec la bdd
+/// @param utilisateur in/out: Information de l'utilisateur
+/// @param buffer in: buffer de la commande reçu
 void saisit_message(PGconn *conn, tClient utilisateur, char buffer[]);
 
 /// @brief Affichage des commandes d'aide avec HELP côté client
@@ -36,18 +42,43 @@ void afficher_logs();
 
 /// @brief Ajoute dans les logs l'action du client
 /// @param utilisateur in: information de l'utilisateur
-/// @param commande in: commande du client
+/// @param message in: message à ajouter dans les logs
 /// @param type in: type de message. ex: info, error, debug
-void ajouter_logs(PGconn *conn, tClient utilisateur, char *commande, char *type);
+void ajouter_logs(PGconn *conn, tClient utilisateur, char *message, char *type);
 
+/// @brief gère les options lors de l'execution du fichier
+/// @param argc in: nombre d'argument
+/// @param argv in: liste des arguments
 void gestion_option(int argc, char *argv[]);
 
+/// @brief arrête le service côté serveur par un signal
+/// @param sig in: siganl reçu
+/// @param info in: information sur le signal
+/// @param context in: argument nécessaire pour les signaux
 void killChld(int sig, siginfo_t *info, void *context);
 
+
+// fonction outils de manipulation
+/// @brief Envoie les requêtes json du côté client
+/// @param sock in: descripteur du socket
+/// @param json_body in: corps du json à envoyer
 void send_json_request(int sock, const char *json_body);
 
+// inspité du trim de d'autre language
+/// @brief Retire les espaces avant et après la chaine de character
+/// @param str in: chaine de character
+/// @return chaine de character traité
 char *trim(char *str);
 
-tExplodeRes explode(char *buffer, char *separateur);
+// inspité du explode de d'autre language
+/// @brief Sépare une chaine par un séparateur
+/// @param buffer in: chaine de character
+/// @param separateur in: séparateur de la chaine
+/// @return structure de la liste partie de chaine séparé
+tExplodeRes explode(char buffer[], const char *separateur);
+
+/// @brief libère l'allocation en mémoire de la structure
+/// @param result in/out: structure du résultat de l'explode
+void freeExplodeResult(tExplodeRes *result);
 
 #endif // FONCTION_SERVEUR_H

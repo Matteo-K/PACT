@@ -26,7 +26,7 @@ typedef struct {
     int nbElement;
 } tExplodeRes;
 
-// constante
+// Type utiliser
 /// @brief Character String: type membre d'un client
 #define TYPE_MEMBRE "membre"
 
@@ -35,6 +35,36 @@ typedef struct {
 
 /// @brief Character String: type admin d'un client
 #define TYPE_ADMIN "admin"
+
+
+// Réponse 
+/// @brief Character String: L'action c'est bien déroulé
+#define REP_200 "200/OK"
+
+/// @brief Character String: Client non identifié
+#define REP_401 "401/UNAUTH"
+
+/// @brief Character String: Message mal formaté
+#define REP_416 "416/MISFMT"
+
+/// @brief Character String: Manque d'argument
+#define REP_400_MISSING_ARGS "400/MISSING_ARGS"
+
+/// @brief Character String: Trop d'argument
+#define REP_400_TOO_MANY_ARGS "400/TOO_MANY_ARGS"
+
+/// @brief Character String: Client banni
+#define REP_403_BAN "403/CLIENT_BANNED"
+
+/// @brief Character String: Client bloqué
+#define REP_403_BLOCK "403/CLIENT_BLOCKED"
+
+/// @brief Character String: Utilisation non autorisée
+#define REP_403_UNAUTHORIZED_USE "403/UNAUTHORIZED_USE"
+
+/// @brief Character String: Quota dépassé pour la clé API
+#define REP_429_QUOTA_EXCEEDED "429/QUOTA_EXCEEDED"
+
 
 // paramètre
 /// @brief Integer: port de connexion au serveur
@@ -60,6 +90,7 @@ extern const int NB_MAX_MSQ_HR;
 
 /// @brief Character String: Chemin fichier logs
 extern const char *CHEMIN_LOGS;
+
 
 // Commande
 /// @brief Character String: commande de connexion

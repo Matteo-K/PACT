@@ -4,8 +4,7 @@ yyyy-mm-dd hh-mm-ss [TYPE] identité - adresse ip - Commande
 2025-01-26 19:32:42 [INFO] 15 - 127.0.0.1 - BYE BYE
 2025-01-26 19:33:31 [INFO] inconnue - 127.0.0.1 - STOP
 2025-01-26 19:52:39 [INFO] inconnue - 127.0.0.1 - STOP
-2025-01-29 17:14:26 [INFO] inconnue -  - zertyuiopmdfghjk;:dfghjklmùdfghjklmdfghjkl
-2025-01-29 17:15:12 [INFO] inconnue -  - LOGIN: 46
-2025-01-29 17:21:42 [INFO] inconnue -  - LOGIN:
-2025-01-29 17:23:09 [INFO] inconnue -  - LOGIN:
-2025-01-29 17:23:15 [INFO] inconnue -  - BONJOUR:
+2025-01-29 17:15:12 [INFO] inconnue -  - LOGIN: 462025-01-29 21:09:25 [INFO] inconnue -  - MSG: BONJOUR | OK
+2025-01-29 22:59:53 [INFO] inconnue -  - MSG: BONJOUR | paul
+2025-01-29 23:01:13 [INFO] inconnue -  - MSG: test| bonjour
+2025-01-29 23:01:13 [ERROR] inconnue -  - 
