@@ -16,8 +16,7 @@ int init_socket();
 /// @param conn in/out: connexion avec la bdd
 /// @param utilisateur in/out: Information de l'utilisateur
 /// @param buffer in: buffer de la commande reçu
-/// @return condition d'arrêt du serveur
-int gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur);
+void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur);
 
 /// @brief Vérifie si l'utilisateur existe (avec sa clé API) et l'identifie
 /// @return renvoie le résultat de la commande / erreur

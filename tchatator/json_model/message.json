@@ -1,3 +1,12 @@
 {
-  
+  "identifiant" : 0,
+  "horodatage" : "",
+  "horodatage_modif" : "",
+  "emetteur" : "",
+  "destinataire" : "",
+  "sens" : "",
+  "supprimé" : false,
+  "message" : "",
+  "taille_message" : 0,
+  "statut" : ""
 }

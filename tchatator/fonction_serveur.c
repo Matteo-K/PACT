@@ -54,8 +54,7 @@ int init_socket() {
   return sockfd;
 }
 
-int gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
-    int running = 1;
+void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
 
     printf("Commande reçu : %s\n", buffer);
     ajouter_logs(conn, *utilisateur, buffer, "info");
@@ -66,67 +65,54 @@ int gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
 
     // Aide de commande
     } else if (strncmp(buffer, COMMANDE_CONNEXION, strlen(COMMANDE_CONNEXION)) == 0) {
+        // Envoyé en json le tokken
+        const char *json_data = "{\"api_key\": \"your_api_key_here\"}";
+        send_json_request(utilisateur->sockfd, json_data);
         strcpy(utilisateur->tokken_connexion, "467014f1de2617c186a0c35e6d512a2b");
-
-    // Déconnexion client
-    } else if (strncmp(buffer, "BYE BYE\r", 8) == 0) {
-        const char *response = "Au revoir !\n";
-        write(utilisateur->sockfd, response, strlen(response));
-        running = 0;
 
     // Arrêt serveur
     } else if(strncmp(buffer, COMMANDE_STOP, strlen(COMMANDE_STOP)) == 0) {
-        const char *response = "Arrêt du serveur.\n";
-        printf("%s", response);
+        // tue le processus serveur
+        kill(getppid(), SIGUSR1);
+
+    // Commande Hello
+    } else if (strncmp(buffer, "HELLO\r", 6) == 0) {
+        const char *response = "COUCOU LES GENS\n";
         write(utilisateur->sockfd, response, strlen(response));
-        running = -1;
 
-    // Commande du service
-    } else if (utilisateur->tokken_connexion[0] != '\0') {
-
-        if (strncmp(buffer, "HELLO\r", 6) == 0) {
-            const char *response = "COUCOU LES GENS\n";
-            write(utilisateur->sockfd, response, strlen(response));
-
-        } else if (strncmp(buffer, "BONJOUR:", 8) == 0) {
-            char *name_part = buffer + 8;
-            char *newline = strstr(name_part, "\r");
-            if (newline) {
-                *newline = '\0';
-            }
-
-            char *comma = strchr(name_part, ',');
-            if (comma) {
-                *comma = '\0';
-                char *first_name = trim(name_part);
-                char *last_name = trim(comma + 1);
-
-                char response[BUFFER_SIZE];
-                snprintf(response, sizeof(response), "Bonjour, %s %s !\n", first_name, last_name);
-                write(utilisateur->sockfd, response, strlen(response));
-            } else {
-                const char *response = "Erreur : veuillez inclure une virgule entre le prénom et le nom.\n";
-                write(utilisateur->sockfd, response, strlen(response));
-            }
-
-        } else if (strncmp(buffer, COMMANDE_MESSAGE, strlen(COMMANDE_MESSAGE)) == 0) {
-            saisit_message(conn, *utilisateur, buffer);
-        } else {
-            const char *response = "Commande inconnue.\nCommande d'aide : ";
-            write(utilisateur->sockfd, response, strlen(response));
-            write(utilisateur->sockfd, COMMANDE_AIDE, strlen(COMMANDE_AIDE));
-            write(utilisateur->sockfd, "\n", 1);
+    // Commande Bonjour
+    } else if (strncmp(buffer, "BONJOUR:", 8) == 0) {
+        char *name_part = buffer + 8;
+        char *newline = strstr(name_part, "\r");
+        if (newline) {
+            *newline = '\0';
         }
 
+        char *comma = strchr(name_part, ',');
+        if (comma) {
+            *comma = '\0';
+            char *first_name = trim(name_part);
+            char *last_name = trim(comma + 1);
+
+            char response[BUFFER_SIZE];
+            snprintf(response, sizeof(response), "Bonjour, %s %s !\n", first_name, last_name);
+            write(utilisateur->sockfd, response, strlen(response));
+        } else {
+            const char *response = "Erreur : veuillez inclure une virgule entre le prénom et le nom.\n";
+            write(utilisateur->sockfd, response, strlen(response));
+        }
+
+    // Commande MSG
+    } else if (strncmp(buffer, COMMANDE_MESSAGE, strlen(COMMANDE_MESSAGE)) == 0) {
+        saisit_message(conn, *utilisateur, buffer);
+    
+    // Commande Inconnue
     } else {
-        const char *response = "Vous devez vous authentifier pour accéder au SERVICE\nCommande d'aide : ";
+        const char *response = "Commande inconnue.\nCommande d'aide : ";
         write(utilisateur->sockfd, response, strlen(response));
         write(utilisateur->sockfd, COMMANDE_AIDE, strlen(COMMANDE_AIDE));
         write(utilisateur->sockfd, "\n", 1);
     }
-
-
-    return running;
 }
 
 int connexion(PGconn *conn, tClient *utilisateur, char buffer[]) {
@@ -207,10 +193,7 @@ void afficher_commande_aide(tClient utilisateur) {
     snprintf(buffer, sizeof(buffer), "  %s <clé api>                   Connexion au service\n", COMMANDE_CONNEXION);
     write(utilisateur.sockfd, buffer, strlen(buffer));
 
-    snprintf(buffer, sizeof(buffer), "  %s                             Déconnexion du service\n", COMMANDE_DECONNECTE);
-    write(utilisateur.sockfd, buffer, strlen(buffer));
-
-    snprintf(buffer, sizeof(buffer), "  %s <destinataire> | <message>  Afficher la version\n", COMMANDE_MESSAGE);
+    snprintf(buffer, sizeof(buffer), "  %s <tokken> | <destinataire> | <message>  Saisir un message\n", COMMANDE_MESSAGE);
     write(utilisateur.sockfd, buffer, strlen(buffer));
 
     snprintf(buffer, sizeof(buffer), "  %s                  Afficher cette aide\n", COMMANDE_AIDE);

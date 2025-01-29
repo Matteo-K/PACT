@@ -18,7 +18,6 @@
 #include "const.h"
 
 
-pid_t liste_attente[NB_CONNEXION_MAX];
 int nb_liste_attente = 0;
 
 int main(int argc, char *argv[]) {
@@ -47,10 +46,6 @@ int main(int argc, char *argv[]) {
     printf("Serveur en attente de connexions sur le port %d...\n", PORT);
 
     printf("Connexion acceptée.\n");
-
-    char buffer[BUFFER_SIZE];
-
-    int running = 1;
 
     while (1) {
       // Acceptation d'une connexion
@@ -88,31 +83,22 @@ int main(int argc, char *argv[]) {
           .sockfd = newsockfd
         };
 
-        const char *json_data = "{\"api_key\": \"your_api_key_here\"}";
-        send_json_request(sockfd, json_data);
-        
-        while (running > 0) {
-          // Lecture de commande
-          memset(buffer, 0, sizeof(buffer));
-          int n = read(utilisateur.sockfd, buffer, sizeof(buffer) - 1);
-          if (n < 0) {
-            perror("Erreur lors de la lecture du message");
-            break;
-          }
-
-          running = gestion_commande(conn, buffer, &utilisateur);
+        // Lecture de commande
+        char buffer[BUFFER_SIZE];
+        memset(buffer, 0, sizeof(buffer));
+        int n = read(utilisateur.sockfd, buffer, sizeof(buffer) - 1);
+        if (n < 0) {
+          perror("Erreur lors de la lecture du message");
+          break;
         }
+
+        gestion_commande(conn, buffer, &utilisateur);
 
         close(utilisateur.sockfd);
 
-        if (running == -1) {
-          kill(getppid(), SIGUSR1);
-        }
-
-        exit(running);
+        _exit(0);
 
       } else {
-        liste_attente[nb_liste_attente] = pid;
         nb_liste_attente++;
         printf("### Connexion reçu N°%d\n", nb_liste_attente);
 
