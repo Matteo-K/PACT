@@ -307,7 +307,6 @@ void killChld(int sig, siginfo_t *info, void *context) {
 }
 
 void send_json_request(int sock, const char *json_body) {
-    char buffer[BUFFER_SIZE * 2];
 
     // Construire la requête HTTP (avec JSON dans le corps)
     char request[BUFFER_SIZE * 4];
@@ -324,15 +323,6 @@ void send_json_request(int sock, const char *json_body) {
     if (send(sock, request, strlen(request), 0) < 0) {
         perror("Send failed");
         return;
-    }
-
-    // Lire la réponse du serveur
-    int bytes_received = recv(sock, buffer, sizeof(buffer) - 1, 0);
-    if (bytes_received < 0) {
-        perror("Receive failed");
-    } else {
-        buffer[bytes_received] = '\0';  // Ajouter un terminator pour la chaîne
-        printf("Server response:\n%s\n", buffer);
     }
 }
 
