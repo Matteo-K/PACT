@@ -88,7 +88,9 @@ int main(int argc, char *argv[]) {
           .sockfd = newsockfd
         };
 
-
+        const char *json_data = "{\"api_key\": \"your_api_key_here\"}";
+        send_json_request(sockfd, json_data);
+        
         while (running > 0) {
           // Lecture de commande
           memset(buffer, 0, sizeof(buffer));

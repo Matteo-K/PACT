@@ -14,7 +14,4 @@ PGconn *init_bdd();
 /// @brief Cherche en BDD l'existance de la clé API 
 int trouveAPI(PGconn *conn, const char *requete);
 
-/// @brief Vérifie si l'utilisateur existe (avec sa clé API) et l'identifie
-int connexion(PGconn *conn, tClient *utilisateur);
-
 #endif // BDD_H

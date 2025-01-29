@@ -5,5 +5,9 @@ yyyy-mm-dd hh-mm-ss [TYPE] identité - adresse ip - Commande
 2025-01-26 19:33:31 [INFO] inconnue - 127.0.0.1 - STOP
 2025-01-26 19:52:39 [INFO] inconnue - 127.0.0.1 - STOP
 2025-01-28 23:48:37 [INFO] inconnue -  - LOGIN:
-2025-01-28 23:48:43 [INFO] inconnue -  - HELLO
-2025-01-28 23:49:56 [INFO] inconnue -  - MSG: destiantaire | message complet
+2025-01-28 24:03:35 [INFO] inconnue -  - LOGIN:
+2025-01-28 24:03:48 [INFO] inconnue -  - MSG: BONJOUR, moi | VA
+2025-01-28 24:06:26 [INFO] inconnue -  - LOGIN:
+2025-01-28 24:06:38 [INFO] inconnue -  - MSG: BONJOUR | MOI
+2025-01-28 24:28:49 [INFO] inconnue -  - LOGIN:
+2025-01-28 24:29:02 [INFO] inconnue -  - MSG: bonjour | voila

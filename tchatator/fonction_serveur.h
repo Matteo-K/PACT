@@ -19,6 +19,10 @@ int init_socket();
 /// @return condition d'arrêt du serveur
 int gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur);
 
+/// @brief Vérifie si l'utilisateur existe (avec sa clé API) et l'identifie
+/// @return renvoie le résultat de la commande / erreur
+int connexion(PGconn *conn, tClient *utilisateur, char buffer[]);
+
 void saisit_message(PGconn *conn, tClient utilisateur, char buffer[]);
 
 /// @brief Affichage des commandes d'aide avec HELP côté client
@@ -41,6 +45,10 @@ void gestion_option(int argc, char *argv[]);
 
 void killChld(int sig, siginfo_t *info, void *context);
 
+void send_json_request(int sock, const char *json_body);
+
 char *trim(char *str);
+
+tExplodeRes explode(char *buffer, char *separateur);
 
 #endif // FONCTION_SERVEUR_H

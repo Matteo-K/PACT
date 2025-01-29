@@ -129,15 +129,69 @@ int gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
     return running;
 }
 
+int connexion(PGconn *conn, tClient *utilisateur, char buffer[]) {
+
+    char cleAPI[50];
+    char requete[125];
+    int idu;
+    char requeteMembre[150];
+    char requetePro[150];
+    char requeteAdmin[150];
+
+    printf("Bienvenue sur le service de discussion Tchatator \nEntrez votre clé API : ");
+    scanf("%s", cleAPI);
+
+    sprintf(requete, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", cleAPI);
+
+    idu = trouveAPI(conn, requete);
+
+    if(idu != -1){
+        printf("Connexion réussie, utilisateur n°%d", idu);
+        *utilisateur->identiteUser = idu;
+        strcpy(utilisateur->tokken_connexion, cleAPI);
+
+        sprintf(requeteMembre, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
+        sprintf(requetePro, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
+        sprintf(requeteAdmin, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
+
+        if (trouveAPI(conn, requeteMembre) > 0){
+            strcpy(utilisateur->type, TYPE_MEMBRE);
+
+        } else if(trouveAPI(conn, requetePro) > 0){
+            strcpy(utilisateur->type, TYPE_PRO);
+
+        } else if (trouveAPI(conn, requeteAdmin) > 0){
+            strcpy(utilisateur->type, TYPE_ADMIN);
+
+        } else{
+            strcpy(utilisateur->type, "inconnu");
+
+        }
+
+        return idu;
+    } else{
+        printf("Clé API inexistante, veuillez la consulter sur le site PACT, dans la section 'Mon compte'");
+    }
+    return -1;
+}
+
 void saisit_message(PGconn *conn, tClient utilisateur, char buffer[]) {
     printf("buffer : %s\n", buffer);
-    // char *name_part = buffer + 8;
-    // char *newline = strstr(name_part, "\r");
-    // if (newline) {
-    //     *newline = '\0';
-    // }
-    // char *comma = strchr(name_part, '|');
-    // printf("comma : %s\n", comma);
+    char *name_part = buffer + strlen(COMMANDE_MESSAGE);
+
+    tExplodeRes result = explode(name_part, "|");
+
+    for (int i = 0; i < result.nbElement; i++) {
+        printf("elements[%d]: %s\n", i, result.elements[i]);
+    }
+}
+
+void renvoie_erreur(int code) {
+    char err[BUFFER_SIZE];
+    switch (code) {
+        case 200:
+            strcpy(err, "200/OK");
+    }
 }
 
 void afficher_commande_aide(tClient utilisateur) {
@@ -269,6 +323,36 @@ void killChld(int sig, siginfo_t *info, void *context) {
     }
 }
 
+void send_json_request(int sock, const char *json_body) {
+    char buffer[BUFFER_SIZE * 2];
+
+    // Construire la requête HTTP (avec JSON dans le corps)
+    char request[BUFFER_SIZE * 4];
+    sprintf(request,
+            "GET /login HTTP/1.1\r\n"
+            "Host: %s\r\n"
+            "Content-Type: application/json\r\n"
+            "Content-Length: %lu\r\n"
+            "\r\n"
+            "%s\r\n", 
+            SERVEUR, strlen(json_body), json_body);
+
+    // Envoyer la requête
+    if (send(sock, request, strlen(request), 0) < 0) {
+        perror("Send failed");
+        return;
+    }
+
+    // Lire la réponse du serveur
+    int bytes_received = recv(sock, buffer, sizeof(buffer) - 1, 0);
+    if (bytes_received < 0) {
+        perror("Receive failed");
+    } else {
+        buffer[bytes_received] = '\0';  // Ajouter un terminator pour la chaîne
+        printf("Server response:\n%s\n", buffer);
+    }
+}
+
 // trim(char[]) comme en php
 char *trim(char *str) {
     char *end;
@@ -291,4 +375,25 @@ char *trim(char *str) {
     *(end + 1) = '\0';
 
     return str;
+}
+
+tExplodeRes explode(char *buffer, char *separateur) {
+
+    // Initialisation des résultats
+    tExplodeRes result;
+    result.elements = malloc(10 * sizeof(char *));
+    result.nbElement = 0;
+    
+    char *element = trim(strtok(buffer, separateur));
+
+    while (element != NULL) {
+
+        result.elements[result.nbElement] = element;
+        result.nbElement++;
+
+        // Récupérer le prochain élément
+        element = trim(strtok(NULL, separateur));
+    }
+
+    return result;
 }

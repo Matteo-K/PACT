@@ -8,6 +8,7 @@
 #ifndef CONST_H
 #define CONST_H
 
+#define SERVEUR "the-void.ventsdouest.dev"
 #define BUFFER_SIZE 512
 #define NB_CONNEXION_MAX 50
 
@@ -20,12 +21,20 @@ typedef struct {
   int sockfd;
 } tClient;
 
+typedef struct {
+    char **elements;
+    int nbElement;
+} tExplodeRes;
+
 // constante
 /// @brief Character String: type membre d'un client
-#define TYPE_MEMBRE "membre";
+#define TYPE_MEMBRE "membre"
 
-/// @brief Character String: Chemin fichier logs
-#define TYPE_PRO "pro";
+/// @brief Character String: type pro d'un client
+#define TYPE_PRO "pro"
+
+/// @brief Character String: type admin d'un client
+#define TYPE_ADMIN "admin"
 
 // paramètre
 /// @brief Integer: port de connexion au serveur
