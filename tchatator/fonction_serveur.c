@@ -380,11 +380,65 @@ void gestion_option(int argc, char *argv[]) {
     }
 }
 
+tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
+    tExplodeRes res;
+    res.nbElement = 0;
+    res.elements = malloc(sizeof(char *));
+
+    char commande[BUFFER_SIZE];
+    int n = 0;
+    while (buffer[n] != ':' && buffer[n] != '\0' && n < BUFFER_SIZE - 1) {
+        commande[n] = buffer[n];
+        n++;
+    }
+    commande[n] = '\0';
+
+    res.elements[0] = strdup(commande);
+    if (!res.elements[0]) {
+        printf("Erreur d'allocation mémoire.\n");
+        free(res.elements);
+        exit(EXIT_FAILURE);
+    }
+    res.nbElement++;
+
+    if (!est_commande(commande)) {
+        envoie_erreur(conn, *utilisateur, REP_400_UNKNOWN_PARAMETER);
+    }
+
+    tExplodeRes tmp = explode(buffer, "|");
+    concat_struct(&res, &tmp);
+
+    return res;
+}
+
 void killChld(int sig, siginfo_t *info, void *context) {
     if (sig == SIGUSR1) {
         printf("Le processus enfant a signalé une fin avec -1, arrêt du serveur.\n");
         kill(getpid(), SIGKILL);  // Envoie SIGKILL au processus parent pour l'arrêter
     }
+}
+
+bool est_commande(char buffer[]) {
+    // Listes de commandes
+    const char *commandes[] = {
+        COMMANDE_CONNEXION,
+        COMMANDE_MESSAGE,
+        COMMANDE_DECONNECTE,
+        COMMANDE_AIDE,
+        COMMANDE_STOP,
+        COMMANDE_HISTORIQUE
+    };
+
+    int nbCommandes = sizeof(commandes) / sizeof(commandes[0]);
+
+    // Vérification de l'existence de la commande
+    for (int i = 0; i < nbCommandes; i++) {
+        if (strcmp(buffer, commandes[i]) == 0) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void send_json_request(int sock, const char *json_body) {
@@ -410,7 +464,6 @@ void send_json_request(int sock, const char *json_body) {
 // trim(char[]) comme en php
 char *trim(char *str) {
     char *end;
-
     while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r') {
         str++;
     }
@@ -425,8 +478,23 @@ char *trim(char *str) {
     }
 
     *(end + 1) = '\0';
-
     return str;
+}
+
+void concat_struct(tExplodeRes *struct1, tExplodeRes *struct2) {
+    int taille = struct1->nbElement + struct2->nbElement;
+
+    struct1->elements = realloc(struct1->elements, taille * sizeof(char *));
+    if (!struct1->elements) {
+        printf("Erreur de réallocation de mémoire.\n");
+        return;
+    }
+
+    for (int i = 0; i < struct2->nbElement; i++) {
+        struct1->elements[struct1->nbElement + i] = strdup(struct2->elements[i]);
+    }
+
+    struct1->nbElement = taille;
 }
 
 tExplodeRes explode(char buffer[], const char *separateur) {

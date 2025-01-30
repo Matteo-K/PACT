@@ -67,6 +67,7 @@ void gestion_option(int argc, char *argv[]);
 /// @param context in: argument nécessaire pour les signaux
 void killChld(int sig, siginfo_t *info, void *context);
 
+tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]);
 
 // fonction outils de manipulation
 /// @brief Envoie les requêtes json du côté client
@@ -74,11 +75,17 @@ void killChld(int sig, siginfo_t *info, void *context);
 /// @param json_body in: corps du json à envoyer
 void send_json_request(int sock, const char *json_body);
 
+/// @brief vérifie si une chaine de caractère est une commande
+
+bool est_commande(char buffer[]);
+
 // inspité du trim de d'autre language
 /// @brief Retire les espaces avant et après la chaine de character
 /// @param str in: chaine de character
 /// @return chaine de character traité
 char *trim(char *str);
+
+void concat_struct(tExplodeRes *struct1, tExplodeRes *struct2);
 
 // inspité du explode de d'autre language
 /// @brief Sépare une chaine par un séparateur

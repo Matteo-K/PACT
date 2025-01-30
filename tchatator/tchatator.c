@@ -92,6 +92,11 @@ int main(int argc, char *argv[]) {
           break;
         }
 
+        tExplodeRes argument = init_argument(conn, &utilisateur, buffer);
+
+        for (int i = 0; i < argument.nbElement; i++) {
+            printf("elements[%d]: %s\n", i, argument.elements[i]);
+        }
         gestion_commande(conn, buffer, &utilisateur);
 
         close(utilisateur.sockfd);

@@ -65,6 +65,9 @@ typedef struct {
 /// @brief Character String: Quota dépassé pour la clé API
 #define REP_429_QUOTA_EXCEEDED "429/QUOTA_EXCEEDED"
 
+/// @brief Character String: Paramètre inconnue
+#define REP_400_UNKNOWN_PARAMETER "400/UNKNOWN_PARAMETER"
+
 
 // paramètre
 /// @brief Integer: port de connexion au serveur
