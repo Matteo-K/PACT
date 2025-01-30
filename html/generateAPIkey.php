@@ -9,8 +9,6 @@ if (!$isLoggedIn || !$idUser) {
     exit;
 }
 
-$membre = $data['membre'];
-
 // Fonction pour générer une clé API aléatoire
 function generateApiKey() {
     // Générer 128 bits aléatoires (16 octets)
