@@ -9,7 +9,8 @@ SET SCHEMA 'pact';
 CREATE TABLE _utilisateur (
   idU SERIAL PRIMARY KEY,
   password VARCHAR(255) NOT NULL,
-  apikey VARCHAR(255) DEFAULT NULL
+  apikey VARCHAR(255) DEFAULT NULL,
+  tokken VARCHAR(255) DEFAULT NULL
 );
 
 CREATE TABLE _admin (
@@ -55,6 +56,7 @@ CREATE TABLE _historiqueMessage (
   contentLength INT NOT NULL,
   idExpediteur INT NOT NULL, -- Identifiant de l'expéditeur
   typeExpediteur VARCHAR(10) NOT NULL, -- "membre" ou "pro"
+  lu BOOLEAN DEFAULT false,
   CONSTRAINT _historiqueMessage_check_typeExpediteur
       CHECK (typeExpediteur IN ('membre', 'pro'))
 );
