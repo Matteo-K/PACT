@@ -145,15 +145,14 @@ void afficheHistorique(PGconn *conn, char tokken[]) {
     } else {
         printf("Historique des messages :\n");
         for (int i = 0; i < nrows; i++) {
-            printf("[%s] %s -> %s : %s\n",
-                   PQgetvalue(res, i, 3), // nomExpediteur
-                   PQgetvalue(res, i, 4), // nomReceveur
-                   PQgetvalue(res, i, 3), PQgetvalue(res, i, 4), //sens
-                   PQgetvalue(res, i, 0), //id
-                   PQgetvalue(res, i, 1), // dateMessage
-                   PQgetvalue(res, i, 2), // contenuMessage
-                   strlen(PQgetvalue(res, i, 2)) //taille message
-            );
+            printf("\"emetteur\": \"%s\",\n", PQgetvalue(res, i, 3));
+            printf("\"destinataire\": \"%s\",\n", PQgetvalue(res, i, 4));
+            printf("\"sens\": \"%s -> %s\"\n", PQgetvalue(res, i, 3), PPQgetvalue(res, i, 3));
+            printf("\"identifiant\": %s,\n", PQgetvalue(res, i, 0));
+            printf("\"horodatage\": \"%s\",\n", PQgetvalue(res, i, 1));
+            printf("\"message\": {\n");
+            printf("\"contenue\": \"%s\",\n", PQgetvalue(res, i, 2));
+            printf("\"taille_message\": %lu\n", strlen(PQgetvalue(res, i, 2)));
         }
     }
     
