@@ -70,6 +70,11 @@ void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
         strcpy(utilisateur->tokken_connexion, "467014f1de2617c186a0c35e6d512a2b");
 
     // Arrêt serveur
+    } else if (strncmp(buffer, COMMANDE_HISTORIQUE, strlen(COMMANDE_HISTORIQUE)) == 0) {
+        // Envoyé en json le tokken
+        afficher_commande_aide(*utilisateur);
+
+    // Arrêt serveur
     } else if(strncmp(buffer, COMMANDE_STOP, strlen(COMMANDE_STOP)) == 0) {
         // tue le processus serveur
         kill(getppid(), SIGUSR1);

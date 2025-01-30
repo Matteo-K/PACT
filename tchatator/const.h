@@ -108,6 +108,9 @@ extern const char *CHEMIN_LOGS;
 /// @brief Character String: Arrête le serveur
 #define COMMANDE_STOP "STOP"
 
+/// @brief Character String: Arrête le serveur
+#define COMMANDE_HISTORIQUE "HISTORIQUE"
+
 
 // connexion bdd
 /// @brief Character String: 
