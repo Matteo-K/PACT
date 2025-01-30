@@ -147,7 +147,7 @@ void afficheHistorique(PGconn *conn, char tokken[]) {
         for (int i = 0; i < nrows; i++) {
             printf("\"emetteur\": \"%s\",\n", PQgetvalue(res, i, 3));
             printf("\"destinataire\": \"%s\",\n", PQgetvalue(res, i, 4));
-            printf("\"sens\": \"%s -> %s\"\n", PQgetvalue(res, i, 3), PPQgetvalue(res, i, 3));
+            printf("\"sens\": \"%s -> %s\"\n", PQgetvalue(res, i, 3), PQgetvalue(res, i, 3));
             printf("\"identifiant\": %s,\n", PQgetvalue(res, i, 0));
             printf("\"horodatage\": \"%s\",\n", PQgetvalue(res, i, 1));
             printf("\"message\": {\n");
