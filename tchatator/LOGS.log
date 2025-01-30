@@ -4,14 +4,3 @@ yyyy-mm-dd hh-mm-ss [TYPE] identité - adresse ip - Commande
 2025-01-26 19:32:42 [INFO] 15 - 127.0.0.1 - BYE BYE
 2025-01-26 19:33:31 [INFO] inconnue - 127.0.0.1 - STOP
 2025-01-26 19:52:39 [INFO] inconnue - 127.0.0.1 - STOP
-2025-01-29 17:15:12 [INFO] inconnue -  - LOGIN: 462025-01-29 21:09:25 [INFO] inconnue -  - MSG: BONJOUR | OK
-2025-01-29 22:59:53 [INFO] inconnue -  - MSG: BONJOUR | paul
-2025-01-29 23:01:13 [INFO] inconnue -  - MSG: test| bonjour
-2025-01-29 23:01:13 [ERROR] inconnue -  - 
-2025-01-29 23:39:05 [INFO] inconnue -  - MSG: bonjour | ALLOT | pas
-2025-01-29 23:39:33 [INFO] inconnue -  - MSG: erreur
-2025-01-29 23:39:33 [ERROR] inconnue -  - 400/MISSING_ARGS2025-01-30 12:40:33 [INFO] inconnue -  - help
-2025-01-30 12:40:51 [INFO] inconnue -  - AIDE
-2025-01-30 12:41:41 [INFO] inconnue -  - AIDE
-2025-01-30 12:43:57 [INFO] inconnue -  - d
-2025-01-30 12:45:13 [INFO] inconnue -  - AIDE
