@@ -67,7 +67,7 @@ void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
         connexion(conn, utilisateur, buffer + strlen(COMMANDE_CONNEXION));
     // Arrêt serveur
     } else if (strncmp(buffer, COMMANDE_HISTORIQUE, strlen(COMMANDE_HISTORIQUE)) == 0) {
-        // Envoyé en json le tokken
+
         afficher_commande_aide(*utilisateur);
 
     // Arrêt serveur
