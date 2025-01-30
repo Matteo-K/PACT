@@ -3,6 +3,8 @@
  * @author Matteo-K, Gabriel-F, Kylian-H, Ewen-J
  */
 
+#include <stdbool.h>
+
 #include "const.h"
 
 #ifndef FONCTION_SERVEUR_H

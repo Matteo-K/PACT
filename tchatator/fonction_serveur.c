@@ -67,7 +67,7 @@ void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
         connexion(conn, utilisateur, buffer + strlen(COMMANDE_CONNEXION));
     // Arrêt serveur
     } else if (strncmp(buffer, COMMANDE_HISTORIQUE, strlen(COMMANDE_HISTORIQUE)) == 0) {
-        afficheHistorique(conn, buffer + strlen(COMMANDE_HISTORIQUE));
+        //afficheHistorique(conn, buffer + strlen(COMMANDE_HISTORIQUE));
 
     // Arrêt serveur
     } else if(strncmp(buffer, COMMANDE_STOP, strlen(COMMANDE_STOP)) == 0) {
@@ -182,7 +182,7 @@ void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
         genere_tokken(genTokken);
         
 
-        snprintf(json_data, sizeof(json_data), "{\n  \"statut\": \"%s\", \n\"tokken\": \"%s\"\n}", REP_200, genTokken);
+        snprintf(json_data, sizeof(json_data), "{\"statut\": \"%s\", \"tokken\": \"%s\"}", REP_200, genTokken);
 
         send_json_request(utilisateur->sockfd, json_data);
         printf("Connexion réussie, utilisateur n°%d", idu);
@@ -407,6 +407,26 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
 
     tExplodeRes tmp = explode(buffer, "|");
     concat_struct(&res, &tmp);
+
+    if (res.nbElement > 9999) {
+        char requete[BUFFER_SIZE];
+        snprintf(requete, sizeof(requete),
+            "SELECT u.idu," 
+                "CASE "
+                    "WHEN m.idu IS NOT NULL THEN 'Membre' "
+                    "WHEN p.idu IS NOT NULL THEN 'Pro' "
+                    "WHEN a.idu IS NOT NULL THEN 'Admin' "
+                    "ELSE 'inconnue'"
+                "END AS statut"
+            "FROM pact._utilisateur u"
+            "LEFT JOIN pact._membre m ON u.idu = m.idu"
+            "LEFT JOIN pact._pro p ON u.idu = p.idu"
+            "LEFT JOIN pact._admin a ON u.idu = a.idu"
+            "where (u.tokken = '%s' OR u.apikey = '%s');",
+            res.elements[1], res.elements[1]
+        );
+        
+    }
 
     return res;
 }
