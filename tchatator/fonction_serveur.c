@@ -141,7 +141,7 @@ void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
         send_json_request(utilisateur->sockfd, json_data);
         printf("Connexion réussie, utilisateur n°%d", idu);
         *utilisateur->identiteUser = idu;
-        strcpy(utilisateur->tokken_connexion, cleAPI);
+        strcpy(utilisateur->tokken_connexion, genTokken);
 
         sprintf(requeteMembre, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
         sprintf(requetePro, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
