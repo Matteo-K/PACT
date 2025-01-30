@@ -64,11 +64,7 @@ void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
 
     // Aide de commande
     } else if (strncmp(buffer, COMMANDE_CONNEXION, strlen(COMMANDE_CONNEXION)) == 0) {
-        // Envoyé en json le tokken
-        const char *json_data = "{\"api_key\": \"your_api_key_here\"}";
-        send_json_request(utilisateur->sockfd, json_data);
-        strcpy(utilisateur->tokken_connexion, "467014f1de2617c186a0c35e6d512a2b");
-
+        connexion(conn, utilisateur, buffer + strlen(COMMANDE_CONNEXION));
     // Arrêt serveur
     } else if (strncmp(buffer, COMMANDE_HISTORIQUE, strlen(COMMANDE_HISTORIQUE)) == 0) {
         // Envoyé en json le tokken
@@ -120,17 +116,15 @@ void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
     }
 }
 
-void connexion(PGconn *conn, tClient *utilisateur, char buffer[]) {
+void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
 
-    char cleAPI[50];
     char requete[125];
     int idu;
     char requeteMembre[150];
     char requetePro[150];
     char requeteAdmin[150];
 
-    printf("Bienvenue sur le service de discussion Tchatator \nEntrez votre clé API : ");
-    scanf("%s", cleAPI);
+    trim(cleAPI);
 
     sprintf(requete, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", cleAPI);
 
