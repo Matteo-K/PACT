@@ -70,3 +70,11 @@ int trouveAPI(PGconn *conn, const char *requete) {
     PQclear(res); // Libérer la mémoire
     return valeur; // Retourne la valeur entière
 }
+
+void updateBDD(PGconn *conn, const char *requete) {
+    int nb;
+    char *valeur_str;
+    int valeur;
+
+    PQexec(conn, requete);
+}

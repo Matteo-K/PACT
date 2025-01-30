@@ -163,6 +163,7 @@ void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
     char requeteMembre[150];
     char requetePro[150];
     char requeteAdmin[150];
+    char requeteUpdate[150];
     char genTokken[20];
     char json_data[100];
 
@@ -186,11 +187,12 @@ void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
         *utilisateur->identiteUser = idu;
         strcpy(utilisateur->tokken_connexion, genTokken);
 
+        sprintf(requeteUpdate, "UPDATE pact._utilisateur SET tokken = '%s' WHERE idu = %d;", genTokken, idu);
+        updateBDD(updateBDD(conn, requeteUpdate));
+
         sprintf(requeteMembre, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
         sprintf(requetePro, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
         sprintf(requeteAdmin, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
-
-        sprintf(requeteAdmin, "UPDATE pact._utilisateur SET tokken = '%s' WHERE idu = %d;", genTokken, idu);
 
         if (trouveAPI(conn, requeteMembre) > 0){
             strcpy(utilisateur->type, TYPE_MEMBRE);

@@ -14,4 +14,7 @@ PGconn *init_bdd();
 /// @brief Cherche en BDD l'existance de la clé API 
 int trouveAPI(PGconn *conn, const char *requete);
 
+/// @brief Ajoute / modifie en BDD le tokken de l'utilisateur à sa connexion
+void updateBDD(PGconn *conn, const char *requete) 
+
 #endif // BDD_H
