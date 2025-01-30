@@ -190,7 +190,7 @@ void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
         sprintf(requetePro, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
         sprintf(requeteAdmin, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
 
-        sprintf(requeteAdmin, "UPDATE pact._utilisateur SET tokken = \"%s\" WHERE idu = %d;", genTokken, idu);
+        sprintf(requeteAdmin, "UPDATE pact._utilisateur SET tokken = '%s' WHERE idu = %d;", genTokken, idu);
 
         if (trouveAPI(conn, requeteMembre) > 0){
             strcpy(utilisateur->type, TYPE_MEMBRE);
