@@ -115,7 +115,7 @@ void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
     }
 }
 
-void afficheHistorique(PGconn *conn, char *tokken) {
+void afficheHistorique(PGconn *conn, char tokken[]) {
     if (conn == NULL || PQstatus(conn) != CONNECTION_OK) {
         fprintf(stderr, "Erreur de connexion à la base de données : %s\n", PQerrorMessage(conn));
         return;
@@ -124,7 +124,7 @@ void afficheHistorique(PGconn *conn, char *tokken) {
     char requete[BUFFER_SIZE * 2];
     snprintf(requete, sizeof(requete), 
              "SELECT vueMessages.idMessage, vueMessages.dateMessage, vueMessages.contenuMessage, "
-             "vueMessages.nomExpediteur, vueMessages.typeExpediteur, vueMessages.nomReceveur "
+             "vueMessages.nomExpediteur, vueMessages.nomReceveur "
              "FROM pact.vueMessages "
              "JOIN pact._utilisateur ON utilisateur.idU = vueMessages.idReceveur OR utilisateur.idU = vueMessages.idExpediteur "
              "WHERE utilisateur.tokken = '%s' "
@@ -146,10 +146,13 @@ void afficheHistorique(PGconn *conn, char *tokken) {
         printf("Historique des messages :\n");
         for (int i = 0; i < nrows; i++) {
             printf("[%s] %s -> %s : %s\n",
-                   PQgetvalue(res, i, 1), // dateMessage
                    PQgetvalue(res, i, 3), // nomExpediteur
-                   PQgetvalue(res, i, 5), // nomReceveur
-                   PQgetvalue(res, i, 2)  // contenuMessage
+                   PQgetvalue(res, i, 4), // nomReceveur
+                   PQgetvalue(res, i, 3), PQgetvalue(res, i, 4), //sens
+                   PQgetvalue(res, i, 0), //id
+                   PQgetvalue(res, i, 1), // dateMessage
+                   PQgetvalue(res, i, 2), // contenuMessage
+                   strlen(PQgetvalue(res, i, 2)) //taille message
             );
         }
     }
