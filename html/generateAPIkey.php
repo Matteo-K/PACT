@@ -9,14 +9,6 @@ if (!$isLoggedIn || !$idUser) {
     exit;
 }
 
-// Récupérer les données JSON envoyées par fetch
-$data = json_decode(file_get_contents('php://input'), true);
-
-if (!$data || !isset($data['membre'])) {
-    echo json_encode(['status' => 'error', 'message' => 'Données invalides']);
-    exit;
-}
-
 $membre = $data['membre'];
 
 // Fonction pour générer une clé API aléatoire
@@ -30,11 +22,7 @@ $newApiKey = generateApiKey();
 
 try {
     // Préparer la requête SQL en fonction de l'état "membre"
-    if ($membre) {
-        $stmt = $conn->prepare("UPDATE pact._utilisateur SET apikey = :apikey WHERE idu = :idu");
-    } else {
-        $stmt = $conn->prepare("UPDATE pact._pro SET apikey = :apikey WHERE idu = :idu");
-    }
+    $stmt = $conn->prepare("UPDATE pact._utilisateur SET apikey = :apikey WHERE idu = :idu");
 
     // Liaison des paramètres
     $stmt->bindParam(':apikey', $newApiKey, PDO::PARAM_STR);
