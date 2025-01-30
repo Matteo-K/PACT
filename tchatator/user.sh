@@ -10,4 +10,4 @@ clear
 
 
 # the-void.ventsdouest.dev
-telnet localhost 8080
+telnet the-void.ventsdouest.dev 80
