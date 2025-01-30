@@ -124,6 +124,7 @@ void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
     char requetePro[150];
     char requeteAdmin[150];
     char genTokken[20];
+    char json_data[100];
 
     trim(cleAPI);
 
@@ -135,6 +136,7 @@ void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
 
         srand(time(NULL));
         genere_tokken(genTokken);
+        
 
         snprintf(json_data, sizeof(json_data), "{\n  \"statut\": \"%s\", \n\"tokken\": \"%s\"\n}", REP_200, genTokken);
 
@@ -168,10 +170,10 @@ void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
 void genere_tokken(char *key) {
     //On créé une chaine avec tous les caractères possibles
     const char chaine[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; 
-    size_t taille_chaine = sizeof(chaine) - 1; 
+    int taille_chaine = sizeof(chaine) - 1; 
 
     // Initialiseation du générateur de nombres aléatoires
-    for (size_t i = 0; i < TOKKEN_LENGTH; i++) {
+    for (int i = 0; i < TOKKEN_LENGTH; i++) {
         key[i] = chaine[rand() % taille_chaine];  // Choix d'un caractère au hasard dans la chaine
     }
     key[TOKKEN_LENGTH] = '\0';  // Ajouter une fin de chaine à la fin du tokken
