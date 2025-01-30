@@ -134,4 +134,10 @@ extern const char *login;
 /// @brief Character String:
 extern const char *pwd;
 
+
+
+/// @brief Taille du tokken gégéré à la connexion d'un utilisateur:
+#define TOKKEN_LENGTH 6;
+
+
 #endif // CONST_H

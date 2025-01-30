@@ -24,6 +24,10 @@ void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur);
 /// @param buffer in: buffer de la commande reçu
 void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]);
 
+/// @brief Génère le tokken de l'utiliateur, envoyé par connexion()
+/// @param key in/out: chaine dans laquelle sera envoée le tokken
+void genere_tokken(char *key);
+
 /// @brief Ajout d'un message par l'utilisateur entre un pro et membre
 /// @param conn in/out: connexion avec la bdd
 /// @param utilisateur in/out: Information de l'utilisateur
