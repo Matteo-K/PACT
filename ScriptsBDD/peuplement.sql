@@ -868,5 +868,5 @@ VALUES (4,'Repas');
 
 
 --EXEMPLE
--- INSERT INTO vueMessages (nomExpediteur, idExpediteur, contenuMessage, dateMessage, typeExpediteur, nomReceveur, idReceveur)
--- VALUES ('membre1', 5, 'Bonjour, avez-vous un devis ?', CURRENT_TIMESTAMP, 'membre', 'Patrick', 4); 
+--INSERT INTO vueMessages (nomExpediteur, idExpediteur, contenuMessage, dateMessage, typeExpediteur, nomReceveur, idReceveur)
+--VALUES ('membre1', 5, 'Bonjour, avez-vous un devis ?', CURRENT_TIMESTAMP, 'membre', 'Patrick', 4); 

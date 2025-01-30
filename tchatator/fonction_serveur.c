@@ -67,8 +67,7 @@ void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
         connexion(conn, utilisateur, buffer + strlen(COMMANDE_CONNEXION));
     // Arrêt serveur
     } else if (strncmp(buffer, COMMANDE_HISTORIQUE, strlen(COMMANDE_HISTORIQUE)) == 0) {
-
-        afficher_commande_aide(*utilisateur);
+        afficheHistorique(conn, buffer + strlen(COMMANDE_HISTORIQUE));
 
     // Arrêt serveur
     } else if(strncmp(buffer, COMMANDE_STOP, strlen(COMMANDE_STOP)) == 0) {
@@ -116,6 +115,47 @@ void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
     }
 }
 
+void afficheHistorique(PGconn *conn, char *tokken) {
+    if (conn == NULL || PQstatus(conn) != CONNECTION_OK) {
+        fprintf(stderr, "Erreur de connexion à la base de données : %s\n", PQerrorMessage(conn));
+        return;
+    }
+    
+    char requete[BUFFER_SIZE * 2];
+    snprintf(requete, sizeof(requete), 
+             "SELECT vueMessages.idMessage, vueMessages.dateMessage, vueMessages.contenuMessage, "
+             "vueMessages.nomExpediteur, vueMessages.typeExpediteur, vueMessages.nomReceveur "
+             "FROM pact.vueMessages "
+             "JOIN pact._utilisateur ON utilisateur.idU = vueMessages.idReceveur OR utilisateur.idU = vueMessages.idExpediteur "
+             "WHERE utilisateur.tokken = '%s' "
+             "ORDER BY vueMessages.dateMessage DESC;", 
+             tokken);
+    
+    PGresult *res = PQexec(conn, requete);
+    
+    if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+        fprintf(stderr, "Erreur lors de l'exécution de la requête : %s\n", PQerrorMessage(conn));
+        PQclear(res);
+        return;
+    }
+    
+    int nrows = PQntuples(res);
+    if (nrows == 0) {
+        printf("Aucun message trouvé.\n");
+    } else {
+        printf("Historique des messages :\n");
+        for (int i = 0; i < nrows; i++) {
+            printf("[%s] %s -> %s : %s\n",
+                   PQgetvalue(res, i, 1), // dateMessage
+                   PQgetvalue(res, i, 3), // nomExpediteur
+                   PQgetvalue(res, i, 5), // nomReceveur
+                   PQgetvalue(res, i, 2)  // contenuMessage
+            );
+        }
+    }
+    
+    PQclear(res);
+}
 void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
 
     char requete[125];

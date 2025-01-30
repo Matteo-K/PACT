@@ -1003,6 +1003,7 @@ SELECT
     hm.heure AS dateMessage,
     hm.content AS contenuMessage,
     hm.idExpediteur,
+    hm.lu,
     CASE 
         WHEN hm.typeExpediteur = 'membre' THEN m1.pseudo
         WHEN hm.typeExpediteur = 'pro' THEN p1.denomination
