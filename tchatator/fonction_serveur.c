@@ -167,6 +167,7 @@ void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
     char json_data[100];
 
     trim(cleAPI);
+    strcpy(cleAPI, trim(cleAPI));
 
     sprintf(requete, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", cleAPI);
 
@@ -188,6 +189,8 @@ void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
         sprintf(requeteMembre, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
         sprintf(requetePro, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
         sprintf(requeteAdmin, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
+
+        sprintf(requeteAdmin, "UPDATE pact._utilisateur SET tokken = \"%s\" WHERE idu = %d;", genTokken, idu);
 
         if (trouveAPI(conn, requeteMembre) > 0){
             strcpy(utilisateur->type, TYPE_MEMBRE);
