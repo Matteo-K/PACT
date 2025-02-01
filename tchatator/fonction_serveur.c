@@ -348,6 +348,7 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
     concat_struct(&res, &tmp);
 
     if (res.nbElement > 1) {
+        char *escaped_tok = escape_single_quotes(res.elements[1]);
         char requete[BUFFER_SIZE];
         snprintf(requete, sizeof(requete),
             "SELECT u.idu, " 
