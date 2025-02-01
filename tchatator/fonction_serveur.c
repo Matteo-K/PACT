@@ -413,18 +413,18 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
     if (res.nbElement > 1) {
         char requete[BUFFER_SIZE];
         snprintf(requete, sizeof(requete),
-            "SELECT u.idu," 
+            "SELECT u.idu, " 
                 "CASE "
                     "WHEN m.idu IS NOT NULL THEN 'membre' "
                     "WHEN p.idu IS NOT NULL THEN 'pro' "
                     "WHEN a.idu IS NOT NULL THEN 'admin' "
-                    "ELSE 'inconnue'"
-                "END AS statut"
-            "FROM pact._utilisateur u"
-            "LEFT JOIN pact._membre m ON u.idu = m.idu"
-            "LEFT JOIN pact._pro p ON u.idu = p.idu"
-            "LEFT JOIN pact._admin a ON u.idu = a.idu"
-            "where (u.tokken = '%s' OR u.apikey = '%s');",
+                    "ELSE 'inconnue' "
+                "END AS statut "
+            "FROM pact._utilisateur u "
+            "LEFT JOIN pact._membre m ON u.idu = m.idu "
+            "LEFT JOIN pact._pro p ON u.idu = p.idu "
+            "LEFT JOIN pact._admin a ON u.idu = a.idu "
+            "WHERE (u.tokken = '%s' OR u.apikey = '%s');",
             res.elements[1], res.elements[1]
         );
 
@@ -433,7 +433,7 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
         if (PQresultStatus(res) != PGRES_TUPLES_OK) {
             fprintf(stderr, "Erreur lors de l'exécution de la requête : %s\n", PQerrorMessage(conn));
             PQclear(res);
-            return;
+            return 0;
         }
         
         int nrows = PQntuples(res);
