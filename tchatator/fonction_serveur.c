@@ -383,7 +383,7 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
         if (nrows > 0) {
             strcpy(utilisateur->identiteUser, PQgetvalue(res, 0, 0));
             strcpy(utilisateur->type, PQgetvalue(res, 0, 1));
-            strcpy(utilisateur->tokken_connexion, res->elements[1]);
+            strcpy(utilisateur->tokken_connexion, res.elements[1]);
             utilisateur->est_connecte = (strcmp(PQgetvalue(res, 0, 2), "tokken") == 0);
 
         }
