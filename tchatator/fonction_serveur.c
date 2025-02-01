@@ -415,9 +415,9 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
         snprintf(requete, sizeof(requete),
             "SELECT u.idu," 
                 "CASE "
-                    "WHEN m.idu IS NOT NULL THEN 'Membre' "
-                    "WHEN p.idu IS NOT NULL THEN 'Pro' "
-                    "WHEN a.idu IS NOT NULL THEN 'Admin' "
+                    "WHEN m.idu IS NOT NULL THEN 'membre' "
+                    "WHEN p.idu IS NOT NULL THEN 'pro' "
+                    "WHEN a.idu IS NOT NULL THEN 'admin' "
                     "ELSE 'inconnue'"
                 "END AS statut"
             "FROM pact._utilisateur u"
@@ -427,6 +427,27 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
             "where (u.tokken = '%s' OR u.apikey = '%s');",
             res.elements[1], res.elements[1]
         );
+
+        PGresult *res = PQexec(conn, requete);
+    
+        if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+            fprintf(stderr, "Erreur lors de l'exécution de la requête : %s\n", PQerrorMessage(conn));
+            PQclear(res);
+            return;
+        }
+        
+        int nrows = PQntuples(res);
+        if (nrows == 0) {
+            printf("Aucun utilisateur trouvé.\n");
+        } else {
+            printf("utilisateur :\n");
+            for (int i = 0; i < nrows; i++) {
+                printf("\"test idu\": \"%s\",\n", PQgetvalue(res, i, 0));
+                printf("\"test statut\": \"%s\",\n", PQgetvalue(res, i, 1));
+            }
+        }
+        
+        PQclear(res);
         
     }
 
