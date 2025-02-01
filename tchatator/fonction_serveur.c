@@ -433,7 +433,6 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
         if (PQresultStatus(res) != PGRES_TUPLES_OK) {
             fprintf(stderr, "Erreur lors de l'exécution de la requête : %s\n", PQerrorMessage(conn));
             PQclear(res);
-            return 0;
         }
         
         int nrows = PQntuples(res);
