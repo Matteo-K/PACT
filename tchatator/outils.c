@@ -38,7 +38,7 @@ void killChld(int sig, siginfo_t *info, void *context) {
 
 void send_json_request(PGconn *conn, tClient utilisateur, const char *json_body, char type[]) {
 
-    ajouter_logs(conn, utilisateur, *json_body, type);
+    ajouter_logs(conn, utilisateur, json_body, type);
 
     // Construire la requête HTTP (avec JSON dans le corps)
     char request[BUFFER_SIZE * 4];
