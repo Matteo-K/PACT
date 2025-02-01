@@ -52,7 +52,7 @@ void send_json_request(PGconn *conn, tClient utilisateur, const char *json_body,
             SERVEUR, strlen(json_body), json_body);
 
     // Envoyer la requête
-    if (send(sock, request, strlen(request), 0) < 0) {
+    if (send(utilisateur.sockfd, request, strlen(request), 0) < 0) {
         perror("Send failed");
         return;
     }
