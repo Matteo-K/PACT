@@ -59,7 +59,7 @@ int init_socket() {
 
 void gestion_commande(PGconn *conn, tExplodeRes requete, tClient *utilisateur) {
 
-    //ajouter_logs(conn, *utilisateur, buffer, "info");
+    ajouter_logs(conn, *utilisateur, requete.elements[0] , "info");
 
     // L'utilisateur doit se connecter pour utiliser le service
     if (strcmp(requete.elements[0], COMMANDE_AIDE) == 0) {
@@ -68,7 +68,8 @@ void gestion_commande(PGconn *conn, tExplodeRes requete, tClient *utilisateur) {
     // Aide de commande
     } else if (strcmp(requete.elements[0], COMMANDE_CONNEXION) == 0) {
         connexion(conn, utilisateur, requete);
-    // Arrêt serveur
+
+    // Historique
     } else if (strcmp(requete.elements[0], COMMANDE_HISTORIQUE) == 0) {
         //afficheHistorique(conn, buffer + strlen(COMMANDE_HISTORIQUE));
 
@@ -76,6 +77,9 @@ void gestion_commande(PGconn *conn, tExplodeRes requete, tClient *utilisateur) {
     } else if(strcmp(requete.elements[0], COMMANDE_STOP) == 0) {
         // tue le processus serveur
         kill(getppid(), SIGUSR1);
+    
+    // Déconnexion
+    } else if(strcmp(requete.elements[0], COMMANDE_DECONNECTE) == 0) {
 
     // Commande Hello
     } else if (strncmp(requete.elements[0], "HELLO\r", 6) == 0) {
@@ -245,32 +249,38 @@ void afficher_logs() {
 }
 
 void ajouter_logs(PGconn *conn, tClient utilisateur, const char *message, const char *type) {
-    int fd = open(CHEMIN_LOGS, O_WRONLY | O_APPEND);
+    int fd = open(CHEMIN_LOGS, O_WRONLY | O_APPEND | O_CREAT, 0644);
     if (fd < 0) {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier %s en mode lecture : %s\n", CHEMIN_LOGS, strerror(errno));
         exit(1);
     }
 
     char buffer[BUFFER_SIZE * 2];
-    // récupération de la date
+    
+    static int id_log = 1;
+    int log_id = id_log++;
+
+    // Récupération de la date et de l'heure
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
     char date_buff[BUFFER_SIZE / 2];
-    snprintf(date_buff, sizeof(date_buff), "%d-%02d-%02d %02d:%02d:%02d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour + 1, tm.tm_min, tm.tm_sec);
+    snprintf(date_buff, sizeof(date_buff), "%d-%02d-%02d %02d:%02d:%02d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
+    // Information sur l'utilisateur et la commande
     char info[BUFFER_SIZE];
     snprintf(info, sizeof(info), "%s - %s - %s", utilisateur.identiteUser, utilisateur.client_ip, message);
 
     if (strcmp(type, "info") == 0) {
-        snprintf(buffer, sizeof(buffer), "%s - [INFO] - %s", date_buff, info);
+        snprintf(buffer, sizeof(buffer), "%d - %s - [INFO] - %s", log_id, date_buff, info);
     } else if (strcmp(type, "error") == 0) {
-        snprintf(buffer, sizeof(buffer), "%s - [ERROR] - %s", date_buff, info);
+        snprintf(buffer, sizeof(buffer), "%d - %s - [ERROR] - %s", log_id, date_buff, info);
     } else if (strcmp(type, "debug") == 0) {
-        snprintf(buffer, sizeof(buffer), "%s - [DEBUG] - %s", date_buff, info);
+        snprintf(buffer, sizeof(buffer), "%d - %s - [DEBUG] - %s", log_id, date_buff, info);
     } else {
-        snprintf(buffer, sizeof(buffer), "%s - [UNKNOWN TYPE] - %s", date_buff, info);
+        snprintf(buffer, sizeof(buffer), "%d - %s - [UNKNOWN TYPE] - %s", log_id, date_buff, info);
     }
 
+    // Écriture dans le fichier de log
     ssize_t bytes_written = write(fd, buffer, strlen(buffer));
     if (bytes_written < 0) {
         fprintf(stderr, "Erreur lors de l'écriture dans le fichier %s : %s\n", CHEMIN_LOGS, strerror(errno));
