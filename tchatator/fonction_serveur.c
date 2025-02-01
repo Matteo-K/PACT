@@ -22,8 +22,8 @@
 
 #include <postgresql/libpq-fe.h>
 
-#include "fonction_serveur.h"
 #include "outils.h"
+#include "fonction_serveur.h"
 #include "const.h"
 #include "bdd.h"
 
