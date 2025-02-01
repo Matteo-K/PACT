@@ -36,7 +36,7 @@ void killChld(int sig, siginfo_t *info, void *context) {
     }
 }
 
-void send_json_request(PGconn *conn, tClient utilisateur, char json_body[], char type[]) {
+void send_json_request(PGconn *conn, tClient utilisateur, const char *json_body, char type[]) {
 
     ajouter_logs(conn, utilisateur, json_body, type);
 
