@@ -251,7 +251,6 @@ void afficher_logs() {
 }
 
 void ajouter_logs(PGconn *conn, tClient utilisateur, char *message, char *type) {
-
     int fd = open(CHEMIN_LOGS, O_WRONLY | O_APPEND);
     if (fd < 0) {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier %s en mode lecture : %s\n", CHEMIN_LOGS, strerror(errno));
@@ -275,11 +274,10 @@ void ajouter_logs(PGconn *conn, tClient utilisateur, char *message, char *type) 
     } else if (strcmp(type, "debug") == 0) {
         snprintf(buffer, sizeof(buffer), "%s - [DEBUG] - %s", date_buff, info);
     } else {
-        printf("Type de logs inconnue");
+        snprintf(buffer, sizeof(buffer), "%s - [UNKNOWN TYPE] - %s", date_buff, info);
     }
 
     ssize_t bytes_written = write(fd, buffer, strlen(buffer));
-
     if (bytes_written < 0) {
         fprintf(stderr, "Erreur lors de l'écriture dans le fichier %s : %s\n", CHEMIN_LOGS, strerror(errno));
         close(fd);
