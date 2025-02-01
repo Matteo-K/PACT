@@ -19,13 +19,13 @@ int init_socket();
 /// @param conn in/out: connexion avec la bdd
 /// @param utilisateur in/out: Information de l'utilisateur
 /// @param buffer in: buffer de la commande reçu
-void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur);
+void gestion_commande(PGconn *conn, tExplodeRes requete, tClient *utilisateur);
 
 /// @brief Connecte l'utilisateur au service en lui envoyant un tokken
 /// @param conn in/out: connexion avec la bdd
 /// @param utilisateur in/out: Information de l'utilisateur
-/// @param buffer in: buffer de la commande reçu
-void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]);
+/// @param requete in: requete reçu par le serveur
+void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete);
 
 /// @brief Génère le tokken de l'utiliateur, envoyé par connexion()
 /// @param key in/out: chaine dans laquelle sera envoée le tokken
@@ -36,12 +36,6 @@ void genere_tokken(char *key);
 /// @param utilisateur in/out: Information de l'utilisateur
 /// @param buffer in: buffer de la commande reçu
 void saisit_message(PGconn *conn, tClient *utilisateur, char buffer[]);
-
-/// @brief mets à jour les logs et envoie un message à l'utilisateur
-/// @param conn in/out: connexion avec la bdd
-/// @param utilisateur in: Information de l'utilisateur
-/// @param code_e in: code de l'erreur
-void envoie_erreur(PGconn *conn, tClient utilisateur, char code_e[]);
 
 /// @brief Affichage des commandes d'aide avec HELP côté client
 /// @param utilisateur in: information de l'utilisateur

@@ -17,12 +17,9 @@
 void killChld(int sig, siginfo_t *info, void *context);
 
 /// @brief Envoie les requêtes json du côté client
-/// @param sock in: descripteur du socket
-/// @param json_body in: corps du json à envoyer
-void send_json_request(int sock, const char *json_body);
+void send_json_request(PGconn *conn, tClient utilisateur, const char *json_body, char type[]);
 
 /// @brief vérifie si une chaine de caractère est une commande
-
 bool est_commande(char buffer[]);
 
 // inspiré du trim de d'autre language

@@ -13,6 +13,8 @@
 
 #include <postgresql/libpq-fe.h>
 
+#include <json-c/json.h>
+
 #include "fonction_serveur.h"
 #include "outils.h"
 #include "bdd.h"
@@ -102,7 +104,7 @@ int main(int argc, char *argv[]) {
         afficherTExplodeRes(argument);
         afficherClient(utilisateur);
 
-        gestion_commande(conn, buffer, &utilisateur);
+        gestion_commande(conn, argument, &utilisateur);
         close(utilisateur.sockfd);
         _exit(0);
 

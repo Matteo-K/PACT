@@ -22,6 +22,8 @@
 
 #include <postgresql/libpq-fe.h>
 
+#include <json-c/json.h>
+
 #include "fonction_serveur.h"
 #include "const.h"
 #include "bdd.h"
@@ -34,7 +36,9 @@ void killChld(int sig, siginfo_t *info, void *context) {
     }
 }
 
-void send_json_request(int sock, const char *json_body) {
+void send_json_request(PGconn *conn, tClient utilisateur, const char *json_body, char type[]) {
+
+    void ajouter_logs(conn, utilisateur, json_body, type)
 
     // Construire la requête HTTP (avec JSON dans le corps)
     char request[BUFFER_SIZE * 4];

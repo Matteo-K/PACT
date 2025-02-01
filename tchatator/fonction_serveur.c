@@ -22,6 +22,8 @@
 
 #include <postgresql/libpq-fe.h>
 
+#include <json-c/json.h>
+
 #include "outils.h"
 #include "fonction_serveur.h"
 #include "const.h"
@@ -55,57 +57,35 @@ int init_socket() {
   return sockfd;
 }
 
-void gestion_commande(PGconn *conn, char buffer[], tClient *utilisateur) {
+void gestion_commande(PGconn *conn, tExplodeRes requete, tClient *utilisateur) {
 
-    ajouter_logs(conn, *utilisateur, buffer, "info");
+    //ajouter_logs(conn, *utilisateur, buffer, "info");
 
     // L'utilisateur doit se connecter pour utiliser le service
-    if (strncmp(buffer, COMMANDE_AIDE, strlen(COMMANDE_AIDE)) == 0) {
-        afficher_commande_aide(*utilisateur);
+    if (strmcp(requete.elements[0], COMMANDE_AIDE) == 0) {
+        //afficher_commande_aide(*utilisateur);
 
     // Aide de commande
-    } else if (strncmp(buffer, COMMANDE_CONNEXION, strlen(COMMANDE_CONNEXION)) == 0) {
-        connexion(conn, utilisateur, buffer + strlen(COMMANDE_CONNEXION));
+    } else if (strmcp(requete.elements[0], COMMANDE_CONNEXION) == 0) {
+        connexion(conn, utilisateur, requete);
     // Arrêt serveur
-    } else if (strncmp(buffer, COMMANDE_HISTORIQUE, strlen(COMMANDE_HISTORIQUE)) == 0) {
+    } else if (strmcp(requete.elements[0], COMMANDE_HISTORIQUE) == 0) {
         //afficheHistorique(conn, buffer + strlen(COMMANDE_HISTORIQUE));
 
     // Arrêt serveur
-    } else if(strncmp(buffer, COMMANDE_STOP, strlen(COMMANDE_STOP)) == 0) {
+    } else if(strmcp(requete.elements[0], COMMANDE_STOP) == 0) {
         // tue le processus serveur
         kill(getppid(), SIGUSR1);
 
     // Commande Hello
-    } else if (strncmp(buffer, "HELLO\r", 6) == 0) {
+    } else if (strncmp(requete.elements[0], "HELLO\r", 6) == 0) {
         const char *response = "COUCOU LES GENS\n";
         write(utilisateur->sockfd, response, strlen(response));
 
-    // Commande Bonjour
-    } else if (strncmp(buffer, "BONJOUR:", 8) == 0) {
-        char *name_part = buffer + 8;
-        char *newline = strstr(name_part, "\r");
-        if (newline) {
-            *newline = '\0';
-        }
-
-        char *comma = strchr(name_part, ',');
-        if (comma) {
-            *comma = '\0';
-            char *first_name = trim(name_part);
-            char *last_name = trim(comma + 1);
-
-            char response[BUFFER_SIZE];
-            snprintf(response, sizeof(response), "Bonjour, %s %s !\n", first_name, last_name);
-            write(utilisateur->sockfd, response, strlen(response));
-        } else {
-            const char *response = "Erreur : veuillez inclure une virgule entre le prénom et le nom.\n";
-            write(utilisateur->sockfd, response, strlen(response));
-        }
-
     // Commande MSG
-    } else if (strncmp(buffer, COMMANDE_MESSAGE, strlen(COMMANDE_MESSAGE)) == 0) {
-        printf("%s\n", buffer);
-        saisit_message(conn, utilisateur, buffer + strlen(COMMANDE_MESSAGE));
+    } else if (strmcp(requete.elements[0], COMMANDE_MESSAGE) == 0) {
+        //printf("%s\n", buffer);
+        //saisit_message(conn, utilisateur, buffer + strlen(COMMANDE_MESSAGE));
     
     // Commande Inconnue
     } else {
@@ -159,59 +139,29 @@ void afficheHistorique(PGconn *conn, char tokken[]) {
     
     PQclear(res);
 }
-void connexion(PGconn *conn, tClient *utilisateur, char cleAPI[]) {
+void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
 
-    char requete[125];
-    int idu;
-    char requeteMembre[150];
-    char requetePro[150];
-    char requeteAdmin[150];
     char requeteUpdate[150];
     char genTokken[20];
-    char json_data[100];
+    struct json_object *json_obj = json_object_new_object();
 
-    trim(cleAPI);
-    strcpy(cleAPI, trim(cleAPI));
-
-    sprintf(requete, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", cleAPI);
-
-    idu = trouveAPI(conn, requete);
-
-    if(idu != -1){
-
+    if (requete.nbElement != 1) {
+        if (requete.nbElement > 1) {
+            json_object_object_add(json_obj, "statut", json_object_new_string(REP_400_TOO_MANY_ARGS));
+        } else {
+            json_object_object_add(json_obj, "statut", json_object_new_string(REP_400_MISSING_ARGS));
+        }
+        send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
+    } else {
         srand(time(NULL));
         genere_tokken(genTokken);
-        
-
-        snprintf(json_data, sizeof(json_data), "{\"statut\": \"%s\", \"tokken\": \"%s\"}", REP_200, genTokken);
-
-        send_json_request(utilisateur->sockfd, json_data);
-        printf("Connexion réussie, utilisateur n°%d", idu);
-        *utilisateur->identiteUser = idu;
-        strcpy(utilisateur->tokken_connexion, genTokken);
-
-        sprintf(requeteUpdate, "UPDATE pact._utilisateur SET tokken = '%s' WHERE idu = %d;", genTokken, idu);
+        json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
+        sprintf(requeteUpdate, "UPDATE pact._utilisateur SET tokken = '%s' WHERE idu = %d;", genTokken, atoi(utilisateur->identiteUser));
         updateBDD(conn, requeteUpdate);
 
-        sprintf(requeteMembre, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
-        sprintf(requetePro, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
-        sprintf(requeteAdmin, "SELECT idu FROM pact._admin WHERE idu = %d;", idu);
-
-        if (trouveAPI(conn, requeteMembre) > 0){
-            strcpy(utilisateur->type, TYPE_MEMBRE);
-
-        } else if(trouveAPI(conn, requetePro) > 0){
-            strcpy(utilisateur->type, TYPE_PRO);
-
-        } else if (trouveAPI(conn, requeteAdmin) > 0){
-            strcpy(utilisateur->type, TYPE_ADMIN);
-
-        } else{
-            strcpy(utilisateur->type, "inconnu");
-
-        }
-    } else{
-        printf("Clé API inexistante, veuillez la consulter sur le site PACT, dans la section 'Mon compte'");
+        json_object_object_add(json_obj, "statut", json_object_new_string(REP_200));
+        json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
+        send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "info");
     }
 }
 
@@ -234,10 +184,10 @@ void saisit_message(PGconn *conn, tClient *utilisateur, char buffer[]) {
     if (result.nbElement != 3) {
         // Manque d'argument
         if (result.nbElement < 3) {
-            envoie_erreur(conn, *utilisateur, REP_400_MISSING_ARGS);
+            //envoie_erreur(conn, *utilisateur, REP_400_MISSING_ARGS);
         // Trop d'argument
         } else {
-            envoie_erreur(conn, *utilisateur, REP_400_TOO_MANY_ARGS);
+            //envoie_erreur(conn, *utilisateur, REP_400_TOO_MANY_ARGS);
         }
 
     } else {
@@ -247,19 +197,6 @@ void saisit_message(PGconn *conn, tClient *utilisateur, char buffer[]) {
     }
 
     freeExplodeResult(&result);
-}
-
-void envoie_erreur(PGconn *conn, tClient utilisateur, char code_e[]) {
-    // ajout dans les logs
-    ajouter_logs(conn, utilisateur, code_e, "error");
-
-    // réponse client
-    char json_data[BUFFER_SIZE];
-
-    snprintf(json_data, sizeof(json_data), "{\n  \"statut\": \"%s\"\n}", code_e);
-    send_json_request(utilisateur.sockfd, json_data);
-
-    close(utilisateur.sockfd);
 }
 
 void afficher_commande_aide(tClient utilisateur) {
@@ -332,11 +269,11 @@ void ajouter_logs(PGconn *conn, tClient utilisateur, char *message, char *type) 
     snprintf(info, sizeof(info), "%s - %s - %s", utilisateur.identiteUser, utilisateur.client_ip, message);
 
     if (strcmp(type, "info") == 0) {
-        snprintf(buffer, sizeof(buffer), "%s [INFO] %s", date_buff, info);
+        snprintf(buffer, sizeof(buffer), "%s - [INFO] - %s", date_buff, info);
     } else if (strcmp(type, "error") == 0) {
-        snprintf(buffer, sizeof(buffer), "%s [ERROR] %s", date_buff, info);
+        snprintf(buffer, sizeof(buffer), "%s - [ERROR] - %s", date_buff, info);
     } else if (strcmp(type, "debug") == 0) {
-        snprintf(buffer, sizeof(buffer), "%s [DEBUG] %s", date_buff, info);
+        snprintf(buffer, sizeof(buffer), "%s - [DEBUG] - %s", date_buff, info);
     } else {
         printf("Type de logs inconnue");
     }
@@ -404,7 +341,7 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
 
     buffer = buffer + strlen(commande) + 1;
     if (!est_commande(commande)) {
-        envoie_erreur(conn, *utilisateur, REP_400_UNKNOWN_PARAMETER);
+        send_json_request(conn, *utilisateur, REP_400_UNKNOWN_PARAMETER);
     }
 
     tExplodeRes tmp = explode(buffer, "|");
