@@ -29,7 +29,7 @@
 
 void killChld(int sig, siginfo_t *info, void *context) {
     if (sig == SIGUSR1) {
-        printf("Le processus enfant %s a été signalé.\n arrêt du serveur.\n", info->si_pid);
+        printf("Le processus enfant %d a été signalé.\n arrêt du serveur.\n", info->si_pid);
         kill(getpid(), SIGKILL);  // Envoie SIGKILL au processus parent pour l'arrêter
     }
 }
