@@ -17,7 +17,7 @@
 void killChld(int sig, siginfo_t *info, void *context);
 
 /// @brief Envoie les requêtes json du côté client
-void send_json_request(PGconn *conn, tClient utilisateur, char json_body[], char type[]);
+void send_json_request(PGconn *conn, tClient utilisateur, const char *json_body, char type[]);
 
 /// @brief vérifie si une chaine de caractère est une commande
 bool est_commande(char buffer[]);
