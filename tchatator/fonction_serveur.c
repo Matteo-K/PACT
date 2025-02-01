@@ -320,6 +320,11 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
     tExplodeRes res;
     res.nbElement = 0;
     res.elements = malloc(sizeof(char *));
+    
+    if (!res.elements) {
+        printf("Erreur d'allocation mémoire.\n");
+        exit(EXIT_FAILURE);
+    }
 
     char commande[BUFFER_SIZE];
     int n = 0;
@@ -342,49 +347,62 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
         struct json_object *json_obj = json_object_new_object();
         json_object_object_add(json_obj, "statut", json_object_new_string(REP_400_UNKNOWN_PARAMETER));
         send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
+        return res;  // Retourne ici si la commande est invalide.
     }
 
     tExplodeRes tmp = explode(buffer, "|");
     concat_struct(&res, &tmp);
 
     if (res.nbElement > 1) {
-        char *escaped_tok = escape_single_quotes(res.elements[1]);
-        char requete[BUFFER_SIZE];
-        snprintf(requete, sizeof(requete),
-            "SELECT u.idu, " 
-                "CASE "
-                    "WHEN m.idu IS NOT NULL THEN 'membre' "
-                    "WHEN p.idu IS NOT NULL THEN 'pro' "
-                    "WHEN a.idu IS NOT NULL THEN 'admin' "
-                    "ELSE 'inconnue' "
-                "END AS statut, "
-                "CASE "
-                    "WHEN u.tokken = '%s' THEN 'tokken' "
-                    "WHEN u.apikey = '%s' THEN 'apikey' "
-                    "ELSE 'inconnu' "
-                "END AS source "
+        // Utilisation d'une requête préparée
+        const char *query = 
+            "SELECT u.idu, "
+            "CASE "
+                "WHEN m.idu IS NOT NULL THEN 'membre' "
+                "WHEN p.idu IS NOT NULL THEN 'pro' "
+                "WHEN a.idu IS NOT NULL THEN 'admin' "
+                "ELSE 'inconnue' "
+            "END AS statut, "
+            "CASE "
+                "WHEN u.tokken = $1 THEN 'tokken' "
+                "WHEN u.apikey = $1 THEN 'apikey' "
+                "ELSE 'inconnu' "
+            "END AS source "
             "FROM pact._utilisateur u "
             "LEFT JOIN pact._membre m ON u.idu = m.idu "
             "LEFT JOIN pact._pro p ON u.idu = p.idu "
             "LEFT JOIN pact._admin a ON u.idu = a.idu "
-            "WHERE (u.tokken = '%s' OR u.apikey = '%s');",
-            escaped_tok, escaped_tok, escaped_tok, escaped_tok
-        );
+            "WHERE (u.tokken = $1 OR u.apikey = $1);";
 
-        PGresult *pg_res = PQexec(conn, requete);
+        // Préparer la requête avec le paramètre
+        PGresult *res_prepared = PQprepare(conn, "login_query", query, 1, NULL);
+        if (PQresultStatus(res_prepared) != PGRES_COMMAND_OK) {
+            fprintf(stderr, "Erreur lors de la préparation de la requête : %s\n", PQerrorMessage(conn));
+            PQclear(res_prepared);
+            return res;  // Retourne ici si la préparation échoue.
+        }
+        PQclear(res_prepared);
+
+        // Paramètres pour la requête préparée
+        const char *param_values[1];
+        param_values[0] = res.elements[1];  // Assumant que le token est dans res.elements[1]
+
+        // Exécuter la requête préparée
+        PGresult *pg_res = PQexecPrepared(conn, "login_query", 1, param_values, NULL, NULL, 0);
     
         if (PQresultStatus(pg_res) != PGRES_TUPLES_OK) {
             fprintf(stderr, "Erreur lors de l'exécution de la requête : %s\n", PQerrorMessage(conn));
             PQclear(pg_res);
+            return res;  // Retourne ici en cas d'erreur dans la requête.
         }
         
         int nrows = PQntuples(pg_res);
         if (nrows > 0) {
+            // Récupérer les résultats de la requête
             strcpy(utilisateur->identiteUser, PQgetvalue(pg_res, 0, 0));
             strcpy(utilisateur->type, PQgetvalue(pg_res, 0, 1));
             strcpy(utilisateur->tokken_connexion, res.elements[1]);
             utilisateur->est_connecte = (strcmp(PQgetvalue(pg_res, 0, 2), "tokken") == 0);
-
         }
         
         PQclear(pg_res);
