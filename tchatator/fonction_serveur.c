@@ -145,8 +145,10 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
     char genTokken[20];
 
     if (nombre_argument_requis(conn, *utilisateur, requete, 1)) {
+        struct json_object *json_obj = json_object_new_object();
         srand(time(NULL));
         genere_tokken(genTokken);
+        
         json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
         sprintf(requeteUpdate, "UPDATE pact._utilisateur SET tokken = '%s' WHERE idu = %d;", genTokken, atoi(utilisateur->identiteUser));
         updateBDD(conn, requeteUpdate);
