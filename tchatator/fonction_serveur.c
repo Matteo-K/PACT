@@ -368,7 +368,7 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
             "LEFT JOIN pact._pro p ON u.idu = p.idu "
             "LEFT JOIN pact._admin a ON u.idu = a.idu "
             "WHERE (u.tokken = '%s' OR u.apikey = '%s');",
-            res.elements[1], res.elements[1], res.elements[1], res.elements[1]
+            escaped_tok, escaped_tok, escaped_tok, escaped_tok
         );
 
         PGresult *pg_res = PQexec(conn, requete);
