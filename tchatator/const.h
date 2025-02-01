@@ -71,7 +71,7 @@ typedef struct {
 
 // paramètre
 /// @brief Integer: port de connexion au serveur
-#define PORT 80
+extern const int PORT;
 
 /// @brief Integer: durée de ban
 extern const int DUREE_BAN;
