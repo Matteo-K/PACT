@@ -250,7 +250,7 @@ void afficher_logs() {
     close(fd);
 }
 
-void ajouter_logs(PGconn *conn, tClient utilisateur, char message[], char type[]) {
+void ajouter_logs(PGconn *conn, tClient utilisateur, const char *message, const char *type) {
     int fd = open(CHEMIN_LOGS, O_WRONLY | O_APPEND);
     if (fd < 0) {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier %s en mode lecture : %s\n", CHEMIN_LOGS, strerror(errno));

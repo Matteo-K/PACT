@@ -51,7 +51,7 @@ void afficher_logs();
 /// @param utilisateur in: information de l'utilisateur
 /// @param message in: message à ajouter dans les logs
 /// @param type in: type de message. ex: info, error, debug
-void ajouter_logs(PGconn *conn, tClient utilisateur, char message[], char type[]);
+void ajouter_logs(PGconn *conn, tClient utilisateur, const char *message, const char *type);
 
 /// @brief gère les options lors de l'execution du fichier
 /// @param argc in: nombre d'argument
