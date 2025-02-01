@@ -436,18 +436,12 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
         }
         
         int nrows = PQntuples(res);
-        if (nrows == 0) {
-            printf("Aucun utilisateur trouvé.\n");
-        } else {
-            printf("utilisateur :\n");
-            for (int i = 0; i < nrows; i++) {
-                printf("\"test idu\": \"%s\",\n", PQgetvalue(res, i, 0));
-                printf("\"test statut\": \"%s\",\n", PQgetvalue(res, i, 1));
-            }
+        if (nrows > 0) {
+            strcpy(utilisateur->identiteUser, PQgetvalue(res, 0, 0));
+            strcpy(utilisateur->type, PQgetvalue(res, 0, 1));
         }
         
         PQclear(res);
-        
     }
 
     return res;
