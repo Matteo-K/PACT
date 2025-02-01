@@ -151,8 +151,8 @@ void afficherClient(tClient utilisateur) {
     printf("Est connecté ? : %s\n", utilisateur.est_connecte ? "Oui" : "Non");
 }
 
-void afficherTExplodeRes(tExplodeRes struct) {
-  for (int i = 0; i < struct.nbElement; i++) {
-    printf("elements[%d]: %s\n", i, struct.elements[i]);
+void afficherTExplodeRes(tExplodeRes structure) {
+  for (int i = 0; i < structure.nbElement; i++) {
+    printf("elements[%d]: %s\n", i, structure.elements[i]);
   }
 }
