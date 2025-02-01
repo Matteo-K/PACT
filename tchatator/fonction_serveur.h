@@ -5,6 +5,7 @@
 
 #include <stdbool.h>
 
+#include "outils.h"
 #include "const.h"
 
 #ifndef FONCTION_SERVEUR_H
@@ -63,41 +64,6 @@ void ajouter_logs(PGconn *conn, tClient utilisateur, char *message, char *type);
 /// @param argv in: liste des arguments
 void gestion_option(int argc, char *argv[]);
 
-/// @brief arrête le service côté serveur par un signal
-/// @param sig in: siganl reçu
-/// @param info in: information sur le signal
-/// @param context in: argument nécessaire pour les signaux
-void killChld(int sig, siginfo_t *info, void *context);
-
 tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]);
-
-// fonction outils de manipulation
-/// @brief Envoie les requêtes json du côté client
-/// @param sock in: descripteur du socket
-/// @param json_body in: corps du json à envoyer
-void send_json_request(int sock, const char *json_body);
-
-/// @brief vérifie si une chaine de caractère est une commande
-
-bool est_commande(char buffer[]);
-
-// inspité du trim de d'autre language
-/// @brief Retire les espaces avant et après la chaine de character
-/// @param str in: chaine de character
-/// @return chaine de character traité
-char *trim(char *str);
-
-void concat_struct(tExplodeRes *struct1, tExplodeRes *struct2);
-
-// inspité du explode de d'autre language
-/// @brief Sépare une chaine par un séparateur
-/// @param buffer in: chaine de character
-/// @param separateur in: séparateur de la chaine
-/// @return structure de la liste partie de chaine séparé
-tExplodeRes explode(char buffer[], const char *separateur);
-
-/// @brief libère l'allocation en mémoire de la structure
-/// @param result in/out: structure du résultat de l'explode
-void freeExplodeResult(tExplodeRes *result);
 
 #endif // FONCTION_SERVEUR_H

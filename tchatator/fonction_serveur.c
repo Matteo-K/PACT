@@ -23,6 +23,7 @@
 #include <postgresql/libpq-fe.h>
 
 #include "fonction_serveur.h"
+#include "outils.h"
 #include "const.h"
 #include "bdd.h"
 
@@ -408,7 +409,7 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
     tExplodeRes tmp = explode(buffer, "|");
     concat_struct(&res, &tmp);
 
-    if (res.nbElement > 9999) {
+    if (res.nbElement > 1) {
         char requete[BUFFER_SIZE];
         snprintf(requete, sizeof(requete),
             "SELECT u.idu," 
@@ -429,13 +430,6 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
     }
 
     return res;
-}
-
-void killChld(int sig, siginfo_t *info, void *context) {
-    if (sig == SIGUSR1) {
-        printf("Le processus enfant a signalé une fin avec -1, arrêt du serveur.\n");
-        kill(getpid(), SIGKILL);  // Envoie SIGKILL au processus parent pour l'arrêter
-    }
 }
 
 bool est_commande(char buffer[]) {
@@ -459,107 +453,4 @@ bool est_commande(char buffer[]) {
     }
 
     return false;
-}
-
-void send_json_request(int sock, const char *json_body) {
-
-    // Construire la requête HTTP (avec JSON dans le corps)
-    char request[BUFFER_SIZE * 4];
-    sprintf(request,
-            "GET /login HTTP/1.1\r\n"
-            "Host: %s\r\n"
-            "Content-Type: application/json\r\n"
-            "Content-Length: %lu\r\n"
-            "\r\n"
-            "%s\r\n", 
-            SERVEUR, strlen(json_body), json_body);
-
-    // Envoyer la requête
-    if (send(sock, request, strlen(request), 0) < 0) {
-        perror("Send failed");
-        return;
-    }
-}
-
-// trim(char[]) comme en php
-char *trim(char *str) {
-    char *end;
-    while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r') {
-        str++;
-    }
-
-    if (*str == 0) {
-        return str;
-    }
-
-    end = str + strlen(str) - 1;
-    while (end > str && (*end == ' ' || *end == '\t' || *end == '\n' || *end == '\r')) {
-        end--;
-    }
-
-    *(end + 1) = '\0';
-    return str;
-}
-
-void concat_struct(tExplodeRes *struct1, tExplodeRes *struct2) {
-    int taille = struct1->nbElement + struct2->nbElement;
-
-    struct1->elements = realloc(struct1->elements, taille * sizeof(char *));
-    if (!struct1->elements) {
-        printf("Erreur de réallocation de mémoire.\n");
-        return;
-    }
-
-    for (int i = 0; i < struct2->nbElement; i++) {
-        struct1->elements[struct1->nbElement + i] = strdup(struct2->elements[i]);
-    }
-
-    struct1->nbElement = taille;
-}
-
-tExplodeRes explode(char buffer[], const char *separateur) {
-    tExplodeRes result;
-    result.nbElement = 0;
-    result.elements = NULL;
-    
-    char *tempBuffer = strdup(buffer);
-    if (!tempBuffer) {
-        perror("Erreur d'allocation mémoire");
-        exit(EXIT_FAILURE);
-    }
-    
-    char *token = strtok(tempBuffer, separateur);
-    while (token != NULL) {
-
-        token = trim(token);
-
-        // Allouage dynamique de la mémoire
-        result.elements = realloc(result.elements, (result.nbElement + 1) * sizeof(char *));
-        if (!result.elements) {
-            perror("Erreur de réallocation mémoire");
-            free(tempBuffer);
-            exit(EXIT_FAILURE);
-        }
-
-        // Ajout d'un élément
-        result.elements[result.nbElement] = strdup(token);
-        if (!result.elements[result.nbElement]) {
-            perror("Erreur d'allocation mémoire");
-            free(tempBuffer);
-            exit(EXIT_FAILURE);
-        }
-
-        result.nbElement++;
-        token = strtok(NULL, separateur);
-    }
-
-    free(tempBuffer);
-    return result;
-}
-
-void freeExplodeResult(tExplodeRes *result) {
-    for (int i = 0; i < result->nbElement; i++) {
-        free(result->elements[i]);
-    }
-    free(result->elements);
 }

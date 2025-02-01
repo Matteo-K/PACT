@@ -13,8 +13,9 @@
 
 #include <postgresql/libpq-fe.h>
 
-#include "bdd.h"
 #include "fonction_serveur.h"
+#include "outils.h"
+#include "bdd.h"
 #include "const.h"
 
 
