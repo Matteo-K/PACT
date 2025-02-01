@@ -145,12 +145,11 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
     char genTokken[20];
     struct json_object *json_obj = json_object_new_object();
 
-    if (requete.nbElement != 1) {
-        if (requete.nbElement > 1) {
-            json_object_object_add(json_obj, "statut", json_object_new_string(REP_400_TOO_MANY_ARGS));
-        } else {
-            json_object_object_add(json_obj, "statut", json_object_new_string(REP_400_MISSING_ARGS));
-        }
+    if (requete.nbElement > 1) {
+        json_object_object_add(json_obj, "statut", json_object_new_string(REP_400_TOO_MANY_ARGS));
+        send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
+    } else if (requete.nbElement < 1) {
+        json_object_object_add(json_obj, "statut", json_object_new_string(REP_400_MISSING_ARGS));
         send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
     } else {
         srand(time(NULL));
