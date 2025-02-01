@@ -62,18 +62,18 @@ void gestion_commande(PGconn *conn, tExplodeRes requete, tClient *utilisateur) {
     //ajouter_logs(conn, *utilisateur, buffer, "info");
 
     // L'utilisateur doit se connecter pour utiliser le service
-    if (strmcp(requete.elements[0], COMMANDE_AIDE) == 0) {
+    if (strcmp(requete.elements[0], COMMANDE_AIDE) == 0) {
         //afficher_commande_aide(*utilisateur);
 
     // Aide de commande
-    } else if (strmcp(requete.elements[0], COMMANDE_CONNEXION) == 0) {
+    } else if (strcmp(requete.elements[0], COMMANDE_CONNEXION) == 0) {
         connexion(conn, utilisateur, requete);
     // Arrêt serveur
-    } else if (strmcp(requete.elements[0], COMMANDE_HISTORIQUE) == 0) {
+    } else if (strcmp(requete.elements[0], COMMANDE_HISTORIQUE) == 0) {
         //afficheHistorique(conn, buffer + strlen(COMMANDE_HISTORIQUE));
 
     // Arrêt serveur
-    } else if(strmcp(requete.elements[0], COMMANDE_STOP) == 0) {
+    } else if(strcmp(requete.elements[0], COMMANDE_STOP) == 0) {
         // tue le processus serveur
         kill(getppid(), SIGUSR1);
 
@@ -83,7 +83,7 @@ void gestion_commande(PGconn *conn, tExplodeRes requete, tClient *utilisateur) {
         write(utilisateur->sockfd, response, strlen(response));
 
     // Commande MSG
-    } else if (strmcp(requete.elements[0], COMMANDE_MESSAGE) == 0) {
+    } else if (strcmp(requete.elements[0], COMMANDE_MESSAGE) == 0) {
         //printf("%s\n", buffer);
         //saisit_message(conn, utilisateur, buffer + strlen(COMMANDE_MESSAGE));
     
