@@ -152,7 +152,27 @@ void afficherClient(tClient utilisateur) {
 }
 
 void afficherTExplodeRes(tExplodeRes structure) {
+  printf("Nombre d'élément: %d\n",structure.nbElement);
   for (int i = 0; i < structure.nbElement; i++) {
     printf("elements[%d]: %s\n", i, structure.elements[i]);
   }
+}
+
+char *escape_single_quotes(const char *str) {
+    size_t len = strlen(str);
+    char *escaped_str = malloc(len * 2 + 1);
+    if (!escaped_str) {
+        perror("Erreur d'allocation mémoire");
+        exit(EXIT_FAILURE);
+    }
+
+    size_t j = 0;
+    for (size_t i = 0; i < len; i++) {
+        if (str[i] == '\'') {
+            escaped_str[j++] = '\'';
+        }
+        escaped_str[j++] = str[i];
+    }
+    escaped_str[j] = '\0';
+    return escaped_str;
 }

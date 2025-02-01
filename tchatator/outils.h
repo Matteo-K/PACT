@@ -52,4 +52,6 @@ void afficherClient(tClient utilisateur);
 /// @param structure structure à afficher
 void afficherTExplodeRes(tExplodeRes structure);
 
+char *escape_single_quotes(const char *str);
+
 #endif // OUTILS_H
