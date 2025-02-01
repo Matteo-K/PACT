@@ -49,7 +49,7 @@ void freeExplodeResult(tExplodeRes *result);
 void afficherClient(tClient utilisateur);
 
 /// @brief Affiche les informations de la struture
-/// @param struct structure à afficher
-void afficherTExplodeRes(tExplodeRes struct);
+/// @param structure structure à afficher
+void afficherTExplodeRes(tExplodeRes structure);
 
 #endif // OUTILS_H

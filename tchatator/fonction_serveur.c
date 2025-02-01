@@ -341,7 +341,9 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
 
     buffer = buffer + strlen(commande) + 1;
     if (!est_commande(commande)) {
-        send_json_request(conn, *utilisateur, REP_400_UNKNOWN_PARAMETER);
+        struct json_object *json_obj = json_object_new_object();
+        json_object_object_add(json_obj, "statut", json_object_new_string(REP_400_UNKNOWN_PARAMETER));
+        send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
     }
 
     tExplodeRes tmp = explode(buffer, "|");
