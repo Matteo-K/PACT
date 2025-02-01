@@ -26,7 +26,7 @@ bool est_commande(char buffer[]);
 /// @param argument liste des argument
 /// @param nbArg nombre d'argument désiré
 /// @return bool si le nombre d'rgument correspond 
-bool nombre_argument_requis(tExplodeRes argument, int nbArg);
+bool nombre_argument_requis(PGconn *conn, tClient utilisateur, tExplodeRes argument, int nbArg);
 
 // inspiré du trim de d'autre language
 /// @brief Retire les espaces avant et après la chaine de character

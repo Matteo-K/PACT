@@ -143,9 +143,8 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
 
     char requeteUpdate[150];
     char genTokken[20];
-    struct json_object *json_obj = json_object_new_object();
 
-    if (nombre_argument_requis(requete, 1)) {
+    if (nombre_argument_requis(conn, *utilisateur, requete, 1)) {
         srand(time(NULL));
         genere_tokken(genTokken);
         json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));

@@ -94,8 +94,9 @@ void concat_struct(tExplodeRes *struct1, tExplodeRes *struct2) {
     struct1->nbElement = taille;
 }
 
-bool nombre_argument_requis(tExplodeRes argument, int nbArg) {
+bool nombre_argument_requis(PGconn *conn, tClient utilisateur, tExplodeRes argument, int nbArg) {
     int arg = nbArg + 1;
+    struct json_object *json_obj = json_object_new_object();
     if (argument.nbElement > arg) {
         json_object_object_add(json_obj, "statut", json_object_new_string(REP_400_TOO_MANY_ARGS));
         send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
