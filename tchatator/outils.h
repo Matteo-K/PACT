@@ -22,6 +22,12 @@ void send_json_request(PGconn *conn, tClient utilisateur, const char *json_body,
 /// @brief vérifie si une chaine de caractère est une commande
 bool est_commande(char buffer[]);
 
+/// @brief Vérifie si le nombre d'argument correspond à la demande
+/// @param argument liste des argument
+/// @param nbArg nombre d'argument désiré
+/// @return bool si le nombre d'rgument correspond 
+bool nombre_argument_requis(tExplodeRes argument, int nbArg);
+
 // inspiré du trim de d'autre language
 /// @brief Retire les espaces avant et après la chaine de character
 /// @param str in: chaine de character

@@ -94,6 +94,18 @@ void concat_struct(tExplodeRes *struct1, tExplodeRes *struct2) {
     struct1->nbElement = taille;
 }
 
+bool nombre_argument_requis(tExplodeRes argument, int nbArg) {
+    int arg = nbArg + 1;
+    if (argument.nbElement > arg) {
+        json_object_object_add(json_obj, "statut", json_object_new_string(REP_400_TOO_MANY_ARGS));
+        send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
+    } else if (argument.nbElement < arg) {
+        json_object_object_add(json_obj, "statut", json_object_new_string(REP_400_MISSING_ARGS));
+        send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
+    }
+    return !(argument.nbElement > arg || argument.nbElement < arg);
+}
+
 tExplodeRes explode(char buffer[], const char *separateur) {
     tExplodeRes result;
     result.nbElement = 0;
