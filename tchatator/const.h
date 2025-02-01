@@ -106,7 +106,7 @@ extern const char *CHEMIN_LOGS;
 #define COMMANDE_MESSAGE "MSG"
 
 /// @brief Character String: Déconnexion utilisateur
-#define COMMANDE_DECONNECTE "BYE BYE"
+#define COMMANDE_DECONNECTE "LOGOUT"
 
 /// @brief Character String: Affiche l'aide des commandes
 #define COMMANDE_AIDE "AIDE"
