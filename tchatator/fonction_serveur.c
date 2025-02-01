@@ -356,7 +356,7 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
                     "WHEN p.idu IS NOT NULL THEN 'pro' "
                     "WHEN a.idu IS NOT NULL THEN 'admin' "
                     "ELSE 'inconnue' "
-                "END AS statut "
+                "END AS statut, "
                 "CASE "
                     "WHEN u.tokken = '%s' THEN 'tokken' "
                     "WHEN u.apikey = '%s' THEN 'apikey' "
