@@ -136,3 +136,19 @@ void freeExplodeResult(tExplodeRes *result) {
     }
     free(result->elements);
 }
+
+void afficherClient(tClient utilisateur) {
+    printf("=== Informations du client ===\n");
+    printf("Identité       : %s\n", utilisateur.identiteUser);
+    printf("Tokken         : %s\n", utilisateur.tokken_connexion);
+    printf("Adresse IP     : %s\n", utilisateur.client_ip);
+    printf("Type           : %s\n", utilisateur.type);
+    printf("Socket         : %d\n", utilisateur.sockfd);
+    printf("Est connecté ? : %s\n", utilisateur.est_connecte ? "Oui" : "Non");
+}
+
+void afficherTExplodeRes(tExplodeRes struct) {
+  for (int i = 0; i < struct.nbElement; i++) {
+    printf("elements[%d]: %s\n", i, struct.elements[i]);
+  }
+}

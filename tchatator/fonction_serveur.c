@@ -420,6 +420,11 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
                     "WHEN a.idu IS NOT NULL THEN 'admin' "
                     "ELSE 'inconnue' "
                 "END AS statut "
+                "CASE "
+                    "WHEN u.tokken = '%s' THEN 'tokken' "
+                    "WHEN u.apikey = '%s' THEN 'apikey' "
+                    "ELSE 'inconnu' "
+                "END AS source "
             "FROM pact._utilisateur u "
             "LEFT JOIN pact._membre m ON u.idu = m.idu "
             "LEFT JOIN pact._pro p ON u.idu = p.idu "
@@ -439,6 +444,9 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
         if (nrows > 0) {
             strcpy(utilisateur->identiteUser, PQgetvalue(res, 0, 0));
             strcpy(utilisateur->type, PQgetvalue(res, 0, 1));
+            strcpy(utilisateur->tokken_connexion, res.elements[1]);
+            utilisateur->est_connecte = (strcmp(PQgetvalue(res, 0, 2), "tokken") == 0);
+
         }
         
         PQclear(res);

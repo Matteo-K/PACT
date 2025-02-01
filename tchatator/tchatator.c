@@ -81,8 +81,12 @@ int main(int argc, char *argv[]) {
           .tokken_connexion = "",
           .client_ip = "",
           .type = "",
-          .sockfd = newsockfd
+          .sockfd = newsockfd,
+          .est_connecte = false
         };
+
+        // Initialise l'ip
+        strcpy(utilisateur.client_ip, client_ip);
 
         // Lecture de commande
         char buffer[BUFFER_SIZE];
@@ -95,13 +99,11 @@ int main(int argc, char *argv[]) {
 
         tExplodeRes argument = init_argument(conn, &utilisateur, buffer);
 
-        for (int i = 0; i < argument.nbElement; i++) {
-            printf("elements[%d]: %s\n", i, argument.elements[i]);
-        }
+        afficherTExplodeRes(argument);
+        afficherClient(utilisateur);
+
         gestion_commande(conn, buffer, &utilisateur);
-
         close(utilisateur.sockfd);
-
         _exit(0);
 
       } else {

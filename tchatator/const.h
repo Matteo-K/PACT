@@ -3,6 +3,8 @@
  * @author Matteo-K, Gabriel-F, Kylian-H, Ewen-J
  */
 
+#include <stdbool.h>
+
 #include <arpa/inet.h>
 
 #ifndef CONST_H
@@ -19,6 +21,7 @@ typedef struct {
   char client_ip[INET_ADDRSTRLEN];
   char type[BUFFER_SIZE];
   int sockfd;
+  bool est_connecte;
 } tClient;
 
 typedef struct {

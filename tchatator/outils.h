@@ -47,4 +47,12 @@ tExplodeRes explode(char buffer[], const char *separateur);
 /// @param result in/out: structure du résultat de l'explode
 void freeExplodeResult(tExplodeRes *result);
 
+/// @brief Affiche les informations du client
+/// @param utilisateur client du service
+void afficherClient(tClient utilisateur);
+
+/// @brief Affiche les informations de la struture
+/// @param struct structure à afficher
+void afficherTExplodeRes(tExplodeRes struct);
+
 #endif // OUTILS_H
