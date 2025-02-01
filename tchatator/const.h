@@ -97,10 +97,10 @@ extern const char *CHEMIN_LOGS;
 
 // Commande
 /// @brief Character String: commande de connexion
-#define COMMANDE_CONNEXION "LOGIN:"
+#define COMMANDE_CONNEXION "LOGIN"
 
 /// @brief Character String: commande d'envoie de message
-#define COMMANDE_MESSAGE "MSG:"
+#define COMMANDE_MESSAGE "MSG"
 
 /// @brief Character String: Déconnexion utilisateur
 #define COMMANDE_DECONNECTE "BYE BYE"
