@@ -402,7 +402,7 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
     }
     res.nbElement++;
 
-    buffer = buffer + strlen(commande);
+    buffer = buffer + strlen(commande) + 1;
     if (!est_commande(commande)) {
         envoie_erreur(conn, *utilisateur, REP_400_UNKNOWN_PARAMETER);
     }
