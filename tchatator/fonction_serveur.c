@@ -232,7 +232,7 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
                          tm.tm_hour, tm.tm_min, tm.tm_sec);
 
                 const char *ajout_message =
-                    "INSERT INTO vueMessages (idExpediteur, contenuMessage, dateMessage, typeExpediteur, idReceveur)"
+                    "INSERT INTO pact.vueMessages (idExpediteur, contenuMessage, dateMessage, typeExpediteur, idReceveur)"
                     "VALUES ($1, $2, $3, $4, $5);";
 
                 // Saisit du message dans la bdd
