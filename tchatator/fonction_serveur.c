@@ -150,14 +150,12 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
         genere_tokken(genTokken);
         
         json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
-        sprintf(requeteUpdate, "UPDATE pact._utilisateur SET tokken = '%s' WHERE idu = %d;", genTokken, utilisateur->identiteUser);
+        sprintf(requeteUpdate, "UPDATE pact._utilisateur SET tokken = '%s' WHERE idu = %d;", genTokken, atoi(utilisateur->identiteUser));
         updateBDD(conn, requeteUpdate);
 
         json_object_object_add(json_obj, "statut", json_object_new_string(REP_200));
         json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
         send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "info");
-
-        
     }
 }
 
