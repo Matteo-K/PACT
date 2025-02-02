@@ -140,11 +140,12 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
     int idu;
     char requeteUpdate[150];
     char genTokken[20];
+    char buffer[20];
 
     if (nombre_argument_requis(conn, *utilisateur, requete, 1)) {
         
-        sprintf(requeteAPI, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", trim(requete));
-        idu = trouveAPI(conn, requete);
+        sprintf(requeteAPI, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", trim(requete.elements[0]));
+        idu = trouveAPI(conn, requete.elements[0]);
         if(idu != -1){
         
             struct json_object *json_obj = json_object_new_object();
@@ -155,12 +156,18 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
             sprintf(requeteUpdate, "UPDATE pact._utilisateur SET tokken = '%s' WHERE idu = %d;", genTokken, idu);
             updateBDD(conn, requeteUpdate);
 
-            strcpy(utilisateur->identiteUser, idu);
+            sprintf(buffer, "%d", idu); 
+            strcpy(utilisateur->identiteUser, buffer);
 
             json_object_object_add(json_obj, "statut", json_object_new_string(REP_200));
             json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
             send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "info");
         }
+
+        else{
+            json_object_object_add(json_obj, "statut", json_object_new_string(REP_401));
+        }
+        
     }
 }
 
@@ -229,6 +236,7 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
             strcpy(idu_dest, PQgetvalue(pg_res, 0, 0));
             strcpy(type_dest, PQgetvalue(pg_res, 0, 1));
 
+            printf("type = %s\n",type_dest);
             // Vérification si le destinataire est compatible
             if ((strcmp(type_dest, TYPE_MEMBRE) == 0 && strcmp(utilisateur->type, TYPE_PRO) == 0) ||
                 (strcmp(type_dest, TYPE_PRO) == 0 && strcmp(utilisateur->type, TYPE_MEMBRE) == 0)) {
@@ -241,16 +249,29 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
                          tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, 
                          tm.tm_hour, tm.tm_min, tm.tm_sec);
 
+
+
                 const char *ajout_message =
                     "INSERT INTO pact.vueMessages (idExpediteur, contenuMessage, dateMessage, typeExpediteur, idReceveur)"
                     "VALUES ($1, $2, $3, $4, $5);";
 
+                char inverted_type_dest[BUFFER_SIZE];
+
+                if (strcmp(type_dest, "membre") == 0) {
+                    strcpy(inverted_type_dest, "pro");
+                } else if (strcmp(type_dest, "pro") == 0) {
+                    strcpy(inverted_type_dest, "membre");
+                } else {
+                    strcpy(inverted_type_dest, type_dest); // Garde la même valeur si ce n'est ni membre ni pro
+                }
+                
+                
                 // Saisit du message dans la bdd
                 const char *param_values_addMSG[5] = {
                     utilisateur->identiteUser,
                     requete.elements[3],
                     date_buff,
-                    type_dest,
+                    inverted_type_dest,
                     idu_dest
                 };
 
