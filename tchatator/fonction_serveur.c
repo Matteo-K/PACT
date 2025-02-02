@@ -236,7 +236,7 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
                     "VALUES ($1, $2, $3, $4, $5);";
 
                 // Saisit du message dans la bdd
-                const char *param_values_addMSG[6] = {
+                const char *param_values_addMSG[5] = {
                     utilisateur->identiteUser,
                     requete.elements[3],
                     date_buff,
