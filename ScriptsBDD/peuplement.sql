@@ -867,6 +867,22 @@ INSERT INTO _offrePrestation_inclu(idOffre,nomPresta)
 VALUES (4,'Repas');
 
 
---EXEMPLE
+--EXEMPLE essaie de historique
+
+--insertion d'un message
 --INSERT INTO vueMessages (nomExpediteur, idExpediteur, contenuMessage, dateMessage, typeExpediteur, nomReceveur, idReceveur)
 --VALUES ('membre1', 5, 'Bonjour, avez-vous un devis ?', CURRENT_TIMESTAMP, 'membre', 'Patrick', 4); 
+
+--insertion d'un tokken
+--UPDATE _utilisateur SET tokken ='tokken' WHERE idU = 14;
+
+--insertion d'un message pour le membre ayant le tokken
+--INSERT INTO vueMessages (nomExpediteur, idExpediteur, contenuMessage, dateMessage, typeExpediteur, nomReceveur, idReceveur)
+--VALUES ('mattaque', 14, 'Bonjour, avez-vous un devis ?', CURRENT_TIMESTAMP, 'membre', 'Patrick', 4); 
+
+--test requete en fonction du tokken
+--SELECT vueMessages.idMessage, vueMessages.dateMessage, vueMessages.contenuMessage,vueMessages.nomExpediteur, vueMessages.nomReceveur
+--FROM pact.vueMessages
+--JOIN pact._utilisateur ON _utilisateur.idU = vueMessages.idReceveur OR _utilisateur.idU = vueMessages.idExpediteur
+--WHERE _utilisateur.tokken = 'tokken'
+--ORDER BY vueMessages.dateMessage DESC;

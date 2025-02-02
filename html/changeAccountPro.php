@@ -283,10 +283,11 @@
         </form>
         <section id="apiKey">
             <?php
-            $stmt = $conn -> prepare ("SELECT * from pact._pro WHERE idu = $userId");
+            $stmt = $conn -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
             $stmt -> execute();
             $infoPro = $stmt -> fetch(PDO::FETCH_ASSOC);
             ?>
+            <?php print_r($infoPro) ?>
             <p>Votre Clé API :</p>
             <?php if($infoPro["apikey"]){?>
                 <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
