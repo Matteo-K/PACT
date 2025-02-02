@@ -870,8 +870,8 @@ VALUES (4,'Repas');
 --EXEMPLE essaie de historique
 
 --insertion d'un message
-INSERT INTO vueMessages (idExpediteur, contenuMessage, dateMessage, typeExpediteur, idReceveur)
-VALUES (5, 'Bonjour, avez-vous un devis ?', CURRENT_TIMESTAMP, 'membre', 4); 
+--INSERT INTO vueMessages (idExpediteur, contenuMessage, dateMessage, typeExpediteur, idReceveur)
+--VALUES (5, 'Bonjour, avez-vous un devis ?', CURRENT_TIMESTAMP, 'membre', 4); 
 
 --insertion d'un tokken
 --UPDATE _utilisateur SET tokken ='tokken' WHERE idU = 14;
