@@ -185,7 +185,6 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
             send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
             return;
         }
-        printf("API Key envoyée: %s\n", requete.elements[1]);
 
         // Vérification du destinataire
         const char *query =
@@ -233,22 +232,23 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
                          tm.tm_hour, tm.tm_min, tm.tm_sec);
 
                 const char *ajout_message =
+                    "INSERT INTO vueMessages (idExpediteur, contenuMessage, dateMessage, typeExpediteur, idReceveur)"
+                    "VALUES ($1, $2, $3, $4, $5);".
                     "INSERT INTO pact._historiqueMessage (id, heure, content, contentlength, idexpediteur, typeexpediteur) "
                     "VALUES ($1, $2, $3, $4, $5, $6);";
 
                 // Saisit du message dans la bdd
                 const char *param_values_addMSG[6] = {
                     utilisateur->identiteUser,
-                    date_buff,
                     requete.elements[3],
-                    NULL,
+                    date_buff,
                     idu_dest,
                     type_dest
                 };
 
-                char taille_msg[10];
-                snprintf(taille_msg, sizeof(taille_msg), "%lu", strlen(requete.elements[3]));
-                param_values_addMSG[3] = taille_msg;
+                // char taille_msg[10];
+                // snprintf(taille_msg, sizeof(taille_msg), "%lu", strlen(requete.elements[3]));
+                // param_values_addMSG[3] = taille_msg;
 
                 PGresult *pg_res_insert = PQexecParams(conn, ajout_message, 6, NULL, param_values_addMSG, NULL, NULL, 0);
 
