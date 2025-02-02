@@ -185,6 +185,7 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
             send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
             return;
         }
+        printf("API Key envoyée: %s\n", requete.elements[1]);
 
         // Vérification du destinataire
         const char *query =
