@@ -180,7 +180,7 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
         }
 
         // Vérification de la longueur du message
-        if (strlen(requete.elements[2]) > TAILLE_MAX_MSG) {
+        if (strlen(requete.elements[3]) > TAILLE_MAX_MSG) {
             json_object_object_add(json_obj, "statut", json_object_new_string(REP_416));
             send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
             return;
@@ -240,14 +240,14 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
                 const char *param_values_addMSG[6] = {
                     utilisateur->identiteUser,
                     date_buff,
-                    requete.elements[2],
+                    requete.elements[3],
                     NULL,
                     idu_dest,
                     type_dest
                 };
 
                 char taille_msg[10];
-                snprintf(taille_msg, sizeof(taille_msg), "%lu", strlen(requete.elements[2]));
+                snprintf(taille_msg, sizeof(taille_msg), "%lu", strlen(requete.elements[3]));
                 param_values_addMSG[3] = taille_msg;
 
                 PGresult *pg_res_insert = PQexecParams(conn, ajout_message, 6, NULL, param_values_addMSG, NULL, NULL, 0);
