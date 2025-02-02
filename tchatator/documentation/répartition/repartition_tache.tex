@@ -1,0 +1,159 @@
+\documentclass{report}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage[french]{babel}
+
+\geometry{a4paper, margin=1in}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{IUT Lannion - SAÉ 3 Tchatator - Répartition des tâches}
+\rhead{The void - 2024-25}
+
+\title{\Huge Tchatator \\ {\LARGE Répartition des tâches}}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        {\Huge\bfseries Tchatator} \\[1cm]
+        {\Large\textit{Répartition des tâches}} \\[2cm]
+
+        \includegraphics[width=0.4\textwidth]{../../../html/img/logo.png} \\[2cm]
+
+        {\Large \textbf{A2.1 The void}} \\ [.2cm]
+        {\large Mattéo KERVADEC } \\[.2cm]
+        {\large Kylian Houedec } \\[.2cm]
+        {\large Gabriel FROC } \\[.2cm]
+        {\large Ewen JAIN } \\[.2cm]
+        {\large Antoine GUILLERM } \\[.2cm]
+        {\large Benjamin GERARD } \\[1cm]
+
+        \textbf{IUT Lannion - SAÉ 3 2024-2025} \\[1.2cm]
+
+        \textit{
+        Le projet TripEnArvor a pour objectif de mettre en place un mécanisme d’échange de messages au format texte brut entre les professionnels et les visiteurs/clients de la plateforme. Ce mécanisme fonctionnera en mode asynchrone, permettant à chaque correspondant d’envoyer et recevoir des messages de manière décalée, sans nécessiter de connexion simultanée. 
+		} \\[0.5cm]
+		
+		\textit{
+        Ce document a pour but de présenter l'implication de travail de chacun sur le tchatator
+		}
+
+        \vfill  % Remplit l'espace vertical jusqu'en bas
+
+        {\small Dernière modification : \today}
+    \end{center}
+\end{titlepage}
+
+\chapter{Conception du protocole}
+
+\begin{table}[ht]
+\hspace{-1cm}  % Décale le tableau vers la gauche
+\begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\textbf{Fonctionnalité} & \textbf{Mattéo Kervadec} & \textbf{Antoine Guillerm} & \textbf{Gabriel Froc} & \textbf{Ewen Jain} & \textbf{Kylian Houedec} & \textbf{Benjamin Gerard} \\
+\hline
+Modularité & 100\% & & & & & \\
+\hline
+Envoie de la réponse à l'utilisateur & 100\% & & & & & \\
+\hline
+Mise en place du socket & 100\% & & & & & \\
+\hline
+Gestion des options & 100\% & & & & & \\
+\hline
+Gestion des logs & 100\% & & & & & \\
+\hline
+Mise en place BDD & & & 100\% & & & \\
+\hline
+Authentification & & & & 100\% & & \\
+\hline
+Envoi de message & 100\% & & & & & \\
+\hline
+Réception de message non lu & & & & & & \\
+\hline
+Réception d'un historique & & & 100\% & & & \\
+\hline
+Modification d'un message & & & & & & \\
+\hline
+suppression d'un message & & & & 100\% & & \\
+\hline
+Blocage / Bannissement & & & & & & \\
+\hline
+Déblocage / Débannissement &  & & & & & \\
+\hline
+Limitation de requêtes & 100\% & & & & & \\
+\hline
+\end{tabular}
+\caption{Répartition des tâches - conception}
+\end{table}
+
+\chapter{Codage et tests}
+
+\begin{table}[ht]
+\hspace{-1cm}  % Décale le tableau vers la gauche
+\begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\textbf{Fonctionnalité} & \textbf{Mattéo Kervadec} & \textbf{Antoine Guillerm} & \textbf{Gabriel Froc} & \textbf{Ewen Jain} & \textbf{Kylian Houedec} & \textbf{Benjamin Gerard} \\
+\hline
+Mise en place du socket & 100\% & & & & & \\
+\hline
+Envoie de la réponse à l'utilisateur & 100\% & & & & & \\
+\hline
+Mise en place sur le serveur & & & & & 100\% & \\
+\hline
+Gestion des options & 100\% & & & & & \\
+\hline
+Gestion des logs & 100\% & & & & & \\
+\hline
+Mise en place BDD & & & 100\% & & & \\
+\hline
+Authentification & 35\% & & & 65\% & & \\
+\hline
+Envoi de message & 100\% & & & & & \\
+\hline
+Réception de message non lu & & & & & & \\
+\hline
+Réception d'un historique & & & 100\% & & & \\
+\hline
+Modification d'un message & & & & & & \\
+\hline
+suppression d'un message & & & & 100\% & & \\
+\hline
+Blocage / Bannissement & & & & & & \\
+\hline
+Déblocage / Débannissement &  & & & & & \\
+\hline
+Limitation de requêtes & 100\% & & & & & \\
+\hline
+\end{tabular}
+\caption{Répartition des tâches - codages et tests}
+\end{table}
+
+\chapter{Documentation}
+
+\begin{table}[ht]
+\hspace{-1cm}  % Décale le tableau vers la gauche
+\begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\textbf{Fonctionnalité} & \textbf{Mattéo Kervadec} & \textbf{Antoine Guillerm} & \textbf{Gabriel Froc} & \textbf{Ewen Jain} & \textbf{Kylian Houedec} & \textbf{Benjamin Gerard} \\
+\hline
+Documentation des fonctions & 65\% & & 15\% & 15\% & & \\
+\hline
+Documentation utilisateur & 50\% & 50\% & & & & \\
+\hline
+Documentation technique & 100\% & & & & & \\
+\hline
+Documentation des protocoles & & & & & & \\
+\hline
+\end{tabular}
+\caption{Répartition des tâches - documentation}
+\end{table}
+
+\end{document}
