@@ -18,4 +18,6 @@
 \contentsline {paragraph}{Réponses possibles après la tentatives de déconnexion}{5}{section*.9}%
 \contentsline {subsection}{\numberline {2.1.3}Avoir de l’aide}{5}{subsection.2.1.3}%
 \contentsline {subsection}{\numberline {2.1.4}Envoyer un message}{5}{subsection.2.1.4}%
-\contentsline {subsection}{\numberline {2.1.5}Arrêt du serveur}{6}{subsection.2.1.5}%
+\contentsline {paragraph}{Réponses possibles après la tentatives d'envoi de message}{6}{section*.10}%
+\contentsline {subsection}{\numberline {2.1.5}Consulter l’historique de message}{6}{subsection.2.1.5}%
+\contentsline {subsection}{\numberline {2.1.6}Arrêt du serveur}{6}{subsection.2.1.6}%

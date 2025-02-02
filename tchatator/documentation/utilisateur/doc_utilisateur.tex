@@ -12,7 +12,7 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{IUT Lannion - SAÉ 3 Tchatator - documentation technique}
+\lhead{IUT Lannion - SAÉ 3 Tchatator - documentation utilisateur}
 \rhead{The void - 2024-25}
 
 \title{\Huge Tchatator \\ {\LARGE Documentation Technique}}
@@ -202,11 +202,11 @@ Exemple:
 
 \begin{itemize}
 	\item 200/OK : accès autorisé
+	\item 400/TOO \_ MANY \_ ARGS : Trop de paramètres fournit
+	\item 400/MISSING \_ ARGS : Pas assez de paramètres fournit
 	\item 403/CLIENT \_ BANNED : accès refusé, client banni
 	\item 403/CLIENT \_ BLOCKED : accès refusé, client bloqué
 	\item 429/QUOTA \_ EXCEEDED : Quota dépassé pour la clé API
-	\item 400/TOO \_ MANY \_ ARGS : Trop de paramètres fournit
-	\item 400/MISSING \_ ARGS : Pas assez de paramètres fournit
 \end{itemize}
 
 \subsection{Déconnexion du service}
@@ -232,10 +232,10 @@ Exemple:
 
 \begin{itemize}
 	\item 200/OK : accès autorisé
-	\item 403/CLIENT \_ BANNED : accès refusé, client banni
-	\item 403/CLIENT \_ BLOCKED : accès refusé, client bloqué
 	\item 400/TOO \_ MANY \_ ARGS : Trop de paramètres fournit
 	\item 400/MISSING \_ ARGS : Pas assez de paramètres fournit
+	\item 403/CLIENT \_ BANNED : accès refusé, client banni
+	\item 403/CLIENT \_ BLOCKED : accès refusé, client bloqué
 \end{itemize}
 
 \subsection{Avoir de l’aide}
@@ -266,6 +266,21 @@ Envoyer un message entre un professionnel et un membre (ou inversement) permet d
 	\item message : message émit pour le destinataire
 \end{itemize}
 
+\paragraph{Réponses possibles après la tentatives d'envoi de message}
+
+\begin{itemize}
+	\item 200/OK : accès autorisé
+	\item 400/TOO \_ MANY \_ ARGS : Trop de paramètres fournit
+	\item 400/MISSING \_ ARGS : Pas assez de paramètres fournit
+	\item 401/UNAUTH/UNKNOWN \_ RECIPIENT : Destinataire inconnue
+	\item 403/CLIENT \_ BANNED : accès refusé, client banni
+	\item 403/CLIENT \_ BLOCKED : accès refusé, client bloqué
+	\item 403/UNAUTHORIZED \_ USE : utilisateur non autorisé d'accéder à cette REQUÊTE.
+	\item 416/MISFMT : Message mal formaté ou trop long
+	\item 429/QUOTA \_ EXCEEDED : Quota dépassé pour la clé API
+	\item 500/INTERNAL\_ SERVER \_ ERROR : Erreur du côté du serveur
+\end{itemize}
+
 \subsection{Consulter l’historique de message}
 
 Consulter l’historique des messages permet de garder une trace des échanges passés, ce qui facilite le suivi des conversations, la résolution de problèmes et la référence à des informations précédemment partagées. Cela améliore la continuité du service et aide à éviter les malentendus ou répétitions dans les interactions.
@@ -273,6 +288,10 @@ Consulter l’historique des messages permet de garder une trace des échanges p
 \begin{verbatim}
 	HISTORIQUE: <tokken>
 \end{verbatim}
+
+\begin{itemize}
+	\item tokken : identifiant de l'utilisateur après une connexion
+\end{itemize}
 
 \subsection{Arrêt du serveur}
 
