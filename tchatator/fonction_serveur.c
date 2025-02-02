@@ -110,8 +110,8 @@ void afficheHistorique(PGconn *conn, char tokken[]) {
              "SELECT vueMessages.idMessage, vueMessages.dateMessage, vueMessages.contenuMessage, "
              "vueMessages.nomExpediteur, vueMessages.nomReceveur "
              "FROM pact.vueMessages "
-             "JOIN pact._utilisateur ON utilisateur.idU = vueMessages.idReceveur OR utilisateur.idU = vueMessages.idExpediteur "
-             "WHERE utilisateur.tokken = '%s' "
+             "JOIN pact._utilisateur ON _utilisateur.idU = vueMessages.idReceveur OR _utilisateur.idU = vueMessages.idExpediteur "
+             "WHERE _utilisateur.tokken = '%s' "
              "ORDER BY vueMessages.dateMessage DESC;", 
              tokken);
     
