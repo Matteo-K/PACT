@@ -22,4 +22,5 @@
 - Réception message non lu
 - Envoie d'un message
 - Limitation des requêtes
+  - Uitiliser les logs pour voir le nombre de requête
 - Ban/Bloquage
