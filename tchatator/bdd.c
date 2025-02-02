@@ -72,9 +72,5 @@ int trouveAPI(PGconn *conn, const char *requete) {
 }
 
 void updateBDD(PGconn *conn, const char *requete) {
-    int nb;
-    char *valeur_str;
-    int valeur;
-
     PQexec(conn, requete);
 }
