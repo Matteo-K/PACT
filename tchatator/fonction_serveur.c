@@ -202,7 +202,7 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
             "LEFT JOIN pact._admin a ON u.idu = a.idu "
             "WHERE u.apikey = $1;";
 
-        const char *param_values[1] = { requete.elements[1] };
+        const char *param_values[1] = { requete.elements[2] };
         
         PGresult *pg_res = PQexecParams(conn, query, 1, NULL, param_values, NULL, NULL, 0);
         
