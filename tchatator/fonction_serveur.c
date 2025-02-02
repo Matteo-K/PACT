@@ -236,6 +236,7 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
             strcpy(idu_dest, PQgetvalue(pg_res, 0, 0));
             strcpy(type_dest, PQgetvalue(pg_res, 0, 1));
 
+            printf("type = %s\n",type_dest);
             // Vérification si le destinataire est compatible
             if ((strcmp(type_dest, TYPE_MEMBRE) == 0 && strcmp(utilisateur->type, TYPE_PRO) == 0) ||
                 (strcmp(type_dest, TYPE_PRO) == 0 && strcmp(utilisateur->type, TYPE_MEMBRE) == 0)) {
@@ -248,7 +249,6 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
                          tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, 
                          tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-                printf("%s",type_dest);
 
 
                 const char *ajout_message =
