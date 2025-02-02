@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.26)  2 FEB 2025 16:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.26)  2 FEB 2025 16:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -411,7 +411,7 @@ Package french.ldf Warning: OT1 encoding should not be used for French.
 (french.ldf)                Add \usepackage[T1]{fontenc} to the preamble
 (french.ldf)                of your document; reported on input line 20.
 
-<../../../html/img/logo.png, id=23, 520.94624pt x 482.80376pt>
+<../../../html/img/logo.png, id=47, 520.94624pt x 482.80376pt>
 File: ../../../html/img/logo.png Graphic file (type png)
 <use ../../../html/img/logo.png>
 Package pdftex.def Info: ../../../html/img/logo.png  used on input line 27.
@@ -453,7 +453,30 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 Chapitre 2.
 [4
 
-] (doc_utilisateur.aux)
+]
+Overfull \hbox (6.36787pt too wide) in paragraph at lines 271--272
+[]\OT1/cmr/m/n/12 La com-mande STOP per-met ^^Ra l'ad-mi-nis-tra-teur d'arr^ete
+r le ser-veur de mani^^Rere contr^ol^^See.
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.07225pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.07225pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-1.07225pt}.
+
+[5]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.07225pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.07225pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-1.07225pt}.
+
+[6] (doc_utilisateur.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -465,17 +488,17 @@ Package rerunfilecheck Warning: File `doc_utilisateur.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `doc_utilisateur.out':
-(rerunfilecheck)             Before: E544789FFCD4B3A03CD92D863D6141C7;694
-(rerunfilecheck)             After:  E9C3F549FB258FDB3B3AAA3DCC232B58;1181.
+(rerunfilecheck)             Before: 26E6B7F318ED08792B7372BCAF7A9E86;1658
+(rerunfilecheck)             After:  E371584FF119C603F74481D6385865AA;1816.
  ) 
 Here is how much of TeX's memory you used:
- 11689 strings out of 474486
- 192491 string characters out of 5743755
- 1934542 words of memory out of 5000000
- 33824 multiletter control sequences out of 15000+600000
+ 11704 strings out of 474486
+ 192701 string characters out of 5743755
+ 1936542 words of memory out of 5000000
+ 33831 multiletter control sequences out of 15000+600000
  562128 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 79i,12n,93p,402b,501s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,12n,93p,453b,501s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/kerva/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/kerva/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb><C:/Users/kerva/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -487,9 +510,9 @@ al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/kerva/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users
 /kerva/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
 
-Output written on doc_utilisateur.pdf (5 pages, 252184 bytes).
+Output written on doc_utilisateur.pdf (7 pages, 264603 bytes).
 PDF statistics:
- 120 PDF objects out of 1000 (max. 8388607)
- 25 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 161 PDF objects out of 1000 (max. 8388607)
+ 33 named destinations out of 1000 (max. 500000)
+ 94 words of extra memory for PDF output out of 10000 (max. 10000000)
 

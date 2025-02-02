@@ -184,6 +184,10 @@ Le principe d'identification dans Tchatator permet de sécuriser les échanges e
 	LOGIN: <clé_api>
 \end{verbatim}
 
+\begin{itemize}
+	\item clé api : clé api de l'utilisateur voulant se connecter
+\end{itemize}
+
 La connexion au service renvoie un token si tout se passe bien.
 
 Exemple:
@@ -197,13 +201,87 @@ Exemple:
 \paragraph{Réponses possibles après la tentatives de connexion}
 
 \begin{itemize}
-	\item \textbf{200/OK :} accès autorisé
-	\item \textbf{403/CLIENT_BANNED:} accès refusé, client banni
-	\item \textbf{403/CLIENT_BLOCKED} accès refusé, client bloqué
+	\item 200/OK : accès autorisé
+	\item 403/CLIENT \_ BANNED : accès refusé, client banni
+	\item 403/CLIENT \_ BLOCKED : accès refusé, client bloqué
+	\item 429/QUOTA \_ EXCEEDED : Quota dépassé pour la clé API
+	\item 400/TOO \_ MANY \_ ARGS : Trop de paramètres fournit
+	\item 400/MISSING \_ ARGS : Pas assez de paramètres fournit
 \end{itemize}
+
+\subsection{Déconnexion du service}
+
+La déconnexion du service permet de sécuriser les sessions utilisateur en mettant fin à l'accès à leurs données et fonctionnalités après une période d'inactivité ou lorsque l'utilisateur choisit de se déconnecter. Cela protège les informations personnelles et prévient les accès non autorisés.
+
+\begin{verbatim}
+	BYE BYE: <tokken>
+\end{verbatim}
+
+\begin{itemize}
+	\item tokken : identifiant de l'utilisateur, reçu lors de la connexion
+\end{itemize}
+
+Exemple:
+\begin{verbatim}
 {
-  "statut" : "200/OK",
-  "tokken" : "Age8Ku"
+  "statut" : "200/OK"
 }
+\end{verbatim}
+
+\paragraph{Réponses possibles après la tentatives de déconnexion}
+
+\begin{itemize}
+	\item 200/OK : accès autorisé
+	\item 403/CLIENT \_ BANNED : accès refusé, client banni
+	\item 403/CLIENT \_ BLOCKED : accès refusé, client bloqué
+	\item 400/TOO \_ MANY \_ ARGS : Trop de paramètres fournit
+	\item 400/MISSING \_ ARGS : Pas assez de paramètres fournit
+\end{itemize}
+
+\subsection{Avoir de l’aide}
+
+La commande AIDE permet d'afficher de l'aide et des informations sur le fonctionnement du service ou de l'application. Elle fournit des instructions sur l'utilisation des différentes fonctionnalités et peut guider l'utilisateur en cas de besoin, facilitant ainsi la compréhension et la gestion du service.
+
+\begin{verbatim}
+	AIDE: <fonctionnalité>
+\end{verbatim}
+
+\begin{itemize}
+	\item fonctionnalité : une des fonctionnalités du tchatator
+\end{itemize}
+
+En cours de développement
+
+\subsection{Envoyer un message}
+
+Envoyer un message entre un professionnel et un membre (ou inversement) permet de faciliter la communication bidirectionnelle. Cela permet aux professionnels de répondre aux questions, fournir des informations ou clarifications, tandis que les membres peuvent poser des questions ou exprimer des besoins spécifiques. Cette interaction renforce l'efficacité du service et améliore l'expérience utilisateur.
+
+\begin{verbatim}
+	MSG: <tokken> | <clé api destiantaire> | <message>
+\end{verbatim}
+
+\begin{itemize}
+	\item tokken : identifiant de l'utilisateur après une connexion
+	\item clé api destiantaire : identifiant du destinataire qui n'est pas forcément connecté.
+	\item message : message émit pour le destinataire
+\end{itemize}
+
+\subsection{Consulter l’historique de message}
+
+Consulter l’historique des messages permet de garder une trace des échanges passés, ce qui facilite le suivi des conversations, la résolution de problèmes et la référence à des informations précédemment partagées. Cela améliore la continuité du service et aide à éviter les malentendus ou répétitions dans les interactions.
+
+\begin{verbatim}
+	HISTORIQUE: <tokken>
+\end{verbatim}
+
+\subsection{Arrêt du serveur}
+
+La commande STOP permet à l'administrateur d'arrêter le serveur de manière contrôlée. Cela garantit que toutes les connexions et les processus en cours sont terminés proprement, évitant ainsi la perte de données et assurant la sécurité du système avant son arrêt complet.
+
+\begin{verbatim}
+	STOP:
+\end{verbatim}
+
+En cours de développement (sécurisation)
 
 \end{document}
