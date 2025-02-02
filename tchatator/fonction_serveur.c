@@ -179,81 +179,105 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
     if (nombre_argument_requis(conn, *utilisateur, requete, 3)) {
 
         struct json_object *json_obj = json_object_new_object();
-        // si pas membre ou pro
+
+        // Vérification du type utilisateur
         if (!(strcmp(utilisateur->type, TYPE_MEMBRE) == 0 || strcmp(utilisateur->type, TYPE_PRO) == 0)) {
             json_object_object_add(json_obj, "statut", json_object_new_string(REP_403_UNAUTHORIZED_USE));
             send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
-            
-        } else {
-            if (strlen(requete) > TAILLE_MAX_MSG) {
-                json_object_object_add(json_obj, "statut", json_object_new_string(REP_416));
-                send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
+            return;
+        }
+
+        // Vérification de la longueur du message
+        if (strlen(requete.elements[2]) > TAILLE_MAX_MSG) {
+            json_object_object_add(json_obj, "statut", json_object_new_string(REP_416));
+            send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
+            return;
+        }
+
+        // Vérification du destinataire
+        const char *query =
+            "SELECT u.idu, "
+            "CASE "
+                "WHEN m.idu IS NOT NULL THEN 'membre' "
+                "WHEN p.idu IS NOT NULL THEN 'pro' "
+                "WHEN a.idu IS NOT NULL THEN 'admin' "
+                "ELSE 'inconnue' "
+            "END AS statut "
+            "FROM pact._utilisateur u "
+            "LEFT JOIN pact._membre m ON u.idu = m.idu "
+            "LEFT JOIN pact._pro p ON u.idu = p.idu "
+            "LEFT JOIN pact._admin a ON u.idu = a.idu "
+            "WHERE u.apikey = $1;";
+
+        const char *param_values[1] = { requete.elements[1] };
+        
+        PGresult *pg_res = PQexecParams(conn, query, 1, NULL, param_values, NULL, NULL, 0);
+        
+        if (PQresultStatus(pg_res) != PGRES_TUPLES_OK) {
+            fprintf(stderr, "Erreur requête: %s\n", PQerrorMessage(conn));
+            PQclear(pg_res);
+            json_object_object_add(json_obj, "statut", json_object_new_string(REP_500));
+            send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
+            return;
+        }
+
+        if (PQntuples(pg_res) > 0) {
+            char idu_dest[BUFFER_SIZE / 4];
+            char type_dest[BUFFER_SIZE];
+            strcpy(idu_dest, PQgetvalue(pg_res, 0, 0));
+            strcpy(type_dest, PQgetvalue(pg_res, 0, 1));
+
+            // Vérification si le destinataire est compatible
+            if ((strcmp(type_dest, TYPE_MEMBRE) == 0 && strcmp(utilisateur->type, TYPE_PRO) == 0) ||
+                (strcmp(type_dest, TYPE_PRO) == 0 && strcmp(utilisateur->type, TYPE_MEMBRE) == 0)) {
+
+                // Récupération de la date et heure actuelle
+                time_t t = time(NULL);
+                struct tm tm = *localtime(&t);
+                char date_buff[BUFFER_SIZE / 2];
+                snprintf(date_buff, sizeof(date_buff), "%d-%02d-%02d %02d:%02d:%02d", 
+                         tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, 
+                         tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+                const char *ajout_message =
+                    "INSERT INTO pact._historiqueMessage (idu_expediteur, date_message, contenu, taille, idu_destinataire, type_dest) "
+                    "VALUES ($1, $2, $3, $4, $5, $6);";
+
+                // Saisit du message dans la bdd
+                const char *param_values_addMSG[6] = {
+                    utilisateur->identiteUser,
+                    date_buff,
+                    requete.elements[2],
+                    NULL,
+                    idu_dest,
+                    type_dest
+                };
+
+                char taille_msg[10];
+                snprintf(taille_msg, sizeof(taille_msg), "%lu", strlen(requete.elements[2]));
+                param_values_addMSG[3] = taille_msg;
+
+                PGresult *pg_res_insert = PQexecParams(conn, ajout_message, 6, NULL, param_values_addMSG, NULL, NULL, 0);
+
+                if (PQresultStatus(pg_res_insert) == PGRES_COMMAND_OK) {
+                    json_object_object_add(json_obj, "statut", json_object_new_string(REP_200));
+                } else {
+                    fprintf(stderr, "Erreur lors de l'ajout du message: %s\n", PQerrorMessage(conn));
+                    json_object_object_add(json_obj, "statut", json_object_new_string(REP_500));
+                }
+
+                PQclear(pg_res_insert);
+                send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "success");
 
             } else {
-                const char *query = 
-                "SELECT u.idu, "
-                "CASE "
-                    "WHEN m.idu IS NOT NULL THEN 'membre' "
-                    "WHEN p.idu IS NOT NULL THEN 'pro' "
-                    "WHEN a.idu IS NOT NULL THEN 'admin' "
-                    "ELSE 'inconnue' "
-                "END AS statut, "
-                "FROM pact._utilisateur u "
-                "LEFT JOIN pact._membre m ON u.idu = m.idu "
-                "LEFT JOIN pact._pro p ON u.idu = p.idu "
-                "LEFT JOIN pact._admin a ON u.idu = a.idu "
-                "WHERE u.apikey = $1;";
-
-                // Paramètres pour la requête
-                const char *param_values[1];
-                param_values[0] = requete.elements[1];
-                
-                int nrows = execute_query_get_nrows(conn, "verif_type", query, 1, param_values);
-
-                // Récupérer les résultats de la requête
-                if (nrows > 0) {
-                    char idu_dest[BUFFER_SIZE/4];
-                    char type_dest[BUFFER_SIZE];
-                    strcpy(idu_dest, PQgetvalue(pg_res, 0, 0));
-                    strcpy(type_dest, PQgetvalue(pg_res, 0, 1));
-
-                    if ((strcmp(type_dest == TYPE_MEMBRE) && strcmp(utilisateur->type, TYPE_PRO))
-                        || (strcmp(type_dest == TYPE_PRO) && strcmp(utilisateur->type, TYPE_MEMBRE))) {
-
-                        // Récupération de la date et de l'heure
-                        time_t t = time(NULL);
-                        struct tm tm = *localtime(&t);
-                        char date_buff[BUFFER_SIZE / 2];
-                        snprintf(date_buff, sizeof(date_buff), "%d-%02d-%02d %02d:%02d:%02d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-
-                        const char *ajout_message =
-                        "INSERT INTO pact._historiqueMessage VALUES
-                        ($1, $2, $3, $4, $5, $6);"
-
-                        const char *param_values_addMSG[6];
-                        param_values_addMSG[0] = utilisateur->identiteUser;
-                        param_values_addMSG[1] = date_buff;
-                        param_values_addMSG[2] = requete.elements[2];
-                        param_values_addMSG[3] = strlen(requete.elements[2]);
-                        param_values_addMSG[4] = idu_dest;
-                        param_values_addMSG[5] = type_dest;
-
-                        int nrows = execute_query_get_nrows(conn, "ajout_msg", query, 6, param_values_addMSG);
-
-                        json_object_object_add(json_obj, "statut", json_object_new_string(REP_200));
-                        send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
-                        
-                    } else {
-                        json_object_object_add(json_obj, "statut", json_object_new_string(REP_403_UNAUTHORIZED_USE));
-                        send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
-                    }
-
-                } else {
-                    json_object_object_add(json_obj, "statut", json_object_new_string(REP_401_RECIPIENT));
-                    send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
-                }
+                json_object_object_add(json_obj, "statut", json_object_new_string(REP_403_UNAUTHORIZED_USE));
+                send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
             }
+        } else {
+            json_object_object_add(json_obj, "statut", json_object_new_string(REP_401_RECIPIENT));
+            send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
         }
+        PQclear(pg_res);
     }
 }
 
