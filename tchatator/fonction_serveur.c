@@ -136,21 +136,31 @@ void afficheHistorique(PGconn *conn, char tokken[]) {
 }
 void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
 
+    char requeteAPI[150];
+    int idu;
     char requeteUpdate[150];
     char genTokken[20];
 
     if (nombre_argument_requis(conn, *utilisateur, requete, 1)) {
-        struct json_object *json_obj = json_object_new_object();
-        srand(time(NULL));
-        genere_tokken(genTokken);
         
-        json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
-        sprintf(requeteUpdate, "UPDATE pact._utilisateur SET tokken = '%s' WHERE idu = %d;", genTokken, atoi(utilisateur->identiteUser));
-        updateBDD(conn, requeteUpdate);
+        sprintf(requeteAPI, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", trim(requete));
+        idu = trouveAPI(conn, requete);
+        if(idu != -1){
+        
+            struct json_object *json_obj = json_object_new_object();
+            srand(time(NULL));
+            genere_tokken(genTokken);
+            
+            json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
+            sprintf(requeteUpdate, "UPDATE pact._utilisateur SET tokken = '%s' WHERE idu = %d;", genTokken, idu);
+            updateBDD(conn, requeteUpdate);
 
-        json_object_object_add(json_obj, "statut", json_object_new_string(REP_200));
-        json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
-        send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "info");
+            strcpy(utilisateur->identiteUser, idu);
+
+            json_object_object_add(json_obj, "statut", json_object_new_string(REP_200));
+            json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
+            send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "info");
+        }
     }
 }
 
