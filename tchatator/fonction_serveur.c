@@ -140,6 +140,7 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
     int idu;
     char requeteUpdate[150];
     char genTokken[20];
+    char buffer[20];
 
     if (nombre_argument_requis(conn, *utilisateur, requete, 1)) {
         
@@ -155,7 +156,8 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
             sprintf(requeteUpdate, "UPDATE pact._utilisateur SET tokken = '%s' WHERE idu = %d;", genTokken, idu);
             updateBDD(conn, requeteUpdate);
 
-            strcpy(utilisateur->identiteUser, idu);
+            sprintf(buffer, "%d", idu); 
+            strcpy(utilisateur->identiteUser, buffer);
 
             json_object_object_add(json_obj, "statut", json_object_new_string(REP_200));
             json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
