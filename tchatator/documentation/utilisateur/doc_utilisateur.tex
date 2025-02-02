@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{lipsum}
 \usepackage{geometry}
+\usepackage{enumitem}
 \usepackage[french]{babel}
 
 \geometry{a4paper, margin=1in}
@@ -21,7 +22,7 @@
 \begin{titlepage}
     \begin{center}
         {\Huge\bfseries Tchatator} \\[1cm]
-        {\Large\textit{Documentation technique}} \\[2cm]
+        {\Large\textit{Documentation utilisateur}} \\[2cm]
 
         \includegraphics[width=0.4\textwidth]{../../../html/img/logo.png} \\[2cm]
 
@@ -40,7 +41,7 @@
 		} \\[0.5cm]
 		
 		\textit{
-        Ce dcument a pour but de présenter le fonctionnement interne de l'API tchatator.
+        Ce document fournit une explication détaillée sur l'installation, l'utilisation et la configuration du service.
 		}
 
         \vfill  % Remplit l'espace vertical jusqu'en bas
@@ -51,55 +52,10 @@
 
 \tableofcontents
 \newpage
+
 \chapter{Introduction}
 
-L’API sera composée de trois modes d’accès distincts : un accès professionnel pour les échanges entre professionnels et clients, un accès client pour la communication avec les professionnels, et un accès administrateur pour la gestion des actions de blocage et de bannissement. Cette solution standardisera et sécurisera les interactions entre les utilisateurs de la plateforme, tout en respectant les exigences du projet.
-
-\section{Glossaire}
-
-\begin{itemize}
-	\item \textbf{SERVICE ou SERVEUR :} le logiciel qui attend et traite les REQUÊTES.
-	
-	\item \textbf{CLIENT:} le logiciel qui se connecte et interroge le SERVICE. Ne pas confondre avec le client de la plateforme.
-	
-	\item \textbf{PROTOCOLE :} les règles et la GRAMMAIRE permettant à un CLIENT de soumettre des REQUÊTES au SERVICE. 
-	
-	\item \textbf{REQUÊTE :} une action faite sur le SERVICE par le biais d’un CLIENT en utilisant le PROTOCOLE.
-	
-	\item \textbf{GRAMMAIRE : } la syntaxe décrivant comment doivent être formatées les REQUÊTES du PROTOCOLE. *
-	
-	\item \textbf{CLÉ D’API :}   un code secret  que le CLIENT envoie au SERVICE pour autoriser son utilisation. La fourniture d’une CLÉ D’API peut donner des droits spécifiques. 
-	
-	\item \textbf{PARAMÉTRAGE :} un fichier texte contenant des valeurs modifiables par un administrateur, sans besoin de création d’une interface. Ces valeurs sont lues au démarrage du SERVICE.
-	
-\end{itemize}
-
-\section{Architecture du Code}
-
-\subsection{Structure du projet}
-
-Le projet est structuré de manière modulaire et comprend les fichiers suivants :
-
-\begin{itemize}
-	\item \textbf{tchatator.c :} Point d'entrée du programme, contenant la fonction main().
-	
-	\item \textbf{const.h :} Contient les constantes globales utilisées dans tout le programme.
-	
-	\item \textbf{const.c :} Contient les valeurs initiales des constantes et les paramètres de configuration.
-	
-	\item \textbf{fonction serveur.c :} Fichier avec les fonctions principales du serveur qui gèrent la logique de traitement des demandes des clients.
-	
-	\item \textbf{fonction serveur.h :} Fichier avec les entêtes des fonctions principales du serveur.
-	
-	\item \textbf{outils.c :} Contient des fonctions utilitaires pour la manipulation des données.
-	
-	\item \textbf{outils.h :} Contient les entêtes des fonctions utilitaires.
-	
-	\item \textbf{bdd.c :} Gère les interactions avec la base de données.
-	
-	\item \textbf{bdd.h :} Contient les entêtes des fonctions d'interactions de la base de données.
-	
-\end{itemize}
+Tchatator est un service de discussion asynchrone en C utilisant les sockets et une API permettant aux clients, professionnels et administrateurs d'envoyer et de recevoir des messages. Ce document fournit une explication détaillée sur l'installation, l'utilisation et la configuration du service.
 
 \section{Installation}
 
@@ -152,7 +108,30 @@ chmod +x tchatator.sh
 
 Le script s'assurera que toutes les dépendances nécessaires sont présentes, comme la bibliothèque json-c, et compilera le code C dans un exécutable. Ainsi ce dernier sera exécuter.
 
-\paragraph{c) Service côté Client :}
+\paragraph{c) Options d'exécution}
+
+\begin{verbatim}
+	./tchatator.sh [option]
+\end{verbatim}
+
+\large \textbf{OPTIONS}
+
+\begin{itemize}[label={}]
+	\item \textbf{-h, --help}
+	\begin{itemize}
+		\item afficher l’aide
+	\end{itemize}
+	\item \textbf{-v, --version}
+	\begin{itemize}
+		\item afficher la version actuelle du tchatator
+	\end{itemize}
+	\item \textbf{-b, --verbose}
+	\begin{itemize}
+		\item afficher les logs
+	\end{itemize}
+\end{itemize}
+
+\paragraph{d) Service côté Client :}
 
 Le script user.sh est utilisé pour lancer un terminal interactif pour l'utilisateur. Ce script gère l'installation de telnet, l'ouverture d'une session utilisateur et la connexion au serveur de chat. Il suffit de rendre le script exécutable et de l'exécuter.
 
@@ -186,5 +165,45 @@ Voici quelques problèmes courants et leurs solutions possibles :
 		\item Vérifiez si le serveur est en cours d'exécution et écoute bien sur le port attendu.
 	\end{itemize}
 \end{itemize}
+
+\chapter{Démarrage}
+
+\section{Exécution du service avec Telnet}
+
+Telnet est un protocole de communication réseau qui permet à un utilisateur de se connecter à un ordinateur distant via un terminal en ligne de commande. Il offre la possibilité d’exécuter des commandes sur le serveur distant.
+
+\begin{verbatim}
+	telnet the-void.ventsdouest.dev 8081
+\end{verbatim}
+
+\subsection{Connexion au service}
+
+Le principe d'identification dans Tchatator permet de sécuriser les échanges en assurant que seuls les utilisateurs autorisés peuvent participer aux conversations. Il permet aussi de personnaliser l'expérience, gérer les rôles (clients, professionnels, administrateurs) et garantir la traçabilité des interactions.
+
+\begin{verbatim}
+	LOGIN: <clé_api>
+\end{verbatim}
+
+La connexion au service renvoie un token si tout se passe bien.
+
+Exemple:
+\begin{verbatim}
+{
+  "statut" : "200/OK",
+  "tokken" : "Age8Ku"
+}
+\end{verbatim}
+
+\paragraph{Réponses possibles après la tentatives de connexion}
+
+\begin{itemize}
+	\item \textbf{200/OK :} accès autorisé
+	\item \textbf{403/CLIENT_BANNED:} accès refusé, client banni
+	\item \textbf{403/CLIENT_BLOCKED} accès refusé, client bloqué
+\end{itemize}
+{
+  "statut" : "200/OK",
+  "tokken" : "Age8Ku"
+}
 
 \end{document}

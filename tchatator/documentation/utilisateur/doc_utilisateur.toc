@@ -1,14 +1,15 @@
 \babel@toc {french}{}\relax 
 \contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Glossaire}{2}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Architecture du Code}{2}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Structure du projet}{2}{subsection.1.2.1}%
-\contentsline {section}{\numberline {1.3}Installation}{3}{section.1.3}%
-\contentsline {subsection}{\numberline {1.3.1}Prérequis}{3}{subsection.1.3.1}%
-\contentsline {paragraph}{Prérequis communs :}{3}{section*.2}%
-\contentsline {paragraph}{Pour installer la bibliothèque json-c :}{3}{section*.3}%
-\contentsline {subsection}{\numberline {1.3.2}Installation du Service côté Serveur}{3}{subsection.1.3.2}%
-\contentsline {paragraph}{a) Télécharger les fichiers du projet :}{3}{section*.4}%
-\contentsline {paragraph}{b) Compilation et exécution du serveur :}{3}{section*.5}%
-\contentsline {paragraph}{c) Service côté Client :}{3}{section*.6}%
-\contentsline {subsection}{\numberline {1.3.3}Dépannage}{4}{subsection.1.3.3}%
+\contentsline {section}{\numberline {1.1}Installation}{2}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Prérequis}{2}{subsection.1.1.1}%
+\contentsline {paragraph}{Prérequis communs :}{2}{section*.2}%
+\contentsline {paragraph}{Pour installer la bibliothèque json-c :}{2}{section*.3}%
+\contentsline {subsection}{\numberline {1.1.2}Installation du Service côté Serveur}{2}{subsection.1.1.2}%
+\contentsline {paragraph}{a) Télécharger les fichiers du projet :}{2}{section*.4}%
+\contentsline {paragraph}{b) Compilation et exécution du serveur :}{2}{section*.5}%
+\contentsline {paragraph}{c) Options d'exécution}{3}{section*.6}%
+\contentsline {paragraph}{d) Service côté Client :}{3}{section*.7}%
+\contentsline {subsection}{\numberline {1.1.3}Dépannage}{3}{subsection.1.1.3}%
+\contentsline {chapter}{\numberline {2}Démarrage}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Exécution du service avec Telnet}{4}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Connexion au service}{4}{subsection.2.1.1}%

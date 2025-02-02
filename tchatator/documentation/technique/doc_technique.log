@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.26)  2 FEB 2025 16:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.26)  2 FEB 2025 16:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./doc_utilisateur.tex
-(doc_utilisateur.tex
+**./doc_technique.tex
+(doc_technique.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\kerva\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
@@ -310,8 +310,8 @@ Package babel Info: Importing font and identification data for french
 (babel)             from babel-fr.ini. Reported on input line 11.
 )
 (C:\Users\kerva\AppData\Local\Programs\MiKTeX\tex/latex/carlisle\scalefnt.sty)
-(doc_utilisateur.aux)
-\openout1 = `doc_utilisateur.aux'.
+(doc_technique.aux)
+\openout1 = `doc_technique.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
@@ -367,9 +367,9 @@ LaTeX Font Info:    ... okay on input line 20.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 20.
-(doc_utilisateur.out) (doc_utilisateur.out)
+(doc_technique.out) (doc_technique.out)
 \@outlinefile=\write3
-\openout3 = `doc_utilisateur.out'.
+\openout3 = `doc_technique.out'.
 
 
 (C:\Users\kerva\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
@@ -411,7 +411,7 @@ Package french.ldf Warning: OT1 encoding should not be used for French.
 (french.ldf)                Add \usepackage[T1]{fontenc} to the preamble
 (french.ldf)                of your document; reported on input line 20.
 
-<../../../html/img/logo.png, id=23, 520.94624pt x 482.80376pt>
+<../../../html/img/logo.png, id=35, 520.94624pt x 482.80376pt>
 File: ../../../html/img/logo.png Graphic file (type png)
 <use ../../../html/img/logo.png>
 Package pdftex.def Info: ../../../html/img/logo.png  used on input line 27.
@@ -419,14 +419,14 @@ Package pdftex.def Info: ../../../html/img/logo.png  used on input line 27.
 [1
 
 {C:/Users/kerva/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../../../htm
-l/img/logo.png>] (doc_utilisateur.toc
+l/img/logo.png>] (doc_technique.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 3.
 )
 \tf@toc=\write4
-\openout4 = `doc_utilisateur.toc'.
+\openout4 = `doc_technique.toc'.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
@@ -450,32 +450,30 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.07225pt}.
 
 [3]
-Chapitre 2.
-[4
 
-] (doc_utilisateur.aux)
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.07225pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.07225pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-1.07225pt}.
+
+[4] (doc_technique.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-
-
-Package rerunfilecheck Warning: File `doc_utilisateur.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `doc_utilisateur.out':
-(rerunfilecheck)             Before: E544789FFCD4B3A03CD92D863D6141C7;694
-(rerunfilecheck)             After:  E9C3F549FB258FDB3B3AAA3DCC232B58;1181.
+Package rerunfilecheck Info: File `doc_technique.out' has not changed.
+(rerunfilecheck)             Checksum: 9981A4C4A80743E3697FEB497BA7BA84;1115.
  ) 
 Here is how much of TeX's memory you used:
- 11689 strings out of 474486
- 192491 string characters out of 5743755
- 1934542 words of memory out of 5000000
- 33824 multiletter control sequences out of 15000+600000
+ 11692 strings out of 474486
+ 192473 string characters out of 5743755
+ 1938542 words of memory out of 5000000
+ 33827 multiletter control sequences out of 15000+600000
  562128 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 79i,12n,93p,402b,501s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,12n,93p,474b,745s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/kerva/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/kerva/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb><C:/Users/kerva/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -487,9 +485,9 @@ al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/kerva/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users
 /kerva/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
 
-Output written on doc_utilisateur.pdf (5 pages, 252184 bytes).
+Output written on doc_technique.pdf (5 pages, 253120 bytes).
 PDF statistics:
- 120 PDF objects out of 1000 (max. 8388607)
+ 132 PDF objects out of 1000 (max. 8388607)
  25 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 70 words of extra memory for PDF output out of 10000 (max. 10000000)
 
