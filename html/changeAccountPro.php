@@ -287,8 +287,8 @@
             $stmt -> execute();
             $infoPro = $stmt -> fetch(PDO::FETCH_ASSOC);
             ?>
-            <p>Votre Clé API :</p>
             <?php print_r($infoPro) ?>
+            <p>Votre Clé API :</p>
             <?php if($infoPro["apikey"]){?>
                 <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
                 <p onclick="generateAPIkey()">Regénérer ma clé API</p>
