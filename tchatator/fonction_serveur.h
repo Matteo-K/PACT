@@ -38,8 +38,10 @@ void genere_tokken(char *key);
 void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete);
 
 /// @brief Affichage des commandes d'aide avec HELP côté client
-/// @param utilisateur in: information de l'utilisateur
-void afficher_commande_aide(tClient utilisateur);
+/// @param conn in/out: connexion avec la bdd
+/// @param utilisateur in/out: Information de l'utilisateur
+/// @param requete in: requete reçu par le serveur
+void afficher_commande_aide(PGconn *conn, tExplodeRes requete, tClient utilisateur);
 
 /// @brief Affichage de l'aide avec --help/-h
 void afficher_aide();

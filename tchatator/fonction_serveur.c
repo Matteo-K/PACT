@@ -408,7 +408,7 @@ void afficher_commande_aide(tClient utilisateur) {
     // Ajouter la liste des commandes à l'objet JSON principal
     json_object_object_add(json_obj, "commandes", commandes_array);
 
-    char *json_body = json_object_new_string(json_obj);
+    const char *json_body = json_object_to_json_string(json_obj);
 
     char request[BUFFER_SIZE * 4];
     sprintf(request,
@@ -418,7 +418,8 @@ void afficher_commande_aide(tClient utilisateur) {
             "Content-Length: %lu\r\n"
             "\r\n"
             "%s\r\n", 
-            SERVEUR, strlen(), json_body);
+            SERVEUR, strlen(json_body), json_body);
+
 
     // Envoyer la requête
     if (send(utilisateur.sockfd, request, strlen(request), 0) < 0) {
