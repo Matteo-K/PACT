@@ -240,8 +240,8 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
                     utilisateur->identiteUser,
                     requete.elements[3],
                     date_buff,
-                    idu_dest,
-                    type_dest
+                    type_dest,
+                    idu_dest
                 };
 
                 // char taille_msg[10];
