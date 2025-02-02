@@ -8,7 +8,7 @@
 #include "const.h"
 
 // paramètre
-const int PORT = 8097;
+const int PORT = 8099;
 const int DUREE_BAN = -1;      // définitif
 const int DUREE_BLOCAGE = 86400;
 const int TAILLE_MAX_MSG = 499;

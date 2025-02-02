@@ -1031,7 +1031,17 @@ CREATE OR REPLACE FUNCTION trigger_insert_into_vueMessages()
 RETURNS TRIGGER AS $$
 DECLARE
     newMessageId INT;
+    newTypeExpediteur TEXT;
 BEGIN
+
+    IF NEW.typeExpediteur = 'membre' THEN
+        newTypeExpediteur := 'pro';
+    ELSIF NEW.typeExpediteur = 'pro' THEN
+        newTypeExpediteur := 'membre';
+    ELSE
+        RAISE EXCEPTION 'TypeExpediteur invalide : %', NEW.typeExpediteur;
+    END IF;
+
     -- Insérer dans _historiqueMessage
     INSERT INTO pact._historiqueMessage (heure, content, contentLength, idExpediteur, typeExpediteur)
     VALUES (
@@ -1039,19 +1049,19 @@ BEGIN
         NEW.contenuMessage,
         CHAR_LENGTH(NEW.contenuMessage),
         NEW.idExpediteur,
-        NEW.typeExpediteur
+        newTypeExpediteur
     )
     RETURNING id INTO newMessageId;
 
     -- Insérer dans _tchatator
-    IF NEW.typeExpediteur = 'membre' THEN
+    IF newTypeExpediteur = 'pro' THEN
         -- Si l'expéditeur est un membre, le receveur est un pro
         INSERT INTO _tchatator (idMembre, idPro, idMessage)
-        VALUES (NEW.idExpediteur, NEW.idReceveur, newMessageId);
-    ELSIF NEW.typeExpediteur = 'pro' THEN
+        VALUES (NEW.idReceveur, NEW.idExpediteur, newMessageId);
+    ELSIF newTypeExpediteur = 'membre' THEN
         -- Si l'expéditeur est un pro, le receveur est un membre
         INSERT INTO _tchatator (idMembre, idPro, idMessage)
-        VALUES (NEW.idReceveur, NEW.idExpediteur, newMessageId);
+        VALUES (NEW.idExpediteur, NEW.idReceveur, newMessageId);
     END IF;
 
     RETURN NULL; -- La vue ne stocke pas directement les données
@@ -1067,12 +1077,12 @@ EXECUTE FUNCTION trigger_insert_into_vueMessages();
 CREATE OR REPLACE FUNCTION validate_expediteur()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF NEW.typeExpediteur = 'membre' THEN
+    IF NEW.typeExpediteur = 'pro' THEN
         -- Vérifier que idExpediteur existe dans _membre
         IF NOT EXISTS (SELECT 1 FROM pact._membre WHERE idU = NEW.idExpediteur) THEN
             RAISE EXCEPTION 'idExpediteur % not found in _membre', NEW.idExpediteur;
         END IF;
-    ELSIF NEW.typeExpediteur = 'pro' THEN
+    ELSIF NEW.typeExpediteur = 'membre' THEN
         -- Vérifier que idExpediteur existe dans _pro
         IF NOT EXISTS (SELECT 1 FROM pact._pro WHERE idU = NEW.idExpediteur) THEN
             RAISE EXCEPTION 'idExpediteur % not found in _pro', NEW.idExpediteur;
