@@ -10,5 +10,5 @@ clear
 
 
 # the-void.ventsdouest.dev
-telnet the-void.ventsdouest.dev 8098
+telnet the-void.ventsdouest.dev 8099
 
