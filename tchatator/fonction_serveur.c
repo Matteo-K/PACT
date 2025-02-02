@@ -146,9 +146,9 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
         
         sprintf(requeteAPI, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", trim(requete.elements[0]));
         idu = trouveAPI(conn, requete.elements[0]);
+        struct json_object *json_obj = json_object_new_object();
         if(idu != -1){
         
-            struct json_object *json_obj = json_object_new_object();
             srand(time(NULL));
             genere_tokken(genTokken);
             
