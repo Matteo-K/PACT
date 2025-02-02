@@ -74,6 +74,8 @@ typedef struct {
 /// @brief Character String: Paramètre inconnue
 #define REP_400_UNKNOWN_PARAMETER "400/UNKNOWN_PARAMETER"
 
+/// @brief Character String: Erreur du serveur
+#define REP_500 "500/INTERNAL_SERVER_ERROR"
 
 // paramètre
 /// @brief Integer: port de connexion au serveur

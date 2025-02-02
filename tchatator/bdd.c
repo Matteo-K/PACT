@@ -78,7 +78,7 @@ void updateBDD(PGconn *conn, const char *requete) {
 
 int execute_requete(PGconn *conn, const char *nom_query, const char *query, int nb_param, const char *valeur_param[]) {
 
-    // Préparation de la requête si elle n'existe pas déjà
+    // Vérification si la requête est déjà préparée avant de la préparer à nouveau
     PGresult *res_prepar = PQprepare(conn, nom_query, query, nb_param, NULL);
     if (PQresultStatus(res_prepar) != PGRES_COMMAND_OK) {
         fprintf(stderr, "Erreur lors de la préparation de la requête : %s\n", PQerrorMessage(conn));
@@ -87,7 +87,7 @@ int execute_requete(PGconn *conn, const char *nom_query, const char *query, int 
     }
     PQclear(res_prepar);
 
-    // Exécution de la requête
+    // Exécution de la requête préparée
     PGresult *pg_res = PQexecPrepared(conn, nom_query, nb_param, valeur_param, NULL, NULL, 0);
     
     if (PQresultStatus(pg_res) != PGRES_TUPLES_OK) {
