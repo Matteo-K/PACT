@@ -136,11 +136,8 @@ void afficheHistorique(PGconn *conn, char tokken[]) {
 }
 void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
 
-    char requeteAPI[150];
-    int idu;
     char requeteUpdate[150];
     char genTokken[20];
-    char buffer[20];
 
     if (nombre_argument_requis(conn, *utilisateur, requete, 1)) {
         

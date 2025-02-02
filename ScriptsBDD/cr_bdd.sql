@@ -1046,11 +1046,11 @@ BEGIN
     -- Insérer dans _tchatator
     IF NEW.typeExpediteur = 'pro' THEN
         -- Si l'expéditeur est un membre, le receveur est un pro
-        INSERT INTO _tchatator (idMembre, idPro, idMessage)
+        INSERT INTO pact._tchatator (idMembre, idPro, idMessage)
         VALUES (NEW.idReceveur, NEW.idExpediteur, newMessageId);
     ELSIF NEW.typeExpediteur = 'membre' THEN
         -- Si l'expéditeur est un pro, le receveur est un membre
-        INSERT INTO _tchatator (idMembre, idPro, idMessage)
+        INSERT INTO pact._tchatator (idMembre, idPro, idMessage)
         VALUES (NEW.idExpediteur, NEW.idReceveur, newMessageId);
     END IF;
 
