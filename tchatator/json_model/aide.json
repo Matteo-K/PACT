@@ -1,0 +1,165 @@
+{
+  "commandes": [
+    {
+      "nom": "LOGIN:",
+      "description": "Connexion au service",
+      "arguments": [
+        {
+          "argument": "clé api",
+          "description": "Clé API de l'utilisateur voulant se connecter"
+        }
+      ],
+      "réponses": [
+        {
+          "nom": "200/OK",
+          "description": "Accès autorisé"
+        },
+        {
+          "nom": "400/TOO MANY ARGS",
+          "description": "Trop de paramètres fournis"
+        },
+        {
+          "nom": "400/MISSING ARGS",
+          "description": "Pas assez de paramètres fournis"
+        },
+        {
+          "nom": "403/CLIENT BANNED",
+          "description": "Accès refusé, client banni"
+        },
+        {
+          "nom": "403/CLIENT BLOCKED",
+          "description": "Accès refusé, client bloqué"
+        },
+        {
+          "nom": "429/QUOTA EXCEEDED",
+          "description": "Quota dépassé pour la clé API"
+        }
+      ]
+    },
+    {
+      "nom": "BYE BYE:",
+      "description": "Déconnexion du service",
+      "arguments": [
+        {
+          "argument": "tokken",
+          "description": "Identifiant de l'utilisateur, reçu lors de la connexion"
+        }
+      ],
+      "réponses": [
+        {
+          "nom": "200/OK",
+          "description": "Déconnexion réussie"
+        },
+        {
+          "nom": "400/TOO MANY ARGS",
+          "description": "Trop de paramètres fournis"
+        },
+        {
+          "nom": "400/MISSING ARGS",
+          "description": "Pas assez de paramètres fournis"
+        },
+        {
+          "nom": "403/CLIENT BANNED",
+          "description": "Accès refusé, client banni"
+        },
+        {
+          "nom": "403/CLIENT BLOCKED",
+          "description": "Accès refusé, client bloqué"
+        }
+      ]
+    },
+    {
+      "nom": "AIDE:",
+      "description": "Affichage des informations sur une fonctionnalité",
+      "arguments": [
+        {
+          "argument": "fonctionnalité",
+          "description": "Nom d'une fonctionnalité spécifique"
+        }
+      ],
+      "réponses": [
+        {
+          "nom": "En cours de développement",
+          "description": "La fonctionnalité n'est pas encore disponible"
+        }
+      ]
+    },
+    {
+      "nom": "MSG:",
+      "description": "Envoi d'un message à un autre utilisateur",
+      "arguments": [
+        {
+          "argument": "tokken",
+          "description": "Identifiant de l'utilisateur après connexion"
+        },
+        {
+          "argument": "clé api destinataire",
+          "description": "Identifiant du destinataire"
+        },
+        {
+          "argument": "message",
+          "description": "Contenu du message envoyé"
+        }
+      ],
+      "réponses": [
+        {
+          "nom": "200/OK",
+          "description": "Message envoyé avec succès"
+        },
+        {
+          "nom": "400/TOO MANY ARGS",
+          "description": "Trop de paramètres fournis"
+        },
+        {
+          "nom": "400/MISSING ARGS",
+          "description": "Pas assez de paramètres fournis"
+        },
+        {
+          "nom": "401/UNAUTH/UNKNOWN RECIPIENT",
+          "description": "Destinataire inconnu"
+        },
+        {
+          "nom": "403/CLIENT BANNED",
+          "description": "Accès refusé, client banni"
+        },
+        {
+          "nom": "403/CLIENT BLOCKED",
+          "description": "Accès refusé, client bloqué"
+        },
+        {
+          "nom": "403/UNAUTHORIZED USE",
+          "description": "Utilisateur non autorisé à envoyer ce message"
+        },
+        {
+          "nom": "416/MISFMT",
+          "description": "Message mal formaté ou trop long"
+        },
+        {
+          "nom": "429/QUOTA EXCEEDED",
+          "description": "Quota dépassé pour la clé API"
+        },
+        {
+          "nom": "500/INTERNAL SERVER ERROR",
+          "description": "Erreur interne du serveur"
+        }
+      ]
+    },
+    {
+      "nom": "HISTORIQUE:",
+      "description": "Consultation de l'historique des messages",
+      "arguments": [
+        {
+          "argument": "tokken",
+          "description": "Identifiant de l'utilisateur après connexion"
+        }
+      ],
+      "réponses": []
+    },
+    {
+      "nom": "STOP:",
+      "description": "Arrêt du serveur (administrateur uniquement)",
+      "arguments": [],
+      "réponses": []
+    }
+  ]
+}
