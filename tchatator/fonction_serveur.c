@@ -143,7 +143,7 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
 
     if (nombre_argument_requis(conn, *utilisateur, requete, 1)) {
         
-        sprintf(requeteAPI, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", trim(requete->elements));
+        sprintf(requeteAPI, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", trim(requete->*elements));
         idu = trouveAPI(conn, requete);
         if(idu != -1){
         
