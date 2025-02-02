@@ -248,7 +248,7 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
                 // snprintf(taille_msg, sizeof(taille_msg), "%lu", strlen(requete.elements[3]));
                 // param_values_addMSG[3] = taille_msg;
 
-                PGresult *pg_res_insert = PQexecParams(conn, ajout_message, 6, NULL, param_values_addMSG, NULL, NULL, 0);
+                PGresult *pg_res_insert = PQexecParams(conn, ajout_message, 5, NULL, param_values_addMSG, NULL, NULL, 0);
 
                 if (PQresultStatus(pg_res_insert) == PGRES_COMMAND_OK) {
                     json_object_object_add(json_obj, "statut", json_object_new_string(REP_200));
