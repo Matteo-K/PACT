@@ -303,7 +303,7 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
     }
 }
 
-void afficher_commande_aide(tClient utilisateur) {
+void afficher_commande_aide(PGconn *conn, tExplodeRes requete, tClient utilisateur) {
 
     struct json_object *json_obj = json_object_new_object();
     struct json_object *commandes_array = json_object_new_array();
