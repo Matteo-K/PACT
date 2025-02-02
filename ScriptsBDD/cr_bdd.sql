@@ -1009,7 +1009,10 @@ SELECT
         WHEN hm.typeExpediteur = 'pro' THEN p1.denomination
     END AS nomExpediteur,
     hm.typeExpediteur,
-    t.idMembre AS idReceveur,
+    CASE
+        WHEN hm.typeExpediteur = 'pro' THEN t.idmembre
+        WHEN hm.typeExpediteur = 'membre' THEN t.idpro
+    END AS idReceveur,
     CASE 
         WHEN hm.typeExpediteur = 'membre' THEN p2.denomination
         WHEN hm.typeExpediteur = 'pro' THEN m2.pseudo

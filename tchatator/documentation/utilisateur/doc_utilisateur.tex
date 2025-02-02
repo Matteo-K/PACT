@@ -11,7 +11,7 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{IUT Lannion - SA'E 3 Tchatator - documentation xxx}
+\lhead{IUT Lannion - SAÉ 3 Tchatator - documentation technique}
 \rhead{The void - 2024-25}
 
 \title{\Huge Tchatator \\ {\LARGE Documentation Technique}}
@@ -35,7 +35,13 @@
 
         \textbf{IUT Lannion - SAÉ 3 2024-2025} \\[1.2cm]
 
-        \textit{Un rapport présenté dans le cadre de...} \\[2cm]
+        \textit{
+        Le projet TripEnArvor a pour objectif de mettre en place un mécanisme d’échange de messages au format texte brut entre les professionnels et les visiteurs/clients de la plateforme. Ce mécanisme fonctionnera en mode asynchrone, permettant à chaque correspondant d’envoyer et recevoir des messages de manière décalée, sans nécessiter de connexion simultanée. 
+		} \\[0.5cm]
+		
+		\textit{
+        Ce dcument a pour but de présenter le fonctionnement interne de l'API tchatator.
+		}
 
         \vfill  % Remplit l'espace vertical jusqu'en bas
 
@@ -45,28 +51,140 @@
 
 \tableofcontents
 \newpage
-\section{Introduction}
+\chapter{Introduction}
 
-\section{Installation}
-(Instructions sur l'installation et la configuration du projet.)
+L’API sera composée de trois modes d’accès distincts : un accès professionnel pour les échanges entre professionnels et clients, un accès client pour la communication avec les professionnels, et un accès administrateur pour la gestion des actions de blocage et de bannissement. Cette solution standardisera et sécurisera les interactions entre les utilisateurs de la plateforme, tout en respectant les exigences du projet.
 
 \section{Glossaire}
 
-\section{Structure du Code}
+\begin{itemize}
+	\item \textbf{SERVICE ou SERVEUR :} le logiciel qui attend et traite les REQUÊTES.
+	
+	\item \textbf{CLIENT:} le logiciel qui se connecte et interroge le SERVICE. Ne pas confondre avec le client de la plateforme.
+	
+	\item \textbf{PROTOCOLE :} les règles et la GRAMMAIRE permettant à un CLIENT de soumettre des REQUÊTES au SERVICE. 
+	
+	\item \textbf{REQUÊTE :} une action faite sur le SERVICE par le biais d’un CLIENT en utilisant le PROTOCOLE.
+	
+	\item \textbf{GRAMMAIRE : } la syntaxe décrivant comment doivent être formatées les REQUÊTES du PROTOCOLE. *
+	
+	\item \textbf{CLÉ D’API :}   un code secret  que le CLIENT envoie au SERVICE pour autoriser son utilisation. La fourniture d’une CLÉ D’API peut donner des droits spécifiques. 
+	
+	\item \textbf{PARAMÉTRAGE :} un fichier texte contenant des valeurs modifiables par un administrateur, sans besoin de création d’une interface. Ces valeurs sont lues au démarrage du SERVICE.
+	
+\end{itemize}
 
-\section{API / Fonctions Principales}
-(Détails sur les fonctions, classes ou modules clés, avec des descriptions et des exemples d'utilisation.)
+\section{Architecture du Code}
 
-\section{Dépendances}
-(Liste des bibliothèques et outils nécessaires pour exécuter le projet.)
+\subsection{Structure du projet}
 
-\section{Problèmes Connus et Limitations}
-(Liste des éventuels problèmes ou limitations rencontrés.)
+Le projet est structuré de manière modulaire et comprend les fichiers suivants :
 
-\section{Contribution}
-(Instructions pour ceux qui souhaitent contribuer au projet.)
+\begin{itemize}
+	\item \textbf{tchatator.c :} Point d'entrée du programme, contenant la fonction main().
+	
+	\item \textbf{const.h :} Contient les constantes globales utilisées dans tout le programme.
+	
+	\item \textbf{const.c :} Contient les valeurs initiales des constantes et les paramètres de configuration.
+	
+	\item \textbf{fonction serveur.c :} Fichier avec les fonctions principales du serveur qui gèrent la logique de traitement des demandes des clients.
+	
+	\item \textbf{fonction serveur.h :} Fichier avec les entêtes des fonctions principales du serveur.
+	
+	\item \textbf{outils.c :} Contient des fonctions utilitaires pour la manipulation des données.
+	
+	\item \textbf{outils.h :} Contient les entêtes des fonctions utilitaires.
+	
+	\item \textbf{bdd.c :} Gère les interactions avec la base de données.
+	
+	\item \textbf{bdd.h :} Contient les entêtes des fonctions d'interactions de la base de données.
+	
+\end{itemize}
 
-\section{Licence}
-(Informations sur la licence du projet.)
+\section{Installation}
+
+\subsection{Prérequis}
+
+Avant d'installer le service, assurez-vous d'avoir les prérequis nécessaires installés sur votre machine. Cela inclut la bibliothèque json-c, qui est utilisée pour le traitement des données JSON, ainsi que d'autres outils nécessaires à la compilation et à l'exécution des scripts.
+
+\paragraph{Prérequis communs :}
+\begin{itemize}
+
+	\item \textbf{Système d'exploitation :}  Linux
+	\item \textbf{Compilateur :}  gcc pour compiler le code C
+	\item \textbf{Bibliothèque json-c:} Bibliothèque pour le traitement des données JSON.
+
+\end{itemize}
+
+\paragraph{Pour installer la bibliothèque json-c :}
+
+Sur une distribution Linux (comme Ubuntu/Debian), vous pouvez installer json-c avec apt :
+
+\begin{verbatim}
+sudo apt-get update
+sudo apt-get install libjson-c-dev
+\end{verbatim}
+
+\subsection{Installation du Service côté Serveur}
+
+Pour installer et exécuter le serveur, suivez les étapes suivantes.
+
+\paragraph{a) Télécharger les fichiers du projet :}
+
+Clonez ou téléchargez le dépôt contenant le code source du projet.
+
+\begin{verbatim}
+git clone https://github.com/Matteo-K/PACT.git
+cd ./PACT/tchatator
+\end{verbatim}
+
+\paragraph{b) Compilation et exécution du serveur :} Le serveur utilise le script tchatator.sh pour compiler le programme. Ce script gère la configuration, l'inclusion des bibliothèques nécessaires (comme json-c), et la compilation du code source.
+
+\begin{enumerate}
+	\item Ouvrez un terminal et naviguez jusqu'au répertoire PACT/tchatator.
+	\item Exécutez le script tchatator.sh pour compiler le programme.
+\end{enumerate}
+
+\begin{verbatim}
+chmod +x tchatator.sh
+./tchatator.sh
+\end{verbatim}
+
+Le script s'assurera que toutes les dépendances nécessaires sont présentes, comme la bibliothèque json-c, et compilera le code C dans un exécutable. Ainsi ce dernier sera exécuter.
+
+\paragraph{c) Service côté Client :}
+
+Le script user.sh est utilisé pour lancer un terminal interactif pour l'utilisateur. Ce script gère l'installation de telnet, l'ouverture d'une session utilisateur et la connexion au serveur de chat. Il suffit de rendre le script exécutable et de l'exécuter.
+
+\begin{enumerate}
+	\item Ouvrez un terminal et naviguez jusqu'au répertoire PACT/tchatator.
+	
+	\item Rendez le script user.sh exécutable :
+	\begin{verbatim}
+		chmod +x user.sh
+	\end{verbatim}
+	
+	\item Exécutez le script pour ouvrir un terminal et commencer à interagir avec le serveur.
+	
+	\begin{verbatim}
+		./user.sh
+	\end{verbatim}
+\end{enumerate}
+
+\subsection{Dépannage}
+
+Voici quelques problèmes courants et leurs solutions possibles :
+
+\begin{itemize}
+	\item Problème de dépendances (json-c) :
+	\begin{itemize}
+		\item Assurez-vous que la bibliothèque json-c est correctement installée.
+		\item Si vous avez des problèmes lors de la compilation, vérifiez que le répertoire de l'en-tête json-c est correctement inclus dans les chemins du compilateur.
+	\end{itemize}
+	\item Problème de connexion au serveur :
+	\begin{itemize}
+		\item Vérifiez si le serveur est en cours d'exécution et écoute bien sur le port attendu.
+	\end{itemize}
+\end{itemize}
 
 \end{document}
