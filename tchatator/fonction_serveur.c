@@ -100,10 +100,8 @@ void gestion_commande(PGconn *conn, tExplodeRes requete, tClient *utilisateur) {
 }
 
 void afficheHistorique(PGconn *conn, char tokken[]) {
-    if (conn == NULL || PQstatus(conn) != CONNECTION_OK) {
-        fprintf(stderr, "Erreur de connexion à la base de données : %s\n", PQerrorMessage(conn));
-        return;
-    }
+
+    tokken = trim(tokken);
     
     char requete[BUFFER_SIZE * 2];
     snprintf(requete, sizeof(requete), 
@@ -116,12 +114,6 @@ void afficheHistorique(PGconn *conn, char tokken[]) {
              tokken);
     
     PGresult *res = PQexec(conn, requete);
-    
-    if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-        fprintf(stderr, "Erreur lors de l'exécution de la requête : %s\n", PQerrorMessage(conn));
-        PQclear(res);
-        return;
-    }
     
     int nrows = PQntuples(res);
     if (nrows == 0) {
