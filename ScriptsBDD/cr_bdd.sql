@@ -1077,12 +1077,12 @@ EXECUTE FUNCTION trigger_insert_into_vueMessages();
 CREATE OR REPLACE FUNCTION validate_expediteur()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF NEW.typeExpediteur = 'membre' THEN
+    IF NEW.typeExpediteur = 'pro' THEN
         -- Vérifier que idExpediteur existe dans _membre
         IF NOT EXISTS (SELECT 1 FROM pact._membre WHERE idU = NEW.idExpediteur) THEN
             RAISE EXCEPTION 'idExpediteur % not found in _membre', NEW.idExpediteur;
         END IF;
-    ELSIF NEW.typeExpediteur = 'pro' THEN
+    ELSIF NEW.typeExpediteur = 'membre' THEN
         -- Vérifier que idExpediteur existe dans _pro
         IF NOT EXISTS (SELECT 1 FROM pact._pro WHERE idU = NEW.idExpediteur) THEN
             RAISE EXCEPTION 'idExpediteur % not found in _pro', NEW.idExpediteur;
