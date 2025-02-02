@@ -1031,19 +1031,7 @@ CREATE OR REPLACE FUNCTION trigger_insert_into_vueMessages()
 RETURNS TRIGGER AS $$
 DECLARE
     newMessageId INT;
-    newTypeExpediteur TEXT;
 BEGIN
-
-    RAISE EXCEPTION 'TypeExpediteur invalide : %', NEW.typeExpediteur;
-
-    IF NEW.typeExpediteur = 'membre' THEN
-        newTypeExpediteur := 'pro';
-    ELSIF NEW.typeExpediteur = 'pro' THEN
-        newTypeExpediteur := 'membre';
-    ELSE
-        RAISE EXCEPTION 'TypeExpediteur invalide : %', NEW.typeExpediteur;
-    END IF;
-
     -- Insérer dans _historiqueMessage
     INSERT INTO pact._historiqueMessage (heure, content, contentLength, idExpediteur, typeExpediteur)
     VALUES (
@@ -1051,16 +1039,16 @@ BEGIN
         NEW.contenuMessage,
         CHAR_LENGTH(NEW.contenuMessage),
         NEW.idExpediteur,
-        newTypeExpediteur
+        NEW.typeExpediteur
     )
     RETURNING id INTO newMessageId;
 
     -- Insérer dans _tchatator
-    IF newTypeExpediteur = 'membre' THEN
+    IF NEW.typeExpediteur = 'pro' THEN
         -- Si l'expéditeur est un membre, le receveur est un pro
         INSERT INTO _tchatator (idMembre, idPro, idMessage)
         VALUES (NEW.idReceveur, NEW.idExpediteur, newMessageId);
-    ELSIF newTypeExpediteur = 'pro' THEN
+    ELSIF NEW.typeExpediteur = 'membre' THEN
         -- Si l'expéditeur est un pro, le receveur est un membre
         INSERT INTO _tchatator (idMembre, idPro, idMessage)
         VALUES (NEW.idExpediteur, NEW.idReceveur, newMessageId);
