@@ -1033,7 +1033,7 @@ DECLARE
     newMessageId INT;
 BEGIN
     -- Insérer dans _historiqueMessage
-    INSERT INTO _historiqueMessage (heure, content, contentLength, idExpediteur, typeExpediteur)
+    INSERT INTO pact._historiqueMessage (heure, content, contentLength, idExpediteur, typeExpediteur)
     VALUES (
         NEW.dateMessage,
         NEW.contenuMessage,
@@ -1069,12 +1069,12 @@ RETURNS TRIGGER AS $$
 BEGIN
     IF NEW.typeExpediteur = 'membre' THEN
         -- Vérifier que idExpediteur existe dans _membre
-        IF NOT EXISTS (SELECT 1 FROM _membre WHERE idU = NEW.idExpediteur) THEN
+        IF NOT EXISTS (SELECT 1 FROM pact._membre WHERE idU = NEW.idExpediteur) THEN
             RAISE EXCEPTION 'idExpediteur % not found in _membre', NEW.idExpediteur;
         END IF;
     ELSIF NEW.typeExpediteur = 'pro' THEN
         -- Vérifier que idExpediteur existe dans _pro
-        IF NOT EXISTS (SELECT 1 FROM _pro WHERE idU = NEW.idExpediteur) THEN
+        IF NOT EXISTS (SELECT 1 FROM pact._pro WHERE idU = NEW.idExpediteur) THEN
             RAISE EXCEPTION 'idExpediteur % not found in _pro', NEW.idExpediteur;
         END IF;
     ELSE
