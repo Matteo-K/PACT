@@ -233,9 +233,7 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
 
                 const char *ajout_message =
                     "INSERT INTO vueMessages (idExpediteur, contenuMessage, dateMessage, typeExpediteur, idReceveur)"
-                    "VALUES ($1, $2, $3, $4, $5);".
-                    "INSERT INTO pact._historiqueMessage (id, heure, content, contentlength, idexpediteur, typeexpediteur) "
-                    "VALUES ($1, $2, $3, $4, $5, $6);";
+                    "VALUES ($1, $2, $3, $4, $5);";
 
                 // Saisit du message dans la bdd
                 const char *param_values_addMSG[6] = {
