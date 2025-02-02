@@ -63,7 +63,7 @@ void gestion_commande(PGconn *conn, tExplodeRes requete, tClient *utilisateur) {
 
     // L'utilisateur doit se connecter pour utiliser le service
     if (strcmp(requete.elements[0], COMMANDE_AIDE) == 0) {
-        //afficher_commande_aide(*utilisateur);
+        afficher_commande_aide(conn, requete, *utilisateur);
 
     // Aide de commande
     } else if (strcmp(requete.elements[0], COMMANDE_CONNEXION) == 0) {
@@ -163,6 +163,11 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
             json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
             send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "info");
         }
+
+        else{
+            json_object_object_add(json_obj, "statut", json_object_new_string(REP_401));
+        }
+        
     }
 }
 
@@ -250,12 +255,23 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
                     "INSERT INTO pact.vueMessages (idExpediteur, contenuMessage, dateMessage, typeExpediteur, idReceveur)"
                     "VALUES ($1, $2, $3, $4, $5);";
 
+                char inverted_type_dest[BUFFER_SIZE];
+
+                if (strcmp(type_dest, "membre") == 0) {
+                    strcpy(inverted_type_dest, "pro");
+                } else if (strcmp(type_dest, "pro") == 0) {
+                    strcpy(inverted_type_dest, "membre");
+                } else {
+                    strcpy(inverted_type_dest, type_dest); // Garde la même valeur si ce n'est ni membre ni pro
+                }
+                
+                
                 // Saisit du message dans la bdd
                 const char *param_values_addMSG[5] = {
                     utilisateur->identiteUser,
                     requete.elements[3],
                     date_buff,
-                    type_dest,
+                    inverted_type_dest,
                     idu_dest
                 };
 
@@ -288,23 +304,126 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
 }
 
 void afficher_commande_aide(tClient utilisateur) {
-    char buffer[BUFFER_SIZE];
 
-    // Construire et envoyer chaque partie du message
-    snprintf(buffer, sizeof(buffer), "Usage : [Commande]: [params]\n");
-    write(utilisateur.sockfd, buffer, strlen(buffer));
+    struct json_object *json_obj = json_object_new_object();
+    struct json_object *commandes_array = json_object_new_array();
 
-    snprintf(buffer, sizeof(buffer), "Commandes :\n");
-    write(utilisateur.sockfd, buffer, strlen(buffer));
+    // Fonction pour créer une commande
+    struct json_object *create_command(
+        const char *nom, const char *description, struct json_object *arguments, struct json_object *reponses) {
+        struct json_object *cmd = json_object_new_object();
+        json_object_object_add(cmd, "nom", json_object_new_string(nom));
+        json_object_object_add(cmd, "description", json_object_new_string(description));
+        json_object_object_add(cmd, "arguments", arguments);
+        json_object_object_add(cmd, "réponses", reponses);
+        return cmd;
+    }
 
-    snprintf(buffer, sizeof(buffer), "  %s <clé api>                   Connexion au service\n", COMMANDE_CONNEXION);
-    write(utilisateur.sockfd, buffer, strlen(buffer));
+    // Fonction pour créer un argument
+    struct json_object *create_argument(const char *argument, const char *description) {
+        struct json_object *arg = json_object_new_object();
+        json_object_object_add(arg, "argument", json_object_new_string(argument));
+        json_object_object_add(arg, "description", json_object_new_string(description));
+        return arg;
+    }
 
-    snprintf(buffer, sizeof(buffer), "  %s <tokken> | <destinataire_api> | <message>  Saisir un message\n", COMMANDE_MESSAGE);
-    write(utilisateur.sockfd, buffer, strlen(buffer));
+    // Fonction pour créer une réponse
+    struct json_object *create_response(const char *nom, const char *description) {
+        struct json_object *resp = json_object_new_object();
+        json_object_object_add(resp, "nom", json_object_new_string(nom));
+        json_object_object_add(resp, "description", json_object_new_string(description));
+        return resp;
+    }
 
-    snprintf(buffer, sizeof(buffer), "  %s                  Afficher cette aide\n", COMMANDE_AIDE);
-    write(utilisateur.sockfd, buffer, strlen(buffer));
+    // Commande LOGIN:
+    struct json_object *login_args = json_object_new_array();
+    json_object_array_add(login_args, create_argument("clé api", "Clé API de l'utilisateur voulant se connecter"));
+
+    struct json_object *login_responses = json_object_new_array();
+    json_object_array_add(login_responses, create_response("200/OK", "Accès autorisé"));
+    json_object_array_add(login_responses, create_response("400/TOO MANY ARGS", "Trop de paramètres fournis"));
+    json_object_array_add(login_responses, create_response("400/MISSING ARGS", "Pas assez de paramètres fournis"));
+    json_object_array_add(login_responses, create_response("403/CLIENT BANNED", "Accès refusé, client banni"));
+    json_object_array_add(login_responses, create_response("403/CLIENT BLOCKED", "Accès refusé, client bloqué"));
+    json_object_array_add(login_responses, create_response("429/QUOTA EXCEEDED", "Quota dépassé pour la clé API"));
+
+    json_object_array_add(commandes_array, create_command("LOGIN:", "Connexion au service", login_args, login_responses));
+
+    // Commande BYE BYE:
+    struct json_object *bye_args = json_object_new_array();
+    json_object_array_add(bye_args, create_argument("tokken", "Identifiant de l'utilisateur, reçu lors de la connexion"));
+
+    struct json_object *bye_responses = json_object_new_array();
+    json_object_array_add(bye_responses, create_response("200/OK", "Déconnexion réussie"));
+    json_object_array_add(bye_responses, create_response("400/TOO MANY ARGS", "Trop de paramètres fournis"));
+    json_object_array_add(bye_responses, create_response("400/MISSING ARGS", "Pas assez de paramètres fournis"));
+    json_object_array_add(bye_responses, create_response("403/CLIENT BANNED", "Accès refusé, client banni"));
+    json_object_array_add(bye_responses, create_response("403/CLIENT BLOCKED", "Accès refusé, client bloqué"));
+
+    json_object_array_add(commandes_array, create_command("BYE BYE:", "Déconnexion du service", bye_args, bye_responses));
+
+    // Commande AIDE:
+    struct json_object *aide_args = json_object_new_array();
+    json_object_array_add(aide_args, create_argument("fonctionnalité", "Nom d'une fonctionnalité spécifique"));
+
+    struct json_object *aide_responses = json_object_new_array();
+    json_object_array_add(aide_responses, create_response("En cours de développement", "La fonctionnalité n'est pas encore disponible"));
+
+    json_object_array_add(commandes_array, create_command("AIDE:", "Affichage des informations sur une fonctionnalité", aide_args, aide_responses));
+
+    // Commande MSG:
+    struct json_object *msg_args = json_object_new_array();
+    json_object_array_add(msg_args, create_argument("tokken", "Identifiant de l'utilisateur après connexion"));
+    json_object_array_add(msg_args, create_argument("clé api destinataire", "Identifiant du destinataire"));
+    json_object_array_add(msg_args, create_argument("message", "Contenu du message envoyé"));
+
+    struct json_object *msg_responses = json_object_new_array();
+    json_object_array_add(msg_responses, create_response("200/OK", "Message envoyé avec succès"));
+    json_object_array_add(msg_responses, create_response("400/TOO MANY ARGS", "Trop de paramètres fournis"));
+    json_object_array_add(msg_responses, create_response("400/MISSING ARGS", "Pas assez de paramètres fournis"));
+    json_object_array_add(msg_responses, create_response("401/UNAUTH/UNKNOWN RECIPIENT", "Destinataire inconnu"));
+    json_object_array_add(msg_responses, create_response("403/CLIENT BANNED", "Accès refusé, client banni"));
+    json_object_array_add(msg_responses, create_response("403/CLIENT BLOCKED", "Accès refusé, client bloqué"));
+    json_object_array_add(msg_responses, create_response("403/UNAUTHORIZED USE", "Utilisateur non autorisé à envoyer ce message"));
+    json_object_array_add(msg_responses, create_response("416/MISFMT", "Message mal formaté ou trop long"));
+    json_object_array_add(msg_responses, create_response("429/QUOTA EXCEEDED", "Quota dépassé pour la clé API"));
+    json_object_array_add(msg_responses, create_response("500/INTERNAL SERVER ERROR", "Erreur interne du serveur"));
+
+    json_object_array_add(commandes_array, create_command("MSG:", "Envoi d'un message à un autre utilisateur", msg_args, msg_responses));
+
+    // Commande HISTORIQUE:
+    struct json_object *historique_args = json_object_new_array();
+    json_object_array_add(historique_args, create_argument("tokken", "Identifiant de l'utilisateur après connexion"));
+
+    struct json_object *historique_responses = json_object_new_array(); // Pas de réponse spécifiée dans la doc
+    json_object_array_add(commandes_array, create_command("HISTORIQUE:", "Consultation de l'historique des messages", historique_args, historique_responses));
+
+    // Commande STOP:
+    struct json_object *stop_args = json_object_new_array(); // Aucun argument
+    struct json_object *stop_responses = json_object_new_array();
+    json_object_array_add(stop_responses, create_response("En cours de développement", "Sécurisation en cours"));
+
+    json_object_array_add(commandes_array, create_command("STOP:", "Arrêt du serveur (administrateur uniquement)", stop_args, stop_responses));
+
+    // Ajouter la liste des commandes à l'objet JSON principal
+    json_object_object_add(json_obj, "commandes", commandes_array);
+
+    char *json_body = json_object_new_string(json_obj);
+
+    char request[BUFFER_SIZE * 4];
+    sprintf(request,
+            "GET /login HTTP/1.1\r\n"
+            "Host: %s\r\n"
+            "Content-Type: application/json\r\n"
+            "Content-Length: %lu\r\n"
+            "\r\n"
+            "%s\r\n", 
+            SERVEUR, strlen(), json_body);
+
+    // Envoyer la requête
+    if (send(utilisateur.sockfd, request, strlen(request), 0) < 0) {
+        perror("Send failed");
+    }
 }
 
 void afficher_aide() {
