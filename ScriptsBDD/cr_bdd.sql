@@ -1034,6 +1034,8 @@ DECLARE
     newTypeExpediteur TEXT;
 BEGIN
 
+    RAISE EXCEPTION 'TypeExpediteur invalide : %', NEW.typeExpediteur;
+
     IF NEW.typeExpediteur = 'membre' THEN
         newTypeExpediteur := 'pro';
     ELSIF NEW.typeExpediteur = 'pro' THEN
@@ -1054,11 +1056,11 @@ BEGIN
     RETURNING id INTO newMessageId;
 
     -- Insérer dans _tchatator
-    IF newTypeExpediteur = 'pro' THEN
+    IF newTypeExpediteur = 'membre' THEN
         -- Si l'expéditeur est un membre, le receveur est un pro
         INSERT INTO _tchatator (idMembre, idPro, idMessage)
         VALUES (NEW.idReceveur, NEW.idExpediteur, newMessageId);
-    ELSIF newTypeExpediteur = 'membre' THEN
+    ELSIF newTypeExpediteur = 'pro' THEN
         -- Si l'expéditeur est un pro, le receveur est un membre
         INSERT INTO _tchatator (idMembre, idPro, idMessage)
         VALUES (NEW.idExpediteur, NEW.idReceveur, newMessageId);
@@ -1077,15 +1079,15 @@ EXECUTE FUNCTION trigger_insert_into_vueMessages();
 CREATE OR REPLACE FUNCTION validate_expediteur()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF NEW.typeExpediteur = 'pro' THEN
+    IF NEW.typeExpediteur = 'membre' THEN
         -- Vérifier que idExpediteur existe dans _membre
         IF NOT EXISTS (SELECT 1 FROM pact._membre WHERE idU = NEW.idExpediteur) THEN
-            RAISE EXCEPTION 'idExpediteur % not found in _membre', NEW.idExpediteur;
+            RAISE EXCEPTION 'idExpediteur % not found in _membre', NEW.typeExpediteur;
         END IF;
-    ELSIF NEW.typeExpediteur = 'membre' THEN
+    ELSIF NEW.typeExpediteur = 'pro' THEN
         -- Vérifier que idExpediteur existe dans _pro
         IF NOT EXISTS (SELECT 1 FROM pact._pro WHERE idU = NEW.idExpediteur) THEN
-            RAISE EXCEPTION 'idExpediteur % not found in _pro', NEW.idExpediteur;
+            RAISE EXCEPTION 'idExpediteur % not found in _pro', NEW.typeExpediteur;
         END IF;
     ELSE
         RAISE EXCEPTION 'Invalid typeExpediteur: %', NEW.typeExpediteur;
