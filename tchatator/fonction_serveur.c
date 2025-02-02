@@ -147,7 +147,6 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
         sprintf(requeteAPI, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", trim(requete.elements[requete.nbElement]));
         idu = trouveAPI(conn, requeteAPI);
         struct json_object *json_obj = json_object_new_object();
-        if(idu != -1){
         
             srand(time(NULL));
             genere_tokken(genTokken);
@@ -162,11 +161,7 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
             json_object_object_add(json_obj, "statut", json_object_new_string(REP_200));
             json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
             send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "info");
-        }
 
-        else{
-            json_object_object_add(json_obj, "statut", json_object_new_string(REP_401));
-        }
         
     }
 }
