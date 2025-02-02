@@ -255,12 +255,23 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
                     "INSERT INTO pact.vueMessages (idExpediteur, contenuMessage, dateMessage, typeExpediteur, idReceveur)"
                     "VALUES ($1, $2, $3, $4, $5);";
 
+                char inverted_type_dest[BUFFER_SIZE];
+
+                if (strcmp(type_dest, "membre") == 0) {
+                    strcpy(inverted_type_dest, "pro");
+                } else if (strcmp(type_dest, "pro") == 0) {
+                    strcpy(inverted_type_dest, "membre");
+                } else {
+                    strcpy(inverted_type_dest, type_dest); // Garde la même valeur si ce n'est ni membre ni pro
+                }
+                
+                
                 // Saisit du message dans la bdd
                 const char *param_values_addMSG[5] = {
                     utilisateur->identiteUser,
                     requete.elements[3],
                     date_buff,
-                    type_dest,
+                    inverted_type_dest,
                     idu_dest
                 };
 
