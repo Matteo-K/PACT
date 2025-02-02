@@ -144,8 +144,8 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
 
     if (nombre_argument_requis(conn, *utilisateur, requete, 1)) {
         
-        sprintf(requeteAPI, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", trim(requete.elements[0]));
-        idu = trouveAPI(conn, requete.elements[0]);
+        sprintf(requeteAPI, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", trim(requete.elements[requete.nbElement]));
+        idu = trouveAPI(conn, requeteAPI);
         struct json_object *json_obj = json_object_new_object();
         if(idu != -1){
         
@@ -481,13 +481,13 @@ void ajouter_logs(PGconn *conn, tClient utilisateur, const char *message, const 
     snprintf(info, sizeof(info), "%s - %s - %s", utilisateur.identiteUser, utilisateur.client_ip, message);
 
     if (strcmp(type, "info") == 0) {
-        snprintf(buffer, sizeof(buffer), "%d - %s - [INFO] - %s", log_id, date_buff, info);
+        snprintf(buffer, sizeof(buffer), "%d - %s - [INFO] - %s\n", log_id, date_buff, info);
     } else if (strcmp(type, "error") == 0) {
-        snprintf(buffer, sizeof(buffer), "%d - %s - [ERROR] - %s", log_id, date_buff, info);
+        snprintf(buffer, sizeof(buffer), "%d - %s - [ERROR] - %s\n", log_id, date_buff, info);
     } else if (strcmp(type, "debug") == 0) {
-        snprintf(buffer, sizeof(buffer), "%d - %s - [DEBUG] - %s", log_id, date_buff, info);
+        snprintf(buffer, sizeof(buffer), "%d - %s - [DEBUG] - %s\n", log_id, date_buff, info);
     } else {
-        snprintf(buffer, sizeof(buffer), "%d - %s - [UNKNOWN TYPE] - %s", log_id, date_buff, info);
+        snprintf(buffer, sizeof(buffer), "%d - %s - [UNKNOWN TYPE] - %s\n", log_id, date_buff, info);
     }
 
     // Écriture dans le fichier de log
