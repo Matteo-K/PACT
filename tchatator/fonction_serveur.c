@@ -233,7 +233,7 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
                          tm.tm_hour, tm.tm_min, tm.tm_sec);
 
                 const char *ajout_message =
-                    "INSERT INTO pact._historiqueMessage (idu_expediteur, date_message, contenu, taille, idu_destinataire, type_dest) "
+                    "INSERT INTO pact._historiqueMessage (id, heure, content, contentlength, idexpediteur, typeexpediteur) "
                     "VALUES ($1, $2, $3, $4, $5, $6);";
 
                 // Saisit du message dans la bdd
