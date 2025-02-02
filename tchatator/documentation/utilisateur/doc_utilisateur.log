@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.26)  2 FEB 2025 17:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.26)  2 FEB 2025 17:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -438,6 +438,16 @@ l.54 \newpage
 
 ]
 Chapitre 1.
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--65
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--67
+
+ []
+
 [2
 
 ]
@@ -463,13 +473,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.07225pt}.
 
 [5]
-Overfull \hbox (3.25235pt too wide) in paragraph at lines 278--279
+Overfull \hbox (3.25235pt too wide) in paragraph at lines 282--283
 []\OT1/cmr/m/n/12 403/UNAUTHORIZED [] USE : uti-li-sa-teur non au-to-ris^^Se d'
 acc^^Seder ^^Ra cette REQU[]ETE. 
  []
 
 
-Overfull \hbox (6.36787pt too wide) in paragraph at lines 298--299
+Overfull \hbox (6.36787pt too wide) in paragraph at lines 302--303
 []\OT1/cmr/m/n/12 La com-mande STOP per-met ^^Ra l'ad-mi-nis-tra-teur d'arr^ete
 r le ser-veur de mani^^Rere contr^ol^^See.
  []
@@ -497,7 +507,7 @@ Here is how much of TeX's memory you used:
  33834 multiletter control sequences out of 15000+600000
  562128 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 79i,12n,93p,453b,565s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,12n,93p,453b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/kerva/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/kerva/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb><C:/Users/kerva/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -509,7 +519,7 @@ al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/kerva/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users
 /kerva/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
 
-Output written on doc_utilisateur.pdf (7 pages, 269245 bytes).
+Output written on doc_utilisateur.pdf (7 pages, 270522 bytes).
 PDF statistics:
  171 PDF objects out of 1000 (max. 8388607)
  35 named destinations out of 1000 (max. 500000)

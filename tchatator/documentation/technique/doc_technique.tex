@@ -56,6 +56,7 @@
 
 L’API sera composée de trois modes d’accès distincts : un accès professionnel pour les échanges entre professionnels et clients, un accès client pour la communication avec les professionnels, et un accès administrateur pour la gestion des actions de blocage et de bannissement. Cette solution standardisera et sécurisera les interactions entre les utilisateurs de la plateforme, tout en respectant les exigences du projet.
 
+
 \section{Glossaire}
 
 \begin{itemize}
@@ -106,7 +107,11 @@ Le projet est structuré de manière modulaire et comprend les fichiers suivants
 
 \subsection{Prérequis}
 
-Avant d'installer le service, assurez-vous d'avoir les prérequis nécessaires installés sur votre machine. Cela inclut la bibliothèque json-c, qui est utilisée pour le traitement des données JSON, ainsi que d'autres outils nécessaires à la compilation et à l'exécution des scripts.
+Avant d'installer le service, assurez-vous d'avoir les prérequis nécessaires installés sur votre machine. Cela inclut la bibliothèque json-c, qui est utilisée pour le traitement des données JSON, ainsi que d'autres outils nécessaires à la compilation et à l'exécution des scripts. \\
+
+Un client et un professionnel sont tous les deux CLIENT du SERVICE \\
+
+Assurez-vous de respecter la GRAMMAIRE du  PROTOCOLE pour chaque requête afin d'éviter des erreurs de traitement. Toute requête mal formatée sera rejetée par le service avec un message d'erreur.
 
 \paragraph{Prérequis communs :}
 \begin{itemize}
