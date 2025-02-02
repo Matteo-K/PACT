@@ -163,6 +163,11 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
             json_object_object_add(json_obj, "tokken", json_object_new_string(genTokken));
             send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "info");
         }
+
+        else{
+            json_object_object_add(json_obj, "statut", json_object_new_string(REP_401));
+        }
+        
     }
 }
 
