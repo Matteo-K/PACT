@@ -442,7 +442,7 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
     concat_struct(&res, &tmp);
 
     if (res.nbElement > 1) {
-        // Utilisation d'une requête préparée
+        // Requête pour vérifier le type d'utilisateur
         const char *query = 
             "SELECT u.idu, "
             "CASE "
@@ -466,18 +466,29 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
         const char *param_values[1];
         param_values[0] = res.elements[1];
 
-        int nrows = execute_query_get_nrows(conn, "login_query", query, 1, param_values);
+        // Exécuter la requête et récupérer les résultats
+        PGresult *pg_res = PQexecParams(conn, query, 1, NULL, param_values, NULL, NULL, 0);
         
-        // Récupération des résultats de la requête
+        if (PQresultStatus(pg_res) != PGRES_TUPLES_OK) {
+            fprintf(stderr, "Erreur d'exécution de la requête : %s\n", PQerrorMessage(conn));
+            PQclear(pg_res);
+            return res;
+        }
+
+        int nrows = PQntuples(pg_res);
         if (nrows > 0) {
             strcpy(utilisateur->identiteUser, PQgetvalue(pg_res, 0, 0));
             strcpy(utilisateur->type, PQgetvalue(pg_res, 0, 1));
             strcpy(utilisateur->tokken_connexion, res.elements[1]);
             utilisateur->est_connecte = (strcmp(PQgetvalue(pg_res, 0, 2), "tokken") == 0);
         }
+
+        PQclear(pg_res);
     }
+
     return res;
 }
+
 
 bool est_commande(char buffer[]) {
     // Listes de commandes
