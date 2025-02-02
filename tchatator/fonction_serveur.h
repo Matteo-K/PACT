@@ -34,8 +34,8 @@ void genere_tokken(char *key);
 /// @brief Ajout d'un message par l'utilisateur entre un pro et membre
 /// @param conn in/out: connexion avec la bdd
 /// @param utilisateur in/out: Information de l'utilisateur
-/// @param buffer in: buffer de la commande reçu
-void saisit_message(PGconn *conn, tClient *utilisateur, char buffer[]);
+/// @param requete in: requete reçu par le serveur
+void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete);
 
 /// @brief Affichage des commandes d'aide avec HELP côté client
 /// @param utilisateur in: information de l'utilisateur

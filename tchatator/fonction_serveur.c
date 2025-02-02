@@ -88,8 +88,7 @@ void gestion_commande(PGconn *conn, tExplodeRes requete, tClient *utilisateur) {
 
     // Commande MSG
     } else if (strcmp(requete.elements[0], COMMANDE_MESSAGE) == 0) {
-        //printf("%s\n", buffer);
-        //saisit_message(conn, utilisateur, buffer + strlen(COMMANDE_MESSAGE));
+        saisit_message(conn, utilisateur, requete);
     
     // Commande Inconnue
     } else {
@@ -175,26 +174,87 @@ void genere_tokken(char *key) {
     key[TOKKEN_LENGTH] = '\0';  // Ajouter une fin de chaine à la fin du tokken
 }
 
-void saisit_message(PGconn *conn, tClient *utilisateur, char buffer[]) {
+void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
 
-    tExplodeRes result = explode(buffer, "|");
+    if (nombre_argument_requis(conn, *utilisateur, requete, 3)) {
 
-    if (result.nbElement != 3) {
-        // Manque d'argument
-        if (result.nbElement < 3) {
-            //envoie_erreur(conn, *utilisateur, REP_400_MISSING_ARGS);
-        // Trop d'argument
+        struct json_object *json_obj = json_object_new_object();
+        // si pas membre ou pro
+        if (!(strcmp(utilisateur->type, TYPE_MEMBRE) == 0 || strcmp(utilisateur->type, TYPE_PRO) == 0)) {
+            json_object_object_add(json_obj, "statut", json_object_new_string(REP_403_UNAUTHORIZED_USE));
+            send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
+            
         } else {
-            //envoie_erreur(conn, *utilisateur, REP_400_TOO_MANY_ARGS);
-        }
+            if (strlen(requete) > TAILLE_MAX_MSG) {
+                json_object_object_add(json_obj, "statut", json_object_new_string(REP_416));
+                send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
 
-    } else {
-        for (int i = 0; i < result.nbElement; i++) {
-            printf("elements[%d]: %s\n", i, result.elements[i]);
+            } else {
+                const char *query = 
+                "SELECT u.idu, "
+                "CASE "
+                    "WHEN m.idu IS NOT NULL THEN 'membre' "
+                    "WHEN p.idu IS NOT NULL THEN 'pro' "
+                    "WHEN a.idu IS NOT NULL THEN 'admin' "
+                    "ELSE 'inconnue' "
+                "END AS statut, "
+                "FROM pact._utilisateur u "
+                "LEFT JOIN pact._membre m ON u.idu = m.idu "
+                "LEFT JOIN pact._pro p ON u.idu = p.idu "
+                "LEFT JOIN pact._admin a ON u.idu = a.idu "
+                "WHERE u.apikey = $1;";
+
+                // Paramètres pour la requête
+                const char *param_values[1];
+                param_values[0] = requete.elements[1];
+                
+                int nrows = execute_query_get_nrows(conn, "verif_type", query, 1, param_values);
+
+                // Récupérer les résultats de la requête
+                if (nrows > 0) {
+                    char idu_dest[BUFFER_SIZE/4];
+                    char type_dest[BUFFER_SIZE];
+                    strcpy(idu_dest, PQgetvalue(pg_res, 0, 0));
+                    strcpy(type_dest, PQgetvalue(pg_res, 0, 1));
+
+                    if ((strcmp(type_dest == TYPE_MEMBRE) && strcmp(utilisateur->type, TYPE_PRO))
+                        || (strcmp(type_dest == TYPE_PRO) && strcmp(utilisateur->type, TYPE_MEMBRE))) {
+
+                        // Récupération de la date et de l'heure
+                        time_t t = time(NULL);
+                        struct tm tm = *localtime(&t);
+                        char date_buff[BUFFER_SIZE / 2];
+                        snprintf(date_buff, sizeof(date_buff), "%d-%02d-%02d %02d:%02d:%02d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+                        const char *ajout_message =
+                        "INSERT INTO pact._historiqueMessage VALUES
+                        ($1, $2, $3, $4, $5, $6);"
+
+                        const char *param_values_addMSG[6];
+                        param_values_addMSG[0] = utilisateur->identiteUser;
+                        param_values_addMSG[1] = date_buff;
+                        param_values_addMSG[2] = requete.elements[2];
+                        param_values_addMSG[3] = strlen(requete.elements[2]);
+                        param_values_addMSG[4] = idu_dest;
+                        param_values_addMSG[5] = type_dest;
+
+                        int nrows = execute_query_get_nrows(conn, "ajout_msg", query, 6, param_values_addMSG);
+
+                        json_object_object_add(json_obj, "statut", json_object_new_string(REP_200));
+                        send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
+                        
+                    } else {
+                        json_object_object_add(json_obj, "statut", json_object_new_string(REP_403_UNAUTHORIZED_USE));
+                        send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
+                    }
+
+                } else {
+                    json_object_object_add(json_obj, "statut", json_object_new_string(REP_401_RECIPIENT));
+                    send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
+                }
+            }
         }
     }
-
-    freeExplodeResult(&result);
 }
 
 void afficher_commande_aide(tClient utilisateur) {
@@ -351,7 +411,7 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
         struct json_object *json_obj = json_object_new_object();
         json_object_object_add(json_obj, "statut", json_object_new_string(REP_400_UNKNOWN_PARAMETER));
         send_json_request(conn, *utilisateur, json_object_to_json_string(json_obj), "error");
-        return res;  // Retourne ici si la commande est invalide.
+        return res;
     }
 
     tExplodeRes tmp = explode(buffer, "|");
@@ -378,40 +438,20 @@ tExplodeRes init_argument(PGconn *conn, tClient *utilisateur, char buffer[]) {
             "LEFT JOIN pact._admin a ON u.idu = a.idu "
             "WHERE (u.tokken = $1 OR u.apikey = $1);";
 
-        // Préparer la requête avec le paramètre
-        PGresult *res_prepared = PQprepare(conn, "login_query", query, 1, NULL);
-        if (PQresultStatus(res_prepared) != PGRES_COMMAND_OK) {
-            fprintf(stderr, "Erreur lors de la préparation de la requête : %s\n", PQerrorMessage(conn));
-            PQclear(res_prepared);
-            return res;  // Retourne ici si la préparation échoue.
-        }
-        PQclear(res_prepared);
-
-        // Paramètres pour la requête préparée
+        // Paramètres pour la requête
         const char *param_values[1];
-        param_values[0] = res.elements[1];  // Assumant que le token est dans res.elements[1]
+        param_values[0] = res.elements[1];
 
-        // Exécuter la requête préparée
-        PGresult *pg_res = PQexecPrepared(conn, "login_query", 1, param_values, NULL, NULL, 0);
-    
-        if (PQresultStatus(pg_res) != PGRES_TUPLES_OK) {
-            fprintf(stderr, "Erreur lors de l'exécution de la requête : %s\n", PQerrorMessage(conn));
-            PQclear(pg_res);
-            return res;  // Retourne ici en cas d'erreur dans la requête.
-        }
+        int nrows = execute_query_get_nrows(conn, "login_query", query, 1, param_values);
         
-        int nrows = PQntuples(pg_res);
+        // Récupération des résultats de la requête
         if (nrows > 0) {
-            // Récupérer les résultats de la requête
             strcpy(utilisateur->identiteUser, PQgetvalue(pg_res, 0, 0));
             strcpy(utilisateur->type, PQgetvalue(pg_res, 0, 1));
             strcpy(utilisateur->tokken_connexion, res.elements[1]);
             utilisateur->est_connecte = (strcmp(PQgetvalue(pg_res, 0, 2), "tokken") == 0);
         }
-        
-        PQclear(pg_res);
     }
-
     return res;
 }
 

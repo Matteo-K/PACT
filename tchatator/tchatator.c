@@ -105,6 +105,7 @@ int main(int argc, char *argv[]) {
         afficherClient(utilisateur);
 
         gestion_commande(conn, argument, &utilisateur);
+        freeExplodeResult(&argument);
         close(utilisateur.sockfd);
         _exit(0);
 

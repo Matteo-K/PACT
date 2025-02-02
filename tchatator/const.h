@@ -47,7 +47,10 @@ typedef struct {
 /// @brief Character String: Client non identifié
 #define REP_401 "401/UNAUTH"
 
-/// @brief Character String: Message mal formaté
+/// @brief Character String: Destinataire non identifié
+#define REP_401_RECIPIENT "401/UNAUTH/UNKNOWN_RECIPIENT"
+
+/// @brief Character String: Message mal formaté ou trop long
 #define REP_416 "416/MISFMT"
 
 /// @brief Character String: Manque d'argument
