@@ -190,8 +190,8 @@ void saisit_message(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
         const char *query =
             "SELECT u.idu, "
             "CASE "
-                "WHEN m.idu IS NOT NULL THEN 'membre' "
-                "WHEN p.idu IS NOT NULL THEN 'pro' "
+                "WHEN m.idu IS NOT NULL THEN 'pro' "
+                "WHEN p.idu IS NOT NULL THEN 'membre' "
                 "WHEN a.idu IS NOT NULL THEN 'admin' "
                 "ELSE 'inconnue' "
             "END AS statut "
