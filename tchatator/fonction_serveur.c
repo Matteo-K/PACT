@@ -143,8 +143,8 @@ void connexion(PGconn *conn, tClient *utilisateur, tExplodeRes requete) {
 
     if (nombre_argument_requis(conn, *utilisateur, requete, 1)) {
         
-        sprintf(requeteAPI, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", trim(requete.elements));
-        idu = trouveAPI(conn, requete);
+        sprintf(requeteAPI, "SELECT idu FROM pact._utilisateur WHERE apikey = '%s';", trim(requete.elements[0]));
+        idu = trouveAPI(conn, requete.elements[0]);
         if(idu != -1){
         
             struct json_object *json_obj = json_object_new_object();
