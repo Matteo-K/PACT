@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.26)  2 FEB 2025 18:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.26)  3 FEB 2025 02:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -499,27 +499,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 65--65
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--83
+Underfull \hbox (badness 10000) in paragraph at lines 85--85
 []|\OT1/cmr/m/n/10 Modification d'un
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--85
+Underfull \hbox (badness 10000) in paragraph at lines 87--87
 []|\OT1/cmr/m/n/10 suppression d'un
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 89--89
+Underfull \hbox (badness 10000) in paragraph at lines 91--91
 []|\OT1/cmr/m/n/10 D^^Seblocage /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--91
+Underfull \hbox (badness 10000) in paragraph at lines 93--93
 []|\OT1/cmr/m/n/10 Limitation de
  []
 
 
-Overfull \hbox (34.7928pt too wide) in paragraph at lines 58--94
+Overfull \hbox (34.7928pt too wide) in paragraph at lines 58--96
 []  [] 
  []
 
@@ -528,63 +528,63 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.97 \chapter
+l.99 \chapter
              {Codage et tests} [1
 
 ]
 Chapitre 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--103
+Underfull \hbox (badness 10000) in paragraph at lines 105--105
 []|\OT1/cmr/bx/n/10 Matt^^Seo
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--103
+Underfull \hbox (badness 10000) in paragraph at lines 105--105
 []|\OT1/cmr/bx/n/10 Antoine
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--103
+Underfull \hbox (badness 10000) in paragraph at lines 105--105
 []|\OT1/cmr/bx/n/10 Gabriel
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--103
+Underfull \hbox (badness 10000) in paragraph at lines 105--105
 []|\OT1/cmr/bx/n/10 Kylian
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--104
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
 []|\OT1/cmr/bx/n/10 Benjamin
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 107--107
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 []|\OT1/cmr/m/n/10 Envoie de la
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--125
+Underfull \hbox (badness 10000) in paragraph at lines 129--129
 []|\OT1/cmr/m/n/10 Modification d'un
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--127
+Underfull \hbox (badness 10000) in paragraph at lines 131--131
 []|\OT1/cmr/m/n/10 suppression d'un
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 131--131
+Underfull \hbox (badness 10000) in paragraph at lines 135--135
 []|\OT1/cmr/m/n/10 D^^Seblocage /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 137--137
 []|\OT1/cmr/m/n/10 Limitation de
  []
 
 
-Overfull \hbox (34.7928pt too wide) in paragraph at lines 100--136
+Overfull \hbox (34.7928pt too wide) in paragraph at lines 102--140
 []  [] 
  []
 
@@ -593,37 +593,37 @@ Overfull \hbox (34.7928pt too wide) in paragraph at lines 100--136
 ]
 Chapitre 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--145
+Underfull \hbox (badness 10000) in paragraph at lines 149--149
 []|\OT1/cmr/bx/n/10 Matt^^Seo
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--145
+Underfull \hbox (badness 10000) in paragraph at lines 149--149
 []|\OT1/cmr/bx/n/10 Antoine
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--145
+Underfull \hbox (badness 10000) in paragraph at lines 149--149
 []|\OT1/cmr/bx/n/10 Gabriel
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--145
+Underfull \hbox (badness 10000) in paragraph at lines 149--149
 []|\OT1/cmr/bx/n/10 Kylian
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
+Underfull \hbox (badness 10000) in paragraph at lines 149--150
 []|\OT1/cmr/bx/n/10 Benjamin
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--151
+Underfull \hbox (badness 10000) in paragraph at lines 155--155
 []|\OT1/cmr/m/n/10 Documentation
  []
 
 
-Overfull \hbox (34.7928pt too wide) in paragraph at lines 142--156
+Overfull \hbox (34.7928pt too wide) in paragraph at lines 146--160
 []  [] 
  []
 
@@ -640,7 +640,7 @@ Package rerunfilecheck Info: File `repartition_tache.out' has not changed.
 Here is how much of TeX's memory you used:
  12319 strings out of 474486
  202257 string characters out of 5743755
- 1950542 words of memory out of 5000000
+ 1952542 words of memory out of 5000000
  34451 multiletter control sequences out of 15000+600000
  561785 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -654,7 +654,7 @@ KTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/kerva/AppData/Local/Pro
 grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/kerva/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/kerva/A
 ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on repartition_tache.pdf (4 pages, 222528 bytes).
+Output written on repartition_tache.pdf (4 pages, 223342 bytes).
 PDF statistics:
  83 PDF objects out of 1000 (max. 8388607)
  10 named destinations out of 1000 (max. 500000)
