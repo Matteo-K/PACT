@@ -63,6 +63,17 @@ $avis = $avisTemp;
                 <h3>
                     <?php echo $avisN0["avisnonrepondus"] ?>
                 </h3>
+
+                <h3>
+                    <div class="blacklist">
+                        <img id="blackImg" src="./img/icone/blacklist.png" alt="icone blacklistage">
+                    </div>
+                    Blacklist
+                    <label for="fltAvisNonRep">détails</label>
+                </h3>
+                <h3>
+                    <?php echo 3 ?>
+                </h3>
                     <?php
                         $etoilesPleines = floor($avisN0['moynote']); // Nombre entier d'étoiles pleines
                         $reste = $avisN0['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle

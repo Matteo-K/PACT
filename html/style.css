@@ -1994,7 +1994,8 @@ label[for="rest_ajoutPhotoMenu"] {
 .swiper.gb3{
   width: 1610px;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   margin: auto;
 }
 
@@ -2156,7 +2157,6 @@ label[for="rest_ajoutPhotoMenu"] {
   .swiper.gb3{
     width: 300px;
     height: 100%;
-    overflow: hidden;
     margin: 0 auto 0 auto;
   }
   .swiper-button-next.gb,
@@ -3375,6 +3375,16 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: center;
 }
 
+/* 
+  Blacklistage
+*/
+
+#blackImg{
+  width: 20px;
+  height: auto;
+}
+
+
 /* GABRIEL */
 
 .no-scroll {
@@ -4414,7 +4424,8 @@ details.animating .contentDetails {
 }
 
 details .nonLu,
-details .nonRepondu {
+details .nonRepondu,
+details .blacklist {
   position: absolute;
   left: 20px;
 }
@@ -5343,7 +5354,8 @@ aside[id="asideRetour"] {
 }
 
 .creation-compte #formMember,
-.creation-compte #formPro {
+.creation-compte #formPro,
+#apiKey {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -5513,7 +5525,7 @@ input[id="siren"] {
   border: 3px solid var(--secondary);
 }
 
-button[id="boutonInscription"] {
+button[id="boutonInscription"], #buttonAPIkey {
   width: 200px;
   font-size: 25px;
   height: 60px;
@@ -5773,11 +5785,18 @@ div[id="messageErreur"] {
   }
 }
 
-#buttonAPIkey{
-  color: red;
-  background-color: black;
-  width: 100px;
-}
+
+/* #buttonAPIkey {
+  width: 200px;
+  font-size: 20px;
+  height: 50px;
+  border-radius: 10px;
+  margin: 5px auto;
+  background-color: var(--accent);
+  border: solid 2px var(--accent);
+  transition: background-color 0.4s;
+  cursor: pointer;
+} */
 
 /*++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
@@ -5989,6 +6008,16 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover, button[id="boutonChangerMDP"]:hover {
   background-color: white;
   border: solid 2px var(--accent);
+}
+
+#buttonAPIkey {
+  color: black
+}
+
+#buttonAPIkey:hover {
+  background-color: white;
+  border: solid 2px var(--accent);
+  color: black;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
