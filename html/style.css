@@ -2895,6 +2895,10 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #tri label::after {
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
   left: 100%;
   background-color: var(--secondary);
   transition: left 0.5s ease;
