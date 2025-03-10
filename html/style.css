@@ -2935,10 +2935,13 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   border-right-width: 15px;
 }
 
-#tri input:hover + label {
-  border-right-width: 15px;
-  color: red;
+#tri label:hover {
+  color:red;
 }
+
+/* #tri input:hover + label {
+  border-right-width: 15px;
+} */
 
 /* Bouton de tri et filtre */
 #btnAside {
