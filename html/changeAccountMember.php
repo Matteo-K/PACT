@@ -65,70 +65,67 @@
         // Photo de profil
         $file = $_FILES['profile-pic'];
 
-        // Vérifier si un fichier a été envoyé
-        if (isset($_FILES['profile-pic']) && $_FILES['profile-pic']['error'] === UPLOAD_ERR_OK) {
-            // Récupérer le fichier téléchargé
+        // Vérification du fichier téléchargé
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile-pic'])) {
             $file = $_FILES['profile-pic'];
-        
-            // Définir les types de fichiers autorisés
-            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        
-            // Vérifier si le type de fichier est autorisé
-            if (in_array($file['type'], $allowedTypes)) {
-                // Définir le répertoire de destination pour l'upload
-                $targetDir = './img/profile_picture/';
-                
-                // Vérifier si le répertoire existe, sinon créer le répertoire
-                if (!is_dir($targetDir)) {
-                    mkdir($targetDir, 0777, true);  // Créer le répertoire avec les bonnes permissions
-                }
-        
-                // Créer un nom de fichier unique pour éviter les collisions
-                $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
-        
-                // Déplacer le fichier téléchargé vers le répertoire de destination
-                if (move_uploaded_file($file['tmp_name'], $targetFile)) {
-                    try {
-                        // Vérifier si l'URL de l'image existe déjà dans la table _image
-                        $stmtImage = $conn->prepare("SELECT * FROM pact._image WHERE url = ?");
-                        $stmtImage->execute([$targetFile]);
-                        $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
 
-                        if($photoProfil['url'] !="./img/profile_picture/default.svg"){
-                            unlink($photoProfil['url']);
-                        }
-        
-                        if (!$imageExist) {
-                            // Si l'image n'existe pas, l'ajouter à la table _image avec un nom pour "nomimage"
-                            $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
-                            
-                            // Utiliser le nom du fichier comme nom d'image (ou autre logique pour générer un nom unique)
-                            $imageName = basename($targetFile); // Vous pouvez personnaliser cette logique si nécessaire
-                            $stmtInsertImage->execute([$targetFile, $imageName]);
-                        }
-        
-                        // Mettre à jour l'URL de la photo de profil dans la table _photo_profil
-                        $stmtUpdatePhoto = $conn->prepare("UPDATE pact._photo_profil SET url = ? WHERE idU = ?");
-                        $stmtUpdatePhoto->execute([$targetFile, $userId]);
-        
-                        $_SESSION['success'] = "Photo de profil mise à jour avec succès.";
-                        header("Location: changeAccountMember.php");
-                        exit();
-                    } 
+            // Vérifier si le fichier a été téléchargé sans erreur
+            if ($file['error'] === UPLOAD_ERR_OK) {
+                // Vérifier le type du fichier
+                $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                if (in_array($file['type'], $allowedTypes)) {
+                    // Définir le répertoire de destination
+                    $targetDir = './img/profile_picture/';
                     
-                    catch (Exception $e) {
-                        $_SESSION['errors'][] = "Erreur lors de la mise à jour de la photo : " . $e->getMessage();
+                    // Vérifier si le répertoire existe, sinon créer
+                    if (!is_dir($targetDir)) {
+                        mkdir($targetDir, 0777, true);
                     }
-                } 
-                
-                else {
-                    $_SESSION['errors'][] = "Échec du téléchargement de l'image.";
+
+                    // Créer un nom de fichier unique pour éviter les collisions
+                    $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
+                    
+                    // Déplacer le fichier téléchargé
+                    if (move_uploaded_file($file['tmp_name'], $targetFile)) {
+                        // Vous pouvez ajouter la logique pour enregistrer l'URL de l'image dans la base de données ici
+                        
+                        // Retourner une réponse JSON avec le chemin de la nouvelle image
+                        echo json_encode([
+                            'status' => 'success',
+                            'newPhotoPath' => $targetFile
+                        ]);
+                        exit();
+                    } else {
+                        // Retourner une erreur si l'upload échoue
+                        echo json_encode([
+                            'status' => 'error',
+                            'message' => 'Échec du téléchargement du fichier.'
+                        ]);
+                        exit();
+                    }
+                } else {
+                    // Si le type de fichier est incorrect
+                    echo json_encode([
+                        'status' => 'error',
+                        'message' => 'Type de fichier non autorisé.'
+                    ]);
+                    exit();
                 }
-            } 
-            
-            else {
-                $_SESSION['errors'][] = "Seules les images JPG, PNG ou GIF sont autorisées.";
+            } else {
+                // Si une erreur est survenue lors du téléchargement
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => 'Erreur de téléchargement du fichier.'
+                ]);
+                exit();
             }
+        } else {
+            // Si ce n'est pas une requête POST ou si aucun fichier n'a été envoyé
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Aucun fichier envoyé.'
+            ]);
+            exit();
         }
 
 
@@ -338,8 +335,9 @@
                     method: 'POST',
                     body: formData // Corps de la requête avec le fichier
                 })
-                .then(response => response.json())
+                .then(response => response.json()) // S'assurer de récupérer une réponse JSON
                 .then(data => {
+                    // Vérifier la réponse
                     if (data.status === 'success') {
                         // Si l'upload est réussi, mettre à jour l'image de profil dans le DOM
                         document.getElementById('current-profile-pic').src = data.newPhotoPath;
