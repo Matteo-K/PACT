@@ -6009,6 +6009,10 @@ button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id
   border: solid 2px var(--accent);
 }
 
+#buttonAPIkey {
+  color: black
+}
+
 #buttonAPIkey:hover {
   background-color: white;
   border: solid 2px var(--accent);
