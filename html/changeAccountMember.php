@@ -27,7 +27,6 @@
             exit();
         }
 
-
         // Récupérer la photo de profil de la table _photo_profil
         $stmtPhoto = $conn->prepare("SELECT * FROM pact._photo_profil WHERE idU = ?");
         $stmtPhoto->execute([$userId]);
@@ -63,16 +62,13 @@
         $ville = trim($_POST['ville']);
 
         // Photo de profil
-        $file = $_FILES['profile-pic'];
-
-        // Vérifier si un fichier a été envoyé
         if (isset($_FILES['profile-pic']) && $_FILES['profile-pic']['error'] === UPLOAD_ERR_OK) {
             // Récupérer le fichier téléchargé
             $file = $_FILES['profile-pic'];
-        
+            
             // Définir les types de fichiers autorisés
             $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        
+            
             // Vérifier si le type de fichier est autorisé
             if (in_array($file['type'], $allowedTypes)) {
                 // Définir le répertoire de destination pour l'upload
@@ -94,16 +90,17 @@
                         $stmtImage->execute([$targetFile]);
                         $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
 
-                        if($photoProfil['url'] !="./img/profile_picture/default.svg"){
+                        // Supprimer l'ancienne photo de profil, si elle n'est pas par défaut
+                        if ($photoProfil['url'] != "./img/profile_picture/default.svg") {
                             unlink($photoProfil['url']);
                         }
         
                         if (!$imageExist) {
-                            // Si l'image n'existe pas, l'ajouter à la table _image avec un nom pour "nomimage"
+                            // Si l'image n'existe pas, l'ajouter à la table _image
                             $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
                             
-                            // Utiliser le nom du fichier comme nom d'image (ou autre logique pour générer un nom unique)
-                            $imageName = basename($targetFile); // Vous pouvez personnaliser cette logique si nécessaire
+                            // Utiliser le nom du fichier comme nom d'image
+                            $imageName = basename($targetFile);
                             $stmtInsertImage->execute([$targetFile, $imageName]);
                         }
         
@@ -114,25 +111,18 @@
                         $_SESSION['success'] = "Photo de profil mise à jour avec succès.";
                         header("Location: changeAccountMember.php");
                         exit();
-                    } 
-                    
-                    catch (Exception $e) {
+                    } catch (Exception $e) {
                         $_SESSION['errors'][] = "Erreur lors de la mise à jour de la photo : " . $e->getMessage();
                     }
-                } 
-                
-                else {
+                } else {
                     $_SESSION['errors'][] = "Échec du téléchargement de l'image.";
                 }
-            } 
-            
-            else {
+            } else {
                 $_SESSION['errors'][] = "Seules les images JPG, PNG ou GIF sont autorisées.";
             }
         }
 
-
-        // // Si l'adresse mail a été modifié, vérifier si elle existe déjà
+        // Si l'adresse mail a été modifiée, vérifier si elle existe déjà
         if ($mail !== $user['mail']) {
             try {
                 $stmt = $conn->prepare("SELECT * FROM pact._nonadmin WHERE mail = ?");
@@ -141,9 +131,7 @@
                 if ($result) {
                     $_SESSION['errors'][] = "L'adresse email existe déjà.";
                 }
-            } 
-            
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 $_SESSION['errors'][] = "Erreur lors de la vérification de l'adresse mail : " . htmlspecialchars($e->getMessage());
             }
         }
@@ -162,14 +150,13 @@
                 $_SESSION['success'] = "Informations mises à jour avec succès.";
                 header("Location: index.php");
                 exit();
-            } 
-            
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 $_SESSION['errors'][] = "Erreur lors de la mise à jour des informations : " . $e->getMessage();
             }
         }
     }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
