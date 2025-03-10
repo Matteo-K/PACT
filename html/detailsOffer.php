@@ -1078,6 +1078,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 boutonOuvrePopup.addEventListener('click', () => {
                     popup.style.display = 'block';
                     btnSelectionne = boutonOuvrePopup;
+                    body.classList.add("no-scroll");
                 });
             });
             
@@ -1105,6 +1106,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     motifSignal.checked = false; // On désélectionne le motif choisi
                     texteComplement.value = ""; //On vide le textarea
+                    body.classList.remove("no-scroll");
 
                     alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme !');
                 }
@@ -1121,9 +1123,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 popup.style.display = 'none';
 
                 try {
+                    let texteComplement = document.querySelector('.signalementPopup textarea');
                     let motifSignal = document.querySelector('input[name="signalement"]:checked');
                     motifSignal.checked = false; // On désélectionne le motif choisi
                     texteComplement.value = ""; //On vide le textarea
+                    body.classList.add("no-scroll");
                 } catch (error) {
                     
                 }
