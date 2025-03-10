@@ -1438,10 +1438,7 @@ header ul + div {
 }
 
 /* ------------------------- END Payment OFFER CSS --------------------------------*/
-
-/*eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                           Page erreur
-  eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
+/*Page erreur*/
 
 .pageErreur {
   text-align: center;
@@ -1470,15 +1467,8 @@ header ul + div {
 .pageErreur a:hover {
   text-decoration: underline;
 }
-
-/*eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                          Fin page erreur
-  eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
+/*Fin page erreur*/
+/* CSS EWEN*/
 .buttonDetailOffer,
 .tag,
 .ouvert,
@@ -1982,16 +1972,10 @@ label[for="rest_ajoutPhotoMenu"] {
   }
 }
 
-
 /* fin popup signalement avis */
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN CSS EWEN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
-GABRIEL
-OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
+/* FIN CSS EWEN*/
+/* GABRIEL
+ */
 
 #sansScroll {
   overflow-x: hidden;
@@ -2075,34 +2059,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   /* Rounded corners for the prev button */
 }
 
-/* @media (max-width: 768px) {
-  .swiper-container.gb, 
-  .swiper-container.gb2, 
-  .swiper-container.gb3 {
-    height: 310px;
-    position: relative;
-    margin: auto;
-  }
-
-  .swiper.gb, 
-  .swiper.gb2,
-  .swiper.gb3{
-    width: 520px;
-    height: 100%;
-    overflow: hidden;
-    margin: auto;
-  }
-
-  .swiper-button-next.gb2,
-  .swiper-button-next.gb3{
-    transform: translateX(-10%);
-  }
-  
-  .swiper-button-prev.gb2,
-  .swiper-button-prev.gb3 {
-    transform: translateX(10%);
-  }
-} */
 @media (max-width: 700px) {
   .flip-card {
     width: 300px !important; /* Réduit la largeur à 300px sur les petits écrans */
@@ -2716,9 +2672,8 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 /* ###### Index FIN ######  */
 
 /****** TRI ET FILTRE INDEX ******/
-/*+++++++++++++++++++++++*/
 /* Css filtres, Antoine */
-/*+++++++++++++++++++++*/
+
 #blcSearch {
   display: flex;
 }
@@ -3128,75 +3083,6 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   }
 }
 
-/* @media (max-width: 600px) {
-  #trifiltre {
-    position: sticky;
-    top: 0;
-    height: 100%;
-    flex-flow: column nowrap;
-    width: 100%;
-  }
-
-  #tri, #filtre {
-    width: 100% !important;
-    height: 100% !important;
-    transform: translateX(0) !important;
-    opacity: 1 !important;
-  }
-
-  #btnAside {
-    width: 100%;
-    flex-flow: row nowrap;
-    gap: 10px;
-    justify-content: center;
-  }
-
-  #btnAside img {
-    width: 50px;
-    height: auto;
-  }
-
-  #btnFiltre img {
-    width: 40px;
-    height: auto;
-  }
-
-  #btnAside a {
-    background-color: var(--bloc25);
-    border-radius: 1.5rem;
-    transition: padding 0.1s linear;
-    cursor: pointer;
-  }
-
-
-  #note, #prix, #statut, #categorie, #date, #heure {
-    padding-inline: 20px;
-  }
-
-  #note label, #prix label, #statut label, #idCategorie label, #date label, #heure label {
-    font-size: 16px;
-  }
-
-  /* Note */
-  
-  /* Prix */
-
-  /* Statut */
-
-  /* Catégorie */
-
-  /* Date */
-
-  /*#titreAside img {
-    width: 25px;
-    height: 25px;
-  }
-
-  .blcTriFiltre {
-    padding-top: 10px;
-    margin-left: 20px;
-  }
-}*/
 
 /*##### Pagination #####*/
 
@@ -3464,9 +3350,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   align-items: center;
 }
 
-/* OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOOKKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
-GABRIEL
-OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK */
+/* GABRIEL */
 
 .no-scroll {
   overflow: hidden;
@@ -3539,13 +3423,7 @@ OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
   background-color: #0056b3;
 }
 
-/* css page modal pour les options */
-
-/***********************************************************************************************/
-/***********************                                            ****************************/
-/***********************     DÉBUT CSS KYLIAN PAGE DÉTAIL OFFRE     ****************************/
-/***********************                                            ****************************/
-/***********************************************************************************************/
+/*DEBUT CSS KYLIAN PAGE DÉTAIL OFFRE*/
 
 .mainOffer .tag,
 .ouvert,
@@ -4482,7 +4360,6 @@ details.animating .contentDetails {
   width: 60%;
 }
 
-
 #avisProS2 h3 input:checked + label {
   background-color: var(--primary60);
 }
@@ -4973,7 +4850,6 @@ label#btnAjoutPhoto:hover {
 .container .icon.dislike {
   margin-right: 9px;
 }
-
 .container .count {
   transition: var(--transition);
   flex: 1;
@@ -4990,11 +4866,7 @@ label#btnAjoutPhoto:hover {
   gap: 0.10px;
   flex-direction: row;
 }
-/*
-.likes {
-  border-right: 1px solid var(--col-black);
-}
-*/*
+
 .container .count .number {
   display: flex;
   flex-direction: column;
@@ -5229,8 +5101,6 @@ label#btnAjoutPhoto:hover {
   margin-bottom: 20px;
 }
 
-
-
 #previewOffer .ouvert {
   background-color: #008000;
 }
@@ -5257,49 +5127,6 @@ label#btnAjoutPhoto:hover {
   font-size: 1.2em;
   color: var(--text-dark);
 }
-
-/* #previewOffer .swiper-container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-#previewOffer .mySwiper {
-  height: auto; 
-  border-radius: 15px;
-  overflow: hidden;
-}
-
-#previewOffer .swiper-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-#previewOffer .swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#previewOffer .swiper-slide img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 15px;
-}
-
-#previewOffer .swiper-button-next,
-#previewOffer .swiper-button-prev {
-  background-color: var(--accent60);
-  padding: 10px;
-  color: var(--background);
-}
-
-#previewOffer .myThumbSliderPreview {
-  margin-top: 20px;
-  height: 100px;
-  width: 90%;
-} */
 
 #desciptionPreview {
   margin-top: 20px;
@@ -5690,11 +5517,6 @@ div[id="messageErreur"] {
   margin: 30px auto;
 }
 
-/* test */
-/* .messageErreur.show {
-  display: block;
-} */
-
 .creation-compte .error-message {
   margin-top: 10px;
 }
@@ -5702,7 +5524,6 @@ div[id="messageErreur"] {
 .creation-compte input.valid + .error-message {
   display: none;
 }
-
 /*++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page création de compte membre, Antoine */
 /*++++++++++++++++++++++++++++++++++++++++++++*/
@@ -5948,16 +5769,6 @@ main[id="mainConnexion"] {
   margin-top: 0;
 }
 
-/* a[id="lienMotDePasseOublie"] {
-  color: white;
-  font-size: 25px;
-  margin: 30px 0;
-} */
-
-/* a[id="lienMotDePasseOublie"]:hover {
-  color: #edae14;
-} */
-
 .connexion-compte a {
   text-decoration: underline;
   color: white;
@@ -6145,8 +5956,6 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
     display: none;
   }
 }
-
-
 /*+++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css hover des boutons des formulaires, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -6154,8 +5963,6 @@ button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id
   background-color: white;
   border: solid 2px var(--accent);
 }
-
-
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page changement de mot de passe, Antoine */
@@ -6193,6 +6000,5 @@ label[id="labelPFP"]:hover {
 #pageCgu, #mentionsLegales  {
   min-height: 80vh;
 }
-
 
 /* Fin CSS page CGU */
