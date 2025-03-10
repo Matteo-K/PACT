@@ -3379,7 +3379,7 @@ label[for="rest_ajoutPhotoMenu"] {
   Blacklistage
 */
 
-.blackImg{
+#blackImg{
   width: 20px;
   height: auto;
 }
