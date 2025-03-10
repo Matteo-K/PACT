@@ -63,17 +63,14 @@ $avis = $avisTemp;
                 <h3>
                     <?php echo $avisN0["avisnonrepondus"] ?>
                 </h3>
-                <?php
-                    echo $idOffre;
-                        
+                <?php                
                     $stmt = $conn->prepare("SELECT nomabonnement FROM pact._abonner WHERE idOffre = ?");
                     // Exécuter la requête en passant les paramètres
                     $stmt->execute([$idOffre]);
                     
                     $abonnement = $stmt->fetch();
 
-                    if ($abonnement["nomabonnement"] = "Premium") {
-                        print_r($abonnement);
+                    if ($abonnement[0] == "Premium") {
                         ?>
                             <h3>
                                 <div class="blacklist">
