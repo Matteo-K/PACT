@@ -258,6 +258,11 @@
         <button class="modifierBut">Effacer les sélections</button>
     </section>
 </section>
+
+<!-- Leaflet CSS & JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         
