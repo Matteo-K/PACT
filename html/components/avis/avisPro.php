@@ -73,7 +73,7 @@ $avis = $avisTemp;
                     $abonnement = $stmt->fetch();
 
                     if ($abonnement["nomabonnement"] = "Premium") {
-                        print_r($abonnement["nomabonnement"]);
+                        print_r($abonnement);
                         ?>
                             <h3>
                                 <div class="blacklist">
