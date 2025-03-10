@@ -62,18 +62,10 @@ $avis = $avisTemp;
                 </h3>
                 <h3>
                     <?php echo $avisN0["avisnonrepondus"] ?>
-                </h3><h3>
-                    <div class="nonRepondu"></div>
-                    Non répondus
-                    <input type="checkbox" name="fltAvisNonRep" id="fltAvisNonRep">
-                    <label for="fltAvisNonRep">Filtrer par</label>
-                </h3>
-                <h3>
-                    <?php echo $avisN0["avisnonrepondus"] ?>
                 </h3>
 
                 <h3>
-                    <img src="/html/img/icone/blacklist.png" alt="icone blacklistage">
+                    <img src="./img/icone/blacklist.png" alt="icone blacklistage">
                     Blacklist
                     <label for="fltAvisNonRep">détails</label>
                 </h3>
