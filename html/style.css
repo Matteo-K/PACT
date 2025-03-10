@@ -3573,7 +3573,7 @@ label[for="rest_ajoutPhotoMenu"] {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /*object-fit: cover;*/
 }
 
 .swiper-slide.imageSwiper:hover img {
@@ -5194,8 +5194,6 @@ label#btnAjoutPhoto:hover {
 }
 
 #mapPreview img {
-  width: 100%;
-  height: 100%;
   width: 100%;
   height: auto;
   /* Ajuster pour garder le ratio */
