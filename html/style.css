@@ -2913,9 +2913,24 @@ label[for="rest_ajoutPhotoMenu"] {
   width: 70px;
 }
 
-#btnFiltre img {
-  width: 50px;
-  padding: 10px;
+#btnFiltre {
+  position: relative;
+
+  img {
+    width: 50px;
+    padding: 10px;
+  }
+
+  span {
+    position: absolute;
+    right: -15%;
+    top: -10%;
+    font-weight: bold;
+    border-radius: 50%;
+    border: solid var(--primary60);
+    background-color: var(--background);
+    padding: 5%;
+  }
 }
 
 #btnAside a {
