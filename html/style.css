@@ -5779,7 +5779,9 @@ div[id="messageErreur"] {
     height: 50px;
     border-radius: 10px;
     margin: 5px auto;
-    border: none;
+
+    justify-content: center;
+    align-items: center;
     background-color: var(--accent);
     border: solid 2px var(--accent);
     transition: background-color 0.4s;
