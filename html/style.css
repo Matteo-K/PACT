@@ -5769,10 +5769,21 @@ div[id="messageErreur"] {
   }
 }
 
-#buttonAPIkey{
+#buttonAPIkey {
+  width: 200px;
+    font-size: 25px;
+    height: 60px;
+    border-radius: 10px;
+    margin: 5px auto;
+    border: none;
+    background-color: var(--accent);
+    border: solid 2px var(--accent);
+    transition: background-color 0.4s;
+    cursor: pointer;
+}
+
+#buttonAPIkey:hover {
   color: red;
-  background-color: black;
-  width: 100px;
 }
 
 /*++++++++++++++++++++++++++++++*/
