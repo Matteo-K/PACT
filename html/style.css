@@ -5773,15 +5773,19 @@ div[id="messageErreur"] {
   }
 }
 
+#apiKey {
+  display: flex;
+  justify-content: center;
+  margin-left: 5px;
+
+}
+
 #buttonAPIkey {
   width: 200px;
     font-size: 20px;
     height: 50px;
     border-radius: 10px;
     margin: 5px auto;
-
-    justify-content: center;
-    align-items: center;
     background-color: var(--accent);
     border: solid 2px var(--accent);
     transition: background-color 0.4s;
