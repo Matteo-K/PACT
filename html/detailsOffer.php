@@ -1064,11 +1064,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             form.submit();
         }
 
+        const popup = document.querySelector('.avis .signalementPopup');
         try {
             
             //Script de gestion du pop-up de signalement (traitement de l'envoi du formulaire dans les fichiers avisPro.php / avisMembre.php / signalement.php)
             let ouvrePopup = document.querySelectorAll('.avis .signaler');
-            const popup = document.querySelector('.avis .signalementPopup');
             const btnConfirmer = document.getElementById('confirmeSignalement');
             
             let btnSelectionne;
