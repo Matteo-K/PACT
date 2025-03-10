@@ -2896,25 +2896,9 @@ label[for="rest_ajoutPhotoMenu"] {
   border-right-width: 15px;
 }
 
-/* #tri label:hover {
+#tri label:hover {
   background-color: var(--secondary);
   border-right-width: 15px;
-} */
-
-#tri input:checked + label {
-  background-color: red; /* Optionnel, si tu veux changer la couleur de fond quand le checkbox est checked */
-}
-
-#tri label:hover::before {
-  transform: translateX(0); /* L'animation de remplissage se fait de droite à gauche */
-}
-
-#tri label:hover {
-  background-color: var(--secondary); /* Le fond change au hover */
-}
-
-#tri input:checked + label:hover::before {
-  transform: translateX(0); /* S'assurer que l'animation de remplissage se fait même quand checked */
 }
 
 /* #tri input:hover + label {
