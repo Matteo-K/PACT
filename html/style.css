@@ -3576,12 +3576,9 @@ label[for="rest_ajoutPhotoMenu"] {
   display: block;
   width: 100%;
   height: 100%;
-  /*object-fit: cover;*/
+  object-fit: cover;
 }
 
-.swiper-slide.imageSwiper:hover img {
-  transform: scale(1.05);
-}
 
 .swiper-button-next.kylian:hover,
 .swiper-button-prev.kylian:hover {
