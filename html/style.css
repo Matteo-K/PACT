@@ -3553,6 +3553,7 @@ label[for="rest_ajoutPhotoMenu"] {
   justify-content: center;
   align-items: center;
   background: #fff;
+  transition-property: none;
 }
 
 .planParc {
@@ -3578,9 +3579,6 @@ label[for="rest_ajoutPhotoMenu"] {
   object-fit: cover;
 }
 
-.swiper-slide.imageSwiper:hover img {
-  transform: none;
-}
 
 .swiper-button-next.kylian:hover,
 .swiper-button-prev.kylian:hover {
