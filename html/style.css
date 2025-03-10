@@ -5751,7 +5751,7 @@ div[id="messageErreur"] {
   }
 }
 
-#apiKey{
+#apiKey p{
   color: red;
 }
 
