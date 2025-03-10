@@ -5998,7 +5998,7 @@ button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id
 
 #buttonAPIkey {
   width: 250px;
-  font-size: 20px;
+  font-size: 25px;
   height: 60px;
   border-radius: 10px;
   margin: 5px auto;
