@@ -69,7 +69,7 @@ $avis = $avisTemp;
                     $stmt->execute([$idOffre]);
                     
                     $abonnement = $stmt->fetch();
-
+                    print($abonnement[0]);
                     if ($abonnement[0] = "Premium") {
                         ?>
                             <h3>
