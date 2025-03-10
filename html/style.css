@@ -4424,7 +4424,8 @@ details.animating .contentDetails {
 }
 
 details .nonLu,
-details .nonRepondu {
+details .nonRepondu,
+details .blacklist {
   position: absolute;
   left: 20px;
 }
