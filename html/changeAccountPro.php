@@ -291,10 +291,10 @@
             <p>Votre Clé API :</p>
             <?php if($infoPro["apikey"]){?>
                 <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
-                <p onclick="generateAPIkey()">Regénérer ma clé API</p>
+                <p id = "buttonAPIkey" onclick="generateAPIkey()">Regénérer ma clé API</p>
             <?php }else{?>
                 <p id = "valueAPIkey"></p>
-                <p onclick="generateAPIkey()">Générer ma clé API</p>
+                <p id = "buttonAPIkey" onclick="generateAPIkey()">Générer ma clé API</p>
             <?php } ?>
         </section>
     </body>
