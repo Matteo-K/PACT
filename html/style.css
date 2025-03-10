@@ -4417,7 +4417,8 @@ details.animating .contentDetails {
 }
 
 #avisPro details h3:nth-child(2),
-#avisPro details h3:nth-child(4) {
+#avisPro details h3:nth-child(4),
+#avisPro details h3:nth-child(6) {
   margin: 10px 0;
   width: 20%;
   justify-content: right;
