@@ -314,6 +314,37 @@
             alert('Erreur lors de la requête fetch : ' + error.message);
         });
     }
+
+    
+    // Fonction pour mettre à jour la photo de profil sans soumettre le formulaire
+    document.getElementById('profile-pic').addEventListener('change', function(event) {
+        var formData = new FormData();
+        formData.append('profile-pic', event.target.files[0]); // Ajouter l'image au FormData
+
+        // Créer une requête AJAX pour envoyer le fichier
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'uploadProfilePic.php', true);
+        
+        // Quand la requête est terminée
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText); // Décoder la réponse JSON
+                if (response.status === 'success') {
+                    // Si l'upload est réussi, mettre à jour l'image de profil
+                    document.getElementById('current-profile-pic').src = response.newPhotoPath;
+                    alert('Photo de profil mise à jour !');
+                } else {
+                    alert('Erreur : ' + response.message);
+                }
+            } else {
+                alert('Erreur lors de l\'upload de la photo.');
+            }
+        };
+
+        // Envoyer les données
+        xhr.send(formData);
+    });
+
 </script>
 
     <script src="js/validationFormInscription.js"></script>
