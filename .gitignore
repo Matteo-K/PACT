@@ -1,2 +1,3 @@
 postgres/
 tchatator/LOGS.log
+.env
