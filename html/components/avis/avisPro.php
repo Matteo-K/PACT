@@ -85,7 +85,7 @@ $avis = $avisTemp;
                                     // Exécuter la requête en passant les paramètres
                                     $stmt->execute([$idOffre]);
                                     
-                                    print_r($stmt->fetch());  
+                                    echo ($stmt->fetch()["count"]);  
                                 ?>
                             </h3>
                         <?php
