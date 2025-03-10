@@ -63,17 +63,31 @@ $avis = $avisTemp;
                 <h3>
                     <?php echo $avisN0["avisnonrepondus"] ?>
                 </h3>
+                <?php
+                    $stmt = $conn->prepare("SELECT nomabonnement FROM pact._abonner WHERE idOffre = ?");
+                    // Exécuter la requête en passant les paramètres
+                    $stmt->execute([$idOffre]);
+                    
+                    $abonnement = $stmt->fetch();
 
-                <h3>
-                    <div class="blacklist">
-                        <img id="blackImg" src="./img/icone/blacklist.png" alt="icone blacklistage">
-                    </div>
-                    Blacklister
-                    <label for="fltAvisNonRep">détails</label>
-                </h3>
-                <h3>
-                    <?php echo 3 ?>
-                </h3>
+                    print_r($abonnement);
+
+                    if ($test) {
+                        ?>
+                            <h3>
+                                <div class="blacklist">
+                                    <img id="blackImg" src="./img/icone/blacklist.png" alt="icone blacklistage">
+                                </div>
+                                Blacklister
+                                <label for="fltAvisNonRep">détails</label>
+                            </h3>
+                            <h3>
+                                <?php echo 3 ?>
+                            </h3>
+                        <?php
+                    }
+                ?>
+                
                     <?php
                         $etoilesPleines = floor($avisN0['moynote']); // Nombre entier d'étoiles pleines
                         $reste = $avisN0['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
