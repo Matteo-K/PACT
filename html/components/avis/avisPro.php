@@ -86,6 +86,7 @@ $avis = $avisTemp;
                                     $stmt->execute([$idOffre]);
                                     
                                     echo ($stmt->fetch()["count"]);  
+                                    
                                 ?>
                             </h3>
                         <?php
