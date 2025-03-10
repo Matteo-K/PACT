@@ -2925,6 +2925,9 @@ label[for="rest_ajoutPhotoMenu"] {
     position: absolute;
     right: -15%;
     top: -10%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
     font-weight: bold;
     border-radius: 50%;
     border: solid var(--primary60);
