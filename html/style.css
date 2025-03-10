@@ -2949,6 +2949,19 @@ label[for="rest_ajoutPhotoMenu"] {
   padding-left: 30px !important;
 }
 
+#trifiltre + .modal-content {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 10;
+}
+
+#trifiltre + .modal-content {
+  display: block;
+}
+
 /* Bloc tri et filtre */
 /* titre */
 #titreAside {
