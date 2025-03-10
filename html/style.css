@@ -2887,12 +2887,12 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #tri input:checked + label {
-  background-color: blue;
+  background-color: #1ca4ed;
   border-right-width: 15px;
 }
 
 #tri label:hover {
-  background-color:red;
+  background-color: var(--secondary);
   border-right-width: 15px;
 }
 
