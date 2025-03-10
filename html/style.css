@@ -2887,7 +2887,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #tri input:checked + label {
-  background-color: var(--secondary);
+  background-color: blue;
   border-right-width: 15px;
 }
 
