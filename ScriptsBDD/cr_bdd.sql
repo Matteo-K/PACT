@@ -574,6 +574,18 @@ CREATE TABLE _signalementC(
       REFERENCES _commentaire(idC)
 );
 
+CREATE TABLE _blacklist(
+  idB SERIAL PRIMARY KEY,
+  idC INT NOT NULL,
+  idOffre INT NOT NULL,
+  CONSTRAINT _blacklist_fk_offre
+      FOREIGN KEY (idOffre)
+      REFERENCES _offre(idOffre),
+  CONSTRAINT _blacklist_fk_commentaire
+      FOREIGN KEY (idC)
+      REFERENCES _commentaire(idC)
+);
+
 -- Création des vues pour chaque catégorie d'offres
 
 CREATE VIEW admin AS
@@ -1283,8 +1295,6 @@ INSTEAD OF INSERT ON pact.visites
 FOR EACH ROW
 EXECUTE FUNCTION ajout_offre_visite();
 
-
-
 CREATE OR REPLACE FUNCTION ajout_membre()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -1373,7 +1383,6 @@ INSTEAD OF UPDATE ON pact.membre
 FOR EACH ROW
 EXECUTE FUNCTION update_membre();
 
-
 CREATE OR REPLACE FUNCTION ajout_option()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -1421,7 +1430,6 @@ CREATE TRIGGER trigger_ajout_reponse
 INSTEAD OF INSERT ON pact.reponse
 FOR EACH ROW
 EXECUTE FUNCTION ajout_reponse();
-
 
 CREATE OR REPLACE FUNCTION update_pro_public()
 RETURNS TRIGGER AS $$
@@ -1493,7 +1501,6 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
-
 
 CREATE TRIGGER trigger_update_pro_public
 INSTEAD OF UPDATE ON pact.proPublic
@@ -1587,3 +1594,51 @@ CREATE TRIGGER trigger_update_pro_prive
 INSTEAD OF UPDATE ON pact.proprive
 FOR EACH ROW
 EXECUTE FUNCTION update_pro_prive();
+
+CREATE OR REPLACE FUNCTION insert_blacklist()
+RETURNS TRIGGER AS $$
+DECLARE 
+    avis_count INT;
+BEGIN    
+    SELECT COUNT(*) INTO avis_count FROM pact._blacklist WHERE idOffre = NEW.idOffre;
+    
+    IF avis_count >= 3 THEN
+        RAISE EXCEPTION 'Impossible d’ajouter plus de 3 avis à la blacklist pour cette offre';
+    END IF;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_insert_blacklist
+BEFORE INSERT ON pact._blacklist
+FOR EACH ROW
+EXECUTE FUNCTION insert_blacklist();
+
+CREATE OR REPLACE FUNCTION check_premium_before_insert()
+RETURNS TRIGGER AS $$
+DECLARE
+    abonnement_type TEXT;
+BEGIN
+    -- Récupérer le type d'abonnement de l'offre concernée
+    SELECT nomAbonnement INTO abonnement_type
+    FROM _abonner
+    WHERE idOffre = NEW.idOffre;
+
+    -- Vérifier si l'offre est gratuite
+    IF abonnement_type = 'Basique' THEN
+        RAISE EXCEPTION 'Seules les offres premium peuvent blacklister des avis.';
+    END IF;
+    
+    IF abonnement_type = 'Gratuit' THEN
+        RAISE EXCEPTION 'Seules les offres premium peuvent blacklister des avis.';
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_check_insert_blacklist
+BEFORE INSERT ON pact._blacklist
+FOR EACH ROW
+EXECUTE FUNCTION check_premium_before_insert();
