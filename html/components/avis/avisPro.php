@@ -64,6 +64,8 @@ $avis = $avisTemp;
                     <?php echo $avisN0["avisnonrepondus"] ?>
                 </h3>
                 <?php
+                    echo $idOffre;
+                        
                     $stmt = $conn->prepare("SELECT nomabonnement FROM pact._abonner WHERE idOffre = ?");
                     // Exécuter la requête en passant les paramètres
                     $stmt->execute([$idOffre]);
