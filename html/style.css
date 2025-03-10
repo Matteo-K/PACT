@@ -3555,6 +3555,9 @@ label[for="rest_ajoutPhotoMenu"] {
   background: #fff;
   transition-property: none;
 }
+.swiper-backface-hidden .swiper-slide{
+  transform: none;
+}
 
 .planParc {
   width: 50%;
