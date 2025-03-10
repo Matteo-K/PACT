@@ -85,7 +85,7 @@ $avis = $avisTemp;
                                     // Exécuter la requête en passant les paramètres
                                     $stmt->execute([$idOffre]);
                                     
-                                    echo $stmt->fetch(); 
+                                    print_r($stmt->fetch());  
                                 ?>
                             </h3>
                         <?php
