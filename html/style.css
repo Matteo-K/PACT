@@ -5774,12 +5774,6 @@ div[id="messageErreur"] {
   }
 }
 
-#apiKey {
-  display: flex;
-  justify-content: center;
-  margin-left: 5px;
-
-}
 
 /* #buttonAPIkey {
   width: 200px;
