@@ -2881,7 +2881,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
   justify-content: left;
   border-radius: 20px 0 0 20px;
-  transition: background-color 0.5s ease, border-right-width 0.5s ease;
+  transition: background-color 0.3s ease, border-right-width 0.3s ease;
   /* transition: border-right-width 0.5s cubic-bezier(0.0, 0.0, 0.5, 1); */
   /* border-right: 0px solid var(--secondary); */
   /* transition: border-right-width 0.5s linear(0 0%, 0 2.27%, 0.02 4.53%, 0.04 6.8%, 0.06 9.07%, 0.1 11.33%, 0.14 13.6%, 0.25 18.15%, 0.39 22.7%, 0.56 27.25%, 0.77 31.8%, 1 36.35%, 0.89 40.9%, 0.85 43.18%, 0.81 45.45%, 0.79 47.72%, 0.77 50%, 0.75 52.27%, 0.75 54.55%, 0.75 56.82%, 0.77 59.1%, 0.79 61.38%, 0.81 63.65%, 0.85 65.93%, 0.89 68.2%, 1 72.7%, 0.97 74.98%, 0.95 77.25%, 0.94 79.53%, 0.94 81.8%, 0.94 84.08%, 0.95 86.35%, 0.97 88.63%, 1 90.9%, 0.99 93.18%, 0.98 95.45%, 0.99 97.73%, 1 100%); */
@@ -2895,19 +2895,6 @@ label[for="rest_ajoutPhotoMenu"] {
 #tri label:hover {
   background-color: var(--secondary);
   border-right-width: 15px;
-}
-
-#tri label::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: transparent;
-  border-radius: 20px 0 0 20px;
-  transition: width 0.5s ease-in-out;
-  z-index: -1; /* Pour que l'effet de la bordure soit visible au-dessus */
 }
 
 /* #tri input:hover + label {
@@ -2926,9 +2913,27 @@ label[for="rest_ajoutPhotoMenu"] {
   width: 70px;
 }
 
-#btnFiltre img {
-  width: 50px;
-  padding: 10px;
+#btnFiltre {
+  position: relative;
+
+  img {
+    width: 50px;
+    padding: 10px;
+  }
+
+  span {
+    position: absolute;
+    right: -15%;
+    top: -10%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 50%;
+    border: solid var(--primary60);
+    background-color: var(--background);
+    padding: 5%;
+  }
 }
 
 #btnAside a {
@@ -3061,6 +3066,10 @@ label[for="rest_ajoutPhotoMenu"] {
 
   #btnAside a:hover, .btnAsideOpen {
       padding-left: 30px !important;
+  }
+
+  #btnFiltre span {
+    border-color: var(--bloc25);
   }
 
   #tri, #filtre {
@@ -3569,13 +3578,6 @@ label[for="rest_ajoutPhotoMenu"] {
   background: #fff;
   transition-property: none;
 }
-.swiper-backface-hidden .swiper-slide{
-  transform: none;
-}
-.swiper-wrapper {
-  transform: none;
-  transition-property: none;
-}
 
 .planParc {
   width: 50%;
@@ -3597,7 +3599,7 @@ label[for="rest_ajoutPhotoMenu"] {
   display: block;
   width: 100%;
   height: 100%;
-  /*object-fit: cover;*/
+  object-fit: cover;
 }
 
 
@@ -5769,6 +5771,26 @@ div[id="messageErreur"] {
   input[id="profile-pic"] {
     display: none;
   }
+}
+
+#buttonAPIkey {
+  width: 200px;
+    font-size: 20px;
+    height: 50px;
+    border-radius: 10px;
+    margin: 5px auto;
+
+    justify-content: center;
+    align-items: center;
+    background-color: var(--accent);
+    border: solid 2px var(--accent);
+    transition: background-color 0.4s;
+    cursor: pointer;
+}
+
+#buttonAPIkey:hover {
+  color: black;
+  background-color: white;
 }
 
 /*++++++++++++++++++++++++++++++*/
