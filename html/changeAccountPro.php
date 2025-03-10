@@ -287,7 +287,9 @@
             $stmt -> execute();
             $infoPro = $stmt -> fetch(PDO::FETCH_ASSOC);
             ?>
-            <?php print_r($infoPro) ?>
+            <?php 
+                // print_r($infoPro);
+            ?>
             <p>Votre Clé API :</p>
             <?php if($infoPro["apikey"]){?>
                 <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
