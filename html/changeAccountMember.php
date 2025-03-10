@@ -317,29 +317,45 @@
 
     
     document.getElementById('profile-pic').addEventListener('change', function(event) {
-        var formData = new FormData();
-        formData.append('profile-pic', event.target.files[0]); // Ajouter l'image au FormData
+        var file = event.target.files[0]; // Récupérer le fichier sélectionné
+        if (file) {
+            var reader = new FileReader();
 
-        // Utilisation de fetch pour envoyer la requête
-        fetch('uploadProfilePic.php', {
-            method: 'POST',
-            body: formData // Corps de la requête avec le fichier
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                // Si l'upload est réussi, mettre à jour l'image de profil dans le DOM
-                document.getElementById('current-profile-pic').src = data.newPhotoPath;
-                alert('Photo de profil mise à jour !');
-            } else {
-                alert('Erreur : ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erreur lors de l\'upload de la photo.', error);
-            alert('Erreur lors de l\'upload de la photo.');
-        });
+            // Lorsque la lecture du fichier est terminée
+            reader.onload = function(e) {
+                // Mettre à jour l'image de profil dans le DOM avec l'image locale
+                document.getElementById('current-profile-pic').src = e.target.result;
+            };
+
+            // Lire le fichier comme URL de données (pour afficher immédiatement)
+            reader.readAsDataURL(file);
+
+            // Maintenant on peut aussi envoyer l'image au serveur
+            var formData = new FormData();
+            formData.append('profile-pic', file); // Ajouter l'image au FormData
+
+            // Utilisation de fetch pour envoyer la requête
+            fetch('uploadProfilePic.php', {
+                method: 'POST',
+                body: formData // Corps de la requête avec le fichier
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Si l'upload est réussi, mettre à jour l'image de profil dans le DOM
+                    document.getElementById('current-profile-pic').src = data.newPhotoPath;
+                    alert('Photo de profil mise à jour !');
+                } else {
+                    alert('Erreur : ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de l\'upload de la photo.', error);
+                alert('Erreur lors de l\'upload de la photo.');
+            });
+        }
     });
+
 
 
 </script>
