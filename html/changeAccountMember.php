@@ -338,8 +338,9 @@
                     method: 'POST',
                     body: formData // Corps de la requête avec le fichier
                 })
-                .then(response => response.json())
+                .then(response => response.json()) // S'assurer de récupérer une réponse JSON
                 .then(data => {
+                    // Vérifier la réponse
                     if (data.status === 'success') {
                         // Si l'upload est réussi, mettre à jour l'image de profil dans le DOM
                         document.getElementById('current-profile-pic').src = data.newPhotoPath;
