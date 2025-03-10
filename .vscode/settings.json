@@ -61,5 +61,6 @@
     "*.ndjson": "jsonl",
     "*.dbclient-js": "javascript",
     "OUTILS.C": "cpp"
-  }
+  },
+  "cmake.ignoreCMakeListsMissing": true
 }

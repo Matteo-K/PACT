@@ -501,11 +501,6 @@ function searchOffer(offers, search) {
 function countFiltre(filtres) {
   let count = 0;
 
-  const checkboxesCat = [chkBxVisite, chkBxActivite, chkBxSpectacle, chkBxParc, chkBxRestauration];
-  const checkboxesNote = [chkBxNote1, chkBxNote2, chkBxNote3, chkBxNote4, chkBxNote5];
-  const checkboxesStatuts = [chkBxOuvert, chkBxFerme];
-  const checkboxesEnligneHorsLigne = [chkBxEnLigne, chkBxEnLigne];
-
   filtres.forEach(filtre => {
     switch (filtre) {
       case filtrerParCategorie:
@@ -539,6 +534,42 @@ function countFiltre(filtres) {
     }
   });
   return count;
+}
+
+/**
+ * Rénitialise les inputs des tries et filtres
+ */
+function restFiltreTri() {
+  // Reset recherche
+  searchInput.value = ""
+
+  // Reset Tri
+  radBtnEnAvant.checked = true;
+
+  // Reset les checkboxs du filtre
+  resetCheckbox(checkboxesCat);
+  resetCheckbox(checkboxesNote);
+  resetCheckbox(checkboxesStatuts);
+  if (userType == "pro_public" || userType == "pro_prive") {
+    resetCheckbox(checkboxesEnligneHorsLigne);
+  }
+
+  // Autres informations du filtre
+  selectPrixMin.value = "0";
+  selectPrixMax.value = "999999";
+  heureDebut.value = "";
+  heureFin.value = "";
+
+  // Application des changements
+  goToPage(1);
+}
+
+/**
+ * Rénitialise tout les checkboxs
+ * @param {array} array_chckbx liste de checkboxs
+ */
+function resetCheckbox(array_chckbx) {
+  array_chckbx.forEach(checkbox => checkbox.checked = false);
 }
 
 /**
@@ -1003,3 +1034,8 @@ document.addEventListener('DOMContentLoaded', function() {
     chkBxHorsLigne.addEventListener("click", () => goToPage(1));
   }
 });
+
+const checkboxesCat = [chkBxVisite, chkBxActivite, chkBxSpectacle, chkBxParc, chkBxRestauration];
+const checkboxesNote = [chkBxNote1, chkBxNote2, chkBxNote3, chkBxNote4, chkBxNote5];
+const checkboxesStatuts = [chkBxOuvert, chkBxFerme];
+const checkboxesEnligneHorsLigne = [chkBxEnLigne, chkBxEnLigne];
