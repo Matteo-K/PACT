@@ -65,7 +65,7 @@ $avis = $avisTemp;
                 </h3>
 
                 <h3>
-                    <div>
+                    <div class="blacklist">
                         <img id="blackImg" src="./img/icone/blacklist.png" alt="icone blacklistage">
                     </div>
                     Blacklist
