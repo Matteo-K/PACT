@@ -65,15 +65,11 @@
         // Photo de profil
         $file = $_FILES['profile-pic'];
 
+        // Vérifier si un fichier a été envoyé
         if (isset($_FILES['profile-pic']) && $_FILES['profile-pic']['error'] === UPLOAD_ERR_OK) {
             // Récupérer le fichier téléchargé
             $file = $_FILES['profile-pic'];
         
-            // Afficher les erreurs d'upload pour mieux comprendre
-            if ($file['error'] !== UPLOAD_ERR_OK) {
-                echo "Erreur lors de l'upload : " . $file['error']; // Afficher l'erreur
-            }
-            
             // Définir les types de fichiers autorisés
             $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
         
@@ -89,20 +85,51 @@
         
                 // Créer un nom de fichier unique pour éviter les collisions
                 $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
-                
+        
                 // Déplacer le fichier téléchargé vers le répertoire de destination
                 if (move_uploaded_file($file['tmp_name'], $targetFile)) {
-                    // Code de traitement après téléchargement...
-                } else {
-                    echo "Erreur lors du déplacement du fichier : " . $file['error'];
-                }
-            } else {
-                echo "Format d'image invalide. Seules les images JPG, PNG ou GIF sont autorisées.";
-            }
-        } else {
-            echo "Aucun fichier ou erreur d'upload : " . $_FILES['profile-pic']['error'];
-        }
+                    try {
+                        // Vérifier si l'URL de l'image existe déjà dans la table _image
+                        $stmtImage = $conn->prepare("SELECT * FROM pact._image WHERE url = ?");
+                        $stmtImage->execute([$targetFile]);
+                        $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
+
+                        if($photoProfil['url'] !="./img/profile_picture/default.svg"){
+                            unlink($photoProfil['url']);
+                        }
         
+                        if (!$imageExist) {
+                            // Si l'image n'existe pas, l'ajouter à la table _image avec un nom pour "nomimage"
+                            $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
+                            
+                            // Utiliser le nom du fichier comme nom d'image (ou autre logique pour générer un nom unique)
+                            $imageName = basename($targetFile); // Vous pouvez personnaliser cette logique si nécessaire
+                            $stmtInsertImage->execute([$targetFile, $imageName]);
+                        }
+        
+                        // Mettre à jour l'URL de la photo de profil dans la table _photo_profil
+                        $stmtUpdatePhoto = $conn->prepare("UPDATE pact._photo_profil SET url = ? WHERE idU = ?");
+                        $stmtUpdatePhoto->execute([$targetFile, $userId]);
+        
+                        $_SESSION['success'] = "Photo de profil mise à jour avec succès.";
+                        header("Location: changeAccountMember.php");
+                        exit();
+                    } 
+                    
+                    catch (Exception $e) {
+                        $_SESSION['errors'][] = "Erreur lors de la mise à jour de la photo : " . $e->getMessage();
+                    }
+                } 
+                
+                else {
+                    $_SESSION['errors'][] = "Échec du téléchargement de l'image.";
+                }
+            } 
+            
+            else {
+                $_SESSION['errors'][] = "Seules les images JPG, PNG ou GIF sont autorisées.";
+            }
+        }
 
 
         // // Si l'adresse mail a été modifié, vérifier si elle existe déjà
@@ -288,35 +315,48 @@
         });
     }
 
-
-    // Fonction pour mettre à jour la photo de profil sans soumettre le formulaire
+    
     document.getElementById('profile-pic').addEventListener('change', function(event) {
-        var formData = new FormData();
-        formData.append('profile-pic', event.target.files[0]); // Ajouter l'image au FormData
+        var file = event.target.files[0]; // Récupérer le fichier sélectionné
+        if (file) {
+            var reader = new FileReader();
 
-        // Créer une requête AJAX pour envoyer le fichier
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'uploadProfilePic.php', true);
-        
-        // Quand la requête est terminée
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText); // Décoder la réponse JSON
-                if (response.status === 'success') {
-                    // Si l'upload est réussi, mettre à jour l'image de profil
-                    document.getElementById('current-profile-pic').src = response.newPhotoPath;
+            // Lorsque la lecture du fichier est terminée
+            reader.onload = function(e) {
+                // Mettre à jour l'image de profil dans le DOM avec l'image locale
+                document.getElementById('current-profile-pic').src = e.target.result;
+            };
+
+            // Lire le fichier comme URL de données (pour afficher immédiatement)
+            reader.readAsDataURL(file);
+
+            // Maintenant on peut aussi envoyer l'image au serveur
+            var formData = new FormData();
+            formData.append('profile-pic', file); // Ajouter l'image au FormData
+
+            // Utilisation de fetch pour envoyer la requête
+            fetch('uploadProfilePic.php', {
+                method: 'POST',
+                body: formData // Corps de la requête avec le fichier
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Si l'upload est réussi, mettre à jour l'image de profil dans le DOM
+                    document.getElementById('current-profile-pic').src = data.newPhotoPath;
                     alert('Photo de profil mise à jour !');
                 } else {
-                    alert('Erreur : ' + response.message);
+                    alert('Erreur : ' + data.message);
                 }
-            } else {
+            })
+            .catch(error => {
+                console.error('Erreur lors de l\'upload de la photo.', error);
                 alert('Erreur lors de l\'upload de la photo.');
-            }
-        };
-
-        // Envoyer les données
-        xhr.send(formData);
+            });
+        }
     });
+
+
 
 </script>
 
