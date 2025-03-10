@@ -2894,14 +2894,9 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #tri label::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
   left: 100%;
-  background-color: var(--secondary);  /* couleur de l'effet */
-  transition: left 0.5s ease;  /* Animation de la position de droite à gauche */
+  background-color: var(--secondary);
+  transition: left 0.5s ease;
   border-radius: 20px 0 0 20px;
 }
 
@@ -2911,7 +2906,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #tri label:hover::after {
-  left: 0; /* Lorsque l'élément est survolé, l'effet de remplissage se fait de droite à gauche */
+  left: 0;
 }
 
 #tri label:hover {
