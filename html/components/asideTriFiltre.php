@@ -7,6 +7,9 @@
             <img src="img/icone/filtre.png" alt="filtre">
             <span id="filtreApplique"></span>
         </a>
+        <a onclick="restFiltreTri()" id="btnReset">
+            <img src="img/icone/reset.png" alt="rénitialisation tris, filtres et recherche">
+        </a>
     </div>
     <div>
         <aside id="tri">
