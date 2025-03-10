@@ -6010,6 +6010,12 @@ button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id
   font-size: 20px;
 }
 
+#apiKey p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center
+}
+
 #buttonAPIkey:hover {
   background-color: white;
   border: solid 2px var(--accent);
