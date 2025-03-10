@@ -5526,14 +5526,12 @@ input[id="siren"] {
   border: 3px solid var(--secondary);
 }
 
-button[id="boutonInscription"], #buttonAPIkey {
+button[id="boutonInscription"] {
   width: 200px;
   font-size: 25px;
   height: 60px;
   border-radius: 10px;
   margin: 5px auto;
-  border: none;
-  /* box-shadow: inset -4px -4px 4px var(--accent-border); */
   background-color: var(--accent);
   border: solid 2px var(--accent);
   transition: background-color 0.4s;
@@ -5786,19 +5784,6 @@ div[id="messageErreur"] {
   }
 }
 
-
-/* #buttonAPIkey {
-  width: 200px;
-  font-size: 20px;
-  height: 50px;
-  border-radius: 10px;
-  margin: 5px auto;
-  background-color: var(--accent);
-  border: solid 2px var(--accent);
-  transition: background-color 0.4s;
-  cursor: pointer;
-} */
-
 /*++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
 /*++++++++++++++++++++++++++++*/
@@ -6012,15 +5997,22 @@ button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id
 }
 
 #buttonAPIkey {
+  width: 250px;
+  font-size: 20px;
+  height: 60px;
+  border-radius: 10px;
+  margin: 5px auto;
+  background-color: var(--accent);
+  border: solid 2px var(--accent);
+  transition: background-color 0.4s;
+  cursor: pointer;
   color: black;
   font-size: 20px;
-  width: 250px;
 }
 
 #buttonAPIkey:hover {
   background-color: white;
   border: solid 2px var(--accent);
-  color: black;
 }
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
