@@ -1069,7 +1069,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             //Script de gestion du pop-up de signalement (traitement de l'envoi du formulaire dans les fichiers avisPro.php / avisMembre.php / signalement.php)
             let ouvrePopup = document.querySelectorAll('.avis .signaler');
             const btnConfirmer = document.getElementById('confirmeSignalement');
-            const popup = document.querySelector('.avis .signalementPopup');
+            const popup = document.getElementsByClassName('.signalementPopup');
             
             let btnSelectionne;
 
@@ -1129,6 +1129,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
             });
 
+            // Masquer le pop-up si on clique en dehors, et on laisse les input tels quels en cas de missclick
+            window.addEventListener('click', (event) => {
+                if (event.target === popup) {
+                    popup.style.display = 'none';
+                }
+            });
 
         } catch (error) {
             
