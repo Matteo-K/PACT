@@ -1114,33 +1114,31 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
             });
 
+            // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
+            const btnFermer = document.querySelector('.signalementPopup .close');
+
+            btnFermer.addEventListener('click', () => {
+                popup.style.display = 'none';
+
+                try {
+                    let motifSignal = document.querySelector('input[name="signalement"]:checked');
+                    motifSignal.checked = false; // On désélectionne le motif choisi
+                    texteComplement.value = ""; //On vide le textarea
+                } catch (error) {
+                    
+                }
+            });
+
+            // Masquer le pop-up si on clique en dehors, et on laisse les input tels quels en cas de missclick
+            window.addEventListener('click', (event) => {
+                if (event.target === popup) {
+                    popup.style.display = 'none';
+                }
+            });
+
         } catch (error) {
             
         }
-        
-
-        // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
-        const btnFermer = document.querySelector('.signalementPopup .close');
-
-        btnFermer.addEventListener('click', () => {
-            popup.style.display = 'none';
-
-            try {
-                let motifSignal = document.querySelector('input[name="signalement"]:checked');
-                motifSignal.checked = false; // On désélectionne le motif choisi
-                texteComplement.value = ""; //On vide le textarea
-            } catch (error) {
-                
-            }
-        });
-
-        // Masquer le pop-up si on clique en dehors, et on laisse les input tels quels en cas de missclick
-        window.addEventListener('click', (event) => {
-            if (event.target === popup) {
-                popup.style.display = 'none';
-            }
-        });
-
 
         document.addEventListener('DOMContentLoaded', function() {
 
