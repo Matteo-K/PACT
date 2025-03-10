@@ -451,9 +451,6 @@ function filtrerParHeure(offers) {
 
 // Fonction de filtre par date
 
-
-
-
 /**
  * Filtre la liste d'offres suivant le mot clé de recherche pour correspondre
  * - l'un des tags
@@ -510,16 +507,20 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = searchOffer(array, search);
 
   // Filtres
-  array = filtrerParCategorie(array);
-  array = filtrerParNotes(array);
-  array = filtrerParPrix(array);
-  array = filtrerParStatuts(array);
-  array = filtrerParHeure(array);
-  // array = filtrerParPeriode(array);
+  let filtres = [
+    filtrerParCategorie,
+    filtrerParNotes,
+    filtrerParPrix,
+    filtrerParStatuts,
+    filtrerParHeure
+  ];
 
   if (userType == "pro_public" || userType == "pro_prive") {
-    array = filtrerParStatutEnLigneHorsLigne(array);
+    filtres.push(filtrerParStatutEnLigneHorsLigne);
   }
+  
+  // Application des filtres
+  array = filtres.reduce((acc, filtre) => filtre(acc), array);
 
   // Tris
   array = selectSort(array);
