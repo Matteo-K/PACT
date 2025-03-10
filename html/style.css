@@ -3375,6 +3375,16 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: center;
 }
 
+/* 
+  Blacklistage
+*/
+
+.blackImg{
+  width: 20px;
+  height: auto;
+}
+
+
 /* GABRIEL */
 
 .no-scroll {
