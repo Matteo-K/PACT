@@ -65,70 +65,44 @@
         // Photo de profil
         $file = $_FILES['profile-pic'];
 
-        // Vérifier si un fichier a été envoyé
         if (isset($_FILES['profile-pic']) && $_FILES['profile-pic']['error'] === UPLOAD_ERR_OK) {
-            // Récupérer le fichier téléchargé
             $file = $_FILES['profile-pic'];
         
             // Définir les types de fichiers autorisés
             $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
         
-            // Vérifier si le type de fichier est autorisé
+            // Vérifier le type de fichier
             if (in_array($file['type'], $allowedTypes)) {
-                // Définir le répertoire de destination pour l'upload
+                // Dossier où l'image sera stockée
                 $targetDir = './img/profile_picture/';
-                
-                // Vérifier si le répertoire existe, sinon créer le répertoire
                 if (!is_dir($targetDir)) {
-                    mkdir($targetDir, 0777, true);  // Créer le répertoire avec les bonnes permissions
+                    mkdir($targetDir, 0777, true);  // Créer le dossier si nécessaire
                 }
         
-                // Créer un nom de fichier unique pour éviter les collisions
+                // Créer un nom unique pour éviter les conflits
                 $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
         
-                // Déplacer le fichier téléchargé vers le répertoire de destination
+                // Déplacer le fichier vers le dossier cible
                 if (move_uploaded_file($file['tmp_name'], $targetFile)) {
                     try {
-                        // Vérifier si l'URL de l'image existe déjà dans la table _image
-                        $stmtImage = $conn->prepare("SELECT * FROM pact._image WHERE url = ?");
-                        $stmtImage->execute([$targetFile]);
-                        $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
-
-                        if($photoProfil['url'] !="./img/profile_picture/default.svg"){
-                            unlink($photoProfil['url']);
-                        }
-        
-                        if (!$imageExist) {
-                            // Si l'image n'existe pas, l'ajouter à la table _image avec un nom pour "nomimage"
-                            $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
-                            
-                            // Utiliser le nom du fichier comme nom d'image (ou autre logique pour générer un nom unique)
-                            $imageName = basename($targetFile); // Vous pouvez personnaliser cette logique si nécessaire
-                            $stmtInsertImage->execute([$targetFile, $imageName]);
-                        }
-        
-                        // Mettre à jour l'URL de la photo de profil dans la table _photo_profil
+                        // Mettre à jour l'URL de la photo dans la base de données
+                        $userId = $_SESSION['idUser']; // Assurez-vous que l'utilisateur est bien connecté
                         $stmtUpdatePhoto = $conn->prepare("UPDATE pact._photo_profil SET url = ? WHERE idU = ?");
                         $stmtUpdatePhoto->execute([$targetFile, $userId]);
         
-                        $_SESSION['success'] = "Photo de profil mise à jour avec succès.";
-                        header("Location: changeAccountMember.php");
-                        exit();
-                    } 
-                    
-                    catch (Exception $e) {
-                        $_SESSION['errors'][] = "Erreur lors de la mise à jour de la photo : " . $e->getMessage();
+                        // Répondre avec le chemin de la nouvelle image
+                        echo json_encode(['status' => 'success', 'newPhotoPath' => $targetFile]);
+                    } catch (Exception $e) {
+                        echo json_encode(['status' => 'error', 'message' => 'Erreur de mise à jour de la photo : ' . $e->getMessage()]);
                     }
-                } 
-                
-                else {
-                    $_SESSION['errors'][] = "Échec du téléchargement de l'image.";
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => 'Échec du téléchargement de l\'image.']);
                 }
-            } 
-            
-            else {
-                $_SESSION['errors'][] = "Seules les images JPG, PNG ou GIF sont autorisées.";
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Seules les images JPG, PNG ou GIF sont autorisées.']);
             }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Aucun fichier téléchargé ou erreur de téléchargement.']);
         }
 
 
@@ -314,6 +288,34 @@
             alert('Erreur lors de la requête fetch : ' + error.message);
         });
     }
+
+    
+    document.getElementById('profile-pic').addEventListener('change', function(event) {
+        var formData = new FormData();
+        formData.append('profile-pic', event.target.files[0]); // Ajouter l'image au FormData
+
+        // Utilisation de fetch pour envoyer la requête
+        fetch('uploadProfilePic.php', {
+            method: 'POST',
+            body: formData // Corps de la requête avec le fichier
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // Si l'upload est réussi, mettre à jour l'image de profil dans le DOM
+                document.getElementById('current-profile-pic').src = data.newPhotoPath;
+                alert('Photo de profil mise à jour !');
+            } else {
+                alert('Erreur : ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de l\'upload de la photo.', error);
+            alert('Erreur lors de l\'upload de la photo.');
+        });
+    });
+
+
 </script>
 
     <script src="js/validationFormInscription.js"></script>

@@ -63,21 +63,21 @@ $avis = $avisTemp;
                 <h3>
                     <?php echo $avisN0["avisnonrepondus"] ?>
                 </h3>
-                <?php
+                <?php                
                     $stmt = $conn->prepare("SELECT nomabonnement FROM pact._abonner WHERE idOffre = ?");
                     // Exécuter la requête en passant les paramètres
                     $stmt->execute([$idOffre]);
                     
                     $abonnement = $stmt->fetch();
 
-                    if ($abonnement["nomabonnement"] = "Premium") {
+                    if ($abonnement[0] == "Premium") {
                         ?>
                             <h3>
                                 <div class="blacklist">
                                     <img id="blackImg" src="./img/icone/blacklist.png" alt="icone blacklistage">
                                 </div>
                                 Blacklister
-                                <label for="fltAvisNonRep">détails</label>
+                                <label for="">détails</label>
                             </h3>
                             <h3>
                                 <?php
@@ -86,7 +86,7 @@ $avis = $avisTemp;
                                     $stmt->execute([$idOffre]);
                                     
                                     echo ($stmt->fetch()["count"]);  
-                                    
+
                                 ?>
                             </h3>
                         <?php
