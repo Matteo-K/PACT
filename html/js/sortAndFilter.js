@@ -494,6 +494,52 @@ function searchOffer(offers, search) {
   });
 }
 
+/**
+ * Compte le nombre de filtre qui sont appliqués
+ * @param {array} filtres liste des filtres utilisés
+ */
+function countFiltre(filtres) {
+  let count = 0;
+
+  const checkboxesCat = [chkBxVisite, chkBxActivite, chkBxSpectacle, chkBxParc, chkBxRestauration];
+  const checkboxesNote = [chkBxNote1, chkBxNote2, chkBxNote3, chkBxNote4, chkBxNote5];
+  const checkboxesStatuts = [chkBxOuvert, chkBxFerme];
+  const checkboxesEnligneHorsLigne = [chkBxEnLigne, chkBxEnLigne];
+
+  filtres.forEach(filtre => {
+    switch (filtre) {
+      case filtrerParCategorie:
+        count += checkboxesCat.filter(chk => chk.checked).length;
+        break;
+
+      case filtrerParNotes:
+        count += checkboxesNote.filter(chk => chk.checked).length;
+        break;
+
+      case filtrerParPrix:
+        count += selectPrixMin.value === "0" ? 0 : 1;
+        count += selectPrixMax.value === "999999" ? 0 : 1;
+        break;
+        
+        case filtrerParStatuts:
+          count += checkboxesStatuts.filter(chk => chk.checked).length;
+          break;
+          
+        case filtrerParHeure:
+          count += heureDebut.value === "" ? 0 : 1;
+          count += heureFin.value === "" ? 0 : 1;
+        break;
+
+      case filtrerParStatutEnLigneHorsLigne:
+        count += checkboxesEnligneHorsLigne.filter(chk => chk.checked).length;
+        break;
+    
+      default:
+        break;
+    }
+  });
+  return count;
+}
 
 /**
  * filtre, tri et affcihe les offres dynamiquement
@@ -521,7 +567,8 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   
   // Application des filtres
   array = filtres.reduce((acc, filtre) => filtre(acc), array);
-
+  console.log(countFiltre(filtres));
+  
   // Tris
   array = selectSort(array);
 
