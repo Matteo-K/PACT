@@ -6010,7 +6010,9 @@ button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id
 }
 
 #buttonAPIkey {
-  color: black
+  color: black;
+  font-size: 20px;
+  width: 250px;
 }
 
 #buttonAPIkey:hover {
