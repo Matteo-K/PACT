@@ -569,7 +569,7 @@ function restFiltreTri() {
  * @param {array} array_chckbx liste de checkboxs
  */
 function resetCheckbox(array_chckbx) {
-  array_chckbx.reduce((checkbox) => checkbox.checked = false);
+  array_chckbx.forEach(checkbox => checkbox.checked = false);
 }
 
 /**
