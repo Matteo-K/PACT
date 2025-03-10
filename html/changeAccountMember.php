@@ -314,6 +314,60 @@
             alert('Erreur lors de la requête fetch : ' + error.message);
         });
     }
+
+    
+    document.getElementById('profile-pic').addEventListener('change', function(event) {
+        var file = event.target.files[0]; // Récupérer le fichier sélectionné
+        if (file) {
+            var reader = new FileReader();
+
+            // Lorsque la lecture du fichier est terminée
+            reader.onload = function(e) {
+                // Mettre à jour l'image de profil dans le DOM avec l'image locale
+                document.getElementById('current-profile-pic').src = e.target.result;
+
+                // Désactiver le bouton de soumission du formulaire jusqu'à ce que l'upload soit réussi
+                document.getElementById('boutonInscription').disabled = true;
+
+                // Maintenant on peut aussi envoyer l'image au serveur
+                var formData = new FormData();
+                formData.append('profile-pic', file); // Ajouter l'image au FormData
+
+                // Utilisation de fetch pour envoyer la requête
+                fetch('uploadProfilePic.php', {
+                    method: 'POST',
+                    body: formData // Corps de la requête avec le fichier
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Si l'upload est réussi, mettre à jour l'image de profil dans le DOM
+                        document.getElementById('current-profile-pic').src = data.newPhotoPath;
+                        alert('Photo de profil mise à jour !');
+                        // Réactiver le bouton de soumission
+                        document.getElementById('boutonInscription').disabled = false;
+                    } else {
+                        alert('Erreur : ' + data.message);
+                        // Réactiver le bouton de soumission en cas d'échec
+                        document.getElementById('boutonInscription').disabled = false;
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur lors de l\'upload de la photo.', error);
+                    alert('Erreur lors de l\'upload de la photo.');
+                    // Réactiver le bouton de soumission en cas d'erreur
+                    document.getElementById('boutonInscription').disabled = false;
+                });
+            };
+
+            // Lire le fichier comme URL de données (pour afficher immédiatement)
+            reader.readAsDataURL(file);
+        }
+    });
+
+
+
+
 </script>
 
     <script src="js/validationFormInscription.js"></script>

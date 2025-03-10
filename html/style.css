@@ -1984,7 +1984,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .swiper-container.gb, 
 .swiper-container.gb2, 
 .swiper-container.gb3 {
-  height: 310px; /* Ajuste la hauteur selon ton besoin */
+  height: 340px;
   position: relative;
   margin: auto;
 }
@@ -1993,8 +1993,8 @@ label[for="rest_ajoutPhotoMenu"] {
 .swiper.gb2,
 .swiper.gb3{
   width: 1610px;
-  height: 100%;
-  overflow-x: hidden;
+  height: 95%;
+  overflow-x: clip;
   overflow-y: visible;
   margin: auto;
 }
@@ -2003,7 +2003,6 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Assure-toi que les slides prennent la bonne taille */
 }
 
 .swiper-slide.gb,
@@ -2913,13 +2912,13 @@ label[for="rest_ajoutPhotoMenu"] {
   width: 70px;
 }
 
+#btnAside:where(:nth-child(2), :nth-child(3), :nth-child(4)) img {
+  width: 50px;
+  padding: 10px;
+}
+
 #btnFiltre {
   position: relative;
-
-  img {
-    width: 50px;
-    padding: 10px;
-  }
 
   span {
     position: absolute;
@@ -2947,6 +2946,19 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #btnAside a:hover, .btnAsideOpen {
   padding-left: 30px !important;
+}
+
+#trifiltre + .modal-content {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 10;
+}
+
+#trifiltre + .modal-content {
+  display: block;
 }
 
 /* Bloc tri et filtre */

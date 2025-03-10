@@ -7,10 +7,10 @@
             <img src="img/icone/filtre.png" alt="filtre">
             <span id="filtreApplique"></span>
         </a>
-        <a id="btnCarte">
+        <a onclick="toggleAside(this)" id="btnCarte">
             <img src="img/icone/lieu.png" alt="icone du pointer pour la carte">
         </a>
-        <a id="btnReset">
+        <a onclick="resetModal()" id="btnReset">
             <img src="img/icone/reset.png" alt="rénitialisation tris, filtres et recherche">
         </a>
     </div>
@@ -248,13 +248,13 @@
     </div>
 </section>
 <section class="modal-content">
-    <span class="close">×</span>
+    <span class="close" onclick="resetModal_close()">×</span>
     <section class="titre">
-        <p class="tab">Attention : la réinitialisation des filtres, tries et des paramètres de recherche va effacer toutes vos sélections en cours.</p>
+        <p class="tab">Attention : la réinitialisation des filtres, tris et des paramètres de recherche vont effacer toutes vos sélections en cours.</p>
         <p>Souhaitez-vous continuer ?</p>
     </section>
     <section class="contentPop active" id="content-1">
-        <button class="modifierBut">Annuler</button>
+        <button class="modifierBut" onclick="resetModal_close()">Annuler</button>
         <button class="modifierBut">Effacer les sélections</button>
     </section>
 </section>
@@ -279,44 +279,60 @@
             }
         }    
     });
+
     /**
      * Ouvre et ferme le aside
      */
     const asideTri = document.querySelector("#tri");
     const asideFiltre = document.querySelector("#filtre");
+    const asideCarte = document.querySelector("#carte_offres");
     const btnTri = document.getElementById('btnTri');
     const btnFiltre = document.getElementById('btnFiltre');
     
     function toggleAside(element) {
+        const asideElements = {
+            'btnTri': asideTri,
+            'btnFiltre': asideFiltre,
+            'btnCarte': asideCarte
+        };
 
-        btnTri.classList.remove('btnAsideOpen');
-        btnFiltre.classList.remove('btnAsideOpen');
-        
-        if (element.id === 'btnTri') {
-            if (asideTri.classList.contains("openAside")) {
-                asideTri.classList.remove('openAside');
-            } else {
-                asideTri.classList.add('openAside');
-                asideFiltre.classList.remove('openAside');
-                btnTri.classList.add('btnAsideOpen');
-            }
-        } else {
-            if (asideFiltre.classList.contains("openAside")) {
-                asideFiltre.classList.remove('openAside');
-            } else {
-                asideFiltre.classList.add('openAside');
-                asideTri.classList.remove('openAside');
-                btnFiltre.classList.add('btnAsideOpen');
-            }
+        Object.keys(asideElements).forEach(id => {
+            const button = document.getElementById(id);
+            button.classList.remove('btnAsideOpen');
+        });
+
+        // Fermer tous les aside
+        Object.values(asideElements).forEach(aside => {
+            aside.classList.remove('openAside');
+        });
+
+        const clickedAside = asideElements[element.id];
+        if (clickedAside) {
+            clickedAside.classList.add('openAside');
+            element.classList.add('btnAsideOpen');
         }
     }
-    
-    
+
     function fermeAside() {
-        btnTri.classList.remove('btnAsideOpen');
-        btnFiltre.classList.remove('btnAsideOpen');
-        asideTri.classList.remove('openAside');
-        asideFiltre.classList.remove('openAside');
+        const buttons = document.querySelectorAll('[id^="btn"]');
+        buttons.forEach(button => {
+            button.classList.remove('btnAsideOpen');
+        });
+
+        // Fermer tous les aside
+        const asideElements = [asideTri, asideFiltre, asideCarte];
+        asideElements.forEach(aside => {
+            aside.classList.remove('openAside');
+        });
+    }
+
+    const modal = document.querySelector("#trifiltre + .modal-content");
+    function resetModal() {
+        modal.style.display = "block";
+    }
+
+    function resetModal_close() {
+        modal.style.display = "none";
     }
     
     var map = L.map('map').setView([48.8566, -2.3522], 13);
