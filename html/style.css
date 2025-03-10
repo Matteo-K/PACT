@@ -2877,12 +2877,14 @@ label[for="rest_ajoutPhotoMenu"] {
   
   margin: 10px 0;
   height: 40px;
-  width: calc(100% - 15px);
+  width: calc(100%);
 
   justify-content: left;
-  /* border-radius: 20px 0 0 20px;
-  border-right: 0px solid var(--primary);
-  transition: border-right-width 0.5s linear(0 0%, 0 2.27%, 0.02 4.53%, 0.04 6.8%, 0.06 9.07%, 0.1 11.33%, 0.14 13.6%, 0.25 18.15%, 0.39 22.7%, 0.56 27.25%, 0.77 31.8%, 1 36.35%, 0.89 40.9%, 0.85 43.18%, 0.81 45.45%, 0.79 47.72%, 0.77 50%, 0.75 52.27%, 0.75 54.55%, 0.75 56.82%, 0.77 59.1%, 0.79 61.38%, 0.81 63.65%, 0.85 65.93%, 0.89 68.2%, 1 72.7%, 0.97 74.98%, 0.95 77.25%, 0.94 79.53%, 0.94 81.8%, 0.94 84.08%, 0.95 86.35%, 0.97 88.63%, 1 90.9%, 0.99 93.18%, 0.98 95.45%, 0.99 97.73%, 1 100%); */
+  border-radius: 20px 0 0 20px;
+  transition: background-color 0.3s ease, border-right-width 0.3s ease;
+  /* transition: border-right-width 0.5s cubic-bezier(0.0, 0.0, 0.5, 1); */
+  /* border-right: 0px solid var(--secondary); */
+  /* transition: border-right-width 0.5s linear(0 0%, 0 2.27%, 0.02 4.53%, 0.04 6.8%, 0.06 9.07%, 0.1 11.33%, 0.14 13.6%, 0.25 18.15%, 0.39 22.7%, 0.56 27.25%, 0.77 31.8%, 1 36.35%, 0.89 40.9%, 0.85 43.18%, 0.81 45.45%, 0.79 47.72%, 0.77 50%, 0.75 52.27%, 0.75 54.55%, 0.75 56.82%, 0.77 59.1%, 0.79 61.38%, 0.81 63.65%, 0.85 65.93%, 0.89 68.2%, 1 72.7%, 0.97 74.98%, 0.95 77.25%, 0.94 79.53%, 0.94 81.8%, 0.94 84.08%, 0.95 86.35%, 0.97 88.63%, 1 90.9%, 0.99 93.18%, 0.98 95.45%, 0.99 97.73%, 1 100%); */
 }
 
 #tri input:checked + label {
@@ -2891,7 +2893,8 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #tri label:hover {
-  color:rgb(9, 255, 0);
+  background-color: var(--secondary);
+  border-right-width: 15px;
 }
 
 /* #tri input:hover + label {
@@ -2910,9 +2913,27 @@ label[for="rest_ajoutPhotoMenu"] {
   width: 70px;
 }
 
-#btnFiltre img {
-  width: 50px;
-  padding: 10px;
+#btnFiltre {
+  position: relative;
+
+  img {
+    width: 50px;
+    padding: 10px;
+  }
+
+  span {
+    position: absolute;
+    right: -15%;
+    top: -10%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 50%;
+    border: solid var(--primary60);
+    background-color: var(--background);
+    padding: 5%;
+  }
 }
 
 #btnAside a {
@@ -3551,6 +3572,7 @@ label[for="rest_ajoutPhotoMenu"] {
   justify-content: center;
   align-items: center;
   background: #fff;
+  transition-property: none;
 }
 
 .planParc {
@@ -3576,9 +3598,6 @@ label[for="rest_ajoutPhotoMenu"] {
   object-fit: cover;
 }
 
-.swiper-slide.imageSwiper:hover img {
-  transform: scale(1.05);
-}
 
 .swiper-button-next.kylian:hover,
 .swiper-button-prev.kylian:hover {
@@ -5195,8 +5214,6 @@ label#btnAjoutPhoto:hover {
 
 #mapPreview img {
   width: 100%;
-  height: 100%;
-  width: 100%;
   height: auto;
   /* Ajuster pour garder le ratio */
   object-fit: cover;
@@ -5750,6 +5767,12 @@ div[id="messageErreur"] {
   input[id="profile-pic"] {
     display: none;
   }
+}
+
+#buttonAPIkey{
+  color: red;
+  background-color: black;
+  width: 100px;
 }
 
 /*++++++++++++++++++++++++++++++*/

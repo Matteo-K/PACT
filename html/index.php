@@ -85,7 +85,7 @@
       <?php
         }
         // Toute les nouvelles offres inférieurs à 2 semaines
-        $stmt = $conn->prepare("SELECT idoffre FROM pact.offres WHERE datecrea >= NOW() - INTERVAL '14 days' AND statut = 'actif' ORDER BY datecrea");
+        $stmt = $conn->prepare("SELECT idoffre FROM pact.offres WHERE datecrea >= NOW() - INTERVAL '14 days' AND statut = 'actif' ORDER BY datecrea LIMIT 10");
 
         $stmt->execute();
         $idOffres = [];

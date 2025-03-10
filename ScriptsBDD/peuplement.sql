@@ -866,7 +866,6 @@ VALUES (4,'Transport');
 INSERT INTO _offrePrestation_inclu(idOffre,nomPresta)
 VALUES (4,'Repas');
 
-
 --EXEMPLE essaie de historique
 
 --insertion d'un message
@@ -886,3 +885,5 @@ VALUES (4,'Repas');
 --JOIN pact._utilisateur ON _utilisateur.idU = vueMessages.idReceveur OR _utilisateur.idU = vueMessages.idExpediteur
 --WHERE _utilisateur.tokken = 'tokken'
 --ORDER BY vueMessages.dateMessage DESC;
+
+
