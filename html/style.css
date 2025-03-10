@@ -2893,27 +2893,6 @@ label[for="rest_ajoutPhotoMenu"] {
   border-right-width: 15px;
 }
 
-#tri label::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  left: 100%;
-  background-color: var(--secondary);
-  transition: left 0.5s ease;
-  border-radius: 20px 0 0 20px;
-}
-
-#tri input:checked + label {
-  background-color: red;
-  border-right-width: 15px;
-}
-
-#tri label:hover::after {
-  left: 0;
-}
-
 #tri label:hover {
   background-color: var(--secondary);
   border-right-width: 15px;
