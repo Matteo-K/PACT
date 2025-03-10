@@ -1068,8 +1068,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             //Script de gestion du pop-up de signalement (traitement de l'envoi du formulaire dans les fichiers avisPro.php / avisMembre.php / signalement.php)
             let ouvrePopup = document.querySelectorAll('.avis .signaler');
-            const popup = document.querySelector('.avis .signalementPopup');
             const btnConfirmer = document.getElementById('confirmeSignalement');
+            const popup = document.getElementsByClassName('.signalementPopup');
             
             let btnSelectionne;
 
@@ -1079,7 +1079,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     popup.style.display = 'block';
                     btnSelectionne = boutonOuvrePopup;
                 });
-            });        
+            });
             
             // Traiter le signalement en BDD après confirmation et fermer le popup
             btnConfirmer.addEventListener('click', () => {
@@ -1114,33 +1114,31 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
             });
 
+            // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
+            const btnFermer = document.querySelector('.signalementPopup .close');
+
+            btnFermer.addEventListener('click', () => {
+                popup.style.display = 'none';
+
+                try {
+                    let motifSignal = document.querySelector('input[name="signalement"]:checked');
+                    motifSignal.checked = false; // On désélectionne le motif choisi
+                    texteComplement.value = ""; //On vide le textarea
+                } catch (error) {
+                    
+                }
+            });
+
+            // Masquer le pop-up si on clique en dehors, et on laisse les input tels quels en cas de missclick
+            window.addEventListener('click', (event) => {
+                if (event.target === popup) {
+                    popup.style.display = 'none';
+                }
+            });
+
         } catch (error) {
             
         }
-        
-
-        // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
-        const btnFermer = document.querySelector('.signalementPopup .close');
-
-        btnFermer.addEventListener('click', () => {
-            popup.style.display = 'none';
-
-            try {
-                let motifSignal = document.querySelector('input[name="signalement"]:checked');
-                motifSignal.checked = false; // On désélectionne le motif choisi
-                texteComplement.value = ""; //On vide le textarea
-            } catch (error) {
-                
-            }
-        });
-
-        // Masquer le pop-up si on clique en dehors, et on laisse les input tels quels en cas de missclick
-        window.addEventListener('click', (event) => {
-            if (event.target === popup) {
-                popup.style.display = 'none';
-            }
-        });
-
 
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -1289,7 +1287,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const body = document.body;
                 // Fonction pour afficher le modal
                 function openModal() {
-                    console.log("hop");
                     modal.style.display = "block";
                     body.classList.add("no-scroll");
                 }
