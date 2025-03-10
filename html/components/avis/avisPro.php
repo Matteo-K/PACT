@@ -70,9 +70,7 @@ $avis = $avisTemp;
                     
                     $abonnement = $stmt->fetch();
 
-                    print_r($abonnement);
-
-                    if ($test) {
+                    if ($abonnement["nomabonnement"] = "Premium") {
                         ?>
                             <h3>
                                 <div class="blacklist">
@@ -82,7 +80,13 @@ $avis = $avisTemp;
                                 <label for="fltAvisNonRep">détails</label>
                             </h3>
                             <h3>
-                                <?php echo 3 ?>
+                                <?php
+                                    $stmt = $conn->prepare("SELECT count(*) FROM pact._blacklist WHERE idOffre = ?");
+                                    // Exécuter la requête en passant les paramètres
+                                    $stmt->execute([$idOffre]);
+                                    
+                                    echo $stmt->fetch(); 
+                                ?>
                             </h3>
                         <?php
                     }
