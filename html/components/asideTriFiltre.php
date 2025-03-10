@@ -5,6 +5,7 @@
         </a>
         <a onclick="toggleAside(this)" id="btnFiltre">
             <img src="img/icone/filtre.png" alt="filtre">
+            <span id="filtreApplique"></span>
         </a>
     </div>
     <div>
