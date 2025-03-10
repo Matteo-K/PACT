@@ -77,7 +77,7 @@ $avis = $avisTemp;
                                     <img id="blackImg" src="./img/icone/blacklist.png" alt="icone blacklistage">
                                 </div>
                                 Blacklister
-                                <label for="fltAvisNonRep">détails</label>
+                                <label for="">détails</label>
                             </h3>
                             <h3>
                                 <?php
