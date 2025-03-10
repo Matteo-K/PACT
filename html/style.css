@@ -1994,7 +1994,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .swiper.gb3{
   width: 1610px;
   height: 95%;
-  overflow-x: hidden;
+  overflow-x: clip;
   overflow-y: visible;
   margin: auto;
 }
