@@ -283,6 +283,7 @@
      */
     const asideTri = document.querySelector("#tri");
     const asideFiltre = document.querySelector("#filtre");
+    const asideCarte = document.querySelector("#carte_offres");
     const btnTri = document.getElementById('btnTri');
     const btnFiltre = document.getElementById('btnFiltre');
     
