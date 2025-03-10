@@ -6013,7 +6013,8 @@ button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id
 #apiKey p {
   display: flex;
   flex-direction: column;
-  justify-content: center
+  justify-content: center;
+  font-size: 25px;
 }
 
 #buttonAPIkey:hover {

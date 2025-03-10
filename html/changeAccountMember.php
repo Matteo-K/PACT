@@ -275,15 +275,18 @@
             <?php
             $stmt = $conn -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
             $stmt -> execute();
-            $infoUtlisateur = $stmt -> fetch(PDO::FETCH_ASSOC);
+            $infoPro = $stmt -> fetch(PDO::FETCH_ASSOC);
+            ?>
+            <?php 
+                // print_r($infoPro);
             ?>
             <p>Votre Clé API :</p>
-            <?php if($infoUtlisateur["apikey"]){?>
-                <p id = "valueAPIkey"> <?=$infoUtlisateur["apikey"]?></p>
-                <p onclick="generateAPIkey()">Regénérer ma clé API</p>
+            <?php if($infoPro["apikey"]){?>
+                <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
+                <p id = "buttonAPIkey" onclick="generateAPIkey()">Regénérer ma clé API</p>
             <?php }else{?>
                 <p id = "valueAPIkey"></p>
-                <p onclick="generateAPIkey()">Générer ma clé API</p>
+                <p id = "buttonAPIkey" onclick="generateAPIkey()">Générer ma clé API</p>
             <?php } ?>
         </section>
     </body>
