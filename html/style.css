@@ -3572,6 +3572,10 @@ label[for="rest_ajoutPhotoMenu"] {
 .swiper-backface-hidden .swiper-slide{
   transform: none;
 }
+.swiper-wrapper {
+  transform: none;
+  transition-property: none;
+}
 
 .planParc {
   width: 50%;
