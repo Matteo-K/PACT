@@ -7,7 +7,7 @@
             <img src="img/icone/filtre.png" alt="filtre">
             <span id="filtreApplique"></span>
         </a>
-        <a onclick="restFiltreTri()" id="btnReset">
+        <a id="btnReset">
             <img src="img/icone/reset.png" alt="rénitialisation tris, filtres et recherche">
         </a>
     </div>
@@ -239,6 +239,17 @@
             </div>
         </aside>
     </div>
+</section>
+<section class="modal-content">
+    <span class="close">×</span>
+    <section class="titre">
+        <p class="tab">Attention : la réinitialisation des filtres, tries et des paramètres de recherche va effacer toutes vos sélections en cours.</p>
+        <p>Souhaitez-vous continuer ?</p>
+    </section>
+    <section class="contentPop active" id="content-1">
+        <button class="modifierBut">Annuler</button>
+        <button class="modifierBut">Effacer les sélections</button>
+    </section>
 </section>
 <script>
     document.addEventListener("DOMContentLoaded", () => {

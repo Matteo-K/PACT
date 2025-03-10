@@ -1033,7 +1033,6 @@ document.addEventListener('DOMContentLoaded', function() {
     chkBxEnLigne.addEventListener("click", () => goToPage(1));
     chkBxHorsLigne.addEventListener("click", () => goToPage(1));
   }
-
 });
 
 const checkboxesCat = [chkBxVisite, chkBxActivite, chkBxSpectacle, chkBxParc, chkBxRestauration];
