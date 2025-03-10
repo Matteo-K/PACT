@@ -1069,7 +1069,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             //Script de gestion du pop-up de signalement (traitement de l'envoi du formulaire dans les fichiers avisPro.php / avisMembre.php / signalement.php)
             let ouvrePopup = document.querySelectorAll('.avis .signaler');
             const btnConfirmer = document.getElementById('confirmeSignalement');
-            const popup = document.getElementsByClassName('.signalementPopup');
+            const popup = document.querySelector('.avis .signalementPopup');
             
             let btnSelectionne;
 
@@ -1084,7 +1084,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Traiter le signalement en BDD après confirmation et fermer le popup
             btnConfirmer.addEventListener('click', () => {
                                 
-                    let motifSignal = document.querySelector('input[name="signalement"]:checked');
+                let motifSignal = document.querySelector('input[name="signalement"]:checked');
 
                 if (motifSignal) {
                     popup.style.display = 'none';
