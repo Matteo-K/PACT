@@ -1064,7 +1064,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             form.submit();
         }
 
-        const popup = document.querySelector('.avis .signalementPopup');
+        const popup = document.querySelector('.avis .signalementPopup .modal-content');
         try {
             
             //Script de gestion du pop-up de signalement (traitement de l'envoi du formulaire dans les fichiers avisPro.php / avisMembre.php / signalement.php)
@@ -1079,7 +1079,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     popup.style.display = 'block';
                     btnSelectionne = boutonOuvrePopup;
                 });
-            });        
+            });
             
             // Traiter le signalement en BDD après confirmation et fermer le popup
             btnConfirmer.addEventListener('click', () => {
@@ -1289,7 +1289,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const body = document.body;
                 // Fonction pour afficher le modal
                 function openModal() {
-                    console.log("hop");
                     modal.style.display = "block";
                     body.classList.add("no-scroll");
                 }
