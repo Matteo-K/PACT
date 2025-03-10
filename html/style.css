@@ -5769,6 +5769,7 @@ div[id="messageErreur"] {
 #buttonAPIkey{
   color: red;
   background-color: black;
+  width: 100px;
 }
 
 /*++++++++++++++++++++++++++++++*/
