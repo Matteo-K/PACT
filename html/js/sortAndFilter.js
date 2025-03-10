@@ -567,7 +567,16 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   
   // Application des filtres
   array = filtres.reduce((acc, filtre) => filtre(acc), array);
-  console.log(countFiltre(filtres));
+  const count = countFiltre(filtres);
+  const spanApplication = document.getElementById("filtreApplique");
+
+  if (count == 0) {
+    spanApplication.style.display = "none";
+
+  } else {
+    spanApplication.textContent = count;
+    spanApplication.style.display = "block";
+  }
   
   // Tris
   array = selectSort(array);
@@ -721,8 +730,6 @@ function createFront(offer) {
 
   let note = document.createElement("span");
   note.textContent = offer.noteAvg + "/5";
-
-  console.log(offer.noteAvg);
 
   stars.appendChild(note);
 
