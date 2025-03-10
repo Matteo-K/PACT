@@ -6014,7 +6014,7 @@ button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 40px;
+  font-size: 25px;
 }
 
 #buttonAPIkey:hover {
