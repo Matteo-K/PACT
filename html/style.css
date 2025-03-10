@@ -3068,6 +3068,10 @@ label[for="rest_ajoutPhotoMenu"] {
       padding-left: 30px !important;
   }
 
+  #btnFiltre span {
+    border-color: var(--bloc25);
+  }
+
   #tri, #filtre {
       position: fixed;
       top: 0;
