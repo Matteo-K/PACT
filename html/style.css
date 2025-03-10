@@ -2891,7 +2891,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #tri label:hover {
-  color:red;
+  color:rgb(9, 255, 0);
 }
 
 /* #tri input:hover + label {
