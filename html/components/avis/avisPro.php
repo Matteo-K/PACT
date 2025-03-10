@@ -65,7 +65,7 @@ $avis = $avisTemp;
                 </h3>
 
                 <h3>
-                    <img src="./img/icone/blacklist.png" alt="icone blacklistage">
+                    <img id="blackImg" src="./img/icone/blacklist.png" alt="icone blacklistage">
                     Blacklist
                     <label for="fltAvisNonRep">détails</label>
                 </h3>
