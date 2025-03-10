@@ -71,6 +71,7 @@ $avis = $avisTemp;
                     $abonnement = $stmt->fetch();
 
                     if ($abonnement["nomabonnement"] = "Premium") {
+                        print_r($abonnement["nomabonnement"]);
                         ?>
                             <h3>
                                 <div class="blacklist">
@@ -86,7 +87,7 @@ $avis = $avisTemp;
                                     $stmt->execute([$idOffre]);
                                     
                                     echo ($stmt->fetch()["count"]);  
-                                    
+
                                 ?>
                             </h3>
                         <?php
