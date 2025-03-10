@@ -7,6 +7,9 @@
             <img src="img/icone/filtre.png" alt="filtre">
             <span id="filtreApplique"></span>
         </a>
+        <a id="btnCarte">
+            <img src="img/icone/lieu.png" alt="icone du pointer pour la carte">
+        </a>
         <a id="btnReset">
             <img src="img/icone/reset.png" alt="rénitialisation tris, filtres et recherche">
         </a>
@@ -237,6 +240,8 @@
                     </div>
                 </div>
             </div>
+        </aside>
+        <aside id="carte_offres">
         </aside>
     </div>
 </section>
