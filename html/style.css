@@ -3423,6 +3423,7 @@ label[for="rest_ajoutPhotoMenu"] {
   position: absolute;
   top: 0.25em;
   right: -1em;
+  cursor: pointer;
 }
 
 
