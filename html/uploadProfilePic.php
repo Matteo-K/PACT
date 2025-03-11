@@ -1,13 +1,6 @@
 <?php
     session_start();
     require_once 'db.php';
-
-    $fichier = fopen("affiche.txt", "w");
-    fwrite($fichier, "test\n");
-
-                    // Fermer le fichier après écriture
-    fclose($fichier);
-
     // Récupérer l'ID de l'utilisateur depuis la session
     $userId = $_SESSION['idUser'];
 
@@ -28,12 +21,6 @@
 
             // Générer un nom de fichier unique
             $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
-
-            $fichier = fopen("affiche.txt", "w");
-                    fwrite($fichier, "test\n");
-
-                    // Fermer le fichier après écriture
-                    fclose($fichier);
 
             // Déplacer le fichier téléchargé vers le répertoire de destination
             if (move_uploaded_file($file['tmp_name'], $targetFile)) {
@@ -81,11 +68,6 @@
                 }
                 
                 catch (Exception $e) {
-                    $fichier = fopen("affiche.txt", "a");
-                    fwrite($fichier, "$e\n");
-
-                    // Fermer le fichier après écriture
-                    fclose($fichier);
                     echo json_encode(['status' => 'error', 'message' => 'Erreur lors de la mise à jour de la photo de profil : ' . $e->getMessage()]);
                 }
             } 
