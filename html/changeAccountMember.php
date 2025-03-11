@@ -208,8 +208,10 @@
                         sur la plateforme, sans leurs photos et en tant qu'utilisateur anonyme.
                     </label>
 
-                    <input type="submit" id="confirmeSuppression" value="Confirmer"></input>
-                    <input type="reset" id="annuleSuppression" value="Annuler">
+                    <div>
+                        <input type="submit" id="confirmeSuppression" value="Confirmer"></input>
+                        <input type="reset" id="annuleSuppression" value="Annuler">
+                    </div>
                 </form>
             </section>
         </section>
