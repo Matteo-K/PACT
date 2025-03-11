@@ -3467,6 +3467,12 @@ label[for="rest_ajoutPhotoMenu"] {
   cursor: pointer;
 }
 
+.btnBlack{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
 
 /* GABRIEL */
 
