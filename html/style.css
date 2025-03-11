@@ -11,6 +11,7 @@
   --secondary: #d1ccdc;
   --accent: #edae14;
   --accent-border: #bb880e;
+  --rouge: #c24d4d;
   --text-dark: #000;
   --text-light: #eaeaea;
   --background-avis: #c9c9c9;
@@ -905,8 +906,8 @@ header ul + div {
 }
 
 #leaveButtonBloc button:nth-child(2) {
-  background-color: #c24d4d;
-  border-color: #c24d4d;
+  background-color: var(--rouge);
+  border-color: var(--rouge);
 }
 
 #leaveButtonBloc button:hover {
@@ -3417,14 +3418,14 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 .taillebtn button {
-  background-color: #c24d4d !important;
-  border: solid #c24d4d 1px !important;
+  background-color: var(--rouge) !important;
+  border: solid var(--rouge) 1px !important;
 }
 
 .taillebtn button:hover {
   background-color: white !important;
-  border: solid #c24d4d 1px !important;
-  color: #c24d4d !important;
+  border: solid var(--rouge) 1px !important;
+  color: var(--rouge) !important;
 }
 
 .taille6 {
