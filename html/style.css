@@ -4549,6 +4549,10 @@ details .blacklist {
   right: 2em;
 }
 
+#ligneTitreAvis > img:last-of-type:hover {
+  cursor: pointer;
+}
+
 #ligneTitreAvis > img:first-child {
   width: 3em;
   height: 3em;
