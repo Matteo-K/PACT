@@ -4,6 +4,13 @@
 
     // Vérifier si l'utilisateur est connecté
     session_start();
+
+    if ($conn === null) {
+        echo json_encode(['status' => 'error', 'message' => 'Erreur de connexion à la base de données.']);
+        exit();
+    }
+
+    
     if (!isset($_SESSION['idUser'])) {
         echo json_encode(['status' => 'error', 'message' => 'Utilisateur non connecté.']);
         exit();
