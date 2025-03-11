@@ -35,11 +35,6 @@
                     $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
 
                     // Si une photo de profil existe et n'est pas la photo par défaut, la supprimer
-                    $fichier = fopen("affiche.txt", "w");
-                    fwrite($fichier, "$currentPhoto\n");
-
-                    // Fermer le fichier après écriture
-                    fclose($fichier);
                     if ($currentPhoto && $currentPhoto['url'] !== "./img/profile_picture/default.svg") {
                         // Supprimer le fichier image de l'ancien chemin sur le serveur
                         if (file_exists($currentPhoto['url'])) {
