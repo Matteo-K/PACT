@@ -352,56 +352,61 @@
             });
         }
 
-        
-        document.getElementById('profile-pic').addEventListener('change', function(event) {
-            // Récupérer le fichier sélectionné
-            var file = event.target.files[0];
+        try {
+            
+            document.getElementById('profile-pic').addEventListener('change', function(event) {
+                // Récupérer le fichier sélectionné
+                var file = event.target.files[0];
 
-            if (file) {
-                var reader = new FileReader();
+                if (file) {
+                    var reader = new FileReader();
 
-                reader.onload = function(e) {
-                    // Afficher immédiatement la nouvelle image dans le DOM
-                    document.getElementById('current-profile-pic').src = e.target.result;
+                    reader.onload = function(e) {
+                        // Afficher immédiatement la nouvelle image dans le DOM
+                        document.getElementById('current-profile-pic').src = e.target.result;
 
-                    // Désactiver le bouton de soumission du formulaire jusqu'à ce que l'upload soit terminé
-                    document.getElementById('boutonInscription').disabled = true;
+                        // Désactiver le bouton de soumission du formulaire jusqu'à ce que l'upload soit terminé
+                        document.getElementById('boutonInscription').disabled = true;
 
-                    var formData = new FormData();
+                        var formData = new FormData();
 
-                    // Ajouter l'image au FormData
-                    formData.append('profile-pic', file);
+                        // Ajouter l'image au FormData
+                        formData.append('profile-pic', file);
 
-                    fetch('uploadProfilePic.php', {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            // Mettre à jour l'image avec le chemin retourné
-                            document.getElementById('current-profile-pic').src = data.newPhotoPath;
-                            // alert('Photo de profil mise à jour !');
-                        } 
-                        
-                        else {
-                            alert('Erreur : ' + data.message);
-                        }
+                        fetch('uploadProfilePic.php', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                // Mettre à jour l'image avec le chemin retourné
+                                document.getElementById('current-profile-pic').src = data.newPhotoPath;
+                                // alert('Photo de profil mise à jour !');
+                            } 
+                            
+                            else {
+                                alert('Erreur : ' + data.message);
+                            }
 
-                        // Réactiver le bouton de soumission
-                        document.getElementById('boutonInscription').disabled = false;
-                    })
-                    .catch(error => {
-                        console.error('Erreur lors de l\'upload de la photo.', error);
-                        alert('Erreur lors de l\'upload de la photo.');
-                        document.getElementById('boutonInscription').disabled = false;
-                    });
-                };
+                            // Réactiver le bouton de soumission
+                            document.getElementById('boutonInscription').disabled = false;
+                        })
+                        .catch(error => {
+                            console.error('Erreur lors de l\'upload de la photo.', error);
+                            alert('Erreur lors de l\'upload de la photo.');
+                            document.getElementById('boutonInscription').disabled = false;
+                        });
+                    };
 
-                // Lire le fichier comme URL de données (pour l'afficher immédiatement)
-                reader.readAsDataURL(file);
-            }
-        });
+                    // Lire le fichier comme URL de données (pour l'afficher immédiatement)
+                    reader.readAsDataURL(file);
+                }
+            });
+
+        } catch (error) {
+            
+        }
 
 
         try {
