@@ -348,7 +348,7 @@
 
     const modal = document.querySelector("#trifiltre + .modal");
     function resetModal() {
-        modal.style.display = "block";
+        modal.style.display = "flex";
         document.body.classList.add("no-scroll");
     }
     

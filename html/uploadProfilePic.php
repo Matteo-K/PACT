@@ -31,8 +31,20 @@
                     $stmtImage->execute([$targetFile]);
                     $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
 
-                    // if($photoProfil['url'] !="./img/profile_picture/default.svg"){
-                    //     unlink($photoProfil['url']);
+                    // $stmtCurrentPhoto = $conn->prepare("SELECT url FROM pact._photo_profil WHERE idU = ?");
+                    // $stmtCurrentPhoto->execute([$userId]);
+                    // $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
+
+                    // // Si une photo de profil existe, supprimer l'ancienne image du répertoire et de la base de données
+                    // if ($currentPhoto && $currentPhoto['url'] !== "./img/profile_picture/default.svg") {
+                    //     // Supprimer le fichier image de l'ancien chemin
+                    //     if (file_exists($currentPhoto['url'])) {
+                    //         unlink($currentPhoto['url']);
+                    //     }
+
+                    //     // Supprimer l'ancienne photo de la base de données
+                    //     $stmtDeletePhoto = $conn->prepare("DELETE FROM pact._photo_profil WHERE idU = ?");
+                    //     $stmtDeletePhoto->execute([$userId]);
                     // }
 
                     // Si l'image n'existe pas déjà, l'ajouter à la table _image
