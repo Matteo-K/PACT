@@ -43,13 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
       form.submit();
     });
   });
-
-  function addPing(array){
-    for (const elt of array) {
-      let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
-      console.log(geocode);
-    }
-  }
 });
 
 /// Inputs de recherche ///
@@ -634,6 +627,12 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   addPing(array);
 }
 
+function addPing(array){
+  for (const elt of array) {
+    let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
+    console.log(geocode);
+  }
+}
 
 /**
  * 
