@@ -3032,7 +3032,7 @@ label[for="rest_ajoutPhotoMenu"] {
       padding-left: 30px !important;
   }
 
-  #tri, #filtre {
+  #tri, #filtre, #carte_offres{
       position: fixed;
       top: 0;
       left: 0;
@@ -3105,7 +3105,7 @@ label[for="rest_ajoutPhotoMenu"] {
     border-color: var(--bloc25);
   }
 
-  #tri, #filtre {
+  #tri, #filtre, #carte_offres {
       position: fixed;
       top: 0;
       left: 0;
