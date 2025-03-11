@@ -26,27 +26,26 @@
             // Déplacer le fichier téléchargé vers le répertoire de destination
             if (move_uploaded_file($file['tmp_name'], $targetFile)) {
                 try {
-                    // Récupérer la photo actuelle de l'utilisateur depuis la base de données
-                    $stmtCurrentPhoto = $conn->prepare("SELECT url FROM pact._photo_profil WHERE idU = ?");
-                    $stmtCurrentPhoto->execute([$userId]);
-                    $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
-                    
-                    // Si une photo de profil existe, supprimer l'ancienne image du répertoire et de la base de données
-                    if ($currentPhoto && $currentPhoto['url'] !== "./img/profile_picture/default.svg") {
-                        // Supprimer le fichier image de l'ancien chemin
-                        if (file_exists($currentPhoto['url'])) {
-                            unlink($currentPhoto['url']);
-                        }
-                        
-                        // Supprimer l'ancienne photo de la base de données
-                        $stmtDeletePhoto = $conn->prepare("DELETE FROM pact._photo_profil WHERE idU = ?");
-                        $stmtDeletePhoto->execute([$userId]);
-                    }
-                    
                     // Vérifier si l'image existe déjà dans la base de données
                     $stmtImage = $conn->prepare("SELECT * FROM pact._image WHERE url = ?");
                     $stmtImage->execute([$targetFile]);
                     $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
+
+                    // $stmtCurrentPhoto = $conn->prepare("SELECT url FROM pact._photo_profil WHERE idU = ?");
+                    // $stmtCurrentPhoto->execute([$userId]);
+                    // $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
+
+                    // // Si une photo de profil existe, supprimer l'ancienne image du répertoire et de la base de données
+                    // if ($currentPhoto && $currentPhoto['url'] !== "./img/profile_picture/default.svg") {
+                    //     // Supprimer le fichier image de l'ancien chemin
+                    //     if (file_exists($currentPhoto['url'])) {
+                    //         unlink($currentPhoto['url']);
+                    //     }
+
+                    //     // Supprimer l'ancienne photo de la base de données
+                    //     $stmtDeletePhoto = $conn->prepare("DELETE FROM pact._photo_profil WHERE idU = ?");
+                    //     $stmtDeletePhoto->execute([$userId]);
+                    // }
 
                     // Si l'image n'existe pas déjà, l'ajouter à la table _image
                     if (!$imageExist) {

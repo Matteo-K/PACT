@@ -187,6 +187,29 @@
                 Retour
             </button>
         </aside>
+
+
+        <button id="supprimerCompte">Supprimer mon compte</button>
+
+        <!-- Pop-up de signalement d'un avis -->
+        <section class="modal supprComptePopup">
+            <section class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Suppression du compte</h2>
+                <label for="mdp">Entrez votre mot de passe pour confirmer</label>
+                <input type="password" name="mdp" id="mdp">
+                <?php 
+                if (isset($_SESSION["typeUser"])){ ?>
+                    <button id="confirmeSignalement" class="btnSignalAvis"> Envoyer </button>
+                    <?php
+                }else{ ?>
+                    <a href="login.php" class="btnSignalAvis"> Connexion </a>
+                <?php
+                }
+                ?>
+                
+            </section>
+        </section>
         
         <h1 id="changerInfoTitre">Modifier mes informations</h1>
 
