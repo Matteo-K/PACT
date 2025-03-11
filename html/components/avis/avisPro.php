@@ -460,9 +460,10 @@ function displayArrayAvis(arrayAvis) {
     let array = Object.entries(arrayAvis);
     
     // Calcul du nombre de non lu
-    const nb_nonLu = filtreNonLu(array.copy());
+    const nb_nonLu = filtreNonLu([...array]);
+
     if (nb_nonLu > 0) {
-        document.title = "("+ nb_no +") " + titreOffre;
+        document.title = `(${nb_nonLu}) ${titreOffre}`;
     } else {
         document.title = titreOffre;
     }
