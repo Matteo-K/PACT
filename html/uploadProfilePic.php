@@ -35,7 +35,7 @@
                     $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
 
                     print_r($currentPhoto);
-                    print_r($imageExist);
+                    print_r($targetFile);
 
                     // Si une photo de profil existe et n'est pas la photo par défaut, la supprimer
                     if ($currentPhoto['url'] != "./img/profile_picture/default.svg") {
