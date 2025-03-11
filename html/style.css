@@ -3396,6 +3396,16 @@ label[for="rest_ajoutPhotoMenu"] {
   margin: 0;
 }
 
+.taille7 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.taille8 {
+  font-size: 0.9rem;
+  margin-bottom: 20px !important;
+}
+
 .donnee {
   display: flex;
   align-items: center;
@@ -3530,9 +3540,13 @@ label[for="rest_ajoutPhotoMenu"] {
   margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 50%;
+  width: 20%;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.size{
+  font-size: 15px !important;
 }
 
 /* GABRIEL */
