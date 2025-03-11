@@ -198,7 +198,7 @@
                 <h2>Suppression de votre compte PACT</h2>
 
                 <form action="suppCompte.php">
-                    <label for="mdp">Entrez votre mot de passe pour confirmer</label>
+                    <label for="mdp">Entrez votre mot de passe pour confirmer : </label>
                     <input type="password" name="mdp" id="mdp">
                     
                     <label for="chbxConfirme">

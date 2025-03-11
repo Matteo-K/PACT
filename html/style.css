@@ -1973,7 +1973,7 @@ label[for="rest_ajoutPhotoMenu"] {
   }
 }
 
-#supprimerCompte{
+#supprimerCompte, #confirmeSuppression{
   position: absolute;
   top: 20px;
   right: 20px;
@@ -1987,18 +1987,19 @@ label[for="rest_ajoutPhotoMenu"] {
   transition: 0.5s;
 }
 
-#supprimerCompte:hover{
+#supprimerCompte:hover #confirmeSuppression:hover{
   background-color: #c24d4d;
   color: #fff;
 }
 
-.supprComptePopup{
+.supprComptePopup form{
   display: flex;
-  flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .supprComptePopup label[for="chbxConfirme"]{
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .supprComptePopup #chbxConfirme{
