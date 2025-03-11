@@ -20,7 +20,7 @@
             }
 
             // Générer un nom de fichier unique
-            $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
+            $targetFile = $targetDir . uniqid('profile_', true);
 
             // Déplacer le fichier téléchargé vers le répertoire de destination
             if (move_uploaded_file($file['tmp_name'], $targetFile)) {
