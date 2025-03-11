@@ -2011,8 +2011,10 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 .supprComptePopup div{
-  display: flex;
-  align-items: end;
+  display: flex !important;
+  width: 100%;
+  gap: 10px;
+  justify-content: flex-end !important;
 }
 
 #confirmeSuppression, #annuleSuppression{
@@ -2025,7 +2027,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #confirmeSuppression{
-  background-color: #fff;
+  background-color: #c2c2c2;
   border: 3px solid #c24d4d;
 }
 
