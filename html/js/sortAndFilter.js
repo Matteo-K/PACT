@@ -600,13 +600,18 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filtres.reduce((acc, filtre) => filtre(acc), array);
   const count = countFiltre(filtres);
   const spanApplication = document.getElementById("filtreApplique");
+  const btnReset = document.getElementById("btnReset");
 
   if (count == 0) {
     spanApplication.style.display = "none";
-
+    btnReset.setAttribute("onclick", "");
+    btnReset.style.backgroundColor = "#a4a1a1";
+    
   } else {
     spanApplication.textContent = count;
     spanApplication.style.display = "block";
+    btnReset.setAttribute("onclick", "resetModal()");
+    btnReset.style.backgroundColor = "#f06565";
   }
   
   // Tris

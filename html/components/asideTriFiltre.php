@@ -1,3 +1,4 @@
+
 <section id="trifiltre" class="asdTriFiltre">
     <div id="btnAside">
         <a onclick="toggleAside(this)" id="btnTri">
@@ -265,9 +266,6 @@
     </section>
 </section>
 
-<!-- Leaflet CSS & JS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script defer src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 
 <script>
@@ -351,10 +349,12 @@
     const modal = document.querySelector("#trifiltre + .modal");
     function resetModal() {
         modal.style.display = "block";
+        document.body.classList.add("no-scroll");
     }
-
+    
     function resetModal_close() {
         modal.style.display = "none";
+        document.body.classList.remove("no-scroll");
     }
     
     var map = L.map('map').setView([48.243788, -2.975661], 13);
