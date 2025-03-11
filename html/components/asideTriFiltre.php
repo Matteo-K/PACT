@@ -362,8 +362,12 @@
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; CartoDB'
     }).addTo(map);
-    setTimeout(() => {
-        map.invalidateSize();
-    }, 500);
+
+    document.getElementById('btnCarte').addEventListener('click', function() {
+        // Attendre un court instant avant de recalculer la taille
+        setTimeout(() => {
+            map.invalidateSize();
+        }, 300);
+    });
 
 </script>
