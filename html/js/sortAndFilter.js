@@ -1,4 +1,4 @@
-/**
+search/**
  * @file
  * @author Mattéo Kervadec & Antoine Guillerm
  * Ensemble des fonctions et évènements 
@@ -678,7 +678,7 @@ function updatePagination(totalItems, nbElement) {
 
 function goToPage(page) {
   currentPage = page;
-  search = searchInput.value;
+  let search = searchInput.value;
   sortAndFilter(arrayOffer, search, (page - 1) * nbElement, nbElement);
 }
 
