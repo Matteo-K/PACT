@@ -258,9 +258,8 @@ const txtNbAvis = document.querySelector('#avisPro details h3:nth-child(2)');
 const imgSignaleAvis =document.querySelector("#avisProS2 .signaler");
 
 function updateOnglet(arrayAvis) {
-    let array = Object.entries(arrayAvis);
     // Calcul du nombre de non lu
-    const nb_nonLu = filtreNonLu([...array]);
+    const nb_nonLu = filtreNonLu([...arrayAvis]);
 
     if (nb_nonLu.length > 0) {
         document.title = `(${nb_nonLu.length}) ${titreOffre}`;
@@ -306,7 +305,7 @@ function afficheAvisSelect(idAvis) {
     }
 
     listeAvis[idAvis].lu = false;
-    updateOnglet(listeAvis);
+    updateOnglet(Object.entries(listeAvis));
 
     if (listeAvis[idAvis]['note'] < 5) {
         for (i = 4; i >= listeAvis[idAvis]['note']; i--) {
