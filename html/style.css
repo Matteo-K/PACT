@@ -2936,10 +2936,14 @@ label[for="rest_ajoutPhotoMenu"] {
     height: 20px;
     text-align: center;
     font-weight: bold;
+    font-size: 1.2rem;
     border-radius: 50%;
     border: solid var(--primary60);
     background-color: var(--background);
     padding: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -2963,6 +2967,16 @@ label[for="rest_ajoutPhotoMenu"] {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
+
+  .titre {
+    flex-flow: column;
+  }
+
+  .btn-action {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+  }
 }
 
 /* Bloc tri et filtre */

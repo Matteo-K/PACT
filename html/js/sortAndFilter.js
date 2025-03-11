@@ -539,7 +539,7 @@ function countFiltre(filtres) {
 /**
  * Rénitialise les inputs des tries et filtres
  */
-function restFiltreTri() {
+function resetFiltreTri() {
   // Reset recherche
   searchInput.value = ""
 
@@ -1033,6 +1033,8 @@ document.addEventListener('DOMContentLoaded', function() {
     chkBxEnLigne.addEventListener("click", () => goToPage(1));
     chkBxHorsLigne.addEventListener("click", () => goToPage(1));
   }
+
+  document.querySelector(".taillebtn button").addEventListener("click", () => resetFiltreTri());
 });
 
 const checkboxesCat = [chkBxVisite, chkBxActivite, chkBxSpectacle, chkBxParc, chkBxRestauration];
