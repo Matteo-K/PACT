@@ -2232,6 +2232,10 @@ label[for="rest_ajoutPhotoMenu"] {
   height: 50vh;
   width: 90%;
 }
+#mapTriFiltre{
+  
+  width: 33vw;
+}
 
 /* A suppr pre sprint 3 */
 #disabledSelect {
@@ -2685,7 +2689,7 @@ label[for="rest_ajoutPhotoMenu"] {
   flex-flow: row-reverse nowrap;
 }
 
-#tri, #filtre {
+#tri, #filtre, #carte_offres{
   display: none;
   width: 20vw;
   /* height: calc(100vh - var(--header-size)); */
@@ -2696,7 +2700,9 @@ label[for="rest_ajoutPhotoMenu"] {
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
+#carte_offres{
+  width:33vw
+}
 .checkmark {
   cursor: pointer;
   width: 31px;
@@ -2912,7 +2918,9 @@ label[for="rest_ajoutPhotoMenu"] {
   width: 70px;
 }
 
-#btnAside:where(:nth-child(2), :nth-child(3), :nth-child(4)) img {
+#btnAside a:nth-child(2) img,
+#btnAside a:nth-child(3) img,
+#btnAside a:nth-child(4) img {
   width: 50px;
   padding: 10px;
 }
@@ -2950,15 +2958,11 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #trifiltre + .modal-content {
   display: none;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
   z-index: 10;
-}
-
-#trifiltre + .modal-content {
-  display: block;
 }
 
 /* Bloc tri et filtre */
@@ -3393,6 +3397,11 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #blackImg{
   width: 20px;
+  height: auto;
+}
+
+.btnBlackList{
+  width: 44px;
   height: auto;
 }
 
@@ -4515,7 +4524,7 @@ details .blacklist {
   margin: 0;
 }
 
-#ligneTitreAvis > img {
+#ligneTitreAvis > img:last-of-type {
   width: 2em;
   height: 2em;
   position: absolute;

@@ -242,22 +242,27 @@
             </div>
         </aside>
         <aside id="carte_offres">
-            <article id="map">
-            </article>
+            <div id="mapTriFiltre">
+            </div>
         </aside>
     </div>
 </section>
 <section class="modal-content">
     <span class="close" onclick="resetModal_close()">×</span>
     <section class="titre">
-        <p class="tab">Attention : la réinitialisation des filtres, tris et des paramètres de recherche vont effacer toutes vos sélections en cours.</p>
-        <p>Souhaitez-vous continuer ?</p>
+        <h2>⚠️ Attention : la réinitialisation des filtres, tris et des paramètres de recherche vont effacer toutes vos sélections en cours.</h2>
+        <p class="taille">Souhaitez-vous continuer ?</p>
     </section>
-    <section class="contentPop active" id="content-1">
+    <section class="taillebtn" id="content-1">
         <button class="modifierBut" onclick="resetModal_close()">Annuler</button>
         <button class="modifierBut">Effacer les sélections</button>
     </section>
 </section>
+
+<!-- Leaflet CSS & JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         
@@ -289,6 +294,8 @@
     const btnTri = document.getElementById('btnTri');
     const btnFiltre = document.getElementById('btnFiltre');
     
+    let previousAside = null;
+
     function toggleAside(element) {
         const asideElements = {
             'btnTri': asideTri,
@@ -296,22 +303,32 @@
             'btnCarte': asideCarte
         };
 
+        const clickedAside = asideElements[element.id];
+
+        // Vérifier si on clique sur le même bouton et que l'aside est déjà ouvert
+        if (previousAside === clickedAside && clickedAside.classList.contains('openAside')) {
+            clickedAside.classList.remove('openAside');
+            element.classList.remove('btnAsideOpen');
+            previousAside = null; // Réinitialiser l'aside précédent
+            return;
+        }
+
+        // Fermer tous les asides et enlever la classe des boutons
         Object.keys(asideElements).forEach(id => {
-            const button = document.getElementById(id);
-            button.classList.remove('btnAsideOpen');
+            document.getElementById(id).classList.remove('btnAsideOpen');
         });
 
-        // Fermer tous les aside
         Object.values(asideElements).forEach(aside => {
             aside.classList.remove('openAside');
         });
 
-        const clickedAside = asideElements[element.id];
         if (clickedAside) {
             clickedAside.classList.add('openAside');
             element.classList.add('btnAsideOpen');
+            previousAside = clickedAside;
         }
     }
+
 
     function fermeAside() {
         const buttons = document.querySelectorAll('[id^="btn"]');
@@ -335,10 +352,10 @@
         modal.style.display = "none";
     }
     
-    var map = L.map('map').setView([48.8566, -2.3522], 13);
+    var map = L.map('mapTriFiltre').setView([48.8566, -2.3522], 13);
 
-    L.tileLayer('components/proxy.php?z={z}&x={x}&y={y}', {
-        attribution: '&copy; <a href="https://www.thunderforest.com/">Thunderforest<18e7bfc4230/a>',
+    L.tileLayer('proxy.php?z={z}&x={x}&y={y}', {
+        attribution: '&copy; <a href="https://www.thunderforest.com/">Thunderforest</a>',
         maxZoom: 22
     }).addTo(map);
 </script>
