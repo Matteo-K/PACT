@@ -2973,6 +2973,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #trifiltre + .modal .modal-content {
+  height: fit-content;
   .titre {
     flex-flow: column;
   }
@@ -3038,6 +3039,25 @@ label[for="rest_ajoutPhotoMenu"] {
 
   #btnAside a:hover, .btnAsideOpen {
       padding-left: 30px !important;
+  }
+
+  #trifiltre + .modal .modal-content {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    button {
+      width: 40vw;
+      height: 100%;
+    }
+
+    #btn-action {
+      justify-content: center;
+    }
   }
 
   #tri, #filtre, #carte_offres{
