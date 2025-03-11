@@ -31,9 +31,9 @@
                     $stmtImage->execute([$targetFile]);
                     $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
 
-                    if($photoProfil['url'] !="./img/profile_picture/default.svg"){
-                        unlink($photoProfil['url']);
-                    }
+                    // if($photoProfil['url'] !="./img/profile_picture/default.svg"){
+                    //     unlink($photoProfil['url']);
+                    // }
 
                     // Si l'image n'existe pas déjà, l'ajouter à la table _image
                     if (!$imageExist) {
@@ -48,16 +48,24 @@
 
                     // Retourner la nouvelle URL de l'image pour l'affichage dynamique
                     echo json_encode(['status' => 'success', 'newPhotoPath' => $targetFile]);
-                } catch (Exception $e) {
+                } 
+                
+                catch (Exception $e) {
                     echo json_encode(['status' => 'error', 'message' => 'Erreur lors de la mise à jour de la photo de profil : ' . $e->getMessage()]);
                 }
-            } else {
+            } 
+            
+            else {
                 echo json_encode(['status' => 'error', 'message' => 'Échec du téléchargement de l\'image.']);
             }
-        } else {
+        } 
+        
+        else {
             echo json_encode(['status' => 'error', 'message' => 'Seules les images JPG, PNG ou GIF sont autorisées.']);
         }
-    } else {
+    } 
+    
+    else {
         echo json_encode(['status' => 'error', 'message' => 'Aucun fichier téléchargé.']);
     }
 ?>

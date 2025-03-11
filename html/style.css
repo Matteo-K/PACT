@@ -1972,6 +1972,15 @@ label[for="rest_ajoutPhotoMenu"] {
   }
 }
 
+#supprimerCompte{
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  background-color: red;
+  padding: 15px;
+  font-size: 20px;
+}
+
 /* fin popup signalement avis */
 /* FIN CSS EWEN*/
 /* GABRIEL
@@ -3031,7 +3040,7 @@ label[for="rest_ajoutPhotoMenu"] {
       padding-left: 30px !important;
   }
 
-  #tri, #filtre {
+  #tri, #filtre, #carte_offres{
       position: fixed;
       top: 0;
       left: 0;
@@ -3104,7 +3113,7 @@ label[for="rest_ajoutPhotoMenu"] {
     border-color: var(--bloc25);
   }
 
-  #tri, #filtre {
+  #tri, #filtre, #carte_offres {
       position: fixed;
       top: 0;
       left: 0;
@@ -3422,6 +3431,7 @@ label[for="rest_ajoutPhotoMenu"] {
   position: absolute;
   top: 0.25em;
   right: -1em;
+  cursor: pointer;
 }
 
 
