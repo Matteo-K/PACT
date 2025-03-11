@@ -257,6 +257,16 @@ const txtNbAvis = document.querySelector('#avisPro details h3:nth-child(2)');
 
 const imgSignaleAvis =document.querySelector("#avisProS2 .signaler");
 
+function updateOnglet(arrayAvis) {
+    // Calcul du nombre de non lu
+    const nb_nonLu = filtreNonLu([...arrayAvis]);
+
+    if (nb_nonLu.length > 0) {
+        document.title = `(${nb_nonLu.length}) ${titreOffre}`;
+    } else {
+        document.title = titreOffre;
+    }
+}
 
 function afficheAvisSelect(idAvis) {
 
@@ -293,7 +303,10 @@ function afficheAvisSelect(idAvis) {
     for (i = 0; i < 5; i++) {
         etoilesAvis[i].style.backgroundColor = accentColor;
     }
-    
+
+    listeAvis[idAvis].lu = true;
+    updateOnglet(Object.entries(listeAvis));
+
     if (listeAvis[idAvis]['note'] < 5) {
         for (i = 4; i >= listeAvis[idAvis]['note']; i--) {
             etoilesAvis[i].style.backgroundColor = "var(--background-avis)";
@@ -458,14 +471,7 @@ chbxNonRep.addEventListener('change', () => displayArrayAvis(listeAvis));
 function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
     let array = Object.entries(arrayAvis);
-    
-    // Calcul du nombre de non lu
-    const nb_nonLu = filtreNonLu(array.copy());
-    if (nb_nonLu > 0) {
-        document.title = "("+ nb_no +") " + titreOffre;
-    } else {
-        document.title = titreOffre;
-    }
+    updateOnglet(array);
 
     // filtre
     if (chbxNonLu.checked) {

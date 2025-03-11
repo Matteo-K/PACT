@@ -1972,6 +1972,15 @@ label[for="rest_ajoutPhotoMenu"] {
   }
 }
 
+#supprimerCompte{
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  background-color: red;
+  padding: 15px;
+  font-size: 20px;
+}
+
 /* fin popup signalement avis */
 /* FIN CSS EWEN*/
 /* GABRIEL
@@ -2926,7 +2935,7 @@ label[for="rest_ajoutPhotoMenu"] {
   padding: 10px;
 }
 #btnAside a:nth-child(4) {
-  background-color: #c24d4d;
+  background-color: #f06565;
 }
 
 #btnFiltre {
@@ -3423,6 +3432,7 @@ label[for="rest_ajoutPhotoMenu"] {
   position: absolute;
   top: 0.25em;
   right: -1em;
+  cursor: pointer;
 }
 
 
@@ -3455,7 +3465,8 @@ label[for="rest_ajoutPhotoMenu"] {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.close {
+.close,
+.closeBlack {
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -3465,7 +3476,9 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 .close:hover,
-.close:focus {
+.close:focus,
+.closeBlack:hover,
+.closeBlack:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;

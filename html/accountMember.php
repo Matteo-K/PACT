@@ -105,9 +105,8 @@
             </a>
         </aside>
 
-        <aside id="supprimerCompte">
-            <button>Supprimer mon compte</button>
-        </aside>
+        <button id="supprimerCompte">Supprimer mon compte</button>
+
 
         <!-- Pop-up de signalement d'un avis -->
         <section class="modal supprComptePopup">

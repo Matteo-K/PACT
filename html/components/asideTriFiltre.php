@@ -349,10 +349,12 @@
     const modal = document.querySelector("#trifiltre + .modal");
     function resetModal() {
         modal.style.display = "block";
+        document.body.classList.add("no-scroll");
     }
-
+    
     function resetModal_close() {
         modal.style.display = "none";
+        document.body.classList.remove("no-scroll");
     }
     
     var map = L.map('map').setView([48.243788, -2.975661], 13);
