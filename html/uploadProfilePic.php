@@ -53,7 +53,7 @@
                     //     // Supprimer l'ancienne photo de la base de données
                     //     $stmtDeletePhoto = $conn->prepare("DELETE FROM pact._photo_profil WHERE idU = ?");
                     //     $stmtDeletePhoto->execute([$userId]);
-                    // }
+                    }
 
                     // Si l'image n'existe pas déjà, l'ajouter à la table _image
                     
@@ -72,8 +72,7 @@
 
                     // Retourner la nouvelle URL de l'image pour l'affichage dynamique
                     echo json_encode(['status' => 'success', 'newPhotoPath' => $targetFile]);
-                    } 
-                }
+                } 
                 
                 catch (Exception $e) {
                     echo json_encode(['status' => 'error', 'message' => 'Erreur lors de la mise à jour de la photo de profil : ' . $e->getMessage()]);
