@@ -3385,6 +3385,10 @@ label[for="rest_ajoutPhotoMenu"] {
   font-size: 0.9rem;
   margin: 0;
 }
+.taille6 {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
 
 .donnee {
   display: flex;
