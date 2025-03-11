@@ -271,100 +271,112 @@
 
             <button type="submit" id="boutonInscription">Valider</button>
         </form>
+
+
         <section id="apiKey">
             <?php
-            $stmt = $conn -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
-            $stmt -> execute();
-            $infoPro = $stmt -> fetch(PDO::FETCH_ASSOC);
+                $stmt = $conn -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
+                $stmt -> execute();
+                $infoPro = $stmt -> fetch(PDO::FETCH_ASSOC);
             ?>
             <?php 
                 // print_r($infoPro);
             ?>
             <p>Votre Clé API :</p>
+
             <?php if($infoPro["apikey"]){?>
                 <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
                 <p id = "buttonAPIkey" onclick="generateAPIkey()">Regénérer ma clé API</p>
-            <?php }else{?>
+            <?php 
+                } 
+                else {
+            ?>
                 <p id = "valueAPIkey"></p>
                 <p id = "buttonAPIkey" onclick="generateAPIkey()">Générer ma clé API</p>
-            <?php } ?>
+            <?php 
+                } 
+            ?>
         </section>
     </body>
+
     <script>
-    function generateAPIkey() {
-        fetch('generateAPIkey.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ membre: true}) // Envoyez toute donnée supplémentaire ici si nécessaire
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Traitement de la réponse
-            if (data.status === 'success') {
-                alert('Clé API générée avec succès : ' + data.apikey);
-                document.getElementById("valueAPIkey").innerHTML = data.apikey;
-            } else {
-                alert('Erreur : ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erreur lors de la requête fetch :', error);
-            alert('Erreur lors de la requête fetch : ' + error.message);
-        });
-    }
-
-    
-    document.getElementById('profile-pic').addEventListener('change', function(event) {
-        var file = event.target.files[0]; // Récupérer le fichier sélectionné
-        if (file) {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                // Afficher immédiatement la nouvelle image dans le DOM
-                document.getElementById('current-profile-pic').src = e.target.result;
-
-                // Désactiver le bouton de soumission du formulaire jusqu'à ce que l'upload soit terminé
-                document.getElementById('boutonInscription').disabled = true;
-
-                var formData = new FormData();
-                formData.append('profile-pic', file); // Ajouter l'image au FormData
-
-                fetch('uploadProfilePic.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        // Mettre à jour l'image avec le chemin retourné
-                        document.getElementById('current-profile-pic').src = data.newPhotoPath;
-                        alert('Photo de profil mise à jour !');
-                    } else {
-                        alert('Erreur : ' + data.message);
-                    }
-
-                    // Réactiver le bouton de soumission
-                    document.getElementById('boutonInscription').disabled = false;
-                })
-                .catch(error => {
-                    console.error('Erreur lors de l\'upload de la photo.', error);
-                    alert('Erreur lors de l\'upload de la photo.');
-                    document.getElementById('boutonInscription').disabled = false;
-                });
-            };
-
-            // Lire le fichier comme URL de données (pour l'afficher immédiatement)
-            reader.readAsDataURL(file);
+        function generateAPIkey() {
+            fetch('generateAPIkey.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ membre: true})
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Traitement de la réponse
+                if (data.status === 'success') {
+                    alert('Clé API générée avec succès : ' + data.apikey);
+                    document.getElementById("valueAPIkey").innerHTML = data.apikey;
+                } 
+                
+                else {
+                    alert('Erreur : ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la requête fetch :', error);
+                alert('Erreur lors de la requête fetch : ' + error.message);
+            });
         }
-    });
 
+        
+        document.getElementById('profile-pic').addEventListener('change', function(event) {
+            // Récupérer le fichier sélectionné
+            var file = event.target.files[0];
 
+            if (file) {
+                var reader = new FileReader();
 
+                reader.onload = function(e) {
+                    // Afficher immédiatement la nouvelle image dans le DOM
+                    document.getElementById('current-profile-pic').src = e.target.result;
 
+                    // Désactiver le bouton de soumission du formulaire jusqu'à ce que l'upload soit terminé
+                    document.getElementById('boutonInscription').disabled = true;
 
-</script>
+                    var formData = new FormData();
+
+                    // Ajouter l'image au FormData
+                    formData.append('profile-pic', file);
+
+                    fetch('uploadProfilePic.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            // Mettre à jour l'image avec le chemin retourné
+                            document.getElementById('current-profile-pic').src = data.newPhotoPath;
+                            alert('Photo de profil mise à jour !');
+                        } 
+                        
+                        else {
+                            alert('Erreur : ' + data.message);
+                        }
+
+                        // Réactiver le bouton de soumission
+                        document.getElementById('boutonInscription').disabled = false;
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors de l\'upload de la photo.', error);
+                        alert('Erreur lors de l\'upload de la photo.');
+                        document.getElementById('boutonInscription').disabled = false;
+                    });
+                };
+
+                // Lire le fichier comme URL de données (pour l'afficher immédiatement)
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
