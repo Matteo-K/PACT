@@ -50,8 +50,14 @@
                     // }
 
                     // Si l'image n'existe pas déjà, l'ajouter à la table _image
+                    
+                    if ($imageExist) {
+                        print_r($imageExist);
+                    }else {
+                        echo "insert1\n";
+                    }
                     if (!$imageExist) {
-                        echo "insert";
+                        echo "insert2\n";
                         $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
                         $imageName = basename($targetFile);
                         $stmtInsertImage->execute([$targetFile, $imageName]);
