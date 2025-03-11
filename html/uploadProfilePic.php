@@ -4,6 +4,8 @@
     // Récupérer l'ID de l'utilisateur depuis la session
     $userId = $_SESSION['idUser'];
 
+    echo 1;
+
     // Vérifier si un fichier a été envoyé
     if (isset($_FILES['profile-pic']) && $_FILES['profile-pic']['error'] === UPLOAD_ERR_OK) {
         $file = $_FILES['profile-pic'];
