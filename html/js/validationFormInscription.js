@@ -244,23 +244,25 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        const motdepasse = document.getElementById('motdepasse').value;
-        const confirmer = document.getElementById('confirmer').value;
+        if(confirmPasswordField) {
+            const motdepasse = document.getElementById('motdepasse').value;
+            const confirmer = document.getElementById('confirmer').value;
 
-        if (motdepasse !== confirmer) {
-            errors.push('Les mots de passe ne correspondent pas.');
-        }
+            if (motdepasse !== confirmer) {
+                errors.push('Les mots de passe ne correspondent pas.');
+            }
 
-        if (!document.getElementById('cgu').checked) {
-            errors.push('Vous devez accepter les conditions générales d\'utilisation.');
-        }
+            if (!document.getElementById('cgu').checked) {
+                errors.push('Vous devez accepter les conditions générales d\'utilisation.');
+            }
 
-        // Afficher les erreurs globales
-        displayGlobalErrors(errors);
+            // Afficher les erreurs globales
+            displayGlobalErrors(errors);
 
-        // Si aucune erreur, envoyer le formulaire
-        if (errors.length === 0) {
-            form.submit();
+            // Si aucune erreur, envoyer le formulaire
+            if (errors.length === 0) {
+                form.submit();
+            }
         }
     }); 
 });
