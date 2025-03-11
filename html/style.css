@@ -2962,7 +2962,7 @@ label[for="rest_ajoutPhotoMenu"] {
   padding-left: 30px !important;
 }
 
-#trifiltre + .modal-content {
+#trifiltre + .modal .modal-content {
   .titre {
     flex-flow: column;
   }
