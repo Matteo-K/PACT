@@ -1,3 +1,4 @@
+
 <section id="trifiltre" class="asdTriFiltre">
     <div id="btnAside">
         <a onclick="toggleAside(this)" id="btnTri">
@@ -265,9 +266,7 @@
     </section>
 </section>
 
-<!-- Leaflet CSS & JS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -358,10 +357,11 @@
         document.body.classList.remove("no-scroll");
     }
     
-    var map = L.map('map').setView([48.8566, -2.3522], 13);
+    var map = L.map('map').setView([48.243788, -2.975661], 13);
 
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; CartoDB'
     }).addTo(map);
+
 </script>

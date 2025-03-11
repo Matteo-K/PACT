@@ -1984,7 +1984,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .swiper-container.gb, 
 .swiper-container.gb2, 
 .swiper-container.gb3 {
-  height: 340px;
+  height: 310px;
   position: relative;
   margin: auto;
 }
@@ -1993,7 +1993,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .swiper.gb2,
 .swiper.gb3{
   width: 1610px;
-  height: 95%;
+  height: 100%;
   overflow-x: clip;
   overflow-y: visible;
   margin: auto;
@@ -2451,6 +2451,7 @@ label[for="rest_ajoutPhotoMenu"] {
   color: white;
   background-color: var(--primary);
   background-size: cover;
+  box-shadow: 0px 0px 10px 5px #0000003e;
 }
 
 .flip-card-back {
@@ -2461,6 +2462,7 @@ label[for="rest_ajoutPhotoMenu"] {
   font-size: 1.1em;
   border: 4px solid var(--primary);
   box-sizing: border-box;
+  box-shadow: 0px 0px 10px 5px var(--primary20);
 }
 
 /* Information des cartes */

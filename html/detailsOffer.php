@@ -1021,6 +1021,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 
                             </section>
                         </section>
+
+                        <section class="modal" id="blacklistModal">
+                            <section class="modal-content">
+                                <span class="closeBlack">&times;</span>
+                                <h2>blacklistage</h2>
+                            </section>
+                        </section>
                     </div>
     </main>
     <?php
@@ -1070,6 +1077,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             let ouvrePopup = document.querySelectorAll('.avis .signaler');
             const btnConfirmer = document.getElementById('confirmeSignalement');
             const popup = document.querySelector('.avis .signalementPopup');
+            const body = document.body;
             
             let btnSelectionne;
 
@@ -1287,7 +1295,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const modal = document.getElementById("myModal");
                 const openModalBtn = document.getElementById("openModalBtn");
                 const closeModalBtn = document.querySelector(".close");
-                const popupForm = document.getElementById("popupForm");
                 const body = document.body;
                 // Fonction pour afficher le modal
                 function openModal() {
@@ -1303,6 +1310,44 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 openModalBtn.onclick = openModal;
                 // Fermer le popup lorsqu'on clique sur la croix
                 closeModalBtn.onclick = closeModal;
+                // Fermer le popup lorsqu'on clique en dehors du contenu
+                // window.onclick = function(event) {
+                //   if (event.target === modal) {
+                //     closeModal();
+                //   }
+                // }
+
+                // Soumettre le formulaire
+                function confirmation() {
+                    closeModal(); // Fermer la fenêtre modale après soumission
+                }
+            } catch (error) {
+                console.log(error)
+            }
+
+            try {
+                const modalBlack = document.getElementById("blacklistModal");
+                const openModalBlack = document.getElementsByClassName("btnBlackList");
+                const closeModalBlack = document.querySelector(".closeBlack");
+                const body = document.body;
+                // Fonction pour afficher le modal
+                function openModal() {
+                    modalBlack.style.display = "block";
+                    body.classList.add("no-scroll");
+                }
+                // Fonction pour fermer le modal
+                function closeModal() {
+                    modalBlack.style.display = "none";
+                    body.classList.remove("no-scroll");
+                }
+                // Ouvrir le popup lorsque le bouton est cliqué
+                openModalBlack.forEach(element => {
+                    element.addEventListener('click', (event) => {
+                        openModal;
+                    });
+                });
+                // Fermer le popup lorsqu'on clique sur la croix
+                closeModalBlack.onclick = closeModal;
                 // Fermer le popup lorsqu'on clique en dehors du contenu
                 // window.onclick = function(event) {
                 //   if (event.target === modal) {
