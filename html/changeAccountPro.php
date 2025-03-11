@@ -315,7 +315,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ membre: false }) // Envoyez toute donnée supplémentaire ici si nécessaire
+                body: JSON.stringify({ membre: false })
             })
             .then(response => response.json())
             .then(data => {
@@ -323,7 +323,9 @@
                 if (data.status === 'success') {
                     alert('Clé API générée avec succès : ' + data.apikey);
                     document.getElementById("valueAPIkey").innerHTML = data.apikey;
-                } else {
+                } 
+                
+                else {
                     alert('Erreur : ' + data.message);
                 }
             })
