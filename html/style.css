@@ -1973,7 +1973,7 @@ label[for="rest_ajoutPhotoMenu"] {
   }
 }
 
-#supprimerCompte, #confirmeSuppression, #annuleSuppression{
+#supprimerCompte{
   position: absolute;
   top: 20px;
   right: 20px;
@@ -1984,7 +1984,7 @@ label[for="rest_ajoutPhotoMenu"] {
   border-radius: 10px;
   color: #c24d4d;
   font-weight: 700;
-  transition: 0.5s;
+  transition: 0.3s ease;
 }
 
 #supprimerCompte:hover #confirmeSuppression:hover{
@@ -2010,18 +2010,28 @@ label[for="rest_ajoutPhotoMenu"] {
   display: none;
 }
 
+.supprComptePopup div{
+  display: flex;
+  align-items: end;
+}
+
+#confirmeSuppression, #annuleSuppression{
+  color: #000;
+  padding: 15px 20px;
+  font-size: 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
 #confirmeSuppression{
-  position: relative;
-  color: #fff;
-  background-color: #c24d4d;
-  border-color: #c24d4d;
+  background-color: #fff;
+  border: 3px solid #c24d4d;
 }
 
 #annuleSuppression{
-  position: relative;
-  color: #fff;
   background-color: var(--primary);
-  border-color: var(--primary);
+  border: 3px solid var(--primary);
 }
 
 #confirmeSuppression:hover{
@@ -3385,9 +3395,15 @@ label[for="rest_ajoutPhotoMenu"] {
   font-size: 0.9rem;
   margin: 0;
 }
-.taille6 {
+
+.taille7 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.taille8 {
   font-size: 0.9rem;
-  margin-bottom: 5px !important;
+  margin-bottom: 20px !important;
 }
 
 .donnee {
@@ -3527,6 +3543,10 @@ label[for="rest_ajoutPhotoMenu"] {
   width: 20%;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.size{
+  font-size: 15px !important;
 }
 
 /* GABRIEL */

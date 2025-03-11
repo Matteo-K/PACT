@@ -5,6 +5,8 @@
  * afin de trier et filtrer les offres de la page de recherche
  */
 
+import { geocode } from "./geocode.js";
+
 let currentPage = 1;
 let nbElement = 12;
 
@@ -43,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
       form.submit();
     });
   });
+
 });
 
 /// Inputs de recherche ///
@@ -633,6 +636,7 @@ function addPing(array){
     console.log(geocode);
   }
 }
+
 
 /**
  * 
