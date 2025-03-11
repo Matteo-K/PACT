@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <title>PACT</title>
   <script src="js/setColor.js"></script>
+  <script src="js/geocode.js"></script>
 
     <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
