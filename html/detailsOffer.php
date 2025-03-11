@@ -1037,7 +1037,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </section>
     
                                     <section class="taillebtn">
-                                        <button class="modifierBut size" id="confirmationBlack">Annuler</button>
+                                        <button class="modifierBut size" id="confirmationBlack2">Annuler</button>
                                     </section>
                                 </div>
                             </section>
@@ -1343,6 +1343,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const closeModalBlackButton = document.querySelector(".closeBlack");
                 const body = document.body;
                 const leaveB = document.getElementById("confirmationBlack")
+                const leave2 = document.getElementById("confirmationBlack2")
 
                 // Fonction pour afficher le modal
                 function openModalBlackFunction() {
@@ -1372,7 +1373,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 });
 
                 leaveB.onclick = closeModalBlackFunction;
-
+                leave2.onclick = closeModalBlackFunction;
             } catch (error) {
                 console.log(error)
             }
