@@ -151,6 +151,7 @@ $avis = $avisTemp;
                 <h2>
                     Auteur
                 </h2>
+                <img src="./img/icone/blacklist.png" alt="icone de blacklistage" class="btnBlackList">
                 <img src="./img/icone/signalement.png" alt="icone de parametre" class="signalementSupp signaler signalerAvis">
             </div>
             <div class="noteEtoile">

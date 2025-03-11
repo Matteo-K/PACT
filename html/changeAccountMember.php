@@ -353,12 +353,11 @@
                         document.getElementById('boutonInscription').disabled = false;
                     }
                 })
-                .catch(error => {
-                    console.error('Erreur lors de l\'upload de la photo.', error);
-                    alert('Erreur lors de l\'upload de la photo.');
-                    // Réactiver le bouton de soumission en cas d'erreur
-                    document.getElementById('boutonInscription').disabled = false;
-                });
+                // .catch(error => {
+                //     console.error('Erreur lors de l\'upload de la photo.', error);
+                //     alert('Erreur lors de l\'upload de la photo.');
+                // });
+                document.getElementById('boutonInscription').disabled = false;
             };
 
             // Lire le fichier comme URL de données (pour afficher immédiatement)

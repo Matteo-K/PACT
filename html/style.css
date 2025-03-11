@@ -2233,6 +2233,7 @@ label[for="rest_ajoutPhotoMenu"] {
   width: 90%;
 }
 #mapTriFiltre{
+  
   width: 33vw;
 }
 
@@ -2688,7 +2689,7 @@ label[for="rest_ajoutPhotoMenu"] {
   flex-flow: row-reverse nowrap;
 }
 
-#tri, #filtre {
+#tri, #filtre, #carte_offres{
   display: none;
   width: 20vw;
   /* height: calc(100vh - var(--header-size)); */
@@ -2699,7 +2700,9 @@ label[for="rest_ajoutPhotoMenu"] {
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
+#carte_offres{
+  width:33vw
+}
 .checkmark {
   cursor: pointer;
   width: 31px;
@@ -3409,6 +3412,14 @@ label[for="rest_ajoutPhotoMenu"] {
 #blackImg{
   width: 20px;
   height: auto;
+}
+
+.btnBlackList{
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  top: 0.25em;
+  right: -1em;
 }
 
 
@@ -4530,12 +4541,12 @@ details .blacklist {
   margin: 0;
 }
 
-#ligneTitreAvis > img {
+#ligneTitreAvis > img:last-of-type {
   width: 2em;
   height: 2em;
   position: absolute;
   top: 0.25em;
-  right: 0.5em;
+  right: 2em;
 }
 
 #ligneTitreAvis > img:first-child {
