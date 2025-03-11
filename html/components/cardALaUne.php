@@ -2,7 +2,7 @@
   <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
   <figure>
   <?php $alt = !empty($urlImg) ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre";?>
-    <img <?php echo !empty($urlImg) ? "src='$urlImg'" : "" ?> alt=<?php echo $alt; ?>>
+    <img loading="lazy" <?php echo !empty($urlImg) ? "src='$urlImg'" : "" ?> alt=<?php echo $alt; ?>>
     <figcaption>
       <?php $titre = empty($nomOffre) ? "Offre ".$idOffre : $nomOffre ; ?>
       <h3><?php echo $nomOffre ?></h3>
