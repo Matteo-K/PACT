@@ -11,7 +11,7 @@
               <?php
             }
           ?>
-          <img src="<?= $urlImg ?>" alt="<?= $nomOffre ?>" title="<?= $nomOffre ?>">
+          <img loading="lazy" src="<?= $urlImg ?>" alt="<?= $nomOffre ?>" title="<?= $nomOffre ?>">
           <figcaption>
             <h4 class="title"><?= $nomOffre ?></h4>
             <div>
