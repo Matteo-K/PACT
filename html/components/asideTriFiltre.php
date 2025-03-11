@@ -258,7 +258,7 @@
             <button class="modifierBut" onclick="resetModal_close()">Annuler</button>
         </div>
         <div class="taillebtn">
-            <button class="modifierBut">Effacer les sélections</button>
+            <button class="modifierBut" onclick="resetModal_close()">Effacer les sélections</button>
         </div>
     </section>
 </section>

@@ -2979,6 +2979,12 @@ label[for="rest_ajoutPhotoMenu"] {
   }
 }
 
+.modal-content #btn-action {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+}
+
 /* Bloc tri et filtre */
 /* titre */
 #titreAside {
