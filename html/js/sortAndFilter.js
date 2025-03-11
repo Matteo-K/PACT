@@ -5,7 +5,7 @@
  * afin de trier et filtrer les offres de la page de recherche
  */
 
-import geocode from './geocode.js';  // Assure-toi que 'geocode' est exporté dans geocode.js
+import { geocode } from './geocode.js';  // Assure-toi que 'geocode' est exporté dans geocode.js
 
 
 let currentPage = 1;
