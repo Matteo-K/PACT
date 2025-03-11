@@ -1146,7 +1146,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     let motifSignal = document.querySelector('input[name="signalement"]:checked');
                     motifSignal.checked = false; // On désélectionne le motif choisi
                     texteComplement.value = ""; //On vide le textarea
-                    body.classList.add("no-scroll");
+                    body.classList.remove("no-scroll");
                 } catch (error) {
                     
                 }
@@ -1156,6 +1156,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             window.addEventListener('click', (event) => {
                 if (event.target === popup) {
                     popup.style.display = 'none';
+                    body.classList.remove("no-scroll");
                 }
             });
 
