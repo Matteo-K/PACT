@@ -357,7 +357,7 @@
                         method: 'POST',
                         body: formData
                     })
-                    .then(response => response.json())
+                    .then(response => response.text())
                     .then(text => {
                         console.log("Réponse brute du serveur:", text);
                         return JSON.parse(text); // Essaie de parser après vérification
