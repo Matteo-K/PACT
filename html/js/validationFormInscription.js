@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        if(currentFile === 'accountPro.php' || currentFile === 'accountMember.php') {
+        if(confirmPasswordField) {
             const motdepasse = document.getElementById('motdepasse').value;
             const confirmer = document.getElementById('confirmer').value;
 
