@@ -4,6 +4,10 @@
  * Ensemble des fonctions et évènements 
  * afin de trier et filtrer les offres de la page de recherche
  */
+
+import geocode from "./geocode";
+
+
 let currentPage = 1;
 let nbElement = 12;
 

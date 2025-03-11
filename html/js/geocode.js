@@ -19,3 +19,5 @@ function geocode(address) {
             return null;
         });
 }
+
+export default geocode;
