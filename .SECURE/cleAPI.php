@@ -1,0 +1,3 @@
+<?php
+    $cleApi = "cle";
+?>
