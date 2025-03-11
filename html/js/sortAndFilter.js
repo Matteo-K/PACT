@@ -619,15 +619,18 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   console.log(array);
   // Affichage
   displayOffers(array, elementStart, nbElement);
-
   // Affichage de la pagination
   updatePagination(array.length, nbElement);
+
+  //affichage des ping sur la carte
+  addPing(array);
 }
 
 function addPing(array){
-  array.forEach(elt=> {
-
-  });
+  for (const elt of array) {
+    let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
+    console.log(geocode);
+  }
 }
 
 /**
