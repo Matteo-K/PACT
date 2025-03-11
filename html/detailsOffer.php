@@ -1023,7 +1023,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </section>
 
                         <section class="modal" id="blacklistModal">
-                            <section class="modal-content">
+                            <section class="modal-contentBlack">
                                 <span class="closeBlack">&times;</span>
                                 <h2>blacklistage</h2>
 
