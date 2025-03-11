@@ -5,7 +5,7 @@
  * afin de trier et filtrer les offres de la page de recherche
  */
 
-import { geocode } from "./geocode.js";
+import { geocode } from "./geocode";
 
 let currentPage = 1;
 let nbElement = 12;
@@ -632,7 +632,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 
 function addPing(array){
   for (const elt of array) {
-    let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
+    let geoCode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
     console.log(geocode);
   }
 }
