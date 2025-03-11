@@ -1,4 +1,4 @@
-search/**
+/**
  * @file
  * @author Mattéo Kervadec & Antoine Guillerm
  * Ensemble des fonctions et évènements 
