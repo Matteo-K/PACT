@@ -493,7 +493,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <section id="hoverMessageAdd" class="hover-message">Vous avez trop de d'option en attente (1 option en attente et 1 en cour maximun par option)</section>
                     </section>
                     <section class="taillebtn">
-                        <button class="modifierBut " onclick="confirmation()">Quitter</button>
+                        <button class="modifierBut " id="confirmation">Quitter</button>
                     </section>
                 </section>
             </section>
@@ -1026,6 +1026,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <section class="modal-content">
                                 <span class="closeBlack">&times;</span>
                                 <h2>blacklistage</h2>
+
+                                <section class="taillebtn">
+                                    <button class="modifierBut " id="confirmationBlack">Annuler</button>
+                                </section>
                             </section>
                         </section>
                     </div>
@@ -1296,6 +1300,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const openModalBtn = document.getElementById("openModalBtn");
                 const closeModalBtn = document.querySelector(".close");
                 const body = document.body;
+                const leave = document.getElementById("confirmation")
                 // Fonction pour afficher le modal
                 function openModal() {
                     modal.style.display = "block";
@@ -1316,11 +1321,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 //     closeModal();
                 //   }
                 // }
-
-                // Soumettre le formulaire
-                function confirmation() {
-                    closeModal(); // Fermer la fenêtre modale après soumission
-                }
+                leave.onclick = closeModal
             } catch (error) {
                 console.log(error)
             }
@@ -1330,34 +1331,37 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const openModalBlackButtons = document.querySelectorAll(".btnBlackList");
                 const closeModalBlackButton = document.querySelector(".closeBlack");
                 const body = document.body;
-                            
+                const leaveB = document.getElementById("confirmationBlack")
+
                 // Fonction pour afficher le modal
                 function openModalBlackFunction() {
                     modalBlack.style.display = "block";
                     body.classList.add("no-scroll");
                 }
-                
+
                 // Fonction pour fermer le modal
                 function closeModalBlackFunction() {
                     modalBlack.style.display = "none";
                     body.classList.remove("no-scroll");
                 }
-                
+
                 // Ouvrir le popup lorsque le bouton est cliqué
                 openModalBlackButtons.forEach(button => {
                     button.addEventListener('click', openModalBlackFunction);
                 });
-                
+
                 // Fermer le popup lorsqu'on clique sur la croix
                 closeModalBlackButton.addEventListener('click', closeModalBlackFunction);
-                
+
                 // Fermer le popup si on clique en dehors de celui-ci
                 window.addEventListener('click', (event) => {
                     if (event.target === modalBlack) {
                         closeModalBlackFunction();
                     }
                 });
-                
+
+                leaveB.onclick = closeModalBlackFunction;
+
             } catch (error) {
                 console.log(error)
             }
