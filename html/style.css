@@ -5742,6 +5742,7 @@ div[id="messageErreur"] {
     padding: 20px;
     border-radius: 15px;
     overflow: auto;
+    margin-bottom: 15px;
   }
 
   #asideRetour {
