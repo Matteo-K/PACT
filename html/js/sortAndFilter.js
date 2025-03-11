@@ -1045,4 +1045,4 @@ document.addEventListener('DOMContentLoaded', function() {
 const checkboxesCat = [chkBxVisite, chkBxActivite, chkBxSpectacle, chkBxParc, chkBxRestauration];
 const checkboxesNote = [chkBxNote1, chkBxNote2, chkBxNote3, chkBxNote4, chkBxNote5];
 const checkboxesStatuts = [chkBxOuvert, chkBxFerme];
-const checkboxesEnligneHorsLigne = [chkBxEnLigne, chkBxEnLigne];
+const checkboxesEnligneHorsLigne = [chkBxEnLigne, chkBxHorsLigne];
