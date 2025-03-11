@@ -632,8 +632,8 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 
 function addPing(array){
   for (const elt of array) {
-    let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
-    console.log(geocode);
+    let geoCode = geocode(elt["numeroRue"] + " " + elt["rue"] + ", " + elt["ville"] + ", " + elt["codePostal"]);
+    console.log(geoCode);
   }
 }
 

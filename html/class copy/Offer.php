@@ -24,6 +24,8 @@ $currentDay = $daysOfWeek[$currentDay];
 $currentTime = new DateTime(date('H:i'));
 
 class Offer {
+  protected $data = null;
+
   private $idUser;
   private $nomUser;
   private $idOffre;
@@ -89,66 +91,6 @@ class Offer {
     require __DIR__."/../components/cardALaUnePro.php";
   }
 
-  public function horaireToJSON($horaire) {
-    $formattedResultats = [];
-    foreach ($horaire as $result) {
-      $formattedResultats[] = json_encode([
-          'jour' => $result['jour'],
-          'heureOuverture' => $result['heureouverture'],
-          'heureFermeture' => $result['heurefermeture']
-      ]);
-    }
-    return $formattedResultats;
-  }
-
-  public function horairePrecisToJSON($horaire) {
-    $formattedResultats = [];
-    foreach ($horaire as $result) {
-      $formattedResultats[] = json_encode([
-        'jour' => $result['jour'],
-        'heureouverture' => $result['heureouverture'],
-        'heurefermeture' => $result['heurefermeture'],
-        'daterepresentation' => $result['daterepresentation']
-      ]);
-    }
-    return $formattedResultats;
-  }
-
-  /**
-   * Détermine le statut ouvert/fermé 
-   * suivant les horaires déterminés et l'horaire actuelle
-   */
-  public function statutOuverture($soir, $midi = null) {
-    global $currentDay, $currentTime, $currentDate;
-    $ouverture = "EstFermé";
-    if ($this->categorie != "Spectacle") {
-      $horaires = array_merge($soir, $midi);
-      // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
-      foreach ($horaires as $horaire) {
-        if ($horaire['jour'] == $currentDay) {
-          $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
-          $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
-          if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
-            $ouverture = "EstOuvert";
-            break;
-          }
-        }
-      }
-    } else {
-      foreach ($soir as $horaire) {
-        if ($horaire['daterepresentation'] == $currentDate) {
-          $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
-          $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
-          if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
-            $ouverture = "EstOuvert";
-            break;
-          }
-        }
-      }
-    }
-    return $ouverture;
-  }
-
   public function filterPagination($idUser_, $typeUser_) {
     if (($typeUser_ == "pro_public" || $typeUser_ == "pro_prive")) {
       return $this->idUser == $idUser_;
@@ -192,6 +134,13 @@ class Offer {
     $this->options = $options_;
     $this->noteAvg = number_format($noteAvg_,1);
     $this->nbNote = $nbNote_;
+  }
+
+  /**
+   * Récupère l'id de l'offre
+   */
+  public function getIdOffre() {
+    return $this->data["idOffre"];
   }
 
   public function getData() {
