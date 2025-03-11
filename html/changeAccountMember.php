@@ -341,23 +341,26 @@
                 .then(response => response.json()) // S'assurer de récupérer une réponse JSON
                 .then(data => {
                     // Vérifier la réponse
+                    console.log(data);
                     if (data.status === 'success') {
                         // Si l'upload est réussi, mettre à jour l'image de profil dans le DOM
                         document.getElementById('current-profile-pic').src = data.newPhotoPath;
                         alert('Photo de profil mise à jour !');
                         // Réactiver le bouton de soumission
                         document.getElementById('boutonInscription').disabled = false;
+                        document.getElementById('formMember').submit();
                     } else {
                         alert('Erreur : ' + data.message);
                         // Réactiver le bouton de soumission en cas d'échec
                         document.getElementById('boutonInscription').disabled = false;
                     }
                 })
-                // .catch(error => {
-                //     console.error('Erreur lors de l\'upload de la photo.', error);
-                //     alert('Erreur lors de l\'upload de la photo.');
-                // });
-                document.getElementById('boutonInscription').disabled = false;
+                .catch(error => {
+                    console.error('Erreur lors de l\'upload de la photo.', error);
+                    alert('Erreur lors de l\'upload de la photo.');
+                    // Réactiver le bouton de soumission en cas d'erreur
+                    document.getElementById('boutonInscription').disabled = false;
+                });
             };
 
             // Lire le fichier comme URL de données (pour afficher immédiatement)
