@@ -23,6 +23,12 @@
             // Générer un nom de fichier unique
             $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
 
+            $fichier = fopen("affiche.txt", "w");
+                    fwrite($fichier, "test\n");
+
+                    // Fermer le fichier après écriture
+                    fclose($fichier);
+
             // Déplacer le fichier téléchargé vers le répertoire de destination
             if (move_uploaded_file($file['tmp_name'], $targetFile)) {
                 try {
@@ -31,17 +37,21 @@
                     $stmtImage->execute([$targetFile]);
                     $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
 
-                    // $stmtCurrentPhoto = $conn->prepare("SELECT url FROM pact._photo_profil WHERE idU = ?");
-                    // $stmtCurrentPhoto->execute([$userId]);
-                    // $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
+                    $stmtCurrentPhoto = $conn->prepare("SELECT url FROM pact._photo_profil WHERE idU = ?");
+                    $stmtCurrentPhoto->execute([$userId]);
+                    $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
 
-                    // // Si une photo de profil existe et n'est pas la photo par défaut, la supprimer
-                    // print_r($currentPhoto);
-                    // if ($currentPhoto && $currentPhoto['url'] !== "./img/profile_picture/default.svg") {
-                    //     // Supprimer le fichier image de l'ancien chemin sur le serveur
-                    //     if (file_exists($currentPhoto['url'])) {
-                    //         unlink($currentPhoto['url']);
-                    //     }
+                    // Si une photo de profil existe et n'est pas la photo par défaut, la supprimer
+                    $fichier = fopen("affiche.txt", "w");
+                    fwrite($fichier, "$currentPhoto\n");
+
+                    // Fermer le fichier après écriture
+                    fclose($fichier);
+                    if ($currentPhoto && $currentPhoto['url'] !== "./img/profile_picture/default.svg") {
+                        // Supprimer le fichier image de l'ancien chemin sur le serveur
+                        if (file_exists($currentPhoto['url'])) {
+                            unlink($currentPhoto['url']);
+                        }
 
                     //     // Supprimer l'ancienne photo de la base de données
                     //     $stmtDeletePhoto = $conn->prepare("DELETE FROM pact._photo_profil WHERE idU = ?");
@@ -61,9 +71,15 @@
 
                     // Retourner la nouvelle URL de l'image pour l'affichage dynamique
                     echo json_encode(['status' => 'success', 'newPhotoPath' => $targetFile]);
-                } 
+                    } 
+                }
                 
                 catch (Exception $e) {
+                    $fichier = fopen("affiche.txt", "a");
+                    fwrite($fichier, "$e\n");
+
+                    // Fermer le fichier après écriture
+                    fclose($fichier);
                     echo json_encode(['status' => 'error', 'message' => 'Erreur lors de la mise à jour de la photo de profil : ' . $e->getMessage()]);
                 }
             } 
