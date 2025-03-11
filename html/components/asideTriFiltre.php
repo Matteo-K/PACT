@@ -357,7 +357,7 @@
         document.body.classList.remove("no-scroll");
     }
     
-    let map = L.map('map').setView([48.46, -2.85], 8);
+    let map = L.map('map').setView([48.46, -2.85], 9);
 
     L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
          attribution: '&copy; <a href="https://www.thunderforest.com/">Thunderforest</a>',
