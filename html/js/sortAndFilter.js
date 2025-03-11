@@ -44,14 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  function addPing(array){
-    for (const elt of array) {
-      let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
-      console.log(geocode);
-    }
-  }
-
-  window.addPing = addPing;
 });
 
 /// Inputs de recherche ///
@@ -635,6 +627,14 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   //affichage des ping sur la carte
   addPing(array);
 }
+
+function addPing(array){
+  for (const elt of array) {
+    let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
+    console.log(geocode);
+  }
+}
+
 
 /**
  * 
