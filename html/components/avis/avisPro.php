@@ -304,7 +304,7 @@ function afficheAvisSelect(idAvis) {
         etoilesAvis[i].style.backgroundColor = accentColor;
     }
 
-    listeAvis[idAvis].lu = false;
+    listeAvis[idAvis].lu = true;
     updateOnglet(Object.entries(listeAvis));
 
     if (listeAvis[idAvis]['note'] < 5) {
