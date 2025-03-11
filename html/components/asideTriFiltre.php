@@ -247,19 +247,21 @@
         </aside>
     </div>
 </section>
-<section class="modal-content">
-    <span class="close" onclick="resetModal_close()">×</span>
-    <section class="titre">
-        <h2>⚠️ Attention : la réinitialisation des filtres, tris et des paramètres de recherche vont effacer toutes vos sélections en cours.</h2>
-        <p class="taille">Souhaitez-vous continuer ?</p>
-    </section>
-    <section id="btn-action">
-        <div>
-            <button class="modifierBut" onclick="resetModal_close()">Annuler</button>
-        </div>
-        <div class="taillebtn">
-            <button class="modifierBut" onclick="resetModal_close()">Effacer les sélections</button>
-        </div>
+<section class="modal">
+    <section class="modal-content">
+        <span class="close" onclick="resetModal_close()">×</span>
+        <section class="titre">
+            <h2>⚠️ Attention : la réinitialisation des filtres, tris et des paramètres de recherche vont effacer toutes vos sélections en cours.</h2>
+            <p class="taille">Souhaitez-vous continuer ?</p>
+        </section>
+        <section id="btn-action">
+            <div>
+                <button class="modifierBut" onclick="resetModal_close()">Annuler</button>
+            </div>
+            <div class="taillebtn">
+                <button class="modifierBut" onclick="resetModal_close()">Effacer les sélections</button>
+            </div>
+        </section>
     </section>
 </section>
 
@@ -345,7 +347,7 @@
         });
     }
 
-    const modal = document.querySelector("#trifiltre + .modal-content");
+    const modal = document.querySelector("#trifiltre + .modal");
     function resetModal() {
         modal.style.display = "block";
     }
