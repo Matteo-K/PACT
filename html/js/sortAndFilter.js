@@ -616,7 +616,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   
   // Tris
   array = selectSort(array);
-  console.table(array);
+  console.log(array);
   // Affichage
   displayOffers(array, elementStart, nbElement);
 
