@@ -259,10 +259,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // Afficher les erreurs globales
             displayGlobalErrors(errors);
 
-            // Si aucune erreur, envoyer le formulaire
-            if (errors.length === 0) {
-                form.submit();
-            }
+        }
+        // Si aucune erreur, envoyer le formulaire
+        if (errors.length === 0) {
+            form.submit();
         }
     }); 
 });
