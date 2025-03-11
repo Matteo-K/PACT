@@ -578,6 +578,8 @@ CREATE TABLE _blacklist(
   idB SERIAL PRIMARY KEY,
   idC INT NOT NULL,
   idOffre INT NOT NULL,
+  dateBlackList TIMESTAMP NOT NULL,
+  dateFinBlackList TIMESTAMP NOT NULL,
   CONSTRAINT _blacklist_fk_offre
       FOREIGN KEY (idOffre)
       REFERENCES _offre(idOffre),

@@ -1,13 +1,6 @@
 <?php
     session_start();
     require_once 'db.php';
-
-    $fichier = fopen("affiche.txt", "w");
-    fwrite($fichier, "test\n");
-
-                    // Fermer le fichier après écriture
-    fclose($fichier);
-
     // Récupérer l'ID de l'utilisateur depuis la session
     $userId = $_SESSION['idUser'];
 
@@ -29,12 +22,6 @@
             // Générer un nom de fichier unique
             $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
 
-            $fichier = fopen("affiche.txt", "w");
-                    fwrite($fichier, "test\n");
-
-                    // Fermer le fichier après écriture
-                    fclose($fichier);
-
             // Déplacer le fichier téléchargé vers le répertoire de destination
             if (move_uploaded_file($file['tmp_name'], $targetFile)) {
                 try {
@@ -47,13 +34,11 @@
                     $stmtCurrentPhoto->execute([$userId]);
                     $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
 
-                    // Si une photo de profil existe et n'est pas la photo par défaut, la supprimer
-                    $fichier = fopen("affiche.txt", "w");
-                    fwrite($fichier, "$currentPhoto\n");
+                    print_r($currentPhoto);
+                    print_r($imageExist);
 
-                    // Fermer le fichier après écriture
-                    fclose($fichier);
-                    if ($currentPhoto && $currentPhoto['url'] !== "./img/profile_picture/default.svg") {
+                    // Si une photo de profil existe et n'est pas la photo par défaut, la supprimer
+                    if ($currentPhoto['url'] != "./img/profile_picture/default.svg") {
                         // Supprimer le fichier image de l'ancien chemin sur le serveur
                         if (file_exists($currentPhoto['url'])) {
                             unlink($currentPhoto['url']);
@@ -69,6 +54,7 @@
                         $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
                         $imageName = basename($targetFile);
                         $stmtInsertImage->execute([$targetFile, $imageName]);
+                        print_r($stmtInsertImage);
                     }
 
                     // Mettre à jour la photo de profil de l'utilisateur
@@ -81,11 +67,6 @@
                 }
                 
                 catch (Exception $e) {
-                    $fichier = fopen("affiche.txt", "a");
-                    fwrite($fichier, "$e\n");
-
-                    // Fermer le fichier après écriture
-                    fclose($fichier);
                     echo json_encode(['status' => 'error', 'message' => 'Erreur lors de la mise à jour de la photo de profil : ' . $e->getMessage()]);
                 }
             } 
