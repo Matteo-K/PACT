@@ -1026,6 +1026,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <section class="modal-content">
                                 <span class="closeBlack">&times;</span>
                                 <h2>blacklistage</h2>
+
+                                <section class="taillebtn">
+                                    <button class="modifierBut " onclick="confirmationBlack()">Annuler</button>
+                                </section>
                             </section>
                         </section>
                     </div>
@@ -1330,34 +1334,38 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const openModalBlackButtons = document.querySelectorAll(".btnBlackList");
                 const closeModalBlackButton = document.querySelector(".closeBlack");
                 const body = document.body;
-                            
+
                 // Fonction pour afficher le modal
                 function openModalBlackFunction() {
                     modalBlack.style.display = "block";
                     body.classList.add("no-scroll");
                 }
-                
+
                 // Fonction pour fermer le modal
                 function closeModalBlackFunction() {
                     modalBlack.style.display = "none";
                     body.classList.remove("no-scroll");
                 }
-                
+
                 // Ouvrir le popup lorsque le bouton est cliqué
                 openModalBlackButtons.forEach(button => {
                     button.addEventListener('click', openModalBlackFunction);
                 });
-                
+
                 // Fermer le popup lorsqu'on clique sur la croix
                 closeModalBlackButton.addEventListener('click', closeModalBlackFunction);
-                
+
                 // Fermer le popup si on clique en dehors de celui-ci
                 window.addEventListener('click', (event) => {
                     if (event.target === modalBlack) {
                         closeModalBlackFunction();
                     }
                 });
-                
+
+                function confirmationBlack(){
+                    closeModalBlackFunction();
+                }
+
             } catch (error) {
                 console.log(error)
             }
