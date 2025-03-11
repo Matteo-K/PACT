@@ -4522,7 +4522,7 @@ details .blacklist {
   margin: 0;
 }
 
-#ligneTitreAvis > img {
+#ligneTitreAvis > img:last-of-type {
   width: 2em;
   height: 2em;
   position: absolute;
