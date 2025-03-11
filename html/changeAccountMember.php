@@ -204,12 +204,12 @@
                     <label for="chbxConfirme">
                         <input type="radio" id="chbxConfirme" value="chbxConfirme">
                         <span class="checkmark"></span>
-                        J'ai prends connaissance que la suppression des comptes est définitive et que mes avis restent visibles sur la plateformes,
+                        Je prends connaissance que la suppression des comptes est définitive et que mes avis restent visibles sur la plateformes,
                         en tant qu'utilisateurs anonyme. Si par hasard votre téléphone est dès demain spammé de hackers russent qui veulent votre cul, 
                         cela n'a absolument rien a voir avec notre site.
                     </label>
 
-                    <input type="submit" id="confirmeSuppression"> Confirmer </input>
+                    <input type="submit" id="confirmeSuppression" value=""></input>
                 </form>
             </section>
         </section>
@@ -447,7 +447,7 @@
                 //     })
                 // });
 
-                let inputMDP = document.querySelector('.signalementPopup #mdp');
+                let inputMDP = document.querySelector('.supprComptePopup #mdp');
                 let confirmation = document.getElementById('chbxConfirme');
                 confirmation.checked = false; // On désélectionne le motif choisi
                 inputMDP.value = ""; //On vide le mdp
@@ -457,13 +457,13 @@
             });
 
             // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
-            const btnFermer = document.querySelector('.signalementPopup .close');
+            const btnFermer = document.querySelector('.supprComptePopup .close');
 
             btnFermer.addEventListener('click', () => {
                 popup.style.display = 'none';
 
                 try {
-                    let inputMDP = document.querySelector('.signalementPopup #mdp');
+                    let inputMDP = document.querySelector('.supprComptePopup #mdp');
                     let confirmation = document.getElementById('chbxConfirme');
                     confirmation.checked = false; // On désélectionne le motif choisi
                     inputMDP.value = ""; //On vide le mdp
