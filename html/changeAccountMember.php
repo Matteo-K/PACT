@@ -310,7 +310,7 @@
             <?php 
                 // print_r($infoPro);
             ?>
-            <p>Votre Clé API :</p>
+            <p>Service Tchatator - Votre Clé API :</p>
 
             <?php if($infoPro["apikey"]){?>
                 <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
