@@ -1326,24 +1326,28 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
 
             try {
-                const modal = document.getElementById("blacklistModal");
-                const openModalBtn = document.getElementsByClassName("btnBlackList");
-                const closeModalBtn = document.querySelector(".closeBlack");
+                const modalBlack = document.getElementById("blacklistModal");
+                const openModalBlack = document.getElementsByClassName("btnBlackList");
+                const closeModalBlack = document.querySelector(".closeBlack");
                 const body = document.body;
                 // Fonction pour afficher le modal
                 function openModal() {
-                    modal.style.display = "block";
+                    modalBlack.style.display = "block";
                     body.classList.add("no-scroll");
                 }
                 // Fonction pour fermer le modal
                 function closeModal() {
-                    modal.style.display = "none";
+                    modalBlack.style.display = "none";
                     body.classList.remove("no-scroll");
                 }
                 // Ouvrir le popup lorsque le bouton est cliqué
-                openModalBtn.onclick = openModal;
+                openModalBlack.forEach(element => {
+                    element.addEventListener('click', (event) => {
+                        openModal;
+                    });
+                });
                 // Fermer le popup lorsqu'on clique sur la croix
-                closeModalBtn.onclick = closeModal;
+                closeModalBlack.onclick = closeModal;
                 // Fermer le popup lorsqu'on clique en dehors du contenu
                 // window.onclick = function(event) {
                 //   if (event.target === modal) {
