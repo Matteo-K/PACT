@@ -5,7 +5,7 @@
  * afin de trier et filtrer les offres de la page de recherche
  */
 
-import geocode from "./geocode";
+import { geocode } from './geocode.js';
 
 
 let currentPage = 1;
