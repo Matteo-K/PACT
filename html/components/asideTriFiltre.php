@@ -242,8 +242,8 @@
             </div>
         </aside>
         <aside id="carte_offres">
-            <article id="mapTriFiltre">
-            </article>
+            <div id="mapTriFiltre">
+            </div>
         </aside>
     </div>
 </section>
