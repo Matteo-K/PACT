@@ -616,12 +616,18 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   
   // Tris
   array = selectSort(array);
-
+  console.table(array);
   // Affichage
   displayOffers(array, elementStart, nbElement);
 
   // Affichage de la pagination
   updatePagination(array.length, nbElement);
+}
+
+function addPing(array){
+  array.forEach(elt=> {
+
+  });
 }
 
 /**
