@@ -1,1 +1,3 @@
-<?php $cleAPI = "cle";?>
+<?php
+    $cleApi = "cle";
+?>

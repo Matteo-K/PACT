@@ -151,6 +151,7 @@ $avis = $avisTemp;
                 <h2>
                     Auteur
                 </h2>
+                <img src="./img/icone/blacklist.png" alt="icone de blacklistage" class="btnBlackList">
                 <img src="./img/icone/signalement.png" alt="icone de parametre" class="signalementSupp signaler signalerAvis">
             </div>
             <div class="noteEtoile">
@@ -208,6 +209,7 @@ $avis = $avisTemp;
 //     li.addEventListener(afficheAvisSelect())
 // });
 
+const titreOffre = document.title;
 
 let listeAvis = <?php echo json_encode($avis) ?>;
 
@@ -239,7 +241,6 @@ const primaryColor = "rgba(28, 164, 237, 0.6)";
 const aucunAvisSelect = document.getElementById("aucunAvisSelect");
 const blocDetails = document.querySelector("#avisproS2 > details");
 const contenuDetails = document.querySelector("#avisproS2 .contentDetails");
-
 
 const blocReponseAvis = document.getElementById("blocReponsePro");
 
@@ -456,12 +457,23 @@ chbxNonRep.addEventListener('change', () => displayArrayAvis(listeAvis));
 
 function displayArrayAvis(arrayAvis) {
     const blocListAvis = document.getElementById("listeAvis");
-    
     let array = Object.entries(arrayAvis);
+    
+    // Calcul du nombre de non lu
+    const nb_nonLu = filtreNonLu(array.copy());
+    if (nb_nonLu > 0) {
+        document.title = "("+ nb_no +") " + titreOffre;
+    } else {
+        document.title = titreOffre;
+    }
 
     // filtre
-    array = filtreNonLu(array);
-    array = filtreNonRep(array);
+    if (chbxNonLu.checked) {
+        array = filtreNonLu(array);
+    }
+    if (chbxNonRep.checked) {
+        array = filtreNonRep(array);
+    }
 
     // tri
     array = triAvis(array);
@@ -538,26 +550,20 @@ function triDateAncien(arrayAvis) {
  * Retourne une liste avec seulement lesavis non lus
  */
 function filtreNonLu(arrayAvis) {
-    if (chbxNonLu.checked) {
-        return arrayAvis.filter(avis => {
-            return !avis[1].lu;
-        });
-        chbxNonLu.style.color = accentColor;
-    }
-    return arrayAvis;
+    // chbxNonLu.style.color = accentColor;
+    return arrayAvis.filter(avis => {
+        return !avis[1].lu;
+    });
 }
 
 /**
  * Retourne une liste avec seulement lesavis non répondu
  */
 function filtreNonRep(arrayAvis) {
-    if (chbxNonRep.checked) {
-        return arrayAvis.filter(avis => {
-            return avis[1].idc_reponse == null;
-        });
-        chbxNonRep.style.color = accentColor;
-    }
-    return arrayAvis;
+    // chbxNonRep.style.color = accentColor;
+    return arrayAvis.filter(avis => {
+        return avis[1].idc_reponse == null;
+    });
 }
 
 /**
