@@ -34,15 +34,6 @@
                     $stmtCurrentPhoto->execute([$userId]);
                     $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
 
-                    print_r($currentPhoto);
-                    print_r($targetFile);
-
-                    if ($imageExist) {
-                        print_r($imageExist);
-                    }else {
-                        echo "insert1\n";
-                    }
-
                     // Si une photo de profil existe et n'est pas la photo par défaut, la supprimer
                     if ($currentPhoto['url'] != "./img/profile_picture/default.svg") {
                         // Supprimer le fichier image de l'ancien chemin sur le serveur
@@ -59,11 +50,9 @@
                     
                     
                     if (!$imageExist) {
-                        echo "insert2\n";
                         $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
                         $imageName = basename($targetFile);
                         $stmtInsertImage->execute([$targetFile, $imageName]);
-                        print_r($stmtInsertImage);
                     }
 
                     // Mettre à jour la photo de profil de l'utilisateur
