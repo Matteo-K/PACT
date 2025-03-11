@@ -4,8 +4,6 @@
     // Récupérer l'ID de l'utilisateur depuis la session
     $userId = $_SESSION['idUser'];
 
-    echo 1;
-
     // Vérifier si un fichier a été envoyé
     if (isset($_FILES['profile-pic']) && $_FILES['profile-pic']['error'] === UPLOAD_ERR_OK) {
         $file = $_FILES['profile-pic'];
@@ -35,6 +33,8 @@
                     $stmtCurrentPhoto = $conn->prepare("SELECT url FROM pact._photo_profil WHERE idU = ?");
                     $stmtCurrentPhoto->execute([$userId]);
                     $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
+
+                    print_r($currentPhoto);
 
                     // Si une photo de profil existe et n'est pas la photo par défaut, la supprimer
                     if ($currentPhoto && $currentPhoto['url'] !== "./img/profile_picture/default.svg") {
