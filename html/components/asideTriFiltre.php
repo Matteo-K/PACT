@@ -242,7 +242,7 @@
             </div>
         </aside>
         <aside id="carte_offres">
-            <div id="mapTriFiltre">
+            <div id="map">
             </div>
         </aside>
     </div>
@@ -253,9 +253,13 @@
         <h2>⚠️ Attention : la réinitialisation des filtres, tris et des paramètres de recherche vont effacer toutes vos sélections en cours.</h2>
         <p class="taille">Souhaitez-vous continuer ?</p>
     </section>
-    <section class="taillebtn" id="content-1">
-        <button class="modifierBut" onclick="resetModal_close()">Annuler</button>
-        <button class="modifierBut">Effacer les sélections</button>
+    <section id="btn-action">
+        <div>
+            <button class="modifierBut" onclick="resetModal_close()">Annuler</button>
+        </div>
+        <div class="taillebtn">
+            <button class="modifierBut">Effacer les sélections</button>
+        </div>
     </section>
 </section>
 
@@ -305,15 +309,13 @@
 
         const clickedAside = asideElements[element.id];
 
-        // Vérifier si on clique sur le même bouton et que l'aside est déjà ouvert
         if (previousAside === clickedAside && clickedAside.classList.contains('openAside')) {
             clickedAside.classList.remove('openAside');
             element.classList.remove('btnAsideOpen');
-            previousAside = null; // Réinitialiser l'aside précédent
+            previousAside = null;
             return;
         }
 
-        // Fermer tous les asides et enlever la classe des boutons
         Object.keys(asideElements).forEach(id => {
             document.getElementById(id).classList.remove('btnAsideOpen');
         });
@@ -352,7 +354,7 @@
         modal.style.display = "none";
     }
     
-    var map = L.map('mapTriFiltre').setView([48.8566, -2.3522], 13);
+    var map = L.map('map').setView([48.8566, -2.3522], 13);
 
     L.tileLayer('proxy.php?z={z}&x={x}&y={y}', {
         attribution: '&copy; <a href="https://www.thunderforest.com/">Thunderforest</a>',
