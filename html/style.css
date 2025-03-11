@@ -3402,7 +3402,10 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .btnBlackList{
   width: 44px;
-  height: auto;
+  height: 44px;
+  position: absolute;
+  top: 0.25em;
+  right: -1em;
 }
 
 
@@ -4529,7 +4532,7 @@ details .blacklist {
   height: 2em;
   position: absolute;
   top: 0.25em;
-  right: 0.5em;
+  right: 2em;
 }
 
 #ligneTitreAvis > img:first-child {
