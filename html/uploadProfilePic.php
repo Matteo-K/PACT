@@ -2,6 +2,12 @@
     session_start();
     require_once 'db.php';
 
+    $fichier = fopen("affiche.txt", "w");
+    fwrite($fichier, "test\n");
+
+                    // Fermer le fichier après écriture
+    fclose($fichier);
+
     // Récupérer l'ID de l'utilisateur depuis la session
     $userId = $_SESSION['idUser'];
 
