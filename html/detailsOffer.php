@@ -1326,35 +1326,38 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
 
             try {
-                const modal = document.getElementById("blacklistModal");
-                const openModalBtn = document.getElementsByClassName("btnBlackList");
-                const closeModalBtn = document.querySelector(".closeBlack");
+                const modalBlack = document.getElementById("blacklistModal");
+                const openModalBlackButtons = document.querySelectorAll(".btnBlackList");
+                const closeModalBlackButton = document.querySelector(".closeBlack");
                 const body = document.body;
+                            
                 // Fonction pour afficher le modal
-                function openModal() {
-                    modal.style.display = "block";
+                function openModalBlackFunction() {
+                    modalBlack.style.display = "block";
                     body.classList.add("no-scroll");
                 }
+                
                 // Fonction pour fermer le modal
-                function closeModal() {
-                    modal.style.display = "none";
+                function closeModalBlackFunction() {
+                    modalBlack.style.display = "none";
                     body.classList.remove("no-scroll");
                 }
+                
                 // Ouvrir le popup lorsque le bouton est cliqué
-                openModalBtn.onclick = openModal;
+                openModalBlackButtons.forEach(button => {
+                    button.addEventListener('click', openModalBlackFunction);
+                });
+                
                 // Fermer le popup lorsqu'on clique sur la croix
-                closeModalBtn.onclick = closeModal;
-                // Fermer le popup lorsqu'on clique en dehors du contenu
-                // window.onclick = function(event) {
-                //   if (event.target === modal) {
-                //     closeModal();
-                //   }
-                // }
-
-                // Soumettre le formulaire
-                function confirmation() {
-                    closeModal(); // Fermer la fenêtre modale après soumission
-                }
+                closeModalBlackButton.addEventListener('click', closeModalBlackFunction);
+                
+                // Fermer le popup si on clique en dehors de celui-ci
+                window.addEventListener('click', (event) => {
+                    if (event.target === modalBlack) {
+                        closeModalBlackFunction();
+                    }
+                });
+                
             } catch (error) {
                 console.log(error)
             }

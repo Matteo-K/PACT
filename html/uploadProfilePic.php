@@ -1,76 +1,63 @@
 <?php
-    // Démarrer la session
     session_start();
-
-    // Connexion à la base de données
     require_once 'db.php';
-    
-    // Photo de profil
-    $file = $_FILES['profile-pic'];
+
+    // Récupérer l'ID de l'utilisateur depuis la session
+    $userId = $_SESSION['idUser'];
 
     // Vérifier si un fichier a été envoyé
     if (isset($_FILES['profile-pic']) && $_FILES['profile-pic']['error'] === UPLOAD_ERR_OK) {
-        // Récupérer le fichier téléchargé
         $file = $_FILES['profile-pic'];
-    
-        // Définir les types de fichiers autorisés
+
+        // Types de fichiers autorisés
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-    
-        // Vérifier si le type de fichier est autorisé
+
         if (in_array($file['type'], $allowedTypes)) {
-            // Définir le répertoire de destination pour l'upload
             $targetDir = './img/profile_picture/';
-            
-            // Vérifier si le répertoire existe, sinon créer le répertoire
+
+            // Vérifier si le répertoire existe, sinon le créer
             if (!is_dir($targetDir)) {
-                mkdir($targetDir, 0777, true);  // Créer le répertoire avec les bonnes permissions
+                mkdir($targetDir, 0777, true);
             }
-    
-            // Créer un nom de fichier unique pour éviter les collisions
+
+            // Générer un nom de fichier unique
             $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
-    
+
             // Déplacer le fichier téléchargé vers le répertoire de destination
             if (move_uploaded_file($file['tmp_name'], $targetFile)) {
                 try {
-                    // Vérifier si l'URL de l'image existe déjà dans la table _image
+                    // Vérifier si l'image existe déjà dans la base de données
                     $stmtImage = $conn->prepare("SELECT * FROM pact._image WHERE url = ?");
                     $stmtImage->execute([$targetFile]);
                     $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
 
-                    if($photoProfil['url'] !="./img/profile_picture/default.svg"){
-                        unlink($photoProfil['url']);
-                    }
-    
+                    // if($photoProfil['url'] !="./img/profile_picture/default.svg"){
+                    //     unlink($photoProfil['url']);
+                    // }
+
+                    // Si l'image n'existe pas déjà, l'ajouter à la table _image
                     if (!$imageExist) {
-                        // Si l'image n'existe pas, l'ajouter à la table _image avec un nom pour "nomimage"
                         $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
-                        
-                        // Utiliser le nom du fichier comme nom d'image (ou autre logique pour générer un nom unique)
-                        $imageName = basename($targetFile); // Vous pouvez personnaliser cette logique si nécessaire
+                        $imageName = basename($targetFile);
                         $stmtInsertImage->execute([$targetFile, $imageName]);
                     }
-    
-                    // Mettre à jour l'URL de la photo de profil dans la table _photo_profil
+
+                    // Mettre à jour la photo de profil de l'utilisateur
                     $stmtUpdatePhoto = $conn->prepare("UPDATE pact._photo_profil SET url = ? WHERE idU = ?");
                     $stmtUpdatePhoto->execute([$targetFile, $userId]);
-    
-                    $_SESSION['success'] = "Photo de profil mise à jour avec succès.";
-                    header("Location: changeAccountMember.php");
-                    exit();
-                } 
-                
-                catch (Exception $e) {
-                    $_SESSION['errors'][] = "Erreur lors de la mise à jour de la photo : " . $e->getMessage();
+
+                    // Retourner la nouvelle URL de l'image pour l'affichage dynamique
+                    echo json_encode(['status' => 'success', 'newPhotoPath' => $targetFile]);
+                } catch (Exception $e) {
+                    echo json_encode(['status' => 'error', 'message' => 'Erreur lors de la mise à jour de la photo de profil : ' . $e->getMessage()]);
                 }
-            } 
-            
-            else {
-                $_SESSION['errors'][] = "Échec du téléchargement de l'image.";
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Échec du téléchargement de l\'image.']);
             }
-        } 
-        
-        else {
-            $_SESSION['errors'][] = "Seules les images JPG, PNG ou GIF sont autorisées.";
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Seules les images JPG, PNG ou GIF sont autorisées.']);
         }
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Aucun fichier téléchargé.']);
     }
 ?>

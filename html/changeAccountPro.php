@@ -70,74 +70,74 @@
         $ville = trim($_POST['ville']);
 
 
-        // Photo de profil
-        $file = $_FILES['profile-pic'];
+        // // Photo de profil
+        // $file = $_FILES['profile-pic'];
 
-        // Vérifier si un fichier a été envoyé
-        if (isset($_FILES['profile-pic']) && $_FILES['profile-pic']['error'] === UPLOAD_ERR_OK) {
-            // Récupérer le fichier téléchargé
-            $file = $_FILES['profile-pic'];
+        // // Vérifier si un fichier a été envoyé
+        // if (isset($_FILES['profile-pic']) && $_FILES['profile-pic']['error'] === UPLOAD_ERR_OK) {
+        //     // Récupérer le fichier téléchargé
+        //     $file = $_FILES['profile-pic'];
         
-            // Définir les types de fichiers autorisés
-            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        //     // Définir les types de fichiers autorisés
+        //     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
         
-            // Vérifier si le type de fichier est autorisé
-            if (in_array($file['type'], $allowedTypes)) {
-                // Définir le répertoire de destination pour l'upload
-                $targetDir = './img/profile_picture/';
+        //     // Vérifier si le type de fichier est autorisé
+        //     if (in_array($file['type'], $allowedTypes)) {
+        //         // Définir le répertoire de destination pour l'upload
+        //         $targetDir = './img/profile_picture/';
                 
-                // Vérifier si le répertoire existe, sinon créer le répertoire
-                if (!is_dir($targetDir)) {
-                    mkdir($targetDir, 0777, true);  // Créer le répertoire avec les bonnes permissions
-                }
+        //         // Vérifier si le répertoire existe, sinon créer le répertoire
+        //         if (!is_dir($targetDir)) {
+        //             mkdir($targetDir, 0777, true);  // Créer le répertoire avec les bonnes permissions
+        //         }
         
-                // Créer un nom de fichier unique pour éviter les collisions
-                $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
+        //         // Créer un nom de fichier unique pour éviter les collisions
+        //         $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
         
-                // Déplacer le fichier téléchargé vers le répertoire de destination
-                if (move_uploaded_file($file['tmp_name'], $targetFile)) {
-                    try {
-                        // Vérifier si l'URL de l'image existe déjà dans la table _image
-                        $stmtImage = $conn->prepare("SELECT * FROM pact._image WHERE url = ?");
-                        $stmtImage->execute([$targetFile]);
-                        $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
+        //         // Déplacer le fichier téléchargé vers le répertoire de destination
+        //         if (move_uploaded_file($file['tmp_name'], $targetFile)) {
+        //             try {
+        //                 // Vérifier si l'URL de l'image existe déjà dans la table _image
+        //                 $stmtImage = $conn->prepare("SELECT * FROM pact._image WHERE url = ?");
+        //                 $stmtImage->execute([$targetFile]);
+        //                 $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
 
-                        if($photoProfil['url'] !="./img/profile_picture/default.svg"){
-                            unlink($photoProfil['url']);
-                        }
+        //                 if($photoProfil['url'] !="./img/profile_picture/default.svg"){
+        //                     unlink($photoProfil['url']);
+        //                 }
         
-                        if (!$imageExist) {
-                            // Si l'image n'existe pas, l'ajouter à la table _image avec un nom pour "nomimage"
-                            $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
+        //                 if (!$imageExist) {
+        //                     // Si l'image n'existe pas, l'ajouter à la table _image avec un nom pour "nomimage"
+        //                     $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
                             
-                            // Utiliser le nom du fichier comme nom d'image (ou autre logique pour générer un nom unique)
-                            $imageName = basename($targetFile); // Vous pouvez personnaliser cette logique si nécessaire
-                            $stmtInsertImage->execute([$targetFile, $imageName]);
-                        }
+        //                     // Utiliser le nom du fichier comme nom d'image (ou autre logique pour générer un nom unique)
+        //                     $imageName = basename($targetFile); // Vous pouvez personnaliser cette logique si nécessaire
+        //                     $stmtInsertImage->execute([$targetFile, $imageName]);
+        //                 }
         
-                        // Mettre à jour l'URL de la photo de profil dans la table _photo_profil
-                        $stmtUpdatePhoto = $conn->prepare("UPDATE pact._photo_profil SET url = ? WHERE idU = ?");
-                        $stmtUpdatePhoto->execute([$targetFile, $userId]);
+        //                 // Mettre à jour l'URL de la photo de profil dans la table _photo_profil
+        //                 $stmtUpdatePhoto = $conn->prepare("UPDATE pact._photo_profil SET url = ? WHERE idU = ?");
+        //                 $stmtUpdatePhoto->execute([$targetFile, $userId]);
         
-                        $_SESSION['success'] = "Photo de profil mise à jour avec succès.";
-                        header("Location: changeAccountPro.php");
-                        exit();
-                    } 
+        //                 $_SESSION['success'] = "Photo de profil mise à jour avec succès.";
+        //                 header("Location: changeAccountPro.php");
+        //                 exit();
+        //             } 
                     
-                    catch (Exception $e) {
-                        $_SESSION['errors'][] = "Erreur lors de la mise à jour de la photo : " . $e->getMessage();
-                    }
-                } 
+        //             catch (Exception $e) {
+        //                 $_SESSION['errors'][] = "Erreur lors de la mise à jour de la photo : " . $e->getMessage();
+        //             }
+        //         } 
                 
-                else {
-                    $_SESSION['errors'][] = "Échec du téléchargement de l'image.";
-                }
-            } 
+        //         else {
+        //             $_SESSION['errors'][] = "Échec du téléchargement de l'image.";
+        //         }
+        //     } 
             
-            else {
-                $_SESSION['errors'][] = "Seules les images JPG, PNG ou GIF sont autorisées.";
-            }
-        }
+        //     else {
+        //         $_SESSION['errors'][] = "Seules les images JPG, PNG ou GIF sont autorisées.";
+        //     }
+        // }
 
 
         // Si l'adresse mail a été modifiée, vérifier si elle existe déjà
@@ -279,27 +279,35 @@
             </div>
             
             <button type="submit" id="boutonInscription">Valider</button>
-            
         </form>
+
+
         <section id="apiKey">
             <?php
-            $stmt = $conn -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
-            $stmt -> execute();
-            $infoPro = $stmt -> fetch(PDO::FETCH_ASSOC);
+                $stmt = $conn -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
+                $stmt -> execute();
+                $infoPro = $stmt -> fetch(PDO::FETCH_ASSOC);
             ?>
             <?php 
                 // print_r($infoPro);
             ?>
             <p>Votre Clé API :</p>
+
             <?php if($infoPro["apikey"]){?>
                 <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
                 <p id = "buttonAPIkey" onclick="generateAPIkey()">Regénérer ma clé API</p>
-            <?php }else{?>
+            <?php 
+                } 
+                else{
+            ?>
                 <p id = "valueAPIkey"></p>
                 <p id = "buttonAPIkey" onclick="generateAPIkey()">Générer ma clé API</p>
-            <?php } ?>
+            <?php 
+                } 
+            ?>
         </section>
     </body>
+
     <script>
         function generateAPIkey() {
             fetch('generateAPIkey.php', {
@@ -324,7 +332,59 @@
                 alert('Erreur lors de la requête fetch : ' + error.message);
             });
         }
+
+
+        document.getElementById('profile-pic').addEventListener('change', function(event) {
+            // Récupérer le fichier sélectionné
+            var file = event.target.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // Afficher immédiatement la nouvelle image dans le DOM
+                    document.getElementById('current-profile-pic').src = e.target.result;
+
+                    // Désactiver le bouton de soumission du formulaire jusqu'à ce que l'upload soit terminé
+                    document.getElementById('boutonInscription').disabled = true;
+
+                    var formData = new FormData();
+
+                    // Ajouter l'image au FormData
+                    formData.append('profile-pic', file);
+
+                    fetch('uploadProfilePic.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            // Mettre à jour l'image avec le chemin retourné
+                            document.getElementById('current-profile-pic').src = data.newPhotoPath;
+                            alert('Photo de profil mise à jour !');
+                        } 
+                        
+                        else {
+                            alert('Erreur : ' + data.message);
+                        }
+
+                        // Réactiver le bouton de soumission
+                        document.getElementById('boutonInscription').disabled = false;
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors de l\'upload de la photo.', error);
+                        alert('Erreur lors de l\'upload de la photo.');
+                        document.getElementById('boutonInscription').disabled = false;
+                    });
+                };
+
+                // Lire le fichier comme URL de données (pour l'afficher immédiatement)
+                reader.readAsDataURL(file);
+            }
+        });
     </script>
+    
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
 
