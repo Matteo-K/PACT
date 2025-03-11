@@ -5,9 +5,6 @@
  * afin de trier et filtrer les offres de la page de recherche
  */
 
-import geocode from './geocode.js';  // Assure-toi que 'geocode' est exporté dans geocode.js
-
-
 let currentPage = 1;
 let nbElement = 12;
 
@@ -46,6 +43,13 @@ document.addEventListener('DOMContentLoaded', function() {
       form.submit();
     });
   });
+
+  function addPing(array){
+    for (const elt of array) {
+      let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
+      console.log(geocode);
+    }
+  }
 });
 
 /// Inputs de recherche ///
@@ -630,12 +634,6 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   addPing(array);
 }
 
-function addPing(array){
-  for (const elt of array) {
-    let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
-    console.log(geocode);
-  }
-}
 
 /**
  * 
