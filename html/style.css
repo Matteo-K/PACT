@@ -11,6 +11,7 @@
   --secondary: #d1ccdc;
   --accent: #edae14;
   --accent-border: #bb880e;
+  --rouge: #c24d4d;
   --text-dark: #000;
   --text-light: #eaeaea;
   --background-avis: #c9c9c9;
@@ -905,8 +906,8 @@ header ul + div {
 }
 
 #leaveButtonBloc button:nth-child(2) {
-  background-color: #c24d4d;
-  border-color: #c24d4d;
+  background-color: var(--rouge);
+  border-color: var(--rouge);
 }
 
 #leaveButtonBloc button:hover {
@@ -2254,6 +2255,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 #carte_offres > #map {
   width:100%;
+  height: 100%;
 }
 
 /* A suppr pre sprint 3 */
@@ -3427,14 +3429,14 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 .taillebtn button {
-  background-color: #c24d4d !important;
-  border: solid #c24d4d 1px !important;
+  background-color: var(--rouge) !important;
+  border: solid var(--rouge) 1px !important;
 }
 
 .taillebtn button:hover {
   background-color: white !important;
-  border: solid #c24d4d 1px !important;
-  color: #c24d4d !important;
+  border: solid var(--rouge) 1px !important;
+  color: var(--rouge) !important;
 }
 
 .taille6 {
@@ -5374,7 +5376,7 @@ label#btnAjoutPhoto:hover {
   text-indent: 5px;
 }
 
-body[id="body_creation_compte"] {
+#body_creation_compte {
   background-image: url("img/fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -5385,28 +5387,27 @@ body[id="body_creation_compte"] {
   display: none;
 }
 
-a[id="lienCGU"] {
+#lienCGU {
   color: var(--bloc);
   text-decoration: underline;
   margin: 0 5px;
 }
 
-a[id="lienCGU"]:hover {
+#lienCGU:hover {
   color: var(--accent);
 }
 
-a[id="lienConnexion"] {
+#lienConnexion {
   color: var(--bloc);
   text-decoration: underline;
   font-family: "Belanosima", sans-serif;
 }
 
-a[id="lienConnexion"]:hover {
+#lienConnexion:hover {
   color: var(--accent);
 }
 
-h1[id="inscriptionTitre"],
-h1[id="changerInfoTitre"] {
+#inscriptionTitre, #changerInfoTitre {
   text-align: center;
   margin: 30px 10px;
   color: var(--bloc);
@@ -5414,12 +5415,12 @@ h1[id="changerInfoTitre"] {
   font-size: 65px;
 }
 
-body[id="body_creation_compte"] h2 {
+#body_creation_compte h2 {
   font-weight: 100;
   font-size: 2rem;
 }
 
-aside[id="asideRetour"] {
+#asideRetour {
   position: fixed;
   top: 10px;
   left: 10px;
@@ -5442,9 +5443,7 @@ aside[id="asideRetour"] {
   margin-right: 5px;
 }
 
-.creation-compte #formMember,
-.creation-compte #formPro,
-#apiKey {
+.creation-compte #formMember, .creation-compte #formPro, #apiKey {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -5461,7 +5460,7 @@ aside[id="asideRetour"] {
   color: var(--bloc);
 }
 
-body[id="body_creation_compte"] ::placeholder {
+#body_creation_compte::placeholder {
   font-size: 20px;
 }
 
@@ -5479,14 +5478,12 @@ body[id="body_creation_compte"] ::placeholder {
   align-items: center;
 }
 
-.creation-compte div.ligne1 > label,
-div.ligne6 > label {
+.creation-compte div.ligne1 > label, div.ligne6 > label {
   display: inline-block;
   width: 408px;
 }
 
-.creation-compte div.ligne2 > label,
-div.ligne3 > label {
+.creation-compte div.ligne2 > label, div.ligne3 > label {
   display: flex;
   justify-content: left;
   width: 830px;
@@ -5548,14 +5545,9 @@ div.ligne3 > label {
   font-size: 20px;
 }
 
-input[id="denomination"],
-input[id="telephone"],
-input[id="nomMembre"],
-input[id="prenomMembre"],
-input[id="pseudoMembre"],
-input[id="telephoneMembre"],
-input[id="motdepasse"],
-input[id="confirmer"] {
+input[id="denomination"],  input[id="telephone"], input[id="nomMembre"], 
+input[id="prenomMembre"], input[id="pseudoMembre"], input[id="telephoneMembre"],
+input[id="motdepasse"], input[id="confirmer"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
@@ -5564,8 +5556,7 @@ input[id="confirmer"] {
   border-bottom: solid 2px var(--primary);
 }
 
-input[id="email"],
-input[id="adresse"] {
+input[id="email"], input[id="adresse"] {
   width: 830px;
   height: 40px;
   margin: 0 5px;
@@ -5592,8 +5583,7 @@ input[id="ville"] {
   border-bottom: solid 2px var(--primary);
 }
 
-input[id="radioPublic"],
-input[id="radioPrive"] {
+input[id="radioPublic"], input[id="radioPrive"] {
   display: none;
 }
 
@@ -5614,7 +5604,7 @@ input[id="siren"] {
   border: 3px solid var(--secondary);
 }
 
-button[id="boutonInscription"] {
+#boutonInscription {
   width: 200px;
   font-size: 25px;
   height: 60px;
@@ -5654,7 +5644,7 @@ div[id="messageErreur"] {
 
 /* Média query pour passer au format téléphone */
 @media (max-width: 600px) {
-  h1[id="inscriptionTitre"] {
+  #inscriptionTitre {
     font-size: 45px;
     margin-top: 5vh;
   }
@@ -5672,7 +5662,7 @@ div[id="messageErreur"] {
     overflow: auto;
   }
 
-  aside[id="asideRetour"] {
+  #asideRetour {
     position: static !important;
   }
 
@@ -5704,8 +5694,7 @@ div[id="messageErreur"] {
     margin: 0 15px;
   }
 
-  .creation-compte div.ligne2 > label,
-  div.ligne3 > label {
+  .creation-compte div.ligne2 > label, div.ligne3 > label {
     margin: 5px;
   }
 
@@ -5727,7 +5716,7 @@ div[id="messageErreur"] {
     font-size: 16px;
   }
 
-  button[id="boutonInscription"] {
+  #boutonInscription {
     width: 100%;
     max-width: 200px;
     height: 50px;
@@ -5743,7 +5732,7 @@ div[id="messageErreur"] {
     margin-bottom: 20px;
   }
 
-  h2[id="dejauncompte"] {
+  #dejauncompte {
     max-width: 390px;
   }
 
@@ -5858,16 +5847,16 @@ div[id="messageErreur"] {
     margin-bottom: 20px;
   }
 
-  label[id="labelPFP"] {
+  #labelPFP {
     text-decoration: underline;
     text-align: center;
   }
 
-  label[id="labelPFP"]:hover {
+  #labelPFP:hover {
     color: var(--accent);
   }
 
-  input[id="profile-pic"] {
+  #profile-pic {
     display: none;
   }
 }
@@ -5875,14 +5864,14 @@ div[id="messageErreur"] {
 /*++++++++++++++++++++++++++++++*/
 /* Css page connexion, Antoine */
 /*++++++++++++++++++++++++++++*/
-body[id="body_connexion"] {
+#body_connexion {
   background-image: url("img/fond.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
 
-main[id="mainConnexion"] {
+#mainConnexion {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -5896,7 +5885,7 @@ main[id="mainConnexion"] {
   margin-top: 30px;
 }
 
-h1[id="connexionTitre"], h1[id="changerMDPTitre"] {
+#connexionTitre, #changerMDPTitre {
   text-align: center;
   margin: 30px 10px;
   color: var(--bloc);
@@ -5904,7 +5893,7 @@ h1[id="connexionTitre"], h1[id="changerMDPTitre"] {
   font-size: 65px;
 }
 
-h1[id="pasDeCompteTitre"] {
+#pasDeCompteTitre {
   text-align: center;
   margin: 50px 10px;
   color: var(--bloc);
@@ -5966,7 +5955,7 @@ div.ligne1 > label {
   font-size: 20px;
 }
 
-input[id="login"], input[id="motdepasseConnexion"], [id="ancienMDP"], input[id="nouveauMDP"], input[id="confirmerNouveauMDP"] {
+input[id="login"], input[id="motdepasseConnexion"], input[id="ancienMDP"], input[id="nouveauMDP"], input[id="confirmerNouveauMDP"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
@@ -5976,7 +5965,7 @@ input[id="login"], input[id="motdepasseConnexion"], [id="ancienMDP"], input[id="
   border-bottom: solid 2px var(--primary);
 }
 
-button[id="boutonConnexion"], button[id="boutonChangerMDP"] {
+#boutonConnexion, #boutonChangerMDP {
   width: 200px;
   font-size: 25px;
   height: 60px;
@@ -6008,7 +5997,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   cursor: pointer;
 }
 
-p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
+#legendeBoutonLienMembre, #legendeBoutonLienPro {
   font-size: 20px;
   color: var(--bloc);
   width: 520px;
@@ -6024,13 +6013,13 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
 }
 
 @media (max-width: 600px) {
-  h1[id="connexionTitre"] {
+  #connexionTitre {
     display: block;
     font-size: 45px;
     margin-top: 5vh;
   }
 
-  h1[id="pasDeCompteTitre"] {
+  #pasDeCompteTitre {
     margin: 40px 10px 0;
     font-size: 35px;
   }
@@ -6047,7 +6036,7 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
     width: 270px;
   }
 
-  button[id="boutonConnexion"] {
+  #boutonConnexion {
     width: 180px;
     height: 50px;
     font-size: 22px;
@@ -6065,21 +6054,20 @@ p[id="legendeBoutonLienMembre"], p[id="legendeBoutonLienPro"] {
     margin: 10px 0;
   }
 
-  input[id="boutonLienMembre"], p[id="legendeBoutonLienMembre"] {
+  input[id="boutonLienMembre"], #legendeBoutonLienMembre {
     display: block;
     max-width: 350px;
     margin-top: 20px;
   }
 
-  input[id="boutonLienPro"],
-  p[id="legendeBoutonLienPro"] {
+  input[id="boutonLienPro"], #legendeBoutonLienPro {
     display: none;
   }
 }
 /*+++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css hover des boutons des formulaires, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
-button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, button[id="boutonInscription"]:hover, button[id="boutonChangerMDP"]:hover {
+#boutonConnexion:hover, input[id="boutonLienMembre"]:hover, input[id="boutonLienPro"]:hover, #boutonInscription:hover, #boutonChangerMDP:hover {
   background-color: white;
   border: solid 2px var(--accent);
 }
@@ -6113,7 +6101,7 @@ button[id="boutonConnexion"]:hover, input[id="boutonLienMembre"]:hover, input[id
 /*+++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Css page changement de mot de passe, Antoine */
 /*+++++++++++++++++++++++++++++++++++++++++++++*/
-main[id="mainChangerMDP"] {
+#mainChangerMDP {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6121,7 +6109,7 @@ main[id="mainChangerMDP"] {
   margin-top: 5%;
 }
 
-div[id="divPFPactuelle"] img {
+#divPFPactuelle img {
   border-radius: 90%;
   margin-top: 25px;
   width: 130px;
@@ -6129,15 +6117,15 @@ div[id="divPFPactuelle"] img {
   object-fit: cover;
 }
 
-input[id="profile-pic"] {
+#profile-pic {
   display: none;
 }
 
-label[id="labelPFP"] {
+#labelPFP {
   text-decoration: underline;
 }
 
-label[id="labelPFP"]:hover {
+#labelPFP:hover {
   color: var(--accent);
 }
 
