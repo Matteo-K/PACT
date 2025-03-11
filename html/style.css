@@ -2916,7 +2916,9 @@ label[for="rest_ajoutPhotoMenu"] {
   width: 70px;
 }
 
-#btnAside:where(:nth-child(2), :nth-child(3), :nth-child(4)) img {
+#btnAside a:nth-child(2) img,
+#btnAside a:nth-child(3) img,
+#btnAside a:nth-child(4) img {
   width: 50px;
   padding: 10px;
 }
@@ -2954,15 +2956,11 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #trifiltre + .modal-content {
   display: none;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
   z-index: 10;
-}
-
-#trifiltre + .modal-content {
-  display: block;
 }
 
 /* Bloc tri et filtre */

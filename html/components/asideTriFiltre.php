@@ -294,6 +294,8 @@
     const btnTri = document.getElementById('btnTri');
     const btnFiltre = document.getElementById('btnFiltre');
     
+    let previousAside = null;
+
     function toggleAside(element) {
         const asideElements = {
             'btnTri': asideTri,
@@ -301,22 +303,32 @@
             'btnCarte': asideCarte
         };
 
+        const clickedAside = asideElements[element.id];
+
+        // Vérifier si on clique sur le même bouton et que l'aside est déjà ouvert
+        if (previousAside === clickedAside && clickedAside.classList.contains('openAside')) {
+            clickedAside.classList.remove('openAside');
+            element.classList.remove('btnAsideOpen');
+            previousAside = null; // Réinitialiser l'aside précédent
+            return;
+        }
+
+        // Fermer tous les asides et enlever la classe des boutons
         Object.keys(asideElements).forEach(id => {
-            const button = document.getElementById(id);
-            button.classList.remove('btnAsideOpen');
+            document.getElementById(id).classList.remove('btnAsideOpen');
         });
 
-        // Fermer tous les aside
         Object.values(asideElements).forEach(aside => {
             aside.classList.remove('openAside');
         });
 
-        const clickedAside = asideElements[element.id];
         if (clickedAside) {
             clickedAside.classList.add('openAside');
             element.classList.add('btnAsideOpen');
+            previousAside = clickedAside;
         }
     }
+
 
     function fermeAside() {
         const buttons = document.querySelectorAll('[id^="btn"]');
