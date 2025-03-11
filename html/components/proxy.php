@@ -1,39 +1,8 @@
 <?php
-// Désactiver la mise en cache
-header("Content-Type: image/png");
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 
-function loadEnv($filePath) {
-    if (!file_exists($filePath)) {
-        throw new Exception("Le fichier .env n'existe pas !");
-    }
-
-    $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    
-    foreach ($lines as $line) {
-        // Ignorer les commentaires
-        if (strpos(trim($line), '#') === 0) {
-            continue;
-        }
-
-        // Séparer clé et valeur
-        list($key, $value) = explode('=', $line, 2);
-
-        // Supprimer les espaces et guillemets autour de la valeur
-        $key = trim($key);
-        $value = trim($value);
-        $value = trim($value, '"');
-
-        // Définir la variable dans $_ENV et $_SERVER
-        $_ENV[$key] = $value;
-        $_SERVER[$key] = $value;
-    }
-}
-
-loadEnv("/.env");
-
+require_once (__DIR__ . "/../../.SECURE/config.php");
 // 🔹 Remplace VOTRE_CLE_API par ta vraie clé API
-$apiKey = $_ENV['API_KEY'];
+$apiKey = $apiKeyCarte;
 
 // 🔹 Récupérer les coordonnées {z}/{x}/{y} depuis la requête
 if (!isset($_GET['z'], $_GET['x'], $_GET['y'])) {
