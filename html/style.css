@@ -167,8 +167,8 @@ textarea:focus {
 #formMember input:hover,
 #formConnexion input:hover {
   outline: none;
-  background-color: transparent;
-  background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);
+  background-color: var(--background40);
+  background: linear-gradient(0deg, var(--primary20) 0%, transparent 15%);
 }
 
 
@@ -176,14 +176,7 @@ textarea:focus {
 #formMember input:focus,
 #formConnexion input:focus {
   outline: none;
-  background: linear-gradient(0deg, var(--primary30) 0%, transparent 30%);
-}
-
-#formPro input:hover,
-#formMember input:hover,
-#formConnexion input:hover {
-  outline: none;
-  background-color: var(--background40);
+  background: linear-gradient(0deg, var(--primary40) 0%, transparent 20%)
 }
 
 /* ##### Components ##### */
@@ -2002,6 +1995,16 @@ label[for="rest_ajoutPhotoMenu"] {
   flex: auto;
 }
 
+.supprComptePopup #mdp:focus {
+  outline: none;
+  background: linear-gradient(0deg, var(--primary40) 0%, transparent 20%);
+}
+
+.supprComptePopup #mdp:hover {
+  outline: none;
+  background-color: var(--background40);
+}
+
 .supprComptePopup label[for="chbxConfirme"]{
   font-size: 20px;
 }
@@ -2027,7 +2030,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #confirmeSuppression{
-  background-color: #c2c2c2;
+  background-color: #c24d4d;
   border: 3px solid #c24d4d;
 }
 
@@ -5630,11 +5633,10 @@ label#btnAjoutPhoto:hover {
 
 input[id="denomination"],  input[id="telephone"], input[id="nomMembre"], 
 input[id="prenomMembre"], input[id="pseudoMembre"], input[id="telephoneMembre"],
-input[id="motdepasse"], input[id="confirmer"] {
+input[id="motdepasse"], input[id="confirmer"], input[id="mdp"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
-  /* border: 3px solid var(--secondary); */
   border: 0;
   border-bottom: solid 2px var(--primary);
 }
@@ -5643,7 +5645,6 @@ input[id="email"], input[id="adresse"] {
   width: 830px;
   height: 40px;
   margin: 0 5px;
-  /* border: 3px solid var(--secondary); */
   border: 0;
   border-bottom: solid 2px var(--primary);
 }
@@ -5652,7 +5653,6 @@ input[id="code"] {
   width: 210px;
   height: 40px;
   margin: 0 5px;
-  /* border: 3px solid var(--secondary); */
   border: 0;
   border-bottom: solid 2px var(--primary);
 }
@@ -5661,7 +5661,6 @@ input[id="ville"] {
   width: 596px;
   height: 40px;
   margin: 0 5px;
-  /* border: 3px solid var(--secondary); */
   border: 0;
   border-bottom: solid 2px var(--primary);
 }
@@ -5675,7 +5674,6 @@ input[id="siren"] {
   height: 40px;
   margin-right: 0;
   margin-left: 10px;
-  /* border: 3px solid var(--secondary); */
   border: 0;
   border-bottom: solid 2px var(--primary);
 }
@@ -6043,7 +6041,6 @@ input[id="login"], input[id="motdepasseConnexion"], input[id="ancienMDP"], input
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  /* border: 3px solid var(--secondary); */
   border: 0;
   border-bottom: solid 2px var(--primary);
 }
