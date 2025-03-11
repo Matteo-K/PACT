@@ -1027,7 +1027,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <span class="closeBlack">&times;</span>
                                 <h2>blacklistage</h2>
 
-                                <p class="taille3">Êtes-vous sûr de vouloir blacklister cet avis ?</p>
+                                <p class="taille7">Êtes-vous sûr de vouloir blacklister cet avis ?</p>
+
+                                <p class="taille6">Il vous reste 3 blacklistage</p>
+
                                 <div class="btnBlack">
                                     <section class="">
                                         <button class="modifierBut " id="confirmationBlack">Comfirmer</button>

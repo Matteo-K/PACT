@@ -3386,6 +3386,16 @@ label[for="rest_ajoutPhotoMenu"] {
   margin: 0;
 }
 
+.taille7 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.taille6 {
+  font-size: 0.9rem;
+  margin-bottom: 20px !important;
+}
+
 .donnee {
   display: flex;
   align-items: center;

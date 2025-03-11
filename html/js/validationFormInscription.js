@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        if(currentFile === 'accountPro.php' || currentFile === 'accountMember.php') {
+        if(confirmPasswordField) {
             const motdepasse = document.getElementById('motdepasse').value;
             const confirmer = document.getElementById('confirmer').value;
 
@@ -259,10 +259,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // Afficher les erreurs globales
             displayGlobalErrors(errors);
 
-            // Si aucune erreur, envoyer le formulaire
-            if (errors.length === 0) {
-                form.submit();
-            }
+        }
+        // Si aucune erreur, envoyer le formulaire
+        if (errors.length === 0) {
+            form.submit();
         }
     }); 
 });
