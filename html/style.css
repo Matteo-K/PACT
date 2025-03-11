@@ -2700,7 +2700,9 @@ label[for="rest_ajoutPhotoMenu"] {
   transform: translateX(-100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
+#carte_offres{
+  width:33vw
+}
 .checkmark {
   cursor: pointer;
   width: 31px;
