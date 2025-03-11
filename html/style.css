@@ -1975,10 +1975,21 @@ label[for="rest_ajoutPhotoMenu"] {
 #supprimerCompte{
   position: absolute;
   top: 20px;
-  right: 10px;
-  background-color: red;
+  right: 20px;
+  background-color: #fff;
+  border: 3px solid #c24d4d;
   padding: 15px;
-  font-size: 20px;
+  font-size: 18px;
+  border-radius: 10px;
+  color: #c24d4d;
+  font-weight: 700;
+}
+
+#supprimerCompte:hover{
+  background-color: #c24d4d;
+  border-color: #fff;
+  color: #fff;
+  transition: 0.5s;
 }
 
 /* fin popup signalement avis */
