@@ -466,19 +466,15 @@
             btnAnnuler.addEventListener('click', clearPopup);
 
             
-            const clearPopup = () => {
+            function clearPopup(){
                 popup.style.display = 'none';
 
-                try {
-                    let inputMDP = document.querySelector('.supprComptePopup #mdp');
-                    let confirmation = document.getElementById('chbxConfirme');
-                    confirmation.checked = false; // On désélectionne le motif choisi
-                    inputMDP.value = ""; //On vide le mdp
-                    body.classList.remove("no-scroll");
-                } catch (error) {
-                    
-                }
-            });
+                let inputMDP = document.querySelector('.supprComptePopup #mdp');
+                let confirmation = document.getElementById('chbxConfirme');
+                confirmation.checked = false; // On désélectionne le motif choisi
+                inputMDP.value = ""; //On vide le mdp
+                body.classList.remove("no-scroll");
+            }
 
             // Masquer le pop-up si on clique en dehors, et on laisse les input tels quels en cas de missclick
             window.addEventListener('click', (event) => {
