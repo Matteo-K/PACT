@@ -348,6 +348,7 @@
                         alert('Photo de profil mise à jour !');
                         // Réactiver le bouton de soumission
                         document.getElementById('boutonInscription').disabled = false;
+                        document.getElementById('formMember').submit();
                     } else {
                         alert('Erreur : ' + data.message);
                         // Réactiver le bouton de soumission en cas d'échec
