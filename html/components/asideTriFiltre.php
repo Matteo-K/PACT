@@ -366,4 +366,11 @@
         map.invalidateSize();
     }, 500);
 
+    document.getElementById('btnCarte').addEventListener('click', function() {
+        // Attendre un court instant avant de recalculer la taille
+        setTimeout(() => {
+            map.invalidateSize();
+        }, 300);
+    });
+
 </script>
