@@ -1976,10 +1976,20 @@ label[for="rest_ajoutPhotoMenu"] {
 #supprimerCompte{
   position: absolute;
   top: 20px;
-  right: 10px;
-  background-color: red;
-  padding: 15px;
-  font-size: 20px;
+  right: 20px;
+  background-color: #fff;
+  border: 3px solid #c24d4d;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 10px;
+  color: #c24d4d;
+  font-weight: 700;
+  transition: 0.5s;
+}
+
+#supprimerCompte:hover{
+  background-color: #c24d4d;
+  color: #fff;
 }
 
 /* fin popup signalement avis */
@@ -2713,7 +2723,8 @@ label[for="rest_ajoutPhotoMenu"] {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 #carte_offres{
-  width:33vw
+  width:33vw;
+  height: calc(100vh - var(--header-size2));
 }
 .checkmark {
   cursor: pointer;

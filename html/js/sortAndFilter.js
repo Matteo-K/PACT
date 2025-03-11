@@ -742,6 +742,7 @@ function createFront(offer) {
   img.setAttribute("src", offer.images?.[0] ?? "");
   img.setAttribute("alt", offer.nomOffre);
   img.setAttribute("title", offer.nomOffre);
+  img.setAttribute("loading","lazy");
 
   let figcaption = document.createElement("figcaption");
 
