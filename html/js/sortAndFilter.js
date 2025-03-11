@@ -4,6 +4,10 @@
  * Ensemble des fonctions et évènements 
  * afin de trier et filtrer les offres de la page de recherche
  */
+
+import { geocode } from './geocode.js';  // Assure-toi que 'geocode' est exporté dans geocode.js
+
+
 let currentPage = 1;
 let nbElement = 12;
 
@@ -619,15 +623,18 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   console.log(array);
   // Affichage
   displayOffers(array, elementStart, nbElement);
-
   // Affichage de la pagination
   updatePagination(array.length, nbElement);
+
+  //affichage des ping sur la carte
+  addPing(array);
 }
 
 function addPing(array){
-  array.forEach(elt=> {
-
-  });
+  for (const elt of array) {
+    let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
+    console.log(geocode);
+  }
 }
 
 /**

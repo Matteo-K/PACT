@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <title>PACT</title>
   <script src="js/setColor.js"></script>
-  <script src="js/geocode.js"></script>
 
     <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -150,7 +149,7 @@
     <!-- Data -->
     <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->filtre($idUser, $typeUser)))); ?>'></div>
     <div id="user-data" data-user='<?php echo $typeUser ?>'></div>
-    <script src="js/sortAndFilter.js"></script>
+    <script type="module" src="js/sortAndFilter.js"></script>
     <?php require_once "components/footer.php"; ?>
     <script>
       const forms = document.querySelectorAll("#index form");

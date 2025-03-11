@@ -34,10 +34,8 @@
                     $stmtCurrentPhoto->execute([$userId]);
                     $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
 
-                    print_r($currentPhoto);
-
                     // Si une photo de profil existe et n'est pas la photo par défaut, la supprimer
-                    if ($currentPhoto && $currentPhoto['url'] !== "./img/profile_picture/default.svg") {
+                    if ($currentPhoto['url'] != "./img/profile_picture/default.svg") {
                         // Supprimer le fichier image de l'ancien chemin sur le serveur
                         if (file_exists($currentPhoto['url'])) {
                             unlink($currentPhoto['url']);
@@ -46,9 +44,11 @@
                     //     // Supprimer l'ancienne photo de la base de données
                     //     $stmtDeletePhoto = $conn->prepare("DELETE FROM pact._photo_profil WHERE idU = ?");
                     //     $stmtDeletePhoto->execute([$userId]);
-                    // }
+                    }
 
                     // Si l'image n'existe pas déjà, l'ajouter à la table _image
+                    
+                    
                     if (!$imageExist) {
                         $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
                         $imageName = basename($targetFile);
@@ -61,8 +61,7 @@
 
                     // Retourner la nouvelle URL de l'image pour l'affichage dynamique
                     echo json_encode(['status' => 'success', 'newPhotoPath' => $targetFile]);
-                    } 
-                }
+                } 
                 
                 catch (Exception $e) {
                     echo json_encode(['status' => 'error', 'message' => 'Erreur lors de la mise à jour de la photo de profil : ' . $e->getMessage()]);
