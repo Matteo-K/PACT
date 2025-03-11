@@ -167,8 +167,8 @@ textarea:focus {
 #formMember input:hover,
 #formConnexion input:hover {
   outline: none;
+  background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);
   background-color: var(--background40);
-  background: linear-gradient(0deg, var(--primary20) 0%, transparent 15%);
 }
 
 
@@ -1993,6 +1993,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .supprComptePopup #mdp{
   flex: auto;
+  background-color: transparent;
 }
 
 .supprComptePopup #mdp:focus {
