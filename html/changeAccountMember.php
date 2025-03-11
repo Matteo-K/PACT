@@ -466,7 +466,7 @@
             btnAnnuler.addEventListener('click', clearPopup);
 
             
-            const clearPopup => {
+            const clearPopup = () => {
                 popup.style.display = 'none';
 
                 try {
