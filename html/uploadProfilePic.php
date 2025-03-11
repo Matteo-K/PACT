@@ -37,6 +37,12 @@
                     print_r($currentPhoto);
                     print_r($targetFile);
 
+                    if ($imageExist) {
+                        print_r($imageExist);
+                    }else {
+                        echo "insert1\n";
+                    }
+
                     // Si une photo de profil existe et n'est pas la photo par défaut, la supprimer
                     if ($currentPhoto['url'] != "./img/profile_picture/default.svg") {
                         // Supprimer le fichier image de l'ancien chemin sur le serveur
@@ -47,15 +53,11 @@
                     //     // Supprimer l'ancienne photo de la base de données
                     //     $stmtDeletePhoto = $conn->prepare("DELETE FROM pact._photo_profil WHERE idU = ?");
                     //     $stmtDeletePhoto->execute([$userId]);
-                    // }
+                    }
 
                     // Si l'image n'existe pas déjà, l'ajouter à la table _image
                     
-                    if ($imageExist) {
-                        print_r($imageExist);
-                    }else {
-                        echo "insert1\n";
-                    }
+                    
                     if (!$imageExist) {
                         echo "insert2\n";
                         $stmtInsertImage = $conn->prepare("INSERT INTO pact._image (url, nomimage) VALUES (?, ?)");
@@ -70,8 +72,7 @@
 
                     // Retourner la nouvelle URL de l'image pour l'affichage dynamique
                     echo json_encode(['status' => 'success', 'newPhotoPath' => $targetFile]);
-                    } 
-                }
+                } 
                 
                 catch (Exception $e) {
                     echo json_encode(['status' => 'error', 'message' => 'Erreur lors de la mise à jour de la photo de profil : ' . $e->getMessage()]);
