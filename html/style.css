@@ -1992,6 +1992,19 @@ label[for="rest_ajoutPhotoMenu"] {
   color: #fff;
 }
 
+.supprComptePopup{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.supprComptePopup label[for="chbxConfirme"]{
+  font-size: 15px;
+}
+
+.supprComptePopup #chbxConfirme{
+  display: none;
+}
+
 /* fin popup signalement avis */
 /* FIN CSS EWEN*/
 /* GABRIEL

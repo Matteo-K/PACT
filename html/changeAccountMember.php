@@ -205,11 +205,11 @@
                         <input type="radio" id="chbxConfirme" value="chbxConfirme">
                         <span class="checkmark"></span>
                         Je prends connaissance que la suppression des comptes est définitive et que mes avis restent visibles sur la plateformes,
-                        en tant qu'utilisateurs anonyme. Si par hasard votre téléphone est dès demain spammé de hackers russent qui veulent votre cul, 
+                        en tant qu'utilisateurs anonyme. Si par hasard votre téléphone est dès demain spammé par des hackers russes qui veulent votre cul, 
                         cela n'a absolument rien a voir avec notre site.
                     </label>
 
-                    <input type="submit" id="confirmeSuppression" value=""></input>
+                    <input type="submit" id="confirmeSuppression" value="Confirmer"></input>
                 </form>
             </section>
         </section>
