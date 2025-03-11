@@ -250,10 +250,10 @@
 <section class="modal-content">
     <span class="close" onclick="resetModal_close()">×</span>
     <section class="titre">
-        <p class="tab">Attention : la réinitialisation des filtres, tris et des paramètres de recherche vont effacer toutes vos sélections en cours.</p>
-        <p>Souhaitez-vous continuer ?</p>
+        <h2>⚠️ Attention : la réinitialisation des filtres, tris et des paramètres de recherche vont effacer toutes vos sélections en cours.</h2>
+        <p class="taille">Souhaitez-vous continuer ?</p>
     </section>
-    <section class="contentPop active" id="content-1">
+    <section class="taillebtn" id="content-1">
         <button class="modifierBut" onclick="resetModal_close()">Annuler</button>
         <button class="modifierBut">Effacer les sélections</button>
     </section>
