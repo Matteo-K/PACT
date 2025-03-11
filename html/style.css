@@ -2232,6 +2232,9 @@ label[for="rest_ajoutPhotoMenu"] {
   height: 50vh;
   width: 90%;
 }
+#mapTriFiltre{
+  width: 33vw;
+}
 
 /* A suppr pre sprint 3 */
 #disabledSelect {
