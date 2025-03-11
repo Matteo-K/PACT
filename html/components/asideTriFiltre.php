@@ -357,8 +357,7 @@
         document.body.classList.remove("no-scroll");
     }
     
-    var map = L.map('map').setView([48.243788, -2.975661], 13);
-
+    let map = L.map('map').setView([48.46, -2.85], 8);
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; CartoDB'
