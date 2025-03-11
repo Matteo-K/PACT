@@ -150,7 +150,7 @@
     <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->filtre($idUser, $typeUser)))); ?>'></div>
     <div id="user-data" data-user='<?php echo $typeUser ?>'></div>
     <script src="js/geocode.js"></script>
-    <script src="js/sortAndFilter.js"></script>
+    <script type="module" src="js/sortAndFilter.js"></script>
     <?php require_once "components/footer.php"; ?>
     <script>
       const forms = document.querySelectorAll("#index form");

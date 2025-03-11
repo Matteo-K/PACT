@@ -1,4 +1,4 @@
-window.geocode = function geocode(address) {
+export function geocode(address) {
     let url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&addressdetails=1&limit=1`;
 
     return fetch(url)
