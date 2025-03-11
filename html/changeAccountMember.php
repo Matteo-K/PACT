@@ -428,20 +428,14 @@
             const popup = document.querySelector('.supprComptePopup');
             const body = document.body;
             
-            let btnSelectionne;
-
             // Afficher le pop-up
-            ouvrePopup.forEach(boutonOuvrePopup => {
-                boutonOuvrePopup.addEventListener('click', () => {
-                    popup.style.display = 'block';
-                    btnSelectionne = boutonOuvrePopup;
-                    body.classList.add("no-scroll");
-                });
+            ouvrePopup.addEventListener('click', () => {
+                popup.style.display = 'block';
+                body.classList.add("no-scroll");
             });
-            
+        
             // Traiter le signalement en BDD après confirmation et fermer le popup
             btnConfirmer.addEventListener('click', () => {
-
                 // fetch('signalement.php', {
                 //     method: 'POST',
                 //     headers: { 'Content-Type': 'application/json' },
@@ -453,8 +447,10 @@
                 //     })
                 // });
 
-                motifSignal.checked = false; // On désélectionne le motif choisi
-                texteComplement.value = ""; //On vide le textarea
+                let inputMDP = document.querySelector('.signalementPopup #mdp');
+                let confirmation = document.getElementById('chbxConfirme');
+                confirmation.checked = false; // On désélectionne le motif choisi
+                inputMDP.value = ""; //On vide le mdp
                 body.classList.remove("no-scroll");
 
                 alert('Compte supprimé (c faux)');
@@ -469,8 +465,8 @@
                 try {
                     let inputMDP = document.querySelector('.signalementPopup #mdp');
                     let confirmation = document.getElementById('chbxConfirme');
-                    motifSignal.checked = false; // On désélectionne le motif choisi
-                    texteComplement.value = ""; //On vide le mdp
+                    confirmation.checked = false; // On désélectionne le motif choisi
+                    inputMDP.value = ""; //On vide le mdp
                     body.classList.remove("no-scroll");
                 } catch (error) {
                     
