@@ -31,9 +31,9 @@
                     $stmtImage->execute([$targetFile]);
                     $imageExist = $stmtImage->fetch(PDO::FETCH_ASSOC);
 
-                    // $stmtCurrentPhoto = $conn->prepare("SELECT url FROM pact._photo_profil WHERE idU = ?");
-                    // $stmtCurrentPhoto->execute([$userId]);
-                    // $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
+                    $stmtCurrentPhoto = $conn->prepare("SELECT url FROM pact._photo_profil WHERE idU = ?");
+                    $stmtCurrentPhoto->execute([$userId]);
+                    $currentPhoto = $stmtCurrentPhoto->fetch(PDO::FETCH_ASSOC);
 
                     // Si une photo de profil existe et n'est pas la photo par défaut, la supprimer
                     $fichier = fopen("affiche.txt", "w");
@@ -65,7 +65,8 @@
 
                     // Retourner la nouvelle URL de l'image pour l'affichage dynamique
                     echo json_encode(['status' => 'success', 'newPhotoPath' => $targetFile]);
-                } 
+                    } 
+                }
                 
                 catch (Exception $e) {
                     $fichier = fopen("affiche.txt", "a");
