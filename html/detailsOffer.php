@@ -1373,7 +1373,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 });
 
                 leaveB.onclick = closeModalBlackFunction;
-
+                leave2.onclick = closeModalBlackFunction;
             } catch (error) {
                 console.log(error)
             }
