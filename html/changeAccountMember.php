@@ -195,19 +195,22 @@
         <section class="modal supprComptePopup">
             <section class="modal-content">
                 <span class="close">&times;</span>
-                <h2>Suppression du compte</h2>
-                <label for="mdp">Entrez votre mot de passe pour confirmer</label>
-                <input type="password" name="mdp" id="mdp">
-                <?php 
-                if (isset($_SESSION["typeUser"])){ ?>
-                    <button id="confirmeSignalement" class="btnSignalAvis"> Envoyer </button>
-                    <?php
-                }else{ ?>
-                    <a href="login.php" class="btnSignalAvis"> Connexion </a>
-                <?php
-                }
-                ?>
-                
+                <h2>Suppression de votre compte PACT</h2>
+
+                <form action="suppCompte.php">
+                    <label for="mdp">Entrez votre mot de passe pour confirmer</label>
+                    <input type="password" name="mdp" id="mdp">
+                    
+                    <label for="chbxConfirme">
+                        <input type="radio" id="chbxConfirme" value="chbxConfirme">
+                        <span class="checkmark"></span>
+                        J'ai prends connaissance que la suppression des comptes est définitive et que mes avis restent visibles sur la plateformes,
+                        en tant qu'utilisateurs anonyme. Si par hasard votre téléphone est dès demain spammé de hackers russent qui veulent votre cul, 
+                        cela n'a absolument rien a voir avec notre site.
+                    </label>
+
+                    <input type="submit" id="confirmeSuppression"> Confirmer </input>
+                </form>
             </section>
         </section>
         
@@ -349,56 +352,138 @@
             });
         }
 
+        try {
+            
+            document.getElementById('profile-pic').addEventListener('change', function(event) {
+                // Récupérer le fichier sélectionné
+                var file = event.target.files[0];
+
+                if (file) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        // Afficher immédiatement la nouvelle image dans le DOM
+                        document.getElementById('current-profile-pic').src = e.target.result;
+
+                        // Désactiver le bouton de soumission du formulaire jusqu'à ce que l'upload soit terminé
+                        document.getElementById('boutonInscription').disabled = true;
+
+                        var formData = new FormData();
+
+                        // Ajouter l'image au FormData
+                        formData.append('profile-pic', file);
+
+                        fetch('uploadProfilePic.php', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                // Mettre à jour l'image avec le chemin retourné
+                                document.getElementById('current-profile-pic').src = data.newPhotoPath;
+                                // alert('Photo de profil mise à jour !');
+                            } 
+                            
+                            else {
+                                alert('Erreur : ' + data.message);
+                            }
+
+                            // Réactiver le bouton de soumission
+                            document.getElementById('boutonInscription').disabled = false;
+                        })
+                        .catch(error => {
+                            console.error('Erreur lors de l\'upload de la photo.', error);
+                            alert('Erreur lors de l\'upload de la photo.');
+                            document.getElementById('boutonInscription').disabled = false;
+                        });
+                    };
+
+                    // Lire le fichier comme URL de données (pour l'afficher immédiatement)
+                    reader.readAsDataURL(file);
+                }
+            });
+
+        } catch (error) {
+            
+        }
+
+
+        try {
+
+            // <label for="mdp">Entrez votre mot de passe pour confirmer</label>
+            //         <input type="password" name="mdp" id="mdp">
+                    
+            //         <label for="chbxConfirme">
+            //             <input type="radio" id="chbxConfirme" value="chbxConfirme">
+            //             <span class="checkmark"></span>
+            //             J'ai prends connaissance que la suppression des comptes est définitive et que mes avis restent visibles sur la plateformes,
+            //             en tant qu'utilisateurs anonyme. Si par hasard votre téléphone est dès demain spammé de hackers russent qui veulent votre cul, 
+            //             cela n'a absolument rien a voir avec notre site.
+            //         </label>
+            
+            //Script de gestion du pop-up de signalement (traitement de l'envoi du formulaire dans les fichiers avisPro.php / avisMembre.php / signalement.php)
+            let ouvrePopup = document.getElementById('supprimerCompte');
+            const btnConfirmer = document.getElementById('confirmeSuppression');
+            const popup = document.querySelector('.supprComptePopup');
+            const body = document.body;
+            
+            // Afficher le pop-up
+            ouvrePopup.addEventListener('click', () => {
+                popup.style.display = 'block';
+                body.classList.add("no-scroll");
+            });
         
-        document.getElementById('profile-pic').addEventListener('change', function(event) {
-            // Récupérer le fichier sélectionné
-            var file = event.target.files[0];
+            // Traiter le signalement en BDD après confirmation et fermer le popup
+            btnConfirmer.addEventListener('click', () => {
+                // fetch('signalement.php', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ 
+                //         'idC': idAvisSignal,
+                //         'idU' : <?= json_encode(isset($_SESSION['idUser']) ? $_SESSION['idUser'] : 0) ?>,
+                //         'motif' : motifSignal.value,
+                //         'complement' : texteComplement.value
+                //     })
+                // });
 
-            if (file) {
-                var reader = new FileReader();
+                let inputMDP = document.querySelector('.signalementPopup #mdp');
+                let confirmation = document.getElementById('chbxConfirme');
+                confirmation.checked = false; // On désélectionne le motif choisi
+                inputMDP.value = ""; //On vide le mdp
+                body.classList.remove("no-scroll");
 
-                reader.onload = function(e) {
-                    // Afficher immédiatement la nouvelle image dans le DOM
-                    document.getElementById('current-profile-pic').src = e.target.result;
+                alert('Compte supprimé (c faux)');
+            });
 
-                    // Désactiver le bouton de soumission du formulaire jusqu'à ce que l'upload soit terminé
-                    document.getElementById('boutonInscription').disabled = true;
+            // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
+            const btnFermer = document.querySelector('.signalementPopup .close');
 
-                    var formData = new FormData();
+            btnFermer.addEventListener('click', () => {
+                popup.style.display = 'none';
 
-                    // Ajouter l'image au FormData
-                    formData.append('profile-pic', file);
+                try {
+                    let inputMDP = document.querySelector('.signalementPopup #mdp');
+                    let confirmation = document.getElementById('chbxConfirme');
+                    confirmation.checked = false; // On désélectionne le motif choisi
+                    inputMDP.value = ""; //On vide le mdp
+                    body.classList.remove("no-scroll");
+                } catch (error) {
+                    
+                }
+            });
 
-                    fetch('uploadProfilePic.php', {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            // Mettre à jour l'image avec le chemin retourné
-                            document.getElementById('current-profile-pic').src = data.newPhotoPath;
-                            // alert('Photo de profil mise à jour !');
-                        } 
-                        
-                        else {
-                            alert('Erreur : ' + data.message);
-                        }
+            // Masquer le pop-up si on clique en dehors, et on laisse les input tels quels en cas de missclick
+            window.addEventListener('click', (event) => {
+                if (event.target === popup) {
+                    popup.style.display = 'none';
+                    body.classList.remove("no-scroll");
+                }
+            });
 
-                        // Réactiver le bouton de soumission
-                        document.getElementById('boutonInscription').disabled = false;
-                    })
-                    .catch(error => {
-                        console.error('Erreur lors de l\'upload de la photo.', error);
-                        alert('Erreur lors de l\'upload de la photo.');
-                        document.getElementById('boutonInscription').disabled = false;
-                    });
-                };
-
-                // Lire le fichier comme URL de données (pour l'afficher immédiatement)
-                reader.readAsDataURL(file);
-            }
-        });
+        } catch (error) {
+            
+        }
     </script>
 
     <script src="js/validationFormInscription.js"></script>

@@ -1027,9 +1027,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <span class="closeBlack">&times;</span>
                                 <h2>blacklistage</h2>
 
-                                <section class="taillebtn">
-                                    <button class="modifierBut " id="confirmationBlack">Annuler</button>
-                                </section>
+                                <p>Êtes-vous sûr de vouloir blacklister cet avis ?</p>
+                                <div class="btnBlack">
+                                    <section class="">
+                                        <button class="modifierBut " id="confirmationBlack">Comfirmer</button>
+                                    </section>
+    
+                                    <section class="taillebtn">
+                                        <button class="modifierBut " id="confirmationBlack">Annuler</button>
+                                    </section>
+                                </div>
                             </section>
                         </section>
                     </div>
@@ -1139,7 +1146,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     let motifSignal = document.querySelector('input[name="signalement"]:checked');
                     motifSignal.checked = false; // On désélectionne le motif choisi
                     texteComplement.value = ""; //On vide le textarea
-                    body.classList.add("no-scroll");
+                    body.classList.remove("no-scroll");
                 } catch (error) {
                     
                 }
@@ -1149,6 +1156,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             window.addEventListener('click', (event) => {
                 if (event.target === popup) {
                     popup.style.display = 'none';
+                    body.classList.remove("no-scroll");
                 }
             });
 
