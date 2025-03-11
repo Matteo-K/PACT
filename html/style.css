@@ -2232,9 +2232,8 @@ label[for="rest_ajoutPhotoMenu"] {
   height: 50vh;
   width: 90%;
 }
-#mapTriFiltre{
-  
-  width: 33vw;
+#carte_offres > #map {
+  width:100%;
 }
 
 /* A suppr pre sprint 3 */
