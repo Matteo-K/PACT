@@ -212,7 +212,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Validation pour la confirmation du mot de passe
     const confirmPasswordField = document.getElementById('confirmer');
 
-    // if (currentFile === 'accountPro.php' || currentFile === 'accountMember.php')
     if(confirmPasswordField) {
         confirmPasswordField.addEventListener('blur', function () {
             const motdepasse = document.getElementById('motdepasse').value;
@@ -245,20 +244,22 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        const motdepasse = document.getElementById('motdepasse').value;
-        const confirmer = document.getElementById('confirmer').value;
+        if(confirmPasswordField) {
+            const motdepasse = document.getElementById('motdepasse').value;
+            const confirmer = document.getElementById('confirmer').value;
 
-        if (motdepasse !== confirmer) {
-            errors.push('Les mots de passe ne correspondent pas.');
+            if (motdepasse !== confirmer) {
+                errors.push('Les mots de passe ne correspondent pas.');
+            }
+
+            if (!document.getElementById('cgu').checked) {
+                errors.push('Vous devez accepter les conditions générales d\'utilisation.');
+            }
+
+            // Afficher les erreurs globales
+            displayGlobalErrors(errors);
+
         }
-
-        if (!document.getElementById('cgu').checked) {
-            errors.push('Vous devez accepter les conditions générales d\'utilisation.');
-        }
-
-        // Afficher les erreurs globales
-        displayGlobalErrors(errors);
-
         // Si aucune erreur, envoyer le formulaire
         if (errors.length === 0) {
             form.submit();

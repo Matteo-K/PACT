@@ -198,18 +198,20 @@
                 <h2>Suppression de votre compte PACT</h2>
 
                 <form action="suppCompte.php">
-                    <label for="mdp">Entrez votre mot de passe pour confirmer</label>
+                    <label for="mdp">Entrez votre mot de passe : </label>
                     <input type="password" name="mdp" id="mdp">
                     
                     <label for="chbxConfirme">
                         <input type="radio" id="chbxConfirme" value="chbxConfirme">
                         <span class="checkmark"></span>
-                        J'ai prends connaissance que la suppression des comptes est définitive et que mes avis restent visibles sur la plateformes,
-                        en tant qu'utilisateurs anonyme. Si par hasard votre téléphone est dès demain spammé de hackers russent qui veulent votre cul, 
-                        cela n'a absolument rien a voir avec notre site.
+                        Je prends connaissance que la suppression des comptes est définitive et que mes avis restent tout de même visibles 
+                        sur la plateforme, sans leurs photos et en tant qu'utilisateur anonyme.
                     </label>
 
-                    <input type="submit" id="confirmeSuppression"> Confirmer </input>
+                    <div>
+                        <input type="submit" id="confirmeSuppression" value="Confirmer"></input>
+                        <input type="reset" id="annuleSuppression" value="Annuler">
+                    </div>
                 </form>
             </section>
         </section>
@@ -308,7 +310,7 @@
             <?php 
                 // print_r($infoPro);
             ?>
-            <p>Votre Clé API :</p>
+            <p>Service Tchatator - Votre Clé API :</p>
 
             <?php if($infoPro["apikey"]){?>
                 <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
@@ -404,7 +406,9 @@
                 }
             });
 
-        } catch (error) {
+        }
+        
+        catch (error) {
             
         }
 
@@ -447,7 +451,7 @@
                 //     })
                 // });
 
-                let inputMDP = document.querySelector('.signalementPopup #mdp');
+                let inputMDP = document.querySelector('.supprComptePopup #mdp');
                 let confirmation = document.getElementById('chbxConfirme');
                 confirmation.checked = false; // On désélectionne le motif choisi
                 inputMDP.value = ""; //On vide le mdp
@@ -457,21 +461,22 @@
             });
 
             // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
-            const btnFermer = document.querySelector('.signalementPopup .close');
+            const btnFermer = document.querySelector('.supprComptePopup .close');
+            const btnAnnuler = document.querySelector('#annuleSuppression');
 
-            btnFermer.addEventListener('click', () => {
+            btnFermer.addEventListener('click', clearPopup);
+            btnAnnuler.addEventListener('click', clearPopup);
+
+            
+            function clearPopup(){
                 popup.style.display = 'none';
 
-                try {
-                    let inputMDP = document.querySelector('.signalementPopup #mdp');
-                    let confirmation = document.getElementById('chbxConfirme');
-                    confirmation.checked = false; // On désélectionne le motif choisi
-                    inputMDP.value = ""; //On vide le mdp
-                    body.classList.remove("no-scroll");
-                } catch (error) {
-                    
-                }
-            });
+                let inputMDP = document.querySelector('.supprComptePopup #mdp');
+                let confirmation = document.getElementById('chbxConfirme');
+                confirmation.checked = false; // On désélectionne le motif choisi
+                inputMDP.value = ""; //On vide le mdp
+                body.classList.remove("no-scroll");
+            }
 
             // Masquer le pop-up si on clique en dehors, et on laisse les input tels quels en cas de missclick
             window.addEventListener('click', (event) => {

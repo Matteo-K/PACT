@@ -4,6 +4,9 @@
  * Ensemble des fonctions et évènements 
  * afin de trier et filtrer les offres de la page de recherche
  */
+
+import { geocode } from "./geocode";
+
 let currentPage = 1;
 let nbElement = 12;
 
@@ -42,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
       form.submit();
     });
   });
+
 });
 
 /// Inputs de recherche ///
@@ -619,16 +623,20 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   console.log(array);
   // Affichage
   displayOffers(array, elementStart, nbElement);
-
   // Affichage de la pagination
   updatePagination(array.length, nbElement);
+
+  //affichage des ping sur la carte
+  addPing(array);
 }
 
 function addPing(array){
-  array.forEach(elt=> {
-
-  });
+  for (const elt of array) {
+    let geoCode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
+    console.log(geocode);
+  }
 }
+
 
 /**
  * 
@@ -670,7 +678,7 @@ function updatePagination(totalItems, nbElement) {
 
 function goToPage(page) {
   currentPage = page;
-  search = searchInput.value;
+  let search = searchInput.value;
   sortAndFilter(arrayOffer, search, (page - 1) * nbElement, nbElement);
 }
 

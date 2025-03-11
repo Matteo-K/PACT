@@ -1023,18 +1023,21 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </section>
 
                         <section class="modal" id="blacklistModal">
-                            <section class="modal-content">
+                            <section class="modal-contentBlack">
                                 <span class="closeBlack">&times;</span>
                                 <h2>blacklistage</h2>
 
-                                <p>Êtes-vous sûr de vouloir blacklister cet avis ?</p>
+                                <p class="taille7">Êtes-vous sûr de vouloir blacklister cet avis ?</p>
+
+                                <p class="taille8">Il vous reste 3 blacklistage</p>
+
                                 <div class="btnBlack">
                                     <section class="">
-                                        <button class="modifierBut " id="confirmationBlack">Comfirmer</button>
+                                        <button class="modifierBut size" id="confirmationBlack">Comfirmer</button>
                                     </section>
     
                                     <section class="taillebtn">
-                                        <button class="modifierBut " id="confirmationBlack">Annuler</button>
+                                        <button class="modifierBut size" id="confirmationBlack2">Annuler</button>
                                     </section>
                                 </div>
                             </section>
@@ -1340,6 +1343,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const closeModalBlackButton = document.querySelector(".closeBlack");
                 const body = document.body;
                 const leaveB = document.getElementById("confirmationBlack")
+                const leave2 = document.getElementById("confirmationBlack2")
 
                 // Fonction pour afficher le modal
                 function openModalBlackFunction() {
@@ -1369,7 +1373,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 });
 
                 leaveB.onclick = closeModalBlackFunction;
-
+                leave2.onclick = closeModalBlackFunction;
             } catch (error) {
                 console.log(error)
             }
