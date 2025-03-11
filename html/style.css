@@ -2451,7 +2451,7 @@ label[for="rest_ajoutPhotoMenu"] {
   color: white;
   background-color: var(--primary);
   background-size: cover;
-  box-shadow: 0px 0px 10px 5px var(--primary20);
+  box-shadow: 0px 0px 10px 5px #0000003e;
 }
 
 .flip-card-back {
