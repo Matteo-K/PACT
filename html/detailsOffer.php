@@ -1027,7 +1027,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <span class="closeBlack">&times;</span>
                                 <h2>blacklistage</h2>
 
-                                <button></button>
                                 <section class="taillebtn">
                                     <button class="modifierBut " onclick="confirmationBlack()">Annuler</button>
                                 </section>
@@ -1364,7 +1363,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 });
 
                 function confirmationBlack(){
-                    closeModalBlackFunction;
+                    closeModalBlackFunction();
                 }
 
             } catch (error) {
