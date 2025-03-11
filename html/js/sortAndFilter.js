@@ -5,6 +5,8 @@
  * afin de trier et filtrer les offres de la page de recherche
  */
 
+import { geocode } from "./geocode.js";
+
 let currentPage = 1;
 let nbElement = 12;
 
@@ -44,14 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  function addPing(array){
-    for (const elt of array) {
-      let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
-      console.log(geocode);
-    }
-  }
-
-  window.addPing = addPing;
 });
 
 /// Inputs de recherche ///
@@ -636,6 +630,14 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   addPing(array);
 }
 
+function addPing(array){
+  for (const elt of array) {
+    let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
+    console.log(geocode);
+  }
+}
+
+
 /**
  * 
  * @param {integer} totalItems taille de la liste
@@ -676,7 +678,7 @@ function updatePagination(totalItems, nbElement) {
 
 function goToPage(page) {
   currentPage = page;
-  search = searchInput.value;
+  let search = searchInput.value;
   sortAndFilter(arrayOffer, search, (page - 1) * nbElement, nbElement);
 }
 

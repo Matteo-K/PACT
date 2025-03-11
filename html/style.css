@@ -5732,7 +5732,7 @@ div[id="messageErreur"] {
     margin-top: 5vh;
   }
 
-  .creation-compte form {
+  .creation-compte form, #apiKey {
     display: flex;
     flex-direction: column;
     align-items: center;
