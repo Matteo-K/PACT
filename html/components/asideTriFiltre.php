@@ -356,7 +356,7 @@
     
     var map = L.map('map').setView([48.8566, -2.3522], 13);
 
-    L.tileLayer('proxy.php?z={z}&x={x}&y={y}', {
+    L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
         attribution: '&copy; <a href="https://www.thunderforest.com/">Thunderforest</a>',
         maxZoom: 22
     }).addTo(map);
