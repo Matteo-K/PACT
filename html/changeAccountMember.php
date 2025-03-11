@@ -321,52 +321,45 @@
         if (file) {
             var reader = new FileReader();
 
-            // Lorsque la lecture du fichier est terminée
             reader.onload = function(e) {
-                // Mettre à jour l'image de profil dans le DOM avec l'image locale
+                // Afficher immédiatement la nouvelle image dans le DOM
                 document.getElementById('current-profile-pic').src = e.target.result;
 
-                // Désactiver le bouton de soumission du formulaire jusqu'à ce que l'upload soit réussi
+                // Désactiver le bouton de soumission du formulaire jusqu'à ce que l'upload soit terminé
                 document.getElementById('boutonInscription').disabled = true;
 
-                // Maintenant on peut aussi envoyer l'image au serveur
                 var formData = new FormData();
                 formData.append('profile-pic', file); // Ajouter l'image au FormData
 
-                // Utilisation de fetch pour envoyer la requête
                 fetch('uploadProfilePic.php', {
                     method: 'POST',
-                    body: formData // Corps de la requête avec le fichier
+                    body: formData
                 })
-                .then(response => response.json()) // S'assurer de récupérer une réponse JSON
+                .then(response => response.json())
                 .then(data => {
-                    // Vérifier la réponse
-                    console.log(data);
                     if (data.status === 'success') {
-                        // Si l'upload est réussi, mettre à jour l'image de profil dans le DOM
+                        // Mettre à jour l'image avec le chemin retourné
                         document.getElementById('current-profile-pic').src = data.newPhotoPath;
                         alert('Photo de profil mise à jour !');
-                        // Réactiver le bouton de soumission
-                        document.getElementById('boutonInscription').disabled = false;
-                        // document.getElementById('formMember').submit();
                     } else {
                         alert('Erreur : ' + data.message);
-                        // Réactiver le bouton de soumission en cas d'échec
-                        document.getElementById('boutonInscription').disabled = false;
                     }
+
+                    // Réactiver le bouton de soumission
+                    document.getElementById('boutonInscription').disabled = false;
                 })
-                // .catch(error => {
-                //     console.error('Erreur lors de l\'upload de la photo.', error);
-                //     alert('Erreur lors de l\'upload de la photo.');
-                //     // Réactiver le bouton de soumission en cas d'erreur
-                // });
-                document.getElementById('boutonInscription').disabled = false;
+                .catch(error => {
+                    console.error('Erreur lors de l\'upload de la photo.', error);
+                    alert('Erreur lors de l\'upload de la photo.');
+                    document.getElementById('boutonInscription').disabled = false;
+                });
             };
 
-            // Lire le fichier comme URL de données (pour afficher immédiatement)
+            // Lire le fichier comme URL de données (pour l'afficher immédiatement)
             reader.readAsDataURL(file);
         }
     });
+
 
 
 
