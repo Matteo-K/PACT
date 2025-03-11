@@ -43,6 +43,15 @@ document.addEventListener('DOMContentLoaded', function() {
       form.submit();
     });
   });
+
+  function addPing(array){
+    for (const elt of array) {
+      let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
+      console.log(geocode);
+    }
+  }
+
+  window.addPing = addPing;
 });
 
 /// Inputs de recherche ///
@@ -623,15 +632,18 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   // Affichage de la pagination
   updatePagination(array.length, nbElement);
 
-  //affichage des ping sur la carte
-  addPing(array);
-}
-
-function addPing(array){
-  for (const elt of array) {
-    let geocode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
-    console.log(geocode);
+  //affichage des ping surfunction addPing(address) {
+        geocode(address).then(coords => {
+          if (coords) {
+              console.log("Coordonnées :", coords);
+          } else {
+              console.log("Impossible de récupérer les coordonnées.");
+          }
+      });
   }
+
+  window.addPing = addPing; la carte
+  addPing(array);
 }
 
 /**
