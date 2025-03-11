@@ -1973,7 +1973,7 @@ label[for="rest_ajoutPhotoMenu"] {
   }
 }
 
-#supprimerCompte, #confirmeSuppression{
+#supprimerCompte, #confirmeSuppression, #annuleSuppression{
   position: absolute;
   top: 20px;
   right: 20px;
@@ -1994,8 +1994,12 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .supprComptePopup form{
   display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.supprComptePopup #mdp{
+  flex: auto;
 }
 
 .supprComptePopup label[for="chbxConfirme"]{
@@ -2004,6 +2008,30 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .supprComptePopup #chbxConfirme{
   display: none;
+}
+
+#confirmeSuppression{
+  position: relative;
+  color: #fff;
+  background-color: #c24d4d;
+  border-color: #c24d4d;
+}
+
+#annuleSuppression{
+  position: relative;
+  color: #fff;
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+#confirmeSuppression:hover{
+  color: #c24d4d;
+  background-color: #fff;
+}
+
+#annuleSuppression:hover{
+  color: var(--primary);
+  background-color: #fff;
 }
 
 /* fin popup signalement avis */

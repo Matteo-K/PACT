@@ -198,18 +198,18 @@
                 <h2>Suppression de votre compte PACT</h2>
 
                 <form action="suppCompte.php">
-                    <label for="mdp">Entrez votre mot de passe pour confirmer : </label>
+                    <label for="mdp">Entrez votre mot de passe : </label>
                     <input type="password" name="mdp" id="mdp">
                     
                     <label for="chbxConfirme">
                         <input type="radio" id="chbxConfirme" value="chbxConfirme">
                         <span class="checkmark"></span>
-                        Je prends connaissance que la suppression des comptes est définitive et que mes avis restent visibles sur la plateformes,
-                        en tant qu'utilisateurs anonyme. Si par hasard votre téléphone est dès demain spammé par des hackers russes qui veulent votre cul, 
-                        cela n'a absolument rien a voir avec notre site.
+                        Je prends connaissance que la suppression des comptes est définitive et que mes avis restent tout de même visibles 
+                        sur la plateforme, sans leurs photos et en tant qu'utilisateur anonyme.
                     </label>
 
                     <input type="submit" id="confirmeSuppression" value="Confirmer"></input>
+                    <input type="reset" id="annuleSuppression" value="Annuler">
                 </form>
             </section>
         </section>
@@ -458,8 +458,13 @@
 
             // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
             const btnFermer = document.querySelector('.supprComptePopup .close');
+            const btnAnnuler = document.querySelector('#annuleSuppression');
 
-            btnFermer.addEventListener('click', () => {
+            btnFermer.addEventListener('click', clearPopup);
+            btnAnnuler.addEventListener('click', clearPopup);
+
+            
+            const clearPopup => {
                 popup.style.display = 'none';
 
                 try {
