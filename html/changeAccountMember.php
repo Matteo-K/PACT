@@ -404,7 +404,9 @@
                 }
             });
 
-        } catch (error) {
+        }
+        
+        catch (error) {
             
         }
 

@@ -358,10 +358,6 @@
                         body: formData
                     })
                     .then(response => response.json())
-                    // .then(text => {
-                    //     console.log("Réponse brute du serveur:", text);
-                    //     return JSON.parse(text); // Essaie de parser après vérification
-                    // })
                     .then(data => {
                         if (data.status === 'success') {
                             // Mettre à jour l'image avec le chemin retourné
