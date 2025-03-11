@@ -242,7 +242,7 @@
             </div>
         </aside>
         <aside id="carte_offres">
-            <div id="mapTriFiltre">
+            <div id="map">
             </div>
         </aside>
     </div>
@@ -352,7 +352,7 @@
         modal.style.display = "none";
     }
     
-    var map = L.map('mapTriFiltre').setView([48.8566, -2.3522], 13);
+    var map = L.map('map').setView([48.8566, -2.3522], 13);
 
     L.tileLayer('proxy.php?z={z}&x={x}&y={y}', {
         attribution: '&copy; <a href="https://www.thunderforest.com/">Thunderforest</a>',
