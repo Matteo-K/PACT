@@ -632,17 +632,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   // Affichage de la pagination
   updatePagination(array.length, nbElement);
 
-  //affichage des ping surfunction addPing(address) {
-        geocode(address).then(coords => {
-          if (coords) {
-              console.log("Coordonnées :", coords);
-          } else {
-              console.log("Impossible de récupérer les coordonnées.");
-          }
-      });
-  }
-
-  window.addPing = addPing; la carte
+  //affichage des ping sur la carte
   addPing(array);
 }
 
