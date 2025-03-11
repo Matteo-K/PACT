@@ -1972,6 +1972,15 @@ label[for="rest_ajoutPhotoMenu"] {
   }
 }
 
+#supprimerCompte{
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  background-color: red;
+  padding: 15px;
+  font-size: 20px;
+}
+
 /* fin popup signalement avis */
 /* FIN CSS EWEN*/
 /* GABRIEL
