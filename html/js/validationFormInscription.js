@@ -212,7 +212,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Validation pour la confirmation du mot de passe
     const confirmPasswordField = document.getElementById('confirmer');
 
-    // if (currentFile === 'accountPro.php' || currentFile === 'accountMember.php')
     if(confirmPasswordField) {
         confirmPasswordField.addEventListener('blur', function () {
             const motdepasse = document.getElementById('motdepasse').value;
