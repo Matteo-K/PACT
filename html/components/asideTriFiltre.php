@@ -1,3 +1,4 @@
+
 <section id="trifiltre" class="asdTriFiltre">
     <div id="btnAside">
         <a onclick="toggleAside(this)" id="btnTri">
@@ -265,9 +266,6 @@
     </section>
 </section>
 
-<!-- Leaflet CSS & JS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script defer src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 
 <script>
