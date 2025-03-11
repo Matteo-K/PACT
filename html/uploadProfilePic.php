@@ -23,6 +23,12 @@
             // Générer un nom de fichier unique
             $targetFile = $targetDir . uniqid('profile_', true) . basename($file['name']);
 
+            $fichier = fopen("affiche.txt", "w");
+                    fwrite($fichier, "test\n");
+
+                    // Fermer le fichier après écriture
+                    fclose($fichier);
+
             // Déplacer le fichier téléchargé vers le répertoire de destination
             if (move_uploaded_file($file['tmp_name'], $targetFile)) {
                 try {
