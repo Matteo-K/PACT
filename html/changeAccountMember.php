@@ -466,7 +466,7 @@
             btnAnnuler.addEventListener('click', clearPopup);
 
             
-            function clearPopup{
+            function clearPopup(){
                 popup.style.display = 'none';
 
                 let inputMDP = document.querySelector('.supprComptePopup #mdp');
