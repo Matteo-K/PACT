@@ -204,12 +204,12 @@
                     <label for="chbxConfirme">
                         <input type="radio" id="chbxConfirme" value="chbxConfirme">
                         <span class="checkmark"></span>
-                        J'ai prends connaissance que la suppression des comptes est définitive et que mes avis restent visibles sur la plateformes,
+                        Je prends connaissance que la suppression des comptes est définitive et que mes avis restent visibles sur la plateformes,
                         en tant qu'utilisateurs anonyme. Si par hasard votre téléphone est dès demain spammé de hackers russent qui veulent votre cul, 
                         cela n'a absolument rien a voir avec notre site.
                     </label>
 
-                    <input type="submit" id="confirmeSuppression"> Confirmer </input>
+                    <input type="submit" id="confirmeSuppression" value=""></input>
                 </form>
             </section>
         </section>
@@ -428,20 +428,14 @@
             const popup = document.querySelector('.supprComptePopup');
             const body = document.body;
             
-            let btnSelectionne;
-
             // Afficher le pop-up
-            ouvrePopup.forEach(boutonOuvrePopup => {
-                boutonOuvrePopup.addEventListener('click', () => {
-                    popup.style.display = 'block';
-                    btnSelectionne = boutonOuvrePopup;
-                    body.classList.add("no-scroll");
-                });
+            ouvrePopup.addEventListener('click', () => {
+                popup.style.display = 'block';
+                body.classList.add("no-scroll");
             });
-            
+        
             // Traiter le signalement en BDD après confirmation et fermer le popup
             btnConfirmer.addEventListener('click', () => {
-
                 // fetch('signalement.php', {
                 //     method: 'POST',
                 //     headers: { 'Content-Type': 'application/json' },
@@ -453,24 +447,26 @@
                 //     })
                 // });
 
-                motifSignal.checked = false; // On désélectionne le motif choisi
-                texteComplement.value = ""; //On vide le textarea
+                let inputMDP = document.querySelector('.supprComptePopup #mdp');
+                let confirmation = document.getElementById('chbxConfirme');
+                confirmation.checked = false; // On désélectionne le motif choisi
+                inputMDP.value = ""; //On vide le mdp
                 body.classList.remove("no-scroll");
 
                 alert('Compte supprimé (c faux)');
             });
 
             // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
-            const btnFermer = document.querySelector('.signalementPopup .close');
+            const btnFermer = document.querySelector('.supprComptePopup .close');
 
             btnFermer.addEventListener('click', () => {
                 popup.style.display = 'none';
 
                 try {
-                    let inputMDP = document.querySelector('.signalementPopup #mdp');
+                    let inputMDP = document.querySelector('.supprComptePopup #mdp');
                     let confirmation = document.getElementById('chbxConfirme');
-                    motifSignal.checked = false; // On désélectionne le motif choisi
-                    texteComplement.value = ""; //On vide le mdp
+                    confirmation.checked = false; // On désélectionne le motif choisi
+                    inputMDP.value = ""; //On vide le mdp
                     body.classList.remove("no-scroll");
                 } catch (error) {
                     
