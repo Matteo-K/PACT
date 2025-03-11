@@ -378,7 +378,7 @@
                         if (data.status === 'success') {
                             // Mettre à jour l'image avec le chemin retourné
                             document.getElementById('current-profile-pic').src = data.newPhotoPath;
-                            alert('Photo de profil mise à jour !');
+                            // alert('Photo de profil mise à jour !');
                         } 
                         
                         else {
