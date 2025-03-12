@@ -3751,7 +3751,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 /** POPUP Carte **/
-#popupCarte > div:first-child{
+#popupCarte > div{
   display: flex;
 }
 
