@@ -3595,6 +3595,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .modal-contentTicket p {
   font-size: 1.2rem;
+  text-align: justify;
 }
 
 .size{
