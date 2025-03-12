@@ -649,7 +649,7 @@ function addPing(array) {
                     <div>
                       ${displayStar(parseFloat(elt["noteAvg"])).outerHTML}
                       <p>
-                      ${elt["noteAvg"]}
+                        ${elt["noteAvg"]}
                       </p>
                     </div>
                     <p><strong>Résumé :</strong> ${elt['resume']}</p>
