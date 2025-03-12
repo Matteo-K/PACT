@@ -3565,6 +3565,38 @@ label[for="rest_ajoutPhotoMenu"] {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.modal-contentTicket {
+  background-color: var(--background);
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 35%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-contentTicket h2{
+  margin: 0;
+  font-size: 4rem;
+}
+
+.modal-contentTicket section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.modal-contentTicket div{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.modal-contentTicket p {
+  font-size: 1.2rem;
+}
+
 .size{
   font-size: 15px !important;
 }
@@ -3599,19 +3631,24 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 .close,
-.closeBlack {
+.closeBlack,
+.closeTicket {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
   align-self: end;
+  transform: translateY(-10px);
 }
 
 .close:hover,
 .close:focus,
 .closeBlack:hover,
-.closeBlack:focus {
+.closeBlack:focus,
+.closeTicket:hover,
+.closeTicket:focus
+ {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -5749,8 +5786,7 @@ div[id="messageErreur"] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
-    max-width: 500px;
+    max-width: 90%;
     margin: 0 auto;
     padding: 20px;
     border-radius: 15px;
@@ -5920,12 +5956,6 @@ div[id="messageErreur"] {
 
   #conditionMotdepasse {
     order: 19;
-  }
-
-  .ligne7 {
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
 
   .ligne7 label {
@@ -6133,14 +6163,13 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 
   .connexion-compte form {
     justify-content: center;
-    width: 90%;
-    max-width: 400px;
+    max-width: 90%;
     margin: 0 auto;
     padding: 10px;
   }
 
   .connexion-compte input {
-    width: 270px;
+    width: 300px;
   }
 
   #boutonConnexion {

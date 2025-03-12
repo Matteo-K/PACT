@@ -630,12 +630,29 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   addPing(array);
 }
 
-function addPing(array){
-  for (const elt of array) {
-    let geoCode = geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`);
-    console.log(geoCode);
-  }
+function addPing(array) {
+
+  let markers = new L.MarkerClusterGroup();
+  array.forEach(elt => {
+    geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
+      .then(location => {
+        const latLng = location;  
+        // Accède au premier élément du tableau des résultats
+        if (latLng) {
+          let marker = L.marker(latLng)
+            .bindPopup('Test de popup')
+          markers.addLayer(marker);
+        } else {
+          console.error("Aucune coordonnée trouvée pour l'adresse : ", elt);
+        }
+      })
+      .catch(error => {
+        console.error("Erreur lors de la géocodification : ", error);
+      });
+      map.addLayer(markers);
+  });
 }
+
 
 
 /**
