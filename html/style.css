@@ -3751,6 +3751,13 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 /** POPUP Carte **/
+#popupCarte{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #popupCarte > div{
   display: flex;
 }
