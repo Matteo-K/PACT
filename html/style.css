@@ -3593,6 +3593,7 @@ label[for="rest_ajoutPhotoMenu"] {
   font-weight: bold;
   cursor: pointer;
   align-self: end;
+  transform: translateY(10px);
 }
 
 .close:hover,
