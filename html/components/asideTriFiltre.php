@@ -358,6 +358,7 @@
     }
     
     let map = L.map('map').setView([48.46, -2.85], 9);
+    let markers = new L.MarkerClusterGroup();
 
     L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
          attribution: '&copy; <a href="https://www.thunderforest.com/">Thunderforest</a>',
