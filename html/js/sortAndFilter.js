@@ -635,6 +635,8 @@ function addPing(array) {
   removeAllPing()
 
   array.forEach(elt => {
+    
+
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
       .then(location => {
         const latLng = location;  
@@ -642,8 +644,9 @@ function addPing(array) {
         if (latLng) {
           let marker = L.marker(latLng)
             .bindPopup(`
-                <div style="font-family: Arial, sans-serif;">
+                <div id="popupCarte">
                     <h3>${elt['nomOffre']}</h3>
+                    ${displayStar(parseFloat(elr["noteAvg"]))}
                     <p><strong>Résumé :</strong> ${elt['resume']}</p>
                     
                 </div>
