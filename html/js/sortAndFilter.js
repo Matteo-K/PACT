@@ -634,7 +634,8 @@ function addPing(array) {
   array.forEach(elt => {
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
       .then(location => {
-        const latLng = location[0];  // Accède au premier élément du tableau des résultats
+        const latLng = location[0];
+        console.log(latLng);  // Accède au premier élément du tableau des résultats
         if (latLng) {
           L.marker(latLng).addTo(map)
             .bindPopup('Test de popup')
