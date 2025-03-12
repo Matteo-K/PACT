@@ -3568,12 +3568,12 @@ label[for="rest_ajoutPhotoMenu"] {
 .modal-contentTicket section{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
 }
 
 .modal-contentTicket div{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .size{
