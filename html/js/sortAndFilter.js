@@ -632,8 +632,10 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 
 function addPing(array){
   for (const elt of array) {
-    let geoCode = geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`);
-    console.log(geoCode);
+    L.marker(geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)).addTo(map)
+      .bindPopup('Test de popup')
+      .openPopup();
+
   }
 }
 
