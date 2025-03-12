@@ -2044,10 +2044,11 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 
-@media (max-width: 760px) {
-  .supprComptePopup, .avis .modal-content{
+@media (max-width: 600px) {
+  .supprComptePopup .modal-content, .avis .modal-content{
     width: 90%;
     font-size: 1.1em;
+    padding: 10px;
   }
 
   .supprComptePopup form{
@@ -2058,8 +2059,9 @@ label[for="rest_ajoutPhotoMenu"] {
     width: auto;
   }
 
-  .supprComptePopup input{
+  .supprComptePopup #mdp{
     width: auto;
+    background-color: #fff;
   }
 
 }
@@ -5852,12 +5854,12 @@ div[id="messageErreur"] {
 
   .creation-compte input:hover {
     box-shadow: 0px 0px 10px 0px var(--background);
-    background: #fff;
+    background: #fff !important;
   }
 
   .creation-compte input:focus{
     border-color: var(--bloc);
-    background: #fff;
+    background: #fff !important;
     box-shadow: 0px 0px 10px 0px var(--bloc40);
     outline: none;
   }
