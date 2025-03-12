@@ -1959,13 +1959,6 @@ label[for="rest_ajoutPhotoMenu"] {
   border: solid 2px var(--accent);
 }
 
-@media (max-width: 760px) {
-  .avis .modal-content{
-    width: 90%;
-    font-size: 1.1em;
-  }
-}
-
 #supprimerCompte{
   position: absolute;
   top: 20px;
@@ -2048,6 +2041,27 @@ label[for="rest_ajoutPhotoMenu"] {
 #annuleSuppression:hover{
   color: var(--primary);
   background-color: #fff;
+}
+
+
+@media (max-width: 760px) {
+  .supprComptePopup, .avis .modal-content{
+    width: 90%;
+    font-size: 1.1em;
+  }
+
+  .supprComptePopup form{
+    padding: 5px;
+  }
+
+  .supprComptePopup label{
+    width: auto;
+  }
+
+  .supprComptePopup input{
+    width: auto;
+  }
+
 }
 
 /* fin popup signalement avis */
@@ -5832,6 +5846,18 @@ div[id="messageErreur"] {
     border: 2px solid var(--secondary);
     border-radius: 5px;
     font-size: 16px;
+  }
+
+  .creation-compte input:hover {
+    box-shadow: 0px 0px 10px 0px var(--background);
+    background: #fff;
+  }
+
+  .creation-compte input:focus{
+    border-color: var(--bloc);
+    background: #fff;
+    box-shadow: 0px 0px 10px 0px var(--bloc40);
+    outline: none;
   }
 
   #boutonInscription {
