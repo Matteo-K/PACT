@@ -1047,7 +1047,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <section class="modal-contentTicket">
                                 <span class="closeTicket">&times;</span>
                                 <section>
-                                    <h2>blacklistage</h2>
+                                    <h2>Blacklistage</h2>
                                     <div>
                                         <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
                                         <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
