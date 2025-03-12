@@ -632,7 +632,8 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 
 function addPing(array) {
 
-  let markers = new L.MarkerClusterGroup();
+  removeAllPing()
+
   array.forEach(elt => {
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
       .then(location => {
@@ -640,7 +641,13 @@ function addPing(array) {
         // Accède au premier élément du tableau des résultats
         if (latLng) {
           let marker = L.marker(latLng)
-            .bindPopup('Test de popup')
+            .bindPopup(`
+                <div style="font-family: Arial, sans-serif;">
+                    <h3>${elt['nomOffre']}</h3>
+                    <p><strong>Résumé :</strong> ${elt['resume']}</p>
+                    
+                </div>
+            `)
           markers.addLayer(marker);
         } else {
           console.error("Aucune coordonnée trouvée pour l'adresse : ", elt);
@@ -651,6 +658,13 @@ function addPing(array) {
       });
       map.addLayer(markers);
   });
+}
+
+function removeAllPing() {
+  markers.eachLayer(marker => {
+    map.removeLayer(marker); // Affiche les coordonnées de chaque marqueur
+  });
+  markers.clearLayers();  // Vider le tableau après suppression
 }
 
 

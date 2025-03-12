@@ -3580,6 +3580,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .modal-contentTicket h2{
   margin: 0;
   font-size: 4rem;
+  font-weight: 600;
 }
 
 .modal-contentTicket section{
@@ -3597,6 +3598,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .modal-contentTicket p {
   font-size: 1.2rem;
+  text-align: justify;
 }
 
 .size{
@@ -3637,11 +3639,11 @@ label[for="rest_ajoutPhotoMenu"] {
 .closeTicket {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 50px;
   font-weight: bold;
   cursor: pointer;
   align-self: end;
-  transform: translateY(-10px);
+  transform: translateY(-20px);
 }
 
 .close:hover,
@@ -5818,10 +5820,10 @@ div[id="messageErreur"] {
     max-width: 480px;
   }
 
-  .creation-compte .ligne7 > label {
+  /* .creation-compte .ligne7 > label {
     font-size: 20px;
     width: 400px;
-  }
+  } */
 
   .creation-compte .ligne7 > input {
     width: 40px;
