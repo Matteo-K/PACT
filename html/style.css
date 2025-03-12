@@ -1959,13 +1959,6 @@ label[for="rest_ajoutPhotoMenu"] {
   border: solid 2px var(--accent);
 }
 
-@media (max-width: 760px) {
-  .avis .modal-content{
-    width: 90%;
-    font-size: 1.1em;
-  }
-}
-
 #supprimerCompte{
   position: absolute;
   top: 20px;
@@ -2048,6 +2041,27 @@ label[for="rest_ajoutPhotoMenu"] {
 #annuleSuppression:hover{
   color: var(--primary);
   background-color: #fff;
+}
+
+
+@media (max-width: 760px) {
+  .supprComptePopup, .avis .modal-content{
+    width: 90%;
+    font-size: 1.1em;
+  }
+
+  .supprComptePopup form{
+    padding: 5px;
+  }
+
+  .supprComptePopup label{
+    width: auto;
+  }
+
+  .supprComptePopup input{
+    width: auto;
+  }
+
 }
 
 /* fin popup signalement avis */
@@ -3563,6 +3577,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .modal-contentTicket h2{
   margin: 0;
+  font-size: 4rem;
 }
 
 .modal-contentTicket section{
@@ -3576,6 +3591,11 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+}
+
+.modal-contentTicket p {
+  font-size: 1.2rem;
+  text-align: justify;
 }
 
 .size{
@@ -5829,6 +5849,18 @@ div[id="messageErreur"] {
     font-size: 16px;
   }
 
+  .creation-compte input:hover {
+    box-shadow: 0px 0px 10px 0px var(--background);
+    background: #fff;
+  }
+
+  .creation-compte input:focus{
+    border-color: var(--bloc);
+    background: #fff;
+    box-shadow: 0px 0px 10px 0px var(--bloc40);
+    outline: none;
+  }
+
   #boutonInscription {
     width: 100%;
     max-width: 200px;
@@ -5927,17 +5959,11 @@ div[id="messageErreur"] {
     order: 19;
   }
 
-  .ligne7 {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  /* .ligne7 label {
+  .ligne7 label {
       display: flex;
       flex-wrap: wrap;
       line-height: 1.5;
-  } */
+  }
 
   .ligne7 input[type="checkbox"] {
       margin-right: 8px;
