@@ -631,12 +631,11 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 }
 
 function addPing(array) {
-  console.log("gvjkqs,lfnhgdvjbln,lm")
   array.forEach(elt => {
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
       .then(location => {
-        const latLng = location[0];
-        console.log(latLng);  // Accède au premier élément du tableau des résultats
+        const latLng = location;  
+        // Accède au premier élément du tableau des résultats
         if (latLng) {
           L.marker(latLng).addTo(map)
             .bindPopup('Test de popup')
