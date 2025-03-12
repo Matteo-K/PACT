@@ -5,7 +5,7 @@
  * afin de trier et filtrer les offres de la page de recherche
  */
 
-import { geocode } from "./geocode";
+import { geocode } from "./geocode.js";
 
 let currentPage = 1;
 let nbElement = 12;
@@ -630,12 +630,43 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   addPing(array);
 }
 
-function addPing(array){
-  for (const elt of array) {
-    let geoCode = geocode(elt[numeroRue] + " " + elt[rue] + ", " + elt[ville] + ", " + elt[codePostal]);
-    console.log(geocode);
-  }
+function addPing(array) {
+
+  removeAllPing()
+
+  array.forEach(elt => {
+    geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
+      .then(location => {
+        const latLng = location;  
+        // Accède au premier élément du tableau des résultats
+        if (latLng) {
+          let marker = L.marker(latLng)
+            .bindPopup(`
+                <div style="font-family: Arial, sans-serif;">
+                    <h3>${elt['nomOffre']}</h3>
+                    <p><strong>Résumé :</strong> ${elt['resume']}</p>
+                    
+                </div>
+            `)
+          markers.addLayer(marker);
+        } else {
+          console.error("Aucune coordonnée trouvée pour l'adresse : ", elt);
+        }
+      })
+      .catch(error => {
+        console.error("Erreur lors de la géocodification : ", error);
+      });
+      map.addLayer(markers);
+  });
 }
+
+function removeAllPing() {
+  markers.eachLayer(marker => {
+    map.removeLayer(marker); // Affiche les coordonnées de chaque marqueur
+  });
+  markers.clearLayers();  // Vider le tableau après suppression
+}
+
 
 
 /**

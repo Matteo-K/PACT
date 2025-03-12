@@ -1042,6 +1042,21 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </section>
                         </section>
+
+                        <section class="modal" id="ticketModal">
+                            <section class="modal-contentTicket">
+                                <span class="closeTicket">&times;</span>
+                                <section>
+                                    <h2>Blacklistage</h2>
+                                    <div>
+                                        <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                                        <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                                        <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                                    </div>
+                                    <p>Un ticket de blacklistage peut être utilisé pour blacklister un avis choisie en cliquant sur l'icone présent à la lecture de l'avis, vous récupérerez votre ticket 365 jour après l'avoir utilisé.</p>
+                                </section>
+                            </section>
+                        </section>
                     </div>
     </main>
     <?php
@@ -1374,6 +1389,40 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 leaveB.onclick = closeModalBlackFunction;
                 leave2.onclick = closeModalBlackFunction;
+            } catch (error) {
+                console.log(error)
+            }
+
+            try {
+                const modalTicket = document.getElementById("ticketModal");
+                const openModalTicketButtons = document.getElementById("PopupTicket");
+                const closeModalTicketButton = document.querySelector(".closeTicket");
+                const body = document.body;
+
+                // Fonction pour afficher le modal
+                function openModalTicketFunction() {
+                    modalTicket.style.display = "block";
+                    body.classList.add("no-scroll");
+                }
+
+                // Fonction pour fermer le modal
+                function closeModalTicketFunction() {
+                    modalTicket.style.display = "none";
+                    body.classList.remove("no-scroll");
+                }
+
+                // Ouvrir le popup lorsque le bouton est cliqué
+                openModalTicketButtons.onclick = openModalTicketFunction
+
+                // Fermer le popup lorsqu'on clique sur la croix
+                closeModalTicketButton.addEventListener('click', closeModalTicketFunction);
+
+                // Fermer le popup si on clique en dehors de celui-ci
+                window.addEventListener('click', (event) => {
+                    if (event.target === modalTicket) {
+                        closeModalTicketFunction();
+                    }
+                });
             } catch (error) {
                 console.log(error)
             }

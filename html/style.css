@@ -167,8 +167,8 @@ textarea:focus {
 #formMember input:hover,
 #formConnexion input:hover {
   outline: none;
-  background-color: transparent;
   background: linear-gradient(0deg, var(--primary20) 0%, transparent 20%);
+  background-color: var(--background40);
 }
 
 
@@ -176,14 +176,7 @@ textarea:focus {
 #formMember input:focus,
 #formConnexion input:focus {
   outline: none;
-  background: linear-gradient(0deg, var(--primary30) 0%, transparent 30%);
-}
-
-#formPro input:hover,
-#formMember input:hover,
-#formConnexion input:hover {
-  outline: none;
-  background-color: var(--background40);
+  background: linear-gradient(0deg, var(--primary40) 0%, transparent 20%)
 }
 
 /* ##### Components ##### */
@@ -1966,13 +1959,6 @@ label[for="rest_ajoutPhotoMenu"] {
   border: solid 2px var(--accent);
 }
 
-@media (max-width: 760px) {
-  .avis .modal-content{
-    width: 90%;
-    font-size: 1.1em;
-  }
-}
-
 #supprimerCompte{
   position: absolute;
   top: 20px;
@@ -2000,6 +1986,17 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .supprComptePopup #mdp{
   flex: auto;
+  background-color: transparent;
+}
+
+.supprComptePopup #mdp:focus {
+  outline: none;
+  background: linear-gradient(0deg, var(--primary40) 0%, transparent 20%);
+}
+
+.supprComptePopup #mdp:hover {
+  outline: none;
+  background-color: var(--background40);
 }
 
 .supprComptePopup label[for="chbxConfirme"]{
@@ -2027,7 +2024,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #confirmeSuppression{
-  background-color: #c2c2c2;
+  background-color: #c24d4d;
   border: 3px solid #c24d4d;
 }
 
@@ -2044,6 +2041,29 @@ label[for="rest_ajoutPhotoMenu"] {
 #annuleSuppression:hover{
   color: var(--primary);
   background-color: #fff;
+}
+
+
+@media (max-width: 600px) {
+  .supprComptePopup .modal-content, .avis .modal-content{
+    width: 90%;
+    font-size: 1.1em;
+    padding: 10px;
+  }
+
+  .supprComptePopup form{
+    padding: 5px;
+  }
+
+  .supprComptePopup label{
+    width: auto;
+  }
+
+  .supprComptePopup #mdp{
+    width: auto;
+    background-color: #fff;
+  }
+
 }
 
 /* fin popup signalement avis */
@@ -3547,6 +3567,40 @@ label[for="rest_ajoutPhotoMenu"] {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.modal-contentTicket {
+  background-color: var(--background);
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 35%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-contentTicket h2{
+  margin: 0;
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.modal-contentTicket section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.modal-contentTicket div{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.modal-contentTicket p {
+  font-size: 1.2rem;
+  text-align: justify;
+}
+
 .size{
   font-size: 15px !important;
 }
@@ -3581,19 +3635,24 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 .close,
-.closeBlack {
+.closeBlack,
+.closeTicket {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 50px;
   font-weight: bold;
   cursor: pointer;
   align-self: end;
+  transform: translateY(-20px);
 }
 
 .close:hover,
 .close:focus,
 .closeBlack:hover,
-.closeBlack:focus {
+.closeBlack:focus,
+.closeTicket:hover,
+.closeTicket:focus
+ {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -5630,11 +5689,10 @@ label#btnAjoutPhoto:hover {
 
 input[id="denomination"],  input[id="telephone"], input[id="nomMembre"], 
 input[id="prenomMembre"], input[id="pseudoMembre"], input[id="telephoneMembre"],
-input[id="motdepasse"], input[id="confirmer"] {
+input[id="motdepasse"], input[id="confirmer"], input[id="mdp"] {
   width: 403px;
   height: 40px;
   margin: 0 5px;
-  /* border: 3px solid var(--secondary); */
   border: 0;
   border-bottom: solid 2px var(--primary);
 }
@@ -5643,7 +5701,6 @@ input[id="email"], input[id="adresse"] {
   width: 830px;
   height: 40px;
   margin: 0 5px;
-  /* border: 3px solid var(--secondary); */
   border: 0;
   border-bottom: solid 2px var(--primary);
 }
@@ -5652,7 +5709,6 @@ input[id="code"] {
   width: 210px;
   height: 40px;
   margin: 0 5px;
-  /* border: 3px solid var(--secondary); */
   border: 0;
   border-bottom: solid 2px var(--primary);
 }
@@ -5661,7 +5717,6 @@ input[id="ville"] {
   width: 596px;
   height: 40px;
   margin: 0 5px;
-  /* border: 3px solid var(--secondary); */
   border: 0;
   border-bottom: solid 2px var(--primary);
 }
@@ -5675,7 +5730,6 @@ input[id="siren"] {
   height: 40px;
   margin-right: 0;
   margin-left: 10px;
-  /* border: 3px solid var(--secondary); */
   border: 0;
   border-bottom: solid 2px var(--primary);
 }
@@ -5736,8 +5790,7 @@ div[id="messageErreur"] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
-    max-width: 500px;
+    max-width: 90%;
     margin: 0 auto;
     padding: 20px;
     border-radius: 15px;
@@ -5767,10 +5820,10 @@ div[id="messageErreur"] {
     max-width: 480px;
   }
 
-  .creation-compte .ligne7 > label {
+  /* .creation-compte .ligne7 > label {
     font-size: 20px;
     width: 400px;
-  }
+  } */
 
   .creation-compte .ligne7 > input {
     width: 40px;
@@ -5797,6 +5850,18 @@ div[id="messageErreur"] {
     border: 2px solid var(--secondary);
     border-radius: 5px;
     font-size: 16px;
+  }
+
+  .creation-compte input:hover {
+    box-shadow: 0px 0px 10px 0px var(--background);
+    background: #fff !important;
+  }
+
+  .creation-compte input:focus{
+    border-color: var(--bloc);
+    background: #fff !important;
+    box-shadow: 0px 0px 10px 0px var(--bloc40);
+    outline: none;
   }
 
   #boutonInscription {
@@ -5895,12 +5960,6 @@ div[id="messageErreur"] {
 
   #conditionMotdepasse {
     order: 19;
-  }
-
-  .ligne7 {
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
 
   .ligne7 label {
@@ -6043,7 +6102,6 @@ input[id="login"], input[id="motdepasseConnexion"], input[id="ancienMDP"], input
   height: 40px;
   margin: 0 5px;
   margin-top: 30px;
-  /* border: 3px solid var(--secondary); */
   border: 0;
   border-bottom: solid 2px var(--primary);
 }
@@ -6109,14 +6167,13 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 
   .connexion-compte form {
     justify-content: center;
-    width: 90%;
-    max-width: 400px;
+    max-width: 90%;
     margin: 0 auto;
     padding: 10px;
   }
 
   .connexion-compte input {
-    width: 270px;
+    width: 300px;
   }
 
   #boutonConnexion {
