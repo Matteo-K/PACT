@@ -650,6 +650,7 @@ function addPing(array) {
       .catch(error => {
         console.error("Erreur lors de la géocodification : ", error);
       });
+      map.addLayer(markers);
   });
 }
 
