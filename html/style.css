@@ -6111,8 +6111,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 
   .connexion-compte form {
     justify-content: center;
-    width: 90%;
-    max-width: 400px;
+    max-width: 90%;
     margin: 0 auto;
     padding: 10px;
   }
