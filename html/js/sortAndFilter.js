@@ -641,7 +641,13 @@ function addPing(array) {
         // Accède au premier élément du tableau des résultats
         if (latLng) {
           let marker = L.marker(latLng)
-            .bindPopup('Test de popup')
+            .bindPopup(`
+                <div style="font-family: Arial, sans-serif;">
+                    <h3>${elt['nomOffre']}</h3>
+                    <p><strong>Résumé :</strong> ${elt['resume']}</p>
+                    
+                </div>
+            `)
           markers.addLayer(marker);
         } else {
           console.error("Aucune coordonnée trouvée pour l'adresse : ", elt);
