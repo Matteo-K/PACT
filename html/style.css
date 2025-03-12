@@ -3578,6 +3578,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .modal-contentTicket h2{
   margin: 0;
   font-size: 4rem;
+  font-weight: 600;
 }
 
 .modal-contentTicket section{
