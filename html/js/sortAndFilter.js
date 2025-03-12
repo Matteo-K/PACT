@@ -632,7 +632,8 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 
 function addPing(array) {
 
-  let markers = new L.MarkerClusterGroup();
+  removeAllPing()
+
   array.forEach(elt => {
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
       .then(location => {
@@ -651,6 +652,13 @@ function addPing(array) {
       });
       map.addLayer(markers);
   });
+}
+
+function removeAllPing() {
+  markers.forEach(function(marker) {
+      map.removeLayer(marker);
+  });
+  markers = [];  // Vider le tableau après suppression
 }
 
 
