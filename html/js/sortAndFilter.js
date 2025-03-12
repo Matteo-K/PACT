@@ -655,10 +655,10 @@ function addPing(array) {
 }
 
 function removeAllPing() {
-  markers.forEach(function(marker) {
-      map.removeLayer(marker);
+  markers.eachLayer(marker => {
+    map.removeLayer(marker); // Affiche les coordonnées de chaque marqueur
   });
-  markers = [];  // Vider le tableau après suppression
+  markers.clearLayers();  // Vider le tableau après suppression
 }
 
 
