@@ -1044,7 +1044,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </section>
 
                         <section class="modal" id="ticketModal">
-                            <section class="modal-content">
+                            <section class="modal-contentTicket">
                                 <span class="closeTicket">&times;</span>
                                 <h2>blacklistage</h2>
 
