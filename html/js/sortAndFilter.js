@@ -631,6 +631,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 }
 
 function addPing(array) {
+  console.log("gvjkqs,lfnhgdvjbln,lm")
   array.forEach(elt => {
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
       .then(location => {
