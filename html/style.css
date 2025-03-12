@@ -5817,10 +5817,10 @@ div[id="messageErreur"] {
     max-width: 480px;
   }
 
-  .creation-compte .ligne7 > label {
+  /* .creation-compte .ligne7 > label {
     font-size: 20px;
     width: 400px;
-  }
+  } */
 
   .creation-compte .ligne7 > input {
     width: 40px;
