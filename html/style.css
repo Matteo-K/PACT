@@ -5927,17 +5927,11 @@ div[id="messageErreur"] {
     order: 19;
   }
 
-  .ligne7 {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  /* .ligne7 label {
+  .ligne7 label {
       display: flex;
       flex-wrap: wrap;
       line-height: 1.5;
-  } */
+  }
 
   .ligne7 input[type="checkbox"] {
       margin-right: 8px;
