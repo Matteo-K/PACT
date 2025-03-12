@@ -1047,10 +1047,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <section class="modal-contentTicket">
                                 <span class="closeTicket">&times;</span>
                                 <h2>blacklistage</h2>
-
-                                <p class="taille7">Êtes-vous sûr de vouloir blacklister cet avis ?</p>
-
-                                <p class="taille8">Il vous reste 3 blacklistage</p>
                             </section>
                         </section>
                     </div>

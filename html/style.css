@@ -3565,6 +3565,11 @@ label[for="rest_ajoutPhotoMenu"] {
   margin: 0;
 }
 
+.modal-contentTicket{
+  display: flex;
+  justify-content: center;
+}
+
 .size{
   font-size: 15px !important;
 }
