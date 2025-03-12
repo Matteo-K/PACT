@@ -1042,6 +1042,17 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                             </section>
                         </section>
+
+                        <section class="modal" id="ticketModal">
+                            <section class="modal-content">
+                                <span class="closeTicket">&times;</span>
+                                <h2>blacklistage</h2>
+
+                                <p class="taille7">Êtes-vous sûr de vouloir blacklister cet avis ?</p>
+
+                                <p class="taille8">Il vous reste 3 blacklistage</p>
+                            </section>
+                        </section>
                     </div>
     </main>
     <?php
@@ -1374,6 +1385,40 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 leaveB.onclick = closeModalBlackFunction;
                 leave2.onclick = closeModalBlackFunction;
+            } catch (error) {
+                console.log(error)
+            }
+
+            try {
+                const modalTicket = document.getElementById("ticketModal");
+                const openModalTicketButtons = document.getElementById("PopupTicket");
+                const closeModalTicketButton = document.querySelector(".closeTicket");
+                const body = document.body;
+
+                // Fonction pour afficher le modal
+                function openModalTicketFunction() {
+                    modalTicket.style.display = "block";
+                    body.classList.add("no-scroll");
+                }
+
+                // Fonction pour fermer le modal
+                function closeModalTicketFunction() {
+                    modalTicket.style.display = "none";
+                    body.classList.remove("no-scroll");
+                }
+
+                // Ouvrir le popup lorsque le bouton est cliqué
+                openModalBlackButtons.onclick = openModalTicketFunction
+
+                // Fermer le popup lorsqu'on clique sur la croix
+                closeModalTicketButton.addEventListener('click', closeModalTicketButton);
+
+                // Fermer le popup si on clique en dehors de celui-ci
+                window.addEventListener('click', (event) => {
+                    if (event.target === modalTicket) {
+                        closeModalTicketFunction();
+                    }
+                });
             } catch (error) {
                 console.log(error)
             }
