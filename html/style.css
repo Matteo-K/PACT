@@ -5798,6 +5798,7 @@ div[id="messageErreur"] {
   }
 
   .creation-compte .ligne7 > label {
+    display: block;
     font-size: 20px;
     width: 400px;
   }
@@ -6144,7 +6145,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   }
 
   .connexion-compte input {
-    width: 270px;
+    width: 300px;
   }
 
   #boutonConnexion {

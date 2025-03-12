@@ -641,7 +641,6 @@ function addPing(array) {
         if (latLng) {
           let marker = L.marker(latLng).addTo(map)
             .bindPopup('Test de popup')
-            .openPopup();
           markers.addLayer(marker);
         } else {
           console.error("Aucune coordonnée trouvée pour l'adresse : ", elt);
