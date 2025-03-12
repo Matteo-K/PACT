@@ -3565,9 +3565,14 @@ label[for="rest_ajoutPhotoMenu"] {
   margin: 0;
 }
 
-.modal-contentTicket{
+.modal-contentTicket section{
   display: flex;
   justify-content: center;
+}
+
+.modal-contentTicket div{
+  display: flex;
+  justify-content: space-between;
 }
 
 .size{
