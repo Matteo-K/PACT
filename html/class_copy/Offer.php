@@ -143,7 +143,9 @@ class Offer {
     return $this->data["idOffre"];
   }
 
-  public function getData() {
+  public function getData($attribut = []) {
+    
+
     return [
       "idU" => $this->idUser, 
       "nomUser" => $this->nomUser, 

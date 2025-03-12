@@ -1,7 +1,7 @@
 <?php
 require_once "Offer.php";
 
-class Activity extends Offer {
+class Activity extends Offer implements Categorie {
   protected $activityData = null;
 
   public function __construct($idOffre) {
@@ -10,7 +10,6 @@ class Activity extends Offer {
 
   public function getData() {
     $parentData = parent::getData();
-
 
     return array_merge($parentData, [
       "duree" => $this->activityData["duree"],

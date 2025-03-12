@@ -1,17 +1,13 @@
 <?php
 require_once "Offer.php";
 
-class Visit extends Offer {
+class Visit extends Offer implements Categorie {
   protected $visitData = null;
 
   public function __construct($idOffre) {
     parent::__construct($idOffre, "Visite");
   }
 
-  /**
-   * Charge les données suivant les attributs saisit
-   * @param Array $attribut Liste de colonne désiré
-   */
   public function loadData($attribut = []) {
     global $conn;
 
@@ -64,22 +60,35 @@ class Visit extends Offer {
     }
   }
 
-  public function getData() {
-    $parentData = parent::getData();
-    $this->loadData();
+  public function getData($parentAttribut = [], $thisAttribut = []) {
+    $parentData = [];
+    $thisData = [];
 
-    return array_merge($parentData, [
-      "estGuide" => $this->visitData["guide"],
-      "duree" => $this->visitData[""],
-      "prixMinimal" => $this->visitData["prixMinimal"],
-      "accessibilite" => $this->visitData["accessibilite"],
-      "handicap" => $this->visitData["handicap"],
-      "langue" => $this->visitData["langue"],
+    $attributs = [
+      "estGuide" => "guide",
+      "duree" => "duree",
+      "prixMinimal" => "prixMinimal",
+      "accessibilite" => "accessibilite",
+      "handicap" => "handicap",
+      "langue" => "langue"
 
-      "horaireMidi" => $this->horaireToJSON($this->horaireMidi),
-      "horaireSoir" => $this->horaireToJSON($this->horaireSoir),
-      "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
-    ]);
+      // "horaireMidi" => $this->horaireToJSON($this->horaireMidi),
+      // "horaireSoir" => $this->horaireToJSON($this->horaireSoir),
+      // "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
+    ];
+
+    if (!empty($parentAttribut)) {
+      $parentData = parent::getData($thisAttribut);
+    }
+    if (!empty($thisAttribut)) {
+      $this->loadData($thisAttribut);
+      $finalGet = array_intersect($thisAttribut, $attributs);
+      foreach ($finalGet as $format => $attr) {
+        $thisData[$format] = $this->visitData[$attr];
+      }
+    }
+
+    return array_merge($parentData, $thisData);
   }
 }
 
