@@ -3567,6 +3567,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .modal-contentTicket section{
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
