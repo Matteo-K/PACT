@@ -3765,8 +3765,17 @@ label[for="rest_ajoutPhotoMenu"] {
   margin: 20px;
 }
 
+#popupCarte > div > p {
+  font-size: 1rem;
+}
+
 #popupCarte > div, #popupCarte > div > div{
   display: flex;
+  align-items: center;
+}
+
+#popupCarte > div{
+  gap: 1em;
 }
 
 .mainOffer .tag,
