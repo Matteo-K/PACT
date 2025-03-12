@@ -631,15 +631,18 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 }
 
 function addPing(array) {
+
+  let markers = new L.MarkerClusterGroup();
   array.forEach(elt => {
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
       .then(location => {
         const latLng = location;  
         // Accède au premier élément du tableau des résultats
         if (latLng) {
-          L.marker(latLng).addTo(map)
+          let marker = L.marker(latLng).addTo(map)
             .bindPopup('Test de popup')
             .openPopup();
+          markers.addLayer(marker);
         } else {
           console.error("Aucune coordonnée trouvée pour l'adresse : ", elt);
         }
