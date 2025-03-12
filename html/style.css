@@ -3585,19 +3585,24 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 .close,
-.closeBlack {
+.closeBlack,
+.closeTicket {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
   align-self: end;
+  transform: translateY(10px);
 }
 
 .close:hover,
 .close:focus,
 .closeBlack:hover,
-.closeBlack:focus {
+.closeBlack:focus,
+.closeTicket:hover,
+.closeTicket:focus
+ {
   color: #000;
   text-decoration: none;
   cursor: pointer;
