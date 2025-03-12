@@ -1046,7 +1046,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <section class="modal" id="ticketModal">
                             <section class="modal-contentTicket">
                                 <span class="closeTicket">&times;</span>
-                                <h2>blacklistage</h2>
+                                <section>
+                                    <h2>blacklistage</h2>
+                                    <div>
+                                        <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                                        <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                                        <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                                    </div>
+                                </section>
+                                <p>Un ticket de blacklistage peut être utilisé pour blacklister un avis choisie en cliquant sur l'icone présent à la lecture de l'avis, vous récupérerez votre ticket 365 jour après l'avoir utilisé.</p>
                             </section>
                         </section>
                     </div>
