@@ -5798,7 +5798,6 @@ div[id="messageErreur"] {
   }
 
   .creation-compte .ligne7 > label {
-    display: block;
     font-size: 20px;
     width: 400px;
   }
@@ -5934,11 +5933,11 @@ div[id="messageErreur"] {
     gap: 8px;
   }
 
-  .ligne7 label {
+  /* .ligne7 label {
       display: flex;
       flex-wrap: wrap;
       line-height: 1.5;
-  }
+  } */
 
   .ligne7 input[type="checkbox"] {
       margin-right: 8px;
