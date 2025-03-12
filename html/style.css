@@ -3758,6 +3758,13 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: center;
 }
 
+#popupCarte > h3 {
+  font-size: 2em;
+  text-align: center;
+  font-family: 'Belanosima';
+  margin: 20px;
+}
+
 #popupCarte > div{
   display: flex;
 }

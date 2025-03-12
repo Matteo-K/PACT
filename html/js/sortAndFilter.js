@@ -646,7 +646,12 @@ function addPing(array) {
             .bindPopup(`
                 <div id="popupCarte">
                     <h3>${elt['nomOffre']}</h3>
-                    ${displayStar(parseFloat(elt["noteAvg"])).outerHTML}
+                    <div>
+                      ${displayStar(parseFloat(elt["noteAvg"])).outerHTML}
+                      <p>
+                      ${elt["noteAvg"]}
+                      </p>
+                    </div>
                     <p><strong>Résumé :</strong> ${elt['resume']}</p>
                     
                 </div>
