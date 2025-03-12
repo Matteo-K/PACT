@@ -639,7 +639,7 @@ function addPing(array) {
         const latLng = location;  
         // Accède au premier élément du tableau des résultats
         if (latLng) {
-          let marker = L.marker(latLng).addTo(map)
+          let marker = L.marker(latLng)
             .bindPopup('Test de popup')
           markers.addLayer(marker);
         } else {
