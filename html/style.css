@@ -3750,6 +3750,11 @@ label[for="rest_ajoutPhotoMenu"] {
   font-size: 2em;
 }
 
+/** POPUP Carte **/
+#popupCarte > div:first-child{
+  display: flex;
+}
+
 .mainOffer .tag,
 .ouvert,
 .ferme {
