@@ -135,7 +135,6 @@
     <div id="searchIndex" class="search">
       <h2>Recherche</h2>
       <div id="blcSearch">
-      <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
         <?php 
         require_once "components/asideTriFiltre.php";
 
@@ -346,6 +345,7 @@
 
           }
       });  
-    </script>
+    </script> 
+<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 </body>
 </html>
