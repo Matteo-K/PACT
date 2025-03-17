@@ -1,4 +1,6 @@
-
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 <section id="trifiltre" class="asdTriFiltre">
     <div id="btnAside">
         <a onclick="toggleAside(this)" id="btnTri">
