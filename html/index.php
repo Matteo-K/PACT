@@ -345,7 +345,6 @@
 
           }
       });  
-    </script> 
-<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    </script>
 </body>
 </html>
