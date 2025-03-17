@@ -637,7 +637,7 @@ function addPing(array) {
   array.forEach(elt => {
     
 
-    geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
+    geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
         const latLng = location;  
         // Accède au premier élément du tableau des résultats
@@ -653,7 +653,12 @@ function addPing(array) {
                       </p>
                     </div>
                     <p><strong>Résumé :</strong> ${elt['resume']}</p>
-                    
+                    <p>Adresse : <a href="https://www.google.com/maps?q=
+                      ${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank" id="lieu">${elt['numeroRue']} ${elt['rue']}, ${elt['codePostal']} ${elt['ville']}
+                    </a></p>
+                    <div>
+                      
+                    </div>
                 </div>
             `)
           markers.addLayer(marker);
