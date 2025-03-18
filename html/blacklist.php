@@ -2,6 +2,7 @@
 
 require_once "config.php";
 
+$donnees = json_decode(file_get_contents('php://input'), true);
 $idAvis = $donnees['idC'];
 $idOffre = $donnees['idOffre'];
 
