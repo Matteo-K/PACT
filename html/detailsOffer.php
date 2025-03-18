@@ -1594,9 +1594,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             L.marker(latLong);
 
         } catch (error) {
-
-
-
+            
         }
     </script>
 
