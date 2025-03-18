@@ -3706,7 +3706,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #popupCarte div a:first-child:hover {
   background-color: white;
-  color: white;
+  color: var(--accent);
   ;
 }
 
@@ -3723,7 +3723,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #popupCarte div a:last-child:hover {
   background-color: white;
-  color: white;
+  color: var(--primary);
 }
 
 
