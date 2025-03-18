@@ -770,8 +770,7 @@ header ul + div {
 #manageOffer [type="email"],
 #manageOffer [type="tel"],
 #manageOffer [type="password"],
-#manageOffer [type="time"],
-#inputSuppression {
+#manageOffer [type="time"] {
   outline: none;
   border-radius: 0;
   border: none;
@@ -2953,8 +2952,7 @@ label[for="rest_ajoutPhotoMenu"] {
   padding-left: 30px !important;
 }
 
-#trifiltre + .modal .modal-content,
-#modalSuppression .modal-content {
+#trifiltre + .modal .modal-content {
   height: fit-content;
   .titre {
     flex-flow: column;
@@ -3703,7 +3701,7 @@ label[for="rest_ajoutPhotoMenu"] {
   font-size: 1rem;
   padding: 5px 10px;
   border-radius: 3px;
-  border: var(--accent) 2px solid;
+  border: var(--accent) 1px solid;
   text-align: center;
   width: 48%;
   transition: background-color 0.3s ease-in-out;
@@ -3721,7 +3719,7 @@ label[for="rest_ajoutPhotoMenu"] {
   color: black;
   font-size: 1rem;
   text-decoration: none;
-  border: var(--primary) 2px solid;
+  border: var(--primary) 1px solid;
   padding: 5px 10px;
   border-radius: 3px;
   text-align: center;
@@ -5814,10 +5812,10 @@ div[id="messageErreur"] {
     max-width: 480px;
   }
 
-  /* .creation-compte .ligne7 > label {
+  .creation-compte .ligne7 > label {
     font-size: 20px;
     width: 400px;
-  } */
+  }
 
   .creation-compte .ligne7 > input {
     width: 40px;
