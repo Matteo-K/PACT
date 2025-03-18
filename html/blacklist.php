@@ -37,6 +37,9 @@ if ($idAvis != null) {
 
     $stmt->execute([$idAvis, $idOffre]);
 
+    $stmt = $conn->prepare("UPDATE pact._avis set blacklist = true WHERE idc = ?");
+    $stmt->execute([$idAvis]);
+
     http_response_code(200);
 } else {
     http_response_code(400);
