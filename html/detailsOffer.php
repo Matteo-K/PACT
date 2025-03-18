@@ -1561,10 +1561,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             let marker; // Variable pour stocker le marqueur actuel
 
             // Initialisation de la carte Google
-            let map = L.map('map', {
-                center: [32.34, 5.08],
-                zoom: 4
-            });
+            var map = L.map('map').setView([51.505, -0.09], 13);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png}', {
                 maxZoom: 22
             }).addTo(map);
