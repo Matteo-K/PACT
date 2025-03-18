@@ -6231,7 +6231,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 #buttonAPIkey:hover {
