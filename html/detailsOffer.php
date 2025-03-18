@@ -1560,9 +1560,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         });
     </script>
     <script type="module">
-        import {
-            geocode
-        } from "./js/geocode.js";
+        import {geocode} from "./js/geocode.js";
         try {
             <?php 
                 // Rechercher l'offre dans les parcs d'attractions
