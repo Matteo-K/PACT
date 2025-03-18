@@ -6,6 +6,8 @@ require_once "Restaurant.php";
 require_once "Show.php";
 require_once "Visit.php";
 require_once "Activity.php";
+require_once "Horaire.php";
+require_once "HoraireSpectacle.php";
 
 class ArrayOffer {
   // format : [$idOffre -> Objet, ...]
@@ -18,71 +20,53 @@ class ArrayOffer {
 
     global $conn;
 
+    // Selectionne toute les offres
     if (empty($idoffres_)) {
-        $stmt = $conn->prepare("SELECT * FROM pact.offres");
+        $stmt = $conn->prepare("SELECT idoffre, categorie FROM pact.offres");
         $stmt->execute();
     } else {
+        // Selectionne les offres de la liste
         if (is_array($idoffres_)) {
             $placeholders = rtrim(str_repeat('?,', count($idoffres_)), ',');
-            $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre IN ($placeholders)");
+            $stmt = $conn->prepare("SELECT idoffre, categorie FROM pact.offres WHERE idoffre IN ($placeholders)");
             $stmt->execute($idoffres_);
+        // Seulement l'offre de l'id
         } else {
-            $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = ?");
+            $stmt = $conn->prepare("SELECT idoffre, categorie FROM pact.offres WHERE idoffre = ?");
             $stmt->execute([$idoffres_]);
         }
     }
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if ($results) {
-    }
-  }
+      switch ($offre['categorie']) {
+        case 'Restaurant':
+          $this->arrayOffer[$offre['idoffre']] = new Restaurant($offre['idoffre']);
+          break;
 
-  /**
-   * Prend les bonnes offres suivant l'utilisateur
-   * @param idUser_ id référence de l'utilisateur
-   * @param typeUser_ type de l'utilisateur
-   */
-  public function filtre($idUser_, $typeUser_) {
-    return array_filter($this->arrayOffer, function($offer) use ($idUser_, $typeUser_) {
-      return $offer->filterPagination($idUser_, $typeUser_);
-    });
-  }
+        case 'Spectacle':
+          $this->arrayOffer[$offre['idoffre']] = new Show($offre['idoffre']);
+          break;
+          
+        case 'Visite':
+          $this->arrayOffer[$offre['idoffre']] = new Visit($offre['idoffre']);
+          $handicap = array();
+          break;
+            
+        case 'Activité':
+          $this->arrayOffer[$offre['idoffre']] = new Activity($offre['idoffre']);
+          break;
+        
+        case 'Parc Attraction':
+          $this->arrayOffer[$offre['idoffre']] = new Park($offre['idoffre']);
+          break;
 
-  public function recherche($idUser_, $typeUser_, $recherche) {
-    $array = $this->filtre($idUser_, $typeUser_);
-
-    if (empty($recherche)) {
-        return $array;
-    }
-
-    return array_filter($this->arrayOffer, function($item) use ($recherche) {
-      $data = $item->getData();
-      $categorie = isset($data["categorie"]) ? $data["categorie"] : '';
-      $nomOffre = isset($data["nomOffre"]) ? $data["nomOffre"] : '';
-      $gammeDePrix = isset($data["gammeDePrix"]) ? $data["gammeDePrix"] : '';
-      $adresse = method_exists($item, 'formaterAdresse') ? $item->formaterAdresse() : '';
-
-      return $this->offreContientTag($data["tags"], $recherche)  // tags
-          || (strlen($categorie) > 0 && strpos(strtolower($categorie), strtolower($recherche)) !== false)  // catégorie
-          || (strlen($nomOffre) > 0 && strpos(strtolower($nomOffre), strtolower($recherche)) !== false)  // nom de l'offre
-          || (strlen($adresse) > 0 && strpos(strtolower($adresse), strtolower($recherche)) !== false)  // adresse
-          || ($gammeDePrix === $recherche);  // gamme de prix
-    });
-  }
-
-  /**
-   * Vérifie si l'élément de recherche est dans un des tags de l'offre
-   * @param tags liste de tag d'une offre
-   * @param recherche chaine de caracrère saisit par l'utilisateur
-   * @return bool si le mot de recherche est dans la liste de tags
-   */
-  public function offreContientTag($tags, $recherche) {
-    foreach ($tags as $tag) {
-      if (strpos(strtolower($tag), strtolower($recherche)) !== false) {
-        return true;
+        // Autre
+        default:
+          $this->arrayOffer[$offre['idoffre']] = new Offer($offre['idoffre'], "Pas de catégorie");
+          break;
       }
     }
-    return false;
   }
 
   /**
@@ -102,15 +86,14 @@ class ArrayOffer {
    * @param array_ liste d'offre
    * @return array liste des informations des offres de la liste
    */
-  public function getArray($array_ = 0) {
-    if ($array_ == 0) {
+  public function getArray($array_ = "") {
+    if (empty($array_)) {
       $array_ = $this->arrayOffer;
     }
     $arrayWithData = [];
     foreach ($array_ as $idOffre => $objet) {
       $arrayWithData[$idOffre] = $objet->getData();
     }
-    
     return $arrayWithData;
   }
 

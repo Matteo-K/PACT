@@ -3644,33 +3644,82 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 /** POPUP Carte **/
-#popupCarte{
+/* Style général du popup */
+#popupCarte {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-#popupCarte > h3 {
-  font-size: 2em;
-  text-align: center;
-  font-family: 'Belanosima';
-  margin: 20px;
+/* Titre du popup */
+#popupCarte h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-top: 0;
 }
 
-#popupCarte > div > p {
-  font-size: 1rem;
+/* Section résumé */
+#popupCarte p {
+  margin: 5px 0;
 }
 
-#popupCarte > div, #popupCarte > div > div{
+/* Liens dans le popup */
+#popupCarte a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#popupCarte a:hover {
+  text-decoration: underline;
+}
+
+/* Section contenant les boutons */
+
+#popupCarte > div {
+  margin-top: 10px;
+}
+
+#popupCarte div {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-#popupCarte > div{
-  gap: 1em;
-  margin: 10px;
+#divBtnPopup{
+  gap: 0.5em;
 }
+/* Style du bouton "Itinéraire" */
+#popupCarte div a:first-child {
+  background-color: #28a745;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  text-align: center;
+  width: 48%;
+}
+
+#popupCarte div a:first-child:hover {
+  background-color: #218838;
+}
+
+/* Style du bouton "Voir l'offre" */
+#popupCarte div a:last-child {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  text-align: center;
+  width: 48%;
+}
+
+#popupCarte div a:last-child:hover {
+  background-color: #0056b3;
+}
+
 
 #popupCarte .star { 
   width: 25px;

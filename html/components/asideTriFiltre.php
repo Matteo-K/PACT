@@ -357,7 +357,13 @@
         document.body.classList.remove("no-scroll");
     }
     
-    let map = L.map('map').setView([48.46, -2.85], 9);
+    let map = L.map('map', {
+        center: [48.46, -2.85], 
+        zoom: 9
+    });
+    L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
+          maxZoom: 22
+      }).addTo(map);
     let markers = new L.MarkerClusterGroup();
 
     
