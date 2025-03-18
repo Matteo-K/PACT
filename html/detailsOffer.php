@@ -266,7 +266,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Leaflet CSS & JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="js/geocode.js"></script>
 
     <title><?php echo htmlspecialchars($result[0]["nom"]); ?></title>
 </head>
@@ -1558,6 +1557,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         });
     </script>
     <script>
+        import { geocode } from "./geocode.js";
         try {
             let latLong = geocode("<?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>");
             let marker; // Variable pour stocker le marqueur actuel
