@@ -13,6 +13,9 @@ if ($idAvis != null) {
     $row = $stmt->fetch();
     $interval = $row['dureeblacklistage'];
     $unite = $row['uniteblacklist'];
+    echo ($interval . "\n");
+    echo ($idOffre . "\n");
+    echo ($idAvis . "\n");
 
     switch ($unite) {
         case 'minutes':
@@ -28,9 +31,6 @@ if ($idAvis != null) {
             $intervalSQL = "INTERVAL ? DAY";
             break;
     }
-    print_r($interval);
-    print_r($idOffre);
-    print_r($idAvis);
     $stmt = $conn->prepare("INSERT INTO pact._blacklist(idc, idoffre, dateblacklist, datefinblacklist) 
                             VALUES (?, ?, current_timestamp, DATE_ADD(current_timestamp, $intervalSQL))");
     $stmt->execute([$idAvis, $idOffre, $interval]);
