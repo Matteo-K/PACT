@@ -1633,7 +1633,7 @@ DECLARE
 BEGIN
     -- Récupérer le type d'abonnement de l'offre concernée
     SELECT nomAbonnement INTO abonnement_type
-    FROM _abonner
+    FROM pact._abonner
     WHERE idOffre = NEW.idOffre;
 
     -- Vérifier si l'offre est gratuite
