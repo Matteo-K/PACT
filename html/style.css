@@ -5809,7 +5809,6 @@ div[id="messageErreur"] {
     flex-direction: row;
     justify-content: center;
     margin: 10px;
-    width: 100%;
     max-width: 480px;
   }
 
@@ -5831,7 +5830,7 @@ div[id="messageErreur"] {
     text-align: left;
     margin-bottom: 5px;
     font-size: 18px;
-    max-width: 420px;
+    max-width: 380px;
   }
 
   .creation-compte input {
