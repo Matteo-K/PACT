@@ -591,7 +591,7 @@ CREATE TABLE _blacklist(
 
 CREATE TABLE _parametre(
   id BOOLEAN PRIMARY KEY DEFAULT TRUE,
-  dureeBlacklistage INTERVAL NOT NULL,
+  dureeBlacklistage INTEGER NOT NULL,
   uniteblacklist VARCHAR(10) NOT NULL
 );
 

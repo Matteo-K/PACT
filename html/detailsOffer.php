@@ -1395,23 +1395,36 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ 
                             'idC': id,
-                            'idOffre' : <?php echo $idOffre ?>
+                            'idOffre': <?php echo $idOffre ?>
                         })
                     })
                     .then(response => {
+                        // Vérifiez si la réponse est correcte (code HTTP 2xx)
                         if (!response.ok) {
-                            // Si la réponse n'est pas OK (code HTTP 2xx), on lance une erreur
-                            throw new Error('Erreur lors de la requête : ' + response.status);
+                            throw new Error('Erreur serveur: ' + response.status);  // Si la réponse n'est pas OK
                         }
-                        return response.json();  // ou response.text() si vous attendez une réponse en texte
+                        
+                        // Utilisez text() pour obtenir la réponse brute (en texte)
+                        return response.text();  // Cela retourne la réponse sous forme de texte
                     })
                     .then(data => {
-                        console.log('Réponse réussie:', data);
+                        // Affiche la réponse brute dans la console pour débogage
+                        console.log('Réponse brute du serveur:', data);
+                        
+                        // Essayez de parser la réponse en JSON
+                        try {
+                            const jsonData = JSON.parse(data);  // Si possible, analysez la réponse en JSON
+                            console.log('Données JSON:', jsonData);
+                        } catch (error) {
+                            // Si une erreur se produit lors de l'analyse JSON, afficher l'erreur
+                            console.error('Erreur lors de l\'analyse JSON:', error);
+                        }
                     })
                     .catch(error => {
+                        // Gérer toutes les erreurs de la requête fetch
                         console.error('Erreur capturée:', error);
-                        // Vous pouvez également afficher un message à l'utilisateur ou effectuer d'autres actions
                     });
+                    
 
                     closeModalBlackFunction();
                 }
