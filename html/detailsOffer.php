@@ -1361,9 +1361,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const leave2 = document.getElementById("confirmationBlack2")
 
                 // Fonction pour afficher le modal
-                function openModalBlackFunction() {
+                function openModalBlackFunction(param) {
                     modalBlack.style.display = "block";
-
+                    let id = param.classList[2].split("_")[1];
+                    console.log(id);
                     body.classList.add("no-scroll");
                 }
 
@@ -1375,7 +1376,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 // Ouvrir le popup lorsque le bouton est cliqué
                 openModalBlackButtons.forEach(button => {
-                    button.addEventListener('click', openModalBlackFunction);
+                    button.addEventListener('click', () => openModalBlackFunction(button));
                 });
 
                 // Fermer le popup lorsqu'on clique sur la croix
