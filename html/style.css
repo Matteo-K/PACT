@@ -2973,6 +2973,15 @@ label[for="rest_ajoutPhotoMenu"] {
   justify-content: end;
 }
 
+#contentSup {
+  display: flex;
+  flex-flow: column;
+  input {
+    width: fit-content;
+    margin-bottom: 20px;
+  }
+}
+
 /* Bloc tri et filtre */
 /* titre */
 #titreAside {
