@@ -293,7 +293,7 @@ function afficheAvisSelect(idAvis) {
     //Modification de l'icone de signalement un avis pour qu'elle reste fonctionelle
     imgSignaleAvis.classList = `signalementSupp signaler signaler_${idAvis}`;
     blacklistAvis.classList = `btnBlackList blacklist_${idAvis}`;
-    console.log(`${idAvis}`);
+    console.log(blacklistAvis.classList);
     //changement photo auteur
     photoAuteurAvis.src = listeAvis[idAvis]['membre_url'];
     
