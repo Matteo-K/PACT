@@ -635,7 +635,7 @@ function addPing(array) {
   removeAllPing()
 
   array.forEach(elt => {
-    geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
+    geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
         const latLng = location;  
         // Accède au premier élément du tableau des résultats
@@ -655,7 +655,7 @@ function addPing(array) {
                       ${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank" id="lieu">${elt['numeroRue']} ${elt['rue']}, ${elt['codePostal']} ${elt['ville']}
                     </a></p>
                     <div>
-                      <a href="geo: ${geocode(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank" id="lieu">${elt['numeroRue']} ${elt['rue']}, ${elt['codePostal']} ${elt['ville']}" target="_blank">Itinéraire</a>
+                      <a href="geo: [${latLng[0] + "," + latLng[1]}]" target="_blank">Itinéraire</a>
                       <a>Voir l'offre</a>
                     </div>
                 </div>
