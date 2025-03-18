@@ -1565,8 +1565,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         try {
             var map = L.map('map').setView([51.505, -0.09], 13);
 
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
+                maxZoom: 22
             }).addTo(map);
 
             L.marker([51.5, -0.09]).addTo(map)
