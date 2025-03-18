@@ -635,9 +635,7 @@ function addPing(array) {
   removeAllPing()
 
   array.forEach(elt => {
-    
-
-    geocode(encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville']))
+    geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
       .then(location => {
         const latLng = location;  
         // Accède au premier élément du tableau des résultats
