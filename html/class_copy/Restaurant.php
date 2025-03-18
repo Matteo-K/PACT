@@ -1,27 +1,14 @@
 <?php
 require_once "Offer.php";
 
-class Restaurant extends Offer {
-  private $gammeDePrix;
-  private $urlMenu;
-  private $horaireMidi;
-  private $horaireSoir;
+class Restaurant extends Offer implements Categorie {
+  protected $restaurantData = null;
 
-  public function __construct() {
-    parent::__construct("Restaurant");
-    $this->horaireMidi = [];
-    $this->horaireSoir = [];
-    $this->urlMenu = [];
+  public function __construct($idOffre) {
+    parent::__construct($idOffre, "Restaurant");
   }
 
-  public function setDataRestaurant($gammeDePrix_, $urlMenu_, $horaireMidi_, $horaireSoir_) {
-    $this->gammeDePrix = $gammeDePrix_;
-    $this->urlMenu = $urlMenu_;
-    $this->horaireMidi = $horaireMidi_;
-    $this->horaireSoir = $horaireSoir_;
-  }
-
-  public function getData() {
+  public function getData($parentAttribut = [], $thisAttribut = []) {
     $parentData = parent::getData();
 
     return array_merge($parentData, [
