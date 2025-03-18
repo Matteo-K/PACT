@@ -1363,6 +1363,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 // Fonction pour afficher le modal
                 function openModalBlackFunction() {
                     modalBlack.style.display = "block";
+
                     body.classList.add("no-scroll");
                 }
 
