@@ -1575,16 +1575,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Assuming geocode() returns a promise with latitude and longitude
             let latLong = geocode(address);                   
             console.log(latLong);
-            let map = L.map('map').setView([latLong[0], latLong[1]], 13);
+            let map = L.map('map').setView([48.46, -2.85], 13);
 
             L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
                 maxZoom: 22
             }).addTo(map);
 
-            L.marker(lat).addTo(map)
-                .bindPopup('A pretty CSS popup.<br> Easily customizable.')
-                .openPopup();
-
+            L.marker(latLong).addTo(map);
         } catch (error) {
 
         }
