@@ -321,7 +321,7 @@
             .then(data => {
                 // Traitement de la réponse
                 if (data.status === 'success') {
-                    alert('Clé API générée avec succès : ' + data.apikey);
+                    // alert('Clé API générée avec succès : ' + data.apikey);
                     document.getElementById("valueAPIkey").innerHTML = data.apikey;
                 } 
                 
