@@ -272,7 +272,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <?php require_once "components/header.php"; ?>
-    
+
     <?php print_r($result) ?>
     <main class="mainOffer">
         <?php
@@ -1559,11 +1559,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
         });
     </script>
-        <?php print_r($result)?>
+    <?php print_r($result) ?>
     <script type="module">
-        import { geocode } from "./js/geocode.js";
+        import {
+            geocode
+        } from "./js/geocode.js";
         try {
-            let latLong = geocode("<?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]) ?>")
+            let address = <?php echo json_encode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>;
+            // Assuming geocode() returns a promise with latitude and longitude
+            let latLong = geocode(address);
             let map = L.map('map').setView(latLong, 13);
 
             L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
