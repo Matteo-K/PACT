@@ -1565,7 +1565,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         try {
             var map = L.map('map').setView([51.505, -0.09], 13);
 
-            L.tileLayer('/components/proxy.php?{z}/{x}/{y}').addTo(map);
+            L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
+                maxZoom: 22
+            }).addTo(map);
+
+            L.marker([51.5, -0.09]).addTo(map)
+                .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+                .openPopup();
 
         } catch (error) {
 
