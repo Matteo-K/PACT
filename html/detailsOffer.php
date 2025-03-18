@@ -262,7 +262,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYU5lrDiXzchFgSAijLbonudgJaCfXrRE&callback=initMap" async defer></script> -->
+
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="js/geocode.js"></script>
+
     <title><?php echo htmlspecialchars($result[0]["nom"]); ?></title>
 </head>
 
@@ -526,20 +531,20 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <section class="traitDtOf"></section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
                 <section id="hoverMessage" class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</section>
-            <?php }
+        <?php }
         }
-            ?>
-        
+        ?>
+
         <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>
-                    <h3 id="typeOffer"><?php echo $typeOffer ?> à <?php echo $result[0]['ville'] ?></h3>
-                    <?php
-                    if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
-                    }
-                    ?>
-                    <div>
-                        <?php
-                        // Fetch tags associated with the offer
-                        $stmt = $conn->prepare("
+        <h3 id="typeOffer"><?php echo $typeOffer ?> à <?php echo $result[0]['ville'] ?></h3>
+        <?php
+        if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
+        }
+        ?>
+        <div>
+            <?php
+            // Fetch tags associated with the offer
+            $stmt = $conn->prepare("
                 SELECT t.nomTag FROM pact._offre o
                 LEFT JOIN pact._tag_parc tp ON o.idOffre = tp.idOffre
                 LEFT JOIN pact._tag_spec ts ON o.idOffre = ts.idOffre
@@ -549,547 +554,546 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 LEFT JOIN pact._tag t ON t.nomTag = COALESCE(tp.nomTag, ts.nomTag, ta.nomTag, tr.nomTag, tv.nomTag)
                 WHERE o.idOffre = :idoffre
                 ORDER BY o.idOffre");
-                        $stmt->bindParam(':idoffre', $idOffre);
-                        $stmt->execute();
-                        $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':idoffre', $idOffre);
+            $stmt->execute();
+            $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                        if ($result[0]['categorie'] == "Restaurant") {
-                            array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
-                        }
-                        foreach ($tags as $tag):
-                            if ($tag["nomtag"] != NULL) {
-                        ?>
-                                <a class="tag" href="index.php?search=<?= str_replace("_", "+", $tag["nomtag"]) ?>#searchIndex"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
-                            <?php }
-                        endforeach;
+            if ($result[0]['categorie'] == "Restaurant") {
+                array_push($tags, ['nomtag' => $result[0]['gammedeprix']]);
+            }
+            foreach ($tags as $tag):
+                if ($tag["nomtag"] != NULL) {
+            ?>
+                    <a class="tag" href="index.php?search=<?= str_replace("_", "+", $tag["nomtag"]) ?>#searchIndex"><?php echo htmlspecialchars(str_replace("_", " ", ucfirst(strtolower($tag["nomtag"])))); ?></a>
+                <?php }
+            endforeach;
 
-                        if ($ouverture == "EstOuvert" && $typeOffer == "Spectacle") {
-                            ?>
-                            <a class="ouvert" href="index.php?search=ouvert#searchIndex">En Cours</a>
-                        <?php
-                        } else if ($ouverture == "EstOuvert") {
-                        ?>
-                            <a class="ouvert" href="index.php?search=ouvert#searchIndex">Ouvert</a>
-                        <?php
-                        } else {
-                        ?>
-                            <a class="ferme" href="index.php?search=ferme#searchIndex">Fermé</a>
-                        <?php
-                        }
-                        ?>
+            if ($ouverture == "EstOuvert" && $typeOffer == "Spectacle") {
+                ?>
+                <a class="ouvert" href="index.php?search=ouvert#searchIndex">En Cours</a>
+            <?php
+            } else if ($ouverture == "EstOuvert") {
+            ?>
+                <a class="ouvert" href="index.php?search=ouvert#searchIndex">Ouvert</a>
+            <?php
+            } else {
+            ?>
+                <a class="ferme" href="index.php?search=ferme#searchIndex">Fermé</a>
+            <?php
+            }
+            ?>
 
-                    </div>
+        </div>
 
-                    <div id="infoPro">
-                        <?php
-                        $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
-                        $stmt->execute();
-                        $tel = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-                        if ($result[0]['ville'] && $result[0]['pays'] && $result[0]['codepostal']) {
-                        ?>
-                            <div>
-                                <img src="./img/icone/lieu.png">
-                                <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
-                            </div>
-
-                        <?php
-                        }
-                        if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
-                        ?>
-                            <div>
-                                <img src="./img/icone/tel.png">
-                                <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
-                            </div>
-                        <?php
-                        }
-                        if ($result[0]["mail"]) {
-                        ?>
-                            <div>
-                                <img src="./img/icone/mail.png">
-                                <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
-                            </div>
-
-                        <?php
-                        }
-                        if ($result[0]["urlsite"]) {
-                        ?>
-                            <div>
-                                <img src="./img/icone/globe.png">
-                                <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
-                            </div>
-
-                        <?php
-                        }
-                        ?>
-
-                    </div>
-
-                    <div class="swiper-container detailSwiper">
-                        <div class="swiper mySwiper">
-                            <div class="swiper-wrapper">
-                                <?php
-                                foreach ($photos as $picture) {
-                                ?>
-                                    <div class="swiper-slide imageSwiper">
-                                        <img src="<?php echo $picture['url']; ?>" />
-                                    </div>
-                                <?php
-                                }
-                                ?>
-                            </div>
-                        </div>
-
-                        <div class="swiper-button-next kylian"></div>
-                        <div class="swiper-button-prev kylian"></div>
-                    </div>
-
-                    <div thumbsSlider="" class="swiper myThumbSlider">
-                        <div class="swiper-wrapper">
-                            <?php
-                            foreach ($photos as $picture) {
-                            ?>
-                                <div class="swiper-slide">
-                                    <img src="<?php echo $picture['url']; ?>" />
-                                </div>
-                            <?php
-                            }
-                            ?>
-                        </div>
-                    </div>
-                    <article id="descriptionOffre">
-                        <?php
-                        if (!$avis) {
-                            echo '<p class="notation">Pas de note pour le moment</p>';
-                        } else {
-                            $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
-                            $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
-                        ?>
-                            <div class="notation">
-                                <div>
-                                    <?php
-                                    // Étoiles pleines
-                                    for ($i = 1; $i <= $etoilesPleines; $i++) {
-                                        echo '<div class="star pleine"></div>';
-                                    }
-                                    // Étoile partielle
-                                    if ($reste > 0) {
-                                        $pourcentageRempli = $reste * 100; // Pourcentage rempli
-                                        echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
-                                    }
-                                    // Étoiles vides
-                                    for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
-                                        echo '<div class="star vide"></div>';
-                                    }
-                                    ?>
-                                    <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
-                                </div>
-                                <div class="notedetaille">
-                                    <?php
-                                    // Adjectifs pour les notes
-                                    $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
-                                    for ($i = 5; $i >= 1; $i--) {
-                                        // Largeur simulée pour chaque barre en fonction de vos données
-                                        $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
-                                    ?>
-                                        <div class="ligneNotation">
-                                            <span><?= $listNoteAdjectif[$i - 1]; ?></span>
-                                            <div class="barreDeNotationBlanche">
-                                                <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
-                                            </div>
-                                            <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
-                                        </div>
-                                    <?php
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                        <section>
-                            <h3>Description</h3>
-                            <p><?php echo htmlspecialchars($result[0]["description"]); ?></p>
-                        </section>
-                    </article>
+        <div id="infoPro">
+            <?php
+            $stmt = $conn->prepare("SELECT * FROM pact._offre WHERE idoffre ='$idOffre'");
+            $stmt->execute();
+            $tel = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
+            if ($result[0]['ville'] && $result[0]['pays'] && $result[0]['codepostal']) {
+            ?>
+                <div>
+                    <img src="./img/icone/lieu.png">
+                    <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
+                </div>
 
-                    <section id="infoComp">
-                        <h2>Informations Complémentaires</h2>
-                        <?php
-                        if ($typeOffer == "Visite") {
-                            $stmt = $conn->prepare("SELECT * from pact.visites where idoffre = $idOffre");
-                            $stmt->execute();
-                            $visite = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        ?>
-                            <div>
-                                <p>Durée : <?= convertionMinuteHeure($visite[0]['duree']) ?></p>
-                                <p>Visite guidée : <?= isset($visite[0]["guide"]) ? "Oui" : "Non" ?></p>
-                                <?php
-                                if ($visite[0]["guide"]) {
-                                    $stmt = $conn->prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
-                                    $stmt->execute();
-                                    $langues = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                    if ($langues) {
-                                ?>
-                                        <p>Langues :
-                                            <?php
-                                            foreach ($langues as $key => $langue) {
-                                                echo $langue["langue"] ?>
-                                            <?php
-                                                if (count($langues) != $key + 1) {
-                                                    echo ", ";
-                                                }
-                                            }
-                                            ?>
-                                        </p>
-                                <?php
-                                    }
-                                }
-                                ?>
-                            </div>
-                        <?php
-                        } else if ($typeOffer == "Spectacle") {
-                            $stmt = $conn->prepare("SELECT * from pact.spectacles where idoffre = $idOffre");
-                            $stmt->execute();
-                            $spectacle = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        ?>
-                            <div>
-                                <p>Durée : <?= convertionMinuteHeure($spectacle[0]['duree']) ?></p>
-                                <p>Nombre de places : <?= $spectacle[0]['nbplace'] ?></p>
-                            </div>
-                        <?php
-                        } else if ($typeOffer == "Activité" || $typeOffer == "Parc Attraction") {
-                            if ($typeOffer == "Activité") {
-                                $stmt = $conn->prepare("SELECT * from pact.activites where idoffre = $idOffre");
-                            } else {
-                                $stmt = $conn->prepare("SELECT * from pact.parcs_attractions where idoffre = $idOffre");
-                            }
-                            $stmt->execute();
-                            $theme = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        ?>
-                            <div>
-                                <p>Âge minimum : <?= $theme[0]['agemin'] ?> ans</p>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th colspan="2">Horaires</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                // Tableau de tous les jours de la semaine
-                                $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+            <?php
+            }
+            if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
+            ?>
+                <div>
+                    <img src="./img/icone/tel.png">
+                    <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
+                </div>
+            <?php
+            }
+            if ($result[0]["mail"]) {
+            ?>
+                <div>
+                    <img src="./img/icone/mail.png">
+                    <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
+                </div>
 
-                                // Récupérer les horaires à partir de la fonction getSchedules
-                                $schedules = getSchedules();
-                                // Afficher les horaires pour chaque jour de la semaine
-                                if ($result[0]['categorie'] == 'Spectacle' ) {
-                                    $horaireSpectacle = [];
-                                    if ($schedules['spectacle']) {
-                                        usort($schedules['spectacle'], function ($a, $b) {
-                                            $dateA = new DateTime($a['dateRepresentation']);
-                                            $dateB = new DateTime($b['dateRepresentation']);
-                                            return $dateA <=> $dateB; // Trier du plus récent au plus ancien
-                                        });
+            <?php
+            }
+            if ($result[0]["urlsite"]) {
+            ?>
+                <div>
+                    <img src="./img/icone/globe.png">
+                    <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
+                </div>
 
-                                        foreach ($schedules['spectacle'] as $spec) {
-                                            $dateSpectacle = new DateTime($spec['dateRepresentation']);
-                                ?>
-                                            <tr>
-                                                <td class="jourSemaine"><?= ucwords(formatDateEnFrancais($dateSpectacle)) ?></td>
-                                                <td>
-                                                    <?php
-                                                    echo "à " . str_replace("=>", ":", $spec['heureOuverture']);
-                                                    ?>
-                                                </td>
-                                            </tr>
-                                        <?php
+            <?php
+            }
+            ?>
 
-                                        }
-                                    }
-                                } else {
-                                    foreach ($joursSemaine as $jour): ?>
-                                        <tr>
-                                            <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
-                                            <td>
-                                                <?php
+        </div>
 
-                                                // Filtrer les horaires pour chaque jour spécifique
-                                                $horaireMidi = [];
-                                                $horaireSoir = [];
-
-                                                if ($schedules['midi']) {
-                                                    $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
-                                                }
-                                                if ($schedules['soir']) {
-                                                    $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
-                                                }
-
-                                                // Collecter les horaires à afficher
-                                                $horairesAffichage = [];
-                                                if (!empty($horaireMidi)) {
-                                                    $horaireMidi = current($horaireMidi); // Prendre le premier élément du tableau filtré
-                                                    $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":", $horaireMidi['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":", $horaireMidi['heureFermeture']));
-                                                }
-                                                if (!empty($horaireSoir)) {
-                                                    $horaireSoir = current($horaireSoir); // Prendre le premier élément du tableau filtré
-                                                    $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":", $horaireSoir['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":", $horaireSoir['heureFermeture']));
-                                                }
-                                                if (empty($horaireMidi) && empty($horaireSoir)) {
-                                                    $horairesAffichage[] = "Fermé";
-                                                }
-
-                                                // Afficher les horaires ou "Fermé"
-                                                echo implode(' et ', $horairesAffichage);
-                                                ?>
-                                            </td>
-                                        </tr>
-                                <?php
-                                    endforeach;
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-
-
-                    </section>
-                    <!-- Carte Google Maps -->
-                    <div id="afficheLoc">
-                        <div id="carte"></div>
-                        <div id="contact-info">
-                            <?php
-                            if ($result[0]['ville'] && $result[0]['codepostal'] && $result[0]['pays']) {
-                            ?>
-                                <div>
-                                    <img src="./img/icone/lieu.png">
-                                    <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
-                                </div>
-
-                            <?php
-                            }
-                            if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
-                            ?>
-                                <div>
-                                    <img src="./img/icone/tel.png">
-                                    <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
-                                </div>
-                            <?php
-                            }
-                            if ($result[0]["mail"]) {
-                            ?>
-                                <div>
-                                    <img src="./img/icone/mail.png">
-                                    <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
-                                </div>
-
-                            <?php
-                            }
-                            if ($result[0]["urlsite"]) {
-                            ?>
-                                <div>
-                                    <img src="./img/icone/globe.png">
-                                    <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
-                                </div>
-
-                            <?php
-                            }
-                            ?>
-                        </div>
-                    </div>
-
-
+        <div class="swiper-container detailSwiper">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
                     <?php
-                    if ($typeOffer == "Parc Attraction") {
-                        if ($result[0]['urlplan']) {
+                    foreach ($photos as $picture) {
                     ?>
-                            <div class="planParc">
-                                <h2>Plan du parc :</h2>
-                                <div>
-                                    <img src="<?php echo $result[0]["urlplan"] ?>">
+                        <div class="swiper-slide imageSwiper">
+                            <img src="<?php echo $picture['url']; ?>" />
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <div class="swiper-button-next kylian"></div>
+            <div class="swiper-button-prev kylian"></div>
+        </div>
+
+        <div thumbsSlider="" class="swiper myThumbSlider">
+            <div class="swiper-wrapper">
+                <?php
+                foreach ($photos as $picture) {
+                ?>
+                    <div class="swiper-slide">
+                        <img src="<?php echo $picture['url']; ?>" />
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+        <article id="descriptionOffre">
+            <?php
+            if (!$avis) {
+                echo '<p class="notation">Pas de note pour le moment</p>';
+            } else {
+                $etoilesPleines = floor($avis[0]['moynote']); // Nombre entier d'étoiles pleines
+                $reste = $avis[0]['moynote'] - $etoilesPleines; // Reste pour l'étoile partielle
+            ?>
+                <div class="notation">
+                    <div>
+                        <?php
+                        // Étoiles pleines
+                        for ($i = 1; $i <= $etoilesPleines; $i++) {
+                            echo '<div class="star pleine"></div>';
+                        }
+                        // Étoile partielle
+                        if ($reste > 0) {
+                            $pourcentageRempli = $reste * 100; // Pourcentage rempli
+                            echo '<div class="star partielle" style="--pourcentage: ' . $pourcentageRempli . '%;"></div>';
+                        }
+                        // Étoiles vides
+                        for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) {
+                            echo '<div class="star vide"></div>';
+                        }
+                        ?>
+                        <p><?php echo number_format($avis[0]['moynote'], 1); ?> / 5 (<?php echo $avis[0]['nbnote']; ?> avis)</p>
+                    </div>
+                    <div class="notedetaille">
+                        <?php
+                        // Adjectifs pour les notes
+                        $listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
+                        for ($i = 5; $i >= 1; $i--) {
+                            // Largeur simulée pour chaque barre en fonction de vos données
+                            $pourcentageParNote = isset($avis[0]["note_$i"]) ? ($avis[0]["note_$i"] / $avis[0]['nbnote']) * 100 : 0;
+                        ?>
+                            <div class="ligneNotation">
+                                <span><?= $listNoteAdjectif[$i - 1]; ?></span>
+                                <div class="barreDeNotationBlanche">
+                                    <div class="barreDeNotationJaune" style="width: <?= $pourcentageParNote; ?>%;"></div>
                                 </div>
+                                <span>(<?= isset($avis[0]["note_$i"]) ? $avis[0]["note_$i"] : 0; ?> avis)</span>
                             </div>
                         <?php
                         }
-                    } else if ($typeOffer == "Restaurant") {
-                        $stmt = $conn->prepare("SELECT * from pact._menu where idoffre = $idOffre");
-                        $stmt->execute();
-                        $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                        if ($menus) {
                         ?>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+            <section>
+                <h3>Description</h3>
+                <p><?php echo htmlspecialchars($result[0]["description"]); ?></p>
+            </section>
+        </article>
 
-                            <div class="divMenu">
-                                <h2>Menu :</h2>
-                                <div class="swiper-container menu-container">
-                                    <div class="swiper menu">
-                                        <div class="swiper-wrapper">
-                                            <?php
-                                            foreach ($menus as $menu) {
-                                            ?>
-                                                <div class="swiper-slide">
-                                                    <img src="<?php echo $menu['menu']; ?>" />
-                                                </div>
-                                            <?php
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
 
-                                </div>
-                            </div>
 
+        <section id="infoComp">
+            <h2>Informations Complémentaires</h2>
+            <?php
+            if ($typeOffer == "Visite") {
+                $stmt = $conn->prepare("SELECT * from pact.visites where idoffre = $idOffre");
+                $stmt->execute();
+                $visite = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+                <div>
+                    <p>Durée : <?= convertionMinuteHeure($visite[0]['duree']) ?></p>
+                    <p>Visite guidée : <?= isset($visite[0]["guide"]) ? "Oui" : "Non" ?></p>
                     <?php
-
+                    if ($visite[0]["guide"]) {
+                        $stmt = $conn->prepare("SELECT * FROM pact._visite_langue where idoffre=$idOffre");
+                        $stmt->execute();
+                        $langues = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        if ($langues) {
+                    ?>
+                            <p>Langues :
+                                <?php
+                                foreach ($langues as $key => $langue) {
+                                    echo $langue["langue"] ?>
+                                <?php
+                                    if (count($langues) != $key + 1) {
+                                        echo ", ";
+                                    }
+                                }
+                                ?>
+                            </p>
+                    <?php
                         }
                     }
-
                     ?>
+                </div>
+            <?php
+            } else if ($typeOffer == "Spectacle") {
+                $stmt = $conn->prepare("SELECT * from pact.spectacles where idoffre = $idOffre");
+                $stmt->execute();
+                $spectacle = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+                <div>
+                    <p>Durée : <?= convertionMinuteHeure($spectacle[0]['duree']) ?></p>
+                    <p>Nombre de places : <?= $spectacle[0]['nbplace'] ?></p>
+                </div>
+            <?php
+            } else if ($typeOffer == "Activité" || $typeOffer == "Parc Attraction") {
+                if ($typeOffer == "Activité") {
+                    $stmt = $conn->prepare("SELECT * from pact.activites where idoffre = $idOffre");
+                } else {
+                    $stmt = $conn->prepare("SELECT * from pact.parcs_attractions where idoffre = $idOffre");
+                }
+                $stmt->execute();
+                $theme = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+                <div>
+                    <p>Âge minimum : <?= $theme[0]['agemin'] ?> ans</p>
+                </div>
+            <?php
+            }
+            ?>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Horaires</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    // Tableau de tous les jours de la semaine
+                    $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
-                    <div class="avis">
+                    // Récupérer les horaires à partir de la fonction getSchedules
+                    $schedules = getSchedules();
+                    // Afficher les horaires pour chaque jour de la semaine
+                    if ($result[0]['categorie'] == 'Spectacle') {
+                        $horaireSpectacle = [];
+                        if ($schedules['spectacle']) {
+                            usort($schedules['spectacle'], function ($a, $b) {
+                                $dateA = new DateTime($a['dateRepresentation']);
+                                $dateB = new DateTime($b['dateRepresentation']);
+                                return $dateA <=> $dateB; // Trier du plus récent au plus ancien
+                            });
 
-                        <?php
-
-
-                        if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
-                            require_once __DIR__ . "/components/avis/avisPro.php";
-                        } else {
-                        ?> <div class="avisMembre">
-                                <nav id="tab-container">
-                                    <h3 id="tab-avis" class="selected active">Avis</h3>
-                                    <h3 id="tab-publiez">Publiez un avis</h3>
-                                </nav>
-
-                                <div id="avis-section">
-                                    <!-- Contenu chargé dynamiquement -->
-                                    <div id="avis-component" style="display: flex;">
-                                        <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
-                                    </div>
-                                    <div id="publiez-component" style="display: none;">
+                            foreach ($schedules['spectacle'] as $spec) {
+                                $dateSpectacle = new DateTime($spec['dateRepresentation']);
+                    ?>
+                                <tr>
+                                    <td class="jourSemaine"><?= ucwords(formatDateEnFrancais($dateSpectacle)) ?></td>
+                                    <td>
                                         <?php
-                                        if ($isLoggedIn) {
-                                            $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ? AND idu = ?");
-                                            $stmt->execute([$idOffre, $idUser]);
-                                            $existingReview = $stmt->fetch();
-
-                                            if ($existingReview) {
-                                                // L'utilisateur a déjà laissé un avis pour cette offre
-                                                echo '<p>Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre</p>';
-                                            } else {
-                                                require_once __DIR__ . "/components/avis/ecrireAvis.php";
-                                            }
-                                        } else {
+                                        echo "à " . str_replace("=>", ":", $spec['heureOuverture']);
                                         ?>
-                                            <p id="login-prompt"    >Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></p>
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
+                                    </td>
+                                </tr>
+                            <?php
 
-                            </div>
-                        <?php
+                            }
                         }
-                        ?>
-
-
-                        <!-- Pop-up de signalement d'un avis -->
-                        <section class="modal signalementPopup">
-                            <section class="modal-content">
-                                <span class="close">&times;</span>
-                                <h2>Signalement d'un avis</h2>
-                                <ul>
-                                    <li>
-                                        <label for="inapproprie">
-                                            <input type="radio" name="signalement" id="inapproprie" value="innaproprie">
-                                            <span class="checkmark"></span>
-                                            Contenu inapproprié (injures, menaces, contenu explicite...)
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="frauduleux">
-                                            <input type="radio" name="signalement" id="frauduleux" value="frauduleux">
-                                            <span class="checkmark"></span>
-                                            Avis frauduleux ou trompeur (faux avis, publicité déguisée...)
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="spam">
-                                            <input type="radio" name="signalement" id="spam" value="spam">
-                                            <span class="checkmark"></span>
-                                            Spam ou contenu hors-sujet (multipostage, indésirable...)
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="violation">
-                                            <input type="radio" name="signalement" id="violation" value="violation">
-                                            <span class="checkmark"></span>
-                                            Violation des règles de la plateforme (vie privée, données seneibles...)
-                                        </label>
-                                    </li>
-                                </ul>
-                                <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
-                                <?php 
-                                if (isset($_SESSION["typeUser"])){ ?>
-                                    <button id="confirmeSignalement" class="btnSignalAvis"> Envoyer </button>
+                    } else {
+                        foreach ($joursSemaine as $jour): ?>
+                            <tr>
+                                <td class="jourSemaine"><?php echo htmlspecialchars($jour); ?></td>
+                                <td>
                                     <?php
-                                }else{ ?>
-                                    <a href="login.php" class="btnSignalAvis"> Connexion </a>
+
+                                    // Filtrer les horaires pour chaque jour spécifique
+                                    $horaireMidi = [];
+                                    $horaireSoir = [];
+
+                                    if ($schedules['midi']) {
+                                        $horaireMidi = array_filter($schedules['midi'], fn($h) => $h['jour'] === $jour);
+                                    }
+                                    if ($schedules['soir']) {
+                                        $horaireSoir = array_filter($schedules['soir'], fn($h) => $h['jour'] === $jour);
+                                    }
+
+                                    // Collecter les horaires à afficher
+                                    $horairesAffichage = [];
+                                    if (!empty($horaireMidi)) {
+                                        $horaireMidi = current($horaireMidi); // Prendre le premier élément du tableau filtré
+                                        $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":", $horaireMidi['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":", $horaireMidi['heureFermeture']));
+                                    }
+                                    if (!empty($horaireSoir)) {
+                                        $horaireSoir = current($horaireSoir); // Prendre le premier élément du tableau filtré
+                                        $horairesAffichage[] = htmlspecialchars(str_replace("=>", ":", $horaireSoir['heureOuverture'])) . " à " . htmlspecialchars(str_replace("=>", ":", $horaireSoir['heureFermeture']));
+                                    }
+                                    if (empty($horaireMidi) && empty($horaireSoir)) {
+                                        $horairesAffichage[] = "Fermé";
+                                    }
+
+                                    // Afficher les horaires ou "Fermé"
+                                    echo implode(' et ', $horairesAffichage);
+                                    ?>
+                                </td>
+                            </tr>
+                    <?php
+                        endforeach;
+                    }
+                    ?>
+                </tbody>
+            </table>
+
+
+        </section>
+        <!-- Carte Google Maps -->
+        <div id="afficheLoc">
+            <div id="map"></div>
+            <div id="contact-info">
+                <?php
+                if ($result[0]['ville'] && $result[0]['codepostal'] && $result[0]['pays']) {
+                ?>
+                    <div>
+                        <img src="./img/icone/lieu.png">
+                        <a href="https://www.google.com/maps?q=<?php echo urlencode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>" target="_blank" id="lieu"><?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?></a>
+                    </div>
+
+                <?php
+                }
+                if ($result[0]["telephone"] && $tel["affiche"] == TRUE) {
+                ?>
+                    <div>
+                        <img src="./img/icone/tel.png">
+                        <a href="tel:<?php echo htmlspecialchars($result[0]["telephone"]); ?>"><?php echo htmlspecialchars($result[0]["telephone"]); ?></a>
+                    </div>
+                <?php
+                }
+                if ($result[0]["mail"]) {
+                ?>
+                    <div>
+                        <img src="./img/icone/mail.png">
+                        <a href="mailto:<?php echo htmlspecialchars($result[0]["mail"]); ?>"><?php echo htmlspecialchars($result[0]["mail"]); ?></a>
+                    </div>
+
+                <?php
+                }
+                if ($result[0]["urlsite"]) {
+                ?>
+                    <div>
+                        <img src="./img/icone/globe.png">
+                        <a href="<?php echo htmlspecialchars($result[0]["urlsite"]); ?>"><?php echo htmlspecialchars($result[0]["urlsite"]); ?></a>
+                    </div>
+
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+
+
+        <?php
+        if ($typeOffer == "Parc Attraction") {
+            if ($result[0]['urlplan']) {
+        ?>
+                <div class="planParc">
+                    <h2>Plan du parc :</h2>
+                    <div>
+                        <img src="<?php echo $result[0]["urlplan"] ?>">
+                    </div>
+                </div>
+            <?php
+            }
+        } else if ($typeOffer == "Restaurant") {
+            $stmt = $conn->prepare("SELECT * from pact._menu where idoffre = $idOffre");
+            $stmt->execute();
+            $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($menus) {
+            ?>
+
+                <div class="divMenu">
+                    <h2>Menu :</h2>
+                    <div class="swiper-container menu-container">
+                        <div class="swiper menu">
+                            <div class="swiper-wrapper">
+                                <?php
+                                foreach ($menus as $menu) {
+                                ?>
+                                    <div class="swiper-slide">
+                                        <img src="<?php echo $menu['menu']; ?>" />
+                                    </div>
                                 <?php
                                 }
                                 ?>
-                                
-                            </section>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+        <?php
+
+            }
+        }
+
+        ?>
+
+        <div class="avis">
+
+            <?php
+
+
+            if ($typeUser === "pro_prive" || $typeUser === "pro_public") {
+                require_once __DIR__ . "/components/avis/avisPro.php";
+            } else {
+            ?> <div class="avisMembre">
+                    <nav id="tab-container">
+                        <h3 id="tab-avis" class="selected active">Avis</h3>
+                        <h3 id="tab-publiez">Publiez un avis</h3>
+                    </nav>
+
+                    <div id="avis-section">
+                        <!-- Contenu chargé dynamiquement -->
+                        <div id="avis-component" style="display: flex;">
+                            <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
+                        </div>
+                        <div id="publiez-component" style="display: none;">
+                            <?php
+                            if ($isLoggedIn) {
+                                $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ? AND idu = ?");
+                                $stmt->execute([$idOffre, $idUser]);
+                                $existingReview = $stmt->fetch();
+
+                                if ($existingReview) {
+                                    // L'utilisateur a déjà laissé un avis pour cette offre
+                                    echo '<p>Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre</p>';
+                                } else {
+                                    require_once __DIR__ . "/components/avis/ecrireAvis.php";
+                                }
+                            } else {
+                            ?>
+                                <p id="login-prompt">Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></p>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+
+                </div>
+            <?php
+            }
+            ?>
+
+
+            <!-- Pop-up de signalement d'un avis -->
+            <section class="modal signalementPopup">
+                <section class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Signalement d'un avis</h2>
+                    <ul>
+                        <li>
+                            <label for="inapproprie">
+                                <input type="radio" name="signalement" id="inapproprie" value="innaproprie">
+                                <span class="checkmark"></span>
+                                Contenu inapproprié (injures, menaces, contenu explicite...)
+                            </label>
+                        </li>
+                        <li>
+                            <label for="frauduleux">
+                                <input type="radio" name="signalement" id="frauduleux" value="frauduleux">
+                                <span class="checkmark"></span>
+                                Avis frauduleux ou trompeur (faux avis, publicité déguisée...)
+                            </label>
+                        </li>
+                        <li>
+                            <label for="spam">
+                                <input type="radio" name="signalement" id="spam" value="spam">
+                                <span class="checkmark"></span>
+                                Spam ou contenu hors-sujet (multipostage, indésirable...)
+                            </label>
+                        </li>
+                        <li>
+                            <label for="violation">
+                                <input type="radio" name="signalement" id="violation" value="violation">
+                                <span class="checkmark"></span>
+                                Violation des règles de la plateforme (vie privée, données seneibles...)
+                            </label>
+                        </li>
+                    </ul>
+                    <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
+                    <?php
+                    if (isset($_SESSION["typeUser"])) { ?>
+                        <button id="confirmeSignalement" class="btnSignalAvis"> Envoyer </button>
+                    <?php
+                    } else { ?>
+                        <a href="login.php" class="btnSignalAvis"> Connexion </a>
+                    <?php
+                    }
+                    ?>
+
+                </section>
+            </section>
+
+            <section class="modal" id="blacklistModal">
+                <section class="modal-contentBlack">
+                    <span class="closeBlack">&times;</span>
+                    <h2>blacklistage</h2>
+
+                    <p class="taille7">Êtes-vous sûr de vouloir blacklister cet avis ?</p>
+
+                    <p class="taille8">Il vous reste 3 blacklistage</p>
+
+                    <div class="btnBlack">
+                        <section class="">
+                            <button class="modifierBut size" id="confirmationBlack">Comfirmer</button>
                         </section>
 
-                        <section class="modal" id="blacklistModal">
-                            <section class="modal-contentBlack">
-                                <span class="closeBlack">&times;</span>
-                                <h2>blacklistage</h2>
-
-                                <p class="taille7">Êtes-vous sûr de vouloir blacklister cet avis ?</p>
-
-                                <p class="taille8">Il vous reste 3 blacklistage</p>
-
-                                <div class="btnBlack">
-                                    <section class="">
-                                        <button class="modifierBut size" id="confirmationBlack">Comfirmer</button>
-                                    </section>
-    
-                                    <section class="taillebtn">
-                                        <button class="modifierBut size" id="confirmationBlack2">Annuler</button>
-                                    </section>
-                                </div>
-                            </section>
-                        </section>
-
-                        <section class="modal" id="ticketModal">
-                            <section class="modal-contentTicket">
-                                <span class="closeTicket">&times;</span>
-                                <section>
-                                    <h2>Blacklistage</h2>
-                                    <div>
-                                        <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
-                                        <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
-                                        <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
-                                    </div>
-                                    <p>Un ticket de blacklistage peut être utilisé pour blacklister un avis choisie en cliquant sur l'icone présent à la lecture de l'avis, vous récupérerez votre ticket 365 jour après l'avoir utilisé.</p>
-                                </section>
-                            </section>
+                        <section class="taillebtn">
+                            <button class="modifierBut size" id="confirmationBlack2">Annuler</button>
                         </section>
                     </div>
+                </section>
+            </section>
+
+            <section class="modal" id="ticketModal">
+                <section class="modal-contentTicket">
+                    <span class="closeTicket">&times;</span>
+                    <section>
+                        <h2>Blacklistage</h2>
+                        <div>
+                            <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                            <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                            <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                        </div>
+                        <p>Un ticket de blacklistage peut être utilisé pour blacklister un avis choisie en cliquant sur l'icone présent à la lecture de l'avis, vous récupérerez votre ticket 365 jour après l'avoir utilisé.</p>
+                    </section>
+                </section>
+            </section>
+        </div>
     </main>
     <?php
     require_once "./components/footer.php";
     ?>
     <script>
-
         function supAvis(id, idOffre, action) {
             // Affiche une boîte de dialogue pour confirmer la suppression
             const confirmSupp = confirm("Êtes-vous sûr de vouloir supprimer votre avis ?");
@@ -1127,13 +1131,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         try {
-            
+
             //Script de gestion du pop-up de signalement (traitement de l'envoi du formulaire dans les fichiers avisPro.php / avisMembre.php / signalement.php)
             let ouvrePopup = document.querySelectorAll('.avis .signaler');
             const btnConfirmer = document.getElementById('confirmeSignalement');
             const popup = document.querySelector('.avis .signalementPopup');
             const body = document.body;
-            
+
             let btnSelectionne;
 
             // Afficher le pop-up
@@ -1144,10 +1148,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     body.classList.add("no-scroll");
                 });
             });
-            
+
             // Traiter le signalement en BDD après confirmation et fermer le popup
             btnConfirmer.addEventListener('click', () => {
-                                
+
                 let motifSignal = document.querySelector('input[name="signalement"]:checked');
 
                 if (motifSignal) {
@@ -1158,12 +1162,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     fetch('signalement.php', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ 
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
                             'idC': idAvisSignal,
-                            'idU' : <?= json_encode(isset($_SESSION['idUser']) ? $_SESSION['idUser'] : 0) ?>,
-                            'motif' : motifSignal.value,
-                            'complement' : texteComplement.value
+                            'idU': <?= json_encode(isset($_SESSION['idUser']) ? $_SESSION['idUser'] : 0) ?>,
+                            'motif': motifSignal.value,
+                            'complement': texteComplement.value
                         })
                     });
 
@@ -1172,11 +1178,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     body.classList.remove("no-scroll");
 
                     alert('Signalement enregistré, merci d\'avoir contribué à la modération de la plateforme !');
-                }
-                else{
+                } else {
                     alert('Veuillez séléctionner un motif pour le signalement');
                 }
-                
+
             });
 
             // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
@@ -1192,7 +1197,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     texteComplement.value = ""; //On vide le textarea
                     body.classList.remove("no-scroll");
                 } catch (error) {
-                    
+
                 }
             });
 
@@ -1205,7 +1210,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             });
 
         } catch (error) {
-            
+
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -1377,7 +1382,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (error) {
                 console.log(error)
             }
-            
+
             // Modal Suppression
             try {
                 const modalSup = document.getElementById("modalSuppression");
@@ -1417,12 +1422,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         closeModalSup();
                     }
                 });
-                
+
                 inputSup.addEventListener("focus", () => {
                     msgSup.textContent = "";
                     inputSup.classList.remove("inputErreur");
                 });
-                
+
             } catch (error) {
                 console.warn(error);
             }
@@ -1466,40 +1471,42 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 function confirmationModalBlackFunction() {
                     fetch('blacklist.php', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ 
-                            'idC': id,
-                            'idOffre': <?php echo $idOffre ?>
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                'idC': id,
+                                'idOffre': <?php echo $idOffre ?>
+                            })
                         })
-                    })
-                    .then(response => {
-                        // Vérifiez si la réponse est correcte (code HTTP 2xx)
-                        if (!response.ok) {
-                            throw new Error('Erreur serveur: ' + response.status);  // Si la réponse n'est pas OK
-                        }
-                        
-                        // Utilisez text() pour obtenir la réponse brute (en texte)
-                        return response.text();  // Cela retourne la réponse sous forme de texte
-                    })
-                    .then(data => {
-                        // Affiche la réponse brute dans la console pour débogage
-                        console.log('Réponse brute du serveur:', data);
-                        
-                        // Essayez de parser la réponse en JSON
-                        try {
-                            const jsonData = JSON.parse(data);  // Si possible, analysez la réponse en JSON
-                            console.log('Données JSON:', jsonData);
-                        } catch (error) {
-                            // Si une erreur se produit lors de l'analyse JSON, afficher l'erreur
-                            console.error('Erreur lors de l\'analyse JSON:', error);
-                        }
-                    })
-                    .catch(error => {
-                        // Gérer toutes les erreurs de la requête fetch
-                        console.error('Erreur capturée:', error);
-                    });
-                    
+                        .then(response => {
+                            // Vérifiez si la réponse est correcte (code HTTP 2xx)
+                            if (!response.ok) {
+                                throw new Error('Erreur serveur: ' + response.status); // Si la réponse n'est pas OK
+                            }
+
+                            // Utilisez text() pour obtenir la réponse brute (en texte)
+                            return response.text(); // Cela retourne la réponse sous forme de texte
+                        })
+                        .then(data => {
+                            // Affiche la réponse brute dans la console pour débogage
+                            console.log('Réponse brute du serveur:', data);
+
+                            // Essayez de parser la réponse en JSON
+                            try {
+                                const jsonData = JSON.parse(data); // Si possible, analysez la réponse en JSON
+                                console.log('Données JSON:', jsonData);
+                            } catch (error) {
+                                // Si une erreur se produit lors de l'analyse JSON, afficher l'erreur
+                                console.error('Erreur lors de l\'analyse JSON:', error);
+                            }
+                        })
+                        .catch(error => {
+                            // Gérer toutes les erreurs de la requête fetch
+                            console.error('Erreur capturée:', error);
+                        });
+
 
                     closeModalBlackFunction();
                 }
@@ -1547,71 +1554,28 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
     <script>
         try {
-            
-            let map;
-            let geocoder;
+            let latLong = geocode("<?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>");
             let marker; // Variable pour stocker le marqueur actuel
 
             // Initialisation de la carte Google
-            function initMap() {
-                map = new google.maps.Map(document.getElementById("carte"), {
-                    center: {
-                        lat: 48.8566,
-                        lng: 2.3522
-                    }, // Paris comme point de départ
-                    zoom: 8,
-                });
-                geocoder = new google.maps.Geocoder();
-
-                // Effectuer le géocodage dès que la carte est chargée
-                checkInputsAndGeocode();
-            }
-
-            function checkInputsAndGeocode() {
-                const adresse = "<?php echo $lieu['numerorue'] . ' ' . $lieu['rue'] . ', ' . $lieu['codepostal'] . ' ' . $lieu['ville']; ?>";
-
-                if (!adresse || adresse.trim() === "") {
-                    alert("L'adresse est manquante.");
-                } else {
-                    geocodeadresse(adresse);
-                }
-            }
-
-            function geocodeadresse(fulladresse) {
-                console.log("Adresse envoyée pour géocodage : ", fulladresse);
-                geocoder.geocode({
-                    'address': fulladresse
-                }, function(results, status) {
-                    if (status === google.maps.GeocoderStatus.OK && results[0]) {
-                        console.log("Résultat du géocodage : ", results[0]);
-
-                        // Supprimer l'ancien marqueur s'il existe
-                        if (marker) {
-                            marker.setMap(null);
-                        }
-
-                        // Centrer la carte et placer le marqueur
-                        map.setCenter(results[0].geometry.location);
-                        map.setZoom(15);
-                        marker = new google.maps.Marker({
-                            map: map,
-                            position: results[0].geometry.location
-                        });
-                    } else {
-                        console.error("Échec du géocodage : ", status, results); // Affichez plus d'informations
-                    }
-                });
-            }
+            let map = L.map('map', {
+                center: latLong,
+                zoom: 4
+            });
+            L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
+                maxZoom: 22
+            }).addTo(map);
+            L.marker(latLong);
 
         } catch (error) {
-            
+
 
 
         }
     </script>
 
     <!-- Inclure l'API Google Maps avec votre clé API -->
-    
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -1723,9 +1687,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             /** fin script chargement composant */
         } catch {}
-
-
-        
     </script>
     <script src="js/setColor.js"></script>
 </body>
