@@ -5813,7 +5813,7 @@ div[id="messageErreur"] {
     flex-direction: row;
     justify-content: center;
     margin: 10px;
-    width: 90%;
+    width: 100%;
     max-width: 480px;
   }
 
@@ -5960,9 +5960,7 @@ div[id="messageErreur"] {
   }
 
   .ligne7 label {
-      display: flex;
-      flex-wrap: wrap;
-      line-height: 1.5;
+    flex-wrap: wrap;/
   }
 
   .ligne7 input[type="checkbox"] {
