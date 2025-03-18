@@ -1376,7 +1376,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 // Ouvrir le popup lorsque le bouton est cliqué
                 openModalBlackButtons.forEach(button => {
-                    button.addEventListener('click', openModalBlackFunction(button));
+                    button.addEventListener('click', () => openModalBlackFunction(button));
                 });
 
                 // Fermer le popup lorsqu'on clique sur la croix
