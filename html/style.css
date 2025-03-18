@@ -3412,7 +3412,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .taillebtn button:hover {
   background-color: white !important;
-  border: solid var(--rouge) 1px !important;
+  border: solid var(--rouge) 2px !important;
   color: var(--rouge) !important;
 }
 
