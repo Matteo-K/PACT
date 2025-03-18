@@ -1562,14 +1562,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script type="module">
         import { geocode } from "./js/geocode.js";
         try {
-            <?php print_r($result) ?>
-            let map = L.map('map').setView([51.505, -0.09], 13);
+            let latLong = geocode("<?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]) ?>")
+            let map = L.map('map').setView(latLong, 13);
 
             L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
                 maxZoom: 22
             }).addTo(map);
 
-            L.marker([51.5, -0.09]).addTo(map)
+            L.marker(latLong).addTo(map)
                 .bindPopup('A pretty CSS popup.<br> Easily customizable.')
                 .openPopup();
 
