@@ -1388,6 +1388,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const msgSup = document.getElementById("msgNomOffreSup");
                 const inputSup = document.getElementById("inputSuppression");
                 const nomOffre = "<?= $offre[0]["nom"] ?>"
+                const body = document.body;
 
                 // Fonction pour afficher le modal
                 function openModalSup() {
@@ -1406,7 +1407,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 formSup.addEventListener("submit", (event) => {
                     event.preventDefault();
-                    if (formSup.get("btnSupression") == "supprime") {
+                    const formData = new FormData(formSup);
+                    if (formData.get("btnSupression") == "supprime") {
                         if (inputSup.value != nomOffre) {
                             msgSup.textContent = "Nom de l'offre incorrecte";
                             inputSup.classList.add("inputErreur");
