@@ -1559,11 +1559,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         });
     </script>
     <script type="module">
-        import {
-            geocode
-        } from "./js/geocode.js";
+        import { geocode } from "./js/geocode.js";
         try {
-            var map = L.map('map').setView([51.505, -0.09], 13);
+            <?php print_r($result) ?>
+            let map = L.map('map').setView([51.505, -0.09], 13);
 
             L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
                 maxZoom: 22
