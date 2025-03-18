@@ -3696,12 +3696,15 @@ label[for="rest_ajoutPhotoMenu"] {
 /* Style du bouton "Itinéraire" */
 #popupCarte div a:first-child {
   background-color: var(--accent);
+  text-decoration: none;
   color: black;
+  font-size: 1.25rem;
   padding: 5px 10px;
   border-radius: 3px;
   border: var(--accent) 1px solid;
   text-align: center;
   width: 48%;
+  transition: background-color 0.3s ease-in-out;
 }
 
 #popupCarte div a:first-child:hover {
@@ -3714,11 +3717,14 @@ label[for="rest_ajoutPhotoMenu"] {
 #popupCarte div a:last-child {
   background-color: var(--primary);
   color: black;
+  font-size: 1.25rem;
+  text-decoration: none;
   border: var(--primary) 1px solid;
   padding: 5px 10px;
   border-radius: 3px;
   text-align: center;
   width: 48%;
+  transition: background-color 0.3s ease-in-out;
 }
 
 #popupCarte div a:last-child:hover {
@@ -5786,6 +5792,7 @@ div[id="messageErreur"] {
 
   #asideRetour {
     position: static !important;
+    margin: 10px;
   }
 
   .creation-compte div {
