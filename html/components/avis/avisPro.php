@@ -255,6 +255,7 @@ const inputIdAvis = document.querySelector('#avisproS2 form input[type="hidden"]
 const txtNbAvis = document.querySelector('#avisPro details h3:nth-child(2)');
 
 const imgSignaleAvis =document.querySelector("#avisProS2 .signaler");
+
 const blacklistAvis =document.querySelector("#avisProS2 .blacklist");
 
 function updateOnglet(arrayAvis) {
@@ -292,7 +293,9 @@ function afficheAvisSelect(idAvis) {
 
     //Modification de l'icone de signalement un avis pour qu'elle reste fonctionelle
     imgSignaleAvis.classList = `signalementSupp signaler signaler_${idAvis}`;
-    blacklistAvis.classList = `btnBlackList blacklist_${idAvis}`;
+
+    blacklistAvis.classList = `btnBlackList blacklist avis_${idAvis}`;
+
     console.log(imgSignaleAvis.classList);
     //changement photo auteur
     photoAuteurAvis.src = listeAvis[idAvis]['membre_url'];
