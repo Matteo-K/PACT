@@ -1505,28 +1505,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 'idOffre': <?php echo $idOffre ?>
                             })
                         })
-                        .then(response => {
-                            // Vérifiez si la réponse est correcte (code HTTP 2xx)
-                            if (!response.ok) {
-                                throw new Error('Erreur serveur: ' + response.status); // Si la réponse n'est pas OK
-                            }
-
-                            // Utilisez text() pour obtenir la réponse brute (en texte)
-                            return response.text(); // Cela retourne la réponse sous forme de texte
-                        })
-                        .then(data => {
-                            // Affiche la réponse brute dans la console pour débogage
-                            console.log('Réponse brute du serveur:', data);
-
-                            // Essayez de parser la réponse en JSON
-                            try {
-                                const jsonData = JSON.parse(data); // Si possible, analysez la réponse en JSON
-                                console.log('Données JSON:', jsonData);
-                            } catch (error) {
-                                // Si une erreur se produit lors de l'analyse JSON, afficher l'erreur
-                                console.error('Erreur lors de l\'analyse JSON:', error);
-                            }
-                        })
                         .catch(error => {
                             // Gérer toutes les erreurs de la requête fetch
                             console.error('Erreur capturée:', error);
