@@ -770,7 +770,8 @@ header ul + div {
 #manageOffer [type="email"],
 #manageOffer [type="tel"],
 #manageOffer [type="password"],
-#manageOffer [type="time"] {
+#manageOffer [type="time"],
+#inputSuppression {
   outline: none;
   border-radius: 0;
   border: none;
@@ -2952,7 +2953,8 @@ label[for="rest_ajoutPhotoMenu"] {
   padding-left: 30px !important;
 }
 
-#trifiltre + .modal .modal-content {
+#trifiltre + .modal .modal-content,
+#formSuppression {
   height: fit-content;
   .titre {
     flex-flow: column;
