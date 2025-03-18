@@ -3669,6 +3669,16 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #popupCarte > div{
   gap: 1em;
+  margin: 10px;
+}
+
+#popupCarte .star { 
+  width: 25px;
+  height: 25px;
+}
+
+.leaflet-touch .leaflet-control-attribution{
+  display: none;
 }
 
 .mainOffer .tag,
