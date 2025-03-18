@@ -3659,7 +3659,8 @@ label[for="rest_ajoutPhotoMenu"] {
 #popupCarte h3 {
   font-size: 1.75rem;
   font-weight: 600;
-  margin-top: 0;
+  margin: 0;
+  text-align: center;
 }
 
 /* Section résumé */
@@ -3694,22 +3695,26 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 /* Style du bouton "Itinéraire" */
 #popupCarte div a:first-child {
-  background-color: #28a745;
-  color: white;
+  background-color: var(--accent);
+  color: black;
   padding: 5px 10px;
   border-radius: 3px;
+  border: var(--accent) 1px solid;
   text-align: center;
   width: 48%;
 }
 
 #popupCarte div a:first-child:hover {
-  background-color: #218838;
+  background-color: white;
+  color: var(--accent);
+  ;
 }
 
 /* Style du bouton "Voir l'offre" */
 #popupCarte div a:last-child {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary);
+  color: black;
+  border: var(--primary) 1px solid;
   padding: 5px 10px;
   border-radius: 3px;
   text-align: center;
@@ -3717,7 +3722,8 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #popupCarte div a:last-child:hover {
-  background-color: #0056b3;
+  background-color: white;
+  color: var(--primary);
 }
 
 
@@ -5797,7 +5803,7 @@ div[id="messageErreur"] {
     flex-direction: row;
     justify-content: center;
     margin: 10px;
-    width: 90%;
+    width: 100%;
     max-width: 480px;
   }
 
@@ -5944,9 +5950,7 @@ div[id="messageErreur"] {
   }
 
   .ligne7 label {
-      display: flex;
-      flex-wrap: wrap;
-      line-height: 1.5;
+    flex-wrap: wrap;/
   }
 
   .ligne7 input[type="checkbox"] {
