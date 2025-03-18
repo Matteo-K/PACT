@@ -1391,33 +1391,46 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const leave = document.getElementById("annulerSup");
                 const msgSup = document.getElementById("msgNomOffreSup");
                 const inputSup = document.getElementById("inputSuppression");
-                const nomOffre = "<?= $offre[0]["nom"] ?>"
                 const body = document.body;
+
+                // Récupérer le nom de l'offre depuis le champ hidden (évite les erreurs PHP-JS)
+                const nomOffre = document.querySelector('input[name="nomOffre"]').value.trim();
 
                 // Fonction pour afficher le modal
                 function openModalSup() {
                     modalSup.style.display = "block";
                     body.classList.add("no-scroll");
                 }
+
                 // Fonction pour fermer le modal
                 function closeModalSup() {
                     modalSup.style.display = "none";
                     body.classList.remove("no-scroll");
+                    resetFormSup();
                 }
-                // Ouvrir le popup lorsque le bouton est cliqué
-                openModalBtnSup.onclick = openModalSup;
-                // Fermer le popup lorsqu'on clique sur la croix
-                closeModalBtnSup.onclick = closeModalSup;
+
+                function resetFormSup() {
+                    msgSup.textContent = "";
+                    inputSup.classList.remove("inputErreur");
+                    inputSup.value = "";
+                }
+
+                openModalBtnSup.addEventListener("click", openModalSup);
+                closeModalBtnSup.addEventListener("click", closeModalSup);
+                leave.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    closeModalSup();
+                });
+                inputSup.addEventListener("focus", resetFormSup);
 
                 formSup.addEventListener("submit", (event) => {
                     event.preventDefault();
-                    const formData = new FormData(formSup);
-                    console.log(formData.get("btnSupression"));
-                    console.log(formData);
-                    console.log(inputSup.value);
-                    if (formData.get("btnSupression") == "supprime") {
-                        if (inputSup.value != nomOffre) {
-                            msgSup.textContent = "Nom de l'offre incorrecte";
+
+                    const btnClicked = event.submitter;
+
+                    if (btnClicked.value === "supprime") {
+                        if (inputSup.value.trim() !== nomOffre) {
+                            msgSup.textContent = "Nom de l'offre incorrect";
                             inputSup.classList.add("inputErreur");
                         } else {
                             formSup.submit();
@@ -1425,11 +1438,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     } else {
                         closeModalSup();
                     }
-                });
-
-                inputSup.addEventListener("focus", () => {
-                    msgSup.textContent = "";
-                    inputSup.classList.remove("inputErreur");
                 });
 
             } catch (error) {
