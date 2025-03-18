@@ -3644,33 +3644,73 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 /** POPUP Carte **/
-#popupCarte{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* Style général du popup */
+#popupCarte {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  max-width: 300px;
 }
 
-#popupCarte > h3 {
-  font-size: 2em;
+/* Titre du popup */
+#popupCarte h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 0;
+  color: #007bff;
+}
+
+/* Section résumé */
+#popupCarte p {
+  margin: 5px 0;
+}
+
+/* Liens dans le popup */
+#popupCarte a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#popupCarte a:hover {
+  text-decoration: underline;
+}
+
+/* Section contenant les boutons */
+#popupCarte div {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style du bouton "Itinéraire" */
+#popupCarte div a:first-child {
+  background-color: #28a745;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
   text-align: center;
-  font-family: 'Belanosima';
-  margin: 20px;
+  width: 48%;
 }
 
-#popupCarte > div > p {
-  font-size: 1rem;
+#popupCarte div a:first-child:hover {
+  background-color: #218838;
 }
 
-#popupCarte > div, #popupCarte > div > div{
-  display: flex;
-  align-items: center;
+/* Style du bouton "Voir l'offre" */
+#popupCarte div a:last-child {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  text-align: center;
+  width: 48%;
 }
 
-#popupCarte > div{
-  gap: 1em;
-  margin: 10px;
+#popupCarte div a:last-child:hover {
+  background-color: #0056b3;
 }
+
 
 #popupCarte .star { 
   width: 25px;
