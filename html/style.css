@@ -5824,8 +5824,7 @@ div[id="messageErreur"] {
     text-align: left;
     margin-bottom: 5px;
     font-size: 18px;
-    width: 200px;
-    max-width: 350px;
+    max-width: 420px;
   }
 
   .creation-compte input {
@@ -5949,7 +5948,8 @@ div[id="messageErreur"] {
   }
 
   .ligne7 label {
-    flex-wrap: wrap;/
+    flex-wrap: wrap;
+    line-height: 1.5;
   }
 
   .ligne7 input[type="checkbox"] {
