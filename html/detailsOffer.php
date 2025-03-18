@@ -1573,7 +1573,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Assuming geocode() returns a promise with latitude and longitude
             let latLong = geocode(address);                   
             console.log(latLong);
-            let map = L.map('map').setView([48.46, -2.85], 13);
+            let map = L.map('map').setView([48.46, -2.85], 15);
 
             L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
                 maxZoom: 22
