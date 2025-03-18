@@ -631,37 +631,50 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 }
 
 function addPing(array) {
-
-  removeAllPing()
+  removeAllPing();
 
   array.forEach(elt => {
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
-        const latLng = location;  
-        // Accède au premier élément du tableau des résultats
+        const latLng = location;
         if (latLng) {
           let marker = L.marker(latLng)
             .bindPopup(`
-                <div id="popupCarte">
-                    <h3>${elt['nomOffre']}</h3>
-                    <div>
-                      ${displayStar(parseFloat(elt["noteAvg"])).outerHTML}
-                      <p>
-                        ${elt["noteAvg"] + " /5"} 
-                      </p>
-                    </div>
-                    <p><strong>Résumé :</strong> ${elt['resume']}</p>
-                    <p><strong>Adresse :</strong> <a href="https://www.google.com/maps?q=
-                      ${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank" id="lieu">${elt['numeroRue']} ${elt['rue']}, ${elt['codePostal']} ${elt['ville']}
-                    </a></p>
-                    <div id="divBtnPopup">
-                      <a href="https://www.google.com/maps?q=
-                      ${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank" id="lieu">Itinéraire</a>
-                      <a>Voir l'offre</a>
-                    </div>
+              <div id="popupCarte">
+                <h3>${elt['nomOffre']}</h3>
+                <div>
+                  ${displayStar(parseFloat(elt["noteAvg"])).outerHTML}
+                  <p>${elt["noteAvg"]} /5</p>
                 </div>
-            `)
+                <p><strong>Résumé :</strong> ${elt['resume']}</p>
+                <p><strong>Adresse :</strong> <a href="https://www.google.com/maps?q=${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank">${elt['numeroRue']} ${elt['rue']}, ${elt['codePostal']} ${elt['ville']}</a></p>
+                <div id="divBtnPopup">
+                  <a href="https://www.google.com/maps?q=${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank">Itinéraire</a>
+                  <a href="#" class="viewOffer" data-id="${elt['idOffre']}">Voir l'offre</a>
+                </div>
+                <form id="offerForm${elt["idOffre"]}" action="detailsOffer.php" method="POST" style="display:none;">
+                  <input type="hidden" name="idoffre" id="idoffre" value="${elt["idOffre"]}">
+                </form>
+              </div>
+            `);
           markers.addLayer(marker);
+
+          // Ajouter un gestionnaire d'événements pour le lien "Voir l'offre"
+          marker.getPopup().on('contentupdate', function() {
+            const viewOfferLink = marker.getPopup().getElement().querySelector('.viewOffer');
+            if (viewOfferLink) {
+              viewOfferLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                const offerId = this.getAttribute('data-id');
+                const form = document.getElementById(`offerForm${offerId}`);
+                if (form) {
+                  form.submit();
+                } else {
+                  console.error(`Formulaire pour l'offre ${offerId} introuvable.`);
+                }
+              });
+            }
+          });
         } else {
           console.error("Aucune coordonnée trouvée pour l'adresse : ", elt);
         }
@@ -669,9 +682,12 @@ function addPing(array) {
       .catch(error => {
         console.error("Erreur lors de la géocodification : ", error);
       });
-      map.addLayer(markers);
+    map.addLayer(markers);
   });
 }
+
+
+
 
 function removeAllPing() {
   markers.eachLayer(marker => {
@@ -679,8 +695,6 @@ function removeAllPing() {
   });
   markers.clearLayers();  // Vider le tableau après suppression
 }
-
-
 
 /**
  * 
