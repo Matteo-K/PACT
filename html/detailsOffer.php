@@ -520,13 +520,17 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <i>"<?= $offre[0]["nom"] ?>"</i>
                             <span id="msgNomOffreSup" class="msgError"></span>
                         </label>
-                        <input type="text" id="inputSuppression" placeholder="<?= $offre[0]["nom"] ?>">
+                        <input type="text" id="inputSuppression" placeholder="Nom de l'offre">
                         <input type="hidden" name="idOffre" value="<?= $offre[0]["idoffre"] ?>">
                         <input type="hidden" name="nomOffre" value="<?= $offre[0]["nom"] ?>">
                     </section>
-                    <section class="taillebtn">
-                        <button class="modifierBut" id="annulerSup" type="submit" name="btnSupression" value="annule">Annuler</button>
-                        <button class="modifierBut" id="confirmationSuppression" type="submit" name="btnSupression" value="supprime">Supprimer</button>
+                    <section id="btn-action">
+                        <div>
+                            <button class="modifierBut" id="annulerSup" type="submit" name="btnSupression" value="annule">Annuler</button>
+                        </div>
+                        <div class="taillebtn">
+                            <button class="modifierBut" id="confirmationSuppression" type="submit" name="btnSupression" value="supprime">Supprimer</button>
+                        </div>
                     </section>
                 </form>
             </section>
