@@ -655,7 +655,8 @@ function addPing(array) {
                       ${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank" id="lieu">${elt['numeroRue']} ${elt['rue']}, ${elt['codePostal']} ${elt['ville']}
                     </a></p>
                     <div>
-                      <a href="geo:${latLng[0] + "," + latLng[1]}" target="_blank">Itinéraire</a>
+                      <a href="https://www.google.com/maps?q=
+                      ${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank" id="lieu">Itinéraire</a>
                       <a>Voir l'offre</a>
                     </div>
                 </div>
