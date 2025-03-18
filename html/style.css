@@ -6263,7 +6263,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 .supprComptePopup div{
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 90%;
   gap: 10px;
   justify-content: flex-end;
 }
@@ -6312,13 +6312,17 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 
   .supprComptePopup label{
     width: auto;
-    max-width: auto;
+    max-width: 100%;
     font-size: 22px;
   }
 
   .supprComptePopup #mdp{
     width: 90%;
     background-color: #fff;
+  }
+
+  .supprComptePopup label[for="chbxConfirme"]{
+    font-size: 18px;
   }
 
   #annuleSuppression, #confirmeSuppression{
