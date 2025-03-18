@@ -1565,6 +1565,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             geocode
         } from "./js/geocode.js";
         try {
+            <?php 
+                // Rechercher l'offre dans les parcs d'attractions
+                $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
+                $stmt->bindParam(':idoffre', $idOffre);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
             let address = <?php echo json_encode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>;
             // Assuming geocode() returns a promise with latitude and longitude
             let latLong = geocode(address);
