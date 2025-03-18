@@ -7,10 +7,10 @@ $idOffre = $donnees['idOffre'];
 
 if ($idAvis != null) {
 
-    $stmt = $conn->prepare("SELECT dureeblacklist, uniteblacklist FROM pact._parametre");
+    $stmt = $conn->prepare("SELECT dureeblacklistage, uniteblacklist FROM pact._parametre");
     $stmt->execute();
     $row = $stmt->fetch();
-    $interval = $row['dureeblacklist'];
+    $interval = $row['dureeblacklistage'];
     $unite = $row['uniteblacklist'];
 
     switch ($unite) {
