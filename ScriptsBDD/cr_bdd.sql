@@ -482,6 +482,7 @@ CREATE TABLE _avis(
   annee VARCHAR(4) NOT NULL,
   titre VARCHAR(255) NOT NULL,
   lu BOOLEAN NOT NULL,
+  blacklist BOOLEAN DEFAULT FALSE,
   PRIMARY KEY (idC),
   CONSTRAINT _avis_fk_idC
       FOREIGN KEY (idC)
@@ -586,6 +587,11 @@ CREATE TABLE _blacklist(
   CONSTRAINT _blacklist_fk_commentaire
       FOREIGN KEY (idC)
       REFERENCES _commentaire(idC)
+);
+
+CREATE TABLE _parametre(
+  id BOOLEAN PRIMARY KEY DEFAULT TRUE,
+  dureeBlacklistage INTERVAL NOT NULL
 );
 
 -- Création des vues pour chaque catégorie d'offres
@@ -871,6 +877,7 @@ CREATE VIEW avis AS
     a.annee,
     a.titre,
     a.lu,
+    a.blacklist,
 	c.nblike,
 	c.nbdislike,
     ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage
@@ -889,6 +896,7 @@ CREATE VIEW avis AS
     a.mois,
     a.annee,
     a.lu,
+    a.blacklist,
     a.titre,
 	c.nblike,
 	c.nbdislike;

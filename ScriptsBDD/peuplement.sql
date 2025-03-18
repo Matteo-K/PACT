@@ -866,6 +866,9 @@ VALUES (4,'Transport');
 INSERT INTO _offrePrestation_inclu(idOffre,nomPresta)
 VALUES (4,'Repas');
 
+INSERT INTO _parametre(dureeBlacklistage)
+VALUES ('365 days');
+
 --EXEMPLE essaie de historique
 
 --insertion d'un message

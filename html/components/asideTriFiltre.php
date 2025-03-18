@@ -357,13 +357,15 @@
         document.body.classList.remove("no-scroll");
     }
     
-    let map = L.map('map').setView([48.46, -2.85], 9);
+    let map = L.map('map', {
+        center: [48.46, -2.85], 
+        zoom: 10,
+        maxZoom: 18
+    });
     let markers = new L.MarkerClusterGroup();
 
-    L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
-         attribution: '&copy; <a href="https://www.thunderforest.com/">Thunderforest</a>',
-         maxZoom: 22
-     }).addTo(map);
+    
+    
 
     document.getElementById('btnCarte').addEventListener('click', function() {
         // Attendre un court instant avant de recalculer la taille

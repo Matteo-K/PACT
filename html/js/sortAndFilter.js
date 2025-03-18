@@ -642,10 +642,21 @@ function addPing(array) {
         if (latLng) {
           let marker = L.marker(latLng)
             .bindPopup(`
-                <div style="font-family: Arial, sans-serif;">
+                <div id="popupCarte">
                     <h3>${elt['nomOffre']}</h3>
+                    <div>
+                      ${displayStar(parseFloat(elt["noteAvg"])).outerHTML}
+                      <p>
+                        ${elt["noteAvg"] + " /5"} 
+                      </p>
+                    </div>
                     <p><strong>Résumé :</strong> ${elt['resume']}</p>
-                    
+                    <p>Adresse : <a href="https://www.google.com/maps?q=
+                      ${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank" id="lieu">${elt['numeroRue']} ${elt['rue']}, ${elt['codePostal']} ${elt['ville']}
+                    </a></p>
+                    <div>
+                      
+                    </div>
                 </div>
             `)
           markers.addLayer(marker);
