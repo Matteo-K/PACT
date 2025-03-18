@@ -1562,21 +1562,19 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script type="module">
         import { geocode } from "./js/geocode.js";
         try {
-            let latLong = geocode("<?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>");
             let marker; // Variable pour stocker le marqueur actuel
 
             // Initialisation de la carte Google
             let map = L.map('map', {
-                center: latLong,
+                center: [32.34, 5.08],
                 zoom: 4
             });
-            L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png}', {
                 maxZoom: 22
             }).addTo(map);
-            L.marker(latLong);
 
         } catch (error) {
-            
+
         }
     </script>
 
