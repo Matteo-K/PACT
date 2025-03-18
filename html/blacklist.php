@@ -6,7 +6,11 @@ $donnees = json_decode(file_get_contents('php://input'), true);
 $idAvis = $donnees['idC'];
 $idOffre = $donnees['idOffre'];
 
-if ($idAvis != null) {
+$stmt = $conn->prepare("SELECT * FROM pact._avis WHERE idc = ");
+$stmt->execute();
+
+
+if (!($stmt->fetch())['blacklist']) {
 
     // Récupération de la durée et de l'unité d'interdiction
     $stmt = $conn->prepare("SELECT dureeblacklistage, uniteblacklist FROM pact._parametre");
@@ -36,6 +40,9 @@ if ($idAvis != null) {
                             VALUES (?, ?, current_timestamp, current_timestamp + INTERVAL '" . $intervalSQL . "')");
 
     $stmt->execute([$idAvis, $idOffre]);
+
+    $stmt = $conn->prepare("UPDATE pact._avis set blacklist = true WHERE idc = ?");
+    $stmt->execute([$idAvis]);
 
     http_response_code(200);
 } else {

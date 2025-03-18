@@ -272,7 +272,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <?php require_once "components/header.php"; ?>
-
+    
+    <?php print_r($result) ?>
     <main class="mainOffer">
         <?php
         if ($typeUser == "pro_prive" || $typeUser == "pro_public") {
@@ -1561,16 +1562,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script type="module">
         import { geocode } from "./js/geocode.js";
         try {
-            let marker; // Variable pour stocker le marqueur actuel
+            <?php print_r($result) ?>
+            let map = L.map('map').setView([51.505, -0.09], 13);
 
-            // Initialisation de la carte Google
-            let map = L.map('map', {
-                center: [32.34, 5.08],
-                zoom: 4
-            });
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png}', {
+            L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
                 maxZoom: 22
             }).addTo(map);
+
+            L.marker([51.5, -0.09]).addTo(map)
+                .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+                .openPopup();
 
         } catch (error) {
 
