@@ -3696,12 +3696,15 @@ label[for="rest_ajoutPhotoMenu"] {
 /* Style du bouton "Itinéraire" */
 #popupCarte div a:first-child {
   background-color: var(--accent);
+  text-decoration: none;
   color: black;
+  font-size: 1rem;
   padding: 5px 10px;
   border-radius: 3px;
   border: var(--accent) 1px solid;
   text-align: center;
   width: 48%;
+  transition: background-color 0.3s ease-in-out;
 }
 
 #popupCarte div a:first-child:hover {
@@ -3714,11 +3717,14 @@ label[for="rest_ajoutPhotoMenu"] {
 #popupCarte div a:last-child {
   background-color: var(--primary);
   color: black;
+  font-size: 1rem;
+  text-decoration: none;
   border: var(--primary) 1px solid;
   padding: 5px 10px;
   border-radius: 3px;
   text-align: center;
   width: 48%;
+  transition: background-color 0.3s ease-in-out;
 }
 
 #popupCarte div a:last-child:hover {
@@ -5825,8 +5831,7 @@ div[id="messageErreur"] {
     text-align: left;
     margin-bottom: 5px;
     font-size: 18px;
-    width: 200px;
-    max-width: 350px;
+    max-width: 420px;
   }
 
   .creation-compte input {
@@ -5950,7 +5955,8 @@ div[id="messageErreur"] {
   }
 
   .ligne7 label {
-    flex-wrap: wrap;/
+    flex-wrap: wrap;
+    line-height: 1.5;
   }
 
   .ligne7 input[type="checkbox"] {
