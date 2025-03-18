@@ -1973,7 +1973,7 @@ label[for="rest_ajoutPhotoMenu"] {
   transition: 0.3s ease;
 }
 
-#supprimerCompte:hover #confirmeSuppression:hover{
+#supprimerCompte:hover, #confirmeSuppression:hover{
   background-color: #c24d4d;
   color: #fff;
 }
@@ -2009,6 +2009,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .supprComptePopup div{
   display: flex !important;
+  flex-direction: row !important;
   width: 100%;
   gap: 10px;
   justify-content: flex-end !important;
@@ -2045,6 +2046,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 
 @media (max-width: 600px) {
+  /* je regrette l'utilisation des !important mais le css d'antoine casse tout sinon... */
   .supprComptePopup .modal-content, .avis .modal-content{
     width: 90%;
     font-size: 1.1em;
@@ -2053,15 +2055,22 @@ label[for="rest_ajoutPhotoMenu"] {
 
   .supprComptePopup form{
     padding: 5px;
+    max-width: 100% !important;
   }
 
   .supprComptePopup label{
-    width: auto;
+    width: auto !important;
   }
 
   .supprComptePopup #mdp{
     width: auto;
     background-color: #fff;
+  }
+
+  #annuleSuppression, #confirmeSuppression{
+    padding: 10px;
+    height: auto !important;
+    margin: 0 important;
   }
 
 }
