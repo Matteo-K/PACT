@@ -652,6 +652,9 @@ function addPing(array) {
                   <a href="https://www.google.com/maps?q=${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank">Itinéraire</a>
                   <a href="#" class="viewOffer" data-id="${elt['idOffre']}">Voir l'offre</a>
                 </div>
+                <form id="offerForm${elt["idOffre"]}" action="detailsOffer.php" method="POST" style="display:none;">
+                  <input type="hidden" name="idoffre" id="idoffre" value="${elt["idOffre"]}">
+                </form>
               </div>
             `);
           markers.addLayer(marker);
