@@ -1395,7 +1395,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ 
                             'idC': id,
-                            'idOffre' : $idOffre
+                            'idOffre' : <?php echo $idOffre ?>
                         })
                     });
                     closeModalBlackFunction();
