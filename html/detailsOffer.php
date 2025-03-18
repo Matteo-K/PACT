@@ -1397,7 +1397,22 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             'idC': id,
                             'idOffre' : <?php echo $idOffre ?>
                         })
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            // Si la réponse n'est pas OK (code HTTP 2xx), on lance une erreur
+                            throw new Error('Erreur lors de la requête : ' + response.status);
+                        }
+                        return response.json();  // ou response.text() si vous attendez une réponse en texte
+                    })
+                    .then(data => {
+                        console.log('Réponse réussie:', data);
+                    })
+                    .catch(error => {
+                        console.error('Erreur capturée:', error);
+                        // Vous pouvez également afficher un message à l'utilisateur ou effectuer d'autres actions
                     });
+
                     closeModalBlackFunction();
                 }
 
