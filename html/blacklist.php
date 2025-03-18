@@ -15,9 +15,9 @@ if ($idAvis != null) {
     $interval = $row['dureeblacklistage'];
     $unite = $row['uniteblacklist'];
 
-    echo ($interval . "\n");
     echo ($idOffre . "\n");
     echo ($idAvis . "\n");
+    
 
     // Vérification et conversion de l'unité pour PostgreSQL
     switch ($unite) {
@@ -34,7 +34,7 @@ if ($idAvis != null) {
             $intervalSQL = "$interval days";
             break;
     }
-
+    echo ($intervalSQL . "\n");
     // Préparation et exécution de l'INSERT avec PostgreSQL
     $stmt = $conn->prepare("INSERT INTO pact._blacklist (idc, idoffre, dateblacklist, datefinblacklist) 
                             VALUES (?, ?, current_timestamp, current_timestamp + INTERVAL ?)");
