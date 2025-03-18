@@ -1419,7 +1419,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 function resetFormSup() {
                     msgSup.textContent = "";
                     inputSup.classList.remove("inputErreur");
-                    inputSup.value = "";
                 }
 
                 function isValidSup() {
