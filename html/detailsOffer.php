@@ -1559,10 +1559,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
         });
     </script>
+        <?php print_r($result)?>
     <script type="module">
         import { geocode } from "./js/geocode.js";
         try {
-            <?php print_r($result)?>
             let latLong = geocode("<?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]) ?>")
             let map = L.map('map').setView(latLong, 13);
 
