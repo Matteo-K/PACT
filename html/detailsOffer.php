@@ -314,6 +314,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <section class="taille6">
                         <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
                     </section>
+                    <section class="taille6">
+                        <button id="btnDemandeSuppression" class="modifierBut">Demander la suppression</button>
+                    </section>
                 <?php
                     }
 
@@ -497,9 +500,32 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </section>
                 </section>
             </section>
+            <section id="modalSuppression" class="modal">
+                <form id="formSuppression" action="demandeSuppression.php" class="modal-content">
+                    <span id="closeSuppression" class="close">&times;</span>
+
+                    <section class="titre">
+                        <h2>Demande de suppression de l'offre</h2>
+                    </section>
+                    <section class="contentPop active" id="content-1">
+                        <p class="taille3">
+                            Votre demande de suppression sera envoyé a un administrateur.
+                        </p>
+                        <label for="inputSuppression">Entrer le nom de l'offre pour confirmer la suppression :&nbsp;<i>"<?= $offre[0]["nom"] ?>"</i></label>
+                        <input type="text" id="inputSuppression" placeholder="<?= $offre[0]["nom"] ?>">
+                        <label for="inputSuppression" id="msgNomOffreSup" class="msgError"></label>
+                        <input type="hidden" name="idOffre" value="<?= $offre[0]["idoffre"] ?>">
+                        <input type="hidden" name="nomOffre" value="<?= $offre[0]["nom"] ?>">
+                    </section>
+                    <section class="taillebtn">
+                        <button class="modifierBut" id="annulerSup" type="submit" name="btnSupression" value="annule">Annuler</button>
+                        <button class="modifierBut" id="confirmationSuppression" type="submit" name="btnSupression" value="supprime">Supprimer</button>
+                    </section>
+                </form>
+            </section>
             <section class="traitDtOf"></section>
             <?php if ($offre[0]['statut'] === 'actif') { ?>
-                <section id="hoverMessage" class="hover-message"">Veuillez mettre votre offre hors ligne pour la modifier</section>
+                <section id="hoverMessage" class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }
         }
             ?>
@@ -1351,6 +1377,55 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (error) {
                 console.log(error)
             }
+            
+            // Modal Suppression
+            try {
+                const modalSup = document.getElementById("modalSuppression");
+                const formSup = document.getElementById("formSuppression");
+                const openModalBtnSup = document.getElementById("btnDemandeSuppression");
+                const closeModalBtnSup = document.getElementById("closeSuppression");
+                const leave = document.getElementById("annulerSup");
+                const msgSup = document.getElementById("msgNomOffreSup");
+                const inputSup = document.getElementById("inputSuppression");
+                const nomOffre = "<?= $offre[0]["nom"] ?>"
+
+                // Fonction pour afficher le modal
+                function openModalSup() {
+                    modalSup.style.display = "block";
+                    body.classList.add("no-scroll");
+                }
+                // Fonction pour fermer le modal
+                function closeModalSup() {
+                    modalSup.style.display = "none";
+                    body.classList.remove("no-scroll");
+                }
+                // Ouvrir le popup lorsque le bouton est cliqué
+                openModalBtnSup.onclick = openModal;
+                // Fermer le popup lorsqu'on clique sur la croix
+                closeModalBtnSup.onclick = closeModal;
+
+                formSup.addEventListener("submit", (event) => {
+                    event.preventDefault();
+                    if (formSup.get("btnSupression") == "supprime") {
+                        if (inputSup.value != nomOffre) {
+                            msgSup.textContent = "Nom de l'offre incorrecte";
+                            inputSup.classList.add("inputErreur");
+                        } else {
+                            formSup.submit();
+                        }
+                    } else {
+                        closeModalSup();
+                    }
+                });
+                
+                inputSup.addEventListener("focus", () => {
+                    msgSup.textContent = "";
+                    inputSup.classList.remove("inputErreur");
+                });
+                
+            } catch (error) {
+                console.warn(error);
+            }
 
             try {
                 const modalBlack = document.getElementById("blacklistModal");
@@ -1395,23 +1470,36 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ 
                             'idC': id,
-                            'idOffre' : <?php echo $idOffre ?>
+                            'idOffre': <?php echo $idOffre ?>
                         })
                     })
                     .then(response => {
+                        // Vérifiez si la réponse est correcte (code HTTP 2xx)
                         if (!response.ok) {
-                            // Si la réponse n'est pas OK (code HTTP 2xx), on lance une erreur
-                            throw new Error('Erreur lors de la requête : ' + response.status);
+                            throw new Error('Erreur serveur: ' + response.status);  // Si la réponse n'est pas OK
                         }
-                        return response.json();  // ou response.text() si vous attendez une réponse en texte
+                        
+                        // Utilisez text() pour obtenir la réponse brute (en texte)
+                        return response.text();  // Cela retourne la réponse sous forme de texte
                     })
                     .then(data => {
-                        console.log('Réponse réussie:', data);
+                        // Affiche la réponse brute dans la console pour débogage
+                        console.log('Réponse brute du serveur:', data);
+                        
+                        // Essayez de parser la réponse en JSON
+                        try {
+                            const jsonData = JSON.parse(data);  // Si possible, analysez la réponse en JSON
+                            console.log('Données JSON:', jsonData);
+                        } catch (error) {
+                            // Si une erreur se produit lors de l'analyse JSON, afficher l'erreur
+                            console.error('Erreur lors de l\'analyse JSON:', error);
+                        }
                     })
                     .catch(error => {
+                        // Gérer toutes les erreurs de la requête fetch
                         console.error('Erreur capturée:', error);
-                        // Vous pouvez également afficher un message à l'utilisateur ou effectuer d'autres actions
                     });
+                    
 
                     closeModalBlackFunction();
                 }
