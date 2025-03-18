@@ -3651,14 +3651,15 @@ label[for="rest_ajoutPhotoMenu"] {
   color: #333;
   line-height: 1.6;
   max-width: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Titre du popup */
 #popupCarte h3 {
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 1.75rem;
+  font-weight: 600;
   margin-top: 0;
-  color: #007bff;
 }
 
 /* Section résumé */
@@ -3677,12 +3678,20 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 /* Section contenant les boutons */
-#popupCarte div {
+
+#popupCarte > div {
   margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
 }
 
+#popupCarte div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#divBtnPopup{
+  gap: 0.5em;
+}
 /* Style du bouton "Itinéraire" */
 #popupCarte div a:first-child {
   background-color: #28a745;
