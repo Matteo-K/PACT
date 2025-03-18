@@ -591,7 +591,8 @@ CREATE TABLE _blacklist(
 
 CREATE TABLE _parametre(
   id BOOLEAN PRIMARY KEY DEFAULT TRUE,
-  dureeBlacklistage INTERVAL NOT NULL
+  dureeBlacklistage INTERVAL NOT NULL,
+  uniteblacklist VARCHAR(10) NOT NULL
 );
 
 -- Création des vues pour chaque catégorie d'offres

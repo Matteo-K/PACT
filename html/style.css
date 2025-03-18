@@ -6286,6 +6286,10 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   color: #fff;
 }
 
+.supprComptePopup h2{
+  text-align: center;
+}
+
 .supprComptePopup form{
   display: flex;
   flex-wrap: wrap;
@@ -6366,7 +6370,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   }
 
   .supprComptePopup label{
-    width: auto;
+    width: 90%;
     max-width: 100%;
     font-size: 22px;
   }
