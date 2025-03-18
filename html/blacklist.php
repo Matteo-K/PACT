@@ -15,30 +15,32 @@ if ($idAvis != null) {
     $interval = $row['dureeblacklistage'];
     $unite = $row['uniteblacklist'];
 
-    echo ($interval . "\n");
     echo ($idOffre . "\n");
     echo ($idAvis . "\n");
 
     // Vérification et conversion de l'unité pour PostgreSQL
     switch ($unite) {
         case 'minutes':
-            $intervalSQL = "$interval minutes";
+            $intervalSQL = "{$interval} minutes";
             break;
         case 'heures':
-            $intervalSQL = "$interval hours";
+            $intervalSQL = "{$interval} hours";
             break;
         case 'jours':
-            $intervalSQL = "$interval days";
+            $intervalSQL = "{$interval} days";
             break;
         default:
-            $intervalSQL = "$interval days";
+            $intervalSQL = "{$interval} days";
             break;
     }
+    
+    echo ($intervalSQL . "\n");
 
-    // Préparation et exécution de l'INSERT avec PostgreSQL
+    // Préparation de la requête PostgreSQL avec CONCAT pour INTERVAL
     $stmt = $conn->prepare("INSERT INTO pact._blacklist (idc, idoffre, dateblacklist, datefinblacklist) 
-                            VALUES (?, ?, current_timestamp, current_timestamp + INTERVAL ?)");
-    $stmt->execute([$idAvis, $idOffre, $intervalSQL]);
+                            VALUES (?, ?, current_timestamp, current_timestamp + INTERVAL '" . $intervalSQL . "')");
+
+    $stmt->execute([$idAvis, $idOffre]);
 
     http_response_code(200);
 } else {
