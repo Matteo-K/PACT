@@ -505,25 +505,32 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
             </section>
             <section id="modalSuppression" class="modal">
-                <form id="formSuppression" action="demandeSuppression.php" class="modal-content">
+                <form id="formSuppression" action="demandeSuppression.php" method="post" class="modal-content">
                     <span id="closeSuppression" class="close">&times;</span>
 
                     <section class="titre">
                         <h2>Demande de suppression de l'offre</h2>
                     </section>
-                    <section class="contentPop active" id="content-1">
+                    <section id="contentSup">
                         <p class="taille7">
                             Votre demande de suppression sera envoyé a un administrateur.
                         </p>
-                        <label for="inputSuppression">Entrer le nom de l'offre pour confirmer la suppression :&nbsp;<i>"<?= $offre[0]["nom"] ?>"</i></label>
-                        <input type="text" id="inputSuppression" placeholder="<?= $offre[0]["nom"] ?>">
-                        <label for="inputSuppression" id="msgNomOffreSup" class="msgError"></label>
+                        <label for="inputSuppression" class="taille7">
+                            Entrer le nom de l'offre pour confirmer la suppression <br>
+                            <i>"<?= $offre[0]["nom"] ?>"</i>
+                            <span id="msgNomOffreSup" class="msgError"></span>
+                        </label>
+                        <input type="text" id="inputSuppression" placeholder="Nom de l'offre">
                         <input type="hidden" name="idOffre" value="<?= $offre[0]["idoffre"] ?>">
                         <input type="hidden" name="nomOffre" value="<?= $offre[0]["nom"] ?>">
                     </section>
-                    <section class="taillebtn">
-                        <button class="modifierBut" id="annulerSup" type="submit" name="btnSupression" value="annule">Annuler</button>
-                        <button class="modifierBut" id="confirmationSuppression" type="submit" name="btnSupression" value="supprime">Supprimer</button>
+                    <section id="btn-action">
+                        <div>
+                            <button class="modifierBut" id="annulerSup" type="submit" name="btnSupression" value="annule">Annuler</button>
+                        </div>
+                        <div class="taillebtn">
+                            <button class="modifierBut" id="confirmationSuppression" type="submit" name="btnSupression" value="supprime">Supprimer</button>
+                        </div>
                     </section>
                 </form>
             </section>
@@ -1412,7 +1419,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 function resetFormSup() {
                     msgSup.textContent = "";
                     inputSup.classList.remove("inputErreur");
-                    inputSup.value = "";
+                }
+
+                function isValidSup() {
+                    return inputSup.value.trim() === nomOffre;
                 }
 
                 openModalBtnSup.addEventListener("click", openModalSup);
@@ -1421,15 +1431,21 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     event.preventDefault();
                     closeModalSup();
                 });
-                inputSup.addEventListener("focus", resetFormSup);
 
+                inputSup.addEventListener("focus", resetFormSup);
+                inputSup.addEventListener("blur", () => {
+                    if (!isValidSup()) {
+                        msgSup.textContent = "Nom de l'offre incorrect";
+                        inputSup.classList.add("inputErreur");
+                    }
+                });
                 formSup.addEventListener("submit", (event) => {
                     event.preventDefault();
 
                     const btnClicked = event.submitter;
 
                     if (btnClicked.value === "supprime") {
-                        if (inputSup.value.trim() !== nomOffre) {
+                        if (!isValidSup()) {
                             msgSup.textContent = "Nom de l'offre incorrect";
                             inputSup.classList.add("inputErreur");
                         } else {
@@ -1492,28 +1508,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 'idOffre': <?php echo $idOffre ?>
                             })
                         })
-                        .then(response => {
-                            // Vérifiez si la réponse est correcte (code HTTP 2xx)
-                            if (!response.ok) {
-                                throw new Error('Erreur serveur: ' + response.status); // Si la réponse n'est pas OK
-                            }
-
-                            // Utilisez text() pour obtenir la réponse brute (en texte)
-                            return response.text(); // Cela retourne la réponse sous forme de texte
-                        })
-                        .then(data => {
-                            // Affiche la réponse brute dans la console pour débogage
-                            console.log('Réponse brute du serveur:', data);
-
-                            // Essayez de parser la réponse en JSON
-                            try {
-                                const jsonData = JSON.parse(data); // Si possible, analysez la réponse en JSON
-                                console.log('Données JSON:', jsonData);
-                            } catch (error) {
-                                // Si une erreur se produit lors de l'analyse JSON, afficher l'erreur
-                                console.error('Erreur lors de l\'analyse JSON:', error);
-                            }
-                        })
                         .catch(error => {
                             // Gérer toutes les erreurs de la requête fetch
                             console.error('Erreur capturée:', error);
@@ -1567,22 +1561,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script type="module">
         import { geocode } from "./js/geocode.js";
         try {
-            let latLong = geocode("<?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>");
             let marker; // Variable pour stocker le marqueur actuel
 
             // Initialisation de la carte Google
-            let map = L.map('map', {
-                center: latLong,
-                zoom: 4
-            });
-            L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
+            var map = L.map('map').setView([51.505, -0.09], 13);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png}', {
                 maxZoom: 22
             }).addTo(map);
-            L.marker(latLong);
 
         } catch (error) {
-
-
 
         }
     </script>

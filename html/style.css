@@ -770,7 +770,8 @@ header ul + div {
 #manageOffer [type="email"],
 #manageOffer [type="tel"],
 #manageOffer [type="password"],
-#manageOffer [type="time"] {
+#manageOffer [type="time"],
+#inputSuppression {
   outline: none;
   border-radius: 0;
   border: none;
@@ -2952,7 +2953,8 @@ label[for="rest_ajoutPhotoMenu"] {
   padding-left: 30px !important;
 }
 
-#trifiltre + .modal .modal-content {
+#trifiltre + .modal .modal-content,
+#formSuppression {
   height: fit-content;
   .titre {
     flex-flow: column;
@@ -2969,6 +2971,15 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   gap: 10px;
   justify-content: end;
+}
+
+#contentSup {
+  display: flex;
+  flex-flow: column;
+  input {
+    width: fit-content;
+    margin-bottom: 20px;
+  }
 }
 
 /* Bloc tri et filtre */
@@ -3970,7 +3981,7 @@ tbody td:last-child {
 #infoPro,
 #infoPro > div,
 #afficheLoc,
-#afficheLoc > .carte + div {
+#afficheLoc > #map + div {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -4074,7 +4085,7 @@ section#infoComp div {
   gap: 10px;
 }
 
-#carte {
+#map {
   flex: 2;
   width: 40%;
   height: 400px;
@@ -5265,7 +5276,7 @@ label#btnAjoutPhoto:hover {
     font-size: 16px;
   }
 
-  #carte {
+  #map {
     width: 100%;
     height: 20em;
     flex: none;
