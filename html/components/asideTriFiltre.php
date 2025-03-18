@@ -357,7 +357,11 @@
         document.body.classList.remove("no-scroll");
     }
     
-    let map = L.map('map').setView([48.46, -2.85], 9);
+    let map = L.map('map', {
+        center: [48.46, -2.85], 
+        zoom: 10,
+        maxZoom: 18
+    });
     let markers = new L.MarkerClusterGroup();
 
     
