@@ -1959,111 +1959,6 @@ label[for="rest_ajoutPhotoMenu"] {
   border: solid 2px var(--accent);
 }
 
-#supprimerCompte{
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: #fff;
-  border: 3px solid #c24d4d;
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 10px;
-  color: #c24d4d;
-  font-weight: 700;
-  transition: 0.3s ease;
-}
-
-#supprimerCompte:hover #confirmeSuppression:hover{
-  background-color: #c24d4d;
-  color: #fff;
-}
-
-.supprComptePopup form{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.supprComptePopup #mdp{
-  flex: auto;
-  background-color: transparent;
-}
-
-.supprComptePopup #mdp:focus {
-  outline: none;
-  background: linear-gradient(0deg, var(--primary40) 0%, transparent 20%);
-}
-
-.supprComptePopup #mdp:hover {
-  outline: none;
-  background-color: var(--background40);
-}
-
-.supprComptePopup label[for="chbxConfirme"]{
-  font-size: 20px;
-}
-
-.supprComptePopup #chbxConfirme{
-  display: none;
-}
-
-.supprComptePopup div{
-  display: flex !important;
-  width: 100%;
-  gap: 10px;
-  justify-content: flex-end !important;
-}
-
-#confirmeSuppression, #annuleSuppression{
-  color: #000;
-  padding: 15px 20px;
-  font-size: 20px;
-  border-radius: 10px;
-  font-weight: 700;
-  transition: 0.3s ease;
-}
-
-#confirmeSuppression{
-  background-color: #c24d4d;
-  border: 3px solid #c24d4d;
-}
-
-#annuleSuppression{
-  background-color: var(--primary);
-  border: 3px solid var(--primary);
-}
-
-#confirmeSuppression:hover{
-  color: #c24d4d;
-  background-color: #fff;
-}
-
-#annuleSuppression:hover{
-  color: var(--primary);
-  background-color: #fff;
-}
-
-
-@media (max-width: 760px) {
-  .supprComptePopup, .avis .modal-content{
-    width: 90%;
-    font-size: 1.1em;
-  }
-
-  .supprComptePopup form{
-    padding: 5px;
-  }
-
-  .supprComptePopup label{
-    width: auto;
-  }
-
-  .supprComptePopup input{
-    width: auto;
-  }
-
-}
-
 /* fin popup signalement avis */
 /* FIN CSS EWEN*/
 /* GABRIEL
@@ -3578,6 +3473,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .modal-contentTicket h2{
   margin: 0;
   font-size: 4rem;
+  font-weight: 600;
 }
 
 .modal-contentTicket section{
@@ -3636,11 +3532,11 @@ label[for="rest_ajoutPhotoMenu"] {
 .closeTicket {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 50px;
   font-weight: bold;
   cursor: pointer;
   align-self: end;
-  transform: translateY(-10px);
+  transform: translateY(-20px);
 }
 
 .close:hover,
@@ -3745,6 +3641,99 @@ label[for="rest_ajoutPhotoMenu"] {
   font-family: Lato;
   font-weight: bold;
   font-size: 2em;
+}
+
+/** POPUP Carte **/
+/* Style général du popup */
+#popupCarte {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Titre du popup */
+#popupCarte h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+/* Section résumé */
+#popupCarte p {
+  margin: 5px 0;
+}
+
+/* Liens dans le popup */
+#popupCarte a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#popupCarte a:hover {
+  text-decoration: underline;
+}
+
+/* Section contenant les boutons */
+
+#popupCarte > div {
+  margin-top: 10px;
+}
+
+#popupCarte div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#divBtnPopup{
+  gap: 0.5em;
+}
+/* Style du bouton "Itinéraire" */
+#popupCarte div a:first-child {
+  background-color: var(--accent);
+  color: black;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: var(--accent) 1px solid;
+  text-align: center;
+  width: 48%;
+}
+
+#popupCarte div a:first-child:hover {
+  background-color: white;
+  color: var(--accent);
+  ;
+}
+
+/* Style du bouton "Voir l'offre" */
+#popupCarte div a:last-child {
+  background-color: var(--primary);
+  color: black;
+  border: var(--primary) 1px solid;
+  padding: 5px 10px;
+  border-radius: 3px;
+  text-align: center;
+  width: 48%;
+}
+
+#popupCarte div a:last-child:hover {
+  background-color: white;
+  color: var(--primary);
+}
+
+
+#popupCarte .star { 
+  width: 25px;
+  height: 25px;
+}
+
+.leaflet-touch .leaflet-control-attribution{
+  display: none;
 }
 
 .mainOffer .tag,
@@ -5851,12 +5840,12 @@ div[id="messageErreur"] {
 
   .creation-compte input:hover {
     box-shadow: 0px 0px 10px 0px var(--background);
-    background: #fff;
+    background: #fff !important;
   }
 
   .creation-compte input:focus{
     border-color: var(--bloc);
-    background: #fff;
+    background: #fff !important;
     box-shadow: 0px 0px 10px 0px var(--bloc40);
     outline: none;
   }
@@ -6271,3 +6260,133 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 }
 
 /* Fin CSS page CGU */
+
+
+
+/* popup de suppression de compte par Ewen, tout en bas parce qu'Antoine casse tout avec son css nul */
+
+#supprimerCompte{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #fff;
+  border: 3px solid #c24d4d;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 10px;
+  color: #c24d4d;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+#supprimerCompte:hover, #confirmeSuppression:hover{
+  background-color: #c24d4d;
+  color: #fff;
+}
+
+.supprComptePopup h2{
+  text-align: center;
+}
+
+.supprComptePopup form{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.supprComptePopup #mdp{
+  flex: auto;
+  background-color: transparent;
+}
+
+.supprComptePopup #mdp:focus {
+  outline: none;
+  background: linear-gradient(0deg, var(--primary40) 0%, transparent 20%);
+}
+
+.supprComptePopup #mdp:hover {
+  outline: none;
+  background-color: var(--background40);
+}
+
+.supprComptePopup label[for="chbxConfirme"]{
+  font-size: 20px;
+}
+
+.supprComptePopup #chbxConfirme{
+  display: none;
+}
+
+.supprComptePopup div{
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+#confirmeSuppression, #annuleSuppression{
+  color: #000;
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+#confirmeSuppression{
+  background-color: #c24d4d;
+  border: 3px solid #c24d4d;
+}
+
+#annuleSuppression{
+  background-color: var(--primary);
+  border: 3px solid var(--primary);
+}
+
+#confirmeSuppression:hover{
+  color: #c24d4d;
+  background-color: #fff;
+}
+
+#annuleSuppression:hover{
+  color: var(--primary);
+  background-color: #fff;
+}
+
+
+@media (max-width: 600px) {
+  .supprComptePopup .modal-content, .avis .modal-content{
+    width: 90%;
+    font-size: 1.1em;
+    padding: 10px;
+  }
+
+  .supprComptePopup form{
+    padding: 5px;
+    max-width: 100%;
+  }
+
+  .supprComptePopup label{
+    width: 90%;
+    max-width: 100%;
+    font-size: 22px;
+  }
+
+  .supprComptePopup #mdp{
+    width: 90%;
+    background-color: #fff;
+  }
+
+  .supprComptePopup label[for="chbxConfirme"]{
+    font-size: 18px;
+  }
+
+  #annuleSuppression, #confirmeSuppression{
+    height: auto;
+    margin: 0;
+  }
+
+}
+
+/* fin de la popup de suppression de compte */

@@ -150,7 +150,7 @@ $avis = $avisTemp;
                 <h2>
                     Auteur
                 </h2>
-                <img src="./img/icone/blacklist.png" alt="icone de blacklistage" class="btnBlackList">
+                <img src="./img/icone/blacklist.png" alt="icone de blacklistage" class="btnBlackList blacklistid">
                 <img src="./img/icone/signalement.png" alt="icone de parametre" class="signalementSupp signaler signalerAvis">
             </div>
             <div class="noteEtoile">
@@ -256,6 +256,8 @@ const txtNbAvis = document.querySelector('#avisPro details h3:nth-child(2)');
 
 const imgSignaleAvis =document.querySelector("#avisProS2 .signaler");
 
+const blacklistAvis =document.querySelector("#avisProS2 .blacklistid");
+
 function updateOnglet(arrayAvis) {
     // Calcul du nombre de non lu
     const nb_nonLu = filtreNonLu([...arrayAvis]);
@@ -291,7 +293,9 @@ function afficheAvisSelect(idAvis) {
 
     //Modification de l'icone de signalement un avis pour qu'elle reste fonctionelle
     imgSignaleAvis.classList = `signalementSupp signaler signaler_${idAvis}`;
-    
+
+    blacklistAvis.classList = `btnBlackList blacklistid avis_${idAvis}`;
+
     //changement photo auteur
     photoAuteurAvis.src = listeAvis[idAvis]['membre_url'];
     

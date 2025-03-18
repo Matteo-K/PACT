@@ -1359,10 +1359,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const body = document.body;
                 const leaveB = document.getElementById("confirmationBlack")
                 const leave2 = document.getElementById("confirmationBlack2")
+                let id;
 
                 // Fonction pour afficher le modal
-                function openModalBlackFunction() {
+                function openModalBlackFunction(param) {
                     modalBlack.style.display = "block";
+                    id = param.classList[2].split("_")[1];
                     body.classList.add("no-scroll");
                 }
 
@@ -1374,7 +1376,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 // Ouvrir le popup lorsque le bouton est cliqué
                 openModalBlackButtons.forEach(button => {
-                    button.addEventListener('click', openModalBlackFunction);
+                    button.addEventListener('click', () => openModalBlackFunction(button));
                 });
 
                 // Fermer le popup lorsqu'on clique sur la croix
@@ -1387,7 +1389,19 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     }
                 });
 
-                leaveB.onclick = closeModalBlackFunction;
+                function confirmationModalBlackFunction() {
+                    fetch('blacklist.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            'idC': id,
+                            'idOffre' : <?php echo $idOffre ?>
+                        })
+                    });
+                    closeModalBlackFunction();
+                }
+
+                leaveB.onclick = confirmationModalBlackFunction;
                 leave2.onclick = closeModalBlackFunction;
             } catch (error) {
                 console.log(error)

@@ -15,9 +15,6 @@
     <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 
 </head>
 <body id="sansScroll">
@@ -136,7 +133,11 @@
     <div id="searchIndex" class="search">
       <h2>Recherche</h2>
       <div id="blcSearch">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+        <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
         <?php 
+
         require_once "components/asideTriFiltre.php";
 
         $offres = new ArrayOffer();
@@ -153,6 +154,7 @@
     <!-- Data -->
     <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->filtre($idUser, $typeUser)))); ?>'></div>
     <div id="user-data" data-user='<?php echo $typeUser ?>'></div>
+    
     <script type="module" src="js/sortAndFilter.js"></script>
     <?php require_once "components/footer.php"; ?>
     <script>

@@ -1,24 +1,28 @@
 <?php
-  class HoraireSpectacle {
+  class Horaire {
 
-    static function loadHoraire() {
-      
+    static function loadHoraire($conn, $idOffre) {
+      $stmt = $conn->prepare("SELECT listhorairemidi, listhorairesoir FROM pact.offres WHERE idoffre = ?");
+      $stmt->execute([$idOffre]);
+      $horaire = $stmt->fetchAll(PDO::FETCH_COLUMN);
+      return [
+        "horaireMidi" => Horaire::jsonToHoraire($idOffre, $horaire["listhorairemidi"])
+      ];
     }
 
     static function horaireToJson($horaire) {
       $formattedResultats = [];
       foreach ($horaire as $result) {
         $formattedResultats[] = json_encode([
-          'jour' => $result['jour'],
-          'heureouverture' => $result['heureouverture'],
-          'heurefermeture' => $result['heurefermeture'],
-          'daterepresentation' => $result['daterepresentation']
+            'jour' => $result['jour'],
+            'heureOuverture' => $result['heureouverture'],
+            'heureFermeture' => $result['heurefermeture']
         ]);
       }
       return $formattedResultats;
     }
 
-    static function JsonToHoraire($idOffre_, $horaires) {
+    static function jsonToHoraire($idOffre_, $horaires) {
       if (empty($horaires)) {
         return [];
       }
@@ -30,11 +34,10 @@
         $decodedItem = json_decode($item, true);
         if (json_last_error() === JSON_ERROR_NONE) {
           $resultats[] = [
-            'idoffre' => $idOffre_,
             'jour' => $decodedItem['jour'],
+            'idoffre' => $idOffre_,
             'heureouverture' => $decodedItem['heureOuverture'],
-            'heurefermeture' => $decodedItem['heureFin'],
-            'daterepresentation' => $decodedItem['dateRepresentation']
+            'heurefermeture' => $decodedItem['heureFermeture']
           ];
         }
       }
@@ -46,8 +49,12 @@
      * suivant les horaires déterminés et l'horaire actuelle
      */
     static function statutOuverture($soir, $midi = null) {
-      foreach ($soir as $horaire) {
-        if ($horaire['daterepresentation'] == $currentDate) {
+      global $currentDay, $currentTime, $currentDate;
+      $ouverture = "EstFermé";
+      $horaires = array_merge($soir, $midi);
+      // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
+      foreach ($horaires as $horaire) {
+        if ($horaire['jour'] == $currentDay) {
           $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
           $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
           if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
@@ -56,6 +63,7 @@
           }
         }
       }
+      return $ouverture;
     }
   }
 ?>

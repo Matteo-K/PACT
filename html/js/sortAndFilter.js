@@ -635,13 +635,32 @@ function addPing(array) {
   removeAllPing()
 
   array.forEach(elt => {
-    geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}, France`)
+    geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
         const latLng = location;  
         // Accède au premier élément du tableau des résultats
         if (latLng) {
           let marker = L.marker(latLng)
-            .bindPopup('Test de popup')
+            .bindPopup(`
+                <div id="popupCarte">
+                    <h3>${elt['nomOffre']}</h3>
+                    <div>
+                      ${displayStar(parseFloat(elt["noteAvg"])).outerHTML}
+                      <p>
+                        ${elt["noteAvg"] + " /5"} 
+                      </p>
+                    </div>
+                    <p><strong>Résumé :</strong> ${elt['resume']}</p>
+                    <p>Adresse : <a href="https://www.google.com/maps?q=
+                      ${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank" id="lieu">${elt['numeroRue']} ${elt['rue']}, ${elt['codePostal']} ${elt['ville']}
+                    </a></p>
+                    <div id="divBtnPopup">
+                      <a href="https://www.google.com/maps?q=
+                      ${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank" id="lieu">Itinéraire</a>
+                      <a>Voir l'offre</a>
+                    </div>
+                </div>
+            `)
           markers.addLayer(marker);
         } else {
           console.error("Aucune coordonnée trouvée pour l'adresse : ", elt);
@@ -655,10 +674,10 @@ function addPing(array) {
 }
 
 function removeAllPing() {
-  markers.forEach(function(marker) {
-      map.removeLayer(marker);
+  markers.eachLayer(marker => {
+    map.removeLayer(marker); // Affiche les coordonnées de chaque marqueur
   });
-  markers = [];  // Vider le tableau après suppression
+  markers.clearLayers();  // Vider le tableau après suppression
 }
 
 
