@@ -315,7 +315,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
                     </section>
                     <section class="taille6">
-                        <button id="btnDemandeSuppression" class="modifierBut">Demander la suppression</button>
+                        <button id="btnDemandeSuppression" class="modifierBut">Suppression</button>
                     </section>
                 <?php
                     }
@@ -508,7 +508,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h2>Demande de suppression de l'offre</h2>
                     </section>
                     <section class="contentPop active" id="content-1">
-                        <p class="taille3">
+                        <p class="taille7">
                             Votre demande de suppression sera envoyé a un administrateur.
                         </p>
                         <label for="inputSuppression">Entrer le nom de l'offre pour confirmer la suppression :&nbsp;<i>"<?= $offre[0]["nom"] ?>"</i></label>
@@ -1409,6 +1409,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     event.preventDefault();
                     const formData = new FormData(formSup);
                     console.log(formData.get("btnSupression"));
+                    console.log(formData);
                     console.log(inputSup.value);
                     if (formData.get("btnSupression") == "supprime") {
                         if (inputSup.value != nomOffre) {
