@@ -3407,12 +3407,12 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .taillebtn button {
   background-color: var(--rouge) !important;
-  border: solid var(--rouge) 1px !important;
+  border: solid var(--rouge) 2px !important;
 }
 
 .taillebtn button:hover {
   background-color: white !important;
-  border: solid var(--rouge) 1px !important;
+  border: solid var(--rouge) 2px !important;
   color: var(--rouge) !important;
 }
 
@@ -3644,33 +3644,94 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 /** POPUP Carte **/
-#popupCarte{
+/* Style général du popup */
+#popupCarte {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-#popupCarte > h3 {
-  font-size: 2em;
+/* Titre du popup */
+#popupCarte h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0;
   text-align: center;
-  font-family: 'Belanosima';
-  margin: 20px;
 }
 
-#popupCarte > div > p {
-  font-size: 1rem;
+/* Section résumé */
+#popupCarte p {
+  margin: 5px 0;
 }
 
-#popupCarte > div, #popupCarte > div > div{
+/* Liens dans le popup */
+#popupCarte a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#popupCarte a:hover {
+  text-decoration: underline;
+}
+
+/* Section contenant les boutons */
+
+#popupCarte > div {
+  margin-top: 10px;
+}
+
+#popupCarte div {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-#popupCarte > div{
-  gap: 1em;
-  margin: 10px;
+#divBtnPopup{
+  gap: 0.5em;
 }
+/* Style du bouton "Itinéraire" */
+#popupCarte div a:first-child {
+  background-color: var(--accent);
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: var(--accent) 1px solid;
+  text-align: center;
+  width: 48%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#popupCarte div a:first-child:hover {
+  background-color: white;
+  color: var(--accent);
+  ;
+}
+
+/* Style du bouton "Voir l'offre" */
+#popupCarte div a:last-child {
+  background-color: var(--primary);
+  color: black;
+  font-size: 1rem;
+  text-decoration: none;
+  border: var(--primary) 1px solid;
+  padding: 5px 10px;
+  border-radius: 3px;
+  text-align: center;
+  width: 48%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#popupCarte div a:last-child:hover {
+  background-color: white;
+  color: var(--primary);
+}
+
 
 #popupCarte .star { 
   width: 25px;
@@ -5731,6 +5792,7 @@ div[id="messageErreur"] {
 
   #asideRetour {
     position: static !important;
+    margin: 10px;
   }
 
   .creation-compte div {
@@ -5747,7 +5809,7 @@ div[id="messageErreur"] {
     flex-direction: row;
     justify-content: center;
     margin: 10px;
-    width: 90%;
+    width: 100%;
     max-width: 480px;
   }
 
@@ -5769,8 +5831,7 @@ div[id="messageErreur"] {
     text-align: left;
     margin-bottom: 5px;
     font-size: 18px;
-    width: 200px;
-    max-width: 350px;
+    max-width: 420px;
   }
 
   .creation-compte input {
@@ -5894,9 +5955,8 @@ div[id="messageErreur"] {
   }
 
   .ligne7 label {
-      display: flex;
-      flex-wrap: wrap;
-      line-height: 1.5;
+    flex-wrap: wrap;
+    line-height: 1.5;
   }
 
   .ligne7 input[type="checkbox"] {
@@ -6231,6 +6291,10 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   color: #fff;
 }
 
+.supprComptePopup h2{
+  text-align: center;
+}
+
 .supprComptePopup form{
   display: flex;
   flex-wrap: wrap;
@@ -6311,7 +6375,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   }
 
   .supprComptePopup label{
-    width: auto;
+    width: 90%;
     max-width: 100%;
     font-size: 22px;
   }

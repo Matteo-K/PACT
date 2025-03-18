@@ -1434,11 +1434,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const body = document.body;
                 const leaveB = document.getElementById("confirmationBlack")
                 const leave2 = document.getElementById("confirmationBlack2")
+                let id;
 
                 // Fonction pour afficher le modal
-                function openModalBlackFunction() {
+                function openModalBlackFunction(param) {
                     modalBlack.style.display = "block";
-
+                    id = param.classList[2].split("_")[1];
                     body.classList.add("no-scroll");
                 }
 
@@ -1450,7 +1451,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 // Ouvrir le popup lorsque le bouton est cliqué
                 openModalBlackButtons.forEach(button => {
-                    button.addEventListener('click', openModalBlackFunction);
+                    button.addEventListener('click', () => openModalBlackFunction(button));
                 });
 
                 // Fermer le popup lorsqu'on clique sur la croix
@@ -1463,7 +1464,47 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     }
                 });
 
-                leaveB.onclick = closeModalBlackFunction;
+                function confirmationModalBlackFunction() {
+                    fetch('blacklist.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            'idC': id,
+                            'idOffre': <?php echo $idOffre ?>
+                        })
+                    })
+                    .then(response => {
+                        // Vérifiez si la réponse est correcte (code HTTP 2xx)
+                        if (!response.ok) {
+                            throw new Error('Erreur serveur: ' + response.status);  // Si la réponse n'est pas OK
+                        }
+                        
+                        // Utilisez text() pour obtenir la réponse brute (en texte)
+                        return response.text();  // Cela retourne la réponse sous forme de texte
+                    })
+                    .then(data => {
+                        // Affiche la réponse brute dans la console pour débogage
+                        console.log('Réponse brute du serveur:', data);
+                        
+                        // Essayez de parser la réponse en JSON
+                        try {
+                            const jsonData = JSON.parse(data);  // Si possible, analysez la réponse en JSON
+                            console.log('Données JSON:', jsonData);
+                        } catch (error) {
+                            // Si une erreur se produit lors de l'analyse JSON, afficher l'erreur
+                            console.error('Erreur lors de l\'analyse JSON:', error);
+                        }
+                    })
+                    .catch(error => {
+                        // Gérer toutes les erreurs de la requête fetch
+                        console.error('Erreur capturée:', error);
+                    });
+                    
+
+                    closeModalBlackFunction();
+                }
+
+                leaveB.onclick = confirmationModalBlackFunction;
                 leave2.onclick = closeModalBlackFunction;
             } catch (error) {
                 console.log(error)

@@ -201,8 +201,9 @@
                     <label for="mdp">Entrez votre mot de passe</label>
                     <input type="password" name="mdp" id="mdp">
                     
+                    <!-- Checkbox des CGU -->
                     <label for="chbxConfirme">
-                        <input type="radio" id="chbxConfirme" value="chbxConfirme">
+                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme" value="chbxConfirme" />
                         <span class="checkmark"></span>
                         Je prends connaissance que la suppression des comptes est définitive et que mes avis restent tout de même visibles 
                         sur la plateforme, sans leurs photos et en tant qu'utilisateur anonyme.
