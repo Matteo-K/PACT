@@ -1557,7 +1557,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         });
     </script>
     <script type="module">
-        import { geocode } from "js/geocode.js";
+        import { geocode } from "./js/geocode.js";
         try {
             let latLong = geocode("<?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>");
             let marker; // Variable pour stocker le marqueur actuel
