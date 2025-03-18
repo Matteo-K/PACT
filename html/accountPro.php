@@ -232,8 +232,8 @@
             <div class="ligne7">
                 <!-- Checkbox des CGU -->
                 <label for="cgu">
-                    <input type="checkbox" id="cgu" name="cgu" value="cgu" />
                     <span class="checkmark"></span>
+                    <input type="checkbox" id="cgu" name="cgu" value="cgu" />
                     J’accepte les <a id="lienCGU" href= "cgu.php" target="_blank">conditions générales d’utilisation</a> de la PACT
                 </label>
             </div>

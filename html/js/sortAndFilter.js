@@ -651,7 +651,7 @@ function addPing(array) {
                       </p>
                     </div>
                     <p><strong>Résumé :</strong> ${elt['resume']}</p>
-                    <p>Adresse : <a href="https://www.google.com/maps?q=
+                    <p><strong>Adresse :</strong> <a href="https://www.google.com/maps?q=
                       ${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank" id="lieu">${elt['numeroRue']} ${elt['rue']}, ${elt['codePostal']} ${elt['ville']}
                     </a></p>
                     <div id="divBtnPopup">

@@ -2,6 +2,7 @@
 
 require_once "config.php";
 
+$donnees = json_decode(file_get_contents('php://input'), true);
 $idAvis = $donnees['idC'];
 $idOffre = $donnees['idOffre'];
 
@@ -27,7 +28,9 @@ if ($idAvis != null) {
             $intervalSQL = "INTERVAL ? DAY";
             break;
     }
-
+    print_r($interval);
+    print_r($idOffre);
+    print_r($idAvis);
     $stmt = $conn->prepare("INSERT INTO pact._blacklist(idc, idoffre, dateblacklist, datefinblacklist) 
                             VALUES (?, ?, current_timestamp, DATE_ADD(current_timestamp, $intervalSQL))");
     $stmt->execute([$idAvis, $idOffre, $interval]);
