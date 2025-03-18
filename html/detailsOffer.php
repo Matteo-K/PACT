@@ -1575,13 +1575,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 center: latLong,
                 zoom: 4
             });
-            L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png}', {
                 maxZoom: 22
             }).addTo(map);
             L.marker(latLong);
 
         } catch (error) {
-            
+
         }
     </script>
 
