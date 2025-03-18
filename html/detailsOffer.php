@@ -1400,9 +1400,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     body.classList.remove("no-scroll");
                 }
                 // Ouvrir le popup lorsque le bouton est cliqué
-                openModalBtnSup.onclick = openModal;
+                openModalBtnSup.onclick = openModalSup;
                 // Fermer le popup lorsqu'on clique sur la croix
-                closeModalBtnSup.onclick = closeModal;
+                closeModalBtnSup.onclick = closeModalSup;
 
                 formSup.addEventListener("submit", (event) => {
                     event.preventDefault();
