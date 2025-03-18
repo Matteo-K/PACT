@@ -296,7 +296,7 @@ function afficheAvisSelect(idAvis) {
 
     blacklistAvis.classList = `btnBlackList blacklist avis_${idAvis}`;
 
-    console.log(imgSignaleAvis.classList);
+    console.log(blacklistAvis.classList);
     //changement photo auteur
     photoAuteurAvis.src = listeAvis[idAvis]['membre_url'];
     
