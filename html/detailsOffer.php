@@ -1408,6 +1408,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 formSup.addEventListener("submit", (event) => {
                     event.preventDefault();
                     const formData = new FormData(formSup);
+                    console.log(formData.get("btnSupression"));
+                    console.log(inputSup.value);
                     if (formData.get("btnSupression") == "supprime") {
                         if (inputSup.value != nomOffre) {
                             msgSup.textContent = "Nom de l'offre incorrecte";
