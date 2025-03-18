@@ -3698,6 +3698,7 @@ label[for="rest_ajoutPhotoMenu"] {
   background-color: var(--accent);
   text-decoration: none;
   color: black;
+  font-size: 1.25rem;
   padding: 5px 10px;
   border-radius: 3px;
   border: var(--accent) 1px solid;
@@ -3716,6 +3717,7 @@ label[for="rest_ajoutPhotoMenu"] {
 #popupCarte div a:last-child {
   background-color: var(--primary);
   color: black;
+  font-size: 1.25rem;
   text-decoration: none;
   border: var(--primary) 1px solid;
   padding: 5px 10px;
