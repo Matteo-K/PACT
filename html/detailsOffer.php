@@ -1390,8 +1390,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 });
 
                 function confirmationModalBlackFunction() {
+                    fetch('blacklist.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            'idC': id,
+                            'idOffre' : $idOffre
+                        })
+                    });
                     closeModalBlackFunction();
-                    console.log(id);
                 }
 
                 leaveB.onclick = confirmationModalBlackFunction;
