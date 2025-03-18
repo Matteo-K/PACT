@@ -5780,6 +5780,7 @@ div[id="messageErreur"] {
 
   #asideRetour {
     position: static !important;
+    margin: 10px;
   }
 
   .creation-compte div {
