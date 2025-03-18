@@ -1562,6 +1562,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script type="module">
         import { geocode } from "./js/geocode.js";
         try {
+            <?php print_r($result)?>
             let latLong = geocode("<?php echo htmlspecialchars($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]) ?>")
             let map = L.map('map').setView(latLong, 13);
 
@@ -1569,7 +1570,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 maxZoom: 22
             }).addTo(map);
 
-            L.marker(latLong).addTo(map)
+            L.marker(lat).addTo(map)
                 .bindPopup('A pretty CSS popup.<br> Easily customizable.')
                 .openPopup();
 
