@@ -8,6 +8,15 @@ class Activity extends Offer implements Categorie {
     parent::__construct($idOffre, "Activité");
   }
 
+  public function loadData($attribut = []) {
+    global $conn;
+
+    $offreId = parent::getIdOffre();
+
+    // Séparation des attributs par table
+    $attributPark = array_intersect($attribut, []);
+  }
+
   public function getData() {
     $parentData = parent::getData();
 

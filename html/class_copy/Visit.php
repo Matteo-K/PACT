@@ -63,6 +63,7 @@ class Visit extends Offer implements Categorie {
   public function getData($parentAttribut = [], $thisAttribut = []) {
     $parentData = [];
     $thisData = [];
+    $all = empty($parentAttribut) && empty($thisAttribut);
 
     $attributs = [
       "estGuide" => "guide",
@@ -71,20 +72,27 @@ class Visit extends Offer implements Categorie {
       "accessibilite" => "accessibilite",
       "handicap" => "handicap",
       "langue" => "langue"
-
-      // "horaireMidi" => $this->horaireToJSON($this->horaireMidi),
-      // "horaireSoir" => $this->horaireToJSON($this->horaireSoir),
-      // "ouverture" => parent::statutOuverture($this->horaireSoir, $this->horaireMidi)
     ];
 
-    if (!empty($parentAttribut)) {
+    $attributHoraire = [
+      "horaireMidi",
+      "horaireSoir",
+      "ouverture"
+    ];
+
+    if (!empty($parentAttribut) || $all) {
       $parentData = parent::getData($thisAttribut);
     }
-    if (!empty($thisAttribut)) {
+
+    if (!empty($thisAttribut) || $all) {
       $this->loadData($thisAttribut);
-      $finalGet = array_intersect($thisAttribut, $attributs);
+      $finalGet = array_intersect($thisAttribut, $attributs) ?? [];
       foreach ($finalGet as $format => $attr) {
         $thisData[$format] = $this->visitData[$attr];
+      }
+      $finalGet = array_intersect($thisAttribut, $attributHoraire) ?? [];
+      foreach ($finalGet as $value) {
+        $thisData[$value] = Horaire::horaireToJson($this->visitData[$value]);
       }
     }
 

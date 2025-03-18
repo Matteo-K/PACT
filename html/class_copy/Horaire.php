@@ -5,7 +5,9 @@
       $stmt = $conn->prepare("SELECT listhorairemidi, listhorairesoir FROM pact.offres WHERE idoffre = ?");
       $stmt->execute([$idOffre]);
       $horaire = $stmt->fetchAll(PDO::FETCH_COLUMN);
-      return $horaire;
+      return [
+        "horaireMidi" => Horaire::jsonToHoraire($idOffre, $horaire["listhorairemidi"])
+      ];
     }
 
     static function horaireToJson($horaire) {
