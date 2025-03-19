@@ -54,7 +54,7 @@
     }
 
      // Vérifier si le compte à été supprimé, avec le bon mot de passe
-     if (isset($_POST['mdp']) && password_verify($_POST['mdp'], $pwdApi['password']) {
+     if (isset($_POST['mdp']) && password_verify($_POST['mdp'], $pwdApi['password'])) {
         $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
         //$stmt -> execute();
         print_r($_POST);
