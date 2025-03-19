@@ -1,5 +1,4 @@
 <?php
-require_once "Offer.php";
 
 class Restaurant extends Offer implements Categorie {
   protected $restaurantData = null;

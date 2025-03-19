@@ -1,7 +1,5 @@
 <?php
-require_once "Offer.php";
 
-// TODO
 class Park extends Offer implements Categorie {
   
 
