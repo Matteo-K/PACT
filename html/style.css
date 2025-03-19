@@ -770,7 +770,8 @@ header ul + div {
 #manageOffer [type="email"],
 #manageOffer [type="tel"],
 #manageOffer [type="password"],
-#manageOffer [type="time"] {
+#manageOffer [type="time"],
+#inputSuppression {
   outline: none;
   border-radius: 0;
   border: none;
@@ -2952,7 +2953,8 @@ label[for="rest_ajoutPhotoMenu"] {
   padding-left: 30px !important;
 }
 
-#trifiltre + .modal .modal-content {
+#trifiltre + .modal .modal-content,
+#formSuppression {
   height: fit-content;
   .titre {
     flex-flow: column;
@@ -2969,6 +2971,15 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   gap: 10px;
   justify-content: end;
+}
+
+#contentSup {
+  display: flex;
+  flex-flow: column;
+  input {
+    width: fit-content;
+    margin-bottom: 20px;
+  }
 }
 
 /* Bloc tri et filtre */
@@ -3407,12 +3418,12 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .taillebtn button {
   background-color: var(--rouge) !important;
-  border: solid var(--rouge) 1px !important;
+  border: solid var(--rouge) 2px !important;
 }
 
 .taillebtn button:hover {
   background-color: white !important;
-  border: solid var(--rouge) 1px !important;
+  border: solid var(--rouge) 2px !important;
   color: var(--rouge) !important;
 }
 
@@ -3970,7 +3981,7 @@ tbody td:last-child {
 #infoPro,
 #infoPro > div,
 #afficheLoc,
-#afficheLoc > .carte + div {
+#afficheLoc > #map + div {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -4074,7 +4085,7 @@ section#infoComp div {
   gap: 10px;
 }
 
-#carte {
+#map {
   flex: 2;
   width: 40%;
   height: 400px;
@@ -5265,7 +5276,7 @@ label#btnAjoutPhoto:hover {
     font-size: 16px;
   }
 
-  #carte {
+  #map {
     width: 100%;
     height: 20em;
     flex: none;
@@ -5809,14 +5820,13 @@ div[id="messageErreur"] {
     flex-direction: row;
     justify-content: center;
     margin: 10px;
-    width: 100%;
     max-width: 480px;
   }
 
-  /* .creation-compte .ligne7 > label {
-    font-size: 20px;
+  .creation-compte .ligne7 > label {
+    font-size: 18px;
     width: 400px;
-  } */
+  }
 
   .creation-compte .ligne7 > input {
     width: 40px;
@@ -5831,7 +5841,7 @@ div[id="messageErreur"] {
     text-align: left;
     margin-bottom: 5px;
     font-size: 18px;
-    max-width: 420px;
+    max-width: 380px;
   }
 
   .creation-compte input {
@@ -6206,7 +6216,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 #buttonAPIkey {
   width: 250px;
   font-size: 25px;
-  height: 60px;
+  height: 50px;
   border-radius: 10px;
   margin: 5px auto;
   background-color: var(--accent);
@@ -6221,7 +6231,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 #buttonAPIkey:hover {

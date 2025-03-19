@@ -1,5 +1,4 @@
 <?php
-require_once "Offer.php";
 
 class Show extends Offer implements Categorie {
 

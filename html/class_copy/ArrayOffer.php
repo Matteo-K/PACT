@@ -1,13 +1,13 @@
 <?php
 require_once __DIR__. "/../config.php";
+require_once "Horaire.php";
+require_once "HoraireSpectacle.php";
 require_once "Offer.php";
 require_once "Park.php";
 require_once "Restaurant.php";
 require_once "Show.php";
 require_once "Visit.php";
 require_once "Activity.php";
-require_once "Horaire.php";
-require_once "HoraireSpectacle.php";
 
 class ArrayOffer {
   // format : [$idOffre -> Objet, ...]

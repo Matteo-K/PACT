@@ -25,6 +25,7 @@ $currentTime = new DateTime(date('H:i'));
 
 class Offer {
   protected $data = null;
+  private $horaire = null;
 
   private $idUser;
   private $nomUser;
