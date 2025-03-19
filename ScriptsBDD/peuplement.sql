@@ -106,7 +106,8 @@ VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
 	(2, 'Rue de Kerniflet', 'Lannion', 'France', '22300'),
 	('1','Route du cap', 'Fréhel', 'France','22000'),
 	('5','Rue Beauchamp','Lannion','France','22300'),
-	('1','Rue du port','Erquy','France','22430');
+	('1','Rue du port','Erquy','France','22430'),
+	('1', 'Rue des anonymes', 'Lannion', 'France', '22300');
 
 -- Peuplement de la table _abonnement
 INSERT INTO _abonnement (nomAbonnement, tarif) 
@@ -433,8 +434,8 @@ VALUES (5, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 	(22, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 	(23, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 	(24, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
-	(25, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1);
-       (26, '22300', 'Lannion', 'France', 'Rue des anonymes', 1);
+	(25, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
+    (26, '22300', 'Lannion', 'France', 'Rue des anonymes', 1);
 
 
 -- Peuplement de la table _localisation

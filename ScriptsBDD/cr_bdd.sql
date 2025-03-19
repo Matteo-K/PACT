@@ -1656,7 +1656,7 @@ FOR EACH ROW
 EXECUTE FUNCTION check_premium_before_insert();
 
 
-CREATE OR REPLACE FUNCTION before_delete_membre()
+CREATE OR REPLACE FUNCTION delete_membre()
 RETURNS TRIGGER AS $$
 DECLARE
     img TEXT;
@@ -1679,27 +1679,36 @@ BEGIN
     -- Anonymisation des avis du membre
     UPDATE pact._commentaire
     SET idu = idanonyme
-    WHERE idu = idanonyme;
+    WHERE idu = iduser;
 
     -- Anonymisation des signalements du membre
     UPDATE pact._signalementC
     SET idu = idanonyme
-    WHERE idu = idanonyme;
+    WHERE idu = iduser;
 
     -- Suppression des références des offres consultées par le membre
-    DELETE FROM _consulter 
+    DELETE FROM pact._consulter 
     WHERE idu = iduser;
 
     -- Suppression des messages du membre sur Tchatator
-    DELETE FROM _tchatator
+    DELETE FROM pact._tchatator
     WHERE idMembre = iduser;
 
     -- Suppression de la référence à son adresse
-    DELETE FROM _habite
+    DELETE FROM pact._habite
     WHERE idu = iduser;
 
--- Suppression de la référence à sa photo de profil
-    DELETE FROM _photo_profil
+    -- Suppression de la référence à sa photo de profil
+    DELETE FROM pact._photo_profil
+    WHERE idu = iduser;
+
+    DELETE FROM pact._membre
+    WHERE idu = iduser;
+
+    DELETE FROM pact._nonAdmin
+    WHERE idu = iduser;
+
+    DELETE FROM pact._utilisateur
     WHERE idu = iduser;
 
     RETURN NEW;
@@ -1708,26 +1717,6 @@ $$ LANGUAGE plpgsql;
 
 -- Création du trigger associé
 CREATE TRIGGER trigger_before_delete_membre
-BEFORE DELETE ON pact._membre
+INSTEAD OF DELETE ON pact.membre
 FOR EACH ROW
-EXECUTE FUNCTION before_delete_membre();
-
-
-CREATE OR REPLACE FUNCTION after_delete_membre()
-RETURNS TRIGGER AS $$
-BEGIN
-
-    DELETE FROM _nonAdmin
-    WHERE idu = OLD.idu;
-
-    DELETE FROM _utilisateur
-    WHERE idu = OLD.idu;
-
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trigger_after_delete_membre
-AFTER DELETE ON pact._membre
-FOR EACH ROW
-EXECUTE FUNCTION after_delete_membre();
+EXECUTE FUNCTION delete_membre();
