@@ -881,7 +881,8 @@ CREATE VIEW avis AS
     a.blacklist,
 	c.nblike,
 	c.nbdislike,
-    ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage
+    ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage,
+    c.idu
     FROM _avis a 
     JOIN _commentaire c ON a.idC = c.idC
     LEFT JOIN _avisImage ai ON a.idC = ai.idC
@@ -1653,3 +1654,80 @@ CREATE TRIGGER trigger_check_insert_blacklist
 BEFORE INSERT ON pact._blacklist
 FOR EACH ROW
 EXECUTE FUNCTION check_premium_before_insert();
+
+
+CREATE OR REPLACE FUNCTION before_delete_membre()
+RETURNS TRIGGER AS $$
+DECLARE
+    img TEXT;
+    listImages TEXT[];
+    iduser INT := NEW.idu;
+    idanonyme INT := 26;
+BEGIN
+
+    -- Suppression des images correspondant aux avis ananymisés
+    FOR listImages IN 
+        SELECT listImage FROM pact.avis WHERE idu = iduser
+    LOOP
+        FOREACH img IN ARRAY result
+        LOOP
+            DELETE FROM pact._image
+            where url = img;
+        END LOOP;
+    END LOOP;
+
+    -- Anonymisation des avis du membre
+    UPDATE pact._commentaire
+    SET idu = idanonyme
+    WHERE idu = idanonyme;
+
+    -- Anonymisation des signalements du membre
+    UPDATE pact._signalementC
+    SET idu = idanonyme
+    WHERE idu = idanonyme;
+
+    -- Suppression des références des offres consultées par le membre
+    DELETE FROM _consulter 
+    WHERE idu = iduser;
+
+    -- Suppression des messages du membre sur Tchatator
+    DELETE FROM _tchatator
+    WHERE idMembre = iduser;
+
+    -- Suppression de la référence à son adresse
+    DELETE FROM _habite
+    WHERE idu = iduser;
+
+-- Suppression de la référence à sa photo de profil
+    DELETE FROM _photo_profil
+    WHERE idu = iduser;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Création du trigger associé
+CREATE TRIGGER trigger_before_delete_membre
+BEFORE DELETE ON pact.membre
+FOR EACH ROW
+EXECUTE FUNCTION before_delete_membre();
+
+
+CREATE OR REPLACE FUNCTION after_delete_membre()
+RETURNS TRIGGER AS $$
+BEGIN
+
+    DELETE FROM _nonAdmin
+    WHERE idu = OLD.idu;
+
+    DELETE FROM _utilisateur
+    WHERE idu = OLD.idu;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_after_delete_membre
+AFTER DELETE ON pact.membre
+FOR EACH ROW
+EXECUTE FUNCTION after_delete_membre();
