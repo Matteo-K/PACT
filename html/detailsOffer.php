@@ -272,7 +272,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <?php require_once "components/header.php"; ?>
-    
+
     <?php print_r($result) ?>
     <main class="mainOffer">
         <?php
@@ -1560,19 +1560,26 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         });
     </script>
     <script type="module">
-        import { geocode } from "./js/geocode.js";
+        import {geocode} from "./js/geocode.js";
         try {
-            <?php print_r($result) ?>
-            let map = L.map('map').setView([51.505, -0.09], 13);
+            <?php 
+                // Rechercher l'offre dans les parcs d'attractions
+                $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
+                $stmt->bindParam(':idoffre', $idOffre);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            let address = <?php echo json_encode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>;
+            // Assuming geocode() returns a promise with latitude and longitude
+            let latLong = geocode(address);                   
+            console.log(latLong);
+            let map = L.map('map').setView([48.46, -2.85], 15);
 
             L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
                 maxZoom: 22
             }).addTo(map);
 
-            L.marker([51.5, -0.09]).addTo(map)
-                .bindPopup('A pretty CSS popup.<br> Easily customizable.')
-                .openPopup();
-
+            L.marker(latLong).addTo(map);
         } catch (error) {
 
         }
