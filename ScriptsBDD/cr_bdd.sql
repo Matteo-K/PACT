@@ -1661,20 +1661,29 @@ RETURNS TRIGGER AS $$
 DECLARE
     img TEXT;
     listImages TEXT[];
-    iduser INT := NEW.idu;
+    iduser INT := OLD.idu;
     idanonyme INT := 26;
 BEGIN
+
+    RAISE NOTICE 'Trigger delete_membre activé pour iduser = %', iduser;
 
     -- Suppression des images correspondant aux avis ananymisés
     FOR listImages IN 
         SELECT listImage FROM pact.avis WHERE idu = iduser
     LOOP
-        FOREACH img IN ARRAY result
-        LOOP
-            DELETE FROM pact._image
-            where url = img;
-        END LOOP;
+        RAISE NOTICE 'boucle table d image pour un avis';
+        IF listImages != null THEN
+            FOREACH img IN ARRAY listImages
+            LOOP
+                RAISE NOTICE 'boucle pour une image';
+                DELETE FROM pact._image
+                where url = img;
+            END LOOP;
+        END IF;
     END LOOP;
+
+    RAISE NOTICE 'suite (tous les delete)';
+
 
     -- Anonymisation des avis du membre
     UPDATE pact._commentaire
@@ -1711,6 +1720,7 @@ BEGIN
     DELETE FROM pact._utilisateur
     WHERE idu = iduser;
 
+    RAISE NOTICE 'Fin';
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
