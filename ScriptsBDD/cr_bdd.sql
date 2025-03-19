@@ -1708,7 +1708,7 @@ $$ LANGUAGE plpgsql;
 
 -- Création du trigger associé
 CREATE TRIGGER trigger_before_delete_membre
-BEFORE DELETE ON pact.membre
+BEFORE DELETE ON pact._membre
 FOR EACH ROW
 EXECUTE FUNCTION before_delete_membre();
 
@@ -1728,6 +1728,6 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trigger_after_delete_membre
-AFTER DELETE ON pact.membre
+AFTER DELETE ON pact._membre
 FOR EACH ROW
 EXECUTE FUNCTION after_delete_membre();
