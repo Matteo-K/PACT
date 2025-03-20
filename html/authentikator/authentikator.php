@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const qrCodeUrl = "<?php echo $url; ?>"; // URL générée en PHP
 
         checkmark.addEventListener("click", () => {
-            if (checkbox.checked) {
+            if (!checkbox.checked) {
                 div.innerHTML = `<img id="qrCode" src="${qrCodeUrl}" alt="QR Code">`;
             } else {
                 div.innerHTML = "";
