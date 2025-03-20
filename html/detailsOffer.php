@@ -1067,7 +1067,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <p class="taille7">Êtes-vous sûr de vouloir blacklister cet avis ?</p>
 
-                    <p class="taille8">Il vous reste 3 blacklistage</p>
+                    <?php
+                    
+                    $stmt = $conn->prepare("SELECT COUNT(*) FROM pact._blacklist WHERE idOffre = ? and datefinblacklist > CURRENT_TIMESTAMP");
+                    $stmt->execute([$idOffre]);
+                    
+                    $ticketRestant = $stmt->fetch()["count"]
+
+                    ?>
+
+                    <p class="taille8">Il vous reste <?php echo 3 - $ticketRestant ?> blacklistage</p>
 
                     <div class="btnBlack">
                         <section class="">
