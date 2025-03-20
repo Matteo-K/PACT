@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const div = document.getElementById("divAuthent");
     const pseudoInput = document.getElementById("pseudoMembre");
 
-    checkbox.addEventListener("change", () => {
+    function updateQRCode() {
         let pseudo = pseudoInput.value.trim();
         if (pseudo === "") pseudo = "SansPseudo"; // Définit un pseudo par défaut
 
@@ -17,5 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             div.innerHTML = ""; // Supprimer le QR Code si décoché
         }
-    });
+    }
+
+    // Mettre à jour le QR Code quand on coche/décoche
+    checkbox.addEventListener("change", updateQRCode);
+
+    // Mettre à jour le QR Code quand le pseudo change
+    pseudoInput.addEventListener("input", updateQRCode);
 });
