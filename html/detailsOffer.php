@@ -1129,32 +1129,39 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // js compte à rebours
         document.addEventListener("DOMContentLoaded", function () {
-            function startCountdown(element) {
-                const timestamp = parseInt(element.getAttribute("data-timestamp")) * 1000; // Convertir en millisecondes
-                function updateCountdown() {
-                    const now = Date.now();
-                    const diff = timestamp - now;
+    function startCountdown(element) {
+        const timestamp = parseInt(element.getAttribute("data-timestamp"), 10); 
 
-                    if (diff <= 0) {
-                        element.textContent = "Expiré";
-                        return;
-                    }
-                
-                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                
-                    element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
-                
-                    setTimeout(updateCountdown, 1000);
-                }
-                updateCountdown();
+        // Vérifie si le timestamp est en secondes (10 chiffres), sinon erreur
+        if (timestamp < 10000000000) {
+            console.warn("Conversion du timestamp en millisecondes :", timestamp);
+        }
+
+        const targetTime = timestamp * 1000; // Convertir en millisecondes
+
+        function updateCountdown() {
+            const now = Date.now();
+            const diff = targetTime - now;
+
+            if (diff <= 0) {
+                element.textContent = "Expiré";
+                return;
             }
-        
-            document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
-        });
 
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+
+            setTimeout(updateCountdown, 1000);
+        }
+        updateCountdown();
+    }
+
+    document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
+});
 
         function supAvis(id, idOffre, action) {
             // Affiche une boîte de dialogue pour confirmer la suppression
