@@ -4,17 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const pseudoInput = document.getElementById("pseudo");
 
     checkbox.addEventListener("change", () => {
-        const pseudo = pseudoInput.value.trim();
+        let pseudo = pseudoInput.value.trim();
+        if (pseudo === "") pseudo = "SansPseudo"; // Définit un pseudo par défaut
 
-        if (checkbox.checked && pseudo !== "") {
+        if (checkbox.checked) {
             fetch("authentikator/authentikator.php?pseudo=" + encodeURIComponent(pseudo))
-                .then(response => response.text())
-                .then(data => {
-                    div.innerHTML = `<img id="qrCode" src="${data}" alt="QR Code">`;
-                })
-                .catch(error => console.error("Erreur :", error));
-        } else if (pseudo == "") {
-            fetch("authentikator/authentikator.php?pseudo=" + encodeURIComponent("SansPseudo"))
                 .then(response => response.text())
                 .then(data => {
                     div.innerHTML = `<img id="qrCode" src="${data}" alt="QR Code">`;
