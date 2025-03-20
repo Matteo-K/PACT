@@ -20,6 +20,10 @@
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        $stmt = $conn -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
+        $stmt -> execute();
+        $pwdApi = $stmt -> fetch(PDO::FETCH_ASSOC);
+
         // Vérifier si les données sont trouvées
         if (!$user) {
             $_SESSION['errors'][] = "Utilisateur introuvable.";
@@ -49,9 +53,15 @@
         exit();
     }
 
+     // Vérifier si le compte à été supprimé, avec le bon mot de passe
+     if (isset($_POST['mdp']) && password_verify($_POST['mdp'], $pwdApi['password'])) {
+        $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
+        //$stmt -> execute();
+        print_r($_POST);
+     }
     
-    // Vérifier si le formulaire a été soumis
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Vérifier si le formulaire a été soumis pour une modification du compte
+    if (isset($_POST['email'])) {
         // Récupérer les nouvelles données du formulaire
         $nom = trim($_POST['nomMembre']);
         $prenom = trim($_POST['prenomMembre']);
@@ -203,7 +213,7 @@
                     
                     <!-- Checkbox des CGU -->
                     <label for="chbxConfirme">
-                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme" value="chbxConfirme" />
+                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme" value="chbxConfirme" required/>
                         <span class="checkmark"></span>
                         Je prends connaissance que la suppression des comptes est définitive et que mes avis restent tout de même visibles 
                         sur la plateforme, sans leurs photos et en tant qu'utilisateur anonyme.
@@ -303,18 +313,10 @@
 
 
         <section id="apiKey">
-            <?php
-                $stmt = $conn -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
-                $stmt -> execute();
-                $infoPro = $stmt -> fetch(PDO::FETCH_ASSOC);
-            ?>
-            <?php 
-                // print_r($infoPro);
-            ?>
             <p>Service Tchatator - Votre Clé API :</p>
 
-            <?php if($infoPro["apikey"]){?>
-                <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
+            <?php if($pwdApi["apikey"]){?>
+                <p id = "valueAPIkey"> <?=$pwdApi["apikey"]?></p>
                 <p id = "buttonAPIkey" onclick="generateAPIkey()">Regénérer ma clé API</p>
             <?php 
                 } 

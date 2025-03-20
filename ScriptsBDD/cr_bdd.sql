@@ -881,7 +881,8 @@ CREATE VIEW avis AS
     a.blacklist,
 	c.nblike,
 	c.nbdislike,
-    ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage
+    ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage,
+    c.idu
     FROM _avis a 
     JOIN _commentaire c ON a.idC = c.idC
     LEFT JOIN _avisImage ai ON a.idC = ai.idC
@@ -1653,3 +1654,79 @@ CREATE TRIGGER trigger_check_insert_blacklist
 BEFORE INSERT ON pact._blacklist
 FOR EACH ROW
 EXECUTE FUNCTION check_premium_before_insert();
+
+
+CREATE OR REPLACE FUNCTION delete_membre()
+RETURNS TRIGGER AS $$
+DECLARE
+    img TEXT;
+    listImages TEXT[];
+    iduser INT := OLD.idu;
+    idanonyme INT := 26;
+BEGIN
+
+    RAISE NOTICE 'Trigger delete_membre activé pour iduser = %', iduser;
+
+    -- Suppression des images correspondant aux avis ananymisés
+    FOR listImages IN 
+        SELECT listImage FROM pact.avis WHERE idu = iduser
+    LOOP
+        RAISE NOTICE 'boucle table d image pour un avis';
+        IF listImages != null THEN
+            FOREACH img IN ARRAY listImages
+            LOOP
+                RAISE NOTICE 'boucle pour une image';
+                DELETE FROM pact._image
+                where url = img;
+            END LOOP;
+        END IF;
+    END LOOP;
+
+    RAISE NOTICE 'suite (tous les delete)';
+
+
+    -- Anonymisation des avis du membre
+    UPDATE pact._commentaire
+    SET idu = idanonyme
+    WHERE idu = iduser;
+
+    -- Anonymisation des signalements du membre
+    UPDATE pact._signalementC
+    SET idu = idanonyme
+    WHERE idu = iduser;
+
+    -- Suppression des références des offres consultées par le membre
+    DELETE FROM pact._consulter 
+    WHERE idu = iduser;
+
+    -- Suppression des messages du membre sur Tchatator
+    DELETE FROM pact._tchatator
+    WHERE idMembre = iduser;
+
+    -- Suppression de la référence à son adresse
+    DELETE FROM pact._habite
+    WHERE idu = iduser;
+
+    -- Suppression de la référence à sa photo de profil
+    DELETE FROM pact._photo_profil
+    WHERE idu = iduser;
+
+    DELETE FROM pact._membre
+    WHERE idu = iduser;
+
+    DELETE FROM pact._nonAdmin
+    WHERE idu = iduser;
+
+    DELETE FROM pact._utilisateur
+    WHERE idu = iduser;
+
+    RAISE NOTICE 'Fin';
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Création du trigger associé
+CREATE TRIGGER trigger_before_delete_membre
+INSTEAD OF DELETE ON pact.membre
+FOR EACH ROW
+EXECUTE FUNCTION delete_membre();

@@ -1,5 +1,4 @@
 <?php
-require_once "Offer.php";
 
 class Visit extends Offer implements Categorie {
   protected $visitData = null;
