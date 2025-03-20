@@ -1511,19 +1511,18 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 })
 .then(async response => {
     if (!response.ok) {
-        // Essaye d'extraire le message d'erreur depuis la réponse JSON
         let errorMessage = `Erreur HTTP: ${response.status} - ${response.statusText}`;
         try {
-            const errorData = await response.json();
-            if (errorData.message) {
-                errorMessage += ` | Détails: ${errorData.message}`;
+            const errorText = await response.text(); // Récupère la réponse sous forme de texte
+            if (errorText) {
+                errorMessage += ` | Détails: ${errorText}`;
             }
         } catch (e) {
-            console.warn('Impossible de récupérer les détails de l\'erreur JSON');
+            console.warn('Impossible de récupérer les détails de l\'erreur en texte');
         }
         throw new Error(errorMessage);
     }
-    return response.json();
+    return response.text(); // Traite aussi les succès en texte
 })
 .then(data => {
     console.log('Succès:', data);
