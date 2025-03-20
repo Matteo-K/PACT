@@ -55,7 +55,6 @@
 
      // Vérifier si le compte à été supprimé, avec le bon mot de passe
     $erreurSupprCompte = false;
-    print_r($_POST);
     if (isset($_POST['mdp'])) {
         if(password_verify($_POST['mdp'], $pwdApi['password'])){
             $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
@@ -219,14 +218,14 @@
                     <input type="password" name="mdp" id="mdp">
                     
                     <label for="chbxConfirme">
-                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme" value="chbxConfirme"/>
+                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme"/>
                         <span class="checkmark"></span>
                         Je prends connaissance que la suppression de mon compte est définitive et que mes avis restent tout de même visibles 
                         sur la plateforme, sans leurs photos et en tant qu'utilisateur anonyme.
                     </label>
 
                     <div>
-                        <input type="submit" id="confirmeSuppression" value="Confirmer"></input>
+                        <input type="submit" id="confirmeSuppression" class="confirmImpossible" value="Confirmer"></input>
                         <input type="reset" id="annuleSuppression" value="Annuler">
                     </div>
                 </form>
@@ -426,22 +425,14 @@
 
         try {
 
-            // <label for="mdp">Entrez votre mot de passe pour confirmer</label>
-            //         <input type="password" name="mdp" id="mdp">
-                    
-            //         <label for="chbxConfirme">
-            //             <input type="radio" id="chbxConfirme" value="chbxConfirme">
-            //             <span class="checkmark"></span>
-            //             J'ai prends connaissance que la suppression des comptes est définitive et que mes avis restent visibles sur la plateformes,
-            //             en tant qu'utilisateurs anonyme. Si par hasard votre téléphone est dès demain spammé de hackers russent qui veulent votre cul, 
-            //             cela n'a absolument rien a voir avec notre site.
-            //         </label>
-            
-            //Script de gestion du pop-up de signalement (traitement de l'envoi du formulaire dans les fichiers avisPro.php / avisMembre.php / signalement.php)
+            //Script de gestion du pop-up de suppression
             let ouvrePopup = document.getElementById('supprimerCompte');
             const btnConfirmer = document.getElementById('confirmeSuppression');
             const popup = document.querySelector('.supprComptePopup');
             const body = document.body;
+
+            const inputMDP = document.querySelector('.supprComptePopup #mdp');
+            const confirmation = document.getElementById('chbxConfirme');
             
             // Afficher le pop-up
             ouvrePopup.addEventListener('click', () => {
@@ -451,17 +442,14 @@
 
             // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
             const btnFermer = document.querySelector('.supprComptePopup .close');
-            const btnAnnuler = document.querySelector('#annuleSuppression');
+            const btnAnnuler = document.getElementById('annuleSuppression');
 
             btnFermer.addEventListener('click', clearPopup);
             btnAnnuler.addEventListener('click', clearPopup);
-
             
             function clearPopup(){
                 popup.style.display = 'none';
 
-                let inputMDP = document.querySelector('.supprComptePopup #mdp');
-                let confirmation = document.getElementById('chbxConfirme');
                 confirmation.checked = false; // On désélectionne le motif choisi
                 inputMDP.value = ""; //On vide le mdp
                 body.classList.remove("no-scroll");
@@ -474,6 +462,20 @@
                     body.classList.remove("no-scroll");
                 }
             });
+
+
+            confirmation.addEventListener('click', confirmPossible);
+            inp*.addEventListener('click', confirmPossible);
+
+            function confirmPossible() {
+                if (confirmation.checked == false || inputMDP.value == "") {
+                    btnConfirmer.classList = confirmImpossible;
+                }
+                else{
+                    btnConfirmer.classList = "";
+                }
+            };
+            
 
         } catch (error) {
             
