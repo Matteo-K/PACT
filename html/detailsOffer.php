@@ -1509,18 +1509,27 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         'idOffre': <?php echo $idOffre ?>
     })
 })
-.then(response => {
+.then(async response => {
     if (!response.ok) {
-        throw new Error(`Erreur HTTP: ${response.status} - ${response.statusText}`);
+        // Essaye d'extraire le message d'erreur depuis la réponse JSON
+        let errorMessage = `Erreur HTTP: ${response.status} - ${response.statusText}`;
+        try {
+            const errorData = await response.json();
+            if (errorData.message) {
+                errorMessage += ` | Détails: ${errorData.message}`;
+            }
+        } catch (e) {
+            console.warn('Impossible de récupérer les détails de l\'erreur JSON');
+        }
+        throw new Error(errorMessage);
     }
-    return response.json(); // Supposant que le serveur renvoie une réponse JSON
+    return response.json();
 })
 .then(data => {
     console.log('Succès:', data);
 })
 .catch(error => {
-    console.error('Une erreur est survenue:', error.message || error);
-    alert('Une erreur s\'est produite. Veuillez réessayer.');
+    console.error('Erreur capturée:', error);
 });
 
 
