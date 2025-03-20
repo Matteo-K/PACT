@@ -39,7 +39,6 @@ if (isset($localisation["codepostal"])) {
       </section>
       <button type="button" id="checkAddressBtn">Vérifier l'adresse</button>
     </section>
-    <!-- Carte Google Maps -->
     <div id="map"></div>
 
   </section>
@@ -131,10 +130,7 @@ if (isset($localisation["codepostal"])) {
       return res;
     }
 
-    // Carte dynamique avec google map
     let map;
-    let geocoder;
-    let marker; // Variable pour stocker le marqueur actuel
 
     // Initialisation de la carte Google
     map = L.map('map').setView([48.46, -2.85], 10);
@@ -164,4 +160,17 @@ if (isset($localisation["codepostal"])) {
           });
       }
     }
+    
+    // Détecte l'appui sur la touche 'Enter' dans les champs de texte
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault(); // Empêche le comportement par défaut d'envoi du formulaire
+        checkInputsAndGeocode();
+      }
+    });
+
+    // Ajout d'un écouteur d'événement pour le bouton "Vérifier l'adresse"
+    document.getElementById("checkAddressBtn").addEventListener("click", function() {
+      checkInputsAndGeocode();
+    });
   </script>
