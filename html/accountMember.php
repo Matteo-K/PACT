@@ -4,6 +4,7 @@
     
     // fichier de connexion à la BDD
     require_once "db.php";
+    require_once "authentikator/authentikator.php";
     
     // Initialisation du tableau pour stocker les erreurs
     $errors = []; 
