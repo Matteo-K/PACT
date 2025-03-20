@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
                 .catch(error => console.error("Erreur :", error));
         } else if (pseudo == "") {
-            fetch("authentikator.php?pseudo=" + encodeURIComponent("SansPseudo"))
+            fetch("authentikator/authentikator.php?pseudo=" + encodeURIComponent("SansPseudo"))
                 .then(response => response.text())
                 .then(data => {
                     div.innerHTML = `<img id="qrCode" src="${data}" alt="QR Code">`;
