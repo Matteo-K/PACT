@@ -6,8 +6,8 @@ $donnees = json_decode(file_get_contents('php://input'), true);
 $idAvis = $donnees['idC'];
 $idOffre = $donnees['idOffre'];
 
-$stmt = $conn->prepare("SELECT * FROM pact._avis WHERE idc = ");
-$stmt->execute();
+$stmt = $conn->prepare("SELECT * FROM pact._avis WHERE idc = ?");
+$stmt->execute([$idAvis]);
 
 
 if (!($stmt->fetch())['blacklist']) {
@@ -41,8 +41,8 @@ if (!($stmt->fetch())['blacklist']) {
 
     $stmt->execute([$idAvis, $idOffre]);
 
-    // $stmt = $conn->prepare("UPDATE pact._avis set blacklist = true WHERE idc = ?");
-    // $stmt->execute([$idAvis]);
+    $stmt = $conn->prepare("UPDATE pact._avis set blacklist = true WHERE idc = ?");
+    $stmt->execute([$idAvis]);
 
     http_response_code(200);
 } else {
