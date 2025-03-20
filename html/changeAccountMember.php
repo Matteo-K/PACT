@@ -55,7 +55,7 @@
 
      // Vérifier si le compte à été supprimé, avec le bon mot de passe
      print_r($_POST);
-     if (isset($_POST['mdp']) && password_verify($_POST['mdp'], $pwdApi['password'])) {
+     if (isset($_POST['Confirmer']) && password_verify($_POST['mdp'], $pwdApi['password'])) {
         $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
         //$stmt -> execute();
         print_r($_POST);
@@ -208,7 +208,7 @@
                 <span class="close">&times;</span>
                 <h2>Suppression de votre compte PACT</h2>
 
-                <form action="changeAccountMember.php">
+                <form action="changeAccountMember.php"  method="post">
                     <label for="mdp">Entrez votre mot de passe</label>
                     <input type="password" name="mdp" id="mdp">
                     
