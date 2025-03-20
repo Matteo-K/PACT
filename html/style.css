@@ -5798,7 +5798,7 @@ div[id="messageErreur"] {
   }
 
   .authentikator{
-    margin-left: 10px;
+    margin-left: 10px !important;
   }
 
   .creation-compte form, #apiKey {
