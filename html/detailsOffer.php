@@ -1500,19 +1500,29 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 function confirmationModalBlackFunction() {
                     fetch('blacklist.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                'idC': id,
-                                'idOffre': <?php echo $idOffre ?>
-                            })
-                        })
-                        .catch(error => {
-                            // Gérer toutes les erreurs de la requête fetch
-                            console.error('Erreur capturée:', error);
-                        });
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        'idC': id,
+        'idOffre': <?php echo $idOffre ?>
+    })
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`Erreur HTTP: ${response.status} - ${response.statusText}`);
+    }
+    return response.json(); // Supposant que le serveur renvoie une réponse JSON
+})
+.then(data => {
+    console.log('Succès:', data);
+})
+.catch(error => {
+    console.error('Une erreur est survenue:', error.message || error);
+    alert('Une erreur s\'est produite. Veuillez réessayer.');
+});
+
 
 
                     closeModalBlackFunction();
