@@ -190,7 +190,13 @@
                 <p id="conditionMotdepasse">Le mot de passe doit contenit au moins 10 caractères dont une majuscule, une minuscule et un chiffre.</p>
             </div>
 
-            
+            <div class="authentikator">
+                <!-- Checkbox de A2F -->
+                <label for="authentikator">
+                    <input type="checkbox" id="authentikator" name="authentikator"/>
+                    J’utilise l'authentification à deux facteurs
+                </label>
+            </div>
 
             <div class="ligne7">
                 <!-- Checkbox des CGU -->
