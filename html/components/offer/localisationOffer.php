@@ -152,7 +152,7 @@ if (isset($localisation["codepostal"])) {
       if (!ville && !codepostal && !adresse) {
         alert("Veuillez remplir tous les champs : Ville, Code postal et Adresse.");
       } else {
-        geocode(address)
+        geocode(`${adresse}, ${codepostal}, ${ville}`)
           .then(location => {
             if (location) {
               map.setView(location, 13);
