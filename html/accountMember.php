@@ -96,7 +96,6 @@
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="img/logo.png" type="image/x-icon">
         <title>Créer un compte</title>
-        <script src="authentikator/authentikator.js"></script>
     </head>
     <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
@@ -214,6 +213,7 @@
 
             <h2 id="dejauncompte">Vous avez déjà un compte ? <a id="lienConnexion" href="login.php">Se connecter</a></h2>
         </form>
+        <script src="authentikator/authentikator.js"></script>
     </body>
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
