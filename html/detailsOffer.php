@@ -1059,7 +1059,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 </section>
             </section>
-
+            <?php
+                    
+                $stmt = $conn->prepare("SELECT COUNT(*) FROM pact._blacklist WHERE idOffre = ? and datefinblacklist > CURRENT_TIMESTAMP");
+                $stmt->execute([$idOffre]);
+                
+                $nbticket = $stmt->fetch()["count"];
+                $ticketRestant = 3 - $nbticket;
+            ?>
             <section class="modal" id="blacklistModal">
                 <section class="modal-contentBlack">
                     <span class="closeBlack">&times;</span>
@@ -1067,25 +1074,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <p class="taille7">Êtes-vous sûr de vouloir blacklister cet avis ?</p>
 
-                    <?php
-                    
-                    $stmt = $conn->prepare("SELECT COUNT(*) FROM pact._blacklist WHERE idOffre = ? and datefinblacklist > CURRENT_TIMESTAMP");
-                    $stmt->execute([$idOffre]);
-                    
-                    $ticketRestant = 3- $stmt->fetch()["count"]
-
-                    ?>
-
                     <p class="taille8">Il vous reste <?php echo $ticketRestant ?> blacklistage</p>
 
                     <div class="btnBlack">
-                        <?php
-                            if ($ticketRestant = 0) {
-                                ?>
-
-                                <?php
-                            }
-                        ?>
                         <section class="">
                             <button <?php echo $ticketRestant == 0 ?"disabled":"" ?> class="modifierBut <?php echo $ticketRestant == 0 ?"disabled":"" ?> size" id="confirmationBlack">Comfirmer</button>
                         </section>
@@ -1103,9 +1094,19 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <section>
                         <h2>Blacklistage</h2>
                         <div>
-                            <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
-                            <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
-                            <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                            <?php
+                                for ($i=0; $i < $ticketRestant; $i++) { 
+                                    ?>
+                                        <img src="./img/icone/ticket_gris.png" alt="ticket Blacklistage">
+
+                                    <?
+                                }
+                                for ($i=0; $i < $nbticket; $i++) { 
+                                    ?>
+                                        <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                                    <?php
+                                }
+                            ?>
                         </div>
                         <p>Un ticket de blacklistage peut être utilisé pour blacklister un avis choisie en cliquant sur l'icone présent à la lecture de l'avis, vous récupérerez votre ticket 365 jour après l'avoir utilisé.</p>
                     </section>
