@@ -19,10 +19,6 @@ $uri = $totp->getProvisioningUri();
 $url = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" . urlencode($uri);
 
 ?>
-
-<input type="checkbox" id="qrcode"> Afficher QR Code
-<div id="divAuthent"></div>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     try {
