@@ -1131,19 +1131,19 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // js compte à rebours
         document.addEventListener("DOMContentLoaded", function () {
     function startCountdown(element) {
-        const timestamp = parseInt(element.getAttribute("data-timestamp"), 10); 
+        const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
+        const targetTime = new Date(dateString).getTime(); // Convertit en millisecondes
 
-        // Vérifie si le timestamp est en secondes (10 chiffres), sinon erreur
-        if (timestamp < 10000000000) {
-            console.warn("Conversion du timestamp en millisecondes :", timestamp);
+        if (isNaN(targetTime)) {
+            console.error("Format de date invalide :", dateString);
+            element.textContent = "Date invalide";
+            return;
         }
-        console.log(timestamp+"\n")
-        const targetTime = timestamp * 1000; // Convertir en millisecondes
 
         function updateCountdown() {
             const now = Date.now();
             const diff = targetTime - now;
-            console.log(diff + "\n",targetTime+"\n",now)
+
             if (diff <= 0) {
                 element.textContent = "Expiré";
                 return;
@@ -1158,11 +1158,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             setTimeout(updateCountdown, 1000);
         }
+
         updateCountdown();
     }
 
     document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
 });
+
 
         function supAvis(id, idOffre, action) {
             // Affiche une boîte de dialogue pour confirmer la suppression
