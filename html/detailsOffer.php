@@ -1095,13 +1095,13 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h2>Blacklistage</h2>
                         <div>
                             <?php
-                                for ($i=0; $i < $ticketRestant; $i++) { 
+                                for ($i=0; $i < $nbticket; $i++) { 
                                     ?>
                                         <img src="./img/icone/ticket_gris.png" alt="ticket Blacklistage">
 
                                     <?
                                 }
-                                for ($i=0; $i < $nbticket; $i++) { 
+                                for ($i=0; $i < $ticketRestant; $i++) { 
                                     ?>
                                         <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
                                     <?php
