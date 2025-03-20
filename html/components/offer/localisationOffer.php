@@ -43,6 +43,10 @@ if (isset($localisation["codepostal"])) {
     <div id="map"></div>
 
   </section>
+  
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script type="module">
     import {
       geocode
