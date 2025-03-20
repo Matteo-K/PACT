@@ -23,9 +23,9 @@ $url = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' . urlenc
         try {
             const chekbox = document.getElementById("authentikator");
             const div = document.getElementById("divAuthent");
-            
+
             chekbox.addEventListener("click",() => {
-                
+
                 const qrCodeUrl = <?php echo $url ?>;
             
                 checkbox.addEventListener("click", () => {
@@ -36,6 +36,7 @@ $url = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' . urlenc
                     }
                 });
             });
+            console.log("réussie");
         } catch (error) {
             console.log(error);
         }
