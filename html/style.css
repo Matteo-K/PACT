@@ -5592,7 +5592,7 @@ label#btnAjoutPhoto:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   text-align: center;
 
   border-radius: 20px;
@@ -5681,9 +5681,10 @@ label#btnAjoutPhoto:hover {
 .creation-compte .ligne7 {
   display: flex;
   align-items: center;
-  margin: 0 5px 20px;
+  /* margin: 0 5px 20px; */
+  margin-left: 20px;
   text-align: left;
-  justify-content: center;
+  justify-content: left;
 }
 
 .creation-compte input {
