@@ -1072,15 +1072,22 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt = $conn->prepare("SELECT COUNT(*) FROM pact._blacklist WHERE idOffre = ? and datefinblacklist > CURRENT_TIMESTAMP");
                     $stmt->execute([$idOffre]);
                     
-                    $ticketRestant = $stmt->fetch()["count"]
+                    $ticketRestant = 3- $stmt->fetch()["count"]
 
                     ?>
 
-                    <p class="taille8">Il vous reste <?php echo 3 - $ticketRestant ?> blacklistage</p>
+                    <p class="taille8">Il vous reste <?php echo $ticketRestant ?> blacklistage</p>
 
                     <div class="btnBlack">
+                        <?php
+                            if ($ticketRestant = 0) {
+                                ?>
+
+                                <?php
+                            }
+                        ?>
                         <section class="">
-                            <button class="modifierBut size" id="confirmationBlack">Comfirmer</button>
+                            <button class="modifierBut <?php echo $ticketRestant == 0 ?"disable":"" ?> size" id="confirmationBlack">Comfirmer</button>
                         </section>
 
                         <section class="taillebtn">
