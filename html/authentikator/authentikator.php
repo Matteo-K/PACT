@@ -26,7 +26,7 @@ $url = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" . urlenc
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     try {
-        const checkbox = document.getElementById("qrcode");
+        const checkbox = document.getElementById("authentikator");
         const div = document.getElementById("divAuthent");
 
         const qrCodeUrl = "<?php echo $url; ?>"; // URL générée en PHP
