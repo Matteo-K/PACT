@@ -194,6 +194,7 @@
                 <!-- Checkbox de A2F -->
                 <label for="authentikator">
                     <input type="checkbox" id="authentikator" name="authentikator"/>
+                    <span class="checkmark"></span>
                     J’utilise l'authentification à deux facteurs
                 </label>
             </div>
