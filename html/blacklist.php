@@ -41,8 +41,8 @@ if (!($stmt->fetch())['blacklist']) {
 
     $stmt->execute([$idAvis, $idOffre]);
 
-    $stmt = $conn->prepare("UPDATE pact._avis set blacklist = true WHERE idc = ?");
-    $stmt->execute([$idAvis]);
+    // $stmt = $conn->prepare("UPDATE pact._avis set blacklist = true WHERE idc = ?");
+    // $stmt->execute([$idAvis]);
 
     http_response_code(200);
 } else {
