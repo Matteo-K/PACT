@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const checkbox = document.getElementById("authentikator");
     const div = document.getElementById("divAuthent");
-    const pseudoInput = document.getElementById("pseudo");
+    const pseudoInput = document.getElementById("pseudoMembre");
 
     function updateQRCode() {
         let pseudo = pseudoInput.value.trim();
