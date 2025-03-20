@@ -465,7 +465,7 @@
 
 
             confirmation.addEventListener('click', confirmPossible);
-            inp*.addEventListener('click', confirmPossible);
+            inputMDP.addEventListener('click', confirmPossible);
 
             function confirmPossible() {
                 if (confirmation.checked == false || inputMDP.value == "") {
