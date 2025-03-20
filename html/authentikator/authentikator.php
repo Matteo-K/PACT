@@ -20,20 +20,24 @@ $url = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' . urlenc
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const chekbox = document.getElementById("authentikator");
-        const div = document.getElementById("divAuthent");
-        
-        chekbox.addEventListener("click",() => {
+        try {
+            const chekbox = document.getElementById("authentikator");
+            const div = document.getElementById("divAuthent");
             
-            const qrCodeUrl = <?php echo $url ?>;
-        
-            checkbox.addEventListener("click", () => {
-                if (checkbox.checked) {
-                    div.innerHTML = `<img id="qrCode" src="${qrCodeUrl}" alt="QR Code">`;
-                } else {
-                    div.innerHTML = "";
-                }
+            chekbox.addEventListener("click",() => {
+                
+                const qrCodeUrl = <?php echo $url ?>;
+            
+                checkbox.addEventListener("click", () => {
+                    if (checkbox.checked) {
+                        div.innerHTML = `<img id="qrCode" src="${qrCodeUrl}" alt="QR Code">`;
+                    } else {
+                        div.innerHTML = "";
+                    }
+                });
             });
-        });
+        } catch (error) {
+            console.log(error);
+        }
     });
 </script>
