@@ -21,7 +21,7 @@ $url = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' . urlenc
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         try {
-            const chekbox = document.getElementById("authentikator");
+            const chekbox = document.getElementById("qrcode");
             const div = document.getElementById("divAuthent");
 
             chekbox.addEventListener("click",() => {
