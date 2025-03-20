@@ -464,15 +464,17 @@
             });
 
 
-            confirmation.addEventListener('click', confirmPossible);
-            inputMDP.addEventListener('click', confirmPossible);
+            confirmation.addEventListener('change', confirmPossible);
+            inputMDP.addEventListener('input', confirmPossible);
 
             function confirmPossible() {
                 if (confirmation.checked == false || inputMDP.value == "") {
                     btnConfirmer.classList = "confirmImpossible";
+                    btnConfirmer.disabled = true;
                 }
                 else{
                     btnConfirmer.classList = "";
+                    btnConfirmer.disabled = false;
                 }
             };
             
