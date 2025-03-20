@@ -197,6 +197,7 @@
                     <span class="checkmark"></span>
                     J’utilise l'authentification à deux facteurs
                 </label>
+                <div  id="divAuthent"></div>
             </div>
 
             <div class="ligne7">
