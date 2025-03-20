@@ -469,7 +469,7 @@
 
             function confirmPossible() {
                 if (confirmation.checked == false || inputMDP.value == "") {
-                    btnConfirmer.classList = confirmImpossible;
+                    btnConfirmer.classList = "confirmImpossible";
                 }
                 else{
                     btnConfirmer.classList = "";
