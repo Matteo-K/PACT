@@ -46,7 +46,7 @@ if (isset($localisation["codepostal"])) {
   <script type="module">
     import {
       geocode
-    } from 'js/geocode.js';
+    } from './js/geocode.js';
     // Vérificationdes champs conforme
     const inputAdresse = document.querySelector("#adresse2");
     const inputCodePostal = document.querySelector("#codepostal");
