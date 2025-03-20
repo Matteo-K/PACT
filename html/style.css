@@ -3509,6 +3509,13 @@ label[for="rest_ajoutPhotoMenu"] {
   font-size: 15px !important;
 }
 
+/* Authentikator */
+
+.authentikator{
+  margin-left: 100px;
+}
+
+
 /* GABRIEL */
 
 .no-scroll {
@@ -5682,7 +5689,7 @@ label#btnAjoutPhoto:hover {
   display: flex;
   align-items: center;
   /* margin: 0 5px 20px; */
-  margin-left: 20px;
+  margin-left: 100px;
   text-align: left;
   justify-content: left;
 }
