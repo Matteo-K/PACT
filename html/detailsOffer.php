@@ -245,11 +245,11 @@ JOIN
 LEFT JOIN 
     pact.reponse r ON r.idc_avis = a.idc
 WHERE 
-    a.idoffre = ?
+    a.idoffre = ? and (a.blacklist = false or a.idu = ?)
 ORDER BY 
     a.datepublie desc
 ");
-$stmt->execute([$idOffre]);
+$stmt->execute([$idOffre,$idUser]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
