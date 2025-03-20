@@ -214,15 +214,14 @@
                 <span class="close">&times;</span>
                 <h2>Suppression de votre compte PACT</h2>
 
-                <form action="changeAccountMember.php"  method="post">
+                <form id="formSupprCompte" action="changeAccountMember.php"  method="post">
                     <label for="mdp">Entrez votre mot de passe</label>
                     <input type="password" name="mdp" id="mdp">
                     
-                    <!-- Checkbox des CGU -->
                     <label for="chbxConfirme">
-                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme"/>
+                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme" value="chbxConfirme"/>
                         <span class="checkmark"></span>
-                        Je prends connaissance que la suppression des comptes est définitive et que mes avis restent tout de même visibles 
+                        Je prends connaissance que la suppression de mon compte est définitive et que mes avis restent tout de même visibles 
                         sur la plateforme, sans leurs photos et en tant qu'utilisateur anonyme.
                     </label>
 
@@ -237,7 +236,7 @@
         <h1 id="changerInfoTitre">Modifier mes informations</h1>
 
         <div id="messageErreur" class="messageErreur"> 
-            <?= $erreurSupprCompte ? "" : "Mot de passe incorrect, impossible de supprimer votre compte." ?>
+            <?= $erreurSupprCompte ? "Mot de passe incorrect, impossible de supprimer votre compte." : "" ?>
         </div>
 
         <?php
