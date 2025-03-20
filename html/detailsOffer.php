@@ -1574,15 +1574,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             let map = L.map('map').setView([48.46, -2.85], 10);
 
             geocode(address)
-                .then(location => {
-                    const latLng = location;
-                    if (latLng) {
-                        L.marker(latLng).addTo(map)  
-                    }
-                })
-                .catch(error => {
-                    console.error("Erreur lors de la géocodification : ", error);
-                });              
+            .then(location => {
+                if (location && location.lat && location.lng) {
+                    map.setView([location.lat, location.lng], 13);
+                    L.marker([location.lat, location.lng]).addTo(map);
+                }
+            })
+            .catch(error => {
+                console.error("Erreur lors de la géocodification : ", error);
+            });             
                              
 
             L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
