@@ -3512,7 +3512,7 @@ label[for="rest_ajoutPhotoMenu"] {
 /* Authentikator */
 
 .authentikator{
-  margin-left: 100px !important;
+  margin-left: 50px !important;
 }
 
 
@@ -5689,7 +5689,7 @@ label#btnAjoutPhoto:hover {
   display: flex;
   align-items: center;
   /* margin: 0 5px 20px; */
-  margin-left: 100px;
+  margin-left: 50px;
   text-align: left;
   justify-content: left;
 }
