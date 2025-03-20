@@ -1136,7 +1136,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if (timestamp < 10000000000) {
             console.warn("Conversion du timestamp en millisecondes :", timestamp);
         }
-
+        console.log(timestamp+"\n")
         const targetTime = timestamp * 1000; // Convertir en millisecondes
 
         function updateCountdown() {
