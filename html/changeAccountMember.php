@@ -54,6 +54,7 @@
     }
 
      // Vérifier si le compte à été supprimé, avec le bon mot de passe
+     print_r($_POST);
      if (isset($_POST['mdp']) && password_verify($_POST['mdp'], $pwdApi['password'])) {
         $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
         //$stmt -> execute();
@@ -207,13 +208,13 @@
                 <span class="close">&times;</span>
                 <h2>Suppression de votre compte PACT</h2>
 
-                <form action="suppCompte.php">
+                <form action="changeAccountMember.php">
                     <label for="mdp">Entrez votre mot de passe</label>
                     <input type="password" name="mdp" id="mdp">
                     
                     <!-- Checkbox des CGU -->
                     <label for="chbxConfirme">
-                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme" value="chbxConfirme" required/>
+                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme" value="chbxConfirme"/>
                         <span class="checkmark"></span>
                         Je prends connaissance que la suppression des comptes est définitive et que mes avis restent tout de même visibles 
                         sur la plateforme, sans leurs photos et en tant qu'utilisateur anonyme.
