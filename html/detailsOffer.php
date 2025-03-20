@@ -1087,7 +1087,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             }
                         ?>
                         <section class="">
-                            <button  class="modifierBut <?php echo $ticketRestant == 0 ?"disabled":"" ?> size" id="confirmationBlack">Comfirmer</button>
+                            <button <?php echo $ticketRestant == 0 ?"disabled":"" ?> class="modifierBut <?php echo $ticketRestant == 0 ?"disabled":"" ?> size" id="confirmationBlack">Comfirmer</button>
                         </section>
 
                         <section class="taillebtn">
