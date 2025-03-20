@@ -448,26 +448,6 @@
                 popup.style.display = 'block';
                 body.classList.add("no-scroll");
             });
-        
-            // Traiter le signalement en BDD après confirmation et fermer le popup
-            btnConfirmer.addEventListener('click', () => {
-                // fetch('signalement.php', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify({ 
-                //         'idC': idAvisSignal,
-                //         'idU' : <?= json_encode(isset($_SESSION['idUser']) ? $_SESSION['idUser'] : 0) ?>,
-                //         'motif' : motifSignal.value,
-                //         'complement' : texteComplement.value
-                //     })
-                // });
-
-                let inputMDP = document.querySelector('.supprComptePopup #mdp');
-                let confirmation = document.getElementById('chbxConfirme');
-                confirmation.checked = false; // On désélectionne le motif choisi
-                inputMDP.value = ""; //On vide le mdp
-                body.classList.remove("no-scroll");
-            });
 
             // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
             const btnFermer = document.querySelector('.supprComptePopup .close');
