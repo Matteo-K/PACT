@@ -1095,10 +1095,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h2>Blacklistage</h2>
                         <div>
                             <?php
+                                $stmt = $conn->prepare("SELECT datefinblacklist FROM pact._blacklist WHERE idOffre = ? and datefinblacklist > CURRENT_TIMESTAMP");
+                                $stmt->execute([$idOffre]);
+                                $res = $stmt->fetchAll();
                                 for ($i=0; $i < $nbticket; $i++) { 
                                     ?>
-                                        <img src="./img/icone/ticket_gris.png" alt="ticket Blacklistage">
-
+                                        <figure>
+                                            <img src="./img/icone/ticket_gris.png" alt="ticket Blacklistage">
+                                            <figcaption><?php echo $res[$i]["datefinblacklist"] ?></figcaption>
+                                        </figure>
+                                        
                                     <?
                                 }
                                 for ($i=0; $i < $ticketRestant; $i++) { 
