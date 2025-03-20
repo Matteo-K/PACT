@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const checkbox = document.getElementById("authentikator");
     const div = document.getElementById("divAuthent");
-    const pseudoInput = document.getElementById("pseudoMembre");
+    const pseudoInput = document.getElementById("pseudo");
 
     function updateQRCode() {
         let pseudo = pseudoInput.value.trim();
@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(response => response.text())
                 .then(data => {
                     div.innerHTML = `<img id="qrCode" src="${data}" alt="QR Code">`;
+
+                    // Attendre un peu avant d'afficher en douceur
+                    setTimeout(() => {
+                        document.getElementById("qrCode").style.opacity = "1";
+                    }, 100);
                 })
                 .catch(error => console.error("Erreur :", error));
         } else {

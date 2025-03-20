@@ -3515,6 +3515,24 @@ label[for="rest_ajoutPhotoMenu"] {
   margin-left: 50px !important;
 }
 
+#divAuthent {
+  height: 220px; /* Ajuste la hauteur en fonction de ton QR Code */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Empêche tout débordement */
+  transition: opacity 0.3s ease-in-out; /* Animation fluide */
+}
+
+#divAuthent img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  opacity: 0; /* Cache l'image au début */
+  transition: opacity 0.3s ease-in-out; /* Animation d'apparition */
+}
+
+
 
 /* GABRIEL */
 
