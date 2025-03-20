@@ -54,15 +54,21 @@
     }
 
      // Vérifier si le compte à été supprimé, avec le bon mot de passe
-     print_r($_POST);
-     if (isset($_POST['Confirmer']) && password_verify($_POST['mdp'], $pwdApi['password'])) {
-        $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
-        //$stmt -> execute();
-        print_r($_POST);
-     }
+    $erreurSupprCompte = false;
+    print_r($_POST);
+    if (isset($_POST['mdp'])) {
+        if(password_verify($_POST['mdp'], $pwdApi['password'])){
+            $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
+            //$stmt -> execute();
+            print("mdp bon, on del");
+        }
+        else{
+            $erreurSupprCompte = true;
+        }
+    }
     
     // Vérifier si le formulaire a été soumis pour une modification du compte
-    if (isset($_POST['email'])) {
+    else if (isset($_POST['email'])) {
         // Récupérer les nouvelles données du formulaire
         $nom = trim($_POST['nomMembre']);
         $prenom = trim($_POST['prenomMembre']);
@@ -202,7 +208,7 @@
 
         <button id="supprimerCompte">Supprimer mon compte</button>
 
-        <!-- Pop-up de signalement d'un avis -->
+        <!-- Pop-up de suppression du compte membre -->
         <section class="modal supprComptePopup">
             <section class="modal-content">
                 <span class="close">&times;</span>
@@ -214,7 +220,7 @@
                     
                     <!-- Checkbox des CGU -->
                     <label for="chbxConfirme">
-                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme" value="chbxConfirme"/>
+                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme"/>
                         <span class="checkmark"></span>
                         Je prends connaissance que la suppression des comptes est définitive et que mes avis restent tout de même visibles 
                         sur la plateforme, sans leurs photos et en tant qu'utilisateur anonyme.
@@ -230,7 +236,9 @@
         
         <h1 id="changerInfoTitre">Modifier mes informations</h1>
 
-        <div id="messageErreur" class="messageErreur"></div>
+        <div id="messageErreur" class="messageErreur"> 
+            <?= $erreurSupprCompte ? "" : "Mot de passe incorrect, impossible de supprimer votre compte." ?>
+        </div>
 
         <?php
             if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
@@ -460,8 +468,6 @@
                 confirmation.checked = false; // On désélectionne le motif choisi
                 inputMDP.value = ""; //On vide le mdp
                 body.classList.remove("no-scroll");
-
-                alert('Compte supprimé (c faux)');
             });
 
             // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
