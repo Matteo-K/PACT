@@ -1571,15 +1571,23 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             let address = <?php echo json_encode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>;
             // Assuming geocode() returns a promise with latitude and longitude
-            let latLong = geocode(address);                   
-            console.log(latLong);
-            let map = L.map('map').setView([48.46, -2.85], 15);
+            let map = L.map('map').setView([48.46, -2.85], 10);
+
+            geocode(address)
+            .then(location => {
+                if (location) {
+                    map.setView(location, 10);
+                    L.marker(location).addTo(map);
+                }
+            })
+            .catch(error => {
+                console.error("Erreur lors de la géocodification : ", error);
+            });             
+                             
 
             L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
                 maxZoom: 22
             }).addTo(map);
-
-            L.marker(latLong).addTo(map);
         } catch (error) {
 
         }
