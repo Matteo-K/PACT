@@ -3516,21 +3516,21 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #divAuthent {
-  height: 220px; /* Ajuste la hauteur en fonction de ton QR Code */
+  height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Empêche tout débordement */
-  transition: opacity 0.3s ease-in-out; /* Animation fluide */
+  overflow: hidden; /* Cache le contenu si la div est vide */
+  transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
 }
 
 #divAuthent img {
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
-  opacity: 0; /* Cache l'image au début */
-  transition: opacity 0.3s ease-in-out; /* Animation d'apparition */
 }
+
 
 
 

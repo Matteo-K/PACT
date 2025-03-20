@@ -12,15 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(response => response.text())
                 .then(data => {
                     div.innerHTML = `<img id="qrCode" src="${data}" alt="QR Code">`;
-
-                    // Attendre un peu avant d'afficher en douceur
-                    setTimeout(() => {
-                        document.getElementById("qrCode").style.opacity = "1";
-                    }, 100);
+                    
+                    // Afficher la div avec une hauteur fixe
+                    div.style.height = "220px";
+                    div.style.opacity = "1";
                 })
                 .catch(error => console.error("Erreur :", error));
         } else {
-            div.innerHTML = ""; // Supprimer le QR Code si décoché
+            // Réduire la div et masquer le contenu
+            div.style.height = "0";
+            div.style.opacity = "0";
+            setTimeout(() => {
+                div.innerHTML = ""; // Supprime l'image après l'animation
+            }, 300);
         }
     }
 
