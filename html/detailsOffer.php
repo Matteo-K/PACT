@@ -1577,7 +1577,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 .then(location => {
                     const latLng = location;
                     if (latLng) {
-                        let marker = L.marker(latLng)  
+                        L.marker(latLng).addTo(map)  
                     }
                 })
                 .catch(error => {
