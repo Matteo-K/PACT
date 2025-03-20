@@ -1105,7 +1105,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <figcaption id="countdown-<?php echo $i; ?>" data-timestamp="<?php echo $res[$i]['datefinblacklist']; ?>">
                                                 Calcul en cours...
                                             </figcaption>
-                                            <?php echo $res[$i]['datefinblacklist']; ?>
                                         </figure>
                                         
                                     <?
