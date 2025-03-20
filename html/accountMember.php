@@ -4,7 +4,6 @@
     
     // fichier de connexion à la BDD
     require_once "db.php";
-    require_once "authentikator/authentikator.php";
     
     // Initialisation du tableau pour stocker les erreurs
     $errors = []; 
@@ -97,6 +96,7 @@
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="img/logo.png" type="image/x-icon">
         <title>Créer un compte</title>
+        <script src="authentikator/authentikator.js"></script>
     </head>
     <body id ="body_creation_compte" class="creation-compte">
         <aside id="asideRetour">
