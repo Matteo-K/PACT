@@ -58,8 +58,8 @@
     if (isset($_POST['mdp'])) {
         if(password_verify($_POST['mdp'], $pwdApi['password'])){
             $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
-            //$stmt -> execute();
-            print("mdp bon, on del");
+            $stmt -> execute();
+            header("Location: index.php");
         }
         else{
             $erreurSupprCompte = true;
