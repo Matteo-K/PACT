@@ -1142,7 +1142,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         function updateCountdown() {
             const now = Date.now();
             const diff = targetTime - now;
-
+            console.log(diff + "\n",targetTime+"\n",now)
             if (diff <= 0) {
                 element.textContent = "Expiré";
                 return;
