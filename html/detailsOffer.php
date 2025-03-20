@@ -1102,7 +1102,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     ?>
                                         <figure>
                                             <img src="./img/icone/ticket_gris.png" alt="ticket Blacklistage">
-                                            <figcaption><?php echo $res[$i]["datefinblacklist"] ?></figcaption>
+                                            <figcaption id="countdown-<?php echo $i; ?>" data-timestamp="<?php echo $res[$i]['datefinblacklist']; ?>">
+                                                Calcul en cours...
+                                            </figcaption>
                                         </figure>
                                         
                                     <?
@@ -1124,6 +1126,36 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
     <script>
+
+        // js compte à rebours
+        document.addEventListener("DOMContentLoaded", function () {
+            function startCountdown(element) {
+                const timestamp = parseInt(element.getAttribute("data-timestamp")) * 1000; // Convertir en millisecondes
+                function updateCountdown() {
+                    const now = Date.now();
+                    const diff = timestamp - now;
+
+                    if (diff <= 0) {
+                        element.textContent = "Expiré";
+                        return;
+                    }
+                
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                    element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+                
+                    setTimeout(updateCountdown, 1000);
+                }
+                updateCountdown();
+            }
+        
+            document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
+        });
+
+
         function supAvis(id, idOffre, action) {
             // Affiche une boîte de dialogue pour confirmer la suppression
             const confirmSupp = confirm("Êtes-vous sûr de vouloir supprimer votre avis ?");
