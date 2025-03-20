@@ -15,30 +15,33 @@ $secret = $totp->getSecret();
 // Générer l'URI de provisionnement
 $uri = $totp->getProvisioningUri();
 
-$url = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' . urlencode($uri) . '";
+// Générer l'URL du QR Code
+$url = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" . urlencode($uri);
+
 ?>
 
+<input type="checkbox" id="qrcode"> Afficher QR Code
+<div id="divAuthent"></div>
+
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        try {
-            const chekbox = document.getElementById("qrcode");
-            const div = document.getElementById("divAuthent");
+document.addEventListener("DOMContentLoaded", () => {
+    try {
+        const checkbox = document.getElementById("qrcode");
+        const div = document.getElementById("divAuthent");
 
-            chekbox.addEventListener("click",() => {
+        const qrCodeUrl = "<?php echo $url; ?>"; // URL générée en PHP
 
-                const qrCodeUrl = <?php echo $url ?>;
-            
-                checkbox.addEventListener("click", () => {
-                    if (checkbox.checked) {
-                        div.innerHTML = `<img id="qrCode" src="${qrCodeUrl}" alt="QR Code">`;
-                    } else {
-                        div.innerHTML = "";
-                    }
-                });
-            });
-            console.log("réussie");
-        } catch (error) {
-            console.log(error);
-        }
-    });
+        checkbox.addEventListener("click", () => {
+            if (checkbox.checked) {
+                div.innerHTML = `<img id="qrCode" src="${qrCodeUrl}" alt="QR Code">`;
+            } else {
+                div.innerHTML = "";
+            }
+        });
+
+        console.log("QR Code toggle prêt !");
+    } catch (error) {
+        console.error("Erreur :", error);
+    }
+});
 </script>
