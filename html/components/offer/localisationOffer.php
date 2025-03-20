@@ -43,7 +43,7 @@ if (isset($localisation["codepostal"])) {
     <div id="map"></div>
 
   </section>
-  
+
   <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -138,6 +138,9 @@ if (isset($localisation["codepostal"])) {
 
     // Initialisation de la carte Google
     map = L.map('map').setView([48.46, -2.85], 10);
+    L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
+      maxZoom: 22
+    }).addTo(map);
 
     // Fonction pour vérifier que tous les champs sont remplis
     function checkInputsAndGeocode() {
@@ -152,7 +155,7 @@ if (isset($localisation["codepostal"])) {
         geocode(address)
           .then(location => {
             if (location) {
-              map.setView(location, 10);
+              map.setView(location, 13);
               L.marker(location).addTo(map);
             }
           })

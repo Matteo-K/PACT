@@ -1588,8 +1588,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
                 maxZoom: 22
             }).addTo(map);
-
-            L.marker(latLong).addTo(map);
         } catch (error) {
 
         }
