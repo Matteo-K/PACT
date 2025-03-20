@@ -1576,8 +1576,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             geocode(address)
             .then(location => {
                 if (location && location.lat && location.lng) {
-                    map.setView([location.lat, location.lng], 13);
-                    L.marker([location.lat, location.lng]).addTo(map);
+                    map.setView(location, 10);
+                    L.marker(location).addTo(map);
                 }
             })
             .catch(error => {
