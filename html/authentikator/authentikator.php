@@ -6,7 +6,7 @@ use OTPHP\TOTP;
 
 // Créer une instance TOTP avec une clé secrète générée aléatoirement
 $totp = TOTP::create();
-$totp->setLabel('gabrielfroc22@gmail.com');
+$totp->setLabel('Gabriel');
 $totp->setIssuer('PACT');
 
 // Récupérer la clé secrète (à stocker dans la base de données)
