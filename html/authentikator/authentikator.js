@@ -2,11 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const checkbox = document.getElementById("authentikator");
     const div = document.getElementById("divAuthent");
     const pseudoInput = document.getElementById("pseudoMembre");
+    const codeInput = document.getElementById("code_2fa"); // Récupère l'input 2FA
+    const status = document.getElementById("status");
 
     function updateQRCode() {
         let pseudo = pseudoInput.value.trim();
         if (pseudo === "") pseudo = "SansPseudo"; // Définit un pseudo par défaut
-    
+
         if (checkbox.checked) {
             fetch("authentikator/authentikator.php?pseudo=" + encodeURIComponent(pseudo))
                 .then(response => response.text())
@@ -14,10 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Supprime l'ancien QR Code s'il existe
                     let oldQRCode = div.querySelector("#qrCodeImg");
                     if (oldQRCode) oldQRCode.remove();
-    
+
                     // Ajouter le QR Code en premier enfant
                     div.insertAdjacentHTML("afterbegin", `<img id="qrCodeImg" src="${data}" alt="QR Code">`);
-    
+
                     // Afficher la div avec une hauteur fixe
                     div.style.height = "270px";
                     div.style.opacity = "1";
@@ -33,17 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 300);
         }
     }
-    
-
-    // Mettre à jour le QR Code quand on coche/décoche
-    checkbox.addEventListener("change", updateQRCode);
-
-    // Mettre à jour le QR Code quand le pseudo change
-    pseudoInput.addEventListener("input", updateQRCode);
 
     function check2FA() {
-        let code = document.getElementById("code_2fa").value;
-        let status = document.getElementById("status");
+        let code = codeInput.value;
 
         if (code.length === 6) {
             fetch("validate-2fa.php", {
@@ -62,4 +56,13 @@ document.addEventListener("DOMContentLoaded", () => {
             status.innerHTML = "";
         }
     }
+
+    // Mettre à jour le QR Code quand on coche/décoche
+    checkbox.addEventListener("change", updateQRCode);
+
+    // Mettre à jour le QR Code quand le pseudo change
+    pseudoInput.addEventListener("input", updateQRCode);
+
+    // Vérifier 2FA dès que l'utilisateur tape 6 chiffres
+    codeInput.addEventListener("input", check2FA);
 });
