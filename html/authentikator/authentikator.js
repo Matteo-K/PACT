@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let code = codeInput.value;
 
         if (code.length === 6) {
-            fetch("validation_2fa.php", {
+            fetch("authentikator/validation_2fa.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: "code_2fa=" + code
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         } else if (code.length === 0) {
             // Si l'input est vidé, réinitialiser la session côté serveur
-            fetch("reset_session.php", {
+            fetch("authentikator/reset_session.php", {
                 method: "POST"
             })
             .then(response => response.text())
