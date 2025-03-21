@@ -3523,6 +3523,7 @@ label[for="rest_ajoutPhotoMenu"] {
   overflow: hidden; /* Cache le contenu si la div est vide */
   transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
   opacity: 0;
+  flex-direction: column;
 }
 
 #divAuthent img {
