@@ -35,10 +35,6 @@
         $secret = isset($_SESSION['secret_a2f'])&& $authentikator ? $_SESSION['secret_a2f'] : null;
         $confirmationA2f = isset($_SESSION['a2f_verifier']) && $authentikator && $longueur == 6 ? true : false;
 
-        // Assurez-vous que $confirmationA2f n'est pas vide avant de l'utiliser dans la requête
-
-
-        echo isset($_SESSION['a2f_verifier']);
         // Vérifier si le pseudo existe déjà dans la base de données
         try {
             $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE pseudo = ?");
