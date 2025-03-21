@@ -193,7 +193,19 @@
                 <p id="conditionMotdepasse">Le mot de passe doit contenit au moins 10 caractères dont une majuscule, une minuscule et un chiffre.</p>
             </div>
 
-            
+            <div class="authentikator">
+                <!-- Checkbox de A2F -->
+                <label for="authentikator">
+                    <input type="checkbox" id="authentikator" name="authentikator" hidden/>
+                    <span class="checkmark" id="qrcode"></span>
+                    J’utilise l'authentification à deux facteurs
+                </label>
+                <div  id="divAuthent">
+                    <label>Entrez le code à 6 chiffres :</label>
+                    <input type="text" id="code_2fa" name="code_2fa" maxlength="6">
+                    <div id="status"></div>
+                </div>
+            </div>
 
             <div class="ligne7">
                 <!-- Checkbox des CGU -->
@@ -208,7 +220,7 @@
 
             <h2 id="dejauncompte">Vous avez déjà un compte ? <a id="lienConnexion" href="login.php">Se connecter</a></h2>
         </form>
-        <!-- <script src="authentikator/authentikator.js"></script> -->
+        <script src="authentikator/authentikator.js"></script>
     </body>
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
