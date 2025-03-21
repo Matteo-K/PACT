@@ -1,12 +1,6 @@
 <?php
 require "../config.php"; // Assurez-vous d'avoir inclus la configuration
 
-// Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
-if (!isset($_SESSION['idUser'])) {
-    header("Location: ../login.php");
-    exit;
-}
-
 // Stocker temporairement les informations de session avant réinitialisation
 $tempSessionData = [
     'idUser' => $_SESSION['idUser'],
