@@ -1,82 +1,94 @@
 <?php
-  class Horaire {
 
-    private $horaireMidi = null;
-    private $horaireSoir = null;
-    private $ouverture = null;
+// Récupérer l'heure actuelle et le jour actuel
+setlocale(LC_TIME, 'fr_FR.UTF-8');
+date_default_timezone_set('Europe/Paris');
 
-    public function loadHoraire($idOffre) {
-      $stmt = $conn->prepare("SELECT listhorairemidi, listhorairesoir FROM pact.offres WHERE idoffre = ?");
-      $stmt->execute([$idOffre]);
-      $horaire = $stmt->fetchAll(PDO::FETCH_COLUMN);
-      $this->horaireMidi = Horaire::jsonToHoraire($idOffre, $horaire["listhorairemidi"]);
-      $this->horaireSoir = Horaire::jsonToHoraire($idOffre, $horaire["listhorairesoir"]);
-      $this->ouverture = $this->statutOuverture();
-    }
+class Horaire {
+  private $horaireMidi = [];
+  private $horaireSoir = [];
+  private $ouverture = "EstFermé";
+  private $conn;
 
-    public function getHoraire() {
-      return [
-        "horaireMidi" => Horaire::jsonToHoraire($idOffre, $horaire["listhorairemidi"]),
-        "horaireSoir" => Horaire::jsonToHoraire($idOffre, $horaire["listhorairesoir"])
-      ];
-    }
+  public function __construct($conn) {
+    $this->conn = $conn;
+  }
 
-    /**
-     * Détermine le statut ouvert/fermé 
-     * suivant les horaires déterminés et l'horaire actuelle
-     */
-    public function statutOuverture() {
-      global $currentDay, $currentTime, $currentDate;
-      $ouverture = "EstFermé";
-      $horaires = array_merge($this->horaireSoir, $this->horaireMidi);
-      // Vérification de l'ouverture en fonction de l'heure actuelle et des horaires
-      foreach ($horaires as $horaire) {
-        if ($horaire['jour'] == $currentDay) {
-          $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
-          $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
-          if ($currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
-            $ouverture = "EstOuvert";
-            break;
-          }
+  public function loadHoraire($idOffre) {
+    $stmt = $this->conn->prepare("SELECT listhorairemidi, listhorairesoir FROM pact.offres WHERE idoffre = ?");
+    $stmt->execute([$idOffre]);
+    $horaire = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $this->horaireMidi = self::jsonToHoraire($idOffre, $horaire["listhorairemidi"] ?? "");
+    $this->horaireSoir = self::jsonToHoraire($idOffre, $horaire["listhorairesoir"] ?? "");
+    $this->ouverture = $this->statutOuverture();
+  }
+
+  /**
+   * Renvoie un tableau associatif des horaires
+   */
+  public function getHoraire() {
+    return [
+      "horaireMidi" => $this->horaireMidi,
+      "horaireSoir" => $this->horaireSoir,
+      "ouverture" => $this->ouverture
+    ];
+  }
+
+  /**
+   * Détermine le statut d'ouverture (Ouvert/Fermé)
+   */
+  public function statutOuverture() {
+    // Récupération de la date
+    $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+    $currentDay = ucfirst($formatter->format(new DateTime()));
+    $currentTime = new DateTime(date('H:i'));
+
+    $horaires = array_merge($this->horaireSoir ?? [], $this->horaireMidi ?? []);
+
+    foreach ($horaires as $horaire) {
+      if (strcasecmp($horaire['jour'], $currentDay) === 0) {
+        $heureOuverture = DateTime::createFromFormat('H:i', $horaire['heureouverture']);
+        $heureFermeture = DateTime::createFromFormat('H:i', $horaire['heurefermeture']);
+
+        if ($heureOuverture && $heureFermeture && $currentTime >= $heureOuverture && $currentTime <= $heureFermeture) {
+          return "EstOuvert";
         }
       }
-      return $ouverture;
     }
+    return "EstFermé";
+  }
 
+  /**
+   * Convertit un tableau d'horaires en JSON
+   */
+  public static function horaireToJson(array $horaire) {
+    return json_encode(array_map(fn($result) => [
+      'jour' => $result['jour'],
+      'heureOuverture' => $result['heureouverture'],
+      'heureFermeture' => $result['heurefermeture']
+    ], $horaire));
+  }
 
-
-    static function horaireToJson($horaire) {
-      $formattedResultats = [];
-      foreach ($horaire as $result) {
-        $formattedResultats[] = json_encode([
-            'jour' => $result['jour'],
-            'heureOuverture' => $result['heureouverture'],
-            'heureFermeture' => $result['heurefermeture']
-        ]);
-      }
-      return $formattedResultats;
-    }
-
-    static function jsonToHoraire($idOffre_, $horaires) {
-      if (empty($horaires)) {
+  /**
+   * Convertit un JSON en tableau d'horaires
+   */
+  public static function jsonToHoraire($idOffre, $horairesJson) {
+      if (empty($horairesJson)) {
         return [];
       }
-    
-      $resultats = [];
-      $horairesArray = explode(';', $horaires);
-    
-      foreach ($horairesArray as $item) {
-        $decodedItem = json_decode($item, true);
-        if (json_last_error() === JSON_ERROR_NONE) {
-          $resultats[] = [
-            'jour' => $decodedItem['jour'],
-            'idoffre' => $idOffre_,
-            'heureouverture' => $decodedItem['heureOuverture'],
-            'heurefermeture' => $decodedItem['heureFermeture']
-          ];
-        }
+
+      $horairesArray = json_decode($horairesJson, true);
+      if (!is_array($horairesArray)) {
+        return [];
       }
-      return $resultats;
+
+      return array_map(fn($horaire) => [
+        'jour' => $horaire['jour'],
+        'idoffre' => $idOffre,
+        'heureouverture' => $horaire['heureOuverture'],
+        'heurefermeture' => $horaire['heureFermeture']
+      ], $horairesArray);
     }
   }
 ?>
