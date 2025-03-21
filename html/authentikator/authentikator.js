@@ -1,19 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
     const checkbox = document.getElementById("authentikator");
     const div = document.getElementById("divAuthent");
-    const pseudoInput = document.getElementById("pseudoMembre");
+    const pseudoInput = document.getElementById("pseudoMembre"); // Champ pour les membres
+    const denominationInput = document.getElementById("denomination"); // Champ pour les professionnels
     const codeInput = document.getElementById("code_2fa"); // Récupère l'input 2FA
     const status = document.getElementById("status");
 
+    // Fonction pour mettre à jour le QR Code
     function updateQRCode() {
         let pseudo = pseudoInput.value.trim();
-        if (pseudo === "") pseudo = "SansPseudo"; // Définit un pseudo par défaut
+        let denomination = denominationInput.value.trim();
+
+        // Si les deux champs sont vides, on ne fait rien
+        if (pseudo === "" && denomination === "") {
+            return;
+        }
+
+        let pseudoOrDenomination = pseudo || denomination; // Utiliser pseudo ou denomination si un est rempli
 
         if (checkbox.checked) {
-            fetch("authentikator/authentikator.php?pseudo=" + encodeURIComponent(pseudo))
+            fetch("authentikator/authentikator.php?pseudo=" + encodeURIComponent(pseudoOrDenomination))
                 .then(response => response.text())
                 .then(data => {
-                    // Supprime l'ancien QR Code s'il existe
+                    // Supprimer l'ancien QR Code s'il existe
                     let oldQRCode = div.querySelector("#qrCodeImg");
                     if (oldQRCode) oldQRCode.remove();
 
@@ -22,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     // Afficher la div avec une hauteur fixe
                     div.style.height = "fit-content";
-                    div.style.minHeight = "280px"
+                    div.style.minHeight = "280px";
                     div.style.opacity = "1";
                 })
                 .catch(error => console.error("Erreur :", error));
@@ -38,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Vérifier le code 2FA
     function check2FA() {
         let code = codeInput.value;
 
@@ -77,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mettre à jour le QR Code quand on coche/décoche
     checkbox.addEventListener("change", updateQRCode);
 
-    // Mettre à jour le QR Code quand le pseudo change
+    // Mettre à jour le QR Code quand l'un des deux champs change
     pseudoInput.addEventListener("input", updateQRCode);
+    denominationInput.addEventListener("input", updateQRCode);
 });
