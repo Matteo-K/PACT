@@ -197,7 +197,10 @@
                     <span class="checkmark" id="qrcode"></span>
                     J’utilise l'authentification à deux facteurs
                 </label>
-                <div  id="divAuthent"></div>
+                <div  id="divAuthent">
+                    <label>Entrez le code à 6 chiffres :</label>
+                    <input type="text" id="code_2fa" maxlength="6" oninput="check2FA()">
+                </div>
             </div>
 
             <div class="ligne7">

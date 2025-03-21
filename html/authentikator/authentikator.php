@@ -12,8 +12,13 @@ if (isset($_GET['pseudo'])) {
     $totp = TOTP::create();
     $totp->setLabel($pseudo);
     $totp->setIssuer('PACT');
-    
+
     $secret = $totp->getSecret();
+
+    $_SESSION['secret_2fa'] = $secret;
+
+    // $stmt = $conn->prepare("UPDATE pact._utilisateur SET secret_a2f = ? WHERE");
+    // $stmt->execute([$idOffre]);
 
     // Générer l'URI de provisionnement
     $uri = $totp->getProvisioningUri();

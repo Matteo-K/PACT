@@ -6,13 +6,18 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateQRCode() {
         let pseudo = pseudoInput.value.trim();
         if (pseudo === "") pseudo = "SansPseudo"; // Définit un pseudo par défaut
-
+    
         if (checkbox.checked) {
             fetch("authentikator/authentikator.php?pseudo=" + encodeURIComponent(pseudo))
                 .then(response => response.text())
                 .then(data => {
-                    div.innerHTML = `<img id="qrCode" src="${data}" alt="QR Code">`;
-                    
+                    // Supprime l'ancien QR Code s'il existe
+                    let oldQRCode = div.querySelector("#qrCodeImg");
+                    if (oldQRCode) oldQRCode.remove();
+    
+                    // Ajouter le QR Code en premier enfant
+                    div.insertAdjacentHTML("afterbegin", `<img id="qrCodeImg" src="${data}" alt="QR Code">`);
+    
                     // Afficher la div avec une hauteur fixe
                     div.style.height = "220px";
                     div.style.opacity = "1";
@@ -23,14 +28,38 @@ document.addEventListener("DOMContentLoaded", () => {
             div.style.height = "0";
             div.style.opacity = "0";
             setTimeout(() => {
-                div.innerHTML = ""; // Supprime l'image après l'animation
+                let oldQRCode = div.querySelector("#qrCodeImg");
+                if (oldQRCode) oldQRCode.remove(); // Supprime uniquement l'image
             }, 300);
         }
     }
+    
 
     // Mettre à jour le QR Code quand on coche/décoche
     checkbox.addEventListener("change", updateQRCode);
 
     // Mettre à jour le QR Code quand le pseudo change
     pseudoInput.addEventListener("input", updateQRCode);
+
+    function check2FA() {
+        let code = document.getElementById("code_2fa").value;
+        let status = document.getElementById("status");
+
+        if (code.length === 6) {
+            fetch("validate-2fa.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: "code_2fa=" + code
+            })
+            .then(response => response.text())
+            .then(data => {
+                status.innerHTML = data;
+            })
+            .catch(error => {
+                status.innerHTML = "Erreur lors de la vérification.";
+            });
+        } else {
+            status.innerHTML = "";
+        }
+    }
 });
