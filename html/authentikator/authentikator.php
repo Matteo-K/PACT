@@ -1,6 +1,7 @@
 <?php
 
 require '../vendor/autoload.php';
+require '../config.php';
 
 use OTPHP\TOTP;
 
@@ -11,6 +12,8 @@ if (isset($_GET['pseudo'])) {
     $totp = TOTP::create();
     $totp->setLabel($pseudo);
     $totp->setIssuer('PACT');
+    
+    $secret = $totp->getSecret();
 
     // Générer l'URI de provisionnement
     $uri = $totp->getProvisioningUri();
