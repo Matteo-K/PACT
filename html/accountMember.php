@@ -35,6 +35,10 @@
         $secret = isset($_SESSION['secret_a2f'])&& $authentikator ? $_SESSION['secret_a2f'] : null;
         $confirmationA2f = isset($_SESSION['a2f_verifier'])&& $authentikator && $longueur == 6? true : false;
 
+        if ($confirmationA2f == "") {
+            $confirmationA2f == false;
+        }
+
         echo isset($_SESSION['a2f_verifier']);
         // Vérifier si le pseudo existe déjà dans la base de données
         try {
