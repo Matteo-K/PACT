@@ -17,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
     $secret = $_SESSION['secret_2fa'];
     $totp = TOTP::create($secret);
 
-    // Vérifier si le code est valide
-    if ($totp->verify($code)) {
+    // Vérifier si le code est valide avec un "window" de 1 (cela permet de valider le code actuel + le code dans la période précédente)
+    if ($totp->verify($code, null, 1)) {  // "1" permet d'ajouter une fenêtre de 1 période (30 secondes)
         $_SESSION['2fa_verified'] = true; // Stocke l'état validé en session
         echo "<span style='color: green;'>2FA activé avec succès !</span>";
     } else {
