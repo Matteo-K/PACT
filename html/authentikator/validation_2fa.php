@@ -9,12 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
     $code = htmlspecialchars($_POST['code_2fa']);
 
     // Vérifier la présence du secret en session
-    if (!isset($_SESSION['secret_2fa'])) {
+    if (!isset($_SESSION['secret_a2f'])) {
         echo "<span style='color: red;'>Erreur : aucun secret trouvé dans la session.</span>";
         exit;
     }
 
-    $secret = $_SESSION['secret_2fa'];
+    $secret = $_SESSION['secret_a2f'];
     $totp = TOTP::create($secret);
 
      // Obtenir l'heure actuelle
@@ -31,10 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
  
      // Vérifier si l'un des deux codes correspond au code saisi par l'utilisateur
      if ($code === $currentCode || $code === $previousCode) {
-         $_SESSION['2fa_verified'] = true;
+         $_SESSION['a2f_verifier'] = true;
          echo "<span style='color: green;'>2FA activé avec succès !</span>";
      } else {
-         $_SESSION['2fa_verified'] = false;
+         $_SESSION['a2f_verifier'] = false;
          echo "<span style='color: red;'>Code invalide. Réessayez.</span>";
      }
 }

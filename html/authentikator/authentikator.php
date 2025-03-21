@@ -15,7 +15,7 @@ if (isset($_GET['pseudo'])) {
 
     $secret = $totp->getSecret();
 
-    $_SESSION['secret_2fa'] = $secret;
+    $_SESSION['secret_a2f'] = $secret;
 
     // $stmt = $conn->prepare("UPDATE pact._utilisateur SET secret_a2f = ? WHERE");
     // $stmt->execute([$idOffre]);
