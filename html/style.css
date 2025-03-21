@@ -3509,6 +3509,32 @@ label[for="rest_ajoutPhotoMenu"] {
   font-size: 15px !important;
 }
 
+/* Authentikator */
+
+.authentikator{
+  margin-left: 50px !important;
+}
+
+#divAuthent {
+  height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Cache le contenu si la div est vide */
+  transition: height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  flex-direction: column;
+}
+
+#divAuthent img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+
+
+
 /* GABRIEL */
 
 .no-scroll {
@@ -5592,7 +5618,7 @@ label#btnAjoutPhoto:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   text-align: center;
 
   border-radius: 20px;
@@ -5681,9 +5707,10 @@ label#btnAjoutPhoto:hover {
 .creation-compte .ligne7 {
   display: flex;
   align-items: center;
-  margin: 0 5px 20px;
+  /* margin: 0 5px 20px; */
+  margin-left: 50px;
   text-align: left;
-  justify-content: center;
+  justify-content: left;
 }
 
 .creation-compte input {
@@ -5787,6 +5814,10 @@ div[id="messageErreur"] {
   #inscriptionTitre {
     font-size: 45px;
     margin-top: 5vh;
+  }
+
+  .authentikator{
+    margin-left: 10px !important;
   }
 
   .creation-compte form, #apiKey {
@@ -6370,6 +6401,17 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   color: var(--primary);
   background-color: #fff;
 }
+
+.confirmImpossible{
+  background-color: #888 !important;
+  border-color: #888 !important;
+  color: #000 !important;
+}
+
+.confirmImpossible:hover{
+  cursor: not-allowed;
+}
+
 
 
 @media (max-width: 600px) {

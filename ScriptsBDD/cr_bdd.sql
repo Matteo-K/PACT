@@ -10,7 +10,9 @@ CREATE TABLE _utilisateur (
   idU SERIAL PRIMARY KEY,
   password VARCHAR(255) NOT NULL,
   apikey VARCHAR(255) DEFAULT NULL,
-  tokken VARCHAR(255) DEFAULT NULL
+  tokken VARCHAR(255) DEFAULT NULL,
+  secret_a2f VARCHAR(255) DEFAULT NULL,
+  confirm_a2f BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE _admin (
@@ -603,7 +605,7 @@ CREATE VIEW admin AS
     JOIN _utilisateur u ON a.idU = u.idU JOIN _photo_profil p on u.idU=p.idU;
 
 CREATE VIEW membre AS
-    SELECT m.*, u.password, h.numeroRue, h.rue, h.ville, h.pays, h.codepostal, n.telephone, n.mail, p.url
+    SELECT m.*, u.password, u.secret_a2f, u.confirm_a2f, h.numeroRue, h.rue, h.ville, h.pays, h.codepostal, n.telephone, n.mail, p.url
     FROM _membre m 
     JOIN _utilisateur u ON m.idU = u.idU 
     JOIN _habite h ON m.idU = h.idU 
@@ -611,7 +613,7 @@ CREATE VIEW membre AS
     JOIN _photo_profil p on u.idU=p.idU;
 
 CREATE VIEW proPublic AS
-    SELECT p.*, u.password, n.telephone, n.mail, h.numeroRue, h.rue, h.ville, h.pays, h.codepostal, ph.url
+    SELECT p.*, u.password, u.secret_a2f, u.confirm_a2f, n.telephone, n.mail, h.numeroRue, h.rue, h.ville, h.pays, h.codepostal, ph.url
     FROM _pro p 
     JOIN _public pu ON p.idU = pu.idU 
     JOIN _utilisateur u ON p.idU = u.idU 
@@ -620,7 +622,7 @@ CREATE VIEW proPublic AS
     JOIN _photo_profil ph on u.idU=ph.idU;
 
 CREATE VIEW proPrive AS
-    SELECT p.*, pr.siren, u.password, n.telephone, n.mail, h.numeroRue, h.rue, h.ville, h.pays, h.codepostal, ph.url
+    SELECT p.*, pr.siren, u.password, u.secret_a2f, u.confirm_a2f, n.telephone, n.mail, h.numeroRue, h.rue, h.ville, h.pays, h.codepostal, ph.url
     FROM _pro p 
     JOIN _privee pr ON p.idU = pr.idU 
     JOIN _utilisateur u ON p.idU = u.idU 
@@ -881,7 +883,8 @@ CREATE VIEW avis AS
     a.blacklist,
 	c.nblike,
 	c.nbdislike,
-    ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage
+    ARRAY_AGG(DISTINCT ai.url) FILTER (WHERE ai.url IS NOT NULL) AS listImage,
+    c.idu
     FROM _avis a 
     JOIN _commentaire c ON a.idC = c.idC
     LEFT JOIN _avisImage ai ON a.idC = ai.idC
@@ -1158,7 +1161,7 @@ BEGIN
     IF EXISTS (SELECT 1 FROM pact._privee WHERE siren = NEW.siren)THEN
         RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnel privée ayant le même siren';
     END IF;
-    INSERT INTO pact._utilisateur (password) VALUES (NEW.password) RETURNING idU into iduser;
+    INSERT INTO pact._utilisateur (password, secret_a2f, confirm_a2f) VALUES (NEW.password,NEW.secret_a2f, NEW.confirm_a2f) RETURNING idU into iduser;
     INSERT INTO pact._nonAdmin (idU, telephone, mail) VALUES (iduser,NEW.telephone,NEW.mail);
     INSERT INTO pact._pro (idU, denomination) VALUES (iduser,NEW.denomination);
     INSERT INTO pact._privee (idU, siren) VALUES (iduser,NEW.siren);
@@ -1187,7 +1190,7 @@ BEGIN
     IF EXISTS (SELECT 1 FROM pact._nonAdmin WHERE mail = NEW.mail)THEN
         RAISE EXCEPTION 'Vous ne pouvez pas avoir deux professionnel privée ayant le même mail';
     END IF;
-    INSERT INTO pact._utilisateur (password) VALUES (NEW.password) RETURNING idU into iduser;
+    INSERT INTO pact._utilisateur (password, secret_a2f, confirm_a2f) VALUES (NEW.password,NEW.secret_a2f, NEW.confirm_a2f) RETURNING idU into iduser;
     INSERT INTO pact._nonAdmin (idU, telephone, mail) VALUES (iduser,NEW.telephone,NEW.mail);
     INSERT INTO pact._pro (idU, denomination) VALUES (iduser,NEW.denomination);
     INSERT INTO pact._public (idU) VALUES (iduser);
@@ -1314,7 +1317,7 @@ BEGIN
     IF EXISTS (SELECT 1 FROM pact.membre WHERE pseudo = NEW.pseudo) THEN
         RAISE EXCEPTION 'Vous ne pouvez pas avoir deux membre ayant le même pseudo';
     END IF;
-    INSERT INTO pact._utilisateur (password) VALUES (NEW.password) RETURNING idU into iduser;
+    INSERT INTO pact._utilisateur (password, secret_a2f, confirm_a2f) VALUES (NEW.password,NEW.secret_a2f, NEW.confirm_a2f) RETURNING idU into iduser;
     INSERT INTO pact._nonAdmin (idU, telephone, mail) VALUES (iduser, NEW.telephone, NEW.mail);
     INSERT INTO pact._membre (idU,pseudo,nom,prenom) VALUES (iduser, NEW.pseudo, NEW.nom, NEW.prenom);
     INSERT INTO pact._photo_profil(idU,url) VALUES (iduser,NEW.url);
@@ -1653,3 +1656,79 @@ CREATE TRIGGER trigger_check_insert_blacklist
 BEFORE INSERT ON pact._blacklist
 FOR EACH ROW
 EXECUTE FUNCTION check_premium_before_insert();
+
+
+CREATE OR REPLACE FUNCTION delete_membre()
+RETURNS TRIGGER AS $$
+DECLARE
+    img TEXT;
+    listImages TEXT[];
+    iduser INT := OLD.idu;
+    idanonyme INT := 26;
+BEGIN
+
+    RAISE NOTICE 'Trigger delete_membre activé pour iduser = %', iduser;
+
+    -- Suppression des images correspondant aux avis ananymisés
+    FOR listImages IN 
+        SELECT listImage FROM pact.avis WHERE idu = iduser
+    LOOP
+        RAISE NOTICE 'boucle table d image pour un avis';
+        IF listImages != null THEN
+            FOREACH img IN ARRAY listImages
+            LOOP
+                RAISE NOTICE 'boucle pour une image';
+                DELETE FROM pact._image
+                where url = img;
+            END LOOP;
+        END IF;
+    END LOOP;
+
+    RAISE NOTICE 'suite (tous les delete)';
+
+
+    -- Anonymisation des avis du membre
+    UPDATE pact._commentaire
+    SET idu = idanonyme
+    WHERE idu = iduser;
+
+    -- Anonymisation des signalements du membre
+    UPDATE pact._signalementC
+    SET idu = idanonyme
+    WHERE idu = iduser;
+
+    -- Suppression des références des offres consultées par le membre
+    DELETE FROM pact._consulter 
+    WHERE idu = iduser;
+
+    -- Suppression des messages du membre sur Tchatator
+    DELETE FROM pact._tchatator
+    WHERE idMembre = iduser;
+
+    -- Suppression de la référence à son adresse
+    DELETE FROM pact._habite
+    WHERE idu = iduser;
+
+    -- Suppression de la référence à sa photo de profil
+    DELETE FROM pact._photo_profil
+    WHERE idu = iduser;
+
+    DELETE FROM pact._membre
+    WHERE idu = iduser;
+
+    DELETE FROM pact._nonAdmin
+    WHERE idu = iduser;
+
+    DELETE FROM pact._utilisateur
+    WHERE idu = iduser;
+
+    RAISE NOTICE 'Fin';
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Création du trigger associé
+CREATE TRIGGER trigger_before_delete_membre
+INSTEAD OF DELETE ON pact.membre
+FOR EACH ROW
+EXECUTE FUNCTION delete_membre();

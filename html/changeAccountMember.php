@@ -20,6 +20,10 @@
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        $stmt = $conn -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
+        $stmt -> execute();
+        $pwdApi = $stmt -> fetch(PDO::FETCH_ASSOC);
+
         // Vérifier si les données sont trouvées
         if (!$user) {
             $_SESSION['errors'][] = "Utilisateur introuvable.";
@@ -49,9 +53,21 @@
         exit();
     }
 
+     // Vérifier si le compte à été supprimé, avec le bon mot de passe
+    $erreurSupprCompte = false;
+    if (isset($_POST['mdp'])) {
+        if(password_verify($_POST['mdp'], $pwdApi['password'])){
+            $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
+            $stmt -> execute();
+            header("Location: logout.php");
+        }
+        else{
+            $erreurSupprCompte = true;
+        }
+    }
     
-    // Vérifier si le formulaire a été soumis
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Vérifier si le formulaire a été soumis pour une modification du compte
+    else if (isset($_POST['email'])) {
         // Récupérer les nouvelles données du formulaire
         $nom = trim($_POST['nomMembre']);
         $prenom = trim($_POST['prenomMembre']);
@@ -191,26 +207,25 @@
 
         <button id="supprimerCompte">Supprimer mon compte</button>
 
-        <!-- Pop-up de signalement d'un avis -->
+        <!-- Pop-up de suppression du compte membre -->
         <section class="modal supprComptePopup">
             <section class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Suppression de votre compte PACT</h2>
 
-                <form action="suppCompte.php">
+                <form id="formSupprCompte" action="changeAccountMember.php"  method="post">
                     <label for="mdp">Entrez votre mot de passe</label>
                     <input type="password" name="mdp" id="mdp">
                     
-                    <!-- Checkbox des CGU -->
                     <label for="chbxConfirme">
-                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme" value="chbxConfirme" />
+                        <input type="checkbox" id="chbxConfirme" name="chbxConfirme"/>
                         <span class="checkmark"></span>
-                        Je prends connaissance que la suppression des comptes est définitive et que mes avis restent tout de même visibles 
+                        Je prends connaissance que la suppression de mon compte est définitive et que mes avis restent tout de même visibles 
                         sur la plateforme, sans leurs photos et en tant qu'utilisateur anonyme.
                     </label>
 
                     <div>
-                        <input type="submit" id="confirmeSuppression" value="Confirmer"></input>
+                        <input type="submit" id="confirmeSuppression" class="confirmImpossible" value="Confirmer"></input>
                         <input type="reset" id="annuleSuppression" value="Annuler">
                     </div>
                 </form>
@@ -219,7 +234,9 @@
         
         <h1 id="changerInfoTitre">Modifier mes informations</h1>
 
-        <div id="messageErreur" class="messageErreur"></div>
+        <div id="messageErreur" class="messageErreur"> 
+            <?= $erreurSupprCompte ? "Mot de passe incorrect, impossible de supprimer votre compte." : "" ?>
+        </div>
 
         <?php
             if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
@@ -303,18 +320,10 @@
 
 
         <section id="apiKey">
-            <?php
-                $stmt = $conn -> prepare ("SELECT * from pact._utilisateur WHERE idu = $userId");
-                $stmt -> execute();
-                $infoPro = $stmt -> fetch(PDO::FETCH_ASSOC);
-            ?>
-            <?php 
-                // print_r($infoPro);
-            ?>
             <p>Service Tchatator - Votre Clé API :</p>
 
-            <?php if($infoPro["apikey"]){?>
-                <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
+            <?php if($pwdApi["apikey"]){?>
+                <p id = "valueAPIkey"> <?=$pwdApi["apikey"]?></p>
                 <p id = "buttonAPIkey" onclick="generateAPIkey()">Regénérer ma clé API</p>
             <?php 
                 } 
@@ -416,64 +425,31 @@
 
         try {
 
-            // <label for="mdp">Entrez votre mot de passe pour confirmer</label>
-            //         <input type="password" name="mdp" id="mdp">
-                    
-            //         <label for="chbxConfirme">
-            //             <input type="radio" id="chbxConfirme" value="chbxConfirme">
-            //             <span class="checkmark"></span>
-            //             J'ai prends connaissance que la suppression des comptes est définitive et que mes avis restent visibles sur la plateformes,
-            //             en tant qu'utilisateurs anonyme. Si par hasard votre téléphone est dès demain spammé de hackers russent qui veulent votre cul, 
-            //             cela n'a absolument rien a voir avec notre site.
-            //         </label>
-            
-            //Script de gestion du pop-up de signalement (traitement de l'envoi du formulaire dans les fichiers avisPro.php / avisMembre.php / signalement.php)
+            //Script de gestion du pop-up de suppression
             let ouvrePopup = document.getElementById('supprimerCompte');
             const btnConfirmer = document.getElementById('confirmeSuppression');
             const popup = document.querySelector('.supprComptePopup');
             const body = document.body;
+
+            const inputMDP = document.querySelector('.supprComptePopup #mdp');
+            const confirmation = document.getElementById('chbxConfirme');
             
             // Afficher le pop-up
             ouvrePopup.addEventListener('click', () => {
                 popup.style.display = 'block';
                 body.classList.add("no-scroll");
             });
-        
-            // Traiter le signalement en BDD après confirmation et fermer le popup
-            btnConfirmer.addEventListener('click', () => {
-                // fetch('signalement.php', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify({ 
-                //         'idC': idAvisSignal,
-                //         'idU' : <?= json_encode(isset($_SESSION['idUser']) ? $_SESSION['idUser'] : 0) ?>,
-                //         'motif' : motifSignal.value,
-                //         'complement' : texteComplement.value
-                //     })
-                // });
-
-                let inputMDP = document.querySelector('.supprComptePopup #mdp');
-                let confirmation = document.getElementById('chbxConfirme');
-                confirmation.checked = false; // On désélectionne le motif choisi
-                inputMDP.value = ""; //On vide le mdp
-                body.classList.remove("no-scroll");
-
-                alert('Compte supprimé (c faux)');
-            });
 
             // Masquer le pop-up lorsque l'on clique sur le bouton de fermeture
             const btnFermer = document.querySelector('.supprComptePopup .close');
-            const btnAnnuler = document.querySelector('#annuleSuppression');
+            const btnAnnuler = document.getElementById('annuleSuppression');
 
             btnFermer.addEventListener('click', clearPopup);
             btnAnnuler.addEventListener('click', clearPopup);
-
             
             function clearPopup(){
                 popup.style.display = 'none';
 
-                let inputMDP = document.querySelector('.supprComptePopup #mdp');
-                let confirmation = document.getElementById('chbxConfirme');
                 confirmation.checked = false; // On désélectionne le motif choisi
                 inputMDP.value = ""; //On vide le mdp
                 body.classList.remove("no-scroll");
@@ -486,6 +462,22 @@
                     body.classList.remove("no-scroll");
                 }
             });
+
+
+            confirmation.addEventListener('change', confirmPossible);
+            inputMDP.addEventListener('input', confirmPossible);
+
+            function confirmPossible() {
+                if (confirmation.checked == false || inputMDP.value == "") {
+                    btnConfirmer.classList = "confirmImpossible";
+                    btnConfirmer.disabled = true;
+                }
+                else{
+                    btnConfirmer.classList = "";
+                    btnConfirmer.disabled = false;
+                }
+            };
+            
 
         } catch (error) {
             
