@@ -17,21 +17,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
     $secret = $_SESSION['secret_2fa'];
     $totp = TOTP::create($secret);
 
-    // Debug : Afficher le code et secret pour vérifier qu'ils sont bien récupérés
-    echo "<pre>";
-    echo "Code entré : " . $code . "<br>";
-    echo "Secret en session : " . $secret . "<br>";
-    echo "Code actuel (expected) : " . $totp->now() . "<br>";
-    echo "</pre>";
+     // Obtenir l'heure actuelle
+     $currentTime = time();
 
-    // Vérifier si le code est valide avec une fenêtre de 1 période (30 secondes)
-    // Permet de vérifier le code actuel et celui des 30 secondes précédentes
-    if ($totp->verify($code, null, 3)) {  // Test avec window = 2 (actuel et une période avant)
-        $_SESSION['2fa_verified'] = true;
-        echo "<span style='color: green;'>2FA activé avec succès !</span>";
-    } else {
-        $_SESSION['2fa_verified'] = false;
-        echo "<span style='color: red;'>Code invalide. Réessayez.</span>";
-    }
+     // Calculer l'intervalle de 30 secondes avant
+     $previousInterval = $currentTime - 30;
+ 
+     // Vérifier le code pour l'intervalle actuel
+     $currentCode = $totp->at($currentTime);
+ 
+     // Vérifier le code pour l'intervalle précédent
+     $previousCode = $totp->at($previousInterval);
+ 
+     // Vérifier si l'un des deux codes correspond au code saisi par l'utilisateur
+     if ($code === $currentCode || $code === $previousCode) {
+         $_SESSION['2fa_verified'] = true;
+         echo "<span style='color: green;'>2FA activé avec succès !</span>";
+     } else {
+         $_SESSION['2fa_verified'] = false;
+         echo "<span style='color: red;'>Code invalide. Réessayez.</span>";
+     }
 }
 ?>
