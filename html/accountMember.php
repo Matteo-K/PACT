@@ -36,7 +36,7 @@
         $confirmationA2f = isset($_SESSION['a2f_verifier'])&& $authentikator && $longueur == 6? true : false;
 
         if ($confirmationA2f == "") {
-            $confirmationA2f == false;
+            $confirmationA2f = false;
         }
 
         echo isset($_SESSION['a2f_verifier']);
