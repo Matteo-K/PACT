@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 .catch(error => console.error("Erreur :", error));
         } else {
             // Réduire la div et masquer le contenu
+            console.log("pas checked");
             div.style.height = "0";
             div.style.minHeight = "0";
             div.style.opacity = "0";
