@@ -204,6 +204,11 @@
                     <label>Entrez le code à 6 chiffres :</label>
                     <input type="text" id="code_2fa" name="code_2fa" maxlength="6">
                     <div id="status"></div>
+                    <pre>
+                        <?php
+                            print_r($_SESSION);
+                        ?>
+                    </pre>
                 </div>
             </div>
 
