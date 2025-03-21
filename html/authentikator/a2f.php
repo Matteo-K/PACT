@@ -1,37 +1,25 @@
 <?php
-require "../config.php"; // Assurez-vous d'avoir inclus la configuration
+require "../config.php"; 
 
-// Si l'utilisateur n'a pas encore de cookie pour les tentatives, initialiser
 if (!isset($_COOKIE['attempts'])) {
-    setcookie('attempts', 0, time() + 3600, "/"); // Expire dans 1 heure
+    setcookie('attempts', 0, time() + 3600, "/"); 
 }
 
-// Stocker temporairement les informations de session avant réinitialisation
 $tempSessionData = [
-    'idUser' => $_SESSION['idUser'],
-    'typeUser' => isset($_SESSION['typeUser']) ? $_SESSION['typeUser'] : null
+    'idUser' => (isset($_SESSION['idUser']))?( $_SESSION['idUser']) : (isset($_POST['idu'])? $_POST['idu'] : null),
+    'typeUser' => isset($_SESSION['typeUser']) ? $_SESSION['typeUser'] : (isset($_POST['idu'])? $_POST['type'] : null)
 ];
 
-// Réinitialiser la session à chaque arrivée sur la page de vérification 2FA
-session_unset(); // Vider la session
-session_regenerate_id(true); // Générer un nouvel ID de session pour éviter les attaques par fixation de session
+if (isset($_SESSION['idUser'])) unset($_SESSION['idUser']);
+if (isset($_SESSION['typeUser'])) unset($_SESSION['typeUser']);
 
-// Vérifier si le code 2FA a été soumis
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
     $code = htmlspecialchars($_POST['code_2fa']);
 
-    // Vérifier la présence du secret dans la session
     $stmt = $conn->prepare("SELECT * FROM pact._utilisateur WHERE idu = ?");
     $stmt->execute([$tempSessionData['idUser']]); // Utiliser l'ID utilisateur stocké temporairement
 
     $user = $stmt->fetch();
-    if (!$user) {
-        // L'utilisateur n'existe pas ou la session a été expirée
-        session_unset();
-        session_destroy();
-        header("Location: ../login.php");
-        exit;
-    }
 
     $secret = $user["secret_a2f"];
     $totp = OTPHP\TOTP::create($secret);
@@ -41,30 +29,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
     $previousCode = $totp->at(time() - 30); // Vérification du code précédent
 
     if ($code === $currentCode || $code === $previousCode) {
-        // Réinitialiser la session avec les données de l'utilisateur
-        $_SESSION['idUser'] = $user['idu']; // Remplir la session avec l'ID utilisateur
-        $_SESSION['typeUser'] = 'admin'; // Définir le type utilisateur (ici "admin")
 
-        // Réinitialiser le cookie des tentatives
-        setcookie('attempts', 0, time() - 3600, "/"); // Supprimer le cookie
+        $_SESSION['idUser'] = $tempSessionData['idUser'];
+        $_SESSION['typeUser'] = $tempSessionData['typeUser'];
 
-        header('Location: ../index.php'); // Rediriger vers la page principale après succès
+        setcookie('attempts', 0, time() - 3600, "/");
+
+        header('Location: ../index.php'); 
         exit;
     } else {
-        // Incrémenter les tentatives dans le cookie
         $attempts = (int)$_COOKIE['attempts'] + 1;
-        setcookie('attempts', $attempts, time() + 3600, "/"); // Enregistrer le nombre d'essais
+        setcookie('attempts', $attempts, time() + 3600, "/");
 
-        // Vérifier si le nombre d'essais a atteint la limite de 3
         if ($attempts >= 3) {
             session_unset();
             session_destroy();
-            setcookie('attempts', '', time() - 3600, "/"); // Supprimer le cookie après 3 tentatives
-            header('Location: ../index.php'); // Rediriger après trop de tentatives
+            setcookie('attempts', '', time() - 3600, "/"); 
+            header('Location: ../index.php');
             exit;
         }
 
-        // Afficher un message d'erreur
         echo "<span style='color: red;'>Code invalide. Vous avez " . (3 - $attempts) . " tentatives restantes.</span>";
     }
 }
@@ -83,6 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
     <!-- Formulaire de saisie du code -->
     <form method="POST" action="a2f.php">
         <input type="text" id="code_2fa" name="code_2fa" maxlength="6" required>
+        <input type="hidden" name="idu" value="<?php echo $tempSessionData['idUser'] ?>">
+        <input type="hidden" name="type" value="<?php echo $tempSessionData['typeUser'] ?>">
         <button type="submit">Vérifier</button>
     </form>
 
