@@ -3,7 +3,7 @@ require "../config.php"; // Assurez-vous d'avoir inclus la configuration
 
 // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
 if (!isset($_SESSION['idUser'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
         // L'utilisateur n'existe pas ou la session a été expirée
         session_unset();
         session_destroy();
-        header("Location: login.php");
+        header("Location: ../login.php");
         exit;
     }
 
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
         $_SESSION['typeUser'] = 'admin'; // Définir le type utilisateur (ici "admin")
 
         unset($_SESSION['attempts']); // Réinitialiser les tentatives
-        header('Location: index.php'); // Rediriger vers la page principale après succès
+        header('Location: ../index.php'); // Rediriger vers la page principale après succès
         exit;
     } else {
         $_SESSION['attempts'] += 1;
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
 if ($_SESSION['attempts'] >= 3) {
     session_unset();
     session_destroy();
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit;
 }
 ?>
