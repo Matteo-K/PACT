@@ -19,7 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             // Connexion réussie
             $_SESSION['idUser'] = $result['idu'];
             $_SESSION['typeUser'] = 'admin';
-            header('Location: index.php');
+
+            $stmt = $conn->prepare('SELECT * FROM pact._utilisateur WHERE idu = ?');
+            $stmt->execute([$_SESSION["idUser"]]);
+            $res = $stmt->fetch();
+
+            if ($res["confirm_a2f"]) {
+                header('Location: authentikator/a2f.php');
+            } else {
+                header('Location: index.php');
+            }
             exit;
         }
 
@@ -33,7 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_prive';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            header('Location: index.php');
+            $stmt = $conn->prepare('SELECT * FROM pact._utilisateur WHERE idu = ?');
+            $stmt->execute([$_SESSION["idUser"]]);
+            $res = $stmt->fetch();
+            if ($res["confirm_a2f"]) {
+                header('Location: authentikator/a2f.php');
+            } else {
+                header('Location: index.php');
+            }
             exit;
         }
 
@@ -47,7 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             $_SESSION['idUser'] = $proUser['idu'];
             $_SESSION['typeUser'] = 'pro_public';
             // Préparer la redirection avec POST vers detailsOffer.php si idoffre est présent
-            header('Location: index.php');
+            $stmt = $conn->prepare('SELECT * FROM pact._utilisateur WHERE idu = ?');
+            $stmt->execute([$_SESSION["idUser"]]);
+            $res = $stmt->fetch();
+            if ($res["confirm_a2f"]) {
+                header('Location: authentikator/a2f.php');
+            } else {
+                header('Location: index.php');
+            }
             exit;
         }
 
@@ -64,7 +87,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
             if (isset($_SESSION["recent"])) {
                 unset($_SESSION["recent"]);
             }            
-            header('Location: index.php');
+
+            $stmt = $conn->prepare('SELECT * FROM pact._utilisateur WHERE idu = ?');
+            $stmt->execute([$_SESSION["idUser"]]);
+            $res = $stmt->fetch();
+            if ($res["confirm_a2f"]) {
+                header('Location: authentikator/a2f.php');
+            } else {
+                header('Location: index.php');
+            }
             exit;
         } else {
             $error = "Identifiant ou mot de passe incorrect.";
