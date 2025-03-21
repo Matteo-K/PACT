@@ -38,23 +38,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function check2FA() {
         let code = codeInput.value;
-
-        if (code.length === 6) {
-            fetch("validate-2fa.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: "code_2fa=" + code
-            })
-            .then(response => response.text())
-            .then(data => {
-                status.innerHTML = data;
-            })
-            .catch(error => {
-                status.innerHTML = "Erreur lors de la vérification.";
-            });
-        } else {
-            status.innerHTML = "";
-        }
+        console.log("dans la fonction");
+        // if (code.length === 6) {
+        //     fetch("validate-2fa.php", {
+        //         method: "POST",
+        //         headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        //         body: "code_2fa=" + code
+        //     })
+        //     .then(response => response.text())
+        //     .then(data => {
+        //         status.innerHTML = data;
+        //     })
+        //     .catch(error => {
+        //         status.innerHTML = "Erreur lors de la vérification.";
+        //     });
+        // } else {
+        //     status.innerHTML = "";
+        // }
     }
 
     // Mettre à jour le QR Code quand on coche/décoche
