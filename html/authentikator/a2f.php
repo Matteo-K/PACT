@@ -1,5 +1,4 @@
 <?php
-session_start();
 require "../config.php"; // Assurez-vous d'avoir inclus la configuration
 
 // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
