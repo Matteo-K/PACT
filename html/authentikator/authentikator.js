@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let code = codeInput.value;
 
         if (code.length === 6) {
-            fetch("authentikator/validation_2fa.php", {
+            fetch("validation_2fa.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: "code_2fa=" + code
@@ -53,17 +53,29 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => {
                 status.innerHTML = "Erreur lors de la vérification.";
             });
+        } else if (code.length === 0) {
+            // Si l'input est vidé, réinitialiser la session côté serveur
+            fetch("reset_session.php", {
+                method: "POST"
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data); // Affiche le message du serveur
+            })
+            .catch(error => {
+                console.error("Erreur lors de la réinitialisation de la session", error);
+            });
         } else {
             status.innerHTML = "";
         }
     }
+
+    // Vérifier 2FA dès que l'utilisateur tape 6 chiffres
+    codeInput.addEventListener("input", check2FA);
 
     // Mettre à jour le QR Code quand on coche/décoche
     checkbox.addEventListener("change", updateQRCode);
 
     // Mettre à jour le QR Code quand le pseudo change
     pseudoInput.addEventListener("input", updateQRCode);
-
-    // Vérifier 2FA dès que l'utilisateur tape 6 chiffres
-    codeInput.addEventListener("input", check2FA);
 });
