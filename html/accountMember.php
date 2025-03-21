@@ -36,12 +36,6 @@
         $confirmationA2f = isset($_SESSION['a2f_verifier']) && $authentikator && $longueur == 6 ? true : false;
 
         // Assurez-vous que $confirmationA2f n'est pas vide avant de l'utiliser dans la requête
-        if (!$authentikator) {
-            echo "true";
-        }
-        else{
-            echo "faux";
-        }
 
 
         echo isset($_SESSION['a2f_verifier']);
