@@ -986,8 +986,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div id="publiez-component" style="display: none;">
                             <?php
                             if ($isLoggedIn) {
-                                $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ? AND idu = ?");
-                                $stmt->execute([$idOffre, $idUser]);
+                                $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ?");
+                                $stmt->execute([$idOffre]);
                                 $existingReview = $stmt->fetch();
 
                                 if ($existingReview) {
