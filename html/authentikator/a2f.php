@@ -7,17 +7,19 @@ if (!isset($_SESSION['idUser'])) {
     exit;
 }
 
-// Vérifier si l'utilisateur a tenté trop de fois
-if (!isset($_SESSION['attempts'])) {
-    $_SESSION['attempts'] = 0;
-}
+// Stocker temporairement les informations de session avant réinitialisation
+$tempSessionData = [
+    'idUser' => $_SESSION['idUser'],
+    'typeUser' => isset($_SESSION['typeUser']) ? $_SESSION['typeUser'] : null
+];
+
+// Réinitialiser la session à chaque arrivée sur la page de vérification 2FA
+session_unset(); // Vider la session
+session_regenerate_id(true); // Générer un nouvel ID de session pour éviter les attaques par fixation de session
 
 // Si 3 tentatives échouées, détruire la session et rediriger vers index.php
-if ($_SESSION['attempts'] >= 3) {
-    session_unset();
-    session_destroy();
-    header('Location: index.php');
-    exit;
+if (!isset($_SESSION['attempts'])) {
+    $_SESSION['attempts'] = 0;
 }
 
 // Vérifier si le code 2FA a été soumis
@@ -25,12 +27,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
     $code = htmlspecialchars($_POST['code_2fa']);
 
     // Vérifier la présence du secret dans la session
-    if (!isset($_SESSION['secret_a2f'])) {
-        echo "<span style='color: red;'>Erreur : aucun secret trouvé dans la session.</span>";
+    $stmt = $conn->prepare("SELECT * FROM pact._utilisateur WHERE idu = ?");
+    $stmt->execute([$tempSessionData['idUser']]); // Utiliser l'ID utilisateur stocké temporairement
+
+    $user = $stmt->fetch();
+    if (!$user) {
+        // L'utilisateur n'existe pas ou la session a été expirée
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
         exit;
     }
 
-    $secret = $_SESSION['secret_a2f'];
+    $secret = $user["secret_a2f"];
     $totp = OTPHP\TOTP::create($secret);
 
     // Vérification du code envoyé
@@ -38,18 +47,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
     $previousCode = $totp->at(time() - 30); // Vérification du code précédent
 
     if ($code === $currentCode || $code === $previousCode) {
-        // Réinitialiser les tentatives en cas de succès
-        $_SESSION['a2f_verifier'] = true;
-        $_SESSION['attempts'] = 0; // Réinitialiser les tentatives
+        // Réinitialiser la session avec les données de l'utilisateur
+        $_SESSION['idUser'] = $user['idu']; // Remplir la session avec l'ID utilisateur
+        $_SESSION['typeUser'] = 'admin'; // Définir le type utilisateur (ici "admin")
 
-        // Rediriger vers la page d'accueil (index.php) ou tableau de bord
-        header('Location: index.php');
+        unset($_SESSION['attempts']); // Réinitialiser les tentatives
+        header('Location: index.php'); // Rediriger vers la page principale après succès
         exit;
     } else {
-        // Incrémenter le compteur d'essais en cas d'échec
         $_SESSION['attempts'] += 1;
         echo "<span style='color: red;'>Code invalide. Vous avez " . (3 - $_SESSION['attempts']) . " tentatives restantes.</span>";
     }
+}
+
+// Si l'utilisateur a atteint 3 tentatives, détruire la session et rediriger
+if ($_SESSION['attempts'] >= 3) {
+    session_unset();
+    session_destroy();
+    header('Location: index.php');
+    exit;
 }
 ?>
 
