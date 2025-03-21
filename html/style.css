@@ -3521,7 +3521,7 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: center;
   justify-content: center;
   overflow: hidden; /* Cache le contenu si la div est vide */
-  transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: height 0.3s ease, opacity 0.3s ease;
   opacity: 0;
   flex-direction: column;
 }
