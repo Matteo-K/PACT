@@ -12,12 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
         let denomination = denominationInput ? denominationInput.value.trim() : "";
 
         // Utiliser pseudo si disponible, sinon utiliser denomination
-        let pseudoOrDenomination = pseudo || denomination;
+        let pseudoOrDenomination = pseudo || denomination?pseudo || denomination : "pas de nom";
 
         console.log(pseudoOrDenomination);
 
         // Si aucun pseudo ou denomination, on ne fait rien
-        if (!pseudoOrDenomination) return;
+        ;
 
         if (checkbox.checked) {
             fetch("authentikator/authentikator.php?pseudo=" + encodeURIComponent(pseudoOrDenomination))
