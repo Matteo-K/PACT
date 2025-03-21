@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
     $secret = $_SESSION['secret_2fa'];
     $totp = TOTP::create($secret);
 
+    // Debug : Afficher le code et secret pour vérifier qu'ils sont bien récupérés
     echo "<pre>";
     echo "Code entré : " . $code . "<br>";
     echo "Secret en session : " . $secret . "<br>";
@@ -32,6 +33,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
         $_SESSION['2fa_verified'] = false;
         echo "<span style='color: red;'>Code invalide. Réessayez.</span>";
     }
-}
 }
 ?>
