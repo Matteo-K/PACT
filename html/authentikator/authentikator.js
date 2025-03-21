@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Utiliser pseudo si disponible, sinon utiliser denomination
         let pseudoOrDenomination = pseudo || denomination;
 
+        console.log(pseudoOrDenomination);
+
         // Si aucun pseudo ou denomination, on ne fait rien
         if (!pseudoOrDenomination) return;
 
