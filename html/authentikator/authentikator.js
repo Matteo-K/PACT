@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function check2FA() {
         let code = codeInput.value;
-        console.log("dans la fonction");
+
         if (code.length === 6) {
-            fetch("validation_2fa.php", {
+            fetch("authentikator/validation_2fa.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: "code_2fa=" + code

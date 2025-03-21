@@ -20,10 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
     // Vérifier si le code est valide
     if ($totp->verify($code)) {
         $_SESSION['2fa_verified'] = true; // Stocke l'état validé en session
-        echo "<span style='color: green;'>✅ 2FA activé avec succès !</span>";
+        echo "<span style='color: green;'>2FA activé avec succès !</span>";
     } else {
         $_SESSION['2fa_verified'] = false; // Stocke l'échec
-        echo "<span style='color: red;'>❌ Code invalide. Réessayez.</span>";
+        echo "<span style='color: red;'>Code invalide. Réessayez.</span>";
     }
 }
 ?>
