@@ -89,10 +89,18 @@
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if(empty($errors)) {
             // Préparer la requête d'insertion
-            $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url, secret_a2f, confirm_a2f) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            if ($authentikator) {
+                $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url, secret_a2f, confirm_a2f) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                
+                // Exécuter la requête en passant les paramètres
+                $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo, $secret, $confirmationA2f]);
+            }else {
+                $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                
+                // Exécuter la requête en passant les paramètres
+                $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo]);
+            }
 
-            // Exécuter la requête en passant les paramètres
-            $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo, $secret, $confirmationA2f]);
 
             // Redirection vers une page de succès
             header('Location: login.php');
