@@ -1,5 +1,8 @@
 <?php
 require "../config.php"; 
+require '../vendor/autoload.php';
+
+use OTPHP\TOTP;
 
 if (!isset($_COOKIE['attempts'])) {
     setcookie('attempts', 0, time() + 3600, "/"); 
@@ -22,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
     $user = $stmt->fetch();
 
     $secret = $user["secret_a2f"];
-    $totp = OTPHP\TOTP::create($secret);
+    $totp = TOTP::create($secret);
 
     // Vérification du code envoyé
     $currentCode = $totp->at(time());
