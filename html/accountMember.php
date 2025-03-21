@@ -33,11 +33,13 @@
         $authentikator = isset($_POST['authentikator']) ? true : false; // Vérifier si la checkbox est cochée
         $longueur = strlen(trim($_POST['code_2fa'])); 
         $secret = isset($_SESSION['secret_a2f'])&& $authentikator ? $_SESSION['secret_a2f'] : null;
-        $confirmationA2f = isset($_SESSION['a2f_verifier'])&& $authentikator && $longueur == 6? true : false;
+        $confirmationA2f = isset($_SESSION['a2f_verifier']) && $authentikator && $longueur == 6 ? true : false;
 
-        if ($confirmationA2f == "") {
-            $confirmationA2f = false;
+        // Assurez-vous que $confirmationA2f n'est pas vide avant de l'utiliser dans la requête
+        if ($confirmationA2f === "") {
+            $confirmationA2f = false;  // Affectation correcte de false
         }
+
 
         echo isset($_SESSION['a2f_verifier']);
         // Vérifier si le pseudo existe déjà dans la base de données
