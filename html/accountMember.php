@@ -30,7 +30,7 @@
         // Hashage du mot de passe
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
 
-        $authentikator = $_POST['authentikator'];
+        $authentikator = isset($_POST['authentikator']) ? true : false; // Vérifier si la checkbox est cochée
         $longueur = strlen(trim($_POST['code_2fa'])); 
         $secret = isset($_SESSION['secret_a2f'])&& $authentikator ? $_SESSION['secret_a2f'] : null;
         $confirmationA2f = isset($_SESSION['a2f_valider'])&& $authentikator && $longueur == 6? $_SESSION['a2f_valider'] : false;
