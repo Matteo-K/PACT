@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     // Afficher la div avec une hauteur fixe
                     div.style.height = "fit-content";
+                    div.style.minHeight = "280px"
                     div.style.opacity = "1";
                 })
                 .catch(error => console.error("Erreur :", error));
