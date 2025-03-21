@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     div.insertAdjacentHTML("afterbegin", `<img id="qrCodeImg" src="${data}" alt="QR Code">`);
 
                     // Afficher la div avec une hauteur fixe
-                    div.style.height = "270px";
+                    div.style.height = "fit-content";
                     div.style.opacity = "1";
                 })
                 .catch(error => console.error("Erreur :", error));
