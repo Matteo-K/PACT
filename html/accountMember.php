@@ -200,6 +200,7 @@
                 <div  id="divAuthent">
                     <label>Entrez le code à 6 chiffres :</label>
                     <input type="text" id="code_2fa" maxlength="6">
+                    <div id="status"></div>
                 </div>
             </div>
 
