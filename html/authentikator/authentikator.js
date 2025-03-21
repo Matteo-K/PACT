@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             // Réduire la div et masquer le contenu
             div.style.height = "0";
+            div.style.minHeight = "0";
             div.style.opacity = "0";
             setTimeout(() => {
                 let oldQRCode = div.querySelector("#qrCodeImg");
