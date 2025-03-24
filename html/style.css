@@ -5809,6 +5809,12 @@ div[id="messageErreur"] {
   width: 408px;
 }
 
+#divNewPFP {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
 /* Média query pour passer au format téléphone */
 @media (max-width: 600px) {
   #inscriptionTitre {
