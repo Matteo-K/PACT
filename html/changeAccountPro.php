@@ -346,18 +346,16 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Vérification de la réponse
+                // Traitement de la réponse
                 if (data.status === 'success') {
-                    // Mettre à jour l'élément avec la clé API générée
+                    // Mettre à jour l'élément avec la clé API
                     document.getElementById("valueAPIkey").innerHTML = data.apikey;
 
-                    // Changer dynamiquement le texte du bouton
-                    let button = document.getElementById("buttonAPIkey");
-
-                    if (button) {
-                        button.innerHTML = 'Regénérer ma clé API'; // Nouveau texte du bouton
-                    } else {
-                        console.error('Le bouton "Regénérer ma clé API" n\'a pas été trouvé.');
+                    // Changer dynamiquement le texte du bouton en fonction de l'API key générée
+                    const apiButton = document.getElementById("buttonAPIkey");
+                    if (apiButton) {
+                        apiButton.innerHTML = 'Regénérer ma clé API';
+                        console.log("ouais test")
                     }
                 } else {
                     alert('Erreur : ' + data.message);
@@ -368,7 +366,6 @@
                 alert('Erreur lors de la requête fetch : ' + error.message);
             });
         }
-
 
 
 
