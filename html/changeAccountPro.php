@@ -295,47 +295,20 @@
 
             <?php if($infoPro["apikey"]){?>
                 <p id = "valueAPIkey"> <?=$infoPro["apikey"]?></p>
-                <p id="buttonAPIkey" onclick="generateAPIkey()">Générer ma clé API</p>
-                <!-- <p id = "buttonAPIkey" onclick="generateAPIkey()">Regénérer ma clé API</p>
+                <p id = "buttonAPIkey" onclick="generateAPIkey()">Regénérer ma clé API</p>
             <?php 
                 } 
-                // else {
+                else {
             ?>
                 <p id = "valueAPIkey"></p>
                 <p id = "buttonAPIkey" onclick="generateAPIkey()">Générer ma clé API</p>
             <?php 
-                // } 
-            ?> -->
+                } 
+            ?>
         </section>
     </body>
 
     <script>
-        // function generateAPIkey() {
-        //     fetch('generateAPIkey.php', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify({ membre: false })
-        //     })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         // Traitement de la réponse
-        //         if (data.status === 'success') {
-        //             // alert('Clé API générée avec succès : ' + data.apikey);
-        //             document.getElementById("valueAPIkey").innerHTML = data.apikey;
-        //         } 
-                
-        //         else {
-        //             alert('Erreur : ' + data.message);
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.error('Erreur lors de la requête fetch :', error);
-        //         alert('Erreur lors de la requête fetch : ' + error.message);
-        //     });
-        // }
-
         function generateAPIkey() {
             fetch('generateAPIkey.php', {
                 method: 'POST',
@@ -348,16 +321,11 @@
             .then(data => {
                 // Traitement de la réponse
                 if (data.status === 'success') {
-                    // Mettre à jour l'élément avec la clé API
+                    // alert('Clé API générée avec succès : ' + data.apikey);
                     document.getElementById("valueAPIkey").innerHTML = data.apikey;
-
-                    // Changer dynamiquement le texte du bouton en fonction de l'API key générée
-                    const apiButton = document.getElementById("buttonAPIkey");
-                    if (apiButton) {
-                        apiButton.innerHTML = 'Regénérer ma clé API';
-                        console.log("ouais test")
-                    }
-                } else {
+                } 
+                
+                else {
                     alert('Erreur : ' + data.message);
                 }
             })
@@ -366,8 +334,6 @@
                 alert('Erreur lors de la requête fetch : ' + error.message);
             });
         }
-
-
 
 
         document.getElementById('profile-pic').addEventListener('change', function(event) {
