@@ -6139,7 +6139,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   cursor: pointer;
 }
 
-#legendeBoutonLienMembre, #legendeBoutonLienPro {
+#legendeBoutonLienMembre, #legendeBoutonLienPro, #a2fTexte {
   font-size: 20px;
   color: var(--bloc);
   width: 520px;
@@ -6337,7 +6337,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 .supprComptePopup div{
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 100%;
   gap: 10px;
   justify-content: flex-end;
 }
@@ -6408,6 +6408,10 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 
   .supprComptePopup label[for="chbxConfirme"]{
     font-size: 18px;
+  }
+
+  .supprComptePopup div{
+    width: 90%;
   }
 
   #annuleSuppression, #confirmeSuppression{

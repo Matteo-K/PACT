@@ -112,6 +112,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
     
             <button id="boutonConnexion" type="submit">Connexion</button>
 
+            <p id="a2fTexte">Pensez à activer l'authentification à 2 facteurs pour la sécutité de votre compte</p>
+
             <!-- <a id="lienMotDePasseOublie" href="#"> Mot de passe oublié ?</a> -->
         </form>
         
