@@ -5858,7 +5858,7 @@ div[id="messageErreur"] {
     flex-direction: column;
     justify-content: center;
     margin: 10px;
-    width: 90%;
+    /* width: 90%; */
     max-width: 480px;
   }
 
@@ -5926,7 +5926,7 @@ div[id="messageErreur"] {
     text-align: center;
     color: red;
     margin-bottom: 20px;
-    max-width: 480px;
+    max-width: 460px;
   }
 
   #dejauncompte {
