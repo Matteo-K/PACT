@@ -351,8 +351,11 @@
                     // Mettre à jour l'élément avec la clé API
                     document.getElementById("valueAPIkey").innerHTML = data.apikey;
 
-                    // Changer dynamiquement le texte du bouton en fonction de l'API key
-                    document.getElementById("buttonAPIkey").innerHTML = 'Regénérer ma clé API';
+                    // Changer dynamiquement le texte du bouton en fonction de l'API key générée
+                    const apiButton = document.getElementById("buttonAPIkey");
+                    if (apiButton) {
+                        apiButton.innerHTML = 'Regénérer ma clé API';
+                    }
                 } else {
                     alert('Erreur : ' + data.message);
                 }
@@ -362,6 +365,7 @@
                 alert('Erreur lors de la requête fetch : ' + error.message);
             });
         }
+
 
 
 
