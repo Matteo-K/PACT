@@ -30,7 +30,10 @@
         // Hashage du mot de passe
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
 
-
+        $authentikator = isset($_POST['authentikator']) ? true : false; // Vérifier si la checkbox est cochée
+        $longueur = strlen(trim($_POST['code_2fa'])); 
+        $secret = isset($_SESSION['secret_a2f'])&& $authentikator ? $_SESSION['secret_a2f'] : null;
+        $confirmationA2f = isset($_SESSION['a2f_verifier']) && $authentikator && $longueur == 6 ? true : false;
 
         // Vérifier si le pseudo existe déjà dans la base de données
         try {
@@ -76,10 +79,18 @@
         // Si des erreurs ont été trouvées, ne pas continuer avec l'insertion
         if(empty($errors)) {
             // Préparer la requête d'insertion
-            $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            if ($authentikator) {
+                $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url, secret_a2f, confirm_a2f) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                
+                // Exécuter la requête en passant les paramètres
+                $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo, $secret, $confirmationA2f]);
+            }else {
+                $stmt = $conn->prepare("INSERT INTO pact.membre (pseudo, nom, prenom, password, numeroRue, rue, ville, pays, codePostal, telephone, mail, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                
+                // Exécuter la requête en passant les paramètres
+                $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo]);
+            }
 
-            // Exécuter la requête en passant les paramètres
-            $stmt->execute([$pseudo, $nom, $prenom, $hashedPassword, $numeroRue, $rue, $ville, $pays, $code, $telephone, $mail, $photo]);
 
             // Redirection vers une page de succès
             header('Location: login.php');
@@ -190,7 +201,19 @@
                 <p id="conditionMotdepasse">Le mot de passe doit contenit au moins 10 caractères dont une majuscule, une minuscule et un chiffre.</p>
             </div>
 
-            
+            <div class="authentikator">
+                <!-- Checkbox de A2F -->
+                <label for="authentikator">
+                    <input type="checkbox" id="authentikator" name="authentikator" hidden/>
+                    <span class="checkmark" id="qrcode"></span>
+                    J’utilise l'authentification à deux facteurs
+                </label>
+                <div  id="divAuthent">
+                    <label>Entrez le code à 6 chiffres :</label>
+                    <input type="text" id="code_2fa" name="code_2fa" maxlength="6">
+                    <div id="status"></div>
+                </div>
+            </div>
 
             <div class="ligne7">
                 <!-- Checkbox des CGU -->
@@ -205,6 +228,7 @@
 
             <h2 id="dejauncompte">Vous avez déjà un compte ? <a id="lienConnexion" href="login.php">Se connecter</a></h2>
         </form>
+        <script src="authentikator/authentikator.js"></script>
     </body>
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>

@@ -298,7 +298,7 @@
                 <p id = "buttonAPIkey" onclick="generateAPIkey()">Regénérer ma clé API</p>
             <?php 
                 } 
-                else{
+                else {
             ?>
                 <p id = "valueAPIkey"></p>
                 <p id = "buttonAPIkey" onclick="generateAPIkey()">Générer ma clé API</p>

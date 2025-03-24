@@ -30,7 +30,10 @@
         // Hashage du mot de passe
         $hashedPassword = password_hash($motdepasse, PASSWORD_DEFAULT);
 
-
+        $authentikator = isset($_POST['authentikator']) ? true : false; // Vérifier si la checkbox est cochée
+        $longueur = strlen(trim($_POST['code_2fa'])); 
+        $secret = isset($_SESSION['secret_a2f'])&& $authentikator ? $_SESSION['secret_a2f'] : null;
+        $confirmationA2f = isset($_SESSION['a2f_verifier'])&& $authentikator && $longueur == 6? true : false;
 
         // Vérifier si la dénomination existe déjà dans la base de données
         try {
@@ -94,13 +97,23 @@
         if(empty($errors)) {
             // Préparer la requête d'insertion en fonction du secteur
             if ($secteur == 'public') {
-                $stmt = $conn->prepare("INSERT INTO pact.proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
-                $stmt->execute();
+                if ($authentikator) {
+                    $stmt = $conn->prepare("INSERT INTO pact.proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url, secret_a2f, confirm_a2f) VALUES ('$denomination', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo', '$secret', '$confirmationA2f')");
+                    $stmt->execute();
+                } else {
+                    $stmt = $conn->prepare("INSERT INTO pact.proPublic (denomination, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
+                    $stmt->execute();
+                }
             } 
             
             else { 
-                $stmt = $conn->prepare("INSERT INTO pact.proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$siren', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
-                $stmt->execute();
+                if ($authentikator) {
+                    $stmt = $conn->prepare("INSERT INTO pact.proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url, secret_a2f, confirm_a2f) VALUES ('$denomination', '$siren', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo', '$secret', '$confirmationA2f')");
+                    $stmt->execute();
+                } else {
+                    $stmt = $conn->prepare("INSERT INTO pact.proPrive (denomination, siren, password, telephone, mail, numeroRue, rue, ville, pays, codePostal, url) VALUES ('$denomination', '$siren', '$hashedPassword', '$telephone', '$mail', '$numeroRue', '$rue', '$ville', '$pays', '$code', '$photo')");
+                    $stmt->execute();
+                }
             }
 
             // Redirection vers une page de succès
@@ -227,13 +240,25 @@
                 <p>Le mot de passe doit contenit au moins 10 caractères dont une majuscule, une minuscule et un chiffre.</p>
             </div>
 
-            
+            <div class="authentikator">
+                <!-- Checkbox de A2F -->
+                <label for="authentikator">
+                    <input type="checkbox" id="authentikator" name="authentikator" hidden/>
+                    <span class="checkmark" id="qrcode"></span>
+                    J’utilise l'authentification à deux facteurs
+                </label>
+                <div  id="divAuthent">
+                    <label>Entrez le code à 6 chiffres :</label>
+                    <input type="text" id="code_2fa" name="code_2fa" maxlength="6">
+                    <div id="status"></div>
+                </div>
+            </div>
 
             <div class="ligne7">
                 <!-- Checkbox des CGU -->
                 <label for="cgu">
-                    <span class="checkmark"></span>
                     <input type="checkbox" id="cgu" name="cgu" value="cgu" />
+                    <span class="checkmark"></span>
                     J’accepte les <a id="lienCGU" href= "cgu.php" target="_blank">conditions générales d’utilisation</a> de la PACT
                 </label>
             </div>
@@ -241,6 +266,7 @@
             <button type="submit" id="boutonInscription">S'inscrire</button>
 
             <h2>Vous avez déjà un compte ? <a id="lienConnexion" href="login.php">Se connecter</a></h2>
+            <script src="authentikator/authentikator.js"></script>
         </form>
     </body>
     <script src="js/validationFormInscription.js"></script>

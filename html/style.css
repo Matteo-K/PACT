@@ -3509,6 +3509,33 @@ label[for="rest_ajoutPhotoMenu"] {
   font-size: 15px !important;
 }
 
+/* Authentikator */
+
+.authentikator{
+  margin-left: 50px !important;
+  margin-right: 50px !important;
+}
+
+#divAuthent {
+  height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Cache le contenu si la div est vide */
+  transition: height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  flex-direction: column;
+}
+
+#divAuthent img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+
+
+
 /* GABRIEL */
 
 .no-scroll {
@@ -5592,7 +5619,7 @@ label#btnAjoutPhoto:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   text-align: center;
 
   border-radius: 20px;
@@ -5681,9 +5708,10 @@ label#btnAjoutPhoto:hover {
 .creation-compte .ligne7 {
   display: flex;
   align-items: center;
-  margin: 0 5px 20px;
+  /* margin: 0 5px 20px; */
+  margin-left: 50px;
   text-align: left;
-  justify-content: center;
+  justify-content: left;
 }
 
 .creation-compte input {
@@ -5726,6 +5754,15 @@ input[id="ville"] {
 
 input[id="radioPublic"], input[id="radioPrive"] {
   display: none;
+}
+
+input[id="code_2fa"] {
+  width: 200px;
+  height: 40px;
+  margin: 0 5px;
+  text-align: center;
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 input[id="siren"] {
@@ -5782,11 +5819,21 @@ div[id="messageErreur"] {
   width: 408px;
 }
 
+#divNewPFP {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
 /* Média query pour passer au format téléphone */
 @media (max-width: 600px) {
-  #inscriptionTitre {
+  #inscriptionTitre, #changerInfoTitre {
     font-size: 45px;
     margin-top: 5vh;
+  }
+
+  .authentikator{
+    margin-left: 10px !important;
   }
 
   .creation-compte form, #apiKey {
@@ -5811,7 +5858,7 @@ div[id="messageErreur"] {
     flex-direction: column;
     justify-content: center;
     margin: 10px;
-    width: 90%;
+    /* width: 90%; */
     max-width: 480px;
   }
 
@@ -5877,9 +5924,9 @@ div[id="messageErreur"] {
 
   div[id="messageErreur"] {
     text-align: center;
-    font-size: 16px;
     color: red;
     margin-bottom: 20px;
+    max-width: 460px;
   }
 
   #dejauncompte {
