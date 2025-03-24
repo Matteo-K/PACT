@@ -5618,7 +5618,7 @@ label#btnAjoutPhoto:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   text-align: center;
 
   border-radius: 20px;
@@ -5807,6 +5807,12 @@ div[id="messageErreur"] {
 .creation-compte div.ligne1 > label, div.ligne1_1 > label, div.ligne6 > label {
   display: inline-block;
   width: 408px;
+}
+
+#divNewPFP {
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 /* Média query pour passer au format téléphone */
