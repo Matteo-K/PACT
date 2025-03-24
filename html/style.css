@@ -5818,7 +5818,7 @@ div[id="messageErreur"] {
 
 /* Média query pour passer au format téléphone */
 @media (max-width: 600px) {
-  #inscriptionTitre {
+  #inscriptionTitre, #changerInfoTitre{
     font-size: 45px;
     margin-top: 5vh;
   }
