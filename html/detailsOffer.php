@@ -249,7 +249,7 @@ WHERE
 ORDER BY 
     a.datepublie desc
 ");
-$stmt->execute([$idOffre,$idUser]);
+$stmt->execute([$idOffre, $idUser]);
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
@@ -986,8 +986,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div id="publiez-component" style="display: none;">
                             <?php
                             if ($isLoggedIn) {
-                                $stmt = $conn->prepare("SELECT * FROM pact.avis a JOIN pact._membre m ON a.pseudo = m.pseudo WHERE idoffre = ?");
-                                $stmt->execute([$idOffre]);
+                                $stmt = $conn->prepare("SELECT * FROM pact.avis a WHERE idoffre = ? AND idu = ?");
+                                $stmt->execute([$idOffre, $idUser]);
                                 $existingReview = $stmt->fetch();
 
                                 if ($existingReview) {
@@ -1060,13 +1060,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
             </section>
             <?php
-                    
-                $stmt = $conn->prepare("SELECT COUNT(*) FROM pact._blacklist WHERE idOffre = ? and datefinblacklist > CURRENT_TIMESTAMP");
-                $stmt->execute([$idOffre]);
-                
-                $nbticket = $stmt->fetch()["count"];
-                $ticketRestant = 3 - $nbticket;
+
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM pact._blacklist WHERE idOffre = ? and datefinblacklist > CURRENT_TIMESTAMP");
+            $stmt->execute([$idOffre]);
+
+            $nbticket = $stmt->fetch()["count"];
+            $ticketRestant = 3 - $nbticket;
             ?>
+
             <section class="modal" id="blacklistModal">
                 <section class="modal-contentBlack">
                     <span class="closeBlack">&times;</span>
@@ -1078,7 +1079,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="btnBlack">
                         <section class="">
-                            <button <?php echo $ticketRestant == 0 ?"disabled":"" ?> class="modifierBut <?php echo $ticketRestant == 0 ?"disabled":"" ?> size" id="confirmationBlack">Comfirmer</button>
+                            <button <?php echo $ticketRestant == 0 ? "disabled" : "" ?> class="modifierBut <?php echo $ticketRestant == 0 ? "disabled" : "" ?> size" id="confirmationBlack">Comfirmer</button>
                         </section>
 
                         <section class="taillebtn">
@@ -1095,25 +1096,25 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h2>Blacklistage</h2>
                         <div>
                             <?php
-                                $stmt = $conn->prepare("SELECT datefinblacklist FROM pact._blacklist WHERE idOffre = ? and datefinblacklist > CURRENT_TIMESTAMP");
-                                $stmt->execute([$idOffre]);
-                                $res = $stmt->fetchAll();
-                                for ($i=0; $i < $nbticket; $i++) { 
-                                    ?>
-                                        <figure>
-                                            <img src="./img/icone/ticket_gris.png" alt="ticket Blacklistage">
-                                            <figcaption id="countdown-<?php echo $i; ?>" data-timestamp="<?php echo $res[$i]['datefinblacklist']; ?>">
-                                                Calcul en cours...
-                                            </figcaption>
-                                        </figure>
-                                        
-                                    <?
-                                }
-                                for ($i=0; $i < $ticketRestant; $i++) { 
-                                    ?>
-                                        <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
-                                    <?php
-                                }
+                            $stmt = $conn->prepare("SELECT datefinblacklist FROM pact._blacklist WHERE idOffre = ? and datefinblacklist > CURRENT_TIMESTAMP");
+                            $stmt->execute([$idOffre]);
+                            $res = $stmt->fetchAll();
+                            for ($i = 0; $i < $nbticket; $i++) {
+                            ?>
+                                <figure>
+                                    <img src="./img/icone/ticket_gris.png" alt="ticket Blacklistage">
+                                    <figcaption id="countdown-<?php echo $i; ?>" data-timestamp="<?php echo $res[$i]['datefinblacklist']; ?>">
+                                        Calcul en cours...
+                                    </figcaption>
+                                </figure>
+
+                            <?
+                            }
+                            for ($i = 0; $i < $ticketRestant; $i++) {
+                            ?>
+                                <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                            <?php
+                            }
                             ?>
                         </div>
                         <p>Un ticket de blacklistage peut être utilisé pour blacklister un avis choisie en cliquant sur l'icone présent à la lecture de l'avis, vous récupérerez votre ticket 365 jour après l'avoir utilisé.</p>
@@ -1126,43 +1127,42 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     require_once "./components/footer.php";
     ?>
     <script>
-
         // js compte à rebours
-        document.addEventListener("DOMContentLoaded", function () {
-    function startCountdown(element) {
-        const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
-        const targetTime = new Date(dateString).getTime(); // Convertit en millisecondes
+        document.addEventListener("DOMContentLoaded", function() {
+            function startCountdown(element) {
+                const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
+                const targetTime = new Date(dateString).getTime(); // Convertit en millisecondes
 
-        if (isNaN(targetTime)) {
-            console.error("Format de date invalide :", dateString);
-            element.textContent = "Date invalide";
-            return;
-        }
+                if (isNaN(targetTime)) {
+                    console.error("Format de date invalide :", dateString);
+                    element.textContent = "Date invalide";
+                    return;
+                }
 
-        function updateCountdown() {
-            const now = Date.now();
-            const diff = targetTime - now;
+                function updateCountdown() {
+                    const now = Date.now();
+                    const diff = targetTime - now;
 
-            if (diff <= 0) {
-                element.textContent = "Expiré";
-                return;
+                    if (diff <= 0) {
+                        element.textContent = "Expiré";
+                        return;
+                    }
+
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                    element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+
+                    setTimeout(updateCountdown, 1000);
+                }
+
+                updateCountdown();
             }
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
-
-            setTimeout(updateCountdown, 1000);
-        }
-
-        updateCountdown();
-    }
-
-    document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
-});
+            document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
+        });
 
 
         function supAvis(id, idOffre, action) {
@@ -1564,37 +1564,19 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 function confirmationModalBlackFunction() {
                     fetch('blacklist.php', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        'idC': id,
-        'idOffre': <?php echo $idOffre ?>
-    })
-})
-.then(async response => {
-    if (!response.ok) {
-        let errorMessage = `Erreur HTTP: ${response.status} - ${response.statusText}`;
-        try {
-            const errorText = await response.text(); // Récupère la réponse sous forme de texte
-            if (errorText) {
-                errorMessage += ` | Détails: ${errorText}`;
-            }
-        } catch (e) {
-            console.warn('Impossible de récupérer les détails de l\'erreur en texte');
-        }
-        throw new Error(errorMessage);
-    }
-    return response.text(); // Traite aussi les succès en texte
-})
-.then(data => {
-    console.log('Succès:', data);
-})
-.catch(error => {
-    console.error('Erreur capturée:', error);
-});
-
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                'idC': id,
+                                'idOffre': <?php echo $idOffre ?>
+                            })
+                        })
+                        .catch(error => {
+                            // Gérer toutes les erreurs de la requête fetch
+                            console.error('Erreur capturée:', error);
+                        });
 
 
                     closeModalBlackFunction();
@@ -1642,30 +1624,32 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         });
     </script>
     <script type="module">
-        import {geocode} from "./js/geocode.js";
+        import {
+            geocode
+        } from "./js/geocode.js";
         try {
-            <?php 
-                // Rechercher l'offre dans les parcs d'attractions
-                $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
-                $stmt->bindParam(':idoffre', $idOffre);
-                $stmt->execute();
-                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            <?php
+            // Rechercher l'offre dans les parcs d'attractions
+            $stmt = $conn->prepare("SELECT * FROM pact.offrescomplete WHERE idoffre = :idoffre");
+            $stmt->bindParam(':idoffre', $idOffre);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             let address = <?php echo json_encode($result[0]["numerorue"] . " " . $result[0]["rue"] . ", " . $result[0]["codepostal"] . " " . $result[0]["ville"]); ?>;
             // Assuming geocode() returns a promise with latitude and longitude
             let map = L.map('map').setView([48.46, -2.85], 10);
 
             geocode(address)
-            .then(location => {
-                if (location) {
-                    map.setView(location, 10);
-                    L.marker(location).addTo(map);
-                }
-            })
-            .catch(error => {
-                console.error("Erreur lors de la géocodification : ", error);
-            });             
-                             
+                .then(location => {
+                    if (location) {
+                        map.setView(location, 10);
+                        L.marker(location).addTo(map);
+                    }
+                })
+                .catch(error => {
+                    console.error("Erreur lors de la géocodification : ", error);
+                });
+
 
             L.tileLayer('/components/proxy.php?z={z}&x={x}&y={y}', {
                 maxZoom: 22
