@@ -5756,6 +5756,15 @@ input[id="radioPublic"], input[id="radioPrive"] {
   display: none;
 }
 
+input[id="code_2fa"] {
+  width: 200px;
+  height: 40px;
+  margin: 0 5px;
+  text-align: center;
+  border: 0;
+  border-bottom: solid 2px var(--primary);
+}
+
 input[id="siren"] {
   width: 408px;
   height: 40px;
