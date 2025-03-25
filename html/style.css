@@ -2225,6 +2225,14 @@ label[for="rest_ajoutPhotoMenu"] {
   height: 100%;
 }
 
+#carte_offres > #map > img {
+  position: relative;
+  width: 2em;
+  z-index: 500;
+  float: right;
+  margin: 1em;
+}
+
 /* A suppr pre sprint 3 */
 #disabledSelect {
   background-color: #666 !important;
