@@ -3,7 +3,7 @@
     <div>
         <a href="../index.php">
             <img id="logo" src="../img/logo.png" title="logo du site">
-            <di>
+            <div>
                 <h1 id="logoText">PACT</h1>
                 <?php
                 if ($isLoggedIn) {
