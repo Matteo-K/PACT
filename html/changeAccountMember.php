@@ -19,7 +19,7 @@
             print_r($_POST);
             print_r($_SESSION);
             $stmt = $conn->prepare("UPDATE pact._utilisateur set secret_a2f = ? , confirm_a2f = ? WHERE idu = ?");
-            $stmt->execute([$_POST["secret_a2f"],true,$userId]);
+            $stmt->execute([$_SESSION["secret_a2f"],true,$userId]);
         }
     }
 
