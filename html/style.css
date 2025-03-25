@@ -6212,9 +6212,11 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 }
 
 @keyframes saut {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
+  0% { transform: translateY(0); } 
+    30% { transform: translateY(-10px); } 
+    50% { transform: translateY(0); } 
+    70% { transform: translateY(-5px); }
+    90% { transform: translateY(0); } 
 }
 
 #formConnexion p:hover img{
