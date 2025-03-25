@@ -5722,7 +5722,7 @@ label#btnAjoutPhoto:hover {
   display: flex;
   align-items: center;
   /* margin: 0 5px 20px; */
-  margin-left: 50px;
+  margin-left: 30px;
   text-align: left;
   justify-content: left;
 }
@@ -5870,7 +5870,7 @@ div[id="messageErreur"] {
     flex-direction: column;
     justify-content: center;
     margin: 10px;
-    /* width: 90%; */
+    width: 90%;
     max-width: 480px;
   }
 
@@ -5885,11 +5885,18 @@ div[id="messageErreur"] {
   .creation-compte .ligne7 > label {
     font-size: 18px;
     width: 400px;
+    flex-wrap: wrap;
+    line-height: 1.5;
   }
 
   .creation-compte .ligne7 > input {
     width: 40px;
     margin: 0 15px;
+  }
+
+  .ligne7 input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
   }
 
   .creation-compte div.ligne2 > label, div.ligne3 > label {
@@ -6021,16 +6028,6 @@ div[id="messageErreur"] {
 
   #conditionMotdepasse {
     order: 19;
-  }
-
-  .ligne7 label {
-    flex-wrap: wrap;
-    line-height: 1.5;
-  }
-
-  .ligne7 input[type="checkbox"] {
-      margin-right: 8px;
-      transform: scale(1.2);
   }
 
   /* Centrer la photo de profil et son label */
