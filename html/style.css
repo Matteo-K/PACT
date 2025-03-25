@@ -5889,8 +5889,8 @@ div[id="messageErreur"] {
     line-height: 1.5;
   }
 
-  #lienCGU {
-    flex-wrap: wrap;
+  label[for="cgu"] {
+    white-space: normal;
   }
 
   .creation-compte .ligne7 > input {
