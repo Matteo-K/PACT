@@ -6216,16 +6216,19 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   height: 40px;
 }
 
-@keyframes saut {
-  0% { transform: translateY(0); } 
-    30% { transform: translateY(-10px); } 
-    50% { transform: translateY(0); } 
-    70% { transform: translateY(-5px); }
-    90% { transform: translateY(0); } 
+@keyframes rebond {
+  0% { transform: translateY(0); }
+  20% { transform: translateY(-30px); } /* Monte */
+  40% { transform: translateY(0); } /* Descend */
+  60% { transform: translateY(-15px); } /* Petit rebond */
+  80% { transform: translateY(0); } /* Redescend doucement */
+  90% { transform: translateY(-5px); } /* Très léger rebond final */
+  100% { transform: translateY(0); } /* Retour à la normale */
 }
 
 #formConnexion p:hover img{
-  animation: saut ease-in 0.5s;
+  animation: rebond 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.5s;
+  display: inline-block;
 }
 
 
