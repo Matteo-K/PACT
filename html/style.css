@@ -5838,18 +5838,6 @@ div[id="messageErreur"] {
   align-items: center;
 }
 
-  label[for="cgu"] {
-    word-wrap: break-word;
-    max-width: 100%;
-  }
-
-  @media (max-width: 600px) {
-    label[for="cgu"] {
-        display: block;
-        white-space: normal;
-    }
-  }
-
 /* Média query pour passer au format téléphone */
 @media (max-width: 600px) {
   #inscriptionTitre, #changerInfoTitre {
@@ -5905,6 +5893,11 @@ div[id="messageErreur"] {
   .creation-compte .ligne7 > input {
     width: 40px;
     margin: 0 15px;
+  }
+
+  label[for="cgu"] {
+    display: inline-flex;
+    white-space: normal;
   }
 
   .ligne7 input[type="checkbox"] {
