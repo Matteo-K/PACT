@@ -5838,6 +5838,12 @@ div[id="messageErreur"] {
   align-items: center;
 }
 
+label[for="cgu"] {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
 /* Média query pour passer au format téléphone */
 @media (max-width: 600px) {
   #inscriptionTitre, #changerInfoTitre {
@@ -5916,7 +5922,7 @@ div[id="messageErreur"] {
     display: inline-flex;
     white-space: normal;
   }
-  
+
   .creation-compte input {
     width: auto;
     height: 40px;
