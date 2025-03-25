@@ -6189,7 +6189,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 #legendeBoutonLienMembre, #legendeBoutonLienPro, #a2fTexte {
   font-size: 20px;
   color: var(--bloc);
-  width: 520px;
+  max-width: 460px;
 }
 
 /* Média query pour passer au format téléphone */
