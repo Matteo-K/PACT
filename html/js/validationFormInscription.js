@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Définir le tableau fieldsToValidate en fonction du fichier
-    let fieldsToValidate;
+    let fieldsToValidate = [];
 
     if (currentFile === 'accountPro.php') {
         fieldsToValidate = [
@@ -197,28 +197,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Ajouter l'événement "blur"
-    // fieldsToValidate.forEach(field => {
-    //     const inputElement = document.getElementById(field.id);
+    fieldsToValidate.forEach(field => {
+        const inputElement = document.getElementById(field.id);
 
-    //     if (inputElement) {
-    //         inputElement.addEventListener('blur', function () {
-    //             validateField(inputElement, field.pattern, field.message);
-    //         });
-    //     }
-    // });
-
-    if (Array.isArray(fieldsToValidate) && fieldsToValidate.length > 0) {
-        fieldsToValidate.forEach(field => {
-            const inputElement = document.getElementById(field.id);
-            if (inputElement) {
-                inputElement.addEventListener('blur', function () {
-                    validateField(inputElement, field.pattern, field.message);
-                });
-            }
-        });
-    } else {
-        console.error('Aucun champ à valider.');
-    }
+        if (inputElement) {
+            inputElement.addEventListener('blur', function () {
+                validateField(inputElement, field.pattern, field.message);
+            });
+        }
+    });
 
 
 
