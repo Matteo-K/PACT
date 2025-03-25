@@ -52,16 +52,6 @@
             }
         });
 
-        input.addEventListener("focus", () => {
-            if (currentFile === 'index.php') {
-                const searchTarget = document.getElementById("searchIndex");
-                searchTarget.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-
         /**
          * On envoit le formulaire si on est pas sur la page index
          */
