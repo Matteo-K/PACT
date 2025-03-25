@@ -27,7 +27,7 @@ VALUES ('motdepasse1'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
-       ('Lanonymeanonymequianonymiselesavis');
+       ('ojnaemjhrfpouhqzefpouihqzrpouh.zogufoiygUEFOGIUTAdvzriutfzhh');
 
 -- Peuplement de la table _admin
 INSERT INTO _admin (idU, login) 
@@ -89,7 +89,7 @@ VALUES (5, 'membre1', 'Dupont', 'Jean'),
        (23, 'Marius', 'Duclos', 'Marius'),
        (24, 'HenryDu56', 'legurrec', 'Henry'),
        (25, 'Jacques1', 'lebris', 'Jacques'),
-       (26, 'Utilisateur Anonyme', 'anonyme', 'utilisateur');
+       (26, 'Ancien Membre', 'Anonyme', 'Ancien Membre');
 
 -- Peuplement de la table _public
 INSERT INTO _public (idU) 
@@ -435,7 +435,7 @@ VALUES (5, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 	(23, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 	(24, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 	(25, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
-    (26, '22300', 'Lannion', 'France', 'Rue des anonymes', 1);
+    (26, '22300', 'Lannion', 'France', 'Rue des anciens membres anonymes', 1);
 
 
 -- Peuplement de la table _localisation
