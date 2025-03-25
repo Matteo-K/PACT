@@ -3,13 +3,19 @@
     <div>
         <a href="../index.php">
             <img id="logo" src="../img/logo.png" title="logo du site">
-            <div>
+            <di>
                 <h1 id="logoText">PACT</h1>
                 <?php
                 if ($isLoggedIn) {
                     if ($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] === "pro_prive") { //si on est authentifer en tant que pro public ou pro privé
                 ?>
-                        <h3 id="pro">PROFESSIONNEL</h3>
+                        <h3 id="pro">PRO</h3>
+                        <style>
+                            h3 {
+                                background-color: yellow
+                            }
+                        </style>
+                    
                 <?php
                     }
                 }
