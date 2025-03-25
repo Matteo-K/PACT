@@ -325,7 +325,6 @@
                 $stmt = $conn->prepare("SELECT * FROM pact._utilisateur WHERE idu = ?");
                 $stmt->execute([$userId]);
                 $userA2f = $stmt->fetch();
-                print_r($userA2f);
                 if ($userA2f["confirm_a2f"] != true) {
             ?>
                 <div class="authentikator">
