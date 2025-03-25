@@ -2225,6 +2225,14 @@ label[for="rest_ajoutPhotoMenu"] {
   height: 100%;
 }
 
+#carte_offres > #map > img {
+  position: relative;
+  width: 2rem;
+  z-index: 500;
+  float: right;
+  margin: 1em;
+}
+
 /* A suppr pre sprint 3 */
 #disabledSelect {
   background-color: #666 !important;
@@ -2993,8 +3001,8 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #titreAside img {
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   object-fit: contain;
   cursor: pointer;
 }
@@ -3512,8 +3520,8 @@ label[for="rest_ajoutPhotoMenu"] {
 /* Authentikator */
 
 .authentikator{
-  margin-left: 50px !important;
-  margin-right: 50px !important;
+  margin-left: 30px !important;
+  /* margin-right: 50px !important; */
 }
 
 #divAuthent {
