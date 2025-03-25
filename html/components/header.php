@@ -9,7 +9,7 @@
                 if ($isLoggedIn) {
                     if ($_SESSION["typeUser"] !== "pro_public" || $_SESSION["typeUser"] !== "pro_prive") {
                 ?>
-                <h1 id="logoText">PACT</h1>
+                <h1 id="logoText">PACT PRO</h1>
                 <?php
                     }
                 }
