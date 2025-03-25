@@ -14,6 +14,13 @@
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idUser'];
 
+    print_r($_SESSION);
+    print_r($_POST);
+
+    if (isset($_SESSION["a2f_verifier"]) && $_POST[""]) {
+        # code...
+    }
+
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
         $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE idU = ?");

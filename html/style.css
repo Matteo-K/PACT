@@ -3520,8 +3520,8 @@ label[for="rest_ajoutPhotoMenu"] {
 /* Authentikator */
 
 .authentikator{
-  margin-left: 50px !important;
-  margin-right: 50px !important;
+  margin-left: 30px !important;
+  /* margin-right: 50px !important; */
 }
 
 #divAuthent {
@@ -5840,9 +5840,9 @@ div[id="messageErreur"] {
     margin-top: 5vh;
   }
 
-  .authentikator{
+  /* .authentikator{
     margin-left: 10px !important;
-  }
+  } */
 
   .creation-compte form, #apiKey {
     display: flex;
@@ -6199,6 +6199,10 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   font-size: 20px;
   color: var(--bloc);
   max-width: 460px;
+}
+
+#formConnexion img{
+  width: 50px;
 }
 
 /* Média query pour passer au format téléphone */
