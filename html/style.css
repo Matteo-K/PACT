@@ -2219,6 +2219,7 @@ label[for="rest_ajoutPhotoMenu"] {
 #map {
   height: 50vh;
   width: 90%;
+  z-index: 0;
 }
 #carte_offres > #map {
   width:100%;
@@ -2230,7 +2231,11 @@ label[for="rest_ajoutPhotoMenu"] {
   width: 2rem;
   z-index: 500;
   float: right;
-  margin: 1em;
+  
+}
+
+.leaflet-touch .leaflet-bar, #carte_offres > #map > img{
+  margin: 1.5em;
 }
 
 /* A suppr pre sprint 3 */
@@ -6212,9 +6217,11 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 }
 
 @keyframes saut {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
+  0% { transform: translateY(0); } 
+    30% { transform: translateY(-10px); } 
+    50% { transform: translateY(0); } 
+    70% { transform: translateY(-5px); }
+    90% { transform: translateY(0); } 
 }
 
 #formConnexion p:hover img{
