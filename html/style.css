@@ -2225,6 +2225,14 @@ label[for="rest_ajoutPhotoMenu"] {
   height: 100%;
 }
 
+#carte_offres > #map > img {
+  position: relative;
+  width: 2rem;
+  z-index: 500;
+  float: right;
+  margin: 1em;
+}
+
 /* A suppr pre sprint 3 */
 #disabledSelect {
   background-color: #666 !important;
@@ -2993,8 +3001,8 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #titreAside img {
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   object-fit: contain;
   cursor: pointer;
 }
@@ -6192,9 +6200,16 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   max-width: 460px;
 }
 
-#formConnexion img{
-  width: 50px;
+#formConnexion p img{
+  width: 40px;
+  height: 40px;
 }
+
+#formConnexion p:hover img{
+  transform: translateY(-20px 0);
+  transition: 0.3s ease-in-out 5s;
+}
+
 
 /* Média query pour passer au format téléphone */
 @media (max-width: 375px) {

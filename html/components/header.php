@@ -9,7 +9,7 @@
                 if ($isLoggedIn) {
                     if ($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] === "pro_prive") {
                 ?>
-                        <h3 id="pro">PRO</h3>
+                        <h1 id="pro">PACT PRO</h1>
                 <?php
                     }
                 }
