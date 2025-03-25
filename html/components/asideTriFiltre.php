@@ -243,8 +243,10 @@
             </div>
         </aside>
         <aside id="carte_offres">
-            <div id="map"></div>
-            <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet tri" onclick="fermeAside()">
+            <div id="map">
+                <img src="img/icone/croix.png" alt="Fermer l'onglet tri" onclick="fermeAside()">
+            </div>
+            
         </aside>
     </div>
 </section>
