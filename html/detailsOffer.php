@@ -273,7 +273,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <?php require_once "components/header.php"; ?>
 
-    <?php print_r($result) ?>
     <main class="mainOffer">
         <?php
         if ($typeUser == "pro_prive" || $typeUser == "pro_public") {

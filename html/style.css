@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Lilita+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
 
+@import url(animations.css);
 /* Style globale */
 
 :root {
@@ -6494,4 +6495,3 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 
 
 
-@import url(animations.css);

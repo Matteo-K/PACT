@@ -1670,7 +1670,7 @@ BEGIN
     -- Vérification que ce n'est pas le compte d'anonymisation qui n'est pas supprimé
     IF iduser = idanonyme THEN
         RETURN NEW;
-    END IF
+    END IF;
 
     -- Suppression des images correspondant aux avis ananymisés
     FOR listImages IN 
