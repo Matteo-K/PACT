@@ -158,10 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt = $conn->prepare("DELETE FROM pact._avis WHERE idc = $idAvis");
         $stmt -> execute();
-
-        $stmt = $conn->prepare("DELETE FROM pact._commentaire WHERE idc = $idAvis");
-        $stmt -> execute();
-
+        
         $stmt = $conn->prepare("SELECT * FROM pact._blacklist WHERE idc = $idAvis");
         $stmt -> execute();
 
@@ -169,6 +166,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $conn->prepare("DELETE FROM pact._blacklist WHERE idc = $idAvis");
             $stmt -> execute();
         }
+        
+        $stmt = $conn->prepare("DELETE FROM pact._commentaire WHERE idc = $idAvis");
+        $stmt -> execute();
+
 
         
 
