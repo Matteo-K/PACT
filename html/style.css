@@ -5838,11 +5838,6 @@ div[id="messageErreur"] {
   align-items: center;
 }
 
-  label[for="cgu"] {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-  }
 
   @media (max-width: 600px) {
     label[for="cgu"] {
