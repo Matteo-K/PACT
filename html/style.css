@@ -6092,7 +6092,8 @@ div[id="messageErreur"] {
 }
 
 .connexion-compte #formConnexion {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -6189,7 +6190,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 #legendeBoutonLienMembre, #legendeBoutonLienPro, #a2fTexte {
   font-size: 20px;
   color: var(--bloc);
-  width: 520px;
+  max-width: 460px;
 }
 
 #formConnexion img{
