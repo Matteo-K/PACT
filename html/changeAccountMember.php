@@ -15,7 +15,7 @@
     $userId = $_SESSION['idUser'];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_SESSION["a2f_verifier"]) && $_POST["authentikator"] && strlen($_POST["code_2fa"] == 6)) {
+        if (isset($_SESSION["a2f_verifier"]) && $_POST["authentikator"]) {
             print_r($_POST);
             print_r($_SESSION);
             $stmt = $conn->prepare("UPDATE pact._utilisateur set secret_a2f = ? , confirm_a2f = ? WHERE idu = ?");
