@@ -327,7 +327,7 @@
                 $stmt->execute([$userId]);
                 $userA2f = $stmt->fetch();
                 print_r($userA2f);
-                if ($userA2f) {
+                if ($userA2f != true) {
             ?>
                 <div class="authentikator">
                     <!-- Checkbox de A2F -->
