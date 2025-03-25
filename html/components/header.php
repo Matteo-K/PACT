@@ -4,27 +4,16 @@
         <a href="../index.php">
             <img id="logo" src="../img/logo.png" title="logo du site">
             <div>
-                
+                <h1 id="logoText">PACT</h1>
                 <?php
                 if ($isLoggedIn) {
-                    if ($isLoggedIn && !in_array($_SESSION["typeUser"], ["pro_public", "pro_prive"], true)) {
+                    if ($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] === "pro_prive") {
                 ?>
-                <h1 id="logoText">PACT PRO</h1>
+                        <h3 id="pro">PRO</h3>
                 <?php
                     }
                 }
                 ?>
-                                <?php
-                if ($isLoggedIn) {
-                    if ($_SESSION["typeUser"] != "pro_public" && $_SESSION["typeUser"] !== "pro_prive") {
-                ?>
-                <h1 id="logoText">PACT </h1>
-                <?php
-                    }
-                }
-                ?>
-
-                
             </div>
         </a>
     </div>
@@ -42,17 +31,7 @@
         // Vérifie la page actuelle
         const currentFile = window.location.pathname.split('/').pop();
 
-        input.addEventListener("input", () => {
-            if (currentFile === 'index.php') {
-                const searchTarget = document.getElementById("searchIndex");
-                searchTarget.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-
-        input.addEventListener("focus", () => {
+        input.addEventListener("change", () => {
             if (currentFile === 'index.php') {
                 const searchTarget = document.getElementById("searchIndex");
                 searchTarget.scrollIntoView({
