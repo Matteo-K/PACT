@@ -42,7 +42,7 @@
         // Vérifie la page actuelle
         const currentFile = window.location.pathname.split('/').pop();
 
-        input.addEventListener("input", () => {
+        function scrollToSearch() {
             if (currentFile === 'index.php') {
                 const searchTarget = document.getElementById("searchIndex");
                 searchTarget.scrollIntoView({
@@ -50,7 +50,10 @@
                     block: 'start'
                 });
             }
-        });
+        }
+
+        input.addEventListener("input", () => scrollToSearch());
+        input.addEventListener("focus", () => scrollToSearch());
 
         /**
          * On envoit le formulaire si on est pas sur la page index
