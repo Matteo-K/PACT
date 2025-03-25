@@ -5889,10 +5889,6 @@ div[id="messageErreur"] {
     line-height: 1.5;
   }
 
-  label[for="cgu"] {
-    white-space: normal;
-  }
-
   .creation-compte .ligne7 > input {
     width: 40px;
     margin: 0 15px;
