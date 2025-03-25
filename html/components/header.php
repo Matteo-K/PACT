@@ -5,20 +5,24 @@
             <img id="logo" src="../img/logo.png" title="logo du site">
             <div>
                 
-            <?php
-if ($isLoggedIn) {
-    if ($_SESSION["typeUser"] !== "pro_public" && $_SESSION["typeUser"] !== "pro_prive") {
-?>
-        <h1 id="logoText">PACT</h1>
-<?php
-    } else {
-?>
-        <h1 id="logoText">PACT PRO</h1>
-<?php
-    }
-}
-?>
-
+                <?php
+                if ($isLoggedIn) {
+                    if ($isLoggedIn && !in_array($_SESSION["typeUser"], ["pro_public", "pro_prive"], true)) {
+                ?>
+                <h1 id="logoText">PACT PRO</h1>
+                <?php
+                    }
+                }
+                ?>
+                                <?php
+                if ($isLoggedIn) {
+                    if ($_SESSION["typeUser"] != "pro_public" && $_SESSION["typeUser"] !== "pro_prive") {
+                ?>
+                <h1 id="logoText">PACT </h1>
+                <?php
+                    }
+                }
+                ?>
 
                 
             </div>
@@ -38,7 +42,7 @@ if ($isLoggedIn) {
         // Vérifie la page actuelle
         const currentFile = window.location.pathname.split('/').pop();
 
-        function scrollToSearch() {
+        input.addEventListener("input", () => {
             if (currentFile === 'index.php') {
                 const searchTarget = document.getElementById("searchIndex");
                 searchTarget.scrollIntoView({
@@ -46,10 +50,17 @@ if ($isLoggedIn) {
                     block: 'start'
                 });
             }
-        }
+        });
 
-        input.addEventListener("input", () => scrollToSearch());
-        input.addEventListener("focus", () => scrollToSearch());
+        input.addEventListener("focus", () => {
+            if (currentFile === 'index.php') {
+                const searchTarget = document.getElementById("searchIndex");
+                searchTarget.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
 
         /**
          * On envoit le formulaire si on est pas sur la page index
