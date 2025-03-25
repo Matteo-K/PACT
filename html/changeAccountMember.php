@@ -15,7 +15,9 @@
     $userId = $_SESSION['idUser'];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_SESSION["a2f_verifier"]) && $_POST["authentikator"] == "on" && strlen($_POST["code_2fa"] == 6)) {
+        if (isset($_SESSION["a2f_verifier"]) && $_POST["authentikator"]) {
+            print_r($_POST);
+            print_r($_SESSION);
             $stmt = $conn->prepare("UPDATE pact._utilisateur set secret_a2f = ? , confirm_a2f = ? WHERE idu = ?");
             $stmt->execute([$_POST["secret_a2f"],true,$userId]);
         }
@@ -325,8 +327,7 @@
                 $stmt = $conn->prepare("SELECT * FROM pact._utilisateur WHERE idu = ?");
                 $stmt->execute([$userId]);
                 $userA2f = $stmt->fetch();
-                print_r($userA2f);
-                if ($userA2f != true) {
+                if ($userA2f["confirm_a2f"] != true) {
             ?>
                 <div class="authentikator">
                     <!-- Checkbox de A2F -->
@@ -341,6 +342,7 @@
                         <div id="status"></div>
                     </div>
                 </div>
+                <script src="authentikator/authentikator.js"></script>
             <?php
                 }
             ?>
@@ -513,7 +515,6 @@
             
         }
     </script>
-    <script src="authentikator/authentikator.js"></script>
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
 
