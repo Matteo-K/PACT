@@ -3,16 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const div = document.getElementById("divAuthent");
     const pseudoInput = document.getElementById("pseudoMembre"); // Champ pour les membres
     const denominationInput = document.getElementById("denomination"); // Champ pour les professionnels
+    const labelPseudoInput = document.getElementById("labelPseudo");
     const codeInput = document.getElementById("code_2fa"); // Récupère l'input 2FA
     const status = document.getElementById("status");
 
     // Fonction pour mettre à jour le QR Code
     function updateQRCode() {
-        let pseudo = pseudoInput ? pseudoInput.value.trim() : "";
+        let pseudo = pseudoInput ? pseudoInput.value.trim() : (labelPseudoInput ? labelPseudoInput.value.trim() : "");
         let denomination = denominationInput ? denominationInput.value.trim() : "";
 
         // Utiliser pseudo si disponible, sinon utiliser denomination
-        let pseudoOrDenomination = pseudo || denomination?pseudo || denomination : "pas de nom";
+        let pseudoOrDenomination = pseudo || denomination ? pseudo || denomination : "pas de nom";
 
         console.log(pseudoOrDenomination);
 
@@ -93,5 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         pseudoInput.addEventListener("input", updateQRCode);
     } else if (denominationInput) {
         denominationInput.addEventListener("input", updateQRCode);
+    } else if (labelPseudoInput) {
+        labelPseudoInput.addEventListener("input", updateQRCode);
     }
 });
