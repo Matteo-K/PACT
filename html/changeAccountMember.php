@@ -14,6 +14,8 @@
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idUser'];
 
+    print_r($_SESSION);
+
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
         $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE idU = ?");
@@ -315,6 +317,20 @@
                 <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($user['ville']) ? htmlspecialchars($user['ville']) : '' ?>" required>
             </div>
 
+            <div class="authentikator">
+                <!-- Checkbox de A2F -->
+                <label for="authentikator">
+                    <input type="checkbox" id="authentikator" name="authentikator" hidden/>
+                    <span class="checkmark" id="qrcode"></span>
+                    J’utilise l'authentification à deux facteurs
+                </label>
+                <div  id="divAuthent">
+                    <label>Entrez le code à 6 chiffres :</label>
+                    <input type="text" id="code_2fa" name="code_2fa" maxlength="6">
+                    <div id="status"></div>
+                </div>
+            </div>
+
             <button type="submit" id="boutonInscription">Valider</button>
         </form>
 
@@ -483,7 +499,7 @@
             
         }
     </script>
-
+    <script src="authentikator/authentikator.js"></script>
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
 

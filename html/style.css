@@ -6193,6 +6193,10 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   max-width: 460px;
 }
 
+#formConnexion img{
+  width: 50px;
+}
+
 /* Média query pour passer au format téléphone */
 @media (max-width: 375px) {
   .connexion-compte input {

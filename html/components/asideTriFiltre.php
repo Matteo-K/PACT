@@ -244,7 +244,9 @@
         </aside>
         <aside id="carte_offres">
             <div id="map">
+                <img src="img/icone/croix.png" alt="Fermer l'onglet tri" onclick="fermeAside()">
             </div>
+            
         </aside>
     </div>
 </section>
