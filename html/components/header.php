@@ -4,7 +4,7 @@
         <a href="../index.php">
             <img id="logo" src="../img/logo.png" title="logo du site">
             <div>
-                <h1 id="logoText">PACT</h1>
+                <h1 id="logoText">PACT PRO</h1>
                 <?php
                 if ($isLoggedIn) {
                     if ($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] === "pro_prive") {
