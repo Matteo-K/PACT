@@ -326,7 +326,7 @@
                 $stmt->execute([$userId]);
                 $userA2f = $stmt->fetch();
                 print_r($userA2f);
-                if ($userA2f != true) {
+                if ($userA2f["confirm_a2f"] != true) {
             ?>
                 <div class="authentikator">
                     <!-- Checkbox de A2F -->
@@ -341,6 +341,7 @@
                         <div id="status"></div>
                     </div>
                 </div>
+                <script src="authentikator/authentikator.js"></script>
             <?php
                 }
             ?>
@@ -513,7 +514,6 @@
             
         }
     </script>
-    <script src="authentikator/authentikator.js"></script>
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
 
