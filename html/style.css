@@ -6200,14 +6200,25 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   max-width: 460px;
 }
 
-#formConnexion p img{
+#a2fTexte{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+#a2fTexte img{
   width: 40px;
   height: 40px;
 }
 
+@keyframes saut {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
 #formConnexion p:hover img{
-  transform: translateY(-20px 0);
-  transition: 0.3s ease-in-out 5s;
+  animation: saut ease-in 0.5s;
 }
 
 
