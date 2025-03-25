@@ -5833,7 +5833,6 @@ div[id="messageErreur"] {
 }
 
 #divNewPFP {
-  width: 100%;
   display: flex;
   align-items: center;
 }
@@ -6206,9 +6205,27 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   max-width: 460px;
 }
 
-#formConnexion img{
-  width: 50px;
+#a2fTexte{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 }
+
+#a2fTexte img{
+  width: 40px;
+  height: 40px;
+}
+
+@keyframes saut {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+#formConnexion p:hover img{
+  animation: saut ease-in 0.5s;
+}
+
 
 /* Média query pour passer au format téléphone */
 @media (max-width: 375px) {
