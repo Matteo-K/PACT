@@ -4,27 +4,24 @@
         <a href="../index.php">
             <img id="logo" src="../img/logo.png" title="logo du site">
             <div>
-                
+                <h1 id="logoText">PACT</h1>
                 <?php
                 if ($isLoggedIn) {
-                    if ($_SESSION["typeUser"] !== "pro_public" || $_SESSION["typeUser"] !== "pro_prive") {
+                    if ($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] === "pro_prive") { //si on est authentifer en tant que pro public ou pro privé
                 ?>
-                <h1 id="logoText">PACT PRO</h1>
+                        <h3 id="pro">PROFESSIONNEL</h3>
                 <?php
                     }
                 }
-                ?>
-                                <?php
-                if ($isLoggedIn) {
-                    if ($_SESSION["typeUser"] != "pro_public" && $_SESSION["typeUser"] !== "pro_prive") {
-                ?>
-                <h1 id="logoText">PACT PRO</h1>
-                <?php
-                    }
-                }
-                ?>
 
-                
+                if ($isLoggedIn) {
+                    if ($_SESSION["typeUser"] == "admin" ) { // si on est authentifer en tant qu'administrateur
+                ?>
+                        <h3 id="pro">ADMINISTRATEUR</h3>
+                <?php
+                    }
+                }
+                ?>
             </div>
         </a>
     </div>
@@ -42,7 +39,7 @@
         // Vérifie la page actuelle
         const currentFile = window.location.pathname.split('/').pop();
 
-        input.addEventListener("input", () => {
+        input.addEventListener("change", () => {
             if (currentFile === 'index.php') {
                 const searchTarget = document.getElementById("searchIndex");
                 searchTarget.scrollIntoView({

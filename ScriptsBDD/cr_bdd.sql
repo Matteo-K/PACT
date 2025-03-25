@@ -1667,7 +1667,10 @@ DECLARE
     idanonyme INT := 26;
 BEGIN
 
-    RAISE NOTICE 'Trigger delete_membre activé pour iduser = %', iduser;
+    -- Vérification que ce n'est pas le compte d'anonymisation qui n'est pas supprimé
+    IF iduser = idanonyme THEN
+        RETURN NEW;
+    END IF;
 
     -- Suppression des images correspondant aux avis ananymisés
     FOR listImages IN 
@@ -1683,9 +1686,6 @@ BEGIN
             END LOOP;
         END IF;
     END LOOP;
-
-    RAISE NOTICE 'suite (tous les delete)';
-
 
     -- Anonymisation des avis du membre
     UPDATE pact._commentaire
