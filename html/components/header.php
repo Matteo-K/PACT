@@ -13,6 +13,15 @@
                 <?php
                     }
                 }
+// test logo admin
+                if ($isLoggedIn) {
+                    if ($_SESSION["typeUser"] == "admin" ) {
+                ?>
+                        <h3 id="pro">ADMINISTRATEUR</h3>
+                <?php
+                    }
+                }
+                ?>
                 ?>
             </div>
         </a>
