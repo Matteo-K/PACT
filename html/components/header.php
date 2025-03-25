@@ -52,8 +52,8 @@
             }
         }
 
-        input.addEventListener("input", () => scrollToSearch);
-        input.addEventListener("focus", () => scrollToSearch);
+        input.addEventListener("input", () => scrollToSearch());
+        input.addEventListener("focus", () => scrollToSearch());
 
         /**
          * On envoit le formulaire si on est pas sur la page index
