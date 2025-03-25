@@ -6216,19 +6216,6 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   height: 40px;
 }
 
-@keyframes saut {
-  0% { transform: translateY(0); } 
-    30% { transform: translateY(-10px); } 
-    50% { transform: translateY(0); } 
-    70% { transform: translateY(-5px); }
-    90% { transform: translateY(0); } 
-}
-
-#formConnexion p:hover img{
-  animation: saut ease-in 0.5s;
-}
-
-
 /* Média query pour passer au format téléphone */
 @media (max-width: 375px) {
   .connexion-compte input {
@@ -6506,3 +6493,8 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 }
 
 /* fin de la popup de suppression de compte */
+
+
+
+
+@import url(animations.css);
