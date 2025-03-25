@@ -5901,22 +5901,28 @@ div[id="messageErreur"] {
     margin: 0 15px;
   }
 
+  
   .ligne7 input[type="checkbox"] {
     margin-right: 8px;
     transform: scale(1.2);
   }
-
+  
   .creation-compte div.ligne2 > label, div.ligne3 > label {
     margin: 5px;
   }
-
+  
   .creation-compte label {
     text-align: left;
     margin-bottom: 5px;
     font-size: 18px;
     max-width: 380px;
   }
-
+  
+  label[for="cgu"] {
+    display: inline-flex;
+    white-space: normal;
+  }
+  
   .creation-compte input {
     width: auto;
     height: 40px;
