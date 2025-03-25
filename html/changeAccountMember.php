@@ -17,8 +17,9 @@
     print_r($_SESSION);
     print_r($_POST);
 
-    if (isset($_SESSION["a2f_verifier"]) && $_POST[""]) {
-        # code...
+    if (isset($_SESSION["a2f_verifier"]) && $_POST["authentikator"] == "on" && strlen($_POST["code_2fa"] == 6)) {
+        $stmt = $conn->prepare("UPDATE pact._utilisateur set secret_a2f = ? , confirm_a2f = ? WHERE idu = ?");
+        $stmt->execute([$_POST["secret_a2f"],true,$userId]);
     }
 
     // Récupérer les informations de l'utilisateur depuis la base de données
@@ -321,20 +322,28 @@
                 <!-- Saisi de la ville -->
                 <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($user['ville']) ? htmlspecialchars($user['ville']) : '' ?>" required>
             </div>
-
-            <div class="authentikator">
-                <!-- Checkbox de A2F -->
-                <label for="authentikator">
-                    <input type="checkbox" id="authentikator" name="authentikator" hidden/>
-                    <span class="checkmark" id="qrcode"></span>
-                    J’utilise l'authentification à deux facteurs
-                </label>
-                <div  id="divAuthent">
-                    <label>Entrez le code à 6 chiffres :</label>
-                    <input type="text" id="code_2fa" name="code_2fa" maxlength="6">
-                    <div id="status"></div>
+            <?php
+                $stmt = $conn->prepare("SELECT * FROM pact._utilisateur WHERE idu = ?");
+                $stmt->execute([$userId]);
+                $userA2f = $stmt->fetch()['confirm_a2f'];
+                if ($userA2f) {
+            ?>
+                <div class="authentikator">
+                    <!-- Checkbox de A2F -->
+                    <label for="authentikator">
+                        <input type="checkbox" id="authentikator" name="authentikator" hidden/>
+                        <span class="checkmark" id="qrcode"></span>
+                        J’utilise l'authentification à deux facteurs
+                    </label>
+                    <div  id="divAuthent">
+                        <label>Entrez le code à 6 chiffres :</label>
+                        <input type="text" id="code_2fa" name="code_2fa" maxlength="6">
+                        <div id="status"></div>
+                    </div>
                 </div>
-            </div>
+            <?php
+                }
+            ?>
 
             <button type="submit" id="boutonInscription">Valider</button>
         </form>
