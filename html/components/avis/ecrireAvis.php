@@ -59,7 +59,10 @@
 
         <!-- Photos -->
         <div id="divAjoutPhoto">
-            <label id="btnAjoutPhoto" for="ajoutPhoto" class="classAjouterPhotos">Ajouter des Photos</label>
+            <label id="btnAjoutPhoto" for="ajoutPhoto" class="classAjouterPhotos">
+                <img src="./img/icone/addImage.png" alt="Icone d'ajout d'image" title="Icone d'ajout d'image">
+                <p>Ajouter des Photos</p>
+            </label>
             <input
                 type="file"
                 id="ajoutPhoto"
