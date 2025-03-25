@@ -2219,6 +2219,7 @@ label[for="rest_ajoutPhotoMenu"] {
 #map {
   height: 50vh;
   width: 90%;
+  z-index: 0;
 }
 #carte_offres > #map {
   width:100%;
@@ -2230,7 +2231,11 @@ label[for="rest_ajoutPhotoMenu"] {
   width: 2rem;
   z-index: 500;
   float: right;
-  margin: 1em;
+  
+}
+
+.leaflet-touch .leaflet-bar, #carte_offres > #map > img{
+  margin: 1.5em;
 }
 
 /* A suppr pre sprint 3 */
