@@ -5838,6 +5838,19 @@ div[id="messageErreur"] {
   align-items: center;
 }
 
+  label[for="cgu"] {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    label[for="cgu"] {
+        display: block;
+        white-space: normal;
+    }
+  }
+
 /* Média query pour passer au format téléphone */
 @media (max-width: 600px) {
   #inscriptionTitre, #changerInfoTitre {
