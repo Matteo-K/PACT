@@ -161,6 +161,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt = $conn->prepare("DELETE FROM pact._commentaire WHERE idc = $idAvis");
         $stmt -> execute();
+
+        $stmt = $conn->prepare("DELETE FROM pact._blacklist WHERE idc = $idAvis");
+        $stmt -> execute();
+
     } elseif($_POST["action"] == "supprimerReponse"){
         $idAvis = $_POST['id'] ?? null;
         $idOffre = $_POST['idoffre'];
