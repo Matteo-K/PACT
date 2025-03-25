@@ -2227,7 +2227,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #carte_offres > #map > img {
   position: relative;
-  width: 2em;
+  width: 2rem;
   z-index: 500;
   float: right;
   margin: 1em;
@@ -3001,8 +3001,8 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #titreAside img {
-  width: 2em;
-  height: 2em;
+  width: 2rem;
+  height: 2rem;
   object-fit: contain;
   cursor: pointer;
 }
