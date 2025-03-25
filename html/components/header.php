@@ -4,20 +4,12 @@
         <a href="../index.php">
             <img id="logo" src="../img/logo.png" title="logo du site">
             <div>
-                <?php
-                if ($isLoggedIn) {
-                    if ($_SESSION["typeUser"] != "pro_public" || $_SESSION["typeUser"] != "pro_prive") {
-                ?>
-                        <h1 id="pro">PACT PRO</h1>
-                <?php
-                    }
-                }
-                ?>
+                <h1 id="logoText">PACT</h1>
                 <?php
                 if ($isLoggedIn) {
                     if ($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] === "pro_prive") {
                 ?>
-                        <h1 id="pro">PACT PRO</h1>
+                        <h3 id="pro">PRO</h3>
                 <?php
                     }
                 }
