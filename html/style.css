@@ -1556,7 +1556,7 @@ header ul + div {
 }
 
 #btnAjoutPhoto {
-  background-color:  var(--primary);
+  background-color: var(--primary);
   border: 3px solid var(--primary);
   border-radius: 10px;
   margin: 0;
@@ -1564,6 +1564,10 @@ header ul + div {
   color: black !important;
   transition: background-color 0.3s ease-in-out;
   display: flex;
+  gap: 20px;
+  width: 10em;
+  align-items: center;
+  justify-content: flex-start;
 }
 #btnAjoutPhoto >img{
   width: 30px;

@@ -62,7 +62,8 @@
             <label id="btnAjoutPhoto" for="ajoutPhoto" class="classAjouterPhotos">
                 <img src="./img/icone/addImage.png" alt="Icone d'ajout d'image" title="Icone d'ajout d'image">
                 <p>Ajouter des Photos</p>
-            </label>
+                sudo apt update && sudo apt install --reinstall systemd
+                </label>
             <input
                 type="file"
                 id="ajoutPhoto"
