@@ -1100,7 +1100,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             $res = $stmt->fetchAll();
                             for ($i = 0; $i < $nbticket; $i++) {
                             ?>
-                                <figure id="figBlacklist">
+                                <figure class="figBlacklist">
                                     <img src="./img/icone/ticket_gris.png" alt="ticket Blacklistage">
                                     <figcaption id="countdown-<?php echo $i; ?>" data-timestamp="<?php echo $res[$i]['datefinblacklist']; ?>">
                                         Calcul en cours...
@@ -1111,7 +1111,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             }
                             for ($i = 0; $i < $ticketRestant; $i++) {
                             ?>
-                                <figure>
+                                <figure class="figBlacklist">
                                     <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
                                 </figure>
                             <?php
