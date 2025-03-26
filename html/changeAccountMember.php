@@ -65,6 +65,21 @@
     if (isset($_POST['mdp'])) {
         if(password_verify($_POST['mdp'], $pwdApi['password'])){
             //suppression des images (en BDD et sur le serveur) liées aux avis du membre supprimé
+            $stmt = $conn -> prepare ("SELECT listimage FROM pact.avis WHERE idu = ? AND listimage != null");
+            $stmt->execute([$userId]);
+            $imagesAvis = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+            if ($imagesAvis != false) {
+                $listimage = trim($imagesAvis, '{}');
+                $pictures = explode(',', $listimage);
+
+                $stmt = $conn -> prepare ("DELETE from pact._avisimage where url = ?"); 
+
+                foreach ($pictures as $pic) {
+                    $stmt->execute([$pic]);
+                }
+            }
+            //suppression du compte (géré par le trigger en BDD)
             $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
             $stmt -> execute();
             header("Location: logout.php");

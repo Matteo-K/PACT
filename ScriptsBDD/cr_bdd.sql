@@ -1709,13 +1709,31 @@ BEGIN
     DELETE FROM pact._utilisateur
     WHERE idu = iduser;
 
-    RAISE NOTICE 'Fin';
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Création du trigger associé
+CREATE TRIGGER trigger_instead_delete_membre
+INSTEAD OF DELETE ON pact.membre
+FOR EACH ROW
+EXECUTE FUNCTION delete_membre();
+
+
+
+CREATE OR REPLACE FUNCTION delete_imgAvis()
+RETURNS TRIGGER AS $$
+BEGIN
+
+    DELETE FROM pact._image
+    WHERE url = NEW.url;
+
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 -- Création du trigger associé
 CREATE TRIGGER trigger_before_delete_membre
-INSTEAD OF DELETE ON pact.membre
+BEFORE DELETE ON pact._avisimage
 FOR EACH ROW
-EXECUTE FUNCTION delete_membre();
+EXECUTE FUNCTION delete_imgAvis();
