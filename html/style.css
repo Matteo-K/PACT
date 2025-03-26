@@ -3515,7 +3515,9 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   gap: 30px;
+  transform: translateY(-30px);
 }
 
 .modal-contentTicket div{
@@ -3531,6 +3533,10 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .size{
   font-size: 15px !important;
+}
+
+.figBlacklist{
+  margin: 0;
 }
 
 /* Authentikator */
@@ -5700,7 +5706,7 @@ label#btnAjoutPhoto:hover {
   align-items: center;
   margin: 10px 26px;
   text-align: left;
-  justify-content: space-between;
+  justify-content: left;
   width: 860px;
 }
 
@@ -5921,12 +5927,7 @@ div[id="messageErreur"] {
     font-size: 18px;
     max-width: 380px;
   }
-  
-  label[for="cgu"] {
-    display: inline-flex;
-    white-space: normal;
-  }
-  
+
   .creation-compte input {
     width: auto;
     height: 40px;
