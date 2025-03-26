@@ -1667,25 +1667,12 @@ DECLARE
     idanonyme INT := 26;
 BEGIN
 
-    -- Vérification que ce n'est pas le compte d'anonymisation qui n'est pas supprimé
+    -- Vérification que ce n'est pas le compte d'anonymisation qui est supprimé
     IF iduser = idanonyme THEN
         RETURN NEW;
     END IF;
 
-    -- Suppression des images correspondant aux avis ananymisés
-    FOR listImages IN 
-        SELECT listImage FROM pact.avis WHERE idu = iduser
-    LOOP
-        RAISE NOTICE 'boucle table d image pour un avis';
-        IF listImages != null THEN
-            FOREACH img IN ARRAY listImages
-            LOOP
-                RAISE NOTICE 'boucle pour une image';
-                DELETE FROM pact._image
-                where url = img;
-            END LOOP;
-        END IF;
-    END LOOP;
+    -- Suppression des images correspondant aux avis anonymisés faite en PHP avant la suppression du compte
 
     -- Anonymisation des avis du membre
     UPDATE pact._commentaire

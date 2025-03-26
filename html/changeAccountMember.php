@@ -66,6 +66,7 @@
     $erreurSupprCompte = false;
     if (isset($_POST['mdp'])) {
         if(password_verify($_POST['mdp'], $pwdApi['password'])){
+            //suppression des images (en BDD et sur le serveur) liées aux avis du membre supprimé
             $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
             $stmt -> execute();
             header("Location: logout.php");
