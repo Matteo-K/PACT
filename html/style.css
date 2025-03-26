@@ -3511,7 +3511,9 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   gap: 30px;
+  transform: translateY(-30px);
 }
 
 .modal-contentTicket div{
@@ -3527,6 +3529,10 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .size{
   font-size: 15px !important;
+}
+
+.figBlacklist{
+  margin: 0;
 }
 
 /* Authentikator */
