@@ -1563,6 +1563,12 @@ header ul + div {
   cursor: pointer;
   color: black !important;
   transition: background-color 0.3s ease-in-out;
+  display: flex;
+}
+#btnAjoutPhoto >img{
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 #detailsOffer input[type="file"],
@@ -3505,7 +3511,9 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   gap: 30px;
+  transform: translateY(-30px);
 }
 
 .modal-contentTicket div{
@@ -3521,6 +3529,10 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .size{
   font-size: 15px !important;
+}
+
+.figBlacklist{
+  margin: 0;
 }
 
 /* Authentikator */
@@ -5890,24 +5902,21 @@ div[id="messageErreur"] {
     line-height: 1.5;
   }
 
-  label[for="cgu"] {
-    white-space: normal;
-  }
-
   .creation-compte .ligne7 > input {
     width: 40px;
     margin: 0 15px;
   }
 
+  
   .ligne7 input[type="checkbox"] {
     margin-right: 8px;
     transform: scale(1.2);
   }
-
+  
   .creation-compte div.ligne2 > label, div.ligne3 > label {
     margin: 5px;
   }
-
+  
   .creation-compte label {
     text-align: left;
     margin-bottom: 5px;

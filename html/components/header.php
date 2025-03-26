@@ -9,7 +9,9 @@
                 if ($isLoggedIn) {
                     if ($_SESSION["typeUser"] == "pro_public" || $_SESSION["typeUser"] === "pro_prive") { //si on est authentifer en tant que pro public ou pro privé
                 ?>
-                        <h3 id="pro">PROFESSIONNEL</h3>
+                        <h3 id="pro">PRO</h3>
+ 
+                    
                 <?php
                     }
                 }
@@ -17,7 +19,7 @@
                 if ($isLoggedIn) {
                     if ($_SESSION["typeUser"] == "admin" ) { // si on est authentifer en tant qu'administrateur
                 ?>
-                        <h3 id="pro">ADMINISTRATEUR</h3>
+                        <h3 id="pro">ADMIN</h3>
                 <?php
                     }
                 }

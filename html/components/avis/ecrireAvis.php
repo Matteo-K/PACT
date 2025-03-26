@@ -59,9 +59,10 @@
 
         <!-- Photos -->
         <div id="divAjoutPhoto">
-            <label id="btnAjoutPhoto" for="ajoutPhoto" class="classAjouterPhotos">Ajouter des Photos</label>
-            <!-- <input type="file" id="ajoutPhoto" name="ajoutPhoto[]" accept="image/PNG, image/JPG, image/JPEG, image/WEBP, image/GIF" method="post" multiple>  je teste-->
-            <!-- <div id="afficheImages"></div> Gabriel je teste avec mon truc ewen  -->
+            <label id="btnAjoutPhoto" for="ajoutPhoto" class="classAjouterPhotos">
+                <img src="./img/icone/addImage.png" alt="Icone d'ajout d'image" title="Icone d'ajout d'image">
+                <p>Ajouter des Photos</p>
+            </label>
             <input
                 type="file"
                 id="ajoutPhoto"
