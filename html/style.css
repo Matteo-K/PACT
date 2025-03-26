@@ -5696,7 +5696,7 @@ label#btnAjoutPhoto:hover {
   align-items: center;
   margin: 10px 26px;
   text-align: left;
-  justify-content: space-between;
+  justify-content: left;
   width: 860px;
 }
 
