@@ -1111,7 +1111,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             }
                             for ($i = 0; $i < $ticketRestant; $i++) {
                             ?>
-                                <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                                <figure>
+                                    <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                                </figure>
                             <?php
                             }
                             ?>
