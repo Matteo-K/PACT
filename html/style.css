@@ -3513,6 +3513,7 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: center;
   width: 100%;
   gap: 30px;
+  transform: translateY(-30px);
 }
 
 .modal-contentTicket div{
