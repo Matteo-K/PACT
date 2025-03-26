@@ -3529,6 +3529,10 @@ label[for="rest_ajoutPhotoMenu"] {
   font-size: 15px !important;
 }
 
+#figBlacklist{
+  margin: 0;
+}
+
 /* Authentikator */
 
 .authentikator{
