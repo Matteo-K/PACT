@@ -11,7 +11,7 @@
                     aria-label="Étoile <?= $i ?> sur 5">
                 </div>
             <?php } ?>
-            <input name="note" id="note-value" type="hidden" value="" required>
+            <input name="note" id="note-value" type="hidden" value="">
         </div>
         <span class="error_form" style="display: none;"></span>
 
@@ -56,19 +56,19 @@
         </div>
 
         <!-- Titre et Avis -->
-        <div>
+        <div id="titreAvis">
             <div>
                 <label id="ajoutTitre" for="titre">Donnez un titre à l'avis *</label>
                 <span class="error_form" style="display: none;"></span>
             </div>
-            <input id="titre" name="titre" type="text" required>
+            <input id="titre" name="titre" type="text" >
         </div>
-        <div>
+        <div id="textAvis">
             <div>
                 <label id="ajoutCommentaire" for="avis">Ajoutez votre commentaire *</label>
                 <span class="error_form" style="display: none;"></span>
             </div>
-            <textarea id="avis" name="avis" required></textarea>
+            <textarea id="avis" name="avis" ></textarea>
         </div>
 
         <!-- Photos -->
@@ -88,7 +88,7 @@
         </div>
         <!-- Consentement -->
         <div>
-            <input id="consentement" name="consentement" type="checkbox" required>
+            <input id="consentement" name="consentement" type="checkbox">
             <div>
                 <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
                 <span class="error_form" style="display: none;"></span>
@@ -199,6 +199,18 @@
             }
             else if (!selectionne) {
                 const errorMessage = document.querySelector("#accompagnant > div > .error_form");
+                errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
+                errorMessage.style.display = "block";
+                errorMessage.scrollIntoView({ behavior: "smooth" });
+                return false; 
+            } else if(document.getElementById("titre") && document.getElementById("titre").value.trim() === ""){
+                const errorMessage = document.querySelector("#titreAvis > div > .error_form");
+                errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
+                errorMessage.style.display = "block";
+                errorMessage.scrollIntoView({ behavior: "smooth" });
+                return false; 
+            } else if(document.getElementById("avis") && document.getElementById("avis").value.trim() === ""){
+                const errorMessage = document.querySelector("#textAvis > div > .error_form");
                 errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
                 errorMessage.style.display = "block";
                 errorMessage.scrollIntoView({ behavior: "smooth" });

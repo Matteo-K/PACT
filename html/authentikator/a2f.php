@@ -90,6 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <section>
                 <p id="status" style="color: red;"><?php echo $errorMessage; ?></p>
                 <aside>
+                    <button id="a2f_cancel" class="modifierBut" >Annuler</button>
                     <button id="a2f_submit" type="submit" class="modifierBut" >Vérifier</button>
                 </aside>
             </section>
@@ -105,6 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             document.getElementById("code_2fa6"),
         ];
         const submit = document.getElementById("a2f_submit");
+        const cancel = document.getElementById("a2f_cancel");
 
         inputs[0].focus();
 
@@ -126,6 +128,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     inputs[index - 1].focus();
                 }
             });
+
+            cancel.addEventListener("click", (e) => {
+                e.preventDefault(); // empêche le comportement par défaut du bouton (submit)
+                window.location.href = "../index.php"; // redirection vers l'accueil
+            });
+
         });
     </script>
 </body>
