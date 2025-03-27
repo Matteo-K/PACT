@@ -211,7 +211,7 @@
 
         function checkDate(){
             let res = true
-            if (!date[0].value.trim()) {
+            if (!date.value.trim()) {
                 errorMessageDate.textContent = "Veuillez sélectionner une date avant de soumettre votre avis.";
                 errorMessageDate.style.display = "block";
                 date.classList.add("inputErreur");
