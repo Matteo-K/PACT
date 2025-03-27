@@ -308,13 +308,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <p class="Enligne infoP StatutAffiche <?= $class ?>"><?= $titre ?></p>
                         </section>
                 </section>
-
+                <?php $desactiveOffre = $offre[0]['statut'] === 'delete' ? 'disabled' : ''; ?>
                 <div class="buttonDetails">
                     <form class="taille6" method="post" action="changer_statut.php">
                         <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
                         <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
                         <input type="hidden" name="nouveau_statut" value="<?php echo $offre[0]['statut'] === 'inactif' ? 'actif' : 'inactif'; ?>">
-                        <button class="modifierBut" type="submit">
+                        <button 
+                            class="modifierBut <?= $desactiveOffre ?>"
+                            <?= $desactiveOffre ?>
+                            type="submit">
                             <?php echo $offre[0]['statut'] === 'inactif' ? 'Mettre en ligne' : 'Mettre hors ligne'; ?>
                         </button>
                     </form>
@@ -323,7 +326,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <input type="hidden" name="idOffre" value="<?php echo $offre[0]['idoffre']; ?>">
                             <input type="hidden" name="page" value="2">
                             <button
-                                class="modifierBut <?php echo $offre[0]['statut'] === 'actif' ? 'disabled' : ''; ?>"
+                                class="modifierBut <?php echo $offre[0]['statut'] === 'actif' || $offre[0]['statut'] === 'delete' ? 'disabled' : ''; ?>"
+                                <?php echo $offre[0]['statut'] === 'actif' || $offre[0]['statut'] === 'delete' ? 'disabled' : ''; ?>
                                 type="submit"
                                 onmouseover="showMessage(event)"
                                 onmouseout="hideMessage(event)"
@@ -335,10 +339,20 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </form>
                     </div>
                     <section class="taille6">
-                        <button id="openModalBtn" class="modifierBut">Gérer mes options</button>
+                        <button 
+                            id="openModalBtn" 
+                            class="modifierBut <?= $desactiveOffre ?>"
+                            <?= $desactiveOffre ?>>
+                            Gérer mes options
+                        </button>
                     </section>
                     <section class="taille6">
-                        <button id="btnDemandeSuppression" class="modifierBut">Suppression</button>
+                        <button 
+                            id="btnDemandeSuppression" 
+                            class="modifierBut <?= $desactiveOffre ?>"
+                            <?= $desactiveOffre ?>>
+                            Suppression
+                        </button>
                     </section>
                 <?php
                     }
