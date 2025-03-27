@@ -197,7 +197,9 @@
                 errorMessageNote.scrollIntoView({ behavior: "smooth" });
                 res = false;
             }
-            errorMessageNote.style.display = "none";
+            else{
+                errorMessageNote.style.display = "none";
+            }
             return res
         }
 
@@ -218,7 +220,9 @@
                 errorMessageAccompagnant.scrollIntoView({ behavior: "smooth" });
                 res = false; 
             }
-            errorMessageAccompagnant.style.display = "none";
+            else{
+                errorMessageAccompagnant.style.display = "none";
+            }
             return res
         }
 
@@ -230,7 +234,9 @@
                 errorMessageTitre.scrollIntoView({ behavior: "smooth" });
                 res = false;
             }
-            errorMessageTitre.style.display = "none";
+            else{
+                errorMessageTitre.style.display = "none";
+            }
             return res
         }
 
@@ -241,8 +247,9 @@
                 errorMessageAvis.style.display = "block";
                 errorMessageAvis.scrollIntoView({ behavior: "smooth" });
                 res = false;
+            } else{
+                errorMessageAvis.style.display = "none";
             }
-            errorMessageAvis.style.display = "none";
             return res
         }
 
@@ -253,8 +260,9 @@
                 errorMessageConsentement.style.display = "block";
                 errorMessageConsentement.scrollIntoView({ behavior: "smooth" });
                 res = false;
+            } else{
+                errorMessageConsentement.style.display = "none";
             }
-            errorMessageConsentement.style.display = "none";
             return res
         }
 
