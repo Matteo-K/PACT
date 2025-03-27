@@ -3563,7 +3563,33 @@ label[for="rest_ajoutPhotoMenu"] {
   object-fit: contain;
 }
 
+#bodyA2f{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+}
 
+#a2f{
+  width: 40%;
+  height: 60%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#a2f div{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+#a2f input{
+  width: 30px;
+  height: 45px;
+  background-color: grey;
+  border-radius: 5px;
+}
 
 
 /* GABRIEL */
