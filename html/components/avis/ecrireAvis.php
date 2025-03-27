@@ -219,8 +219,8 @@
             }
             return res
         }
-        titre.addEventListener("blur", () => checkDate());
-        titre.addEventListener("focus", () => {
+        date.addEventListener("blur", () => checkDate());
+        date.addEventListener("focus", () => {
             errorMessageDate.style.display = "none";
             date.classList.remove("inputErreur");
         });
