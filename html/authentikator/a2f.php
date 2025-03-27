@@ -8,9 +8,25 @@ if (!isset($_COOKIE['attempts'])) {
     setcookie('attempts', 0, time() + 3600, "/"); 
 }
 
+// ⚠️ Vérification du blocage
+if (isset($_COOKIE['blocked_until'])) {
+    $remaining = (int)$_COOKIE['blocked_until'] - time();
+    if ($remaining > 0) {
+        echo "<script>
+            alert('Trop de tentatives. Veuillez réessayer dans " . ceil($remaining / 60) . " minutes.');
+            window.location.href = '../index.php';
+        </script>";
+        exit;
+    } else {
+        // Temps expiré → suppression des cookies
+        setcookie('attempts', '', time() - 3600, "/");
+        setcookie('blocked_until', '', time() - 3600, "/");
+    }
+}
+
 $tempSessionData = [
-    'idUser' => (isset($_SESSION['idUser']))?( $_SESSION['idUser']) : (isset($_POST['idu'])? $_POST['idu'] : null),
-    'typeUser' => isset($_SESSION['typeUser']) ? $_SESSION['typeUser'] : (isset($_POST['idu'])? $_POST['type'] : null)
+    'idUser' => (isset($_SESSION['idUser'])) ? $_SESSION['idUser'] : (isset($_POST['idu']) ? $_POST['idu'] : null),
+    'typeUser' => isset($_SESSION['typeUser']) ? $_SESSION['typeUser'] : (isset($_POST['idu']) ? $_POST['type'] : null)
 ];
 
 if (isset($_SESSION['idUser'])) unset($_SESSION['idUser']);
@@ -41,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['typeUser'] = $tempSessionData['typeUser'];
 
         setcookie('attempts', 0, time() - 3600, "/");
+        setcookie('blocked_until', '', time() - 3600, "/");
 
         header('Location: ../index.php'); 
         exit;
@@ -49,17 +66,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         setcookie('attempts', $attempts, time() + 3600, "/");
 
         if ($attempts >= 3) {
+            $blockTime = time() + 600; // 10 minutes
+            setcookie('blocked_until', $blockTime, $blockTime, "/");
             session_unset();
             session_destroy();
-            setcookie('attempts', '', time() - 3600, "/"); 
-            header('Location: ../index.php');
+            echo "<script>
+                alert('Trop de tentatives. Veuillez réessayer dans 10 minutes.');
+                window.location.href = '../index.php';
+            </script>";
             exit;
         }
 
-        $errorMessage = "Code invalide. Vous avez " . (3 - $attempts) . " tentatives restantes.";
+        $errorMessage = "Code invalide. Il vous reste " . (3 - $attempts) . " tentative(s).";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
