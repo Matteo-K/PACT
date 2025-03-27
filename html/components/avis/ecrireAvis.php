@@ -1,5 +1,5 @@
 <section>
-    <form id="formCreationAvis" action="/enregAvis.php?membre" method="post" enctype="multipart/form-data">
+    <form id="formCreationAvis" onsubmit="return validerFormulaire()" action="/enregAvis.php?membre" method="post" enctype="multipart/form-data">
         <div class="note">
             <!-- Étoiles pour la notation -->
             <?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -30,7 +30,7 @@
         <div id='accompagnant'>
             <label>Qui vous accompagnait ? *</label>
             <div id="enCompagnie">
-                <input type="radio" id="seul" name="compagnie" value="Seul" required>
+                <input type="radio" id="seul" name="compagnie" value="Seul">
                 <label class="tag" for="seul">Seul(e)</label>
 
                 <input type="radio" id="amis" name="compagnie" value="Amis">
@@ -319,5 +319,23 @@
     // Fonction pour générer un ID unique
     function generateUniqueId() {
         return "temp_" + Math.random().toString(36).substr(2, 9);
+    }
+
+    function validerFormulaire() {
+        const radios = document.getElementsByName('compagnie');
+        let selectionne = false;
+        for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                selectionne = true;
+                break;
+            }
+        }
+
+        if (!selectionne) {
+            alert("Veuillez sélectionner qui vous accompagner.");
+            return false;
+        }
+
+        return true;
     }
 </script>
