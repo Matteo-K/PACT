@@ -65,7 +65,7 @@
     if (isset($_POST['mdp'])) {
         if(password_verify($_POST['mdp'], $pwdApi['password'])){
             //suppression des images (en BDD et sur le serveur) liées aux avis du membre supprimé
-            $stmt = $conn -> prepare ("SELECT listimage FROM pact.avis WHERE idu = ? AND listimage != null");
+            $stmt = $conn -> prepare ("SELECT listimage FROM pact.avis WHERE idu = ? AND listimage IS NOT null");
             $stmt->execute([$userId]);
             $imagesAvis = $stmt -> fetch(PDO::FETCH_ASSOC);
 
