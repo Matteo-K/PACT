@@ -71,12 +71,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <form method="POST" action="a2f.php">
             <div>
-                <input type="text" id="code_2fa1" name="code_2fa1" maxlength="1" required>
-                <input type="text" id="code_2fa2" name="code_2fa2" maxlength="1" required>
-                <input type="text" id="code_2fa3" name="code_2fa3" maxlength="1" required>
-                <input type="text" id="code_2fa4" name="code_2fa4" maxlength="1" required>
-                <input type="text" id="code_2fa5" name="code_2fa5" maxlength="1" required>
-                <input type="text" id="code_2fa6" name="code_2fa6" maxlength="1" required>
+                <article>
+                    <input type="text" id="code_2fa1" name="code_2fa1" maxlength="1" required>
+                    <input type="text" id="code_2fa2" name="code_2fa2" maxlength="1" required>
+                    <input type="text" id="code_2fa3" name="code_2fa3" maxlength="1" required>
+                </article>
+                <article>
+                    <input type="text" id="code_2fa4" name="code_2fa4" maxlength="1" required>
+                    <input type="text" id="code_2fa5" name="code_2fa5" maxlength="1" required>
+                    <input type="text" id="code_2fa6" name="code_2fa6" maxlength="1" required>
+                </article>
             </div>
             <input type="hidden" name="idu" value="<?php echo $tempSessionData['idUser'] ?>">
             <input type="hidden" name="type" value="<?php echo $tempSessionData['typeUser'] ?>">
