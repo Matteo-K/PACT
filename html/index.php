@@ -34,14 +34,13 @@
             ?>
             <form id="form_duree_blacklist">
               <fieldset>
-                <legend>Récupération du blacklistage <span></span></legend>
+                <legend>Récupération du blacklistage <span id="blacklist_update" class="updateForm"></span></legend>
                 <div>
                   <input type="number" name="duree_blacklist" id="duree_blacklist" value="<?= $duree ?>">
                   <select name="intervall_blacklist" id="intervall_blacklist">
-                    <?php echo $unite . " " . gettype($unite) ?>
-                    <option value="minutes" <?= $unite == "minutes" ? "selected" : "" ?>>minutes</option>
-                    <option value="hours" <?= $unite == "hours" ? "selected" : "" ?>>heures</option>
-                    <option value="days" <?= $unite == "days" ? "selected" : "" ?>>jours</option>
+                    <option value="minutes" <?= $unite === "minutes" ? "selected" : "" ?>>minutes</option>
+                    <option value="hours" <?= $unite === "heures" ? "selected" : "" ?>>heures</option>
+                    <option value="days" <?= $unite === "jours" ? "selected" : "" ?>>jours</option>
                   </select>
                 </div>
                 <label id="res_duree_blacklist"></label>
@@ -52,9 +51,17 @@
               const resLabel = document.getElementById("res_duree_blacklist");
               const dureeInput = document.getElementById("duree_blacklist");
               const intervallInput = document.getElementById("intervall_blacklist");
+              const backlist_update = document.getElementById("blacklist_update");
+              let dureeBefore = dureeInput.value.trim();
 
               function checkDuree() {
                 const duree = dureeInput.value.trim();
+
+                if (duree !== dureeBefore) {
+                  backlist_update.textContent = "Modifié";
+                } else {
+                  backlist_update.textContent = "";
+                }
 
                 if (!/^\d+$/.test(duree) || parseInt(duree) < 1) {
                     resLabel.textContent = "Veuillez entrer une durée valide (chiffre positif).";
@@ -88,6 +95,9 @@
                     if (data.resultat) {
                         resLabel.textContent = "Durée modifié";
                         resLabel.style.color = "green";
+
+                        backlist_update.textContent = "";
+                        dureeBefore = duree;
                     } else {
                         resLabel.textContent = "Erreur lors de la modification";
                         resLabel.style.color = "red";
