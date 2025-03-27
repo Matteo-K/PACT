@@ -88,7 +88,7 @@
         </div>
         <!-- Consentement -->
         <div id="consentement">
-            <input id="consentement" name="consentement" type="checkbox">
+            <input id="consentement" name="consentement" type="checkbox" required>
             <div>
                 <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
                 <span class="error_form" style="display: none;"></span>
@@ -98,7 +98,7 @@
         <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
         <input type="hidden" name="action" value="ecrireAvis">
         <div class="soumission">
-            <button type="submit">Soumettre l'avis</button>
+            <button type="submit" >Soumettre l'avis</button>
         </div>
     </form>
 </section>
@@ -240,6 +240,8 @@
             return res
         }
 
+        titre.addEventListener("blur", () => checkTitre());
+
         function checkAvis(){
             let res = true
             if (avis && avis.value.trim() === "") {
@@ -253,25 +255,13 @@
             return res
         }
 
-        function checkConsentement(){
-            let res = true
-            if (!consentement.checked) {
-                errorMessageConsentement.textContent = "Veuillez certifier que cet avis reflète votre expérience avant de le soumettre.";
-                errorMessageConsentement.style.display = "block";
-                errorMessageConsentement.scrollIntoView({ behavior: "smooth" });
-                res = false;
-            } else{
-                errorMessageConsentement.style.display = "none";
-            }
-            return res
-        }
+        avis.addEventListener("blur", () => checkAvis)
 
         function validerFormulaire() {
             let noteCheck = checkNote();
             let accompagnantCheck = checkAccompagnant();
             let titreCheck = checkTitre();
             let avisCheck = checkAvis();
-            let consentementCheck = checkConsentement();
         }
         // Validation avant la soumission
         formCreationAvis.addEventListener("submit", (event) => {
