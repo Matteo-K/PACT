@@ -176,14 +176,13 @@
             }
 
             if (!noteInput.value) {
-                event.preventDefault();
+                const errorMessage = document.getElementById("error_form");
                 errorMessage.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
                 errorMessage.style.display = "block";
                 return false;
                 
             }
             else if (!selectionne) {
-                event.preventDefault();
                 const errorMessage = document.getElementById("error_form");
                 errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
                 errorMessage.style.display = "block"; // Affiche le message d'erreur
@@ -195,7 +194,8 @@
         }
         // Validation avant la soumission
         formCreationAvis.addEventListener("submit", (event) => {
-            
+            event.preventDefault();
+            validerFormulaire();
         });
     });
     const maxImages = 3; // Nombre maximum d'images autorisé
