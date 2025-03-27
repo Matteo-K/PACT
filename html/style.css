@@ -1596,7 +1596,7 @@ header ul + div {
   font-style: italic;
 }
 
-#divConsentement{
+#divConsentement > div > label{
   display: flex;
   align-items: center;
   justify-content: center;
