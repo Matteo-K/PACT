@@ -1585,7 +1585,7 @@ header ul + div {
 #accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child, #divDate > div:first-child{
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 35%;
 }
 .note + .error_form,
 #accompagnant > div:first-child > .error_form, 
@@ -1596,6 +1596,13 @@ header ul + div {
   font-size: 14px;
   font-weight: normal;
   font-style: italic;
+}
+
+#divDate > input, 
+#accompagnant > #enCompagnie, 
+#titreAvis > input, 
+#textAvis > textarea {
+  width: 60%;
 }
 
 #divConsentement > div > label{
@@ -5115,7 +5122,6 @@ details .blacklist {
 /* Champs d'entrée */
 #formCreationAvis input,
 #formCreationAvis textarea {
-  width: 65%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -5166,6 +5172,7 @@ details .blacklist {
   cursor: pointer;
   color: black !important;
   transition: background-color 0.3s ease-in-out;
+  font-size: 18px;
 }
 
 label#btnAjoutPhoto:hover {
@@ -5550,6 +5557,8 @@ label#btnAjoutPhoto:hover {
     justify-content: space-between;
     align-items: flex-start !important;
   }
+
+  
 }
 
 /* ========================= */
