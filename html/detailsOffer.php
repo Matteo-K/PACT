@@ -289,7 +289,23 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     if (($typeUser == "pro_public" || $typeUser == "pro_prive")) {
                     ?>
                         <section>
-                            <p class="Enligne infoP StatutAffiche <?php echo $offre[0]['statut'] == 'actif' ? "" : "horslgnOffre" ?>"><?php echo $offre[0]['statut'] == 'actif' ? "En Ligne" : "Hors Ligne" ?></p>
+                            <?php switch ($offre[0]['statut']) {
+                                case 'actif':
+                                    $titre = "En Ligne";
+                                    $class = "";
+                                    break;
+
+                                case 'inactif':
+                                    $titre = "Hors ligne";
+                                    $class = "horslgnOffre";
+                                    break;
+
+                                case 'delete':
+                                    $titre = "Suppression";
+                                    $class = "supression";
+                                    break;
+                            } ?>
+                            <p class="Enligne infoP StatutAffiche <?= $class ?>"><?= $titre ?></p>
                         </section>
                 </section>
 
