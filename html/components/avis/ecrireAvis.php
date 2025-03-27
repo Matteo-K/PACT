@@ -253,7 +253,7 @@
         }
 
         radios.forEach(radio => {
-            radio.addEventListener("blur", () => checkAccompagnant());
+            radio.addEventListener("change", () => checkAccompagnant());
         });
 
 
