@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $intervall_blacklist = $inputData['intervall_blacklist'];
 
         try {
-            $stmt = $conn->prepare("UPDATE pact._parametre SET dureeblacklistage=?, uniteblacklist=?");
+            $stmt = $conn->prepare("UPDATE pact._parametre SET dureeblacklistage=?, uniteblacklist=? WHERE id=1");
             $stmt->execute([intval($duree_blacklist), $intervall_blacklist]);
 
             echo json_encode([
