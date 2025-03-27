@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Définir le tableau fieldsToValidate en fonction du fichier
-    let fieldsToValidate;
+    let fieldsToValidate = [];
 
     if (currentFile === 'accountPro.php') {
         fieldsToValidate = [

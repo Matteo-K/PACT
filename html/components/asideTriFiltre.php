@@ -19,7 +19,7 @@
         <aside id="tri">
             <div id="titreAside">
                 <h2>Trier</h2>
-                <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet tri" onclick="fermeAside()">
+                <img src="img/icone/croix.png" alt="Fermer l'onglet tri" onclick="fermeAside()">
             </div>
             <div class="blcTriFiltre">
                 <div>
@@ -55,7 +55,7 @@
         <aside id="filtre" class="asdTriFiltre">
             <div id="titreAside">
                 <h2>Filtrer</h2>
-                <img src="img/icone/croix_blanche.png" alt="Fermer l'onglet filtre" onclick="fermeAside()">
+                <img src="img/icone/croix.png" alt="Fermer l'onglet filtre" onclick="fermeAside()">
             </div>
             <div class="blcTriFiltre">
                 <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
@@ -244,7 +244,9 @@
         </aside>
         <aside id="carte_offres">
             <div id="map">
+                <img src="img/icone/croix.png" alt="Fermer l'onglet tri" onclick="fermeAside()">
             </div>
+            
         </aside>
     </div>
 </section>

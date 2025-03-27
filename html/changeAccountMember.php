@@ -14,6 +14,13 @@
     // Récupérer l'ID de l'utilisateur connecté
     $userId = $_SESSION['idUser'];
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_SESSION["a2f_verifier"]) && $_POST["authentikator"]) {
+            $stmt = $conn->prepare("UPDATE pact._utilisateur set secret_a2f = ? , confirm_a2f = ? WHERE idu = ?");
+            $stmt->execute([$_SESSION["secret_a2f"],true,$userId]);
+        }
+    }
+
     // Récupérer les informations de l'utilisateur depuis la base de données
     try {
         $stmt = $conn->prepare("SELECT * FROM pact.membre WHERE idU = ?");
@@ -57,6 +64,22 @@
     $erreurSupprCompte = false;
     if (isset($_POST['mdp'])) {
         if(password_verify($_POST['mdp'], $pwdApi['password'])){
+            //suppression des images (en BDD et sur le serveur) liées aux avis du membre supprimé
+            $stmt = $conn -> prepare ("SELECT listimage FROM pact.avis WHERE idu = ? AND listimage != null");
+            $stmt->execute([$userId]);
+            $imagesAvis = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+            if ($imagesAvis != false) {
+                $listimage = trim($imagesAvis, '{}');
+                $pictures = explode(',', $listimage);
+
+                $stmt = $conn -> prepare ("DELETE from pact._avisimage where url = ?"); 
+
+                foreach ($pictures as $pic) {
+                    $stmt->execute([$pic]);
+                }
+            }
+            //suppression du compte (géré par le trigger en BDD)
             $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
             $stmt -> execute();
             header("Location: logout.php");
@@ -314,6 +337,29 @@
                 <!-- Saisi de la ville -->
                 <input type="text" placeholder="Brest" id="ville" name="ville" value="<?= isset($user['ville']) ? htmlspecialchars($user['ville']) : '' ?>" required>
             </div>
+            <?php
+                $stmt = $conn->prepare("SELECT * FROM pact._utilisateur WHERE idu = ?");
+                $stmt->execute([$userId]);
+                $userA2f = $stmt->fetch();
+                if ($userA2f["confirm_a2f"] != true) {
+            ?>
+                <div class="authentikator">
+                    <!-- Checkbox de A2F -->
+                    <label for="authentikator">
+                        <input type="checkbox" id="authentikator" name="authentikator" hidden/>
+                        <span class="checkmark" id="qrcode"></span>
+                        J’utilise l'authentification à deux facteurs
+                    </label>
+                    <div  id="divAuthent">
+                        <label>Entrez le code à 6 chiffres :</label>
+                        <input type="text" id="code_2fa" name="code_2fa" maxlength="6">
+                        <div id="status"></div>
+                    </div>
+                </div>
+                <script src="authentikator/authentikator.js"></script>
+            <?php
+                }
+            ?>
 
             <button type="submit" id="boutonInscription">Valider</button>
         </form>
@@ -483,7 +529,6 @@
             
         }
     </script>
-
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
 

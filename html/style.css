@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Lilita+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
 
+@import url(animations.css);
 /* Style globale */
 
 :root {
@@ -1555,13 +1556,23 @@ header ul + div {
 }
 
 #btnAjoutPhoto {
-  background-color:  var(--primary);
+  background-color: var(--primary);
   border: 3px solid var(--primary);
   border-radius: 10px;
   margin: 0;
   cursor: pointer;
   color: black !important;
   transition: background-color 0.3s ease-in-out;
+  display: flex;
+  gap: 20px;
+  width: 10em;
+  align-items: center;
+  justify-content: flex-start;
+}
+#btnAjoutPhoto >img{
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 #detailsOffer input[type="file"],
@@ -2219,10 +2230,23 @@ label[for="rest_ajoutPhotoMenu"] {
 #map {
   height: 50vh;
   width: 90%;
+  z-index: 0;
 }
 #carte_offres > #map {
   width:100%;
   height: 100%;
+}
+
+#carte_offres > #map > img {
+  position: relative;
+  width: 2rem;
+  z-index: 500;
+  float: right;
+  
+}
+
+.leaflet-touch .leaflet-bar, #carte_offres > #map > img{
+  margin: 1.5em;
 }
 
 /* A suppr pre sprint 3 */
@@ -2993,8 +3017,8 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #titreAside img {
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   object-fit: contain;
   cursor: pointer;
 }
@@ -3491,7 +3515,9 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   gap: 30px;
+  transform: translateY(-30px);
 }
 
 .modal-contentTicket div{
@@ -3509,10 +3535,15 @@ label[for="rest_ajoutPhotoMenu"] {
   font-size: 15px !important;
 }
 
+.figBlacklist{
+  margin: 0;
+}
+
 /* Authentikator */
 
 .authentikator{
-  margin-left: 50px !important;
+  margin-left: 30px !important;
+  /* margin-right: 50px !important; */
 }
 
 #divAuthent {
@@ -5675,7 +5706,7 @@ label#btnAjoutPhoto:hover {
   align-items: center;
   margin: 10px 26px;
   text-align: left;
-  justify-content: space-between;
+  justify-content: left;
   width: 860px;
 }
 
@@ -5708,7 +5739,7 @@ label#btnAjoutPhoto:hover {
   display: flex;
   align-items: center;
   /* margin: 0 5px 20px; */
-  margin-left: 50px;
+  margin-left: 30px;
   text-align: left;
   justify-content: left;
 }
@@ -5753,6 +5784,15 @@ input[id="ville"] {
 
 input[id="radioPublic"], input[id="radioPrive"] {
   display: none;
+}
+
+input[id="code_2fa"] {
+  width: 200px;
+  height: 40px;
+  margin: 0 5px;
+  text-align: center;
+  border: 0;
+  border-bottom: solid 2px var(--primary);
 }
 
 input[id="siren"] {
@@ -5809,9 +5849,14 @@ div[id="messageErreur"] {
   width: 408px;
 }
 
+#divNewPFP {
+  display: flex;
+  align-items: center;
+}
+
 /* Média query pour passer au format téléphone */
 @media (max-width: 600px) {
-  #inscriptionTitre {
+  #inscriptionTitre, #changerInfoTitre {
     font-size: 45px;
     margin-top: 5vh;
   }
@@ -5857,6 +5902,8 @@ div[id="messageErreur"] {
   .creation-compte .ligne7 > label {
     font-size: 18px;
     width: 400px;
+    flex-wrap: wrap;
+    line-height: 1.5;
   }
 
   .creation-compte .ligne7 > input {
@@ -5864,10 +5911,16 @@ div[id="messageErreur"] {
     margin: 0 15px;
   }
 
+  
+  .ligne7 input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+  }
+  
   .creation-compte div.ligne2 > label, div.ligne3 > label {
     margin: 5px;
   }
-
+  
   .creation-compte label {
     text-align: left;
     margin-bottom: 5px;
@@ -5908,9 +5961,9 @@ div[id="messageErreur"] {
 
   div[id="messageErreur"] {
     text-align: center;
-    font-size: 16px;
     color: red;
     margin-bottom: 20px;
+    max-width: 460px;
   }
 
   #dejauncompte {
@@ -5995,16 +6048,6 @@ div[id="messageErreur"] {
     order: 19;
   }
 
-  .ligne7 label {
-    flex-wrap: wrap;
-    line-height: 1.5;
-  }
-
-  .ligne7 input[type="checkbox"] {
-      margin-right: 8px;
-      transform: scale(1.2);
-  }
-
   /* Centrer la photo de profil et son label */
   #divPFPactuelle {
     display: flex;
@@ -6076,7 +6119,8 @@ div[id="messageErreur"] {
 }
 
 .connexion-compte #formConnexion {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -6170,10 +6214,21 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
   cursor: pointer;
 }
 
-#legendeBoutonLienMembre, #legendeBoutonLienPro {
+#legendeBoutonLienMembre, #legendeBoutonLienPro, #a2fTexte {
   font-size: 20px;
   color: var(--bloc);
-  width: 520px;
+  max-width: 460px;
+}
+
+#a2fTexte{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+#a2fTexte img{
+  width: 40px;
+  height: 40px;
 }
 
 /* Média query pour passer au format téléphone */
@@ -6368,7 +6423,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 .supprComptePopup div{
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 100%;
   gap: 10px;
   justify-content: flex-end;
 }
@@ -6441,6 +6496,10 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
     font-size: 18px;
   }
 
+  .supprComptePopup div{
+    width: 90%;
+  }
+
   #annuleSuppression, #confirmeSuppression{
     height: auto;
     margin: 0;
@@ -6449,3 +6508,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 }
 
 /* fin de la popup de suppression de compte */
+
+
+
+
