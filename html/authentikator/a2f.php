@@ -16,8 +16,8 @@ $tempSessionData = [
 if (isset($_SESSION['idUser'])) unset($_SESSION['idUser']);
 if (isset($_SESSION['typeUser'])) unset($_SESSION['typeUser']);
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
-    $code = htmlspecialchars($_POST['code_2fa']);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $code = htmlspecialchars($_POST['code_2fa1'] + $_POST['code_2fa2'] + $_POST['code_2fa3'] + $_POST['code_2fa4'] + $_POST['code_2fa5'] + $_POST['code_2fa6']);
 
     $stmt = $conn->prepare("SELECT * FROM pact._utilisateur WHERE idu = ?");
     $stmt->execute([$tempSessionData['idUser']]); // Utiliser l'ID utilisateur stocké temporairement
@@ -63,18 +63,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['code_2fa'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vérification 2FA</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-    <h1>Veuillez entrer votre code à 6 chiffres</h1>
+<body id="bodyA2f">
+    <div id="a2f">
+        <h1>Veuillez entrer votre code à 6 chiffres</h1>
 
-    <!-- Formulaire de saisie du code -->
-    <form method="POST" action="a2f.php">
-        <input type="text" id="code_2fa" name="code_2fa" maxlength="6" required>
-        <input type="hidden" name="idu" value="<?php echo $tempSessionData['idUser'] ?>">
-        <input type="hidden" name="type" value="<?php echo $tempSessionData['typeUser'] ?>">
-        <button type="submit">Vérifier</button>
-    </form>
-
-    <p id="status"></p>
+        <form method="POST" action="a2f.php">
+            <div>
+                <input type="text" id="code_2fa1" name="code_2fa1" maxlength="1" required>
+                <input type="text" id="code_2fa2" name="code_2fa2" maxlength="1" required>
+                <input type="text" id="code_2fa3" name="code_2fa3" maxlength="1" required>
+                <input type="text" id="code_2fa4" name="code_2fa4" maxlength="1" required>
+                <input type="text" id="code_2fa5" name="code_2fa5" maxlength="1" required>
+                <input type="text" id="code_2fa6" name="code_2fa6" maxlength="1" required>
+            </div>
+            <input type="hidden" name="idu" value="<?php echo $tempSessionData['idUser'] ?>">
+            <input type="hidden" name="type" value="<?php echo $tempSessionData['typeUser'] ?>">
+            <section>
+                <p id="status"></p>
+                <button type="submit" class="modifierBut" >Vérifier</button>
+            </section>
+        </form>
+    
+    </div>
 </body>
 </html>
