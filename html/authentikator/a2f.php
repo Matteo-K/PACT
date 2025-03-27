@@ -109,9 +109,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 if (/\d/.test(e.target.value)) {
                     if (index < inputs.length - 1) {
                         inputs[index + 1].focus();
-                    } else {
-                        submit.focus();
-                    }
+                     } //else {
+                    //     submit.focus();
+                    // }
                 } else {
                     e.target.value = "";
                 }
