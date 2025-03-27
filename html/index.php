@@ -31,6 +31,7 @@
               $row = $stmt->fetch();
               $duree = $row["dureeblacklistage"];
               $unite = $row["uniteblacklist"];
+              echo $unite;
             ?>
             <form id="form_duree_blacklist">
               <fieldset>
