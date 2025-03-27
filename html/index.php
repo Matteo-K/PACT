@@ -23,12 +23,13 @@
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") {
 
-        $stmt = $conn->prepare("SELECT idoffre FROM pact._option_offre o 
-          natural join pact._dateoption d 
+        $stmt = $conn->prepare("SELECT o.idoffre FROM pact._option_offre o 
+          natural join pact._dateoption d
+		      left join pact._offre f on f.idoffre = o.idoffre
           where d.datelancement <= CURRENT_DATE 
             AND d.datefin > CURRENT_DATE 
             AND nomoption = 'ALaUne'
-            AND statut = 'actif';"
+			      AND statut = 'actif';"
         );
         $stmt->execute();
         $idOffres = [];
