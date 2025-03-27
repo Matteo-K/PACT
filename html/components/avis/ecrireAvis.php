@@ -237,7 +237,7 @@
                 }
             }
             if (!selectionne) {
-                label.forEach(lbl => lbl.style.cssText = "background-color: red !important;");
+                label.forEach(lbl => lbl.style.cssText = "border-color: red !important;");
 
                 errorMessageAccompagnant.textContent = "Veuillez sélectionner qui vous accompagnait avant de soumettre votre avis.";
                 errorMessageAccompagnant.style.display = "block";
