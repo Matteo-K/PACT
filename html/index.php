@@ -68,7 +68,7 @@
                 return true;
               }
 
-              function checkDiff() {
+              function checkDiff(duree) {
                 if (duree !== dureeBefore || checkSelect()) {
                   backlist_update.textContent = "Modifié";
                 } else {
@@ -76,7 +76,7 @@
                 }
               }
 
-              function checkSelect(duree) {
+              function checkSelect() {
                 return intervallInput.value != intervalBefore;
               }
               
