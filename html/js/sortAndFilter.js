@@ -1019,7 +1019,7 @@ function ajouterTag(offer) {
       plusTag = offer.tags.length - nbTagMax;
       let moreTag = document.createElement("a");
       moreTag.classList.add("tagIndex");
-      moreTag.textContent = `+ ${plusTag} autres`;
+      moreTag.textContent = `+ ${plusTag} autre${plusTag > 1 ? "s" : ""}`;
       tags.appendChild(moreTag);
     }
   }
