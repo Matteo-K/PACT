@@ -14,22 +14,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo json_encode([
                 "resultat" => $stmt->rowCount() > 0
             ]);
+            exit;
         } catch (PDOException $e) {
             echo json_encode([
                 "resultat" => false,
                 "erreur" => $e->getMessage()
             ]);
+            exit;
         }
     } else {
         echo json_encode([
             "resultat" => false,
             "message" => "Données invalides"
         ]);
+        exit;
     }
 } else {
     echo json_encode([
         "resultat" => false,
         "message" => "Méthode non autorisée"
     ]);
+    exit;
 }
 ?>
