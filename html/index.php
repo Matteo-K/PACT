@@ -43,11 +43,11 @@
                     <option value="days" <?= $unite === "jours" ? "selected" : "" ?>>jours</option>
                   </select>
                 </div>
-                <label id="res_duree_blacklist"></label>
                 <input type="submit" value="confirmer">
               </fieldset>
             </form>
             <script>
+              const form_blacklist = document.getElementById("form_duree_blacklist");
               const resLabel = document.getElementById("res_duree_blacklist");
               const dureeInput = document.getElementById("duree_blacklist");
               const intervallInput = document.getElementById("intervall_blacklist");
@@ -72,51 +72,11 @@
               }
               
               dureeInput.addEventListener("blur", () => checkDuree());
-              document.getElementById("form_duree_blacklist").addEventListener("submit", (event) => {
+              form_blacklist.addEventListener("submit", (event) => {
                 event.preventDefault();
                 if (checkDuree()) {
-
-                  const duree = dureeInput.value.trim();
-                  const intervall = intervallInput.value;
-
-                  const formData = new URLSearchParams();
-                  formData.append("duree_blacklist", duree);
-                  formData.append("intervall_blacklist", intervall);
-
-                  fetch("ajax/duree_blacklist.php", {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                      'duree_blacklist': duree,
-                      'intervall_blacklist': intervall
-                    })
-                  })
-                  .then(response => {
-                    console.log('Réponse brute:', response);
-                    if (!response.ok) {
-                      throw new Error('Erreur de serveur');
-                    }
-                    return response.json();
-                  })
-                  .then(data => {
-                    if (data.resultat) {
-                      resLabel.textContent = "Durée modifié";
-                      resLabel.style.color = "green";
-
-                      backlist_update.textContent = "";
-                      dureeBefore = duree;
-                    } else {
-                      resLabel.textContent = "Erreur lors de la modification";
-                      resLabel.style.color = "red";
-                    }
-                  })
-                  .catch(error => {
-                    console.error("Erreur AJAX :", error);
-                    resLabel.textContent = "Une erreur est survenue.";
-                    resLabel.style.color = "red";
-                  });
+                  form_blacklist.submit();
+                  backlist_update.textContent = "";
                 }
               });
 
