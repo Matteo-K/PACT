@@ -178,7 +178,7 @@
                 const errorMessage = document.getElementById("error_form");
                 errorMessage.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
                 errorMessage.style.display = "block";
-                scrollToElement(errorMessage);
+                errorMessage.scrollTo();
                 return false;
                 
             }
@@ -186,7 +186,7 @@
                 const errorMessage = document.getElementById("error_form");
                 errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
                 errorMessage.style.display = "block";
-                scrollToElement(errorMessage);
+                errorMessage.scrollTo();
                 return false; 
             }
 
