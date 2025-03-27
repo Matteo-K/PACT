@@ -3645,7 +3645,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #a2f_cancel:hover{
-  background-color: white;
+  background-color: white !important;
   color: var(--rouge) !important;
 }
 
