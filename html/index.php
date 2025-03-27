@@ -53,15 +53,12 @@
               const intervallInput = document.getElementById("intervall_blacklist");
               const backlist_update = document.getElementById("blacklist_update");
               let dureeBefore = dureeInput.value.trim();
+              let intervalBefore = intervallInput.value.trim();
 
               function checkDuree() {
                 const duree = dureeInput.value.trim();
 
-                if (duree !== dureeBefore) {
-                  backlist_update.textContent = "Modifié";
-                } else {
-                  backlist_update.textContent = "";
-                }
+                checkDiff(duree);
 
                 if (!/^\d+$/.test(duree) || parseInt(duree) < 1) {
                     resLabel.textContent = "Veuillez entrer une durée valide (chiffre positif).";
@@ -70,7 +67,20 @@
                 }
                 return true;
               }
+
+              function checkDiff() {
+                if (duree !== dureeBefore || checkSelect()) {
+                  backlist_update.textContent = "Modifié";
+                } else {
+                  backlist_update.textContent = "";
+                }
+              }
+
+              function checkSelect(duree) {
+                return intervallInput.value != intervalBefore;
+              }
               
+              intervallInput.addEventListener("change", () => checkDiff(dureeInput.value.trim()));
               dureeInput.addEventListener("blur", () => checkDuree());
               form_blacklist.addEventListener("submit", (event) => {
                 event.preventDefault();
