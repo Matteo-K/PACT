@@ -183,6 +183,7 @@
 
         const date = document.getElementById('date-avis');
         const radios = document.getElementsByName('compagnie');
+        const label = document.querySelector("#enCompagnie > label.tag");
         const titre = document.getElementById("titre");
         const avis = document.getElementById("avis");
         const consentement = document.getElementById("consentement")
@@ -237,7 +238,7 @@
             }
             if (!selectionne) {
                 for (let i = 0; i < radios.length; i++) {
-                    radios[i].classList.add("inputErreur");
+                    label[i].classList.add("inputErreur");
                 }
 
                 errorMessageAccompagnant.textContent = "Veuillez sélectionner qui vous accompagnait avant de soumettre votre avis.";
@@ -248,7 +249,7 @@
                 res = false;
             } else {
                 for (let i = 0; i < radios.length; i++) {
-                    radios[i].classList.remove("inputErreur");
+                    label[i].classList.remove("inputErreur");
                 }
             }
             return res
