@@ -13,6 +13,9 @@ $tempSessionData = [
     'typeUser' => isset($_SESSION['typeUser']) ? $_SESSION['typeUser'] : (isset($_POST['idu']) ? $_POST['type'] : null)
 ];
 
+if (isset($_SESSION['idUser'])) unset($_SESSION['idUser']);
+if (isset($_SESSION['typeUser'])) unset($_SESSION['typeUser']);
+
 if (isset($_COOKIE['blocked_until'])) {
     $remaining = (int)$_COOKIE['blocked_until'] - time();
     if ($remaining > 0) {
@@ -27,10 +30,6 @@ if (isset($_COOKIE['blocked_until'])) {
         setcookie('blocked_until', '', time() - 3600, "/");
     }
 }
-
-
-if (isset($_SESSION['idUser'])) unset($_SESSION['idUser']);
-if (isset($_SESSION['typeUser'])) unset($_SESSION['typeUser']);
 
 $errorMessage = "";
 
