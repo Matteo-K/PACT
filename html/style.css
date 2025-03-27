@@ -792,6 +792,10 @@ header ul + div {
   font-size: 1.4rem !important;
 }
 
+.inputErreur {
+  border-color: red !important;
+}
+
 #manageOffer aside {
   width: 100%;
   padding-top: 20px;
@@ -5185,10 +5189,6 @@ label#btnAjoutPhoto:hover {
 #enCompagnie input[type="radio"] {
   display: none;
   margin-bottom: 0.5em;
-}
-
-.inputErreur {
-  border-color: red !important;
 }
 
 /* Ajout photo */
