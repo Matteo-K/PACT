@@ -178,7 +178,7 @@
                 const errorMessage = document.getElementById("error_form");
                 errorMessage.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
                 errorMessage.style.display = "block";
-                errorMessage.scrollTo(0);
+                errorMessage.scrollIntoView({ behavior: "smooth" });
                 return false;
                 
             }
@@ -186,7 +186,7 @@
                 const errorMessage = document.getElementById("error_form");
                 errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
                 errorMessage.style.display = "block";
-                errorMessage.scrollTo(0);
+                errorMessage.scrollIntoView({ behavior: "smooth" });
                 return false; 
             }
 
@@ -194,7 +194,6 @@
         }
         // Validation avant la soumission
         formCreationAvis.addEventListener("submit", (event) => {
-            event.preventDefault();
             validerFormulaire();
         });
     });
