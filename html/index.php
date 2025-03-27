@@ -94,6 +94,7 @@
                     })
                   })
                   .then(response => {
+                    console.log('Réponse brute:', response);
                     if (!response.ok) {
                       throw new Error('Erreur de serveur');
                     }
