@@ -231,31 +231,33 @@
             if (titre && titre.value.trim() === "") {
                 errorMessageTitre.textContent = "Veuillez saisir un titre avant de soumettre votre avis.";
                 errorMessageTitre.style.display = "block";
-                errorMessageTitre.scrollIntoView({ behavior: "smooth" });
                 res = false;
-            }
-            else{
-                errorMessageTitre.style.display = "none";
             }
             return res
         }
 
         titre.addEventListener("blur", () => checkTitre());
+        titre.addEventListener("focus", () => {
+            errorMessageTitre.style.display = "none";
+            titre.classList.remove("inputErreur");
+        });
+        
 
         function checkAvis(){
             let res = true
             if (avis && avis.value.trim() === "") {
                 errorMessageAvis.textContent = "Veuillez saisir votre avis avant de le soumettre.";
                 errorMessageAvis.style.display = "block";
-                errorMessageAvis.scrollIntoView({ behavior: "smooth" });
                 res = false;
-            } else{
-                errorMessageAvis.style.display = "none";
             }
             return res
         }
 
         avis.addEventListener("blur", () => checkAvis())
+        avis.addEventListener("focus", () => {
+            errorMessageAvis.style.display = "none";
+            avis.classList.remove("inputErreur");
+        });
 
         function validerFormulaire() {
             let noteCheck = checkNote();
