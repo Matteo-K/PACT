@@ -1589,7 +1589,7 @@ header ul + div {
 }
 
 #divConsentement{
-  margin-top: 2em;
+  margin: 0;
 }
 
 #divConsentement > div:first-child{
