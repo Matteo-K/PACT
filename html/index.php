@@ -94,7 +94,49 @@
           </article>
         </aside>
         <section>
+          <!-- Suppression d'offre -->
+          <details>
+            <summary>
+              Demande de suppression d'offre
+            </summary>
+            <ul>
+              <li>
+                <div>
+                  <img src="" alt="" title="">
+                  <div>
+                    <h3>Nom de l'offre</h3>
+                    <h4>Proposé par ...</h4>
+                  </div>
+                </div>
+                <form action="" method="post">
+                  <input type="submit" value="Supprimer">
+                  <input type="submit" value="Visualiser">
+                </form>
+              </li>
+            </ul>
+          </details>
 
+          <!-- Signalement -->
+          <details>
+            <summary>
+              Signalement
+            </summary>
+            <ul>
+              <li>
+                <div>
+                  <figure>
+                    <img src="" alt="" title="">
+                    <figcaption>Nom de l'offre</figcaption>
+                  </figure>
+                  <span>27/03/2025 - 14:42</span>
+                </div>
+                <div>
+                  <h4>Raison : </h4>
+                  <p>Complement ...</p>
+                </div>
+              </li>
+            </ul>
+          </details>
         </section>
     </div>
     <?php } else { ?>
