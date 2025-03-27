@@ -27,8 +27,7 @@
                 name="date"
                 min="<?= date('Y-m', strtotime('-1 year')) ?>"
                 max="<?= date('Y-m') ?>"
-                value="<?= date('Y-m') ?>"
-                required>
+                value="<?= date('Y-m') ?>">
         </div>
 
         <!-- Qui vous accompagnait -->
