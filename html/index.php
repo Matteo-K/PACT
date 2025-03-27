@@ -32,7 +32,7 @@
               $duree = $row["dureeblacklistage"];
               $unite = $row["uniteblacklist"];
             ?>
-            <form id="form_duree_blacklist">
+            <form action="ajax/duree_blacklist.php" method="post" id="form_duree_blacklist">
               <fieldset>
                 <legend>Récupération du blacklistage <span id="blacklist_update" class="updateForm"></span></legend>
                 <div>
