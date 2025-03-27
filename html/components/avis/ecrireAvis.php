@@ -1,5 +1,7 @@
 <section>
     <form id="formCreationAvis" onsubmit="return validerFormulaire()" action="/enregAvis.php?membre" method="post" enctype="multipart/form-data">
+        
+        <span id="error_form" style="display: none;"></span>
         <div class="note">
             <!-- Étoiles pour la notation -->
             <?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -332,7 +334,8 @@
         }
 
         if (!selectionne) {
-            alert("Veuillez sélectionner qui vous accompagner.");
+            $("#error_form").text("Veuillez sélectionner qui vous accompagnait.").style({'display': 'none', 'color': 'red'});
+            scrollToElement(document.getElementById("formCreationAvis"));
             return false;
         }
 
