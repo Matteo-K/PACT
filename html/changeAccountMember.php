@@ -67,9 +67,9 @@
             //suppression des images (en BDD et sur le serveur) liées aux avis du membre supprimé
             $stmt = $conn -> prepare ("SELECT listimage FROM pact.avis WHERE idu = ? AND listimage IS NOT null");
             $stmt->execute([$userId]);
-            $imagesAvis = $stmt -> fetch(PDO::FETCH_ASSOC);
+            $toutesImagesAvis = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
-            if ($imagesAvis != false) {
+            foreach ($toutesImagesAvis as $imagesAvis) {
                 $listimage = trim($imagesAvis['url'], '{}');
                 $pictures = explode(',', $listimage);
 
@@ -79,7 +79,8 @@
                     $stmt->execute([$pic]);
                     unlink($pic);
                 }
-            }
+            } 
+        }
             //suppression du compte (géré par le trigger en BDD)
             $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
             $stmt -> execute();
