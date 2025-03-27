@@ -86,24 +86,24 @@
                   fetch("ajax/duree_blacklist.php", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
+                      "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        'duree_blacklist': duree,
-                        'intervall_blacklist': intervall
+                      'duree_blacklist': duree,
+                      'intervall_blacklist': intervall
                     })
                   })
                   .then(response => response.json())
                   .then(data => {
                     if (data.resultat) {
-                        resLabel.textContent = "Durée modifié";
-                        resLabel.style.color = "green";
+                      resLabel.textContent = "Durée modifié";
+                      resLabel.style.color = "green";
 
-                        backlist_update.textContent = "";
-                        dureeBefore = duree;
+                      backlist_update.textContent = "";
+                      dureeBefore = duree;
                     } else {
-                        resLabel.textContent = "Erreur lors de la modification";
-                        resLabel.style.color = "red";
+                      resLabel.textContent = "Erreur lors de la modification";
+                      resLabel.style.color = "red";
                     }
                   })
                   .catch(error => {
@@ -238,7 +238,19 @@
       </div>
         <!-- Partie de recherche -->
       <div id="searchIndex" class="search">
-        <h2>Recherche</h2>
+
+        <h2>
+          <?php
+            if ($typeUser == "pro_public" || $typeUser == "pro_prive") {
+              echo "Mes offres";
+            }
+
+            else {
+              echo "Recherche";
+            }
+          ?>
+        </h2>
+
         <div id="blcSearch">
           <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
           <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />

@@ -155,17 +155,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt = $conn->prepare("SELECT url FROM pact._avisimage WHERE idc = ?");
         $stmt->execute([$idAvis]);
-        $imagesAvis = $stmt -> fetch(PDO::FETCH_ASSOC);
+        $imagesAvis = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
-        if ($imagesAvis) {
-            $listimage = trim($imagesAvis['url'], '{}');
-            $pictures = explode(',', $listimage);
-
-            foreach ($pictures as $pic) {
-                $pic = trim($pic, '"');
-                unlink($pic);
-            }
-        }
+        foreach ($imagesAvis as $img) {
+            unlink($img);
+        } 
 
         $stmt = $conn->prepare("DELETE FROM pact._avisimage WHERE idc = $idAvis");
         $stmt -> execute();

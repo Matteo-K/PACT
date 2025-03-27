@@ -90,6 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <section>
                 <p id="status" style="color: red;"><?php echo $errorMessage; ?></p>
                 <aside>
+                    <button id="a2f_cancel" class="modifierBut" >Annuler</button>
                     <button id="a2f_submit" type="submit" class="modifierBut" >Vérifier</button>
                 </aside>
             </section>

@@ -3627,7 +3627,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #a2f aside {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 #a2f p{
@@ -3639,6 +3639,20 @@ label[for="rest_ajoutPhotoMenu"] {
   gap: 15px;
 }
 
+#a2f_cancel{
+  background-color: var(--rouge) !important;
+  border: 2px solid var(--rouge) !important;
+}
+
+#a2f_cancel:hover{
+  background-color: white !important;
+  color: var(--rouge) !important;
+}
+
+#a2f_cancel:focus{
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
 
 /* GABRIEL */
 
