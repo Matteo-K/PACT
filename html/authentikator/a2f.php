@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="hidden" name="idu" value="<?php echo $tempSessionData['idUser'] ?>">
             <input type="hidden" name="type" value="<?php echo $tempSessionData['typeUser'] ?>">
             <section>
-                <p id="status" style="color: red;"><?php echo $errorMessage; ?></p>
+                <p id="status"><?php echo $errorMessage; ?></p>
                 <aside>
                     <button id="a2f_cancel" class="modifierBut" >Annuler</button>
                     <button id="a2f_submit" type="submit" class="modifierBut" >Vérifier</button>
