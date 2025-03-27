@@ -237,9 +237,7 @@
                 }
             }
             if (!selectionne) {
-                for (let i = 0; i < radios.length; i++) {
-                    label[i].style.color = 'red';
-                }
+                label.forEach(lbl => lbl.style.cssText = "color: red !important;");
 
                 errorMessageAccompagnant.textContent = "Veuillez sélectionner qui vous accompagnait avant de soumettre votre avis.";
                 errorMessageAccompagnant.style.display = "block";
@@ -248,9 +246,8 @@
                 });
                 res = false;
             } else {
-                for (let i = 0; i < radios.length; i++) {
-                    label[i].style.color = 'var(--primary)';
-                }
+                label.forEach(lbl => lbl.style.cssText = "");
+        
             }
             return res
         }
