@@ -181,7 +181,7 @@
             });
         }
 
-        const date = document.getElementsByName('date');
+        const date = document.getElementsById('date-avis');
         const radios = document.getElementsByName('compagnie');
         const titre = document.getElementById("titre");
         const avis = document.getElementById("avis");
