@@ -1563,16 +1563,18 @@ header ul + div {
   cursor: pointer;
   color: black !important;
   transition: background-color 0.3s ease-in-out;
-  display: flex;
-  gap: 20px;
-  width: 10em;
+  display: flex !important;
   align-items: center;
-  justify-content: flex-start;
+  gap: 1em;
 }
+
 #btnAjoutPhoto >img{
   width: 30px;
   height: 30px;
   object-fit: contain;
+}
+#btnAjoutPhoto > p {
+  margin-block: 0.5em;
 }
 
 #detailsOffer input[type="file"],
