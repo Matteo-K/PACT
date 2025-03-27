@@ -23,11 +23,13 @@
     <div id="index" class="<?= ($typeUser == "pro_public" || $typeUser == "pro_prive") ? "indexPro" : "" ?>">
       <?php if ($typeUser != "pro_public" && $typeUser != "pro_prive") {
 
-        $stmt = $conn->prepare("SELECT idoffre FROM pact._option_offre o 
-          natural join pact._dateoption d 
+        $stmt = $conn->prepare("SELECT o.idoffre FROM pact._option_offre o 
+          natural join pact._dateoption d
+		      left join pact._offre f on f.idoffre = o.idoffre
           where d.datelancement <= CURRENT_DATE 
             AND d.datefin > CURRENT_DATE 
-            AND nomoption = 'ALaUne';"
+            AND nomoption = 'ALaUne'
+			      AND statut = 'actif';"
         );
         $stmt->execute();
         $idOffres = [];
@@ -46,6 +48,7 @@
                 $nbElement = 20;
                 $offres = new ArrayOffer($idOffres);
                 $offres->displayCardALaUne();
+                //$offres->displayCard("<p>Aucune offre à la une </p>");
                 ?>
             </div>
           </div>
@@ -107,6 +110,7 @@
               <?php if (count($idOffres) > 0) {
                 $consultNouvelle = new ArrayOffer($idOffres);
                 $consultNouvelle->displayNouvelle();
+                //$consultNouvelle->displayCard("<p>Aucune nouvelle offres ont été posté</p>");
               ?>
               <?php } else { ?>
                 <p>Aucune nouvelle offres ont été posté</p>

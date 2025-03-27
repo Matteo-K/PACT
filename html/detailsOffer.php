@@ -29,7 +29,10 @@ if (isset($_SESSION["typeUser"]) && $_SESSION["typeUser"] == 'membre') {
         $consultRecent = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 } elseif (!isset($_SESSION["typeUser"])) {
-    $_SESSION["recent"][] = $idOffre;
+    if (!isset($_SESSION["recent"])) {
+        $_SESSION["recent"] = [];
+    }
+    array_unshift($_SESSION["recent"], $idOffre);
     $_SESSION["recent"] = array_slice($_SESSION["recent"], -10);
 }
 

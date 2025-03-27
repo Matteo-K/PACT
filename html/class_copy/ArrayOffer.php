@@ -9,14 +9,16 @@ require_once "Show.php";
 require_once "Visit.php";
 require_once "Activity.php";
 
+// Définition de l'heure française
+setlocale(LC_TIME, 'fr_FR.UTF-8');
+date_default_timezone_set('Europe/Paris');
+
 class ArrayOffer {
   // format : [$idOffre -> Objet, ...]
   private $arrayOffer;
-  private $nbOffer;
 
   public function __construct($idoffres_ = "") {
     $this->arrayOffer = [];
-    $this->nbOffer = 0;
 
     global $conn;
 
@@ -70,50 +72,47 @@ class ArrayOffer {
   }
 
   /**
-   * Renvoie le nombre d'élément dela liste
-   * Et la liste avec les éléments suivant le nombre d'élément sélectionner
-   * @param array_ liste d'offre
-   * @param elementStart_ indice de l'élément de départ
-   * @param nbElement_ nombre d'élément à prendre
-   * @return array extrait de la liste qui convient à la pagination
-   */
-  public function pagination($array_, $elementStart_ , $nbElement_) {
-    return array_slice($array_, $elementStart_, $nbElement_); 
-  }
-
-  /**
-   * Obtention de la liste d'offre pour la manipuler
-   * @param array_ liste d'offre
+   * Obtention des données de la liste d'offre pour de la manipulation
+   * @param id_ liste d'id ded offres
+   * @param attributs_ liste nom des attriburs des données des offres
    * @return array liste des informations des offres de la liste
    */
-  public function getArray($array_ = "") {
-    if (empty($array_)) {
-      $array_ = $this->arrayOffer;
-    }
-    $arrayWithData = [];
-    foreach ($array_ as $idOffre => $objet) {
-      $arrayWithData[$idOffre] = $objet->getData();
-    }
-    return $arrayWithData;
+  public function getDataArray(array $id_ = [], array $attributs_ = []) {
+    $array_ = empty($id_) ? $this->arrayOffer : array_intersect_key($this->arrayOffer, array_flip($id_));
+    return array_map(fn($offer) => $offer->getData($attributs_), $array_);
   }
 
   /**
-   * Affiche les offres à la une
+   * Chargement des données de la BDD de la liste d'offre
+   * @param id_ liste d'id ded offres
+   * @param attributs_ liste nom des attriburs des données des offres
+   * @return array liste des informations des offres de la liste
    */
-  public function displayCardALaUne() {
+  public function loadDataArray( $id_ = [], array $attributs_ = []) {
+    $array_ = empty($id_) ? $this->arrayOffer : array_intersect_key($this->arrayOffer, array_flip($id_));
+    array_walk($array_, fn($offre) => $offre->loadData($attributs_));
+  }
+
+  /// Affichage des cartes d'offres ///
+
+  /**
+   * Affiche les offres avec un message d'erreur personnalisé
+   * @param message_ message personnalisé
+   */
+  public function displayCard($message_ = "") {
     $array = $this->arrayOffer;
     if (count($array) > 0) {
       foreach ($array as $key => $elem) {
         $elem->displayCardOffer();
       }
     } else {
-      echo "<p>Aucune offre à la une </p>";
+      echo $message_;
     }
   }
   
   /**
    * Affiche les offres consulter récemment par l'utilisateur
-   * @param nbElement_ nombre d'élément à prendre
+   * @param nbElement_ nombre d'élément à affiché
    */
   public function displayConsulteRecemment($nbElement_) {
     $array = $this->arrayOffer;
@@ -125,43 +124,6 @@ class ArrayOffer {
     } else {
       echo "<p>Aucune offre consultée récemment</p>";
     }
-  }
-
-  /**
-   * Affiche les offres nouvelles par l'utilisateur
-   */
-  public function displayNouvelle() {
-    $array = $this->arrayOffer;
-    if (count($array) > 0) {
-      foreach ($array as $key => $elem) {
-        $elem->displayCardOffer();
-      }
-    } else {
-      echo "<p>Aucune nouvelle offres ont été posté</p>";
-    }
-  }
-
-  /**
-   * Affiche une liste d'offre convenant à l'utilisateur
-   * @param array_ liste d'offre
-   * @param typeUser_ type de l'utilisateur
-   * @param elementStart_ indice de l'élément de départ
-   * @param nbElement_ nombre d'élément à prendre
-   */
-  public function displayArrayCard($array_, $typeUser_, $elementStart_, $nbElement_) {
-    $array = $this->pagination($array_, $elementStart_, $nbElement_);
-    if (count($array) > 0) {
-      foreach ($array as $key => $elem) {
-        if ($typeUser_ == "pro_public" || $typeUser_ == "pro_prive") {
-          $elem->displayCardOfferPro();
-        } else {
-          $elem->displayCardOffer();
-        }
-      }
-    } else {
-      echo "<p>Aucune offre trouvée </p>";
-    }
-    return count($array_);
   }
 }
 

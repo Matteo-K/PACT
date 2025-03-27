@@ -1,6 +1,12 @@
 <?php
 
 class Show extends Offer implements Categorie {
+  protected $showData = null;
+  static public $attributs = [
+    "duree" => "duree",
+    "prixMinimal" => "prixminimal",
+    "nbPlace" => "nbplace"
+  ];
 
   public function __construct($idOffre) {
     parent::__construct($idOffre, "Spectacle");

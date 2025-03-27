@@ -1,7 +1,13 @@
 <?php
 
 class Park extends Offer implements Categorie {
-  
+  protected $parkData = null;
+  static public $attributs = [
+    "ageMinimal" => "agemin",
+    "nbAttraction" => "nbattraction",
+    "prixMinimal" => "prixminimal",
+    "urlPlan" => "urlplan",
+  ];
 
   public function __construct($idOffre) {
     parent::__construct($idOffre, "Parc Attraction");
@@ -10,7 +16,7 @@ class Park extends Offer implements Categorie {
   public function loadData($attribut = []) {
     global $conn;
 
-    $offreId = parent::getIdOffre();
+    $idOffre = parent::getIdOffre();
 
     // Séparation des attributs par table
     $attributPark = array_intersect($attribut, []);

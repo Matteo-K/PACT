@@ -1,21 +1,18 @@
 <?php
 
-// Récupérer l'heure actuelle et le jour actuel
-setlocale(LC_TIME, 'fr_FR.UTF-8');
-date_default_timezone_set('Europe/Paris');
-
 class Horaire {
   private $horaireMidi = [];
   private $horaireSoir = [];
   private $ouverture = "EstFermé";
-  private $conn;
 
-  public function __construct($conn) {
-    $this->conn = $conn;
-  }
-
+  /**
+   * Charge les horaires de la BDD
+   * @param idOffre id de l'offre
+   */
   public function loadHoraire($idOffre) {
-    $stmt = $this->conn->prepare("SELECT listhorairemidi, listhorairesoir FROM pact.offres WHERE idoffre = ?");
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT listhorairemidi, listhorairesoir FROM pact.offres WHERE idoffre = ?");
     $stmt->execute([$idOffre]);
     $horaire = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -26,8 +23,11 @@ class Horaire {
 
   /**
    * Renvoie un tableau associatif des horaires
+   * @param idOffre_ id de l'offre
+   * @return array tableau d'horaire
    */
-  public function getHoraire() {
+  public function getHoraire($idOffre_) {
+    $this->loadHoraire($idOffre_);
     return [
       "horaireMidi" => $this->horaireMidi,
       "horaireSoir" => $this->horaireSoir,
@@ -37,6 +37,7 @@ class Horaire {
 
   /**
    * Détermine le statut d'ouverture (Ouvert/Fermé)
+   * @return String état de l'offre "EstOuvert" / "EstFermé"
    */
   public function statutOuverture() {
     // Récupération de la date
@@ -61,6 +62,8 @@ class Horaire {
 
   /**
    * Convertit un tableau d'horaires en JSON
+   * @param horaire tableau des horaires
+   * @return json Convertion du tableau en json
    */
   public static function horaireToJson(array $horaire) {
     return json_encode(array_map(fn($result) => [
@@ -72,6 +75,9 @@ class Horaire {
 
   /**
    * Convertit un JSON en tableau d'horaires
+   * @param idOffre id de l'offre
+   * @param horairesJson tableau des horaires
+   * @return array Convertion du json en format de la class
    */
   public static function jsonToHoraire($idOffre, $horairesJson) {
       if (empty($horairesJson)) {

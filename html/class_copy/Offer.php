@@ -11,48 +11,56 @@ $daysOfWeek = [
     'Sunday'    => 'Dimanche'
 ];
 
-// Convertir le jour actuel en français
-$currentDay = $daysOfWeek[$currentDay];
-$currentTime = new DateTime(date('H:i'));
-
 class Offer {
+
   protected $data = null;
-  private $horaire = null;
 
-  private $idUser;
-  private $nomUser;
-  private $idOffre;
-  private $statut;
-  private $abonnement;
-  private $options;
-  private $nomOffre;
-  private $resume;
-  private $description;
-  private $categorie;
-  private $mail;
-  private $telephone;
-  private $urlSite;
-  private $dateCreation;
-  private $noteAvg;
-  private $nbNote;
-  private $images;
-  private $tags;
-  private $ville;
-  private $pays;
-  private $numerorue;
-  private $rue;
-  private $codePostal;
+  // format : ["nom class", "attribut BDD"]
+  static public $attributs = [
+    "idU" => "idu", 
+    "nomUser" => "denomination", 
+    "idOffre" => "idoffre",
+    "statut" => "statut", 
+    "abonnement" => "nomabonnement",
+    "option" => "nomoption", 
+    "nomOffre" => "nom",
+    "resume" => "resume", 
+    "description" => "description",
+    "mail" => "mail",
+    "telephone" => "telephone",
+    //"urlSite" => "",
+    "dateCreation" => "datecrea",
+    "categorie" => "categorie", 
+    "noteAvg" => "moyenne",
+    "nbNote" => "total",
+    "images" => "listimage", 
+    "tags" => "all_tags",
+    "ville" => "ville",
+    "pays" => "pays",
+    "numeroRue" => "numerorue",
+    "rue" => "rue",
+    "codePostal" => "codepostal"
+  ];
 
-  public function __construct($categorie_) {
-    $this->options = [];
-    $this->images = [];
-    $this->tags = [];
-    $this->categorie = $categorie_;
+  public function __construct($idOffre_, $categorie_) {
+    $this->data["idOffre"] = $idOffre_;
+    $this->data["categorie"] = $categorie_;
   }
 
+  /**
+   * Affiche les cartes d'offre
+   */
   public function displayCardOffer() {
-    $idOffre = $this->idOffre;
-    $nomOffre = $this->nomOffre;
+    // Chargement des données
+    $attributs = ["idOffre", "nomOffre", "nomUser", "resume", "images",
+      "ville", "pays", "numeroRue", "rue", "codePostal", "categorie",
+      "tags", "noteAvg", "nbNote", "option"
+    ];
+    $this->loadData($attributs);
+
+    // Initialisation des valeurs de la carte
+    $idOffre = $this->data["idOffre"];
+    $nomOffre = $this->data["nomOffre"]; // a suivre
     $nomUser = $this->nomUser;
     $resume = $this->resume;
     $urlImg = $this->images[0] ?? "";
@@ -65,70 +73,115 @@ class Offer {
     $noteAvg = $this->noteAvg;
     $nbNote = $this->nbNote;
     $options = $this->options;
-    require __DIR__."/../components/cardTest.php";
+
+    // Affichage de la carte
+    require __DIR__."/../components/cardOffer.php";
   }
 
-  public function displayCardOfferPro() {
-    $idOffre = $this->idOffre;
-    $nomOffre = $this->nomOffre;
-    $urlImg = $this->images[0] ?? "";
-    $ville = $this->ville;
-    $categorie = $this->categorie;
-    $tags = $this->tags;
-    $noteAvg = $this->noteAvg;
-    $nbNote = $this->nbNote;
-    $codePostal = $this->codePostal;
-    $statut = $this->statut;
-    $abonnement = $this->abonnement;
-    $options = $this->options;
-    require __DIR__."/../components/cardALaUnePro.php";
-  }
+  /**
+   * Charge les données communes aux offres
+   * @param attributs_ attributs des données
+   * @return array liste des attributs chargé
+   */
+  public function loadData($attributs_ = []) {
+    global $conn;
+    $idOffre = $this->data["idOffre"];
+    $ALL = empty($attributs_);
+    $resAttr = $attributs_;
+    $allOffre = ['idU', 'nomOffre', 'description', 'resume', 'mail', 'telephone', 'dateCreation', 'abonnement', 'images', 'ville', 'numerorue', 'rue', 'codePostal', 'tags', 'statut'];
+    $allUser = ['nomUser'];
 
-  public function filterPagination($idUser_, $typeUser_) {
-    if (($typeUser_ == "pro_public" || $typeUser_ == "pro_prive")) {
-      return $this->idUser == $idUser_;
+    if ($ALL) {
+      $columns = implode(", ", array_map([$this, 'getAttribut'], $allOffre));
+
     } else {
-      return $this->statut == 'actif';
-    }
-  }
+      // Séparation des attributs par table
+      $attributOffre = array_intersect($attributs_, $allOffre);
+      $attributUtilisateur = array_intersect($attributs_, $allUser);
+      $attributNote = array_intersect($attributs_, ['noteAvg', 'nbNote']);
+      $attributOption = array_intersect($attributs_, ['option']);
+      
+      $resAttr = array_merge($attributOffre, $attributUtilisateur, $attributNote, $attributOption);
 
-  public function setData($idOffre_, $idUser_, $nomUser_, $nomOffre_, $abonnement_, $options_, $description_, $resume_, $mail_, $telephone_, $urlsite_, $dateCreation_, $images_, $tags_, $ville_, $pays_, $numerorue_ , $rue_, $codePostal_, $statut_, $noteAvg_, $nbNote_) {
-    $this->idOffre = $idOffre_;
-    $this->statut = $statut_;
-    $this->idUser = $idUser_;
-    $this->nomUser = $nomUser_;
-    $this->nomOffre = empty($nomOffre_) ? "Offre ". $this->idOffre : $nomOffre_;
-    $this->resume = empty($resume_) ? "" : $resume_;
-    $this->description = empty($description_) ? "" : $description_;
-    $this->images = $images_;
-    $this->images = array_filter($this->images, function($image) {
-      return $image != NULL;
-    });
-    
-    $this->images = array_values($this->images);
-    
-    if (empty($this->images)) {
-        $this->images = [];
+      if (!empty($attributOffre)) {
+        $columns = implode(", ", array_map([$this, 'getAttribut'], $attributOffre));
+      }
     }
-    $this->tags = $tags_;
-    foreach ($this->tags as &$tag) {
-      $tag = str_replace('_', ' ', $tag);
-    }
-    $this->ville = empty($ville_) ? "" : $ville_;
-    $this->pays = empty($pays_) ? "" : $pays_;
-    $this->numerorue = $numerorue_;
-    $this->rue = empty($rue_) ? "" : $rue_ ;
-    $this->codePostal = empty($codePostal_) ? "" : $codePostal_ ;
-    $this->mail = empty($mail_) ? "" : $mail_;
-    $this->telephone = empty($telephone_) ? "" : $telephone_;
-    //$this->urlsite = $urlsite_;
-    $this->dateCreation = $dateCreation_;
-    $this->abonnement = $abonnement_;
-    $this->options = $options_;
-    $this->noteAvg = number_format($noteAvg_,1);
-    $this->nbNote = $nbNote_;
-  }
 
+    /** 1️⃣ CHARGEMENT DES DONNÉES PRINCIPALES (offres) **/
+    if (isset($columns)) {
+      $stmt = $conn->prepare("SELECT $columns FROM pact.offres WHERE idoffre = ?");
+      $stmt->execute([$idOffre]);
+      $resOffre = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if ($resOffre) {
+        foreach ($attributOffre as $attrbt) {
+          $this->data[$attrbt] = $resOffre[$attrbt];
+        }
+      }
+    }
+
+    /** 2️⃣ CHARGEMENT DES DONNÉES DE L'UTILISATEUR **/
+    if ($attributUtilisateur || $ALL) {
+      
+      if ($ALL) {
+        $columns = implode(", ", array_map([$this, 'getAttribut'], $allUser));
+
+      } else {
+        $columns = implode(", ", array_map([$this, 'getAttribut'], $attributUtilisateur));
+
+      }
+
+      $stmt = $conn->prepare("SELECT $columns FROM pact._pro WHERE idoffre = ?");
+      $stmt->execute([$idOffre]);
+      $resUser = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+      if ($resUser) {
+        foreach ($attributUtilisateur as $attrbt) {
+          $this->data[$attrbt] = $resUser[$attrbt];
+        }
+      }
+    }
+
+    /** 3️⃣ CHARGEMENT DES NOTES (_avis) **/
+    if ($attributHandicap || $ALL) {
+      $stmt = $conn->prepare("SELECT avg(note) as moyenne, count(note) as total from pact._avis where idoffre = ? group by idoffre");
+      $stmt->execute([$idOffre]);
+      $resNote = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if ($resNote) {
+        $this->data["noteAvg"] = $resNote["moyenne"] ?? 0;
+        $this->data["nbNote"] = $resNote["total"] ?? 0;
+      }
+    }
+
+    /** 4️⃣ CHARGEMENT DES OPTIONS (_option_offre) **/
+    if ($attributOption || $ALL) {
+      $this->data["option"] = [];
+      $stmt = $conn->prepare("SELECT nomoption from pact._option_offre natural join pact._dateoption where idoffre = ? and datefin >= CURRENT_DATE and datelancement <= CURRENT_DATE");
+      $stmt->execute([$idOffre]);
+      while ($resOption = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if (!in_array($resOption["nomoption"], $options)) {
+          $this->data["option"][] = $resOption["nomoption"];
+        }
+      }
+    }
+
+    return $resAttr;
+  }
+  
+  /**
+   * Récupération des données communes aux offres
+   * @param attributs_ attributs des données
+   */
+  public function getData($attributs_ = []) {
+    $attr = $this->loadData($attributs_);
+    foreach ($attr as $attribut) {
+      $res[$attribut] = $data[$attribut];
+    }
+    return $res;
+  }
+  
   /**
    * Récupère l'id de l'offre
    */
@@ -136,34 +189,8 @@ class Offer {
     return $this->data["idOffre"];
   }
 
-  public function getData($attribut = []) {
-    
-
-    return [
-      "idU" => $this->idUser, 
-      "nomUser" => $this->nomUser, 
-      "idOffre" => $this->idOffre,
-      "statut" => $this->statut, 
-      "abonnement" => $this->abonnement,
-      "option" => $this->options, 
-      "nomOffre" => $this->nomOffre,
-      "resume" => $this->resume, 
-      "description" => $this->description,
-      "mail" => $this->mail,
-      "telephone" => $this->telephone,
-      //"urlSite" => $this->urlsite,
-      "dateCreation" => $this->dateCreation,
-      "categorie" => $this->categorie, 
-      "noteAvg" => $this->noteAvg,
-      "nbNote" => $this->nbNote,
-      "images" => $this->images, 
-      "tags" => $this->tags,
-      "ville" => $this->ville,
-      "pays" => $this->pays,
-      "numeroRue" => $this->numerorue,
-      "rue" => $this->rue,
-      "codePostal" => $this->codePostal
-    ];
+  public function getAttribut($elem) {
+    return Offer::$attributs[$elem] ?? '';
   }
 
   public function formaterAdresse() {
