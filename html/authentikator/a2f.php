@@ -8,7 +8,11 @@ if (!isset($_COOKIE['attempts'])) {
     setcookie('attempts', 0, time() + 3600, "/"); 
 }
 
-// ⚠️ Vérification du blocage
+$tempSessionData = [
+    'idUser' => (isset($_SESSION['idUser'])) ? $_SESSION['idUser'] : (isset($_POST['idu']) ? $_POST['idu'] : null),
+    'typeUser' => isset($_SESSION['typeUser']) ? $_SESSION['typeUser'] : (isset($_POST['idu']) ? $_POST['type'] : null)
+];
+
 if (isset($_COOKIE['blocked_until'])) {
     $remaining = (int)$_COOKIE['blocked_until'] - time();
     if ($remaining > 0) {
@@ -18,16 +22,12 @@ if (isset($_COOKIE['blocked_until'])) {
         </script>";
         exit;
     } else {
-        // Temps expiré → suppression des cookies
+        
         setcookie('attempts', '', time() - 3600, "/");
         setcookie('blocked_until', '', time() - 3600, "/");
     }
 }
 
-$tempSessionData = [
-    'idUser' => (isset($_SESSION['idUser'])) ? $_SESSION['idUser'] : (isset($_POST['idu']) ? $_POST['idu'] : null),
-    'typeUser' => isset($_SESSION['typeUser']) ? $_SESSION['typeUser'] : (isset($_POST['idu']) ? $_POST['type'] : null)
-];
 
 if (isset($_SESSION['idUser'])) unset($_SESSION['idUser']);
 if (isset($_SESSION['typeUser'])) unset($_SESSION['typeUser']);
