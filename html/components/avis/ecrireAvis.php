@@ -1,5 +1,7 @@
 <section>
-    <form id="formCreationAvis" onsubmit="return validerFormulaire()" action="/enregAvis.php?membre" method="post" enctype="multipart/form-data">
+    <form id="formCreationAvis" action="/enregAvis.php?membre" method="post" enctype="multipart/form-data">
+
+        <span id="error_form" style="display: none;"></span>
         <div class="note">
             <!-- Étoiles pour la notation -->
             <?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -62,7 +64,7 @@
             <label id="btnAjoutPhoto" for="ajoutPhoto" class="classAjouterPhotos">
                 <img src="./img/icone/addImage.png" alt="Icone d'ajout d'image" title="Icone d'ajout d'image">
                 <p>Ajouter des Photos</p>
-                </label>
+            </label>
             <input
                 type="file"
                 id="ajoutPhoto"
@@ -160,12 +162,40 @@
                 }
             });
         }
-        // Validation avant la soumission
-        formCreationAvis.addEventListener("submit", (event) => {
+
+        function validerFormulaire() {
+            const radios = document.getElementsByName('compagnie');
+            let selectionne = false;
+
+            // Vérifie si l'une des options radio est sélectionnée
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    selectionne = true;
+                    break;
+                }
+            }
+
             if (!noteInput.value) {
                 event.preventDefault();
-                alert("Veuillez sélectionner une note avant de soumettre votre avis.");
+                errorMessage.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
+                errorMessage.style.display = "block";
+                return false;
+                
             }
+            else if (!selectionne) {
+                event.preventDefault();
+                const errorMessage = document.getElementById("error_form");
+                errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
+                errorMessage.style.display = "block"; // Affiche le message d'erreur
+                return false; // Empêche la soumission du formulaire
+            }
+
+            // Si tout est valide, permettre la soumission
+            return true;
+        }
+        // Validation avant la soumission
+        formCreationAvis.addEventListener("submit", (event) => {
+            
         });
     });
     const maxImages = 3; // Nombre maximum d'images autorisé
@@ -319,23 +349,5 @@
     // Fonction pour générer un ID unique
     function generateUniqueId() {
         return "temp_" + Math.random().toString(36).substr(2, 9);
-    }
-
-    function validerFormulaire() {
-        const radios = document.getElementsByName('compagnie');
-        let selectionne = false;
-        for (let i = 0; i < radios.length; i++) {
-            if (radios[i].checked) {
-                selectionne = true;
-                break;
-            }
-        }
-
-        if (!selectionne) {
-            alert("Veuillez sélectionner qui vous accompagner.");
-            return false;
-        }
-
-        return true;
     }
 </script>

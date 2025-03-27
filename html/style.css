@@ -3578,20 +3578,23 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #a2f{
   width: 25%;
+  height: 35%;
   background-color: white;
   border-radius: 20px;
-  padding: 15px;
+  padding: 25px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #a2f h1{
   text-align: center;
+  margin-bottom: 50px;
 }
 
 #a2f div{
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 40px;
 }
 
 #a2f input{
@@ -3608,17 +3611,27 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 50px;
-  height: 80%;
+  height: 50%;
 }
 
 #a2f section{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#a2f aside {
   display: flex;
   justify-content: flex-end;
 }
 
 #a2f p{
   transform: translateY(-20px);
+}
+
+#a2f article{
+  display: flex;
+  gap: 15px;
 }
 
 
