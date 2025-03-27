@@ -334,10 +334,7 @@
         }
 
         if (!selectionne) {
-            $("#error_form").text("Veuillez sélectionner qui vous accompagnait.").css({
-                'display': 'block',
-                'color': 'red'
-            });
+            $("#error_form").text("Veuillez sélectionner qui vous accompagnait.").style('display', 'block');
             return false;
         }
 
