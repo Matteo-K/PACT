@@ -9,7 +9,7 @@
 
     // Redirection vers l'offre
     ?>
-      <form id="myForm" action="detailsOffer.php" method="POST">
+      <form id="myForm" action="../detailsOffer.php" method="POST">
         <input type="hidden" name="idoffre" value="<?php echo $idOffre; ?>">
       </form>
       <script>
