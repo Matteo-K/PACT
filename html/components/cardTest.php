@@ -119,12 +119,21 @@
           </div>
           <div class="tagsCard">
             <?php
+              $nbTagMax = 2;
+              $plusTag = 0;
               if (count($tags) > 0) {
-                foreach ($tags as $key => $tag) { 
-                  if (!empty($tag)) { ?>
+                if (count($tags) > $nbTagMax) {
+                  $plusTag = count($tags) - $nbTagMax;
+                  array_slice($tag, 0, $nbTagMax);
+                }
+                  foreach ($tags as $key => $tag) { 
+                    if (!empty($tag)) { ?>
                     <a href="index.php?search=<?php echo $tag ?>#searchIndex" class="tagIndex"><?php echo $tag ?></a>
                   <?php }
-                } 
+                }
+                if ($plusTag) { ?>
+                  <a class="tagIndex">+ <?= $nbTagMax ?></a>
+                <?php }
               }
             ?> 
           </div>
