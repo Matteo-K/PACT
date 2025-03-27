@@ -2,12 +2,13 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once "config.php";
     
-    $duree_blacklist = $_POST["duree_blacklist"] ?? "";
-    $intervall_blacklist = $_POST["intervall_blacklist"] ?? "";
+    $donnees = json_decode(file_get_contents('php://input'), true);
+    $duree_blacklist = $donnees['duree_blacklist'];
+    $intervall_blacklist = $donnees['intervall_blacklist'];
 
     if (!empty($duree_blacklist) && !empty($intervall_blacklist)) {
         try {
-            $stmt = $conn->prepare("UPDATE pact._parametre SET dureeblacklistage=?, uniteblacklist=?");
+            $stmt = $conn->prepare("UPDATE pact._parametre SET dureeblacklistage=?, uniteblacklist=? WHERE id=true");
             $stmt->execute([$duree_blacklist, $intervall_blacklist]);
 
             echo json_encode([
