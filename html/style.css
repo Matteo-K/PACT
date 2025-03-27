@@ -1582,7 +1582,7 @@ header ul + div {
   margin-block: 0.5em;
 }
 
-#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child {
+#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child{
   display: flex;
   flex-direction: column;
 }
@@ -1596,6 +1596,14 @@ header ul + div {
   font-style: italic;
 }
 
+#divConsentement > div > label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+input[type="month"]::-webkit-clear-button {
+  display: none;
+}
 
 
 #detailsOffer input[type="file"],
@@ -2819,7 +2827,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #consentement + .checkmark {
-  transform: scale(1.1);
+  transform: scale(0.7);
 }
 #consentement + .checkmark:hover{
   transform: scale(0.8);

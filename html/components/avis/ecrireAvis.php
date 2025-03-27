@@ -61,14 +61,14 @@
                 <label id="ajoutTitre" for="titre">Donnez un titre à l'avis *</label>
                 <span class="error_form" style="display: none;"></span>
             </div>
-            <input id="titre" name="titre" type="text" >
+            <input id="titre" name="titre" type="text">
         </div>
         <div id="textAvis">
             <div>
                 <label id="ajoutCommentaire" for="avis">Ajoutez votre commentaire *</label>
                 <span class="error_form" style="display: none;"></span>
             </div>
-            <textarea id="avis" name="avis" ></textarea>
+            <textarea id="avis" name="avis"></textarea>
         </div>
 
         <!-- Photos -->
@@ -88,13 +88,13 @@
         </div>
         <!-- Consentement -->
         <div id="divConsentement">
-            
+
             <div>
                 <label for="consentement">
                     <input type="checkbox" name="consentement" id="consentement" style="display: none;">
                     <span class="checkmark"></span>
                     <p>Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</p>
-            </label>
+                </label>
                 <span class="error_form" style="display: none;"></span>
             </div>
         </div>
@@ -102,7 +102,7 @@
         <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
         <input type="hidden" name="action" value="ecrireAvis">
         <div class="soumission">
-            <button type="submit" >Soumettre l'avis</button>
+            <button type="submit">Soumettre l'avis</button>
         </div>
     </form>
 </section>
@@ -193,21 +193,22 @@
         const errorMessageAvis = document.querySelector("#textAvis > div > .error_form");
         const errorMessageConsentement = document.querySelector("#consentement > div > .error_form");
 
-        function checkNote(){
+        function checkNote() {
             let res = true
             if (!noteInput.value) {
                 errorMessageNote.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
                 errorMessageNote.style.display = "block";
-                errorMessageNote.scrollIntoView({ behavior: "smooth" });
+                errorMessageNote.scrollIntoView({
+                    behavior: "smooth"
+                });
                 res = false;
-            }
-            else{
+            } else {
                 errorMessageNote.style.display = "none";
             }
             return res
         }
 
-        function checkAccompagnant(){
+        function checkAccompagnant() {
             let res = true
             let selectionne = false;
 
@@ -218,19 +219,20 @@
                 }
             }
             if (!selectionne) {
-                
+
                 errorMessageAccompagnant.textContent = "Veuillez sélectionner qui vous accompagnait avant de soumettre votre avis.";
                 errorMessageAccompagnant.style.display = "block";
-                errorMessageAccompagnant.scrollIntoView({ behavior: "smooth" });
-                res = false; 
-            }
-            else{
+                errorMessageAccompagnant.scrollIntoView({
+                    behavior: "smooth"
+                });
+                res = false;
+            } else {
                 errorMessageAccompagnant.style.display = "none";
             }
             return res
         }
 
-        function checkTitre(){
+        function checkTitre() {
             let res = true
             if (titre && titre.value.trim() === "") {
                 errorMessageTitre.textContent = "Veuillez saisir un titre avant de soumettre votre avis.";
@@ -246,9 +248,9 @@
             errorMessageTitre.style.display = "none";
             titre.classList.remove("inputErreur");
         });
-        
 
-        function checkAvis(){
+
+        function checkAvis() {
             let res = true
             if (avis && avis.value.trim() === "") {
                 errorMessageAvis.textContent = "Veuillez saisir votre avis avant de le soumettre.";
@@ -267,12 +269,12 @@
 
         function validerFormulaire() {
             let res = true
-            
+
             let noteCheck = checkNote();
             let accompagnantCheck = checkAccompagnant();
             let titreCheck = checkTitre();
             let avisCheck = checkAvis();
-            
+
             if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck) {
                 res = false;
             }
@@ -283,8 +285,14 @@
         formCreationAvis.addEventListener("submit", (event) => {
             event.preventDefault();
             let valid = validerFormulaire()
-            if(valid){
+            if (valid) {
                 formCreationAvis.submit();
+            }
+        });
+
+        document.querySelector('input[type="month"]').addEventListener('input', function(event) {
+            if (this.value === '') {
+                event.preventDefault(); // Empêche la réinitialisation
             }
         });
     });
