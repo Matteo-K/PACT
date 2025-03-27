@@ -14,10 +14,14 @@
             <?php } ?>
             <input name="note" id="note-value" type="hidden" value="" required>
         </div>
+        <span id="error_form" style="display: none;"></span>
 
         <!-- Champ pour la date -->
         <div>
-            <label for="date-avis">Donnez la date de visite : *</label>
+            <div>
+                <label for="date-avis">Donnez la date de visite : *</label>
+                <span class="error_form" style="display: none;"></span>
+            </div>
             <input
                 type="month"
                 id="date-avis"
@@ -30,7 +34,10 @@
 
         <!-- Qui vous accompagnait -->
         <div id='accompagnant'>
-            <label>Qui vous accompagnait ? *</label>
+            <div>
+                <label>Qui vous accompagnait ? *</label>
+                <span class="error_form" style="display: none;"></span>
+            </div>
             <div id="enCompagnie">
                 <input type="radio" id="seul" name="compagnie" value="Seul">
                 <label class="tag" for="seul">Seul(e)</label>
@@ -51,11 +58,17 @@
 
         <!-- Titre et Avis -->
         <div>
-            <label id="ajoutTitre" for="titre">Donnez un titre à l'avis *</label>
+            <div>
+                <label id="ajoutTitre" for="titre">Donnez un titre à l'avis *</label>
+                <span class="error_form" style="display: none;"></span>
+            </div>
             <input id="titre" name="titre" type="text" required>
         </div>
         <div>
-            <label id="ajoutCommentaire" for="avis">Ajoutez votre commentaire *</label>
+            <div>
+                <label id="ajoutCommentaire" for="avis">Ajoutez votre commentaire *</label>
+                <span class="error_form" style="display: none;"></span>
+            </div>
             <textarea id="avis" name="avis" required></textarea>
         </div>
 
@@ -77,7 +90,10 @@
         <!-- Consentement -->
         <div>
             <input id="consentement" name="consentement" type="checkbox" required>
-            <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
+            <div>
+                <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
+                <span class="error_form" style="display: none;"></span>
+            </div>
         </div>
 
         <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
@@ -175,7 +191,7 @@
             }
 
             if (!noteInput.value) {
-                const errorMessage = document.getElementById("error_form");
+                const errorMessage = document.querySelector(".note + .error_form")
                 errorMessage.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
                 errorMessage.style.display = "block";
                 errorMessage.scrollIntoView({ behavior: "smooth" });
