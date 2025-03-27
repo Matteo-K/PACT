@@ -2395,6 +2395,10 @@ label[for="rest_ajoutPhotoMenu"] {
   #duree_blacklist {
     width: 30%;
   }
+  
+  .updateForm {
+    color: red;
+  }
 }
 
 #voirPlus {
