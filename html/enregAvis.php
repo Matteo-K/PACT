@@ -157,11 +157,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$idAvis]);
         $imagesAvis = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-        if ($imagesAvis != false) {
+        if ($imagesAvis) {
             $listimage = trim($imagesAvis['url'], '{}');
             $pictures = explode(',', $listimage);
 
             foreach ($pictures as $pic) {
+                $pic = trim($pic, '"');
                 unlink($pic);
             }
         }
