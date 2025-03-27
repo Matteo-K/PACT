@@ -194,7 +194,11 @@
         }
         // Validation avant la soumission
         formCreationAvis.addEventListener("submit", (event) => {
-            validerFormulaire();
+            event.preventDefault();
+            let valid = validerFormulaire()
+            if(valid){
+                formCreationAvis.submit();
+            }
         });
     });
     const maxImages = 3; // Nombre maximum d'images autorisé
