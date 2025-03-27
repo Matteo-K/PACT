@@ -580,14 +580,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <!-- Rejeter -->
                     <form class="taille6" method="post" action="ajax/manageAdminOffer.php">
                         <input type="hidden" name="idoffre" value="<?php echo $offre[0]['idoffre']; ?>">
-                        <button class="modifierBut" type="submit">
+                        <button class="modifierBut" type="submit" name="action" value="rejeter">
                             Rejeter
                         </button>
                     </form>
                     <!-- Supprimer -->
                     <form class="taille6" method="post" action="ajax/manageAdminOffer.php">
                         <input type="hidden" name="idoffre" value="<?php echo $offre[0]['idoffre']; ?>">
-                        <button class="modifierBut" type="submit">
+                        <button class="modifierBut" type="submit" name="action" value="supprimer">
                             Supprimer
                         </button>
                     </form>
