@@ -1590,7 +1590,8 @@ header ul + div {
 .note + .error_form,
 #accompagnant > div:first-child > .error_form, 
 #titreAvis > div:first-child > .error_form, 
-#textAvis > div:first-child > .error_form {
+#textAvis > div:first-child > .error_form,
+#divDate > div:first-child > .error_form{
   color: red;
   font-size: 14px;
   font-weight: normal;
