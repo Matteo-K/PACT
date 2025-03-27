@@ -1,6 +1,6 @@
 <section>
     <form id="formCreationAvis" onsubmit="return validerFormulaire()" action="/enregAvis.php?membre" method="post" enctype="multipart/form-data">
-        
+
         <span id="error_form" style="display: none;"></span>
         <div class="note">
             <!-- Étoiles pour la notation -->
@@ -64,7 +64,7 @@
             <label id="btnAjoutPhoto" for="ajoutPhoto" class="classAjouterPhotos">
                 <img src="./img/icone/addImage.png" alt="Icone d'ajout d'image" title="Icone d'ajout d'image">
                 <p>Ajouter des Photos</p>
-                </label>
+            </label>
             <input
                 type="file"
                 id="ajoutPhoto"
@@ -334,7 +334,10 @@
         }
 
         if (!selectionne) {
-            $("#error_form").text("Veuillez sélectionner qui vous accompagnait.").style({'display': 'block', 'color': 'red'});
+            $("#error_form").text("Veuillez sélectionner qui vous accompagnait.").css({
+                'display': 'block',
+                'color': 'red'
+            });
             return false;
         }
 
