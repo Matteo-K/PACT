@@ -3577,14 +3577,17 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #a2f{
-  width: 40%;
+  width: 25%;
+  height: 40%;
   background-color: white;
   border-radius: 20px;
   padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #a2f h1{
   text-align: center;
+  margin-bottom: 40px;
 }
 
 #a2f div{
@@ -3596,7 +3599,8 @@ label[for="rest_ajoutPhotoMenu"] {
 #a2f input{
   width: 30px;
   height: 45px;
-  background-color: lightgrey;
+  background-color: white;
+  border: 2px solid #1ca4ed;
   border-radius: 5px;
   text-align: center;
 }
@@ -3606,11 +3610,16 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 50px;
-  height: 80%;
+  height: 60%;
 }
 
 #a2f section{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#a2f aside {
   display: flex;
   justify-content: flex-end;
 }
@@ -6015,6 +6024,7 @@ div[id="messageErreur"] {
 
   div[id="messageErreur"] {
     text-align: center;
+    width: 100%;
     color: red;
     margin-bottom: 20px;
     max-width: 460px;

@@ -77,6 +77,7 @@
 
                 foreach ($pictures as $pic) {
                     $stmt->execute([$pic]);
+                    unlink($pic);
                 }
             }
             //suppression du compte (géré par le trigger en BDD)

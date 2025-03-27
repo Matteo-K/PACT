@@ -230,39 +230,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Validation globale lors de la soumission du formulaire
-    form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Empêche l'envoi du formulaire
-
-        const errors = [];
-
-        // Vérifier les champs lors de la soumission
-        fieldsToValidate.forEach(field => {
-            const inputElement = document.getElementById(field.id);
-
-            if (!validateField(inputElement, field.pattern, field.message)) {
-                errors.push(field.message);
+    if(form) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Empêche l'envoi du formulaire
+    
+            const errors = [];
+    
+            // Vérifier les champs lors de la soumission
+            fieldsToValidate.forEach(field => {
+                const inputElement = document.getElementById(field.id);
+    
+                if (!validateField(inputElement, field.pattern, field.message)) {
+                    errors.push(field.message);
+                }
+            });
+    
+            if(confirmPasswordField) {
+                const motdepasse = document.getElementById('motdepasse').value;
+                const confirmer = document.getElementById('confirmer').value;
+    
+                if (motdepasse !== confirmer) {
+                    errors.push('Les mots de passe ne correspondent pas.');
+                }
+    
+                if (!document.getElementById('cgu').checked) {
+                    errors.push('Vous devez accepter les conditions générales d\'utilisation.');
+                }
+    
+                // Afficher les erreurs globales
+                displayGlobalErrors(errors);
+    
             }
-        });
-
-        if(confirmPasswordField) {
-            const motdepasse = document.getElementById('motdepasse').value;
-            const confirmer = document.getElementById('confirmer').value;
-
-            if (motdepasse !== confirmer) {
-                errors.push('Les mots de passe ne correspondent pas.');
+            // Si aucune erreur, envoyer le formulaire
+            if (errors.length === 0) {
+                form.submit();
             }
-
-            if (!document.getElementById('cgu').checked) {
-                errors.push('Vous devez accepter les conditions générales d\'utilisation.');
-            }
-
-            // Afficher les erreurs globales
-            displayGlobalErrors(errors);
-
-        }
-        // Si aucune erreur, envoyer le formulaire
-        if (errors.length === 0) {
-            form.submit();
-        }
-    }); 
+        }); 
+    }
 });

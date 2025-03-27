@@ -82,7 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="hidden" name="type" value="<?php echo $tempSessionData['typeUser'] ?>">
             <section>
                 <p id="status"></p>
-                <button type="submit" class="modifierBut" >Vérifier</button>
+                <aside>
+                    <button type="submit" class="modifierBut" >Vérifier</button>
+                </aside>
             </section>
         </form>
     
