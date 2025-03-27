@@ -194,7 +194,6 @@
         }
         // Validation avant la soumission
         formCreationAvis.addEventListener("submit", (event) => {
-            event.preventDefault();
             validerFormulaire();
         });
     });
