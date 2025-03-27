@@ -1567,6 +1567,7 @@ header ul + div {
   display: flex !important;
   align-items: center;
   gap: 1em;
+  padding-inline: 10px;
 }
 
 #btnAjoutPhoto >img{
