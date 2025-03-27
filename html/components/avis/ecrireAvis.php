@@ -16,7 +16,7 @@
         <span class="error_form" style="display: none;"></span>
 
         <!-- Champ pour la date -->
-        <div>
+        <div id="divDate">
             <div>
                 <label for="date-avis">Donnez la date de visite : *</label>
                 <span class="error_form" style="display: none;"></span>
@@ -182,12 +182,14 @@
             });
         }
 
+        const date = document.getElementsByName('date');
         const radios = document.getElementsByName('compagnie');
         const titre = document.getElementById("titre");
         const avis = document.getElementById("avis");
         const consentement = document.getElementById("consentement")
 
-        const errorMessageNote = document.querySelector(".note + .error_form")
+        const errorMessageNote = document.querySelector(".note + .error_form");
+        const errorMessageDate = document.querySelector("#divDate > div > .error_form");
         const errorMessageAccompagnant = document.querySelector("#accompagnant > div > .error_form");
         const errorMessageTitre = document.querySelector("#titreAvis > div > .error_form");
         const errorMessageAvis = document.querySelector("#textAvis > div > .error_form");
@@ -199,6 +201,21 @@
                 errorMessageNote.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
                 errorMessageNote.style.display = "block";
                 errorMessageNote.scrollIntoView({
+                    behavior: "smooth"
+                });
+                res = false;
+            } else {
+                errorMessageNote.style.display = "none";
+            }
+            return res
+        }
+
+        function checkDate(){
+            let res = true
+            if (date && date.value.trim() === "") {
+                errorMessageDate.textContent = "Veuillez sélectionner une date avant de soumettre votre avis.";
+                errorMessageDate.style.display = "block";
+                errorMessageDate.scrollIntoView({
                     behavior: "smooth"
                 });
                 res = false;
@@ -274,8 +291,9 @@
             let accompagnantCheck = checkAccompagnant();
             let titreCheck = checkTitre();
             let avisCheck = checkAvis();
+            let dateCheck = checkDate();
 
-            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck) {
+            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck || !dateCheck) {
                 res = false;
             }
 
