@@ -238,7 +238,7 @@
             }
             if (!selectionne) {
                 for (let i = 0; i < radios.length; i++) {
-                    label[i].style.color = red;
+                    label[i].style.color = 'red';
                 }
 
                 errorMessageAccompagnant.textContent = "Veuillez sélectionner qui vous accompagnait avant de soumettre votre avis.";
