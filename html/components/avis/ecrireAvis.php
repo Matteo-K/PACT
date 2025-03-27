@@ -212,7 +212,7 @@
 
         function checkDate(){
             let res = true
-            if (date && date.value.trim() === "") {
+            if (!date[0].value.trim()) {
                 errorMessageDate.textContent = "Veuillez sélectionner une date avant de soumettre votre avis.";
                 errorMessageDate.style.display = "block";
                 errorMessageDate.scrollIntoView({
@@ -308,11 +308,6 @@
             }
         });
 
-        document.querySelector('input[type="month"]').addEventListener('input', function(event) {
-            if (this.value === '') {
-                event.preventDefault(); // Empêche la réinitialisation
-            }
-        });
     });
     const maxImages = 3; // Nombre maximum d'images autorisé
     let nbImageTotaleInAvis = 0; // Compteur global
