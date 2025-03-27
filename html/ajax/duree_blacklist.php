@@ -2,6 +2,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Tester une réponse simple en JSON
+echo json_encode(["test" => "debug"]);
+exit;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once "config.php";
 
