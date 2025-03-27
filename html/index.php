@@ -33,7 +33,7 @@
               $unite = $row["uniteblacklist"];
             ?>
             <form action="ajax/duree_blacklist.php" method="post" id="form_duree_blacklist">
-              <fieldset>
+              <fieldset class="taille7">
                 <legend>Récupération du blacklistage <span id="blacklist_update" class="updateForm"></span></legend>
                 <div>
                   <input type="number" name="duree_blacklist" id="duree_blacklist" value="<?= $duree ?>">
@@ -70,7 +70,7 @@
 
               function checkDiff(duree) {
                 if (duree !== dureeBefore || checkSelect()) {
-                  backlist_update.textContent = "Modifié";
+                  backlist_update.textContent = "*";
                 } else {
                   backlist_update.textContent = "";
                 }

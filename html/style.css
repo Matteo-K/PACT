@@ -2379,6 +2379,18 @@ label[for="rest_ajoutPhotoMenu"] {
     border: 3px solid var(--primary);
     border-radius: 10px;
   }
+
+  legend + div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  [type="submit"] {
+    float: right;
+    padding: 10px;
+    margin: 20px 20px 0 0;
+  }
 }
 
 #voirPlus {
