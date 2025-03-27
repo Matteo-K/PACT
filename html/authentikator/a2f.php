@@ -16,22 +16,27 @@ $tempSessionData = [
 if (isset($_SESSION['idUser'])) unset($_SESSION['idUser']);
 if (isset($_SESSION['typeUser'])) unset($_SESSION['typeUser']);
 
+$errorMessage = "";
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $code = htmlspecialchars($_POST['code_2fa1'] )+htmlspecialchars($_POST['code_2fa2']) + htmlspecialchars( $_POST['code_2fa3']) + htmlspecialchars($_POST['code_2fa4']) + htmlspecialchars($_POST['code_2fa5']) +htmlspecialchars($_POST['code_2fa6']);
+    $code = htmlspecialchars($_POST['code_2fa1']) .
+            htmlspecialchars($_POST['code_2fa2']) .
+            htmlspecialchars($_POST['code_2fa3']) .
+            htmlspecialchars($_POST['code_2fa4']) .
+            htmlspecialchars($_POST['code_2fa5']) .
+            htmlspecialchars($_POST['code_2fa6']);
     $stmt = $conn->prepare("SELECT * FROM pact._utilisateur WHERE idu = ?");
-    $stmt->execute([$tempSessionData['idUser']]); // Utiliser l'ID utilisateur stocké temporairement
+    $stmt->execute([$tempSessionData['idUser']]);
 
     $user = $stmt->fetch();
 
     $secret = $user["secret_a2f"];
     $totp = TOTP::create($secret);
 
-    // Vérification du code envoyé
     $currentCode = $totp->at(time());
-    $previousCode = $totp->at(time() - 30); // Vérification du code précédent
+    $previousCode = $totp->at(time() - 30);
 
     if ($code === $currentCode || $code === $previousCode) {
-
         $_SESSION['idUser'] = $tempSessionData['idUser'];
         $_SESSION['typeUser'] = $tempSessionData['typeUser'];
 
@@ -51,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit;
         }
 
-        echo "<span style='color: red;'>Code invalide. Vous avez " . (3 - $attempts) . " tentatives restantes.</span>";
+        $errorMessage = "Code invalide. Vous avez " . (3 - $attempts) . " tentatives restantes.";
     }
 }
 ?>
@@ -83,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="hidden" name="idu" value="<?php echo $tempSessionData['idUser'] ?>">
             <input type="hidden" name="type" value="<?php echo $tempSessionData['typeUser'] ?>">
             <section>
-                <p id="status"></p>
+                <p id="status" style="color: red;"><?php echo $errorMessage; ?></p>
                 <aside>
                     <button id="a2f_submit" type="submit" class="modifierBut" >Vérifier</button>
                 </aside>
