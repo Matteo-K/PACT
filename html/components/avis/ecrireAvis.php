@@ -175,7 +175,8 @@
                 }
             }
 
-            if (noteActuelle === 0) {
+            if (!noteInput.value) {
+                const errorMessage = document.getElementById("error_form");
                 errorMessage.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
                 errorMessage.style.display = "block";
                 return false;
