@@ -238,7 +238,7 @@
             }
             if (!selectionne) {
                 for (let i = 0; i < radios.length; i++) {
-                    label[i].classList.add("inputErreur");
+                    label[i].style('color', 'red' );
                 }
 
                 errorMessageAccompagnant.textContent = "Veuillez sélectionner qui vous accompagnait avant de soumettre votre avis.";
@@ -249,7 +249,7 @@
                 res = false;
             } else {
                 for (let i = 0; i < radios.length; i++) {
-                    label[i].classList.remove("inputErreur");
+                    label[i].style('color', 'var(--primary)');
                 }
             }
             return res
