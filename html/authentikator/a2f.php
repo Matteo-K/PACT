@@ -17,8 +17,7 @@ if (isset($_SESSION['idUser'])) unset($_SESSION['idUser']);
 if (isset($_SESSION['typeUser'])) unset($_SESSION['typeUser']);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $code = htmlspecialchars($_POST['code_2fa1'] + $_POST['code_2fa2'] + $_POST['code_2fa3'] + $_POST['code_2fa4'] + $_POST['code_2fa5'] + $_POST['code_2fa6']);
-
+    $code = htmlspecialchars($_POST['code_2fa1'] )+htmlspecialchars($_POST['code_2fa2']) + htmlspecialchars( $_POST['code_2fa3']) + htmlspecialchars($_POST['code_2fa4']) + htmlspecialchars($_POST['code_2fa5']) +htmlspecialchars($_POST['code_2fa6']);
     $stmt = $conn->prepare("SELECT * FROM pact._utilisateur WHERE idu = ?");
     $stmt->execute([$tempSessionData['idUser']]); // Utiliser l'ID utilisateur stocké temporairement
 
@@ -92,38 +91,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
     </div>
     <script>
-        const input1 = document.getElementById("code_2fa1");
-        const input2 = document.getElementById("code_2fa2");
-        const input3 = document.getElementById("code_2fa3");
-        const input4 = document.getElementById("code_2fa4");
-        const input5 = document.getElementById("code_2fa5");
-        const input6 = document.getElementById("code_2fa6");
+        const inputs = [
+            document.getElementById("code_2fa1"),
+            document.getElementById("code_2fa2"),
+            document.getElementById("code_2fa3"),
+            document.getElementById("code_2fa4"),
+            document.getElementById("code_2fa5"),
+            document.getElementById("code_2fa6"),
+        ];
         const submit = document.getElementById("a2f_submit");
 
-        input1.focus();
+        inputs[0].focus();
 
-        input1.addEventListener("input",()=>{
-            input2.focus();
-        });
+        inputs.forEach((input, index) => {
+            input.addEventListener("input", (e) => {
+                if (/\d/.test(e.target.value)) {
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                     } //else {
+                    //     submit.focus();
+                    // }
+                } else {
+                    e.target.value = "";
+                }
+            });
 
-        input2.addEventListener("input",()=>{
-            input3.focus();
-        });
-
-        input3.addEventListener("input",()=>{
-            input4.focus();
-        });
-
-        input4.addEventListener("input",()=>{
-            input5.focus();
-        });
-
-        input5.addEventListener("input",()=>{
-            input6.focus();
-        });
-
-        input6.addEventListener("input",()=>{
-            submit.focus();
+            input.addEventListener("keydown", (e) => {
+                if (e.key === "Backspace" && input.value === "" && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
         });
     </script>
 </body>
