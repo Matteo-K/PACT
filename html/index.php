@@ -93,7 +93,12 @@
                       'intervall_blacklist': intervall
                     })
                   })
-                  .then(response => response.json())
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error('Erreur de serveur');
+                    }
+                    return response.json();
+                  })
                   .then(data => {
                     if (data.resultat) {
                       resLabel.textContent = "Durée modifié";
