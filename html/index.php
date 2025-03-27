@@ -238,7 +238,19 @@
       </div>
         <!-- Partie de recherche -->
       <div id="searchIndex" class="search">
-        <h2>Recherche</h2>
+
+        <h2>
+          <?php
+            if ($typeUser == "pro_public" || $typeUser == "pro_prive") {
+              echo "Mes offres";
+            }
+
+            else {
+              echo "Recherche";
+            }
+          ?>
+        </h2>
+
         <div id="blcSearch">
           <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
           <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
