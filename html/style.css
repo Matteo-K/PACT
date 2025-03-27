@@ -3577,10 +3577,11 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #a2f{
-  width: 40%;
+  width: 25%;
   background-color: white;
   border-radius: 20px;
   padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #a2f h1{
@@ -3596,7 +3597,8 @@ label[for="rest_ajoutPhotoMenu"] {
 #a2f input{
   width: 30px;
   height: 45px;
-  background-color: lightgrey;
+  background-color: white;
+  border: 2px solid #1ca4ed;
   border-radius: 5px;
   text-align: center;
 }
