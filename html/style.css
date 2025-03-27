@@ -1582,10 +1582,13 @@ header ul + div {
   margin-block: 0.5em;
 }
 
-#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child, #divDate > div:first-child, #divConsentement > div:first-child{
+#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child, #divDate > div:first-child,#divConsentement > div:first-child{
   display: flex;
   flex-direction: column;
   width: 35%;
+}
+#divConsentement > div:first-child{
+  width: 100%;
 }
 .note + .error_form,
 #accompagnant > div:first-child > .error_form, 
