@@ -2391,6 +2391,10 @@ label[for="rest_ajoutPhotoMenu"] {
     padding: 10px;
     margin: 20px 20px 0 0;
   }
+
+  #duree_blacklist {
+    width: 30%;
+  }
 }
 
 #voirPlus {

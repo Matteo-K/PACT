@@ -81,7 +81,7 @@
               }
               
               intervallInput.addEventListener("change", () => checkDiff(dureeInput.value.trim()));
-              dureeInput.addEventListener("blur", () => checkDuree());
+              dureeInput.addEventListener("change", () => checkDuree());
               form_blacklist.addEventListener("submit", (event) => {
                 event.preventDefault();
                 if (checkDuree()) {
