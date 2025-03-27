@@ -13,6 +13,9 @@ $tempSessionData = [
     'typeUser' => isset($_SESSION['typeUser']) ? $_SESSION['typeUser'] : (isset($_POST['idu']) ? $_POST['type'] : null)
 ];
 
+if (isset($_SESSION['idUser'])) unset($_SESSION['idUser']);
+if (isset($_SESSION['typeUser'])) unset($_SESSION['typeUser']);
+
 if (isset($_COOKIE['blocked_until'])) {
     $remaining = (int)$_COOKIE['blocked_until'] - time();
     if ($remaining > 0) {
@@ -27,10 +30,6 @@ if (isset($_COOKIE['blocked_until'])) {
         setcookie('blocked_until', '', time() - 3600, "/");
     }
 }
-
-
-if (isset($_SESSION['idUser'])) unset($_SESSION['idUser']);
-if (isset($_SESSION['typeUser'])) unset($_SESSION['typeUser']);
 
 $errorMessage = "";
 
@@ -110,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="hidden" name="idu" value="<?php echo $tempSessionData['idUser'] ?>">
             <input type="hidden" name="type" value="<?php echo $tempSessionData['typeUser'] ?>">
             <section>
-                <p id="status" style="color: red;"><?php echo $errorMessage; ?></p>
+                <p id="status"><?php echo $errorMessage; ?></p>
                 <aside>
                     <button id="a2f_cancel" class="modifierBut" >Annuler</button>
                     <button id="a2f_submit" type="submit" class="modifierBut" >Vérifier</button>
