@@ -3627,7 +3627,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #a2f aside {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 #a2f p{
