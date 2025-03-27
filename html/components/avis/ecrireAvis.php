@@ -214,7 +214,7 @@
             if (!date[0].value.trim()) {
                 errorMessageDate.textContent = "Veuillez sélectionner une date avant de soumettre votre avis.";
                 errorMessageDate.style.display = "block";
-                titre.classList.add("inputErreur");
+                date.classList.add("inputErreur");
                 res = false;
             } else {
                 errorMessageNote.style.display = "none";
