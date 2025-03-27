@@ -3316,6 +3316,10 @@ label[for="rest_ajoutPhotoMenu"] {
   background-color: red !important;
 }
 
+.supression::after {
+  background-color: var(--text-dark50);
+}
+
 .ProStatut {
   display: flex;
   flex-direction: row;

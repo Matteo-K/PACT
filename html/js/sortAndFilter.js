@@ -822,8 +822,14 @@ function createFront(offer) {
   h4.classList.add("title");
   if (userType == "pro_public" || userType == "pro_prive") {
     h4.classList.add("StatutAffiche");
-    if (offer.statut != "actif") {
-      h4.classList.add("horslgnOffre");
+    switch (offer.statut) {
+      case 'inactif':
+        h4.classList.add("horslgnOffre");
+        break;
+
+      case 'delete':
+        h4.classList.add("supression");
+        break;
     }
   }
   h4.textContent = offer.nomOffre ?? "";
@@ -935,11 +941,17 @@ function createBack(offer) {
   if (userType == "pro_public" || userType == "pro_prive") {
     let enLigne = document.createElement("p");
     enLigne.classList.add("StatutAffiche");
+
     if (offer.statut == "actif") {
       enLigne.textContent = "En ligne";
-    } else {
+      
+    } else if (offer.statut == "inactif") {
       enLigne.classList.add("horslgnOffre");
       enLigne.textContent = "Hors ligne";
+
+    } else if (offer.statut == 'delete') {
+      enLigne.classList.add("suppression");
+      enLigne.textContent = "Suppression";
     }
     article.appendChild(enLigne);
   }
