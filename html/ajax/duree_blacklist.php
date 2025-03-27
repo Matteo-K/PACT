@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once "config.php";
 
@@ -7,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($inputData) {
         $duree_blacklist = $inputData['duree_blacklist'];
         $intervall_blacklist = $inputData['intervall_blacklist'];
-        
+
         try {
             $stmt = $conn->prepare("UPDATE pact._parametre SET dureeblacklistage=?, uniteblacklist=? WHERE id=true");
             $stmt->execute([intval($duree_blacklist), $intervall_blacklist]);
