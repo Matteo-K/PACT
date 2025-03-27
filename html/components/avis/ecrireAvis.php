@@ -197,6 +197,7 @@
                 errorMessageNote.scrollIntoView({ behavior: "smooth" });
                 res = false;
             }
+            errorMessageNote.style.display = "none";
             return res
         }
 
@@ -217,6 +218,7 @@
                 errorMessageAccompagnant.scrollIntoView({ behavior: "smooth" });
                 res = false; 
             }
+            errorMessageAccompagnant.style.display = "none";
             return res
         }
 
@@ -228,6 +230,7 @@
                 errorMessageTitre.scrollIntoView({ behavior: "smooth" });
                 res = false;
             }
+            errorMessageTitre.style.display = "none";
             return res
         }
 
@@ -239,6 +242,7 @@
                 errorMessageAvis.scrollIntoView({ behavior: "smooth" });
                 res = false;
             }
+            errorMessageAvis.style.display = "none";
             return res
         }
 
@@ -250,6 +254,7 @@
                 errorMessageConsentement.scrollIntoView({ behavior: "smooth" });
                 res = false;
             }
+            errorMessageConsentement.style.display = "none";
             return res
         }
 
