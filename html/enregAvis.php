@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt -> execute();
 
         $stmt = $conn->prepare("SELECT url FROM pact._avisimage WHERE idc = $idAvis");
-        $stmt->execute([$userId]);
+        $stmt->execute();
         $imagesAvis = $stmt -> fetch(PDO::FETCH_ASSOC);
 
         if ($imagesAvis != false) {
