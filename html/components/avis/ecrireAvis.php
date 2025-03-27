@@ -252,6 +252,11 @@
             return res
         }
 
+        radios.forEach(radio => {
+            radio.addEventListener("blur", () => checkAccompagnant());
+        });
+
+
         function checkTitre() {
             let res = true
             if (titre && titre.value.trim() === "") {
