@@ -2126,8 +2126,6 @@ label[for="rest_ajoutPhotoMenu"] {
 
   .flip-card-back .tagsCard {
     flex-direction: row !important;
-    justify-content: flex-start !important;
-    flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
     padding-inline: 5px !important;
@@ -3623,6 +3621,7 @@ label[for="rest_ajoutPhotoMenu"] {
 #a2f section{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   justify-content: flex-end;
 }
 
@@ -3632,7 +3631,8 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #a2f p{
-  transform: translateY(-20px);
+  color: red;
+  text-align: center;
 }
 
 #a2f article{

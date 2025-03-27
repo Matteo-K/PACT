@@ -87,8 +87,8 @@
             <div id="afficheImagesAvis"></div>
         </div>
         <!-- Consentement -->
-        <div>
-            <input id="consentement" name="consentement" type="checkbox">
+        <div id="consentement">
+            <input id="consentement" name="consentement" type="checkbox" required>
             <div>
                 <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
                 <span class="error_form" style="display: none;"></span>
@@ -98,7 +98,7 @@
         <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
         <input type="hidden" name="action" value="ecrireAvis">
         <div class="soumission">
-            <button type="submit">Soumettre l'avis</button>
+            <button type="submit" >Soumettre l'avis</button>
         </div>
     </form>
 </section>
@@ -178,8 +178,33 @@
             });
         }
 
-        function validerFormulaire() {
-            const radios = document.getElementsByName('compagnie');
+        const radios = document.getElementsByName('compagnie');
+        const titre = document.getElementById("titre");
+        const avis = document.getElementById("avis");
+        const consentement = document.getElementById("consentement")
+
+        const errorMessageNote = document.querySelector(".note + .error_form")
+        const errorMessageAccompagnant = document.querySelector("#accompagnant > div > .error_form");
+        const errorMessageTitre = document.querySelector("#titreAvis > div > .error_form");
+        const errorMessageAvis = document.querySelector("#textAvis > div > .error_form");
+        const errorMessageConsentement = document.querySelector("#consentement > div > .error_form");
+
+        function checkNote(){
+            let res = true
+            if (!noteInput.value) {
+                errorMessageNote.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
+                errorMessageNote.style.display = "block";
+                errorMessageNote.scrollIntoView({ behavior: "smooth" });
+                res = false;
+            }
+            else{
+                errorMessageNote.style.display = "none";
+            }
+            return res
+        }
+
+        function checkAccompagnant(){
+            let res = true
             let selectionne = false;
 
             for (let i = 0; i < radios.length; i++) {
@@ -188,36 +213,67 @@
                     break;
                 }
             }
-
-            if (!noteInput.value) {
-                const errorMessage = document.querySelector(".note + .error_form")
-                errorMessage.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
-                errorMessage.style.display = "block";
-                errorMessage.scrollIntoView({ behavior: "smooth" });
-                return false;
+            if (!selectionne) {
                 
+                errorMessageAccompagnant.textContent = "Veuillez sélectionner qui vous accompagnait avant de soumettre votre avis.";
+                errorMessageAccompagnant.style.display = "block";
+                errorMessageAccompagnant.scrollIntoView({ behavior: "smooth" });
+                res = false; 
             }
-            else if (!selectionne) {
-                const errorMessage = document.querySelector("#accompagnant > div > .error_form");
-                errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
-                errorMessage.style.display = "block";
-                errorMessage.scrollIntoView({ behavior: "smooth" });
-                return false; 
-            } else if(document.getElementById("titre") && document.getElementById("titre").value.trim() === ""){
-                const errorMessage = document.querySelector("#titreAvis > div > .error_form");
-                errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
-                errorMessage.style.display = "block";
-                errorMessage.scrollIntoView({ behavior: "smooth" });
-                return false; 
-            } else if(document.getElementById("avis") && document.getElementById("avis").value.trim() === ""){
-                const errorMessage = document.querySelector("#textAvis > div > .error_form");
-                errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
-                errorMessage.style.display = "block";
-                errorMessage.scrollIntoView({ behavior: "smooth" });
-                return false; 
+            else{
+                errorMessageAccompagnant.style.display = "none";
+            }
+            return res
+        }
+
+        function checkTitre(){
+            let res = true
+            if (titre && titre.value.trim() === "") {
+                errorMessageTitre.textContent = "Veuillez saisir un titre avant de soumettre votre avis.";
+                errorMessageTitre.style.display = "block";
+                titre.classList.add("inputErreur");
+                res = false;
+            }
+            return res
+        }
+
+        titre.addEventListener("blur", () => checkTitre());
+        titre.addEventListener("focus", () => {
+            errorMessageTitre.style.display = "none";
+            titre.classList.remove("inputErreur");
+        });
+        
+
+        function checkAvis(){
+            let res = true
+            if (avis && avis.value.trim() === "") {
+                errorMessageAvis.textContent = "Veuillez saisir votre avis avant de le soumettre.";
+                errorMessageAvis.style.display = "block";
+                avis.classList.add("inputErreur");
+                res = false;
+            }
+            return res
+        }
+
+        avis.addEventListener("blur", () => checkAvis())
+        avis.addEventListener("focus", () => {
+            errorMessageAvis.style.display = "none";
+            avis.classList.remove("inputErreur");
+        });
+
+        function validerFormulaire() {
+            let res = true
+            
+            let noteCheck = checkNote();
+            let accompagnantCheck = checkAccompagnant();
+            let titreCheck = checkTitre();
+            let avisCheck = checkAvis();
+            
+            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck) {
+                res = false;
             }
 
-            return true;
+            return res;
         }
         // Validation avant la soumission
         formCreationAvis.addEventListener("submit", (event) => {

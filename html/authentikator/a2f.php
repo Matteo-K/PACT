@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="hidden" name="idu" value="<?php echo $tempSessionData['idUser'] ?>">
             <input type="hidden" name="type" value="<?php echo $tempSessionData['typeUser'] ?>">
             <section>
-                <p id="status" style="color: red;"><?php echo $errorMessage; ?></p>
+                <p id="status"><?php echo $errorMessage; ?></p>
                 <aside>
                     <button id="a2f_cancel" class="modifierBut" >Annuler</button>
                     <button id="a2f_submit" type="submit" class="modifierBut" >Vérifier</button>
@@ -136,9 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 if (/\d/.test(e.target.value)) {
                     if (index < inputs.length - 1) {
                         inputs[index + 1].focus();
-                     } //else {
-                    //     submit.focus();
-                    // }
+                    }
                 } else {
                     e.target.value = "";
                 }
@@ -151,8 +149,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             });
 
             cancel.addEventListener("click", (e) => {
-                e.preventDefault(); // empêche le comportement par défaut du bouton (submit)
-                window.location.href = "../index.php"; // redirection vers l'accueil
+                e.preventDefault(); 
+                window.location.href = "../index.php";
             });
 
         });
