@@ -93,7 +93,7 @@
                                 if ($typeUser === "admin") {
                                     echo $user["login"];
                                 } else if ($typeUser === "pro_public" || $typeUser === "pro_prive") {
-                                    echo $user["denomination"];
+                                    echo $user["denomination"] + "(pro)";
                                 } else if ($typeUser === "membre") {
                                     echo $user["pseudo"];
                                 }

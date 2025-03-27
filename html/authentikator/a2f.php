@@ -68,7 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body id="bodyA2f">
     <div id="a2f">
         <h1>Veuillez entrer votre code à 6 chiffres</h1>
-
         <form method="POST" action="a2f.php">
             <div>
                 <article>
@@ -87,11 +86,45 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <section>
                 <p id="status"></p>
                 <aside>
-                    <button type="submit" class="modifierBut" >Vérifier</button>
+                    <button id="a2f_submit" type="submit" class="modifierBut" >Vérifier</button>
                 </aside>
             </section>
         </form>
-    
     </div>
+    <script>
+        const input1 = document.getElementById("code_2fa1");
+        const input2 = document.getElementById("code_2fa2");
+        const input3 = document.getElementById("code_2fa3");
+        const input4 = document.getElementById("code_2fa4");
+        const input5 = document.getElementById("code_2fa5");
+        const input6 = document.getElementById("code_2fa6");
+        const submit = document.getElementById("a2f_submit");
+
+        input1.focus();
+
+        input1.addEventListener("input",()=>{
+            input2.focus();
+        });
+
+        input2.addEventListener("input",()=>{
+            input3.focus();
+        });
+
+        input3.addEventListener("input",()=>{
+            input4.focus();
+        });
+
+        input4.addEventListener("input",()=>{
+            input5.focus();
+        });
+
+        input5.addEventListener("input",()=>{
+            input6.focus();
+        });
+
+        input6.addEventListener("input",()=>{
+            submit.focus();
+        });
+    </script>
 </body>
 </html>
