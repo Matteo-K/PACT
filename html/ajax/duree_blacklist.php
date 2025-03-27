@@ -3,7 +3,8 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once "../config.php";
 
-    $inputData = json_decode(file_get_contents("php://input"), true);
+    $duree_blacklist = $_POST["duree_blacklist"];
+    $intervall_blacklist = $_POST["intervall_blacklist"];
 
     if (!empty($duree_blacklist) && !empty($intervall_blacklist)) {
         $stmt = $conn->prepare("UPDATE pact._parametre SET dureeblacklistage=?, uniteblacklist=?;");
