@@ -6015,6 +6015,7 @@ div[id="messageErreur"] {
 
   div[id="messageErreur"] {
     text-align: center;
+    width: 100%;
     color: red;
     margin-bottom: 20px;
     max-width: 460px;
