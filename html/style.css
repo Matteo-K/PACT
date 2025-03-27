@@ -1583,13 +1583,16 @@ header ul + div {
 #accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child {
   display: flex;
   flex-direction: column;
+  width: ;
 }
+.note + .error_form,
 #accompagnant > div:first-child > .error_form, 
 #titreAvis > div:first-child > .error_form, 
 #textAvis > div:first-child > .error_form {
   color: red;
-  font-size: 18px;
-  font-weight: lighter;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: italic;
 }
 
 
