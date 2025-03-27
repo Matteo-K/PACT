@@ -1,5 +1,7 @@
 <section>
-    <form id="formCreationAvis" action="/enregAvis.php?membre" method="post" enctype="multipart/form-data">
+    <form id="formCreationAvis" onsubmit="return validerFormulaire()" action="/enregAvis.php?membre" method="post" enctype="multipart/form-data">
+        
+        <span id="error_form" style="display: none; color: red;"></span>
         <div class="note">
             <!-- Étoiles pour la notation -->
             <?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -30,7 +32,7 @@
         <div id='accompagnant'>
             <label>Qui vous accompagnait ? *</label>
             <div id="enCompagnie">
-                <input type="radio" id="seul" name="compagnie" value="Seul" required>
+                <input type="radio" id="seul" name="compagnie" value="Seul">
                 <label class="tag" for="seul">Seul(e)</label>
 
                 <input type="radio" id="amis" name="compagnie" value="Amis">
@@ -62,7 +64,6 @@
             <label id="btnAjoutPhoto" for="ajoutPhoto" class="classAjouterPhotos">
                 <img src="./img/icone/addImage.png" alt="Icone d'ajout d'image" title="Icone d'ajout d'image">
                 <p>Ajouter des Photos</p>
-                sudo apt update && sudo apt install --reinstall systemd
                 </label>
             <input
                 type="file"
@@ -161,160 +162,30 @@
                 }
             });
         }
-        // Validation avant la soumission
-        formCreationAvis.addEventListener("submit", (event) => {
-            if (!noteInput.value) {
-                event.preventDefault();
-                alert("Veuillez sélectionner une note avant de soumettre votre avis.");
-            }
-        });
-    });
-    const maxImages = 3; // Nombre maximum d'images autorisé
-    let nbImageTotaleInAvis = 0; // Compteur global
-
-    window.addEventListener("beforeunload", (event) => {
-        const formChanged = !!nbImageTotaleInAvis || document.getElementById("note-value").value !== "";
-        if (formChanged) {
-            const confirmation = window.confirm("Vos données ne seront pas sauvegardées. Êtes-vous sûr de vouloir quitter ?");
-            if (!confirmation) {
-                event.preventDefault(); // Empêche l'action par défaut
-                event.returnValue = ""; // Nécessaire pour afficher un message dans certains navigateurs
-            } else {
-                // Si l'utilisateur confirme, supprimez les fichiers temporaires
-                deleteTemporaryFolder(uniqueId);
-            }
-        }
     });
 
-    function deleteTemporaryFolder(uniqueId) {
-        const formData = new FormData();
-        formData.append("unique_id", uniqueId);
+    function validerFormulaire() {
+        const radios = document.getElementsByName('compagnie');
+        let selectionne = false;
 
-        fetch("uploadImageAvisTemp/delete_temp_folder.php", {
-                method: "POST",
-                body: formData,
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                if (!data.success) {
-                    console.error("Erreur lors de la suppression du dossier temporaire :", data.message);
-                }
-            })
-            .catch((error) => {
-                console.error("Erreur réseau lors de la suppression du dossier temporaire :", error);
-            });
-    }
-
-    function handleFiles(inputElement) {
-        const files = inputElement.files;
-        const formData = new FormData();
-
-        // Vérifie si l'ajout dépasse la limite maximale
-        if (nbImageTotaleInAvis + files.length > maxImages) {
-            alert(`Vous ne pouvez ajouter plus ajouter d'images.`);
-            inputElement.value = ""; // Réinitialise le champ file
-            return;
+        // Vérifie si l'une des options radio est sélectionnée
+        for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                selectionne = true;
+                break;
+            }
         }
 
-        // Ajoute chaque fichier au FormData pour l'upload
-        for (let i = 0; i < files.length; i++) {
-            formData.append("images[]", files[i]);
+        // Si aucune option n'est sélectionnée, afficher l'erreur et empêcher l'envoi du formulaire
+        if (!selectionne) {
+            const errorMessage = document.getElementById("error_form");
+            errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
+            errorMessage.style.display = "block"; // Affiche le message d'erreur
+            return false; // Empêche la soumission du formulaire
         }
 
-        // Ajoute l'ID unique pour le dossier temporaire
-        formData.append("unique_id", uniqueId);
-
-        // Envoie les fichiers au serveur via une requête AJAX
-        fetch("uploadImageAvisTemp/upload_temp_files.php", {
-                method: "POST",
-                body: formData,
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    nbImageTotaleInAvis += files.length; // Met à jour le compteur
-                    displayUploadedFiles(uniqueId); // Met à jour l'affichage des images
-                } else {
-                    alert("Erreur lors de l'upload : " + data.message);
-                    inputElement.value = ""; // Réinitialise le champ en cas d'échec
-                }
-            })
-            .catch((error) => {
-                console.error("Erreur lors de la requête :", error);
-                alert("Une erreur est survenue pendant l'upload.");
-                inputElement.value = ""; // Réinitialise le champ en cas d'erreur
-            });
-    }
-
-    function displayUploadedFiles(uniqueId) {
-        const afficheImages = document.getElementById("afficheImagesAvis");
-        afficheImages.innerHTML = ""; // Réinitialise l'affichage
-
-        fetch(`uploadImageAvisTemp/list_temp_files.php?unique_id=${uniqueId}`)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    data.files.forEach((fileUrl) => {
-                        const div = document.createElement("div");
-                        div.classList.add("image-container");
-                        div.style.position = "relative";
-
-                        const img = document.createElement("img");
-                        img.src = fileUrl;
-                        img.alt = "Image uploaded";
-                        img.style.width = "100px";
-                        img.style.margin = "10px";
-
-                        const deleteIcon = document.createElement("img");
-                        deleteIcon.src = "img/icone/croix.png";
-                        deleteIcon.alt = "Supprimer";
-                        deleteIcon.style.width = "20px";
-                        deleteIcon.style.height = "20px";
-                        deleteIcon.style.position = "absolute";
-                        deleteIcon.style.top = "5px";
-                        deleteIcon.style.right = "5px";
-                        deleteIcon.style.cursor = "pointer";
-
-                        deleteIcon.addEventListener("click", () => {
-                            deleteFile(fileUrl, uniqueId, div);
-                        });
-
-                        div.appendChild(img);
-                        div.appendChild(deleteIcon);
-                        afficheImages.appendChild(div);
-                    });
-                } else {
-                    alert("Erreur lors de la récupération des fichiers : " + data.message);
-                }
-            })
-            .catch((error) => {
-                console.error("Erreur lors de la récupération :", error);
-                alert("Une erreur est survenue pendant la récupération des fichiers.");
-            });
-    }
-
-    function deleteFile(fileUrl, uniqueId, imageContainer) {
-        const formData = new FormData();
-        formData.append("fileUrl", fileUrl); // L'URL du fichier à supprimer
-        formData.append("unique_id", uniqueId); // L'ID unique pour le dossier temporaire
-
-        fetch("uploadImageAvisTemp/delete_temp_files.php", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    nbImageTotaleInAvis--; // Décrémente le compteur
-                    imageContainer.remove(); // Supprime l'image du DOM
-                } else {
-                    alert("Erreur lors de la suppression de l'image : " + data.message);
-                }
-            })
-            .catch(error => {
-                console.error("Erreur lors de la suppression :", error);
-                alert("Une erreur est survenue pendant la suppression.");
-            });
+        // Si tout est valide, permettre la soumission
+        return true;
     }
 
     // Fonction pour générer un ID unique

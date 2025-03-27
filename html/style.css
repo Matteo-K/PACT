@@ -1556,6 +1556,7 @@ header ul + div {
 }
 
 #btnAjoutPhoto {
+  width: 130px;
   background-color: var(--primary);
   border: 3px solid var(--primary);
   border-radius: 10px;
@@ -1563,16 +1564,19 @@ header ul + div {
   cursor: pointer;
   color: black !important;
   transition: background-color 0.3s ease-in-out;
-  display: flex;
-  gap: 20px;
-  width: 10em;
+  display: flex !important;
   align-items: center;
-  justify-content: flex-start;
+  gap: 1em;
+  padding:0 10px;
 }
+
 #btnAjoutPhoto >img{
   width: 30px;
   height: 30px;
   object-fit: contain;
+}
+#btnAjoutPhoto > p {
+  margin-block: 0.5em;
 }
 
 #detailsOffer input[type="file"],
@@ -3569,26 +3573,65 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 #a2f{
-  width: 40%;
-  height: 60%;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 25%;
+  height: 35%;
+  background-color: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#a2f h1{
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 #a2f div{
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 40px;
 }
 
 #a2f input{
   width: 30px;
   height: 45px;
-  background-color: grey;
+  background-color: white;
+  border: 2px solid #1ca4ed;
   border-radius: 5px;
+  text-align: center;
+}
+
+#a2f form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50%;
+}
+
+#a2f section{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#a2f aside {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#a2f p{
+  transform: translateY(-20px);
+}
+
+#a2f article{
+  display: flex;
+  gap: 15px;
 }
 
 
@@ -5987,6 +6030,7 @@ div[id="messageErreur"] {
 
   div[id="messageErreur"] {
     text-align: center;
+    width: 100%;
     color: red;
     margin-bottom: 20px;
     max-width: 460px;
