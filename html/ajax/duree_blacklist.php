@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!empty($duree_blacklist) && !empty($intervall_blacklist)) {
 
-        $stmt = $conn->prepare("UPDATE pact._parametre SET dureeblacklistage=?, uniteblacklist=? WHERE id=1;");
+        $stmt = $conn->prepare("UPDATE pact._parametre SET dureeblacklistage=?, uniteblacklist=?;");
         $stmt->execute([intval($duree_blacklist), $intervall_blacklist]);
     }
 }
