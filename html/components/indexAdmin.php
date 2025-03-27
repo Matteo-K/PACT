@@ -106,9 +106,9 @@
                 </div>
               </div>
               <form action="../ajax/manageAdminOffer.php" method="post">
-                <input type="submit" value="Visualiser">
-                <input type="submit" value="Rejeter">
-                <input type="submit" value="Supprimer">
+                <button type="submit" value="visualiser">Visualiser</button>
+                <button type="submit" value="rejeter">Rejeter</button>
+                <button type="submit" value="supprimer">Supprimer</button>
                 <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
               </form>
             </li>
