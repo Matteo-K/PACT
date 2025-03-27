@@ -1721,7 +1721,7 @@ EXECUTE FUNCTION delete_membre();
 
 
 
-CREATE OR REPLACE FUNCTION delete_imgAvis()
+CREATE OR REPLACE FUNCTION delete_imageAvis()
 RETURNS TRIGGER AS $$
 BEGIN
 
@@ -1733,7 +1733,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Création du trigger associé
-CREATE TRIGGER trigger_before_delete_membre
-BEFORE DELETE ON pact._avisimage
+CREATE TRIGGER trigger_delete_imageAvis
+AFTER DELETE ON pact._avisimage
 FOR EACH ROW
-EXECUTE FUNCTION delete_imgAvis();
+EXECUTE FUNCTION delete_imageAvis();
