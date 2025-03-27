@@ -90,7 +90,7 @@
 
             <div>
                 <label for="consentement">
-                    <input type="checkbox" name="consentement" id="consentement" style="display: none;" required>
+                    <input type="checkbox" name="consentement" id="consentement" style="display: none;">
                     <span class="checkmark"></span>
                     <p>Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</p>
                 </label>
@@ -247,6 +247,7 @@
                 res = false;
             } else {
                 label.forEach(lbl => lbl.style.cssText = "");
+                errorMessageAccompagnant.style.display = "none";
         
             }
             return res
@@ -292,6 +293,20 @@
             avis.classList.remove("inputErreur");
         });
 
+        function checkConsentement() {
+            let res = true
+            if (!consentement.checked) {
+                errorMessageConsentement.textContent = "Veuillez certifier que vous consentez à la publication de votre avis avant de le soumettre.";
+                errorMessageConsentement.style.display = "block";
+                consentement.classList.add("inputErreur");
+                res = false;
+            } else{
+                errorMessageConsentement.style.display = "none";
+                consentement.classList.remove("inputErreur");
+            }
+            return res
+        }
+
         function validerFormulaire() {
             let res = true
 
@@ -300,8 +315,9 @@
             let titreCheck = checkTitre();
             let avisCheck = checkAvis();
             let dateCheck = checkDate();
+            let consentementCheck = checkConsentement();
 
-            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck || !dateCheck) {
+            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck || !dateCheck || !consentementCheck) {
                 res = false;
             }
 
