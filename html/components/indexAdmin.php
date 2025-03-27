@@ -91,6 +91,7 @@
       <ul>
         <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
           <?php print_r($row); ?>
+          <?php echo gettype($row["listimage"]); ?>
             <li>
               <div>
                 <img src="" alt="" title="">
