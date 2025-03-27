@@ -262,10 +262,18 @@
         });
 
         function validerFormulaire() {
+            let res = true
+            
             let noteCheck = checkNote();
             let accompagnantCheck = checkAccompagnant();
             let titreCheck = checkTitre();
             let avisCheck = checkAvis();
+            
+            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck) {
+                res = false;
+            }
+
+            return res;
         }
         // Validation avant la soumission
         formCreationAvis.addEventListener("submit", (event) => {
