@@ -828,7 +828,7 @@ function createFront(offer) {
         break;
 
       case 'delete':
-        h4.classList.add("supression");
+        h4.classList.add("suppression");
         break;
     }
   }
@@ -946,7 +946,7 @@ function createBack(offer) {
       case 'actif':
         enLigne.textContent = "En ligne";
         break;
-        
+
       case 'inactif':
         enLigne.classList.add("horslgnOffre");
         enLigne.textContent = "Hors ligne";

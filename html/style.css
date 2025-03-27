@@ -3316,7 +3316,7 @@ label[for="rest_ajoutPhotoMenu"] {
   background-color: red !important;
 }
 
-.supression::after {
+.suppression::after {
   background-color: var(--text-dark50) !important;
 }
 

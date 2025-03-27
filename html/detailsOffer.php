@@ -302,7 +302,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                 case 'delete':
                                     $titre = "Suppression";
-                                    $class = "supression";
+                                    $class = "suppression";
                                     break;
                             } ?>
                             <p class="Enligne infoP StatutAffiche <?= $class ?>"><?= $titre ?></p>
