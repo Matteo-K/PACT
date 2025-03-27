@@ -80,7 +80,6 @@
                     unlink($pic);
                 }
             } 
-        }
             //suppression du compte (géré par le trigger en BDD)
             $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
             $stmt -> execute();
