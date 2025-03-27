@@ -1556,7 +1556,6 @@ header ul + div {
 }
 
 #btnAjoutPhoto {
-  width:130px;
   background-color: var(--primary);
   border: 3px solid var(--primary);
   border-radius: 10px;
@@ -3573,7 +3572,7 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 #a2f{
@@ -3595,7 +3594,7 @@ label[for="rest_ajoutPhotoMenu"] {
 #a2f input{
   width: 30px;
   height: 45px;
-  background-color: grey;
+  background-color: lightgrey;
   border-radius: 5px;
   text-align: center;
 }
