@@ -294,15 +294,16 @@
         });
 
         function checkConsentement() {
+            const checkmark = consentement.nextElementSibling;
             let res = true
             if (!consentement.checked) {
                 errorMessageConsentement.textContent = "Veuillez certifier que vous consentez à la publication de votre avis avant de le soumettre.";
                 errorMessageConsentement.style.display = "block";
-                consentement.classList.add("inputErreur");
+                checkmark.classList.add("inputErreur");
                 res = false;
             } else{
                 errorMessageConsentement.style.display = "none";
-                consentement.classList.remove("inputErreur");
+                checkmark.classList.remove("inputErreur");
             }
             return res
         }

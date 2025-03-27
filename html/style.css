@@ -1596,9 +1596,11 @@ header ul + div {
   width: 100%;
 }
 
-#divConsentement > div > label > p {
-  margin: 0;
+#divConsentement > div > label {
   margin-top: 1em;
+}
+#divConsentement > div > label > p {
+  margin:0;
 }
 
 .note + .error_form,
