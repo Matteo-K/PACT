@@ -300,10 +300,12 @@
                 errorMessageConsentement.textContent = "Veuillez certifier que vous consentez à la publication de votre avis avant de le soumettre.";
                 errorMessageConsentement.style.display = "block";
                 checkmark.classList.add("inputErreur");
+                checkmark.style.cssText = "0 0 10px red";
                 res = false;
             } else{
                 errorMessageConsentement.style.display = "none";
                 checkmark.classList.remove("inputErreur");
+                checkmark.style.cssText = "";
             }
             return res
         }
