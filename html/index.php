@@ -38,9 +38,10 @@
                 <div>
                   <input type="number" name="duree_blacklist" id="duree_blacklist" value="<?= $duree ?>">
                   <select name="intervall_blacklist" id="intervall_blacklist">
-                    <option value="minutes" <?= $unite === "minutes" ? "selected" : "" ?>>minutes</option>
-                    <option value="hours" <?= $unite === "hours" ? "selected" : "" ?>>heures</option>
-                    <option value="days" <?= $unite === "days" ? "selected" : "" ?>>jours</option>
+                    <?php echo $unite . " " . gettype($unite) ?>
+                    <option value="minutes" <?= $unite == "minutes" ? "selected" : "" ?>>minutes</option>
+                    <option value="hours" <?= $unite == "hours" ? "selected" : "" ?>>heures</option>
+                    <option value="days" <?= $unite == "days" ? "selected" : "" ?>>jours</option>
                   </select>
                 </div>
                 <label id="res_duree_blacklist"></label>
@@ -54,7 +55,6 @@
 
               function checkDuree() {
                 const duree = dureeInput.value.trim();
-                const intervall = intervallInput.value;
 
                 if (!/^\d+$/.test(duree) || parseInt(duree) < 1) {
                     resLabel.textContent = "Veuillez entrer une durée valide (chiffre positif).";
@@ -64,15 +64,17 @@
                 return true;
               }
               
-              dureeInput.addEventListeneer("blur", () => checkDuree());
+              dureeInput.addEventListener("blur", () => checkDuree());
               document.getElementById("form_duree_blacklist").addEventListener("submit", (event) => {
                 event.preventDefault();
-
-                const formData = new URLSearchParams();
-                formData.append("duree_blacklist", duree);
-                formData.append("intervall_blacklist", intervall);
-
                 if (checkDuree()) {
+
+                  const duree = dureeInput.value.trim();
+                  const intervall = intervallInput.value;
+
+                  const formData = new URLSearchParams();
+                  formData.append("duree_blacklist", duree);
+                  formData.append("intervall_blacklist", intervall);
 
                   fetch("ajax/duree_blacklist.php", {
                     method: "POST",
@@ -92,6 +94,7 @@
                     }
                   })
                   .catch(error => {
+                    console.error("Erreur AJAX :", error);
                     resLabel.textContent = "Une erreur est survenue.";
                     resLabel.style.color = "red";
                   });
