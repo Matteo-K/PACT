@@ -3571,13 +3571,16 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 #a2f{
   width: 40%;
   height: 60%;
-  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  background-color: white;
 }
 
 #a2f div{
@@ -3591,6 +3594,7 @@ label[for="rest_ajoutPhotoMenu"] {
   height: 45px;
   background-color: grey;
   border-radius: 5px;
+  text-align: center;
 }
 
 
