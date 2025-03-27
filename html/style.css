@@ -3615,9 +3615,9 @@ label[for="rest_ajoutPhotoMenu"] {
   justify-content: flex-end;
 }
 
-/* #a2f p{ */
-  /* transform: translateY(-100px); */
-/* } */
+#a2f p{
+  transform: translateY(-20px);
+}
 
 
 /* GABRIEL */
