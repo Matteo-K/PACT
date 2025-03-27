@@ -3593,7 +3593,8 @@ label[for="rest_ajoutPhotoMenu"] {
 #a2f div{
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 40px;
 }
 
 #a2f input{
@@ -3626,6 +3627,11 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #a2f p{
   transform: translateY(-20px);
+}
+
+#a2f article{
+  display: flex;
+  gap: 15px;
 }
 
 
