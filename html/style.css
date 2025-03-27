@@ -5145,7 +5145,7 @@ label#btnAjoutPhoto:hover {
 }
 
 /* Consentement */
-#formCreationAvis > div:not(.note) {
+/* #formCreationAvis > div:not(.note) {
   margin-bottom: 10px;
   justify-content: space-between;
   align-items: center;
@@ -5153,7 +5153,7 @@ label#btnAjoutPhoto:hover {
 
 #formCreationAvis input[type="checkbox"] {
   margin-right: 5px;
-}
+} */
 
 /* Bouton Soumettre */
 #formCreationAvis button[type="submit"] {
