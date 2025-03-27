@@ -3585,6 +3585,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #a2f div{
   display: flex;
+  flex-direction: column;
   width: 100%;
   justify-content: space-evenly;
 }
