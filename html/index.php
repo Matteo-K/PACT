@@ -93,6 +93,7 @@
                     }
                   })
                   .catch(error => {
+                    console.error("Erreur AJAX :", error);
                     resLabel.textContent = "Une erreur est survenue.";
                     resLabel.style.color = "red";
                   });
