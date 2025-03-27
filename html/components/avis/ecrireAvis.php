@@ -91,10 +91,10 @@
             
             <div>
                 <label for="consentement">
-                    <input type="checkbox" name="consentement" id="consentement">
+                    <input type="checkbox" name="consentement" id="consentement" style="display: none;">
                     <span class="checkmark"></span>
-                    Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.
-                </label>
+                    <p>Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</p>
+            </label>
                 <span class="error_form" style="display: none;"></span>
             </div>
         </div>

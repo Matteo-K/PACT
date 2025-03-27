@@ -2798,6 +2798,13 @@ label[for="rest_ajoutPhotoMenu"] {
   transform: scale(1.1);
 }
 
+#consentement + .checkmark {
+  transform: scale(1.1);
+}
+#consentement + .checkmark:hover{
+  transform: scale(0.8);
+}
+
 #note, #prix, #statut, #categorie, #date, #heure {
   padding-inline: 40px;
 }
