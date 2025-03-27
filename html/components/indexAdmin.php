@@ -96,23 +96,22 @@
       </summary>
       <ul>
         <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
-          <?php print_r($row); ?>
-            <li>
+          <li>
+            <div>
+              <img src="<?= "." . $row["url"] ?>" alt="<?= $row["nom"] ?>" title="<?= $row["nom"] ?>">
               <div>
-                <img src="<?= "." . $row["url"] ?>" alt="<?= $row["nom"] ?>" title="<?= $row["nom"] ?>">
-                <div>
-                  <h3><?= $row["nom"] ?></h3>
-                  <h4>Proposé par <?= $row["denomination"] ?></h4>
-                </div>
+                <h3><?= $row["nom"] ?></h3>
+                <h4>Proposé par <?= $row["denomination"] ?></h4>
               </div>
-              <form action="../ajax/manageAdminOffer.php" method="post">
-                <button type="submit" name="action" value="visualiser">Visualiser</button>
-                <button type="submit" name="action" value="rejeter">Rejeter</button>
-                <button type="submit" name="action" value="supprimer">Supprimer</button>
-                <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
-              </form>
-            </li>
-          <?php } ?>
+            </div>
+            <form action="../ajax/manageAdminOffer.php" method="post">
+              <button type="submit" name="action" value="visualiser" class="modifierBut">Visualiser</button>
+              <button type="submit" name="action" value="rejeter" class="modifierBut">Rejeter</button>
+              <button type="submit" name="action" value="supprimer" class="modifierBut">Supprimer</button>
+              <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
+            </form>
+          </li>
+        <?php } ?>
       </ul>
     </details>
 
