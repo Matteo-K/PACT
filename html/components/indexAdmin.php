@@ -77,9 +77,15 @@
 
     <?php
     $stmt = $conn->prepare(
-      "SELECT nom, listimage, denomination FROM pact.offres o
-      LEFT JOIN pact._pro p ON p.idu = o.idu 
-      WHERE o.statut='delete';"
+      "SELECT o.idoffre, o.nom, p.denomination, i.url
+      FROM pact.offres o
+      LEFT JOIN pact._pro p ON p.idu = o.idu
+      LEFT JOIN (
+          SELECT idoffre, MIN(url) AS url
+          FROM pact._illustre
+          GROUP BY idoffre
+      ) i ON i.idoffre = o.idoffre
+      WHERE o.statut = 'delete';"
     );
     $stmt->execute();
     ?>
@@ -91,19 +97,19 @@
       <ul>
         <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
           <?php print_r($row); ?>
-          <?php echo gettype($row["listimage"]); ?>
             <li>
               <div>
-                <img src="" alt="" title="">
+                <img src="<?= "." . $row["url"] ?>" alt="<?= $row["nom"] ?>" title="<?= $row["nom"] ?>">
                 <div>
-                  <h3>Nom de l'offre</h3>
-                  <h4>Proposé par ...</h4>
+                  <h3><?= $row["nom"] ?></h3>
+                  <h4>Proposé par <?= $row["denomination"] ?></h4>
                 </div>
               </div>
-              <form action="" method="post">
+              <form action="../ajax/manageAdminOffer.php" method="post">
                 <input type="submit" value="Visualiser">
                 <input type="submit" value="Rejeter">
                 <input type="submit" value="Supprimer">
+                <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
               </form>
             </li>
           <?php } ?>
