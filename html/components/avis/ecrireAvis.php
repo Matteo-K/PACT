@@ -236,6 +236,9 @@
                 }
             }
             if (!selectionne) {
+                for (let i = 0; i < radios.length; i++) {
+                    radios[i].classList.add("inputErreur");
+                }
 
                 errorMessageAccompagnant.textContent = "Veuillez sélectionner qui vous accompagnait avant de soumettre votre avis.";
                 errorMessageAccompagnant.style.display = "block";
@@ -244,7 +247,9 @@
                 });
                 res = false;
             } else {
-                errorMessageAccompagnant.style.display = "none";
+                for (let i = 0; i < radios.length; i++) {
+                    radios[i].classList.remove("inputErreur");
+                }
             }
             return res
         }
