@@ -167,7 +167,6 @@
             const radios = document.getElementsByName('compagnie');
             let selectionne = false;
 
-            // Vérifie si l'une des options radio est sélectionnée
             for (let i = 0; i < radios.length; i++) {
                 if (radios[i].checked) {
                     selectionne = true;
@@ -176,26 +175,27 @@
             }
 
             if (!noteInput.value) {
-                event.preventDefault();
+                const errorMessage = document.getElementById("error_form");
                 errorMessage.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
                 errorMessage.style.display = "block";
+                errorMessage.scrollTo(0);
                 return false;
                 
             }
             else if (!selectionne) {
-                event.preventDefault();
                 const errorMessage = document.getElementById("error_form");
                 errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
-                errorMessage.style.display = "block"; // Affiche le message d'erreur
-                return false; // Empêche la soumission du formulaire
+                errorMessage.style.display = "block";
+                errorMessage.scrollTo(0);
+                return false; 
             }
 
-            // Si tout est valide, permettre la soumission
             return true;
         }
         // Validation avant la soumission
         formCreationAvis.addEventListener("submit", (event) => {
-            
+            event.preventDefault();
+            validerFormulaire();
         });
     });
     const maxImages = 3; // Nombre maximum d'images autorisé
