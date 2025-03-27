@@ -167,7 +167,6 @@
             const radios = document.getElementsByName('compagnie');
             let selectionne = false;
 
-            // Vérifie si l'une des options radio est sélectionnée
             for (let i = 0; i < radios.length; i++) {
                 if (radios[i].checked) {
                     selectionne = true;
@@ -179,17 +178,18 @@
                 const errorMessage = document.getElementById("error_form");
                 errorMessage.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
                 errorMessage.style.display = "block";
+                scrollToElement(errorMessage);
                 return false;
                 
             }
             else if (!selectionne) {
                 const errorMessage = document.getElementById("error_form");
                 errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
-                errorMessage.style.display = "block"; // Affiche le message d'erreur
-                return false; // Empêche la soumission du formulaire
+                errorMessage.style.display = "block";
+                scrollToElement(errorMessage);
+                return false; 
             }
 
-            // Si tout est valide, permettre la soumission
             return true;
         }
         // Validation avant la soumission
