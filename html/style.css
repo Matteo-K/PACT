@@ -5122,7 +5122,6 @@ details .blacklist {
 /* Champs d'entrée */
 #formCreationAvis input,
 #formCreationAvis textarea {
-  width: 65%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
