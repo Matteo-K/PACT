@@ -121,18 +121,23 @@
             <?php
               $nbTagMax = 2;
               $plusTag = 0;
+
               if (count($tags) > 0) {
                 if (count($tags) > $nbTagMax) {
                   $plusTag = count($tags) - $nbTagMax;
-                  $tags = array_slice($tags, 0, $nbTagMax);
+                  $tagsToShow = array_slice($tags, 0, $nbTagMax);
+                } else {
+                  $tagsToShow = $tags;
                 }
-                  foreach ($tags as $key => $tag) { 
-                    if (!empty($tag)) { ?>
+
+                foreach ($tagsToShow as $tag) {
+                  if (!empty($tag)) { ?>
                     <a href="index.php?search=<?php echo $tag ?>#searchIndex" class="tagIndex"><?php echo $tag ?></a>
                   <?php }
                 }
-                if ($plusTag) { ?>
-                  <a class="tagIndex">+ <?= $nbTagMax ?></a>
+
+                if ($plusTag > 0) { ?>
+                  <a class="tagIndex">+ <?= $plusTag ?> autres</a>
                 <?php }
               }
             ?> 
