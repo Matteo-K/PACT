@@ -1580,6 +1580,18 @@ header ul + div {
   margin-block: 0.5em;
 }
 
+#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child {
+  display: flex;
+  flex-direction: column;
+}
+#accompagnant > div:first-child > .error_form, 
+#titreAvis > div:first-child > .error_form, 
+#textAvis > div:first-child > .error_form {
+  color: red;
+  font-size: 18px;
+  font-weight: lighter;
+}
+
 
 
 #detailsOffer input[type="file"],
