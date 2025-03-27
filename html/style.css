@@ -3619,6 +3619,11 @@ label[for="rest_ajoutPhotoMenu"] {
   justify-content: flex-end;
 }
 
+#a2f aside {
+  display: flex;
+  justify-content: flex-end;
+}
+
 #a2f p{
   transform: translateY(-20px);
 }
