@@ -80,10 +80,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
             <input type="hidden" name="idu" value="<?php echo $tempSessionData['idUser'] ?>">
             <input type="hidden" name="type" value="<?php echo $tempSessionData['typeUser'] ?>">
-            <button type="submit" class="modifierBut" >Vérifier</button>
+            <section>
+                <p id="status"></p>
+                <button type="submit" class="modifierBut" >Vérifier</button>
+            </section>
         </form>
     
-        <p id="status"></p>
     </div>
 </body>
 </html>

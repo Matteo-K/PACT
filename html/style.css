@@ -3578,7 +3578,6 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #a2f{
   width: 40%;
-  height: 60%;
   background-color: white;
   border-radius: 20px;
   padding: 15px;
@@ -3609,6 +3608,15 @@ label[for="rest_ajoutPhotoMenu"] {
   justify-content: space-between;
   gap: 50px;
   height: 80%;
+}
+
+#a2f section{
+  display: flex;
+  justify-content: flex-end;
+}
+
+#a2f p{
+  transform: translateY(-20px);
 }
 
 
