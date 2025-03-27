@@ -1,7 +1,6 @@
 <section>
     <form id="formCreationAvis" action="/enregAvis.php?membre" method="post" enctype="multipart/form-data">
 
-        <span id="error_form" style="display: none;"></span>
         <div class="note">
             <!-- Étoiles pour la notation -->
             <?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -14,7 +13,7 @@
             <?php } ?>
             <input name="note" id="note-value" type="hidden" value="" required>
         </div>
-        <span id="error_form" style="display: none;"></span>
+        <span class="error_form" style="display: none;"></span>
 
         <!-- Champ pour la date -->
         <div>
@@ -199,7 +198,7 @@
                 
             }
             else if (!selectionne) {
-                const errorMessage = document.getElementById("error_form");
+                const errorMessage = document.querySelector("#accompagnant > div > .error_form");
                 errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
                 errorMessage.style.display = "block";
                 errorMessage.scrollIntoView({ behavior: "smooth" });
