@@ -124,7 +124,7 @@
               if (count($tags) > 0) {
                 if (count($tags) > $nbTagMax) {
                   $plusTag = count($tags) - $nbTagMax;
-                  array_slice($tag, 0, $nbTagMax);
+                  $tags = array_slice($tags, 0, $nbTagMax);
                 }
                   foreach ($tags as $key => $tag) { 
                     if (!empty($tag)) { ?>
