@@ -16,7 +16,7 @@
         <span class="error_form" style="display: none;"></span>
 
         <!-- Champ pour la date -->
-        <div>
+        <div id="divDate">
             <div>
                 <label for="date-avis">Donnez la date de visite : *</label>
                 <span class="error_form" style="display: none;"></span>
@@ -27,8 +27,7 @@
                 name="date"
                 min="<?= date('Y-m', strtotime('-1 year')) ?>"
                 max="<?= date('Y-m') ?>"
-                value="<?= date('Y-m') ?>"
-                required>
+                value="<?= date('Y-m') ?>">
         </div>
 
         <!-- Qui vous accompagnait -->
@@ -91,7 +90,7 @@
 
             <div>
                 <label for="consentement">
-                    <input type="checkbox" name="consentement" id="consentement" style="display: none;">
+                    <input type="checkbox" name="consentement" id="consentement" style="display: none;" required>
                     <span class="checkmark"></span>
                     <p>Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</p>
                 </label>
@@ -182,12 +181,14 @@
             });
         }
 
+        const date = document.getElementsByName('date');
         const radios = document.getElementsByName('compagnie');
         const titre = document.getElementById("titre");
         const avis = document.getElementById("avis");
         const consentement = document.getElementById("consentement")
 
-        const errorMessageNote = document.querySelector(".note + .error_form")
+        const errorMessageNote = document.querySelector(".note + .error_form");
+        const errorMessageDate = document.querySelector("#divDate > div > .error_form");
         const errorMessageAccompagnant = document.querySelector("#accompagnant > div > .error_form");
         const errorMessageTitre = document.querySelector("#titreAvis > div > .error_form");
         const errorMessageAvis = document.querySelector("#textAvis > div > .error_form");
@@ -201,6 +202,19 @@
                 errorMessageNote.scrollIntoView({
                     behavior: "smooth"
                 });
+                res = false;
+            } else {
+                errorMessageNote.style.display = "none";
+            }
+            return res
+        }
+
+        function checkDate(){
+            let res = true
+            if (!date[0].value.trim()) {
+                errorMessageDate.textContent = "Veuillez sélectionner une date avant de soumettre votre avis.";
+                errorMessageDate.style.display = "block";
+                titre.classList.add("inputErreur");
                 res = false;
             } else {
                 errorMessageNote.style.display = "none";
@@ -274,8 +288,9 @@
             let accompagnantCheck = checkAccompagnant();
             let titreCheck = checkTitre();
             let avisCheck = checkAvis();
+            let dateCheck = checkDate();
 
-            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck) {
+            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck || !dateCheck) {
                 res = false;
             }
 
@@ -290,11 +305,6 @@
             }
         });
 
-        document.querySelector('input[type="month"]').addEventListener('input', function(event) {
-            if (this.value === '') {
-                event.preventDefault(); // Empêche la réinitialisation
-            }
-        });
     });
     const maxImages = 3; // Nombre maximum d'images autorisé
     let nbImageTotaleInAvis = 0; // Compteur global

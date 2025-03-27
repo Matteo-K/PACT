@@ -1582,14 +1582,16 @@ header ul + div {
   margin-block: 0.5em;
 }
 
-#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child{
+#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child, #divDate > div:first-child{
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .note + .error_form,
 #accompagnant > div:first-child > .error_form, 
 #titreAvis > div:first-child > .error_form, 
-#textAvis > div:first-child > .error_form {
+#textAvis > div:first-child > .error_form,
+#divDate > div:first-child > .error_form{
   color: red;
   font-size: 14px;
   font-weight: normal;
@@ -5545,7 +5547,7 @@ label#btnAjoutPhoto:hover {
   }
   #accompagnant, #divAjoutPhoto, #ajoutTitre, #ajoutCommentaire{
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-start !important;
   }
 }
