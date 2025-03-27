@@ -231,6 +231,7 @@
             if (titre && titre.value.trim() === "") {
                 errorMessageTitre.textContent = "Veuillez saisir un titre avant de soumettre votre avis.";
                 errorMessageTitre.style.display = "block";
+                titre.classList.add("inputErreur");
                 res = false;
             }
             return res
@@ -248,6 +249,7 @@
             if (avis && avis.value.trim() === "") {
                 errorMessageAvis.textContent = "Veuillez saisir votre avis avant de le soumettre.";
                 errorMessageAvis.style.display = "block";
+                avis.classList.add("inputErreur");
                 res = false;
             }
             return res
