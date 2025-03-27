@@ -1579,6 +1579,8 @@ header ul + div {
   margin-block: 0.5em;
 }
 
+
+
 #detailsOffer input[type="file"],
 #park_plan input[type="file"] {
   display: none;
@@ -5893,7 +5895,7 @@ input[id="siren"] {
 }
 
 /* Messages d'erreurs */
-div[id="messageErreur"] {
+div[id="messageErreur"], #error_form {
   display: block;
   width: 100%;
   text-align: center;
