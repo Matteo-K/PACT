@@ -773,7 +773,8 @@ header ul + div {
 #manageOffer [type="tel"],
 #manageOffer [type="password"],
 #manageOffer [type="time"],
-#inputSuppression {
+#inputSuppression,
+.indexAdmin [type="number"] {
   outline: none;
   border-radius: 0;
   border: none;
@@ -783,7 +784,8 @@ header ul + div {
 }
 
 #manageOffer textarea,
-#manageOffer select {
+#manageOffer select,
+.indexAdmin select {
   outline: none;
   border: solid 2px var(--primary);
   background-color: transparent;
@@ -1583,7 +1585,6 @@ header ul + div {
 #accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child {
   display: flex;
   flex-direction: column;
-
 }
 .note + .error_form,
 #accompagnant > div:first-child > .error_form, 
@@ -2062,43 +2063,40 @@ label[for="rest_ajoutPhotoMenu"] {
 .swiper-button-next.gb2,
 .swiper-button-next.gb3{
   transform: translateX(-180%);
-  /* Rounded corners for the next button */
 }
 
 .backdoor{
   user-select: none;
-  -webkit-user-select: none; /* Support pour les navigateurs WebKit (Chrome, Safari) */
-  -moz-user-select: none; /* Support pour Firefox */
-  -ms-user-select: none; /* Support pour Internet Explorer */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .swiper-button-prev.gb,
 .swiper-button-prev.gb2,
 .swiper-button-prev.gb3 {
   transform: translateX(180%);
-
-  /* Rounded corners for the prev button */
 }
 
 @media (max-width: 700px) {
   .flip-card {
-    width: 300px !important; /* Réduit la largeur à 300px sur les petits écrans */
+    width: 300px !important;
   }
 
   .flip-card-back {
-    font-size: 1em !important; /* Ajuste la taille de la police */
-    padding: 5px !important; /* Ajuste les marges internes */
-    border: 2px solid var(--primary) !important; /* Réduit la taille de la bordure */
+    font-size: 1em !important;
+    padding: 5px !important;
+    border: 2px solid var(--primary) !important;
   }
 
   .flip-card-back .title {
-    font-size: 1.1rem !important; /* Réduit la taille du titre */
+    font-size: 1.1rem !important;
     text-align: right !important;
     margin: 0 !important;
   }
 
   .flip-card-front .title {
-    font-size: 1rem !important; /* Réduit la taille du titre */
+    font-size: 1rem !important;
   }
 
   .flip-card-back .blocStar,.flip-card-front .blocStar {
@@ -2364,6 +2362,23 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: center;
   justify-content: center;
   min-height: 30vh !important;
+}
+
+.indexAdmin {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr;
+  min-height: calc(100vh - var(--header-size2));
+
+  aside {
+    border-right: var(--bloc) solid 0.5vw;
+    padding: 20px;
+  }
+
+  fieldset {
+    border: 3px solid var(--primary);
+    border-radius: 10px;
+  }
 }
 
 #voirPlus {
