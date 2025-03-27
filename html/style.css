@@ -1556,6 +1556,7 @@ header ul + div {
 }
 
 #btnAjoutPhoto {
+  width:130px;
   background-color: var(--primary);
   border: 3px solid var(--primary);
   border-radius: 10px;
