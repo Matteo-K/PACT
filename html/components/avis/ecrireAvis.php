@@ -87,7 +87,7 @@
             <div id="afficheImagesAvis"></div>
         </div>
         <!-- Consentement -->
-        <div id="consentement">
+        <div id="divConsentement">
             
             <div>
                 <label for="consentement">
