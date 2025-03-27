@@ -942,16 +942,20 @@ function createBack(offer) {
     let enLigne = document.createElement("p");
     enLigne.classList.add("StatutAffiche");
 
-    if (offer.statut == "actif") {
-      enLigne.textContent = "En ligne";
-      
-    } else if (offer.statut == "inactif") {
-      enLigne.classList.add("horslgnOffre");
-      enLigne.textContent = "Hors ligne";
+    switch (offer.statut) {
+      case 'actif':
+        enLigne.textContent = "En ligne";
+        break;
+        
+      case 'inactif':
+        enLigne.classList.add("horslgnOffre");
+        enLigne.textContent = "Hors ligne";
+        break;
 
-    } else if (offer.statut == 'delete') {
-      enLigne.classList.add("suppression");
-      enLigne.textContent = "Suppression";
+      case 'delete':
+        enLigne.classList.add("suppression");
+        enLigne.textContent = "Suppression";
+        break;
     }
     article.appendChild(enLigne);
   }
