@@ -3581,11 +3581,11 @@ label[for="rest_ajoutPhotoMenu"] {
   align-items: center;
   justify-content: center ;
   background-color: white;
+  flex-direction: column;
 }
 
 #a2f div{
   display: flex;
-  flex-direction: column;
   width: 100%;
   justify-content: space-evenly;
 }
