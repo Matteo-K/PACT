@@ -39,9 +39,9 @@
                 <div>
                   <input type="number" name="duree_blacklist" id="duree_blacklist" value="<?= $duree ?>">
                   <select name="intervall_blacklist" id="intervall_blacklist">
-                    <option value="minutes" <?= $unite === "minutes" ? "selected" : "" ?>>minutes</option>
-                    <option value="hours" <?= $unite === "hours" ? "selected" : "" ?>>heures</option>
-                    <option value="days" <?= $unite === "days" ? "selected" : "" ?>>jours</option>
+                    <option value="minutes" <?= $unite == "minutes" ? "selected" : "" ?>>minutes</option>
+                    <option value="hours" <?= $unite == "hours" ? "selected" : "" ?>>heures</option>
+                    <option value="days" <?= $unite == "days" ? "selected" : "" ?>>jours</option>
                   </select>
                 </div>
                 <label id="res_duree_blacklist"></label>
