@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require_once "config.php";
+    require_once "../config.php";
 
     $duree_blacklist = $_POST['duree_blacklist'];
     $intervall_blacklist = $_POST['intervall_blacklist'];
