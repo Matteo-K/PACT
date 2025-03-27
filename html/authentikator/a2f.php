@@ -63,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vérification 2FA</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body id="bodyA2f">
     <div id="a2f">
@@ -79,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
             <input type="hidden" name="idu" value="<?php echo $tempSessionData['idUser'] ?>">
             <input type="hidden" name="type" value="<?php echo $tempSessionData['typeUser'] ?>">
-            <button type="submit">Vérifier</button>
+            <button type="submit" class="modifierBut" >Vérifier</button>
         </form>
     
         <p id="status"></p>
