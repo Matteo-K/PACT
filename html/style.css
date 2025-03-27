@@ -393,6 +393,7 @@ header div > a > img,
 #pro {
   font-family: "Lato";
   font-size: 25px;
+  font-weight: 800;
 
   color: var(--text-dark);
   text-align: center;
@@ -3622,6 +3623,7 @@ label[for="rest_ajoutPhotoMenu"] {
 #a2f section{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   justify-content: flex-end;
 }
 
@@ -3631,7 +3633,8 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #a2f p{
-  transform: translateY(-20px);
+  color: red;
+  text-align: center;
 }
 
 #a2f article{

@@ -158,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $imagesAvis = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($imagesAvis as $img) {
-            unlink($img);
+            unlink($img['url']);
         } 
 
         $stmt = $conn->prepare("DELETE FROM pact._avisimage WHERE idc = $idAvis");

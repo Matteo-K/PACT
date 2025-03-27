@@ -1,20 +1,22 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Tester une réponse simple en JSON
+echo json_encode(["test" => "debug"]);
+exit;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once "config.php";
-    
-    $donnees = json_decode(file_get_contents('php://input'), true);
 
-    if (!$donnees) {
-      error_log('Erreur JSON : ' . json_last_error_msg());  // Log si JSON est mal formé
-    }
+    $inputData = json_decode(file_get_contents("php://input"), true);
 
-    $duree_blacklist = $donnees['duree_blacklist'];
-    $intervall_blacklist = $donnees['intervall_blacklist'];
+    if ($inputData) {
+        $duree_blacklist = $inputData['duree_blacklist'];
+        $intervall_blacklist = $inputData['intervall_blacklist'];
 
-    if (!empty($duree_blacklist) && !empty($intervall_blacklist)) {
         try {
-            $stmt = $conn->prepare("UPDATE pact._parametre SET dureeblacklistage=?, uniteblacklist=? WHERE id=true");
-            $stmt->execute([$duree_blacklist, $intervall_blacklist]);
+            $stmt = $conn->prepare("UPDATE pact._parametre SET dureeblacklistage=?, uniteblacklist=?");
+            $stmt->execute([intval($duree_blacklist), $intervall_blacklist]);
 
             echo json_encode([
                 "resultat" => $stmt->rowCount() > 0

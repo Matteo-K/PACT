@@ -9,12 +9,27 @@ if (!isset($_COOKIE['attempts'])) {
 }
 
 $tempSessionData = [
-    'idUser' => (isset($_SESSION['idUser']))?( $_SESSION['idUser']) : (isset($_POST['idu'])? $_POST['idu'] : null),
-    'typeUser' => isset($_SESSION['typeUser']) ? $_SESSION['typeUser'] : (isset($_POST['idu'])? $_POST['type'] : null)
+    'idUser' => (isset($_SESSION['idUser'])) ? $_SESSION['idUser'] : (isset($_POST['idu']) ? $_POST['idu'] : null),
+    'typeUser' => isset($_SESSION['typeUser']) ? $_SESSION['typeUser'] : (isset($_POST['idu']) ? $_POST['type'] : null)
 ];
 
 if (isset($_SESSION['idUser'])) unset($_SESSION['idUser']);
 if (isset($_SESSION['typeUser'])) unset($_SESSION['typeUser']);
+
+if (isset($_COOKIE['blocked_until'])) {
+    $remaining = (int)$_COOKIE['blocked_until'] - time();
+    if ($remaining > 0) {
+        echo "<script>
+            alert('Trop de tentatives. Veuillez réessayer dans " . ceil($remaining / 60) . " minutes.');
+            window.location.href = '../index.php';
+        </script>";
+        exit;
+    } else {
+        
+        setcookie('attempts', '', time() - 3600, "/");
+        setcookie('blocked_until', '', time() - 3600, "/");
+    }
+}
 
 $errorMessage = "";
 
@@ -41,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['typeUser'] = $tempSessionData['typeUser'];
 
         setcookie('attempts', 0, time() - 3600, "/");
+        setcookie('blocked_until', '', time() - 3600, "/");
 
         header('Location: ../index.php'); 
         exit;
@@ -49,17 +65,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         setcookie('attempts', $attempts, time() + 3600, "/");
 
         if ($attempts >= 3) {
+            $blockTime = time() + 600; // 10 minutes
+            setcookie('blocked_until', $blockTime, $blockTime, "/");
             session_unset();
             session_destroy();
-            setcookie('attempts', '', time() - 3600, "/"); 
-            header('Location: ../index.php');
+            echo "<script>
+                alert('Trop de tentatives. Veuillez réessayer dans 10 minutes.');
+                window.location.href = '../index.php';
+            </script>";
             exit;
         }
 
-        $errorMessage = "Code invalide. Vous avez " . (3 - $attempts) . " tentatives restantes.";
+        $errorMessage = "Code invalide. Il vous reste " . (3 - $attempts) . " tentative(s).";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -88,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="hidden" name="idu" value="<?php echo $tempSessionData['idUser'] ?>">
             <input type="hidden" name="type" value="<?php echo $tempSessionData['typeUser'] ?>">
             <section>
-                <p id="status" style="color: red;"><?php echo $errorMessage; ?></p>
+                <p id="status"><?php echo $errorMessage; ?></p>
                 <aside>
                     <button id="a2f_cancel" class="modifierBut" >Annuler</button>
                     <button id="a2f_submit" type="submit" class="modifierBut" >Vérifier</button>
@@ -106,6 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             document.getElementById("code_2fa6"),
         ];
         const submit = document.getElementById("a2f_submit");
+        const cancel = document.getElementById("a2f_cancel");
 
         inputs[0].focus();
 
@@ -127,6 +149,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     inputs[index - 1].focus();
                 }
             });
+
+            cancel.addEventListener("click", (e) => {
+                e.preventDefault(); // empêche le comportement par défaut du bouton (submit)
+                window.location.href = "../index.php"; // redirection vers l'accueil
+            });
+
         });
     </script>
 </body>
