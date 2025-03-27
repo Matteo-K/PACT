@@ -255,7 +255,7 @@
             return res
         }
 
-        avis.addEventListener("blur", () => checkAvis)
+        avis.addEventListener("blur", () => checkAvis())
 
         function validerFormulaire() {
             let noteCheck = checkNote();
