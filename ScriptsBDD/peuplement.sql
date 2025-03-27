@@ -118,7 +118,8 @@ VALUES ('Basique', 1.67),
 -- Peuplement de la table _statut
 INSERT INTO _statut (statut) 
 VALUES ('actif'), 
-       ('inactif');
+       ('inactif'),
+       ('delete');
 
 -- Peuplement de la table _tag
 INSERT INTO _tag (nomTag) 

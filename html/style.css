@@ -2383,6 +2383,10 @@ label[for="rest_ajoutPhotoMenu"] {
     padding: 20px;
   }
 
+  aside + section {
+    padding: 20px;
+  }
+
   fieldset {
     border: 3px solid var(--primary);
     border-radius: 10px;
@@ -2402,6 +2406,10 @@ label[for="rest_ajoutPhotoMenu"] {
 
   #duree_blacklist {
     width: 30%;
+  }
+  
+  .updateForm {
+    color: red;
   }
 }
 
@@ -3310,6 +3318,10 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .horslgnOffre::after {
   background-color: red !important;
+}
+
+.suppression::after {
+  background-color: #555;
 }
 
 .ProStatut {
