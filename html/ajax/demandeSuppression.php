@@ -4,7 +4,7 @@
     $idOffre = $_POST['idOffre'];
 
     // Ajout de la demande de l'offre
-    $stmt = $conn->prepare("UPDATE pact._offre SET statut='delete' WHERE idoffre=1;");
+    $stmt = $conn->prepare("UPDATE pact._offre SET statut='delete' WHERE idoffre=?;");
     $stmt->execute([$idOffre]);
 
     // Redirection vers l'offre
