@@ -31,7 +31,6 @@
               $row = $stmt->fetch();
               $duree = $row["dureeblacklistage"];
               $unite = $row["uniteblacklist"];
-              echo $unite;
             ?>
             <form id="form_duree_blacklist">
               <fieldset>
@@ -39,6 +38,7 @@
                 <div>
                   <input type="number" name="duree_blacklist" id="duree_blacklist" value="<?= $duree ?>">
                   <select name="intervall_blacklist" id="intervall_blacklist">
+                    <?php echo $unite . " " . gettype($unite) ?>
                     <option value="minutes" <?= $unite == "minutes" ? "selected" : "" ?>>minutes</option>
                     <option value="hours" <?= $unite == "hours" ? "selected" : "" ?>>heures</option>
                     <option value="days" <?= $unite == "days" ? "selected" : "" ?>>jours</option>
