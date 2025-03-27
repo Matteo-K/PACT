@@ -393,6 +393,7 @@ header div > a > img,
 #pro {
   font-family: "Lato";
   font-size: 25px;
+  font-weight: 800;
 
   color: var(--text-dark);
   text-align: center;

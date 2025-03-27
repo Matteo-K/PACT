@@ -1,15 +1,9 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once "config.php";
-    
-    $donnees = json_decode(file_get_contents('php://input'), true);
 
-    if (!$donnees) {
-      error_log('Erreur JSON : ' . json_last_error_msg());  // Log si JSON est mal formé
-    }
-
-    $duree_blacklist = $donnees['duree_blacklist'];
-    $intervall_blacklist = $donnees['intervall_blacklist'];
+    $duree_blacklist = $_POST['duree_blacklist'];
+    $intervall_blacklist = $_POST['intervall_blacklist'];
 
     if (!empty($duree_blacklist) && !empty($intervall_blacklist)) {
         try {
