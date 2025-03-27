@@ -88,7 +88,10 @@
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
-                    body: formData
+                    body: JSON.stringify({
+                        'duree_blacklist': duree,
+                        'intervall_blacklist': intervall
+                    })
                   })
                   .then(response => response.json())
                   .then(data => {
