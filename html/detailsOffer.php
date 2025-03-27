@@ -538,7 +538,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </section>
             </section>
             <section id="modalSuppression" class="modal">
-                <form id="formSuppression" action="demandeSuppression.php" method="post" class="modal-content">
+                <form id="formSuppression" action="ajax/demandeSuppression.php" method="post" class="modal-content">
                     <span id="closeSuppression" class="close">&times;</span>
 
                     <section class="titre">
