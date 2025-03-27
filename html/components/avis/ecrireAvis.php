@@ -183,7 +183,7 @@
 
         const date = document.getElementById('date-avis');
         const radios = document.getElementsByName('compagnie');
-        const label = document.querySelector("#enCompagnie > label.tag");
+        const label = document.querySelectorAll("#enCompagnie > label.tag");
         const titre = document.getElementById("titre");
         const avis = document.getElementById("avis");
         const consentement = document.getElementById("consentement")
