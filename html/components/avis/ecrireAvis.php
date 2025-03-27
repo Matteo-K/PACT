@@ -335,7 +335,6 @@
 
         if (!selectionne) {
             $("#error_form").text("Veuillez sélectionner qui vous accompagnait.").style({'display': 'block', 'color': 'red'});
-            scrollToElement(document.getElementById("formCreationAvis"));
             return false;
         }
 
