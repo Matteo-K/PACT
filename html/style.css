@@ -3611,6 +3611,10 @@ label[for="rest_ajoutPhotoMenu"] {
   height: 80%;
 }
 
+#a2f p{
+  transform: translateY(-100px);
+}
+
 
 /* GABRIEL */
 
