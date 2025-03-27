@@ -216,11 +216,14 @@
                 errorMessageDate.style.display = "block";
                 date.classList.add("inputErreur");
                 res = false;
-            } else {
-                errorMessageNote.style.display = "none";
             }
             return res
         }
+        titre.addEventListener("blur", () => checkDate());
+        titre.addEventListener("focus", () => {
+            errorMessageDate.style.display = "none";
+            date.classList.remove("inputErreur");
+        });
 
         function checkAccompagnant() {
             let res = true
