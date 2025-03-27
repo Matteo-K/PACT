@@ -179,6 +179,8 @@
                     etoile.classList.add("vide");
                 }
             });
+
+            checkNote();
         }
 
         const date = document.getElementById('date-avis');
@@ -209,8 +211,6 @@
             }
             return res
         }
-
-        noteInput.addEventListener("change", () => checkNote());
 
         function checkDate(){
             let res = true
