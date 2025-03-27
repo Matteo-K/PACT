@@ -175,7 +175,7 @@
                 }
             }
 
-            if (!noteInput.value) {
+            if (noteActuelle === 0) {
                 errorMessage.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
                 errorMessage.style.display = "block";
                 return false;
