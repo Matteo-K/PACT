@@ -234,13 +234,15 @@
                 errorMessageTitre.scrollIntoView({ behavior: "smooth" });
                 res = false;
             }
-            else{
-                errorMessageTitre.style.display = "none";
-            }
             return res
         }
 
         titre.addEventListener("blur", () => checkTitre());
+        titre.addEventListener("focus", () => {
+            errorMessageTitre.style.display = "none";
+            titre.classList.remove("inputErreur");
+        });
+        
 
         function checkAvis(){
             let res = true
@@ -249,13 +251,15 @@
                 errorMessageAvis.style.display = "block";
                 errorMessageAvis.scrollIntoView({ behavior: "smooth" });
                 res = false;
-            } else{
-                errorMessageAvis.style.display = "none";
             }
             return res
         }
 
         avis.addEventListener("blur", () => checkAvis())
+        avis.addEventListener("focus", () => {
+            errorMessageAvis.style.display = "none";
+            avis.classList.remove("inputErreur");
+        });
 
         function validerFormulaire() {
             let noteCheck = checkNote();
