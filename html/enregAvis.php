@@ -162,7 +162,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pictures = explode(',', $listimage);
 
             foreach ($pictures as $pic) {
-                $stmt->execute([$pic]);
                 unlink($pic);
             }
         }
