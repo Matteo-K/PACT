@@ -43,7 +43,7 @@
                     <option value="jours" <?= $unite === "jours" ? "selected" : "" ?>>jours</option>
                   </select>
                 </div>
-                <input type="submit" value="confirmer">
+                <input type="submit" value="confirmer" class="modifierBut">
               </fieldset>
             </form>
             <script>
