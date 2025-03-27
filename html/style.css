@@ -3623,6 +3623,7 @@ label[for="rest_ajoutPhotoMenu"] {
 #a2f section{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   justify-content: flex-end;
 }
 
@@ -3632,7 +3633,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #a2f p{
-  transform: translateY(-20px);
+  color: red;
 }
 
 #a2f article{
