@@ -1601,6 +1601,9 @@ header ul + div {
   align-items: center;
   justify-content: center;
 }
+input[type="month"]::-webkit-clear-button {
+  display: none;
+}
 
 
 #detailsOffer input[type="file"],
