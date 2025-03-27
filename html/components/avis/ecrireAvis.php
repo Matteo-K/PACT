@@ -210,6 +210,8 @@
             return res
         }
 
+        noteInput.addEventListener("change", () => checkNote());
+
         function checkDate(){
             let res = true
             if (!date.value.trim()) {
