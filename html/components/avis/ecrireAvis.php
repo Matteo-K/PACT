@@ -193,7 +193,7 @@
         const errorMessageAccompagnant = document.querySelector("#accompagnant > div > .error_form");
         const errorMessageTitre = document.querySelector("#titreAvis > div > .error_form");
         const errorMessageAvis = document.querySelector("#textAvis > div > .error_form");
-        const errorMessageConsentement = document.querySelector("#consentement > div > .error_form");
+        const errorMessageConsentement = document.querySelector("#divConsentement > div > .error_form");
 
         function checkNote() {
             let res = true
