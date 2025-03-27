@@ -70,7 +70,7 @@
             $imagesAvis = $stmt -> fetch(PDO::FETCH_ASSOC);
 
             if ($imagesAvis != false) {
-                $listimage = trim($imagesAvis, '{}');
+                $listimage = trim($imagesAvis['url'], '{}');
                 $pictures = explode(',', $listimage);
 
                 $stmt = $conn -> prepare ("DELETE from pact._avisimage where url = ?"); 
