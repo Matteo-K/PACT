@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 echo json_encode(["test" => "debug"]);
 exit;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require_once "config.php";
+    require_once "../config.php";
 
     $inputData = json_decode(file_get_contents("php://input"), true);
 
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $intervall_blacklist = $inputData['intervall_blacklist'];
 
         try {
-            $stmt = $conn->prepare("UPDATE pact._parametre SET dureeblacklistage=10, uniteblacklist='minutes' WHERE id=1;");
+            $stmt = $conn->prepare("UPDATE pact._parametre SET dureeblacklistage=10, uniteblacklist='minutes';");
             $stmt->execute([intval($duree_blacklist), $intervall_blacklist]);
 
             echo json_encode([
