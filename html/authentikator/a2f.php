@@ -17,8 +17,7 @@ if (isset($_SESSION['idUser'])) unset($_SESSION['idUser']);
 if (isset($_SESSION['typeUser'])) unset($_SESSION['typeUser']);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $code = htmlspecialchars($_POST['code_2fa1'] + $_POST['code_2fa2'] + $_POST['code_2fa3'] + $_POST['code_2fa4'] + $_POST['code_2fa5'] + $_POST['code_2fa6']);
-    print_r($code);
+    $code = htmlspecialchars($_POST['code_2fa1'] )+htmlspecialchars($_POST['code_2fa2']) + htmlspecialchars( $_POST['code_2fa3']) + htmlspecialchars($_POST['code_2fa4']) + htmlspecialchars($_POST['code_2fa5']) +htmlspecialchars($_POST['code_2fa6']);
     $stmt = $conn->prepare("SELECT * FROM pact._utilisateur WHERE idu = ?");
     $stmt->execute([$tempSessionData['idUser']]); // Utiliser l'ID utilisateur stocké temporairement
 
