@@ -1,37 +1,135 @@
-<div class="swiper-slide">
-    <form class="searchA" action="/detailsOffer.php?&ouvert=<?php echo $restaurantOuvert; ?>" method="post">
-        <input type="hidden" name="idoffre" value="<?php echo $idOffre; ?>">
-        <div class="carteOffre">
-            <?php $alt = !empty($urlImg) ? "photo_principal_de_l'offre" : "Pas_de_photo_attribué_à_l'offre"; ?>
-            <img class="searchImage" loading="lazy" <?php echo !empty($urlImg) ? "src='$urlImg'" : "" ?> alt=<?php echo $alt; ?>>
-            <div class="infoOffre">
-                <p class="searchTitre"><?php echo $nomOffre!=NULL?$nomOffre :"Pas de nom d'offre"; ?></p>
-    
-                <strong><p class="villesearch"><?php echo $ville . $gammeText . " ⋅ " . $nomTag; ?></p></strong>
-    
-                <div class="searchCategorie">
-                    <?php
-                    if ($tag!="") {
-                        foreach ($tag as $value) {
-                            $value=str_replace('_',' ',$value);
-                            ?><span class="searchTag"><?php echo $value." " ?></span><?php
-                        }
-                    }
-                    ?>
-                </div>
-                <p class="searchResume"><?php echo ($resume)?$resume:"Pas de resume saisie";?></p>
-                <section class="searchNote">
-                    <p><?php echo $noteAvg; ?></p>
-                
-                    <p id="couleur-<?php echo $idOffre; ?>" class="<?php echo $restaurantOuvert == "EstOuvert" ? "searchStatutO" : "searchStatutF"; ?>">
-                        <?php echo ($restaurantOuvert == "EstOuvert") ? "Ouvert" : "Fermé"; ?>
-                    </p>
-                </section>
+<form action="/detailsOffer.php" method="post" class="searchA">
+  <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
+  <section class="carteOffre flip-card <?= in_array("EnRelief", $options) ? "optionEnRelief" : "" ?>">
+    <div class="flip-card-inner">
+      <article class="flip-card-front">
+        <figure>
+          <?php
+            if (in_array("EnRelief", $options)) {
+              ?>
+                <img class="premiumImg" src="../img/icone/service-premium.png" alt="icone premium">
+              <?php
+            }
+          ?>
+          <img loading="lazy" src="<?= $urlImg ?>" alt="<?= $nomOffre ?>" title="<?= $nomOffre ?>">
+          <figcaption>
+            <h4 class="title"><?= $nomOffre ?></h4>
+            <div>
+              <p class="ville">
+                <?= $ville . ", ". $codePostal?>
+              </p>
+              <div class="blocStar">
+                <?php  
+                  $etoilesPleines = floor($noteAvg); // Nombre entier d'étoiles pleines
+                  $reste = $noteAvg - $etoilesPleines;
+                  // Étoiles pleines
+                  for ($i = 1; $i <= $etoilesPleines; $i++) { ?>
+                    <div class="star pleine"></div>
+                  <?php }
+                  // Étoile partielle
+                  if ($reste > 0) {
+                    $pourcentageRempli = $reste * 100; // Pourcentage rempli ?>
+                    <div class="star partielle" style="--pourcentage: <?= $pourcentageRempli ?>%;"></div>
+                  <?php }
+                  // Étoiles vides
+                  for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) { ?>
+                    <div class="star vide"></div>
+                <?php } ?>
+                <span>
+                  <?= $noteAvg."/5" ?>
+                </span>
+              </div>
             </div>
-            <div class="searchAvis">
-                <p class="avisSearch">Les avis les plus récent :</p>
-                <p>Pas d'avis</p>
+          </figcaption>
+        </figure>
+      </article>
+      <article class="flip-card-back">
+        <?php
+          $imageCategorie;
+          $chemin = "../img/icone/offerCategory/";
+          switch ($categorie) {
+            case 'Activité':
+              $imageCategorie = "activity.png";
+              break;
+              
+            case 'Parc Attraction':
+              $imageCategorie = "park.png";
+              break;
+
+            case 'Restaurant':
+              $imageCategorie = "restaurant.png";
+              break;
+
+            case 'Spectacle':
+              $imageCategorie = "show2.png";
+              break;
+
+            case 'Visite':
+              $imageCategorie = "visit.png";
+              break;
+
+            default:
+              $imageCategorie = "interrogation.png";
+              break;
+          }
+        ?>
+        <figure>
+          <img src="<?= $chemin . $imageCategorie ?>" alt="<?= $categorie ?>" title="<?= $categorie ?>">
+          <?php if ($categorie == "Restaurant") { ?>
+            <figcaption><?= $gammeDePrix ?></figcaption>
+          <?php } ?>
+        </figure>
+        <div class="content">
+          <h4 class="title"><?= $nomOffre ?></h4>
+          <div class="blocStar">
+            <?php  
+              $etoilesPleines = floor($noteAvg); // Nombre entier d'étoiles pleines
+              $reste = $noteAvg - $etoilesPleines;
+              // Étoiles pleines
+              for ($i = 1; $i <= $etoilesPleines; $i++) { ?>
+                <div class="star pleine"></div>
+              <?php }
+              // Étoile partielle
+              if ($reste > 0) {
+                $pourcentageRempli = $reste * 100; // Pourcentage rempli ?>
+                <div class="star partielle" style="--pourcentage: <?= $pourcentageRempli ?>%;"></div>
+              <?php }
+              // Étoiles vides
+              for ($i = $etoilesPleines + ($reste > 0 ? 1 : 0); $i < 5; $i++) { ?>
+                <div class="star vide"></div>
+            <?php } ?>
+            <span>
+              <?= $noteAvg."/5" ?>
+            </span>
+            <span>
+              (<?= empty($nbNote) ? 0 : $nbNote ?> note<?= $nbNote > 1 ? "s" : "" ?>)
+            </span>
+          </div>
+          <div class="nomPro">
+            Proposé par <?= $nomUser ?>
+          </div>
+          <div class="information">
+            <div class="resume">
+              <?= $resume ?>
             </div>
+            <address>
+              <div><?= $ville . ", " . $codePostal ?></div>
+              <div id="numRue"><?= $numerorue . " " . $rue ?></div>
+            </address>
+          </div>
+          <div class="tagsCard">
+            <?php
+              if (count($tags) > 0) {
+                foreach ($tags as $key => $tag) { 
+                  if (!empty($tag)) { ?>
+                    <a href="index.php?search=<?php echo $tag ?>#searchIndex" class="tagIndex"><?php echo $tag ?></a>
+                  <?php }
+                } 
+              }
+            ?> 
+          </div>
         </div>
-    </form>
-</div>
+      </article>
+    </div>
+  </section>
+</form>

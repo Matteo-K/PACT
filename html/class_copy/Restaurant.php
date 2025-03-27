@@ -2,6 +2,10 @@
 
 class Restaurant extends Offer implements Categorie {
   protected $restaurantData = null;
+  static public $attributs = [
+    "gammeDePrix" => "gammedeprix",
+    "UrlMenu" => "menu"
+  ];
 
   public function __construct($idOffre) {
     parent::__construct($idOffre, "Restaurant");
@@ -20,6 +24,7 @@ class Restaurant extends Offer implements Categorie {
   }
 
   public function displayCardOffer() {
+    // Initialisation des valeurs de la carte
     $offre = parent::getData();
     $idOffre = $offre["idOffre"];
     $nomOffre = $offre["nomOffre"];
@@ -36,7 +41,9 @@ class Restaurant extends Offer implements Categorie {
     $noteAvg = $offre["noteAvg"];
     $nbNote = $offre["nbNote"];
     $options = $offre["option"];
-    require __DIR__."/../components/cardTest.php";
+
+    // Affichage de la carte
+    require __DIR__."/../components/cardOffer.php";
   }
 }
 ?>

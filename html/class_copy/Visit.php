@@ -1,32 +1,56 @@
 <?php
 
 class Visit extends Offer implements Categorie {
+  protected $horaire = null;
   protected $visitData = null;
+
+  // format : ["nom class", "attribut BDD"]
+  static public $attributs = [
+    "estGuide" => "guide",
+    "duree" => "duree",
+    "prixMinimal" => "prixminimal",
+    "accessibilite" => "accessibilite",
+    "handicap" => "handicap",
+    "langue" => "langue",
+    "horaire"
+  ];
 
   public function __construct($idOffre) {
     parent::__construct($idOffre, "Visite");
+    $this->horaire = new Horaire();
   }
 
-  public function loadData($attribut = []) {
+  /**
+   * Charge les données spécifiques aux visites
+   * @return array liste des attributs chargé
+   */
+  public function loadData($attributs_ = []) {
     global $conn;
+    $idOffre = parent::getIdOffre();
+    $ALL = empty($attributs_);
+    $resAttr = $attributs_;
+    $allVisite = ['guide', 'duree', 'prixminimal', 'accessibilite'];
 
-    $offreId = parent::getIdOffre();
+    if ($ALL) {
+      $columns = implode(", ", array_map([$this, 'getAttribut'], $allVisite));
 
-    // Séparation des attributs par table
-    $attributVisit = array_intersect($attribut, ['guide', 'duree', 'prixminimal', 'accessibilite']);
-    $loadLangues = in_array('langue', $attribut);
-    $loadHandicap = in_array('handicap', $attribut);
+    } else {
+      // Séparation des attributs par table
+      $attributVisit = array_intersect($attributs_, $allVisite);
+      $attributLangues = array_intersect($attributs_, ['langue']);
+      $attributHandicap = array_intersect($attributs_, ['handicap']);
+      $attributHoraire = array_intersect($attributs_, ['horaire']);
+      $resAttr = array_merge($attributVisit, $attributLangues, $attributHandicap, $attributHoraire);
 
-    /** 1️⃣ CHARGEMENT DES DONNÉES PRINCIPALES (_visite) **/
-    if (empty($attribut)) {
-      $columns = "*";
-    } else if (!empty($attributVisit)) {
-      $columns = implode(", ", $attributVisit);
+      if (!empty($attributVisit)) {
+        $columns = implode(", ", array_map([$this, 'getAttribut'], $attributVisit));
+      }
     }
 
+    /** 1️⃣ CHARGEMENT DES DONNÉES PRINCIPALES (_visite) **/
     if (isset($columns)) {
       $stmt = $conn->prepare("SELECT $columns FROM pact._visite WHERE idoffre = ?");
-      $stmt->execute([$offreId]);
+      $stmt->execute([$idOffre]);
       $resVisit = $stmt->fetch(PDO::FETCH_ASSOC);
 
       if ($resVisit) {
@@ -36,10 +60,10 @@ class Visit extends Offer implements Categorie {
       }
     }
 
-    /** 2️⃣ CHARGEMENT DES LANGUES **/
-    if ($loadLangues || empty($attribut)) {
+    /** 2️⃣ CHARGEMENT DES LANGUES (_visite_langue) **/
+    if ($attributLangues || $ALL) {
       $stmt = $conn->prepare("SELECT langue FROM pact._visite_langue WHERE idoffre = ?");
-      $stmt->execute([$offreId]);
+      $stmt->execute([$idOffre]);
       $langues = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
       if ($langues) {
@@ -47,55 +71,44 @@ class Visit extends Offer implements Categorie {
       }
     }
 
-    /** 3️⃣ CHARGEMENT DES HANDICAPS **/
-    if ($loadHandicap || empty($attribut)) {
+    /** 3️⃣ CHARGEMENT DES HANDICAPS (_handicap) **/
+    if ($attributHandicap || $ALL) {
       $stmt = $conn->prepare("SELECT type_handicap FROM pact._handicap WHERE idoffre = ?");
-      $stmt->execute([$offreId]);
+      $stmt->execute([$idOffre]);
       $handicaps = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
       if ($handicaps) {
         $this->visitData["handicap"] = $handicaps;
       }
     }
+
+    /** 4️⃣ CHARGEMENT DES HORAIRES **/
+    if ($attributHoraire || $ALL) {
+      $this->visitData["horaire"] = $this->horaire->getHoraire($idOffre);
+    }
+
+    return $resAttr;
   }
 
-  public function getData($parentAttribut = [], $thisAttribut = []) {
-    $parentData = [];
-    $thisData = [];
-    $all = empty($parentAttribut) && empty($thisAttribut);
+  public function getData($attributs_ = []) {
+    $attr = $this->loadData($attributs_);
 
-    $attributs = [
-      "estGuide" => "guide",
-      "duree" => "duree",
-      "prixMinimal" => "prixMinimal",
-      "accessibilite" => "accessibilite",
-      "handicap" => "handicap",
-      "langue" => "langue"
-    ];
+    // if (empty($thisAttribut)) {
+    //   $finalGet = array_intersect($thisAttribut, $attributs) ?? [];
+    //   foreach ($finalGet as $format => $attr) {
+    //     $thisData[$format] = $this->visitData[$attr];
+    //   }
+    //   $finalGet = array_intersect($thisAttribut, $attributHoraire) ?? [];
+    //   foreach ($finalGet as $value) {
+    //     $thisData[$value] = Horaire::horaireToJson($this->visitData[$value]);
+    //   }
+    // }
 
-    $attributHoraire = [
-      "horaireMidi",
-      "horaireSoir",
-      "ouverture"
-    ];
+    return array_merge(parent::getData($attributs_), $thisData);
+  }
 
-    if (!empty($parentAttribut) || $all) {
-      $parentData = parent::getData($thisAttribut);
-    }
-
-    if (!empty($thisAttribut) || $all) {
-      $this->loadData($thisAttribut);
-      $finalGet = array_intersect($thisAttribut, $attributs) ?? [];
-      foreach ($finalGet as $format => $attr) {
-        $thisData[$format] = $this->visitData[$attr];
-      }
-      $finalGet = array_intersect($thisAttribut, $attributHoraire) ?? [];
-      foreach ($finalGet as $value) {
-        $thisData[$value] = Horaire::horaireToJson($this->visitData[$value]);
-      }
-    }
-
-    return array_merge($parentData, $thisData);
+  public function getAttribut($elem) {
+    return Offer::$attributs[$elem] ?? '';
   }
 }
 
