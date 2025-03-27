@@ -1049,8 +1049,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </li>
                     </ul>
                     <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
-                    <button id="confirmeSignalement" class="btnSignalAvis" hidden=<?= isset($_SESSION["typeUser"]) ? "false" : "true"?>> Envoyer </button>
-                    <a href="login.php" class="btnSignalAvis" hidden=<?= isset($_SESSION["typeUser"]) ? "true" : "false"?>> Connexion </a>
+                    <button id="confirmeSignalement" class="btnSignalAvis" hidden="<?= isset($_SESSION["typeUser"]) ? "false" : "true"?>"> Envoyer </button>
+                    <a href="login.php" class="btnSignalAvis" hidden="<?= isset($_SESSION["typeUser"]) ? "true" : "false"?>"> Connexion </a>
 
                 </section>
             </section>
