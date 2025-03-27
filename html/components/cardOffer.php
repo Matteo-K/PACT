@@ -137,7 +137,7 @@
                 }
 
                 if ($plusTag > 0) { ?>
-                  <a class="tagIndex">+ <?= $plusTag ?> autres</a>
+                  <a class="tagIndex">+ <?= $plusTag ?> autre<?= $plusTag > 1 ? "s" : "" ?></a>
                 <?php }
               }
             ?> 

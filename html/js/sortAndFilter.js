@@ -999,21 +999,33 @@ function createLogoCategorie(offer) {
 
 function ajouterTag(offer) {
   let tags = document.createElement("div");
+  let nbTagMax = 2;
+  let plusTag = 0;
 
   if (offer.tags.length > 0) { 
-    offer.tags.forEach(element => {
-      
-      if (element != "") {
+    let tagsToShow = offer.tags.slice(0, nbTagMax);
+    
+    tagsToShow.forEach(element => {
+      if (element !== "") {
         let tag = document.createElement("a");
         tag.classList.add("tagIndex");
         tag.textContent = element.replace("_", " ");
-        tag.setAttribute("href", "index.php?search="+element.replace("_", "+")+"#searchIndex");
+        tag.setAttribute("href", "index.php?search=" + element.replace("_", "+") + "#searchIndex");
         tags.appendChild(tag);
       }
     });
+
+    if (offer.tags.length > nbTagMax) {
+      plusTag = offer.tags.length - nbTagMax;
+      let moreTag = document.createElement("a");
+      moreTag.classList.add("tagIndex");
+      moreTag.textContent = `+ ${plusTag} autre${plusTag > 1 ? "s" : ""}`;
+      tags.appendChild(moreTag);
+    }
   }
 
   return tags;
+
 }
 
 function displayStar(note) {
