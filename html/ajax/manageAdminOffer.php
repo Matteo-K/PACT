@@ -1,7 +1,8 @@
 <?php
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    require_once '../config.php';
+    
     $idOffre = $_POST["idoffre"];
     switch ($_POST["action"]) {
       case 'visualiser':
