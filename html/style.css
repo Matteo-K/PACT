@@ -393,6 +393,7 @@ header div > a > img,
 #pro {
   font-family: "Lato";
   font-size: 25px;
+  font-weight: 800;
 
   color: var(--text-dark);
   text-align: center;
@@ -3645,7 +3646,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 #a2f_cancel:hover{
-  background-color: white;
+  background-color: white !important;
   color: var(--rouge) !important;
 }
 
