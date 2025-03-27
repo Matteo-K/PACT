@@ -3606,6 +3606,7 @@ label[for="rest_ajoutPhotoMenu"] {
   border: 2px solid #1ca4ed;
   border-radius: 5px;
   text-align: center;
+  text-indent: 0;
 }
 
 #a2f form{
