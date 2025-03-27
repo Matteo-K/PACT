@@ -54,7 +54,6 @@
 
               function checkDuree() {
                 const duree = dureeInput.value.trim();
-                const intervall = intervallInput.value;
 
                 if (!/^\d+$/.test(duree) || parseInt(duree) < 1) {
                     resLabel.textContent = "Veuillez entrer une durée valide (chiffre positif).";
@@ -64,15 +63,17 @@
                 return true;
               }
               
-              dureeInput.addEventListeneer("blur", () => checkDuree());
+              dureeInput.addEventListener("blur", () => checkDuree());
               document.getElementById("form_duree_blacklist").addEventListener("submit", (event) => {
                 event.preventDefault();
-
-                const formData = new URLSearchParams();
-                formData.append("duree_blacklist", duree);
-                formData.append("intervall_blacklist", intervall);
-
                 if (checkDuree()) {
+
+                  const duree = dureeInput.value.trim();
+                  const intervall = intervallInput.value;
+
+                  const formData = new URLSearchParams();
+                  formData.append("duree_blacklist", duree);
+                  formData.append("intervall_blacklist", intervall);
 
                   fetch("ajax/duree_blacklist.php", {
                     method: "POST",
