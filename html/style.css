@@ -3578,7 +3578,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #a2f{
   width: 25%;
-  height: 30%;
+  height: 40%;
   background-color: white;
   border-radius: 20px;
   padding: 15px;
@@ -3610,11 +3610,12 @@ label[for="rest_ajoutPhotoMenu"] {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 50%;
+  height: 60%;
 }
 
 #a2f section{
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
 }
 
