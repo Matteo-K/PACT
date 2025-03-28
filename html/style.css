@@ -4131,8 +4131,6 @@ tbody td:last-child {
 #afficheLoc,
 #afficheLoc > #map + div {
   display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 #descriptionOffre > section {
