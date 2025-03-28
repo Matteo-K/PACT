@@ -527,6 +527,12 @@ header > div > a > div {
   font-size: 1.2rem !important;
 }
 
+.deleteOffer img {
+  width: 50%;
+  height: 150px;
+  object-fit: contain;
+}
+
 .signalAdmin {
   img {
     width: 50px;
