@@ -6232,6 +6232,7 @@ div[id="messageErreur"], #error_form {
 
   #labelPFP {
     text-align: center;
+    font-size: 20px;
   }
 
   #labelPFP:hover {
