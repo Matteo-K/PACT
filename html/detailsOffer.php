@@ -1885,7 +1885,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             tabAvis.classList.remove('selected');
                             tabPubliez.classList.add("active");
                             tabAvis.classList.remove("active");
-                            iconeSelectionneeMobile.textContent = "<h3>Publier un avis</h3>";
+                            iconeSelectionneeMobile.innerHTML = "<h3>Publier un avis</h3>";
 
                             // Afficher le composant pour écrire un avis
                             publiezComponent.style.display = "flex";
