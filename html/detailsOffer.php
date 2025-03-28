@@ -1169,20 +1169,20 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         document.addEventListener("DOMContentLoaded", function() {
     function startCountdown(element) {
         const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
-        console.log("dateString : " + dateString + "\n");
+        // console.log("dateString : " + dateString + "\n");
 
         const targetTimeUTC = new Date(dateString); // La date d'origine en UTC
-        console.log("targetTimeUTC : " + targetTimeUTC + "\n");
+        // console.log("targetTimeUTC : " + targetTimeUTC + "\n");
 
         // Vérification du fuseau horaire
         const timezoneOffset = targetTimeUTC.getTimezoneOffset(); // Décalage en minutes par rapport à UTC
-        console.log("Timezone offset (en minutes) : " + timezoneOffset);
+        // console.log("Timezone offset (en minutes) : " + timezoneOffset);
 
         const targetTime = targetTimeUTC.getTime() - (timezoneOffset * 60000); // Ajuste l'heure locale
-        console.log("Adjusted targetTime (locale) : " + targetTime + "\n");
+        // console.log("Adjusted targetTime (locale) : " + targetTime + "\n");
 
         if (isNaN(targetTime)) {
-            console.error("Format de date invalide :", dateString);
+            // console.error("Format de date invalide :", dateString);
             element.textContent = "Date invalide";
             return;
         }
