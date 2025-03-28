@@ -90,13 +90,13 @@
     $stmt->execute();
     ?>
 
-    <details>
+    <details class="details-style" open>
       <summary>
         Demande de suppression d'offre
       </summary>
-      <ul>
+      <div class="details-content">
         <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
-          <li>
+          <div class="details-form">
             <div>
               <img src="<?= "." . $row["url"] ?>" alt="<?= $row["nom"] ?>" title="<?= $row["nom"] ?>">
               <div>
@@ -110,9 +110,9 @@
               <button type="submit" name="action" value="supprimer" class="modifierBut">Supprimer</button>
               <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
             </form>
-          </li>
+          </div>
         <?php } ?>
-      </ul>
+      </div>
     </details>
 
     <!-- Signalement -->
