@@ -111,7 +111,7 @@
                   type="submit" 
                   name="action" 
                   value="visualiser" 
-                  class="modifierBut"
+                  class="modifierBut <?= $row["categorie"] != "Autre" ? "" : "disabled" ?>"
                   <?= $row["categorie"] != "Autre" ? "" : "disabled" ?>>
                   <?= $row["categorie"] != "Autre" ? "Visualiser" : "Offre non terminé"?>
                 </button>
