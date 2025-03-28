@@ -1837,7 +1837,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const publiezComponent = document.getElementById("publiez-component");
                 const messageErreurConnExistant = document.getElementById("messageErreurConnExistant");
                 const btnPubliez = document.getElementById("tab-publiez");
-                const iconeSelectionneeMobile = document.querySelector("#iconeSelectioneeMobile > h3");
+                const iconeSelectionneeMobile = document.querySelector("#iconeSelectioneeMobile h3");
 
 
 
