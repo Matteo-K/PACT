@@ -4368,6 +4368,10 @@ section#infoComp div {
   font-weight: 600;
 }
 
+.avis > nav > div > img{
+  display: none;
+}
+
 .avis{
   width:100%;
 }
@@ -5455,9 +5459,12 @@ label#btnAjoutPhoto:hover {
 
   /** Responsive Avis **/
 
-  .avisMembre > nav > h3 {
-    font-size: clamp(0.5em, 7vw, 2em);
-    font-weight: 500;
+  .avisMembre > nav > div> h3 {
+    display: none
+  }
+
+  .avis > nav > div > img{
+    display: flex;
   }
 
   .avisMembre > div {
