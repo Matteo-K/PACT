@@ -493,7 +493,6 @@ header > div > a > div {
 }
 
 .signalAdmin {
-
   img {
     width: 50px;
   }
@@ -504,6 +503,7 @@ header > div > a > div {
     gap: 10px;
     margin: 0;
   }
+
   > * {
     width: 100%;
 
@@ -563,12 +563,6 @@ header > div > a > div {
 .details-form:hover {
   background-color: var(--secondary);
   color: #007bff;
-}
-
-.details-form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .details-form div {
