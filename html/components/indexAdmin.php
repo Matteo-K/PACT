@@ -116,12 +116,12 @@
     </details>
 
     <!-- Signalement -->
-    <details>
+    <details class="details-style" open>
       <summary>
         Signalement
       </summary>
-      <ul>
-        <li>
+      <div class="details-content">
+        <div class="details-form">
           <div>
             <figure>
               <img src="" alt="" title="">
@@ -134,7 +134,7 @@
             <p>Complement ...</p>
           </div>
         </li>
-      </ul>
+      </div>
     </details>
   </section>
 </div>
