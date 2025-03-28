@@ -1,8 +1,8 @@
-.tag:hover, .ferme:hover, .ouvert:hover, #infopro > div:hover, #contact-info > div:hover, #labelPFP:hover {
+.tag:hover, .ferme:hover, .ouvert:hover, #infopro > div:hover, #contact-info > div:hover {
   transform: scale(115%);
   }
   
-  .tag, .ferme, .ouvert, #infoPro > div, #contact-info > div, #labelPFP{
+  .tag, .ferme, .ouvert, #infoPro > div, #contact-info > div {
   transform: scale(100%);
   transition: 0.5s ease;
   }
