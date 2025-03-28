@@ -106,7 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 }
 ?>
 
-<!-- Le reste de votre HTML pour le formulaire de connexion -->
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -169,5 +168,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 </body>
 <script src="js/validationFormInscription.js"></script>
 <script src="js/setColor.js"></script>
+
+
+<script>
+
+try {
+    
+    const logo = document.querySelector("#asideRetour > img");
+    const liens = document.querySelectorAll("a, input[type='submit'], button");
+
+    liens.forEach(lien => {
+        lien.addEventListener("click", function () {
+            logo.classList.add("chargementActif");
+
+            // On supprime l'animation au bout de 10sec si on a toujours pas changé de page 
+            setTimeout(() => {
+                logo.classList.remove("chargementActif");
+            }, 10000);
+        });
+    });
+
+} catch (error) {
+    
+}
+
+</script>
 
 </html>
