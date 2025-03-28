@@ -16,7 +16,7 @@
         <span class="error_form" style="display: none;"></span>
 
         <!-- Champ pour la date -->
-        <div>
+        <div id="divDate">
             <div>
                 <label for="date-avis">Donnez la date de visite : *</label>
                 <span class="error_form" style="display: none;"></span>
@@ -27,8 +27,7 @@
                 name="date"
                 min="<?= date('Y-m', strtotime('-1 year')) ?>"
                 max="<?= date('Y-m') ?>"
-                value="<?= date('Y-m') ?>"
-                required>
+                value="<?= date('Y-m') ?>">
         </div>
 
         <!-- Qui vous accompagnait -->
@@ -61,14 +60,14 @@
                 <label id="ajoutTitre" for="titre">Donnez un titre à l'avis *</label>
                 <span class="error_form" style="display: none;"></span>
             </div>
-            <input id="titre" name="titre" type="text" >
+            <input id="titre" name="titre" type="text">
         </div>
         <div id="textAvis">
             <div>
                 <label id="ajoutCommentaire" for="avis">Ajoutez votre commentaire *</label>
                 <span class="error_form" style="display: none;"></span>
             </div>
-            <textarea id="avis" name="avis" ></textarea>
+            <textarea id="avis" name="avis"></textarea>
         </div>
 
         <!-- Photos -->
@@ -87,10 +86,14 @@
             <div id="afficheImagesAvis"></div>
         </div>
         <!-- Consentement -->
-        <div>
-            <input id="consentement" name="consentement" type="checkbox">
+        <div id="divConsentement">
+
             <div>
-                <label for="consentement">Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</label>
+                <label for="consentement">
+                    <input type="checkbox" name="consentement" id="consentement" style="display: none;">
+                    <span class="checkmark"></span>
+                    <p>Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</p>
+                </label>
                 <span class="error_form" style="display: none;"></span>
             </div>
         </div>
@@ -176,10 +179,57 @@
                     etoile.classList.add("vide");
                 }
             });
+
+            checkNote();
         }
 
-        function validerFormulaire() {
-            const radios = document.getElementsByName('compagnie');
+        const date = document.getElementById('date-avis');
+        const radios = document.getElementsByName('compagnie');
+        const label = document.querySelectorAll("#enCompagnie > label.tag");
+        const titre = document.getElementById("titre");
+        const avis = document.getElementById("avis");
+        const consentement = document.getElementById("consentement")
+
+        const errorMessageNote = document.querySelector(".note + .error_form");
+        const errorMessageDate = document.querySelector("#divDate > div > .error_form");
+        const errorMessageAccompagnant = document.querySelector("#accompagnant > div > .error_form");
+        const errorMessageTitre = document.querySelector("#titreAvis > div > .error_form");
+        const errorMessageAvis = document.querySelector("#textAvis > div > .error_form");
+        const errorMessageConsentement = document.querySelector("#divConsentement > div > .error_form");
+
+        function checkNote() {
+            let res = true
+            if (!noteInput.value) {
+                errorMessageNote.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
+                errorMessageNote.style.display = "block";
+                errorMessageNote.scrollIntoView({
+                    behavior: "smooth"
+                });
+                res = false;
+            } else {
+                errorMessageNote.style.display = "none";
+            }
+            return res
+        }
+
+        function checkDate(){
+            let res = true
+            if (!date.value.trim()) {
+                errorMessageDate.textContent = "Veuillez sélectionner une date avant de soumettre votre avis.";
+                errorMessageDate.style.display = "block";
+                date.classList.add("inputErreur");
+                res = false;
+            }
+            return res
+        }
+        date.addEventListener("blur", () => checkDate());
+        date.addEventListener("focus", () => {
+            errorMessageDate.style.display = "none";
+            date.classList.remove("inputErreur");
+        });
+
+        function checkAccompagnant() {
+            let res = true
             let selectionne = false;
 
             for (let i = 0; i < radios.length; i++) {
@@ -188,45 +238,104 @@
                     break;
                 }
             }
+            if (!selectionne) {
+                label.forEach(lbl => lbl.style.cssText = "border-color: red !important;");
 
-            if (!noteInput.value) {
-                const errorMessage = document.querySelector(".note + .error_form")
-                errorMessage.textContent = "Veuillez sélectionner une note avant de soumettre votre avis.";
-                errorMessage.style.display = "block";
-                errorMessage.scrollIntoView({ behavior: "smooth" });
-                return false;
-                
+                errorMessageAccompagnant.textContent = "Veuillez sélectionner qui vous accompagnait avant de soumettre votre avis.";
+                errorMessageAccompagnant.style.display = "block";
+                errorMessageAccompagnant.scrollIntoView({
+                    behavior: "smooth"
+                });
+                res = false;
+            } else {
+                label.forEach(lbl => lbl.style.cssText = "");
+                errorMessageAccompagnant.style.display = "none";
+        
             }
-            else if (!selectionne) {
-                const errorMessage = document.querySelector("#accompagnant > div > .error_form");
-                errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
-                errorMessage.style.display = "block";
-                errorMessage.scrollIntoView({ behavior: "smooth" });
-                return false; 
-            } else if(document.getElementById("titre") && document.getElementById("titre").value.trim() === ""){
-                const errorMessage = document.querySelector("#titreAvis > div > .error_form");
-                errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
-                errorMessage.style.display = "block";
-                errorMessage.scrollIntoView({ behavior: "smooth" });
-                return false; 
-            } else if(document.getElementById("avis") && document.getElementById("avis").value.trim() === ""){
-                const errorMessage = document.querySelector("#textAvis > div > .error_form");
-                errorMessage.textContent = "Veuillez sélectionner qui vous accompagnait.";
-                errorMessage.style.display = "block";
-                errorMessage.scrollIntoView({ behavior: "smooth" });
-                return false; 
+            return res
+        }
+
+        radios.forEach(radio => {
+            radio.addEventListener("change", () => checkAccompagnant());
+        });
+
+
+        function checkTitre() {
+            let res = true
+            if (titre && titre.value.trim() === "") {
+                errorMessageTitre.textContent = "Veuillez saisir un titre avant de soumettre votre avis.";
+                errorMessageTitre.style.display = "block";
+                titre.classList.add("inputErreur");
+                res = false;
+            }
+            return res
+        }
+
+        titre.addEventListener("blur", () => checkTitre());
+        titre.addEventListener("focus", () => {
+            errorMessageTitre.style.display = "none";
+            titre.classList.remove("inputErreur");
+        });
+
+
+        function checkAvis() {
+            let res = true
+            if (avis && avis.value.trim() === "") {
+                errorMessageAvis.textContent = "Veuillez saisir votre avis avant de le soumettre.";
+                errorMessageAvis.style.display = "block";
+                avis.classList.add("inputErreur");
+                res = false;
+            }
+            return res
+        }
+
+        avis.addEventListener("blur", () => checkAvis())
+        avis.addEventListener("focus", () => {
+            errorMessageAvis.style.display = "none";
+            avis.classList.remove("inputErreur");
+        });
+
+        function checkConsentement() {
+            const checkmark = consentement.nextElementSibling;
+            let res = true
+            if (!consentement.checked) {
+                errorMessageConsentement.textContent = "Veuillez certifier que vous consentez à la publication de votre avis avant de le soumettre.";
+                errorMessageConsentement.style.display = "block";
+                checkmark.classList.add("inputErreur");
+                res = false;
+            } else{
+                errorMessageConsentement.style.display = "none";
+                checkmark.classList.remove("inputErreur");
+            }
+            return res
+        }
+        consentement.addEventListener("change", () => checkConsentement());
+
+        function validerFormulaire() {
+            let res = true
+
+            let noteCheck = checkNote();
+            let accompagnantCheck = checkAccompagnant();
+            let titreCheck = checkTitre();
+            let avisCheck = checkAvis();
+            let dateCheck = checkDate();
+            let consentementCheck = checkConsentement();
+
+            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck || !dateCheck || !consentementCheck) {
+                res = false;
             }
 
-            return true;
+            return res;
         }
         // Validation avant la soumission
         formCreationAvis.addEventListener("submit", (event) => {
             event.preventDefault();
             let valid = validerFormulaire()
-            if(valid){
+            if (valid) {
                 formCreationAvis.submit();
             }
         });
+
     });
     const maxImages = 3; // Nombre maximum d'images autorisé
     let nbImageTotaleInAvis = 0; // Compteur global

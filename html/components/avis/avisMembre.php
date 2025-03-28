@@ -303,7 +303,6 @@ foreach ($avis as $a) {
         const likeCheckbox = document.getElementById(likeId);
         const dislikeCheckbox = document.getElementById(dislikeId);
 
-        console.log(checkbox.id);
 
         if (action === 'like') {
             checkbox.classList.toggle("alike");
@@ -336,7 +335,7 @@ foreach ($avis as $a) {
 
 
     function updateCount(action, id) {
-        // Envoyer une requête à `updateLike.php` avec l'ID de l'avis
+        // Envoie une requête à `updateLike.php` avec l'ID de l'avis
         fetch('updateLike.php', {
                 method: 'POST',
                 headers: {
@@ -354,7 +353,6 @@ foreach ($avis as $a) {
                 return response.json();
             })
             .then(data => {
-                console.log('Réponse du serveur :', data); // Ajoutez cette ligne pour afficher la réponse du serveur
                 if (data.success) {
                     updateNumberDisplay(`#container_${id.split("_")[1]} .count.likes`, data.nblike);
                     updateNumberDisplay(`#container_${id.split("_")[1]} .count.dislikes`, data.nbdislike);

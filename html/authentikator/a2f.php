@@ -136,9 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 if (/\d/.test(e.target.value)) {
                     if (index < inputs.length - 1) {
                         inputs[index + 1].focus();
-                     } //else {
-                    //     submit.focus();
-                    // }
+                    }
                 } else {
                     e.target.value = "";
                 }
@@ -151,8 +149,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             });
 
             cancel.addEventListener("click", (e) => {
-                e.preventDefault(); // empêche le comportement par défaut du bouton (submit)
-                window.location.href = "../index.php"; // redirection vers l'accueil
+                e.preventDefault(); 
+                window.location.href = "../index.php";
             });
 
         });

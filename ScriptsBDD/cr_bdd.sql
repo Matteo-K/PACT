@@ -1709,6 +1709,7 @@ BEGIN
     DELETE FROM pact._utilisateur
     WHERE idu = iduser;
 
+    
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;

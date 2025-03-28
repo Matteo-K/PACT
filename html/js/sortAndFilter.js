@@ -822,8 +822,14 @@ function createFront(offer) {
   h4.classList.add("title");
   if (userType == "pro_public" || userType == "pro_prive") {
     h4.classList.add("StatutAffiche");
-    if (offer.statut != "actif") {
-      h4.classList.add("horslgnOffre");
+    switch (offer.statut) {
+      case 'inactif':
+        h4.classList.add("horslgnOffre");
+        break;
+
+      case 'delete':
+        h4.classList.add("suppression");
+        break;
     }
   }
   h4.textContent = offer.nomOffre ?? "";
@@ -935,11 +941,21 @@ function createBack(offer) {
   if (userType == "pro_public" || userType == "pro_prive") {
     let enLigne = document.createElement("p");
     enLigne.classList.add("StatutAffiche");
-    if (offer.statut == "actif") {
-      enLigne.textContent = "En ligne";
-    } else {
-      enLigne.classList.add("horslgnOffre");
-      enLigne.textContent = "Hors ligne";
+
+    switch (offer.statut) {
+      case 'actif':
+        enLigne.textContent = "En ligne";
+        break;
+
+      case 'inactif':
+        enLigne.classList.add("horslgnOffre");
+        enLigne.textContent = "Hors ligne";
+        break;
+
+      case 'delete':
+        enLigne.classList.add("suppression");
+        enLigne.textContent = "Suppression";
+        break;
     }
     article.appendChild(enLigne);
   }
@@ -999,21 +1015,33 @@ function createLogoCategorie(offer) {
 
 function ajouterTag(offer) {
   let tags = document.createElement("div");
+  let nbTagMax = 2;
+  let plusTag = 0;
 
   if (offer.tags.length > 0) { 
-    offer.tags.forEach(element => {
-      
-      if (element != "") {
+    let tagsToShow = offer.tags.slice(0, nbTagMax);
+    
+    tagsToShow.forEach(element => {
+      if (element !== "") {
         let tag = document.createElement("a");
         tag.classList.add("tagIndex");
         tag.textContent = element.replace("_", " ");
-        tag.setAttribute("href", "index.php?search="+element.replace("_", "+")+"#searchIndex");
+        tag.setAttribute("href", "index.php?search=" + element.replace("_", "+") + "#searchIndex");
         tags.appendChild(tag);
       }
     });
+
+    if (offer.tags.length > nbTagMax) {
+      plusTag = offer.tags.length - nbTagMax;
+      let moreTag = document.createElement("a");
+      moreTag.classList.add("tagIndex");
+      moreTag.textContent = `+ ${plusTag} autre${plusTag > 1 ? "s" : ""}`;
+      tags.appendChild(moreTag);
+    }
   }
 
   return tags;
+
 }
 
 function displayStar(note) {
