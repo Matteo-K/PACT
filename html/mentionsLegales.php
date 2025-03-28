@@ -24,7 +24,7 @@
       case 1: ?>
         <article>
           <section>
-            <h2>Mentions Légales</h2>
+            <h1>Mentions Légales</h1>
             <p>
               Dans le cadre de l'utilisation de notre site internet PACT, nous attachons une grande importance à la protection de vos données à caractère personnel. Cette section vous informe des pratiques relatives à la collecte, l'utilisation, la conservation et la protection de vos données personnelles.
             </p>
