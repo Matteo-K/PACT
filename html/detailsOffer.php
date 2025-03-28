@@ -571,29 +571,31 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php if ($offre[0]['statut'] === 'actif') { ?>
                 <section id="hoverMessage" class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }
-        } else if ($typeUser == "admin") { ?>
-            <section class="info">
-                <section class="tema">
-                    <p class="infoP">Demande de suppression de l'offre</p>
+        } else if ($typeUser == "admin") { 
+            if (isset($_POST["suppression"])) { ?>
+                <section class="info">
+                    <section class="tema">
+                        <p class="infoP">Demande de suppression de l'offre</p>
+                    </section>
+                    <div class="buttonDetails">
+                        <!-- Rejeter -->
+                        <form class="taille6" method="post" action="ajax/manageAdminOffer.php">
+                            <input type="hidden" name="idoffre" value="<?php echo $offre[0]['idoffre']; ?>">
+                            <button class="modifierBut" type="submit" name="action" value="rejeter">
+                                Rejeter
+                            </button>
+                        </form>
+                        <!-- Supprimer -->
+                        <form class="taille6" method="post" action="ajax/manageAdminOffer.php">
+                            <input type="hidden" name="idoffre" value="<?php echo $offre[0]['idoffre']; ?>">
+                            <button class="modifierBut" type="submit" name="action" value="supprimer">
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
                 </section>
-                <div class="buttonDetails">
-                    <!-- Rejeter -->
-                    <form class="taille6" method="post" action="ajax/manageAdminOffer.php">
-                        <input type="hidden" name="idoffre" value="<?php echo $offre[0]['idoffre']; ?>">
-                        <button class="modifierBut" type="submit" name="action" value="rejeter">
-                            Rejeter
-                        </button>
-                    </form>
-                    <!-- Supprimer -->
-                    <form class="taille6" method="post" action="ajax/manageAdminOffer.php">
-                        <input type="hidden" name="idoffre" value="<?php echo $offre[0]['idoffre']; ?>">
-                        <button class="modifierBut" type="submit" name="action" value="supprimer">
-                            Supprimer
-                        </button>
-                    </form>
-                </div>
-            </section>
-        <?php }
+            <?php }
+            }
         ?>
 
         <h2 id="titleOffer"><?php echo htmlspecialchars($result[0]["nom"]); ?></h2>

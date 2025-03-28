@@ -9,6 +9,7 @@
         ?>
           <form id="visualiser" action="../detailsOffer.php" method="POST" onsubmit="window.open('', '_blank'); this.target='_blank';">
             <input type="hidden" name="idoffre" value="<?php echo $idOffre; ?>">
+            <input type="hidden" name="suppression">
           </form>
           <script>
             document.getElementById('visualiser').submit();

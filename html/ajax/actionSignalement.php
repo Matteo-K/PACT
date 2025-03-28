@@ -3,7 +3,7 @@
     require_once '../config.php';
     
     $idOffre = $_POST["idoffre"];
-    $idAvis = $_POST["idc"];
+    $idAvis = $_POST["idavis"];
     $signaleur = $_POST["signaleur"];
     $type = $_POST["type"];
 

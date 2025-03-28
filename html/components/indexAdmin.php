@@ -99,7 +99,7 @@
           <div class="details-form">
             <div>
               <img src="<?= "." . $row["url"] ?>" alt="<?= $row["nom"] ?>" title="<?= $row["nom"] ?>">
-              <div>
+              <div class="nomSupOffre">
                 <h3><?= $row["nom"] ?></h3>
                 <h4>Proposé par <?= $row["denomination"] ?></h4>
               </div>
