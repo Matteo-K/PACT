@@ -66,6 +66,9 @@ class ArrayOffer {
     if (empty($idoffres_)) {
         $stmt = $conn->prepare("SELECT * FROM pact.offres");
         $stmt->execute();
+    } else if ($idoffres_ === "enLigne") {
+      $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE statut='actif';");
+      $stmt->execute();
     } else {
         if (is_array($idoffres_)) {
             $placeholders = rtrim(str_repeat('?,', count($idoffres_)), ',');
