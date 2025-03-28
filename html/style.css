@@ -3185,7 +3185,7 @@ label[for="rest_ajoutPhotoMenu"] {
       justify-content: center;
     }
   }
-
+/*
   #tri, #filtre, #carte_offres{
       position: fixed;
       top: 0;
@@ -3197,16 +3197,16 @@ label[for="rest_ajoutPhotoMenu"] {
       background-color: var(--background);
       border: none;
       opacity: 0;
-      transform: translateX(100%);
+      transform: translateX(-100%);
       transition: opacity 0.3s ease, transform 0.3s ease;
   }
-
+/*
   #tri.openAside, #filtre.openAside {
       display: block !important;
       opacity: 1 !important;
       transform: translateX(0) !important;
   }
-
+*/
   #titreAside {
       justify-content: space-between;
       padding: 10px 15px;
