@@ -1198,6 +1198,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         p.textContent = `Il vous reste ${data.count} blacklistage`;
                         if (data.count > 0) {
                             section.innerHTML = `<button class="modifierBut size" id="confirmationBlack">Confirmer</button>`;
+                            const leaveC = document.getElementById("confirmationBlack");
+                            leaveC.onclick = confirmationModalBlackFunction;
                         }
                     })
                     .catch(error => {
