@@ -144,8 +144,6 @@
             deleteAvis($queries, $row["idc"]);
           }
 
-          deleteOffer($queries);
-
           // Suppression des données de l'offre
           $queries = [
             "DELETE FROM pact._abonner WHERE idoffre=?;",
