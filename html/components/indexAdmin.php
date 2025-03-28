@@ -117,17 +117,10 @@
 
     <!-- Signalement -->
     <?php
-      $stmt = $conn->prepare(
-        "SELECT o.idoffre, o.nom, p.denomination, i.url
-        FROM pact.pact._signalementc s
-        LEFT JOIN pact._pro p ON p.idu = s.idu
-        LEFT JOIN (
-            SELECT idoffre, MIN(url) AS url
-            FROM pact._illustre
-            GROUP BY idoffre
-        ) i ON i.idoffre = s.idoffre;"
-      );
-      $stmt->execute();
+      // $stmt = $conn->prepare(
+      //   ""
+      // );
+      // $stmt->execute();
     ?>
     <details class="details-style" open>
       <summary>
@@ -138,7 +131,7 @@
           <div>
             <figure>
               <img src="" alt="" title="">
-              <figcaption>Nom de l'offre</figcaption>
+              <figcaption>Nom de l'utilisateur</figcaption>
             </figure>
             <span>27/03/2025 - 14:42</span>
           </div>
