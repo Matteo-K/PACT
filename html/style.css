@@ -484,6 +484,10 @@ header > div > a > div {
   height: fit-content;
 }
 
+#indexAdmin .details-style {
+  width: calc(100% / 2 - 50px);
+}
+
 /* Style pour <summary> */
 .details-style summary {
   background-color: #f5f5f5;
@@ -496,15 +500,14 @@ header > div > a > div {
   padding-left: 20px;
 }
 
-.details-style[open] summary::after {
+.details-style[open] summary::before {
   content: "▲";
-  /* Flèche vers le haut si ouvert */
   background-color: #f5f5f5;
 }
 
-.details-style summary::after {
+.details-style summary::before {
   content: "▼";
-  /* Flèche vers le bas si fermé */
+  margin-right: 15px;
 }
 
 /* Conteneur des liens */
@@ -1581,24 +1584,58 @@ header ul + div {
   margin-block: 0.5em;
 }
 
-#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child{
+#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child, #divDate > div:first-child,#divConsentement > div:first-child{
   display: flex;
   flex-direction: column;
+  width: 35%;
 }
+
+#divConsentement{
+  margin: 0;
+}
+
+#divConsentement > div:first-child{
+  width: 100%;
+}
+
+#divConsentement > div > label {
+  margin-top: 1em;
+}
+#divConsentement > div > label > p {
+  margin:0;
+}
+
+.note + span.error_form {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
 .note + .error_form,
 #accompagnant > div:first-child > .error_form, 
 #titreAvis > div:first-child > .error_form, 
-#textAvis > div:first-child > .error_form {
+#textAvis > div:first-child > .error_form,
+#divDate > div:first-child > .error_form,
+#divConsentement > div:first-child > .error_form{
   color: red;
   font-size: 14px;
   font-weight: normal;
   font-style: italic;
 }
 
-#divConsentement{
+#divDate > input, 
+#accompagnant > #enCompagnie, 
+#titreAvis > input, 
+#textAvis > textarea {
+  width: 60%;
+}
+
+#divConsentement > div > label{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+input[type="month"]::-webkit-clear-button {
+  display: none;
 }
 
 #detailsOffer input[type="file"],
@@ -2370,6 +2407,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 
+
 #indexAdmin {
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -2379,6 +2417,14 @@ label[for="rest_ajoutPhotoMenu"] {
   aside {
     border-right: var(--bloc) solid 0.5vw;
     padding: 20px;
+  }
+
+  aside + section {
+    padding: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    overflow: auto;
+    gap: 20px;
   }
 
   fieldset {
@@ -2401,8 +2447,11 @@ label[for="rest_ajoutPhotoMenu"] {
   #duree_blacklist {
     width: 30%;
   }
+  
+  .updateForm {
+    color: red;
+  }
 }
-
 
 #voirPlus {
   display: flex;
@@ -3312,6 +3361,10 @@ label[for="rest_ajoutPhotoMenu"] {
   background-color: red !important;
 }
 
+.suppression::after {
+  background-color: #555;
+}
+
 .ProStatut {
   display: flex;
   flex-direction: row;
@@ -4189,6 +4242,8 @@ tbody td:last-child {
 #afficheLoc,
 #afficheLoc > #map + div {
   display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #descriptionOffre > section {
