@@ -83,37 +83,43 @@
         LEFT JOIN (
             SELECT idoffre, MIN(url) AS url
             FROM pact._illustre
-              GROUP BY idoffre
+            GROUP BY idoffre
         ) i ON i.idoffre = o.idoffre
         WHERE o.statut = 'delete';"
       );
       $stmt->execute();
+      $offers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
-    <details class="details-style" open>
+    <details class="details-style" <?= !empty($offers) ? 'open' : '' ?>>
       <summary>
         Demande de suppression d'offre
       </summary>
       <div class="details-content">
-        <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
-          <div class="details-form deleteOffer">
-            <div>
-              <img src="<?= "." . $row["url"] ?>" alt="<?= $row["nom"] ?>" title="<?= $row["nom"] ?>">
-              <div class="nomSupOffre">
-                <h3><?= $row["nom"] ?></h3>
-                <h4>Proposé par <?= $row["denomination"] ?></h4>
+        <?php if (!empty($offers)) { ?>
+          <?php foreach ($offers as $row) { ?>
+            <div class="details-form deleteOffer">
+              <div>
+                <img src="<?= "." . $row["url"] ?>" alt="<?= $row["nom"] ?>" title="<?= $row["nom"] ?>">
+                <div class="nomSupOffre">
+                  <h3><?= $row["nom"] ?></h3>
+                  <h4>Proposé par <?= $row["denomination"] ?></h4>
+                </div>
               </div>
+              <form action="../ajax/manageAdminOffer.php" method="post">
+                <button type="submit" name="action" value="visualiser" class="modifierBut">Visualiser</button>
+                <button type="submit" name="action" value="rejeter" class="modifierBut">Rejeter</button>
+                <button type="submit" name="action" value="supprimer" class="modifierBut">Supprimer</button>
+                <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
+              </form>
             </div>
-            <form action="../ajax/manageAdminOffer.php" method="post">
-              <button type="submit" name="action" value="visualiser" class="modifierBut">Visualiser</button>
-              <button type="submit" name="action" value="rejeter" class="modifierBut">Rejeter</button>
-              <button type="submit" name="action" value="supprimer" class="modifierBut">Supprimer</button>
-              <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
-            </form>
-          </div>
+          <?php } ?>
+        <?php } else { ?>
+          <p>Aucune offre en attente de suppression.</p>
         <?php } ?>
       </div>
     </details>
+
     <?php
       function signalRaison($raisonSignal) {
         switch ($raisonSignal) {
@@ -141,33 +147,50 @@
       }
     ?>
     <!-- Signalement -->
-    <details class="details-style" open>
+    <?php
+      $stmt = $conn->prepare(
+        "SELECT 
+          s.dtsignalement, s.raison, s.complement, s.idu, s.idc,
+          a.pseudo, a.idoffre,
+          pp.url,
+          o.nom
+        FROM pact._signalementc s
+        LEFT JOIN pact.avis a ON s.idc=a.idc
+        LEFT JOIN pact._photo_profil pp ON pp.idu = a.idu
+        LEFT JOIN pact._offre o ON o.idoffre = a.idoffre
+        WHERE a.pseudo IS NOT NULL
+        ORDER BY a.idc, a.idoffre;"
+      );
+      $stmt->execute();
+      $avisSignal = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      $stmt = $conn->prepare(
+        "SELECT 
+          s.dtsignalement, s.raison, s.complement, s.idu,
+          r.denomination, r.idoffre, r.idc_avis,
+          pp.url,
+          o.nom
+        FROM pact._signalementc s
+        LEFT JOIN pact.reponse r ON s.idc=r.idc_reponse
+        LEFT JOIN pact._photo_profil pp ON pp.idu = r.idpro
+        LEFT JOIN pact._offre o ON o.idoffre = r.idoffre
+        WHERE r.denomination IS NOT NULL
+        ORDER BY r.idc_reponse, r.idoffre;"
+      );
+      $stmt->execute();
+      $reponseSignal = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    ?>
+    <details class="details-style" <?= !empty($avisSignal) || !empty($reponseSignal) ? 'open' : '' ?>>
       <summary>
         Signalement
       </summary>
       <div class="details-content">
-        <?php
-          $stmt = $conn->prepare(
-            "SELECT 
-              s.dtsignalement, s.raison, s.complement, s.idu, s.idc,
-              a.pseudo, a.idoffre,
-              pp.url,
-              o.nom
-            FROM pact._signalementc s
-            LEFT JOIN pact.avis a ON s.idc=a.idc
-            LEFT JOIN pact._photo_profil pp ON pp.idu = a.idu
-            LEFT JOIN pact._offre o ON o.idoffre = a.idoffre
-            WHERE a.pseudo IS NOT NULL
-            ORDER BY a.idc, a.idoffre;"
-          );
-          $stmt->execute();
-        ?>
-        <details class="details-style" open>
+        <details class="details-style" <?= !empty($avisSignal) ? 'open' : '' ?>>
           <summary>
             Avis membre
           </summary>
           <div class="details-content">
-            <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+            <?php foreach ($avisSignal as $row) { ?>
               <div class="details-form signalAdmin">
                 <div>
                   <figure>
@@ -198,28 +221,13 @@
             <?php } ?>
           </div>
         </details>
-        <?php
-          $stmt = $conn->prepare(
-            "SELECT 
-              s.dtsignalement, s.raison, s.complement, s.idu,
-              r.denomination, r.idoffre, r.idc_avis,
-              pp.url,
-              o.nom
-            FROM pact._signalementc s
-            LEFT JOIN pact.reponse r ON s.idc=r.idc_reponse
-            LEFT JOIN pact._photo_profil pp ON pp.idu = r.idpro
-            LEFT JOIN pact._offre o ON o.idoffre = r.idoffre
-            WHERE r.denomination IS NOT NULL
-            ORDER BY r.idc_reponse, r.idoffre;"
-          );
-          $stmt->execute();
-        ?>
-        <details class="details-style">
+        <!-- Signalements des réponses -->
+        <details class="details-style" <?= !empty($reponseSignal) ? 'open' : '' ?>>
           <summary>
             Réponse professionnel
           </summary>
           <div class="details-content">
-            <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+            <?php foreach ($reponseSignal as $row) { ?>
               <div class="details-form signalAdmin">
                 <div>
                   <figure>
