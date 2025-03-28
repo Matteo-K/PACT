@@ -131,10 +131,10 @@
             "DELETE FROM pact._signalementc WHERE idc=?",
             "DELETE FROM pact._reponse WHERE idc=?",
             "DELETE FROM pact._reponse WHERE ref=?",
-            "DELETE FROM pact._commentaire WHERE idc=?",
             "DELETE FROM pact._avisimage WHERE idc=?",
             "DELETE FROM pact._blacklist WHERE idc=?",
-            "DELETE FROM pact._avis WHERE idc=?"
+            "DELETE FROM pact._avis WHERE idc=?",
+            "DELETE FROM pact._commentaire WHERE idc=?"
           ];
 
           $stmt = $conn->prepare("SELECT idc FROM pact.avis WHERE idoffre=?;");
