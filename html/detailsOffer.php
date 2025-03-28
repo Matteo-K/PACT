@@ -1166,45 +1166,56 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
     <script>
         // js compte à rebours
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             function startCountdown(element) {
-                const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
-                console.log("dateString : " + dateString + "\n");
-                const targetTime = new Date(dateString).getTime(); // Convertit en millisecondes
-                console.log("targetTime : " + targetTime + "\n");
+                const dateString = element.getAttribute("data-timestamp"); // Date PostgreSQL
+                console.log("dateString : " + dateString);
+            
+                // Parser correctement la date en UTC
+                const targetDate = new Date(dateString); // Doit être déjà en UTC
+                const targetTime = Date.UTC(
+                    targetDate.getUTCFullYear(),
+                    targetDate.getUTCMonth(),
+                    targetDate.getUTCDate(),
+                    targetDate.getUTCHours(),
+                    targetDate.getUTCMinutes(),
+                    targetDate.getUTCSeconds()
+                );
+            
+                console.log("targetTime (UTC) : " + targetTime);
+            
                 if (isNaN(targetTime)) {
                     console.error("Format de date invalide :", dateString);
                     element.textContent = "Date invalide";
                     return;
                 }
-
+            
                 function updateCountdown() {
-                    const now = Date.now();
-                    console.log("now : " + now + "\n");
+                    const now = Date.now(); // Prend toujours UTC
+                    console.log("now (UTC) : " + now);
                     const diff = targetTime - now;
-
+                
                     if (diff <= 0) {
                         element.textContent = "Expiré";
                         return;
                     }
-
+                
                     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
+                
                     element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
-
+                
                     setTimeout(updateCountdown, 1000);
                 }
-
+            
                 updateCountdown();
             }
-
+        
             document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
-
-
         });
+
 
 
         function supAvis(id, idOffre, action) {
