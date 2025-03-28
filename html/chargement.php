@@ -37,12 +37,12 @@
 
         // Vérifier quand l'iframe est chargée et rediriger
         iframe.onload = function() {
-            window.location.href = "accueil.php";
+            window.location.href = "index.php";
         };
 
         // Sécurité : Si au bout de 10 secondes ce n'est pas chargé, forcer la redirection
         setTimeout(() => {
-            window.location.href = "accueil.php";
+            window.location.href = "index.php";
         }, 10);
     </script>
 </body>
