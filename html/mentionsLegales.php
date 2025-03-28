@@ -83,16 +83,6 @@
         </article>
         <?php break;
 
-      case 2: ?>
-
-        <article>
-          <h2>
-            Page 2
-          </h2>
-        </article>
-
-        <?php break;
-
       default: ?>
         <article>
           <h2>
