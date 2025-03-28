@@ -10,16 +10,11 @@ if ($idOffre === null) {
     exit;
 }
 
-$stmt = $conn->prepare("SELECT * FROM pact._blacklist WHERE idOffre = ? ");
-$stmt->execute([$idOffre]);
-$result = $stmt->fetchAll();
-
-echo new DateTime();
-print_r($result);
-
 $stmt = $conn->prepare("SELECT COUNT(*) AS count FROM pact._blacklist WHERE idOffre = ? AND datefinblacklist >= CURRENT_TIMESTAMP");
 $stmt->execute([$idOffre]);
 $result = $stmt->fetch();
 
-echo json_encode(["count" => $result['count']]);
+$nbTicket = 3 - $result['count'];
+
+echo json_encode(["count" => $nbTicket]);
 ?>

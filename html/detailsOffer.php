@@ -1179,23 +1179,31 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     const section = document.getElementById("SubmitBlack");
 
                     fetch('ajax/refreshTicket.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            'idoffre': <?php echo json_encode($idOffre); ?>
-        })
-    })
-    .then(response => response.text())  // On récupère la réponse sous forme de texte brut
-    .then(data => {
-        console.log("Réponse brute du serveur :", data);
-        p.innerHTML = `<pre>${data}</pre>`;  // Affichage formaté dans le HTML
-    })
-    .catch(error => {
-        console.error("Erreur:", error);
-        p.textContent = "Erreur de chargement";
-    });
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            'idoffre': <?php echo json_encode($idOffre); ?>
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error("Erreur:", data.error);
+                            p.textContent = "Erreur de chargement";
+                            return;
+                        }
+                    
+                        p.textContent = `Nombre de tickets : ${data.count}`;
+                        if (data.count > 0) {
+                            section.innerHTML = `<button class="modifierBut size" id="confirmationBlack">Confirmer</button>`;
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erreur:", error);
+                        p.textContent = "Erreur de chargement";
+                    });
                 }
 
                 const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
