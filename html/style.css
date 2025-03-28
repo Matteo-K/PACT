@@ -484,8 +484,34 @@ header > div > a > div {
   height: fit-content;
 }
 
-#indexAdmin .details-style {
+#indexAdmin .details-style:not(.details-style .details-style) {
   width: calc(100% / 2 - 50px);
+}
+
+.details-style .details-style summary {
+  font-size: 1.2rem !important;
+}
+
+.signalAdmin {
+
+  img {
+    width: 50px;
+  }
+
+  figure {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+  }
+  > * {
+    width: 100%;
+
+    &:first-child {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
 
 /* Style pour <summary> */
