@@ -1030,9 +1030,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <nav id="tab-container">
                         <div id="tab-avis" class="selected active">
                             <h3>Avis</h3>
+                            <img src="img/icone/commentaire.png" id="imgCommentaire" alt ="logo commentaire pour le format mobile" title="logo commentaire pour le format mobile">
                         </div>
                         <div id="tab-publiez">
                             <h3>Publiez un avis</h3>
+                            <img src="img/icone/ecrireCommentaire.png" id="imgEcrireCommentaire" alt ="logo écrire commentaire pour le format mobile" title="logo écrire commentaire pour le format mobile">
                         </div>
                     </nav>
                     <span id="messageErreurConnExistant"></span>
@@ -1166,44 +1168,22 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
     <script>
         // js compte à rebours
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
     function startCountdown(element) {
-        const dateString = element.getAttribute("data-timestamp"); // Date PostgreSQL (UTC)
-        console.log("dateString (UTC) : " + dateString);
-
-        // Convertir la date en timestamp UTC
-        const targetDate = new Date(dateString);
-        const targetTime = Date.UTC(
-            targetDate.getUTCFullYear(),
-            targetDate.getUTCMonth(),
-            targetDate.getUTCDate(),
-            targetDate.getUTCHours(),
-            targetDate.getUTCMinutes(),
-            targetDate.getUTCSeconds()
-        );
-
-        console.log("targetTime (UTC) : " + targetTime);
-
+        const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
+        // console.log("dateString : " + dateString + "\n");
+        const targetTime = new Date(dateString).getTime(); // Convertit en millisecondes
+        // console.log("targetTime : " + targetTime + "\n");
         if (isNaN(targetTime)) {
             console.error("Format de date invalide :", dateString);
             element.textContent = "Date invalide";
             return;
         }
 
-        function updateCountdown() {
-            // Obtenir l'heure actuelle en UTC
-            const now = new Date();
-            const nowUTC = Date.UTC(
-                now.getUTCFullYear(),
-                now.getUTCMonth(),
-                now.getUTCDate(),
-                now.getUTCHours(),
-                now.getUTCMinutes(),
-                now.getUTCSeconds()
-            );
-
-            console.log("nowUTC : " + nowUTC);
-            const diff = targetTime - nowUTC;
+        function updateCountdown(serverTime) {
+            const now = serverTime; // Utilise l'heure du serveur
+            // console.log("serverTime : " + now + "\n");
+            const diff = targetTime - now;
 
             if (diff <= 0) {
                 element.textContent = "Expiré";
@@ -1217,10 +1197,21 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
 
-            setTimeout(updateCountdown, 1000);
+            setTimeout(() => updateCountdown(serverTime + 1000), 1000); // Met à jour chaque seconde
         }
 
-        updateCountdown();
+        // Récupérer l'heure du serveur avec fetch
+        fetch('https://the-void.ventsdouest.dev')  // Remplace par l'URL de ton serveur
+            .then(response => {
+                console.log(new Date(response.headers.get('Date')).toUTCString());
+                const serverDate = new Date(response.headers.get('Date')).getTime(); // Récupère l'heure du serveur
+                console.log("serverDate : " + serverDate);
+                updateCountdown(serverDate); // Lance le compte à rebours avec l'heure du serveur
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération de l\'heure du serveur:', error);
+                element.textContent = "Erreur de récupération de l'heure du serveur";
+            });
     }
 
     document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
