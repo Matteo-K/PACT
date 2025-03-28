@@ -58,7 +58,7 @@
           $stmt = $conn->prepare("SELECT categorie FROM pact.offres WHERE idoffre=?;");
           $stmt->execute([$idOffre]);
           $res = $stmt->fetch(PDO::FETCH_ASSOC);
-          
+          echo $res["categorie"] . "\n";
           // Information à propos de la catégorie
           switch ($res["categorie"]) {
             case 'Spectacle':
