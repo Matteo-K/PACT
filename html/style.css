@@ -280,6 +280,28 @@ footer div + div a {
   }
 }
 
+
+/* Page de chargement du site */
+
+#chargement{
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: white;
+}
+
+#chargement #logo{
+  width: 200px;
+  height: 200px;
+}
+
+#chargement #logoText{
+  font-size: 3em;
+}
+
+
 /* ##### Components ##### */
 
 /* ### Header ### */
