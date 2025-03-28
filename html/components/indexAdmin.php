@@ -142,7 +142,7 @@
           </summary>
           <div class="details-content">
             <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
-              <div class="details-form">
+              <div class="details-form signalAdmin">
                 <div>
                   <figure>
                     <img src="<?= $row["url"] ?>" alt="<?= $row["pseudo"] ?>" title="<?= $row["pseudo"] ?>">
@@ -174,7 +174,7 @@
           );
           $stmt->execute();
         ?>
-        <details class="details-style" open>
+        <details class="details-style">
           <summary>
             Réponse professionnel
           </summary>
