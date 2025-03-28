@@ -16,7 +16,7 @@
   <?php require_once "components/header.php" ?>
   <?php 
     $page = $_GET["page"] ?? 1;
-    $nbPage = 4;
+    $nbPage = 2; // Limiter à deux pages
   ?>
   <main id="pageCgu">
     <?php
@@ -108,29 +108,10 @@
             </section>
           </article>
         <?php break;
-        
+
         case 2: ?>
           <article>
-            <h2>Mentions Légales</h2>
-            <p>Dans le cadre de l'utilisation de notre site internet PACT, nous attachons une grande importance à la protection de vos données à caractère personnel...</p>
-            <p><strong>1. Responsable du traitement</strong><br>
-            Tottereau Benoît, Président association TripEnArvor<br>
-            Adresse : Rue Edouard Branly 22300 Lannion<br>
-            Email : benoit.tottereau@univ-rennes.fr</p>
-
-            <p><strong>2. Finalités du traitement des données</strong><br>Les données à caractère personnel que nous collectons sont utilisées pour les finalités suivantes...</p>
-
-            <p><strong>3. Catégories de données collectées</strong><br>Nous collectons des données d'identification comme le nom, prénom, pseudonyme, etc.</p>
-
-            <p><strong>4. Partage des données personnelles</strong><br>Nous ne vendons ni cédons vos données sans consentement...</p>
-
-            <p><strong>5. Durée de conservation des données</strong><br>Les données sont conservées pendant la durée nécessaire à l’accomplissement des services.</p>
-          </article>
-        <?php break;
-
-        case 3: ?>
-          <article>
-            <h2>Conditions Générales de Vente</h2>
+            <h1>Conditions Générales de Vente</h1>
             <p><strong>1. Préambule</strong><br>Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre le site PACT et les professionnels souhaitant publier des offres...</p>
 
             <p><strong>2. Objet</strong><br>Le Site propose des abonnements pour publier des offres, avec différentes options de mise en avant.</p>
@@ -139,30 +120,15 @@
           </article>
         <?php break;
         
-        case 4: ?>
-          <article>
-            <h2>Page 4</h2>
-          </article>
-        <?php break;
-        
-        default:?>
-          <article>
-            <h2>Page inconnue</h2>
-          </article>
-          <?php break;
       }
     ?>
     <div class="pagination">
-      <?php if ($page > 1) { ?>
-        <a href="cgu.php?page=<?= $page-1 ?>">Précédent</a>
+      <?php if ($page == 1) { ?>
+        <a href="cgu.php?page=2">Suivant</a>
       <?php } ?>
 
-      <?php if ($page < $nbPage) { ?>
-        <a href="cgu.php?page=<?= $page+1 ?>">Suivant</a>
-      <?php } ?>
-
-      <?php if ($page != 1 || empty($page)) { ?>
-        <a href="cgu.php?page=1">Retour page 1</a>
+      <?php if ($page == 2) { ?>
+        <a href="cgu.php?page=1">Retour à la page 1</a>
       <?php } ?>
     </div>
   </main>
