@@ -1034,7 +1034,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <img src="img/icone/commentaire.png" id="imgCommentaire" alt ="logo commentaire pour le format mobile" title="logo commentaire pour le format mobile">
                             <h3>Voir l'avis</h3>
                         </div>
-                        <div id="iconeSelectionneeMobile"></div>
+                        <div id="iconeSelectionneeMobile"><h3></h3></div>
                         <div id="tab-publiez">
                             <img src="img/icone/ecrireCommentaire.png" id="imgEcrireCommentaire" alt ="logo écrire commentaire pour le format mobile" title="logo écrire commentaire pour le format mobile">
                             <h3>Publiez un avis</h3>
@@ -1804,7 +1804,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const publiezComponent = document.getElementById("publiez-component");
                 const messageErreurConnExistant = document.getElementById("messageErreurConnExistant");
                 const btnPubliez = document.getElementById("tab-publiez");
-                const iconeSelectionneeMobile = document.getElementById("iconeSelectioneeMobile");
+                const iconeSelectionneeMobile = document.querySelector("#iconeSelectioneeMobile > h3");
 
 
 
