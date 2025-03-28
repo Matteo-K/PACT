@@ -1169,51 +1169,57 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script>
         // js compte à rebours
         document.addEventListener("DOMContentLoaded", function() {
-    function startCountdown(element) {
-        const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
-        console.log("dateString : " + dateString + "\n");
-        const targetTime = new Date(dateString).getTime(); // Convertit en millisecondes
-        console.log("targetTime : " + targetTime + "\n");
-        if (isNaN(targetTime)) {
-            console.error("Format de date invalide :", dateString);
-            element.textContent = "Date invalide";
-            return;
-        }
-
-        function updateCountdown(serverTime) {
-            const now = serverTime; // Utilise l'heure du serveur
-            // console.log("serverTime : " + now + "\n");
-            const diff = targetTime - now;
-
-            if (diff <= 0) {
-                element.textContent = "Expiré";
-                return;
+            function startCountdown(element) {
+                const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
+                // console.log("dateString : " + dateString + "\n");
+            
+                const targetTimeUTC = new Date(dateString); // La date d'origine en UTC
+                // console.log("targetTimeUTC : " + targetTimeUTC + "\n");
+            
+                // Vérification du fuseau horaire
+                const timezoneOffset = targetTimeUTC.getTimezoneOffset(); // Décalage en minutes par rapport à UTC
+                // console.log("Timezone offset (en minutes) : " + timezoneOffset);
+            
+                const targetTime = targetTimeUTC.getTime() - (timezoneOffset * 60000); // Ajuste l'heure locale
+                // console.log("Adjusted targetTime (locale) : " + targetTime + "\n");
+            
+                if (isNaN(targetTime)) {
+                    // console.error("Format de date invalide :", dateString);
+                    element.textContent = "Date invalide";
+                    return;
+                }
+            
+                function updateCountdown() {
+                    const now = Date.now(); // Heure actuelle en millisecondes (locale)
+                    // console.log("now (locale) : " + now + "\n");
+                
+                    const diff = targetTime - now;
+                
+                    if (diff <= 0) {
+                        element.textContent = "";
+                        const figure = element.closest("figure"); // Sélectionne l'élément figure
+                        const img = figure.querySelector("img"); // Sélectionne l'image dans la figure
+                        img.src = "./img/icone/ticket_bleu.png"; // Change l'image pour un ticket bleu (ou toute autre image de votre choix)
+                        return;
+                    }
+                
+                    // Calcul du temps restant
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                    // Mise à jour du texte avec le format : jours, heures, minutes, secondes
+                    element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+                
+                    // Rafraîchir toutes les secondes
+                    setTimeout(updateCountdown, 1000);
+                }
+            
+                updateCountdown();
             }
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
-
-            setTimeout(() => updateCountdown(serverTime + 1000), 1000); // Met à jour chaque seconde
-        }
-
-        // Récupérer l'heure du serveur avec fetch
-        fetch('https://the-void.ventsdouest.dev')  // Remplace par l'URL de ton serveur
-            .then(response => {
-                console.log(new Date(response.headers.get('Date')).toUTCString());
-                const serverDate = new Date(response.headers.get('Date')).getTime(); // Récupère l'heure du serveur
-                console.log("serverDate : " + serverDate);
-                updateCountdown(serverDate); // Lance le compte à rebours avec l'heure du serveur
-            })
-            .catch(error => {
-                console.error('Erreur lors de la récupération de l\'heure du serveur:', error);
-                element.textContent = "Erreur de récupération de l'heure du serveur";
-            });
-    }
-
+    // Applique la fonction startCountdown sur chaque élément "figcaption" avec un attribut data-timestamp
     document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
 });
 
