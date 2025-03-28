@@ -22,3 +22,29 @@
     <p id="copyrightFooter">Copyright&nbsp;&copy;&nbsp;2024 TripEnArvor</p>
   </div>
 </footer>
+
+
+
+<script>
+
+try {
+    
+    const logo = document.getElementById("logo");
+    const liens = document.querySelectorAll("a, input[type='submit']");
+
+    liens.forEach(lien => {
+        lien.addEventListener("click", function () {
+            logo.classList.add("chargementActif");
+
+            // On supprime l'animation au bout de 6 si on a toujours pas changé de page 
+            setTimeout(() => {
+                logo.classList.remove("chargementActif");
+            }, 6000);
+        });
+    });
+
+} catch (error) {
+    
+}
+
+</script>

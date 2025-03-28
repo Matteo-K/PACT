@@ -192,7 +192,7 @@
             logo.classList.add("chargementActif");
             setTimeout(() => {
                 logo.classList.remove("chargementActif");
-            }, 10000);
+            }, 6000);
           });
         });
       </script>
