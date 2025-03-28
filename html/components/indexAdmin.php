@@ -77,7 +77,7 @@
 
     <?php
       $stmt = $conn->prepare(
-        "SELECT o.idoffre, o.nom, p.denomination, i.url
+        "SELECT o.idoffre, o.nom, p.denomination , o.categorie, i.url
         FROM pact.offres o
         LEFT JOIN pact._pro p ON p.idu = o.idu
         LEFT JOIN (
@@ -107,7 +107,11 @@
                 </div>
               </div>
               <form action="../ajax/manageAdminOffer.php" method="post">
-                <button type="submit" name="action" value="visualiser" class="modifierBut">Visualiser</button>
+                <?php if ($row["categorie"] != "Autre") { ?>
+                  <button type="submit" name="action" value="visualiser" class="modifierBut">Visualiser</button>
+                <?php } else { ?>
+                  <p class="hover-message">Offre non terminé</p>
+                <?php } ?>
                 <button type="submit" name="action" value="rejeter" class="modifierBut">Rejeter</button>
                 <button type="submit" name="action" value="supprimer" class="modifierBut">Supprimer</button>
                 <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
