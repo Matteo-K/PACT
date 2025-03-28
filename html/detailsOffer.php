@@ -1169,7 +1169,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         document.addEventListener("DOMContentLoaded", function () {
     function startCountdown(element) {
         const dateString = element.getAttribute("data-timestamp"); // Date PostgreSQL (UTC)
-        console.log("dateString (UTC) : " + dateString);
+        // console.log("dateString (UTC) : " + dateString);
 
         // Convertir la date en timestamp UTC
         const targetDate = new Date(dateString);
@@ -1182,7 +1182,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             targetDate.getUTCSeconds()
         );
 
-        console.log("targetTime (UTC) : " + targetTime);
+        // console.log("targetTime (UTC) : " + targetTime);
 
         if (isNaN(targetTime)) {
             console.error("Format de date invalide :", dateString);
@@ -1191,7 +1191,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         function updateCountdown() {
-            // Obtenir l'heure actuelle en UTC
+            fetch('https://the-void.ventsdouest.dev')
+  .then(response => {
+    // Récupérer l'heure depuis l'en-tête de la réponse
+    let serverDate = response.headers.get('Date');
+    console.log('Heure du serveur :', serverDate);
+  })
+  .catch(error => {
+    console.error('Erreur lors de la récupération de l\'heure du serveur:', error);
+  });
+
             const now = new Date();
             const nowUTC = Date.UTC(
                 now.getUTCFullYear(),
@@ -1202,7 +1211,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 now.getUTCSeconds()
             );
 
-            console.log("nowUTC : " + nowUTC);
+            // console.log("nowUTC : " + nowUTC);
             const diff = targetTime - nowUTC;
 
             if (diff <= 0) {
