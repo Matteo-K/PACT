@@ -906,7 +906,8 @@ CREATE VIEW avis AS
 	c.nbdislike;
 
 CREATE VIEW reponse AS
-    SELECT  
+    SELECT
+    a.idoffre,
 	p.idu as idPro,
     p.denomination,
     c1.idC as idC_reponse,
