@@ -96,7 +96,7 @@
       </summary>
       <div class="details-content">
         <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
-          <div class="details-form">
+          <div class="details-form deleteOffer">
             <div>
               <img src="<?= "." . $row["url"] ?>" alt="<?= $row["nom"] ?>" title="<?= $row["nom"] ?>">
               <div class="nomSupOffre">
