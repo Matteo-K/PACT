@@ -285,7 +285,7 @@
     try {
         
         const logo = document.getElementById("logo");
-        const liens = document.querySelectorAll("a, input[type='submit'], button");
+        const liens = document.querySelectorAll("a, input[type='submit']");
 
         liens.forEach(lien => {
             lien.addEventListener("click", function () {
