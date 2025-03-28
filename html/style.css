@@ -981,7 +981,7 @@ header ul + div {
   padding: 10px 15px;
 }
 
-#leaveButtonBloc button:nth-child(2) {
+#leaveButtonBloc button:nth-child(2), #leaveButtonBloc button:nth-child(3) {
   background-color: var(--rouge);
   border-color: var(--rouge);
 }
