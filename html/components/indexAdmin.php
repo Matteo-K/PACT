@@ -1,4 +1,4 @@
-<div class="indexAdmin">
+<div id="indexAdmin">
   <aside>
     <!-- Menu latérale -->
     <article>
@@ -76,18 +76,18 @@
     <!-- Suppression d'offre -->
 
     <?php
-    $stmt = $conn->prepare(
-      "SELECT o.idoffre, o.nom, p.denomination, i.url
-      FROM pact.offres o
-      LEFT JOIN pact._pro p ON p.idu = o.idu
-      LEFT JOIN (
-          SELECT idoffre, MIN(url) AS url
-          FROM pact._illustre
-          GROUP BY idoffre
-      ) i ON i.idoffre = o.idoffre
-      WHERE o.statut = 'delete';"
-    );
-    $stmt->execute();
+      $stmt = $conn->prepare(
+        "SELECT o.idoffre, o.nom, p.denomination, i.url
+        FROM pact.offres o
+        LEFT JOIN pact._pro p ON p.idu = o.idu
+        LEFT JOIN (
+            SELECT idoffre, MIN(url) AS url
+            FROM pact._illustre
+            GROUP BY idoffre
+        ) i ON i.idoffre = o.idoffre
+        WHERE o.statut = 'delete';"
+      );
+      $stmt->execute();
     ?>
 
     <details class="details-style" open>
@@ -116,6 +116,19 @@
     </details>
 
     <!-- Signalement -->
+    <?php
+      $stmt = $conn->prepare(
+        "SELECT o.idoffre, o.nom, p.denomination, i.url
+        FROM pact.pact._signalementc s
+        LEFT JOIN pact._pro p ON p.idu = s.idu
+        LEFT JOIN (
+            SELECT idoffre, MIN(url) AS url
+            FROM pact._illustre
+            GROUP BY idoffre
+        ) i ON i.idoffre = s.idoffre;"
+      );
+      $stmt->execute();
+    ?>
     <details class="details-style" open>
       <summary>
         Signalement
