@@ -4537,6 +4537,10 @@ section#infoComp div {
   height: 3em;
 }
 
+#iconeSelectionneeMobile{
+  display: none;
+}
+
 .avis{
   width:100%;
 }
@@ -5628,11 +5632,11 @@ label#btnAjoutPhoto:hover {
 
   /** Responsive Avis **/
 
-  .avisMembre > nav > div:first-child> h3 {
+  .avisMembre > nav > div > h3 {
     display: none;
   }
 
-  .avisMembre > nav > div > img{
+  .avisMembre > nav > div > img, #iconeSelectionneeMobile{
     display: flex;
   }
 
