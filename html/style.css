@@ -565,7 +565,7 @@ header > div > a > div {
   color: #007bff;
 }
 
-.details-form div {
+.details-form div:not(#indexAdmin .details-form) {
   display: flex;
   gap: 20px;
 }
