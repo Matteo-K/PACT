@@ -232,7 +232,7 @@
                   <button type="submit" name="action" value="rejeter" class="modifierBut">Rejeter</button>
                   <button type="submit" name="action" value="supprimer" class="modifierBut">Supprimer</button>
                   <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
-                  <input type="hidden" name="idavis" value="<?= $row["idc"] ?>">
+                  <input type="hidden" name="idavis" value="<?= $row["idc_avis"] ?>">
                   <input type="hidden" name="signaleur" value="<?= $row["idu"] ?>">
                   <input type="hidden" name="type" value="avis">
                 </form>
