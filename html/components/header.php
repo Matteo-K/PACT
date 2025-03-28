@@ -284,12 +284,13 @@
 
     try {
         
-        const logo = document.querySelector("#logo");
+        const logo = document.getElementById("logo");
         const liens = document.querySelectorAll("a");
 
         liens.forEach(lien => {
             lien.addEventListener("click", function () {
                 logo.classList.add("chargementActif");
+                console.log("chargement aaaaaaaa");
 
                 // On supprime l'animation au bout de 10sec si on a toujours pas changé de page 
                 setTimeout(() => {
