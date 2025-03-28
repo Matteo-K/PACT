@@ -1716,9 +1716,26 @@ BEGIN
     WHERE idu = iduser AND blacklist = true;
 
     IF avis_to_delete IS NOT NULL AND array_length(avis_to_delete, 1) > 0 THEN
-        DELETE FROM pact._avis WHERE idc = ANY(avis_to_delete);
-        DELETE FROM pact._blacklist WHERE idc = ANY(avis_to_delete);
-        DELETE FROM pact._commentaire WHERE idc = ANY(avis_to_delete);
+        BEGIN
+            DELETE FROM pact._avis WHERE idc = ANY(avis_to_delete);
+        EXCEPTION
+            WHEN OTHERS THEN
+                RAISE EXCEPTION 'Erreur lors de la suppression des avis : %', SQLERRM;
+        END;
+
+        BEGIN
+            DELETE FROM pact._blacklist WHERE idc = ANY(avis_to_delete);
+        EXCEPTION
+            WHEN OTHERS THEN
+                RAISE EXCEPTION 'Erreur lors de la suppression de _blacklist : %', SQLERRM;
+        END;
+
+        BEGIN
+            DELETE FROM pact._commentaire WHERE idc = ANY(avis_to_delete);
+        EXCEPTION
+            WHEN OTHERS THEN
+                RAISE EXCEPTION 'Erreur lors de la suppression des commentaires : %', SQLERRM;
+        END;
     END IF;
     RETURN NEW;
 END;
