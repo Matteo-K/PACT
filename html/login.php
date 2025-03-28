@@ -174,8 +174,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 
 try {
     
-    const logo = document.querySelector("#asideRetour > img");
-    const liens = document.querySelectorAll("a");
+    const logo = document.querySelector("#asideRetour img");
+    const liens = document.querySelectorAll("a, input[type='submit']");
 
     liens.forEach(lien => {
         lien.addEventListener("click", function () {

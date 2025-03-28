@@ -41,7 +41,7 @@
         // Vérifie la page actuelle
         const currentFile = window.location.pathname.split('/').pop();
 
-        input.addEventListener("change", () => {
+        input.addEventListener("input", () => {
             if (currentFile === 'index.php') {
                 const searchTarget = document.getElementById("searchIndex");
                 searchTarget.scrollIntoView({
@@ -285,7 +285,7 @@
     try {
         
         const logo = document.getElementById("logo");
-        const liens = document.querySelectorAll("a");
+        const liens = document.querySelectorAll("a, input[type='submit']");
 
         liens.forEach(lien => {
             lien.addEventListener("click", function () {

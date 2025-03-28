@@ -187,6 +187,12 @@
             }
             event.preventDefault();
             form.submit();
+
+            const logo = document.querySelector("#asideRetour img");
+            logo.classList.add("chargementActif");
+            setTimeout(() => {
+                logo.classList.remove("chargementActif");
+            }, 10000);
           });
         });
       </script>
