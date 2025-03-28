@@ -4561,7 +4561,7 @@ section#infoComp div {
   display: none;
 }
 #iconeSelectionneeMobile > h3 {
-  font-size: 1.8em;
+  font-size: 1.5em;
 }
 
 .avis{
@@ -5662,6 +5662,13 @@ label#btnAjoutPhoto:hover {
   .avisMembre > nav > div > img, #iconeSelectionneeMobile{
     display: flex;
   }
+
+  .avisMembre > nav > div > img {
+    border: 2px solid var(--primary);
+    border-radius: 15px;
+    padding: 0.5em;
+    background-color: white;
+}
 
   .avisMembre > div {
     flex-direction: column;
