@@ -4199,7 +4199,6 @@ article#descriptionOffre h3,
 article#descriptionOffre p {
   font-size: 1rem;
   line-height: 1.6;
-  margin: 0 0 10px;
   text-align: justify;
 }
 
@@ -5166,6 +5165,7 @@ label#btnAjoutPhoto:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: max-content;
 }
 
 .notation,
