@@ -1199,7 +1199,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         element.textContent = "";
                         const figure = element.closest("figure"); // Sélectionne l'élément figure
                         const img = figure.querySelector("img"); // Sélectionne l'image dans la figure
-                        img.src = "./img/icone/ticket_bleu.png"; // Change l'image pour un ticket bleu (ou toute autre image de votre choix)
+                        img.src = "./img/icone/ticket.png"; // Change l'image pour un ticket bleu (ou toute autre image de votre choix)
                         return;
                     }
                 
