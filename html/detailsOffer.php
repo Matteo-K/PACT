@@ -1028,8 +1028,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else {
             ?> <div class="avisMembre">
                     <nav id="tab-container">
-                        <h3 id="tab-avis" class="selected active">Avis</h3>
-                        <h3 id="tab-publiez">Publiez un avis</h3>
+                        <button id="tab-avis" class="selected active">Avis</button>
+                        <button id="tab-publiez">Publiez un avis</button>
                     </nav>
                     <span id="messageErreurConnExistant"></span>
                     <div id="avis-section">
@@ -1042,7 +1042,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 require_once __DIR__ . "/components/avis/ecrireAvis.php";
                             ?>
                         </div>
-                    </div>
+                    </div>  
 
                 </div>
             <?php
