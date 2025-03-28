@@ -1236,7 +1236,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         const figure = element.closest("figure"); // Sélectionne l'élément figure
                         const img = figure.querySelector("img"); // Sélectionne l'image dans la figure
                         img.src = "./img/icone/ticket.png"; // Change l'image pour un ticket bleu (ou toute autre image de votre choix)
-                        setTimeout(200);
+                        setTimeout(1000);
                         refresh();
                         return;
                     }
@@ -1842,7 +1842,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const publiezComponent = document.getElementById("publiez-component");
                 const messageErreurConnExistant = document.getElementById("messageErreurConnExistant");
                 const btnPubliez = document.getElementById("tab-publiez");
-                const iconeSelectionneeMobile = document.querySelector("#iconeSelectioneeMobile > h3");
+                const iconeSelectionneeMobile = document.getElementById("iconeSelectionneeMobile");
 
 
 
@@ -1872,7 +1872,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             tabPubliez.classList.remove('selected');
                             tabAvis.classList.add("active");
                             tabPubliez.classList.remove("active");
-                            iconeSelectionneeMobile.textContent = "Avis";
+                            iconeSelectionneeMobile.innerHTML = "<h3>Avis</h3>";
 
                             // Afficher le composant des avis
                             avisComponent.style.display = "flex";
@@ -1885,7 +1885,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             tabAvis.classList.remove('selected');
                             tabPubliez.classList.add("active");
                             tabAvis.classList.remove("active");
-                            iconeSelectionneeMobile.textContent = "Publier un avis";
+                            iconeSelectionneeMobile.innerHTML = "<h3>Publier un avis</h3>";
 
                             // Afficher le composant pour écrire un avis
                             publiezComponent.style.display = "flex";
