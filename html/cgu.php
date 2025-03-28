@@ -16,7 +16,7 @@
   <?php require_once "components/header.php" ?>
   <?php 
     $page = $_GET["page"] ?? 1;
-    $nbPage = 4;
+    $nbPage = 2;
   ?>
   <main id="pageCgu">
     <?php
@@ -124,15 +124,7 @@
     ?>
     <div class="pagination">
       <?php if ($page > 1) { ?>
-        <a href="cgu.php?page=<?= $page-1 ?>">Précédent</a>
-      <?php } ?>
-
-      <?php if ($page < $nbPage) { ?>
-        <a href="cgu.php?page=<?= $page+1 ?>">Suivant</a>
-      <?php } ?>
-
-      <?php if ($page != 1 || empty($page)) { ?>
-        <a href="cgu.php?page=1">Retour page 1</a>
+        <a href="cgu.php?page=1">Retour à la page 1</a>
       <?php } ?>
     </div>
   </main>
