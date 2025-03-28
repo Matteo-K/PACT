@@ -134,9 +134,21 @@
           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             deleteOffer($queries, $row["idc"]);
           }
+          
+          // Option
+          $stmt = $conn->prepare("SELECT idoption FROM pact._option_offre WHERE idoffre=?;");
+          $stmt->execute([$idOffre]);
+          $idOptions = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+          if (!empty($idOptions)) {
+              $placeholders = implode(',', array_fill(0, count($idOptions), '?'));
+              $stmt = $conn->prepare("DELETE FROM pact._dateoption WHERE idoption IN ($placeholders);");
+              $stmt->execute($idOptions);
+          }
 
           // Suppression des données de l'offre
           $queries = [
+            "DELETE FROM pact._option_offre WHERE idoffre=?;",
             "DELETE FROM pact._illustre WHERE idoffre=?;",
             "DELETE FROM pact._abonner WHERE idoffre=?;",
             "DELETE FROM pact._consulter WHERE idoffre=?;",
