@@ -4284,7 +4284,7 @@ section#infoComp div {
 
 .avisMembre > nav {
   display: flex;
-  width: 35%;
+  width: 40%;
   margin: auto;
   flex-direction: row;
   align-items: center;
@@ -4366,6 +4366,7 @@ section#infoComp div {
   color: var(--bloc);
   font-weight: 600;
 }
+
 .avis{
   width:100%;
 }
@@ -5137,6 +5138,15 @@ label#btnAjoutPhoto:hover {
 
 #formCreationAvis input[type="checkbox"] {
   margin-right: 5px;
+}
+
+#tab-container > #tab-avis:hover, #tab-container > #tab-publiez:hover {
+  transform: scale(1.1);
+}
+#tab-container > #tab-avis, #tab-container > #tab-publiez {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  
 }
 
 /* Bouton Soumettre */
