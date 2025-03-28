@@ -1116,10 +1116,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <p class="taille7">Êtes-vous sûr de vouloir blacklister cet avis ?</p>
 
-                    <p class="taille8">Il vous reste <?php echo $ticketRestant ?> blacklistage</p>
+                    <p id="nbTicket" class="taille8">Il vous reste <?php echo $ticketRestant ?> blacklistage</p>
 
                     <div class="btnBlack">
-                        <section class="">
+                        <section id="SubmitBlack">
                             <button <?php echo $ticketRestant == 0 ? "disabled" : "" ?> class="modifierBut <?php echo $ticketRestant == 0 ? "disabled" : "" ?> size" id="confirmationBlack">Comfirmer</button>
                         </section>
 
@@ -1220,6 +1220,39 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
             
                 updateCountdown();
+
+                function refresh() {
+                    const p = document.getElementById("nbTicket");
+                    const section = document.getElementById("SubmitBlack");
+
+                    fetch('ajax/refreshTicket.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            'idoffre': <?php echo json_encode($idOffre); ?>
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error("Erreur:", data.error);
+                            p.textContent = "Erreur de chargement";
+                            return;
+                        }
+                    
+                        p.textContent = `Nombre de tickets : ${data.count}`;
+                        if (data.count > 0) {
+                            section.innerHTML = `<button class="modifierBut size" id="confirmationBlack">Confirmer</button>`;
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erreur:", error);
+                        p.textContent = "Erreur de chargement";
+                    });
+                }
+
             }
 
     // Applique la fonction startCountdown sur chaque élément "figcaption" avec un attribut data-timestamp
