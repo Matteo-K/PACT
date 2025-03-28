@@ -41,7 +41,7 @@
         // Vérifie la page actuelle
         const currentFile = window.location.pathname.split('/').pop();
 
-        input.addEventListener("change", () => {
+        input.addEventListener("input", () => {
             if (currentFile === 'index.php') {
                 const searchTarget = document.getElementById("searchIndex");
                 searchTarget.scrollIntoView({

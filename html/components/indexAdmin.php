@@ -83,7 +83,7 @@
         LEFT JOIN (
             SELECT idoffre, MIN(url) AS url
             FROM pact._illustre
-            GROUP BY idoffre
+              GROUP BY idoffre
         ) i ON i.idoffre = o.idoffre
         WHERE o.statut = 'delete';"
       );
@@ -116,17 +116,33 @@
     </details>
 
     <!-- Signalement -->
-    <?php
-      // $stmt = $conn->prepare(
-      //   ""
-      // );
-      // $stmt->execute();
-    ?>
     <details class="details-style" open>
       <summary>
         Signalement
       </summary>
       <div class="details-content">
+        <?php
+          $stmt = $conn->prepare(
+            "SELECT 
+              s.dtsignalement, s.raison, s.complement
+            FROM pact._signalementc s
+            LEFT JOIN pact.avis a ON s.idc=a.idc;"
+          );
+          $stmt->execute();
+        ?>
+        <div>
+          <h2>Avis membre</h2>
+        </div>
+        <?php
+          $stmt = $conn->prepare(
+            "SELECT * FROM pact._signalementc s
+            LEFT JOIN pact.reponse r ON s.idc=r.idc_reponse;"
+          );
+          $stmt->execute();
+        ?>
+        <div>
+          <h2>Réponse professionnel</h2>
+        </div>
         <div class="details-form">
           <div>
             <figure>
