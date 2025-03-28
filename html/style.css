@@ -484,6 +484,10 @@ header > div > a > div {
   height: fit-content;
 }
 
+#indexAdmin .details-style {
+  width: calc(100% / 2 - 50px);
+}
+
 /* Style pour <summary> */
 .details-style summary {
   background-color: #f5f5f5;
@@ -496,15 +500,14 @@ header > div > a > div {
   padding-left: 20px;
 }
 
-.details-style[open] summary::after {
+.details-style[open] summary::before {
   content: "▲";
-  /* Flèche vers le haut si ouvert */
   background-color: #f5f5f5;
 }
 
-.details-style summary::after {
+.details-style summary::before {
   content: "▼";
-  /* Flèche vers le bas si fermé */
+  margin-right: 15px;
 }
 
 /* Conteneur des liens */
@@ -773,6 +776,7 @@ header ul + div {
 #manageOffer [type="tel"],
 #manageOffer [type="password"],
 #manageOffer [type="time"],
+#indexAdmin [type="number"],
 #inputSuppression {
   outline: none;
   border-radius: 0;
@@ -783,7 +787,8 @@ header ul + div {
 }
 
 #manageOffer textarea,
-#manageOffer select {
+#manageOffer select,
+#indexAdmin select {
   outline: none;
   border: solid 2px var(--primary);
   background-color: transparent;
@@ -1450,7 +1455,6 @@ header ul + div {
 
 .pageErreur img {
   max-width: 200px;
-  /* Ajuste la taille du logo */
   margin-bottom: 20px;
 }
 
@@ -1580,7 +1584,59 @@ header ul + div {
   margin-block: 0.5em;
 }
 
+#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child, #divDate > div:first-child,#divConsentement > div:first-child{
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+}
 
+#divConsentement{
+  margin: 0;
+}
+
+#divConsentement > div:first-child{
+  width: 100%;
+}
+
+#divConsentement > div > label {
+  margin-top: 1em;
+}
+#divConsentement > div > label > p {
+  margin:0;
+}
+
+.note + span.error_form {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.note + .error_form,
+#accompagnant > div:first-child > .error_form, 
+#titreAvis > div:first-child > .error_form, 
+#textAvis > div:first-child > .error_form,
+#divDate > div:first-child > .error_form,
+#divConsentement > div:first-child > .error_form{
+  color: red;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: italic;
+}
+
+#divDate > input, 
+#accompagnant > #enCompagnie, 
+#titreAvis > input, 
+#textAvis > textarea {
+  width: 60%;
+}
+
+#divConsentement > div > label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+input[type="month"]::-webkit-clear-button {
+  display: none;
+}
 
 #detailsOffer input[type="file"],
 #park_plan input[type="file"] {
@@ -2052,9 +2108,9 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .backdoor{
   user-select: none;
-  -webkit-user-select: none; /* Support pour les navigateurs WebKit (Chrome, Safari) */
-  -moz-user-select: none; /* Support pour Firefox */
-  -ms-user-select: none; /* Support pour Internet Explorer */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .swiper-button-prev.gb,
@@ -2067,23 +2123,23 @@ label[for="rest_ajoutPhotoMenu"] {
 
 @media (max-width: 700px) {
   .flip-card {
-    width: 300px !important; /* Réduit la largeur à 300px sur les petits écrans */
+    width: 300px !important;
   }
 
   .flip-card-back {
-    font-size: 1em !important; /* Ajuste la taille de la police */
-    padding: 5px !important; /* Ajuste les marges internes */
-    border: 2px solid var(--primary) !important; /* Réduit la taille de la bordure */
+    font-size: 1em !important;
+    padding: 5px !important;
+    border: 2px solid var(--primary) !important;
   }
 
   .flip-card-back .title {
-    font-size: 1.1rem !important; /* Réduit la taille du titre */
+    font-size: 1.1rem !important;
     text-align: right !important;
     margin: 0 !important;
   }
 
   .flip-card-front .title {
-    font-size: 1rem !important; /* Réduit la taille du titre */
+    font-size: 1rem !important;
   }
 
   .flip-card-back .blocStar,.flip-card-front .blocStar {
@@ -2121,7 +2177,7 @@ label[for="rest_ajoutPhotoMenu"] {
   }
 
   .flip-card-back address {
-    font-size: 0.9rem !important; /* Réduit la taille de la police pour l'adresse */
+    font-size: 0.9rem !important;
   }
 
   .flip-card-back .tagsCard {
@@ -2148,7 +2204,7 @@ label[for="rest_ajoutPhotoMenu"] {
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {
-    height: 190px; /* Ajuste la hauteur selon ton besoin */
+    height: 190px;
     position: relative;
     margin: 0 auto 0 auto;
   }
@@ -2168,14 +2224,11 @@ label[for="rest_ajoutPhotoMenu"] {
   .swiper-button-next.gb2,
   .swiper-button-next.gb3{
     transform: translateX(-10%);
-    /* Rounded corners for the next button */
   }
   .swiper-button-prev.gb,
   .swiper-button-prev.gb2,
   .swiper-button-prev.gb3 {
     transform: translateX(10%);
-  
-    /* Rounded corners for the prev button */
   }
 }
 
@@ -2353,6 +2406,53 @@ label[for="rest_ajoutPhotoMenu"] {
   min-height: 30vh !important;
 }
 
+
+
+#indexAdmin {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr;
+  min-height: calc(100vh - var(--header-size2));
+
+  aside {
+    border-right: var(--bloc) solid 0.5vw;
+    padding: 20px;
+  }
+
+  aside + section {
+    padding: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    overflow: auto;
+    gap: 20px;
+  }
+
+  fieldset {
+    border: 3px solid var(--primary);
+    border-radius: 10px;
+  }
+
+  legend + div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  [type="submit"] {
+    float: right;
+    padding: 10px;
+    margin: 20px 20px 0 0;
+  }
+
+  #duree_blacklist {
+    width: 30%;
+  }
+  
+  .updateForm {
+    color: red;
+  }
+}
+
 #voirPlus {
   display: flex;
   flex-flow: column nowrap;
@@ -2516,7 +2616,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .flip-card-front .title {
   font-size: 1.2rem;
   font-weight: bold;
-  text-wrap: wrap;
+  text-wrap: auto;
 }
 
 .flip-card-front .ville {
@@ -2769,6 +2869,13 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .checkmark:hover {
   transform: scale(1.1);
+}
+
+#consentement + .checkmark {
+  transform: scale(0.7);
+}
+#consentement + .checkmark:hover{
+  transform: scale(0.8);
 }
 
 #note, #prix, #statut, #categorie, #date, #heure {
@@ -3248,6 +3355,10 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .horslgnOffre::after {
   background-color: red !important;
+}
+
+.suppression::after {
+  background-color: #555;
 }
 
 .ProStatut {
@@ -4127,6 +4238,8 @@ tbody td:last-child {
 #afficheLoc,
 #afficheLoc > #map + div {
   display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #descriptionOffre > section {
@@ -4156,6 +4269,7 @@ tbody td:last-child {
 #afficheLoc img {
   width: 25px;
   height: 25px;
+  margin-right: 5px;
 }
 
 #afficheLoc,
@@ -4195,7 +4309,6 @@ article#descriptionOffre h3,
 article#descriptionOffre p {
   font-size: 1rem;
   line-height: 1.6;
-  margin: 0 0 10px;
   text-align: justify;
 }
 
@@ -4281,7 +4394,7 @@ section#infoComp div {
 
 .avisMembre > nav {
   display: flex;
-  width: 35%;
+  width: 40%;
   margin: auto;
   flex-direction: row;
   align-items: center;
@@ -4363,6 +4476,14 @@ section#infoComp div {
   color: var(--bloc);
   font-weight: 600;
 }
+
+.avisMembre > nav > div > img{
+  display: none;
+  width:6em;
+  height: 6em;
+  justify-content: space-around;
+}
+
 .avis{
   width:100%;
 }
@@ -5136,6 +5257,15 @@ label#btnAjoutPhoto:hover {
   margin-right: 5px;
 }
 
+#tab-container > #tab-avis:hover, #tab-container > #tab-publiez:hover {
+  transform: scale(1.1);
+}
+#tab-container > #tab-avis, #tab-container > #tab-publiez {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  
+}
+
 /* Bouton Soumettre */
 #formCreationAvis button[type="submit"] {
   background-color: var(--accent);
@@ -5162,6 +5292,7 @@ label#btnAjoutPhoto:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: max-content;
 }
 
 .notation,
@@ -5441,9 +5572,12 @@ label#btnAjoutPhoto:hover {
 
   /** Responsive Avis **/
 
-  .avisMembre > nav > h3 {
-    font-size: clamp(0.5em, 7vw, 2em);
-    font-weight: 500;
+  .avisMembre > nav > div> h3 {
+    display: none
+  }
+
+  .avisMembre > nav > div > img{
+    display: flex;
   }
 
   .avisMembre > div {
@@ -6151,8 +6285,8 @@ div[id="messageErreur"], #error_form {
   }
 
   #labelPFP {
-    text-decoration: underline;
     text-align: center;
+    font-size: 20px;
   }
 
   #labelPFP:hover {
@@ -6446,10 +6580,6 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 
 #pageCgu, #mentionsLegales  {
   min-height: 80vh;
-<<<<<<< HEAD
-  padding: 10px 0 10px 30px;
-=======
->>>>>>> b69e6b99 (tes)
 }
 
 /* Fin CSS page CGU */
