@@ -13,6 +13,7 @@ if ($idOffre === null) {
 $stmt = $conn->prepare("SELECT * FROM pact._blacklist WHERE idOffre = ? ");
 $stmt->execute([$idOffre]);
 $result = $stmt->fetchAll();
+
 echo new DateTime();
 print_r($result);
 
