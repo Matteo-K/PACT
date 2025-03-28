@@ -6580,6 +6580,7 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 
 #pageCgu, #mentionsLegales  {
   min-height: 80vh;
+  padding: 10px 0 30px 0;
 }
 
 /* Fin CSS page CGU */
