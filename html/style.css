@@ -773,6 +773,7 @@ header ul + div {
 #manageOffer [type="tel"],
 #manageOffer [type="password"],
 #manageOffer [type="time"],
+#indexAdmin [type="number"],
 #inputSuppression {
   outline: none;
   border-radius: 0;
@@ -783,7 +784,8 @@ header ul + div {
 }
 
 #manageOffer textarea,
-#manageOffer select {
+#manageOffer select,
+#indexAdmin select {
   outline: none;
   border: solid 2px var(--primary);
   background-color: transparent;
@@ -1450,7 +1452,6 @@ header ul + div {
 
 .pageErreur img {
   max-width: 200px;
-  /* Ajuste la taille du logo */
   margin-bottom: 20px;
 }
 
@@ -1580,7 +1581,25 @@ header ul + div {
   margin-block: 0.5em;
 }
 
+#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child{
+  display: flex;
+  flex-direction: column;
+}
+.note + .error_form,
+#accompagnant > div:first-child > .error_form, 
+#titreAvis > div:first-child > .error_form, 
+#textAvis > div:first-child > .error_form {
+  color: red;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: italic;
+}
 
+#divConsentement{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 #detailsOffer input[type="file"],
 #park_plan input[type="file"] {
@@ -2052,9 +2071,9 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .backdoor{
   user-select: none;
-  -webkit-user-select: none; /* Support pour les navigateurs WebKit (Chrome, Safari) */
-  -moz-user-select: none; /* Support pour Firefox */
-  -ms-user-select: none; /* Support pour Internet Explorer */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .swiper-button-prev.gb,
@@ -2067,23 +2086,23 @@ label[for="rest_ajoutPhotoMenu"] {
 
 @media (max-width: 700px) {
   .flip-card {
-    width: 300px !important; /* Réduit la largeur à 300px sur les petits écrans */
+    width: 300px !important;
   }
 
   .flip-card-back {
-    font-size: 1em !important; /* Ajuste la taille de la police */
-    padding: 5px !important; /* Ajuste les marges internes */
-    border: 2px solid var(--primary) !important; /* Réduit la taille de la bordure */
+    font-size: 1em !important;
+    padding: 5px !important;
+    border: 2px solid var(--primary) !important;
   }
 
   .flip-card-back .title {
-    font-size: 1.1rem !important; /* Réduit la taille du titre */
+    font-size: 1.1rem !important;
     text-align: right !important;
     margin: 0 !important;
   }
 
   .flip-card-front .title {
-    font-size: 1rem !important; /* Réduit la taille du titre */
+    font-size: 1rem !important;
   }
 
   .flip-card-back .blocStar,.flip-card-front .blocStar {
@@ -2121,7 +2140,7 @@ label[for="rest_ajoutPhotoMenu"] {
   }
 
   .flip-card-back address {
-    font-size: 0.9rem !important; /* Réduit la taille de la police pour l'adresse */
+    font-size: 0.9rem !important;
   }
 
   .flip-card-back .tagsCard {
@@ -2148,7 +2167,7 @@ label[for="rest_ajoutPhotoMenu"] {
   .swiper-container.gb, 
   .swiper-container.gb2, 
   .swiper-container.gb3 {
-    height: 190px; /* Ajuste la hauteur selon ton besoin */
+    height: 190px;
     position: relative;
     margin: 0 auto 0 auto;
   }
@@ -2168,14 +2187,11 @@ label[for="rest_ajoutPhotoMenu"] {
   .swiper-button-next.gb2,
   .swiper-button-next.gb3{
     transform: translateX(-10%);
-    /* Rounded corners for the next button */
   }
   .swiper-button-prev.gb,
   .swiper-button-prev.gb2,
   .swiper-button-prev.gb3 {
     transform: translateX(10%);
-  
-    /* Rounded corners for the prev button */
   }
 }
 
@@ -2353,6 +2369,41 @@ label[for="rest_ajoutPhotoMenu"] {
   min-height: 30vh !important;
 }
 
+
+#indexAdmin {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr;
+  min-height: calc(100vh - var(--header-size2));
+
+  aside {
+    border-right: var(--bloc) solid 0.5vw;
+    padding: 20px;
+  }
+
+  fieldset {
+    border: 3px solid var(--primary);
+    border-radius: 10px;
+  }
+
+  legend + div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  [type="submit"] {
+    float: right;
+    padding: 10px;
+    margin: 20px 20px 0 0;
+  }
+
+  #duree_blacklist {
+    width: 30%;
+  }
+}
+
+
 #voirPlus {
   display: flex;
   flex-flow: column nowrap;
@@ -2516,7 +2567,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .flip-card-front .title {
   font-size: 1.2rem;
   font-weight: bold;
-  text-wrap: wrap;
+  text-wrap: auto;
 }
 
 .flip-card-front .ville {
@@ -2769,6 +2820,13 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .checkmark:hover {
   transform: scale(1.1);
+}
+
+#consentement + .checkmark {
+  transform: scale(0.7);
+}
+#consentement + .checkmark:hover{
+  transform: scale(0.8);
 }
 
 #note, #prix, #statut, #categorie, #date, #heure {
@@ -6175,7 +6233,6 @@ div[id="messageErreur"], #error_form {
   }
 
   #labelPFP {
-    text-decoration: underline;
     text-align: center;
   }
 
