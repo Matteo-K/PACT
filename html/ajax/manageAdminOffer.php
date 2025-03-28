@@ -35,19 +35,33 @@
               $stmt->execute([$idOffre]);
             }
           }
-
-          function deleteImg($folder) {
-            $files = glob($folder . '*');
-
-            foreach ($files as $file) {
-                if (is_file($file)) {
-                    unlink($file);
-                }
-            }
-            if (is_dir($folder)) {
-              rmdir($folder);
+          
+          function deleteAvis($queries, $idAvis) {
+            global $conn;
+            
+            foreach ($queries as $query) {
+              $stmt = $conn->prepare($query);
+              $stmt->execute([$idAvis]);
             }
           }
+
+          function deleteImg($folder) {
+            if (!is_dir($folder)) {
+                return;
+            }
+        
+            $files = glob($folder . '/*');
+        
+            foreach ($files as $file) {
+              if (is_dir($file)) {
+                deleteImg($file);
+              } else {
+                unlink($file);
+              }
+            }
+            rmdir($folder);
+          }
+        
 
           $stmt = $conn->prepare("SELECT categorie FROM pact.offres WHERE idoffre=?;");
           $stmt->execute([$idOffre]);
@@ -80,7 +94,7 @@
                 "DELETE FROM pact._tag_act WHERE idoffre=?;",
                 "DELETE FROM pact._offreprestation_inclu WHERE idoffre=?;",
                 "DELETE FROM pact._offreprestation_non_inclu WHERE idoffre=?;",
-                "DELETE FROM pact._accessibilite WHERE idoffre=?;"
+                "DELETE FROM pact._offreaccess WHERE idoffre=?;"
               ];
 
               deleteOffer($queries);
@@ -107,10 +121,49 @@
               break;
           }
           // Supprime toute les images de tout les dossiers
-          deleteImg("../img/imageMenu/" . $idOffre . "/");
-          deleteImg("../img/imagePlan/" . $idOffre . "/");
-          deleteImg("../img/imageOffre/" . $idOffre . "/");
+          deleteImg("../img/imageAvis/" . $idOffre);
+          deleteImg("../img/imageMenu/" . $idOffre);
+          deleteImg("../img/imagePlan/" . $idOffre);
+          deleteImg("../img/imageOffre/" . $idOffre);
 
+          // Suppression des avis
+          $queries = [
+            "DELETE FROM pact._signalementc WHERE idc=?",
+            "DELETE FROM pact._reponse WHERE idc=?",
+            "DELETE FROM pact._reponse WHERE ref=?",
+            "DELETE FROM pact._commentaire WHERE idc=?",
+            "DELETE FROM pact._avisimage WHERE idc=?",
+            "DELETE FROM pact._avis WHERE idc=?"
+          ];
+
+          $stmt = $conn->prepare("SELECT * FROM pact._blacklist WHERE idc = $idAvis");
+          $stmt -> execute();
+
+          if ($stmt->fetch()) {
+              $stmt = $conn->prepare("DELETE FROM pact._blacklist WHERE idc = $idAvis");
+              $stmt -> execute();
+          }
+
+          $stmt = $conn->prepare("SELECT idc FROM pact.avis WHERE idoffre=?;");
+          $stmt -> execute([$idOffre]);
+          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            deleteAvis($queries, $row["idc"]);
+          }
+
+          deleteOffer($queries);
+
+          // Suppression des données de l'offre
+          $queries = [
+            "DELETE FROM pact._abonner WHERE idoffre=?;",
+            "DELETE FROM pact._consulter WHERE idoffre=?;",
+            "DELETE FROM pact._localisation WHERE idoffre=?;",
+            "DELETE FROM pact._horairemidi WHERE idoffre=?;",
+            "DELETE FROM pact._horaireprecise WHERE idoffre=?;",
+            "DELETE FROM pact._horairesoir WHERE idoffre=?;",
+            "DELETE FROM pact._offre WHERE idoffre=?;"
+          ];
+
+          deleteOffer($queries);
           // Redirection vers l'offre
           header("location: ../index.php");
         exit();
