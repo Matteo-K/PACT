@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mentions Legales</title>
+  <title>Mentions Légales</title>
   <link rel="icon" href="img/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="style.css">
@@ -41,8 +41,8 @@
             </h2>
             <p>Les données à caractère personnel que nous collectons sont utilisées pour les finalités suivantes :</p>
             <ul>
-              <li>Fournir les services proposés sur le site (ex : création de compte, gestion des offres, des avis). </li>
-              <li>Améliorer l’expérience utilisateur et assurer la sécurité du site. </li>
+              <li>Fournir les services proposés sur le site (ex : création de compte, gestion des offres, des avis).</li>
+              <li>Améliorer l’expérience utilisateur et assurer la sécurité du site.</li>
             </ul>
           </section>
           <section>
@@ -52,9 +52,8 @@
             <p>Nous pouvons être amenés à collecter les données suivantes :</p>
             <ul>
               <li>Données d'identification : nom, prénom, pseudonyme, adresse e-mail, adresse postale, numéro de
-                téléphone.
-              </li>
-              <li>Pour une entreprise sa dénomination et son numéro de SIREN </li>
+                téléphone.</li>
+              <li>Pour une entreprise sa dénomination et son numéro de SIREN.</li>
             </ul>
           </section>
           <section>
@@ -62,14 +61,13 @@
               4. Partage des données personnelles
             </h2>
             <p>Nous nous engageons à ne pas vendre ou céder vos données à des tiers sans votre consentement explicite,
-              à l'exception des services nécessaire pour la gestion du site.</p>
+              à l'exception des services nécessaires pour la gestion du site.</p>
           </section>
           <section>
             <h2>
               5. Durée de conservation des données
             </h2>
-            <p>Nous conservons vos données personnelles pendant la durée nécessaire à l’accomplissement des services de
-              PACT
+            <p>Nous conservons vos données personnelles pendant la durée nécessaire à l’accomplissement des services
               pour lesquelles elles ont été collectées dans le respect des obligations légales.</p>
           </section>
           <section>
@@ -78,21 +76,12 @@
             </h2>
             <p>Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :</p>
             <ul>
-              <li>
-                Droit d'accès : vous pouvez obtenir une copie des données personnelles que nous détenons à votre sujet.
-              </li>
-              <li>
-                Droit de rectification : vous pouvez demander que vos données soient corrigées si elles sont inexactes.
-              </li>
-              <li>
-                Droit à l’effacement : vous pouvez demander la suppression de vos données personnelles, sous certaines
-                conditions.
-              </li>
-              <li>
-                Droit d’opposition : vous pouvez vous opposer à l'utilisation de vos données.
-              </li>
+              <li>Droit d'accès : vous pouvez obtenir une copie des données personnelles que nous détenons à votre sujet.</li>
+              <li>Droit de rectification : vous pouvez demander que vos données soient corrigées si elles sont inexactes.</li>
+              <li>Droit à l’effacement : vous pouvez demander la suppression de vos données personnelles, sous certaines conditions.</li>
+              <li>Droit d’opposition : vous pouvez vous opposer à l'utilisation de vos données.</li>
             </ul>
-            <p> Pour exercer ces droits, vous pouvez nous contacter à l’adresse suivante :
+            <p>Pour exercer ces droits, vous pouvez nous contacter à l’adresse suivante :
               ewen@jain-etudiants.univ-rennes1.com.
             </p>
           </section>
@@ -101,16 +90,14 @@
               7. Cookies
             </h2>
             <p>Nous utilisons des cookies pour améliorer l’expérience de navigation et analyser l’utilisation de notre site.
-              <br Vous pouvez gérer vos préférences de cookies via les paramètres de votre navigateur. </p>
+              <br>Vous pouvez gérer vos préférences de cookies via les paramètres de votre navigateur.</p>
           </section>
           <section>
             <h2>
               8. Modifications des mentions légales
             </h2>
-            <p> Nous nous réservons le droit de modifier ces mentions légales à tout moment.
-              <br>
-              Nous vous invitons donc à les consulter régulièrement.
-            </p>
+            <p>Nous nous réservons le droit de modifier ces mentions légales à tout moment.
+              <br>Nous vous invitons donc à les consulter régulièrement.</p>
           </section>
         </article>
         <?php break;
@@ -144,7 +131,7 @@
       <?php } ?>
 
       <?php if ($page != 1 || empty($page)) { ?>
-        <a href="cgu.php?page=1">Retour page 1</a>
+        <a href="mentionsLegales.php?page=1">Retour page 1</a>
       <?php } ?>
     </div>
   </main>
