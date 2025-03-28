@@ -150,7 +150,15 @@ $avis = $avisTemp;
                 <h2>
                     Auteur
                 </h2>
-                <img src="./img/icone/blacklist.png" alt="icone de blacklistage" class="btnBlackList blacklistid">
+                <?php
+                    $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = ?");
+                    $stmt->execute([$idOffre]);
+                    if ($stmt->fetch()["nomabonnement"] == "Premium") {
+                ?>
+                        <img src="./img/icone/blacklist.png" alt="icone de blacklistage" class="btnBlackList blacklistid">
+                <?php
+                    }
+                ?>
                 <img src="./img/icone/signalement.png" alt="icone de parametre" class="signalementSupp signaler signalerAvis">
             </div>
             <div class="noteEtoile">
