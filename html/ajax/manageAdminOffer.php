@@ -27,22 +27,13 @@
         break;
         
         case 'supprimer':
-          function deleteOffer($queries) {
+          function deleteOffer($queries, $data) {
             global $conn;
             
             foreach ($queries as $query) {
-              echo $query . " " . $idOffre;
+              echo $query . " " . $data;
               $stmt = $conn->prepare($query);
-              $stmt->execute([$idOffre]);
-            }
-          }
-          
-          function deleteAvis($queries, $idAvis) {
-            global $conn;
-            
-            foreach ($queries as $query) {
-              $stmt = $conn->prepare($query);
-              $stmt->execute([$idAvis]);
+              $stmt->execute([$data]);
             }
           }
 
@@ -76,7 +67,7 @@
                 "DELETE FROM pact._tag_spec WHERE idoffre=?;"
               ];
 
-              deleteOffer($queries);
+              deleteOffer($queries, $idOffre);
               break;
 
             case 'Restaurant':
@@ -86,7 +77,7 @@
                 "DELETE FROM pact._menu WHERE idoffre=?;"
               ];
 
-              deleteOffer($queries);
+              deleteOffer($queries, $idOffre);
               break;
 
             case 'Activité':
@@ -98,7 +89,7 @@
                 "DELETE FROM pact._offreaccess WHERE idoffre=?;"
               ];
 
-              deleteOffer($queries);
+              deleteOffer($queries, $idOffre);
             break;
 
             case 'Parc Attraction':
@@ -107,7 +98,7 @@
                 "DELETE FROM pact._tag_parc WHERE idoffre=?;"
               ];
 
-              deleteOffer($queries);
+              deleteOffer($queries, $idOffre);
               break;
 
             case 'Visite':
@@ -118,7 +109,7 @@
                 "DELETE FROM pact._tag_visite WHERE idoffre=?;"
               ];
 
-              deleteOffer($queries);
+              deleteOffer($queries, $idOffre);
               break;
           }
           // Supprime toute les images de tout les dossiers
@@ -141,7 +132,7 @@
           $stmt = $conn->prepare("SELECT idc FROM pact.avis WHERE idoffre=?;");
           $stmt -> execute([$idOffre]);
           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            deleteAvis($queries, $row["idc"]);
+            deleteOffer($queries, $row["idc"]);
           }
 
           // Suppression des données de l'offre
@@ -155,7 +146,7 @@
             "DELETE FROM pact._offre WHERE idoffre=?;"
           ];
 
-          deleteOffer($queries);
+          deleteOffer($queries, $idOffre);
           // Redirection vers l'offre
           header("location: ../index.php");
         exit();
