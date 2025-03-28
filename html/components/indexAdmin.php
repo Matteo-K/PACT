@@ -157,7 +157,7 @@
             LEFT JOIN pact.avis a ON s.idc=a.idc
             LEFT JOIN pact._photo_profil pp ON pp.idu = a.idu
             LEFT JOIN pact._offre o ON o.idoffre = a.idoffre
-            WHERE a.pseudo <> null
+            WHERE a.pseudo IS NOT NULL
             ORDER BY a.idc, a.idoffre;"
           );
           $stmt->execute();
@@ -204,7 +204,7 @@
             LEFT JOIN pact.reponse r ON s.idc=r.idc_reponse
             LEFT JOIN pact._photo_profil pp ON pp.idu = r.idpro
             LEFT JOIN pact._offre o ON o.idoffre = r.idoffre
-            WHERE r.denomination <> null
+            WHERE r.denomination IS NOT NULL
             ORDER BY r.idc_reponse, r.idoffre;"
           );
           $stmt->execute();
