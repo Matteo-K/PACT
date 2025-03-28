@@ -1169,8 +1169,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         document.addEventListener("DOMContentLoaded", function() {
             function startCountdown(element) {
                 const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
+                console.log("dateString : " + dateString + "\n");
                 const targetTime = new Date(dateString).getTime(); // Convertit en millisecondes
-
+                console.log("targetTime : " + targetTime + "\n");
                 if (isNaN(targetTime)) {
                     console.error("Format de date invalide :", dateString);
                     element.textContent = "Date invalide";
@@ -1179,6 +1180,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 function updateCountdown() {
                     const now = Date.now();
+                    console.log("now : " + now + "\n");
                     const diff = targetTime - now;
 
                     if (diff <= 0) {
