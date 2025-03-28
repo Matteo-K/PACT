@@ -4218,6 +4218,7 @@ tbody td:last-child {
 #afficheLoc img {
   width: 25px;
   height: 25px;
+  margin-right: 5px;
 }
 
 #afficheLoc,
@@ -4423,6 +4424,10 @@ section#infoComp div {
   font-size: 2.5em;
   color: var(--bloc);
   font-weight: 600;
+}
+
+.avisMembre > nav > div > img{
+  display: none;
 }
 
 .avis{
@@ -5513,9 +5518,12 @@ label#btnAjoutPhoto:hover {
 
   /** Responsive Avis **/
 
-  .avisMembre > nav > h3 {
-    font-size: clamp(0.5em, 7vw, 2em);
-    font-weight: 500;
+  .avisMembre > nav > div> h3 {
+    display: none
+  }
+
+  .avis > nav > div > img{
+    display: flex;
   }
 
   .avisMembre > div {

@@ -1,3 +1,14 @@
+.tag:hover, .ferme:hover, .ouvert:hover, #infopro > div:hover, #contact-info > div:hover {
+  transform: scale(115%);
+  }
+  
+  .tag, .ferme, .ouvert, #infoPro > div, #contact-info > div {
+  transform: scale(100%);
+  transition: 0.5s ease;
+  }
+
+
+
 @keyframes secoue {
   0% { transform: translateY(0); }
   2% { transform: translateY(-10px); } /* Monte */
@@ -11,17 +22,16 @@
 
 
 #formConnexion p img{
-  animation: secoue 6s ease-in infinite;
+  animation: secoue 6s ease-in infinite 2s;
   display: inline-block;
 }
 
 
-
-.tag:hover, .ferme:hover, .ouvert:hover, #infopro > div:hover, #contact-info > div:hover{
-transform: scale(115%);
+@keyframes logocharge {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-.tag, .ferme, .ouvert, #infoPro > div, #contact-info > div{
-transform: scale(100%);
-transition: 0.5s ease;
+#logo{
+  animation: logocharge 1.2s cubic-bezier(0.36, -0.3, 0.71, 1.46) infinite;
 }
