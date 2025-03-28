@@ -57,7 +57,7 @@ class ArrayOffer {
   private $arrayOffer;
   private $nbOffer;
 
-  public function __construct($idoffres_ = "") {
+  public function __construct($idoffres_ = "", $typeUser = "") {
     $this->arrayOffer = [];
     $this->nbOffer = 0;
 
@@ -67,8 +67,13 @@ class ArrayOffer {
         $stmt = $conn->prepare("SELECT * FROM pact.offres");
         $stmt->execute();
     } else if ($idoffres_ === "enLigne") {
-      $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE statut='actif';");
-      $stmt->execute();
+      if ($typeUser == "pro_public" || $typeUser == "pro_prive") {
+        $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE statut<>'delete';");
+        $stmt->execute();
+      } else {
+        $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE statut='actif';");
+        $stmt->execute();
+      }
     } else {
         if (is_array($idoffres_)) {
             $placeholders = rtrim(str_repeat('?,', count($idoffres_)), ',');
