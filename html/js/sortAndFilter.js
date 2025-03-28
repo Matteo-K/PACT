@@ -675,8 +675,6 @@ function addPing(array) {
               });
             }
           });
-        } else {
-          console.error("Aucune coordonnée trouvée pour l'adresse : ", elt);
         }
       })
       .catch(error => {
