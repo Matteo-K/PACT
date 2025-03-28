@@ -31,7 +31,6 @@
             global $conn;
             
             foreach ($queries as $query) {
-              echo $query . " " . $data;
               $stmt = $conn->prepare($query);
               $stmt->execute([$data]);
             }
