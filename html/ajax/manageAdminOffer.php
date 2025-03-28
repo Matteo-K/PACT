@@ -28,6 +28,8 @@
         
         case 'supprimer':
           function deleteOffer($queries) {
+            global $conn;
+            
             foreach ($queries as $query) {
               $stmt = $conn->prepare($query);
               $stmt->execute([$idOffre]);

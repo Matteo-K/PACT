@@ -534,6 +534,20 @@ header > div > a > div {
       justify-content: space-between;
     }
   }
+
+  .contenueSignalement {
+    flex-direction: column;
+    > * {
+      margin: 0;
+      gap: 0;
+    }
+
+    p {
+      background-color: #fff;
+      min-height: 80px;
+      padding: 10px;
+    }
+  }
 }
 
 /* Style pour <summary> */
