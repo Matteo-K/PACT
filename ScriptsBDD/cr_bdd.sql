@@ -1665,7 +1665,6 @@ DECLARE
     listImages TEXT[];
     iduser INT := OLD.idu;
     idanonyme INT := 26;
-    avis_to_delete INT[];
 BEGIN
 
     -- Vérification que ce n'est pas le compte d'anonymisation qui est supprimé
@@ -1710,16 +1709,7 @@ BEGIN
     DELETE FROM pact._utilisateur
     WHERE idu = iduser;
 
-    SELECT ARRAY_AGG(idc) INTO avis_to_delete
-    FROM pact.avis
-    WHERE idu = iduser AND blacklist = true;
-
-    IF avis_to_delete IS NOT NULL THEN
-        DELETE FROM pact._avis WHERE idc = ANY(avis_to_delete);
-        DELETE FROM pact._blacklist WHERE idc = ANY(avis_to_delete);
-        DELETE FROM pact._commentaire WHERE idc = ANY(avis_to_delete);
-    END IF;
-
+    
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;

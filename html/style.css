@@ -773,8 +773,7 @@ header ul + div {
 #manageOffer [type="tel"],
 #manageOffer [type="password"],
 #manageOffer [type="time"],
-#inputSuppression,
-.indexAdmin [type="number"] {
+#inputSuppression {
   outline: none;
   border-radius: 0;
   border: none;
@@ -784,8 +783,7 @@ header ul + div {
 }
 
 #manageOffer textarea,
-#manageOffer select,
-.indexAdmin select {
+#manageOffer select {
   outline: none;
   border: solid 2px var(--primary);
   background-color: transparent;
@@ -1582,25 +1580,6 @@ header ul + div {
   margin-block: 0.5em;
 }
 
-#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child{
-  display: flex;
-  flex-direction: column;
-}
-.note + .error_form,
-#accompagnant > div:first-child > .error_form, 
-#titreAvis > div:first-child > .error_form, 
-#textAvis > div:first-child > .error_form {
-  color: red;
-  font-size: 14px;
-  font-weight: normal;
-  font-style: italic;
-}
-
-#divConsentement{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 
 #detailsOffer input[type="file"],
@@ -2068,40 +2047,43 @@ label[for="rest_ajoutPhotoMenu"] {
 .swiper-button-next.gb2,
 .swiper-button-next.gb3{
   transform: translateX(-180%);
+  /* Rounded corners for the next button */
 }
 
 .backdoor{
   user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  -webkit-user-select: none; /* Support pour les navigateurs WebKit (Chrome, Safari) */
+  -moz-user-select: none; /* Support pour Firefox */
+  -ms-user-select: none; /* Support pour Internet Explorer */
 }
 
 .swiper-button-prev.gb,
 .swiper-button-prev.gb2,
 .swiper-button-prev.gb3 {
   transform: translateX(180%);
+
+  /* Rounded corners for the prev button */
 }
 
 @media (max-width: 700px) {
   .flip-card {
-    width: 300px !important;
+    width: 300px !important; /* Réduit la largeur à 300px sur les petits écrans */
   }
 
   .flip-card-back {
-    font-size: 1em !important;
-    padding: 5px !important;
-    border: 2px solid var(--primary) !important;
+    font-size: 1em !important; /* Ajuste la taille de la police */
+    padding: 5px !important; /* Ajuste les marges internes */
+    border: 2px solid var(--primary) !important; /* Réduit la taille de la bordure */
   }
 
   .flip-card-back .title {
-    font-size: 1.1rem !important;
+    font-size: 1.1rem !important; /* Réduit la taille du titre */
     text-align: right !important;
     margin: 0 !important;
   }
 
   .flip-card-front .title {
-    font-size: 1rem !important;
+    font-size: 1rem !important; /* Réduit la taille du titre */
   }
 
   .flip-card-back .blocStar,.flip-card-front .blocStar {
@@ -2144,6 +2126,8 @@ label[for="rest_ajoutPhotoMenu"] {
 
   .flip-card-back .tagsCard {
     flex-direction: row !important;
+    justify-content: flex-start !important;
+    flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
     padding-inline: 5px !important;
@@ -2369,39 +2353,6 @@ label[for="rest_ajoutPhotoMenu"] {
   min-height: 30vh !important;
 }
 
-.indexAdmin {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: 1fr;
-  min-height: calc(100vh - var(--header-size2));
-
-  aside {
-    border-right: var(--bloc) solid 0.5vw;
-    padding: 20px;
-  }
-
-  fieldset {
-    border: 3px solid var(--primary);
-    border-radius: 10px;
-  }
-
-  legend + div {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-  }
-
-  [type="submit"] {
-    float: right;
-    padding: 10px;
-    margin: 20px 20px 0 0;
-  }
-
-  #duree_blacklist {
-    width: 30%;
-  }
-}
-
 #voirPlus {
   display: flex;
   flex-flow: column nowrap;
@@ -2415,6 +2366,7 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #voirPlus p {
   font-size: 1.2rem;
+  text-align: center;
 }
 
 #voirPlus a {
@@ -2564,7 +2516,7 @@ label[for="rest_ajoutPhotoMenu"] {
 .flip-card-front .title {
   font-size: 1.2rem;
   font-weight: bold;
-  text-wrap: auto;
+  text-wrap: wrap;
 }
 
 .flip-card-front .ville {
@@ -2817,13 +2769,6 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .checkmark:hover {
   transform: scale(1.1);
-}
-
-#consentement + .checkmark {
-  transform: scale(0.7);
-}
-#consentement + .checkmark:hover{
-  transform: scale(0.8);
 }
 
 #note, #prix, #statut, #categorie, #date, #heure {
@@ -3690,7 +3635,6 @@ label[for="rest_ajoutPhotoMenu"] {
 
 #a2f p{
   color: red;
-  text-align: center;
 }
 
 #a2f article{
@@ -4187,8 +4131,6 @@ tbody td:last-child {
 #afficheLoc,
 #afficheLoc > #map + div {
   display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 #descriptionOffre > section {
@@ -4343,14 +4285,14 @@ section#infoComp div {
 
 .avisMembre > nav {
   display: flex;
-  width: 35%;
+  width: 40%;
   margin: auto;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
-.selected.active{
+.selected.active > h3{
   border-bottom: var(--bloc) 3px solid;
 }
 
@@ -4420,11 +4362,12 @@ section#infoComp div {
   justify-content: center;
 }
 
-.avisMembre > nav > h3 {
+.avisMembre > nav > div >h3 {
   font-size: 2.5em;
   color: var(--bloc);
   font-weight: 600;
 }
+
 .avis{
   width:100%;
 }
@@ -5196,6 +5139,15 @@ label#btnAjoutPhoto:hover {
 
 #formCreationAvis input[type="checkbox"] {
   margin-right: 5px;
+}
+
+#tab-container > #tab-avis:hover, #tab-container > #tab-publiez:hover {
+  transform: scale(1.1);
+}
+#tab-container > #tab-avis, #tab-container > #tab-publiez {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  
 }
 
 /* Bouton Soumettre */

@@ -16,7 +16,7 @@
         <span class="error_form" style="display: none;"></span>
 
         <!-- Champ pour la date -->
-        <div>
+        <div id="divDate">
             <div>
                 <label for="date-avis">Donnez la date de visite : *</label>
                 <span class="error_form" style="display: none;"></span>
@@ -27,8 +27,7 @@
                 name="date"
                 min="<?= date('Y-m', strtotime('-1 year')) ?>"
                 max="<?= date('Y-m') ?>"
-                value="<?= date('Y-m') ?>"
-                required>
+                value="<?= date('Y-m') ?>">
         </div>
 
         <!-- Qui vous accompagnait -->
@@ -180,18 +179,23 @@
                     etoile.classList.add("vide");
                 }
             });
+
+            checkNote();
         }
 
+        const date = document.getElementById('date-avis');
         const radios = document.getElementsByName('compagnie');
+        const label = document.querySelectorAll("#enCompagnie > label.tag");
         const titre = document.getElementById("titre");
         const avis = document.getElementById("avis");
         const consentement = document.getElementById("consentement")
 
-        const errorMessageNote = document.querySelector(".note + .error_form")
+        const errorMessageNote = document.querySelector(".note + .error_form");
+        const errorMessageDate = document.querySelector("#divDate > div > .error_form");
         const errorMessageAccompagnant = document.querySelector("#accompagnant > div > .error_form");
         const errorMessageTitre = document.querySelector("#titreAvis > div > .error_form");
         const errorMessageAvis = document.querySelector("#textAvis > div > .error_form");
-        const errorMessageConsentement = document.querySelector("#consentement > div > .error_form");
+        const errorMessageConsentement = document.querySelector("#divConsentement > div > .error_form");
 
         function checkNote() {
             let res = true
@@ -208,6 +212,22 @@
             return res
         }
 
+        function checkDate(){
+            let res = true
+            if (!date.value.trim()) {
+                errorMessageDate.textContent = "Veuillez sélectionner une date avant de soumettre votre avis.";
+                errorMessageDate.style.display = "block";
+                date.classList.add("inputErreur");
+                res = false;
+            }
+            return res
+        }
+        date.addEventListener("blur", () => checkDate());
+        date.addEventListener("focus", () => {
+            errorMessageDate.style.display = "none";
+            date.classList.remove("inputErreur");
+        });
+
         function checkAccompagnant() {
             let res = true
             let selectionne = false;
@@ -219,6 +239,7 @@
                 }
             }
             if (!selectionne) {
+                label.forEach(lbl => lbl.style.cssText = "border-color: red !important;");
 
                 errorMessageAccompagnant.textContent = "Veuillez sélectionner qui vous accompagnait avant de soumettre votre avis.";
                 errorMessageAccompagnant.style.display = "block";
@@ -227,10 +248,17 @@
                 });
                 res = false;
             } else {
+                label.forEach(lbl => lbl.style.cssText = "");
                 errorMessageAccompagnant.style.display = "none";
+        
             }
             return res
         }
+
+        radios.forEach(radio => {
+            radio.addEventListener("change", () => checkAccompagnant());
+        });
+
 
         function checkTitre() {
             let res = true
@@ -267,6 +295,22 @@
             avis.classList.remove("inputErreur");
         });
 
+        function checkConsentement() {
+            const checkmark = consentement.nextElementSibling;
+            let res = true
+            if (!consentement.checked) {
+                errorMessageConsentement.textContent = "Veuillez certifier que vous consentez à la publication de votre avis avant de le soumettre.";
+                errorMessageConsentement.style.display = "block";
+                checkmark.classList.add("inputErreur");
+                res = false;
+            } else{
+                errorMessageConsentement.style.display = "none";
+                checkmark.classList.remove("inputErreur");
+            }
+            return res
+        }
+        consentement.addEventListener("change", () => checkConsentement());
+
         function validerFormulaire() {
             let res = true
 
@@ -274,8 +318,10 @@
             let accompagnantCheck = checkAccompagnant();
             let titreCheck = checkTitre();
             let avisCheck = checkAvis();
+            let dateCheck = checkDate();
+            let consentementCheck = checkConsentement();
 
-            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck) {
+            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck || !dateCheck || !consentementCheck) {
                 res = false;
             }
 
@@ -290,11 +336,6 @@
             }
         });
 
-        document.querySelector('input[type="month"]').addEventListener('input', function(event) {
-            if (this.value === '') {
-                event.preventDefault(); // Empêche la réinitialisation
-            }
-        });
     });
     const maxImages = 3; // Nombre maximum d'images autorisé
     let nbImageTotaleInAvis = 0; // Compteur global
