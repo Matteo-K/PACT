@@ -14,5 +14,7 @@ $stmt = $conn->prepare("SELECT COUNT(*) AS count FROM pact._blacklist WHERE idOf
 $stmt->execute([$idOffre]);
 $result = $stmt->fetch();
 
-echo json_encode(["count" => $result['count']]);
+$nbTicket = 3 - $result['count'];
+
+echo json_encode(["count" => $nbTicket]);
 ?>

@@ -36,6 +36,17 @@
             }
           }
 
+          function deleteImg($folder) {
+            $images = glob($folder . '*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE);
+
+            foreach ($images as $image) {
+                if (is_file($image)) {
+                    unlink($image);
+                }
+            }
+            rmdir($folder);
+          }
+
           $stmt = $conn->prepare("SELECT categorie FROM pact.offres WHERE idoffre=?;");
           $stmt->execute([$idOffre]);
           $res = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -52,13 +63,6 @@
               break;
 
             case 'Restaurant':
-              $stmt = $conn->prepare("SELECT menu FROM pact._menu WHERE idoffre=?;");
-              $stmt->execute([$idOffre]);
-              $res = $stmt->fetch(PDO::FETCH_ASSOC);
-              while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                unlink("." . $res["menu"]);
-              }
-
               $queries = [
                 "DELETE FROM pact._restauration WHERE idoffre=?;",
                 "DELETE FROM pact._tag_restaurant WHERE idoffre=?;",
@@ -81,13 +85,6 @@
             break;
 
             case 'Parc Attraction':
-              $stmt = $conn->prepare("SELECT urlplan FROM pact._parcattraction WHERE idoffre=?;");
-              $stmt->execute([$idOffre]);
-              $res = $stmt->fetch(PDO::FETCH_ASSOC);
-              if (isset($res["urlplan"])) {
-                unlink("." . $res["urlplan"]);
-              }
-
               $queries = [
                 "DELETE FROM pact._parcattraction WHERE idoffre=?;",
                 "DELETE FROM pact._tag_parc WHERE idoffre=?;"
@@ -108,16 +105,9 @@
               break;
           }
           // Supprime toute les images de tout les dossiers
-          $stmt = $conn->prepare("SELECT url FROM pact._illustre WHERE idoffre=?;");
-          $stmt->execute([$idOffre]);
-          $res = $stmt->fetch(PDO::FETCH_ASSOC);
-          while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            unlink("." . $res["url"]);
-          }
-
-          rmdir("../img/imageMenu/" . $idOffre);
-          rmdir("../img/imagePlan/" . $idOffre);
-          rmdir("../img/imageOffre/" . $idOffre);
+          deleteImg("../img/imageMenu/" . $idOffre);
+          deleteImg("../img/imagePlan/" . $idOffre);
+          deleteImg("../img/imageOffre/" . $idOffre);
 
           // Redirection vers l'offre
           header("location: ../index.php");
