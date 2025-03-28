@@ -107,13 +107,20 @@
                 </div>
               </div>
               <form action="../ajax/manageAdminOffer.php" method="post">
-                <?php if ($row["categorie"] != "Autre") { ?>
-                  <button type="submit" name="action" value="visualiser" class="modifierBut">Visualiser</button>
-                <?php } else { ?>
-                  <p class="hover-message">Offre non terminé</p>
-                <?php } ?>
-                <button type="submit" name="action" value="rejeter" class="modifierBut">Rejeter</button>
-                <button type="submit" name="action" value="supprimer" class="modifierBut">Supprimer</button>
+                <button 
+                  type="submit" 
+                  name="action" 
+                  value="visualiser" 
+                  class="modifierBut"
+                  <?= $row["categorie"] != "Autre" ? "" : "disabled" ?>>
+                  <?= $row["categorie"] != "Autre" ? "Visualiser" : "Offre non terminé"?>
+                </button>
+                <button type="submit" name="action" value="rejeter" class="modifierBut">
+                  Rejeter
+                </button>
+                <button type="submit" name="action" value="supprimer" class="modifierBut">
+                  Supprimer
+                </button>
                 <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
               </form>
             </div>
