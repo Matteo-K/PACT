@@ -572,7 +572,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <section id="hoverMessage" class="hover-message">Veuillez mettre votre offre hors ligne pour la modifier</section>
             <?php }
         } else if ($typeUser == "admin") { 
-            if ($_POST["suppression"] === "true") { ?>
+            if (isset($_POST["suppression"])) { ?>
                 <section class="info">
                     <section class="tema">
                         <p class="infoP">Demande de suppression de l'offre</p>

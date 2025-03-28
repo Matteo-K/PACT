@@ -549,12 +549,12 @@ header > div > a > div {
   padding-left: 20px;
 }
 
-.details-style[open] summary::before {
+.details-style[open] > summary::before {
   content: "▲";
   background-color: #f5f5f5;
 }
 
-.details-style summary::before {
+.details-style > summary::before {
   content: "▼";
   margin-right: 15px;
 }
