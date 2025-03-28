@@ -37,11 +37,11 @@
           }
 
           function deleteImg($folder) {
-            $images = glob($folder . '*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE);
+            $files = glob($folder . '*');
 
-            foreach ($images as $image) {
-                if (is_file($image)) {
-                    unlink($image);
+            foreach ($files as $file) {
+                if (is_file($file)) {
+                    unlink($file);
                 }
             }
             rmdir($folder);
@@ -105,9 +105,9 @@
               break;
           }
           // Supprime toute les images de tout les dossiers
-          deleteImg("../img/imageMenu/" . $idOffre);
-          deleteImg("../img/imagePlan/" . $idOffre);
-          deleteImg("../img/imageOffre/" . $idOffre);
+          deleteImg("../img/imageMenu/" . $idOffre . "/");
+          deleteImg("../img/imagePlan/" . $idOffre . "/");
+          deleteImg("../img/imageOffre/" . $idOffre . "/");
 
           // Redirection vers l'offre
           header("location: ../index.php");
