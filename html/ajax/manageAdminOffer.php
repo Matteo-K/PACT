@@ -31,6 +31,7 @@
             global $conn;
             
             foreach ($queries as $query) {
+              echo $query;
               $stmt = $conn->prepare($query);
               $stmt->execute([$idOffre]);
             }
