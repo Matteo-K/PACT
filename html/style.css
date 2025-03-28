@@ -4554,6 +4554,9 @@ section#infoComp div {
 #iconeSelectionneeMobile{
   display: none;
 }
+#iconeSelectionneeMobile > h3 {
+  font-size: 1.8em;
+}
 
 .avis{
   width:100%;
