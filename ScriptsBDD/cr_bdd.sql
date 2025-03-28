@@ -1673,6 +1673,34 @@ BEGIN
         RETURN NEW;
     END IF;
 
+    SELECT ARRAY_AGG(idc) 
+    INTO avis_to_delete
+    FROM pact.avis
+    WHERE idu = iduser AND blacklist = true;
+
+    IF avis_to_delete IS NOT NULL AND array_length(avis_to_delete, 1) > 0 THEN
+        BEGIN
+            DELETE FROM pact._avis WHERE idc = ANY(avis_to_delete);
+        EXCEPTION
+            WHEN OTHERS THEN
+                RAISE EXCEPTION 'Erreur lors de la suppression des avis : %', SQLERRM;
+        END;
+
+        BEGIN
+            DELETE FROM pact._blacklist WHERE idc = ANY(avis_to_delete);
+        EXCEPTION
+            WHEN OTHERS THEN
+                RAISE EXCEPTION 'Erreur lors de la suppression de _blacklist : %', SQLERRM;
+        END;
+
+        BEGIN
+            DELETE FROM pact._commentaire WHERE idc = ANY(avis_to_delete);
+        EXCEPTION
+            WHEN OTHERS THEN
+                RAISE EXCEPTION 'Erreur lors de la suppression des commentaires : %', SQLERRM;
+        END;
+    END IF;
+
     -- Suppression des images correspondant aux avis anonymisés faite en PHP avant la suppression du compte
 
     -- Anonymisation des avis du membre
@@ -1710,33 +1738,7 @@ BEGIN
     DELETE FROM pact._utilisateur
     WHERE idu = iduser;
 
-    SELECT ARRAY_AGG(idc) 
-    INTO avis_to_delete
-    FROM pact.avis
-    WHERE idu = iduser AND blacklist = true;
-
-    IF avis_to_delete IS NOT NULL AND array_length(avis_to_delete, 1) > 0 THEN
-        BEGIN
-            DELETE FROM pact._avis WHERE idc = ANY(avis_to_delete);
-        EXCEPTION
-            WHEN OTHERS THEN
-                RAISE EXCEPTION 'Erreur lors de la suppression des avis : %', SQLERRM;
-        END;
-
-        BEGIN
-            DELETE FROM pact._blacklist WHERE idc = ANY(avis_to_delete);
-        EXCEPTION
-            WHEN OTHERS THEN
-                RAISE EXCEPTION 'Erreur lors de la suppression de _blacklist : %', SQLERRM;
-        END;
-
-        BEGIN
-            DELETE FROM pact._commentaire WHERE idc = ANY(avis_to_delete);
-        EXCEPTION
-            WHEN OTHERS THEN
-                RAISE EXCEPTION 'Erreur lors de la suppression des commentaires : %', SQLERRM;
-        END;
-    END IF;
+    
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;

@@ -1028,10 +1028,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else {
             ?> <div class="avisMembre">
                     <nav id="tab-container">
-                        <h3 id="tab-avis" class="selected active">Avis</h3>
-                        <h3 id="tab-publiez">Publiez un avis</h3>
+                        <button id="tab-avis" class="selected active">Avis</button>
+                        <button id="tab-publiez">Publiez un avis</button>
                     </nav>
-
+                    <span id="messageErreurConnExistant"></span>
                     <div id="avis-section">
                         <!-- Contenu chargé dynamiquement -->
                         <div id="avis-component" style="display: flex;">
@@ -1039,25 +1039,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                         <div id="publiez-component" style="display: none;">
                             <?php
-                            if ($isLoggedIn) {
-                                $stmt = $conn->prepare("SELECT * FROM pact.avis a WHERE idoffre = ? AND idu = ?");
-                                $stmt->execute([$idOffre, $idUser]);
-                                $existingReview = $stmt->fetch();
-
-                                if ($existingReview) {
-                                    // L'utilisateur a déjà laissé un avis pour cette offre
-                                    echo '<p>Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre</p>';
-                                } else {
-                                    require_once __DIR__ . "/components/avis/ecrireAvis.php";
-                                }
-                            } else {
-                            ?>
-                                <p id="login-prompt">Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></p>
-                            <?php
-                            }
+                                require_once __DIR__ . "/components/avis/ecrireAvis.php";
                             ?>
                         </div>
-                    </div>
+                    </div>  
 
                 </div>
             <?php
@@ -1211,6 +1196,36 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
 
             document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
+
+            const messageErreurConnExistant = document.getElementById("messageErreurConnExistant");
+            const btnPubliez = document.getElementById("tab-publiez");
+
+            
+            <?php
+                if ($isLoggedIn){
+                    $stmt = $conn->prepare("SELECT * FROM pact.avis a WHERE idoffre = ? AND idu = ?");
+                    $stmt->execute([$idOffre, $idUser]);
+                    $existingReview = $stmt->fetch();
+
+                    if ($existingReview) {
+                        ?>
+                        btnPubliez.disabled = true
+                        messageErreurConnExistant.textContent = "Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre";
+                        <?php
+                    } else {
+                        ?>
+                        btnPubliez.disabled = false;
+                        messageErreurConnExistant.textContent = "";
+                        <?php
+                    }
+
+                } else{
+            ?>
+                    btnPubliez.disabled = true
+                    messageErreurConnExistant.textContent = 'Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a';
+            <?php
+                }
+            ?>
         });
 
 

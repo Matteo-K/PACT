@@ -5246,11 +5246,19 @@ label#btnAjoutPhoto:hover {
 #formCreationAvis > div:not(.note) {
   margin-bottom: 10px;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 #formCreationAvis input[type="checkbox"] {
   margin-right: 5px;
+}
+
+#tab-container > #tab-avis:hover, #tab-container > #tab-publiez:hover {
+  transform: scale(1.1);
+}
+#tab-container > #tab-avis, #tab-container > #tab-publiez {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
 }
 
 /* Bouton Soumettre */
