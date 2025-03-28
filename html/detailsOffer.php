@@ -1600,6 +1600,26 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     function refresh() {
                         const p = document.getElementById("nbTicket");
                         const section = document.getElementById("SubmitBlack");
+
+                        function confirmationModalBlackFunction() {
+                            fetch('blacklist.php', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        'idC': id,
+                                        'idOffre': <?php echo $idOffre ?>
+                                    })
+                                })
+                                .catch(error => {
+                                    // Gérer toutes les erreurs de la requête fetch
+                                    console.error('Erreur capturée:', error);
+                                });
+                            
+                            
+                            closeModalBlackFunction();
+                        }
                     
                         fetch('ajax/refreshTicket.php', {
                             method: 'POST',
