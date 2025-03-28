@@ -1,7 +1,7 @@
 postgres/
 tchatator/LOGS.log
 .env
-img/imageOffre
-img/imageMenu
-img/imageAvis
-img/profile_picture
+img/imageOffre/
+img/imageMenu/
+img/imageAvis/
+img/profile_picture/
