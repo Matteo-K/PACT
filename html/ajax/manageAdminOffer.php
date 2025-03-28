@@ -44,7 +44,9 @@
                     unlink($file);
                 }
             }
-            rmdir($folder);
+            if (is_dir($folder)) {
+              rmdir($folder);
+            }
           }
 
           $stmt = $conn->prepare("SELECT categorie FROM pact.offres WHERE idoffre=?;");
