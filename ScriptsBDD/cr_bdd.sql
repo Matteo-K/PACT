@@ -1614,7 +1614,7 @@ RETURNS TRIGGER AS $$
 DECLARE 
     avis_count INT;
 BEGIN    
-    SELECT COUNT(*) INTO avis_count FROM pact._blacklist WHERE idOffre = NEW.idOffre;
+    SELECT COUNT(*) INTO avis_count FROM pact._blacklist WHERE idOffre = NEW.idOffre AND datefinblacklist > CURRENT_TIMESTAMP;
     
     IF avis_count >= 3 THEN
         RAISE EXCEPTION 'Impossible d’ajouter plus de 3 avis à la blacklist pour cette offre';

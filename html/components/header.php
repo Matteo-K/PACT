@@ -290,11 +290,10 @@
         liens.forEach(lien => {
             lien.addEventListener("click", function () {
                 logo.classList.add("chargementActif");
-                console.log("chargement aaaaaaaa");
 
                 // On supprime l'animation au bout de 10sec si on a toujours pas changé de page 
                 setTimeout(() => {
-                    logo.classList.remove("rotateActive");
+                    logo.classList.remove("chargementActif");
                 }, 10000);
             });
         });
