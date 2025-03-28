@@ -4405,7 +4405,7 @@ section#infoComp div {
   justify-content: space-between;
 }
 
-.selected.active{
+.selected.active > h3{
   border-bottom: var(--bloc) 3px solid;
 }
 
@@ -4475,7 +4475,7 @@ section#infoComp div {
   justify-content: center;
 }
 
-.avisMembre > nav > h3 {
+.avisMembre > nav > div >h3 {
   font-size: 2.5em;
   color: var(--bloc);
   font-weight: 600;
