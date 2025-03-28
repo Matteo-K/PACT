@@ -80,6 +80,50 @@
                     unlink($pic);
                 }
             } 
+
+            $stmt = $conn->prepare("SELECT idc, idoffre 
+                                    FROM pact.avis
+                                    WHERE idu = ? AND blacklist = true");
+            $stmt -> execute([$userId]);
+            $res = $stmt -> fetchAll();
+            
+            if ($res) {
+                foreach ($res as $key => $value) {
+                    $idAvis = $value['idc'];
+                    $idOffre = $value['idoffre'];
+
+                    $stmt = $conn->prepare("DELETE FROM pact._signalementc WHERE idc = $idAvis");
+                    $stmt -> execute();
+    
+                    $stmt = $conn->prepare("DELETE FROM pact._reponse WHERE ref = $idAvis");
+                    $stmt -> execute();
+    
+                    $stmt = $conn->prepare("SELECT url FROM pact._avisimage WHERE idc = ?");
+                    $stmt->execute([$idAvis]);
+                    $imagesAvis = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+    
+                    foreach ($imagesAvis as $img) {
+                        unlink($img['url']);
+                    } 
+                
+                    $stmt = $conn->prepare("DELETE FROM pact._avisimage WHERE idc = $idAvis");
+                    $stmt -> execute();
+                
+                    $stmt = $conn->prepare("DELETE FROM pact._avis WHERE idc = $idAvis");
+                    $stmt -> execute();
+    
+                    $stmt = $conn->prepare("SELECT * FROM pact._blacklist WHERE idc = $idAvis");
+                    $stmt -> execute();
+                
+                    if ($stmt->fetch()) {
+                        $stmt = $conn->prepare("DELETE FROM pact._blacklist WHERE idc = $idAvis");
+                        $stmt -> execute();
+                    }
+    
+                    $stmt = $conn->prepare("DELETE FROM pact._commentaire WHERE idc = $idAvis");
+                    $stmt -> execute();
+                }
+            }
             //suppression du compte (géré par le trigger en BDD)
             $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
             $stmt -> execute();

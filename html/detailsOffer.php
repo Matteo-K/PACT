@@ -314,7 +314,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
                         <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
                         <input type="hidden" name="nouveau_statut" value="<?php echo $offre[0]['statut'] === 'inactif' ? 'actif' : 'inactif'; ?>">
-                        <button 
+                        <button
                             class="modifierBut <?= $desactiveOffre ?>"
                             <?= $desactiveOffre ?>
                             type="submit">
@@ -339,16 +339,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </form>
                     </div>
                     <section class="taille6">
-                        <button 
-                            id="openModalBtn" 
+                        <button
+                            id="openModalBtn"
                             class="modifierBut <?= $desactiveOffre ?>"
                             <?= $desactiveOffre ?>>
                             Gérer mes options
                         </button>
                     </section>
                     <section class="taille6">
-                        <button 
-                            id="btnDemandeSuppression" 
+                        <button
+                            id="btnDemandeSuppression"
                             class="modifierBut <?= $desactiveOffre ?>"
                             <?= $desactiveOffre ?>>
                             Suppression
@@ -1028,8 +1028,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else {
             ?> <div class="avisMembre">
                     <nav id="tab-container">
-                        <button id="tab-avis" class="selected active">Avis</button>
-                        <button id="tab-publiez">Publiez un avis</button>
+                        <div id="tab-avis" class="selected active">
+                            <h3>Avis</h3>
+                        </div>
+                        <div id="tab-publiez">
+                            <h3>Publiez un avis</h3>
+                        </div>
                     </nav>
                     <span id="messageErreurConnExistant"></span>
                     <div id="avis-section">
@@ -1039,10 +1043,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                         <div id="publiez-component" style="display: none;">
                             <?php
-                                require_once __DIR__ . "/components/avis/ecrireAvis.php";
+                            require_once __DIR__ . "/components/avis/ecrireAvis.php";
                             ?>
                         </div>
-                    </div>  
+                    </div>
 
                 </div>
             <?php
@@ -1086,8 +1090,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </li>
                     </ul>
                     <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
-                    <button id="confirmeSignalement" class="btnSignalAvis" <?= isset($_SESSION["typeUser"]) ? '' : 'hidden="true"'?>> Envoyer </button>
-                    <a href="login.php" class="btnSignalAvis" <?= isset($_SESSION["typeUser"]) ? 'hidden="true"' : ''?>> Connexion </a>
+                    <button id="confirmeSignalement" class="btnSignalAvis" <?= isset($_SESSION["typeUser"]) ? '' : 'hidden="true"' ?>> Envoyer </button>
+                    <a href="login.php" class="btnSignalAvis" <?= isset($_SESSION["typeUser"]) ? 'hidden="true"' : '' ?>> Connexion </a>
 
                 </section>
             </section>
@@ -1162,71 +1166,56 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
     <script>
         // js compte à rebours
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             function startCountdown(element) {
-                const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
-                const targetTime = new Date(dateString).getTime(); // Convertit en millisecondes
-
+                const dateString = element.getAttribute("data-timestamp"); // Date PostgreSQL
+                console.log("dateString : " + dateString);
+            
+                // Parser correctement la date en UTC
+                const targetDate = new Date(dateString); // Doit être déjà en UTC
+                const targetTime = Date.UTC(
+                    targetDate.getUTCFullYear(),
+                    targetDate.getUTCMonth(),
+                    targetDate.getUTCDate(),
+                    targetDate.getUTCHours(),
+                    targetDate.getUTCMinutes(),
+                    targetDate.getUTCSeconds()
+                );
+            
+                console.log("targetTime (UTC) : " + targetTime);
+            
                 if (isNaN(targetTime)) {
                     console.error("Format de date invalide :", dateString);
                     element.textContent = "Date invalide";
                     return;
                 }
-
+            
                 function updateCountdown() {
-                    const now = Date.now();
+                    const now = Date.now(); // Prend toujours UTC
+                    console.log("now (UTC) : " + now);
                     const diff = targetTime - now;
-
+                
                     if (diff <= 0) {
                         element.textContent = "Expiré";
                         return;
                     }
-
+                
                     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
+                
                     element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
-
+                
                     setTimeout(updateCountdown, 1000);
                 }
-
+            
                 updateCountdown();
             }
-
+        
             document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
-
-            const messageErreurConnExistant = document.getElementById("messageErreurConnExistant");
-            const btnPubliez = document.getElementById("tab-publiez");
-
-            
-            <?php
-                if ($isLoggedIn){
-                    $stmt = $conn->prepare("SELECT * FROM pact.avis a WHERE idoffre = ? AND idu = ?");
-                    $stmt->execute([$idOffre, $idUser]);
-                    $existingReview = $stmt->fetch();
-
-                    if ($existingReview) {
-                        ?>
-                        btnPubliez.disabled = true
-                        messageErreurConnExistant.textContent = "Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre";
-                        <?php
-                    } else {
-                        ?>
-                        btnPubliez.disabled = false;
-                        messageErreurConnExistant.textContent = "";
-                        <?php
-                    }
-
-                } else{
-            ?>
-                    btnPubliez.disabled = true
-                    messageErreurConnExistant.textContent = 'Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a';
-            <?php
-                }
-            ?>
         });
+
 
 
         function supAvis(id, idOffre, action) {
@@ -1796,15 +1785,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
         try {
-            document.getElementById('tab-avis').addEventListener('click', function() {
-                document.getElementById('tab-avis').classList.add('selected');
-                document.getElementById('tab-publiez').classList.remove('selected');
-            });
-
-            document.getElementById('tab-publiez').addEventListener('click', function() {
-                document.getElementById('tab-publiez').classList.add('selected');
-                document.getElementById('tab-avis').classList.remove('selected');
-            });
 
             /** Charger les composants */
             document.addEventListener("DOMContentLoaded", () => {
@@ -1812,26 +1792,72 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const tabPubliez = document.getElementById("tab-publiez");
                 const avisComponent = document.getElementById("avis-component");
                 const publiezComponent = document.getElementById("publiez-component");
+                const messageErreurConnExistant = document.getElementById("messageErreurConnExistant");
+                const btnPubliez = document.getElementById("tab-publiez");
 
-                // Activer l'onglet "Avis"
-                tabAvis.addEventListener("click", () => {
-                    tabAvis.classList.add("active");
-                    tabPubliez.classList.remove("active");
 
-                    // Afficher le composant des avis
-                    avisComponent.style.display = "flex";
-                    publiezComponent.style.display = "none";
-                });
 
-                // Activer l'onglet "Publiez un avis"
-                tabPubliez.addEventListener("click", () => {
-                    tabPubliez.classList.add("active");
-                    tabAvis.classList.remove("active");
 
-                    // Afficher le composant pour écrire un avis
-                    publiezComponent.style.display = "flex";
-                    avisComponent.style.display = "none";
-                });
+                <?php
+                if ($isLoggedIn) {
+                    $stmt = $conn->prepare("SELECT * FROM pact.avis a WHERE idoffre = ? AND idu = ?");
+                    $stmt->execute([$idOffre, $idUser]);
+                    $existingReview = $stmt->fetch();
+
+                    if ($existingReview) {
+                ?>
+                        btnPubliez.disabled = true
+
+                        btnPubliez.addEventListener("mouseover", function() {
+                            messageErreurConnExistant.innerHTML = 'Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en écrire un autre';
+                        });
+                        btnPubliez.addEventListener("mouseout", function() {
+                            messageErreurConnExistant.innerHTML = '';
+                        });
+                    <?php
+                    } else {
+                    ?>
+                        // Activer l'onglet "Avis"
+                        tabAvis.addEventListener("click", () => {
+                            tabAvis.classList.add('selected');
+                            tabPubliez.classList.remove('selected');
+                            tabAvis.classList.add("active");
+                            tabPubliez.classList.remove("active");
+
+                            // Afficher le composant des avis
+                            avisComponent.style.display = "flex";
+                            publiezComponent.style.display = "none";
+                        });
+
+                        // Activer l'onglet "Publiez un avis"
+                        tabPubliez.addEventListener("click", () => {
+                            tabPubliez.classList.add('selected');
+                            tabAvis.classList.remove('selected');
+                            tabPubliez.classList.add("active");
+                            tabAvis.classList.remove("active");
+
+                            // Afficher le composant pour écrire un avis
+                            publiezComponent.style.display = "flex";
+                            avisComponent.style.display = "none";
+                        });
+
+                        btnPubliez.disabled = false;
+                        messageErreurConnExistant.textContent = "";
+                    <?php
+                    }
+                } else {
+                    ?>
+                    btnPubliez.disabled = true
+                    btnPubliez.addEventListener("mouseover", function() {
+                        // Afficher le message d'erreur uniquement si on survole le bouton
+                        messageErreurConnExistant.innerHTML = 'Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a>';
+                    });
+                    btnPubliez.addEventListener("mouseout", function() {
+                            messageErreurConnExistant.innerHTML = '';
+                        });
+                <?php
+                }
+                ?>
             });
 
             /** fin script chargement composant */
