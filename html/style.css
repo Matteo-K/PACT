@@ -3203,17 +3203,6 @@ label[for="rest_ajoutPhotoMenu"] {
   }
 }
 
-/* Média query 375px */
-@media screen and (max-width: 375px) {
-  #trifiltre {
-      flex-direction: column;
-      position: relative;
-      width: 100%;
-  }
-
-  #tri, #filtre {
-    overflow: scroll;
-  }
 
   #btnAside {
     display: flex;
@@ -3274,7 +3263,7 @@ label[for="rest_ajoutPhotoMenu"] {
   #blcSearch {
       flex-direction: column;
   }
-}
+
 
 
 /*##### Pagination #####*/

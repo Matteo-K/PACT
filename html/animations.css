@@ -61,3 +61,15 @@
   opacity: 1 !important;
   transform: translateX(0) !important;
 }
+/* Média query 375px */
+@media screen and (max-width: 375px) {
+  #trifiltre {
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+  }
+
+  #tri, #filtre {
+    overflow: scroll;
+  }
+}
