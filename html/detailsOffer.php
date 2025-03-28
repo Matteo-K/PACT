@@ -1169,44 +1169,53 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script>
         // js compte à rebours
         document.addEventListener("DOMContentLoaded", function() {
-            function startCountdown(element) {
-                const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
-                console.log("dateString : " + dateString + "\n");
-                const targetTime = new Date(dateString).getTime(); // Convertit en millisecondes
-                console.log("targetTime : " + targetTime + "\n");
-                if (isNaN(targetTime)) {
-                    console.error("Format de date invalide :", dateString);
-                    element.textContent = "Date invalide";
-                    return;
-                }
+    function startCountdown(element) {
+        const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
+        // console.log("dateString : " + dateString + "\n");
+        const targetTime = new Date(dateString).getTime(); // Convertit en millisecondes
+        // console.log("targetTime : " + targetTime + "\n");
+        if (isNaN(targetTime)) {
+            console.error("Format de date invalide :", dateString);
+            element.textContent = "Date invalide";
+            return;
+        }
 
-                function updateCountdown() {
-                    const now = Date.now();
-                    console.log("now : " + now + "\n");
-                    const diff = targetTime - now;
+        function updateCountdown(serverTime) {
+            const now = serverTime; // Utilise l'heure du serveur
+            // console.log("serverTime : " + now + "\n");
+            const diff = targetTime - now;
 
-                    if (diff <= 0) {
-                        element.textContent = "Expiré";
-                        return;
-                    }
-
-                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                    element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
-
-                    setTimeout(updateCountdown, 1000);
-                }
-
-                updateCountdown();
+            if (diff <= 0) {
+                element.textContent = "Expiré";
+                return;
             }
 
-            document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
+            element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
 
-        });
+            setTimeout(() => updateCountdown(serverTime + 1000), 1000); // Met à jour chaque seconde
+        }
+
+        // Récupérer l'heure du serveur avec fetch
+        fetch('https://the-void.ventsdouest.dev')  // Remplace par l'URL de ton serveur
+            .then(response => {
+                const serverDate = new Date(response.headers.get('Date')).getTime(); // Récupère l'heure du serveur
+                console.log("serverDate : " + serverDate);
+                updateCountdown(serverDate); // Lance le compte à rebours avec l'heure du serveur
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération de l\'heure du serveur:', error);
+                element.textContent = "Erreur de récupération de l'heure du serveur";
+            });
+    }
+
+    document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
+});
+
 
 
         function supAvis(id, idOffre, action) {
