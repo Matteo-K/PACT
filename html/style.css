@@ -289,18 +289,19 @@ footer div + div a {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: white;
 }
 
 #chargement #logo{
-  width: 200px;
-  height: 200px;
+  width: 150px;
 }
 
 #chargement #logoText{
-  font-size: 3em;
+  font-size: 4em;
 }
 
+#chargement p{
+  font-size: 1.5em;
+}
 
 /* ##### Components ##### */
 
