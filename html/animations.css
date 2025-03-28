@@ -36,3 +36,28 @@
 .chargementActif{
   animation: logocharge 1.2s cubic-bezier(0.36, -0.3, 0.71, 1.46) infinite;
 }
+
+
+
+/* Animations filtres et tris */
+
+#tri, #filtre, #carte_offres{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  display: none;
+  background-color: var(--background);
+  border: none;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#tri.openAside, #filtre.openAside {
+  display: block !important;
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
