@@ -314,7 +314,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <!-- Envoyer l'ID de l'offre pour pouvoir changer son statut -->
                         <input type="hidden" name="offre_id" value="<?php echo $offre[0]['idoffre']; ?>">
                         <input type="hidden" name="nouveau_statut" value="<?php echo $offre[0]['statut'] === 'inactif' ? 'actif' : 'inactif'; ?>">
-                        <button 
+                        <button
                             class="modifierBut <?= $desactiveOffre ?>"
                             <?= $desactiveOffre ?>
                             type="submit">
@@ -339,16 +339,16 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </form>
                     </div>
                     <section class="taille6">
-                        <button 
-                            id="openModalBtn" 
+                        <button
+                            id="openModalBtn"
                             class="modifierBut <?= $desactiveOffre ?>"
                             <?= $desactiveOffre ?>>
                             Gérer mes options
                         </button>
                     </section>
                     <section class="taille6">
-                        <button 
-                            id="btnDemandeSuppression" 
+                        <button
+                            id="btnDemandeSuppression"
                             class="modifierBut <?= $desactiveOffre ?>"
                             <?= $desactiveOffre ?>>
                             Suppression
@@ -1039,10 +1039,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                         <div id="publiez-component" style="display: none;">
                             <?php
-                                require_once __DIR__ . "/components/avis/ecrireAvis.php";
+                            require_once __DIR__ . "/components/avis/ecrireAvis.php";
                             ?>
                         </div>
-                    </div>  
+                    </div>
 
                 </div>
             <?php
@@ -1086,8 +1086,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </li>
                     </ul>
                     <textarea name="motifSignalement" id="motifSignalement" maxlength="499" placeholder="Si vous le souhaitez, détaillez la raison de ce signalement"></textarea>
-                    <button id="confirmeSignalement" class="btnSignalAvis" <?= isset($_SESSION["typeUser"]) ? '' : 'hidden="true"'?>> Envoyer </button>
-                    <a href="login.php" class="btnSignalAvis" <?= isset($_SESSION["typeUser"]) ? 'hidden="true"' : ''?>> Connexion </a>
+                    <button id="confirmeSignalement" class="btnSignalAvis" <?= isset($_SESSION["typeUser"]) ? '' : 'hidden="true"' ?>> Envoyer </button>
+                    <a href="login.php" class="btnSignalAvis" <?= isset($_SESSION["typeUser"]) ? 'hidden="true"' : '' ?>> Connexion </a>
 
                 </section>
             </section>
@@ -1197,35 +1197,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
 
-            const messageErreurConnExistant = document.getElementById("messageErreurConnExistant");
-            const btnPubliez = document.getElementById("tab-publiez");
 
-            
-            <?php
-                if ($isLoggedIn){
-                    $stmt = $conn->prepare("SELECT * FROM pact.avis a WHERE idoffre = ? AND idu = ?");
-                    $stmt->execute([$idOffre, $idUser]);
-                    $existingReview = $stmt->fetch();
-
-                    if ($existingReview) {
-                        ?>
-                        btnPubliez.disabled = true
-                        messageErreurConnExistant.textContent = "Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre";
-                        <?php
-                    } else {
-                        ?>
-                        btnPubliez.disabled = false;
-                        messageErreurConnExistant.textContent = "";
-                        <?php
-                    }
-
-                } else{
-            ?>
-                    btnPubliez.disabled = true
-                    messageErreurConnExistant.textContent = 'Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a';
-            <?php
-                }
-            ?>
         });
 
 
@@ -1796,15 +1768,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
         try {
-            document.getElementById('tab-avis').addEventListener('click', function() {
-                document.getElementById('tab-avis').classList.add('selected');
-                document.getElementById('tab-publiez').classList.remove('selected');
-            });
-
-            document.getElementById('tab-publiez').addEventListener('click', function() {
-                document.getElementById('tab-publiez').classList.add('selected');
-                document.getElementById('tab-avis').classList.remove('selected');
-            });
 
             /** Charger les composants */
             document.addEventListener("DOMContentLoaded", () => {
@@ -1812,26 +1775,60 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 const tabPubliez = document.getElementById("tab-publiez");
                 const avisComponent = document.getElementById("avis-component");
                 const publiezComponent = document.getElementById("publiez-component");
+                const messageErreurConnExistant = document.getElementById("messageErreurConnExistant");
+                const btnPubliez = document.getElementById("tab-publiez");
 
-                // Activer l'onglet "Avis"
-                tabAvis.addEventListener("click", () => {
-                    tabAvis.classList.add("active");
-                    tabPubliez.classList.remove("active");
 
-                    // Afficher le composant des avis
-                    avisComponent.style.display = "flex";
-                    publiezComponent.style.display = "none";
-                });
 
-                // Activer l'onglet "Publiez un avis"
-                tabPubliez.addEventListener("click", () => {
-                    tabPubliez.classList.add("active");
-                    tabAvis.classList.remove("active");
 
-                    // Afficher le composant pour écrire un avis
-                    publiezComponent.style.display = "flex";
-                    avisComponent.style.display = "none";
-                });
+                <?php
+                if ($isLoggedIn) {
+                    $stmt = $conn->prepare("SELECT * FROM pact.avis a WHERE idoffre = ? AND idu = ?");
+                    $stmt->execute([$idOffre, $idUser]);
+                    $existingReview = $stmt->fetch();
+
+                    if ($existingReview) {
+                ?>
+                        btnPubliez.disabled = true
+                        messageErreurConnExistant.textContent = "Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en ecrire un autre";
+                    <?php
+                    } else {
+                    ?>
+                        // Activer l'onglet "Avis"
+                        tabAvis.addEventListener("click", () => {
+                            tabAvis.classList.add('selected');
+                            tabPubliez.classList.remove('selected');
+                            tabAvis.classList.add("active");
+                            tabPubliez.classList.remove("active");
+
+                            // Afficher le composant des avis
+                            avisComponent.style.display = "flex";
+                            publiezComponent.style.display = "none";
+                        });
+
+                        // Activer l'onglet "Publiez un avis"
+                        tabPubliez.addEventListener("click", () => {
+                            tabPubliez.classList.add('selected');
+                            tabAvis.classList.remove('selected');
+                            tabPubliez.classList.add("active");
+                            tabAvis.classList.remove("active");
+
+                            // Afficher le composant pour écrire un avis
+                            publiezComponent.style.display = "flex";
+                            avisComponent.style.display = "none";
+                        });
+
+                        btnPubliez.disabled = false;
+                        messageErreurConnExistant.textContent = "";
+                    <?php
+                    }
+                } else {
+                    ?>
+                    btnPubliez.disabled = true
+                    messageErreurConnExistant.textContent = 'Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a';
+                <?php
+                }
+                ?>
             });
 
             /** fin script chargement composant */
