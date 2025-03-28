@@ -32,6 +32,7 @@
   100% { transform: rotate(360deg); }
 }
 
+/* classe attribuée au logo quand un lien est cliquer, pour expliciter le chargement en cours */
 .chargementActif{
   animation: logocharge 1.2s cubic-bezier(0.36, -0.3, 0.71, 1.46) infinite;
 }

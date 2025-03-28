@@ -52,7 +52,7 @@
         });
 
         /**
-         * On envoit le formulaire si on est pas sur la page index
+         * On envoie le formulaire si on est pas sur la page index
          */
         form.addEventListener('submit', (event) => {
             if (currentFile === 'index.php') {
@@ -276,5 +276,30 @@
         
     } catch (error) {
     console.error("Erreur capturée :", error.message);
+    }
+
+
+
+
+
+    try {
+        
+        const logo = document.querySelector("#logo");
+        const liens = document.querySelectorAll("a");
+
+        liens.forEach(lien => {
+            lien.addEventListener("click", function () {
+                logo.classList.add("chargementActif");
+
+                // On supprime l'animation au bout de 10sec si on a toujours pas changé de page 
+                setTimeout(() => {
+                    logo.classList.remove("rotateActive");
+                }, 10000);
+            });
+        });
+    });
+
+    } catch (error) {
+        
     }
 </script>
