@@ -176,7 +176,7 @@
                   </figure>
                   <span><?= date("j/m/y - H:m"); ?></span>
                 </div>
-                <div>
+                <div class="contenueSignalement">
                   <h4><?= signalRaison($row["raison"]) ?></h4>
                   <p><?= $row["complement"] ?></p>
                 </div>
