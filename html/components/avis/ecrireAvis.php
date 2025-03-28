@@ -90,7 +90,7 @@
 
             <div>
                 <label for="consentement">
-                    <input type="checkbox" name="consentement" id="consentement" style="display: none;" required>
+                    <input type="checkbox" name="consentement" id="consentement" style="display: none;">
                     <span class="checkmark"></span>
                     <p>Je certifie que cet avis reflète ma propre expérience et mon opinion authentique sur cet établissement.</p>
                 </label>
@@ -179,10 +179,13 @@
                     etoile.classList.add("vide");
                 }
             });
+
+            checkNote();
         }
 
-        const date = document.getElementsByName('date');
+        const date = document.getElementById('date-avis');
         const radios = document.getElementsByName('compagnie');
+        const label = document.querySelectorAll("#enCompagnie > label.tag");
         const titre = document.getElementById("titre");
         const avis = document.getElementById("avis");
         const consentement = document.getElementById("consentement")
@@ -192,7 +195,7 @@
         const errorMessageAccompagnant = document.querySelector("#accompagnant > div > .error_form");
         const errorMessageTitre = document.querySelector("#titreAvis > div > .error_form");
         const errorMessageAvis = document.querySelector("#textAvis > div > .error_form");
-        const errorMessageConsentement = document.querySelector("#consentement > div > .error_form");
+        const errorMessageConsentement = document.querySelector("#divConsentement > div > .error_form");
 
         function checkNote() {
             let res = true
@@ -211,16 +214,19 @@
 
         function checkDate(){
             let res = true
-            if (!date[0].value.trim()) {
+            if (!date.value.trim()) {
                 errorMessageDate.textContent = "Veuillez sélectionner une date avant de soumettre votre avis.";
                 errorMessageDate.style.display = "block";
-                titre.classList.add("inputErreur");
+                date.classList.add("inputErreur");
                 res = false;
-            } else {
-                errorMessageNote.style.display = "none";
             }
             return res
         }
+        date.addEventListener("blur", () => checkDate());
+        date.addEventListener("focus", () => {
+            errorMessageDate.style.display = "none";
+            date.classList.remove("inputErreur");
+        });
 
         function checkAccompagnant() {
             let res = true
@@ -233,6 +239,7 @@
                 }
             }
             if (!selectionne) {
+                label.forEach(lbl => lbl.style.cssText = "border-color: red !important;");
 
                 errorMessageAccompagnant.textContent = "Veuillez sélectionner qui vous accompagnait avant de soumettre votre avis.";
                 errorMessageAccompagnant.style.display = "block";
@@ -241,10 +248,17 @@
                 });
                 res = false;
             } else {
+                label.forEach(lbl => lbl.style.cssText = "");
                 errorMessageAccompagnant.style.display = "none";
+        
             }
             return res
         }
+
+        radios.forEach(radio => {
+            radio.addEventListener("change", () => checkAccompagnant());
+        });
+
 
         function checkTitre() {
             let res = true
@@ -281,6 +295,22 @@
             avis.classList.remove("inputErreur");
         });
 
+        function checkConsentement() {
+            const checkmark = consentement.nextElementSibling;
+            let res = true
+            if (!consentement.checked) {
+                errorMessageConsentement.textContent = "Veuillez certifier que vous consentez à la publication de votre avis avant de le soumettre.";
+                errorMessageConsentement.style.display = "block";
+                checkmark.classList.add("inputErreur");
+                res = false;
+            } else{
+                errorMessageConsentement.style.display = "none";
+                checkmark.classList.remove("inputErreur");
+            }
+            return res
+        }
+        consentement.addEventListener("change", () => checkConsentement());
+
         function validerFormulaire() {
             let res = true
 
@@ -289,8 +319,9 @@
             let titreCheck = checkTitre();
             let avisCheck = checkAvis();
             let dateCheck = checkDate();
+            let consentementCheck = checkConsentement();
 
-            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck || !dateCheck) {
+            if (!noteCheck || !accompagnantCheck || !titreCheck || !avisCheck || !dateCheck || !consentementCheck) {
                 res = false;
             }
 

@@ -1582,16 +1582,38 @@ header ul + div {
   margin-block: 0.5em;
 }
 
-#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child, #divDate > div:first-child{
+#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child, #divDate > div:first-child,#divConsentement > div:first-child{
   display: flex;
   flex-direction: column;
   width: 35%;
 }
+
+#divConsentement{
+  margin: 0;
+}
+
+#divConsentement > div:first-child{
+  width: 100%;
+}
+
+#divConsentement > div > label {
+  margin-top: 1em;
+}
+#divConsentement > div > label > p {
+  margin:0;
+}
+
+.note + span.error_form {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
 .note + .error_form,
 #accompagnant > div:first-child > .error_form, 
 #titreAvis > div:first-child > .error_form, 
 #textAvis > div:first-child > .error_form,
-#divDate > div:first-child > .error_form{
+#divDate > div:first-child > .error_form,
+#divConsentement > div:first-child > .error_form{
   color: red;
   font-size: 14px;
   font-weight: normal;
