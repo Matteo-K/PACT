@@ -7,7 +7,7 @@
     switch ($_POST["action"]) {
       case 'visualiser':
         ?>
-          <form id="visualiser" action="../detailsOffer.php" method="POST">
+          <form id="visualiser" action="../detailsOffer.php" method="POST" onsubmit="window.open('', '_blank'); this.target='_blank';">
             <input type="hidden" name="idoffre" value="<?php echo $idOffre; ?>">
           </form>
           <script>

@@ -124,15 +124,49 @@
         <?php
           $stmt = $conn->prepare(
             "SELECT 
-              s.dtsignalement, s.raison, s.complement
+              s.dtsignalement, s.raison, s.complement, s.idu, s.idc,
+              a.pseudo, a.titre, a.content, a.idoffre,
+              pp.url,
+              o.nom
             FROM pact._signalementc s
-            LEFT JOIN pact.avis a ON s.idc=a.idc;"
+            LEFT JOIN pact.avis a ON s.idc=a.idc
+            LEFT JOIN pact._photo_profil pp ON pp.idu = a.idu
+            LEFT JOIN pact._offre o ON o.idoffre = a.idoffre
+            ORDER BY a.idc, a.idoffre;"
           );
           $stmt->execute();
         ?>
-        <div>
-          <h2>Avis membre</h2>
-        </div>
+        <details class="details-style" open>
+          <summary>
+            Avis membre
+          </summary>
+          <div class="details-content">
+            <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+              <div class="details-form">
+                <div>
+                  <figure>
+                    <img src="<?= $row["url"] ?>" alt="<?= $row["pseudo"] ?>" title="<?= $row["pseudo"] ?>">
+                    <figcaption><?= $row["pseudo"] ?></figcaption>
+                  </figure>
+                  <span><?= date("j/m/y - H:m:s"); ?></span>
+                </div>
+                <div>
+                  <h4>Raison : <?= $row["raison"] ?></h4>
+                  <p><?= $row["complement"] ?></p>
+                </div>
+                <form action="../ajax/actionSignalement.php" method="post">
+                  <button type="submit" name="action" value="visualiser" class="modifierBut">Voir dans son contexte</button>
+                  <button type="submit" name="action" value="rejeter" class="modifierBut">Rejeter</button>
+                  <button type="submit" name="action" value="supprimer" class="modifierBut">Supprimer</button>
+                  <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
+                  <input type="hidden" name="idavis" value="<?= $row["idc"] ?>">
+                  <input type="hidden" name="signaleur" value="<?= $row["idu"] ?>">
+                  <input type="hidden" name="type" value="avis">
+                </form>
+              </div>
+            <?php } ?>
+          </div>
+        </details>
         <?php
           $stmt = $conn->prepare(
             "SELECT * FROM pact._signalementc s
@@ -140,22 +174,28 @@
           );
           $stmt->execute();
         ?>
-        <div>
-          <h2>Réponse professionnel</h2>
-        </div>
-        <div class="details-form">
-          <div>
-            <figure>
-              <img src="" alt="" title="">
-              <figcaption>Nom de l'utilisateur</figcaption>
-            </figure>
-            <span>27/03/2025 - 14:42</span>
+        <details class="details-style" open>
+          <summary>
+            Réponse professionnel
+          </summary>
+          <div class="details-content">
+            <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+              <div class="details-form">
+                <div>
+                  <figure>
+                    <img src="<?= $row[""] ?>" alt="" title="">
+                    <figcaption>Nom de l'utilisateur</figcaption>
+                  </figure>
+                  <span>27/03/2025 - 14:42</span>
+                </div>
+                <div>
+                  <h4>Raison : </h4>
+                  <p>Complement ...</p>
+                </div>
+              </div>
+            <?php } ?>
           </div>
-          <div>
-            <h4>Raison : </h4>
-            <p>Complement ...</p>
-          </div>
-        </li>
+        </details>
       </div>
     </details>
   </section>
