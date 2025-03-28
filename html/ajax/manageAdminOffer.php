@@ -133,16 +133,9 @@
             "DELETE FROM pact._reponse WHERE ref=?",
             "DELETE FROM pact._commentaire WHERE idc=?",
             "DELETE FROM pact._avisimage WHERE idc=?",
+            "DELETE FROM pact._blacklist WHERE idc=?",
             "DELETE FROM pact._avis WHERE idc=?"
           ];
-
-          $stmt = $conn->prepare("SELECT * FROM pact._blacklist WHERE idc = $idAvis");
-          $stmt -> execute();
-
-          if ($stmt->fetch()) {
-              $stmt = $conn->prepare("DELETE FROM pact._blacklist WHERE idc = $idAvis");
-              $stmt -> execute();
-          }
 
           $stmt = $conn->prepare("SELECT idc FROM pact.avis WHERE idoffre=?;");
           $stmt -> execute([$idOffre]);
