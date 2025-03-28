@@ -72,9 +72,9 @@
 
             case 'Restaurant':
               $queries = [
-                "DELETE FROM pact._restauration WHERE idoffre=?;",
                 "DELETE FROM pact._tag_restaurant WHERE idoffre=?;",
-                "DELETE FROM pact._menu WHERE idoffre=?;"
+                "DELETE FROM pact._menu WHERE idoffre=?;",
+                "DELETE FROM pact._restauration WHERE idoffre=?;"
               ];
 
               deleteOffer($queries, $idOffre);
@@ -82,11 +82,11 @@
 
             case 'Activité':
               $queries = [
-                "DELETE FROM pact._activite WHERE idoffre=?;",
                 "DELETE FROM pact._tag_act WHERE idoffre=?;",
                 "DELETE FROM pact._offreprestation_inclu WHERE idoffre=?;",
                 "DELETE FROM pact._offreprestation_non_inclu WHERE idoffre=?;",
-                "DELETE FROM pact._offreaccess WHERE idoffre=?;"
+                "DELETE FROM pact._offreaccess WHERE idoffre=?;",
+                "DELETE FROM pact._activite WHERE idoffre=?;"
               ];
 
               deleteOffer($queries, $idOffre);
@@ -94,8 +94,8 @@
 
             case 'Parc Attraction':
               $queries = [
-                "DELETE FROM pact._parcattraction WHERE idoffre=?;",
-                "DELETE FROM pact._tag_parc WHERE idoffre=?;"
+                "DELETE FROM pact._tag_parc WHERE idoffre=?;",
+                "DELETE FROM pact._parcattraction WHERE idoffre=?;"
               ];
 
               deleteOffer($queries, $idOffre);
@@ -103,10 +103,10 @@
 
             case 'Visite':
               $queries = [
-                "DELETE FROM pact._visite WHERE idoffre=?;",
                 "DELETE FROM pact._offreaccess WHERE idoffre=?;",
                 "DELETE FROM pact._visite_langue WHERE idoffre=?;",
-                "DELETE FROM pact._tag_visite WHERE idoffre=?;"
+                "DELETE FROM pact._tag_visite WHERE idoffre=?;",
+                "DELETE FROM pact._visite WHERE idoffre=?;"
               ];
 
               deleteOffer($queries, $idOffre);
