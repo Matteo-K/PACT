@@ -1028,8 +1028,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else {
             ?> <div class="avisMembre">
                     <nav id="tab-container">
-                        <h3 id="tab-avis" class="selected active">Avis</h3>
-                        <h3 id="tab-publiez">Publiez un avis</h3>
+                        <div id="tab-avis" class="selected active">
+                            <h3>Avis</h3>
+                        </div>
+                        <div id="tab-publiez">
+                            <h3>Publiez un avis</h3>
+                        </div>
                     </nav>
                     <span id="messageErreurConnExistant"></span>
                     <div id="avis-section">
