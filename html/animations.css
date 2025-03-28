@@ -1,4 +1,4 @@
-.tag:hover, .ferme:hover, .ouvert:hover, #infopro > div:hover, #contact-info > div:hover{
+.tag:hover, .ferme:hover, .ouvert:hover, #infopro > div:hover, #contact-info > div:hover, #labelPFP {
   transform: scale(115%);
   }
   
