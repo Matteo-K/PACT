@@ -67,7 +67,7 @@ foreach ($avis as $a) {
     $likeIdPro = 'like_' . $a['idc_reponse'];
     $dislikeIdPro = 'dislike_' . $a['idc_reponse'];
 ?>
-    <div class="messageAvisReponse">
+    <div id="avis<?= $a['idc'] ?>"class="messageAvisReponse">
         <div class="messageAvis">
             <article class="user">
                 <div class="infoUser">

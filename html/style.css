@@ -506,8 +506,34 @@ header > div > a > div {
   height: fit-content;
 }
 
-#indexAdmin .details-style {
+#indexAdmin .details-style:not(.details-style .details-style) {
   width: calc(100% / 2 - 50px);
+}
+
+.details-style .details-style summary {
+  font-size: 1.2rem !important;
+}
+
+.signalAdmin {
+  img {
+    width: 50px;
+  }
+
+  figure {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+  }
+
+  > * {
+    width: 100%;
+
+    &:first-child {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
 
 /* Style pour <summary> */
@@ -561,13 +587,7 @@ header > div > a > div {
   color: #007bff;
 }
 
-.details-form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.details-form div {
+.details-form div:not(#indexAdmin .details-form div div) {
   display: flex;
   gap: 20px;
 }
@@ -5595,7 +5615,7 @@ label#btnAjoutPhoto:hover {
   /** Responsive Avis **/
 
   .avisMembre > nav > div> h3 {
-    display: none
+    font-size: 1em;
   }
 
   .avisMembre > nav > div > img{
