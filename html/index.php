@@ -188,7 +188,7 @@
             event.preventDefault();
             form.submit();
 
-            const logo = document.querySelector("#asideRetour img");
+            const logo = document.querySelector("#logo");
             logo.classList.add("chargementActif");
             setTimeout(() => {
                 logo.classList.remove("chargementActif");
