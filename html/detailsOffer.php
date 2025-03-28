@@ -1029,12 +1029,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?> <div class="avisMembre">
                     <nav id="tab-container">
                         <div id="tab-avis" class="selected active">
-                            <h3>Avis</h3>
                             <img src="img/icone/commentaire.png" id="imgCommentaire" alt ="logo commentaire pour le format mobile" title="logo commentaire pour le format mobile">
+                            <h3>Avis</h3>
                         </div>
                         <div id="tab-publiez">
-                            <h3>Publiez un avis</h3>
                             <img src="img/icone/ecrireCommentaire.png" id="imgEcrireCommentaire" alt ="logo écrire commentaire pour le format mobile" title="logo écrire commentaire pour le format mobile">
+                            <h3>Publiez un avis</h3>
                         </div>
                     </nav>
                     <span id="messageErreurConnExistant"></span>

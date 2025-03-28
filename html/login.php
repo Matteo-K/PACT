@@ -175,16 +175,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_P
 try {
     
     const logo = document.querySelector("#asideRetour img");
-    const liens = document.querySelectorAll("a, input[type='submit'], button");
+    const liens = document.querySelectorAll("a, input[type='submit']");
 
     liens.forEach(lien => {
         lien.addEventListener("click", function () {
             logo.classList.add("chargementActif");
 
-            // On supprime l'animation au bout de 10sec si on a toujours pas changé de page 
+            // On supprime l'animation au bout de 6sec si on a toujours pas changé de page 
             setTimeout(() => {
                 logo.classList.remove("chargementActif");
-            }, 10000);
+            }, 6000);
         });
     });
 

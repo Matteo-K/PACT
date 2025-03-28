@@ -272,3 +272,28 @@
     <script src="js/validationFormInscription.js"></script>
     <script src="js/setColor.js"></script>
 </html>
+
+
+<script>
+
+try {
+    
+    const logo = document.querySelector("#asideRetour img");
+    const liens = document.querySelectorAll("a, input[type='submit']");
+
+    liens.forEach(lien => {
+        lien.addEventListener("click", function () {
+            logo.classList.add("chargementActif");
+
+            // On supprime l'animation au bout de 6sec si on a toujours pas changé de page 
+            setTimeout(() => {
+                logo.classList.remove("chargementActif");
+            }, 6000);
+        });
+    });
+
+} catch (error) {
+    
+}
+
+</script>
