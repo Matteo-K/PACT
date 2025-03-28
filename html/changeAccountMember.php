@@ -83,7 +83,6 @@
             //suppression du compte (géré par le trigger en BDD)
             $stmt = $conn -> prepare ("DELETE from pact.membre WHERE idu = $userId");
             $stmt -> execute();
-            print_r($stmt -> fetchAll(PDO::FETCH_ASSOC));
             header("Location: logout.php");
         }
         else{
