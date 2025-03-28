@@ -289,10 +289,21 @@ footer div + div a {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  flex-wrap: wrap;
+  gap: 5%;
+  flex-direction: column;
+}
+
+#chargement div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #chargement #logo{
   width: 150px;
+  height: auto;
 }
 
 #chargement #logoText{
@@ -300,7 +311,8 @@ footer div + div a {
 }
 
 #chargement p{
-  font-size: 1.5em;
+  font-size: 1.8em;
+  font-style: italic;
 }
 
 /* ##### Components ##### */
