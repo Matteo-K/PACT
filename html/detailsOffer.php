@@ -1204,7 +1204,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         fetch('https://the-void.ventsdouest.dev')  // Remplace par l'URL de ton serveur
             .then(response => {
                 console.log(new Date(response.headers.get('Date')).toUTCString());
-                const serverDate = new Date(response.headers.get('Date')).getTime().toUTCString(); // Récupère l'heure du serveur
+                const serverDate = new Date(response.headers.get('Date')).getTime(); // Récupère l'heure du serveur
                 console.log("serverDate : " + serverDate);
                 updateCountdown(serverDate); // Lance le compte à rebours avec l'heure du serveur
             })
