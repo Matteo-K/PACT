@@ -289,18 +289,31 @@ footer div + div a {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: white;
+  flex-wrap: wrap;
+  gap: 5%;
+  flex-direction: column;
+}
+
+#chargement div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #chargement #logo{
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: auto;
 }
 
 #chargement #logoText{
-  font-size: 3em;
+  font-size: 4em;
 }
 
+#chargement p{
+  font-size: 1.8em;
+  font-style: italic;
+}
 
 /* ##### Components ##### */
 
@@ -4534,9 +4547,12 @@ section#infoComp div {
 }
 
 .avisMembre > nav > div > img{
+  width:3em;
+  height: 3em;
+}
+
+#iconeSelectionneeMobile{
   display: none;
-  width:4em;
-  height: 4em;
 }
 
 .avis{
@@ -5320,6 +5336,8 @@ label#btnAjoutPhoto:hover {
   transition: transform 0.3s ease-in-out;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
+  gap: 1em;
 }
 
 /* Bouton Soumettre */
@@ -5628,11 +5646,11 @@ label#btnAjoutPhoto:hover {
 
   /** Responsive Avis **/
 
-  .avisMembre > nav > div> h3 {
-    font-size: 1em;
+  .avisMembre > nav > div > h3 {
+    display: none;
   }
 
-  .avisMembre > nav > div > img{
+  .avisMembre > nav > div > img, #iconeSelectionneeMobile{
     display: flex;
   }
 
