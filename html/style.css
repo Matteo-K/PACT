@@ -4483,6 +4483,8 @@ section#infoComp div {
 
 .avisMembre > nav > div > img{
   display: none;
+  width:2em;
+  height: 2em;
 }
 
 .avis{
@@ -6286,8 +6288,8 @@ div[id="messageErreur"], #error_form {
   }
 
   #labelPFP {
-    text-decoration: underline;
     text-align: center;
+    font-size: 20px;
   }
 
   #labelPFP:hover {

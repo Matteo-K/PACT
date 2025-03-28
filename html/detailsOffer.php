@@ -1171,9 +1171,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         document.addEventListener("DOMContentLoaded", function() {
     function startCountdown(element) {
         const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
-        // console.log("dateString : " + dateString + "\n");
+        console.log("dateString : " + dateString + "\n");
         const targetTime = new Date(dateString).getTime(); // Convertit en millisecondes
-        // console.log("targetTime : " + targetTime + "\n");
+        console.log("targetTime : " + targetTime + "\n");
         if (isNaN(targetTime)) {
             console.error("Format de date invalide :", dateString);
             element.textContent = "Date invalide";
@@ -1203,8 +1203,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Récupérer l'heure du serveur avec fetch
         fetch('https://the-void.ventsdouest.dev')  // Remplace par l'URL de ton serveur
             .then(response => {
-                console.log((response.headers.get('Date')));
-                const serverDate = new Date(response.headers.get('Date')).getTime(); // Récupère l'heure du serveur
+                console.log(new Date(response.headers.get('Date')).toUTCString());
+                const serverDate = new Date(response.headers.get('Date')).getTime().toUTCString(); // Récupère l'heure du serveur
                 console.log("serverDate : " + serverDate);
                 updateCountdown(serverDate); // Lance le compte à rebours avec l'heure du serveur
             })
