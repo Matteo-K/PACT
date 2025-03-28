@@ -137,6 +137,7 @@
 
           // Suppression des données de l'offre
           $queries = [
+            "DELETE FROM pact._illustre WHERE idoffre=?;",
             "DELETE FROM pact._abonner WHERE idoffre=?;",
             "DELETE FROM pact._consulter WHERE idoffre=?;",
             "DELETE FROM pact._localisation WHERE idoffre=?;",
