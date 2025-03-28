@@ -1622,7 +1622,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             if (data.count > 0) {
                                 section.innerHTML = `<button class="modifierBut size" id="confirmationBlack">Confirmer</button>`;
                                 const leaveC = document.getElementById("confirmationBlack");
-                                leaveC.onclick = confirmationModalBlackFunction;
+                                leaveC.addEventListener("click", () => {
+                                    confirmationModalBlackFunction();
+                                });
                             }
                         })
                         .catch(error => {
