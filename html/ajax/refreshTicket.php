@@ -10,7 +10,7 @@ if ($idOffre === null) {
     exit;
 }
 
-$stmt = $conn->prepare("SELECT COUNT(*) AS count FROM pact._blacklist WHERE idOffre = ? AND datefinblacklist > CURRENT_TIMESTAMP");
+$stmt = $conn->prepare("SELECT COUNT(*) AS count FROM pact._blacklist WHERE idOffre = ? AND datefinblacklist >= CURRENT_TIMESTAMP");
 $stmt->execute([$idOffre]);
 $result = $stmt->fetch();
 
