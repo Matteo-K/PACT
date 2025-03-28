@@ -1189,7 +1189,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         function updateCountdown() {
             const now = Date.now(); // Heure actuelle en millisecondes (locale)
-            console.log("now (locale) : " + now + "\n");
+            // console.log("now (locale) : " + now + "\n");
 
             const diff = targetTime - now;
 
