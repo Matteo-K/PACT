@@ -1794,6 +1794,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         btnPubliez.addEventListener("mouseover", function() {
                             messageErreurConnExistant.innerHTML = 'Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en écrire un autre';
                         });
+                        btnPubliez.addEventListener("mouseout", function() {
+                            messageErreurConnExistant.innerHTML = '';
+                        });
                     <?php
                     } else {
                     ?>
@@ -1822,9 +1825,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         });
 
                         btnPubliez.disabled = false;
-                        btnPubliez.addEventListener("mouseout", function() {
-                            messageErreurConnExistant.innerHTML = '';
-                        });
                         messageErreurConnExistant.textContent = "";
                     <?php
                     }
@@ -1835,6 +1835,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         // Afficher le message d'erreur uniquement si on survole le bouton
                         messageErreurConnExistant.innerHTML = 'Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a>';
                     });
+                    btnPubliez.addEventListener("mouseout", function() {
+                            messageErreurConnExistant.innerHTML = '';
+                        });
                 <?php
                 }
                 ?>
