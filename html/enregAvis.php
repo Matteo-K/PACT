@@ -37,16 +37,18 @@ function moveImagesToOfferFolder($idOffre, $idComment, $tempFolder, $uploadBaseP
 
     $targetFolder = $uploadBasePath . '/' . $idOffre . '/' . $idComment;
 
-    if (!is_dir($targetFolder) && !mkdir($targetFolder, 0777, true)) {
-        $result['errors'][] = "Impossible de créer le dossier cible : $targetFolder";
-        return $result;
-    }
+
 
     $images = glob("$tempFolder/*.{jpg,jpeg,png,gif,webp}", GLOB_BRACE);
 
     if (!$images) {
         $result['errors'][] = "Aucune image trouvée dans le dossier temporaire : $tempFolder";
         return $result;
+    } else{
+        if (!is_dir($targetFolder) && !mkdir($targetFolder, 0777, true)) {
+            $result['errors'][] = "Impossible de créer le dossier cible : $targetFolder";
+            return $result;
+        }
     }
 
     foreach ($images as $image) {
