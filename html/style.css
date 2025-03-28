@@ -3197,7 +3197,7 @@ label[for="rest_ajoutPhotoMenu"] {
       background-color: var(--background);
       border: none;
       opacity: 0;
-      transform: translateX(-100%);
+      transform: translateX(100%);
       transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
