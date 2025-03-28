@@ -16,7 +16,7 @@
   <?php require_once "components/header.php" ?>
   <?php 
     $page = $_GET["page"] ?? 1;
-    $nbPage = 2;
+    $nbPage = 2; // Limiter à deux pages
   ?>
   <main id="pageCgu">
     <?php
@@ -123,7 +123,11 @@
       }
     ?>
     <div class="pagination">
-      <?php if ($page > 1) { ?>
+      <?php if ($page == 1) { ?>
+        <a href="cgu.php?page=2">Suivant</a>
+      <?php } ?>
+
+      <?php if ($page == 2) { ?>
         <a href="cgu.php?page=1">Retour à la page 1</a>
       <?php } ?>
     </div>
