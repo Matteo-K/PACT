@@ -4370,6 +4370,8 @@ section#infoComp div {
 
 .avisMembre > nav > div > img{
   display: none;
+  width:2em;
+  height: 2em;
 }
 
 .avis{
