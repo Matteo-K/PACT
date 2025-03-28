@@ -73,7 +73,7 @@
             <button type="submit" onclick="deleteOffre()" class="modifierBut">Supprimer l'offre</button>
           <?php } ?>
           <form id="deleteOffre" action="ajax/demandeSuppression.php" method="post">
-            <input type="hidden" name="idoffre" value="<?= $idOffre ?>">
+            <input type="hidden" name="idOffre" value="<?= $idOffre ?>">
           </form>
           <script>
             function deleteOffre() {
