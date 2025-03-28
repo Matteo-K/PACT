@@ -1032,9 +1032,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <nav id="tab-container">
                         <div id="tab-avis" class="selected active">
                             <img src="img/icone/commentaire.png" id="imgCommentaire" alt ="logo commentaire pour le format mobile" title="logo commentaire pour le format mobile">
-                            <h3>Voir l'avis</h3>
+                            <h3>Avis</h3>
                         </div>
-                        <div id="iconeSelectionneeMobile"><h3></h3></div>
+                        <div id="iconeSelectionneeMobile"><h3>Avis</h3></div>
                         <div id="tab-publiez">
                             <img src="img/icone/ecrireCommentaire.png" id="imgEcrireCommentaire" alt ="logo écrire commentaire pour le format mobile" title="logo écrire commentaire pour le format mobile">
                             <h3>Publiez un avis</h3>
