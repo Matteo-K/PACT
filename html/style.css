@@ -3243,7 +3243,40 @@ label[for="rest_ajoutPhotoMenu"] {
       transform: translateX(-100%);
       transition: opacity 0.3s ease, transform 0.3s ease;
   }
+/* Animations filtres et tris */
 
+#tri, #filtre, #carte_offres{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  display: none;
+  background-color: var(--background);
+  border: none;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#tri.openAside, #filtre.openAside {
+  display: block !important;
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+/* Média query 375px */
+@media screen and (max-width: 375px) {
+  #trifiltre {
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+  }
+
+  #tri, #filtre {
+    overflow: scroll;
+  }
+}
   #tri.openAside, #filtre.openAside {
       display: block !important;
       opacity: 1 !important;
