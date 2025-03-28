@@ -3185,7 +3185,7 @@ label[for="rest_ajoutPhotoMenu"] {
       justify-content: center;
     }
   }
-
+/*
   #tri, #filtre, #carte_offres{
       position: fixed;
       top: 0;
@@ -3200,13 +3200,13 @@ label[for="rest_ajoutPhotoMenu"] {
       transform: translateX(-100%);
       transition: opacity 0.3s ease, transform 0.3s ease;
   }
-
+/*
   #tri.openAside, #filtre.openAside {
       display: block !important;
       opacity: 1 !important;
       transform: translateX(0) !important;
   }
-
+*/
   #titreAside {
       justify-content: space-between;
       padding: 10px 15px;
@@ -6581,7 +6581,6 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 #pageCgu, #mentionsLegales  {
   min-height: 80vh;
   padding: 10px 0 10px 30px;
-  text-align: justify;
 }
 
 /* Fin CSS page CGU */
