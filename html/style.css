@@ -5646,7 +5646,7 @@ label#btnAjoutPhoto:hover {
 
   /** Responsive Avis **/
 
-  .avisMembre > nav > div > h3 {
+  .avisMembre > nav > div:not(#iconeSelectionneeMobile) > h3 {
     display: none;
   }
 
