@@ -484,6 +484,10 @@ header > div > a > div {
   height: fit-content;
 }
 
+#indexAdmin .details-style {
+  width: calc(100% / 2 - 50px);
+}
+
 /* Style pour <summary> */
 .details-style summary {
   background-color: #f5f5f5;
@@ -496,15 +500,14 @@ header > div > a > div {
   padding-left: 20px;
 }
 
-.details-style[open] summary::after {
+.details-style[open] summary::before {
   content: "▲";
-  /* Flèche vers le haut si ouvert */
   background-color: #f5f5f5;
 }
 
-.details-style summary::after {
+.details-style summary::before {
   content: "▼";
-  /* Flèche vers le bas si fermé */
+  margin-right: 15px;
 }
 
 /* Conteneur des liens */
@@ -1581,24 +1584,58 @@ header ul + div {
   margin-block: 0.5em;
 }
 
-#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child{
+#accompagnant > div:first-child, #titreAvis > div:first-child, #textAvis > div:first-child, #divDate > div:first-child,#divConsentement > div:first-child{
   display: flex;
   flex-direction: column;
+  width: 35%;
 }
+
+#divConsentement{
+  margin: 0;
+}
+
+#divConsentement > div:first-child{
+  width: 100%;
+}
+
+#divConsentement > div > label {
+  margin-top: 1em;
+}
+#divConsentement > div > label > p {
+  margin:0;
+}
+
+.note + span.error_form {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
 .note + .error_form,
 #accompagnant > div:first-child > .error_form, 
 #titreAvis > div:first-child > .error_form, 
-#textAvis > div:first-child > .error_form {
+#textAvis > div:first-child > .error_form,
+#divDate > div:first-child > .error_form,
+#divConsentement > div:first-child > .error_form{
   color: red;
   font-size: 14px;
   font-weight: normal;
   font-style: italic;
 }
 
-#divConsentement{
+#divDate > input, 
+#accompagnant > #enCompagnie, 
+#titreAvis > input, 
+#textAvis > textarea {
+  width: 60%;
+}
+
+#divConsentement > div > label{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+input[type="month"]::-webkit-clear-button {
+  display: none;
 }
 
 #detailsOffer input[type="file"],
@@ -2370,6 +2407,7 @@ label[for="rest_ajoutPhotoMenu"] {
 }
 
 
+
 #indexAdmin {
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -2379,6 +2417,14 @@ label[for="rest_ajoutPhotoMenu"] {
   aside {
     border-right: var(--bloc) solid 0.5vw;
     padding: 20px;
+  }
+
+  aside + section {
+    padding: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    overflow: auto;
+    gap: 20px;
   }
 
   fieldset {
@@ -2401,8 +2447,11 @@ label[for="rest_ajoutPhotoMenu"] {
   #duree_blacklist {
     width: 30%;
   }
+  
+  .updateForm {
+    color: red;
+  }
 }
-
 
 #voirPlus {
   display: flex;
@@ -2968,9 +3017,7 @@ label[for="rest_ajoutPhotoMenu"] {
   justify-content: left;
   border-radius: 20px 0 0 20px;
   transition: background-color 0.3s ease, border-right-width 0.3s ease;
-  /* transition: border-right-width 0.5s cubic-bezier(0.0, 0.0, 0.5, 1); */
-  /* border-right: 0px solid var(--secondary); */
-  /* transition: border-right-width 0.5s linear(0 0%, 0 2.27%, 0.02 4.53%, 0.04 6.8%, 0.06 9.07%, 0.1 11.33%, 0.14 13.6%, 0.25 18.15%, 0.39 22.7%, 0.56 27.25%, 0.77 31.8%, 1 36.35%, 0.89 40.9%, 0.85 43.18%, 0.81 45.45%, 0.79 47.72%, 0.77 50%, 0.75 52.27%, 0.75 54.55%, 0.75 56.82%, 0.77 59.1%, 0.79 61.38%, 0.81 63.65%, 0.85 65.93%, 0.89 68.2%, 1 72.7%, 0.97 74.98%, 0.95 77.25%, 0.94 79.53%, 0.94 81.8%, 0.94 84.08%, 0.95 86.35%, 0.97 88.63%, 1 90.9%, 0.99 93.18%, 0.98 95.45%, 0.99 97.73%, 1 100%); */
+  
 }
 
 #tri input:checked + label {
@@ -2983,9 +3030,7 @@ label[for="rest_ajoutPhotoMenu"] {
   border-right-width: 15px;
 }
 
-/* #tri input:hover + label {
-  border-right-width: 15px;
-} */
+
 
 /* Bouton de tri et filtre */
 #btnAside {
@@ -3310,6 +3355,10 @@ label[for="rest_ajoutPhotoMenu"] {
 
 .horslgnOffre::after {
   background-color: red !important;
+}
+
+.suppression::after {
+  background-color: #555;
 }
 
 .ProStatut {
@@ -4189,6 +4238,8 @@ tbody td:last-child {
 #afficheLoc,
 #afficheLoc > #map + div {
   display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #descriptionOffre > section {
@@ -6234,6 +6285,7 @@ div[id="messageErreur"], #error_form {
 
   #labelPFP {
     text-align: center;
+    font-size: 20px;
   }
 
   #labelPFP:hover {
