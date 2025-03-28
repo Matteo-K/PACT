@@ -42,7 +42,7 @@
         const currentFile = window.location.pathname.split('/').pop();
 
         input.addEventListener("input", () => {
-            if (currentFile === 'index.php') {
+            if (currentFile === 'pact.php') {
                 const searchTarget = document.getElementById("searchIndex");
                 searchTarget.scrollIntoView({
                     behavior: 'smooth',
