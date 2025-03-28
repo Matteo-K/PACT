@@ -174,7 +174,7 @@
                     <img src="<?= $row["url"] ?>" alt="<?= $row["pseudo"] ?>" title="<?= $row["pseudo"] ?>">
                     <figcaption><?= $row["pseudo"] ?></figcaption>
                   </figure>
-                  <span><?= date("j/m/y - H:m"); ?></span>
+                  <span><?= date("j/m/y - H:m", $row["dtsignalement"]); ?></span>
                 </div>
                 <div class="contenueSignalement">
                   <h4><?= signalRaison($row["raison"]) ?></h4>
@@ -221,7 +221,7 @@
                     <img src="<?= $row["url"] ?>" alt="<?= $row["denomination"] ?>" title="<?= $row["denomination"] ?>">
                     <figcaption><?= $row["denomination"] ?></figcaption>
                   </figure>
-                  <span><?= date("j/m/y - H:m"); ?></span>
+                  <span><?= date("j/m/y - H:m", $row["dtsignalement"]); ?></span>
                 </div>
                 <div class="contenueSignalement">
                   <h4><?= signalRaison($row["raison"]) ?></h4>
