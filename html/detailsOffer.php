@@ -1595,93 +1595,75 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 leaveB.onclick = confirmationModalBlackFunction;
                 leave2.onclick = closeModalBlackFunction;
 
-                function confirmationModalBlackFunction() {
-    fetch('blacklist.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'idC': id,
-                'idOffre': <?php echo json_encode($idOffre); ?>
-            })
-        })
-        .catch(error => {
-            console.error('Erreur capturée:', error);
-        });
-
-    closeModalBlackFunction();
-}
-
-function refresh() {
-    const p = document.getElementById("nbTicket");
-    const section = document.getElementById("SubmitBlack");
-
-    fetch('ajax/refreshTicket.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            'idoffre': <?php echo json_encode($idOffre); ?>
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            console.error("Erreur:", data.error);
-            p.textContent = "Erreur de chargement";
-            return;
-        }
-    
-        p.textContent = `Il vous reste ${data.count} blacklistage`;
-        if (data.count > 0) {
-            section.innerHTML = `<button class="modifierBut size" id="confirmationBlack">Confirmer</button>`;
-            const leaveC = document.getElementById("confirmationBlack");
-            leaveC.addEventListener("click", confirmationModalBlackFunction);
-        }
-    })
-    .catch(error => {
-        console.error("Erreur:", error);
-        p.textContent = "Erreur de chargement";
-    });
-}
-
-function startCountdown(element) {
-    const dateString = element.getAttribute("data-timestamp");
-    const targetTimeUTC = new Date(dateString);
-    const timezoneOffset = targetTimeUTC.getTimezoneOffset();
-    const targetTime = targetTimeUTC.getTime() - (timezoneOffset * 60000);
-
-    if (isNaN(targetTime)) {
-        element.textContent = "Date invalide";
-        return;
-    }
-
-    function updateCountdown() {
-        const now = Date.now();
-        const diff = targetTime - now;
-
-        if (diff <= 0) {
-            element.textContent = "";
-            const figure = element.closest("figure");
-            const img = figure.querySelector("img");
-            img.src = "./img/icone/ticket.png";
-            setTimeout(refresh, 1000);
-            return;
-        }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
-        setTimeout(updateCountdown, 1000);
-    }
-
-    updateCountdown();
-}
+                function refresh() {
+                    const p = document.getElementById("nbTicket");
+                    const section = document.getElementById("SubmitBlack");
+                
+                    fetch('ajax/refreshTicket.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            'idoffre': <?php echo json_encode($idOffre); ?>
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error("Erreur:", data.error);
+                            p.textContent = "Erreur de chargement";
+                            return;
+                        }
+                    
+                        p.textContent = `Il vous reste ${data.count} blacklistage`;
+                        if (data.count > 0) {
+                            section.innerHTML = `<button class="modifierBut size" id="confirmationBlack">Confirmer</button>`;
+                            const leaveC = document.getElementById("confirmationBlack");
+                            leaveC.addEventListener("click", confirmationModalBlackFunction);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erreur:", error);
+                        p.textContent = "Erreur de chargement";
+                    });
+                }
+                
+                function startCountdown(element) {
+                    const dateString = element.getAttribute("data-timestamp");
+                    const targetTimeUTC = new Date(dateString);
+                    const timezoneOffset = targetTimeUTC.getTimezoneOffset();
+                    const targetTime = targetTimeUTC.getTime() - (timezoneOffset * 60000);
+                
+                    if (isNaN(targetTime)) {
+                        element.textContent = "Date invalide";
+                        return;
+                    }
+                
+                    function updateCountdown() {
+                        const now = Date.now();
+                        const diff = targetTime - now;
+                    
+                        if (diff <= 0) {
+                            element.textContent = "";
+                            const figure = element.closest("figure");
+                            const img = figure.querySelector("img");
+                            img.src = "./img/icone/ticket.png";
+                            setTimeout(refresh, 1000);
+                            return;
+                        }
+                    
+                        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                    
+                        element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+                        setTimeout(updateCountdown, 1000);
+                    }
+                
+                    updateCountdown();
+                }
 
                 
                 // Applique la fonction startCountdown sur chaque élément "figcaption" avec un attribut data-timestamp
