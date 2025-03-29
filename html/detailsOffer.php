@@ -1685,6 +1685,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             const leaveC = document.getElementById("confirmationBlack");
                             leaveC.addEventListener("click", () => {
                                 confirmationModalBlackFunction();
+                                refresh();
                                 refreshTicket();
                             });
                         }
