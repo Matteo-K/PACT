@@ -1588,13 +1588,14 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             console.error('Erreur capturée:', error);
                         });
 
-
+                    let avis = document.getElementById(`avis${id}`);
+                    avis.style.display = "none";
                     closeModalBlackFunction();
                 }
 
                 function refreshTicket() {
                     let div = document.getElementById("divTicket");
-                                
+
                     fetch("ajax/refreshTicket.php", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
