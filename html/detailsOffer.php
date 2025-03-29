@@ -1626,7 +1626,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     });
                 }
 
-                leaveB.onclick = confirmationModalBlackFunction;
                 leaveB.addEventListener("click",()=>{
                     confirmationModalBlackFunction();
                     refresh();
