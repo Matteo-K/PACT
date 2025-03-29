@@ -1587,9 +1587,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             // Gérer toutes les erreurs de la requête fetch
                             console.error('Erreur capturée:', error);
                         });
-
+                    let blocDetails = document.querySelector("#avisproS2 > details");
                     let avis = document.getElementById(`avis${id}`);
+
                     avis.style.display = "none";
+                    blocDetails.open = true;
+
                     closeModalBlackFunction();
                 }
 
