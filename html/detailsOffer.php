@@ -1593,50 +1593,69 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
 
                 function refreshTicket() {
-                    let dates;
-                    let div = document.getElementById("divTicket");
+    let div = document.getElementById("divTicket");
 
-                    fetch('ajax/refreshTicket.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            'idoffre': <?php echo json_encode($idOffre); ?>,
-                            action:'duree' 
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.error) {
-                            console.error("Erreur:", data.error);
-                            return;
-                        }
-                    
-                        dates = data.count;
-                    })
-                    .catch(error => {
-                        console.error("Erreur:", error);
-                        p.textContent = "Erreur de chargement";
-                    });
+    fetch("ajax/refreshTicket.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            idoffre: <?php echo json_encode($idOffre); ?>,
+            action: "duree"
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            console.error("Erreur:", data.error);
+            return;
+        }
 
-                    console.table(dates);
+        let dates = data.dates || []; // Récupérer les dates ou un tableau vide si aucune date n'est retournée
+        console.table(dates); // Maintenant, il s'exécute après la récupération des données
 
-                    div.innerHTML = "";
-                    for (let index = 0; index < 3 - dates.lenght; index++) {
-                        div.appendChild(`<figure class="figBlacklist">
-                                    <img src="./img/icone/ticket_gris.png" alt="ticket Blacklistage">
-                                    <figcaption id="countdown-${index}" data-timestamp="${dates[index]}">
-                                        Calcul en cours...
-                                    </figcaption>
-                                </figure>`);
-                    }
-                    for (let index = 0; index < 3 - dates.length; index++) {
-                        div.appendChild(`<figure class="figBlacklist">
-                                    <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
-                                </figure>`);
-                    }
-                }
+        div.innerHTML = ""; // Vider la div avant d'ajouter les nouveaux éléments
+
+        // Générer les tickets en attente de fin de blacklistage
+        dates.forEach((date, index) => {
+            const figure = document.createElement("figure");
+            figure.classList.add("figBlacklist");
+
+            const img = document.createElement("img");
+            img.src = "./img/icone/ticket_gris.png";
+            img.alt = "ticket Blacklistage";
+
+            const figcaption = document.createElement("figcaption");
+            figcaption.id = `countdown-${index}`;
+            figcaption.setAttribute("data-timestamp", date);
+            figcaption.textContent = "Calcul en cours...";
+
+            figure.appendChild(img);
+            figure.appendChild(figcaption);
+            div.appendChild(figure);
+
+            // Lancer le compte à rebours
+            startCountdown(figcaption);
+        });
+
+        // Générer les tickets restants
+        for (let index = 0; index < 3 - dates.length; index++) {
+            const figure = document.createElement("figure");
+            figure.classList.add("figBlacklist");
+
+            const img = document.createElement("img");
+            img.src = "./img/icone/ticket.png";
+            img.alt = "ticket Blacklistage";
+
+            figure.appendChild(img);
+            div.appendChild(figure);
+        }
+    })
+    .catch(error => {
+        console.error("Erreur:", error);
+        div.textContent = "Erreur de chargement";
+    });
+}
+
 
                 function refresh() {
                     const p = document.getElementById("nbTicket");
