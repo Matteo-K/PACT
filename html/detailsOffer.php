@@ -1688,6 +1688,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 refresh();
                                 refreshTicket();
                             });
+                        } else {
+                            section.innerHTML = `<button disabled class="modifierBut disabled size" id="confirmationBlack">Comfirmer</button>`;
                         }
                     })
                     .catch(error => {
