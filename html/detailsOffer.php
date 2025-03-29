@@ -1594,7 +1594,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 function refreshTicket() {
                     let dates;
-                    let div = getElementById("divTicket");
+                    let div = document.getElementById("divTicket");
 
                     fetch('ajax/refreshTicket.php', {
                         method: 'POST',
