@@ -1593,6 +1593,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
 
                 function refresh() {
+                    console.log("dans refresh");
                     const p = document.getElementById("nbTicket");
                     const section = document.getElementById("SubmitBlack");
                 
