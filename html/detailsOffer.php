@@ -1135,7 +1135,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <span class="closeTicket">&times;</span>
                     <section>
                         <h2>Blacklistage</h2>
-                        <div>
+                        <div id="divTicket">
                             <?php
                             $stmt = $conn->prepare("SELECT datefinblacklist FROM pact._blacklist WHERE idOffre = ? and datefinblacklist > CURRENT_TIMESTAMP");
                             $stmt->execute([$idOffre]);
@@ -1592,6 +1592,52 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     closeModalBlackFunction();
                 }
 
+                function refreshTicket() {
+                    let dates;
+                    let div = getElementById("divTicket");
+
+                    fetch('ajax/refreshTicket.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            'idoffre': <?php echo json_encode($idOffre); ?>,
+                            action:'duree' 
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error("Erreur:", data.error);
+                            return;
+                        }
+                    
+                        dates = data.count;
+                    })
+                    .catch(error => {
+                        console.error("Erreur:", error);
+                        p.textContent = "Erreur de chargement";
+                    });
+
+                    console.table(dates);
+
+                    div.innerHTML = "";
+                    for (let index = 0; index < 3 - dates.lenght; index++) {
+                        div.appendChild(`<figure class="figBlacklist">
+                                    <img src="./img/icone/ticket_gris.png" alt="ticket Blacklistage">
+                                    <figcaption id="countdown-${index}" data-timestamp="${dates[index]}">
+                                        Calcul en cours...
+                                    </figcaption>
+                                </figure>`);
+                    }
+                    for (let index = 0; index < 3 - dates.length; index++) {
+                        div.appendChild(`<figure class="figBlacklist">
+                                    <img src="./img/icone/ticket.png" alt="ticket Blacklistage">
+                                </figure>`);
+                    }
+                }
+
                 function refresh() {
                     const p = document.getElementById("nbTicket");
                     const section = document.getElementById("SubmitBlack");
@@ -1602,7 +1648,8 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            'idoffre': <?php echo json_encode($idOffre); ?>
+                            'idoffre': <?php echo json_encode($idOffre); ?>,
+                            action:'nbTicket'
                         })
                     })
                     .then(response => response.json())
