@@ -4583,10 +4583,13 @@ section#infoComp div {
 
 #messageErreurConnExistant > h3{
   font-size: 1.2em;
+  padding:0;
 }
 #messageErreurConnExistant{
   border-color: red;
   color: red;
+  text-align: center;
+  flex-direction: column;
 }
 
 
