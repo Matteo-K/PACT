@@ -4584,6 +4584,13 @@ section#infoComp div {
 #messageErreurConnExistant > h3{
   font-size: 1.2em;
 }
+#messageErreurConnExistant{
+  border-color: red;
+  color: red;
+}
+#messageErreurConnExistant > a {
+  color: red
+}
 
 .reponseAvis {
   width: 90%;
