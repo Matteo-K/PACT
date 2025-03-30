@@ -4572,12 +4572,17 @@ section#infoComp div {
 }
 
 .messageAvis,
-.reponseAvis {
+.reponseAvis,
+#messageErreurConnExistant {
   background-color: #fff;
   border-radius: 1em;
   border: var(--primary) 3px solid;
   padding-inline: 1em;
   width: 100%;
+}
+
+#messageErreurConnExistant > h3{
+  font-size: 1.2em;
 }
 
 .reponseAvis {

@@ -1044,6 +1044,9 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div id="avis-section">
                         <!-- Contenu chargé dynamiquement -->
                         <div id="avis-component" style="display: flex;">
+                            <div class="messageAvisReponse">
+                                <span id="messageErreurConnExistant"></span>
+                            </div>
                             <?php require_once __DIR__ . "/components/avis/avisMembre.php"; ?>
                         </div>
                         <div id="publiez-component" style="display: none;">
