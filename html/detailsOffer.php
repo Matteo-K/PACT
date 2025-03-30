@@ -1958,7 +1958,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         });
 
                         btnPubliez.disabled = false;
-                        messageErreurConnExistant.textContent = "";
+                        messageErreurConnExistant.style.display = "none";
                     <?php
                     }
                 } else {
