@@ -1923,7 +1923,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         btnPubliez.disabled = true
 
                         btnPubliez.addEventListener("mouseover", function() {
-                            messageErreurConnExistant.innerHTML = 'Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en écrire un autre';
+                            messageErreurConnExistant.innerHTML = '<h3>Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en écrire un autre</h3>';
                             messageErreurConnExistant.style.display = "flex";
                         });
                         btnPubliez.addEventListener("mouseout", function() {
@@ -1969,7 +1969,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     btnPubliez.disabled = true
                     btnPubliez.addEventListener("mouseover", function() {
                         // Afficher le message d'erreur uniquement si on survole le bouton
-                        messageErreurConnExistant.innerHTML = 'Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a>';
+                        messageErreurConnExistant.innerHTML = '<h3>Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></h3>';
                         messageErreurConnExistant.style.display = "flex";
                     });
                     btnPubliez.addEventListener("mouseout", function() {
