@@ -443,7 +443,7 @@ header > div > a > div {
   align-items: flex-start;
 }
 
-#btnConn, #messageErreurConnExistant > a {
+#btnConn {
   margin-right: 0.5em;
   display: flex;
   color: #000;

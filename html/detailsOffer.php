@@ -1973,7 +1973,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         // Afficher le message d'erreur uniquement si on survole le bouton
                         messageErreurConnExistant.innerHTML = `
                                                                 <h3>Vous devez être connecté pour écrire un avis.</h3>
-                                                                <a href="login.php">Connectez-vous ici</a>
                                                             `;;
                         messageErreurConnExistant.style.display = "flex";
                     });
