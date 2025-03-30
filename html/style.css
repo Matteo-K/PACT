@@ -4588,9 +4588,7 @@ section#infoComp div {
   border-color: red;
   color: red;
 }
-#messageErreurConnExistant > a {
-  color: red
-}
+
 
 .reponseAvis {
   width: 90%;

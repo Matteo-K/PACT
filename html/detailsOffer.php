@@ -1971,7 +1971,10 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     btnPubliez.disabled = true
                     btnPubliez.addEventListener("mouseover", function() {
                         // Afficher le message d'erreur uniquement si on survole le bouton
-                        messageErreurConnExistant.innerHTML = '<h3>Vous devez être connecté pour écrire un avis. <a href="login.php">Connectez-vous ici</a></h3>';
+                        messageErreurConnExistant.innerHTML = `
+                                                                <h3>Vous devez être connecté pour écrire un avis.</h3>
+                                                                <a href="login.php">Connectez-vous ici</a>
+                                                            `;;
                         messageErreurConnExistant.style.display = "flex";
                     });
                     btnPubliez.addEventListener("mouseout", function() {
