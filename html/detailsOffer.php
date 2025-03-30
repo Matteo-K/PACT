@@ -1040,7 +1040,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <h3>Publiez un avis</h3>
                         </div>
                     </nav>
-                    <span id="messageErreurConnExistant"></span>
                     <div id="avis-section">
                         <!-- Contenu chargé dynamiquement -->
                         <div id="avis-component" style="display: flex;">
