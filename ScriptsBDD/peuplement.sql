@@ -863,17 +863,20 @@ VALUES ('sourd'),
 INSERT INTO _offreAccess(idOffre,nomAccess)
 VALUES (4,'malentendant'),
        (4,'sourd'),
-       (5,'muet');
+       (5,'muet'),
+       (6,'sourd');
 
 INSERT INTO _prestation(nomPresta)
 VALUES ('Repas'),
        ('Transport');
 
 INSERT INTO _offrePrestation_non_inclu(idOffre,nomPresta)
-VALUES (4,'Transport');
+VALUES (4,'Transport'),
+(6,'Repas');
 
 INSERT INTO _offrePrestation_inclu(idOffre,nomPresta)
-VALUES (4,'Repas');
+VALUES (4,'Repas'),
+(6,'Transport');
 
 INSERT INTO _parametre(dureeBlacklistage,uniteblacklist)
 VALUES (365,'jours');

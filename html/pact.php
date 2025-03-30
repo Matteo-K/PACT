@@ -160,7 +160,7 @@
 
           require_once "components/asideTriFiltre.php";
 
-          $offres = new ArrayOffer();
+          $offres = new ArrayOffer("enLigne", $typeUser);
           ?>
           <section class="searchoffre">
           </section>

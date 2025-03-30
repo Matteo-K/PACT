@@ -1135,7 +1135,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <span class="closeTicket">&times;</span>
                     <section>
                         <h2>Blacklistage</h2>
-                        <div>
+                        <div id="divTicket">
                             <?php
                             $stmt = $conn->prepare("SELECT datefinblacklist FROM pact._blacklist WHERE idOffre = ? and datefinblacklist > CURRENT_TIMESTAMP");
                             $stmt->execute([$idOffre]);
@@ -1587,13 +1587,168 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             // Gérer toutes les erreurs de la requête fetch
                             console.error('Erreur capturée:', error);
                         });
+                    let blocDetails = document.querySelector("#avisproS2 > details");
+                    let avis = document.getElementById(`avis${id}`);
 
+                    avis.style.display = "none";
+                    blocDetails.open = true;
 
                     closeModalBlackFunction();
                 }
 
-                leaveB.onclick = confirmationModalBlackFunction;
+                function refreshTicket() {
+                    let div = document.getElementById("divTicket");
+
+                    fetch("ajax/refreshTicket.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            idoffre: <?php echo json_encode($idOffre); ?>,
+                            action: "duree"
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error("Erreur:", data.error);
+                            return;
+                        }
+                    
+                        let dates = data.dates || []; // Récupérer les dates ou un tableau vide si aucune date n'est retournée
+                        console.table(dates); // Maintenant, il s'exécute après la récupération des données
+                    
+                        div.innerHTML = ""; // Vider la div avant d'ajouter les nouveaux éléments
+                    
+                        // Générer les tickets en attente de fin de blacklistage
+                        dates.forEach((date, index) => {
+                            const figure = document.createElement("figure");
+                            figure.classList.add("figBlacklist");
+                        
+                            const img = document.createElement("img");
+                            img.src = "./img/icone/ticket_gris.png";
+                            img.alt = "ticket Blacklistage";
+                        
+                            const figcaption = document.createElement("figcaption");
+                            figcaption.id = `countdown-${index}`;
+                            figcaption.setAttribute("data-timestamp", date);
+                            figcaption.textContent = "Calcul en cours...";
+                        
+                            figure.appendChild(img);
+                            figure.appendChild(figcaption);
+                            div.appendChild(figure);
+                        
+                            // Lancer le compte à rebours
+                            startCountdown(figcaption);
+                        });
+                    
+                        // Générer les tickets restants
+                        for (let index = 0; index < 3 - dates.length; index++) {
+                            const figure = document.createElement("figure");
+                            figure.classList.add("figBlacklist");
+                        
+                            const img = document.createElement("img");
+                            img.src = "./img/icone/ticket.png";
+                            img.alt = "ticket Blacklistage";
+                        
+                            figure.appendChild(img);
+                            div.appendChild(figure);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erreur:", error);
+                        div.textContent = "Erreur de chargement";
+                    });
+                }
+
+
+                function refresh() {
+                    const p = document.getElementById("nbTicket");
+                    const section = document.getElementById("SubmitBlack");
+                
+                    fetch('ajax/refreshTicket.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            'idoffre': <?php echo json_encode($idOffre); ?>,
+                            action:'nbTicket'
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error("Erreur:", data.error);
+                            p.textContent = "Erreur de chargement";
+                            return;
+                        }
+                    
+                        p.textContent = `Il vous reste ${data.count} blacklistage`;
+                        if (data.count > 0) {
+                            section.innerHTML = `<button class="modifierBut size" id="confirmationBlack">Confirmer</button>`;
+                            const leaveC = document.getElementById("confirmationBlack");
+                            leaveC.addEventListener("click", () => {
+                                confirmationModalBlackFunction();
+                                refresh();
+                                refreshTicket();
+                            });
+                        } else {
+                            section.innerHTML = `<button disabled class="modifierBut disabled size" id="confirmationBlack">Comfirmer</button>`;
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erreur:", error);
+                        p.textContent = "Erreur de chargement";
+                    });
+                }
+
+                leaveB.addEventListener("click",()=>{
+                    confirmationModalBlackFunction();
+                    refresh();
+                    refreshTicket();
+                });
                 leave2.onclick = closeModalBlackFunction;
+
+                function startCountdown(element) {
+                    const dateString = element.getAttribute("data-timestamp");
+                    const targetTimeUTC = new Date(dateString);
+                    const timezoneOffset = targetTimeUTC.getTimezoneOffset();
+                    const targetTime = targetTimeUTC.getTime() - (timezoneOffset * 60000);
+                
+                    if (isNaN(targetTime)) {
+                        element.textContent = "Date invalide";
+                        return;
+                    }
+                
+                    function updateCountdown() {
+                        const now = Date.now();
+                        const diff = targetTime - now;
+                    
+                        if (diff <= 0) {
+                            element.textContent = "";
+                            const figure = element.closest("figure");
+                            const img = figure.querySelector("img");
+                            img.src = "./img/icone/ticket.png";
+                            setTimeout(refresh, 1000);
+                            return;
+                        }
+                    
+                        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                    
+                        element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+                        setTimeout(updateCountdown, 1000);
+                    }
+                
+                    updateCountdown();
+                }
+
+                
+                // Applique la fonction startCountdown sur chaque élément "figcaption" avec un attribut data-timestamp
+            document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
+
             } catch (error) {
                 console.log(error)
             }
@@ -1633,102 +1788,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
         });
     </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            function startCountdown(element) {
-
-                function refresh() {
-                    const p = document.getElementById("nbTicket");
-                    const section = document.getElementById("SubmitBlack");
-
-                    fetch('ajax/refreshTicket.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            'idoffre': <?php echo json_encode($idOffre); ?>
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.error) {
-                            console.error("Erreur:", data.error);
-                            p.textContent = "Erreur de chargement";
-                            return;
-                        }
-                    
-                        p.textContent = `Il vous reste ${data.count} blacklistage`;
-                        if (data.count > 0) {
-                            section.innerHTML = `<button class="modifierBut size" id="confirmationBlack">Confirmer</button>`;
-                            const leaveC = document.getElementById("confirmationBlack");
-                            leaveC.onclick = confirmationModalBlackFunction;
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Erreur:", error);
-                        p.textContent = "Erreur de chargement";
-                    });
-                }
-
-                const dateString = element.getAttribute("data-timestamp"); // Récupère la date PostgreSQL
-                // console.log("dateString : " + dateString + "\n");
-            
-                const targetTimeUTC = new Date(dateString); // La date d'origine en UTC
-                // console.log("targetTimeUTC : " + targetTimeUTC + "\n");
-            
-                // Vérification du fuseau horaire
-                const timezoneOffset = targetTimeUTC.getTimezoneOffset(); // Décalage en minutes par rapport à UTC
-                // console.log("Timezone offset (en minutes) : " + timezoneOffset);
-            
-                const targetTime = targetTimeUTC.getTime() - (timezoneOffset * 60000); // Ajuste l'heure locale
-                // console.log("Adjusted targetTime (locale) : " + targetTime + "\n");
-            
-                if (isNaN(targetTime)) {
-                    // console.error("Format de date invalide :", dateString);
-                    element.textContent = "Date invalide";
-                    return;
-                }
-            
-                function updateCountdown() {
-                    const now = Date.now(); // Heure actuelle en millisecondes (locale)
-                    // console.log("now (locale) : " + now + "\n");
-                
-                    const diff = targetTime - now;
-                
-                    if (diff <= 0) {
-                        element.textContent = "";
-                        const figure = element.closest("figure"); // Sélectionne l'élément figure
-                        const img = figure.querySelector("img"); // Sélectionne l'image dans la figure
-                        img.src = "./img/icone/ticket.png"; // Change l'image pour un ticket bleu (ou toute autre image de votre choix)
-                        setTimeout(1000);
-                        refresh();
-                        return;
-                    }
-                
-                    // Calcul du temps restant
-                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                
-                    // Mise à jour du texte avec le format : jours, heures, minutes, secondes
-                    element.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
-                
-                    // Rafraîchir toutes les secondes
-                    setTimeout(updateCountdown, 1000);
-                }
-            
-                updateCountdown();
-
-                
-
-            }
-
-            // Applique la fonction startCountdown sur chaque élément "figcaption" avec un attribut data-timestamp
-            document.querySelectorAll("figcaption[data-timestamp]").forEach(startCountdown);
-        });
-    </script>
+    
     <script type="module">
         import {
             geocode

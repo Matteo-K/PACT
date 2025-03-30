@@ -67,6 +67,20 @@
           <button type="submit" onclick="submitForm(event,0)" class="modifierBut">Sauvegarder & Quitter</button>
           <!-- Si -1 on retourne au menu du professionnel sans enregistrer -->
           <button type="submit" onclick="submitForm(event,-1)" class="modifierBut">Quitter</button>
+
+          <!-- Suppression de l'offre -->
+          <?php if ($step > 1) { ?>
+            <button type="submit" onclick="deleteOffre()" class="modifierBut">Supprimer l'offre</button>
+          <?php } ?>
+          <form id="deleteOffre" action="ajax/demandeSuppression.php" method="post">
+            <input type="hidden" name="idOffre" value="<?= $idOffre ?>">
+          </form>
+          <script>
+            function deleteOffre() {
+              const formDel = document.getElementById("deleteOffre");
+              formDel.submit();
+            }
+          </script>
     </aside>
     <section>
       <?php

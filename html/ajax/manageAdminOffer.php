@@ -27,27 +27,32 @@
         break;
         
         case 'supprimer':
-          function deleteOffer($queries) {
+          function deleteOffer($queries, $data) {
             global $conn;
             
             foreach ($queries as $query) {
               $stmt = $conn->prepare($query);
-              $stmt->execute([$idOffre]);
+              $stmt->execute([$data]);
             }
           }
 
           function deleteImg($folder) {
-            $files = glob($folder . '*');
-
+            if (!is_dir($folder)) {
+                return;
+            }
+        
+            $files = glob($folder . '/*');
+        
             foreach ($files as $file) {
-                if (is_file($file)) {
-                    unlink($file);
-                }
+              if (is_dir($file)) {
+                deleteImg($file);
+              } else {
+                unlink($file);
+              }
             }
-            if (is_dir($folder)) {
-              rmdir($folder);
-            }
+            rmdir($folder);
           }
+        
 
           $stmt = $conn->prepare("SELECT categorie FROM pact.offres WHERE idoffre=?;");
           $stmt->execute([$idOffre]);
@@ -61,56 +66,99 @@
                 "DELETE FROM pact._tag_spec WHERE idoffre=?;"
               ];
 
-              deleteOffer($queries);
+              deleteOffer($queries, $idOffre);
               break;
 
             case 'Restaurant':
               $queries = [
-                "DELETE FROM pact._restauration WHERE idoffre=?;",
                 "DELETE FROM pact._tag_restaurant WHERE idoffre=?;",
-                "DELETE FROM pact._menu WHERE idoffre=?;"
+                "DELETE FROM pact._menu WHERE idoffre=?;",
+                "DELETE FROM pact._restauration WHERE idoffre=?;"
               ];
 
-              deleteOffer($queries);
+              deleteOffer($queries, $idOffre);
               break;
 
             case 'Activité':
               $queries = [
-                "DELETE FROM pact._activite WHERE idoffre=?;",
                 "DELETE FROM pact._tag_act WHERE idoffre=?;",
                 "DELETE FROM pact._offreprestation_inclu WHERE idoffre=?;",
                 "DELETE FROM pact._offreprestation_non_inclu WHERE idoffre=?;",
-                "DELETE FROM pact._accessibilite WHERE idoffre=?;"
+                "DELETE FROM pact._offreaccess WHERE idoffre=?;",
+                "DELETE FROM pact._activite WHERE idoffre=?;"
               ];
 
-              deleteOffer($queries);
+              deleteOffer($queries, $idOffre);
             break;
 
             case 'Parc Attraction':
               $queries = [
-                "DELETE FROM pact._parcattraction WHERE idoffre=?;",
-                "DELETE FROM pact._tag_parc WHERE idoffre=?;"
+                "DELETE FROM pact._tag_parc WHERE idoffre=?;",
+                "DELETE FROM pact._parcattraction WHERE idoffre=?;"
               ];
 
-              deleteOffer($queries);
+              deleteOffer($queries, $idOffre);
               break;
 
             case 'Visite':
               $queries = [
-                "DELETE FROM pact._visite WHERE idoffre=?;",
                 "DELETE FROM pact._offreaccess WHERE idoffre=?;",
                 "DELETE FROM pact._visite_langue WHERE idoffre=?;",
-                "DELETE FROM pact._tag_visite WHERE idoffre=?;"
+                "DELETE FROM pact._tag_visite WHERE idoffre=?;",
+                "DELETE FROM pact._visite WHERE idoffre=?;"
               ];
 
-              deleteOffer($queries);
+              deleteOffer($queries, $idOffre);
               break;
           }
           // Supprime toute les images de tout les dossiers
-          deleteImg("../img/imageMenu/" . $idOffre . "/");
-          deleteImg("../img/imagePlan/" . $idOffre . "/");
-          deleteImg("../img/imageOffre/" . $idOffre . "/");
+          deleteImg("../img/imageAvis/" . $idOffre);
+          deleteImg("../img/imageMenu/" . $idOffre);
+          deleteImg("../img/imagePlan/" . $idOffre);
+          deleteImg("../img/imageOffre/" . $idOffre);
 
+          // Suppression des avis
+          $queries = [
+            "DELETE FROM pact._signalementc WHERE idc=?",
+            "DELETE FROM pact._reponse WHERE idc=?",
+            "DELETE FROM pact._reponse WHERE ref=?",
+            "DELETE FROM pact._avisimage WHERE idc=?",
+            "DELETE FROM pact._blacklist WHERE idc=?",
+            "DELETE FROM pact._avis WHERE idc=?",
+            "DELETE FROM pact._commentaire WHERE idc=?"
+          ];
+
+          $stmt = $conn->prepare("SELECT idc FROM pact.avis WHERE idoffre=?;");
+          $stmt -> execute([$idOffre]);
+          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            deleteOffer($queries, $row["idc"]);
+          }
+          
+          // Option
+          $stmt = $conn->prepare("SELECT idoption FROM pact._option_offre WHERE idoffre=?;");
+          $stmt->execute([$idOffre]);
+          $idOptions = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+          if (!empty($idOptions)) {
+              $placeholders = implode(',', array_fill(0, count($idOptions), '?'));
+              $stmt = $conn->prepare("DELETE FROM pact._dateoption WHERE idoption IN ($placeholders);");
+              $stmt->execute($idOptions);
+          }
+
+          // Suppression des données de l'offre
+          $queries = [
+            "DELETE FROM pact._option_offre WHERE idoffre=?;",
+            "DELETE FROM pact._illustre WHERE idoffre=?;",
+            "DELETE FROM pact._abonner WHERE idoffre=?;",
+            "DELETE FROM pact._consulter WHERE idoffre=?;",
+            "DELETE FROM pact._localisation WHERE idoffre=?;",
+            "DELETE FROM pact._horairemidi WHERE idoffre=?;",
+            "DELETE FROM pact._horaireprecise WHERE idoffre=?;",
+            "DELETE FROM pact._horairesoir WHERE idoffre=?;",
+            "DELETE FROM pact._offre WHERE idoffre=?;"
+          ];
+
+          deleteOffer($queries, $idOffre);
           // Redirection vers l'offre
           header("location: ../index.php");
         exit();
