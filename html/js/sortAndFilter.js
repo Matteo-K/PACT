@@ -828,6 +828,7 @@ function createFront(offer) {
     imgRelief.classList.add("premiumImg");
     imgRelief.setAttribute("src", "../img/icone/service-premium.png");
     imgRelief.setAttribute("alt", "icone premium");
+    imgRelief.setAttribute("loading", "lazy");
     figure.appendChild(imgRelief);
   }
 
@@ -970,6 +971,7 @@ function createLogoCategorie(offer) {
   img.setAttribute("src", chemin + imageCategorie);
   img.setAttribute("alt", offer.categorie);
   img.setAttribute("title", offer.categorie);
+  img.setAttribute("loading","lazy");
 
   figure.appendChild(img);
 
