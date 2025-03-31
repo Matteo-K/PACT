@@ -27,7 +27,7 @@ if ($action === "nbTicket") {
     echo json_encode(["dates" => $dates]);
 } elseif ($action === "note") {
     $stmt = $conn->prepare("SELECT a.*,
-    AVG(a.note) OVER() AS moynote,
+    ROUND(AVG(a.note) OVER(), 1) AS moynote,
     COUNT(a.note) OVER() AS nbnote,
     SUM(CASE WHEN a.note = 1 THEN 1 ELSE 0 END) OVER() AS note_1,
     SUM(CASE WHEN a.note = 2 THEN 1 ELSE 0 END) OVER() AS note_2,
