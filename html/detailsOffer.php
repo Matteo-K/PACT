@@ -1805,7 +1805,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             
                                 // Ajout du texte de notation
                                 const notationText = document.createElement("p");
-                                notationText.textContent = `${avis[0]['moynote'].toFixed(1)} / 5 (${avis[0]['nbnote']} avis)`;
+                                notationText.textContent = `${avis[0]['moynote']} / 5 (${avis[0]['nbnote']} avis)`;
                                 div1.appendChild(notationText);
                             
                                 // Ajout des barres de notation détaillées
