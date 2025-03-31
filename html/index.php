@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>PACT - Chargement...</title>
+    <title>PACT - Chargement</title>
 </head>
 <body id="chargement">
 
@@ -114,7 +114,7 @@
 
     setInterval(() => {
         changeTitle("PACT - Chargement");
-    }, 500);
+    }, 400);
     setInterval(changeSlogan, 3600); // Active la fonction toutes les 3.6 secondes (= 3 rotations du logo pour être synchro)
 
     changeSlogan();
