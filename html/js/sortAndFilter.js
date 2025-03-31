@@ -545,7 +545,66 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 function addPing(array) {
   removeAllPing();
 
+  
   array.forEach(elt => {
+    let imageCategorie;
+    let chemin = "../img/icone/pointeurOffre/";
+    switch (elt["categorie"]){
+      case 'Activité':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-activite.png",
+            iconSize: [60, 60],
+            iconAnchor: [30, 60],
+            popupAnchor: [0, -60]
+
+        });
+        break;
+        
+      case 'Parc Attraction':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-parc.png",
+            iconSize: [60, 60],
+            iconAnchor: [30, 60],
+            popupAnchor: [0, -60]
+        });
+        break;
+
+      case 'Restaurant':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-restaurant.png",
+            iconSize: [60, 60],
+            iconAnchor: [30, 60],
+            popupAnchor: [0, -60]
+        });
+        break;
+
+      case 'Spectacle':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-spectacle.png",
+            iconSize: [60, 60],
+            iconAnchor: [30, 60],
+            popupAnchor: [0, -60]
+        });
+        break;
+
+      case 'Visite':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-visite.png",
+            iconSize: [60, 60],
+            iconAnchor: [30, 60],
+            popupAnchor: [0, -60]
+        });
+        break;
+
+      default:
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-activite.png",
+            iconSize: [60, 60],
+            iconAnchor: [30, 60],
+            popupAnchor: [0, -60]
+        });
+        break;
+    };
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
         const latLng = location;
