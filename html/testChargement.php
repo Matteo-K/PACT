@@ -65,7 +65,7 @@
 
     function changeSlogan() {
         // Ajoute une classe pour l'effet de disparition
-        texte.classList.add("sortie");
+        texte.classList.add("ancienSlogan");
 
         setTimeout(() => {
             // Change le texte
@@ -75,7 +75,7 @@
             texte.classList.add("nouveauSlogan");
 
             setTimeout(() => {
-                texte.classList.remove("fade-in");
+                texte.classList.remove("nouveauSlogan");
             }, 500); // Durée de l'animation d'apparition
         }, 500); // Correspond à la durée de l'animation de disparition
     }
