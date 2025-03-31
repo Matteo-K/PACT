@@ -502,6 +502,18 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   // Filtres + Recherches
   array = filterOffers(array, search);
 
+  let filtres = [
+    filtrerParCategorie,
+    filtrerParNotes,
+    filtrerParPrix,
+    filtrerParStatuts,
+    filtrerParHeure
+  ];
+
+  if (userType == "pro_public" || userType == "pro_prive") {
+    filtres.push(filtrerParStatutEnLigneHorsLigne);
+  }
+
   const count = countFiltre(filtres);
   const spanApplication = document.getElementById("filtreApplique");
   const btnReset = document.getElementById("btnReset");
