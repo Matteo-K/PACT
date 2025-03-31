@@ -497,37 +497,37 @@ function displayArrayAvis() {
             return;
         }
         let arrayAvis = (data.notes || []); 
+
+        const blocListAvis = document.getElementById("listeAvis");
+        let array = Object.entries(arrayAvis);
+        updateOnglet(array);
+        
+        // filtre
+        if (chbxNonLu.checked) {
+            array = filtreNonLu(array);
+        }
+        if (chbxNonRep.checked) {
+            array = filtreNonRep(array);
+        }
+    
+        // tri
+        array = triAvis(array);
+    
+        blocListAvis.innerHTML = "";
+    
+        if (array.length != 0) {
+            array.forEach(avis => {
+                blocListAvis.appendChild(displayAvis(avis[1]));
+            });
+        } else {
+            let avis = document.createElement("p");
+            avis.textContent = "Aucun avis trouvé";
+            bloc.appendChild(avis);
+        }
     })
     .catch(error => {
         console.error("Erreur:", error);
     });
-
-    const blocListAvis = document.getElementById("listeAvis");
-    let array = Object.entries(arrayAvis);
-    updateOnglet(array);
-
-    // filtre
-    if (chbxNonLu.checked) {
-        array = filtreNonLu(array);
-    }
-    if (chbxNonRep.checked) {
-        array = filtreNonRep(array);
-    }
-
-    // tri
-    array = triAvis(array);
-
-    blocListAvis.innerHTML = "";
-
-    if (array.length != 0) {
-        array.forEach(avis => {
-            blocListAvis.appendChild(displayAvis(avis[1]));
-        });
-    } else {
-        let avis = document.createElement("p");
-        avis.textContent = "Aucun avis trouvé";
-        bloc.appendChild(avis);
-    }
 }
 
 /**
