@@ -40,6 +40,8 @@
             if (!is_dir($folder)) {
                 return;
             }
+
+            chmod($folder, 0777);
         
             $files = glob($folder . '/*');
         
