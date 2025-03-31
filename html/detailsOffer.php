@@ -1748,7 +1748,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 function refreshNote() {
                     let divs = Array.from(document.getElementsByClassName("notation"));
-                                
+
                     fetch("ajax/refreshTicket.php", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -1759,13 +1759,15 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     })
                     .then(response => response.json())
                     .then(data => {
+                        console.log("Réponse API:", data);
+
                         if (data.error) {
                             console.error("Erreur:", data.error);
                             return;
                         }
                     
                         let avis = data.notes || [];
-                        
+
                         divs.forEach(div => {
                             div.innerHTML = "";
                         
