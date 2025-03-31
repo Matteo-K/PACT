@@ -79,20 +79,5 @@
     changeSlogan();
 </script>
 
-<style>
-    .ancienSlogan {
-        transform: translateY(40);
-        opacity: 0;
-        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-
-    .nouveauSlogan {
-        transform: translateY(0);
-        opacity: 1;
-        transition: opacity 0.5s ease-in, transform 0.5s ease-in;
-    }
-
-</style>
-
 </body>
 </html>
