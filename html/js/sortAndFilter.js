@@ -626,6 +626,7 @@ function addPing(array) {
   removeAllPing();
 
   array.forEach(elt => {
+    let imageCategorie;
     let chemin = "../img/icone/pointeurOffre/";
     switch (elt["categorie"]){
       case 'Activité':
