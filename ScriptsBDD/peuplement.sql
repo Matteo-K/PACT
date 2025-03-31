@@ -284,13 +284,13 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
 
        --New
        ('./img/imageOffre/8/1.jpg', 'newOffre'),
-       ('./img/imageOffre/9/2.jpg', 'newOffre'),
-       ('./img/imageOffre/10/3.jpg', 'newOffre'),
-       ('./img/imageOffre/11/4.jpg', 'newOffre'),
-       ('./img/imageOffre/12/5.jpg', 'newOffre'),
-       ('./img/imageOffre/13/6.jpg', 'newOffre'),
-       ('./img/imageOffre/14/7.jpg', 'newOffre'),
-       ('./img/imageOffre/15/8.jpg', 'newOffre');
+       ('./img/imageOffre/9/1.jpg', 'newOffre'),
+       ('./img/imageOffre/10/1.jpg', 'newOffre'),
+       ('./img/imageOffre/11/1.jpg', 'newOffre'),
+       ('./img/imageOffre/12/1.jpg', 'newOffre'),
+       ('./img/imageOffre/13/1.jpg', 'newOffre'),
+       ('./img/imageOffre/14/1.jpg', 'newOffre'),
+       ('./img/imageOffre/15/1.jpg', 'newOffre');
 
 -- Peuplement de la table _illustre
 INSERT INTO _illustre (idOffre, url) 
