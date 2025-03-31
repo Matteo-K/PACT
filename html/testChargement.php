@@ -35,7 +35,7 @@
         "Exploration des trésors bretons en cours...",
         "PACT lève l’ancre pour une nouvelle aventure...",
         "Chargement des falaises et des plages secrètes...",
-        "Vérification du bon dosage beurre/sucre...",
+        "Vérification du bon dosage beurre/sucre... dosage correct beaucoup ...",
         "Les korrigans peaufinent ton séjour...",
         "Attention, ici il ne pleut que sur les c...",
         "On tisse ton programme comme une coiffe bigoudène...",
