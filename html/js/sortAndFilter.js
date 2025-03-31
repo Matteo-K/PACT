@@ -542,69 +542,31 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   addPing(array);
 }
 
+function getCategoryIcon(categorie, chemin) {
+  const icons = {
+    "Activité": "pointeur-activite.png",
+    "Parc Attraction": "pointeur-parc.png",
+    "Restaurant": "pointeur-restaurant.png",
+    "Spectacle": "pointeur-spectacle.png",
+    "Visite": "pointeur-visite.png"
+  };
+  
+  return L.icon({
+    iconUrl: chemin + (icons[categorie] || "pointeur-activite.png"),
+    iconSize: [70, 70],
+    iconAnchor: [35, 70],
+    popupAnchor: [0, -70]
+  });
+}
+
 function addPing(array) {
   removeAllPing();
 
   
   array.forEach(elt => {
     let imageCategorie;
-    let chemin = "../img/icone/pointeurOffre/";
-    switch (elt["categorie"]){
-      case 'Activité':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [70, 70],
-            iconAnchor: [35, 70],
-            popupAnchor: [0, -70]
+    imageCategorie = getCategoryIcon(elt["categorie"], "../img/icone/pointeurOffre/");
 
-        });
-        break;
-        
-      case 'Parc Attraction':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-parc.png",
-            iconSize: [70, 70],
-            iconAnchor: [35, 70],
-            popupAnchor: [0, -70]
-        });
-        break;
-
-      case 'Restaurant':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-restaurant.png",
-            iconSize: [70, 70],
-            iconAnchor: [35, 70],
-            popupAnchor: [0, -70]
-        });
-        break;
-
-      case 'Spectacle':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-spectacle.png",
-            iconSize: [70, 70],
-            iconAnchor: [35, 70],
-            popupAnchor: [0, -70]
-        });
-        break;
-
-      case 'Visite':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-visite.png",
-            iconSize: [70, 70],
-            iconAnchor: [35, 70],
-            popupAnchor: [0, -70]
-        });
-        break;
-
-      default:
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [70, 70],
-            iconAnchor: [35, 70],
-            popupAnchor: [0, -70]
-        });
-        break;
-    };
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
         const latLng = location;
