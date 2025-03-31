@@ -23,42 +23,35 @@
         "Vérification des marées en cours...",
         "Chargement des crêpes et du cidre...",
         "Connexion aux légendes bretonnes...",
-        "Préparation du kouign-amann, patience...",
-        "Mise à jour du carnet de voyage...",
+        "Préparation du kouign-amann, patience mon gourmand...",
         "Optimisation des bons plans bretons...",
         "Moulin à vent activé, ça charge plus vite !",
         "Ne pas déranger : les korrigans travaillent...",
-        "Réglage de la météo : prévoir une éclaircie !",
+        "Réglage de la météo : prévision d'une éclaircie !",
         "Répartition des bigoudènes sur la carte...",
         "Déploiement des spots secrets en cours...",
-        "On affine les recommandations, encore un instant...",
         "Préparation des sentiers côtiers, chaussures prêtes ?",
-        "Calcul de la meilleure crêperie à proximité...",
-        "Un instant, on remplit ton sac d’astuces locales...",
+        "Recherche de la meilleure crêperie à proximité...",
         "Téléchargement des vagues pour les surfeurs...",
-        "Ajustement du vent pour les amateurs de voile...",
         "Tri des meilleures adresses : presque fini !",
         "PACT explore la Bretagne pour toi...",
         "PACT trace ta route en Bretagne...",
-        "Préparation des plus beaux itinéraires...",
         "Exploration des trésors bretons en cours...",
         "PACT lève l’ancre pour une nouvelle aventure...",
         "Chargement des falaises et des plages secrètes...",
         "Vérification du bon dosage beurre/sucre...",
         "Les korrigans peaufinent ton séjour...",
-        "Affinage des meilleures expériences locales...",
-        "PACT ajuste la météo bretonne... ou presque !",
+        "Attention, ici il en pleut que sur les cons !",
         "On tisse ton programme comme une coiffe bigoudène...",
         "Chargement des vents iodés et des embruns...",
         "Calibration des crêpes dentelles...",
         "PACT explore les sentiers pour toi...",
         "Enquête sur la meilleure galette-saucisse en cours...",
         "On cartographie les pépites bretonnes...",
-        "Préparation des vagues parfaites pour le surf...",
         "PACT suit les mouettes pour t’indiquer la voie...",
         "On ajuste la marée pour une sortie idéale...",
         "Déploiement des plus belles lumières bretonnes...",
-        "PACT embarque à bord, tiens bon la barre !"
+        "PACT embarque à bord, tiens bon la barre !",
     ];
 
     const texte = document.querySelector("p");
@@ -85,19 +78,6 @@
     // Première exécution immédiate
     changeSlogan();
 </script>
-
-<style>
-    .ancienSlogan {
-        opacity: 0;
-        transition: opacity 0.5s ease-out;
-    }
-
-    .nouveauSlogan {
-        opacity: 1;
-        transition: opacity 0.5s ease-in;
-    }
-
-</style>
 
 </body>
 </html>
