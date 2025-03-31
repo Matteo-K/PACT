@@ -91,18 +91,7 @@ class Visit extends Offer implements Categorie {
   }
 
   public function getData($attributs_ = []) {
-    $attr = $this->loadData($attributs_);
-
-    // if (empty($thisAttribut)) {
-    //   $finalGet = array_intersect($thisAttribut, $attributs) ?? [];
-    //   foreach ($finalGet as $format => $attr) {
-    //     $thisData[$format] = $this->visitData[$attr];
-    //   }
-    //   $finalGet = array_intersect($thisAttribut, $attributHoraire) ?? [];
-    //   foreach ($finalGet as $value) {
-    //     $thisData[$value] = Horaire::horaireToJson($this->visitData[$value]);
-    //   }
-    // }
+    $thisData = $this->loadData($attributs_);
 
     return array_merge(parent::getData($attributs_), $thisData);
   }
