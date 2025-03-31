@@ -1701,12 +1701,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             return;
                         }
                     
-                        let dates = data.dates || []; // Récupérer les dates ou un tableau vide si aucune date n'est retournée
-                        console.table(dates); // Maintenant, il s'exécute après la récupération des données
+                        let dates = data.dates || [];
+                        // console.table(dates);
                     
-                        div.innerHTML = ""; // Vider la div avant d'ajouter les nouveaux éléments
-                    
-                        // Générer les tickets en attente de fin de blacklistage
+                        div.innerHTML = "";
+
                         dates.forEach((date, index) => {
                             const figure = document.createElement("figure");
                             figure.classList.add("figBlacklist");
@@ -1747,6 +1746,81 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     });
                 }
 
+                function refreshNote() {
+                    let divs = Array.from(document.getElementsByClassName("notation"));
+
+                    fetch("ajax/refreshTicket.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            idoffre: <?php echo json_encode($idOffre); ?>,
+                            action: "note"
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error("Erreur:", data.error);
+                            return;
+                        }
+
+                        let avis = data.notes || [];
+                        // console.table(dates);
+                        divs.forEach(div => {
+                            div.innerHTML = "";
+    
+                            if (avis) {
+                                const div1 = document.createElement("div");
+                                const div2 = document.createElement("div");
+    
+                                let etoilesPleines = Math.floor(avis[0]['moynote']);
+                                let reste = avis[0]['moynote'] - etoilesPleines;
+                                let listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
+    
+                                div2.classList.add("notedetaille");
+    
+                                for (let index = 1; index <= etoilesPleines; index++) {
+                                    const starPleine = document.createElement("div");
+                                    starPleine.classList.add("star", "pleine");
+                                    div1.appendChild(starPleine);
+                                }
+                                if (reste > 0) {
+                                    div1.appendChild(`<div class="star partielle" style="--pourcentage: ${etoilesPleines*100}%;"></div>`)
+                                }
+    
+                                for (let index = etoilesPleines + (reste > 0 ? 1 : 0 ); index < 5; index++) {
+                                    div1.appendChild(`<div class="star vide"></div>`);                                
+                                }
+                                div1.appendChild(`<p>${avis[0]['moynote'].toFixed(1)} / 5 ${avis[0]['nbnote']}</p>`);
+    
+                                for (let index = 5; index >=1; index--) {
+                                    const divLigne = document.createElement("div");
+                                    const divBarre = document.createElement("div");
+                                    const pourcentageParNote = avis[0][`note_${index}`] !== undefined ? (avis[0][`note_${index}`] / avis[0]['nbnote']) * 100 : 0;
+    
+    
+                                    divLigne.classList.add("ligneNotation");
+                                    divBarre.classList.add("barreDeNotationBlanche");
+    
+                                    divLigne.appendChild(`<span>${listNoteAdjectif[index - 1]}</span>`);
+                                    divBarre.appendChild(`<div class="barreDeNotationJaune" style="width: ${pourcentageParNote}%;"></div>`);
+                                    divLigne.appendChild(divBarre);
+                                    divLigne.appendChild(`<span>(${avis[0][`note_${index}`] ?? 0} avis)</span>`);
+                                    
+                                    div2.appendChild(divLigne);
+                                }
+                            } else {
+                                div.appendChild(`<p class="notation">Pas de note pour le moment</p>`);
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Erreur:", error);
+                        divs.forEach(div => {
+                            div.textContent = "Erreur de chargement";
+                        });
+                    });
+                }
 
                 function refresh() {
                     const p = document.getElementById("nbTicket");
@@ -1777,6 +1851,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             leaveC.addEventListener("click", () => {
                                 confirmationModalBlackFunction();
                                 refresh();
+                                refreshNote();
                                 refreshTicket();
                             });
                         } else {
@@ -1792,6 +1867,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 leaveB.addEventListener("click",()=>{
                     confirmationModalBlackFunction();
                     refresh();
+                    refreshNote();
                     refreshTicket();
                 });
                 leave2.onclick = closeModalBlackFunction;
