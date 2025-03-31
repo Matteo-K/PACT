@@ -200,72 +200,80 @@
           <summary>
             Avis membre
           </summary>
-          <div class="details-content">
-            <?php foreach ($avisSignal as $row) { ?>
-              <div class="details-form signalAdmin">
-                <div>
-                  <figure>
-                    <img src="<?= $row["url"] ?>" alt="<?= $row["pseudo"] ?>" title="<?= $row["pseudo"] ?>">
-                    <figcaption><?= $row["pseudo"] ?></figcaption>
-                  </figure>
-                  <span>
-                    <?php 
-                      $date = new DateTime($row["dtsignalement"]);
-                      echo $date->format("j/m/y - H:i"); 
-                    ?>
-                  </span>
+          <?php if (!empty($avisSignal) || !empty($reponseSignal)) { ?>
+            <div class="details-content">
+              <?php foreach ($avisSignal as $row) { ?>
+                <div class="details-form signalAdmin">
+                  <div>
+                    <figure>
+                      <img src="<?= $row["url"] ?>" alt="<?= $row["pseudo"] ?>" title="<?= $row["pseudo"] ?>">
+                      <figcaption><?= $row["pseudo"] ?></figcaption>
+                    </figure>
+                    <span>
+                      <?php 
+                        $date = new DateTime($row["dtsignalement"]);
+                        echo $date->format("j/m/y - H:i"); 
+                      ?>
+                    </span>
+                  </div>
+                  <div class="contenueSignalement">
+                    <h4><?= signalRaison($row["raison"]) ?></h4>
+                    <p><?= $row["complement"] ?></p>
+                  </div>
+                  <form action="../ajax/actionSignalement.php" method="post">
+                    <button type="submit" name="action" value="visualiser" class="modifierBut">Voir dans son contexte</button>
+                    <button type="submit" name="action" value="rejeter" class="modifierBut">Rejeter</button>
+                    <button type="submit" name="action" value="supprimer" class="modifierBut">Supprimer</button>
+                    <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
+                    <input type="hidden" name="idavis" value="<?= $row["idc"] ?>">
+                    <input type="hidden" name="signaleur" value="<?= $row["idu"] ?>">
+                  </form>
                 </div>
-                <div class="contenueSignalement">
-                  <h4><?= signalRaison($row["raison"]) ?></h4>
-                  <p><?= $row["complement"] ?></p>
-                </div>
-                <form action="../ajax/actionSignalement.php" method="post">
-                  <button type="submit" name="action" value="visualiser" class="modifierBut">Voir dans son contexte</button>
-                  <button type="submit" name="action" value="rejeter" class="modifierBut">Rejeter</button>
-                  <button type="submit" name="action" value="supprimer" class="modifierBut">Supprimer</button>
-                  <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
-                  <input type="hidden" name="idavis" value="<?= $row["idc"] ?>">
-                  <input type="hidden" name="signaleur" value="<?= $row["idu"] ?>">
-                </form>
-              </div>
+              <?php } ?>
+            </div>
+            <?php } else { ?>
+              <p>Aucun avis signalé</p>
             <?php } ?>
-          </div>
         </details>
         <!-- Signalements des réponses -->
         <details class="details-style" <?= !empty($reponseSignal) ? 'open' : '' ?>>
           <summary>
             Réponse professionnel
           </summary>
-          <div class="details-content">
-            <?php foreach ($reponseSignal as $row) { ?>
-              <div class="details-form signalAdmin">
-                <div>
-                  <figure>
-                    <img src="<?= $row["url"] ?>" alt="<?= $row["denomination"] ?>" title="<?= $row["denomination"] ?>">
-                    <figcaption><?= $row["denomination"] ?></figcaption>
-                  </figure>
-                  <span>
-                    <?php 
-                      $date = new DateTime($row["dtsignalement"]);
-                      echo $date->format("j/m/y - H:i"); 
-                    ?>
-                  </span>
+          <?php if (!empty($reponseSignal)) { ?>
+            <div class="details-content">
+              <?php foreach ($reponseSignal as $row) { ?>
+                <div class="details-form signalAdmin">
+                  <div>
+                    <figure>
+                      <img src="<?= $row["url"] ?>" alt="<?= $row["denomination"] ?>" title="<?= $row["denomination"] ?>">
+                      <figcaption><?= $row["denomination"] ?></figcaption>
+                    </figure>
+                    <span>
+                      <?php 
+                        $date = new DateTime($row["dtsignalement"]);
+                        echo $date->format("j/m/y - H:i"); 
+                      ?>
+                    </span>
+                  </div>
+                  <div class="contenueSignalement">
+                    <h4><?= signalRaison($row["raison"]) ?></h4>
+                    <p><?= $row["complement"] ?></p>
+                  </div>
+                  <form action="../ajax/actionSignalement.php" method="post">
+                    <button type="submit" name="action" value="visualiser" class="modifierBut">Voir dans son contexte</button>
+                    <button type="submit" name="action" value="rejeter" class="modifierBut">Rejeter</button>
+                    <button type="submit" name="action" value="supprimer" class="modifierBut">Supprimer</button>
+                    <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
+                    <input type="hidden" name="idavis" value="<?= $row["idc_avis"] ?>">
+                    <input type="hidden" name="signaleur" value="<?= $row["idu"] ?>">
+                  </form>
                 </div>
-                <div class="contenueSignalement">
-                  <h4><?= signalRaison($row["raison"]) ?></h4>
-                  <p><?= $row["complement"] ?></p>
-                </div>
-                <form action="../ajax/actionSignalement.php" method="post">
-                  <button type="submit" name="action" value="visualiser" class="modifierBut">Voir dans son contexte</button>
-                  <button type="submit" name="action" value="rejeter" class="modifierBut">Rejeter</button>
-                  <button type="submit" name="action" value="supprimer" class="modifierBut">Supprimer</button>
-                  <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
-                  <input type="hidden" name="idavis" value="<?= $row["idc_avis"] ?>">
-                  <input type="hidden" name="signaleur" value="<?= $row["idu"] ?>">
-                </form>
-              </div>
+              <?php } ?>
+            </div>
+            <?php } else { ?>
+              <p>Aucune réponse signalé</p>
             <?php } ?>
-          </div>
         </details>
       </div>
     </details>

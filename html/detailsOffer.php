@@ -1844,7 +1844,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             try {
                 const typeOffre = "<?= $offre[0]['nomabonnement'] ?>";
-                console.log(typeOffre);
 
                 if (typeOffre == "Premium") {
                     const modalTicket = document.getElementById("ticketModal");
