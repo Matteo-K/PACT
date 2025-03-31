@@ -249,6 +249,7 @@ VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attracti
        (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP),
        (4, 'inactif', 'Brain l escape game', 'L unique escape game de Lannion.', 'escape.game@mail.com', '0987654321', TRUE, 'http://escape-game.com', 'Divertissement familial', CURRENT_TIMESTAMP),
        (4, 'inactif', 'Baie de Lannion', 'Venez voir la mangnifique Baie de Lannion', 'baie-lannuin@mail.com', '0267842542', TRUE, 'http://baiedelannion.com', 'Divertissement familial', CURRENT_TIMESTAMP);
+
 -- Peuplement de la table _image
 INSERT INTO _image (url, nomImage) 
 VALUES ('./img/profile_picture/default.svg', 'default.svg'), 
@@ -286,6 +287,8 @@ VALUES (3, './img/imageOffre/3/0.png'),
        (5,'./img/imageOffre/5/1.png'),
        (5,'./img/imageOffre/5/2.png'),
        (6,'./img/imageOffre/6/1.jpeg'); /* essaie pour brain */
+
+
 -- Peuplement de la table _photo_profil
 INSERT INTO _photo_profil (idU, url) 
 VALUES (1, './img/profile_picture/default.svg'),
@@ -474,9 +477,9 @@ VALUES ('2024-11-01','2024-11-08',1,16.68),
 
 -- Peuplement de la table _option_offre
 INSERT INTO _option_offre (idOption, idOffre, nomOption) 
-VALUES (3, 1, 'EnRelief'), 
+VALUES (1, 3, 'ALaUne'), 
        (2, 2, 'ALaUne'),
-       (1, 3, 'ALaUne'),
+       (3, 1, 'EnRelief'),
        (4, 5, 'EnRelief'), 
        (5, 4, 'ALaUne'),
        (6, 3, 'EnRelief'),
