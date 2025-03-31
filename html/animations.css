@@ -32,11 +32,12 @@
   100% { transform: rotate(360deg); }
 }
 
-/* classe attribuée au logo quand un lien est cliqué, pour expliciter le chargement en cours (logo du header, bouton de retour des formulaires...) */
+/* classe attribuée au logo sur la page de chargement et quand un lien est cliqué */
 .chargementActif{
   animation: logocharge 1.2s cubic-bezier(0.36, -0.3, 0.71, 1.46) infinite;
 }
 
+/* changement de slogan sur la page de chargement */
 .ancienSlogan {
   transform: translateY(40px);
   opacity: 0;
