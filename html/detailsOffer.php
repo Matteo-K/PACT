@@ -1767,6 +1767,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         }
                     
                         let avis = data.notes || [];
+                        displayArray
 
                         divs.forEach(div => {
                             div.innerHTML = "";

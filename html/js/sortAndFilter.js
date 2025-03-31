@@ -632,42 +632,55 @@ function addPing(array) {
       case 'Activité':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [60, 60]
+            iconSize: [60, 60],
+            iconAnchor: [30, 60],
+            popupAnchor: [0, -60]
+
         });
         break;
         
       case 'Parc Attraction':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-parc.png",
-            iconSize: [60, 60]
+            iconSize: [60, 60],
+            iconAnchor: [30, 60],
+            popupAnchor: [0, -60]
         });
         break;
 
       case 'Restaurant':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-restaurant.png",
-            iconSize: [60, 60]
+            iconSize: [60, 60],
+            iconAnchor: [30, 60],
+            popupAnchor: [0, -60]
         });
         break;
 
       case 'Spectacle':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-spectacle.png",
-            iconSize: [60, 60]
+            iconSize: [60, 60],
+            iconAnchor: [30, 60],
+            popupAnchor: [0, -60]
         });
         break;
 
       case 'Visite':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-visite.png",
-            iconSize: [60, 60]
+            iconSize: [60, 60],
+            iconAnchor: [30, 60],
+            popupAnchor: [0, -60]
         });
         break;
 
       default:
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [60, 60]
+            iconSize: [60, 60],
+            iconAnchor: [30, 60],
+            popupAnchor: [0, -60]
         });
         break;
     };

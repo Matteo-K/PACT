@@ -223,7 +223,7 @@ let listeAvis = <?php echo json_encode($avis) ?>;
 let currentPage = 1;
 let nbElement = 50;
 document.addEventListener('DOMContentLoaded', function() {
-    displayArrayAvis(listeAvis);
+    displayArrayAvis();
 });
 
 let avisSelect = -1;
@@ -477,11 +477,34 @@ const selectTri = document.getElementById("TridateAvis");
 const chbxNonLu = document.getElementById("fltAvisNonLus");
 const chbxNonRep = document.getElementById("fltAvisNonRep");
 
-selectTri.addEventListener('change', () => displayArrayAvis(listeAvis));
-chbxNonLu.addEventListener('change', () => displayArrayAvis(listeAvis));
-chbxNonRep.addEventListener('change', () => displayArrayAvis(listeAvis));
+selectTri.addEventListener('change', () => displayArrayAvis());
+chbxNonLu.addEventListener('change', () => displayArrayAvis());
+chbxNonRep.addEventListener('change', () => displayArrayAvis());
 
-function displayArrayAvis(arrayAvis) {
+function displayArrayAvis() {
+    fetch("ajax/refreshTicket.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            idoffre: <?php echo json_encode($idOffre); ?>,
+            action: "note"
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            console.error("Erreur:", data.error);
+            return;
+        }
+        let arrayAvis = json_encode(data.notes || []); 
+    })
+    .catch(error => {
+        console.error("Erreur:", error);
+        divs.forEach(div => {
+            div.textContent = "Erreur de chargement";
+        });
+    });
+
     const blocListAvis = document.getElementById("listeAvis");
     let array = Object.entries(arrayAvis);
     updateOnglet(array);
