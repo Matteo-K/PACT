@@ -81,15 +81,15 @@
 
 <style>
     .ancienSlogan {
-        transform: translateY(30px);
+        transform: translateY(20px);
         opacity: 0;
-        transition: tranform opacity 0.5s ease-out;
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
 
     .nouveauSlogan {
-        transform: translateY(0);
+        transform: translateY(-20px);
         opacity: 1;
-        transition: transform opacity 0.5s ease-in;
+        transition: opacity 0.5s ease-in, transform 0.5s ease-in;
     }
 
 </style>
