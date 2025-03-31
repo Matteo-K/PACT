@@ -585,7 +585,6 @@ function resetCheckbox(array_chckbx) {
  */
 function sortAndFilter(array, search, elementStart, nbElement) {
   // Recherche
-  console.log(array);
   array = searchOffer(array, search);
 
   // Filtres
@@ -636,12 +635,66 @@ function addPing(array) {
 
   array.forEach(elt => {
     let chemin = "../img/icone/pointeurOffre/";
-    switch (elt[""]){};
+    switch (elt["categorie"]){
+      case 'Activité':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-activite.png",
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+        break;
+        
+      case 'Parc Attraction':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-parc.png",
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+        break;
+
+      case 'Restaurant':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-restaurant.png",
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+        break;
+
+      case 'Spectacle':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-spectacle.png",
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+        break;
+
+      case 'Visite':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-visite.png",
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+        break;
+
+      default:
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-activite.png",
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+        break;
+    };
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
         const latLng = location;
         if (latLng) {
-          let marker = L.marker(latLng)
+          let marker = L.marker(latLng, {icon: imageCategorie})
             .bindPopup(`
               <div id="popupCarte">
                 <h3>${elt['nomOffre']}</h3>
