@@ -577,6 +577,7 @@ function resetCheckbox(array_chckbx) {
  */
 function sortAndFilter(array, search, elementStart, nbElement) {
   // Recherche
+  console.log(array);
   array = searchOffer(array, search);
 
   // Filtres
@@ -626,6 +627,8 @@ function addPing(array) {
   removeAllPing();
 
   array.forEach(elt => {
+    let chemin = "../img/icone/pointeurOffre/";
+    switch (elt[""]){};
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
         const latLng = location;
