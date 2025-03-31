@@ -151,7 +151,7 @@ $avis = $avisTemp;
                     Auteur
                 </h2>
                 <?php
-                    $stmt = $conn->prepare("SELECT * FROM pact.offres WHERE idoffre = ?");
+                    $stmt = $conn->prepare("SELECT nomabonnement FROM pact.offres WHERE idoffre = ?");
                     $stmt->execute([$idOffre]);
                     if ($stmt->fetch()["nomabonnement"] == "Premium") {
                 ?>
@@ -210,6 +210,47 @@ $avis = $avisTemp;
 
 
 <script>
+
+// Blacklist
+
+try {
+    const typeOffre = "<?= $abonnement[0] ?>";
+    console.log(typeOffre);
+
+    if (typeOffre == "Premium") {
+        const modalTicket = document.getElementById("ticketModal");
+        const openModalTicketButtons = document.getElementById("PopupTicket");
+        const closeModalTicketButton = document.querySelector(".closeTicket");
+        const body = document.body;
+
+        // Fonction pour afficher le modal
+        function openModalTicketFunction() {
+            modalTicket.style.display = "block";
+            body.classList.add("no-scroll");
+        }
+
+        // Fonction pour fermer le modal
+        function closeModalTicketFunction() {
+            modalTicket.style.display = "none";
+            body.classList.remove("no-scroll");
+        }
+
+        // Ouvrir le popup lorsque le bouton est cliqué
+        openModalTicketButtons.onclick = openModalTicketFunction
+
+        // Fermer le popup lorsqu'on clique sur la croix
+        closeModalTicketButton.addEventListener('click', closeModalTicketFunction);
+
+        // Fermer le popup si on clique en dehors de celui-ci
+        window.addEventListener('click', (event) => {
+            if (event.target === modalTicket) {
+                closeModalTicketFunction();
+            }
+        });
+    }
+} catch (error) {
+    console.log(error)
+}
 
 // afficheListeAvis = document.querySelectorAll("#listeAvis > li");
 // afficheListeAvis.forEach(li => {
