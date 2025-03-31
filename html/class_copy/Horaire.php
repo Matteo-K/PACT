@@ -29,8 +29,8 @@ class Horaire {
   public function getHoraire($idOffre_) {
     $this->loadHoraire($idOffre_);
     return [
-      "horaireMidi" => $this->horaireMidi,
-      "horaireSoir" => $this->horaireSoir,
+      "horaireMidi" => self::horaireToJson($this->horaireMidi),
+      "horaireSoir" => self::horaireToJson($this->horaireSoir),
       "ouverture" => $this->ouverture
     ];
   }
