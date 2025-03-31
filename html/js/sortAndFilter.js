@@ -632,7 +632,7 @@ function addPing(array) {
       case 'Activité':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [32, 32],
+            iconSize: [60, 60],
             iconAnchor: [16, 32],
             popupAnchor: [0, -32]
         });
@@ -641,7 +641,7 @@ function addPing(array) {
       case 'Parc Attraction':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-parc.png",
-            iconSize: [32, 32],
+            iconSize: [60, 60],
             iconAnchor: [16, 32],
             popupAnchor: [0, -32]
         });
@@ -650,7 +650,7 @@ function addPing(array) {
       case 'Restaurant':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-restaurant.png",
-            iconSize: [32, 32],
+            iconSize: [60, 60],
             iconAnchor: [16, 32],
             popupAnchor: [0, -32]
         });
@@ -659,7 +659,7 @@ function addPing(array) {
       case 'Spectacle':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-spectacle.png",
-            iconSize: [32, 32],
+            iconSize: [60, 60],
             iconAnchor: [16, 32],
             popupAnchor: [0, -32]
         });
@@ -668,7 +668,7 @@ function addPing(array) {
       case 'Visite':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-visite.png",
-            iconSize: [32, 32],
+            iconSize: [60, 60],
             iconAnchor: [16, 32],
             popupAnchor: [0, -32]
         });
@@ -677,7 +677,7 @@ function addPing(array) {
       default:
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [32, 32],
+            iconSize: [60, 60],
             iconAnchor: [16, 32],
             popupAnchor: [0, -32]
         });
