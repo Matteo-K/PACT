@@ -56,7 +56,7 @@ WHERE
 ORDER BY 
     a.datepublie desc");
     $stmt->execute([$idOffre],);
-    $notes = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    $notes = $stmt->fetchAll();
 
     echo json_encode(["notes" => $notes]);
 } else {
