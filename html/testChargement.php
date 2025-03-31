@@ -19,7 +19,6 @@
 
     <script>
     const slogans = [
-        "Prépare ta prochaine escapade en Bretagne...",
         "Vérification des marées en cours...",
         "Chargement des crêpes et du cidre...",
         "Connexion aux légendes bretonnes...",
@@ -33,66 +32,62 @@
         "Préparation des sentiers côtiers, chaussures prêtes ?",
         "Recherche de la meilleure crêperie à proximité...",
         "Téléchargement des vagues pour les surfeurs...",
-        "Tri des meilleures adresses : presque fini !",
-        "PACT explore la Bretagne pour toi...",
-        "PACT trace ta route en Bretagne...",
         "Exploration des trésors bretons en cours...",
         "PACT lève l’ancre pour une nouvelle aventure...",
         "Chargement des falaises et des plages secrètes...",
         "Vérification du bon dosage beurre/sucre...",
         "Les korrigans peaufinent ton séjour...",
-        "Attention, ici il en pleut que sur les cons !",
+        "Attention, ici il ne pleut que sur les c...",
         "On tisse ton programme comme une coiffe bigoudène...",
-        "Chargement des vents iodés et des embruns...",
+        "Chargement des vents d'ouest et des embruns...",
         "Calibration des crêpes dentelles...",
-        "PACT explore les sentiers pour toi...",
         "Enquête sur la meilleure galette-saucisse en cours...",
         "On cartographie les pépites bretonnes...",
         "PACT suit les mouettes pour t’indiquer la voie...",
         "On ajuste la marée pour une sortie idéale...",
         "Déploiement des plus belles lumières bretonnes...",
-        "PACT embarque à bord, tiens bon la barre !",
+        "Chargement des phares, attention aux tempêtes...",
+        "Les druides concoctent de nouveaux bons plans...",
+        "Mise en place des dolmens et menhirs...",
+        "Chargement des marais salants...",
+        "Révision des accords de bombarde et biniou...",
+        "N'oublions pas la côte de granit rose...",
+        "Préparation des fest-noz, échauffe tes jambes...",
+        "Harmonisation du chant des goélands...",
+        "Préparation de la potion magique...",
+        "PACT envoie une jolie carte postale pour le départ...",
+        "Réglage du compas vers la bonne direction...",
+        "PACT cherche une connexion... aux esprits celtes...",
+        "PACT demande à Merlin de valider ton parcours...",
+        "Trop de beurre ajouté... Redémarrage en cours...",
+        "Les korrigans sont en grève... Attendons qu'ils coopèrent...",
+        "Un goéland a volé nos plans... On les récupère !",
+        "PACT souffle sur les nuages... Beau temps en approche !"
     ];
 
     const texte = document.querySelector("p");
 
+    // utilisation des classes avec des animations pour faire disparaître / apparaitre les slogans
     function changeSlogan() {
-        // Ajoute une classe pour l'effet de disparition
         texte.classList.add("ancienSlogan");
 
         setTimeout(() => {
-            // Change le texte
             texte.textContent = slogans[Math.floor(Math.random() * slogans.length)];
-            // Enlève la classe pour l'effet d'apparition
+
+            //
             texte.classList.remove("ancienSlogan");
             texte.classList.add("nouveauSlogan");
 
             setTimeout(() => {
                 texte.classList.remove("nouveauSlogan");
-            }, 500); // Durée de l'animation d'apparition
-        }, 500); // Correspond à la durée de l'animation de disparition
+            }, 400); 
+        }, 400); 
     }
 
-    setInterval(changeSlogan, 3600); // Change toutes les 3.6 secondes
+    setInterval(changeSlogan, 3600); // Active la fonction toutes les 3.6 secondes (= 3 rotations du logo pour être synchro)
 
-    // Première exécution immédiate
     changeSlogan();
 </script>
-
-<style>
-    .ancienSlogan {
-        transform: translateY(30px);
-        opacity: 0;
-        transition: tranform opacity 0.5s ease-out;
-    }
-
-    .nouveauSlogan {
-        transform: translateY(0);
-        opacity: 1;
-        transition: transform opacity 0.5s ease-in;
-    }
-
-</style>
 
 </body>
 </html>

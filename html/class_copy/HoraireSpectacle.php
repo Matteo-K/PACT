@@ -1,13 +1,23 @@
 <?php
   class HoraireSpectacle {
 
-    static function loadHoraire($conn, $idOffre) {
+    private $horaire = [];
+    private $ouverture = "EstFermé";
+
+    static function loadHoraire($idOffre) {
+      global $conn;
+      
       $stmt = $conn->prepare("SELECT listehoraireprecise FROM pact.offres WHERE idoffre = ?");
       $stmt->execute([$idOffre]);
       $horaire = $stmt->fetchAll(PDO::FETCH_COLUMN);
       return $horaire;
     }
 
+    /**
+   * Convertit un tableau d'horaires en JSON
+   * @param horaire tableau des horaires
+   * @return json Convertion du tableau en json
+   */
     static function horaireToJson($horaire) {
       $formattedResultats = [];
       foreach ($horaire as $result) {
@@ -21,6 +31,12 @@
       return $formattedResultats;
     }
 
+    /**
+     * Convertit un JSON en tableau d'horaires
+     * @param idOffre_ id de l'offre
+     * @param horaires tableau des horaires
+     * @return array Convertion du json en format de la class
+     */
     static function jsonToHoraire($idOffre_, $horaires) {
       if (empty($horaires)) {
         return [];
@@ -47,6 +63,7 @@
     /**
      * Détermine le statut ouvert/fermé 
      * suivant les horaires déterminés et l'horaire actuelle
+     * @return String état de l'offre "EstOuvert" / "EstFermé"
      */
     static function statutOuverture($soir, $midi = null) {
       foreach ($soir as $horaire) {
