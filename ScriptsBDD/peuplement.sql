@@ -283,14 +283,14 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
 
 
        --New
-       ('./img/imageOffre/8/1.png', 'newOffre'),
-       ('./img/imageOffre/9/2.png', 'newOffre'),
-       ('./img/imageOffre/10/3.png', 'newOffre'),
-       ('./img/imageOffre/11/4.png', 'newOffre'),
-       ('./img/imageOffre/12/5.png', 'newOffre'),
-       ('./img/imageOffre/13/6.png', 'newOffre'),
-       ('./img/imageOffre/14/7.png', 'newOffre'),
-       ('./img/imageOffre/15/8.png', 'newOffre');
+       ('./img/imageOffre/8/1.jpg', 'newOffre'),
+       ('./img/imageOffre/9/2.jpg', 'newOffre'),
+       ('./img/imageOffre/10/3.jpg', 'newOffre'),
+       ('./img/imageOffre/11/4.jpg', 'newOffre'),
+       ('./img/imageOffre/12/5.jpg', 'newOffre'),
+       ('./img/imageOffre/13/6.jpg', 'newOffre'),
+       ('./img/imageOffre/14/7.jpg', 'newOffre'),
+       ('./img/imageOffre/15/8.jpg', 'newOffre');
 
 -- Peuplement de la table _illustre
 INSERT INTO _illustre (idOffre, url) 
@@ -310,14 +310,14 @@ VALUES (3, './img/imageOffre/3/0.png'),
        (6,'./img/imageOffre/6/1.jpeg'), /* essaie pour brain */
 
        --New
-       (8,'./img/imageOffre/8/1.png'),
-       (9,'./img/imageOffre/9/2.png'),
-       (10,'./img/imageOffre/10/3.png'),
-       (11,'./img/imageOffre/11/4.png'),
-       (12,'./img/imageOffre/12/5.png'),
-       (13,'./img/imageOffre/13/6.png'),
-       (14,'./img/imageOffre/14/7.png'),
-       (15,'./img/imageOffre/15/8.png');
+       (8,'./img/imageOffre/8/1.jpg'),
+       (9,'./img/imageOffre/9/1.jpg'),
+       (10,'./img/imageOffre/10/1.jpg'),
+       (11,'./img/imageOffre/11/1.jpg'),
+       (12,'./img/imageOffre/12/1.jpg'),
+       (13,'./img/imageOffre/13/1.jpg'),
+       (14,'./img/imageOffre/14/1.jpg'),
+       (15,'./img/imageOffre/15/1.jpg');
 
 
 -- Peuplement de la table _photo_profil
