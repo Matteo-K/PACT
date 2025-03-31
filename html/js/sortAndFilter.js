@@ -585,6 +585,7 @@ function resetCheckbox(array_chckbx) {
  */
 function sortAndFilter(array, search, elementStart, nbElement) {
   // Recherche
+  console.log(array);
   array = searchOffer(array, search);
 
   // Filtres
@@ -1147,5 +1148,3 @@ const checkboxesCat = [chkBxVisite, chkBxActivite, chkBxSpectacle, chkBxParc, ch
 const checkboxesNote = [chkBxNote1, chkBxNote2, chkBxNote3, chkBxNote4, chkBxNote5];
 const checkboxesStatuts = [chkBxOuvert, chkBxFerme];
 const checkboxesEnligneHorsLigne = [chkBxEnLigne, chkBxHorsLigne];
-
-console.log(arrayOffer);
