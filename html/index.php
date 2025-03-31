@@ -65,6 +65,27 @@
         "PACT souffle sur les nuages... Beau temps en approche !"
     ];
 
+    //On récupère l'url (paramètres GET + localisation) en cas de recherche effectuée sur une page pour recréer la bonne url
+    let params = window.location.search; 
+    let localisation = window.location.hash;
+    let url = "pact.php" + params + localisation;
+
+    //iframe invisible pour charger la page d'accueil
+    let iframe = document.createElement("iframe");
+    iframe.src = url;
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+
+    //Vérifier quand l'iframe est chargée et rediriger
+    iframe.onload = function() {
+        window.location.href = url;
+    };
+
+    // Si au bout de 10 secondes on est toujours sur la page, on redirige quand même
+    setTimeout(() => {
+        window.location.href = url;
+    }, 10000);
+
     const texte = document.querySelector("p");
 
     // utilisation des classes avec des animations pour faire disparaître / apparaitre les slogans
@@ -87,6 +108,7 @@
     setInterval(changeSlogan, 3600); // Active la fonction toutes les 3.6 secondes (= 3 rotations du logo pour être synchro)
 
     changeSlogan();
+
 </script>
 
 </body>
