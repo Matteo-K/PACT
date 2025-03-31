@@ -3087,7 +3087,7 @@ label[for="rest_ajoutPhotoMenu"] {
 /*++++++++++++++++++++*/
 /* Css tris, Antoine */
 /*++++++++++++++++++*/
-#blcTriFiltre [type="radio"]{
+.blcTriFiltre [type="radio"]{
   display: none;
 }
 
