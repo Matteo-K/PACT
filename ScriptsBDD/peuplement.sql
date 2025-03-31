@@ -248,17 +248,17 @@ VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attracti
        (3, 'actif', 'Activité Culturelle', 'Explorez la culture locale à travers une activité immersive.', 'activite@mail.com', '0123456794', TRUE, 'http://activite.com', 'Immersion culturelle aves la population local', CURRENT_TIMESTAMP),
        (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP),
        (4, 'inactif', 'Brain l escape game', 'L unique escape game de Lannion.', 'escape.game@mail.com', '0987654321', TRUE, 'http://escape-game.com', 'Divertissement familial', CURRENT_TIMESTAMP),
-       (4, 'inactif', 'Baie de Lannion', 'Venez voir la mangnifique Baie de Lannion', 'baie-lannuin@mail.com', '0267842542', TRUE, 'http://baiedelannion.com', 'Divertissement familial', CURRENT_TIMESTAMP)
+       (4, 'inactif', 'Baie de Lannion', 'Venez voir la mangnifique Baie de Lannion', 'baie-lannuin@mail.com', '0267842542', TRUE, 'http://baiedelannion.com', 'Divertissement familial', CURRENT_TIMESTAMP),
 
        -- New
-       (4, 'actif', 'Randonnée Quad en Côtes d\'Armor', 'Partez à la conquête de nouveaux espaces lors d\'une randonnée en Quad à travers la campagne bretonne, dans un cadre naturel exceptionnel. Vous serez accompagné par un guide qualifié.', 'quad-cotesdarmor@mail.com', '0296123450', TRUE, 'http://randoneequadbzh.com', 'Aventure en plein air et découverte de la nature', CURRENT_TIMESTAMP),
+       (4, 'actif', 'Randonnée Quad en Côtes dArmor', 'Partez à la conquête de nouveaux espaces lors dune randonnée en Quad à travers la campagne bretonne, dans un cadre naturel exceptionnel. Vous serez accompagné par un guide qualifié.', 'quad-cotesdarmor@mail.com', '0296123450', TRUE, 'http://randoneequadbzh.com', 'Aventure en plein air et découverte de la nature', CURRENT_TIMESTAMP),
        (4, 'actif', 'La Grève Blanche', 'Restaurant situé à Trégastel, offrant une vue imprenable sur la mer. Spécialité de fruits de mer frais et plats traditionnels bretons.', 'greveblanche@mail.com', '0296123451', TRUE, 'http://greveblanche.com', 'Cuisine traditionnelle de la mer', CURRENT_TIMESTAMP),
        (4, 'actif', 'La Crêperie du Village Saint-Alban', 'Savourez de délicieuses galettes et crêpes bretonnes dans cette crêperie chaleureuse au cœur de Saint-Alban, idéale pour un repas en famille ou entre amis.', 'creperie-village@mail.com', '0296123452', TRUE, 'http://creperie-saintalban.com', 'Spécialités bretonnes authentiques', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Armor Navigation', 'Embarquez pour une excursion autour des célèbres Sept-Îles en vedette et découvrez un des plus beaux sites naturels de Bretagne, un véritable paradis pour les amateurs d\'oiseaux.', 'armor-navigation@mail.com', '0296123453', TRUE, 'http://armor-navigation.com', 'Excursion en mer et observation des oiseaux', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Fort La Latte - Château de la Roche Goyon', 'Visitez ce magnifique château fortifié du 14ème siècle, avec une vue spectaculaire sur la mer et une riche histoire. Idéal pour les passionnés de patrimoine et d\'architecture médiévale.', 'fort-latte@mail.com', '0296123454', TRUE, 'http://fort-latte.com', 'Histoire et architecture médiévale', CURRENT_TIMESTAMP),
+       (4, 'actif', 'Armor Navigation', 'Embarquez pour une excursion autour des célèbres Sept-Îles en vedette et découvrez un des plus beaux sites naturels de Bretagne, un véritable paradis pour les amateurs doiseaux.', 'armor-navigation@mail.com', '0296123453', TRUE, 'http://armor-navigation.com', 'Excursion en mer et observation des oiseaux', CURRENT_TIMESTAMP),
+       (4, 'actif', 'Fort La Latte - Château de la Roche Goyon', 'Visitez ce magnifique château fortifié du 14ème siècle, avec une vue spectaculaire sur la mer et une riche histoire. Idéal pour les passionnés de patrimoine et darchitecture médiévale.', 'fort-latte@mail.com', '0296123454', TRUE, 'http://fort-latte.com', 'Histoire et architecture médiévale', CURRENT_TIMESTAMP),
        (4, 'actif', 'Crêperie des Grèves Langueux', 'Une crêperie qui ravira les amateurs de galettes et de crêpes, avec une vue sur les plages de Langueux. Un cadre agréable pour déguster des plats typiques de la Bretagne.', 'creperie-grèves@mail.com', '0296123455', TRUE, 'http://creperie-desgreves.com', 'Crêpes bretonnes authentiques', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Les Falaises de Plouha', 'Explorez les impressionnantes falaises de Plouha, un site naturel remarquable offrant des panoramas époustouflants sur la mer. Idéal pour une randonnée en bord de mer et pour admirer la beauté sauvage de la Côte d\'Armor.', 'falaises-plouha@mail.com', '0296123456', TRUE, 'http://falaises-plouha.com', 'Randonnée et panoramas en bord de mer', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Côte de Granit Rose', 'Découvrez l\'un des plus beaux sites naturels de Bretagne avec ses roches granitiques aux formes spectaculaires, entre Ploumanac’h et Perros-Guirec. À explorer en randonnée ou à vélo.', 'granite-rose@mail.com', '0296123457', TRUE, 'http://cotedegranitrose.com', 'Randonnée et découverte des paysages', CURRENT_TIMESTAMP);
+       (4, 'actif', 'Les Falaises de Plouha', 'Explorez les impressionnantes falaises de Plouha, un site naturel remarquable offrant des panoramas époustouflants sur la mer. Idéal pour une randonnée en bord de mer et pour admirer la beauté sauvage de la Côte dArmor.', 'falaises-plouha@mail.com', '0296123456', TRUE, 'http://falaises-plouha.com', 'Randonnée et panoramas en bord de mer', CURRENT_TIMESTAMP),
+       (4, 'actif', 'Côte de Granit Rose', 'Découvrez lun des plus beaux sites naturels de Bretagne avec ses roches granitiques aux formes spectaculaires, entre Ploumanac’h et Perros-Guirec. À explorer en randonnée ou à vélo.', 'granite-rose@mail.com', '0296123457', TRUE, 'http://cotedegranitrose.com', 'Randonnée et découverte des paysages', CURRENT_TIMESTAMP);
 
 -- Peuplement de la table _image
 INSERT INTO _image (url, nomImage) 
@@ -499,23 +499,12 @@ VALUES (3, 'cuisine_locale'),
 
 -- Peuplement de la table _tag_Act
 INSERT INTO _tag_Act (idOffre, nomTag) 
-VALUES (4, 'culturel'),
-
-       --New
-       (8, 'culturel'),
-       (8, 'plein air'),
-       (11, 'culturel'),
-       (11, 'plein air');
+VALUES (4, 'culturel');
 
 -- Peuplement de la table _tag_visite
 INSERT INTO _tag_visite (idOffre, nomTag) 
-VALUES (5, 'culturel'),
+VALUES (5, 'culturel');
 
-       --New
-       (14, 'culturel'),
-       (14, 'plein air'),
-       (15, 'culturel'),
-       (15, 'plein air');
 
 -- Peuplement de la table _habite
 INSERT INTO _habite (idU, codePostal, ville, pays, rue, numeroRue) 
@@ -914,11 +903,7 @@ VALUES (1,1,5,'solo','novembre','2024','ouai pas mal',FALSE),
        (110, 2, 4, 'solo', 'novembre', '2024', 'Spectacle drôle et agréable', FALSE),
        (111, 1, 5, 'solo', 'novembre', '2024', 'Parc d’attractions parfait', FALSE),
        (112, 5, 5, 'solo', 'novembre', '2024', 'Visite très enrichissante', FALSE),
-       (113, 4, 4, 'solo', 'novembre', '2024', 'Activité sympa et agréable', FALSE),
-
-       --New
-       (5,8,5,'solo','novembre','2024','ouai pas mal',FALSE),
-       (6,10,4,'solo','novembre','2024','ouai pas mal',FALSE);
+       (113, 4, 4, 'solo', 'novembre', '2024', 'Activité sympa et agréable', FALSE);
 
 
 INSERT INTO _reponse(idC,ref)
