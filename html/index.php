@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>PACT - Chargement...</title>
+    <title>PACT - Chargement</title>
 </head>
 <body id="chargement">
 
@@ -105,6 +105,16 @@
         }, 400); 
     }
 
+    let nb_point = 0;
+    const NB_POINT_MAX = 3;
+    function changeTitle(nom) {
+        document.title = `${nom}${".".repeat(nb_point)}`;
+        nb_point = (nb_point + 1) % (NB_POINT_MAX + 1);
+    }
+
+    setInterval(() => {
+        changeTitle("PACT - Chargement");
+    }, 400);
     setInterval(changeSlogan, 3600); // Active la fonction toutes les 3.6 secondes (= 3 rotations du logo pour être synchro)
 
     changeSlogan();

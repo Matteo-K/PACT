@@ -223,7 +223,7 @@ let listeAvis = <?php echo json_encode($avis) ?>;
 let currentPage = 1;
 let nbElement = 50;
 document.addEventListener('DOMContentLoaded', function() {
-    displayArrayAvis(listeAvis);
+    displayArrayAvis();
 });
 
 let avisSelect = -1;
@@ -477,37 +477,57 @@ const selectTri = document.getElementById("TridateAvis");
 const chbxNonLu = document.getElementById("fltAvisNonLus");
 const chbxNonRep = document.getElementById("fltAvisNonRep");
 
-selectTri.addEventListener('change', () => displayArrayAvis(listeAvis));
-chbxNonLu.addEventListener('change', () => displayArrayAvis(listeAvis));
-chbxNonRep.addEventListener('change', () => displayArrayAvis(listeAvis));
+selectTri.addEventListener('change', () => displayArrayAvis());
+chbxNonLu.addEventListener('change', () => displayArrayAvis());
+chbxNonRep.addEventListener('change', () => displayArrayAvis());
 
-function displayArrayAvis(arrayAvis) {
-    const blocListAvis = document.getElementById("listeAvis");
-    let array = Object.entries(arrayAvis);
-    updateOnglet(array);
+function displayArrayAvis() {
+    fetch("ajax/refreshTicket.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            idoffre: <?php echo json_encode($idOffre); ?>,
+            action: "note"
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            console.error("Erreur:", data.error);
+            return;
+        }
+        let arrayAvis = (data.notes || []); 
 
-    // filtre
-    if (chbxNonLu.checked) {
-        array = filtreNonLu(array);
-    }
-    if (chbxNonRep.checked) {
-        array = filtreNonRep(array);
-    }
-
-    // tri
-    array = triAvis(array);
-
-    blocListAvis.innerHTML = "";
-
-    if (array.length != 0) {
-        array.forEach(avis => {
-            blocListAvis.appendChild(displayAvis(avis[1]));
-        });
-    } else {
-        let avis = document.createElement("p");
-        avis.textContent = "Aucun avis trouvé";
-        bloc.appendChild(avis);
-    }
+        const blocListAvis = document.getElementById("listeAvis");
+        let array = Object.entries(arrayAvis);
+        updateOnglet(array);
+        
+        // filtre
+        if (chbxNonLu.checked) {
+            array = filtreNonLu(array);
+        }
+        if (chbxNonRep.checked) {
+            array = filtreNonRep(array);
+        }
+    
+        // tri
+        array = triAvis(array);
+    
+        blocListAvis.innerHTML = "";
+    
+        if (array.length != 0) {
+            array.forEach(avis => {
+                blocListAvis.appendChild(displayAvis(avis[1]));
+            });
+        } else {
+            let avis = document.createElement("p");
+            avis.textContent = "Aucun avis trouvé";
+            bloc.appendChild(avis);
+        }
+    })
+    .catch(error => {
+        console.error("Erreur:", error);
+    });
 }
 
 /**

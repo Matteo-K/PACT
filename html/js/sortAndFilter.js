@@ -266,68 +266,33 @@ function sortDateCreaAncien(array) {
 
 // Filtres
 
-// Fonction de filtre par catégorie
-function filtrerParCategorie(offers) {
-  const categoriesSelection = [];
-  
-  if (chkBxVisite.checked) categoriesSelection.push("Visite");
-  if (chkBxActivite.checked) categoriesSelection.push("Activité");
-  if (chkBxSpectacle.checked) categoriesSelection.push("Spectacle");
-  if (chkBxParc.checked) categoriesSelection.push("Parc Attraction");
-  if (chkBxRestauration.checked) categoriesSelection.push("Restaurant");
-
-  if (categoriesSelection.length == 0) {
-    // categoriesSelection = ["Parc", "Visite", "Activite", "Spectacle", "Restauration"];
-    return offers;
-  }
-
-  return offers.filter(offer => categoriesSelection.includes(offer.categorie));
+/**
+ * Récupération des catégories sélectionnés
+ * @return Liste des catégories sélectionnés
+ */
+function getSelectedCategories() {
+  const categoriesSelection = new Set();
+  if (chkBxVisite.checked) categoriesSelection.add("Visite");
+  if (chkBxActivite.checked) categoriesSelection.add("Activité");
+  if (chkBxSpectacle.checked) categoriesSelection.add("Spectacle");
+  if (chkBxParc.checked) categoriesSelection.add("Parc Attraction");
+  if (chkBxRestauration.checked) categoriesSelection.add("Restaurant");
+  return categoriesSelection;
 }
 
-
-// Fonction de filtre par notes
-function filtrerParNotes(offers) {
-  const notesSelection = [];
-
-  if (chkBxNote1.checked) notesSelection.push(1);
-  if (chkBxNote2.checked) notesSelection.push(2);
-  if (chkBxNote3.checked) notesSelection.push(3);
-  if (chkBxNote4.checked) notesSelection.push(4);
-  if (chkBxNote5.checked) notesSelection.push(5);
-
-  if (notesSelection.length == 0) {
-    // notesSelection = [1, 2, 3, 4, 5];
-    return offers;
-  }
-  
-  return offers.filter(offer => {
-    const noteArrondie = Math.ceil(offer.noteAvg);
-    return notesSelection.includes(noteArrondie);
-  });
+/**
+ * Récupérations des notes saisies par l'utilisateur
+ * @return liste des notes sélectionnées
+ */
+function getSelectedNotes() {
+  const notesSelection = new Set();
+  if (chkBxNote1.checked) notesSelection.add(1);
+  if (chkBxNote2.checked) notesSelection.add(2);
+  if (chkBxNote3.checked) notesSelection.add(3);
+  if (chkBxNote4.checked) notesSelection.add(4);
+  if (chkBxNote5.checked) notesSelection.add(5);
+  return notesSelection;
 }
-
-
-// Fonction de filtre par prix
-function filtrerParPrix(offers) {
-  const prixMin = parseInt(selectPrixMin.value);
-  const prixMax = parseInt(selectPrixMax.value);
-
-  return offers.filter(offer => {
-    if (offer.categorie === 'Restaurant') {
-      const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
-      const prixMinOffreRestaurant = prixRange[0];
-      const prixMaxOffreRestaurant = prixRange[0];
-
-      return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
-    } 
-    
-    else {
-      const prixMinOffreAutres = (offer.prixMinimal || 0);
-      return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
-    }
-  });
-}
-
 
 // Fonction qui détermine la plage de prix en fonction de la gamme pour les restaurants
 function getPrixRangeRestaurant(gammeDePrix) {
@@ -344,149 +309,107 @@ function getPrixRangeRestaurant(gammeDePrix) {
 }
 
 
-// Fonction de filtre par statuts
-function filtrerParStatuts(offers) {
-  const statutsSelection = [];
-
-  if (chkBxOuvert.checked) statutsSelection.push("EstOuvert");
-  if (chkBxFerme.checked) statutsSelection.push("EstFermé");
-
-  if (statutsSelection.length == 0) {
-    return offers;
-  }
-
-  return offers.filter(offer => statutsSelection.includes(offer.ouverture));
+/**
+ * Filtre par statuts
+ * @return Récupération de la liste des statuts
+ */
+function getSelectedStatuts() {
+  const statutsSelection = new Set();
+  if (chkBxOuvert.checked) statutsSelection.add("EstOuvert");
+  return statutsSelection;
 }
 
-
-// Fonction de filtre par statuts
-function filtrerParStatutEnLigneHorsLigne(offers) {
-  const statutEnLigneHorsLigne = [];
-
-  if (chkBxEnLigne.checked) statutEnLigneHorsLigne.push("actif");
-  if (chkBxHorsLigne.checked) statutEnLigneHorsLigne.push("inactif");
-
-  if (statutEnLigneHorsLigne.length == 0) {
-    return offers;
+/**
+ * Filtre par statut (unique au pro)
+ * @returns liste des statuts
+ */
+function getSelectedStatutEnLigne() {
+  const statutEnLigneHorsLigne = new Set();
+  if (userType == "pro_public" || userType == "pro_prive") {
+    if (chkBxEnLigne.checked) statutEnLigneHorsLigne.add("actif");
   }
-
-  return offers.filter(offer => statutEnLigneHorsLigne.includes(offer.statut));
+  return statutEnLigneHorsLigne;
 }
 
-
-// Fonction de filtre par heure
-function filtrerParHeure(offers) {
-  // Récupérer les heures sélectionnées par l'utilisateur
-  const heureDebutValue = heureDebut.value;
-  const heureFinValue = heureFin.value;
-
-  // Convertir l'heure en minutes depuis minuit pour faciliter la comparaison
+/**
+ * Filtre par heure
+ * @returns liste des horaire
+ */
+function getSelectedHeureRange() {
   const convertirEnMinutes = (heure) => {
-    console.log(heure);
     const [hours, minutes] = heure.split(":").map(Number);
     return hours * 60 + minutes;
   };
-
-  // Si les heures saisies sont invalides, retourner toutes les offres
-  if (!heureDebutValue || !heureFinValue || isNaN(convertirEnMinutes(heureDebutValue)) || isNaN(convertirEnMinutes(heureFinValue))) {
-    return offers;
-  }
-
-  const heureDebutMinutes = convertirEnMinutes(heureDebutValue);
-  const heureFinMinutes = convertirEnMinutes(heureFinValue);
-
-  return offers.filter(offer => {
-    // Vérifier les horaires pour les spectacles
-    if (offer.categorie === 'Spectacle') {
-      const horairesSpectacle = offer.horaire || [];
-
-      let data = [];
-      horairesSpectacle.forEach(element => {
-        data.push(JSON.parse(element));
-      });
-
-      console.table(data);
-
-      // Pour chaque horaire précis de spectacle
-      return data.some(horaire => {
-        console.log(horaire.horaire);
-        const heureDebutSpectacle = convertirEnMinutes(horaire.heureouverture);  
-        const heureFinSpectacle = convertirEnMinutes(horaire.heurefermeture); 
-
-        // Vérifier si l'horaire du spectacle chevauche l'intervalle de l'utilisateur
-        return (heureDebutSpectacle < heureFinMinutes && heureFinSpectacle > heureDebutMinutes);
-      });
-    }
-    
-    // Vérifier les horaires pour les autres types d'offres
-    else {
-
-      const horaireMidi = offer.horaireMidi || [];
-      const horaireSoir = offer.horaireSoir || [];
-
-      let data = [];
-      horaireMidi.forEach(element => {
-        data.push(JSON.parse(element));
-      });
-
-      horaireSoir.forEach(element => {
-        data.push(JSON.parse(element));
-      });
-
-      // Pour chaque horaire de l'offre
-      return data.some(horaire => {
-        const heureDebut = convertirEnMinutes(horaire.heureOuverture);
-        const heureFin = convertirEnMinutes(horaire.heureFermeture);
-        // Vérifier si l'horaire de l'offre chevauche l'intervalle de l'utilisateur
-        return (heureDebut < heureFinMinutes && heureFin > heureDebutMinutes);
-      });
-    }
-  });
+  const heureDebutValue = heureDebut.value;
+  const heureFinValue = heureFin.value;
+  return {
+    heureDebutMinutes: heureDebutValue ? convertirEnMinutes(heureDebutValue) : null,
+    heureFinMinutes: heureFinValue ? convertirEnMinutes(heureFinValue) : null,
+  };
 }
 
+function filterOffers(offers, search) {
+  const categoriesSelection = getSelectedCategories();
+  const notesSelection = getSelectedNotes();
+  const statutsSelection = getSelectedStatuts();
+  const statutEnLigneHorsLigne = getSelectedStatutEnLigne();
+  const { heureDebutMinutes, heureFinMinutes } = getSelectedHeureRange();
+  const prixMin = parseInt(selectPrixMin.value);
+  const prixMax = parseInt(selectPrixMax.value);
+  const searchLower = search ? search.toLowerCase() : "";
 
-// Fonction de filtre par date
+  return offers.filter(offer => {
+    if (categoriesSelection.size > 0 && !categoriesSelection.has(offer.categorie)) return false;
+    if (notesSelection.size > 0 && !notesSelection.has(Math.ceil(offer.noteAvg))) return false;
+    if (statutsSelection.size > 0 && !statutsSelection.has(offer.ouverture)) return false;
+    if (statutEnLigneHorsLigne.size > 0 && !statutEnLigneHorsLigne.has(offer.statut)) return false;
 
-/**
- * Filtre la liste d'offres suivant le mot clé de recherche pour correspondre
- * - l'un des tags
- * - une catégorie d'offre
- * - une partie du nom de l'offre
- * - une partie de l'adresse
- * - une gamme de prix
- * @param {array} offers - Liste des offres à filtrer
- * @param {string} search - Mot de recherche
- * @returns {array} - Liste des offres filtrées par rapport au mot de recherche
- */
-function searchOffer(offers, search) {
+    if (offer.categorie === 'Restaurant') {
+      const [prixMinOffre, prixMaxOffre] = getPrixRangeRestaurant(offer.gammeDePrix);
+      if (prixMinOffre < prixMin || prixMaxOffre > prixMax) return false;
+    } else {
+      if (offer.prixMinimal < prixMin || offer.prixMinimal > prixMax) return false;
+    }
 
-  if (!search) {
-    return offers;
-  }
+    if (heureDebutMinutes !== null && heureFinMinutes !== null) {
+      let horaires = [];
+      if (offer.categorie === 'Spectacle' && offer.horaire) {
+        horaires = offer.horaire.map(h => JSON.parse(h));
+      } else {
+        if (offer.horaireMidi) horaires.push(...offer.horaireMidi.map(h => JSON.parse(h)));
+        if (offer.horaireSoir) horaires.push(...offer.horaireSoir.map(h => JSON.parse(h)));
+      }
+      if (!horaires.some(horaire => {
+        const heureDebut = convertirEnMinutes(horaire.heureOuverture || horaire.heureouverture);
+        const heureFin = convertirEnMinutes(horaire.heureFermeture || horaire.heurefermeture);
+        return heureDebut < heureFinMinutes && heureFin > heureDebutMinutes;
+      })) return false;
+    }
 
-  return offers.filter((item) => {
-    
-    // Extraire les données nécessaires
-    const categorie = item.categorie || '';
-    const nomOffre = item.nomOffre || '';
-    const gammeDePrix = item.gammeDePrix || '';
-    
-    const numeroRue = item.numeroRue || '';
-    const rue = item.rue || '';
-    const ville = item.ville || '';
-    const pays = item.pays || '';
-    const codePostal = item.codePostal || '';
-    
-    const adresse = `${numeroRue} ${rue} ${ville} ${pays} ${codePostal}`.toLowerCase();
+    // Recherche
+    if (searchLower) {
+      const categorie = offer.categorie || '';
+      const nomOffre = offer.nomOffre || '';
+      const gammeDePrix = offer.gammeDePrix || '';
+      
+      const numeroRue = offer.numeroRue || '';
+      const rue = offer.rue || '';
+      const ville = offer.ville || '';
+      const pays = offer.pays || '';
+      const codePostal = offer.codePostal || '';
+      
+      const adresse = `${numeroRue} ${rue} ${ville} ${pays} ${codePostal}`.toLowerCase();
 
-    // Filtre les données
-    const containsTag = item.tags.some(tag => tag.toLowerCase().includes(search.toLowerCase()));
-    const matchesCategorie = categorie && categorie.toLowerCase().includes(search.toLowerCase());
-    const matchesNomOffre = nomOffre && nomOffre.toLowerCase().includes(search.toLowerCase());
-    const matchesAdresse = adresse && adresse.includes(search.toLowerCase());
-    const matchesGammeDePrix = gammeDePrix === search;
+      const containsTag = offer.tags.some(tag => tag.toLowerCase().includes(searchLower));
+      const matchesCategorie = categorie.toLowerCase().includes(searchLower);
+      const matchesNomOffre = nomOffre.toLowerCase().includes(searchLower);
+      const matchesAdresse = adresse.includes(searchLower);
+      const matchesGammeDePrix = gammeDePrix === search;
 
-    return containsTag || matchesCategorie || matchesNomOffre || matchesAdresse || matchesGammeDePrix;
+      if (!(containsTag || matchesCategorie || matchesNomOffre || matchesAdresse || matchesGammeDePrix)) return false;
+    }
+
+    return true;
   });
 }
 
@@ -499,29 +422,29 @@ function countFiltre(filtres) {
 
   filtres.forEach(filtre => {
     switch (filtre) {
-      case filtrerParCategorie:
+      case "filtrerParCategorie":
         count += checkboxesCat.filter(chk => chk.checked).length;
         break;
 
-      case filtrerParNotes:
+      case "filtrerParNotes":
         count += checkboxesNote.filter(chk => chk.checked).length;
         break;
 
-      case filtrerParPrix:
+      case "filtrerParPrix":
         count += selectPrixMin.value === "0" ? 0 : 1;
         count += selectPrixMax.value === "999999" ? 0 : 1;
         break;
         
-        case filtrerParStatuts:
+        case "filtrerParStatuts":
           count += checkboxesStatuts.filter(chk => chk.checked).length;
           break;
           
-        case filtrerParHeure:
+        case "filtrerParHeure":
           count += heureDebut.value === "" ? 0 : 1;
           count += heureFin.value === "" ? 0 : 1;
         break;
 
-      case filtrerParStatutEnLigneHorsLigne:
+      case "filtrerParStatutEnLigneHorsLigne":
         count += checkboxesEnligneHorsLigne.filter(chk => chk.checked).length;
         break;
     
@@ -576,24 +499,21 @@ function resetCheckbox(array_chckbx) {
  * @param {integer} nbElement nombre d'élément pour la pagnation
  */
 function sortAndFilter(array, search, elementStart, nbElement) {
-  // Recherche
-  array = searchOffer(array, search);
+  // Filtres + Recherches
+  array = filterOffers(array, search);
 
-  // Filtres
   let filtres = [
-    filtrerParCategorie,
-    filtrerParNotes,
-    filtrerParPrix,
-    filtrerParStatuts,
-    filtrerParHeure
+    "filtrerParCategorie",
+    "filtrerParNotes",
+    "filtrerParPrix",
+    "filtrerParStatuts",
+    "filtrerParHeure"
   ];
 
   if (userType == "pro_public" || userType == "pro_prive") {
-    filtres.push(filtrerParStatutEnLigneHorsLigne);
+    filtres.push("filtrerParStatutEnLigneHorsLigne");
   }
-  
-  // Application des filtres
-  array = filtres.reduce((acc, filtre) => filtre(acc), array);
+
   const count = countFiltre(filtres);
   const spanApplication = document.getElementById("filtreApplique");
   const btnReset = document.getElementById("btnReset");
@@ -626,64 +546,6 @@ function addPing(array) {
   removeAllPing();
 
   array.forEach(elt => {
-    let imageCategorie;
-    let chemin = "../img/icone/pointeurOffre/";
-    switch (elt["categorie"]){
-      case 'Activité':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
-
-        });
-        break;
-        
-      case 'Parc Attraction':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-parc.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
-        });
-        break;
-
-      case 'Restaurant':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-restaurant.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
-        });
-        break;
-
-      case 'Spectacle':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-spectacle.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
-        });
-        break;
-
-      case 'Visite':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-visite.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
-        });
-        break;
-
-      default:
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
-        });
-        break;
-    };
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
         const latLng = location;
@@ -1193,5 +1055,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const checkboxesCat = [chkBxVisite, chkBxActivite, chkBxSpectacle, chkBxParc, chkBxRestauration];
 const checkboxesNote = [chkBxNote1, chkBxNote2, chkBxNote3, chkBxNote4, chkBxNote5];
-const checkboxesStatuts = [chkBxOuvert, chkBxFerme];
+const checkboxesStatuts = [chkBxOuvert];
 const checkboxesEnligneHorsLigne = [chkBxEnLigne, chkBxHorsLigne];
