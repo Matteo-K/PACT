@@ -2009,7 +2009,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Assuming geocode() returns a promise with latitude and longitude
             let map = L.map('map').setView([48.46, -2.85], 10);
 
-            pointer = L.icon({
+            let pointer = L.icon({
                 iconUrl: "./img/icone/pointeurOffre/pointeur.png",
                 iconSize: [70, 70],
                 iconAnchor: [35, 70],
