@@ -174,7 +174,7 @@
     <?php require_once "components/footer.php"; ?>
     <?php if ($typeUser != "admin") { ?>
       <!-- Data -->
-      <div id="offers-data" data-offers='<?php echo htmlspecialchars(json_encode($offres->getArray($offres->filtre($idUser, $typeUser)))); ?>'></div>
+      <div id="offers-data" data-offers=''></div>
       <div id="user-data" data-user='<?php echo $typeUser ?>'></div>
       
       <script type="module" src="js/sortAndFilter.js"></script>
