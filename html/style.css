@@ -313,6 +313,25 @@ footer div + div a {
 #chargement p{
   font-size: 1.8em;
   font-style: italic;
+  min-height: 2em;
+  text-align: center;
+  padding: 30px;
+}
+
+@media (max-width: 480px) {
+
+  #chargement #logo{
+    width: 100px;
+    height: auto;
+  }
+  
+  #chargement #logoText{
+    font-size: 3em;
+  }
+  
+  #chargement p{
+    font-size: 1.4em;
+  }
 }
 
 /* ##### Components ##### */
