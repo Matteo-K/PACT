@@ -3087,7 +3087,7 @@ label[for="rest_ajoutPhotoMenu"] {
 /*++++++++++++++++++++*/
 /* Css tris, Antoine */
 /*++++++++++++++++++*/
-#miseEnAvant, #noteCroissant, #noteDecroissant, #prixCroissant, #prixDecroissant, #avisCroissant, #avisDecroissant, #dateCreationRecent, #dateCreationAncien {
+#blcTriFiltre [type="radio"]{
   display: none;
 }
 
