@@ -634,6 +634,8 @@ function addPing(array) {
   removeAllPing();
 
   array.forEach(elt => {
+    let chemin = "../img/icone/pointeurOffre/";
+    switch (elt[""]){};
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
         const latLng = location;
@@ -1145,3 +1147,5 @@ const checkboxesCat = [chkBxVisite, chkBxActivite, chkBxSpectacle, chkBxParc, ch
 const checkboxesNote = [chkBxNote1, chkBxNote2, chkBxNote3, chkBxNote4, chkBxNote5];
 const checkboxesStatuts = [chkBxOuvert, chkBxFerme];
 const checkboxesEnligneHorsLigne = [chkBxEnLigne, chkBxHorsLigne];
+
+console.log(arrayOffer);
