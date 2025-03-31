@@ -553,9 +553,9 @@ function addPing(array) {
       case 'Activité':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
+            iconSize: [70, 70],
+            iconAnchor: [35, 70],
+            popupAnchor: [0, -70]
 
         });
         break;
@@ -563,45 +563,45 @@ function addPing(array) {
       case 'Parc Attraction':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-parc.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
+            iconSize: [70, 70],
+            iconAnchor: [35, 70],
+            popupAnchor: [0, -70]
         });
         break;
 
       case 'Restaurant':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-restaurant.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
+            iconSize: [70, 70],
+            iconAnchor: [35, 70],
+            popupAnchor: [0, -70]
         });
         break;
 
       case 'Spectacle':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-spectacle.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
+            iconSize: [70, 70],
+            iconAnchor: [35, 70],
+            popupAnchor: [0, -70]
         });
         break;
 
       case 'Visite':
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-visite.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
+            iconSize: [70, 70],
+            iconAnchor: [35, 70],
+            popupAnchor: [0, -70]
         });
         break;
 
       default:
         imageCategorie = L.icon({
             iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
+            iconSize: [70, 70],
+            iconAnchor: [35, 70],
+            popupAnchor: [0, -70]
         });
         break;
     };
