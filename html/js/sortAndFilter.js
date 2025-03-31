@@ -184,14 +184,6 @@ function sortNoteDecroissant(array) {
   });
 }
 
-function attribuerEtoiles(note) {
-  if (note <= 1) return 1;
-  else if (note <= 2) return 2;
-  else if (note <= 3) return 3;
-  else if (note <= 4) return 4;
-  else return 5;
-}
-
 function sortprixCroissant(array) {
   return array.sort((offre1, offre2) => {
     const prix1 = offre1.categorie === "Restaurant" 
@@ -634,11 +626,56 @@ function addPing(array) {
   removeAllPing();
 
   array.forEach(elt => {
+    let imageCategorie;
+    let chemin = "../img/icone/pointeurOffre/";
+    switch (elt["categorie"]){
+      case 'Activité':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-activite.png",
+            iconSize: [60, 60]
+        });
+        break;
+        
+      case 'Parc Attraction':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-parc.png",
+            iconSize: [60, 60]
+        });
+        break;
+
+      case 'Restaurant':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-restaurant.png",
+            iconSize: [60, 60]
+        });
+        break;
+
+      case 'Spectacle':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-spectacle.png",
+            iconSize: [60, 60]
+        });
+        break;
+
+      case 'Visite':
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-visite.png",
+            iconSize: [60, 60]
+        });
+        break;
+
+      default:
+        imageCategorie = L.icon({
+            iconUrl: chemin + "pointeur-activite.png",
+            iconSize: [60, 60]
+        });
+        break;
+    };
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
         const latLng = location;
         if (latLng) {
-          let marker = L.marker(latLng)
+          let marker = L.marker(latLng, {icon: imageCategorie})
             .bindPopup(`
               <div id="popupCarte">
                 <h3>${elt['nomOffre']}</h3>
