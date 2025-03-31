@@ -1701,12 +1701,11 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             return;
                         }
                     
-                        let dates = data.dates || []; // Récupérer les dates ou un tableau vide si aucune date n'est retournée
-                        console.table(dates); // Maintenant, il s'exécute après la récupération des données
+                        let dates = data.dates || [];
+                        // console.table(dates);
                     
-                        div.innerHTML = ""; // Vider la div avant d'ajouter les nouveaux éléments
-                    
-                        // Générer les tickets en attente de fin de blacklistage
+                        div.innerHTML = "";
+
                         dates.forEach((date, index) => {
                             const figure = document.createElement("figure");
                             figure.classList.add("figBlacklist");
@@ -1747,6 +1746,116 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     });
                 }
 
+                function refreshNote() {
+                    let divs = Array.from(document.getElementsByClassName("notation"));
+
+                    fetch("ajax/refreshTicket.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            idoffre: <?php echo json_encode($idOffre); ?>,
+                            action: "note"
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Réponse API:", data);
+
+                        if (data.error) {
+                            console.error("Erreur:", data.error);
+                            return;
+                        }
+                    
+                        let avis = data.notes || [];
+
+                        divs.forEach(div => {
+                            div.innerHTML = "";
+                        
+                            if (avis.length > 0) {
+                                const div1 = document.createElement("div");
+                                const div2 = document.createElement("div");
+                            
+                                let etoilesPleines = Math.floor(avis[0]['moynote']);
+                                let reste = avis[0]['moynote'] - etoilesPleines;
+                                let listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
+                            
+                                div2.classList.add("notedetaille");
+                            
+                                // Ajout des étoiles pleines
+                                for (let index = 0; index < etoilesPleines; index++) {
+                                    const star = document.createElement("div");
+                                    star.classList.add("star", "pleine");
+                                    div1.appendChild(star);
+                                }
+                            
+                                // Ajout de l'étoile partielle si besoin
+                                if (reste > 0) {
+                                    const starPartielle = document.createElement("div");
+                                    starPartielle.classList.add("star", "partielle");
+                                    starPartielle.style.setProperty("--pourcentage", `${reste * 100}%`);
+                                    div1.appendChild(starPartielle);
+                                }
+                            
+                                // Ajout des étoiles vides restantes
+                                for (let index = etoilesPleines + (reste > 0 ? 1 : 0); index < 5; index++) {
+                                    const starVide = document.createElement("div");
+                                    starVide.classList.add("star", "vide");
+                                    div1.appendChild(starVide);
+                                }
+                            
+                                // Ajout du texte de notation
+                                const notationText = document.createElement("p");
+                                notationText.textContent = `${avis[0]['moynote']} / 5 (${avis[0]['nbnote']} avis)`;
+                                div1.appendChild(notationText);
+                            
+                                // Ajout des barres de notation détaillées
+                                for (let index = 5; index >= 1; index--) {
+                                    const divLigne = document.createElement("div");
+                                    const divBarre = document.createElement("div");
+                                
+                                    const pourcentageParNote = avis[0][`note_${index}`] !== undefined 
+                                        ? (avis[0][`note_${index}`] / avis[0]['nbnote']) * 100 
+                                        : 0;
+                                
+                                    divLigne.classList.add("ligneNotation");
+                                    divBarre.classList.add("barreDeNotationBlanche");
+                                
+                                    const label = document.createElement("span");
+                                    label.textContent = listNoteAdjectif[index - 1];
+                                
+                                    const barreJaune = document.createElement("div");
+                                    barreJaune.classList.add("barreDeNotationJaune");
+                                    barreJaune.style.width = `${pourcentageParNote}%`;
+                                
+                                    const nbAvis = document.createElement("span");
+                                    nbAvis.textContent = `(${avis[0][`note_${index}`] ?? 0} avis)`;
+                                
+                                    divBarre.appendChild(barreJaune);
+                                    divLigne.appendChild(label);
+                                    divLigne.appendChild(divBarre);
+                                    divLigne.appendChild(nbAvis);
+                                
+                                    div2.appendChild(divLigne);
+                                }
+                            
+                                div.appendChild(div1);
+                                div.appendChild(div2);
+                            
+                            } else {
+                                const noNoteText = document.createElement("p");
+                                noNoteText.classList.add("notation");
+                                noNoteText.textContent = "Pas de note pour le moment";
+                                div.appendChild(noNoteText);
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Erreur:", error);
+                        divs.forEach(div => {
+                            div.textContent = "Erreur de chargement";
+                        });
+                    });
+                }
 
                 function refresh() {
                     const p = document.getElementById("nbTicket");
@@ -1777,6 +1886,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             leaveC.addEventListener("click", () => {
                                 confirmationModalBlackFunction();
                                 refresh();
+                                refreshNote();
                                 refreshTicket();
                             });
                         } else {
@@ -1792,6 +1902,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 leaveB.addEventListener("click",()=>{
                     confirmationModalBlackFunction();
                     refresh();
+                    refreshNote();
                     refreshTicket();
                 });
                 leave2.onclick = closeModalBlackFunction;

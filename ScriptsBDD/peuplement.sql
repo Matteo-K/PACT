@@ -248,7 +248,17 @@ VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attracti
        (3, 'actif', 'Activité Culturelle', 'Explorez la culture locale à travers une activité immersive.', 'activite@mail.com', '0123456794', TRUE, 'http://activite.com', 'Immersion culturelle aves la population local', CURRENT_TIMESTAMP),
        (4, 'actif', 'Visite Guidée du cap fréhel', 'Visite guidée des plus beaux sites du cap Fréhel.', 'visite@mail.com', '0123456795', TRUE, NULL, 'Découverte guidée', CURRENT_TIMESTAMP),
        (4, 'inactif', 'Brain l escape game', 'L unique escape game de Lannion.', 'escape.game@mail.com', '0987654321', TRUE, 'http://escape-game.com', 'Divertissement familial', CURRENT_TIMESTAMP),
-       (4, 'inactif', 'Baie de Lannion', 'Venez voir la mangnifique Baie de Lannion', 'baie-lannuin@mail.com', '0267842542', TRUE, 'http://baiedelannion.com', 'Divertissement familial', CURRENT_TIMESTAMP);
+       (4, 'inactif', 'Baie de Lannion', 'Venez voir la mangnifique Baie de Lannion', 'baie-lannuin@mail.com', '0267842542', TRUE, 'http://baiedelannion.com', 'Divertissement familial', CURRENT_TIMESTAMP),
+
+       -- New
+       (4, 'actif', 'Randonnée Quad en Côtes dArmor', 'Partez à la conquête de nouveaux espaces lors dune randonnée en Quad à travers la campagne bretonne, dans un cadre naturel exceptionnel. Vous serez accompagné par un guide qualifié.', 'quad-cotesdarmor@mail.com', '0296123450', TRUE, 'http://randoneequadbzh.com', 'Aventure en plein air et découverte de la nature', CURRENT_TIMESTAMP),
+       (4, 'actif', 'La Grève Blanche', 'Restaurant situé à Trégastel, offrant une vue imprenable sur la mer. Spécialité de fruits de mer frais et plats traditionnels bretons.', 'greveblanche@mail.com', '0296123451', TRUE, 'http://greveblanche.com', 'Cuisine traditionnelle de la mer', CURRENT_TIMESTAMP),
+       (4, 'actif', 'La Crêperie du Village Saint-Alban', 'Savourez de délicieuses galettes et crêpes bretonnes dans cette crêperie chaleureuse au cœur de Saint-Alban, idéale pour un repas en famille ou entre amis.', 'creperie-village@mail.com', '0296123452', TRUE, 'http://creperie-saintalban.com', 'Spécialités bretonnes authentiques', CURRENT_TIMESTAMP),
+       (4, 'actif', 'Armor Navigation', 'Embarquez pour une excursion autour des célèbres Sept-Îles en vedette et découvrez un des plus beaux sites naturels de Bretagne, un véritable paradis pour les amateurs doiseaux.', 'armor-navigation@mail.com', '0296123453', TRUE, 'http://armor-navigation.com', 'Excursion en mer et observation des oiseaux', CURRENT_TIMESTAMP),
+       (4, 'actif', 'Fort La Latte - Château de la Roche Goyon', 'Visitez ce magnifique château fortifié du 14ème siècle, avec une vue spectaculaire sur la mer et une riche histoire. Idéal pour les passionnés de patrimoine et darchitecture médiévale.', 'fort-latte@mail.com', '0296123454', TRUE, 'http://fort-latte.com', 'Histoire et architecture médiévale', CURRENT_TIMESTAMP),
+       (4, 'actif', 'Crêperie des Grèves Langueux', 'Une crêperie qui ravira les amateurs de galettes et de crêpes, avec une vue sur les plages de Langueux. Un cadre agréable pour déguster des plats typiques de la Bretagne.', 'creperie-grèves@mail.com', '0296123455', TRUE, 'http://creperie-desgreves.com', 'Crêpes bretonnes authentiques', CURRENT_TIMESTAMP),
+       (4, 'actif', 'Les Falaises de Plouha', 'Explorez les impressionnantes falaises de Plouha, un site naturel remarquable offrant des panoramas époustouflants sur la mer. Idéal pour une randonnée en bord de mer et pour admirer la beauté sauvage de la Côte dArmor.', 'falaises-plouha@mail.com', '0296123456', TRUE, 'http://falaises-plouha.com', 'Randonnée et panoramas en bord de mer', CURRENT_TIMESTAMP),
+       (4, 'actif', 'Côte de Granit Rose', 'Découvrez lun des plus beaux sites naturels de Bretagne avec ses roches granitiques aux formes spectaculaires, entre Ploumanac’h et Perros-Guirec. À explorer en randonnée ou à vélo.', 'granite-rose@mail.com', '0296123457', TRUE, 'http://cotedegranitrose.com', 'Randonnée et découverte des paysages', CURRENT_TIMESTAMP);
 
 -- Peuplement de la table _image
 INSERT INTO _image (url, nomImage) 
@@ -269,7 +279,18 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
        ('./img/imageOffre/6/1.jpeg', 'brain1'), /* ajout brain */
        ('./img/imageAvis/1/0.png','Avis1-0'),
        ('./img/imageAvis/3/0.png','Avis3-0'),
-       ('./img/imageAvis/7/0.png','Avis7-0');
+       ('./img/imageAvis/7/0.png','Avis7-0'),
+
+
+       --New
+       ('./img/imageOffre/8/1.jpg', 'newOffre'),
+       ('./img/imageOffre/9/1.jpg', 'newOffre'),
+       ('./img/imageOffre/10/1.jpg', 'newOffre'),
+       ('./img/imageOffre/11/1.jpg', 'newOffre'),
+       ('./img/imageOffre/12/1.jpg', 'newOffre'),
+       ('./img/imageOffre/13/1.jpg', 'newOffre'),
+       ('./img/imageOffre/14/1.jpg', 'newOffre'),
+       ('./img/imageOffre/15/1.jpg', 'newOffre');
 
 -- Peuplement de la table _illustre
 INSERT INTO _illustre (idOffre, url) 
@@ -286,7 +307,17 @@ VALUES (3, './img/imageOffre/3/0.png'),
        (5, './img/imageOffre/5/0.png'),
        (5,'./img/imageOffre/5/1.png'),
        (5,'./img/imageOffre/5/2.png'),
-       (6,'./img/imageOffre/6/1.jpeg'); /* essaie pour brain */
+       (6,'./img/imageOffre/6/1.jpeg'), /* essaie pour brain */
+
+       --New
+       (8,'./img/imageOffre/8/1.jpg'),
+       (9,'./img/imageOffre/9/1.jpg'),
+       (10,'./img/imageOffre/10/1.jpg'),
+       (11,'./img/imageOffre/11/1.jpg'),
+       (12,'./img/imageOffre/12/1.jpg'),
+       (13,'./img/imageOffre/13/1.jpg'),
+       (14,'./img/imageOffre/14/1.jpg'),
+       (15,'./img/imageOffre/15/1.jpg');
 
 
 -- Peuplement de la table _photo_profil
@@ -334,17 +365,30 @@ VALUES (2, 120, 100, 25.0);
 
 -- Restaurant (idOffre 3)
 INSERT INTO _restauration (idOffre, gammeDePrix) 
-VALUES (3, '€€€');
+VALUES (3, '€€€'),
+
+       --New
+       (9, '€€'),
+       (10, '€€'),
+       (13, '€€€');
 
 -- Activité (idOffre 4)
 INSERT INTO _activite (idOffre, duree, ageMin, prixMinimal) 
 VALUES (4, 180, 10, 20.0),
-       (6, 180, 10, 20.0);
+       (6, 180, 10, 20.0),
+
+       --New
+       (11, 180, 10, 5.0),
+       (8, 180, 15, 40.0);
 
 -- Visite (idOffre 5)
 INSERT INTO _visite (idOffre, guide, duree, prixMinimal, accessibilite) 
 VALUES (5, TRUE, 120, 30.0, TRUE),
-       (7, TRUE, 120, 30.0, FALSE);
+       (7, TRUE, 120, 30.0, FALSE),
+
+       --New
+       (14, TRUE, 120, 10.0, FALSE),
+       (15, TRUE, 120, 10.0, FALSE);
 
 -- Peuplement de la table _horaireSoir
 INSERT INTO _horaireSoir (jour, idOffre, heureOuverture, heureFermeture) 
@@ -353,7 +397,29 @@ VALUES ('Lundi', 3, '19:00', '21:00'),
        ('Mercredi', 3, '19:00', '21:00'),
        ('Jeudi', 3, '19:00', '21:00'), 
        ('Vendredi', 3, '19:00', '21:00'),
-       ('Samedi', 3, '19:00', '21:00');
+       ('Samedi', 3, '19:00', '21:00'),
+
+       --New
+       ('Lundi', 9, '19:00', '21:00'),
+       ('Mardi', 9, '19:00', '21:00'), 
+       ('Mercredi', 9, '19:00', '21:00'),
+       ('Jeudi', 9, '19:00', '21:00'), 
+       ('Vendredi', 9, '19:00', '21:00'),
+       ('Samedi', 9, '19:00', '21:00'),
+
+       ('Lundi', 10, '19:00', '21:00'),
+       ('Mardi', 10, '19:00', '21:00'), 
+       ('Mercredi', 10, '19:00', '21:00'),
+       ('Jeudi', 10, '19:00', '21:00'), 
+       ('Vendredi', 10, '19:00', '21:00'),
+       ('Samedi', 10, '19:00', '21:00'),
+
+       ('Lundi', 13, '19:00', '21:00'),
+       ('Mardi', 13, '19:00', '21:00'), 
+       ('Mercredi', 13, '19:00', '21:00'),
+       ('Jeudi', 13, '19:00', '21:00'), 
+       ('Vendredi', 13, '19:00', '21:00'),
+       ('Samedi', 13, '19:00', '21:00');
 
 --peuplement horaire precise
 INSERT INTO _horairePrecise (jour, idOffre, heureDebut, heureFin, DateRepresentation) 
@@ -388,7 +454,29 @@ VALUES ('Lundi', 1, '10:00', '18:00'),
        ('Mardi', 5, '10:00', '18:00'), 
        ('Mercredi', 5, '10:00', '18:00'),
        ('Vendredi', 5, '10:00', '18:00'),
-       ('Samedi', 5, '10:00', '17:00');
+       ('Samedi', 5, '10:00', '17:00'),
+
+       --New
+       ('Lundi', 9, '12:00', '15:00'), 
+       ('Mardi', 9, '12:00', '15:00'), 
+       ('Mercredi', 9, '12:00', '15:00'),
+       ('Jeudi', 9, '12:00', '15:00'), 
+       ('Vendredi', 9, '12:00', '15:00'),
+       ('Samedi', 9, '12:00', '15:00'),
+
+       ('Lundi', 10, '12:00', '15:00'), 
+       ('Mardi', 10, '12:00', '15:00'), 
+       ('Mercredi', 10, '12:00', '15:00'),
+       ('Jeudi', 10, '12:00', '15:00'), 
+       ('Vendredi', 10, '12:00', '15:00'),
+       ('Samedi', 10, '12:00', '15:00'),
+
+       ('Lundi', 13, '12:00', '15:00'), 
+       ('Mardi', 13, '12:00', '15:00'), 
+       ('Mercredi', 13, '12:00', '15:00'),
+       ('Jeudi', 13, '12:00', '15:00'), 
+       ('Vendredi', 13, '12:00', '15:00'),
+       ('Samedi', 13, '12:00', '15:00');
 
 -- Peuplement de la table _tag_parc
 INSERT INTO _tag_parc (idOffre, nomTag) 
@@ -401,9 +489,12 @@ VALUES (2, 'romantique'),
 
 -- Peuplement de la table _tag_restaurant
 INSERT INTO _tag_restaurant (idOffre, nomTag) 
-VALUES (3, 'cuisine_locale');
+VALUES (3, 'cuisine_locale'),
 
-
+       --New
+       (9, 'cuisine_locale'),
+       (10, 'cuisine_locale'),
+       (13, 'cuisine_locale');
 
 
 -- Peuplement de la table _tag_Act
@@ -413,6 +504,7 @@ VALUES (4, 'culturel');
 -- Peuplement de la table _tag_visite
 INSERT INTO _tag_visite (idOffre, nomTag) 
 VALUES (5, 'culturel');
+
 
 -- Peuplement de la table _habite
 INSERT INTO _habite (idU, codePostal, ville, pays, rue, numeroRue) 
@@ -458,7 +550,18 @@ VALUES (1, 'Premium'),
        (3, 'Premium'), 
        (4, 'Basique'), 
        (5, 'Premium'),
-       (6,'Premium');
+       (6,'Premium'),
+
+       --New
+       (7,'Premium'),
+       (8,'Premium'),
+       (9,'Premium'),
+       (10,'Premium'),
+       (11,'Premium'),
+       (12,'Premium'),
+       (13,'Premium'),
+       (14,'Premium'),
+       (15,'Premium');
 
 
 INSERT INTO _dateOption(dateLancement,dateFin,duree,prix)
@@ -492,7 +595,11 @@ VALUES (1, 3, 'ALaUne'),
 
 INSERT INTO _visite_langue (idOffre, langue) 
 VALUES (5, 'Français'), 
-       (5, 'Anglais');
+       (5, 'Anglais'),
+
+       --New
+       (14, 'Français'), 
+       (15, 'Français');
 
 INSERT INTO _menu(idOffre, menu)
 VALUES (3,'./img/imageMenu/3/0.png');

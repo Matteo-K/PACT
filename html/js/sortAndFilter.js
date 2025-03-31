@@ -538,7 +538,7 @@ function addPing(array) {
       .then(location => {
         const latLng = location;
         if (latLng) {
-          let marker = L.marker(latLng)
+          let marker = L.marker(latLng, {icon: imageCategorie})
             .bindPopup(`
               <div id="popupCarte">
                 <h3>${elt['nomOffre']}</h3>
