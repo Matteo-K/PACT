@@ -1054,8 +1054,93 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             ?>
                         </div>
                     </div>
-
                 </div>
+                <script>
+                    try {
+
+                        /** Charger les composants */
+                        document.addEventListener("DOMContentLoaded", () => {
+                            const tabAvis = document.getElementById("tab-avis");
+                            const tabPubliez = document.getElementById("tab-publiez");
+                            const avisComponent = document.getElementById("avis-component");
+                            const publiezComponent = document.getElementById("publiez-component");
+                            const messageErreurConnExistant = document.getElementById("messageErreurConnExistant");
+                            const btnPubliez = document.getElementById("tab-publiez");
+                            const iconeSelectionneeMobile = document.getElementById("iconeSelectionneeMobile");
+                            
+                            <?php
+                            if ($isLoggedIn) {
+                                $stmt = $conn->prepare("SELECT * FROM pact.avis a WHERE idoffre = ? AND idu = ?");
+                                $stmt->execute([$idOffre, $idUser]);
+                                $existingReview = $stmt->fetch();
+
+                                if ($existingReview) {
+                            ?>
+                                    btnPubliez.disabled = true
+
+                                    btnPubliez.addEventListener("mouseover", function() {
+                                        messageErreurConnExistant.innerHTML = '<h3>Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en écrire un autre</h3>';
+                                        messageErreurConnExistant.style.display = "flex";
+                                    });
+                                    btnPubliez.addEventListener("mouseout", function() {
+                                        messageErreurConnExistant.innerHTML = '';
+                                        messageErreurConnExistant.style.display = "none";
+                                    });
+                                <?php
+                                } else {
+                                ?>
+                                    // Activer l'onglet "Avis"
+                                    tabAvis.addEventListener("click", () => {
+                                        tabAvis.classList.add('selected');
+                                        tabPubliez.classList.remove('selected');
+                                        tabAvis.classList.add("active");
+                                        tabPubliez.classList.remove("active");
+                                        iconeSelectionneeMobile.innerHTML = "<h3>Avis</h3>";
+
+                                        // Afficher le composant des avis
+                                        avisComponent.style.display = "flex";
+                                        publiezComponent.style.display = "none";
+                                    });
+
+                                    // Activer l'onglet "Publiez un avis"
+                                    tabPubliez.addEventListener("click", () => {
+                                        tabPubliez.classList.add('selected');
+                                        tabAvis.classList.remove('selected');
+                                        tabPubliez.classList.add("active");
+                                        tabAvis.classList.remove("active");
+                                        iconeSelectionneeMobile.innerHTML = "<h3>Publier un avis</h3>";
+
+                                        // Afficher le composant pour écrire un avis
+                                        publiezComponent.style.display = "flex";
+                                        avisComponent.style.display = "none";
+                                    });
+
+                                    btnPubliez.disabled = false;
+                                    messageErreurConnExistant.innerHTML = '';
+                                    messageErreurConnExistant.style.display = "none";
+                                <?php
+                                }
+                            } else {
+                                ?>
+                                btnPubliez.disabled = true
+                                btnPubliez.addEventListener("mouseover", function() {
+                                    // Afficher le message d'erreur uniquement si on survole le bouton
+                                    messageErreurConnExistant.innerHTML = `
+                                                                            <h3>Vous devez être connecté pour écrire un avis.</h3>
+                                                                        `;;
+                                    messageErreurConnExistant.style.display = "flex";
+                                });
+                                btnPubliez.addEventListener("mouseout", function() {
+                                        messageErreurConnExistant.innerHTML = '';
+                                        messageErreurConnExistant.style.display = "none";
+                                    });
+                            <?php
+                            }
+                            ?>
+                        });
+                    /** fin script chargement composant */
+                    } catch {}
+                </script>
             <?php
             }
             ?>
@@ -1754,40 +1839,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (error) {
                 console.log(error)
             }
-
-            try {
-                const modalTicket = document.getElementById("ticketModal");
-                const openModalTicketButtons = document.getElementById("PopupTicket");
-                const closeModalTicketButton = document.querySelector(".closeTicket");
-                const body = document.body;
-
-                // Fonction pour afficher le modal
-                function openModalTicketFunction() {
-                    modalTicket.style.display = "block";
-                    body.classList.add("no-scroll");
-                }
-
-                // Fonction pour fermer le modal
-                function closeModalTicketFunction() {
-                    modalTicket.style.display = "none";
-                    body.classList.remove("no-scroll");
-                }
-
-                // Ouvrir le popup lorsque le bouton est cliqué
-                openModalTicketButtons.onclick = openModalTicketFunction
-
-                // Fermer le popup lorsqu'on clique sur la croix
-                closeModalTicketButton.addEventListener('click', closeModalTicketFunction);
-
-                // Fermer le popup si on clique en dehors de celui-ci
-                window.addEventListener('click', (event) => {
-                    if (event.target === modalTicket) {
-                        closeModalTicketFunction();
-                    }
-                });
-            } catch (error) {
-                console.log(error)
-            }
         });
     </script>
     
@@ -1897,96 +1948,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             const message = document.getElementById('hoverMessageAdd');
             message.style.display = 'none';
         }
-
-
-        try {
-
-            /** Charger les composants */
-            document.addEventListener("DOMContentLoaded", () => {
-                const tabAvis = document.getElementById("tab-avis");
-                const tabPubliez = document.getElementById("tab-publiez");
-                const avisComponent = document.getElementById("avis-component");
-                const publiezComponent = document.getElementById("publiez-component");
-                const messageErreurConnExistant = document.getElementById("messageErreurConnExistant");
-                const btnPubliez = document.getElementById("tab-publiez");
-                const iconeSelectionneeMobile = document.getElementById("iconeSelectionneeMobile");
-
-
-
-
-                <?php
-                if ($isLoggedIn) {
-                    $stmt = $conn->prepare("SELECT * FROM pact.avis a WHERE idoffre = ? AND idu = ?");
-                    $stmt->execute([$idOffre, $idUser]);
-                    $existingReview = $stmt->fetch();
-
-                    if ($existingReview) {
-                ?>
-                        btnPubliez.disabled = true
-
-                        btnPubliez.addEventListener("mouseover", function() {
-                            messageErreurConnExistant.innerHTML = '<h3>Vous avez déjà laissé un avis pour cette offre. Veuillez supprimer le précedent avant de pouvoir en écrire un autre</h3>';
-                            messageErreurConnExistant.style.display = "flex";
-                        });
-                        btnPubliez.addEventListener("mouseout", function() {
-                            messageErreurConnExistant.innerHTML = '';
-                            messageErreurConnExistant.style.display = "none";
-                        });
-                    <?php
-                    } else {
-                    ?>
-                        // Activer l'onglet "Avis"
-                        tabAvis.addEventListener("click", () => {
-                            tabAvis.classList.add('selected');
-                            tabPubliez.classList.remove('selected');
-                            tabAvis.classList.add("active");
-                            tabPubliez.classList.remove("active");
-                            iconeSelectionneeMobile.innerHTML = "<h3>Avis</h3>";
-
-                            // Afficher le composant des avis
-                            avisComponent.style.display = "flex";
-                            publiezComponent.style.display = "none";
-                        });
-
-                        // Activer l'onglet "Publiez un avis"
-                        tabPubliez.addEventListener("click", () => {
-                            tabPubliez.classList.add('selected');
-                            tabAvis.classList.remove('selected');
-                            tabPubliez.classList.add("active");
-                            tabAvis.classList.remove("active");
-                            iconeSelectionneeMobile.innerHTML = "<h3>Publier un avis</h3>";
-
-                            // Afficher le composant pour écrire un avis
-                            publiezComponent.style.display = "flex";
-                            avisComponent.style.display = "none";
-                        });
-
-                        btnPubliez.disabled = false;
-                        messageErreurConnExistant.innerHTML = '';
-                        messageErreurConnExistant.style.display = "none";
-                    <?php
-                    }
-                } else {
-                    ?>
-                    btnPubliez.disabled = true
-                    btnPubliez.addEventListener("mouseover", function() {
-                        // Afficher le message d'erreur uniquement si on survole le bouton
-                        messageErreurConnExistant.innerHTML = `
-                                                                <h3>Vous devez être connecté pour écrire un avis.</h3>
-                                                            `;;
-                        messageErreurConnExistant.style.display = "flex";
-                    });
-                    btnPubliez.addEventListener("mouseout", function() {
-                            messageErreurConnExistant.innerHTML = '';
-                            messageErreurConnExistant.style.display = "none";
-                        });
-                <?php
-                }
-                ?>
-            });
-
-            /** fin script chargement composant */
-        } catch {}
     </script>
     <script src="js/setColor.js"></script>
 </body>
