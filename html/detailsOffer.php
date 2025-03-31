@@ -1843,7 +1843,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // Blacklist
 
             try {
-                const typeOffre = "<?= $$offre[0]['nomabonnement'] ?>";
+                const typeOffre = "<?= $offre[0]['nomabonnement'] ?>";
                 console.log(typeOffre);
 
                 if (typeOffre == "Premium") {
