@@ -226,7 +226,6 @@
                   <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
                   <input type="hidden" name="idavis" value="<?= $row["idc"] ?>">
                   <input type="hidden" name="signaleur" value="<?= $row["idu"] ?>">
-                  <input type="hidden" name="type" value="reponse">
                 </form>
               </div>
             <?php } ?>
@@ -263,7 +262,6 @@
                   <input type="hidden" name="idoffre" value="<?= $row["idoffre"] ?>">
                   <input type="hidden" name="idavis" value="<?= $row["idc_avis"] ?>">
                   <input type="hidden" name="signaleur" value="<?= $row["idu"] ?>">
-                  <input type="hidden" name="type" value="avis">
                 </form>
               </div>
             <?php } ?>

@@ -5,7 +5,6 @@
     $idOffre = $_POST["idoffre"];
     $idAvis = $_POST["idavis"];
     $signaleur = $_POST["signaleur"];
-    $type = $_POST["type"];
 
     switch ($_POST["action"]) {
       case 'visualiser':
@@ -29,15 +28,27 @@
         break;
         
         case 'supprimer':
-
-          if ($type === "avis") {
-            $stmt = $conn->prepare("DELETE FROM pact._signalementc WHERE idu=? AND idc=?;");
-            $stmt->execute([$signaleur, $idAvis]);
-  
-            $stmt = $conn->prepare("DELETE FROM pact._avis WHERE idc=?;");
-            $stmt->execute([$idAvis]);
-          } else if ($type == "reponse") {
+          function deleteOffer($queries, $data) {
+            global $conn;
+            
+            foreach ($queries as $query) {
+              $stmt = $conn->prepare($query);
+              $stmt->execute([$data]);
+            }
           }
+
+          $queries = [
+            "DELETE FROM pact._signalementc WHERE idc=?",
+            "DELETE FROM pact._reponse WHERE idc=?",
+            "DELETE FROM pact._reponse WHERE ref=?",
+            "DELETE FROM pact._avisimage WHERE idc=?",
+            "DELETE FROM pact._blacklist WHERE idc=?",
+            "DELETE FROM pact._avis WHERE idc=?",
+            "DELETE FROM pact._commentaire WHERE idc=?"
+          ];
+
+          deleteOffer($queries, $idAvis);
+
           header("location: ../index.php");
           exit();
           break;
