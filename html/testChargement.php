@@ -83,13 +83,13 @@
     .ancienSlogan {
         transform: translateY(30px);
         opacity: 0;
-        transition: opacity 0.5s ease-out;
+        transition: tranform opacity 0.5s ease-out;
     }
 
     .nouveauSlogan {
         transform: translateY(0);
         opacity: 1;
-        transition: opacity 0.5s ease-in;
+        transition: transform opacity 0.5s ease-in;
     }
 
 </style>
