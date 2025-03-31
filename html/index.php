@@ -109,7 +109,7 @@
     const NB_POINT_MAX = 3;
     function changeTitle(nom) {
         document.title = `${nom}${".".repeat(nb_point)}`;
-        nb_point = (nb_point + 1) % NB_POINT_MAX + 1;
+        nb_point = (nb_point + 1) % (NB_POINT_MAX + 1);
     }
 
     setInterval(() => {
