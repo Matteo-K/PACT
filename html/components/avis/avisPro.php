@@ -496,13 +496,10 @@ function displayArrayAvis() {
             console.error("Erreur:", data.error);
             return;
         }
-        let arrayAvis = json_encode(data.notes || []); 
+        let arrayAvis = (data.notes || []); 
     })
     .catch(error => {
         console.error("Erreur:", error);
-        divs.forEach(div => {
-            div.textContent = "Erreur de chargement";
-        });
     });
 
     const blocListAvis = document.getElementById("listeAvis");
