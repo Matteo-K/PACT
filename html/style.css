@@ -836,6 +836,10 @@ header ul + div {
   }
 }
 
+#indexAdmin .vide {
+  margin-left: 15px;
+}
+
 /* ### Offer ### */
 
 /* Gestion de l'offre */

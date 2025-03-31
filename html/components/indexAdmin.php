@@ -126,7 +126,7 @@
             </div>
           <?php } ?>
         <?php } else { ?>
-          <p>Aucune offre en attente de suppression.</p>
+          <p class="taille vide">Aucune offre en attente de suppression.</p>
         <?php } ?>
       </div>
     </details>
@@ -232,7 +232,7 @@
               <?php } ?>
             </div>
             <?php } else { ?>
-              <p>Aucun avis signalé</p>
+              <p class="taille vide">Aucun avis signalé</p>
             <?php } ?>
         </details>
         <!-- Signalements des réponses -->
@@ -272,7 +272,7 @@
               <?php } ?>
             </div>
             <?php } else { ?>
-              <p>Aucune réponse signalé</p>
+              <p class="taille vide">Aucune réponse signalée</p>
             <?php } ?>
         </details>
       </div>
