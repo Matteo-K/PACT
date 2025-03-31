@@ -1748,7 +1748,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 function refreshNote() {
                     let divs = Array.from(document.getElementsByClassName("notation"));
-
+                                
                     fetch("ajax/refreshTicket.php", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -1763,54 +1763,87 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             console.error("Erreur:", data.error);
                             return;
                         }
-
+                    
                         let avis = data.notes || [];
-                        // console.table(dates);
+                        
                         divs.forEach(div => {
                             div.innerHTML = "";
-    
-                            if (avis) {
+                        
+                            if (avis.length > 0) {
                                 const div1 = document.createElement("div");
                                 const div2 = document.createElement("div");
-    
+                            
                                 let etoilesPleines = Math.floor(avis[0]['moynote']);
                                 let reste = avis[0]['moynote'] - etoilesPleines;
                                 let listNoteAdjectif = ["Horrible", "Médiocre", "Moyen", "Très bon", "Excellent"];
-    
+                            
                                 div2.classList.add("notedetaille");
-    
-                                for (let index = 1; index <= etoilesPleines; index++) {
-                                    const starPleine = document.createElement("div");
-                                    starPleine.classList.add("star", "pleine");
-                                    div1.appendChild(starPleine);
+                            
+                                // Ajout des étoiles pleines
+                                for (let index = 0; index < etoilesPleines; index++) {
+                                    const star = document.createElement("div");
+                                    star.classList.add("star", "pleine");
+                                    div1.appendChild(star);
                                 }
+                            
+                                // Ajout de l'étoile partielle si besoin
                                 if (reste > 0) {
-                                    div1.appendChild(`<div class="star partielle" style="--pourcentage: ${etoilesPleines*100}%;"></div>`)
+                                    const starPartielle = document.createElement("div");
+                                    starPartielle.classList.add("star", "partielle");
+                                    starPartielle.style.setProperty("--pourcentage", `${reste * 100}%`);
+                                    div1.appendChild(starPartielle);
                                 }
-    
-                                for (let index = etoilesPleines + (reste > 0 ? 1 : 0 ); index < 5; index++) {
-                                    div1.appendChild(`<div class="star vide"></div>`);                                
+                            
+                                // Ajout des étoiles vides restantes
+                                for (let index = etoilesPleines + (reste > 0 ? 1 : 0); index < 5; index++) {
+                                    const starVide = document.createElement("div");
+                                    starVide.classList.add("star", "vide");
+                                    div1.appendChild(starVide);
                                 }
-                                div1.appendChild(`<p>${avis[0]['moynote'].toFixed(1)} / 5 ${avis[0]['nbnote']}</p>`);
-    
-                                for (let index = 5; index >=1; index--) {
+                            
+                                // Ajout du texte de notation
+                                const notationText = document.createElement("p");
+                                notationText.textContent = `${avis[0]['moynote'].toFixed(1)} / 5 (${avis[0]['nbnote']} avis)`;
+                                div1.appendChild(notationText);
+                            
+                                // Ajout des barres de notation détaillées
+                                for (let index = 5; index >= 1; index--) {
                                     const divLigne = document.createElement("div");
                                     const divBarre = document.createElement("div");
-                                    const pourcentageParNote = avis[0][`note_${index}`] !== undefined ? (avis[0][`note_${index}`] / avis[0]['nbnote']) * 100 : 0;
-    
-    
+                                
+                                    const pourcentageParNote = avis[0][`note_${index}`] !== undefined 
+                                        ? (avis[0][`note_${index}`] / avis[0]['nbnote']) * 100 
+                                        : 0;
+                                
                                     divLigne.classList.add("ligneNotation");
                                     divBarre.classList.add("barreDeNotationBlanche");
-    
-                                    divLigne.appendChild(`<span>${listNoteAdjectif[index - 1]}</span>`);
-                                    divBarre.appendChild(`<div class="barreDeNotationJaune" style="width: ${pourcentageParNote}%;"></div>`);
+                                
+                                    const label = document.createElement("span");
+                                    label.textContent = listNoteAdjectif[index - 1];
+                                
+                                    const barreJaune = document.createElement("div");
+                                    barreJaune.classList.add("barreDeNotationJaune");
+                                    barreJaune.style.width = `${pourcentageParNote}%`;
+                                
+                                    const nbAvis = document.createElement("span");
+                                    nbAvis.textContent = `(${avis[0][`note_${index}`] ?? 0} avis)`;
+                                
+                                    divBarre.appendChild(barreJaune);
+                                    divLigne.appendChild(label);
                                     divLigne.appendChild(divBarre);
-                                    divLigne.appendChild(`<span>(${avis[0][`note_${index}`] ?? 0} avis)</span>`);
-                                    
+                                    divLigne.appendChild(nbAvis);
+                                
                                     div2.appendChild(divLigne);
                                 }
+                            
+                                div.appendChild(div1);
+                                div.appendChild(div2);
+                            
                             } else {
-                                div.appendChild(`<p class="notation">Pas de note pour le moment</p>`);
+                                const noNoteText = document.createElement("p");
+                                noNoteText.classList.add("notation");
+                                noNoteText.textContent = "Pas de note pour le moment";
+                                div.appendChild(noNoteText);
                             }
                         });
                     })
