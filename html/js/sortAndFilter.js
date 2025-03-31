@@ -422,29 +422,29 @@ function countFiltre(filtres) {
 
   filtres.forEach(filtre => {
     switch (filtre) {
-      case filtrerParCategorie:
+      case "filtrerParCategorie":
         count += checkboxesCat.filter(chk => chk.checked).length;
         break;
 
-      case filtrerParNotes:
+      case "filtrerParNotes":
         count += checkboxesNote.filter(chk => chk.checked).length;
         break;
 
-      case filtrerParPrix:
+      case "filtrerParPrix":
         count += selectPrixMin.value === "0" ? 0 : 1;
         count += selectPrixMax.value === "999999" ? 0 : 1;
         break;
         
-        case filtrerParStatuts:
+        case "filtrerParStatuts":
           count += checkboxesStatuts.filter(chk => chk.checked).length;
           break;
           
-        case filtrerParHeure:
+        case "filtrerParHeure":
           count += heureDebut.value === "" ? 0 : 1;
           count += heureFin.value === "" ? 0 : 1;
         break;
 
-      case filtrerParStatutEnLigneHorsLigne:
+      case "filtrerParStatutEnLigneHorsLigne":
         count += checkboxesEnligneHorsLigne.filter(chk => chk.checked).length;
         break;
     
@@ -503,15 +503,15 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   array = filterOffers(array, search);
 
   let filtres = [
-    filtrerParCategorie,
-    filtrerParNotes,
-    filtrerParPrix,
-    filtrerParStatuts,
-    filtrerParHeure
+    "filtrerParCategorie",
+    "filtrerParNotes",
+    "filtrerParPrix",
+    "filtrerParStatuts",
+    "filtrerParHeure"
   ];
 
   if (userType == "pro_public" || userType == "pro_prive") {
-    filtres.push(filtrerParStatutEnLigneHorsLigne);
+    filtres.push("filtrerParStatutEnLigneHorsLigne");
   }
 
   const count = countFiltre(filtres);
