@@ -664,6 +664,7 @@ header > div > a > div {
 
 /* Conteneur pour l'image et le pseudo */
 #imagProfil {
+  position: relative;
   margin-top: 4em;
   display: flex;
   flex-direction: column;
@@ -679,6 +680,13 @@ header > div > a > div {
   height: 10em;
   border-radius: 50%;
   object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#iconePro {
+  z-index: 11;
 }
 
 /* Styles pour le pseudo ou le nom */
