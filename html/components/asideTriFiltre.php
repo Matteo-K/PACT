@@ -1,17 +1,17 @@
 
 <section id="trifiltre" class="asdTriFiltre">
     <div id="btnAside">
-        <a onclick="toggleAside(this)" id="btnTri">
+        <a tabindex="0" id="btnTri">
             <img src="img/icone/tri.png" alt="tri">
         </a>
-        <a onclick="toggleAside(this)" id="btnFiltre">
+        <a tabindex="0" id="btnFiltre">
             <img src="img/icone/filtre.png" alt="filtre">
             <span id="filtreApplique"></span>
         </a>
-        <a onclick="toggleAside(this)" id="btnCarte">
+        <a tabindex="0" id="btnCarte">
             <img src="img/icone/lieu.png" alt="icone du pointer pour la carte">
         </a>
-        <a onclick="resetModal()" id="btnReset">
+        <a tabindex="0" id="btnReset">
             <img src="img/icone/reset.png" alt="rénitialisation tris, filtres et recherche">
         </a>
     </div>
@@ -19,7 +19,7 @@
         <aside id="tri">
             <div id="titreAside">
                 <h2>Trier</h2>
-                <img src="img/icone/croix.png" alt="Fermer l'onglet tri" onclick="fermeAside()">
+                <img tabindex="0" src="img/icone/croix.png" alt="Fermer l'onglet tri" onclick="fermeAside()">
             </div>
             <div class="blcTriFiltre">
                 <div>
@@ -55,7 +55,7 @@
         <aside id="filtre" class="asdTriFiltre">
             <div id="titreAside">
                 <h2>Filtrer</h2>
-                <img src="img/icone/croix.png" alt="Fermer l'onglet filtre" onclick="fermeAside()">
+                <img tabindex="0" src="img/icone/croix.png" alt="Fermer l'onglet filtre" onclick="fermeAside()">
             </div>
             <div class="blcTriFiltre">
                 <?php if ($typeUser == "pro_public" || $typeUser == "pro_prive") { ?>
@@ -244,7 +244,7 @@
         </aside>
         <aside id="carte_offres">
             <div id="map">
-                <img src="img/icone/croix.png" alt="Fermer l'onglet tri" onclick="fermeAside()">
+                <img tabindex="0" src="img/icone/croix.png" alt="Fermer l'onglet tri" onclick="fermeAside()">
             </div>
             
         </aside>
@@ -369,7 +369,26 @@
     let markers = new L.MarkerClusterGroup();
 
     
-    
+    const btnAside = document.querySelectorAll("#btnAside a") || [];
+    if (btnAside.length > 0) {
+        btnAside.forEach(element => {
+            if (element.id !== "btnReset") {
+                element.addEventListener("click", () => toggleAside(element));
+                element.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter") {
+                        toggleAside(element);
+                    }
+                });
+            } else {
+                element.addEventListener("click", () => resetModal());
+                element.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter") {
+                        resetModal();
+                    }
+                });
+            }
+        });
+    }
 
     document.getElementById('btnCarte').addEventListener('click', function() {
         // Attendre un court instant avant de recalculer la taille
