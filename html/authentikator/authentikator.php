@@ -14,17 +14,18 @@ if (isset($_GET['pseudo'])) {
     $totp->setIssuer('PACT');
 
     $secret = $totp->getSecret();
-
     $_SESSION['secret_a2f'] = $secret;
-
-    // $stmt = $conn->prepare("UPDATE pact._utilisateur SET secret_a2f = ? WHERE");
-    // $stmt->execute([$idOffre]);
 
     // Générer l'URI de provisionnement
     $uri = $totp->getProvisioningUri();
 
-    // Générer et renvoyer l'URL du QR Code
-    echo "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" . urlencode($uri);
+    // Générer et renvoyer le QR Code + clé secrète en JSON
+    $qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" . urlencode($uri);
+
+    echo json_encode([
+        "qrCodeUrl" => $qrCodeUrl,
+        "secret" => $secret
+    ]);
 }
 
 ?>

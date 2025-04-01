@@ -542,69 +542,31 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   addPing(array);
 }
 
+function getCategoryIcon(categorie, chemin) {
+  const icons = {
+    "Activité": "pointeur-activite.png",
+    "Parc Attraction": "pointeur-parc.png",
+    "Restaurant": "pointeur-restaurant.png",
+    "Spectacle": "pointeur-spectacle.png",
+    "Visite": "pointeur-visite.png"
+  };
+  
+  return L.icon({
+    iconUrl: chemin + (icons[categorie] || "pointeur-activite.png"),
+    iconSize: [70, 70],
+    iconAnchor: [35, 70],
+    popupAnchor: [0, -70]
+  });
+}
+
 function addPing(array) {
   removeAllPing();
 
   
   array.forEach(elt => {
     let imageCategorie;
-    let chemin = "../img/icone/pointeurOffre/";
-    switch (elt["categorie"]){
-      case 'Activité':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [70, 70],
-            iconAnchor: [35, 70],
-            popupAnchor: [0, -70]
+    imageCategorie = getCategoryIcon(elt["categorie"], "../img/icone/pointeurOffre/");
 
-        });
-        break;
-        
-      case 'Parc Attraction':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-parc.png",
-            iconSize: [70, 70],
-            iconAnchor: [35, 70],
-            popupAnchor: [0, -70]
-        });
-        break;
-
-      case 'Restaurant':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-restaurant.png",
-            iconSize: [70, 70],
-            iconAnchor: [35, 70],
-            popupAnchor: [0, -70]
-        });
-        break;
-
-      case 'Spectacle':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-spectacle.png",
-            iconSize: [70, 70],
-            iconAnchor: [35, 70],
-            popupAnchor: [0, -70]
-        });
-        break;
-
-      case 'Visite':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-visite.png",
-            iconSize: [70, 70],
-            iconAnchor: [35, 70],
-            popupAnchor: [0, -70]
-        });
-        break;
-
-      default:
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [70, 70],
-            iconAnchor: [35, 70],
-            popupAnchor: [0, -70]
-        });
-        break;
-    };
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
         const latLng = location;
@@ -654,9 +616,6 @@ function addPing(array) {
     map.addLayer(markers);
   });
 }
-
-
-
 
 function removeAllPing() {
   markers.eachLayer(marker => {
@@ -714,336 +673,135 @@ function goToPage(page) {
 function displayOffers(array, elementStart, nbElement) {
   const bloc = document.querySelector(".searchoffre");
   bloc.innerHTML = "";
-  if (array.length != 0) {
-    let offers = array.slice(elementStart, elementStart + nbElement);
-    offers.forEach(element => {displayOffer(element)});
-  } else {
-    let pasOffre = document.createElement("p");
-    pasOffre.textContent = "Aucune offre trouvée";
-    bloc.appendChild(pasOffre);
+  
+  if (!array.length) {
+    bloc.innerHTML = "<p>Aucune offre trouvée</p>";
+    return;
   }
+  
+  array.slice(elementStart, elementStart + nbElement).forEach(offer => bloc.appendChild(createOfferForm(offer)));
 }
 
-function displayOffer(offer) {
-  const bloc = document.querySelector(".searchoffre");
-
-  let form = document.createElement("form");
+function createOfferForm(offer) {
+  const form = document.createElement("form");
   form.classList.add("searchA");
-  form.setAttribute("action", "/detailsOffer.php");
-  form.setAttribute("method", "post");
-
-  let input = document.createElement("input");
-  input.setAttribute("type", "hidden");
-  input.setAttribute("name", "idoffre");
-  input.setAttribute("value", offer.idOffre);
-
-  form.appendChild(input);
+  form.action = "/detailsOffer.php";
+  form.method = "post";
+  
+  form.innerHTML = `
+    <input type="hidden" name="idoffre" value="${offer.idOffre}">
+  `;
+  
   form.appendChild(createCard(offer));
-
   form.addEventListener("click", (event) => {
-    if (event.target.tagName.toLowerCase() === "a") {
-      return;
+    if (event.target.tagName.toLowerCase() !== "a") {
+      event.preventDefault();
+      form.submit();
     }
-    event.preventDefault();
-    form.submit();
   });
-
-  bloc.appendChild(form);
+  
+  return form;
 }
 
 function createCard(offer) {
-  let card = document.createElement("section");
-  card.classList.add("carteOffre");
-  card.classList.add("flip-card");
-  if (offer.option.includes('EnRelief')) {
-    card.classList.add("optionEnRelief");
-  }
-
-  let content = document.createElement("div");
-  content.classList.add("flip-card-inner");
-
-  let front = createFront(offer);
-  let back = createBack(offer);
-
-  content.appendChild(front);
-  content.appendChild(back);
-
-  card.appendChild(content);
-
+  const card = document.createElement("section");
+  card.classList.add("carteOffre", "flip-card");
+  if (offer.option.includes("EnRelief")) card.classList.add("optionEnRelief");
+  
+  card.innerHTML = `
+    <div class="flip-card-inner">
+      ${createFront(offer)}
+      ${createBack(offer)}
+    </div>
+  `;
+  
   return card;
 }
 
 function createFront(offer) {
-  let article = document.createElement("article");
-  article.classList.add("flip-card-front");
-
-  let figure = document.createElement("figure");
-
-  let img = document.createElement("img");
-  img.setAttribute("src", offer.images?.[0] ?? "");
-  img.setAttribute("alt", offer.nomOffre);
-  img.setAttribute("title", offer.nomOffre);
-  img.setAttribute("loading","lazy");
-
-  let figcaption = document.createElement("figcaption");
-
-  let h4 = document.createElement("h4");
-  h4.classList.add("title");
-  if (userType == "pro_public" || userType == "pro_prive") {
-    h4.classList.add("StatutAffiche");
-    switch (offer.statut) {
-      case 'inactif':
-        h4.classList.add("horslgnOffre");
-        break;
-
-      case 'delete':
-        h4.classList.add("suppression");
-        break;
-    }
-  }
-  h4.textContent = offer.nomOffre ?? "";
-
-  let div = document.createElement("div");
-
-  let p = document.createElement("p");
-  p.classList.add("ville");
-  p.textContent = offer.ville + ", " + offer.codePostal;
-
-  let stars = displayStar(offer.noteAvg);
-  stars.classList.add("blocStar");
-
-  let note = document.createElement("span");
-  note.textContent = offer.noteAvg + "/5";
-
-  stars.appendChild(note);
-
-  div.appendChild(p);
-  div.appendChild(stars);
-
-  figcaption.appendChild(h4);
-  figcaption.appendChild(div);
-
-  if (offer.option.includes('EnRelief')) {
-    let imgRelief = document.createElement("img");
-    imgRelief.classList.add("premiumImg");
-    imgRelief.setAttribute("src", "../img/icone/service-premium.png");
-    imgRelief.setAttribute("alt", "icone premium");
-    imgRelief.setAttribute("loading", "lazy");
-    figure.appendChild(imgRelief);
-  }
-
-  figure.appendChild(img);
-  figure.appendChild(figcaption);
-
-  article.appendChild(figure);
-
-  return article;
+  return `
+    <article class="flip-card-front">
+      <figure>
+        ${offer.option.includes("EnRelief") ? '<img class="premiumImg" src="../img/icone/service-premium.png" alt="icone premium" loading="lazy">' : ''}
+        <img src="${offer.images?.[0] ?? ''}" alt="${offer.nomOffre}" title="${offer.nomOffre}" loading="lazy">
+        <figcaption>
+          <h4 class="title ${getStatusClass(offer.statut)}">${offer.nomOffre ?? ''}</h4>
+          <div>
+            <p class="ville">${offer.ville}, ${offer.codePostal}</p>
+            ${displayStar(offer.noteAvg)}
+          </div>
+        </figcaption>
+      </figure>
+    </article>
+  `;
 }
 
 function createBack(offer) {
-  let article = document.createElement("article");
-  article.classList.add("flip-card-back");
+  return `
+    <article class="flip-card-back">
+      ${createLogoCategorie(offer)}
+      <div class="content">
+        <h4 class="title">${offer.nomOffre}</h4>
+        ${displayStar(offer.noteAvg)}
+        <div class="${userType.startsWith('pro_') ? 'typeOffre' : 'nomPro'}">
+          ${userType.startsWith('pro_') ? '' : `Proposé par ${offer.nomUser}`}
+        </div>
+        <div class="information">
+          <div class="resume">${offer.resume ?? ''}</div>
+          <address>
+            <div>${offer.ville}, ${offer.codePostal}</div>
+            <div>${offer.numeroRue ?? ''} ${offer.rue ?? ''}</div>
+          </address>
+        </div>
+        ${ajouterTag(offer)}
+      </div>
+      ${userType.startsWith('pro_') ? `<p class="StatutAffiche ${getStatusClass(offer.statut)}">${getStatusText(offer.statut)}</p>` : ''}
+    </article>
+  `;
+}
 
-  let figure = createLogoCategorie(offer);
+function getStatusClass(statut) {
+  return {
+    inactif: "horslgnOffre",
+    delete: "suppression",
+  }[statut] || "";
+}
 
-  let content = document.createElement("div");
-  content.classList.add("content");
-  
-  let h4 = document.createElement("h4");
-  h4.classList.add("title");
-  h4.textContent = offer.nomOffre;
-
-  let stars = displayStar(offer.noteAvg);
-  stars.classList.add("blocStar");
-
-  let note = document.createElement("span");
-  note.textContent = offer.noteAvg + "/5";
-
-  let blcNbNote = document.createElement("span");
-  let nbNote = offer.nbNote ?? 0;
-  blcNbNote.textContent = "("+nbNote + "note" + (nbNote > 1 ? "s" : "") + ")";
-
-  let information = document.createElement("div");
-  information.classList.add("information");
-
-  let resume = document.createElement("div");
-  resume.classList.add("resume");
-  resume.textContent = offer.resume ?? "";
-
-  let adresse = document.createElement("address");
-
-  let ville = document.createElement("div");
-  ville.textContent = (offer.ville ?? "") + ", " + (offer.codePostal ?? "");
-
-  let adressePostal = document.createElement("div");
-  adressePostal.textContent = (offer.numeroRue ?? "") + " " + (offer.rue ?? "");
-
-  let tags = ajouterTag(offer);
-  tags.classList.add("tagsCard");
-
-  adresse.appendChild(ville);
-  adresse.appendChild(adressePostal);
-
-  information.appendChild(resume);
-  information.appendChild(adresse);
-
-  stars.appendChild(note);
-  stars.appendChild(blcNbNote);
-
-  content.appendChild(h4);
-  content.appendChild(stars);
-
-  let infoTypeUser = document.createElement("div");
-  if (userType == "pro_public" || userType == "pro_prive") {
-    infoTypeUser.classList.add("typeOffre");
-    // Décrit le type de l'offre (premium, en relief, a la une)
-  } else {
-    infoTypeUser.classList.add("nomPro");
-    infoTypeUser.textContent = "Proposé par " + offer.nomUser;
-  }
-
-  content.appendChild(infoTypeUser);
-  content.appendChild(information);
-  content.appendChild(tags);
-
-  article.appendChild(figure);
-
-  if (userType == "pro_public" || userType == "pro_prive") {
-    let enLigne = document.createElement("p");
-    enLigne.classList.add("StatutAffiche");
-
-    switch (offer.statut) {
-      case 'actif':
-        enLigne.textContent = "En ligne";
-        break;
-
-      case 'inactif':
-        enLigne.classList.add("horslgnOffre");
-        enLigne.textContent = "Hors ligne";
-        break;
-
-      case 'delete':
-        enLigne.classList.add("suppression");
-        enLigne.textContent = "Suppression";
-        break;
-    }
-    article.appendChild(enLigne);
-  }
-
-  article.appendChild(content);
-
-  return article;
+function getStatusText(statut) {
+  return {
+    actif: "En ligne",
+    inactif: "Hors ligne",
+    delete: "Suppression",
+  }[statut] || "";
 }
 
 function createLogoCategorie(offer) {
-
-  let figure = document.createElement("figure");
-
-  let imageCategorie;
-  let chemin = "../img/icone/offerCategory/";
-  switch (offer.categorie) {
-    case 'Activité':
-      imageCategorie = "activity.png";
-      break;
-      
-    case 'Parc Attraction':
-      imageCategorie = "park.png";
-      break;
-
-    case 'Restaurant':
-      imageCategorie = "restaurant.png";
-      break;
-
-    case 'Spectacle':
-      imageCategorie = "show2.png";
-      break;
-
-    case 'Visite':
-      imageCategorie = "visit.png";
-      break;
-
-    default:
-      imageCategorie = "interrogation.png";
-      break;
-  }
-
-  let img = document.createElement("img");
-  img.setAttribute("src", chemin + imageCategorie);
-  img.setAttribute("alt", offer.categorie);
-  img.setAttribute("title", offer.categorie);
-  img.setAttribute("loading","lazy");
-
-  figure.appendChild(img);
-
-  if (offer.categorie == "Restaurant") {
-    let figcaption = document.createElement("figcaption");
-    figcaption.textContent = offer.gammeDePrix;
-
-    figure.appendChild(figcaption);
-  }
-  return figure;
+  const categories = {
+    Activité: "activity.png",
+    "Parc Attraction": "park.png",
+    Restaurant: "restaurant.png",
+    Spectacle: "show2.png",
+    Visite: "visit.png",
+  };
+  
+  return `
+    <figure>
+      <img src="../img/icone/offerCategory/${categories[offer.categorie] || 'interrogation.png'}" alt="${offer.categorie}" title="${offer.categorie}" loading="lazy">
+      ${offer.categorie === "Restaurant" ? `<figcaption>${offer.gammeDePrix}</figcaption>` : ''}
+    </figure>
+  `;
 }
 
 function ajouterTag(offer) {
-  let tags = document.createElement("div");
-  let nbTagMax = 2;
-  let plusTag = 0;
-
-  if (offer.tags.length > 0) { 
-    let tagsToShow = offer.tags.slice(0, nbTagMax);
-    
-    tagsToShow.forEach(element => {
-      if (element !== "") {
-        let tag = document.createElement("a");
-        tag.classList.add("tagIndex");
-        tag.textContent = element.replace("_", " ");
-        tag.setAttribute("href", "index.php?search=" + element.replace("_", "+") + "#searchIndex");
-        tags.appendChild(tag);
-      }
-    });
-
-    if (offer.tags.length > nbTagMax) {
-      plusTag = offer.tags.length - nbTagMax;
-      let moreTag = document.createElement("a");
-      moreTag.classList.add("tagIndex");
-      moreTag.textContent = `+ ${plusTag} autre${plusTag > 1 ? "s" : ""}`;
-      tags.appendChild(moreTag);
-    }
-  }
-
-  return tags;
-
+  const tagsToShow = offer.tags.slice(0, 2).map(tag => `<a class="tagIndex" href="index.php?search=${tag.replace('_', '+')}#searchIndex">${tag.replace('_', ' ')}</a>`).join('');
+  return `<div class="tagsCard">${tagsToShow}${offer.tags.length > 2 ? `<a class="tagIndex">+ ${offer.tags.length - 2} autre${offer.tags.length - 2 > 1 ? 's' : ''}</a>` : ''}</div>`;
 }
 
 function displayStar(note) {
-  let container = document.createElement("div");
-
-  const etoilesPleines = Math.floor(note);
-  const reste = note - etoilesPleines;
-  
-  for (let i = 1; i <= etoilesPleines; i++) {
-    let star = document.createElement('div');
-    star.classList.add('star', 'pleine');
-    container.appendChild(star);
-  }
-  
-  if (reste > 0) {
-    let pourcentageRempli = reste * 100;
-    let starPartielle = document.createElement('div');
-    starPartielle.classList.add('star', 'partielle');
-    starPartielle.style.setProperty('--pourcentage', `${pourcentageRempli}%`);
-    container.appendChild(starPartielle);
-  }
-  
-  let totalEtoiles = 5;
-  let etoilesRestantes = totalEtoiles - etoilesPleines - (reste > 0 ? 1 : 0);
-  
-  for (let i = 0; i < etoilesRestantes; i++) {
-    let star = document.createElement('div');
-    star.classList.add('star', 'vide');
-    container.appendChild(star);
-  }
-  return container;
+  let stars = Array(5).fill('<div class="star vide"></div>');
+  for (let i = 0; i < Math.floor(note); i++) stars[i] = '<div class="star pleine"></div>';
+  if (note % 1 !== 0) stars[Math.floor(note)] = `<div class="star partielle" style="--pourcentage: ${(note % 1) * 100}%"></div>`;
+  return `<div class="blocStar">${stars.join('')}<span>${note}/5</span></div>`;
 }
 
 
