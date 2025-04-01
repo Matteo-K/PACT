@@ -88,7 +88,7 @@
                     <span id="backButton">< Retour</span>
                     <figure id="imagProfil">
                         <img src="<?php echo $user["url"] ?>" title="photo de profil utilisateur" id="menuProfilePic">
-                        <img src="./img/icone/iconePro.png" alt="pro" id="iconePro">
+                        <img src="./img/icone/iconePro.png" alt="pro" id="iconePro" <?= $typeUser === "pro_public" || $typeUser === "pro_prive" ? null : 'hidden="true"'?>>
                         <figcaption>
                             <?php
                                 if ($typeUser === "admin") {
