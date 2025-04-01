@@ -72,7 +72,7 @@
         $resNotification = $stmt->fetch(PDO::FETCH_ASSOC);
         $quantite = 0;
         if ($resNotification) {
-            $quantite = int_val($resNotification["nbAvis"]);
+            $quantite = intval($resNotification["nbAvis"]);
         }
         print_r($resNotification);
         ?>
