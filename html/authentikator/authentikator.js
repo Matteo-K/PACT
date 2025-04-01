@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     ${data.secret}
                 </p>
                 <br>
-                <button id="copyButton" class="modifierBut">
+                <button id="copyButton" type="button" class="modifierBut">
                     Copier
                 </button>
             </div>
@@ -50,9 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Gestion du bouton de copie
         document.querySelector("#copyButton").addEventListener("click", function () {
             let secretKey = document.querySelector("#secretKey").innerText;
-            navigator.clipboard.writeText(secretKey).then(() => {
-                alert("Secret copié !");
-            });
+            navigator.clipboard.writeText(secretKey);
         });
 
         // Afficher la div avec une hauteur fixe
