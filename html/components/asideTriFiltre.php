@@ -24,31 +24,31 @@
             <div class="blcTriFiltre">
                 <div>
                     <input type="radio" name="tri" id="miseEnAvant" checked>
-                    <label for="miseEnAvant">Mise en avant</label>
+                    <label tabindex="0" for="miseEnAvant">Mise en avant</label>
                 </div>
                 <div>
                     <input type="radio" name="tri" id="noteCroissant">
-                    <label for="noteCroissant">Note croissant</label>
+                    <label tabindex="0" for="noteCroissant">Note croissant</label>
                     <input type="radio" name="tri" id="noteDecroissant">
-                    <label for="noteDecroissant">Note décroissant</label>
+                    <label tabindex="0" for="noteDecroissant">Note décroissant</label>
                 </div>
                 <div>
                     <input type="radio" name="tri" id="prixCroissant">
-                    <label for="prixCroissant">Prix croissant</label>
+                    <label tabindex="0" for="prixCroissant">Prix croissant</label>
                     <input type="radio" name="tri" id="prixDecroissant">
-                    <label for="prixDecroissant">Prix décroissant</label>
+                    <label tabindex="0" for="prixDecroissant">Prix décroissant</label>
                 </div>
                 <div>
                     <input type="radio" name="tri" id="avisCroissant">
-                    <label for="avisCroissant">Moins noté</label>
+                    <label tabindex="0" for="avisCroissant">Moins noté</label>
                     <input type="radio" name="tri" id="avisDecroissant">
-                    <label for="avisDecroissant">Plus noté</label>
+                    <label tabindex="0" for="avisDecroissant">Plus noté</label>
                 </div>
                 <div>
                     <input type="radio" name="tri" id="dateCreationRecent">
-                    <label for="dateCreationRecent">Creé récemment</label>
+                    <label tabindex="0" for="dateCreationRecent">Creé récemment</label>
                     <input type="radio" name="tri" id="dateCreationAncien">
-                    <label for="dateCreationAncien">Plus anciennne</label>
+                    <label tabindex="0" for="dateCreationAncien">Plus anciennne</label>
                 </div>
             </div>
         </aside>
@@ -62,14 +62,14 @@
                     <div id="statut">
                         <h3>En ligne / Hors ligne</h3>
                         <div>
-                            <label for="enLigne">
+                            <label tabindex="0" for="enLigne">
                                 En ligne
                                 <input type="checkbox" name="statutEnLigneHorsLigne" id="enLigne">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
                         <div>
-                            <label for="horsLigne">
+                            <label tabindex="0" for="horsLigne">
                                 Hors ligne
                                 <input type="checkbox" name="statutEnLigneHorsLigne" id="horsLigne">
                                 <span class="checkmark"></span>
@@ -81,48 +81,33 @@
                     <h3>Par note</h3>
                     <div>
                         <div>
-                            <label for="star1" class="blocStar">
+                            <label tabindex="0" for="star1" class="blocStar">
                                 <input type="checkbox" name="star1" id="star1">
-                                <span class="checkmark"></span>
-                                <div class="star"></div>
+                                <span class="checkStar star vide">1</span>
                             </label>
                         </div>
                         <div>
-                            <label for="star2" class="blocStar">
+                            <label tabindex="0" for="star2" class="blocStar">
                                 <input type="checkbox" name="star2" id="star2">
-                                <span class="checkmark"></span>
-                                <div class="star"></div>
-                                <div class="star"></div>
+                                <span class="checkStar star vide">2</span>
                             </label>
                         </div>
                         <div>    
-                            <label for="star3" class="blocStar">
+                            <label tabindex="0" for="star3" class="blocStar">
                                 <input type="checkbox" name="star3" id="star3">
-                                <span class="checkmark"></span>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
+                                <span class="checkStar star vide">3</span>
                             </label>
                         </div>
                         <div>
-                            <label for="star4" class="blocStar">
+                            <label tabindex="0" for="star4" class="blocStar">
                                 <input type="checkbox" name="star4" id="star4">
-                                <span class="checkmark"></span>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
+                                <span class="checkStar star vide">4</span>
                             </label>
                         </div>
                         <div>
-                            <label for="star5" class="blocStar">
+                            <label tabindex="0" for="star5" class="blocStar">
                                 <input type="checkbox" name="star5" id="star5">
-                                <span class="checkmark"></span>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
+                                <span class="checkStar star vide">5</span>
                             </label>
                         </div>
                     </div>
@@ -162,16 +147,9 @@
                     <div id="statut">
                         <h3>Par statut</h3>
                         <div>
-                            <label for="ouvert">
+                            <label tabindex="0" for="ouvert">
                                 Ouvert
                                 <input type="checkbox" name="statut" id="ouvert">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <div>
-                            <label for="ferme">
-                                Fermé
-                                <input type="checkbox" name="statut" id="ferme">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -181,35 +159,35 @@
                     <h3>Par catégorie</h3>
                     <ul id="idCategorie">
                         <li>
-                            <label for="Visite">
+                            <label tabindex="0" for="Visite">
                                 <input type="checkbox" name="categorie" id="Visite">
                                 <span class="checkmark"></span>
                                 Visite
                             </label>
                         </li>
                         <li>
-                            <label for="Activite">
+                            <label tabindex="0" for="Activite">
                                 <input type="checkbox" name="categorie" id="Activite">
                                 <span class="checkmark"></span>
                                 Activité
                             </label>
                         </li>
                         <li>
-                            <label for="Spectacle">
+                            <label tabindex="0" for="Spectacle">
                                 <input type="checkbox" name="categorie" id="Spectacle">
                                 <span class="checkmark"></span>
                                 Spectacle
                             </label>
                         </li>
                         <li>
-                            <label for="Restauration">
+                            <label tabindex="0" for="Restauration">
                                 <input type="checkbox" name="categorie" id="Restauration">
                                 <span class="checkmark"></span>
                                 Restauration
                             </label>
                         </li>
                         <li>
-                            <label for="Parc">
+                            <label tabindex="0" for="Parc">
                                 <input type="checkbox" name="categorie" id="Parc">
                                 <span class="checkmark"></span>
                                 Parc d’attractions

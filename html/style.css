@@ -2952,6 +2952,8 @@ label[for="rest_ajoutPhotoMenu"] {
 
 [type="checkbox"]:checked + .checkmark::after {
   clip-path: polygon(10% 50%, 40% 80%, 90% 20%, 80% 10%, 40% 70%, 20% 40%);
+  width: 80%;
+  height: 80%;
 }
 
 [type="radio"]:checked + .checkmark::after {

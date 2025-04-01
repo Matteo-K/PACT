@@ -21,7 +21,7 @@
     <!-- Saisi du type de moyen de paiement -->
     <article id="selectPayment">
       <div>
-        <label for="carte_bancaire">
+        <label tabindex="0" for="carte_bancaire">
           <input type="radio" name="typePaiement" id="carte_bancaire" checked>
           <span class="checkmark"></span>
           <figure>
@@ -31,7 +31,7 @@
         </label>
       </div>
       <div>
-        <label for="virement_bancaire">
+        <label tabindex="0" for="virement_bancaire">
           <input type="radio" name="typePaiement" id="virement_bancaire">
           <span class="checkmark"></span>
           <figure>
@@ -40,7 +40,7 @@
         </label>
       </div>
       <div>
-        <label for="paypal">
+        <label tabindex="0" for="paypal">
           <input type="radio" name="typePaiement" id="paypal">
           <span class="checkmark"></span>
           <figure>
