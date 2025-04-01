@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Ajouter le QR Code en premier enfant
                 div.insertAdjacentHTML("afterbegin", `
                     <img id="qrCodeImg" src="${data.qrCodeUrl}" alt="QR Code">
-                    <p>clée de configuration</p>
+                    <p>clée de configuration :</p>
                     <p id="secretKey" style="font-size: 18px; font-weight: bold; margin-top: 10px;">Clé : ${data.secret}</p>
                 `);
                 
