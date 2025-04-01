@@ -27,6 +27,7 @@ VALUES ('motdepasse1'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
+       ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('ojnaemjhrfpouhqzefpouihqzrpouh.zogufoiygUEFOGIUTAdvzriutfzhh');
 
 -- Peuplement de la table _admin
@@ -58,13 +59,15 @@ VALUES (3, '0123456789', 'utilisateur1@mail.com'),
        (23, '0685527412', 'utilisateur23@mail.com'),
        (24, '0736987445', 'utilisateur24@mail.com'),
        (25, '0614569852', 'utilisateur25@mail.com'),
-       (26, '0678654126', 'anonyme@anonyme.com');
+       (26, '0678654126', 'anonyme@anonyme.com'),
+       (27, '0614569852', 'jordancarter@mail.com');
 
 
 -- Peuplement de la table _pro
 INSERT INTO _pro (idU, denomination) 
 VALUES (3, 'EntreprisePro1'),
-       (4, 'Patrick');
+       (4, 'Patrick'),
+       (27, 'Jordan Carter');
 
 -- Peuplement de la table _membre
 INSERT INTO _membre (idU, pseudo, nom, prenom) 
@@ -107,7 +110,17 @@ VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
 	('1','Route du cap', 'Fréhel', 'France','22000'),
 	('5','Rue Beauchamp','Lannion','France','22300'),
 	('1','Rue du port','Erquy','France','22430'),
-	('1', 'Rue des anciens membres anonymes', 'Lannion', 'France', '22300');
+	('1', 'Rue des anciens membres anonymes', 'Lannion', 'France', '22300'),
+
+       -- New
+       ('5', 'convenant roussel', 'Pluzunet', 'France', '22140'),
+       ('23', 'Rue de Merlin', 'Trégastel', 'France', '22730'),
+       ('3', 'Rue de Église', 'Saint-Alban', 'France', '22400'),
+       ('14', 'Rue de la Clarté', 'Perros-Guirec', 'France', '22700'),
+       ('28', 'Rue de la Latte', 'Plévenon', 'France', '22240'),
+       ('23', 'Rue des Grèves', 'Langueux', 'France', '22360'),
+       ('27', 'Kerouziel', 'Plouha', 'France', '22580'),
+       ('17', 'Rue de Trolay', 'Perros-Guirec', 'France', '22700');
 
 -- Peuplement de la table _abonnement
 INSERT INTO _abonnement (nomAbonnement, tarif) 
@@ -549,7 +562,7 @@ VALUES (1, '22300', 'Lannion', 'France', 'Rue Édouard Branly', '1'),
        (11, '22700', 'Perros-Guirec', 'France', 'Rue de la Clarté', '14'),
        (12, '22240', 'Plévenon', 'France', 'Rue de la Latte', '28'),
        (13, '22360', 'Langueux', 'France', 'Rue des Grèves', '23'),
-       (14, '222580', 'Plouha', 'France', 'Kerouziel', '27'),
+       (14, '22580', 'Plouha', 'France', 'Kerouziel', '27'),
        (15, '22700', 'Perros-Guirec', 'France', 'Rue de Trolay', '17');
        
 

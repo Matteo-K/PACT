@@ -662,31 +662,35 @@ header > div > a > div {
   transform: translateX(0);
 }
 
+
 /* Conteneur pour l'image et le pseudo */
 #imagProfil {
+  margin-top: 2em;
   position: relative;
-  margin-top: 4em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
+  width: 12em; /* Taille fixe pour l'image de profil */
+  height: 12em;
+  overflow: visible; /* Permet à l'icône de dépasser */
 }
 
 /* Styles pour l'image de profil dans le menu */
 #imagProfil img {
-  margin: 0;
-  width: 10em;
-  height: 10em;
   border-radius: 50%;
   object-fit: cover;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0px;
+}
+
+#menuProfilePic {
+  width: 83%;
+  height: 83%;
+  top: 15px !important;
+  left: 15px
 }
 
 #iconePro {
-  z-index: 11;
+  width: 100%; /* Rend l'icône plus grande */
+  height: 100%;
+  z-index: 10; /* Icône au-dessus */
 }
 
 /* Styles pour le pseudo ou le nom */
@@ -696,8 +700,7 @@ header > div > a > div {
   font-weight: bold;
   margin: 0;
   color: #000;
-  padding: 170px 0 0 0;                        <img src="iconePro.png" alt="Icône" id="iconePro">
-
+  padding: 170px 0 0 0;
 }
 
 #backButton {
