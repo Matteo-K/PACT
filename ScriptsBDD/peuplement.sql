@@ -28,7 +28,15 @@ VALUES ('motdepasse1'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
-       ('ojnaemjhrfpouhqzefpouihqzrpouh.zogufoiygUEFOGIUTAdvzriutfzhh');
+       ('ojnaemjhrfpouhqzefpouihqzrpouh.zogufoiygUEFOGIUTAdvzriutfzhh'),
+       ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'), 
+       ('$2y$10$UCrpwG.yZKqiAC4K2JctOeFwiar3nhNH1HWkx1NivF1KYUfnwxYTa'), 
+       ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
+       ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
+       ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
+       ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
+       ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
+       ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC');
 
 -- Peuplement de la table _admin
 INSERT INTO _admin (idU, login) 
@@ -58,16 +66,32 @@ VALUES (3, '0123456789', 'utilisateur1@mail.com'),
        (22, '0698653212', 'utilisateur22@mail.com'),
        (23, '0685527412', 'utilisateur23@mail.com'),
        (24, '0736987445', 'utilisateur24@mail.com'),
-       (25, '0614569852', 'utilisateur25@mail.com'),
+       (25, '0614569852', 'utilisateur25@mail.com '),
        (26, '0678654126', 'anonyme@anonyme.com'),
-       (27, '0614569852', 'jordancarter@mail.com');
+       (27, '0614569852', 'jordancarter@mail.com'),
+       (28, '0298012345', 'contact@breizh-tourisme.bzh'),  
+       (29, '0298546789', 'info@armor-restauration.fr'),
+       (30, '0298546789', 'reservation@lepetitport.fr'),  
+       (31, '0298654321', 'info@hotelarmorique.bzh'),
+       (32, '0298741256', 'contact@aqua-breizh.fr'),
+       (33, '0298456723', 'reservation@creperie-kerlann.fr'),
+       (34, '0298567894', 'contact@forestadventure.bzh'), 
+       (35, '0298123456', 'contact@terrenatae.bzh'); 
 
 
 -- Peuplement de la table _pro
 INSERT INTO _pro (idU, denomination) 
 VALUES (3, 'EntreprisePro1'),
        (4, 'Patrick'),
-       (27, 'Jordan Carter');
+       (27, 'Jordan Carter'),
+       (28, 'Breizh Tourisme'),
+       (29, 'Cabac Park'),
+       (30, 'La Récrée des 3 Curés'),
+       (31, 'Forêt Adrénaline'),
+       (32, 'Karting Ouest'),
+       (33, 'Crêperie Kerlann'),
+       (34, 'Le Café du Port'),
+       (35, 'Les Terres de Natae');
 
 -- Peuplement de la table _membre
 INSERT INTO _membre (idU, pseudo, nom, prenom) 
@@ -100,7 +124,16 @@ VALUES (3);
 
 -- Peuplement de la table _privee
 INSERT INTO _privee (idU, siren) 
-VALUES (4, '321654987');
+VALUES (4, '321654987'),
+       (27, '852963741'),
+       (28, '963258147'),
+       (29, '741852963'),
+       (30, '159753486'),
+       (31, '357159486'),
+       (32, '951357258'),
+       (33, '268357149'),
+       (34, '753468219'),
+       (35, '624897135');
 
 -- Peuplement de la table _adresse
 INSERT INTO _adresse (numeroRue, rue, ville, pays, codePostal) 
@@ -120,7 +153,17 @@ VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
        ('28', 'Rue de la Latte', 'Plévenon', 'France', '22240'),
        ('23', 'Rue des Grèves', 'Langueux', 'France', '22360'),
        ('27', 'Kerouziel', 'Plouha', 'France', '22580'),
-       ('17', 'Rue de Trolay', 'Perros-Guirec', 'France', '22700');
+       ('17', 'Rue de Trolay', 'Perros-Guirec', 'France', '22700'),
+       (1, 'Pointe de l Arcouest', 'Ploubazlanec', 'France', '22620'),
+       (1, 'Le Bois du Cobac', 'Mesnil-Roc h', 'France', '35720'),
+       (1, '1 Trois Curés', 'Milizac-Guipronvel', 'France', '29290'),
+       (1, 'Base de loisirs des Gayeulles', 'Rennes', 'France', '35700'),
+       (1, 'Fontainebleau', 'Carnac', 'France', '56340'),
+       (1, 'Kervadail', 'Ploumoguer', 'France', '29810'),
+       (1, 'Rue Saint-Georges', 'Rennes', 'France', '35000'),
+       (1, 'Quai de Doëlan', 'Clohars-Carnoët', 'France', '29360'),
+       (1, 'Kersamedi', 'Pont-Scorff', 'France', '56620'),
+       (1, 'Rue Roland Morillot', 'Lorient', 'France', '56100');
 
 -- Peuplement de la table _abonnement
 INSERT INTO _abonnement (nomAbonnement, tarif) 
@@ -271,7 +314,17 @@ VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attracti
        (4, 'actif', 'Fort La Latte - Château de la Roche Goyon', 'Visitez ce magnifique château fortifié du 14ème siècle, avec une vue spectaculaire sur la mer et une riche histoire. Idéal pour les passionnés de patrimoine et darchitecture médiévale.', 'fort-latte@mail.com', '0296123454', TRUE, 'http://fort-latte.com', 'Histoire et architecture médiévale', CURRENT_TIMESTAMP),
        (4, 'actif', 'Crêperie des Grèves Langueux', 'Une crêperie qui ravira les amateurs de galettes et de crêpes, avec une vue sur les plages de Langueux. Un cadre agréable pour déguster des plats typiques de la Bretagne.', 'creperie-grèves@mail.com', '0296123455', TRUE, 'http://creperie-desgreves.com', 'Crêpes bretonnes authentiques', CURRENT_TIMESTAMP),
        (4, 'actif', 'Les Falaises de Plouha', 'Explorez les impressionnantes falaises de Plouha, un site naturel remarquable offrant des panoramas époustouflants sur la mer. Idéal pour une randonnée en bord de mer et pour admirer la beauté sauvage de la Côte dArmor.', 'falaises-plouha@mail.com', '0296123456', TRUE, 'http://falaises-plouha.com', 'Randonnée et panoramas en bord de mer', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Côte de Granit Rose', 'Découvrez lun des plus beaux sites naturels de Bretagne avec ses roches granitiques aux formes spectaculaires, entre Ploumanac’h et Perros-Guirec. À explorer en randonnée ou à vélo.', 'granite-rose@mail.com', '0296123457', TRUE, 'http://cotedegranitrose.com', 'Randonnée et découverte des paysages', CURRENT_TIMESTAMP);
+       (4, 'actif', 'Côte de Granit Rose', 'Découvrez lun des plus beaux sites naturels de Bretagne avec ses roches granitiques aux formes spectaculaires, entre Ploumanac’h et Perros-Guirec. À explorer en randonnée ou à vélo.', 'granite-rose@mail.com', '0296123457', TRUE, 'http://cotedegranitrose.com', 'Randonnée et découverte des paysages', CURRENT_TIMESTAMP),
+       (28, 'actif', 'Croisière vers l’Île de Bréhat', 'Partez en excursion maritime vers l’Île de Bréhat avec une traversée commentée et la découverte des paysages côtiers.', 'contact@armor-navigation.com', '0296123450', TRUE, 'http://armor-navigation.com', 'Excursion en mer et découverte de Bréhat', CURRENT_TIMESTAMP),
+       (29, 'actif', 'Cobac Parc', 'Un parc d’attractions familial en plein cœur de la Bretagne avec des manèges et un parc aquatique.', 'contact@cobac-parc.com', '0299794829', TRUE, 'http://cobac-parc.com', 'Parc d’attractions et aquatique', CURRENT_TIMESTAMP),
+       (30, 'actif', 'Parc de Loisirs La Récré des 3 Curés', 'Un parc de loisirs incontournable avec des attractions pour petits et grands, et un espace aquatique.', 'contact@recredes3cures.com', '0298058080', TRUE, 'http://recredes3cures.com', 'Loisirs en famille et sensations fortes', CURRENT_TIMESTAMP),
+       (31, 'actif', 'Forêt Adrénaline Rennes', 'Un parc accrobranche pour une aventure dans les arbres avec des parcours adaptés à tous les âges.', 'contact@foret-adrenaline.com', '0299168523', TRUE, 'http://foret-adrenaline.com', 'Aventure et accrobranche', CURRENT_TIMESTAMP),
+       (31, 'actif', 'Forêt Adrénaline Carnac', 'Un parc accrobranche pour une aventure dans les arbres avec des parcours adaptés à tous les âges.', 'contact@foret-adrenaline.com', '0299168523', TRUE, 'http://foret-adrenaline.com', 'Aventure et accrobranche', CURRENT_TIMESTAMP),
+       (32, 'actif', 'Karting de Ploumoguer', 'Un circuit de karting en extérieur pour des sensations fortes en toute sécurité.', 'contact@kartingploumoguer.com', '0298654785', TRUE, 'http://kartingploumoguer.com', 'Sport mécanique et adrénaline', CURRENT_TIMESTAMP),
+       (34, 'actif', 'Le Café du Port', 'Un restaurant avec vue sur le port de Doëlan, proposant des spécialités de fruits de mer et plats bretons.', 'reservation@cafeduport.com', '0298976521', TRUE, 'http://cafeduport.com', 'Cuisine bretonne et fruits de mer', CURRENT_TIMESTAMP),
+       (33, 'actif', 'Crêperie Kerlann', 'Crêperie moderne à Rennes proposant des galettes revisitées et des crêpes gourmandes.', 'contact@creperiesaintgeorges.com', '0299923648', TRUE, 'http://creperiesaintgeorges.com', 'Crêpes et galettes bretonnes revisitées', CURRENT_TIMESTAMP),
+       (35, 'actif', 'Les Terres de Nataé', 'Un parc animalier engagé dans la préservation des espèces menacées. Découvrez plus de 150 animaux dans un cadre naturel exceptionnel.', 'contact@terresdenatae.com', '0297826541', TRUE, 'http://terresdenatae.com', 'Parc animalier et conservation', CURRENT_TIMESTAMP),
+       (28, 'actif', 'La Cité de la Voile Éric Tabarly', 'Un musée interactif sur la navigation et la voile, dédié au célèbre navigateur Éric Tabarly.', 'contact@citevoile-tabarly.com', '0297642900', TRUE, 'http://citevoile-tabarly.com', 'Musée et découverte maritime', CURRENT_TIMESTAMP);
 
 -- Peuplement de la table _image
 INSERT INTO _image (url, nomImage) 
@@ -303,7 +356,30 @@ VALUES ('./img/profile_picture/default.svg', 'default.svg'),
        ('./img/imageOffre/12/1.jpg', 'newOffre'),
        ('./img/imageOffre/13/1.jpg', 'newOffre'),
        ('./img/imageOffre/14/1.jpg', 'newOffre'),
-       ('./img/imageOffre/15/1.jpg', 'newOffre');
+       ('./img/imageOffre/15/1.jpg', 'newOffre'),
+       
+       ('./img/imageOffre/16/0.png', 'newOffre'),
+       ('./img/imageOffre/16/1.png', 'newOffre'),
+       ('./img/imageOffre/16/2.png', 'newOffre'),
+       ('./img/imageOffre/17/0.png', 'newOffre'),
+       ('./img/imageOffre/17/1.png', 'newOffre'),
+       ('./img/imageOffre/18/0.png', 'newOffre'),
+       ('./img/imageOffre/18/1.png', 'newOffre'),
+       ('./img/imageOffre/19/0.png', 'newOffre'),
+       ('./img/imageOffre/19/1.png', 'newOffre'),
+       ('./img/imageOffre/20/0.png', 'newOffre'),
+       ('./img/imageOffre/20/1.png', 'newOffre'),
+       ('./img/imageOffre/21/0.png', 'newOffre'),
+       ('./img/imageOffre/22/0.png', 'newOffre'),
+       ('./img/imageOffre/23/0.png', 'newOffre'),
+       ('./img/imageOffre/24/0.png', 'newOffre'),
+       ('./img/imageOffre/24/1.png', 'newOffre'),
+       ('./img/imageOffre/24/2.png', 'newOffre'),
+       ('./img/imageOffre/25/0.png', 'newOffre');
+
+
+
+
 
 -- Peuplement de la table _illustre
 INSERT INTO _illustre (idOffre, url) 
@@ -330,7 +406,26 @@ VALUES (3, './img/imageOffre/3/0.png'),
        (12,'./img/imageOffre/12/1.jpg'),
        (13,'./img/imageOffre/13/1.jpg'),
        (14,'./img/imageOffre/14/1.jpg'),
-       (15,'./img/imageOffre/15/1.jpg');
+       (15,'./img/imageOffre/15/1.jpg'),
+
+       (16, './img/imageOffre/16/0.png'),
+       (16, './img/imageOffre/16/1.png'),
+       (16, './img/imageOffre/16/2.png'),
+       (17, './img/imageOffre/17/0.png'),
+       (17, './img/imageOffre/17/1.png'),
+       (18, './img/imageOffre/18/0.png'),
+       (18, './img/imageOffre/18/1.png'),
+       (19, './img/imageOffre/19/0.png'),
+       (19, './img/imageOffre/19/1.png'),
+       (20, './img/imageOffre/20/0.png'),
+       (20, './img/imageOffre/20/1.png'),
+       (21, './img/imageOffre/21/0.png'),
+       (22, './img/imageOffre/22/0.png'),
+       (23, './img/imageOffre/23/0.png'),
+       (24, './img/imageOffre/24/0.png'),
+       (24, './img/imageOffre/24/1.png'),
+       (24, './img/imageOffre/24/2.png'),
+       (25, './img/imageOffre/25/0.png');
 
 
 -- Peuplement de la table _photo_profil
@@ -370,7 +465,11 @@ VALUES (5, 1, '2024-10-10'),
 -- Peuplement des tables spécifiques aux types d'offres (chaque offre appartient à une seule catégorie)
 -- Parc d'attraction (idOffre 1)
 INSERT INTO _parcAttraction (idOffre, ageMin, nbAttraction, prixMinimal, urlPlan) 
-VALUES (1, 5, 20, 15.0, './img/imagePlan/1/0.jpg');
+VALUES (1, 5, 20, 15.0, './img/imagePlan/1/0.jpg'),
+       (17, 3, 35, 11, './img/imagePlan/17/0.jpg'),
+       (18, 3, 35, 11, './img/imagePlan/18/0.jpg'),
+       (19, 3, 35, 11, './img/imagePlan/19/0.jpg'),
+       (20, 3, 35, 11, './img/imagePlan/20/0.jpg');
 
 -- Spectacle (idOffre 2)
 INSERT INTO _spectacle (idOffre, duree, nbPlace, prixMinimal) 
@@ -383,7 +482,9 @@ VALUES (3, '€€€'),
        --New
        (9, '€€'),
        (10, '€€'),
-       (13, '€€€');
+       (13, '€€€'),
+       (22, '€'),
+       (23, '€€');
 
 -- Activité (idOffre 4)
 INSERT INTO _activite (idOffre, duree, ageMin, prixMinimal) 
@@ -392,7 +493,10 @@ VALUES (4, 180, 10, 20.0),
 
        --New
        (11, 180, 10, 5.0),
-       (8, 180, 15, 40.0);
+       (8, 180, 15, 40.0),
+       (21, 120, 2, 15.0),
+       (24, 230, 0, 20.0),
+       (25, 150, 3, 11);
 
 -- Visite (idOffre 5)
 INSERT INTO _visite (idOffre, guide, duree, prixMinimal, accessibilite) 
@@ -401,7 +505,8 @@ VALUES (5, TRUE, 120, 30.0, TRUE),
 
        --New
        (14, TRUE, 120, 10.0, FALSE),
-       (15, TRUE, 120, 10.0, FALSE);
+       (15, TRUE, 120, 10.0, FALSE),
+       (16, TRUE, 120, 10.0, FALSE);
 
 -- Peuplement de la table _horaireSoir
 INSERT INTO _horaireSoir (jour, idOffre, heureOuverture, heureFermeture) 
@@ -489,16 +594,108 @@ VALUES ('Lundi', 1, '10:00', '18:00'),
        ('Mercredi', 13, '12:00', '15:00'),
        ('Jeudi', 13, '12:00', '15:00'), 
        ('Vendredi', 13, '12:00', '15:00'),
-       ('Samedi', 13, '12:00', '15:00');
+       ('Samedi', 13, '12:00', '15:00'),
+       
+       ('Lundi', 16, '10:00', '18:00'), 
+       ('Mardi', 16, '10:00', '18:00'), 
+       ('Mercredi', 16, '10:00', '18:00'),
+       ('Jeudi', 16, '10:00', '18:00'), 
+       ('Vendredi', 16, '10:00', '18:00'),
+       ('Samedi', 16, '10:00', '17:00'),
+
+       ('Lundi', 17, '12:00', '15:00'), 
+       ('Mardi', 17, '12:00', '15:00'), 
+       ('Mercredi', 17, '12:00', '15:00'),
+       ('Jeudi', 17, '12:00', '15:00'), 
+       ('Vendredi', 17, '12:00', '15:00'),
+       ('Samedi', 17, '12:00', '15:00'),
+
+       ('Lundi', 18, '12:00', '15:00'), 
+       ('Mardi', 18, '12:00', '15:00'), 
+       ('Mercredi', 18, '12:00', '15:00'),
+       ('Jeudi', 18, '12:00', '15:00'), 
+       ('Vendredi', 18, '12:00', '15:00'),
+       ('Samedi', 18, '12:00', '15:00'),
+
+       ('Lundi', 19, '10:00', '18:00'), 
+       ('Mardi', 19, '10:00', '18:00'), 
+       ('Mercredi', 19, '10:00', '18:00'),
+       ('Jeudi', 19, '10:00', '18:00'), 
+       ('Vendredi', 19, '10:00', '18:00'),
+       ('Samedi', 19, '10:00', '17:00'),
+
+       ('Lundi', 20, '12:00', '15:00'), 
+       ('Mardi', 20, '12:00', '15:00'), 
+       ('Mercredi', 20, '12:00', '15:00'),
+       ('Jeudi', 20, '12:00', '15:00'), 
+       ('Vendredi', 20, '12:00', '15:00'),
+       ('Samedi', 20, '12:00', '15:00'),
+
+       ('Lundi', 21, '12:00', '15:00'), 
+       ('Mardi', 21, '12:00', '15:00'), 
+       ('Mercredi', 21, '12:00', '15:00'),
+       ('Jeudi', 21, '12:00', '15:00'), 
+       ('Vendredi', 21, '12:00', '15:00'),
+       ('Samedi', 21, '12:00', '15:00'),
+
+       ('Lundi', 22, '10:00', '18:00'), 
+       ('Mardi', 22, '10:00', '18:00'), 
+       ('Mercredi', 22, '10:00', '18:00'),
+       ('Jeudi', 22, '10:00', '18:00'), 
+       ('Vendredi', 22, '10:00', '18:00'),
+       ('Samedi', 22, '10:00', '17:00'),
+
+       ('Lundi', 23, '12:00', '15:00'), 
+       ('Mardi', 23, '12:00', '15:00'), 
+       ('Mercredi', 23, '12:00', '15:00'),
+       ('Jeudi', 23, '12:00', '15:00'), 
+       ('Vendredi', 23, '12:00', '15:00'),
+       ('Samedi', 23, '12:00', '15:00'),
+
+       ('Lundi', 24, '12:00', '15:00'), 
+       ('Mardi', 24, '12:00', '15:00'), 
+       ('Mercredi', 24, '12:00', '15:00'),
+       ('Jeudi', 24, '12:00', '15:00'), 
+       ('Vendredi', 24, '12:00', '15:00'),
+       ('Samedi', 24, '12:00', '15:00'),
+
+       ('Lundi', 25, '10:00', '18:00'), 
+       ('Mardi', 25, '10:00', '18:00'), 
+       ('Mercredi', 25, '10:00', '18:00'),
+       ('Jeudi', 25, '10:00', '18:00'), 
+       ('Vendredi', 25, '10:00', '18:00'),
+       ('Samedi', 25, '10:00', '17:00');
 
 -- Peuplement de la table _tag_parc
 INSERT INTO _tag_parc (idOffre, nomTag) 
-VALUES (1, 'familial');
---(sensations fortes",
+VALUES (1, 'familial'),
+       (17, 'sensations_fortes'),
+       (17, 'familial'),
+       (17, 'aquatique'),
+       (17, 'en_extérieur'),
+       (17, 'breton'),
+       (17, 'estival'),
+       (18, 'sensations_fortes'),
+       (18, 'familial'),
+       (18, 'aquatique'),
+       (18, 'en_extérieur'),
+       (18, 'breton'),
+       (18, 'estival'),
+       (19, 'aventure'),
+       (19, 'sensations_fortes'),
+       (19, 'naturel'),
+       (19, 'en_extérieur'),
+       (19, 'familial'),
+       (20, 'aventure'),
+       (20, 'sensations_fortes'),
+       (20, 'naturel'),
+       (20, 'en_extérieur'),
+       (20, 'familial');
 -- Peuplement de la table _tag_spec
 INSERT INTO _tag_spec (idOffre, nomTag) 
-VALUES (2, 'romantique'),
-       (2, 'street_food');
+VALUES (2, 'stand-up'),
+       (2, 'intimiste'),
+       (2, 'convivial');
 
 -- Peuplement de la table _tag_restaurant
 INSERT INTO _tag_restaurant (idOffre, nomTag) 
@@ -507,17 +704,48 @@ VALUES (3, 'cuisine_locale'),
        --New
        (9, 'cuisine_locale'),
        (10, 'cuisine_locale'),
-       (13, 'cuisine_locale');
+       (13, 'cuisine_locale'),
+       (22, 'convivial'),
+       (22, 'traditionnel'),
+       (22, 'authentique'),
+       (22, 'calme'),
+       (23, 'cuisine_locale'),
+       (23, 'breton'),
+       (23, 'traditionnel'),
+       (23, 'convivial'),
+       (23, 'familial');
 
 
 -- Peuplement de la table _tag_Act
 INSERT INTO _tag_Act (idOffre, nomTag) 
-VALUES (4, 'culturel');
+VALUES (4, 'culturel'),
+       (24,'animaux'),
+       (24,'familial'),
+       (24,'éducative'),
+       (24,'naturel'),
+       (24,'immersive'),
+       (24,'en_extérieur'),
+       (25,'interactif'),
+       (25,'aquatique'),
+       (25,'éducative'),
+       (25,'familial'),
+       (25,'immersive'),
+       (25,'patrimonial'),
+       (21,'sensations_fortes'),
+       (21,'adolescents'),
+       (21,'groupes'),
+       (21,'activité_immersive'),
+       (21,'en_extérieur');
 
 -- Peuplement de la table _tag_visite
 INSERT INTO _tag_visite (idOffre, nomTag) 
-VALUES (5, 'culturel');
-
+VALUES (5, 'culturel'),
+       (16,'familial'),
+       (16,'romantique'),
+       (16,'aventure'),
+       (16,'en_bord_de_mer'),
+       (16,'local'),
+       (16,'saisonnier');
 
 -- Peuplement de la table _habite
 INSERT INTO _habite (idU, codePostal, ville, pays, rue, numeroRue) 
@@ -544,7 +772,7 @@ VALUES (5, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 	(23, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 	(24, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 	(25, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
-    (26, '22300', 'Lannion', 'France', 'Rue des anciens membres anonymes', 1);
+       (26, '22300', 'Lannion', 'France', 'Rue des anciens membres anonymes', 1);
 
 
 -- Peuplement de la table _localisation
@@ -563,7 +791,17 @@ VALUES (1, '22300', 'Lannion', 'France', 'Rue Édouard Branly', '1'),
        (12, '22240', 'Plévenon', 'France', 'Rue de la Latte', '28'),
        (13, '22360', 'Langueux', 'France', 'Rue des Grèves', '23'),
        (14, '22580', 'Plouha', 'France', 'Kerouziel', '27'),
-       (15, '22700', 'Perros-Guirec', 'France', 'Rue de Trolay', '17');
+       (15, '22700', 'Perros-Guirec', 'France', 'Rue de Trolay', '17'),
+       (16, '22620', 'Ploubazlanec', 'France', 'Pointe de l Arcouest', '1'),
+       (17, '35720', 'Mesnil-Roc h', 'France', 'Le Bois du Cobac', '1'),
+       (18, '29290', 'Milizac-Guipronvel', 'France', '1 Trois Curés', '1'),
+       (19, '35700', 'Rennes', 'France', 'Base de loisirs des Gayeulles', '1'),
+       (20, '56340', 'Carnac', 'France', 'Fontainebleau', '1'),
+       (21, '29810', 'Ploumoguer', 'France', 'Kervadail', '1'),
+       (22, '35000', 'Rennes', 'France', 'Rue Saint-Georges', '1'),
+       (23, '29360', 'Clohars-Carnoët', 'France', 'Quai de Doëlan', '1'),
+       (24, '56620', 'Pont-Scorff', 'France', 'Kersamedi', '1'),
+       (25, '56100', 'Lorient', 'France', 'Rue Roland Morillot', '1');
        
 
 -- Peuplement de la table _abonner
@@ -584,7 +822,17 @@ VALUES (1, 'Premium'),
        (12,'Premium'),
        (13,'Premium'),
        (14,'Premium'),
-       (15,'Premium');
+       (15,'Premium'),
+       (16,'Premium'),
+       (17,'Premium'),
+       (18,'Premium'),
+       (19,'Premium'),
+       (20,'Premium'),
+       (21,'Premium'),
+       (22,'Premium'),
+       (23,'Premium'),
+       (24,'Premium'),
+       (25,'Premium');
 
 
 INSERT INTO _dateOption(dateLancement,dateFin,duree,prix)
@@ -622,7 +870,9 @@ VALUES (5, 'Français'),
 
        --New
        (14, 'Français'), 
-       (15, 'Français');
+       (15, 'Français'),
+       (16, 'Français'),
+       (16, 'Anglais');
 
 INSERT INTO _menu(idOffre, menu)
 VALUES (3,'./img/imageMenu/3/0.png');
