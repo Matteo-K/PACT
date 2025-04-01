@@ -851,7 +851,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // statuts
   chkBxOuvert.addEventListener("click", () => goToPage(1));
-  chkBxFerme .addEventListener("click", () => goToPage(1));
   
   // catégories
   chkBxParc.addEventListener("click", () => goToPage(1));
