@@ -70,6 +70,18 @@ if (isset($_GET['get'])) {
 
       break;
     case 'filtre':
+      $attributs = [
+        "idOffre" => "idoffre",
+        "nomOffre" => "nom",
+        "resume" => "resume",
+        "categorie" => "categorie",
+        "statut" => "statut",
+        "ville" => "ville",
+        "codePostal" => "codepostal",
+        "numeroRue" => "numerorue",
+        "rue" => "rue",
+        "tags" => "all_tags"
+      ];
       break;
 
     case 'tri':

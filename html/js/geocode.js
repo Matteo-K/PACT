@@ -1,16 +1,15 @@
 export function geocode(address) {
-    let url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&addressdetails=1&limit=1`;
+    let url = `https://photon.komoot.io/api/?q=${encodeURIComponent(address)}&limit=1&lang=fr`;
 
     return fetch(url)
-        .then(response => response.json())  // Résoudre la promesse de `fetch()` et récupérer les données JSON
+        .then(response => response.json())
         .then(data => {
-            if (data && data.length > 0) {
-                const lat = data[0].lat;
-                const lon = data[0].lon;
-                let coord = [lat, lon];
-                return coord;  // Retourner les coordonnées
+            if (data && data.features && data.features.length > 0) {
+                const lat = data.features[0].geometry.coordinates[1]; // Latitude
+                const lon = data.features[0].geometry.coordinates[0]; // Longitude
+                return [lat, lon];
             } else {
-                console.log("Adresse non trouvée.");
+                console.log("Adresse non trouvée. Essayez un format différent.");
                 return null;
             }
         })

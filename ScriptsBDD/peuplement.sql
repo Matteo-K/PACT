@@ -107,7 +107,17 @@ VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
 	('1','Route du cap', 'Fréhel', 'France','22000'),
 	('5','Rue Beauchamp','Lannion','France','22300'),
 	('1','Rue du port','Erquy','France','22430'),
-	('1', 'Rue des anciens membres anonymes', 'Lannion', 'France', '22300');
+	('1', 'Rue des anciens membres anonymes', 'Lannion', 'France', '22300'),
+
+       -- New
+       ('5', 'convenant roussel', 'Pluzunet', 'France', '22140'),
+       ('23', 'Rue de Merlin', 'Trégastel', 'France', '22730'),
+       ('3', 'Rue de Église', 'Saint-Alban', 'France', '22400'),
+       ('3', 'Rue de la Clarté', 'Perros-Guirec', 'France', '22700'),
+       ('28', 'Rue de la Latte', 'Plévenon', 'France', '22240'),
+       ('23', 'Rue des Grèves', 'Langueux', 'France', '22360'),
+       ('27', 'Kerouziel', 'Plouha', 'France', '22580'),
+       ('17', 'Rue de Trolay', 'Perros-Guirec', 'France', '22700');
 
 -- Peuplement de la table _abonnement
 INSERT INTO _abonnement (nomAbonnement, tarif) 
@@ -540,7 +550,17 @@ VALUES (1, '22300', 'Lannion', 'France', 'Rue Édouard Branly', '1'),
        (2, '22430', 'Erquy', 'France', 'Rue du port', '1'),
        (3, '22000', 'Fréhel', 'France', 'Allée des acacias', '4'),
        (4, '22300', 'Lannion', 'France', 'Rue Beauchamp', '5'),
-       (5, '22000', 'Fréhel', 'France', 'Route du cap', '1');
+       (5, '22000', 'Fréhel', 'France', 'Route du cap', '1'),
+
+       -- New
+       (8, '22140', 'Pluzunet', 'France', 'convenant roussel', '5'),
+       (9, '22730', 'Trégastel', 'France', 'Rue de Merlin', '23'),
+       (10, '22400', 'Saint-Alban', 'France', 'Rue de Église', '3'),
+       (11, '22700', 'Perros-Guirec', 'France', 'Rue de la Clarté', '14'),
+       (12, '22240', 'Plévenon', 'France', 'Rue de la Latte', '28'),
+       (13, '22360', 'Langueux', 'France', 'Rue des Grèves', '23'),
+       (14, '22580', 'Plouha', 'France', 'Kerouziel', '27'),
+       (15, '22700', 'Perros-Guirec', 'France', 'Rue de Trolay', '17');
        
 
 -- Peuplement de la table _abonner
