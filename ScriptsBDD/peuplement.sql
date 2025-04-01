@@ -540,7 +540,17 @@ VALUES (1, '22300', 'Lannion', 'France', 'Rue Édouard Branly', '1'),
        (2, '22430', 'Erquy', 'France', 'Rue du port', '1'),
        (3, '22000', 'Fréhel', 'France', 'Allée des acacias', '4'),
        (4, '22300', 'Lannion', 'France', 'Rue Beauchamp', '5'),
-       (5, '22000', 'Fréhel', 'France', 'Route du cap', '1');
+       (5, '22000', 'Fréhel', 'France', 'Route du cap', '1'),
+
+       -- New
+       (8, '22140', 'Pluzunet', 'France', 'convenant roussel', '5'),
+       (9, '22730', 'Trégastel', 'France', 'Rue de Merlin', '23'),
+       (10, '22400', 'Saint-Alban', 'France', 'Rue de Église', '3'),
+       (11, '22700', 'Perros-Guirec', 'France', 'Rue de la Clarté', '14'),
+       (12, '22240', 'Plévenon', 'France', 'Rue de la Latte', '28'),
+       (13, '22360', 'Langueux', 'France', 'Rue des Grèves', '23'),
+       (14, '222580', 'Plouha', 'France', 'Kerouziel', '27'),
+       (15, '22700', 'Perros-Guirec', 'France', 'Rue de Trolay', '17');
        
 
 -- Peuplement de la table _abonner
