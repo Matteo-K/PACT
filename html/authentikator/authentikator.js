@@ -22,30 +22,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (checkbox.checked) {
             fetch("authentikator/authentikator.php?pseudo=" + encodeURIComponent(pseudoOrDenomination))
-            .then(response => response.json())
-            .then(data => {
-                // Supprime l'ancien QR Code et la clé secrète s'ils existent
-                let oldQRCode = div.querySelector("#qrCodeImg");
-                let oldSecret = div.querySelector("#secretKey");
-                if (oldQRCode) oldQRCode.remove();
-                if (oldSecret) oldSecret.remove();
-            
-                // Ajouter le QR Code en premier enfant
-                div.insertAdjacentHTML("afterbegin", `
-                    <img id="qrCodeImg" src="${data.qrCodeUrl}" alt="QR Code">
-                    <p id="secretKey" style="font-size: 18px; font-weight: bold; margin-top: 10px;">Clé : ${data.secret}</p>
-                `);
-                
-                // Afficher la div avec une hauteur fixe
-                div.style.height = "fit-content";
-                div.style.minHeight = "280px";
-                div.style.opacity = "1";
-                div.style.display = "flex";
-                div.style.flexDirection = "column";
-                div.style.flexWrap = "wrap"
-                div.style.alignItems = "center";
-            })
-            .catch(error => console.error("Erreur :", error));
+    .then(response => response.json())
+    .then(data => {
+        // Supprime l'ancien QR Code et le secret s'ils existent
+        let oldQRCode = div.querySelector("#qrCodeImg");
+        let oldSecretBlock = div.querySelector("#secretBlock");
+        if (oldQRCode) oldQRCode.remove();
+        if (oldSecretBlock) oldSecretBlock.remove();
+
+        // Ajouter le QR Code et le secret
+        div.insertAdjacentHTML("afterbegin", `
+            <img id="qrCodeImg" src="${data.qrCodeUrl}" alt="QR Code" style="max-width: 100%; height: auto;">
+            <div id="secretBlock" style="margin-top: 10px; text-align: center;">
+                <p style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">
+                    Clée de configuration :
+                </p>
+                <p id="secretKey" style="font-size: 14px; font-weight: bold; background: #f3f3f3; padding: 8px; border-radius: 5px; display: inline-block; word-break: break-word; max-width: 100%;">
+                    ${data.secret}
+                </p>
+                <br>
+                <button id="copyButton" type="button" class="modifierBut">
+                    Copier
+                </button>
+            </div>
+        `);
+
+        // Gestion du bouton de copie
+        document.querySelector("#copyButton").addEventListener("click", function () {
+            let secretKey = document.querySelector("#secretKey").innerText;
+            navigator.clipboard.writeText(secretKey);
+        });
+
+        // Afficher la div avec une hauteur fixe
+        div.style.height = "fit-content";
+        div.style.minHeight = "280px";
+        div.style.opacity = "1";
+    })
+    .catch(error => console.error("Erreur :", error));
+
 
         } else {
             // Réduire la div et masquer le contenu
