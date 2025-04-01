@@ -17,14 +17,14 @@ if (isset($_GET['pseudo'])) {
     $_SESSION['secret_a2f'] = $secret;
 
     // Générer l'URI de provisionnement
-    $uri = $totp->getProvisioningUri();
+    $provisioningUri = $totp->getProvisioningUri();
 
-    // Générer et renvoyer le QR Code + clé secrète en JSON
-    $qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" . urlencode($uri);
+    // Générer et renvoyer le QR Code + URI de configuration en JSON
+    $qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" . urlencode($provisioningUri);
 
     echo json_encode([
         "qrCodeUrl" => $qrCodeUrl,
-        "secret" => $secret
+        "configKey" => $provisioningUri
     ]);
 }
 

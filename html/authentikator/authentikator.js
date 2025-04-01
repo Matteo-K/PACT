@@ -24,16 +24,19 @@ document.addEventListener("DOMContentLoaded", () => {
             fetch("authentikator/authentikator.php?pseudo=" + encodeURIComponent(pseudoOrDenomination))
             .then(response => response.json())
             .then(data => {
-                // Supprime l'ancien QR Code et la clé secrète s'ils existent
+                // Supprime l'ancien QR Code et la clé de configuration s'ils existent
                 let oldQRCode = div.querySelector("#qrCodeImg");
-                let oldSecret = div.querySelector("#secretKey");
+                let oldConfigKey = div.querySelector("#configKey");
                 if (oldQRCode) oldQRCode.remove();
-                if (oldSecret) oldSecret.remove();
+                if (oldConfigKey) oldConfigKey.remove();
             
-                // Ajouter le QR Code en premier enfant
+                // Ajouter le QR Code et la clé de configuration
                 div.insertAdjacentHTML("afterbegin", `
                     <img id="qrCodeImg" src="${data.qrCodeUrl}" alt="QR Code">
-                    <p id="secretKey" style="font-size: 18px; font-weight: bold; margin-top: 10px;">Clé : ${data.secret}</p>
+                    <p id="configKey" style="font-size: 18px; font-weight: bold; margin-top: 10px;">
+                        Clé de configuration : <br>
+                        <span style="word-break: break-all;">${data.configKey}</span>
+                    </p>
                 `);
                 
                 // Afficher la div avec une hauteur fixe
@@ -42,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 div.style.opacity = "1";
             })
             .catch(error => console.error("Erreur :", error));
+
 
         } else {
             // Réduire la div et masquer le contenu
