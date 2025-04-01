@@ -27,6 +27,7 @@ VALUES ('motdepasse1'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
+       ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('ojnaemjhrfpouhqzefpouihqzrpouh.zogufoiygUEFOGIUTAdvzriutfzhh');
 
 -- Peuplement de la table _admin
@@ -58,13 +59,15 @@ VALUES (3, '0123456789', 'utilisateur1@mail.com'),
        (23, '0685527412', 'utilisateur23@mail.com'),
        (24, '0736987445', 'utilisateur24@mail.com'),
        (25, '0614569852', 'utilisateur25@mail.com'),
-       (26, '0678654126', 'anonyme@anonyme.com');
+       (26, '0678654126', 'anonyme@anonyme.com'),
+       (27, '0614569852', 'jordancarter@mail.com');
 
 
 -- Peuplement de la table _pro
 INSERT INTO _pro (idU, denomination) 
 VALUES (3, 'EntreprisePro1'),
-       (4, 'Patrick');
+       (4, 'Patrick'),
+       (27, 'Jordan Carter');
 
 -- Peuplement de la table _membre
 INSERT INTO _membre (idU, pseudo, nom, prenom) 
@@ -113,7 +116,7 @@ VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
        ('5', 'convenant roussel', 'Pluzunet', 'France', '22140'),
        ('23', 'Rue de Merlin', 'Trégastel', 'France', '22730'),
        ('3', 'Rue de Église', 'Saint-Alban', 'France', '22400'),
-       ('3', 'Rue de la Clarté', 'Perros-Guirec', 'France', '22700'),
+       ('14', 'Rue de la Clarté', 'Perros-Guirec', 'France', '22700'),
        ('28', 'Rue de la Latte', 'Plévenon', 'France', '22240'),
        ('23', 'Rue des Grèves', 'Langueux', 'France', '22360'),
        ('27', 'Kerouziel', 'Plouha', 'France', '22580'),
@@ -261,14 +264,14 @@ VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attracti
        (4, 'inactif', 'Baie de Lannion', 'Venez voir la mangnifique Baie de Lannion', 'baie-lannuin@mail.com', '0267842542', TRUE, 'http://baiedelannion.com', 'Divertissement familial', CURRENT_TIMESTAMP),
 
        -- New
-       (4, 'actif', 'Randonnée Quad en Côtes dArmor', 'Partez à la conquête de nouveaux espaces lors dune randonnée en Quad à travers la campagne bretonne, dans un cadre naturel exceptionnel. Vous serez accompagné par un guide qualifié.', 'quad-cotesdarmor@mail.com', '0296123450', TRUE, 'http://randoneequadbzh.com', 'Aventure en plein air et découverte de la nature', CURRENT_TIMESTAMP),
+       (27, 'actif', 'Randonnée Quad en Côtes dArmor', 'Partez à la conquête de nouveaux espaces lors dune randonnée en Quad à travers la campagne bretonne, dans un cadre naturel exceptionnel. Vous serez accompagné par un guide qualifié.', 'quad-cotesdarmor@mail.com', '0296123450', TRUE, 'http://randoneequadbzh.com', 'Aventure en plein air et découverte de la nature', CURRENT_TIMESTAMP),
        (4, 'actif', 'La Grève Blanche', 'Restaurant situé à Trégastel, offrant une vue imprenable sur la mer. Spécialité de fruits de mer frais et plats traditionnels bretons.', 'greveblanche@mail.com', '0296123451', TRUE, 'http://greveblanche.com', 'Cuisine traditionnelle de la mer', CURRENT_TIMESTAMP),
        (4, 'actif', 'La Crêperie du Village Saint-Alban', 'Savourez de délicieuses galettes et crêpes bretonnes dans cette crêperie chaleureuse au cœur de Saint-Alban, idéale pour un repas en famille ou entre amis.', 'creperie-village@mail.com', '0296123452', TRUE, 'http://creperie-saintalban.com', 'Spécialités bretonnes authentiques', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Armor Navigation', 'Embarquez pour une excursion autour des célèbres Sept-Îles en vedette et découvrez un des plus beaux sites naturels de Bretagne, un véritable paradis pour les amateurs doiseaux.', 'armor-navigation@mail.com', '0296123453', TRUE, 'http://armor-navigation.com', 'Excursion en mer et observation des oiseaux', CURRENT_TIMESTAMP),
+       (27, 'actif', 'Armor Navigation', 'Embarquez pour une excursion autour des célèbres Sept-Îles en vedette et découvrez un des plus beaux sites naturels de Bretagne, un véritable paradis pour les amateurs doiseaux.', 'armor-navigation@mail.com', '0296123453', TRUE, 'http://armor-navigation.com', 'Excursion en mer et observation des oiseaux', CURRENT_TIMESTAMP),
        (4, 'actif', 'Fort La Latte - Château de la Roche Goyon', 'Visitez ce magnifique château fortifié du 14ème siècle, avec une vue spectaculaire sur la mer et une riche histoire. Idéal pour les passionnés de patrimoine et darchitecture médiévale.', 'fort-latte@mail.com', '0296123454', TRUE, 'http://fort-latte.com', 'Histoire et architecture médiévale', CURRENT_TIMESTAMP),
        (4, 'actif', 'Crêperie des Grèves Langueux', 'Une crêperie qui ravira les amateurs de galettes et de crêpes, avec une vue sur les plages de Langueux. Un cadre agréable pour déguster des plats typiques de la Bretagne.', 'creperie-grèves@mail.com', '0296123455', TRUE, 'http://creperie-desgreves.com', 'Crêpes bretonnes authentiques', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Les Falaises de Plouha', 'Explorez les impressionnantes falaises de Plouha, un site naturel remarquable offrant des panoramas époustouflants sur la mer. Idéal pour une randonnée en bord de mer et pour admirer la beauté sauvage de la Côte dArmor.', 'falaises-plouha@mail.com', '0296123456', TRUE, 'http://falaises-plouha.com', 'Randonnée et panoramas en bord de mer', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Côte de Granit Rose', 'Découvrez lun des plus beaux sites naturels de Bretagne avec ses roches granitiques aux formes spectaculaires, entre Ploumanac’h et Perros-Guirec. À explorer en randonnée ou à vélo.', 'granite-rose@mail.com', '0296123457', TRUE, 'http://cotedegranitrose.com', 'Randonnée et découverte des paysages', CURRENT_TIMESTAMP);
+       (27, 'actif', 'Les Falaises de Plouha', 'Explorez les impressionnantes falaises de Plouha, un site naturel remarquable offrant des panoramas époustouflants sur la mer. Idéal pour une randonnée en bord de mer et pour admirer la beauté sauvage de la Côte dArmor.', 'falaises-plouha@mail.com', '0296123456', TRUE, 'http://falaises-plouha.com', 'Randonnée et panoramas en bord de mer', CURRENT_TIMESTAMP),
+       (27, 'actif', 'Côte de Granit Rose', 'Découvrez lun des plus beaux sites naturels de Bretagne avec ses roches granitiques aux formes spectaculaires, entre Ploumanac’h et Perros-Guirec. À explorer en randonnée ou à vélo.', 'granite-rose@mail.com', '0296123457', TRUE, 'http://cotedegranitrose.com', 'Randonnée et découverte des paysages', CURRENT_TIMESTAMP);
 
 -- Peuplement de la table _image
 INSERT INTO _image (url, nomImage) 
