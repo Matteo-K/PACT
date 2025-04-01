@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     Secret :
                 </label>
                 <textarea id="secretKey" readonly style="width: 100%; font-size: 14px; padding: 5px; resize: none; text-align: center;">${data.secret}</textarea>
-                <button id="copyButton" style="margin-top: 5px; padding: 5px 10px; cursor: pointer;">
+                <button id="copyButton" class="modifierBut" >
                     Copier
                 </button>
             </div>
@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
             let secretKey = document.querySelector("#secretKey");
             secretKey.select();
             document.execCommand("copy");
-            alert("Secret copié !");
         });
 
         // Afficher la div avec une hauteur fixe
