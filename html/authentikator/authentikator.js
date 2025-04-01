@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <img id="qrCodeImg" src="${data.qrCodeUrl}" alt="QR Code" style="max-width: 100%; height: auto;">
             <div id="secretBlock" style="margin-top: 10px; text-align: center;">
                 <p style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">
-                    Secret :
+                    Clée de configuration :
                 </p>
                 <p id="secretKey" style="font-size: 14px; font-weight: bold; background: #f3f3f3; padding: 8px; border-radius: 5px; display: inline-block; word-break: break-word; max-width: 100%;">
                     ${data.secret}
