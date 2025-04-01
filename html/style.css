@@ -644,24 +644,6 @@ header > div > a > div {
   gap: 20px;
 }
 
-#profileMenu.show {
-  visibility: visible;
-  opacity: 1;
-  transform: translateX(calc(100vw - 276px));
-}
-
-#profileMenu.hide {
-  visibility: visible;
-  opacity: 1;
-  transform: translateX(105vw);
-}
-
-#profileMenu.deplace {
-  visibility: visible;
-  opacity: 1;
-  transform: translateX(0);
-}
-
 
 /* Conteneur pour l'image et le pseudo */
 #imagProfil {

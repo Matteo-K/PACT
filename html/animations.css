@@ -71,3 +71,21 @@
 
 
 
+/* animations du menu du compte (à droite de l'écran) */
+#profileMenu.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(calc(100vw - 276px));
+}
+
+#profileMenu.hide {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(105vw);
+}
+
+#profileMenu.deplace {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+}
