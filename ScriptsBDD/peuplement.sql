@@ -27,6 +27,7 @@ VALUES ('motdepasse1'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
+       ('$2y$10$Ic14flPz8mbIIuNCYV.hdOdf97dwdGoYzv2bJaRWTjuuRaa0aGyuC'),
        ('ojnaemjhrfpouhqzefpouihqzrpouh.zogufoiygUEFOGIUTAdvzriutfzhh');
 
 -- Peuplement de la table _admin
@@ -58,13 +59,15 @@ VALUES (3, '0123456789', 'utilisateur1@mail.com'),
        (23, '0685527412', 'utilisateur23@mail.com'),
        (24, '0736987445', 'utilisateur24@mail.com'),
        (25, '0614569852', 'utilisateur25@mail.com'),
-       (26, '0678654126', 'anonyme@anonyme.com');
+       (26, '0678654126', 'anonyme@anonyme.com'),
+       (27, '0614569852', 'jordancarter@mail.com');
 
 
 -- Peuplement de la table _pro
 INSERT INTO _pro (idU, denomination) 
 VALUES (3, 'EntreprisePro1'),
-       (4, 'Patrick');
+       (4, 'Patrick'),
+       (27, 'Jordan Carter');
 
 -- Peuplement de la table _membre
 INSERT INTO _membre (idU, pseudo, nom, prenom) 
