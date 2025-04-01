@@ -22,21 +22,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (checkbox.checked) {
             fetch("authentikator/authentikator.php?pseudo=" + encodeURIComponent(pseudoOrDenomination))
-                .then(response => response.text())
-                .then(data => {
-                    // Supprime l'ancien QR Code s'il existe
-                    let oldQRCode = div.querySelector("#qrCodeImg");
-                    if (oldQRCode) oldQRCode.remove();
+            .then(response => response.json())
+            .then(data => {
+                // Supprime l'ancien QR Code et la clé secrète s'ils existent
+                let oldQRCode = div.querySelector("#qrCodeImg");
+                let oldSecret = div.querySelector("#secretKey");
+                if (oldQRCode) oldQRCode.remove();
+                if (oldSecret) oldSecret.remove();
+            
+                // Ajouter le QR Code en premier enfant
+                div.insertAdjacentHTML("afterbegin", `
+                    <img id="qrCodeImg" src="${data.qrCodeUrl}" alt="QR Code">
+                    <p id="secretKey" style="font-size: 18px; font-weight: bold; margin-top: 10px;">Clé : ${data.secret}</p>
+                `);
+                
+                // Afficher la div avec une hauteur fixe
+                div.style.height = "fit-content";
+                div.style.minHeight = "280px";
+                div.style.opacity = "1";
+                div.style.display = "flex";
+                div.style.flexDirection = "column";
+                div.style.flexWrap = "wrap"
+                div.style.alignItems = "center";
+            })
+            .catch(error => console.error("Erreur :", error));
 
-                    // Ajouter le QR Code en premier enfant
-                    div.insertAdjacentHTML("afterbegin", `<img id="qrCodeImg" src="${data}" alt="QR Code">`);
-
-                    // Afficher la div avec une hauteur fixe
-                    div.style.height = "fit-content";
-                    div.style.minHeight = "280px"
-                    div.style.opacity = "1";
-                })
-                .catch(error => console.error("Erreur :", error));
         } else {
             // Réduire la div et masquer le contenu
             console.log("pas checked");
