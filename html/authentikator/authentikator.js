@@ -30,15 +30,18 @@ document.addEventListener("DOMContentLoaded", () => {
         if (oldQRCode) oldQRCode.remove();
         if (oldSecretBlock) oldSecretBlock.remove();
 
-        // Ajouter le QR Code et le secret dans un bloc sécurisé
+        // Ajouter le QR Code et le secret
         div.insertAdjacentHTML("afterbegin", `
             <img id="qrCodeImg" src="${data.qrCodeUrl}" alt="QR Code" style="max-width: 100%; height: auto;">
             <div id="secretBlock" style="margin-top: 10px; text-align: center;">
-                <label for="secretKey" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 5px;">
+                <p style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">
                     Secret :
-                </label>
-                <textarea id="secretKey" readonly style="width: 100%; font-size: 14px; padding: 5px; resize: none; text-align: center;">${data.secret}</textarea>
-                <button id="copyButton" class="modifierBut" >
+                </p>
+                <p id="secretKey" style="font-size: 14px; font-weight: bold; background: #f3f3f3; padding: 8px; border-radius: 5px; display: inline-block; word-break: break-word; max-width: 100%;">
+                    ${data.secret}
+                </p>
+                <br>
+                <button id="copyButton" style="margin-top: 5px; padding: 5px 10px; cursor: pointer;">
                     Copier
                 </button>
             </div>
@@ -46,9 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Gestion du bouton de copie
         document.querySelector("#copyButton").addEventListener("click", function () {
-            let secretKey = document.querySelector("#secretKey");
-            secretKey.select();
-            document.execCommand("copy");
+            let secretKey = document.querySelector("#secretKey").innerText;
+            navigator.clipboard.writeText(secretKey).then(() => {
+                alert("Secret copié !");
+            });
         });
 
         // Afficher la div avec une hauteur fixe
