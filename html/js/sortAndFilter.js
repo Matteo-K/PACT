@@ -617,9 +617,6 @@ function addPing(array) {
   });
 }
 
-
-
-
 function removeAllPing() {
   markers.eachLayer(marker => {
     map.removeLayer(marker); // Affiche les coordonnées de chaque marqueur
@@ -796,8 +793,12 @@ function createLogoCategorie(offer) {
 }
 
 function ajouterTag(offer) {
-  const tagsToShow = offer.tags.slice(0, 2).map(tag => `<a class="tagIndex" href="index.php?search=${tag.replace('_', '+')}#searchIndex">${tag.replace('_', ' ')}</a>`).join('');
-  return `<div class="tagsCard">${tagsToShow}${offer.tags.length > 2 ? `<a class="tagIndex">+ ${offer.tags.length - 2} autre${offer.tags.length - 2 > 1 ? 's' : ''}</a>` : ''}</div>`;
+  const nbTagPass = offer.tags.length > 0;
+  if (nbTagPass) {
+    const tagsToShow = offer.tags.slice(0, 2).map(tag => `<a class="tagIndex" href="index.php?search=${tag.replace('_', '+')}#searchIndex">${tag.replace('_', ' ')}</a>`).join('');
+    const tags = `${tagsToShow}${offer.tags.length > 2 ? `<a class="tagIndex">+ ${offer.tags.length - 2} autre${offer.tags.length - 2 > 1 ? 's' : ''}</a>` : ''}`;
+  }
+  return `<div class="tagsCard">${nbTagPass ? tags : ""}</div>`;
 }
 
 function displayStar(note) {
