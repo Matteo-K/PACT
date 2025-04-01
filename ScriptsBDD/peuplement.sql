@@ -107,7 +107,17 @@ VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
 	('1','Route du cap', 'Fréhel', 'France','22000'),
 	('5','Rue Beauchamp','Lannion','France','22300'),
 	('1','Rue du port','Erquy','France','22430'),
-	('1', 'Rue des anciens membres anonymes', 'Lannion', 'France', '22300');
+	('1', 'Rue des anciens membres anonymes', 'Lannion', 'France', '22300'),
+
+       -- New
+       (8, '22140', 'Pluzunet', 'France', 'convenant roussel', '5'),
+       (9, '22730', 'Trégastel', 'France', 'Rue de Merlin', '23'),
+       (10, '22400', 'Saint-Alban', 'France', 'Rue de Église', '3'),
+       (11, '22700', 'Perros-Guirec', 'France', 'Rue de la Clarté', '14'),
+       (12, '22240', 'Plévenon', 'France', 'Rue de la Latte', '28'),
+       (13, '22360', 'Langueux', 'France', 'Rue des Grèves', '23'),
+       (14, '222580', 'Plouha', 'France', 'Kerouziel', '27'),
+       (15, '22700', 'Perros-Guirec', 'France', 'Rue de Trolay', '17');
 
 -- Peuplement de la table _abonnement
 INSERT INTO _abonnement (nomAbonnement, tarif) 
