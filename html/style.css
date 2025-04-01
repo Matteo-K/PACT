@@ -696,6 +696,8 @@ header > div > a > div {
   font-weight: bold;
   margin: 0;
   color: #000;
+  padding: 170px 0 0 0;                        <img src="iconePro.png" alt="Icône" id="iconePro">
+
 }
 
 #backButton {
