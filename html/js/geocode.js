@@ -1,5 +1,5 @@
 export function geocode(address) {
-    let url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&addressdetails=1&limit=1`;
+    let url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&addressdetails=1&limit=1&countrycodes=fr&dedupe=1`;
 
     return fetch(url)
         .then(response => response.json())  // Résoudre la promesse de `fetch()` et récupérer les données JSON

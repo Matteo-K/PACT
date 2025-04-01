@@ -540,7 +540,7 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 
   //affichage des ping sur la carte
   addPing(array);
-}
+} 
 
 function getCategoryIcon(categorie, chemin) {
   const icons = {
