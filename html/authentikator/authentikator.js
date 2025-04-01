@@ -40,10 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 div.style.height = "fit-content";
                 div.style.minHeight = "280px";
                 div.style.opacity = "1";
-                div.style.display = "flex";
-                div.style.flexDirection = "column";
-                div.style.flexWrap = "wrap"
-                div.style.alignItems = "center";
+                // div.style.display = "flex";
+                // div.style.flexDirection = "column";
+                // div.style.flexWrap = "wrap"
+                // div.style.alignItems = "center";
             })
             .catch(error => console.error("Erreur :", error));
 
