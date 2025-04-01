@@ -63,7 +63,7 @@
     </script>
     <?php if (str_starts_with($typeUser, 'pro_')) { 
         $stmt = $conn->prepare(
-            "SELECT count(1) as nbAvis from pact.avis a
+            "SELECT count(1) as nbavis from pact.avis a
             LEFT JOIN pact._offre o on a.idoffre = o.idoffre
             WHERE lu=false AND o.idu=?
             GROUP BY o.idu;"
@@ -72,9 +72,8 @@
         $resNotification = $stmt->fetch(PDO::FETCH_ASSOC);
         $quantite = 0;
         if ($resNotification) {
-            $quantite = intval($resNotification["nbAvis"]);
+            $quantite = intval($resNotification["nbavis"]);
         }
-        print_r($resNotification);
         ?>
         <label tabindex="0" for="notification">
             <input type="checkbox" name="notification" id="notification">
