@@ -79,7 +79,7 @@
                    <?php } ?>
                 <div id="note">
                     <h3>Par note</h3>
-                    <div>
+                    <div id="blcStarAside">
                         <div>
                             <label tabindex="0" for="star1" class="blocStar">
                                 <input type="checkbox" name="star1" id="star1">
