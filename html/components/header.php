@@ -61,11 +61,22 @@
         });
 
     </script>
-    <label for="notification">
-        <div></div>
-        <input type="checkbox" name="notification" id="notification">
-    </label>
-    
+    <?php if (str_starts_with($_SESSION["typeUser"], 'pro_')) { 
+        $stmt = $conn->prepare(
+            "SELECT count(1) as nbAvis from pact.avis a
+            LEFT JOIN pact._offre o on a.idoffre = o.idoffre
+            WHERE lu=false AND o.idu=?
+            GROUP BY o.idu;"
+        );
+        $stmt->execute([$_SESSION["idUser"]]);
+        $resNotification = $stmt->fetch(PDO::FETCH_ASSOC);
+        ?>
+        <label tabindex="0" for="notification">
+            <input type="checkbox" name="notification" id="notification">
+            <img src="../img/icone/notification.png" alt="notifications" title="notifications">
+            <span id="nb_notif"><?= $resNotification["nbAvis"] ?></span>
+        </label>
+    <?php } ?>
     <div id="auth">
         <?php
         if ($isLoggedIn) {
@@ -215,6 +226,19 @@
     </div>
 
 </header>
+<?php if (str_starts_with($_SESSION["typeUser"], 'pro_')) {
+    $stmt = $conn->prepare("SELECT * FROM pact._offre where idu=?;");
+    $stmt->execute([$_SESSION["idUser"]]);
+    $idoffres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    ?>
+    <aside id="notification_aside">
+        <h3>Notification</h3>
+        <section>
+
+        </section>
+    </aside>
+<?php } ?>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

@@ -3004,6 +3004,10 @@ label[for="rest_ajoutPhotoMenu"] {
   justify-content: center;
 }
 
+.checkStar.star.vide:hover {
+  background-color: var(--accent65);
+}
+
 input:checked + .checkStar.star.vide {
   background-color: var(--accent);
 }

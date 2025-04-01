@@ -85,7 +85,6 @@ const selectPrixMax = document.querySelector("#prixMax");
 
 // statuts
 const chkBxOuvert = document.querySelector("#ouvert");
-const chkBxFerme = document.querySelector("#ferme");
 
 // en ligne / hors ligne (pro)
 let chkBxEnLigne;
