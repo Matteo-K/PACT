@@ -293,7 +293,7 @@
             ?>
                 <div class="authentikator">
                     <!-- Checkbox de A2F -->
-                    <label for="authentikator">
+                    <label tabindex="0" for="authentikator">
                         <input type="checkbox" id="authentikator" name="authentikator" hidden/>
                         <span class="checkmark" id="qrcode"></span>
                         J’utilise l'authentification à deux facteurs

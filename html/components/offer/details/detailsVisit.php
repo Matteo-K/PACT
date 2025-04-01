@@ -60,12 +60,12 @@ if ($categorie["_visite"]) {
         <!-- Par défaut la visite est guidée-->
         <label class="labelTitre" for="visit_guide">Visite Guidée*</label>
         <div id="blocGuide">
-            <label for="guidee" class="labelSousTitre"> 
+            <label tabindex="0" for="guidee" class="labelSousTitre"> 
                 <input type="radio" id="guidee" name="visit_guidee" value="guidee" <?php echo $visite["guide"] ? "checked" : "" ?>>
                 <span class="checkmark"></span>
                 Oui
             </label>
-            <label for="pasGuidee" class="labelSousTitre"> 
+            <label tabindex="0" for="pasGuidee" class="labelSousTitre"> 
                 <input type="radio" id="pasGuidee" name="visit_guidee" value="pasGuidee" <?php echo !$visite["guide"] ? "checked" : "" ?>>
                 <span class="checkmark"></span>
                 Non

@@ -61,8 +61,11 @@
         });
 
     </script>
-
-
+    <label for="notification">
+        <div></div>
+        <input type="checkbox" name="notification" id="notification">
+    </label>
+    
     <div id="auth">
         <?php
         if ($isLoggedIn) {

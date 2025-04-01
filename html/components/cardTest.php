@@ -1,4 +1,4 @@
-<form action="/detailsOffer.php" method="post" class="searchA">
+<form tabindex="0" action="/detailsOffer.php" method="post" class="searchA">
   <input type="hidden" name="idoffre" value="<?php echo $idOffre ?>">
   <section class="carteOffre flip-card <?= in_array("EnRelief", $options) ? "optionEnRelief" : "" ?>">
     <div class="flip-card-inner">
@@ -132,12 +132,12 @@
 
                 foreach ($tagsToShow as $tag) {
                   if (!empty($tag)) { ?>
-                    <a href="index.php?search=<?php echo $tag ?>#searchIndex" class="tagIndex"><?php echo $tag ?></a>
+                    <a tabindex="-1" href="index.php?search=<?php echo $tag ?>#searchIndex" class="tagIndex"><?php echo $tag ?></a>
                   <?php }
                 }
 
                 if ($plusTag > 0) { ?>
-                  <a class="tagIndex">+ <?= $plusTag ?> autre<?= $plusTag > 1 ? "s" : "" ?></a>
+                  <a tabindex="-1" class="tagIndex">+ <?= $plusTag ?> autre<?= $plusTag > 1 ? "s" : "" ?></a>
                 <?php }
               }
             ?> 

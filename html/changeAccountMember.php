@@ -285,7 +285,7 @@
                     <label for="mdp">Entrez votre mot de passe</label>
                     <input type="password" name="mdp" id="mdp">
                     
-                    <label for="chbxConfirme">
+                    <label tabindex="0" for="chbxConfirme">
                         <input type="checkbox" id="chbxConfirme" name="chbxConfirme"/>
                         <span class="checkmark"></span>
                         Je prends connaissance que la suppression de mon compte est définitive et que mes avis restent tout de même visibles 
@@ -391,7 +391,7 @@
                 <div class="authentikator">
                     <!-- Checkbox de A2F -->
                     <label for="authentikator">
-                        <input type="checkbox" id="authentikator" name="authentikator" hidden/>
+                        <input tabindex="0" type="checkbox" id="authentikator" name="authentikator" hidden/>
                         <span class="checkmark" id="qrcode"></span>
                         J’utilise l'authentification à deux facteurs
                     </label>

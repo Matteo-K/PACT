@@ -1030,12 +1030,12 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else {
             ?> <div class="avisMembre">
                     <nav id="tab-container">
-                        <div id="tab-avis" class="selected active">
+                        <div tabindex="0" role="button" id="tab-avis" class="selected active">
                             <img src="img/icone/commentaire.png" id="imgCommentaire" alt ="logo commentaire pour le format mobile" title="logo commentaire pour le format mobile">
                             <h3>Avis</h3>
                         </div>
-                        <div id="iconeSelectionneeMobile"><h3>Avis</h3></div>
-                        <div id="tab-publiez">
+                        <div tabindex="0" role="button" id="iconeSelectionneeMobile"><h3>Avis</h3></div>
+                        <div tabindex="0" role="button" id="tab-publiez">
                             <img src="img/icone/ecrireCommentaire.png" id="imgEcrireCommentaire" alt ="logo écrire commentaire pour le format mobile" title="logo écrire commentaire pour le format mobile">
                             <h3>Publiez un avis</h3>
                         </div>
@@ -1153,28 +1153,28 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <h2>Signalement d'un avis</h2>
                     <ul>
                         <li>
-                            <label for="inapproprie">
+                            <label tabindex="0" for="inapproprie">
                                 <input type="radio" name="signalement" id="inapproprie" value="innaproprie">
                                 <span class="checkmark"></span>
                                 Contenu inapproprié (injures, menaces, contenu explicite...)
                             </label>
                         </li>
                         <li>
-                            <label for="frauduleux">
+                            <label tabindex="0" for="frauduleux">
                                 <input type="radio" name="signalement" id="frauduleux" value="frauduleux">
                                 <span class="checkmark"></span>
                                 Avis frauduleux ou trompeur (faux avis, publicité déguisée...)
                             </label>
                         </li>
                         <li>
-                            <label for="spam">
+                            <label tabindex="0" for="spam">
                                 <input type="radio" name="signalement" id="spam" value="spam">
                                 <span class="checkmark"></span>
                                 Spam ou contenu hors-sujet (multipostage, indésirable...)
                             </label>
                         </li>
                         <li>
-                            <label for="violation">
+                            <label tabindex="0" for="violation">
                                 <input type="radio" name="signalement" id="violation" value="violation">
                                 <span class="checkmark"></span>
                                 Violation des règles de la plateforme (vie privée, données seneibles...)

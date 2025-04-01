@@ -681,8 +681,16 @@ function displayOffers(array, elementStart, nbElement) {
   array.slice(elementStart, elementStart + nbElement).forEach(offer => bloc.appendChild(createOfferForm(offer)));
 }
 
+function redirectionFormDynamique(event) {
+  if (event.target.tagName.toLowerCase() !== "a") {
+    event.preventDefault();
+    event.currentTarget.submit();
+  }
+}
+
 function createOfferForm(offer) {
   const form = document.createElement("form");
+  form.setAttribute("tabindex", "0");
   form.classList.add("searchA");
   form.action = "/detailsOffer.php";
   form.method = "post";
@@ -692,10 +700,10 @@ function createOfferForm(offer) {
   `;
   
   form.appendChild(createCard(offer));
-  form.addEventListener("click", (event) => {
-    if (event.target.tagName.toLowerCase() !== "a") {
-      event.preventDefault();
-      form.submit();
+  form.addEventListener("click", redirectionFormDynamique);
+  form.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      redirectionFormDynamique(event);
     }
   });
   
@@ -792,8 +800,8 @@ function createLogoCategorie(offer) {
 }
 
 function ajouterTag(offer) {
-  const tagsToShow = offer.tags.slice(0, 2).map(tag => `<a class="tagIndex" href="index.php?search=${tag.replace('_', '+')}#searchIndex">${tag.replace('_', ' ')}</a>`).join('');
-  return `<div class="tagsCard">${tagsToShow}${offer.tags.length > 2 ? `<a class="tagIndex">+ ${offer.tags.length - 2} autre${offer.tags.length - 2 > 1 ? 's' : ''}</a>` : ''}</div>`;
+  const tagsToShow = offer.tags.slice(0, 2).map(tag => `<a  tabindex="-1" class="tagIndex" href="index.php?search=${tag.replace('_', '+')}#searchIndex">${tag.replace('_', ' ')}</a>`).join('');
+  return `<div class="tagsCard">${tagsToShow}${offer.tags.length > 2 ? `<a class="tagIndex" tabindex="-1">+ ${offer.tags.length - 2} autre${offer.tags.length - 2 > 1 ? 's' : ''}</a>` : ''}</div>`;
 }
 
 function displayStar(note) {
