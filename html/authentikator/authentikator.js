@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 div.style.display = "flex";
                 div.style.flexDirection = "column";
                 div.style.flexWrap = "wrap"
+                div.style.alignItems = "center";
             })
             .catch(error => console.error("Erreur :", error));
 
