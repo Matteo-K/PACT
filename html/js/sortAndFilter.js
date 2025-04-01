@@ -266,68 +266,33 @@ function sortDateCreaAncien(array) {
 
 // Filtres
 
-// Fonction de filtre par catégorie
-function filtrerParCategorie(offers) {
-  const categoriesSelection = [];
-  
-  if (chkBxVisite.checked) categoriesSelection.push("Visite");
-  if (chkBxActivite.checked) categoriesSelection.push("Activité");
-  if (chkBxSpectacle.checked) categoriesSelection.push("Spectacle");
-  if (chkBxParc.checked) categoriesSelection.push("Parc Attraction");
-  if (chkBxRestauration.checked) categoriesSelection.push("Restaurant");
-
-  if (categoriesSelection.length == 0) {
-    // categoriesSelection = ["Parc", "Visite", "Activite", "Spectacle", "Restauration"];
-    return offers;
-  }
-
-  return offers.filter(offer => categoriesSelection.includes(offer.categorie));
+/**
+ * Récupération des catégories sélectionnés
+ * @return Liste des catégories sélectionnés
+ */
+function getSelectedCategories() {
+  const categoriesSelection = new Set();
+  if (chkBxVisite.checked) categoriesSelection.add("Visite");
+  if (chkBxActivite.checked) categoriesSelection.add("Activité");
+  if (chkBxSpectacle.checked) categoriesSelection.add("Spectacle");
+  if (chkBxParc.checked) categoriesSelection.add("Parc Attraction");
+  if (chkBxRestauration.checked) categoriesSelection.add("Restaurant");
+  return categoriesSelection;
 }
 
-
-// Fonction de filtre par notes
-function filtrerParNotes(offers) {
-  const notesSelection = [];
-
-  if (chkBxNote1.checked) notesSelection.push(1);
-  if (chkBxNote2.checked) notesSelection.push(2);
-  if (chkBxNote3.checked) notesSelection.push(3);
-  if (chkBxNote4.checked) notesSelection.push(4);
-  if (chkBxNote5.checked) notesSelection.push(5);
-
-  if (notesSelection.length == 0) {
-    // notesSelection = [1, 2, 3, 4, 5];
-    return offers;
-  }
-  
-  return offers.filter(offer => {
-    const noteArrondie = Math.ceil(offer.noteAvg);
-    return notesSelection.includes(noteArrondie);
-  });
+/**
+ * Récupérations des notes saisies par l'utilisateur
+ * @return liste des notes sélectionnées
+ */
+function getSelectedNotes() {
+  const notesSelection = new Set();
+  if (chkBxNote1.checked) notesSelection.add(1);
+  if (chkBxNote2.checked) notesSelection.add(2);
+  if (chkBxNote3.checked) notesSelection.add(3);
+  if (chkBxNote4.checked) notesSelection.add(4);
+  if (chkBxNote5.checked) notesSelection.add(5);
+  return notesSelection;
 }
-
-
-// Fonction de filtre par prix
-function filtrerParPrix(offers) {
-  const prixMin = parseInt(selectPrixMin.value);
-  const prixMax = parseInt(selectPrixMax.value);
-
-  return offers.filter(offer => {
-    if (offer.categorie === 'Restaurant') {
-      const prixRange = getPrixRangeRestaurant(offer.gammeDePrix);
-      const prixMinOffreRestaurant = prixRange[0];
-      const prixMaxOffreRestaurant = prixRange[0];
-
-      return prixMinOffreRestaurant >= prixMin && prixMaxOffreRestaurant <= prixMax;
-    } 
-    
-    else {
-      const prixMinOffreAutres = (offer.prixMinimal || 0);
-      return prixMinOffreAutres >= prixMin && prixMinOffreAutres <= prixMax;
-    }
-  });
-}
-
 
 // Fonction qui détermine la plage de prix en fonction de la gamme pour les restaurants
 function getPrixRangeRestaurant(gammeDePrix) {
@@ -344,149 +309,107 @@ function getPrixRangeRestaurant(gammeDePrix) {
 }
 
 
-// Fonction de filtre par statuts
-function filtrerParStatuts(offers) {
-  const statutsSelection = [];
-
-  if (chkBxOuvert.checked) statutsSelection.push("EstOuvert");
-  if (chkBxFerme.checked) statutsSelection.push("EstFermé");
-
-  if (statutsSelection.length == 0) {
-    return offers;
-  }
-
-  return offers.filter(offer => statutsSelection.includes(offer.ouverture));
+/**
+ * Filtre par statuts
+ * @return Récupération de la liste des statuts
+ */
+function getSelectedStatuts() {
+  const statutsSelection = new Set();
+  if (chkBxOuvert.checked) statutsSelection.add("EstOuvert");
+  return statutsSelection;
 }
 
-
-// Fonction de filtre par statuts
-function filtrerParStatutEnLigneHorsLigne(offers) {
-  const statutEnLigneHorsLigne = [];
-
-  if (chkBxEnLigne.checked) statutEnLigneHorsLigne.push("actif");
-  if (chkBxHorsLigne.checked) statutEnLigneHorsLigne.push("inactif");
-
-  if (statutEnLigneHorsLigne.length == 0) {
-    return offers;
+/**
+ * Filtre par statut (unique au pro)
+ * @returns liste des statuts
+ */
+function getSelectedStatutEnLigne() {
+  const statutEnLigneHorsLigne = new Set();
+  if (userType == "pro_public" || userType == "pro_prive") {
+    if (chkBxEnLigne.checked) statutEnLigneHorsLigne.add("actif");
   }
-
-  return offers.filter(offer => statutEnLigneHorsLigne.includes(offer.statut));
+  return statutEnLigneHorsLigne;
 }
 
-
-// Fonction de filtre par heure
-function filtrerParHeure(offers) {
-  // Récupérer les heures sélectionnées par l'utilisateur
-  const heureDebutValue = heureDebut.value;
-  const heureFinValue = heureFin.value;
-
-  // Convertir l'heure en minutes depuis minuit pour faciliter la comparaison
+/**
+ * Filtre par heure
+ * @returns liste des horaire
+ */
+function getSelectedHeureRange() {
   const convertirEnMinutes = (heure) => {
-    console.log(heure);
     const [hours, minutes] = heure.split(":").map(Number);
     return hours * 60 + minutes;
   };
-
-  // Si les heures saisies sont invalides, retourner toutes les offres
-  if (!heureDebutValue || !heureFinValue || isNaN(convertirEnMinutes(heureDebutValue)) || isNaN(convertirEnMinutes(heureFinValue))) {
-    return offers;
-  }
-
-  const heureDebutMinutes = convertirEnMinutes(heureDebutValue);
-  const heureFinMinutes = convertirEnMinutes(heureFinValue);
-
-  return offers.filter(offer => {
-    // Vérifier les horaires pour les spectacles
-    if (offer.categorie === 'Spectacle') {
-      const horairesSpectacle = offer.horaire || [];
-
-      let data = [];
-      horairesSpectacle.forEach(element => {
-        data.push(JSON.parse(element));
-      });
-
-      console.table(data);
-
-      // Pour chaque horaire précis de spectacle
-      return data.some(horaire => {
-        console.log(horaire.horaire);
-        const heureDebutSpectacle = convertirEnMinutes(horaire.heureouverture);  
-        const heureFinSpectacle = convertirEnMinutes(horaire.heurefermeture); 
-
-        // Vérifier si l'horaire du spectacle chevauche l'intervalle de l'utilisateur
-        return (heureDebutSpectacle < heureFinMinutes && heureFinSpectacle > heureDebutMinutes);
-      });
-    }
-    
-    // Vérifier les horaires pour les autres types d'offres
-    else {
-
-      const horaireMidi = offer.horaireMidi || [];
-      const horaireSoir = offer.horaireSoir || [];
-
-      let data = [];
-      horaireMidi.forEach(element => {
-        data.push(JSON.parse(element));
-      });
-
-      horaireSoir.forEach(element => {
-        data.push(JSON.parse(element));
-      });
-
-      // Pour chaque horaire de l'offre
-      return data.some(horaire => {
-        const heureDebut = convertirEnMinutes(horaire.heureOuverture);
-        const heureFin = convertirEnMinutes(horaire.heureFermeture);
-        // Vérifier si l'horaire de l'offre chevauche l'intervalle de l'utilisateur
-        return (heureDebut < heureFinMinutes && heureFin > heureDebutMinutes);
-      });
-    }
-  });
+  const heureDebutValue = heureDebut.value;
+  const heureFinValue = heureFin.value;
+  return {
+    heureDebutMinutes: heureDebutValue ? convertirEnMinutes(heureDebutValue) : null,
+    heureFinMinutes: heureFinValue ? convertirEnMinutes(heureFinValue) : null,
+  };
 }
 
+function filterOffers(offers, search) {
+  const categoriesSelection = getSelectedCategories();
+  const notesSelection = getSelectedNotes();
+  const statutsSelection = getSelectedStatuts();
+  const statutEnLigneHorsLigne = getSelectedStatutEnLigne();
+  const { heureDebutMinutes, heureFinMinutes } = getSelectedHeureRange();
+  const prixMin = parseInt(selectPrixMin.value);
+  const prixMax = parseInt(selectPrixMax.value);
+  const searchLower = search ? search.toLowerCase() : "";
 
-// Fonction de filtre par date
+  return offers.filter(offer => {
+    if (categoriesSelection.size > 0 && !categoriesSelection.has(offer.categorie)) return false;
+    if (notesSelection.size > 0 && !notesSelection.has(Math.ceil(offer.noteAvg))) return false;
+    if (statutsSelection.size > 0 && !statutsSelection.has(offer.ouverture)) return false;
+    if (statutEnLigneHorsLigne.size > 0 && !statutEnLigneHorsLigne.has(offer.statut)) return false;
 
-/**
- * Filtre la liste d'offres suivant le mot clé de recherche pour correspondre
- * - l'un des tags
- * - une catégorie d'offre
- * - une partie du nom de l'offre
- * - une partie de l'adresse
- * - une gamme de prix
- * @param {array} offers - Liste des offres à filtrer
- * @param {string} search - Mot de recherche
- * @returns {array} - Liste des offres filtrées par rapport au mot de recherche
- */
-function searchOffer(offers, search) {
+    if (offer.categorie === 'Restaurant') {
+      const [prixMinOffre, prixMaxOffre] = getPrixRangeRestaurant(offer.gammeDePrix);
+      if (prixMinOffre < prixMin || prixMaxOffre > prixMax) return false;
+    } else {
+      if (offer.prixMinimal < prixMin || offer.prixMinimal > prixMax) return false;
+    }
 
-  if (!search) {
-    return offers;
-  }
+    if (heureDebutMinutes !== null && heureFinMinutes !== null) {
+      let horaires = [];
+      if (offer.categorie === 'Spectacle' && offer.horaire) {
+        horaires = offer.horaire.map(h => JSON.parse(h));
+      } else {
+        if (offer.horaireMidi) horaires.push(...offer.horaireMidi.map(h => JSON.parse(h)));
+        if (offer.horaireSoir) horaires.push(...offer.horaireSoir.map(h => JSON.parse(h)));
+      }
+      if (!horaires.some(horaire => {
+        const heureDebut = convertirEnMinutes(horaire.heureOuverture || horaire.heureouverture);
+        const heureFin = convertirEnMinutes(horaire.heureFermeture || horaire.heurefermeture);
+        return heureDebut < heureFinMinutes && heureFin > heureDebutMinutes;
+      })) return false;
+    }
 
-  return offers.filter((item) => {
-    
-    // Extraire les données nécessaires
-    const categorie = item.categorie || '';
-    const nomOffre = item.nomOffre || '';
-    const gammeDePrix = item.gammeDePrix || '';
-    
-    const numeroRue = item.numeroRue || '';
-    const rue = item.rue || '';
-    const ville = item.ville || '';
-    const pays = item.pays || '';
-    const codePostal = item.codePostal || '';
-    
-    const adresse = `${numeroRue} ${rue} ${ville} ${pays} ${codePostal}`.toLowerCase();
+    // Recherche
+    if (searchLower) {
+      const categorie = offer.categorie || '';
+      const nomOffre = offer.nomOffre || '';
+      const gammeDePrix = offer.gammeDePrix || '';
+      
+      const numeroRue = offer.numeroRue || '';
+      const rue = offer.rue || '';
+      const ville = offer.ville || '';
+      const pays = offer.pays || '';
+      const codePostal = offer.codePostal || '';
+      
+      const adresse = `${numeroRue} ${rue} ${ville} ${pays} ${codePostal}`.toLowerCase();
 
-    // Filtre les données
-    const containsTag = item.tags.some(tag => tag.toLowerCase().includes(search.toLowerCase()));
-    const matchesCategorie = categorie && categorie.toLowerCase().includes(search.toLowerCase());
-    const matchesNomOffre = nomOffre && nomOffre.toLowerCase().includes(search.toLowerCase());
-    const matchesAdresse = adresse && adresse.includes(search.toLowerCase());
-    const matchesGammeDePrix = gammeDePrix === search;
+      const containsTag = offer.tags.some(tag => tag.toLowerCase().includes(searchLower));
+      const matchesCategorie = categorie.toLowerCase().includes(searchLower);
+      const matchesNomOffre = nomOffre.toLowerCase().includes(searchLower);
+      const matchesAdresse = adresse.includes(searchLower);
+      const matchesGammeDePrix = gammeDePrix === search;
 
-    return containsTag || matchesCategorie || matchesNomOffre || matchesAdresse || matchesGammeDePrix;
+      if (!(containsTag || matchesCategorie || matchesNomOffre || matchesAdresse || matchesGammeDePrix)) return false;
+    }
+
+    return true;
   });
 }
 
@@ -499,29 +422,29 @@ function countFiltre(filtres) {
 
   filtres.forEach(filtre => {
     switch (filtre) {
-      case filtrerParCategorie:
+      case "filtrerParCategorie":
         count += checkboxesCat.filter(chk => chk.checked).length;
         break;
 
-      case filtrerParNotes:
+      case "filtrerParNotes":
         count += checkboxesNote.filter(chk => chk.checked).length;
         break;
 
-      case filtrerParPrix:
+      case "filtrerParPrix":
         count += selectPrixMin.value === "0" ? 0 : 1;
         count += selectPrixMax.value === "999999" ? 0 : 1;
         break;
         
-        case filtrerParStatuts:
+        case "filtrerParStatuts":
           count += checkboxesStatuts.filter(chk => chk.checked).length;
           break;
           
-        case filtrerParHeure:
+        case "filtrerParHeure":
           count += heureDebut.value === "" ? 0 : 1;
           count += heureFin.value === "" ? 0 : 1;
         break;
 
-      case filtrerParStatutEnLigneHorsLigne:
+      case "filtrerParStatutEnLigneHorsLigne":
         count += checkboxesEnligneHorsLigne.filter(chk => chk.checked).length;
         break;
     
@@ -576,24 +499,21 @@ function resetCheckbox(array_chckbx) {
  * @param {integer} nbElement nombre d'élément pour la pagnation
  */
 function sortAndFilter(array, search, elementStart, nbElement) {
-  // Recherche
-  array = searchOffer(array, search);
+  // Filtres + Recherches
+  array = filterOffers(array, search);
 
-  // Filtres
   let filtres = [
-    filtrerParCategorie,
-    filtrerParNotes,
-    filtrerParPrix,
-    filtrerParStatuts,
-    filtrerParHeure
+    "filtrerParCategorie",
+    "filtrerParNotes",
+    "filtrerParPrix",
+    "filtrerParStatuts",
+    "filtrerParHeure"
   ];
 
   if (userType == "pro_public" || userType == "pro_prive") {
-    filtres.push(filtrerParStatutEnLigneHorsLigne);
+    filtres.push("filtrerParStatutEnLigneHorsLigne");
   }
-  
-  // Application des filtres
-  array = filtres.reduce((acc, filtre) => filtre(acc), array);
+
   const count = countFiltre(filtres);
   const spanApplication = document.getElementById("filtreApplique");
   const btnReset = document.getElementById("btnReset");
@@ -620,6 +540,23 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 
   //affichage des ping sur la carte
   addPing(array);
+} 
+
+function getCategoryIcon(categorie, chemin) {
+  const icons = {
+    "Activité": "pointeur-activite.png",
+    "Parc Attraction": "pointeur-parc.png",
+    "Restaurant": "pointeur-restaurant.png",
+    "Spectacle": "pointeur-spectacle.png",
+    "Visite": "pointeur-visite.png"
+  };
+  
+  return L.icon({
+    iconUrl: chemin + (icons[categorie] || "pointeur-interrogation.png"),
+    iconSize: [70, 70],
+    iconAnchor: [35, 70],
+    popupAnchor: [0, -70]
+  });
 }
 
 function addPing(array) {
@@ -627,63 +564,8 @@ function addPing(array) {
 
   array.forEach(elt => {
     let imageCategorie;
-    let chemin = "../img/icone/pointeurOffre/";
-    switch (elt["categorie"]){
-      case 'Activité':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
+    imageCategorie = getCategoryIcon(elt["categorie"], "../img/icone/pointeurOffre/");
 
-        });
-        break;
-        
-      case 'Parc Attraction':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-parc.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
-        });
-        break;
-
-      case 'Restaurant':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-restaurant.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
-        });
-        break;
-
-      case 'Spectacle':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-spectacle.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
-        });
-        break;
-
-      case 'Visite':
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-visite.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
-        });
-        break;
-
-      default:
-        imageCategorie = L.icon({
-            iconUrl: chemin + "pointeur-activite.png",
-            iconSize: [60, 60],
-            iconAnchor: [30, 60],
-            popupAnchor: [0, -60]
-        });
-        break;
-    };
     geocode(`${elt["numeroRue"]} ${elt["rue"]}, ${elt["codePostal"]} ${elt["ville"]}`)
       .then(location => {
         const latLng = location;
@@ -693,7 +575,7 @@ function addPing(array) {
               <div id="popupCarte">
                 <h3>${elt['nomOffre']}</h3>
                 <div>
-                  ${displayStar(parseFloat(elt["noteAvg"])).outerHTML}
+                  ${displayStar(parseFloat(elt["noteAvg"]))}
                   <p>${elt["noteAvg"]} /5</p>
                 </div>
                 <p><strong>Résumé :</strong> ${elt['resume']}</p>
@@ -734,14 +616,11 @@ function addPing(array) {
   });
 }
 
-
-
-
 function removeAllPing() {
   markers.eachLayer(marker => {
-    map.removeLayer(marker); // Affiche les coordonnées de chaque marqueur
+    map.removeLayer(marker); 
   });
-  markers.clearLayers();  // Vider le tableau après suppression
+  markers.clearLayers();
 }
 
 /**
@@ -793,334 +672,135 @@ function goToPage(page) {
 function displayOffers(array, elementStart, nbElement) {
   const bloc = document.querySelector(".searchoffre");
   bloc.innerHTML = "";
-  if (array.length != 0) {
-    let offers = array.slice(elementStart, elementStart + nbElement);
-    offers.forEach(element => {displayOffer(element)});
-  } else {
-    let pasOffre = document.createElement("p");
-    pasOffre.textContent = "Aucune offre trouvée";
-    bloc.appendChild(pasOffre);
+  
+  if (!array.length) {
+    bloc.innerHTML = "<p>Aucune offre trouvée</p>";
+    return;
   }
+  
+  array.slice(elementStart, elementStart + nbElement).forEach(offer => bloc.appendChild(createOfferForm(offer)));
 }
 
-function displayOffer(offer) {
-  const bloc = document.querySelector(".searchoffre");
-
-  let form = document.createElement("form");
+function createOfferForm(offer) {
+  const form = document.createElement("form");
   form.classList.add("searchA");
-  form.setAttribute("action", "/detailsOffer.php");
-  form.setAttribute("method", "post");
-
-  let input = document.createElement("input");
-  input.setAttribute("type", "hidden");
-  input.setAttribute("name", "idoffre");
-  input.setAttribute("value", offer.idOffre);
-
-  form.appendChild(input);
+  form.action = "/detailsOffer.php";
+  form.method = "post";
+  
+  form.innerHTML = `
+    <input type="hidden" name="idoffre" value="${offer.idOffre}">
+  `;
+  
   form.appendChild(createCard(offer));
-
   form.addEventListener("click", (event) => {
-    if (event.target.tagName.toLowerCase() === "a") {
-      return;
+    if (event.target.tagName.toLowerCase() !== "a") {
+      event.preventDefault();
+      form.submit();
     }
-    event.preventDefault();
-    form.submit();
   });
-
-  bloc.appendChild(form);
+  
+  return form;
 }
 
 function createCard(offer) {
-  let card = document.createElement("section");
-  card.classList.add("carteOffre");
-  card.classList.add("flip-card");
-  if (offer.option.includes('EnRelief')) {
-    card.classList.add("optionEnRelief");
-  }
-
-  let content = document.createElement("div");
-  content.classList.add("flip-card-inner");
-
-  let front = createFront(offer);
-  let back = createBack(offer);
-
-  content.appendChild(front);
-  content.appendChild(back);
-
-  card.appendChild(content);
-
+  const card = document.createElement("section");
+  card.classList.add("carteOffre", "flip-card");
+  if (offer.option.includes("EnRelief")) card.classList.add("optionEnRelief");
+  
+  card.innerHTML = `
+    <div class="flip-card-inner">
+      ${createFront(offer)}
+      ${createBack(offer)}
+    </div>
+  `;
+  
   return card;
 }
 
 function createFront(offer) {
-  let article = document.createElement("article");
-  article.classList.add("flip-card-front");
-
-  let figure = document.createElement("figure");
-
-  let img = document.createElement("img");
-  img.setAttribute("src", offer.images?.[0] ?? "");
-  img.setAttribute("alt", offer.nomOffre);
-  img.setAttribute("title", offer.nomOffre);
-  img.setAttribute("loading","lazy");
-
-  let figcaption = document.createElement("figcaption");
-
-  let h4 = document.createElement("h4");
-  h4.classList.add("title");
-  if (userType == "pro_public" || userType == "pro_prive") {
-    h4.classList.add("StatutAffiche");
-    switch (offer.statut) {
-      case 'inactif':
-        h4.classList.add("horslgnOffre");
-        break;
-
-      case 'delete':
-        h4.classList.add("suppression");
-        break;
-    }
-  }
-  h4.textContent = offer.nomOffre ?? "";
-
-  let div = document.createElement("div");
-
-  let p = document.createElement("p");
-  p.classList.add("ville");
-  p.textContent = offer.ville + ", " + offer.codePostal;
-
-  let stars = displayStar(offer.noteAvg);
-  stars.classList.add("blocStar");
-
-  let note = document.createElement("span");
-  note.textContent = offer.noteAvg + "/5";
-
-  stars.appendChild(note);
-
-  div.appendChild(p);
-  div.appendChild(stars);
-
-  figcaption.appendChild(h4);
-  figcaption.appendChild(div);
-
-  if (offer.option.includes('EnRelief')) {
-    let imgRelief = document.createElement("img");
-    imgRelief.classList.add("premiumImg");
-    imgRelief.setAttribute("src", "../img/icone/service-premium.png");
-    imgRelief.setAttribute("alt", "icone premium");
-    figure.appendChild(imgRelief);
-  }
-
-  figure.appendChild(img);
-  figure.appendChild(figcaption);
-
-  article.appendChild(figure);
-
-  return article;
+  return `
+    <article class="flip-card-front">
+      <figure>
+        ${offer.option.includes("EnRelief") ? '<img class="premiumImg" src="../img/icone/service-premium.png" alt="icone premium" loading="lazy">' : ''}
+        <img src="${offer.images?.[0] ?? ''}" alt="${offer.nomOffre}" title="${offer.nomOffre}" loading="lazy">
+        <figcaption>
+          <h4 class="title ${getStatusClass(offer.statut)}">${offer.nomOffre ?? ''}</h4>
+          <div>
+            <p class="ville">${offer.ville}, ${offer.codePostal}</p>
+            ${displayStar(offer.noteAvg)}
+          </div>
+        </figcaption>
+      </figure>
+    </article>
+  `;
 }
 
 function createBack(offer) {
-  let article = document.createElement("article");
-  article.classList.add("flip-card-back");
+  return `
+    <article class="flip-card-back">
+      ${createLogoCategorie(offer)}
+      <div class="content">
+        <h4 class="title">${offer.nomOffre}</h4>
+        ${displayStar(offer.noteAvg)}
+        <div class="${userType.startsWith('pro_') ? 'typeOffre' : 'nomPro'}">
+          ${userType.startsWith('pro_') ? '' : `Proposé par ${offer.nomUser}`}
+        </div>
+        <div class="information">
+          <div class="resume">${offer.resume ?? ''}</div>
+          <address>
+            <div>${offer.ville}, ${offer.codePostal}</div>
+            <div>${offer.numeroRue ?? ''} ${offer.rue ?? ''}</div>
+          </address>
+        </div>
+        ${ajouterTag(offer)}
+      </div>
+      ${userType.startsWith('pro_') ? `<p class="StatutAffiche ${getStatusClass(offer.statut)}">${getStatusText(offer.statut)}</p>` : ''}
+    </article>
+  `;
+}
 
-  let figure = createLogoCategorie(offer);
+function getStatusClass(statut) {
+  return {
+    inactif: "horslgnOffre",
+    delete: "suppression",
+  }[statut] || "";
+}
 
-  let content = document.createElement("div");
-  content.classList.add("content");
-  
-  let h4 = document.createElement("h4");
-  h4.classList.add("title");
-  h4.textContent = offer.nomOffre;
-
-  let stars = displayStar(offer.noteAvg);
-  stars.classList.add("blocStar");
-
-  let note = document.createElement("span");
-  note.textContent = offer.noteAvg + "/5";
-
-  let blcNbNote = document.createElement("span");
-  let nbNote = offer.nbNote ?? 0;
-  blcNbNote.textContent = "("+nbNote + "note" + (nbNote > 1 ? "s" : "") + ")";
-
-  let information = document.createElement("div");
-  information.classList.add("information");
-
-  let resume = document.createElement("div");
-  resume.classList.add("resume");
-  resume.textContent = offer.resume ?? "";
-
-  let adresse = document.createElement("address");
-
-  let ville = document.createElement("div");
-  ville.textContent = (offer.ville ?? "") + ", " + (offer.codePostal ?? "");
-
-  let adressePostal = document.createElement("div");
-  adressePostal.textContent = (offer.numeroRue ?? "") + " " + (offer.rue ?? "");
-
-  let tags = ajouterTag(offer);
-  tags.classList.add("tagsCard");
-
-  adresse.appendChild(ville);
-  adresse.appendChild(adressePostal);
-
-  information.appendChild(resume);
-  information.appendChild(adresse);
-
-  stars.appendChild(note);
-  stars.appendChild(blcNbNote);
-
-  content.appendChild(h4);
-  content.appendChild(stars);
-
-  let infoTypeUser = document.createElement("div");
-  if (userType == "pro_public" || userType == "pro_prive") {
-    infoTypeUser.classList.add("typeOffre");
-    // Décrit le type de l'offre (premium, en relief, a la une)
-  } else {
-    infoTypeUser.classList.add("nomPro");
-    infoTypeUser.textContent = "Proposé par " + offer.nomUser;
-  }
-
-  content.appendChild(infoTypeUser);
-  content.appendChild(information);
-  content.appendChild(tags);
-
-  article.appendChild(figure);
-
-  if (userType == "pro_public" || userType == "pro_prive") {
-    let enLigne = document.createElement("p");
-    enLigne.classList.add("StatutAffiche");
-
-    switch (offer.statut) {
-      case 'actif':
-        enLigne.textContent = "En ligne";
-        break;
-
-      case 'inactif':
-        enLigne.classList.add("horslgnOffre");
-        enLigne.textContent = "Hors ligne";
-        break;
-
-      case 'delete':
-        enLigne.classList.add("suppression");
-        enLigne.textContent = "Suppression";
-        break;
-    }
-    article.appendChild(enLigne);
-  }
-
-  article.appendChild(content);
-
-  return article;
+function getStatusText(statut) {
+  return {
+    actif: "En ligne",
+    inactif: "Hors ligne",
+    delete: "Suppression",
+  }[statut] || "";
 }
 
 function createLogoCategorie(offer) {
-
-  let figure = document.createElement("figure");
-
-  let imageCategorie;
-  let chemin = "../img/icone/offerCategory/";
-  switch (offer.categorie) {
-    case 'Activité':
-      imageCategorie = "activity.png";
-      break;
-      
-    case 'Parc Attraction':
-      imageCategorie = "park.png";
-      break;
-
-    case 'Restaurant':
-      imageCategorie = "restaurant.png";
-      break;
-
-    case 'Spectacle':
-      imageCategorie = "show2.png";
-      break;
-
-    case 'Visite':
-      imageCategorie = "visit.png";
-      break;
-
-    default:
-      imageCategorie = "interrogation.png";
-      break;
-  }
-
-  let img = document.createElement("img");
-  img.setAttribute("src", chemin + imageCategorie);
-  img.setAttribute("alt", offer.categorie);
-  img.setAttribute("title", offer.categorie);
-
-  figure.appendChild(img);
-
-  if (offer.categorie == "Restaurant") {
-    let figcaption = document.createElement("figcaption");
-    figcaption.textContent = offer.gammeDePrix;
-
-    figure.appendChild(figcaption);
-  }
-  return figure;
+  const categories = {
+    Activité: "activity.png",
+    "Parc Attraction": "park.png",
+    Restaurant: "restaurant.png",
+    Spectacle: "show2.png",
+    Visite: "visit.png",
+  };
+  
+  return `
+    <figure>
+      <img src="../img/icone/offerCategory/${categories[offer.categorie] || 'interrogation.png'}" alt="${offer.categorie}" title="${offer.categorie}" loading="lazy">
+      ${offer.categorie === "Restaurant" ? `<figcaption>${offer.gammeDePrix}</figcaption>` : ''}
+    </figure>
+  `;
 }
 
 function ajouterTag(offer) {
-  let tags = document.createElement("div");
-  let nbTagMax = 2;
-  let plusTag = 0;
-
-  if (offer.tags.length > 0) { 
-    let tagsToShow = offer.tags.slice(0, nbTagMax);
-    
-    tagsToShow.forEach(element => {
-      if (element !== "") {
-        let tag = document.createElement("a");
-        tag.classList.add("tagIndex");
-        tag.textContent = element.replace("_", " ");
-        tag.setAttribute("href", "index.php?search=" + element.replace("_", "+") + "#searchIndex");
-        tags.appendChild(tag);
-      }
-    });
-
-    if (offer.tags.length > nbTagMax) {
-      plusTag = offer.tags.length - nbTagMax;
-      let moreTag = document.createElement("a");
-      moreTag.classList.add("tagIndex");
-      moreTag.textContent = `+ ${plusTag} autre${plusTag > 1 ? "s" : ""}`;
-      tags.appendChild(moreTag);
-    }
-  }
-
-  return tags;
-
+  const tagsToShow = offer.tags.slice(0, 2).map(tag => `<a class="tagIndex" href="index.php?search=${tag.replace('_', '+')}#searchIndex">${tag.replace('_', ' ')}</a>`).join('');
+  return `<div class="tagsCard">${tagsToShow}${offer.tags.length > 2 ? `<a class="tagIndex">+ ${offer.tags.length - 2} autre${offer.tags.length - 2 > 1 ? 's' : ''}</a>` : ''}</div>`;
 }
 
 function displayStar(note) {
-  let container = document.createElement("div");
-
-  const etoilesPleines = Math.floor(note);
-  const reste = note - etoilesPleines;
-  
-  for (let i = 1; i <= etoilesPleines; i++) {
-    let star = document.createElement('div');
-    star.classList.add('star', 'pleine');
-    container.appendChild(star);
-  }
-  
-  if (reste > 0) {
-    let pourcentageRempli = reste * 100;
-    let starPartielle = document.createElement('div');
-    starPartielle.classList.add('star', 'partielle');
-    starPartielle.style.setProperty('--pourcentage', `${pourcentageRempli}%`);
-    container.appendChild(starPartielle);
-  }
-  
-  let totalEtoiles = 5;
-  let etoilesRestantes = totalEtoiles - etoilesPleines - (reste > 0 ? 1 : 0);
-  
-  for (let i = 0; i < etoilesRestantes; i++) {
-    let star = document.createElement('div');
-    star.classList.add('star', 'vide');
-    container.appendChild(star);
-  }
-  return container;
+  let stars = Array(5).fill('<div class="star vide"></div>');
+  for (let i = 0; i < Math.floor(note); i++) stars[i] = '<div class="star pleine"></div>';
+  if (note % 1 !== 0) stars[Math.floor(note)] = `<div class="star partielle" style="--pourcentage: ${(note % 1) * 100}%"></div>`;
+  return `<div class="blocStar">${stars.join('')}<span>${note}/5</span></div>`;
 }
 
 
@@ -1193,5 +873,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const checkboxesCat = [chkBxVisite, chkBxActivite, chkBxSpectacle, chkBxParc, chkBxRestauration];
 const checkboxesNote = [chkBxNote1, chkBxNote2, chkBxNote3, chkBxNote4, chkBxNote5];
-const checkboxesStatuts = [chkBxOuvert, chkBxFerme];
+const checkboxesStatuts = [chkBxOuvert];
 const checkboxesEnligneHorsLigne = [chkBxEnLigne, chkBxHorsLigne];

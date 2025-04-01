@@ -7,7 +7,7 @@
           <?php
             if (in_array("EnRelief", $options)) {
               ?>
-                <img class="premiumImg" src="../img/icone/service-premium.png" alt="icone premium">
+                <img loading="lazy" class="premiumImg" src="../img/icone/service-premium.png" alt="icone premium">
               <?php
             }
           ?>
@@ -74,7 +74,7 @@
           }
         ?>
         <figure>
-          <img src="<?= $chemin . $imageCategorie ?>" alt="<?= $categorie ?>" title="<?= $categorie ?>">
+          <img loading="lazy" src="<?= $chemin . $imageCategorie ?>" alt="<?= $categorie ?>" title="<?= $categorie ?>">
           <?php if ($categorie == "Restaurant") { ?>
             <figcaption><?= $gammeDePrix ?></figcaption>
           <?php } ?>

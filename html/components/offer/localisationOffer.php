@@ -139,6 +139,15 @@ if (isset($localisation["codepostal"])) {
     }).addTo(map);
 
     // Fonction pour vérifier que tous les champs sont remplis
+
+    let marker;
+    let pointer = L.icon({
+                iconUrl: "./img/icone/pointeurOffre/pointeur.png",
+                iconSize: [70, 70],
+                iconAnchor: [35, 70],
+                popupAnchor: [0, -70]
+            });
+
     function checkInputsAndGeocode() {
       const ville = document.getElementById("ville2").value.trim();
       const codepostal = document.getElementById("codepostal").value.trim();
@@ -152,7 +161,12 @@ if (isset($localisation["codepostal"])) {
           .then(location => {
             if (location) {
               map.setView(location, 13);
-              L.marker(location).addTo(map);
+
+              if(marker){
+                map.removeLayer(marker);
+              }
+
+              marker = L.marker(location, {icon:pointer}).addTo(map);
             }
           })
           .catch(error => {

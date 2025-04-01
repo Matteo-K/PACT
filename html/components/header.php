@@ -88,6 +88,7 @@
                     <span id="backButton">< Retour</span>
                     <figure id="imagProfil">
                         <img src="<?php echo $user["url"] ?>" title="photo de profil utilisateur" id="menuProfilePic">
+                        <img src="./img/icone/iconePro.png" alt="pro" id="iconePro">
                         <figcaption>
                             <?php
                                 if ($typeUser === "admin") {
