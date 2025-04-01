@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     ${data.secret}
                 </p>
                 <br>
-                <button id="copyButton" style="margin-top: 5px; padding: 5px 10px; cursor: pointer;">
+                <button id="copyButton" class="modifierBut">
                     Copier
                 </button>
             </div>
