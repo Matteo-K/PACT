@@ -70,11 +70,16 @@
         );
         $stmt->execute([$idUser]);
         $resNotification = $stmt->fetch(PDO::FETCH_ASSOC);
+        $quantite = 0;
+        if ($resNotification) {
+            $quantite = int_val($resNotification["nbAvis"]);
+        }
+        print_r($resNotification);
         ?>
         <label tabindex="0" for="notification">
             <input type="checkbox" name="notification" id="notification">
             <img src="../img/icone/notification.png" alt="notifications" title="notifications">
-            <span id="nb_notif"><?= $resNotification["nbAvis"] ?></span>
+            <span id="nb_notif"><?= $quantite ?></span>
         </label>
     <?php } ?>
     <div id="auth">
