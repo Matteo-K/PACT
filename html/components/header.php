@@ -61,14 +61,14 @@
         });
 
     </script>
-    <?php if (str_starts_with($_SESSION["typeUser"], 'pro_')) { 
+    <?php if (str_starts_with($typeUser, 'pro_')) { 
         $stmt = $conn->prepare(
             "SELECT count(1) as nbAvis from pact.avis a
             LEFT JOIN pact._offre o on a.idoffre = o.idoffre
             WHERE lu=false AND o.idu=?
             GROUP BY o.idu;"
         );
-        $stmt->execute([$_SESSION["idUser"]]);
+        $stmt->execute([$idUser]);
         $resNotification = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
         <label tabindex="0" for="notification">
