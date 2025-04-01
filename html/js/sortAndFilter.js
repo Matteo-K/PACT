@@ -561,7 +561,6 @@ function getCategoryIcon(categorie, chemin) {
 
 function addPing(array) {
   removeAllPing();
-
   
   array.forEach(elt => {
     let imageCategorie;
