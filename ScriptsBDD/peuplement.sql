@@ -117,7 +117,7 @@ VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
        ('28', 'Rue de la Latte', 'Plévenon', 'France', '22240'),
        ('23', 'Rue des Grèves', 'Langueux', 'France', '22360'),
        ('27', 'Kerouziel', 'Plouha', 'France', '22580'),
-       ('17', 'Rue de Trolay', 'Perros-Guirec', 'France', '22700'),
+       ('17', 'Rue de Trolay', 'Perros-Guirec', 'France', '22700');
 
 -- Peuplement de la table _abonnement
 INSERT INTO _abonnement (nomAbonnement, tarif) 
