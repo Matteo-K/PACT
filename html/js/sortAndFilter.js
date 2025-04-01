@@ -552,7 +552,7 @@ function getCategoryIcon(categorie, chemin) {
   };
   
   return L.icon({
-    iconUrl: chemin + (icons[categorie] || "pointeur-activite.png"),
+    iconUrl: chemin + (icons[categorie] || "pointeur-interrogation.png"),
     iconSize: [70, 70],
     iconAnchor: [35, 70],
     popupAnchor: [0, -70]
