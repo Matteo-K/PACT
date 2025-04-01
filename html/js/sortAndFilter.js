@@ -660,9 +660,9 @@ function addPing(array) {
 
 function removeAllPing() {
   markers.eachLayer(marker => {
-    map.removeLayer(marker); // Affiche les coordonnées de chaque marqueur
+    map.removeLayer(marker); 
   });
-  markers.clearLayers();  // Vider le tableau après suppression
+  markers.clearLayers();
 }
 
 /**
