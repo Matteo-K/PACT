@@ -561,7 +561,7 @@ function getCategoryIcon(categorie, chemin) {
 
 function addPing(array) {
   removeAllPing();
-  
+
   array.forEach(elt => {
     let imageCategorie;
     imageCategorie = getCategoryIcon(elt["categorie"], "../img/icone/pointeurOffre/");
@@ -575,7 +575,7 @@ function addPing(array) {
               <div id="popupCarte">
                 <h3>${elt['nomOffre']}</h3>
                 <div>
-                  ${displayStar(parseFloat(elt["noteAvg"])).outerHTML}
+                  ${displayStar(parseFloat(elt["noteAvg"]))}
                   <p>${elt["noteAvg"]} /5</p>
                 </div>
                 <p><strong>Résumé :</strong> ${elt['resume']}</p>
