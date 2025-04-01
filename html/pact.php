@@ -179,20 +179,27 @@
       
       <script type="module" src="js/sortAndFilter.js"></script>
       <script>
+        function redirectionDetails(event) {
+          if (event.target.tagName.toLowerCase() === "a") {
+            return;
+          }
+          event.preventDefault();
+          event.currentTarget.submit();
+
+          const logo = document.querySelector("#logo");
+          logo.classList.add("chargementActif");
+          setTimeout(() => {
+              logo.classList.remove("chargementActif");
+          }, 6000);
+        }
+
         const forms = document.querySelectorAll("#index form");
         forms.forEach(form => {
-          form.addEventListener("click", (event) => {
-            if (event.target.tagName.toLowerCase() === "a") {
-              return;
+          form.addEventListener("click", redirectionDetails);
+          form.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+              redirectionDetails(event);
             }
-            event.preventDefault();
-            form.submit();
-
-            const logo = document.querySelector("#logo");
-            logo.classList.add("chargementActif");
-            setTimeout(() => {
-                logo.classList.remove("chargementActif");
-            }, 6000);
           });
         });
       </script>
