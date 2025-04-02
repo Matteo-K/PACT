@@ -163,7 +163,8 @@ VALUES (1, 'Rue Édouard Branly', 'Lannion', 'France', '22300'),
        (1, 'Rue Saint-Georges', 'Rennes', 'France', '35000'),
        (1, 'Quai de Doëlan', 'Clohars-Carnoët', 'France', '29360'),
        (1, 'Kersamedi', 'Pont-Scorff', 'France', '56620'),
-       (1, 'Rue Roland Morillot', 'Lorient', 'France', '56100');
+       (1, 'Rue Roland Morillot', 'Lorient', 'France', '56100'),
+       ('12', 'Rue des Goélands', 'Vannes', 'France','56000' );
 
 -- Peuplement de la table _abonnement
 INSERT INTO _abonnement (nomAbonnement, tarif) 
@@ -311,13 +312,13 @@ VALUES (3, 'actif', 'Parc Génial de saint paul', 'Le meilleur parc d’attracti
        (4, 'actif', 'La Grève Blanche', 'Restaurant situé à Trégastel, offrant une vue imprenable sur la mer. Spécialité de fruits de mer frais et plats traditionnels bretons.', 'greveblanche@mail.com', '0296123451', TRUE, 'http://greveblanche.com', 'Cuisine traditionnelle de la mer', CURRENT_TIMESTAMP),
        (4, 'actif', 'La Crêperie du Village Saint-Alban', 'Savourez de délicieuses galettes et crêpes bretonnes dans cette crêperie chaleureuse au cœur de Saint-Alban, idéale pour un repas en famille ou entre amis.', 'creperie-village@mail.com', '0296123452', TRUE, 'http://creperie-saintalban.com', 'Spécialités bretonnes authentiques', CURRENT_TIMESTAMP),
        (27, 'actif', 'Armor Navigation', 'Embarquez pour une excursion autour des célèbres Sept-Îles en vedette et découvrez un des plus beaux sites naturels de Bretagne, un véritable paradis pour les amateurs doiseaux.', 'armor-navigation@mail.com', '0296123453', TRUE, 'http://armor-navigation.com', 'Excursion en mer et observation des oiseaux', CURRENT_TIMESTAMP),
-       (4, 'actif', 'Fort La Latte - Château de la Roche Goyon', 'Visitez ce magnifique château fortifié du 14ème siècle, avec une vue spectaculaire sur la mer et une riche histoire. Idéal pour les passionnés de patrimoine et darchitecture médiévale.', 'fort-latte@mail.com', '0296123454', TRUE, 'http://fort-latte.com', 'Histoire et architecture médiévale', CURRENT_TIMESTAMP),
+       (4, 'actif', 'Fort La Latte', 'Visitez ce magnifique château fortifié du 14ème siècle, avec une vue spectaculaire sur la mer et une riche histoire. Idéal pour les passionnés de patrimoine et darchitecture médiévale.', 'fort-latte@mail.com', '0296123454', TRUE, 'http://fort-latte.com', 'Histoire et architecture médiévale', CURRENT_TIMESTAMP),
        (4, 'actif', 'Crêperie des Grèves Langueux', 'Une crêperie qui ravira les amateurs de galettes et de crêpes, avec une vue sur les plages de Langueux. Un cadre agréable pour déguster des plats typiques de la Bretagne.', 'creperie-grèves@mail.com', '0296123455', TRUE, 'http://creperie-desgreves.com', 'Crêpes bretonnes authentiques', CURRENT_TIMESTAMP),
        (27, 'actif', 'Les Falaises de Plouha', 'Explorez les impressionnantes falaises de Plouha, un site naturel remarquable offrant des panoramas époustouflants sur la mer. Idéal pour une randonnée en bord de mer et pour admirer la beauté sauvage de la Côte dArmor.', 'falaises-plouha@mail.com', '0296123456', TRUE, 'http://falaises-plouha.com', 'Randonnée et panoramas en bord de mer', CURRENT_TIMESTAMP),
        (27, 'actif', 'Côte de Granit Rose', 'Découvrez lun des plus beaux sites naturels de Bretagne avec ses roches granitiques aux formes spectaculaires, entre Ploumanac’h et Perros-Guirec. À explorer en randonnée ou à vélo.', 'granite-rose@mail.com', '0296123457', TRUE, 'http://cotedegranitrose.com', 'Randonnée et découverte des paysages', CURRENT_TIMESTAMP),
        (28, 'actif', 'Croisière vers l’Île de Bréhat', 'Partez en excursion maritime vers l’Île de Bréhat avec une traversée commentée et la découverte des paysages côtiers.', 'contact@armor-navigation.com', '0296123450', TRUE, 'http://armor-navigation.com', 'Excursion en mer et découverte de Bréhat', CURRENT_TIMESTAMP),
        (29, 'actif', 'Cobac Parc', 'Un parc d’attractions familial en plein cœur de la Bretagne avec des manèges et un parc aquatique.', 'contact@cobac-parc.com', '0299794829', TRUE, 'http://cobac-parc.com', 'Parc d’attractions et aquatique', CURRENT_TIMESTAMP),
-       (30, 'actif', 'Parc de Loisirs La Récré des 3 Curés', 'Un parc de loisirs incontournable avec des attractions pour petits et grands, et un espace aquatique.', 'contact@recredes3cures.com', '0298058080', TRUE, 'http://recredes3cures.com', 'Loisirs en famille et sensations fortes', CURRENT_TIMESTAMP),
+       (30, 'actif', 'La Récré des 3 Curés', 'Un parc de loisirs incontournable avec des attractions pour petits et grands, et un espace aquatique.', 'contact@recredes3cures.com', '0298058080', TRUE, 'http://recredes3cures.com', 'Loisirs en famille et sensations fortes', CURRENT_TIMESTAMP),
        (31, 'actif', 'Forêt Adrénaline Rennes', 'Un parc accrobranche pour une aventure dans les arbres avec des parcours adaptés à tous les âges.', 'contact@foret-adrenaline.com', '0299168523', TRUE, 'http://foret-adrenaline.com', 'Aventure et accrobranche', CURRENT_TIMESTAMP),
        (31, 'actif', 'Forêt Adrénaline Carnac', 'Un parc accrobranche pour une aventure dans les arbres avec des parcours adaptés à tous les âges.', 'contact@foret-adrenaline.com', '0299168523', TRUE, 'http://foret-adrenaline.com', 'Aventure et accrobranche', CURRENT_TIMESTAMP),
        (32, 'actif', 'Karting de Ploumoguer', 'Un circuit de karting en extérieur pour des sensations fortes en toute sécurité.', 'contact@kartingploumoguer.com', '0298654785', TRUE, 'http://kartingploumoguer.com', 'Sport mécanique et adrénaline', CURRENT_TIMESTAMP),
@@ -455,7 +456,16 @@ VALUES (1, './img/profile_picture/default.svg'),
        (23, './img/profile_picture/default.svg'),
        (24, './img/profile_picture/default.svg'),
        (25, './img/profile_picture/default.svg'),
-       (26, './img/profile_picture/default.svg');
+       (26, './img/profile_picture/default.svg'),
+       (27, './img/profile_picture/default.svg'),
+       (28, './img/profile_picture/default.svg'),
+       (29, './img/profile_picture/default.svg'),
+       (30, './img/profile_picture/default.svg'),
+       (31, './img/profile_picture/default.svg'),
+       (32, './img/profile_picture/default.svg'),
+       (33, './img/profile_picture/default.svg'),
+       (34, './img/profile_picture/default.svg'),
+       (35, './img/profile_picture/default.svg');
 
 -- Peuplement de la table _consulter
 INSERT INTO _consulter (idU, idOffre, dateConsultation) 
@@ -504,6 +514,7 @@ VALUES (5, TRUE, 120, 30.0, TRUE),
        (7, TRUE, 120, 30.0, FALSE),
 
        --New
+       (12, TRUE, 120, 10.0, FALSE),
        (14, TRUE, 120, 10.0, FALSE),
        (15, TRUE, 120, 10.0, FALSE),
        (16, TRUE, 120, 10.0, FALSE);
@@ -781,7 +792,15 @@ VALUES (5, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 	(23, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 	(24, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
 	(25, '22300', 'Lannion', 'France', 'Rue Édouard Branly', 1),
-       (26, '22300', 'Lannion', 'France', 'Rue des anciens membres anonymes', 1);
+       (26, '22300', 'Lannion', 'France', 'Rue des anciens membres anonymes', 1),
+       (28, '56000', 'Vannes', 'France', 'Rue des Goélands', '12'),
+       (29, '35720', 'Mesnil-Roc h', 'France', 'Le Bois du Cobac', '1'),
+       (30, '29290', 'Milizac-Guipronvel', 'France', '1 Trois Curés', '1'),
+       (31, '35700', 'Rennes', 'France', 'Base de loisirs des Gayeulles', '1'),
+       (32, '29810', 'Ploumoguer', 'France', 'Kervadail', '1'),
+       (34, '35000', 'Rennes', 'France', 'Rue Saint-Georges', '1'),
+       (33, '29360', 'Clohars-Carnoët', 'France', 'Quai de Doëlan', '1'),
+       (35, '56620', 'Pont-Scorff', 'France', 'Kersamedi', '1');
 
 
 -- Peuplement de la table _localisation
@@ -1035,7 +1054,46 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        (25, 'Spectacle de grande qualité, bravo !', '2024-12-02 18:45:00'),
        (25, 'Une journée au parc qui restera gravée dans ma mémoire.', '2024-12-03 15:15:00'),
        (25, 'Merci pour cette visite intéressante et bien animée.', '2024-12-04 13:45:00'),
-       (25, 'Une activité ludique et très divertissante.', '2024-12-05 16:00:00');
+       (25, 'Une activité ludique et très divertissante.', '2024-12-05 16:00:00'),
+
+       --offre 16 avis et reponse
+       (3, 'Superbe journée en famille, attractions variées et ambiance agréable.', '2024-11-15 09:30:00'),
+       (5, 'Trop d’attente aux attractions, c’était frustrant.', '2024-11-18 14:42:00'),
+       (7, 'Personnel très sympa, on a passé un excellent moment.', '2024-12-02 10:25:00'),
+       (10, 'Parc propre mais manque de bancs pour se reposer.', '2024-12-10 16:10:00'),
+       (12, 'Les attractions sont bien mais les prix sont trop élevés.', '2024-12-20 11:50:00'),
+       (15, 'Trop de monde, on a fait seulement 3 attractions en 4h.', '2025-01-05 15:30:00'),
+       (18, 'Excellent parc d’attractions ! Les enfants ont adoré.', '2025-01-10 10:20:00'),
+       (20, 'La nourriture est chère et pas terrible...', '2025-02-14 13:45:00'),
+       (22, 'L’espace aquatique est génial, surtout par beau tem.', '2025-03-03 11:10:00'),
+       (25, 'Manque de signalisation, on s’est perdus plusieurs fois.', '2025-03-28 14:55:00'),
+       
+       (30, 'Nous comprenons votre frustration et travaillons sur un système de file virtuelle.', '2024-11-18 17:00:00'),
+       (30, 'Ravi que notre personnel ait rendu votre visite agréable !', '2024-12-02 13:00:00'),
+       (30, 'Nous allons améliorer la gestion du flux des visiteurs.', '2025-01-05 18:00:00'),
+       (30, 'Nous allons améliorer la signalisation, merci pour votre retour.', '2025-03-28 17:20:00'),
+
+       --offre 14
+       (6, 'Un moment magique avec mon/ma partenaire, je recommande !', '2025-05-10 14:32:00'),
+       (15, 'C’était bien, mais le prix est un peu excessif pour la prestation.', '2025-06-18 09:15:23'),
+       (22, 'Les enfants ont adoré, et l’équipe était super sympa.', '2025-07-22 16:47:11'),
+       (9, 'J’ai trouvé ça assez ennuyeux, je m’attendais à mieux...', '2025-08-05 11:03:45'),
+       (25, 'Très mauvaise organisation, beaucoup d’attente et peu d’explications.', '2025-09-14 18:22:30'),
+       
+       --offre 15
+       (12, 'Les enfants ont adoré ! Journée parfaite en famille.', '2022-06-20 10:15:30'),
+       (18, 'Beaucoup d’attente aux attractions, mais dans l’ensemble c’était fun.', '2022-07-15 14:45:10'),
+       (7, 'Moment agréable avec mon/ma partenaire, à refaire.', '2022-08-12 16:32:45'),
+       (23, 'Peu d’infrastructures adaptées aux professionnels, on ne reviendra pas.', '2023-09-25 11:57:20'),
+       (5, 'Trop de monde, file d’attente interminable... Pas une bonne expérience.', '2023-10-03 18:05:50'),
+       (11, 'Super parc aquatique ! Mes enfants ne voulaient plus partir.', '2024-06-18 09:45:20'),
+       (21, 'Les attractions sont bien, mais la restauration est trop chère.', '2024-07-10 15:25:00'),
+       (9, 'Beaucoup de monde, mais bonne ambiance !', '2024-08-05 13:30:50'),
+       (14, 'Le personnel était très sympathique, mais il manque des attractions pour adultes.', '2024-09-20 16:55:30'),
+       (16, 'J’ai perdu mon téléphone dans une attraction, mais le service client a été très réactif !', '2024-07-22 10:00:00'),
+       (22, 'Trop de files d’attente, surtout en été. Il faudrait plus d’ombre dans la file.', '2024-08-15 14:20:10'),
+       (17, 'Manque de tables de pique-nique, difficile de trouver un endroit pour manger.', '2023-09-05 12:40:00'),
+       (20, 'Topissime ! Je recommande vivement.', '2023-06-29 17:20:00');
 
 INSERT INTO _avis(idC,idOffre,note,companie,mois,annee,titre,lu)
 VALUES (1,1,5,'solo','novembre','2024','ouai pas mal',FALSE),
@@ -1185,13 +1243,45 @@ VALUES (1,1,5,'solo','novembre','2024','ouai pas mal',FALSE),
        (110, 2, 4, 'solo', 'novembre', '2024', 'Spectacle drôle et agréable', FALSE),
        (111, 1, 5, 'solo', 'novembre', '2024', 'Parc d’attractions parfait', FALSE),
        (112, 5, 5, 'solo', 'novembre', '2024', 'Visite très enrichissante', FALSE),
-       (113, 4, 4, 'solo', 'novembre', '2024', 'Activité sympa et agréable', FALSE);
+       (113, 4, 4, 'solo', 'novembre', '2024', 'Activité sympa et agréable', FALSE),
+       
+       -- offre 16
+       (114, 18, 5, 'famille', 'novembre', 2024, 'Une sortie réussie !', FALSE),
+       (115, 18, 2, 'amis', 'novembre', 2024, 'Beaucoup trop d’attente', FALSE),
+       (116, 18, 4, 'couple', 'decembre', 2024, 'Personnel au top', FALSE),
+       (117, 18, 3, 'solo', 'decembre', 2024, 'Manque d’aménagements', FALSE),
+       (118, 18, 2, 'famille', 'janvier', 2025, 'Prix trop élevés', FALSE),
+       (119, 18, 2, 'amis', 'janvier', 2025, 'Trop de monde', FALSE),
+       (120, 18, 5, 'couple', 'fevrier', 2025, 'Génial pour les enfants', FALSE),
+       (121, 18, 2, 'affaire', 'fevrier', 2025, 'Restauration décevante', FALSE),
+       (122, 18, 5, 'famille', 'mars', 2025, 'Superbe espace aquatique', FALSE),
+       (123, 18, 3, 'amis', 'mars', 2025, 'Problème de signalisation', FALSE),
 
+       --offre 14
+       (133, 16, 5, 'couple', 5, 2025, 'Une escapade romantique parfaite', FALSE),
+       (134, 16, 3, 'amis', 6, 2025, 'Sympa mais un peu cher', FALSE),
+       (135, 16, 4, 'famille', 7, 2025, 'Idéal pour les enfants', FALSE),
+       (136, 16, 2, 'solo', 8, 2025, 'Pas ce à quoi je m’attendais...', FALSE),
+       (137, 16, 1, 'affaire', 9, 2025, 'Mauvaise organisation, décevant', FALSE),
+
+       --offre 15
+       (138, 17, 5, 'famille', 'juin', 2023, 'Les enfants ont adoré ! Journée parfaite en famille.', FALSE),
+       (139, 17, 3, 'amis', 'juillet', 2023, 'Beaucoup d’attente aux attractions, mais dans l’ensemble c’était fun.', FALSE),
+       (140, 17, 4, 'couple', 'août', 2023, 'Moment agréable avec mon/ma partenaire, à refaire.', FALSE),
+       (141, 17, 2, 'affaire', 'septembre', 2023, 'Peu d’infrastructures adaptées aux professionnels, on ne reviendra pas.', FALSE),
+       (142, 17, 1, 'solo', 'octobre', 2023, 'Trop de monde, file d’attente interminable... Pas une bonne expérience.', FALSE),
+       (143, 17, 5, 'famille', 'juin', 2024, 'Super parc aquatique ! Mes enfants ne voulaient plus partir.', FALSE),
+       (144, 17, 3, 'amis', 'juillet', 2024, 'Les attractions sont bien, mais la restauration est trop chère.', FALSE),
+       (145, 17, 4, 'couple', 'août', 2024, 'Beaucoup de monde, mais bonne ambiance !', FALSE);
 
 INSERT INTO _reponse(idC,ref)
 VALUES (11,3),
        (12,5),
-       (13,9);
+       (13,9),
+       (124, 115),
+       (125, 116),
+       (126, 119),
+       (127, 123);
 
 -- On fait en sorte que les avis qui ont une réponse soient considérés comme lus
 UPDATE pact._avis 
