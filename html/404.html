@@ -16,17 +16,17 @@
         <img src="img/icone/nuage2.svg" class="nuage">
     </div>
 
+    <aside>
+        <a href="index.php">Retour à la page d'accueil</a>
+        <a href="javascript:history.back()">Retour à la page précédente</a>
+    </aside>
+
     <div class="contenu404">
         <img id="logo" src="../img/logo.png" title="logo du site">
         <h1 id="logoText">PACT</h1>
 
-        <h2>Erreur 404 : page introuvable</h2>
-        <aside>
-            <p><a href="index.php">Retour à la page d'accueil</a></p>
-            <p><a href="javascript:history.back()">Retour à la page précédente</a></p>
-        </aside>
-        
-  </div>
+        <h2>Erreur 404 : page introuvable</h2>  
+    </div>
 
     <div class="ocean">
         <img src="img/icone/wave1.svg" class="vague">
@@ -125,6 +125,29 @@ body {
     100% { transform: translateX(0); }
 }
 
+aside{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    z-index: 10;
+}
+
+aside a{
+    background-color: var(--accent);
+    padding: 15px;
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    color: black;
+    transition: 0.5s ease-in;
+}
+
+aside a:hover{
+    background-color: #fff;
+    transition: 0.5s ease-in;
+    color: var(--accent);
+}
+
 .contenu404{
     position: absolute;
     z-index: 1;
@@ -141,17 +164,6 @@ body {
     width: 100%;
 }
 
-.contenu404 aside{
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 20px;
-    display: flex;
-}
 
-
-.contenu404 aside p{
-    background-color: #edae14;
-}
 
 </style>
