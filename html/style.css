@@ -580,8 +580,26 @@ header > div > a > div {
     margin-top: 10px;
   }
 
-  img {
-    width: 15%;
+  form {
+    padding: 15px;
+    div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 3px;
+      img {
+        width: 15%;
+      }
+    }
+
+    &:nth-child(even) {
+      background-color: var(--background50);
+    }
+  }
+
+  button {
+    float: right;
+    width: 10%;
   }
 }
 

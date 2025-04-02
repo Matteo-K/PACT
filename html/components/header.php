@@ -319,6 +319,7 @@
             }
             return `
                 <form id="notification${avis.idc}" action="../detailsOffer.php#avis${avis.idc}" method="post">
+                    <button type="submit"><img src="../img/icone/lien-externe.png" alt="vers l'avis" title="vers l'avis"></button>
                     <div>
                         <img src='.${avis.url}' alt='${avis.pseudo}' title='${avis.pseudo}'>
                         <span>${avis.pseudo} a commenté ${avis.titre}</span>
@@ -326,7 +327,6 @@
                     <time datetime='${avis.datepublie}'>
                         ${temps}
                     </time>
-                    <button type="submit"><img src="../img/icone/lien-externe.png" alt="vers l'avis" title="vers l'avis"></button>
                     <input type="hidden" name="idoffre" value="${avis.idoffre}">
                 </form>
             `;
