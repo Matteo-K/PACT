@@ -386,15 +386,14 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 msgTag.textContent = 
                 "Ajouter un tag";
                 res = false;
-                input_tag.add("inputErreur");
+                input_tag.classList.add("inputErreur");
             } else {
                 msgTag.textContent = "";
-                input_tag.remove("inputErreur");
+                input_tag.classList.remove("inputErreur");
             }
             return res;
         }
-
-        input_tag.addEventListener("blur", () => checkTags());
+        
         input_tag.addEventListener("focus", () => {
             msgTag.textContent = "";
             input_tag.classList.remove("inputErreur");
