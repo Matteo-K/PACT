@@ -289,8 +289,13 @@ function afficheAvisSelect(idAvis) {
         label_nbNotif.click();
     }
     let new_nb_avis = parseInt(span_nbNotif.dataset.notif) - 1;
-    span_nbNotif.dataset.notif = new_nb_avis;
-    span_nbNotif.textContent = new_nb_avis > 99 ? "+99" : new_nb_avis;
+    if (new_nb_avis == 0) {
+        span_nbNotif.textContent = "";
+        label_nbNotif.classList.remove("haveNotification");
+    } else {
+        span_nbNotif.dataset.notif = new_nb_avis;
+        span_nbNotif.textContent = new_nb_avis > 99 ? "+99" : new_nb_avis;
+    }
 
     //Selection de l'avis de la liste qui sera traité 
     avisSelect = document.getElementById(`avis${idAvis}`);
