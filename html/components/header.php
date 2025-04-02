@@ -341,7 +341,7 @@
         }
 
         window.addEventListener("click", (event) => {
-            if (event.target !== aside_notif) {
+            if (event.target !== aside_notif && inputNotification.checked) {
                 inputNotification.checked = false;
             }
         })
