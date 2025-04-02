@@ -324,10 +324,13 @@
         });
     }
 
+    const btnResetModal = document.getElementById("btnReset");
     const modal = document.querySelector("#trifiltre + .modal");
     function resetModal() {
-        modal.style.display = "flex";
-        document.body.classList.add("no-scroll");
+        if (btnResetModal.getAttibute("disabled")) {
+            modal.style.display = "flex";
+            document.body.classList.add("no-scroll");
+        }
     }
     
     function resetModal_close() {

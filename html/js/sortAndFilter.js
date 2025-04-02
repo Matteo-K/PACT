@@ -519,13 +519,13 @@ function sortAndFilter(array, search, elementStart, nbElement) {
 
   if (count == 0) {
     spanApplication.style.display = "none";
-    btnReset.setAttribute("onclick", "");
+    btnReset.setAttribute("disabled", "true");
     btnReset.style.backgroundColor = "#a4a1a1";
     
   } else {
     spanApplication.textContent = count;
     spanApplication.style.display = "block";
-    btnReset.setAttribute("onclick", "resetModal()");
+    btnReset.removeAttribute("disabled");
     btnReset.style.backgroundColor = "#f06565";
   }
   
