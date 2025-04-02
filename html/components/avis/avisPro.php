@@ -269,7 +269,6 @@ const blacklistAvis =document.querySelector("#avisProS2 .blacklistid");
 // Notification
 const input_notif = document.querySelector("[for='notification'] input")
 const span_nbNotif = document.querySelector("[for='notification'] span");
-let nb_notif = parseInt(span_nbNotif.dataset.notif);
 
 function updateOnglet(arrayAvis) {
     // Calcul du nombre de non lu
@@ -283,6 +282,14 @@ function updateOnglet(arrayAvis) {
 }
 
 function afficheAvisSelect(idAvis) {
+
+    // Notification actualisation
+    if (input_notif.checked) {
+        input_notif.cheched = false;
+    }
+    let new_nb_avis = parseInt(span_nbNotif.dataset.notif) - 1;
+    span_nbNotif.dataset.notif = new_nb_avis;
+    span_nbNotif.textContent = new_nb_avis > 99 ? "+99" : new_nb_avis;
 
     //Selection de l'avis de la liste qui sera traité 
     avisSelect = document.getElementById(`avis${idAvis}`);
@@ -329,12 +336,6 @@ function afficheAvisSelect(idAvis) {
         for (i = 4; i >= listeAvis[idAvis]['note']; i--) {
             etoilesAvis[i].style.backgroundColor = "var(--background-avis)";
         }
-    }
-
-    // Notification actualisation
-    if (input_notif.checked) {
-        // retire le bloc avis de notif
-        // Change le nombre
     }
 
     //changement titre avis

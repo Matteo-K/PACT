@@ -254,6 +254,7 @@
                 .then(data => {
                     const notification_size = data["avis"].length;
                     span_notification.textContent = notification_size > 99 ? "+99" : notification_size;
+                    span_notification.dataset.notif = notification_size;
                     displayNotification(data["avis"])
                 })
                 .catch(error => console.error("Erreur :", error));
@@ -280,7 +281,6 @@
 
                 for (let offre in groupedAvis) {
                     const count = groupedAvis[offre].length;
-                    console.log(groupedAvis);
                     notifications += `
                     <details id="offreNotif_${offre}" class="details-style" data-nbavis="${count}">
                         <summary>(${count > 99 ? "+99" : count}) ${offre}</summary>
