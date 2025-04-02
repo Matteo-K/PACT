@@ -579,15 +579,8 @@ header > div > a > div {
     margin-top: 10px;
   }
 
-  figure {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0;
-
-    img {
-      width: 15%;
-    }
+  img {
+    width: 15%;
   }
 }
 

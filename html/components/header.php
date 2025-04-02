@@ -246,6 +246,8 @@
         const inputNotification = document.querySelector("[for='notification'] input");
         const span_notification = document.querySelector("[for='notification'] span");
         const blc_notification = document.querySelector("#notification_aside section");
+        const aside_notif = document.getElementById("notification_aside");
+
         inputNotification.addEventListener("input", () => {
             if (inputNotification.checked) {
                 fetch("ajax/notification.php?idu=" + encodeURIComponent(<?= $idUser ?>))
@@ -317,21 +319,17 @@
                 temps = `Il y a ${jours} jour${jours > 1 ? 's' : ''}`;
             }
             return `
-                <div id="notification${avis.idc}">
+                <form id="notification${avis.idc}" action="../detailsOffer.php#avis${}" method="post">
                     <div>
-                        <figure>
-                            <img src='.${avis.url}' alt='${avis.pseudo}' title='${avis.pseudo}'>
-                            <figcaption>${avis.pseudo}</figcaption>
-                        </figure>
-                        <time datetime='${avis.datepublie}'>
-                            ${temps}
-                        </time>
+                        <img src='.${avis.url}' alt='${avis.pseudo}' title='${avis.pseudo}'>
+                        <span>${avis.pseudo} a commenté ${avis.titre}</span>
                     </div>
-                    <div>
-                        <span>${avis.titre}</span>
-                        <span>${displayStar(parseInt(avis.note))}</span>
-                    </div>
-                </div>
+                    <time datetime='${avis.datepublie}'>
+                        ${temps}
+                    </time>
+                    <button type="submit"><img src="../img/icone/lien-externe.png" alt="vers l'avis" title="vers l'avis"></button>
+                    <input type="hidden" name="idoffre" value="${avis.idoffre}">
+                </form>
             `;
         }
 
@@ -341,6 +339,12 @@
             if (note % 1 !== 0) stars[Math.floor(note)] = `<div class="star partielle" style="--pourcentage: ${(note % 1) * 100}%"></div>`;
             return `<div class="blocStar">${stars.join('')}<span>${note}/5</span></div>`;
         }
+
+        window.addEventListener("click", (event) => {
+            if (event.target !== aside_notif) {
+                inputNotification.checked = false;
+            }
+        })
     </script>
 <?php } ?>
 
