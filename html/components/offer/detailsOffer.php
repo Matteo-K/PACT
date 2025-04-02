@@ -140,7 +140,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         <div id="blcTagImg">
             <div id="tagsOffer">
                 <div id="inputAutoComplete">
-                    <label for="inputTag" class="labelTitre">Tags supplémentaires<span id="msgTag" class="msgError"></span></label>
+                    <label for="inputTag" class="labelTitre">Tags supplémentaires*<span id="msgTag" class="msgError"></span></label>
                     <input type="text" id="inputTag" name="inputTag" placeholder="Entrez & selectionnez un tag correspondant à votre activité">
                     <ul id="autocompletion"></ul>
                 </div>
@@ -307,117 +307,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             <?= $idOffre ?>
         );
 
-        //Affichage des images a leur selection
-        // const pImage = document.querySelector("#choixImage > p");
-        // const conteneur = document.getElementById("afficheImages");
-        // let inputFile = document.getElementById("ajoutPhoto"); 
-        // inputFile.addEventListener("change", afficheImage);
-
-        // const photosSelect = []; // Stocker les fichiers sélectionnés
-
-        // let fichiersDerniereRequete = []; // Stocke uniquement les photos de la dernière requête
-
-
-        // const loadedImg = <?php //echo json_encode($loadedImg) ?>;
-
-        // loadedImg.forEach(img => {
-        //     configImage(img, "", null);
-        // });
-
-
-        // function afficheImage(event) {
-        //     const images = Array.from(event.target.files); // On convertit la liste des fichiers de l'input en tableau
-        //     let compteurImgMax = conteneur.childElementCount;
-        //     alert("afficheImages");
-
-        //     images.forEach((file) => {
-        //         if (compteurImgMax >= maxImages) {
-        //             pImage.style.color = "red";
-        //             alert("C'est plein");
-        //             return;
-        //         }
-        //         else{
-        //             compteurImgMax++;
-        //             const reader = new FileReader();
-        //             reader.onload = function(e){
-        //                 photosSelect.push(file);
-        //                 fichiersDerniereRequete.push(file);
-        //                 configImage("", e.target.result, file);
-        //             };
-        //             reader.readAsDataURL(file);
-        //         }
-        //     });
-        //     alert("envoyer Images ----->");
-        //     envoyerImages();
-        // }
-
-        // function configImage(urlAncien, urlNouveau, file) {
-        //     if (conteneur.childElementCount < maxImages) {
-        //         //On créé la balise notamment pour l'affichage
-        //         const figureImg = document.createElement("figure");
-        //         figureImg.classList.add("imageOffre");
-
-        //         if (urlAncien != "") {
-        //             //Traitement des anciennes images chargées
-        //             figureImg.innerHTML = `<img src="${urlAncien}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
-        //             const hiddenInputImg = document.createElement("input"); // L'input caché passe l'url des anciennes images au enregOffer.php
-        //             hiddenInputImg.type = "hidden";
-        //             hiddenInputImg.value = urlAncien;
-        //             hiddenInputImg.name = "imageExistante[]";
-        //             figureImg.appendChild(hiddenInputImg);
-        //         } else {
-        //             //Traitement des nouvelles images
-        //             figureImg.innerHTML = `<img src="${urlNouveau}" alt="Photo sélectionnée" title="Cliquez pour supprimer">`;
-        //         }
-
-        //         //On ajoute la balise a la section pour l'affichage
-        //         conteneur.appendChild(figureImg);
-
-        //         figureImg.addEventListener("click", function () {
-        //             if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
-        //                 figureImg.remove();
-        //                 photosSelect.splice(photosSelect.indexOf(file), 1); // Supprimer le fichier de la liste
-        //                 pImage.style.color = "black"; // Remettre la couleur par défaut
-        //                 fichiersDerniereRequete.splice(fichiersDerniereRequete.indexOf(file), 1); // Supprime du tableau temporaire
-        //             }
-        //         });
-        //     } else {
-        //         pImage.style.color = "red";
-        //     }
-        // }
-
-
-        // function envoyerPhotos() {
-        //     if (fichiersDerniereRequete.length === 0) {
-        //         alert("Aucune nouvelle photo à envoyer.");
-        //         return;
-        //     }
-
-        //     // Préparer les données à envoyer
-        //     const formData = new FormData();
-        //     fichiersDerniereRequete.forEach((file) => formData.append("images[]", file));
-
-        //     console.log("Fichiers envoyés :", fichiersDerniereRequete); // Debug
-
-        //     fetch("enregOffer.php", {
-        //         method: "POST",
-        //         body: formData,
-        //     })
-        //         .then((response) => {
-        //             if (response.ok) {
-        //                 alert("Photos envoyées avec succès !");
-        //                 fichiersDerniereRequete = []; // Réinitialiser les fichiers envoyés
-        //             } else {
-        //                 alert("Erreur lors de l'envoi des photos.");
-        //             }
-        //         })
-        //         .catch((error) => {
-        //             console.error("Erreur lors de l'envoi :", error);
-        //         });
-        // }
-
-
         const nom = document.querySelector("#nom");
+        const input_tag = document.getElementById("inputTag");
+        const blc_tags = document.getElementById("sectionTag");
         const description = document.querySelector("#description");
         const divImg = document.querySelector("#afficheImages");
         const inputFile = document.querySelector("#ajoutPhoto");
@@ -431,10 +323,10 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
          * @returns {boolean} - Renvoie true si tous les input sont conformes aux données. False sinon
          */
         function checkOfferValidity(event) {
-            msgTag.textContent = "";
             let nomCheck = checkNom();
             let descriptionCheck = checkDescription();
             let imgCheck = checkImg();
+            let tagCheck = checkTags();
 
             // Info catégorie
             let categorie;
@@ -460,7 +352,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     break;
             }
 
-            return nomCheck && descriptionCheck && imgCheck && categorie;
+            return nomCheck && descriptionCheck && imgCheck && tagCheck && categorie;
         }
 
         /**
@@ -484,6 +376,29 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             nom.classList.remove("inputErreur");
         });
         
+        /**
+         * Vérifie s'il contient au moins 1 tag
+         * @returns {boolean} - Renvoie true si l'offre contient au moins 1 tag
+         */
+        
+        function checkTags() {
+            let res = true;
+            if (blc_tags.childElementCount == 0) {
+                msgTag.textContent = 
+                "Ajouter un tag";
+                res = false;
+            } else {
+                msgTag.textContent = "";
+            }
+            return res;
+        }
+
+        input_tag.addEventListener("blur", () => checkNom());
+        input_tag.addEventListener("focus", () => {
+            msgTag.textContent = "";
+            input_tag.classList.remove("inputErreur");
+        });
+
         /**
          * Vérifie si la description de l'offre est correct
          * @returns {boolean} - Renvoie true si la description est correcte. false sinon
