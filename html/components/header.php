@@ -72,13 +72,13 @@
         $resNotification = $stmt->fetch(PDO::FETCH_ASSOC);
         $quantite = 0;
         if ($resNotification) {
-            $quantite = intval($resNotification["nbavis"]);
+            $quantite = intval($resNotification["nbavis"]) > 99 ? "+99" : $resNotification["nbavis"];
         }
         ?>
         <label tabindex="0" for="notification">
             <input type="checkbox" name="notification" id="notification">
             <img src="../img/icone/notification.png" alt="notifications" title="notifications">
-            <span id="nb_notif"><?= $quantite ?></span>
+            <span><?= $quantite ?></span>
         </label>
     <?php } ?>
     <div id="auth">
