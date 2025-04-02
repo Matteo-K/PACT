@@ -254,7 +254,7 @@
                 .then(data => {
                     const notification_size = data["avis"].length;
                     span_notification.textContent = notification_size > 99 ? "+99" : notification_size;
-                    document.querySelector("#notification_aside h3").textContent = "Notification" + notification_size > 1 ? "s" : "";
+                    document.querySelector("#notification_aside h3").textContent = "Notification" + (notification_size > 1 ? "s" : "");
                     span_notification.dataset.notif = notification_size;
                     displayNotification(data["avis"])
                 })
