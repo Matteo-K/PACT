@@ -35,7 +35,8 @@
     <div class="container">
         <h1 class="error-text">404</h1>
         <p class="message">Oups... Vous êtes perdu en mer !</p>
-        <div class="ocean">
+        <div class="wave-container">
+            <div class="wave"></div>
             <div class="wave"></div>
             <div class="wave"></div>
         </div>
@@ -76,38 +77,43 @@ body {
     font-size: 1.5rem;
 }
 
-/* Vagues animées */
-.ocean {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 20vh;
-    overflow: hidden;
-}
 
-.wave {
-    position: absolute;
-    width: 200%;
-    height: 100%;
-    background: url('wave.svg') repeat-x;
-    background-size: 50% 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.8;
-    animation: wave-animation 6s infinite linear;
-}
-
-.wave:nth-child(2) {
-    top: 5px;
-    opacity: 0.6;
-    animation-duration: 8s;
-    animation-direction: reverse;
-}
-
-/* Animation des vagues */
-@keyframes wave-animation {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
+body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #87CEEB;
+        }
+        .wave-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            overflow: hidden;
+        }
+        .wave {
+            position: absolute;
+            width: 200%; /* Double la largeur pour permettre l'animation fluide */
+            height: 100px;
+            background-repeat: repeat-x;
+            animation: wave-animation 5s linear infinite;
+        }
+        .wave:nth-child(1) {
+            background: url('wave1.svg') repeat-x;
+            animation-duration: 6s;
+            opacity: 1;
+        }
+        .wave:nth-child(2) {
+            background: url('wave2.svg') repeat-x;
+            animation-duration: 8s;
+            opacity: 0.7;
+        }
+        .wave:nth-child(3) {
+            background: url('wave3.svg') repeat-x;
+            animation-duration: 10s;
+            opacity: 0.5;
+        }
+        @keyframes wave-animation {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
 
 </style>
