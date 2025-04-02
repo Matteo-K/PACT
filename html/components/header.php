@@ -255,8 +255,7 @@
                 .then(data => {
                     const notification_size = data["avis"].length;
                     if (notification_size == 0) {
-                        span_notification.textContent = "";
-                        label_notification.classList.remove("haveNotification");
+                        removeNotifSpan();
                     } else {
                         label_notification.classList.add("haveNotification");
                         span_notification.textContent = notification_size > 99 ? "+99" : notification_size;
@@ -267,7 +266,15 @@
                 })
                 .catch(error => console.error("Erreur :", error));
             }
+            if (span_notification.dataset.notif == 0) {
+                removeNotifSpan();
+            }
         });
+
+        function removeNotifSpan() {
+            span_notification.textContent = "";
+            label_notification.classList.remove("haveNotification");
+        }
 
         /**
          * Affiche la liste des notifications
