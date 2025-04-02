@@ -33,9 +33,9 @@
 
 <body>
     <div class="wave-container">
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
+        <img src="img/icone/wave1.svg" class="wave">
+        <img src="img/icone/wave2.svg" class="wave">
+        <img src="img/icone/wave3.svg" class="wave">
     </div>
 </body>
 </html>
@@ -52,36 +52,48 @@ body {
             background-color: #87CEEB;
         }
         .wave-container {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
+            position: relative;
+            margin-top: 50vh;
+            height: 50vh;
             overflow: hidden;
+            width: 100%;
         }
         .wave {
             position: absolute;
-            width: 200%; /* Double la largeur pour permettre l'animation fluide */
-            height: 100px;
-            background-repeat: repeat-x;
-            animation: wave-animation 5s linear infinite;
+            width: 200vh;
+            height: auto;
+            opacity: 1;
+            filter: drop-shadow(10px 15px 15px #ffffff);
         }
         .wave:nth-child(1) {
-            background: url('img/icone/wave1.svg') repeat-x;
-            animation-duration: 6s;
-            opacity: 1;
+            bottom: 0;
+            z-index: 5;
+            animation: vagueDebutDroite 15s ease-in-out infinite;
         }
+
         .wave:nth-child(2) {
-            background: url('img/icone/wave2.svg') repeat-x;
-            animation-duration: 8s;
-            opacity: 0.7;
+            transform: translateX(-100vh);
+            bottom: 50px;
+            z-index: 4;
+            animation: vagueDebutDroite 17s ease-in-out infinite;
         }
+
         .wave:nth-child(3) {
-            background: url('img/icone/wave3.svg') repeat-x;
-            animation-duration: 10s;
-            opacity: 0.5;
+            bottom: 50px;
+            z-index: 3;
+            animation: vagueDebutDroite 20s ease-in-out infinite;
         }
-        @keyframes wave-animation {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+
+        @keyframes vagueDebutDroite {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(-100vh); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes vagueDebutGauche {
+            0% { transform: translateX(-100vh); }
+            50% { transform: translateX(0); }
+            100% { transform: translateX(-100vh); }
         }
 
 </style>
