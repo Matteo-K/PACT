@@ -28,14 +28,14 @@
   <div id="acceptPhone">
     <h4 class="labelTitre">Consentez vous à afficher votre numéro de portable sur l’offre &nbsp;?&nbsp;</h4>
     <div>
-      <label for="Oui">
+      <label tabindex="0" for="Oui">
         <input type="radio" name="DisplayNumber" id="Oui" value="Oui" <?php echo $displayNumber?"checked":""?>>
         <span class="checkmark"></span>
         Oui
       </label>
     </div>
     <div>
-      <label for="Non">
+      <label tabindex="0" for="Non">
         <input type="radio" name="DisplayNumber" id="Non" value="Non" <?php echo !$displayNumber?"checked":""?>>
         <span class="checkmark"></span>
         Non

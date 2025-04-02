@@ -61,8 +61,26 @@
         });
 
     </script>
-
-
+    <?php if (str_starts_with($typeUser, 'pro_')) { 
+        $stmt = $conn->prepare(
+            "SELECT count(1) as nbavis from pact.avis a
+            LEFT JOIN pact._offre o on a.idoffre = o.idoffre
+            WHERE lu=false AND o.idu=?
+            GROUP BY o.idu;"
+        );
+        $stmt->execute([$idUser]);
+        $resNotification = $stmt->fetch(PDO::FETCH_ASSOC);
+        $quantite = 0;
+        if ($resNotification) {
+            $quantite = intval($resNotification["nbavis"]);
+        }
+        ?>
+        <label tabindex="0" for="notification">
+            <input type="checkbox" name="notification" id="notification">
+            <img src="../img/icone/notification.png" alt="notifications" title="notifications">
+            <span id="nb_notif"><?= $quantite ?></span>
+        </label>
+    <?php } ?>
     <div id="auth">
         <?php
         if ($isLoggedIn) {
@@ -76,7 +94,7 @@
             } else if ($typeUser === "pro_prive") {
                 $stmt = $conn->prepare("SELECT * FROM pact.proPrive WHERE idU = ?");
             }
-            $stmt->execute([$_SESSION["idUser"]]);
+            $stmt->execute([$idUser]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
 
@@ -124,7 +142,7 @@
                         <h1>Mes Factures</h1>
                         <div class="details">
                         <?php 
-                            $idu = $_SESSION["idUser"];
+                            $idu = $idUser;
                             $stmt = $conn->prepare("SELECT nom,idoffre,ARRAY_AGG(DISTINCT datefactue ORDER BY datefactue DESC) AS datefactue FROM pact.facture WHERE idU = $idu GROUP BY nom,idOffre");
                             $stmt->execute();
                             $factures = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -212,6 +230,19 @@
     </div>
 
 </header>
+<?php if (str_starts_with($typeUser, 'pro_')) {
+    $stmt = $conn->prepare("SELECT * FROM pact._offre where idu=?;");
+    $stmt->execute([$idUser]);
+    $idoffres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    ?>
+    <aside id="notification_aside">
+        <h3>Notification</h3>
+        <section>
+
+        </section>
+    </aside>
+<?php } ?>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

@@ -391,6 +391,7 @@ header div > a > img,
   border-radius: 50%;
   margin-right: 0.5em;
   object-fit: cover;
+  cursor: pointer;
 }
 
 /* Formulaire de recherche */
@@ -2944,10 +2945,19 @@ label[for="rest_ajoutPhotoMenu"] {
   left: 50%;
   width: 15px;
   height: 15px;
-  border-radius: 50%;
   font-weight: bold;
   background-color: #1ca4ed;
   transform: translate(-50%, -50%) scale(1.2);
+}
+
+[type="checkbox"]:checked + .checkmark::after {
+  clip-path: polygon(10% 50%, 40% 80%, 90% 20%, 80% 10%, 40% 70%, 20% 40%);
+  width: 80%;
+  height: 80%;
+}
+
+[type="radio"]:checked + .checkmark::after {
+  border-radius: 50%;
 }
 
 .checkmark:hover {
@@ -2975,6 +2985,31 @@ label[for="rest_ajoutPhotoMenu"] {
   flex-direction: row;
   align-items: center;
   gap: 3px;
+}
+
+#blcStarAside {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+  flex-flow: row wrap;
+}
+
+.checkStar.star.vide {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkStar.star.vide:hover {
+  background-color: var(--accent65);
+}
+
+input:checked + .checkStar.star.vide {
+  background-color: var(--accent);
 }
 
 #note input {

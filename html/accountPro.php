@@ -204,14 +204,14 @@
             <div class="ligne5">
                 <div class="ligne5_1">
                     <!-- Radio bouton public -->
-                    <label for="radioPublic">
+                    <label tabindex="0" for="radioPublic">
                         <input type="radio" id="radioPublic" name="secteur" value="public">
                         <span class="checkmark"></span>
                         Public
                     </label>
             
                     <!-- Radio bouton privée -->
-                    <label for="radioPrive">
+                    <label tabindex="0" for="radioPrive">
                         <input type="radio" id="radioPrive" name="secteur" value="prive" checked>
                         <span class="checkmark"></span>
                         Privé
@@ -242,7 +242,7 @@
 
             <div class="authentikator">
                 <!-- Checkbox de A2F -->
-                <label for="authentikator">
+                <label tabindex="0" for="authentikator">
                     <input type="checkbox" id="authentikator" name="authentikator" hidden/>
                     <span class="checkmark" id="qrcode"></span>
                     J’utilise l'authentification à deux facteurs
@@ -256,7 +256,7 @@
 
             <div class="ligne7">
                 <!-- Checkbox des CGU -->
-                <label for="cgu">
+                <label tabindex="0" for="cgu">
                     <input type="checkbox" id="cgu" name="cgu" value="cgu" />
                     <span class="checkmark"></span>
                     J’accepte les <a id="lienCGU" href= "cgu.php" target="_blank">conditions générales d’utilisation</a> de la PACT

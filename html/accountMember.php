@@ -203,7 +203,7 @@
 
             <div class="authentikator">
                 <!-- Checkbox de A2F -->
-                <label for="authentikator">
+                <label tabindex="0" for="authentikator">
                     <input type="checkbox" id="authentikator" name="authentikator" hidden/>
                     <span class="checkmark" id="qrcode"></span>
                     J’utilise l'authentification à deux facteurs
@@ -217,7 +217,7 @@
 
             <div class="ligne7">
                 <!-- Checkbox des CGU -->
-                <label for="cgu">
+                <label tabindex="0" for="cgu">
                     <input type="checkbox" id="cgu" name="cgu" value="cgu" />
                     <span class="checkmark"></span>
                     J’accepte les <a id="lienCGU" href= "cgu.php" target="_blank">conditions générales d’utilisation</a> de la PACT
