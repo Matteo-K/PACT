@@ -253,7 +253,7 @@
                 .then(data => {
                     const notification_size = data["avis"].length;
                     span_notification.textContent = notification_size > 99 ? "+99" : notification_size;
-                    console.log(data);
+                    displayNotification(data["avis"])
                 })
                 .catch(error => console.error("Erreur :", error));
             }
