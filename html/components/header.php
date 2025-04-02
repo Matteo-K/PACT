@@ -338,12 +338,6 @@
             if (note % 1 !== 0) stars[Math.floor(note)] = `<div class="star partielle" style="--pourcentage: ${(note % 1) * 100}%"></div>`;
             return `<div class="blocStar">${stars.join('')}<span>${note}/5</span></div>`;
         }
-
-        window.addEventListener("click", (event) => {
-            if (event.target !== aside_notif && !aside_notif.contains(event.target) && inputNotification.checked) {
-                inputNotification.checked = false;
-            }
-        })
     </script>
 <?php } ?>
 
