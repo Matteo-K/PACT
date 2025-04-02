@@ -94,14 +94,14 @@
 /* Notification */
 
 .haveNotification img {
-  animation: vibre 5s linear infinite;
+  animation: vibre 10s linear infinite;
 }
 
 @keyframes vibre {
   0% {transform: rotate(5deg)}
-  4% {transform: rotate(-5deg)}
+  2% {transform: rotate(-5deg)}
+  4% {transform: rotate(5deg)}
+  6% {transform: rotate(-5deg)}
   8% {transform: rotate(5deg)}
-  12% {transform: rotate(-5deg)}
-  16% {transform: rotate(5deg)}
-  20% {transform: rotate(0deg)}
+  10% {transform: rotate(0deg)}
 }
