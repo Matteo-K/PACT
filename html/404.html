@@ -32,7 +32,8 @@
 -->
 
 <body>
-    <div class="ciel"></div>
+    <div class="ciel">
+        <img src="img/icone/sun.svg" class="soleil">
         <img src="img/icone/nuage1.svg" class="nuage">
         <img src="img/icone/nuage2.svg" class="nuage">
     </div>
@@ -55,8 +56,7 @@ body {
 }
 .ocean {
     position: relative;
-    margin-top: 30vh;
-    height: 70vh;
+    height: 65vh;
     overflow: hidden;
     width: 100%;
 }
@@ -66,7 +66,7 @@ body {
     width: 150vw;
     height: auto;
     opacity: 1;
-    filter: drop-shadow(10px 15px 15px #ffffff);
+    filter: drop-shadow(10px 15px 15px #00000040);
 }
 
 .vague:nth-child(1) {
@@ -91,7 +91,7 @@ body {
 .ciel {
     position: relative;
     margin-top: 0;
-    height: 30vh;
+    height: 35vh;
     overflow: hidden;
     width: 100%;
 }
@@ -101,7 +101,7 @@ body {
     width: 150vw;
     height: auto;
     opacity: 1;
-    filter: drop-shadow(10px 15px 15px #ffffff);
+    filter: drop-shadow(10px 15px 15px #00000040);
 }
 
 .nuage:nth-child(1) {
@@ -112,9 +112,17 @@ body {
 
 .nuage:nth-child(2) {
     transform: translateX(-50vw);
-    bottom: 50px;
+    top: -150px;
     z-index: 2;
     animation: vagueDebutGauche 8s ease-in-out infinite alternate;
+}
+
+.soleil {
+    position: absolute;
+    width: 20vw;
+    height: auto;
+    opacity: 1;
+    filter: drop-shadow(10px 15px 15px #edae14);
 }
 
 @keyframes vagueDebutDroite {
