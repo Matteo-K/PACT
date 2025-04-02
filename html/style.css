@@ -557,20 +557,22 @@ header > div > a > div {
 
 [for="notification"] {
   position: relative;
+  display: flex;
+  justify-content: center;
 
   input {
     display: none;
   }
 
   img {
-    width: 40%;
-    height: 40%;
+    width: 50%;
+    height: 50%;
   }
   span {
-    display: flex;
+    display: none;
     position: absolute;
     top: -10%;
-    right: 50%;
+    right: 25%;
     width: 30px;
     height: 30px;
     background-color: var(--accent);
@@ -578,6 +580,16 @@ header > div > a > div {
     align-items: center;
     border: 3px solid var(--text-dark);
     border-radius: 50%;
+  }
+
+  &:has(input:checked) {
+    background-color: var(--accent);
+  }
+}
+
+.haveNotification {
+  span {
+    display: flex;
   }
 }
 

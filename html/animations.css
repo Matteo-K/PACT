@@ -89,3 +89,19 @@
   opacity: 1;
   transform: translateX(0);
 }
+
+
+/* Notification */
+
+.haveNotification img {
+  animation: vibre 7.5s linear infinite;
+}
+
+@keyframes vibre {
+  0% {transform: rotate(-8deg)}
+  3% {transform: rotate(8deg)}
+  6% {transform: rotate(-8deg)}
+  9% {transform: rotate(8deg)}
+  12% {transform: rotate(-8deg)}
+  15% {transform: rotate(0deg)}
+}

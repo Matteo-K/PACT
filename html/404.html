@@ -32,88 +32,99 @@
 -->
 
 <body>
-    <div class="container">
-        <h1 class="error-text">404</h1>
-        <p class="message">Oups... Vous êtes perdu en mer !</p>
-        <div class="wave-container">
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-        </div>
+    <div class="ciel"></div>
+        <img src="img/icone/nuage1.svg" class="nuage">
+        <img src="img/icone/nuage2.svg" class="nuage">
+    </div>
+
+    <div class="ocean">
+        <img src="img/icone/wave1.svg" class="vague">
+        <img src="img/icone/wave2.svg" class="vague">
+        <img src="img/icone/wave3.svg" class="vague">
     </div>
 </body>
 </html>
-
 
 
 <style>
 
 body {
     margin: 0;
-    padding: 0;
     overflow: hidden;
-    background: linear-gradient(to bottom, #87CEEB, #1E90FF);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    color: white;
+    background-color: #87CEEB;
 }
-
-.container {
+.ocean {
     position: relative;
+    margin-top: 30vh;
+    height: 70vh;
+    overflow: hidden;
+    width: 100%;
+}
+
+.vague {
+    position: absolute;
+    width: 150vw;
+    height: auto;
+    opacity: 1;
+    filter: drop-shadow(10px 15px 15px #ffffff);
+}
+
+.vague:nth-child(1) {
+    bottom: -100px;
+    z-index: 5;
+    animation: vagueDebutDroite 6s ease-in-out infinite alternate;
+}
+
+.vague:nth-child(2) {
+    transform: translateX(-50vw);
+    bottom: 50px;
+    z-index: 4;
+    animation: vagueDebutGauche 8s ease-in-out infinite alternate;
+}
+
+.vague:nth-child(3) {
+    bottom: 50px;
+    z-index: 3;
+    animation: vagueDebutDroite 10s ease-in-out infinite alternate;
+}
+
+.ciel {
+    position: relative;
+    margin-top: 0;
+    height: 30vh;
+    overflow: hidden;
+    width: 100%;
+}
+
+.nuage {
+    position: absolute;
+    width: 150vw;
+    height: auto;
+    opacity: 1;
+    filter: drop-shadow(10px 15px 15px #ffffff);
+}
+
+.nuage:nth-child(1) {
+    top: -100px;
+    z-index: 1;
+    animation: vagueDebutDroite 6s ease-in-out infinite alternate;
+}
+
+.nuage:nth-child(2) {
+    transform: translateX(-50vw);
+    bottom: 50px;
     z-index: 2;
+    animation: vagueDebutGauche 8s ease-in-out infinite alternate;
 }
 
-.error-text {
-    font-size: 8rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+@keyframes vagueDebutDroite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50vw); }
 }
 
-.message {
-    font-size: 1.5rem;
+@keyframes vagueDebutGauche {
+    0% { transform: translateX(-50vh); }
+    100% { transform: translateX(0); }
 }
-
-
-body {
-            margin: 0;
-            overflow: hidden;
-            background-color: #87CEEB;
-        }
-        .wave-container {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            overflow: hidden;
-        }
-        .wave {
-            position: absolute;
-            width: 200%; /* Double la largeur pour permettre l'animation fluide */
-            height: 100px;
-            background-repeat: repeat-x;
-            animation: wave-animation 5s linear infinite;
-        }
-        .wave:nth-child(1) {
-            background: url('wave1.svg') repeat-x;
-            animation-duration: 6s;
-            opacity: 1;
-        }
-        .wave:nth-child(2) {
-            background: url('wave2.svg') repeat-x;
-            animation-duration: 8s;
-            opacity: 0.7;
-        }
-        .wave:nth-child(3) {
-            background: url('wave3.svg') repeat-x;
-            animation-duration: 10s;
-            opacity: 0.5;
-        }
-        @keyframes wave-animation {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
 
 </style>
