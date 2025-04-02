@@ -244,6 +244,7 @@
     <script>
         const inputNotification = document.querySelector("[for='notification'] input");
         const span_notification = document.querySelector("[for='notification'] span");
+        const label_notification = document.querySelector("[for='notification']");
         const blc_notification = document.querySelector("#notification_aside section");
         const aside_notif = document.getElementById("notification_aside");
 
@@ -253,7 +254,13 @@
                 .then(response => response.json())
                 .then(data => {
                     const notification_size = data["avis"].length;
-                    span_notification.textContent = notification_size > 99 ? "+99" : notification_size;
+                    if (notification_size == 0) {
+                        span_notification.textContent = "";
+                        label_notification.classList.remove("haveNotification");
+                    } else {
+                        label_notification.classList.add("haveNotification");
+                        span_notification.textContent = notification_size > 99 ? "+99" : notification_size;
+                    }
                     document.querySelector("#notification_aside h3").textContent = "Notification" + (notification_size > 1 ? "s" : "");
                     span_notification.dataset.notif = notification_size;
                     displayNotification(data["avis"])
