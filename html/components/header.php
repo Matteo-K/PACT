@@ -75,7 +75,7 @@
             $quantite = intval($resNotification["nbavis"]) > 99 ? "+99" : $resNotification["nbavis"];
         }
         ?>
-        <label tabindex="0" for="notification">
+        <label tabindex="0" for="notification" <?= $quantite === 0 ? "" : "haveNotification" ?>>
             <input type="checkbox" name="notification" id="notification">
             <img src="../img/icone/notification.png" alt="notifications" title="notifications">
             <span><?= $quantite ?></span>
