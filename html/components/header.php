@@ -94,7 +94,7 @@
             } else if ($typeUser === "pro_prive") {
                 $stmt = $conn->prepare("SELECT * FROM pact.proPrive WHERE idU = ?");
             }
-            $stmt->execute([$_SESSION["idUser"]]);
+            $stmt->execute([$idUser]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
 
@@ -142,7 +142,7 @@
                         <h1>Mes Factures</h1>
                         <div class="details">
                         <?php 
-                            $idu = $_SESSION["idUser"];
+                            $idu = $idUser;
                             $stmt = $conn->prepare("SELECT nom,idoffre,ARRAY_AGG(DISTINCT datefactue ORDER BY datefactue DESC) AS datefactue FROM pact.facture WHERE idU = $idu GROUP BY nom,idOffre");
                             $stmt->execute();
                             $factures = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -230,9 +230,9 @@
     </div>
 
 </header>
-<?php if (str_starts_with($_SESSION["typeUser"], 'pro_')) {
+<?php if (str_starts_with($typeUser, 'pro_')) {
     $stmt = $conn->prepare("SELECT * FROM pact._offre where idu=?;");
-    $stmt->execute([$_SESSION["idUser"]]);
+    $stmt->execute([$idUser]);
     $idoffres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     ?>
