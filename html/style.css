@@ -602,11 +602,12 @@ header > div > a > div {
     width: 10%;
     background-color: transparent;
     border: none;
-    margin: 2px;
 
     img {
       width: 100%;
       transition: background-color .2s;
+      padding: 5px;
+      border-radius: 5px;
     }
 
     &:hover img {
