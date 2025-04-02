@@ -327,10 +327,11 @@
     const btnResetModal = document.getElementById("btnReset");
     const modal = document.querySelector("#trifiltre + .modal");
     function resetModal() {
-        if (btnResetModal.getAttibute("disabled")) {
-            modal.style.display = "flex";
-            document.body.classList.add("no-scroll");
+        if (btnResetModal.getAttribute("disabled") !== null) {
+            return;
         }
+        modal.style.display = "flex";
+        document.body.classList.add("no-scroll");
     }
     
     function resetModal_close() {
