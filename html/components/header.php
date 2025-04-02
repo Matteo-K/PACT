@@ -282,7 +282,7 @@
                     const count = groupedAvis[offre].length;
                     console.log(groupedAvis);
                     notifications += `
-                    <details id="boiteNotif${groupedAvis[offre][0].idoffre}" class="details-style" data-nbavis="${count}">
+                    <details id="offreNotif_${offre}" class="details-style" data-nbavis="${count}">
                         <summary>(${count > 99 ? "+99" : count}) ${offre}</summary>
                         <div>
                             ${groupedAvis[offre].join('')}
