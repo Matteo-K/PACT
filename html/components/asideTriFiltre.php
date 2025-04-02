@@ -246,8 +246,6 @@
     </section>
 </section>
 
-
-
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         
@@ -367,6 +365,15 @@
             }
         });
     }
+
+    const img_fermeAside = document.querySelectorAll("aside img");
+    img_fermeAside.forEach(img => {
+        img.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                fermeAside();
+            }
+        });
+    });
 
     document.getElementById('btnCarte').addEventListener('click', function() {
         // Attendre un court instant avant de recalculer la taille
