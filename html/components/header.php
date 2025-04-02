@@ -265,33 +265,34 @@
          * @return bloc avec les avis
          */
         function displayNotification(arrayAvis) {
-        let notifications = "";
-        let actuelle = new Date();
-        let groupedAvis = {};
+            let notifications = "";
+            let actuelle = new Date();
+            let groupedAvis = {};
 
-        if (arrayAvis.length > 0) {
-            arrayAvis.forEach(avis => {
-                if (!groupedAvis[avis.nom]) {
-                    groupedAvis[avis.nom] = [];
+            if (arrayAvis.length > 0) {
+                arrayAvis.forEach(avis => {
+                    if (!groupedAvis[avis.nom]) {
+                        groupedAvis[avis.nom] = [];
+                    }
+                    groupedAvis[avis.nom].push(displayAvisNotif(avis, actuelle));
+                });
+
+                for (let offre in groupedAvis) {
+                    const count = groupedAvis[offre].length;
+                    notifications += `
+                    <details>
+                        <summary>(${count}) ${offre}</summary>
+                        <div>
+                            ${groupedAvis[offre].join('')}
+                        </div>
+                    </details>`;
                 }
-                groupedAvis[avis.nom].push(displayAvisNotif(avis, actuelle));
-            });
-
-            for (let offre in groupedAvis) {
-                notifications += `
-                <details>
-                    <summary>${offre}</summary>
-                    <div>
-                        ${groupedAvis[offre].join('')}
-                    </div>
-                </details>`;
+            } else {
+                notifications = `<p> Vous avez aucune notification</p>`;
             }
-        } else {
-            notifications = `<p> Vous avez aucune notification</p>`;
-        }
 
-        blc_notification.innerHTML = notifications;
-    }
+            blc_notification.innerHTML = notifications;
+        }
 
         /**
          * Affiche 1 avis
@@ -300,39 +301,39 @@
          * @return bloc avis
          */
         function displayAvisNotif(avis, date_actuelle) {
-        const date_avis = new Date(avis.datepublie);
-        const diff = Math.floor((date_actuelle - date_avis) / 1000);
-        let temps = "";
-        if (diff < 60) {
-            temps = "Publié à l'instant";
-        } else if (diff < 3600) {
-            const minutes = Math.floor(diff / 60);
-            temps = `Il y a ${minutes} minute${minutes > 1 ? 's' : ''}`;
-        } else if (diff < 86400) {
-            const heures = Math.floor(diff / 3600);
-            temps = `Il y a ${heures} heure${heures > 1 ? 's' : ''}`;
-        } else {
-            const jours = Math.floor(diff / 86400);
-            temps = `Il y a ${jours} jour${jours > 1 ? 's' : ''}`;
+            const date_avis = new Date(avis.datepublie);
+            const diff = Math.floor((date_actuelle - date_avis) / 1000);
+            let temps = "";
+            if (diff < 60) {
+                temps = "Publié à l'instant";
+            } else if (diff < 3600) {
+                const minutes = Math.floor(diff / 60);
+                temps = `Il y a ${minutes} minute${minutes > 1 ? 's' : ''}`;
+            } else if (diff < 86400) {
+                const heures = Math.floor(diff / 3600);
+                temps = `Il y a ${heures} heure${heures > 1 ? 's' : ''}`;
+            } else {
+                const jours = Math.floor(diff / 86400);
+                temps = `Il y a ${jours} jour${jours > 1 ? 's' : ''}`;
+            }
+            return `
+                <div>
+                    <div>
+                        <figure>
+                            <img src='.${avis.url}' alt='${avis.pseudo}' title='${avis.pseudo}'>
+                            <figcaption>${avis.pseudo}</figcaption>
+                        </figure>
+                        <time datetime='${avis.datepublie}'>
+                            ${temps}
+                        </time>
+                    </div>
+                    <div>
+                        <span>${avis.titre}</span>
+                        <span>${displayStar(parseInt(avis.note))}</span>
+                    </div>
+                </div>
+            `;
         }
-        return `
-            <div>
-                <div>
-                    <figure>
-                        <img src='.${avis.url}' alt='${avis.pseudo}' title='${avis.pseudo}'>
-                        <figcaption>${avis.pseudo}</figcaption>
-                    </figure>
-                    <time datetime='${avis.datepublie}'>
-                        ${temps}
-                    </time>
-                </div>
-                <div>
-                    <span>${avis.titre}</span>
-                    <span>${displayStar(parseInt(avis.note))}</span>
-                </div>
-            </div>
-        `;
-    }
 
         function displayStar(note) {
             let stars = Array(5).fill('<div class="star vide"></div>');
