@@ -220,6 +220,8 @@ const titreOffre = document.title;
 
 let listeAvis = <?php echo json_encode($avis) ?>;
 
+console.log(listeAvis);
+
 let currentPage = 1;
 let nbElement = 50;
 document.addEventListener('DOMContentLoaded', function() {
@@ -336,7 +338,7 @@ function afficheAvisSelect(idAvis) {
     dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
 
     //On modifie le bloc de rédaction réponse (titre + inputs caché) 
-    if(avisSelect.classList.contains("avisNonRepondu") || avisSelect.classList.contains("avisNonLu")){
+    if (avisSelect.classList.contains("avisNonRepondu") || avisSelect.classList.contains("avisNonLu")){
         formReponseAvis.style.display = "flex";
         titreReponseAvis.textContent = "Répondre à " + listeAvis[idAvis]['pseudo'];
         inputIdAvis.value = idAvis;
@@ -414,25 +416,25 @@ function formatDateDiff(dateString) {
 
   // Déterminer le message à afficher
   if (diffInDays === 0) {
-      if (diffInMinutes === 0) {
-      return " Rédigé à l'instant";
-    } else if (diffInHours > 1) {
-      return ` Rédigé il y a ${diffInHours - 1} heure${diffInHours > 2 ? 's' : ''}`;
+        if (diffInMinutes === 0) {
+          return " Rédigé à l'instant";
+        } else if (diffInHours > 1) {
+            return ` Rédigé il y a ${diffInHours - 1} heure${diffInHours > 2 ? 's' : ''}`;
+        } else {
+            return ` Rédigé il y a ${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''}`;
+        }
+    } else if (diffInDays === 1) {
+        // La date est hier
+        return " Rédigé hier";
+    } else if (diffInDays > 1 && diffInDays <= 7) {
+        // La date est dans les 7 derniers jours
+        return ` Rédigé il y a ${diffInDays} jour${diffInDays > 1 ? 's' : ''}`;
     } else {
-      return ` Rédigé il y a ${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''}`;
-    }
-  } else if (diffInDays === 1) {
-      // La date est hier
-    return " Rédigé hier";
-} else if (diffInDays > 1 && diffInDays <= 7) {
-    // La date est dans les 7 derniers jours
-    return ` Rédigé il y a ${diffInDays} jour${diffInDays > 1 ? 's' : ''}`;
-} else {
-    // La date est plus ancienne que 7 jours ou dans le futur
-    return ` Rédigé le ${dateDB.toLocaleDateString("fr-FR")} à ${dateDB.toLocaleTimeString("fr-FR", {
-      hour: "2-digit",
-      minute: "2-digit",
-      })}`;
+        // La date est plus ancienne que 7 jours ou dans le futur
+        return ` Rédigé le ${dateDB.toLocaleDateString("fr-FR")} à ${dateDB.toLocaleTimeString("fr-FR", {
+            hour: "2-digit",
+            minute: "2-digit",
+        })}`;
     }
 }
 
