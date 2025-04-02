@@ -239,7 +239,6 @@
     <aside id="notification_aside">
         <h3>Notification</h3>
         <section>
-
         </section>
     </aside>
     <script>
@@ -341,7 +340,7 @@
         }
 
         window.addEventListener("click", (event) => {
-            if (event.target !== aside_notif && inputNotification.checked) {
+            if (event.target !== aside_notif && !aside_notif.contains(event.target) && inputNotification.checked) {
                 inputNotification.checked = false;
             }
         })
