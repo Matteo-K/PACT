@@ -1272,12 +1272,7 @@ VALUES (1,1,5,'solo','novembre','2024','ouai pas mal',FALSE),
        (142, 17, 1, 'solo', 'octobre', 2023, 'Trop de monde, file d’attente interminable... Pas une bonne expérience.', FALSE),
        (143, 17, 5, 'famille', 'juin', 2024, 'Super parc aquatique ! Mes enfants ne voulaient plus partir.', FALSE),
        (144, 17, 3, 'amis', 'juillet', 2024, 'Les attractions sont bien, mais la restauration est trop chère.', FALSE),
-       (145, 17, 4, 'couple', 'août', 2024, 'Beaucoup de monde, mais bonne ambiance !', FALSE),
-       (146, 17, 2, 'affaire', 'septembre', 2024, 'Le personnel était très sympathique, mais il manque des attractions pour adultes.', FALSE),
-       (147, 17, 5, 'famille', 'octobre', 2024, 'J’ai perdu mon téléphone dans une attraction, mais le service client a été très réactif !', FALSE),
-       (148, 17, 3, 'amis', 'novembre', 2024, 'Trop de files d’attente, surtout en été. Il faudrait plus d’ombre dans la file.', FALSE),
-       (149, 17, 4, 'couple', 'décembre', 2024, 'Manque de tables de pique-nique, difficile de trouver un endroit pour manger.', FALSE),
-       (150, 17, 5, 'affaire', 'janvier', 2025, 'Topissime ! Je recommande vivement.', FALSE);
+       (145, 17, 4, 'couple', 'août', 2024, 'Beaucoup de monde, mais bonne ambiance !', FALSE);
 
 INSERT INTO _reponse(idC,ref)
 VALUES (11,3),
