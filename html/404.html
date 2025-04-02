@@ -32,14 +32,10 @@
 -->
 
 <body>
-    <div class="container">
-        <h1 class="error-text">404</h1>
-        <p class="message">Oups... Vous êtes perdu en mer !</p>
-        <div class="wave-container">
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-        </div>
+    <div class="wave-container">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
     </div>
 </body>
 </html>
@@ -48,34 +44,6 @@
 
 <style>
 
-body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background: linear-gradient(to bottom, #87CEEB, #1E90FF);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    color: white;
-}
-
-.container {
-    position: relative;
-    z-index: 2;
-}
-
-.error-text {
-    font-size: 8rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-.message {
-    font-size: 1.5rem;
-}
 
 
 body {
@@ -97,17 +65,17 @@ body {
             animation: wave-animation 5s linear infinite;
         }
         .wave:nth-child(1) {
-            background: url('wave1.svg') repeat-x;
+            background: url('img/icone/wave1.svg') repeat-x;
             animation-duration: 6s;
             opacity: 1;
         }
         .wave:nth-child(2) {
-            background: url('wave2.svg') repeat-x;
+            background: url('img/icone/wave2.svg') repeat-x;
             animation-duration: 8s;
             opacity: 0.7;
         }
         .wave:nth-child(3) {
-            background: url('wave3.svg') repeat-x;
+            background: url('img/icone/wave3.svg') repeat-x;
             animation-duration: 10s;
             opacity: 0.5;
         }
