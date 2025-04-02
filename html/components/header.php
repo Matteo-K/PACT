@@ -237,7 +237,7 @@
 
     ?>
     <aside id="notification_aside">
-        <h3>Notification</h3>
+        <h3></h3>
         <section>
         </section>
     </aside>
@@ -272,6 +272,7 @@
             let groupedAvis = {};
 
             if (arrayAvis.length > 0) {
+                document.querySelector("#notification_aside h3").textContent = "Notification" + arrayAvis > 1 ? "s" : "";
                 arrayAvis.forEach(avis => {
                     if (!groupedAvis[avis.nom]) {
                         groupedAvis[avis.nom] = [];
