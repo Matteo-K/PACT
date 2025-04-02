@@ -280,7 +280,7 @@
                 for (let offre in groupedAvis) {
                     const count = groupedAvis[offre].length;
                     notifications += `
-                    <details>
+                    <details class="details-style">
                         <summary>(${count}) ${offre}</summary>
                         <div>
                             ${groupedAvis[offre].join('')}
@@ -317,7 +317,7 @@
                 temps = `Il y a ${jours} jour${jours > 1 ? 's' : ''}`;
             }
             return `
-                <div>
+                <div id="notification${avis.idc}">
                     <div>
                         <figure>
                             <img src='.${avis.url}' alt='${avis.pseudo}' title='${avis.pseudo}'>

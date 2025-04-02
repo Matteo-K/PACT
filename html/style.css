@@ -555,6 +555,47 @@ header > div > a > div {
 
 /* Notification */
 
+#notification_aside {
+  position: fixed;
+  z-index: 20;
+  top: calc(var(--header-size) - .5em);
+  right: 7vw;
+  width: 20vw;
+  height: 50vh;
+  overflow: auto;
+  margin: 10px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  opacity: 0;
+  visibility: hidden;
+
+  summary {
+    font-size: 1.2em;
+  }
+
+  h3 {
+    border-bottom: 2px solid var(--text-dark);
+    margin-top: 10px;
+  }
+
+  figure {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+
+    img {
+      width: 15%;
+    }
+  }
+}
+
+header:has([for="notification"] input:checked) + aside {
+  opacity: 1;
+  visibility: visible;
+}
+
 [for="notification"] {
   position: relative;
   display: flex;
@@ -590,7 +631,7 @@ header > div > a > div {
 
   &:has(input:checked) img {
     background-color: var(--primary);
-    box-shadow: 3px 3px var(--text-dark), inset 2px 2px 2px #ddd;
+    box-shadow: inset 2px 2px 2px #ddd;
   }
 }
 
