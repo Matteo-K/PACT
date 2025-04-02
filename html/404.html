@@ -60,7 +60,7 @@ body {
         }
         .wave {
             position: absolute;
-            width: 200vh;
+            width: 150vw;
             height: auto;
             opacity: 1;
             filter: drop-shadow(10px 15px 15px #ffffff);
@@ -68,32 +68,30 @@ body {
         .wave:nth-child(1) {
             bottom: 0;
             z-index: 5;
-            animation: vagueDebutDroite 15s ease-in-out infinite;
+            animation: vagueDebutDroite 6s ease-in-out infinite alternate;
         }
 
         .wave:nth-child(2) {
-            transform: translateX(-100vh);
+            transform: translateX(-50vw);
             bottom: 50px;
             z-index: 4;
-            animation: vagueDebutDroite 17s ease-in-out infinite;
+            animation: vagueDebutGauche 8s ease-in-out infinite alternate;
         }
 
         .wave:nth-child(3) {
             bottom: 50px;
             z-index: 3;
-            animation: vagueDebutDroite 20s ease-in-out infinite;
+            animation: vagueDebutDroite 10s ease-in-out infinite alternate;
         }
 
         @keyframes vagueDebutDroite {
             0% { transform: translateX(0); }
-            50% { transform: translateX(-100vh); }
-            100% { transform: translateX(0); }
+            100% { transform: translateX(-50vw); }
         }
 
         @keyframes vagueDebutGauche {
-            0% { transform: translateX(-100vh); }
-            50% { transform: translateX(0); }
-            100% { transform: translateX(-100vh); }
+            0% { transform: translateX(-50vh); }
+            100% { transform: translateX(0); }
         }
 
 </style>
