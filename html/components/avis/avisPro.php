@@ -269,6 +269,7 @@ const blacklistAvis =document.querySelector("#avisProS2 .blacklistid");
 // Notification
 const input_notif = document.querySelector("[for='notification'] input")
 const span_nbNotif = document.querySelector("[for='notification'] span");
+const label_nbNotif = document.querySelector("[for='notification']");
 
 function updateOnglet(arrayAvis) {
     // Calcul du nombre de non lu
@@ -285,7 +286,7 @@ function afficheAvisSelect(idAvis) {
 
     // Notification actualisation
     if (input_notif.checked) {
-        input_notif.cheched = false;
+        label_nbNotif.click();
     }
     let new_nb_avis = parseInt(span_nbNotif.dataset.notif) - 1;
     span_nbNotif.dataset.notif = new_nb_avis;
