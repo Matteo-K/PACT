@@ -743,6 +743,9 @@ VALUES (4, 'culturel'),
 -- Peuplement de la table _tag_visite
 INSERT INTO _tag_visite (idOffre, nomTag) 
 VALUES (5, 'culturel'),
+       (12,'solo'),
+       (12,'groupes'),
+       (12,'populaire'),
        (15,'solo'),
        (15,'groupes'),
        (15,'populaire'),
