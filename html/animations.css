@@ -93,16 +93,17 @@
 
 /* Notification */
 
-.haveNotification {
-  animation: vibre 1s linear infinite;
-  animation-delay: 4s;
+.haveNotification img {
+  animation: vibre 5s linear infinite;
 }
 
 @keyframes vibre {
-  0% {transform: rotate(1deg)}
-  20% {transform: rotate(-1deg)}
-  40% {transform: rotate(1deg)}
-  60% {transform: rotate(-1deg)}
-  80% {transform: rotate(1deg)}
+  0% {transform: rotate(5deg)}
+  20% {transform: rotate(-5deg)}
+  40% {transform: rotate(5deg)}
+  60% {transform: rotate(-5deg)}
+  80% {transform: rotate(5deg)}
   100% {transform: rotate(0deg)}
+
+  20%, 100% { transform: rotate(0deg); }
 }
