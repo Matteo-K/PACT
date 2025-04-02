@@ -78,7 +78,7 @@
         <label tabindex="0" for="notification" class="<?= $quantite === 0 ? "" : "haveNotification" ?>">
             <input type="checkbox" name="notification" id="notification">
             <img src="../img/icone/notification.png" alt="notifications" title="notifications">
-            <span data-time="<?= $quantite ?>"><?= $quantite ?></span>
+            <span data-notif="<?= $quantite ?>"><?= $quantite ?></span>
         </label>
     <?php } ?>
     <div id="auth">
@@ -281,8 +281,8 @@
                 for (let offre in groupedAvis) {
                     const count = groupedAvis[offre].length;
                     notifications += `
-                    <details class="details-style">
-                        <summary>(${count}) ${offre}</summary>
+                    <details id="boiteNotif${groupedAvis[offre][0].idoffre}" class="details-style" data-nbavis="${count}">
+                        <summary>(${count > 99 ? "+99" : count}) ${offre}</summary>
                         <div>
                             ${groupedAvis[offre].join('')}
                         </div>

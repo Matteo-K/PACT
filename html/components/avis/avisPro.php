@@ -220,8 +220,6 @@ const titreOffre = document.title;
 
 let listeAvis = <?php echo json_encode($avis) ?>;
 
-console.log(listeAvis);
-
 let currentPage = 1;
 let nbElement = 50;
 document.addEventListener('DOMContentLoaded', function() {
@@ -267,6 +265,11 @@ const txtNbAvis = document.querySelector('#avisPro details h3:nth-child(2)');
 const imgSignaleAvis =document.querySelector("#avisProS2 .signaler");
 
 const blacklistAvis =document.querySelector("#avisProS2 .blacklistid");
+
+// Notification
+const input_notif = document.querySelector("[for='notification'] input")
+const span_nbNotif = document.querySelector("[for='notification'] span");
+let nb_notif = parseInt(span_nbNotif.dataset.notif);
 
 function updateOnglet(arrayAvis) {
     // Calcul du nombre de non lu
@@ -327,7 +330,13 @@ function afficheAvisSelect(idAvis) {
             etoilesAvis[i].style.backgroundColor = "var(--background-avis)";
         }
     }
-    
+
+    // Notification actualisation
+    if (input_notif.checked) {
+        // retire le bloc avis de notif
+        // Change le nombre
+    }
+
     //changement titre avis
     titreAvis.textContent = listeAvis[idAvis]['titre'];
     
