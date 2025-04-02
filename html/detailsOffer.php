@@ -63,7 +63,7 @@ if (!$result) {
 }
 
 $monOffre = new ArrayOffer($idOffre);
-$ouverture = $monOffre->getArray()[$idOffre]["ouverture"];
+$ouverture = $monOffre->getArray()[$idOffre]["ouverture"] || "EstFermé";
 
 // Fonction pour récupérer les horaires
 
