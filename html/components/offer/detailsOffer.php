@@ -380,20 +380,21 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
          * Vérifie s'il contient au moins 1 tag
          * @returns {boolean} - Renvoie true si l'offre contient au moins 1 tag
          */
-        
         function checkTags() {
             let res = true;
             if (blc_tags.childElementCount == 0) {
                 msgTag.textContent = 
                 "Ajouter un tag";
                 res = false;
+                input_tag.add("inputErreur");
             } else {
                 msgTag.textContent = "";
+                input_tag.remove("inputErreur");
             }
             return res;
         }
 
-        input_tag.addEventListener("blur", () => checkNom());
+        input_tag.addEventListener("blur", () => checkTags());
         input_tag.addEventListener("focus", () => {
             msgTag.textContent = "";
             input_tag.classList.remove("inputErreur");
