@@ -78,22 +78,8 @@
         <label tabindex="0" for="notification" class="<?= $quantite === 0 ? "" : "haveNotification" ?>">
             <input type="checkbox" name="notification" id="notification">
             <img src="../img/icone/notification.png" alt="notifications" title="notifications">
-            <span><?= $quantite ?></span>
+            <span data-time="<?= $quantite ?>"><?= $quantite ?></span>
         </label>
-        <script>
-            const inputNotification = document.querySelector("[for='notification'] input");
-
-            inputNotification.addEventListener("input", () => {
-                if (inputNotification.checked) {
-                    fetch("ajax/notification.php?idu=" + encodeURIComponent(<?= $idUser ?>))
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                    })
-                    .catch(error => console.error("Erreur :", error));
-                }
-            });
-        </script>
     <?php } ?>
     <div id="auth">
         <?php
@@ -256,6 +242,105 @@
 
         </section>
     </aside>
+    <script>
+        const inputNotification = document.querySelector("[for='notification'] input");
+        const span_notification = document.querySelector("[for='notification'] span");
+        const blc_notification = document.querySelector("#notification_aside section");
+        inputNotification.addEventListener("input", () => {
+            if (inputNotification.checked) {
+                fetch("ajax/notification.php?idu=" + encodeURIComponent(<?= $idUser ?>))
+                .then(response => response.json())
+                .then(data => {
+                    const notification_size = data["avis"].length;
+                    span_notification.textContent = notification_size > 99 ? "+99" : notification_size;
+                    console.log(data);
+                })
+                .catch(error => console.error("Erreur :", error));
+            }
+        });
+
+        /**
+         * Affiche la liste des notifications
+         * @param liste d'avis
+         * @return bloc avec les avis
+         */
+        function displayNotification(arrayAvis) {
+        let notifications = "";
+        let actuelle = new Date();
+        let groupedAvis = {};
+
+        if (arrayAvis.length > 0) {
+            arrayAvis.forEach(avis => {
+                if (!groupedAvis[avis.nom]) {
+                    groupedAvis[avis.nom] = [];
+                }
+                groupedAvis[avis.nom].push(displayAvisNotif(avis, actuelle));
+            });
+
+            for (let offre in groupedAvis) {
+                notifications += `
+                <details>
+                    <summary>${offre}</summary>
+                    <div>
+                        ${groupedAvis[offre].join('')}
+                    </div>
+                </details>`;
+            }
+        } else {
+            notifications = `<p> Vous avez aucune notification</p>`;
+        }
+
+        blc_notification.innerHTML = notifications;
+    }
+
+        /**
+         * Affiche 1 avis
+         * @param avis info à propos de l'avis
+         * @param date actuelle
+         * @return bloc avis
+         */
+        function displayAvisNotif(avis, date_actuelle) {
+        const date_avis = new Date(avis.datepublie);
+        const diff = Math.floor((date_actuelle - date_avis) / 1000);
+        let temps = "";
+        if (diff < 60) {
+            temps = "Publié à l'instant";
+        } else if (diff < 3600) {
+            const minutes = Math.floor(diff / 60);
+            temps = `Il y a ${minutes} minute${minutes > 1 ? 's' : ''}`;
+        } else if (diff < 86400) {
+            const heures = Math.floor(diff / 3600);
+            temps = `Il y a ${heures} heure${heures > 1 ? 's' : ''}`;
+        } else {
+            const jours = Math.floor(diff / 86400);
+            temps = `Il y a ${jours} jour${jours > 1 ? 's' : ''}`;
+        }
+        return `
+            <div>
+                <div>
+                    <figure>
+                        <img src='.${avis.url}' alt='${avis.pseudo}' title='${avis.pseudo}'>
+                        <figcaption>${avis.pseudo}</figcaption>
+                    </figure>
+                    <time datetime='${avis.datepublie}'>
+                        ${temps}
+                    </time>
+                </div>
+                <div>
+                    <span>${avis.titre}</span>
+                    <span>${displayStar(parseInt(avis.note))}</span>
+                </div>
+            </div>
+        `;
+    }
+
+        function displayStar(note) {
+            let stars = Array(5).fill('<div class="star vide"></div>');
+            for (let i = 0; i < Math.floor(note); i++) stars[i] = '<div class="star pleine"></div>';
+            if (note % 1 !== 0) stars[Math.floor(note)] = `<div class="star partielle" style="--pourcentage: ${(note % 1) * 100}%"></div>`;
+            return `<div class="blocStar">${stars.join('')}<span>${note}/5</span></div>`;
+        }
+    </script>
 <?php } ?>
 
 <script>
