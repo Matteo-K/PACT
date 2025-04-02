@@ -363,6 +363,11 @@ header > div {
   height: 3em;
 }
 
+#divFormHeader {
+  flex: 2;
+  justify-content: center;
+}
+
 header div > a {
   display: flex;
   flex-direction: row;
@@ -420,6 +425,7 @@ header div > a > img,
   height: 100%;
   font-size: 16px;
   border-radius: 2em 0 0 2em;
+  min-width: 150px;
 }
 
 #formHeader button {
@@ -547,6 +553,35 @@ header > div > a > div {
   font-size: 1.2rem !important;
 }
 
+/* Notification */
+
+[for="notification"] {
+  position: relative;
+
+  input {
+    display: none;
+  }
+
+  img {
+    width: 40%;
+    height: 40%;
+  }
+  span {
+    display: flex;
+    position: absolute;
+    top: -10%;
+    right: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: var(--accent);
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--text-dark);
+    border-radius: 50%;
+  }
+}
+
+/* Index admin */
 .deleteOffer img {
   width: 50%;
   height: 150px;
