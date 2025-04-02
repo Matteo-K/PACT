@@ -588,7 +588,7 @@ header > div > a > div {
       gap: 10px;
       margin-bottom: 3px;
       img {
-        width: 15%;
+        width: 50px;
       }
     }
 
@@ -600,6 +600,18 @@ header > div > a > div {
   button {
     float: right;
     width: 10%;
+    background-color: transparent;
+    border: none;
+    margin: 2px;
+
+    img {
+      width: 100%;
+      transition: background-color .2s;
+    }
+
+    &:hover img {
+      background-color: var(--accent);
+    }
   }
 }
 
