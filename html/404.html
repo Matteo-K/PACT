@@ -60,7 +60,7 @@ body {
         }
         .wave {
             position: absolute;
-            width: 200vw;
+            width: 150vw;
             height: auto;
             opacity: 1;
             filter: drop-shadow(10px 15px 15px #ffffff);
@@ -72,7 +72,7 @@ body {
         }
 
         .wave:nth-child(2) {
-            transform: translateX(-60vw);
+            transform: translateX(-50vw);
             bottom: 50px;
             z-index: 4;
             animation: vagueDebutGauche 17s ease-in-out infinite;
@@ -86,14 +86,14 @@ body {
 
         @keyframes vagueDebutDroite {
             0% { transform: translateX(0); }
-            50% { transform: translateX(-60vw); }
+            50% { transform: translateX(-50vw); }
             100% { transform: translateX(0); }
         }
 
         @keyframes vagueDebutGauche {
-            0% { transform: translateX(-60vh); }
+            0% { transform: translateX(-50vh); }
             50% { transform: translateX(0); }
-            100% { transform: translateX(-60vw); }
+            100% { transform: translateX(-50vw); }
         }
 
 </style>
