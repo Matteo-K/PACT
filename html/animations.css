@@ -98,10 +98,10 @@
 }
 
 @keyframes vibre {
-  0% {transform: rotate(5deg)}
-  2% {transform: rotate(-5deg)}
-  4% {transform: rotate(5deg)}
-  6% {transform: rotate(-5deg)}
-  8% {transform: rotate(5deg)}
+  0% {transform: rotate(-8deg)}
+  2% {transform: rotate(8deg)}
+  4% {transform: rotate(-8deg)}
+  6% {transform: rotate(8deg)}
+  8% {transform: rotate(-8deg)}
   10% {transform: rotate(0deg)}
 }
