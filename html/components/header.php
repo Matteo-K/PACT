@@ -319,7 +319,7 @@
                 temps = `Il y a ${jours} jour${jours > 1 ? 's' : ''}`;
             }
             return `
-                <form id="notification${avis.idc}" action="../detailsOffer.php#avis${}" method="post">
+                <form id="notification${avis.idc}" action="../detailsOffer.php#avis${avis.idc}" method="post">
                     <div>
                         <img src='.${avis.url}' alt='${avis.pseudo}' title='${avis.pseudo}'>
                         <span>${avis.pseudo} a commenté ${avis.titre}</span>
