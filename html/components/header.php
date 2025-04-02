@@ -80,6 +80,20 @@
             <img src="../img/icone/notification.png" alt="notifications" title="notifications">
             <span><?= $quantite ?></span>
         </label>
+        <script>
+            const inputNotification = document.querySelector("[for='notification'] input");
+
+            inputNotification.addEventListener("input", () => {
+                if (inputNotification.checked) {
+                    fetch("ajax/notification.php?idu=" + encodeURIComponent(<?= $idUser ?>))
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                    })
+                    .catch(error => console.error("Erreur :", error));
+                }
+            });
+        </script>
     <?php } ?>
     <div id="auth">
         <?php
