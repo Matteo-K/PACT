@@ -504,6 +504,7 @@ VALUES (5, TRUE, 120, 30.0, TRUE),
        (7, TRUE, 120, 30.0, FALSE),
 
        --New
+       (12, TRUE, 120, 10.0, FALSE),
        (14, TRUE, 120, 10.0, FALSE),
        (15, TRUE, 120, 10.0, FALSE),
        (16, TRUE, 120, 10.0, FALSE);
