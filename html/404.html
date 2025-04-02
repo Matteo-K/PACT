@@ -16,14 +16,16 @@
         <img src="img/icone/nuage2.svg" class="nuage">
     </div>
 
-    <div class="contenu">
+    <div class="contenu404">
         <img id="logo" src="../img/logo.png" title="logo du site">
         <h1 id="logoText">PACT</h1>
 
-        <h1>Erreur 404 : page introuvable</h1>
-        <p>Désolé, la page que vous recherchez n'existe pas.</p>
-        <p><a href="index.php">Retour à la page d'accueil</a></p>
-        <p><a href="javascript:history.back()">Retour à la page précédente</a></p>
+        <h2>Erreur 404 : page introuvable</h2>
+        <aside>
+            <p><a href="index.php">Retour à la page d'accueil</a></p>
+            <p><a href="javascript:history.back()">Retour à la page précédente</a></p>
+        </aside>
+        
   </div>
 
     <div class="ocean">
@@ -123,9 +125,33 @@ body {
     100% { transform: translateX(0); }
 }
 
-.contenu{
+.contenu404{
     position: absolute;
     z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contenu404 img{
+    height: 100px;
+    width: auto;
+}
+
+.contenu404 h2{
+    width: 100%;
+}
+
+.contenu404 aside{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    display: flex;
+}
+
+
+.contenu404 aside p{
+    background-color: #edae14;
 }
 
 </style>
