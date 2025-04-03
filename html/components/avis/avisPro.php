@@ -79,7 +79,7 @@ $avis = $avisTemp;
                                 Blacklister
                                 <label id="PopupTicket">détails</label>
                             </h3>
-                            <h3>
+                            <h3 id="nbBlacklist">
                                 <?php
                                     $stmt = $conn->prepare("SELECT count(*) FROM pact._blacklist WHERE idOffre = ?");
                                     // Exécuter la requête en passant les paramètres
