@@ -5,37 +5,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="img/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
   <title>404 page introuvable</title>
 </head>
-
-<!--
-<body class="pageErreur">
-
-  <img id="logo" src="../img/logo.png" title="logo du site">
-  <h1 id="logoText">PACT</h1>
-  
-  <h1>Erreur 404 : page introuvable</h1>
-  <p>Désolé, la page que vous recherchez n'existe pas.</p>
-  <p><a href="index.php">Retour à la page d'accueil</a></p>
-  <p><a href="javascript:history.back()">Retour à la page précédente</a></p>
-</body>
-
-<style>
-  img {
-    width: 5em;
-    height: 5em;
-    border-radius: 50%;
-    margin-right: 0.5em;
-    object-fit: cover;
-  }
-</style>
--->
 
 <body>
     <div class="ciel">
         <img src="img/icone/sun.svg" class="soleil">
         <img src="img/icone/nuage1.svg" class="nuage">
         <img src="img/icone/nuage2.svg" class="nuage">
+    </div>
+
+    <aside>
+        <a href="index.php">Retour à la page d'accueil</a>
+        <!-- <a href="javascript:history.back()">Retour à la page précédente</a> -->
+    </aside>
+
+    <div class="contenu404">
+        <img id="logo" src="../img/logo.png" title="logo du site">
+        <h1 id="logoText">PACT</h1>
+
+        <h2>Erreur 404 : page introuvable</h2>  
     </div>
 
     <div class="ocean">
@@ -56,7 +46,7 @@ body {
 }
 .ocean {
     position: relative;
-    height: 65vh;
+    height: 70vh;
     overflow: hidden;
     width: 100%;
 }
@@ -70,28 +60,28 @@ body {
 }
 
 .vague:nth-child(1) {
-    bottom: -100px;
+    bottom: -200px;
     z-index: 5;
     animation: vagueDebutDroite 6s ease-in-out infinite alternate;
 }
 
 .vague:nth-child(2) {
     transform: translateX(-50vw);
-    bottom: 50px;
+    bottom: -50px;
     z-index: 4;
-    animation: vagueDebutGauche 8s ease-in-out infinite alternate;
+    animation: vagueDebutGauche 7.5s ease-in-out infinite alternate;
 }
 
 .vague:nth-child(3) {
-    bottom: 50px;
+    bottom: -150px;
     z-index: 3;
-    animation: vagueDebutDroite 10s ease-in-out infinite alternate;
+    animation: vagueDebutDroite 9s ease-in-out infinite alternate;
 }
 
 .ciel {
     position: relative;
     margin-top: 0;
-    height: 35vh;
+    height: 30vh;
     overflow: hidden;
     width: 100%;
 }
@@ -100,29 +90,29 @@ body {
     position: absolute;
     width: 150vw;
     height: auto;
-    opacity: 1;
+    opacity: 0.8;
     filter: drop-shadow(10px 15px 15px #00000040);
 }
 
-.nuage:nth-child(1) {
-    top: -100px;
+.nuage:nth-child(2) {
+    top: -150px;
     z-index: 1;
-    animation: vagueDebutDroite 6s ease-in-out infinite alternate;
+    animation: vagueDebutDroite 6.5s ease-in-out infinite alternate;
 }
 
-.nuage:nth-child(2) {
+.nuage:nth-child(3) {
     transform: translateX(-50vw);
-    top: -150px;
+    top: -200px;
     z-index: 2;
     animation: vagueDebutGauche 8s ease-in-out infinite alternate;
 }
 
 .soleil {
     position: absolute;
-    width: 20vw;
+    width: 10vw;
     height: auto;
     opacity: 1;
-    filter: drop-shadow(10px 15px 15px #edae14);
+    filter: drop-shadow(0px 0px 45px #edae14);
 }
 
 @keyframes vagueDebutDroite {
@@ -134,5 +124,82 @@ body {
     0% { transform: translateX(-50vh); }
     100% { transform: translateX(0); }
 }
+
+aside{
+    position: fixed;
+    top: 30px;
+    right: 10px;
+    z-index: 10;
+}
+
+aside a{
+    font-size: 22px;
+    background-color: var(--accent);
+    padding: 15px;
+    border: 3px solid var(--accent);
+    border-radius: 10px;
+    color: black;
+    transition: 0.3s ease-in;
+    margin: 10px;
+    font-weight: 700;
+}
+
+aside a:hover{
+    background-color: #fff;
+    transition: 0.5s ease-in;
+    color: var(--accent);
+}
+
+.contenu404{
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenu404 img{
+    height: 120px;
+    width: auto;
+    animation: logoTombe 5s ease-in-out 2s;
+}
+
+.contenu404 #logoText{
+    font-size: 48px;
+    color: var(--bloc);
+    text-align: center;
+    margin: 0px;
+    font-size: 4em;
+}
+
+.contenu404 h2{
+    width: 100%;
+    text-align: center;
+    font-size: 3.5em;
+    margin: 10px;
+}
+
+
+@keyframes logoTombe {
+    0% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+  30% {
+    transform: rotate(45deg) translate(-10px, 20px);
+  }
+  60% {
+    transform: rotate(90deg) translate(-30px, 100px);
+  }
+  80% {
+    transform: rotate(120deg) translate(-50px, 200px);
+  }
+  100% {
+    transform: rotate(135deg) translate(-60px, 280px);
+  }
+}
+
+
 
 </style>

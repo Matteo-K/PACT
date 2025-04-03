@@ -730,6 +730,7 @@ VALUES (3, 'cuisine_locale'),
 -- Peuplement de la table _tag_Act
 INSERT INTO _tag_Act (idOffre, nomTag) 
 VALUES (4, 'culturel'),
+       (6,'familial'),
        (8,'solo'),
        (8,'groupes'),
        (11,'calme'),
@@ -754,6 +755,7 @@ VALUES (4, 'culturel'),
 -- Peuplement de la table _tag_visite
 INSERT INTO _tag_visite (idOffre, nomTag) 
 VALUES (5, 'culturel'),
+       (7, 'culturel'),
        (12,'solo'),
        (12,'groupes'),
        (12,'populaire'),
