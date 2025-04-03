@@ -164,6 +164,7 @@ aside a:hover{
     height: 120px;
     width: auto;
     animation: logoTombe 5s linear 2s;
+    transform-origin: bottom center; 
 }
 
 .contenu404 #logoText{
@@ -187,16 +188,16 @@ aside a:hover{
         transform: rotate(0deg) translateY(0);
     }
     30% {
-        transform: rotate(30deg) translate(-10px, 20px);
+        transform: rotate(30deg) translateY(0);
     }
     60% {
-        transform: rotate(70deg) translate(-30px, 100px);
+        transform: rotate(70deg) translateY(50px);
     }
     80% {
-        transform: rotate(100deg) translate(-50px, 200px);
+        transform: rotate(100deg) translateY(150px);
     }
     100% {
-        transform: rotate(120deg) translate(-80px, 100vh);
+        transform: rotate(120deg) translateY(100vh);
     }
 }
 
