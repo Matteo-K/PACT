@@ -1911,6 +1911,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             leaveC.addEventListener("click", () => {
                                 confirmationModalBlackFunction();
                                 refresh();
+                                refreshNombre();
                                 refreshNote();
                                 refreshTicket();
                             });
