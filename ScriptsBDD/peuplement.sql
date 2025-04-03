@@ -922,6 +922,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        (6,'Je recommande.',CURRENT_TIMESTAMP),
        (5,'Activité ennuyante.',CURRENT_TIMESTAMP),
        (6,'Personnel désagréable.',CURRENT_TIMESTAMP),
+       -- ^ id10
        (4,'Merci beaucoup, à bientôt.',CURRENT_TIMESTAMP),
        (3,'Merci beaucoup, à bientôt.',CURRENT_TIMESTAMP),
        (3,'Avec des personnes comme vous, compliqué de la rendre intéressante.',CURRENT_TIMESTAMP),
@@ -933,6 +934,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
 
        (7, 'Délicieux repas, je recommande ce restaurant.', '2024-12-01 12:15:00'),
        (7, 'Un spectacle qui m’a beaucoup touché.', '2024-12-02 14:15:00'),
+       -- ^ id 20
        (7, 'Ce parc est parfait pour les enfants.', '2024-12-03 10:45:00'),
        (7, 'Guide très compétent, super visite.', '2024-12-04 09:15:00'),
        (7, 'Une activité bien organisée et divertissante.', '2024-12-05 11:30:00'),
@@ -947,6 +949,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        -- Membre 9
        (9, 'Cuisine exceptionnelle, félicitations au chef.', '2024-12-01 12:45:00'),
        (9, 'Performance scénique de haute qualité.', '2024-12-02 14:45:00'),
+       -- ^ id 30
        (9, 'Moments inoubliables dans ce parc.', '2024-12-03 11:15:00'),
        (9, 'Guide passionné, expérience enrichissante.', '2024-12-04 09:45:00'),
        (9, 'L’activité était divertissante et bien organisée.', '2024-12-05 12:00:00'),
@@ -961,6 +964,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        -- Membre 11
        (11, 'Excellent dîner au restaurant, bravo !', '2024-12-01 13:15:00'),
        (11, 'Spectacle divertissant et bien mis en scène.', '2024-12-02 15:15:00'),
+       -- ^ id 40
        (11, 'Un parc d’attractions vraiment incroyable.', '2024-12-03 11:45:00'),
        (11, 'Visite enrichissante et très intéressante.', '2024-12-04 10:15:00'),
        (11, 'Une belle activité pour toute la famille.', '2024-12-05 12:30:00'),
@@ -975,6 +979,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        -- Membre 13
        (13, 'Un repas parfait, service au top.', '2024-12-01 13:45:00'),
        (13, 'Spectacle vraiment inoubliable.', '2024-12-02 15:45:00'),
+       -- ^ id 50
        (13, 'Le parc d’attraction est idéal pour les enfants.', '2024-12-03 12:15:00'),
        (13, 'Une visite très bien organisée.', '2024-12-04 10:45:00'),
        (13, 'Une activité divertissante et enrichissante.', '2024-12-05 13:00:00'),
@@ -989,6 +994,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        -- Membre 15
        (15, 'Un excellent repas, je recommande.', '2024-12-01 14:15:00'),
        (15, 'Spectacle incroyable, félicitations aux artistes.', '2024-12-02 16:15:00'),
+       -- ^ id 60
        (15, 'Une super journée au parc d’attraction.', '2024-12-03 12:45:00'),
        (15, 'Merci au guide pour cette visite exceptionnelle.', '2024-12-04 11:15:00'),
        (15, 'Une belle activité qui restera dans nos mémoires.', '2024-12-05 13:30:00'),
@@ -1002,6 +1008,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        -- Membre 17
        (17, 'Un repas délicieux et un service impeccable.', '2024-12-01 14:45:00'),
        (17, 'Un spectacle captivant, je recommande !', '2024-12-02 16:45:00'),
+       -- ^ id 70
        (17, 'Ce parc d’attraction est un incontournable.', '2024-12-03 13:15:00'),
        (17, 'Une visite très enrichissante.', '2024-12-04 11:45:00'),
        (17, 'Une activité très amusante et divertissante.', '2024-12-05 14:00:00'),
@@ -1016,6 +1023,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        -- Membre 19
        (19, 'Cuisine raffinée, moment agréable.', '2024-12-01 15:15:00'),
        (19, 'Un spectacle plein de surprises.', '2024-12-02 17:15:00'),
+       -- ^ id 80
        (19, 'Un parc qui ravira petits et grands.', '2024-12-03 13:45:00'),
        (19, 'Une visite fascinante et bien racontée.', '2024-12-04 12:15:00'),
        (19, 'Une activité intéressante et bien pensée.', '2024-12-05 14:30:00'),
@@ -1030,6 +1038,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        -- Membre 21
        (21, 'Excellent repas, je recommande ce restaurant.', '2024-12-01 15:45:00'),
        (21, 'Un spectacle vraiment émouvant.', '2024-12-02 17:45:00'),
+       -- ^ id 90
        (21, 'Un parc très bien aménagé, parfait pour les familles.', '2024-12-03 14:15:00'),
        (21, 'Une visite guidée très enrichissante.', '2024-12-04 12:45:00'),
        (21, 'Une activité originale et plaisante.', '2024-12-05 15:00:00'),
@@ -1044,6 +1053,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        -- Membre 23
        (23, 'Une cuisine exceptionnelle, bravo au chef.', '2024-12-01 16:15:00'),
        (23, 'Un spectacle divertissant et bien écrit.', '2024-12-02 18:15:00'),
+       -- ^ id 100
        (23, 'Une journée amusante au parc.', '2024-12-03 14:45:00'),
        (23, 'Merci pour cette visite guidée passionnante.', '2024-12-04 13:15:00'),
        (23, 'Une activité parfaite pour se détendre.', '2024-12-05 15:30:00'),
@@ -1058,6 +1068,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        -- Membre 25
        (25, 'Un repas délicieux et bien présenté.', '2024-12-01 16:45:00'),
        (25, 'Spectacle de grande qualité, bravo !', '2024-12-02 18:45:00'),
+       -- ^ id 110
        (25, 'Une journée au parc qui restera gravée dans ma mémoire.', '2024-12-03 15:15:00'),
        (25, 'Merci pour cette visite intéressante et bien animée.', '2024-12-04 13:45:00'),
        (25, 'Une activité ludique et très divertissante.', '2024-12-05 16:00:00'),
@@ -1070,6 +1081,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        (12, 'Les attractions sont bien mais les prix sont trop élevés.', '2024-12-20 11:50:00'),
        (15, 'Trop de monde, on a fait seulement 3 attractions en 4h.', '2025-01-05 15:30:00'),
        (18, 'Excellent parc d’attractions ! Les enfants ont adoré.', '2025-01-10 10:20:00'),
+       -- ^ id 120
        (20, 'La nourriture est chère et pas terrible...', '2025-02-14 13:45:00'),
        (22, 'L’espace aquatique est génial, surtout par beau tem.', '2025-03-03 11:10:00'),
        (25, 'Manque de signalisation, on s’est perdus plusieurs fois.', '2025-03-28 14:55:00'),
@@ -1083,6 +1095,7 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        (6, 'Un moment magique avec mon/ma partenaire, je recommande !', '2025-05-10 14:32:00'),
        (15, 'C’était bien, mais le prix est un peu excessif pour la prestation.', '2025-06-18 09:15:23'),
        (22, 'Les enfants ont adoré, et l’équipe était super sympa.', '2025-07-22 16:47:11'),
+       -- ^ id  130
        (9, 'J’ai trouvé ça assez ennuyeux, je m’attendais à mieux...', '2025-08-05 11:03:45'),
        (25, 'Très mauvaise organisation, beaucoup d’attente et peu d’explications.', '2025-09-14 18:22:30'),
        
@@ -1095,12 +1108,21 @@ VALUES (5,'J’ai adoré ce parc d’attraction, je reviendrai.','2024-11-27 15:
        (11, 'Super parc aquatique ! Mes enfants ne voulaient plus partir.', '2024-06-18 09:45:20'),
        (21, 'Les attractions sont bien, mais la restauration est trop chère.', '2024-07-10 15:25:00'),
        (9, 'Beaucoup de monde, mais bonne ambiance !', '2024-08-05 13:30:50'),
+       -- ^ id 140
        (14, 'Le personnel était très sympathique, mais il manque des attractions pour adultes.', '2024-09-20 16:55:30'),
        (16, 'J’ai perdu mon téléphone dans une attraction, mais le service client a été très réactif !', '2024-07-22 10:00:00'),
        (22, 'Trop de files d’attente, surtout en été. Il faudrait plus d’ombre dans la file.', '2024-08-15 14:20:10'),
        (17, 'Manque de tables de pique-nique, difficile de trouver un endroit pour manger.', '2023-09-05 12:40:00'),
-       (20, 'Topissime ! Je recommande vivement.', '2023-06-29 17:20:00');
+       (20, 'Topissime ! Je recommande vivement.', '2023-06-29 17:20:00'),
 
+       -- offre 19
+       (3, 'Superbe expérience, les parcours sont bien sécurisés.', '2024-03-12 14:23:00'),
+       (7, 'Les moniteurs sont au top !', '2024-02-18 10:45:00'),
+       (12, 'Un peu cher mais ça vaut le coup.', '2024-01-25 16:30:00'),
+       (18, 'J’ai adoré la tyrolienne finale !', '2024-03-05 12:10:00'),
+       (22, 'Les enfants ont adoré, merci à toute l’équipe.', '2024-02-28 09:20:00'),
+       -- ^ id 150
+       (26, 'Un bon moment en famille, on reviendra !', '2024-03-10 15:40:00');
 INSERT INTO _avis(idC,idOffre,note,companie,mois,annee,titre,lu)
 VALUES (1,1,5,'solo','novembre','2024','ouai pas mal',FALSE),
        (2,1,4,'solo','novembre','2024','ouai pas mal',FALSE),
@@ -1251,7 +1273,7 @@ VALUES (1,1,5,'solo','novembre','2024','ouai pas mal',FALSE),
        (112, 5, 5, 'solo', 'novembre', '2024', 'Visite très enrichissante', FALSE),
        (113, 4, 4, 'solo', 'novembre', '2024', 'Activité sympa et agréable', FALSE),
        
-       -- offre 16
+       -- offre 18
        (114, 18, 5, 'famille', 'novembre', 2024, 'Une sortie réussie !', FALSE),
        (115, 18, 2, 'amis', 'novembre', 2024, 'Beaucoup trop d’attente', FALSE),
        (116, 18, 4, 'couple', 'decembre', 2024, 'Personnel au top', FALSE),
@@ -1263,14 +1285,14 @@ VALUES (1,1,5,'solo','novembre','2024','ouai pas mal',FALSE),
        (122, 18, 5, 'famille', 'mars', 2025, 'Superbe espace aquatique', FALSE),
        (123, 18, 3, 'amis', 'mars', 2025, 'Problème de signalisation', FALSE),
 
-       --offre 14
+       --offre 16
        (133, 16, 5, 'couple', 5, 2025, 'Une escapade romantique parfaite', FALSE),
        (134, 16, 3, 'amis', 6, 2025, 'Sympa mais un peu cher', FALSE),
        (135, 16, 4, 'famille', 7, 2025, 'Idéal pour les enfants', FALSE),
        (136, 16, 2, 'solo', 8, 2025, 'Pas ce à quoi je m’attendais...', FALSE),
        (137, 16, 1, 'affaire', 9, 2025, 'Mauvaise organisation, décevant', FALSE),
 
-       --offre 15
+       --offre 17
        (138, 17, 5, 'famille', 'juin', 2023, 'Les enfants ont adoré ! Journée parfaite en famille.', FALSE),
        (139, 17, 3, 'amis', 'juillet', 2023, 'Beaucoup d’attente aux attractions, mais dans l’ensemble c’était fun.', FALSE),
        (140, 17, 4, 'couple', 'août', 2023, 'Moment agréable avec mon/ma partenaire, à refaire.', FALSE),
@@ -1278,7 +1300,15 @@ VALUES (1,1,5,'solo','novembre','2024','ouai pas mal',FALSE),
        (142, 17, 1, 'solo', 'octobre', 2023, 'Trop de monde, file d’attente interminable... Pas une bonne expérience.', FALSE),
        (143, 17, 5, 'famille', 'juin', 2024, 'Super parc aquatique ! Mes enfants ne voulaient plus partir.', FALSE),
        (144, 17, 3, 'amis', 'juillet', 2024, 'Les attractions sont bien, mais la restauration est trop chère.', FALSE),
-       (145, 17, 4, 'couple', 'août', 2024, 'Beaucoup de monde, mais bonne ambiance !', FALSE);
+       (145, 17, 4, 'couple', 'août', 2024, 'Beaucoup de monde, mais bonne ambiance !', FALSE),
+
+       --offre 19
+       (146, 19, 17, 'famille', 'mars', 2024, 'Expérience incroyable', FALSE),  
+       (147, 19, 14, 'amis', 'février', 2024, 'Très bon parcours', TRUE), 
+       (148, 19, 10, 'solo', 'janvier', 2024, 'Bien mais un peu cher', FALSE),
+       (149, 19, 19, 'famille', 'mars', 2024, 'Tyrolienne géniale', FALSE),
+       (150, 19, 13, 'affaire', 'février', 2024, 'Super avec des enfants', TRUE),
+       (151, 19, 20, 'couple', 'mars', 2024, 'À refaire sans hésiter', FALSE);
 
 INSERT INTO _reponse(idC,ref)
 VALUES (11,3),
