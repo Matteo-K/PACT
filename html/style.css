@@ -498,10 +498,6 @@ header > div > a > div {
   right: 0;
   height: 100%;
   width: auto;
-  /* Dégradé du haut vers le bas */
-  transform: translateX(100%);
-  transition: transform 1s ease-in-out;
-  transition: transform 1s ease-in-out;
   visibility: hidden;
   opacity: 0;
   color: #000;
@@ -568,9 +564,6 @@ header > div > a > div {
   border: 2px solid var(--background);
   border-radius: 10px;
   padding: 10px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .2s, visibility .2s;
 
   summary {
     font-size: 1.2em;
@@ -615,11 +608,6 @@ header > div > a > div {
       background-color: var(--accent);
     }
   }
-}
-
-header:has([for="notification"] input:checked) + aside {
-  opacity: 1 !important;
-  visibility: visible !important;
 }
 
 [for="notification"] {
@@ -841,8 +829,6 @@ header:has([for="notification"] input:checked) + aside {
   padding: 10px;
   text-align: center;
   padding-left: 20px;
-  border-left: 0px solid var(--primary);
-  transition: 0.3s;
 }
 
 #changeDataAccount, #changeAccount, #logoutButton{
@@ -852,12 +838,6 @@ header:has([for="notification"] input:checked) + aside {
 
 .liFact {
   width: fit-content;
-}
-
-#profileMenu ul a:hover,
-.liFact:hover {
-  border-left: 15px solid var(--primary);
-  transition: 0.3s;
 }
 
 header ul + div {
@@ -2752,12 +2732,6 @@ label[for="rest_ajoutPhotoMenu"] {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.5s cubic-bezier(.65,.05,.36,1);
-  transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
 }
 
 .flip-card-front, .flip-card-back {
@@ -4665,7 +4639,6 @@ section#infoComp div {
   transition: color 0.3s ease;
 }
 
-/* Ajouter un soulignement en utilisant le pseudo-élément ::after */
 #tab-container > nav > h3::after {
   content: "";
   position: absolute;
@@ -4674,19 +4647,15 @@ section#infoComp div {
   width: 0%;
   height: 2px;
   background-color: #007bff;
-  /* Couleur du soulignement */
   transition: width 0.3s ease;
 }
 
-/* Appliquer le soulignement à l'élément sélectionné */
 #tab-container > nav > h3.selected::after {
   width: 100%;
 }
 
-/* Couleur du texte lorsqu'il est sélectionné */
 #tab-container > nav > h3.selected {
   color: #007bff;
-  /* Couleur du texte sélectionné */
 }
 
 #publiez-component {
@@ -5401,15 +5370,10 @@ details .blacklist {
 
 #formCreationAvis textarea {
   resize: vertical;
-  /* Autorise uniquement le redimensionnement vertical */
   min-height: 100px;
-  /* Hauteur minimale */
   max-height: 300px;
-  /* Hauteur maximale (optionnel) */
   line-height: 1.5;
-  /* Hauteur de ligne */
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  /* Effet d'ombre interne */
   transition: border-color 0.3s ease;
 }
 
@@ -5614,16 +5578,6 @@ label#btnAjoutPhoto:hover {
   user-select: none;
 }
 
-.container:has(.adislike:checked) .count.dislikes, .container:has(.adislike:checked) #pipe{
-  color: var(--col-dislike);
-}
-
-.container:has(.alike:checked) .count.likes, .container:has(.alike:checked) #pipe{
-  color: var(--col-like);
-}
-
-
-
 .container label input {
   display: none;
 }
@@ -5660,25 +5614,6 @@ label#btnAjoutPhoto:hover {
   justify-content: center;
   gap: 0.10px;
   flex-direction: row;
-}
-
-.container .count .number {
-  display: flex;
-  flex-direction: column;
-  transform: translateY(calc(50% - 8px));
-  transition: 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-.container .count .number:first-child {
-  transition-delay: 200ms;
-}
-
-.container .count .number:nth-child(2) {
-  transition-delay: 150ms;
-}
-
-.container .count .number:last-child {
-  transition-delay: 50ms;
 }
 
 /* Style général pour le paragraphe avec l'ID login-prompt */
@@ -6982,10 +6917,10 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 
 /* page d'erreur 404 */
 
-.page404 body {
+.page404 {
   margin: 0;
   overflow: hidden;
-  background-color: var(--primary60);
+  background-color: var(--primary50);
 }
 .ocean {
   position: relative;

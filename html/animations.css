@@ -1,3 +1,4 @@
+/* grossissement d'éléments au survol */
 .tag:hover, .ferme:hover, .ouvert:hover, #infopro > div:hover, #contact-info > div:hover {
   transform: scale(115%);
   }
@@ -6,12 +7,22 @@
   transform: scale(100%);
   transition: 0.5s ease;
 }
+/* d'ailleurs, pour les survols de boutons ou autres éléments classiques dont seule la couleur change, les animations n'ont pas été mises ici */
 
-@keyframes evaluation-animation {
-  0%,
-  100% {
-      transform: scale(1) rotate(0deg);
-  }
+
+/* cartes de la page d'accueil / recherche qui se retournent */
+.flip-card-inner {
+  transition: transform 0.5s cubic-bezier(.65,.05,.36,1);
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+transform: rotateY(180deg);
+}
+
+/* animation des pouces au clic sur le btn like / dislike */
+@keyframes like-animation {
+  0%, 100% {transform: scale(1) rotate(0deg);}
 
   50% {
       transform: scale(1.1) rotate(-10deg);
@@ -19,31 +30,62 @@
 }
 
 .container .alike:checked+svg{
-  animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
+  animation: like-animation var(--transition) ease-in-out 0s 1 normal both;
   fill: var(--col-like);
 }
 
 .container .adislike:checked+svg{
-  animation: evaluation-animation var(--transition) ease-in-out 0s 1 normal both;
+  animation: like-animation var(--transition) ease-in-out 0s 1 normal both;
   fill: var(--col-dislike);
 }
 
-@keyframes secoue {
-  0% { transform: translateY(0); }
-  2% { transform: translateY(-10px); } /* Monte */
-  4% { transform: translateY(0); } /* Descend */
-  6% { transform: translateY(7px); } /* Petit rebond */
-  8% { transform: translateY(0); } /* Redescend doucement */
-  9% { transform: translateY(-3px); } /* Très léger rebond final */
-  10% { transform: translateY(0); } /* Retour à la normale */
-  100% {transform: translateY(0);}
+.container:has(.adislike:checked) .count.dislikes, .container:has(.adislike:checked) #pipe{
+  color: var(--col-dislike);
 }
 
+.container:has(.alike:checked) .count.likes, .container:has(.alike:checked) #pipe{
+  color: var(--col-like);
+}
+
+
+/* actualisation du nb de likes quand on en ajoute / retire */
+.container .count .number {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(calc(50% - 8px));
+  transition: 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.container .count .number:first-child {
+  transition-delay: 200ms;
+}
+
+.container .count .number:nth-child(2) {
+  transition-delay: 150ms;
+}
+
+.container .count .number:last-child {
+  transition-delay: 50ms;
+}
+
+
+/* page de connexion, rappel d'acriver l'A2F avec une animation régulière */
+@keyframes secoue {
+  0% { transform: translateY(0); }
+  2% { transform: translateY(-10px); } 
+  4% { transform: translateY(0); } 
+  6% { transform: translateY(7px); } 
+  8% { transform: translateY(0); } 
+  9% { transform: translateY(-3px); } 
+  10% { transform: translateY(0); } 
+  100% {transform: translateY(0);}
+}
 
 #formConnexion p img{
   animation: secoue 6s ease-in infinite 2s;
   display: inline-block;
 }
+
 
 
 @keyframes logocharge {
@@ -62,7 +104,6 @@
   opacity: 0;
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
-
 .nouveauSlogan {
   transform: translateY(0);
   opacity: 1;
@@ -70,8 +111,13 @@
 }
 
 
-
 /* animations du menu du compte (à droite de l'écran) */
+#profileMeu{
+  transform: translateX(100%);
+  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+}
+
 #profileMenu.show {
   visibility: visible;
   opacity: 1;
@@ -90,8 +136,31 @@
   transform: translateX(0);
 }
 
+/* items du menu */
+#profileMenu ul a,
+.liFact {
+  border-left: 0px solid var(--primary);
+  transition: 0.3s;
+}
 
-/* Notification */
+#profileMenu ul a:hover,
+.liFact:hover {
+  border-left-width: 15px;
+  transition: 0.3s;
+}
+
+
+/* Notifications des avis du pro */
+#notification_aside{
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s, visibility .2s;
+}
+
+header:has([for="notification"] input:checked) + aside {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
 
 .haveNotification img {
   animation: vibre 7.5s linear infinite;
@@ -105,7 +174,6 @@
   12% {transform: rotate(-8deg)}
   15% {transform: rotate(0deg)}
 }
-
 
 
 /* animations page d'erreur 404 */
