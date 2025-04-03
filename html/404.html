@@ -163,7 +163,7 @@ aside a:hover{
 .contenu404 img{
     height: 120px;
     width: auto;
-    animation: logoTombe 5s ease-in-out 2s;
+    animation: logoTombe 5s linear 2s;
 }
 
 .contenu404 #logoText{
@@ -184,20 +184,21 @@ aside a:hover{
 
 @keyframes logoTombe {
     0% {
-    transform: rotate(0deg) translate(0, 0);
-  }
-  30% {
-    transform: rotate(45deg) translate(-10px, 20px);
-  }
-  60% {
-    transform: rotate(90deg) translate(-30px, 100px);
-  }
-  80% {
-    transform: rotate(120deg) translate(-50px, 200px);
-  }
-  100% {
-    transform: rotate(135deg) translate(-60px, 280px);
-  }
+        transform: rotate(0deg) translateY(0);
+    }
+    30% {
+        transform: rotate(30deg) translate(-10px, 20px);
+    }
+    60% {
+        transform: rotate(70deg) translate(-30px, 100px);
+    }
+    80% {
+        transform: rotate(100deg) translate(-50px, 200px);
+    }
+    100% {
+        transform: rotate(120deg) translate(-60px, 280px);
+        opacity: 0;
+    }
 }
 
 
