@@ -1746,6 +1746,32 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     });
                 }
 
+                function refreshNombre() {
+                    let nb = document.getElementById("nbBlacklist");
+
+                    fetch("ajax/refreshTicket.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            idoffre: <?php echo json_encode($idOffre); ?>,
+                            action: "compter"
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error("ErreurData:", data.error);
+                            return;
+                        }
+                    
+                        nb.textContent = data.count;
+                    })
+                    .catch(error => {
+                        console.error("Erreur:", error);
+                        nb.textContent = "Erreur de chargement";
+                    });
+                }
+
                 function refreshNote() {
                     let divs = Array.from(document.getElementsByClassName("notation"));
 
@@ -1759,8 +1785,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     })
                     .then(response => response.json())
                     .then(data => {
-                        console.log("Réponse API:", data);
-
                         if (data.error) {
                             console.error("Erreur:", data.error);
                             return;
@@ -1886,6 +1910,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             leaveC.addEventListener("click", () => {
                                 confirmationModalBlackFunction();
                                 refresh();
+                                refreshNombre();
                                 refreshNote();
                                 refreshTicket();
                             });
@@ -1902,6 +1927,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 leaveB.addEventListener("click",()=>{
                     confirmationModalBlackFunction();
                     refresh();
+                    refreshNombre();
                     refreshNote();
                     refreshTicket();
                 });
