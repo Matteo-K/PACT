@@ -290,7 +290,7 @@
                 for (let offre in groupedAvis) {
                     const count = groupedAvis[offre].length;
                     notifications += `
-                    <details id="offreNotif_${offre}" class="details-style" data-nbavis="${count}">
+                    <details id="offreNotif_${offre}" class="details-style" data-nbavis="${count}" open>
                         <summary>(${count > 99 ? "+99" : count}) ${offre}</summary>
                         <div>
                             ${groupedAvis[offre].join('')}
