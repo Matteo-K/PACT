@@ -161,8 +161,9 @@ aside a:hover{
 }
 
 .contenu404 img{
-    height: 100px;
+    height: 120px;
     width: auto;
+    animation: logoTombe 5s ease-in-out 2s;
 }
 
 .contenu404 #logoText{
@@ -170,16 +171,31 @@ aside a:hover{
     color: var(--bloc);
     text-align: center;
     margin: 0px;
-    font-size: 3.5em;
+    font-size: 4em;
 }
 
 .contenu404 h2{
     width: 100%;
     text-align: center;
-    font-size: 3em;
+    font-size: 3.5em;
     margin: 10px;
 }
 
+
+@keyframes logoTombe {
+    0% {
+    transform: rotate(0deg) translateY(0);
+  }
+  40% {
+    transform: rotate(45deg) translateY(50px);
+  }
+  80% {
+    transform: rotate(90deg) translateY(150px);
+  }
+  100% {
+    transform: rotate(120deg) translateY(250px);
+  }
+}
 
 
 
