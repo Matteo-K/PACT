@@ -9,8 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
       $stmt = $conn->prepare(
         "SELECT 
-          a.note, a.titre, a.datepublie, a.pseudo,
-          o.nom, pp.url
+          a.note, a.titre, a.datepublie, a.pseudo, a.idc,
+          o.idoffre, o.nom, pp.url
         from pact.avis a
           LEFT JOIN pact._photo_profil pp on a.idu = pp.idu
           LEFT JOIN pact._offre o on a.idoffre = o.idoffre

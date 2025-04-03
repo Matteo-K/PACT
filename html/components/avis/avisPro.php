@@ -79,7 +79,7 @@ $avis = $avisTemp;
                                 Blacklister
                                 <label id="PopupTicket">détails</label>
                             </h3>
-                            <h3>
+                            <h3 id="nbBlacklist">
                                 <?php
                                     $stmt = $conn->prepare("SELECT count(*) FROM pact._blacklist WHERE idOffre = ?");
                                     // Exécuter la requête en passant les paramètres
@@ -266,6 +266,11 @@ const imgSignaleAvis =document.querySelector("#avisProS2 .signaler");
 
 const blacklistAvis =document.querySelector("#avisProS2 .blacklistid");
 
+// Notification
+const input_notif = document.querySelector("[for='notification'] input")
+const span_nbNotif = document.querySelector("[for='notification'] span");
+const label_nbNotif = document.querySelector("[for='notification']");
+
 function updateOnglet(arrayAvis) {
     // Calcul du nombre de non lu
     const nb_nonLu = filtreNonLu([...arrayAvis]);
@@ -278,6 +283,19 @@ function updateOnglet(arrayAvis) {
 }
 
 function afficheAvisSelect(idAvis) {
+
+    // Notification actualisation
+    if (input_notif.checked) {
+        label_nbNotif.click();
+    }
+    let new_nb_avis = parseInt(span_nbNotif.dataset.notif) - 1;
+    if (new_nb_avis == 0) {
+        span_nbNotif.textContent = "";
+        label_nbNotif.classList.remove("haveNotification");
+    } else {
+        span_nbNotif.dataset.notif = new_nb_avis;
+        span_nbNotif.textContent = new_nb_avis > 99 ? "+99" : new_nb_avis;
+    }
 
     //Selection de l'avis de la liste qui sera traité 
     avisSelect = document.getElementById(`avis${idAvis}`);
@@ -325,7 +343,7 @@ function afficheAvisSelect(idAvis) {
             etoilesAvis[i].style.backgroundColor = "var(--background-avis)";
         }
     }
-    
+
     //changement titre avis
     titreAvis.textContent = listeAvis[idAvis]['titre'];
     
@@ -336,7 +354,7 @@ function afficheAvisSelect(idAvis) {
     dateAvis.textContent = "Visité en " +  listeAvis[idAvis]['mois'] + " - " + listeAvis[idAvis]['annee'] + formatDateDiff(listeAvis[idAvis]['datepublie']);
 
     //On modifie le bloc de rédaction réponse (titre + inputs caché) 
-    if(avisSelect.classList.contains("avisNonRepondu") || avisSelect.classList.contains("avisNonLu")){
+    if (avisSelect.classList.contains("avisNonRepondu") || avisSelect.classList.contains("avisNonLu")){
         formReponseAvis.style.display = "flex";
         titreReponseAvis.textContent = "Répondre à " + listeAvis[idAvis]['pseudo'];
         inputIdAvis.value = idAvis;
@@ -414,25 +432,25 @@ function formatDateDiff(dateString) {
 
   // Déterminer le message à afficher
   if (diffInDays === 0) {
-      if (diffInMinutes === 0) {
-      return " Rédigé à l'instant";
-    } else if (diffInHours > 1) {
-      return ` Rédigé il y a ${diffInHours - 1} heure${diffInHours > 2 ? 's' : ''}`;
+        if (diffInMinutes === 0) {
+          return " Rédigé à l'instant";
+        } else if (diffInHours > 1) {
+            return ` Rédigé il y a ${diffInHours - 1} heure${diffInHours > 2 ? 's' : ''}`;
+        } else {
+            return ` Rédigé il y a ${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''}`;
+        }
+    } else if (diffInDays === 1) {
+        // La date est hier
+        return " Rédigé hier";
+    } else if (diffInDays > 1 && diffInDays <= 7) {
+        // La date est dans les 7 derniers jours
+        return ` Rédigé il y a ${diffInDays} jour${diffInDays > 1 ? 's' : ''}`;
     } else {
-      return ` Rédigé il y a ${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''}`;
-    }
-  } else if (diffInDays === 1) {
-      // La date est hier
-    return " Rédigé hier";
-} else if (diffInDays > 1 && diffInDays <= 7) {
-    // La date est dans les 7 derniers jours
-    return ` Rédigé il y a ${diffInDays} jour${diffInDays > 1 ? 's' : ''}`;
-} else {
-    // La date est plus ancienne que 7 jours ou dans le futur
-    return ` Rédigé le ${dateDB.toLocaleDateString("fr-FR")} à ${dateDB.toLocaleTimeString("fr-FR", {
-      hour: "2-digit",
-      minute: "2-digit",
-      })}`;
+        // La date est plus ancienne que 7 jours ou dans le futur
+        return ` Rédigé le ${dateDB.toLocaleDateString("fr-FR")} à ${dateDB.toLocaleTimeString("fr-FR", {
+            hour: "2-digit",
+            minute: "2-digit",
+        })}`;
     }
 }
 
