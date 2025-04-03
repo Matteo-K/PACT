@@ -574,7 +574,6 @@ function addPing(array) {
                 <h3>${elt['nomOffre']}</h3>
                 <div>
                   ${displayStar(parseFloat(elt["noteAvg"]))}
-                  <p>${elt["noteAvg"]} /5</p>
                 </div>
                 <p><strong>Résumé :</strong> ${elt['resume']}</p>
                 <p><strong>Adresse :</strong> <a href="https://www.google.com/maps?q=${encodeURIComponent(elt['numeroRue'] + ' ' + elt['rue'] + ', ' + elt['codePostal'] + ' ' + elt['ville'])}" target="_blank">${elt['numeroRue']} ${elt['rue']}, ${elt['codePostal']} ${elt['ville']}</a></p>
