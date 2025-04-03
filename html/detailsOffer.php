@@ -1763,7 +1763,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             console.error("ErreurData:", data.error);
                             return;
                         }
-                        console.log(data.count);
                     
                         nb.textContent = data.count;
                     })
@@ -1911,6 +1910,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             leaveC.addEventListener("click", () => {
                                 confirmationModalBlackFunction();
                                 refresh();
+                                refreshNombre();
                                 refreshNote();
                                 refreshTicket();
                             });
