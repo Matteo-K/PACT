@@ -6980,5 +6980,101 @@ input[id="boutonLienMembre"], input[id="boutonLienPro"] {
 /* fin de la popup de suppression de compte */
 
 
+/* page d'erreur 404 */
 
+.page404 body {
+  margin: 0;
+  overflow: hidden;
+  background-color: var(--primary60);
+}
+.ocean {
+  position: relative;
+  height: 70vh;
+  overflow: hidden;
+  width: 100%;
+}
 
+.vague {
+  position: absolute;
+  width: 150vw;
+  height: auto;
+  opacity: 1;
+  filter: drop-shadow(10px 15px 15px #00000040);
+}
+
+.ciel {
+  position: relative;
+  margin-top: 0;
+  height: 30vh;
+  overflow: hidden;
+  width: 100%;
+}
+
+.nuage {
+  position: absolute;
+  width: 150vw;
+  height: auto;
+  opacity: 0.8;
+  filter: drop-shadow(10px 15px 15px #00000040);
+}
+
+.soleil {
+  position: absolute;
+  width: 10vw;
+  height: auto;
+  opacity: 1;
+  filter: drop-shadow(0px 0px 45px #edae14);
+}
+
+.page404 aside{
+  position: fixed;
+  top: 30px;
+  right: 10px;
+  z-index: 10;
+}
+
+.page404 aside a{
+  font-size: 22px;
+  background-color: var(--accent);
+  padding: 15px;
+  border: 3px solid var(--accent);
+  border-radius: 10px;
+  color: black;
+  transition: 0.3s ease-in;
+  margin: 10px;
+  font-weight: 700;
+}
+
+.page404 aside a:hover{
+  background-color: #fff;
+  transition: 0.5s ease-in;
+  color: var(--accent);
+}
+
+.contenu404{
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenu404 #logoText{
+  font-size: 48px;
+  color: var(--bloc);
+  text-align: center;
+  margin: 0px;
+  font-size: 4em;
+}
+
+.contenu404 h2{
+  width: 100%;
+  text-align: center;
+  font-size: 3.5em;
+  margin: 10px;
+  z-index: 10;
+}
+
+/* fin de la page d'erreur 404 */
