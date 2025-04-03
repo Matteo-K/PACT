@@ -1303,12 +1303,12 @@ VALUES (1,1,5,'solo','novembre','2024','ouai pas mal',FALSE),
        (145, 17, 4, 'couple', 'août', 2024, 'Beaucoup de monde, mais bonne ambiance !', FALSE),
 
        --offre 19
-       (146, 19, 17, 'famille', 'mars', 2024, 'Expérience incroyable', FALSE),  
-       (147, 19, 14, 'amis', 'février', 2024, 'Très bon parcours', TRUE), 
-       (148, 19, 10, 'solo', 'janvier', 2024, 'Bien mais un peu cher', FALSE),
-       (149, 19, 19, 'famille', 'mars', 2024, 'Tyrolienne géniale', FALSE),
-       (150, 19, 13, 'affaire', 'février', 2024, 'Super avec des enfants', TRUE),
-       (151, 19, 20, 'couple', 'mars', 2024, 'À refaire sans hésiter', FALSE);
+       (146, 19, 5, 'famille', 'mars', 2024, 'Expérience incroyable', FALSE),  
+       (147, 19, 4, 'amis', 'février', 2024, 'Très bon parcours', TRUE), 
+       (148, 19, 3, 'solo', 'janvier', 2024, 'Bien mais un peu cher', FALSE),
+       (149, 19, 4, 'famille', 'mars', 2024, 'Tyrolienne géniale', FALSE),
+       (150, 19, 4, 'affaire', 'février', 2024, 'Super avec des enfants', TRUE),
+       (151, 19, 5, 'couple', 'mars', 2024, 'À refaire sans hésiter', FALSE);
 
 INSERT INTO _reponse(idC,ref)
 VALUES (11,3),
