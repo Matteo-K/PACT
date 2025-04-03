@@ -18,7 +18,7 @@
 
     <aside>
         <a href="index.php">Retour à la page d'accueil</a>
-        <a href="javascript:history.back()">Retour à la page précédente</a>
+        <!-- <a href="javascript:history.back()">Retour à la page précédente</a> -->
     </aside>
 
     <div class="contenu404">
@@ -69,13 +69,13 @@ body {
     transform: translateX(-50vw);
     bottom: -50px;
     z-index: 4;
-    animation: vagueDebutGauche 8s ease-in-out infinite alternate;
+    animation: vagueDebutGauche 7.5s ease-in-out infinite alternate;
 }
 
 .vague:nth-child(3) {
-    bottom: -100px;
+    bottom: -150px;
     z-index: 3;
-    animation: vagueDebutDroite 10s ease-in-out infinite alternate;
+    animation: vagueDebutDroite 9s ease-in-out infinite alternate;
 }
 
 .ciel {
@@ -97,14 +97,14 @@ body {
 .nuage:nth-child(2) {
     top: -150px;
     z-index: 1;
-    animation: vagueDebutDroite 7s ease-in-out infinite alternate;
+    animation: vagueDebutDroite 6.5s ease-in-out infinite alternate;
 }
 
 .nuage:nth-child(3) {
     transform: translateX(-50vw);
     top: -200px;
     z-index: 2;
-    animation: vagueDebutGauche 9s ease-in-out infinite alternate;
+    animation: vagueDebutGauche 8s ease-in-out infinite alternate;
 }
 
 .soleil {
@@ -127,7 +127,7 @@ body {
 
 aside{
     position: fixed;
-    top: 20px;
+    top: 30px;
     right: 10px;
     z-index: 10;
 }
@@ -136,11 +136,12 @@ aside a{
     font-size: 22px;
     background-color: var(--accent);
     padding: 15px;
-    border: 2px solid var(--accent);
+    border: 3px solid var(--accent);
     border-radius: 10px;
     color: black;
     transition: 0.3s ease-in;
     margin: 10px;
+    font-weight: 700;
 }
 
 aside a:hover{
@@ -162,6 +163,21 @@ aside a:hover{
 .contenu404 img{
     height: 100px;
     width: auto;
+}
+
+.contenu404 #logoText{
+    font-size: 48px;
+    color: var(--bloc);
+    text-align: center;
+    margin: 0px;
+    font-size: 3.5em;
+}
+
+.contenu404 h2{
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+    margin: 10px;
 }
 
 
