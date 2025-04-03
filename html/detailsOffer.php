@@ -1746,7 +1746,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     });
                 }
 
-                function refreshNombre(params) {
+                function refreshNombre() {
                     let nb = document.getElementById("nbBlacklist");
 
                     fetch("ajax/refreshTicket.php", {
@@ -1760,7 +1760,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     .then(response => response.json())
                     .then(data => {
                         if (data.error) {
-                            console.error("Erreur:", data.error);
+                            console.error("ErreurData:", data.error);
                             return;
                         }
                     
@@ -1768,7 +1768,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     })
                     .catch(error => {
                         console.error("Erreur:", error);
-                        div.textContent = "Erreur de chargement";
+                        nb.textContent = "Erreur de chargement";
                     });
                 }
 
@@ -1910,6 +1910,7 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             leaveC.addEventListener("click", () => {
                                 confirmationModalBlackFunction();
                                 refresh();
+                                refreshNombre();
                                 refreshNote();
                                 refreshTicket();
                             });

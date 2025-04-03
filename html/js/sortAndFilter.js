@@ -531,7 +531,6 @@ function sortAndFilter(array, search, elementStart, nbElement) {
   
   // Tris
   array = selectSort(array);
-  console.log(array);
   // Affichage
   displayOffers(array, elementStart, nbElement);
   // Affichage de la pagination

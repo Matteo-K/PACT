@@ -62,7 +62,7 @@ ORDER BY
 } elseif ($action === "compter") {
     $stmt = $conn->prepare("SELECT COUNT(*) AS count FROM pact._blacklist WHERE idOffre = ?");
     $stmt->execute([$idOffre]);
-    $nb = $stmt->fetchAll(PDO::FETCH_COLUMN); // Récupère uniquement la colonne `datefinblacklist`
+    $nb = $stmt->fetch(); // Récupère uniquement la colonne `datefinblacklist`
 
     echo json_encode(["count" => (int)$nb["count"]]);
 } else {
