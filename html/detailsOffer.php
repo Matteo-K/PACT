@@ -1763,7 +1763,6 @@ $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             console.error("ErreurData:", data.error);
                             return;
                         }
-                        console.log(data.count);
                     
                         nb.textContent = data.count;
                     })
